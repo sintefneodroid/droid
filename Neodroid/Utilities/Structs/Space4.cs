@@ -10,7 +10,7 @@ namespace Neodroid.Utilities.Structs {
     public Vector4 _MinValues;
     public Vector4 _MaxValues;
 
-    public Space4(int decimal_granularity = System.Int32.MaxValue) {
+    public Space4(int decimal_granularity = int.MaxValue) {
       this._DecimalGranularity = decimal_granularity;
       this._MinValues = Vector4.negativeInfinity;
       this._MaxValues = Vector4.positiveInfinity;
