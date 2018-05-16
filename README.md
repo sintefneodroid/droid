@@ -47,7 +47,7 @@ Droid is a unity package that enables prototyping reinforcement learning environ
     <img alt="csharp" src=".github/images/csharp.svg" height="40" align="center">
   </a>
   <a href="https://github.com/zeromq/netmq">
-    <img alt="pytorch" src=".github/images/netmq.svg" height="40" align="right">
+    <img alt="netmq" src=".github/images/netmq.svg" height="40" align="right">
   </a>
 </p>
 <p align="center" width="100%">
@@ -121,15 +121,6 @@ environments and ease of integration with existing projects)
     ├── LICENSE               # License file (Important but boring)
     └── README.md             # The top-level README
 ---
-
-## Quick Development Setup
-1. ```git clone https://github.com/sintefneodroid/droid```
-2. ```git-lfs pull```
-3. Remember to checkout lfs files as well
-4. Open the ```Examples``` folder as a Unity project
-
-### Important Notice for **Windows** Users!
-Run ```fix_windows_symlink.bat``` with administrative privileges, to make Windows recognise the Neodroid symlink in the Unity project of this repository. If on any other platform you should be fine.
 
 # Other Components Of The Neodroid Platform
 - [agent](https://github.com/sintefneodroid/agent)
