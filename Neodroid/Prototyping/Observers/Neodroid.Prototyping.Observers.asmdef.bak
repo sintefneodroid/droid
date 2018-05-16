@@ -1,0 +1,10 @@
+{
+    "name": "Neodroid.Prototyping.Observers",
+    "references": [
+        "Neodroid.Utilities"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

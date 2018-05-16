@@ -1,0 +1,11 @@
+{
+    "name": "Neodroid.Prototyping.Evaluation.Tasks",
+    "references": [
+        "Neodroid.Utilties.ScriptablesObjects",
+        "Neodroid.Prototyping.Observers"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

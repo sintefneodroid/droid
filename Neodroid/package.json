@@ -1,0 +1,13 @@
+{
+    "name": "net.cnheider.neodroid",
+    "displayName": "Neodroid",
+    "version": "0.0.1",
+    "unity": "2018.1",
+    "description": "Easy prototyping of reinforcement learning environments.",
+    "keywords": [
+        "rl",
+        "unity"
+    ],
+    "category": "Unity",
+    "dependencies": { "com.unity.textmeshpro": "1.2.1" }
+}

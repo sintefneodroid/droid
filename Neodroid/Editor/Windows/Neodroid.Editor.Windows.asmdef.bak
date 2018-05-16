@@ -1,0 +1,13 @@
+{
+    "name": "Neodroid.Editor.Windows",
+    "references": [
+        "Neodroid.Prototyping",
+        "Neodroid.Utilities"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Neodroid.Editor.GameObjects",
+    "references": [],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Neodroid.Editor.ScriptablesObjects",
+    "references": [],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

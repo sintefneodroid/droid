@@ -1,0 +1,14 @@
+{
+    "name": "Neodroid.Editor",
+    "references": [
+        "Neodroid.Editor.GameObjects",
+        "Neodroid.Editor.ScriptablesObjects",
+        "Neodroid.Editor.Windows"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

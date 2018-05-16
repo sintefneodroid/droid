@@ -1,0 +1,10 @@
+{
+    "name": "Neodroid.Prototyping.Configurables",
+    "references": [
+        "Neodroid.Utilities"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

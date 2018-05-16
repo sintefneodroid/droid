@@ -1,0 +1,11 @@
+{
+    "name": "Neodroid.Utilties.ScriptablesObjects",
+    "references": [
+        "Neodroid.Utilities.Segmentation",
+        "Neodroid.Utilities.Structs"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

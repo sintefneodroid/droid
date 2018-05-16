@@ -1,0 +1,19 @@
+{
+    "name": "Neodroid.Utilities",
+    "references": [
+        "Neodroid.Utilities.BoundingBoxes",
+        "Neodroid.Utilities.Enums",
+        "Neodroid.Utilities.Interfaces",
+        "Neodroid.Utilities.NeodroidCamera",
+        "Neodroid.Utilities.Plotting",
+        "Neodroid.Utilities.Segmentation",
+        "Neodroid.Utilities.SerialisableDictionary",
+        "Neodroid.Utilities.Structs",
+        "Neodroid.Utilties.ScriptablesObjects",
+        "Neodroid.Utilities.Sensors"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

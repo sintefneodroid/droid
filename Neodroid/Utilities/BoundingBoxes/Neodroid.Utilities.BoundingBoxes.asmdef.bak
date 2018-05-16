@@ -1,0 +1,10 @@
+{
+    "name": "Neodroid.Utilities.BoundingBoxes",
+    "references": [
+        "Neodroid.Utilities.Sensors"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

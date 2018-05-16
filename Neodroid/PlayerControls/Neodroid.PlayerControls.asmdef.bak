@@ -1,0 +1,10 @@
+{
+    "name": "Neodroid.PlayerControls",
+    "references": [
+        "Neodroid.Managers"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

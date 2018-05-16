@@ -1,0 +1,12 @@
+{
+    "name": "Neodroid",
+    "references": [
+        "Neodroid.Editor",
+        "Neodroid.Utilities",
+        "Neodroid.Prototyping"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Neodroid.Utilities.Segmentation",
+    "references": [
+        "Neodroid.Utilities.Structs"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

@@ -1,0 +1,15 @@
+{
+    "name": "Neodroid.Prototyping",
+    "references": [
+        "Neodroid.Prototyping.Actors",
+        "Neodroid.Prototyping.Configurables",
+        "Neodroid.Prototyping.Displayers",
+        "Neodroid.Prototyping.Evaluation",
+        "Neodroid.Prototyping.Motors",
+        "Neodroid.Prototyping.Observers"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

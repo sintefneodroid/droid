@@ -1,0 +1,11 @@
+{
+    "name": "Neodroid.Messaging.Messages",
+    "references": [
+        "Neodroid.Utilities",
+        "Neodroid.Prototyping"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

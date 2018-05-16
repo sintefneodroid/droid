@@ -1,0 +1,10 @@
+{
+    "name": "Neodroid.Prototyping.Displayers.Canvas",
+    "references": [
+        "Neodroid.Prototyping.Displayers"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

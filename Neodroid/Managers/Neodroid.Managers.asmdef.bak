@@ -1,0 +1,10 @@
+{
+    "name": "Neodroid.Managers",
+    "references": [
+        "Neodroid.Environments"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

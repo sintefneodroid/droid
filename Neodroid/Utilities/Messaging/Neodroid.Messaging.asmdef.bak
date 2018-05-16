@@ -1,0 +1,11 @@
+{
+    "name": "Neodroid.Messaging",
+    "references": [
+        "Neodroid.Messaging.FBS",
+        "Neodroid.Messaging.Messages"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

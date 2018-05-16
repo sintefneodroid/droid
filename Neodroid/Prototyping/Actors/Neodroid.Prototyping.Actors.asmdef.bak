@@ -1,0 +1,10 @@
+{
+    "name": "Neodroid.Prototyping.Actors",
+    "references": [
+        "Neodroid.Utilities"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}
