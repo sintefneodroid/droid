@@ -4,13 +4,13 @@
   ///
   /// </summary>
   public partial class SimulatorConfiguration {
-    System.Int32 _frame_skips;
-    System.Boolean _full_screen;
-    System.Int32 _height;
-    System.Int32 _width;
+    int _frame_skips;
+    bool _full_screen;
+    int _height;
+    int _width;
     ScriptableObjects.FrameFinishes _frame_finishes;
-    System.Int32 _num_of_environments;
-    System.Int32 _reset_iterations;
+    int _num_of_environments;
+    int _reset_iterations;
 
     public SimulatorConfiguration() {}
 

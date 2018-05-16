@@ -286,7 +286,7 @@ namespace Neodroid.Utilities.Messaging.FBS {
     static Offset<Neodroid.FBS.State.FOBS> serialise_observer(FlatBufferBuilder b, Observer observer) {
       var n = b.CreateString(observer.Identifier);
 
-      System.Int32 observation_offset;
+      int observation_offset;
       Neodroid.FBS.State.FObservation observation_type;
 
       if (observer is IHasArray) {
@@ -391,7 +391,7 @@ namespace Neodroid.Utilities.Messaging.FBS {
         string identifier) {
       var n = b.CreateString(identifier);
 
-      System.Int32 observation_offset;
+      int observation_offset;
       Neodroid.FBS.State.FObservation observation_type;
 
       if (configurable is IHasQuaternionTransform) {

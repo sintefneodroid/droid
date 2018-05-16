@@ -36,7 +36,7 @@ namespace Neodroid.Utilities.Messaging.FBS {
         Debug.LogWarning("Empty reactions received");
       }
 
-      return new System.Tuple<Messages.Reaction[], System.Boolean, System.String, Messages.SimulatorConfiguration>(out_reactions.ToArray(),close,api_version,simulator_configuration);
+      return new System.Tuple<Messages.Reaction[], bool, System.String, Messages.SimulatorConfiguration>(out_reactions.ToArray(),close,api_version,simulator_configuration);
     }
 
     /// <summary>
