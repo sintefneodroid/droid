@@ -1,12 +1,10 @@
 ﻿using System;
-using Neodroid.Prototyping.Actors;
-using Neodroid.Utilities;
-using Neodroid.Utilities.GameObjects;
-using Neodroid.Utilities.Interfaces;
-using Neodroid.Utilities.Structs;
+using droid.Neodroid.Prototyping.Actors;
+using droid.Neodroid.Utilities.GameObjects;
+using droid.Neodroid.Utilities.Structs;
 using UnityEngine;
 
-namespace Neodroid.Prototyping.Motors {
+namespace droid.Neodroid.Prototyping.Motors {
   [ExecuteInEditMode]
   [Serializable]
   public class Motor : PrototypingGameObject {

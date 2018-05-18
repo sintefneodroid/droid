@@ -1,8 +1,7 @@
-﻿using Neodroid.Managers;
-using Neodroid.Utilities;
+﻿using droid.Neodroid.Managers;
 using UnityEngine;
 
-namespace Neodroid.Prototyping.Configurables {
+namespace droid.Neodroid.Prototyping.Configurables {
   [AddComponentMenu(
       ConfigurableComponentMenuPath._ComponentMenuPath
       + "Simulation"

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Neodroid.Prototyping.Evaluation {
+namespace droid.Neodroid.Prototyping.Evaluation {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

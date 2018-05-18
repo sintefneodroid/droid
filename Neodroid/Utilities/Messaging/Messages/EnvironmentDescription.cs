@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using Neodroid.Prototyping.Actors;
-using Neodroid.Prototyping.Configurables;
-using Neodroid.Utilities.ScriptableObjects;
+using droid.Neodroid.Prototyping.Actors;
+using droid.Neodroid.Prototyping.Configurables;
 
-namespace Neodroid.Utilities.Messaging.Messages {
+namespace droid.Neodroid.Utilities.Messaging.Messages {
   /// <summary>
   ///
   /// </summary>

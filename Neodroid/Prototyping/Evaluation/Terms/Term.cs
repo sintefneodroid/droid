@@ -1,10 +1,7 @@
 ﻿using System;
-using Neodroid.Utilities;
-using Neodroid.Utilities.GameObjects;
-using Neodroid.Utilities.Interfaces;
-using UnityEngine;
+using droid.Neodroid.Utilities.GameObjects;
 
-namespace Neodroid.Prototyping.Evaluation.Terms {
+namespace droid.Neodroid.Prototyping.Evaluation.Terms {
   /// <summary>
   /// 
   /// </summary>

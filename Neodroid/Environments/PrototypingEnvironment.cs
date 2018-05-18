@@ -1,20 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Neodroid.Managers;
-using Neodroid.Prototyping.Actors;
-using Neodroid.Prototyping.Configurables;
-using Neodroid.Prototyping.Displayers;
-using Neodroid.Prototyping.Evaluation;
-using Neodroid.Prototyping.Observers;
-using Neodroid.Utilities;
-using Neodroid.Utilities.BoundingBoxes;
-using Neodroid.Utilities.Enums;
-using Neodroid.Utilities.Interfaces;
+using droid.Neodroid.Prototyping.Actors;
+using droid.Neodroid.Prototyping.Configurables;
+using droid.Neodroid.Prototyping.Displayers;
+using droid.Neodroid.Prototyping.Evaluation;
+using droid.Neodroid.Prototyping.Observers;
+using droid.Neodroid.Utilities.BoundingBoxes;
+using droid.Neodroid.Utilities.Enums;
+using droid.Neodroid.Utilities.Interfaces;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Neodroid.Environments {
+namespace droid.Neodroid.Environments {
   /// <inheritdoc cref="NeodroidEnvironment" />
   /// <summary>
   /// Environment to be used with the prototyping components.

@@ -1,7 +1,7 @@
-﻿using Neodroid.Utilities.BoundingBoxes;
+﻿using droid.Neodroid.Utilities.BoundingBoxes;
 using UnityEngine;
 
-namespace Neodroid.Prototyping.Observers.Experimental {
+namespace droid.Neodroid.Prototyping.Observers.Experimental {
   /// <summary>
   /// 
   /// </summary>

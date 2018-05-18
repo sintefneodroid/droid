@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Neodroid.Managers;
-using Neodroid.Utilities;
+using droid.Neodroid.Managers;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Neodroid.Environments {
+namespace droid.Neodroid.Environments {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

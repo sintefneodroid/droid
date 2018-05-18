@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Neodroid.Prototyping.Observers {
+namespace droid.Neodroid.Prototyping.Observers {
   enum Category {
     One_,
     Two_,

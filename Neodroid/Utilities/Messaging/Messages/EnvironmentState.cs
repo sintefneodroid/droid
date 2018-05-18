@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Neodroid.Prototyping.Observers;
+using droid.Neodroid.Prototyping.Observers;
 using UnityEngine;
 
-namespace Neodroid.Utilities.Messaging.Messages {
+namespace droid.Neodroid.Utilities.Messaging.Messages {
   [Serializable]
   public class EnvironmentState {
     public EnvironmentState(

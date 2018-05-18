@@ -1,12 +1,13 @@
 ﻿using System.Linq;
 using System.Threading;
 using AsyncIO;
+using droid.Neodroid.Utilities.Messaging.FBS;
 using FlatBuffers;
 using NetMQ;
 using NetMQ.Sockets;
 using UnityEngine;
 
-namespace Neodroid.Utilities.Messaging {
+namespace droid.Neodroid.Utilities.Messaging {
   /// <summary>
   ///
   /// </summary>
@@ -160,7 +161,7 @@ namespace Neodroid.Utilities.Messaging {
           }
 
           if (msg != null) { //&& msg.Length >= 4) {
-            var flat_reaction = Neodroid.FBS.Reaction.FReactions.GetRootAsFReactions(new ByteBuffer(msg));
+            var flat_reaction = FReactions.GetRootAsFReactions(new ByteBuffer(msg));
             var tuple = FBS.FbsReactionUtilities.deserialise_reactions(flat_reaction);
             reactions = tuple.Item1; //TODO: Change tuple to the Reactions class
             var close = tuple.Item2;

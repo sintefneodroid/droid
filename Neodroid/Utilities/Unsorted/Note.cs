@@ -1,9 +1,7 @@
 ﻿#if UNITY_EDITOR
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Neodroid.Utilities.Unsorted {
+namespace droid.Neodroid.Utilities.Unsorted {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

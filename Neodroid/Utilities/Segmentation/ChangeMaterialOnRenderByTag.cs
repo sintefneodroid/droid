@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using Neodroid.Utilities.Structs;
 using UnityEngine;
 
-namespace Neodroid.Utilities.Segmentation {
+namespace droid.Neodroid.Utilities.Segmentation {
   /// <summary>
   ///
   /// </summary>

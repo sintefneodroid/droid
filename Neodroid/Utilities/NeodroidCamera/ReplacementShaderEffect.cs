@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Neodroid.Utilities.NeodroidCamera {
+namespace droid.Neodroid.Utilities.NeodroidCamera {
   [ExecuteInEditMode]
   public class ReplacementShaderEffect : MonoBehaviour {
     [SerializeField] string _replace_rendertype = "";

@@ -1,8 +1,7 @@
-﻿using Neodroid.Utilities.Segmentation;
-using Neodroid.Utilities.Structs;
+﻿using droid.Neodroid.Utilities.Segmentation;
 using UnityEngine;
 
-namespace Neodroid.Utilities.ScriptableObjects {
+namespace droid.Neodroid.Utilities.ScriptableObjects {
   [CreateAssetMenu(
       fileName = "Segmentations",
       menuName = "Neodroid/ScriptableObjects/Segmentations",

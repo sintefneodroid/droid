@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Neodroid.Utilities.Unsorted {
+namespace droid.Neodroid.Utilities.Unsorted {
   [RequireComponent(typeof(Collider))]
   public class ChildCollisionPublisher : MonoBehaviour {
     public delegate void OnCollisionDelegate(Collision collision);

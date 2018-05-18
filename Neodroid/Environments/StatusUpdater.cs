@@ -1,8 +1,8 @@
-﻿using Neodroid.Managers;
+﻿using droid.Neodroid.Managers;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Neodroid.Environments {
+namespace droid.Neodroid.Environments {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

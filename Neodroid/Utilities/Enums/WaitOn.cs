@@ -1,4 +1,4 @@
-﻿namespace Neodroid.Utilities.Enums {
+﻿namespace droid.Neodroid.Utilities.Enums {
   public enum WaitOn {
     Never_,
 

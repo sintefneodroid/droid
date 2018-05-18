@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using Neodroid.Prototyping.Motors;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Neodroid.Prototyping.Actors {
+namespace droid.Neodroid.Prototyping.Actors {
   /// <summary>
   ///
   /// </summary>

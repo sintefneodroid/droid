@@ -1,15 +1,13 @@
 ﻿using System.Collections.Generic;
-using Neodroid.Utilities.Interfaces;
-using Neodroid.Utilities.Sensors;
-
+using droid.Neodroid.Utilities.Interfaces;
+using droid.Neodroid.Utilities.Sensors;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 #if UNITY_EDITOR
-using UnityEditor;
+
 #endif
 
-namespace Neodroid.Utilities.Unsorted {
+namespace droid.Neodroid.Utilities.Unsorted {
   /// <summary>
   ///
   /// </summary>

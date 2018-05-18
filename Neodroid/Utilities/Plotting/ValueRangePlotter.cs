@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Neodroid.Utilities.Plotting {
+namespace droid.Neodroid.Utilities.Plotting {
   [ExecuteInEditMode]
   public class ValueRangePlotter : MonoBehaviour {
     [SerializeField] Shader _shader;

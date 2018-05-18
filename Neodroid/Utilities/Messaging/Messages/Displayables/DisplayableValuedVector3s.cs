@@ -1,7 +1,6 @@
 ﻿using System;
-using UnityEngine;
 
-namespace Neodroid.Utilities.Messaging.Messages.Displayables {
+namespace droid.Neodroid.Utilities.Messaging.Messages.Displayables {
   public class DisplayableValuedVector3S : Displayable {
     public DisplayableValuedVector3S(
         String displayable_name,

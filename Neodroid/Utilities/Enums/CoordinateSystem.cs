@@ -1,4 +1,4 @@
-﻿namespace Neodroid.Utilities.Enums {
+﻿namespace droid.Neodroid.Utilities.Enums {
   public enum CoordinateSystem {
     Global_coordinates_,
     Local_coordinates_,

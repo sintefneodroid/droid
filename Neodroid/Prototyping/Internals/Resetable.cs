@@ -1,9 +1,8 @@
 ﻿using System;
-using Neodroid.Environments;
-using Neodroid.Utilities;
+using droid.Neodroid.Environments;
 using UnityEngine;
 
-namespace Neodroid.Prototyping.Internals {
+namespace droid.Neodroid.Prototyping.Internals {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

@@ -1,4 +1,4 @@
-﻿namespace Neodroid.Utilities.Unsorted {
+﻿namespace droid.Neodroid.Utilities.Unsorted {
   public static partial class NeodroidUtilities {
 
     /// <summary>

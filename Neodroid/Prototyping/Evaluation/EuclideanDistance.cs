@@ -1,7 +1,7 @@
-﻿using Neodroid.Prototyping.Actors;
+﻿using droid.Neodroid.Prototyping.Actors;
 using UnityEngine;
 
-namespace Neodroid.Prototyping.Evaluation {
+namespace droid.Neodroid.Prototyping.Evaluation {
   [AddComponentMenu(
       EvaluationComponentMenuPath._ComponentMenuPath
       + "EuclideanDistance"

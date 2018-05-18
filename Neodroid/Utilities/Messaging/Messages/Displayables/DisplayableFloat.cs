@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Neodroid.Utilities.Messaging.Messages.Displayables {
+namespace droid.Neodroid.Utilities.Messaging.Messages.Displayables {
   /// <summary>
   /// 
   /// </summary>

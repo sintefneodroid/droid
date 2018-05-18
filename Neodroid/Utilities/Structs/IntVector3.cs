@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Neodroid.Utilities.Structs {
+namespace droid.Neodroid.Utilities.Structs {
   [Serializable]
   public struct IntVector3 {
     [SerializeField] public int _X;

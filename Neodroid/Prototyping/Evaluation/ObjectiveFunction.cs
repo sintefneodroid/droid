@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using Neodroid.Environments;
-using Neodroid.Prototyping.Evaluation.Terms;
-using Neodroid.Prototyping.Motors;
-using Neodroid.Utilities.GameObjects;
-using Neodroid.Utilities.Interfaces;
+using droid.Neodroid.Environments;
+using droid.Neodroid.Prototyping.Evaluation.Terms;
+using droid.Neodroid.Utilities.GameObjects;
+using droid.Neodroid.Utilities.Interfaces;
 using UnityEngine;
 
-namespace Neodroid.Prototyping.Evaluation {
+namespace droid.Neodroid.Prototyping.Evaluation {
   /// <inheritdoc cref="ObjectiveFunction" />
   /// <summary>
   /// </summary>

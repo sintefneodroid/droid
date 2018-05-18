@@ -1,9 +1,9 @@
 ﻿using System;
-using Neodroid.Utilities.Interfaces;
-using Neodroid.Utilities.Structs;
+using droid.Neodroid.Utilities.Interfaces;
+using droid.Neodroid.Utilities.Structs;
 using UnityEngine;
 
-namespace Neodroid.Prototyping.Observers {
+namespace droid.Neodroid.Prototyping.Observers {
   [AddComponentMenu(
       ObserverComponentMenuPath._ComponentMenuPath + "Raycast" + ObserverComponentMenuPath._Postfix)]
   public class RaycastObserver : Observer,
@@ -31,7 +31,7 @@ namespace Neodroid.Prototyping.Observers {
     public Single ObservationValue {
       get { return this._observation_value; }
       private set {
-        this._observation_value = this.NormaliseObservationUsingSpace
+        this._observation_value = this.NormaliseObservation
                                       ? this._observation_space.ClipNormaliseRound(value)
                                       : value;
       }

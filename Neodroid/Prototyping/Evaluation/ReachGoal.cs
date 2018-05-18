@@ -1,8 +1,7 @@
-﻿using Neodroid.Prototyping.Actors;
-using Neodroid.Utilities;
+﻿using droid.Neodroid.Prototyping.Actors;
 using UnityEngine;
 
-namespace Neodroid.Prototyping.Evaluation {
+namespace droid.Neodroid.Prototyping.Evaluation {
   [AddComponentMenu(
       EvaluationComponentMenuPath._ComponentMenuPath + "ReachGoal" + EvaluationComponentMenuPath._Postfix)]
   public class ReachGoal : ObjectiveFunction {

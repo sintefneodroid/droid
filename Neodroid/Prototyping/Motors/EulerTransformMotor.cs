@@ -1,8 +1,6 @@
-﻿using System;
-using Neodroid.Utilities;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Neodroid.Prototyping.Motors {
+namespace droid.Neodroid.Prototyping.Motors {
   [AddComponentMenu(
       MotorComponentMenuPath._ComponentMenuPath + "EulerTransform" + MotorComponentMenuPath._Postfix)]
   public class EulerTransformMotor : Motor {

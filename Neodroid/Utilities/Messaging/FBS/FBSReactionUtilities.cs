@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Neodroid.Utilities.Messaging.FBS {
+namespace droid.Neodroid.Utilities.Messaging.FBS {
   /// <summary>
   ///
   /// </summary>
@@ -12,7 +12,7 @@ namespace Neodroid.Utilities.Messaging.FBS {
     /// </summary>
     /// <param name="reactions"></param>
     /// <returns></returns>
-    public static System.Tuple<Messages.Reaction[],bool,string,Messages.SimulatorConfiguration> deserialise_reactions(Neodroid.FBS.Reaction.FReactions? reactions) {
+    public static System.Tuple<Messages.Reaction[],bool,string,Messages.SimulatorConfiguration> deserialise_reactions(FReactions? reactions) {
       var out_reactions = new System.Collections.Generic.List<Messages.Reaction>();
 
       var close = false;
@@ -44,7 +44,7 @@ namespace Neodroid.Utilities.Messaging.FBS {
     /// </summary>
     /// <param name="reaction"></param>
     /// <returns></returns>
-    public static Messages.Reaction deserialise_reaction(Neodroid.FBS.Reaction.FReaction? reaction) {
+    public static Messages.Reaction deserialise_reaction(FReaction? reaction) {
       if (reaction.HasValue) {
         var r = reaction.Value;
         var motions = deserialise_motions(r);
@@ -71,15 +71,15 @@ namespace Neodroid.Utilities.Messaging.FBS {
     #endregion
 
     #region PrivateMethods
-    static System.String deserialise_simulator_configuration(Neodroid.FBS.Reaction.FReaction reaction_value) {
+    static System.String deserialise_simulator_configuration(FReaction reaction_value) {
       return reaction_value.SerialisedMessage;
     }
 
-    static System.String deserialise_serialised_message(Neodroid.FBS.Reaction.FReaction reaction_value) {
+    static System.String deserialise_serialised_message(FReaction reaction_value) {
       return reaction_value.SerialisedMessage;
     }
 
-    static Messages.Unobservables deserialise_unobservables(Neodroid.FBS.Reaction.FReaction reaction) {
+    static Messages.Unobservables deserialise_unobservables(FReaction reaction) {
       if (reaction.Unobservables.HasValue) {
         var bodies = deserialise_bodies(reaction.Unobservables.Value);
 
@@ -91,7 +91,7 @@ namespace Neodroid.Utilities.Messaging.FBS {
       return new Messages.Unobservables();
     }
 
-    static Messages.ReactionParameters deserialise_parameters(Neodroid.FBS.Reaction.FReaction reaction) {
+    static Messages.ReactionParameters deserialise_parameters(FReaction reaction) {
       if (reaction.Parameters.HasValue) {
         return new Messages.ReactionParameters(
             reaction.Parameters.Value.Terminable,
@@ -105,7 +105,7 @@ namespace Neodroid.Utilities.Messaging.FBS {
       return new Messages.ReactionParameters();
     }
 
-    static Messages.Configuration[] deserialise_configurations(Neodroid.FBS.Reaction.FReaction reaction) {
+    static Messages.Configuration[] deserialise_configurations(FReaction reaction) {
       var l = reaction.ConfigurationsLength;
       var configurations = new Messages.Configuration[l];
       for (var i = 0; i < l; i++) {
@@ -115,7 +115,7 @@ namespace Neodroid.Utilities.Messaging.FBS {
       return configurations;
     }
 
-    static Messages.Displayables.Displayable[] deserialise_displayables(Neodroid.FBS.Reaction.FReaction reaction) {
+    static Messages.Displayables.Displayable[] deserialise_displayables(FReaction reaction) {
       var l = reaction.DisplayablesLength;
       var configurations = new Messages.Displayables.Displayable[l];
       for (var i = 0; i < l; i++) {
@@ -125,20 +125,20 @@ namespace Neodroid.Utilities.Messaging.FBS {
       return configurations;
     }
 
-    static Messages.Displayables.Displayable deserialise_displayable(Neodroid.FBS.Reaction.FDisplayable? displayable) {
+    static Messages.Displayables.Displayable deserialise_displayable(FDisplayable? displayable) {
       if (displayable.HasValue) {
         var d = displayable.Value;
 
         switch (d.DisplayableValueType) {
-          case Neodroid.FBS.Reaction.FDisplayableValue.NONE: break;
+          case FDisplayableValue.NONE: break;
 
-          case Neodroid.FBS.Reaction.FDisplayableValue.FValue:
+          case FDisplayableValue.FValue:
             return new Messages.Displayables.DisplayableFloat(
                 d.DisplayableName,
-                d.DisplayableValue<Neodroid.FBS.FValue>()?.Val);
+                d.DisplayableValue<FValue>()?.Val);
 
-          case Neodroid.FBS.Reaction.FDisplayableValue.FValues:
-            var v3 = d.DisplayableValue<Neodroid.FBS.FValues>().GetValueOrDefault();
+          case FDisplayableValue.FValues:
+            var v3 = d.DisplayableValue<FValues>().GetValueOrDefault();
             var a1 = new System.Collections.Generic.List<float>();
             for (var i = 0; i < v3.ValsLength; i++) {
               a1.Add((float)v3.Vals(i));
@@ -146,8 +146,8 @@ namespace Neodroid.Utilities.Messaging.FBS {
 
             return new Messages.Displayables.DisplayableValues(d.DisplayableName, a1.ToArray());
 
-          case Neodroid.FBS.Reaction.FDisplayableValue.FVector3s:
-            var v2 = d.DisplayableValue<Neodroid.FBS.FVector3s>().GetValueOrDefault();
+          case FDisplayableValue.FVector3s:
+            var v2 = d.DisplayableValue<FVector3s>().GetValueOrDefault();
             var a = new System.Collections.Generic.List<Vector3>();
             for (var i = 0; i < v2.PointsLength; i++) {
               var p = v2.Points(i).GetValueOrDefault();
@@ -157,8 +157,8 @@ namespace Neodroid.Utilities.Messaging.FBS {
 
             return new Messages.Displayables.DisplayableVector3S(d.DisplayableName, a.ToArray());
 
-          case Neodroid.FBS.Reaction.FDisplayableValue.FValuedVector3s:
-            var flat_fvec3 = d.DisplayableValue<Neodroid.FBS.FValuedVector3s>().GetValueOrDefault();
+          case FDisplayableValue.FValuedVector3s:
+            var flat_fvec3 = d.DisplayableValue<FValuedVector3s>().GetValueOrDefault();
             var output = new System.Collections.Generic.List<Structs.Points.ValuePoint>();
 
             for (var i = 0; i < flat_fvec3.PointsLength; i++) {
@@ -173,12 +173,12 @@ namespace Neodroid.Utilities.Messaging.FBS {
 
             return new Messages.Displayables.DisplayableValuedVector3S(d.DisplayableName, output.ToArray());
 
-          case Neodroid.FBS.Reaction.FDisplayableValue.FString:
+          case FDisplayableValue.FString:
             return new Messages.Displayables.DisplayableString(
                 d.DisplayableName,
-                d.DisplayableValue<Neodroid.FBS.FString>()?.Str);
+                d.DisplayableValue<FString>()?.Str);
 
-          case Neodroid.FBS.Reaction.FDisplayableValue.FByteArray: break;
+          case FDisplayableValue.FByteArray: break;
           default: throw new System.ArgumentOutOfRangeException();
         }
       }
@@ -186,7 +186,7 @@ namespace Neodroid.Utilities.Messaging.FBS {
       return null;
     }
 
-    static Messages.MotorMotion[] deserialise_motions(Neodroid.FBS.Reaction.FReaction reaction) {
+    static Messages.MotorMotion[] deserialise_motions(FReaction reaction) {
       var l = reaction.MotionsLength;
       var motions = new Messages.MotorMotion[l];
       for (var i = 0; i < l; i++) {
@@ -196,7 +196,7 @@ namespace Neodroid.Utilities.Messaging.FBS {
       return motions;
     }
 
-    static Messages.Configuration deserialise_configuration(Neodroid.FBS.Reaction.FConfiguration? configuration) {
+    static Messages.Configuration deserialise_configuration(FConfiguration? configuration) {
       if (configuration.HasValue) {
         var c = configuration.Value;
         return new Messages.Configuration(
@@ -207,7 +207,7 @@ c.ConfigurableName,
       return null;
     }
 
-    static Messages.MotorMotion deserialise_motion(Neodroid.FBS.Reaction.FMotion? motion) {
+    static Messages.MotorMotion deserialise_motion(FMotion? motion) {
       if (motion.HasValue) {
         return new Messages.MotorMotion(
             motion.Value.ActorName,
@@ -218,7 +218,7 @@ c.ConfigurableName,
       return null;
     }
 
-    static Pose[] deserialise_poses(Neodroid.FBS.FUnobservables unobservables) {
+    static Pose[] deserialise_poses(FUnobservables unobservables) {
       var l = unobservables.PosesLength;
       var poses = new Pose[l];
       for (var i = 0; i < l; i++) {
@@ -228,7 +228,7 @@ c.ConfigurableName,
       return poses;
     }
 
-    static Messages.Body[] deserialise_bodies(Neodroid.FBS.FUnobservables unobservables) {
+    static Messages.Body[] deserialise_bodies(FUnobservables unobservables) {
       var l = unobservables.BodiesLength;
       var bodies = new Messages.Body[l];
       for (var i = 0; i < l; i++) {
@@ -238,7 +238,7 @@ c.ConfigurableName,
       return bodies;
     }
 
-    static Pose deserialise_pose(Neodroid.FBS.FQuaternionTransform? trans) {
+    static Pose deserialise_pose(FQuaternionTransform? trans) {
       if (trans.HasValue) {
         var position = trans.Value.Position;
         var rotation = trans.Value.Rotation;
@@ -254,7 +254,7 @@ c.ConfigurableName,
       return new Pose();
     }
 
-    static Messages.Body deserialise_body(Neodroid.FBS.FBody? body) {
+    static Messages.Body deserialise_body(FBody? body) {
       if (body.HasValue) {
         var vel = body.Value.Velocity;
         var ang = body.Value.AngularVelocity;

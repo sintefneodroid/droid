@@ -2,7 +2,7 @@
 using UnityEngine;
 using Enumerable = System.Linq.Enumerable;
 
-namespace Neodroid.Utilities.Messaging.Messages {
+namespace droid.Neodroid.Utilities.Messaging.Messages {
   /// <summary>
   ///
   /// </summary>

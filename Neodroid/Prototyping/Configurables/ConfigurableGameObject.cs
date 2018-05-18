@@ -1,10 +1,7 @@
-﻿using Neodroid.Environments;
-using Neodroid.Utilities;
-using Neodroid.Utilities.Interfaces;
-using Neodroid.Utilities.Structs;
+﻿using droid.Neodroid.Environments;
 using UnityEngine;
 
-namespace Neodroid.Prototyping.Configurables {
+namespace droid.Neodroid.Prototyping.Configurables {
   /// <summary>
   ///
   /// </summary>

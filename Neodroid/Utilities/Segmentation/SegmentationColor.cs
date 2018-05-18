@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Neodroid.Utilities.Segmentation {
+namespace droid.Neodroid.Utilities.Segmentation {
   [Serializable]
   public struct ColorByTag {
     public string _Tag;

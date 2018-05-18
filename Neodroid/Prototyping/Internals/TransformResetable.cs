@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Neodroid.Prototyping.Internals {
+namespace droid.Neodroid.Prototyping.Internals {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

@@ -1,12 +1,14 @@
 ﻿#if UNITY_EDITOR
-using Neodroid.Environments;
-using Neodroid.Managers;
-using Neodroid.Prototyping.Actors;
-using Neodroid.Prototyping.Configurables;
-using Neodroid.Prototyping.Evaluation;
-using Neodroid.Prototyping.Motors;
-using Neodroid.Prototyping.Observers;
-using Neodroid.Prototyping.Displayers;
+using droid.Neodroid.Environments;
+using droid.Neodroid.Managers;
+using droid.Neodroid.PlayerControls;
+using droid.Neodroid.Prototyping.Actors;
+using droid.Neodroid.Prototyping.Configurables;
+using droid.Neodroid.Prototyping.Displayers;
+using droid.Neodroid.Prototyping.Evaluation;
+using droid.Neodroid.Prototyping.Internals;
+using droid.Neodroid.Prototyping.Motors;
+using droid.Neodroid.Prototyping.Observers;
 using UnityEditor;
 using UnityEngine;
 
@@ -28,11 +30,11 @@ namespace Neodroid.Editor.Windows {
 
     Displayer[] _displayers;
 
-    Prototyping.Internals.Resetable[] _resetables;
+    Resetable[] _resetables;
 
-    Prototyping.Internals.EnvironmentListener[] _listeners;
+    EnvironmentListener[] _listeners;
 
-    PlayerControls.PlayerReactions _player_reactions;
+    PlayerReactions _player_reactions;
 
     NeodroidManager _manager;
 
@@ -72,9 +74,9 @@ namespace Neodroid.Editor.Windows {
       this._configurables = FindObjectsOfType<ConfigurableGameObject>();
       this._objective_functions = FindObjectsOfType<ObjectiveFunction>();
       this._displayers = FindObjectsOfType<Displayer>();
-      this._listeners = FindObjectsOfType<Prototyping.Internals.EnvironmentListener>();
-      this._resetables = FindObjectsOfType<Prototyping.Internals.Resetable>();
-      this._player_reactions = FindObjectOfType<PlayerControls.PlayerReactions>();
+      this._listeners = FindObjectsOfType<EnvironmentListener>();
+      this._resetables = FindObjectsOfType<Resetable>();
+      this._player_reactions = FindObjectOfType<PlayerReactions>();
     }
 
     void EnableAll() {

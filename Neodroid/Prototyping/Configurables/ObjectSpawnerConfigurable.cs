@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Neodroid.Utilities.Enums;
+using droid.Neodroid.Utilities.Enums;
 using UnityEngine;
 
-namespace Neodroid.Prototyping.Configurables {
+namespace droid.Neodroid.Prototyping.Configurables {
   [AddComponentMenu(
       ConfigurableComponentMenuPath._ComponentMenuPath
       + "ObjectSpawner"

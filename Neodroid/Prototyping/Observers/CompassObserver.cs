@@ -1,9 +1,9 @@
 ﻿using System;
-using Neodroid.Utilities.Interfaces;
-using Neodroid.Utilities.Structs;
+using droid.Neodroid.Utilities.Interfaces;
+using droid.Neodroid.Utilities.Structs;
 using UnityEngine;
 
-namespace Neodroid.Prototyping.Observers {
+namespace droid.Neodroid.Prototyping.Observers {
   /// <summary>
   ///
   /// </summary>
@@ -63,7 +63,7 @@ namespace Neodroid.Prototyping.Observers {
     public Vector3 Position {
       get { return this._position; }
       set {
-        this._position = this.NormaliseObservationUsingSpace
+        this._position = this.NormaliseObservation
                              ? this._position_space.ClipNormaliseRound(value)
                              : value;
         this._2_d_position = new Vector2(this._position.x, this._position.z);

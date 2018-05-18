@@ -1,18 +1,18 @@
 ﻿#if UNITY_EDITOR
-using System.Collections.Generic;
-using Neodroid.Environments;
-using Neodroid.Managers;
-using Neodroid.Prototyping.Actors;
-using Neodroid.Prototyping.Configurables;
-using Neodroid.Prototyping.Displayers;
-using Neodroid.Prototyping.Evaluation;
-using Neodroid.Prototyping.Motors;
-using Neodroid.Prototyping.Observers;
-using Neodroid.Utilities;
-using Neodroid.Utilities.Enums;
-using Neodroid.Utilities.GameObjects;
-using Neodroid.Utilities.Interfaces;
-using Neodroid.Utilities.ScriptableObjects;
+using droid.Neodroid.Environments;
+using droid.Neodroid.Managers;
+using droid.Neodroid.PlayerControls;
+using droid.Neodroid.Prototyping.Actors;
+using droid.Neodroid.Prototyping.Configurables;
+using droid.Neodroid.Prototyping.Displayers;
+using droid.Neodroid.Prototyping.Evaluation;
+using droid.Neodroid.Prototyping.Internals;
+using droid.Neodroid.Prototyping.Motors;
+using droid.Neodroid.Prototyping.Observers;
+using droid.Neodroid.Utilities.Enums;
+using droid.Neodroid.Utilities.GameObjects;
+using droid.Neodroid.Utilities.ScriptableObjects;
+using droid.Neodroid.Utilities.Unsorted;
 using UnityEditor;
 using UnityEngine;
 
@@ -33,7 +33,7 @@ namespace Neodroid.Editor.Windows {
     /// </summary>
     NeodroidManager _simulation_manager;
 
-    PlayerControls.PlayerReactions _player_reactions;
+    PlayerReactions _player_reactions;
 
     /// <summary>
     ///
@@ -109,14 +109,14 @@ namespace Neodroid.Editor.Windows {
             "Test Motors",
             this._simulation_manager.TestMotors);
 
-        this._player_reactions = FindObjectOfType<PlayerControls.PlayerReactions>();
-        EditorGUILayout.ObjectField(this._player_reactions, typeof(PlayerControls.PlayerReactions), true);
+        this._player_reactions = FindObjectOfType<PlayerReactions>();
+        EditorGUILayout.ObjectField(this._player_reactions, typeof(PlayerReactions), true);
 
         EditorGUILayout.EndVertical();
 
         EditorGUILayout.EndHorizontal();
 
-        this._environments = Neodroid.Utilities.Unsorted.NeodroidUtilities.FindAllObjectsOfTypeInScene<PrototypingEnvironment>();
+        this._environments = NeodroidUtilities.FindAllObjectsOfTypeInScene<PrototypingEnvironment>();
         if (this._show_environment_properties.Length != this._environments.Length) {
           this.Setup();
         }
@@ -260,7 +260,7 @@ namespace Neodroid.Editor.Windows {
                     resetable.Value.enabled = EditorGUILayout.BeginToggleGroup(
                         resetable.Key,
                         resetable.Value.enabled && resetable.Value.gameObject.activeSelf);
-                    EditorGUILayout.ObjectField(resetable.Value, typeof(Prototyping.Internals.Resetable), true);
+                    EditorGUILayout.ObjectField(resetable.Value, typeof(Resetable), true);
                     EditorGUILayout.EndToggleGroup();
                     EditorGUILayout.EndVertical();
                   }
@@ -275,7 +275,7 @@ namespace Neodroid.Editor.Windows {
                         listener.Value.enabled && listener.Value.gameObject.activeSelf);
                     EditorGUILayout.ObjectField(
                         listener.Value,
-                        typeof(Prototyping.Internals.EnvironmentListener),
+                        typeof(EnvironmentListener),
                         true);
                     EditorGUILayout.EndToggleGroup();
                     EditorGUILayout.EndVertical();

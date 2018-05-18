@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Neodroid.Utilities.BoundingBoxes {
+namespace droid.Neodroid.Utilities.BoundingBoxes {
   public static class Corners {
     public static Vector3[] ExtractCorners(
         Vector3 v3_center,

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Neodroid.Utilities.Unsorted {
+namespace droid.Neodroid.Utilities.Unsorted {
   public class Obstruction : MonoBehaviour,
                              IMotionTracker {
     Vector3 _last_recorded_move;

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Neodroid.Utilities.Structs {
+namespace droid.Neodroid.Utilities.Structs {
   [Serializable]
   public struct ValueSpace {
     public int _Decimal_Granularity;

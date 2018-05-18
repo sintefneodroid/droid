@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Neodroid.Utilities.Unsorted {
+namespace droid.Neodroid.Utilities.Unsorted {
   [RequireComponent(typeof(Joint))]
   public class JointFix : MonoBehaviour {
     JointDrive[] _angular_x_drive;

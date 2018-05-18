@@ -1,4 +1,4 @@
-﻿namespace Neodroid {
+﻿namespace droid.Neodroid {
   /// <summary>
   ///
   /// </summary>

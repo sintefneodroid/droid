@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using Neodroid.Prototyping.Displayers;
 using UnityEngine;
 
-namespace Neodroid.Utilities.Plotting {
+namespace droid.Neodroid.Utilities.Plotting {
   public static class PlotFunctions {
     public static Structs.Points.ValuePoint[] SampleRandomSeries(float size) {
       var poin = new List<Structs.Points.ValuePoint>();

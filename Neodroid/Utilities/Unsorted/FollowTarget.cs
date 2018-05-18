@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Neodroid.Utilities.Unsorted {
+namespace droid.Neodroid.Utilities.Unsorted {
   /// <summary>
   /// 
   /// </summary>

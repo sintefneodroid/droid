@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Neodroid.Prototyping.Observers;
-using Neodroid.Utilities.ScriptableObjects;
+using droid.Neodroid.Prototyping.Observers;
+using droid.Neodroid.Utilities.ScriptableObjects;
 using UnityEngine;
 
-namespace Neodroid.Prototyping.Evaluation.Tasks {
+namespace droid.Neodroid.Prototyping.Evaluation.Tasks {
   //[ExecuteInEditMode]
   /// <summary>
   /// 

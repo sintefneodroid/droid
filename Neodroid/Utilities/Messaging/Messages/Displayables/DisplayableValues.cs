@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Neodroid.Utilities.Messaging.Messages.Displayables {
+namespace droid.Neodroid.Utilities.Messaging.Messages.Displayables {
   class DisplayableValues : Displayable {
     public DisplayableValues(String displayable_name, double[] displayable_value) {
       this.DisplayableName = displayable_name;

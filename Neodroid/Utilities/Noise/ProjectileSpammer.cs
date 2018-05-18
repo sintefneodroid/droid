@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngineInternal;
 
-namespace Neodroid.Utilities.Noise {
+namespace droid.Neodroid.Utilities.Noise {
   public class ProjectileSpammer : MonoBehaviour {
     [SerializeField] Transform _target;
     [SerializeField] float _spawn_rate = 0.5f;

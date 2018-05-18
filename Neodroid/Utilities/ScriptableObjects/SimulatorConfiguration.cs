@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Neodroid.Utilities.ScriptableObjects {
+namespace droid.Neodroid.Utilities.ScriptableObjects {
   /// <summary>
   /// Determines the discrete timesteps of the simulation environment.
   /// </summary>

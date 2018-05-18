@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Neodroid.Utilities.Messaging.Messages {
+namespace droid.Neodroid.Utilities.Messaging.Messages {
   [Serializable]
   public class MotorMotion {
     // Has a possible direction given by the sign of the float

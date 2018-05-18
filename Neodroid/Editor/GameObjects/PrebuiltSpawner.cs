@@ -1,11 +1,11 @@
 ﻿#if UNITY_EDITOR
-using Neodroid.Environments;
-using Neodroid.Managers;
-using Neodroid.Prototyping.Actors;
-using Neodroid.Prototyping.Configurables;
-using Neodroid.Prototyping.Motors;
-using Neodroid.Prototyping.Observers;
-using Neodroid.Utilities.BoundingBoxes;
+using droid.Neodroid.Environments;
+using droid.Neodroid.Managers;
+using droid.Neodroid.Prototyping.Actors;
+using droid.Neodroid.Prototyping.Configurables;
+using droid.Neodroid.Prototyping.Motors;
+using droid.Neodroid.Prototyping.Observers;
+using droid.Neodroid.Utilities.BoundingBoxes;
 using UnityEditor;
 using UnityEngine;
 

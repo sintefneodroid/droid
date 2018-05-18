@@ -1,7 +1,7 @@
-﻿using Neodroid.Utilities.Interfaces;
+﻿using droid.Neodroid.Utilities.Interfaces;
 using UnityEngine;
 
-namespace Neodroid.Utilities.GameObjects {
+namespace droid.Neodroid.Utilities.GameObjects {
   /// <summary>
   ///
   /// </summary>

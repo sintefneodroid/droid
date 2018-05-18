@@ -1,8 +1,8 @@
 ﻿using System;
-using Neodroid.Utilities.Enums;
+using droid.Neodroid.Utilities.Enums;
 using UnityEngine;
 
-namespace Neodroid.Prototyping.Motors {
+namespace droid.Neodroid.Prototyping.Motors {
   /// <summary>
   ///
   /// </summary>

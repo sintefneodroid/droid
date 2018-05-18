@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Neodroid.Managers;
-using Neodroid.Utilities.ScriptableObjects;
+using droid.Neodroid.Managers;
+using droid.Neodroid.Utilities.ScriptableObjects;
 using UnityEngine;
 
-namespace Neodroid.PlayerControls {
+namespace droid.Neodroid.PlayerControls {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

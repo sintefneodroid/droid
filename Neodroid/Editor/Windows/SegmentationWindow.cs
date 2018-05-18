@@ -1,6 +1,5 @@
 ﻿#if UNITY_EDITOR
-using Neodroid.Utilities.Segmentation;
-using Neodroid.Utilities.Structs;
+using droid.Neodroid.Utilities.Segmentation;
 using UnityEditor;
 using UnityEngine;
 

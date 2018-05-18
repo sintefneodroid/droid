@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Neodroid.Prototyping.Motors {
+namespace droid.Neodroid.Prototyping.Motors {
   [AddComponentMenu(
       MotorComponentMenuPath._ComponentMenuPath + "IndexedMotor" + MotorComponentMenuPath._Postfix)]
   public class IndexedMotor : Motor {

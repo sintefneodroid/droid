@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Neodroid.Prototyping.Motors.WheelColliderMotor {
+namespace droid.Neodroid.Prototyping.Motors.WheelColliderMotor {
   [AddComponentMenu(
       MotorComponentMenuPath._ComponentMenuPath + "WheelCollider/Torque" + MotorComponentMenuPath._Postfix)]
   [RequireComponent(typeof(WheelCollider))]

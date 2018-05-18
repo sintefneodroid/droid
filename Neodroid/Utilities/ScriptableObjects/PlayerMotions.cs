@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Neodroid.Utilities.ScriptableObjects {
+namespace droid.Neodroid.Utilities.ScriptableObjects {
   [CreateAssetMenu(
       fileName = "PlayerMotions",
       menuName = "Neodroid/ScriptableObjects/PlayerMotions",

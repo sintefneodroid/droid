@@ -1,8 +1,8 @@
-﻿using Neodroid.Utilities.Interfaces;
-using Neodroid.Utilities.Structs;
+﻿using droid.Neodroid.Utilities.Interfaces;
+using droid.Neodroid.Utilities.Structs;
 using UnityEngine;
 
-namespace Neodroid.Prototyping.Observers {
+namespace droid.Neodroid.Prototyping.Observers {
   [AddComponentMenu(
       ObserverComponentMenuPath._ComponentMenuPath + "Rigidbody" + ObserverComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
@@ -38,7 +38,7 @@ namespace Neodroid.Prototyping.Observers {
     public Vector3 Velocity {
       get { return this._velocity; }
       set {
-        this._velocity = this.NormaliseObservationUsingSpace
+        this._velocity = this.NormaliseObservation
                              ? this._velocity_space.ClipNormaliseRound(value)
                              : value;
       }
@@ -47,7 +47,7 @@ namespace Neodroid.Prototyping.Observers {
     public Vector3 AngularVelocity {
       get { return this._angular_velocity; }
       set {
-        this._angular_velocity = this.NormaliseObservationUsingSpace
+        this._angular_velocity = this.NormaliseObservation
                                      ? this._angular_space.ClipNormaliseRound(value)
                                      : value;
       }

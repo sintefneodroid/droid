@@ -1,9 +1,9 @@
 ﻿using System;
-using Neodroid.Utilities.Interfaces;
-using Neodroid.Utilities.Structs;
+using droid.Neodroid.Utilities.Interfaces;
+using droid.Neodroid.Utilities.Structs;
 using UnityEngine;
 
-namespace Neodroid.Prototyping.Observers {
+namespace droid.Neodroid.Prototyping.Observers {
   [AddComponentMenu(
       ObserverComponentMenuPath._ComponentMenuPath + "Position" + ObserverComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
@@ -27,7 +27,7 @@ namespace Neodroid.Prototyping.Observers {
     public Vector3 ObservationValue {
       get { return this._position; }
       set {
-        this._position = this.NormaliseObservationUsingSpace
+        this._position = this.NormaliseObservation
                              ? this._position_space.ClipNormaliseRound(value)
                              : value;
       }

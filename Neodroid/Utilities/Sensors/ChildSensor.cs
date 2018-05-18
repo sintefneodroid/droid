@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Neodroid.Utilities.Sensors {
+namespace droid.Neodroid.Utilities.Sensors {
   public class ChildSensor : MonoBehaviour {
     //public GameObject Caller{ get { return _caller; } set { _caller = value; } }
 

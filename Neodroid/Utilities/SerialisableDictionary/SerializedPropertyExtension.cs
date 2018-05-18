@@ -2,7 +2,7 @@
 using System;
 using UnityEditor;
 
-namespace Neodroid.Utilities.SerialisableDictionary {
+namespace droid.Neodroid.Utilities.SerialisableDictionary {
   public static class SerializedPropertyExtension {
     public static int GetObjectCode(this SerializedProperty p) {
       // Unique code per serialized object and property path

@@ -1,5 +1,7 @@
-﻿
- namespace Neodroid.Utilities.Messaging.Messages {
+﻿using droid.Neodroid.Utilities.Messaging.FBS;
+
+namespace droid.Neodroid.Utilities.Messaging.Messages
+{
   /// <summary>
   ///
   /// </summary>
@@ -23,9 +25,6 @@
     public System.Single TimeScale { get; set; }
   }
 
-}
-
-namespace Neodroid.Utilities.Messaging.Messages {
   /// <summary>
   ///
   /// </summary>
@@ -34,7 +33,7 @@ namespace Neodroid.Utilities.Messaging.Messages {
     ///
     /// </summary>
     /// <param name="flat_simulator_configuration"></param>
-    public void FbsParse(Neodroid.FBS.FSimulatorConfiguration flat_simulator_configuration) {
+    public void FbsParse(FSimulatorConfiguration flat_simulator_configuration) {
       this._frame_skips = flat_simulator_configuration.FrameSkips;
       this._full_screen = flat_simulator_configuration.FullScreen;
       this._height = flat_simulator_configuration.Height;

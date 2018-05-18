@@ -1,7 +1,7 @@
 ﻿#if UNITY_EDITOR
-using Neodroid.Environments;
-using Neodroid.Managers;
-using Neodroid.Prototyping.Actors;
+using droid.Neodroid.Environments;
+using droid.Neodroid.Managers;
+using droid.Neodroid.Prototyping.Actors;
 using UnityEditor;
 using UnityEngine;
 

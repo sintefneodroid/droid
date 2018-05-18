@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Neodroid.Utilities.Structs {
+namespace droid.Neodroid.Utilities.Structs {
   [Serializable]
   public struct Space3 {
     public int _Decimal_Granularity;

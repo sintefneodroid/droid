@@ -1,5 +1,5 @@
 ﻿#if UNITY_EDITOR
-using Neodroid.Utilities.NeodroidCamera;
+using droid.Neodroid.Utilities.NeodroidCamera;
 using UnityEditor;
 using UnityEngine;
 

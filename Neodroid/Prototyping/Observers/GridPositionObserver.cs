@@ -1,8 +1,8 @@
-﻿using Neodroid.Utilities.Interfaces;
-using Neodroid.Utilities.Structs;
+﻿using droid.Neodroid.Utilities.Interfaces;
+using droid.Neodroid.Utilities.Structs;
 using UnityEngine;
 
-namespace Neodroid.Prototyping.Observers {
+namespace droid.Neodroid.Prototyping.Observers {
   [AddComponentMenu(
       ObserverComponentMenuPath._ComponentMenuPath + "GridPosition" + ObserverComponentMenuPath._Postfix)]
   public class GridPositionObserver : Observer,
@@ -36,7 +36,7 @@ namespace Neodroid.Prototyping.Observers {
     public float ObservationValue {
       get { return this._observation_value; }
       set {
-        this._observation_value = this.NormaliseObservationUsingSpace
+        this._observation_value = this.NormaliseObservation
                                       ? this._observation_value_space.ClipNormaliseRound(value)
                                       : value;
       }

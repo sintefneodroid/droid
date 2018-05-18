@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Neodroid.Utilities.ScriptableObjects {
+namespace droid.Neodroid.Utilities.ScriptableObjects {
   [CreateAssetMenu(fileName = "Curriculum", menuName = "Neodroid/ScriptableObjects/Curriculum", order = 1)]
   public class Curriculum : ScriptableObject {
     public Level[] _Levels;

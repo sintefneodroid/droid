@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Neodroid.Environments;
-using Neodroid.Utilities.Interfaces;
-using Neodroid.Utilities.ScriptableObjects;
+using droid.Neodroid.Environments;
+using droid.Neodroid.Utilities.Interfaces;
+using droid.Neodroid.Utilities.ScriptableObjects;
+using UnityEditor;
 using UnityEngine;
 using Object = System.Object;
 #if UNITY_EDITOR
-using UnityEditor;
+
 #endif
 
-namespace Neodroid.Managers {
+namespace droid.Neodroid.Managers {
   /// <inheritdoc cref="UnityEngine.MonoBehaviour" />
   /// <summary>
   /// </summary>

@@ -1,7 +1,6 @@
-﻿using Neodroid.Utilities;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Neodroid.Prototyping.Configurables {
+namespace droid.Neodroid.Prototyping.Configurables {
   [AddComponentMenu(
       ConfigurableComponentMenuPath._ComponentMenuPath + "Color" + ConfigurableComponentMenuPath._Postfix)]
   [RequireComponent(typeof(Renderer))]

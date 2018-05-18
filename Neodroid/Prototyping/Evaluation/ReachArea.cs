@@ -1,10 +1,9 @@
-﻿using Neodroid.Prototyping.Actors;
-using Neodroid.Prototyping.Observers;
-using Neodroid.Utilities;
-using Neodroid.Utilities.BoundingBoxes;
+﻿using droid.Neodroid.Prototyping.Actors;
+using droid.Neodroid.Prototyping.Observers;
+using droid.Neodroid.Utilities.BoundingBoxes;
 using UnityEngine;
 
-namespace Neodroid.Prototyping.Evaluation {
+namespace droid.Neodroid.Prototyping.Evaluation {
   enum ActorOverlapping {
     Inside_area_,
     Outside_area_

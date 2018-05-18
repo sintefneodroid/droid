@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using Neodroid.Environments;
-using Neodroid.Utilities;
-using Neodroid.Utilities.GameObjects;
-using Neodroid.Utilities.Interfaces;
+using droid.Neodroid.Environments;
+using droid.Neodroid.Utilities.GameObjects;
+using droid.Neodroid.Utilities.Interfaces;
 using UnityEngine;
 
-namespace Neodroid.Prototyping.Observers {
+namespace droid.Neodroid.Prototyping.Observers {
   /// <inheritdoc cref="PrototypingGameObject" />
   /// <summary>
   /// </summary>
@@ -30,9 +29,9 @@ namespace Neodroid.Prototyping.Observers {
     /// <summary>
     /// 
     /// </summary>
-    public Boolean NormaliseObservationUsingSpace {
-      get { return this._normalise_observation_using_space; }
-      set { this._normalise_observation_using_space = value; }
+    public bool NormaliseObservation {
+      get { return this._normaliseObservation; }
+      set { this._normaliseObservation = value; }
     }
 
     /// <inheritdoc />
@@ -88,7 +87,7 @@ namespace Neodroid.Prototyping.Observers {
 
     [Header("Normalisation", order = 100)]
     [SerializeField]
-    bool _normalise_observation_using_space = true;
+    bool _normaliseObservation;
 
     #endregion
   }

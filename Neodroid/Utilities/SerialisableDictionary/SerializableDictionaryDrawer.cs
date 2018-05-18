@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Utilities.SerialisableDictionary {
+namespace droid.Neodroid.Utilities.SerialisableDictionary {
   public abstract class SerializableKeyValueTemplate<TK, TV> : ScriptableObject {
     public TK _Key;
     public TV _Value;

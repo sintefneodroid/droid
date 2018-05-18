@@ -1,11 +1,9 @@
 ﻿using System;
-using Neodroid.Managers;
-using Neodroid.Utilities;
-using Neodroid.Utilities.GameObjects;
-using Neodroid.Utilities.Interfaces;
+using droid.Neodroid.Managers;
+using droid.Neodroid.Utilities.GameObjects;
 using UnityEngine;
 
-namespace Neodroid.Environments {
+namespace droid.Neodroid.Environments {
   /// <inheritdoc />
   ///  <summary>
   ///  </summary>

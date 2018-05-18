@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Neodroid.Utilities.Plotting {
+namespace droid.Neodroid.Utilities.Plotting {
   /// <summary>
   ///
   /// </summary>

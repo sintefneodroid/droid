@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Neodroid.Utilities.Interfaces {
+namespace droid.Neodroid.Utilities.Interfaces {
   public interface IHasQuaternionTransform {
     Vector3 Position { get; }
 

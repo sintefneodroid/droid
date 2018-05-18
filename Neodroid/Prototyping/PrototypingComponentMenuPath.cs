@@ -1,4 +1,4 @@
-﻿namespace Neodroid.Prototyping {
+﻿namespace droid.Neodroid.Prototyping {
   /// <summary>
   /// 
   /// </summary>

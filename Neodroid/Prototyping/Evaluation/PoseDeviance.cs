@@ -1,9 +1,7 @@
-﻿using Neodroid.Prototyping.Actors;
-using Neodroid.Utilities;
-using Neodroid.Utilities.BoundingBoxes;
+﻿using droid.Neodroid.Utilities.BoundingBoxes;
 using UnityEngine;
 
-namespace Neodroid.Prototyping.Evaluation {
+namespace droid.Neodroid.Prototyping.Evaluation {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
