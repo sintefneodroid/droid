@@ -21,9 +21,9 @@ namespace droid.Neodroid.Prototyping.Displayers.Canvas {
       this._text_component.text = "TEEEEEXT!";
     }
 
-    public override void Display(Single value) { throw new NotImplementedException(); }
+    public override void Display(float value) { throw new NotImplementedException(); }
     public override void Display(Double value) { throw new NotImplementedException(); }
-    public override void Display(Single[] values) { throw new NotImplementedException(); }
+    public override void Display(float[] values) { throw new NotImplementedException(); }
 
     public override void Display(String value) {
       #if NEODROID_DEBUG

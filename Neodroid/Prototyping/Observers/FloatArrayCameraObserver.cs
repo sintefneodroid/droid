@@ -27,7 +27,7 @@ namespace droid.Neodroid.Prototyping.Observers {
 
     public override string PrototypingType { get { return "Camera"; } }
 
-    public Single[] ObservationArray { get { return this._array; } private set { this._array = value; } }
+    public float[] ObservationArray { get { return this._array; } private set { this._array = value; } }
 
     protected override void PreSetup() {
       this._manager = FindObjectOfType<NeodroidManager>();
@@ -40,7 +40,7 @@ namespace droid.Neodroid.Prototyping.Observers {
           this.ObservationArray = new float[this._texture.width * this._texture.height * 3];
         }
       } else {
-        this.ObservationArray = new Single[0];
+        this.ObservationArray = new float[0];
       }
 
       this.FloatEnumerable = this.ObservationArray;

@@ -72,11 +72,11 @@ namespace droid.Neodroid.Prototyping.Displayers.ECS {
         print("Applying the double " + value + " To " + this.name);
 
   #endif
-      this._values = new[] {(Single)value};
+      this._values = new[] {(float)value};
       this.ScatterPlot(this._values);
     }
 
-    public override void Display(Single[] values) {
+    public override void Display(float[] values) {
       #if NEODROID_DEBUG
  if (this.Debugging) {
         var s = "";
@@ -109,7 +109,7 @@ namespace droid.Neodroid.Prototyping.Displayers.ECS {
       this.ScatterPlot(this._values);
     }
 
-    public override void Display(Single values) {
+    public override void Display(float values) {
           #if NEODROID_DEBUG
       if (this.Debugging)
         print("Applying the float " + values + " To " + this.name);
@@ -118,7 +118,7 @@ namespace droid.Neodroid.Prototyping.Displayers.ECS {
       this.ScatterPlot(this._values);
     }
 
-    public void ScatterPlot(Single[] points) {
+    public void ScatterPlot(float[] points) {
       if(this._particles == null || this._particles.Length != points.Length)
         this._particles = new ParticleSystem.Particle[points.Length];
       var i = 0;

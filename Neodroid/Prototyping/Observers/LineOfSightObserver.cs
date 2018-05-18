@@ -26,7 +26,7 @@ namespace droid.Neodroid.Prototyping.Observers {
 
     public override string PrototypingType { get { return "LineOfSight"; } }
 
-    public Single ObservationValue {
+    public float ObservationValue {
       get { return this._obs_value; }
       private set { this._obs_value = value; }
     }

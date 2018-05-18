@@ -59,22 +59,22 @@ namespace droid.Neodroid.Utilities.NeodroidCamera {
     /// <summary>
     ///
     /// </summary>
-    public Boolean SyncOrthographicSize {
+    public bool SyncOrthographicSize {
       get { return this._sync_orthographic_size; }
       set { this._sync_orthographic_size = value; }
     }
 
-    public Boolean SyncNearClipPlane {
+    public bool SyncNearClipPlane {
       get { return this._sync_near_clip_plane; }
       set { this._sync_near_clip_plane = value; }
     }
 
-    public Boolean SyncFarClipPlane {
+    public bool SyncFarClipPlane {
       get { return this._sync_far_clip_plane; }
       set { this._sync_far_clip_plane = value; }
     }
 
-    public Boolean SyncCullingMask {
+    public bool SyncCullingMask {
       get { return this._sync_culling_mask; }
       set { this._sync_culling_mask = value; }
     }

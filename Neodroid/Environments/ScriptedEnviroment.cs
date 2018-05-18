@@ -80,7 +80,7 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-    public Int32 ActorX {
+    public int ActorX {
       get { return this._actor_x; }
       set { this._actor_x = Mathf.Max(0, Mathf.Min(this._width - 1, value)); }
     }
@@ -88,7 +88,7 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-    public Int32 ActorY {
+    public int ActorY {
       get { return this._actor_y; }
       set { this._actor_y = Mathf.Max(0, Mathf.Min(this._height - 1, value)); }
     }
@@ -96,7 +96,7 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-    public Int32 GoalX {
+    public int GoalX {
       get { return this._goal_x; }
       set { this._goal_x = Mathf.Max(0, Mathf.Min(this._width - 1, value)); }
     }
@@ -104,7 +104,7 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-    public Int32 GoalY {
+    public int GoalY {
       get { return this._goal_y; }
       set { this._goal_y = Mathf.Max(0, Mathf.Min(this._height - 1, value)); }
     }
@@ -114,7 +114,7 @@ namespace droid.Neodroid.Environments {
     ///
     /// </summary>
     protected override void Setup() {
-      this._grid = new Int32[this._width, this._height];
+      this._grid = new int[this._width, this._height];
 
       var k = 0;
       for (var i = 0; i < this._width; i++) {
@@ -200,7 +200,7 @@ namespace droid.Neodroid.Environments {
           time,
           signal,
           terminated,
-          new Single[] {actor_idx},
+          new float[] {actor_idx},
           new Rigidbody[] { },
           new Transform[] { });
     }

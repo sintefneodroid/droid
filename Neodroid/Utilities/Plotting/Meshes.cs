@@ -7,20 +7,20 @@ namespace droid.Neodroid.Utilities.Plotting {
       var mesh = new Mesh();
       mesh.Clear();
 
-      const Single height = 1f;
-      const Single bottom_radius = .25f;
-      const Single top_radius = .05f;
-      const Int32 nb_sides = 18;
-      const Int32 nb_height_seg = 1; // Not implemented yet
+      const float height = 1f;
+      const float bottom_radius = .25f;
+      const float top_radius = .05f;
+      const int nb_sides = 18;
+      const int nb_height_seg = 1; // Not implemented yet
 
-      const Int32 nb_vertices_cap = nb_sides + 1;
+      const int nb_vertices_cap = nb_sides + 1;
 
       #region Vertices
 
 // bottom + top + sides
       var vertices = new Vector3[nb_vertices_cap + nb_vertices_cap + nb_sides * nb_height_seg * 2 + 2];
       var vert = 0;
-      const Single _2_pi = Mathf.PI * 2f;
+      const float _2_pi = Mathf.PI * 2f;
 
 // Bottom cap
       vertices[vert++] = new Vector3(0f, 0f, 0f);
@@ -204,8 +204,8 @@ namespace droid.Neodroid.Utilities.Plotting {
       #region Vertices
 
       var vertices = new Vector3[(nb_long + 1) * nb_lat + 2];
-      const Single pi = Mathf.PI;
-      const Single _2_pi = pi * 2f;
+      const float pi = Mathf.PI;
+      const float _2_pi = pi * 2f;
 
       vertices[0] = Vector3.up * radius;
       for (var lat = 0; lat < nb_lat; lat++) {

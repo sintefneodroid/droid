@@ -86,7 +86,7 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-    public Boolean IsResetting { get { return this._Resetting; } }
+    public bool IsResetting { get { return this._Resetting; } }
 
     /// <summary>
     ///

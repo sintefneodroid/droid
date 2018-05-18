@@ -163,8 +163,12 @@ namespace droid.Neodroid.Editor.Windows {
                 this._environments[i].EpisodeLength = EditorGUILayout.IntField(
                     "Episode Length",
                     this._environments[i].EpisodeLength);
-                UnityEditor.EditorGUILayout.Toggle("Terminated",this._environments[i].Terminated);
-
+                
+                EditorGUI.BeginDisabledGroup(true);
+                EditorGUILayout.LabelField("Info:");
+                EditorGUILayout.Toggle("Terminated",this._environments[i].Terminated);
+                EditorGUI.EndDisabledGroup();
+                
                 EditorGUILayout.BeginVertical("Box");
                 GUILayout.Label("Actors");
                 foreach (var actor in actors) {

@@ -42,7 +42,7 @@ namespace droid.Neodroid.Prototyping.Displayers {
     /// </summary>
     /// <param name="value"></param>
     /// <exception cref="NotImplementedException"></exception>
-    public override void Display(Single value) { throw new NotImplementedException(); }
+    public override void Display(float value) { throw new NotImplementedException(); }
 
     /// <summary>
     ///
@@ -56,7 +56,7 @@ namespace droid.Neodroid.Prototyping.Displayers {
     /// </summary>
     /// <param name="values"></param>
     /// <exception cref="NotImplementedException"></exception>
-    public override void Display(Single[] values) { throw new NotImplementedException(); }
+    public override void Display(float[] values) { throw new NotImplementedException(); }
 
     /// <summary>
     ///
@@ -104,7 +104,7 @@ namespace droid.Neodroid.Prototyping.Displayers {
     /// </summary>
     /// <param name="value"></param>
     /// <exception cref="NotImplementedException"></exception>
-    public override void Display(Single value) { throw new NotImplementedException(); }
+    public override void Display(float value) { throw new NotImplementedException(); }
 
     /// <summary>
     ///
@@ -118,7 +118,7 @@ namespace droid.Neodroid.Prototyping.Displayers {
     /// </summary>
     /// <param name="values"></param>
     /// <exception cref="NotImplementedException"></exception>
-    public override void Display(Single[] values) { throw new NotImplementedException(); }
+    public override void Display(float[] values) { throw new NotImplementedException(); }
 
     /// <summary>
     ///

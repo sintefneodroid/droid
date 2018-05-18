@@ -16,7 +16,7 @@ namespace droid.Neodroid.Prototyping.Evaluation {
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public override Single InternalEvaluate() {
+    public override float InternalEvaluate() {
       var vel_mag = this._rigidbody.velocity.magnitude;
 
       this.IsOutsideBound();

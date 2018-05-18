@@ -8,7 +8,7 @@ namespace droid.Neodroid.Utilities.Structs {
     public Vector2 _Min_Values;
     public Vector2 _Max_Values;
 
-    public Space2(Int32 decimal_granularity = 10) : this() {
+    public Space2(int decimal_granularity = 10) : this() {
       this._Min_Values = Vector2.one * -100f; //Vector2.negativeInfinity;
       this._Max_Values = Vector2.one * 100f; //Vector2.positiveInfinity;
       this._Decimal_Granularity = decimal_granularity;

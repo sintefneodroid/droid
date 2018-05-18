@@ -3,6 +3,9 @@ using System;
 using UnityEditor;
 
 namespace droid.Neodroid.Utilities.SerialisableDictionary {
+  /// <summary>
+  /// 
+  /// </summary>
   public static class SerializedPropertyExtension {
     public static int GetObjectCode(this SerializedProperty p) {
       // Unique code per serialized object and property path

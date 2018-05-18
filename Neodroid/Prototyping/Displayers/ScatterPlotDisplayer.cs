@@ -60,11 +60,11 @@ namespace droid.Neodroid.Prototyping.Displayers {
       }
       #endif
 
-      this._values = new[] {(Single)value};
+      this._values = new[] {(float)value};
       this.PlotSeries(this._values);
     }
 
-    public override void Display(Single[] values) {
+    public override void Display(float[] values) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
         var s = "";
@@ -130,7 +130,7 @@ namespace droid.Neodroid.Prototyping.Displayers {
     public override void Display(Points.StringPoint point) { throw new NotImplementedException(); }
     public override void Display(Points.StringPoint[] points) { throw new NotImplementedException(); }
 
-    public override void Display(Single values) {
+    public override void Display(float values) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
         Debug.Log("Applying the float " + values + " To " + this.name);
@@ -171,7 +171,7 @@ namespace droid.Neodroid.Prototyping.Displayers {
       this._particle_system.SetParticles(this._particles, points.Length);
     }
 
-    public void PlotSeries(Single[] points) {
+    public void PlotSeries(float[] points) {
       if (this._particles == null || this._particles.Length != points.Length) {
         this._particles = new ParticleSystem.Particle[points.Length];
       }

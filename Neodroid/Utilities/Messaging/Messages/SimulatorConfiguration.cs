@@ -16,15 +16,33 @@ namespace droid.Neodroid.Utilities.Messaging.Messages
     int _num_of_environments;
     int _reset_iterations;
 
-    public SimulatorConfiguration() {}
-
     /// <summary>
     ///
     /// </summary>
     public int FrameSkips { get { return this._frame_skips;} set { this._frame_skips = value; } }
 
+    public float TimeScale { get; set; }
 
-    public Single TimeScale { get; set; }
+    public bool FullScreen { get { return this._full_screen; } set { this._full_screen = value; } }
+
+    public int Height { get { return this._height; } set { this._height = value; } }
+
+    public int Width { get { return this._width; } set { this._width = value; } }
+
+    public FrameFinishes Finishes {
+      get { return this._frame_finishes; }
+      set { this._frame_finishes = value; }
+    }
+
+    public int NumOfEnvironments {
+      get { return this._num_of_environments; }
+      set { this._num_of_environments = value; }
+    }
+
+    public int ResetIterations {
+      get { return this._reset_iterations; }
+      set { this._reset_iterations = value; }
+    }
   }
 
   /// <summary>

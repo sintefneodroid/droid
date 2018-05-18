@@ -21,7 +21,7 @@ namespace droid.Neodroid.Prototyping.Displayers.Canvas {
 
     public void SetFillAmount(float amount) { this._image.fillAmount = amount; }
 
-    public override void Display(Single value) {
+    public override void Display(float value) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
         Debug.Log("Applying " + value + " To " + this.name);
@@ -41,7 +41,7 @@ namespace droid.Neodroid.Prototyping.Displayers.Canvas {
       this.SetFillAmount((float)value);
     }
 
-    public override void Display(Single[] values) { throw new NotImplementedException(); }
+    public override void Display(float[] values) { throw new NotImplementedException(); }
     public override void Display(String value) { throw new NotImplementedException(); }
     public override void Display(Vector3 value) { throw new NotImplementedException(); }
     public override void Display(Vector3[] value) { throw new NotImplementedException(); }

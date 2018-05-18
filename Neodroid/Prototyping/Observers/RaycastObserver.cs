@@ -28,7 +28,7 @@ namespace droid.Neodroid.Prototyping.Observers {
       get { return "Raycast" + $"{this._direction.x}{this._direction.y}{this._direction.z}"; }
     }
 
-    public Single ObservationValue {
+    public float ObservationValue {
       get { return this._observation_value; }
       private set {
         this._observation_value = this.NormaliseObservation

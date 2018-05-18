@@ -74,7 +74,7 @@ namespace droid.Neodroid.Utilities.Messaging.Messages {
     /// <summary>
     ///
     /// </summary>
-    public Single Time { get; }
+    public float Time { get; }
 
     /// <summary>
     ///

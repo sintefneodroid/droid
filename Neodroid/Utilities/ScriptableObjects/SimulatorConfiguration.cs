@@ -283,7 +283,7 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
     /// <summary>
     ///
     /// </summary>
-    public Single MaxReplyInterval {
+    public float MaxReplyInterval {
       get { return this._max_reply_interval; }
       set { this._max_reply_interval = value; }
     }

@@ -23,7 +23,7 @@ namespace droid.Neodroid.Prototyping.Observers {
 
     public override string PrototypingType { get { return "Lidar"; } }
 
-    public Single[] ObservationArray {
+    public float[] ObservationArray {
       get { return this._obs_array; }
       private set { this._obs_array = value; }
     }

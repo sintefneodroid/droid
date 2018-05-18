@@ -32,7 +32,7 @@ namespace droid.Neodroid.Prototyping.Observers {
     /// <summary>
     /// 
     /// </summary>
-    public Single[] ObservationArray {
+    public float[] ObservationArray {
       get { return this._obs_array; }
       private set { this._obs_array = value; }
     }

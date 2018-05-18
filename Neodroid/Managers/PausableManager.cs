@@ -65,7 +65,7 @@ namespace droid.Neodroid.Managers {
     /// <summary>
     ///
     /// </summary>
-    public Boolean IsSimulationPaused { get { return !(this.SimulationTime > 0); } }
+    public bool IsSimulationPaused { get { return !(this.SimulationTime > 0); } }
 
     /// <summary>
     ///
