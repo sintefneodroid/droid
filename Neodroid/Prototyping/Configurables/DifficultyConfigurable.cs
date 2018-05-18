@@ -1,5 +1,7 @@
 ﻿using System;
+using droid.Neodroid.Utilities.Messaging.Messages;
 using UnityEngine;
+using Random = System.Random;
 
 namespace droid.Neodroid.Prototyping.Configurables {
   [AddComponentMenu(
@@ -7,7 +9,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
       + "Difficulty"
       + ConfigurableComponentMenuPath._Postfix)]
   public class DifficultyConfigurable : ConfigurableGameObject {
-    public override void ApplyConfiguration(Utilities.Messaging.Messages.Configuration configuration) {
+    public override void ApplyConfiguration(Configuration configuration) {
       if (Math.Abs(configuration.ConfigurableValue - 1) < double.Epsilon) {
         //print ("Increased Difficulty");
       } else if (Math.Abs(configuration.ConfigurableValue - -1) < double.Epsilon) {
@@ -15,8 +17,8 @@ namespace droid.Neodroid.Prototyping.Configurables {
       }
     }
 
-    public override Utilities.Messaging.Messages.Configuration SampleConfiguration(
-        System.Random random_generator) {
+    public override Configuration SampleConfiguration(
+        Random random_generator) {
       throw new NotImplementedException();
     }
   }

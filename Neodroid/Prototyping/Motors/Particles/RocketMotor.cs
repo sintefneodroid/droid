@@ -1,5 +1,6 @@
 ﻿using System;
 using droid.Neodroid.Utilities.Enums;
+using droid.Neodroid.Utilities.Messaging.Messages;
 using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Motors.Particles {
@@ -59,7 +60,7 @@ namespace droid.Neodroid.Prototyping.Motors.Particles {
     /// <summary>
     /// </summary>
     /// <param name="motion"></param>
-    protected override void InnerApplyMotion(Utilities.Messaging.Messages.MotorMotion motion) {
+    protected override void InnerApplyMotion(MotorMotion motion) {
       if (motion.Strength < this.MotionValueSpace._Min_Value
           || motion.Strength > this.MotionValueSpace._Max_Value) {
         Debug.Log(

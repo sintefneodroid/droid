@@ -1,5 +1,6 @@
 ﻿using System;
 using droid.Neodroid.Utilities.Enums;
+using droid.Neodroid.Utilities.Messaging.Messages;
 using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Motors {
@@ -22,7 +23,7 @@ namespace droid.Neodroid.Prototyping.Motors {
 
     public override string PrototypingType { get { return "Transform" + this._Axis_Of_Motion; } }
 
-    protected override void InnerApplyMotion(Utilities.Messaging.Messages.MotorMotion motion) {
+    protected override void InnerApplyMotion(MotorMotion motion) {
       var layer_mask = 1 << LayerMask.NameToLayer(this._Layer_Mask);
       var vec = Vector3.zero;
       switch (this._Axis_Of_Motion) {

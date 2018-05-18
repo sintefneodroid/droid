@@ -3,7 +3,7 @@ using droid.Neodroid.Utilities.ScriptableObjects;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Editor.ScriptableObjects {
+namespace droid.Neodroid.Editor.ScriptableObjects {
   public static class CreatePlayerMotions {
     [MenuItem(EditorScriptableObjectMenuPath._ScriptableObjectMenuPath + "PlayerMotions")]
     public static void CreatePlayerMotionsAsset() {

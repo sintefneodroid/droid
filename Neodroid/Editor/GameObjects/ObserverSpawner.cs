@@ -3,7 +3,7 @@ using droid.Neodroid.Prototyping.Observers;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Editor.GameObjects {
+namespace droid.Neodroid.Editor.GameObjects {
   public class ObserverSpawner : MonoBehaviour {
     [MenuItem(EditorGameObjectMenuPath._GameObjectMenuPath + "Observers/Base", false, 10)]
     static void CreateObserverGameObject(MenuCommand menu_command) {

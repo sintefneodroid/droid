@@ -1,15 +1,20 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using droid.Neodroid.Prototyping.Actors;
 using droid.Neodroid.Prototyping.Configurables;
 using droid.Neodroid.Prototyping.Displayers;
 using droid.Neodroid.Prototyping.Evaluation;
+using droid.Neodroid.Prototyping.Internals;
 using droid.Neodroid.Prototyping.Observers;
 using droid.Neodroid.Utilities.BoundingBoxes;
 using droid.Neodroid.Utilities.Enums;
 using droid.Neodroid.Utilities.Interfaces;
+using droid.Neodroid.Utilities.Messaging.Messages;
+using droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
+using Object = System.Object;
 using Random = UnityEngine.Random;
 
 namespace droid.Neodroid.Environments {
@@ -22,28 +27,28 @@ namespace droid.Neodroid.Environments {
                                         IHasRegister<Actor>,
                                         IHasRegister<Observer>,
                                         IHasRegister<ConfigurableGameObject>,
-                                        IHasRegister<Prototyping.Internals.Resetable>,
+                                        IHasRegister<Resetable>,
                                         IHasRegister<Displayer>,
-                                        IHasRegister<Prototyping.Internals.EnvironmentListener> {
+                                        IHasRegister<EnvironmentListener> {
     /// <summary>
     ///
     /// </summary>
-    public event System.Action PreStepEvent;
+    public event Action PreStepEvent;
 
     /// <summary>
     ///
     /// </summary>
-    public event System.Action StepEvent;
+    public event Action StepEvent;
 
     /// <summary>
     ///
     /// </summary>
-    public event System.Action PostStepEvent;
+    public event Action PostStepEvent;
 
     /// <summary>
     ///
     /// </summary>
-    System.Object _react_lock = new System.Object();
+    Object _react_lock = new Object();
 
     int _reset_i;
 
@@ -78,8 +83,8 @@ namespace droid.Neodroid.Environments {
       this.Configurables = new Dictionary<string, ConfigurableGameObject>();
       this.Actors = new Dictionary<string, Actor>();
       this.Observers = new Dictionary<string, Observer>();
-      this.Resetables = new Dictionary<string, Prototyping.Internals.Resetable>();
-      this.Listeners = new Dictionary<string, Prototyping.Internals.EnvironmentListener>();
+      this.Resetables = new Dictionary<string, Resetable>();
+      this.Listeners = new Dictionary<string, EnvironmentListener>();
     }
 
     /// <inheritdoc />
@@ -106,21 +111,21 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public override Utilities.Messaging.Messages.Reaction SampleReaction() {
+    public override Reaction SampleReaction() {
       #if NEODROID_DEBUG
       if (this.Debugging) {
         Debug.Log($"Sampling a reaction for environment {this.Identifier}");
       }
       #endif
 
-      var motions = new List<Utilities.Messaging.Messages.MotorMotion>();
+      var motions = new List<MotorMotion>();
 
       foreach (var actor in this.Actors) {
         foreach (var motor in actor.Value.Motors) {
           var strength = Random.Range(
               (int)motor.Value.MotionValueSpace._Min_Value,
               (int)(motor.Value.MotionValueSpace._Max_Value + 1));
-          motions.Add(new Utilities.Messaging.Messages.MotorMotion(actor.Key, motor.Key, strength));
+          motions.Add(new MotorMotion(actor.Key, motor.Key, strength));
         }
       }
 
@@ -132,16 +137,16 @@ namespace droid.Neodroid.Environments {
         #endif
 
         var reset_reaction =
-            new Utilities.Messaging.Messages.ReactionParameters(false, false, true, episode_count : true) {
+            new ReactionParameters(false, false, true, episode_count : true) {
                 IsExternal = false
             };
-        return new Utilities.Messaging.Messages.Reaction(reset_reaction, this.Identifier);
+        return new Reaction(reset_reaction, this.Identifier);
       }
 
-      var rp = new Utilities.Messaging.Messages.ReactionParameters(true, true, episode_count : true) {
+      var rp = new ReactionParameters(true, true, episode_count : true) {
           IsExternal = false
       };
-      return new Utilities.Messaging.Messages.Reaction(
+      return new Reaction(
           rp,
           motions.ToArray(),
           null,
@@ -257,12 +262,12 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-    Utilities.Messaging.Messages.Body[] _received_bodies;
+    Body[] _received_bodies;
 
     /// <summary>
     ///
     /// </summary>
-    Utilities.Messaging.Messages.Configuration[] _received_configurations;
+    Configuration[] _received_configurations;
 
 
 
@@ -308,14 +313,14 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-    public Dictionary<string, Prototyping.Internals.Resetable> Resetables { get; set; } =
-      new Dictionary<string, Prototyping.Internals.Resetable>();
+    public Dictionary<string, Resetable> Resetables { get; set; } =
+      new Dictionary<string, Resetable>();
 
     /// <summary>
     ///
     /// </summary>
-    public Dictionary<string, Prototyping.Internals.EnvironmentListener> Listeners { get; set; } =
-      new Dictionary<string, Prototyping.Internals.EnvironmentListener>();
+    public Dictionary<string, EnvironmentListener> Listeners { get; set; } =
+      new Dictionary<string, EnvironmentListener>();
 
     /// <inheritdoc />
     /// <summary>
@@ -381,8 +386,8 @@ namespace droid.Neodroid.Environments {
     /// </summary>
     /// <param name="reaction"></param>
     /// <returns></returns>
-    public override Utilities.Messaging.Messages.EnvironmentState ReactAndCollectState(
-        Utilities.Messaging.Messages.Reaction reaction) {
+    public override EnvironmentState ReactAndCollectState(
+        Reaction reaction) {
       lock (this._react_lock) {
         this._terminable = reaction.Parameters.Terminable;
 
@@ -418,7 +423,7 @@ namespace droid.Neodroid.Environments {
     /// </summary>
     /// <param name="reaction"></param>
     /// <returns></returns>
-    public override void React(Utilities.Messaging.Messages.Reaction reaction) {
+    public override void React(Reaction reaction) {
       lock (this._react_lock) {
         this._terminable = reaction.Parameters.Terminable;
 
@@ -587,7 +592,7 @@ namespace droid.Neodroid.Environments {
     /// </summary>
     /// <param name="resetable"></param>
     /// <param name="identifier"></param>
-    public void Register(Prototyping.Internals.Resetable resetable, string identifier) {
+    public void Register(Resetable resetable, string identifier) {
       if (!this.Resetables.ContainsKey(identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
@@ -609,15 +614,15 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     /// </summary>
     /// <param name="resetable"></param>
-    public void Register(Prototyping.Internals.Resetable resetable) {
+    public void Register(Resetable resetable) {
       this.Register(resetable, resetable.Identifier);
     }
 
-    public void Register(Prototyping.Internals.EnvironmentListener environment_listener) {
+    public void Register(EnvironmentListener environment_listener) {
       this.Register(environment_listener, environment_listener.Identifier);
     }
 
-    public void Register(Prototyping.Internals.EnvironmentListener environment_listener, string identifier) {
+    public void Register(EnvironmentListener environment_listener, string identifier) {
       if (!this.Listeners.ContainsKey(identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
@@ -725,7 +730,7 @@ namespace droid.Neodroid.Environments {
     ///
     /// </summary>
     /// <param name="resetable"></param>
-    public void UnRegister(Prototyping.Internals.Resetable resetable) {
+    public void UnRegister(Resetable resetable) {
       this.UnRegisterDisplayer(resetable.Identifier);
     }
 
@@ -748,7 +753,7 @@ namespace droid.Neodroid.Environments {
     ///
     ///  </summary>
     /// <param name="environment_listener"></param>
-    public void UnRegister(Prototyping.Internals.EnvironmentListener environment_listener) {
+    public void UnRegister(EnvironmentListener environment_listener) {
       this.UnRegisterListener(environment_listener.Identifier);
     }
 
@@ -885,9 +890,9 @@ namespace droid.Neodroid.Environments {
       var ignored_layer = LayerMask.NameToLayer("IgnoredByNeodroid");
       if (this._track_only_children) {
         this._tracked_game_objects =
-            Utilities.Unsorted.NeodroidUtilities.RecursiveChildGameObjectsExceptLayer(this.transform, ignored_layer);
+            NeodroidUtilities.RecursiveChildGameObjectsExceptLayer(this.transform, ignored_layer);
       } else {
-        this._tracked_game_objects = Utilities.Unsorted.NeodroidUtilities.FindAllGameObjectsExceptLayer(ignored_layer);
+        this._tracked_game_objects = NeodroidUtilities.FindAllGameObjectsExceptLayer(ignored_layer);
       }
 
       this._reset_positions = new Vector3[this._tracked_game_objects.Length];
@@ -899,10 +904,10 @@ namespace droid.Neodroid.Environments {
         this._poses[i] = this._tracked_game_objects[i].transform;
         var maybe_joint = this._tracked_game_objects[i].GetComponent<Joint>();
         if (maybe_joint != null) {
-          var maybe_joint_fix = maybe_joint.GetComponent<Utilities.Unsorted.JointFix>();
+          var maybe_joint_fix = maybe_joint.GetComponent<JointFix>();
           if (maybe_joint_fix == null) {
             // ReSharper disable once RedundantAssignment
-            maybe_joint_fix = maybe_joint.gameObject.AddComponent<Utilities.Unsorted.JointFix>();
+            maybe_joint_fix = maybe_joint.gameObject.AddComponent<JointFix>();
           }
           #if NEODROID_DEBUG
           if (this.Debugging) {
@@ -966,7 +971,7 @@ namespace droid.Neodroid.Environments {
     ///  <summary>
     ///  </summary>
     ///  <returns></returns>
-    public override Utilities.Messaging.Messages.EnvironmentState CollectState() {
+    public override EnvironmentState CollectState() {
       lock (this._react_lock) {
         foreach (var a in this.Actors.Values) {
           foreach (var m in a.Motors.Values) {
@@ -981,7 +986,7 @@ namespace droid.Neodroid.Environments {
         }
         //}
 
-        Utilities.Messaging.Messages.EnvironmentDescription description = null;
+        EnvironmentDescription description = null;
         if (this._describe) {
           #if NEODROID_DEBUG
           if (this.Debugging) {
@@ -993,7 +998,7 @@ namespace droid.Neodroid.Environments {
             threshold = this._objective_function.SolvedThreshold;
           }
 
-          description = new Utilities.Messaging.Messages.EnvironmentDescription(
+          description = new EnvironmentDescription(
               this.EpisodeLength,
               this.Actors,
               this.Configurables,
@@ -1023,7 +1028,7 @@ namespace droid.Neodroid.Environments {
 
         var time = Time.time - this._Lastest_Reset_Time;
 
-        return new Utilities.Messaging.Messages.EnvironmentState(
+        return new EnvironmentState(
             this.Identifier,
             this._energy_spent,
             this.Observers,
@@ -1135,7 +1140,7 @@ namespace droid.Neodroid.Environments {
     ///
     /// </summary>
     /// <param name="reaction"></param>
-    void SendToDisplayers(Utilities.Messaging.Messages.Reaction reaction) {
+    void SendToDisplayers(Reaction reaction) {
       if (reaction.Displayables != null && reaction.Displayables.Length > 0) {
         foreach (var displayable in reaction.Displayables) {
           #if NEODROID_DEBUG
@@ -1162,7 +1167,7 @@ namespace droid.Neodroid.Environments {
     ///
     /// </summary>
     /// <param name="reaction"></param>
-    void SendToMotors(Utilities.Messaging.Messages.Reaction reaction) {
+    void SendToMotors(Reaction reaction) {
       if (reaction.Motions != null && reaction.Motions.Length > 0) {
         foreach (var motion in reaction.Motions) {
           #if NEODROID_DEBUG
@@ -1188,7 +1193,7 @@ namespace droid.Neodroid.Environments {
     ///
     /// </summary>
     /// <param name="reaction"></param>
-    void Step(Utilities.Messaging.Messages.Reaction reaction) {
+    void Step(Reaction reaction) {
       lock (this._react_lock) {
         this.PreStepEvent?.Invoke();
 
@@ -1279,7 +1284,7 @@ namespace droid.Neodroid.Environments {
                 rigid_body.WakeUp();
               }
 
-              var joint_fix = child_game_objects[i].GetComponent<Utilities.Unsorted.JointFix>();
+              var joint_fix = child_game_objects[i].GetComponent<JointFix>();
               if (joint_fix) {
                 joint_fix.Reset();
               }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using droid.Neodroid.Managers;
+using droid.Neodroid.Utilities.Messaging.Messages;
 using droid.Neodroid.Utilities.ScriptableObjects;
 using UnityEngine;
 
@@ -35,7 +36,7 @@ namespace droid.Neodroid.PlayerControls {
     /// <summary>
     ///
     /// </summary>
-    Utilities.Messaging.Messages.EnvironmentState[] _states;
+    EnvironmentState[] _states;
 
     /// <summary>
     ///
@@ -64,10 +65,10 @@ namespace droid.Neodroid.PlayerControls {
     void Start() {
       this._manager = FindObjectOfType<NeodroidManager>();
       var reset_reaction =
-          new Utilities.Messaging.Messages.ReactionParameters(false, false, true, episode_count : true);
+          new ReactionParameters(false, false, true, episode_count : true);
       this._states =
           this._manager.ReactAndCollectStates(
-              new Utilities.Messaging.Messages.Reaction(reset_reaction, "all"));
+              new Reaction(reset_reaction, "all"));
     }
 
     /// <summary>
@@ -76,14 +77,14 @@ namespace droid.Neodroid.PlayerControls {
     void Update() {
       if (this._states == null) {
         var reset_reaction =
-            new Utilities.Messaging.Messages.ReactionParameters(false, false, true, episode_count : true);
+            new ReactionParameters(false, false, true, episode_count : true);
         this._states =
             this._manager.ReactAndCollectStates(
-                new Utilities.Messaging.Messages.Reaction(reset_reaction, "all"));
+                new Reaction(reset_reaction, "all"));
       }
 
       if (this._player_motions != null) {
-        var motions = new List<Utilities.Messaging.Messages.MotorMotion>();
+        var motions = new List<MotorMotion>();
         if(this._player_motions._Motions!=null){
           foreach (var player_motion in this._player_motions._Motions) {
             if (Input.GetKey(player_motion._Key)) {
@@ -91,7 +92,7 @@ namespace droid.Neodroid.PlayerControls {
                 Debug.Log($"{player_motion._Actor} {player_motion._Motor} {player_motion._Strength}");
               }
 
-              var motion = new Utilities.Messaging.Messages.MotorMotion(
+              var motion = new MotorMotion(
                   player_motion._Actor,
                   player_motion._Motor,
                   player_motion._Strength);
@@ -105,21 +106,21 @@ namespace droid.Neodroid.PlayerControls {
           foreach (var state in this._states) {
             if (this._auto_reset && state.Terminated) {
               var reset_reaction =
-                  new Utilities.Messaging.Messages.ReactionParameters(
+                  new ReactionParameters(
                       false,
                       false,
                       true,
                       episode_count : true) {IsExternal = false};
               this._manager.ReactAndCollectStates(
-                  new Utilities.Messaging.Messages.Reaction(reset_reaction, state.EnvironmentName));
+                  new Reaction(reset_reaction, state.EnvironmentName));
             }
           }
 
           var parameters =
-              new Utilities.Messaging.Messages.ReactionParameters(true, true, episode_count : true) {
+              new ReactionParameters(true, true, episode_count : true) {
                   IsExternal = false
               };
-          var reaction = new Utilities.Messaging.Messages.Reaction(
+          var reaction = new Reaction(
               parameters,
               motions.ToArray(),
               null,

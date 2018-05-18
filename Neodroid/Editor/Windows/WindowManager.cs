@@ -2,7 +2,7 @@
 using System;
 using UnityEditor;
 
-namespace Neodroid.Editor.Windows {
+namespace droid.Neodroid.Editor.Windows {
   public class WindowManager : EditorWindow {
     static Type[] _desired_dock_next_toos = {
         typeof(RenderTextureConfiguratorWindow),

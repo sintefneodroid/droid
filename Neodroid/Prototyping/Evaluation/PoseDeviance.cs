@@ -1,4 +1,5 @@
 ﻿using droid.Neodroid.Utilities.BoundingBoxes;
+using droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Evaluation {
@@ -94,7 +95,7 @@ namespace droid.Neodroid.Prototyping.Evaluation {
       }
 
       if (this._obstructions.Length <= 0) {
-        this._obstructions = FindObjectsOfType<Utilities.Unsorted.Obstruction>();
+        this._obstructions = FindObjectsOfType<Obstruction>();
       }
 
       if (!this._playable_area) {
@@ -116,7 +117,7 @@ namespace droid.Neodroid.Prototyping.Evaluation {
 
     [SerializeField] BoundingBox _playable_area;
 
-    [SerializeField] Utilities.Unsorted.Obstruction[] _obstructions;
+    [SerializeField] Obstruction[] _obstructions;
 
     [SerializeField] bool _state_full;
     [SerializeField] float _goal_reached_radius= 0.01f; // Equevalent to 1 cm.

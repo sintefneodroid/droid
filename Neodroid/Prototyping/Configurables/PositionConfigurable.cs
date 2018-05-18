@@ -1,6 +1,10 @@
 ﻿using System;
 using droid.Neodroid.Utilities.Interfaces;
+using droid.Neodroid.Utilities.Messaging.Messages;
+using droid.Neodroid.Utilities.Structs;
+using droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
+using Random = System.Random;
 
 namespace droid.Neodroid.Prototyping.Configurables {
   [AddComponentMenu(
@@ -45,24 +49,24 @@ namespace droid.Neodroid.Prototyping.Configurables {
     /// </summary>
     public Vector3 ObservationValue { get { return this._position; } }
 
-    public Utilities.Structs.Space3 TripleSpace { get; }
+    public Space3 TripleSpace { get; }
 
     /// <summary>
     ///
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this);
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this,
           this._x);
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this,
           this._y);
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this,
           this._z);
@@ -85,7 +89,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
       }
     }
 
-    public override void ApplyConfiguration(Utilities.Messaging.Messages.Configuration configuration) {
+    public override void ApplyConfiguration(Configuration configuration) {
       var pos = this.transform.position;
       if (this._use_environments_space) {
         pos = this.ParentEnvironment.TransformPosition(this.transform.position);
@@ -141,8 +145,8 @@ namespace droid.Neodroid.Prototyping.Configurables {
       this.transform.position = inv_pos;
     }
 
-    public override Utilities.Messaging.Messages.Configuration SampleConfiguration(
-        System.Random random_generator) {
+    public override Configuration SampleConfiguration(
+        Random random_generator) {
       throw new NotImplementedException();
     }
   }

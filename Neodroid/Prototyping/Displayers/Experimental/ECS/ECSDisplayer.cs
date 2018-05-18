@@ -1,9 +1,9 @@
 ﻿#if ECS_EXISTS
-using Neodroid.Environments;
-using Neodroid.Utilities;
+using droid.Neodroid.Environments;
+using droid.Neodroid.Utilities;
 using UnityEngine;
 
-namespace Neodroid.Prototyping.Displayers.ECS {
+namespace droid.Neodroid.Prototyping.Displayers.ECS {
   public abstract class EcsDisplayer : MonoBehaviour {
     PrototypingEnvironment _environment;
 

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using droid.Neodroid.Utilities.Messaging.Messages;
+using droid.Neodroid.Utilities.Unsorted;
+using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Motors {
   [AddComponentMenu(
@@ -64,18 +66,18 @@ namespace droid.Neodroid.Prototyping.Motors {
       }
 
       this.ParentActor =
-          Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(this.ParentActor, (Motor)this, this._x);
+          NeodroidUtilities.MaybeRegisterNamedComponent(this.ParentActor, (Motor)this, this._x);
       this.ParentActor =
-          Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(this.ParentActor, (Motor)this, this._y);
+          NeodroidUtilities.MaybeRegisterNamedComponent(this.ParentActor, (Motor)this, this._y);
       this.ParentActor =
-          Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(this.ParentActor, (Motor)this, this._z);
+          NeodroidUtilities.MaybeRegisterNamedComponent(this.ParentActor, (Motor)this, this._z);
     }
 
     /// <summary>
     ///
     /// </summary>
     /// <param name="motion"></param>
-    protected override void InnerApplyMotion(Utilities.Messaging.Messages.MotorMotion motion) {
+    protected override void InnerApplyMotion(MotorMotion motion) {
       if (!this._Rotational_Motors) {
         if (motion.MotorName == this._x) {
           if (this._Relative_To == Space.World) {

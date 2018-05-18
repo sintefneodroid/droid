@@ -3,8 +3,10 @@ using droid.Neodroid.Prototyping.Configurables;
 using droid.Neodroid.Prototyping.Motors;
 using droid.Neodroid.Prototyping.Observers;
 using droid.Neodroid.Utilities.Interfaces;
+using droid.Neodroid.Utilities.Messaging.Messages;
 using FlatBuffers;
 using UnityEngine;
+using SimulatorConfiguration = droid.Neodroid.Utilities.ScriptableObjects.SimulatorConfiguration;
 
 namespace droid.Neodroid.Utilities.Messaging.FBS {
   /// <summary>
@@ -20,7 +22,7 @@ namespace droid.Neodroid.Utilities.Messaging.FBS {
     /// <param name="simulator_configuration"></param>
     /// <param name="api_version"></param>
     /// <returns></returns>
-    public static byte[] serialise_states(Messages.EnvironmentState[] states,  ScriptableObjects.SimulatorConfiguration simulator_configuration=null, string api_version="") {
+    public static byte[] serialise_states(EnvironmentState[] states,  SimulatorConfiguration simulator_configuration=null, string api_version="") {
       var b = new FlatBufferBuilder(1);
       var state_offsets = new Offset<FState>[states.Length];
       var i = 0;
@@ -34,7 +36,7 @@ namespace droid.Neodroid.Utilities.Messaging.FBS {
       FStates.StartFStates(b);
       FStates.AddStates(b, states_vector_offset);
       FStates.AddApiVersion(b, api_version_offset);
-      //TODO: Neodroid.FBS.State.FStates.AddSimulatorConfiguration();
+      //TODO: droid.Neodroid.FBS.State.FStates.AddSimulatorConfiguration();
       var states_offset = FStates.EndFStates(b);
 
       FStates.FinishFStatesBuffer(b, states_offset);
@@ -44,7 +46,7 @@ namespace droid.Neodroid.Utilities.Messaging.FBS {
 
     public static Offset<FSimulatorConfiguration> serialise_simulator_configuration(
         FlatBufferBuilder b,
-        ScriptableObjects.SimulatorConfiguration configuration) {
+        SimulatorConfiguration configuration) {
 
 
 
@@ -57,7 +59,7 @@ namespace droid.Neodroid.Utilities.Messaging.FBS {
     /// <param name="b"></param>
     /// <param name="state"></param>
     /// <returns></returns>
-    public static Offset<FState> serialise_state(FlatBufferBuilder b, Messages.EnvironmentState state) {
+    public static Offset<FState> serialise_state(FlatBufferBuilder b, EnvironmentState state) {
         var n = b.CreateString(state.EnvironmentName);
 
         var observables_vector = FState.CreateObservablesVector(b, state.Observables);
@@ -332,7 +334,7 @@ namespace droid.Neodroid.Utilities.Messaging.FBS {
 
     static Offset<FEnvironmentDescription> serialise_description(
         FlatBufferBuilder b,
-        Messages.EnvironmentState state) {
+        EnvironmentState state) {
       var actors_offsets = new Offset<FActor>[state.Description.Actors.Values.Count];
       var j = 0;
       foreach (var actor in state.Description.Actors) {
@@ -369,7 +371,7 @@ namespace droid.Neodroid.Utilities.Messaging.FBS {
 
     static Offset<FObjective> serialise_objective(
         FlatBufferBuilder b,
-        Messages.EnvironmentDescription description) {
+        EnvironmentDescription description) {
       var objective_name_offset = b.CreateString("Default objective");
       FObjective.StartFObjective(b);
       FObjective.AddMaxEpisodeLength(b, description.MaxSteps);

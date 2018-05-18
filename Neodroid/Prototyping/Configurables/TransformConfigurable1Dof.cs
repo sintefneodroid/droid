@@ -2,8 +2,10 @@
 using droid.Neodroid.Utilities.BoundingBoxes;
 using droid.Neodroid.Utilities.Enums;
 using droid.Neodroid.Utilities.Interfaces;
+using droid.Neodroid.Utilities.Messaging.Messages;
 using droid.Neodroid.Utilities.Structs;
 using UnityEngine;
+using Random = System.Random;
 
 namespace droid.Neodroid.Prototyping.Configurables {
   /// <inheritdoc cref="ConfigurableGameObject" />
@@ -92,7 +94,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
       }
     }
 
-    public override void ApplyConfiguration(Utilities.Messaging.Messages.Configuration configuration) {
+    public override void ApplyConfiguration(Configuration configuration) {
       if (configuration.ConfigurableValue < this.SingleSpace._Min_Value
           || configuration.ConfigurableValue > this.SingleSpace._Max_Value) {
         Debug.Log(
@@ -206,8 +208,8 @@ namespace droid.Neodroid.Prototyping.Configurables {
       this.transform.rotation = Quaternion.LookRotation(inv_dir, inv_rot);
     }
 
-    public override Utilities.Messaging.Messages.Configuration SampleConfiguration(
-        System.Random random_generator) {
+    public override Configuration SampleConfiguration(
+        Random random_generator) {
       throw new NotImplementedException();
     }
 

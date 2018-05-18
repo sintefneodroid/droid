@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using droid.Neodroid.Utilities.Structs;
+using UnityEngine;
 
 namespace droid.Neodroid.Utilities.Interfaces {
   /// <summary>
@@ -13,6 +14,6 @@ namespace droid.Neodroid.Utilities.Interfaces {
     /// <summary>
     ///
     /// </summary>
-    Structs.Space2 ObservationSpace2D { get; }
+    Space2 ObservationSpace2D { get; }
   }
 }

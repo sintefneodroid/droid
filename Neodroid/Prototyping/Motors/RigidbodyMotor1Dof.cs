@@ -1,5 +1,6 @@
 ﻿using System;
 using droid.Neodroid.Utilities.Enums;
+using droid.Neodroid.Utilities.Messaging.Messages;
 using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Motors {
@@ -50,7 +51,7 @@ namespace droid.Neodroid.Prototyping.Motors {
     /// </summary>
     /// <param name="motion"></param>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
-    protected override void InnerApplyMotion(Utilities.Messaging.Messages.MotorMotion motion) {
+    protected override void InnerApplyMotion(MotorMotion motion) {
       switch (this._Axis_Of_Motion) {
         case Axis.X_:
           if (this._Relative_To == Space.World) {

@@ -1,4 +1,5 @@
 ﻿using System;
+using droid.Neodroid.Utilities.Messaging.Messages;
 using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Motors {
@@ -10,7 +11,7 @@ namespace droid.Neodroid.Prototyping.Motors {
     [SerializeField] protected Space _Relative_To = Space.Self;
     public override string PrototypingType { get { return "Index"; } }
 
-    protected override void InnerApplyMotion(Utilities.Messaging.Messages.MotorMotion motion) {
+    protected override void InnerApplyMotion(MotorMotion motion) {
       var layer_mask = 1 << LayerMask.NameToLayer(this._Layer_Mask);
 
       Vector3 vec;

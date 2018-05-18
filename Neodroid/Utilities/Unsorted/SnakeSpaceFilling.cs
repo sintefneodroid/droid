@@ -1,4 +1,8 @@
-﻿namespace droid.Neodroid.Utilities.Unsorted {
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace droid.Neodroid.Utilities.Unsorted {
   public static partial class NeodroidUtilities {
 
     /// <summary>
@@ -20,12 +24,12 @@
     /// </summary>
     /// <param name="length"></param>
     /// <returns></returns>
-    public static System.Collections.Generic.IEnumerable<UnityEngine.Vector3> SnakeSpaceFillingGenerator(int length = 100) {
+    public static IEnumerable<Vector3> SnakeSpaceFillingGenerator(int length = 100) {
       var x = 0;
       var y = 0;
       var state = GeneratorState.Expand_x_;
 
-      var out_vectors = new UnityEngine.Vector3[length];
+      var out_vectors = new Vector3[length];
       if (length == 0) {
         return out_vectors;
       }
@@ -71,10 +75,10 @@
             }
 
             break;
-          default: throw new System.ArgumentOutOfRangeException();
+          default: throw new ArgumentOutOfRangeException();
         }
 
-        out_vectors[i] = new UnityEngine.Vector3(x, 0, y);
+        out_vectors[i] = new Vector3(x, 0, y);
       }
 
       return out_vectors;

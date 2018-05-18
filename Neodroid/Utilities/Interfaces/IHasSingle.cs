@@ -1,4 +1,6 @@
-﻿namespace droid.Neodroid.Utilities.Interfaces {
+﻿using droid.Neodroid.Utilities.Structs;
+
+namespace droid.Neodroid.Utilities.Interfaces {
   /// <summary>
   ///
   /// </summary>
@@ -11,6 +13,6 @@
     /// <summary>
     ///
     /// </summary>
-    Structs.ValueSpace SingleSpace { get; }
+    ValueSpace SingleSpace { get; }
   }
 }

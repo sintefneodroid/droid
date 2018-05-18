@@ -1,15 +1,19 @@
-﻿using UnityEngine;
+﻿using System;
+using droid.Neodroid.Environments;
+using droid.Neodroid.Utilities.GameObjects;
+using droid.Neodroid.Utilities.Unsorted;
+using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Internals {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
   [ExecuteInEditMode]
-  public abstract class EnvironmentListener : Utilities.GameObjects.PrototypingGameObject {
+  public abstract class EnvironmentListener : PrototypingGameObject {
     /// <summary>
     ///
     /// </summary>
-    public Environments.PrototypingEnvironment _Parent_Environment;
+    public PrototypingEnvironment _Parent_Environment;
 
     protected abstract void PreStep();
 
@@ -22,7 +26,7 @@ namespace droid.Neodroid.Prototyping.Internals {
     /// </summary>
     protected override void RegisterComponent() {
       this._Parent_Environment =
-          Utilities.Unsorted.NeodroidUtilities.MaybeRegisterComponent(this._Parent_Environment, this);
+          NeodroidUtilities.MaybeRegisterComponent(this._Parent_Environment, this);
 
       if (this._Parent_Environment) {
         this._Parent_Environment.PreStepEvent += this.PreStep;
@@ -40,6 +44,6 @@ namespace droid.Neodroid.Prototyping.Internals {
     /// <summary>
     ///
     /// </summary>
-    public abstract override System.String PrototypingType { get; }
+    public abstract override String PrototypingType { get; }
   }
 }

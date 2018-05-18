@@ -1,4 +1,6 @@
-﻿using droid.Neodroid.Utilities.Interfaces;
+﻿using System;
+using droid.Neodroid.Utilities.Interfaces;
+using UnityEditor;
 using UnityEngine;
 
 namespace droid.Neodroid.Utilities.GameObjects {
@@ -54,7 +56,7 @@ namespace droid.Neodroid.Utilities.GameObjects {
           this.UnRegisterComponent();
           this.RegisterComponent();
         }
-      } catch (System.ArgumentNullException e) {
+      } catch (ArgumentNullException e) {
         Debug.LogWarning(e);
         Debug.Log($"Exception happened on {this.GetType()}-{this}");
       }
@@ -138,7 +140,7 @@ namespace droid.Neodroid.Utilities.GameObjects {
     ///
     /// </summary>
     void OnValidate() { // Only called in the editor
-      if (UnityEditor.EditorApplication.isPlaying || !this._editor_reregistering) {
+      if (EditorApplication.isPlaying || !this._editor_reregistering) {
         return;
       }
 
@@ -148,7 +150,7 @@ namespace droid.Neodroid.Utilities.GameObjects {
           this.UnRegisterComponent();
           this.RegisterComponent();
         }
-      } catch (System.NotImplementedException e) {
+      } catch (NotImplementedException e) {
         Debug.Log(e);
         Debug.Log(
             $"You must override Register and UnRegisterComponent for component {this.GetType()} for gameobject {this.Identifier} in order to Re-register component on every 'OnValidate' while in edit-mode");
@@ -160,13 +162,13 @@ namespace droid.Neodroid.Utilities.GameObjects {
     ///
     /// </summary>
     /// <exception cref="System.NotImplementedException"></exception>
-    protected virtual void UnRegisterComponent() { throw new System.NotImplementedException(); }
+    protected virtual void UnRegisterComponent() { throw new NotImplementedException(); }
 
     /// <summary>
     ///
     /// </summary>
     /// <exception cref="System.NotImplementedException"></exception>
-    protected virtual void RegisterComponent() { throw new System.NotImplementedException(); }
+    protected virtual void RegisterComponent() { throw new NotImplementedException(); }
 
     /// <summary>
     ///

@@ -3,7 +3,7 @@ using droid.Neodroid.Utilities.Segmentation;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Editor.Windows {
+namespace droid.Neodroid.Editor.Windows {
   public class SegmentationWindow : EditorWindow {
     [SerializeField] ColorByInstance[] _colors_by_instance;
 

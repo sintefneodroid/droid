@@ -1,6 +1,8 @@
 ﻿using System;
 using droid.Neodroid.Managers;
 using droid.Neodroid.Utilities.GameObjects;
+using droid.Neodroid.Utilities.Messaging.Messages;
+using droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
 
 namespace droid.Neodroid.Environments {
@@ -108,7 +110,7 @@ namespace droid.Neodroid.Environments {
     /// </summary>
     protected override void RegisterComponent() {
       if (this._Simulation_Manager) {
-        this._Simulation_Manager = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterComponent(this._Simulation_Manager, this);
+        this._Simulation_Manager = NeodroidUtilities.MaybeRegisterComponent(this._Simulation_Manager, this);
       }
     }
 
@@ -135,22 +137,22 @@ namespace droid.Neodroid.Environments {
     ///
     /// </summary>
     /// <returns></returns>
-    public abstract Utilities.Messaging.Messages.Reaction SampleReaction();
+    public abstract Reaction SampleReaction();
 
     /// <summary>
     ///
     /// </summary>
     /// <param name="reaction"></param>
     /// <returns></returns>
-    public abstract Utilities.Messaging.Messages.EnvironmentState ReactAndCollectState(
-        Utilities.Messaging.Messages.Reaction reaction);
+    public abstract EnvironmentState ReactAndCollectState(
+        Reaction reaction);
 
     /// <summary>
     ///
     /// </summary>
     /// <param name="reaction"></param>
     /// <returns></returns>
-    public abstract void React(Utilities.Messaging.Messages.Reaction reaction);
+    public abstract void React(Reaction reaction);
 
     /// <summary>
     ///
@@ -161,6 +163,6 @@ namespace droid.Neodroid.Environments {
     ///
     /// </summary>
     /// <returns></returns>
-    public abstract Utilities.Messaging.Messages.EnvironmentState CollectState();
+    public abstract EnvironmentState CollectState();
   }
 }

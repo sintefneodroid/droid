@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using droid.Neodroid.Utilities.Unsorted;
+using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Evaluation {
   [AddComponentMenu(
@@ -19,7 +20,7 @@ namespace droid.Neodroid.Prototyping.Evaluation {
       var balls = GameObject.FindGameObjectsWithTag("balls");
 
       foreach (var ball in balls) {
-        ball.AddComponent<Utilities.Unsorted.ChildCollisionPublisher>().CollisionDelegate = this.OnChildCollision;
+        ball.AddComponent<ChildCollisionPublisher>().CollisionDelegate = this.OnChildCollision;
       }
     }
 

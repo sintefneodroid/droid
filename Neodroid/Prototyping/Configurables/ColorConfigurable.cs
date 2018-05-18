@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using droid.Neodroid.Utilities.Messaging.Messages;
+using droid.Neodroid.Utilities.Unsorted;
+using UnityEngine;
+using Random = System.Random;
 
 namespace droid.Neodroid.Prototyping.Configurables {
   [AddComponentMenu(
@@ -52,19 +56,19 @@ namespace droid.Neodroid.Prototyping.Configurables {
     ///
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this,
           this._r);
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this,
           this._g);
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this,
           this._b);
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this,
           this._a);
@@ -83,7 +87,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
     ///
     /// </summary>
     /// <param name="configuration"></param>
-    public override void ApplyConfiguration(Utilities.Messaging.Messages.Configuration configuration) {
+    public override void ApplyConfiguration(Configuration configuration) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
         Debug.Log("Applying " + configuration + " To " + this.Identifier);
@@ -107,9 +111,9 @@ namespace droid.Neodroid.Prototyping.Configurables {
       }
     }
 
-    public override Utilities.Messaging.Messages.Configuration SampleConfiguration(
-        System.Random random_generator) {
-      throw new System.NotImplementedException();
+    public override Configuration SampleConfiguration(
+        Random random_generator) {
+      throw new NotImplementedException();
     }
   }
 }

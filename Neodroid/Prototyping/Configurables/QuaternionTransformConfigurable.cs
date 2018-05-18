@@ -1,5 +1,8 @@
-﻿using droid.Neodroid.Utilities.Interfaces;
+﻿using System;
+using droid.Neodroid.Utilities.Interfaces;
+using droid.Neodroid.Utilities.Messaging.Messages;
 using UnityEngine;
+using Random = System.Random;
 
 namespace droid.Neodroid.Prototyping.Configurables {
   [AddComponentMenu(
@@ -24,9 +27,9 @@ namespace droid.Neodroid.Prototyping.Configurables {
 
     public Vector3 Position { get { return this._position; } }
 
-    public override Utilities.Messaging.Messages.Configuration SampleConfiguration(
-        System.Random random_generator) {
-      throw new System.NotImplementedException();
+    public override Configuration SampleConfiguration(
+        Random random_generator) {
+      throw new NotImplementedException();
     }
   }
 }

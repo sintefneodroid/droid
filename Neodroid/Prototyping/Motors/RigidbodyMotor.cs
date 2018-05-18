@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using droid.Neodroid.Utilities.Messaging.Messages;
+using droid.Neodroid.Utilities.Unsorted;
+using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Motors {
   [AddComponentMenu(
@@ -37,23 +39,23 @@ namespace droid.Neodroid.Prototyping.Motors {
     }
 
     protected override void RegisterComponent() {
-      this.ParentActor = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterComponent(this.ParentActor, (Motor)this);
+      this.ParentActor = NeodroidUtilities.MaybeRegisterComponent(this.ParentActor, (Motor)this);
 
       this.ParentActor =
-          Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(this.ParentActor, (Motor)this, this._x);
+          NeodroidUtilities.MaybeRegisterNamedComponent(this.ParentActor, (Motor)this, this._x);
       this.ParentActor =
-          Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(this.ParentActor, (Motor)this, this._y);
+          NeodroidUtilities.MaybeRegisterNamedComponent(this.ParentActor, (Motor)this, this._y);
       this.ParentActor =
-          Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(this.ParentActor, (Motor)this, this._z);
+          NeodroidUtilities.MaybeRegisterNamedComponent(this.ParentActor, (Motor)this, this._z);
       this.ParentActor =
-          Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(this.ParentActor, (Motor)this, this._rot_x);
+          NeodroidUtilities.MaybeRegisterNamedComponent(this.ParentActor, (Motor)this, this._rot_x);
       this.ParentActor =
-          Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(this.ParentActor, (Motor)this, this._rot_y);
+          NeodroidUtilities.MaybeRegisterNamedComponent(this.ParentActor, (Motor)this, this._rot_y);
       this.ParentActor =
-          Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(this.ParentActor, (Motor)this, this._rot_z);
+          NeodroidUtilities.MaybeRegisterNamedComponent(this.ParentActor, (Motor)this, this._rot_z);
     }
 
-    protected override void InnerApplyMotion(Utilities.Messaging.Messages.MotorMotion motion) {
+    protected override void InnerApplyMotion(MotorMotion motion) {
       if (this._Relative_To == Space.World) {
         if (motion.MotorName == this._x) {
           this._Rigidbody.AddForce(Vector3.left * motion.Strength, this._ForceMode);

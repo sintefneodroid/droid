@@ -1,5 +1,7 @@
 ﻿using System;
 using droid.Neodroid.Environments;
+using droid.Neodroid.Utilities.GameObjects;
+using droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Internals {
@@ -7,7 +9,7 @@ namespace droid.Neodroid.Prototyping.Internals {
   /// <summary>
   /// </summary>
   [ExecuteInEditMode]
-  public abstract class Resetable : Utilities.GameObjects.PrototypingGameObject {
+  public abstract class Resetable : PrototypingGameObject {
     /// <summary>
     ///
     /// </summary>
@@ -22,7 +24,7 @@ namespace droid.Neodroid.Prototyping.Internals {
     ///
     /// </summary>
     protected override void RegisterComponent() {
-      this._Parent_Environment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterComponent(this._Parent_Environment, this);
+      this._Parent_Environment = NeodroidUtilities.MaybeRegisterComponent(this._Parent_Environment, this);
     }
 
     protected override void UnRegisterComponent() {

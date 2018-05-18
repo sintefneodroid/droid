@@ -1,4 +1,5 @@
 ﻿using System;
+using droid.Neodroid.Utilities.Structs;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,16 +38,16 @@ namespace droid.Neodroid.Prototyping.Displayers.Canvas {
     public override void Display(Vector3 value) { throw new NotImplementedException(); }
     public override void Display(Vector3[] value) { throw new NotImplementedException(); }
 
-    public override void Display(Utilities.Structs.Points.ValuePoint points) {
+    public override void Display(Points.ValuePoint points) {
       throw new NotImplementedException();
     }
 
-    public override void Display(Utilities.Structs.Points.ValuePoint[] points) {
+    public override void Display(Points.ValuePoint[] points) {
       throw new NotImplementedException();
     }
 
-    public override void Display(Utilities.Structs.Points.StringPoint point) { throw new NotImplementedException(); }
-    public override void Display(Utilities.Structs.Points.StringPoint[] points) { throw new NotImplementedException(); }
+    public override void Display(Points.StringPoint point) { throw new NotImplementedException(); }
+    public override void Display(Points.StringPoint[] points) { throw new NotImplementedException(); }
 
     public void SetText(string text) { this._text_component.text = text; }
   }

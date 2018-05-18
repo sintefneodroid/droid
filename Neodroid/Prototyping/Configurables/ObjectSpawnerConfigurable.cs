@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using droid.Neodroid.Utilities.Enums;
+using droid.Neodroid.Utilities.Messaging.Messages;
 using UnityEngine;
+using Random = System.Random;
 
 namespace droid.Neodroid.Prototyping.Configurables {
   [AddComponentMenu(
@@ -22,9 +25,9 @@ namespace droid.Neodroid.Prototyping.Configurables {
       this.SpawnObjects();
     }
 
-    public override Utilities.Messaging.Messages.Configuration SampleConfiguration(
-        System.Random random_generator) {
-      throw new System.NotImplementedException();
+    public override Configuration SampleConfiguration(
+        Random random_generator) {
+      throw new NotImplementedException();
     }
 
     void DestroyObjects() {
@@ -53,7 +56,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
               Instantiate(
                   this._object_to_spawn,
                   this.transform.position + dir * i,
-                  Random.rotation,
+                  UnityEngine.Random.rotation,
                   this.transform));
         }
       }

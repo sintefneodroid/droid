@@ -1,5 +1,9 @@
-﻿using droid.Neodroid.Managers;
+﻿using System;
+using droid.Neodroid.Managers;
+using droid.Neodroid.Utilities.Messaging.Messages;
+using droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
+using Random = System.Random;
 
 namespace droid.Neodroid.Prototyping.Configurables {
   [AddComponentMenu(
@@ -29,27 +33,27 @@ namespace droid.Neodroid.Prototyping.Configurables {
     public override string PrototypingType { get { return "Simulation"; } }
 
     protected override void RegisterComponent() {
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this,
           this._quality_level);
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this,
           this._target_frame_rate);
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this,
           this._width);
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this,
           this._height);
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this,
           this._fullscreen);
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this,
           this._time_scale);
@@ -66,7 +70,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
       }
     }
 
-    public override void ApplyConfiguration(Utilities.Messaging.Messages.Configuration configuration) {
+    public override void ApplyConfiguration(Configuration configuration) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
         Debug.Log("Applying " + configuration + " To " + this.Identifier);
@@ -88,9 +92,9 @@ namespace droid.Neodroid.Prototyping.Configurables {
       }
     }
 
-    public override Utilities.Messaging.Messages.Configuration SampleConfiguration(
-        System.Random random_generator) {
-      throw new System.NotImplementedException();
+    public override Configuration SampleConfiguration(
+        Random random_generator) {
+      throw new NotImplementedException();
     }
   }
 }

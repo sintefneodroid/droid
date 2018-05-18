@@ -1,7 +1,9 @@
 ﻿using System;
 using droid.Neodroid.Prototyping.Actors;
 using droid.Neodroid.Utilities.GameObjects;
+using droid.Neodroid.Utilities.Messaging.Messages;
 using droid.Neodroid.Utilities.Structs;
+using droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Motors {
@@ -28,7 +30,7 @@ namespace droid.Neodroid.Prototyping.Motors {
     ///
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentActor = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterComponent(this.ParentActor, this);
+      this.ParentActor = NeodroidUtilities.MaybeRegisterComponent(this.ParentActor, this);
     }
 
     protected override void UnRegisterComponent() {
@@ -37,7 +39,7 @@ namespace droid.Neodroid.Prototyping.Motors {
       }
     }
 
-    public void ApplyMotion(Utilities.Messaging.Messages.MotorMotion motion) {
+    public void ApplyMotion(MotorMotion motion) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
         Debug.Log("Applying " + motion + " To " + this.name);
@@ -55,7 +57,7 @@ namespace droid.Neodroid.Prototyping.Motors {
       this.EnergySpendSinceReset += Mathf.Abs(this.EnergyCost * motion.Strength);
     }
 
-    protected virtual void InnerApplyMotion(Utilities.Messaging.Messages.MotorMotion motion) { }
+    protected virtual void InnerApplyMotion(MotorMotion motion) { }
 
     public virtual float GetEnergySpend() { return this._energy_spend_since_reset; }
 

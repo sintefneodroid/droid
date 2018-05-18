@@ -1,8 +1,10 @@
-﻿namespace droid.Neodroid.Utilities.NeodroidCamera {
+﻿using UnityEngine;
+
+namespace droid.Neodroid.Utilities.NeodroidCamera {
   /// <summary>
   ///
   /// </summary>
-  public class DisparityCameraBehaviour : UnityEngine.MonoBehaviour {
+  public class DisparityCameraBehaviour : MonoBehaviour {
     //TODO: Implement
   }
 }

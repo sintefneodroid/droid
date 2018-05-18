@@ -1,6 +1,10 @@
 ﻿using System;
 using droid.Neodroid.Utilities.Interfaces;
+using droid.Neodroid.Utilities.Messaging.Messages;
+using droid.Neodroid.Utilities.Structs;
+using droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
+using Random = System.Random;
 
 namespace droid.Neodroid.Prototyping.Configurables {
   [AddComponentMenu(
@@ -38,9 +42,9 @@ namespace droid.Neodroid.Prototyping.Configurables {
     public Vector3 Direction { get { return this._direction; } set { this._direction = value; } }
 
     public Vector3 Rotation { get { return this._rotation; } set { this._rotation = value; } }
-    public Utilities.Structs.Space3 PositionSpace { get; }
-    public Utilities.Structs.Space3 DirectionSpace { get; }
-    public Utilities.Structs.Space3 RotationSpace { get; }
+    public Space3 PositionSpace { get; }
+    public Space3 DirectionSpace { get; }
+    public Space3 RotationSpace { get; }
 
     public override void UpdateCurrentConfiguration() {
       if (this._use_environments_space) {
@@ -55,42 +59,42 @@ namespace droid.Neodroid.Prototyping.Configurables {
     }
 
     protected override void RegisterComponent() {
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this);
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this,
           this._x);
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this,
           this._y);
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this,
           this._z);
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this,
           this._dir_x);
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this,
           this._dir_y);
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this,
           this._dir_z);
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this,
           this._rot_x);
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this,
           this._rot_y);
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this,
           this._rot_z);
@@ -123,7 +127,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
       }
     }
 
-    public override void ApplyConfiguration(Utilities.Messaging.Messages.Configuration configuration) {
+    public override void ApplyConfiguration(Configuration configuration) {
       var pos = this.transform.position;
       var dir = this.transform.forward;
       var rot = this.transform.up;
@@ -212,8 +216,8 @@ namespace droid.Neodroid.Prototyping.Configurables {
       this.transform.rotation = Quaternion.LookRotation(inv_dir, inv_rot);
     }
 
-    public override Utilities.Messaging.Messages.Configuration SampleConfiguration(
-        System.Random random_generator) {
+    public override Configuration SampleConfiguration(
+        Random random_generator) {
       throw new NotImplementedException();
     }
   }

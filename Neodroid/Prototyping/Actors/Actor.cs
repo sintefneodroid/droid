@@ -4,6 +4,8 @@ using droid.Neodroid.Prototyping.Motors;
 using droid.Neodroid.Utilities.BoundingBoxes;
 using droid.Neodroid.Utilities.GameObjects;
 using droid.Neodroid.Utilities.Interfaces;
+using droid.Neodroid.Utilities.Messaging.Messages;
+using droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Actors {
@@ -62,7 +64,7 @@ namespace droid.Neodroid.Prototyping.Actors {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterComponent(this.ParentEnvironment, this);
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterComponent(this.ParentEnvironment, this);
     }
 
     /// <inheritdoc />
@@ -101,7 +103,7 @@ namespace droid.Neodroid.Prototyping.Actors {
     ///
     /// </summary>
     /// <param name="motion"></param>
-    public virtual void ApplyMotion(Utilities.Messaging.Messages.MotorMotion motion) {
+    public virtual void ApplyMotion(MotorMotion motion) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
         Debug.Log("Applying " + motion + " To " + this.name + "'s motors");

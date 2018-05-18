@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using droid.Neodroid.Utilities.Messaging.Messages;
+using UnityEngine;
 
 namespace droid.Neodroid.Utilities.ScriptableObjects {
   /// <summary>
@@ -54,7 +56,7 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
       fileName = "SimulatorConfiguration",
       menuName = "Neodroid/ScriptableObjects/SimulatorConfiguration",
       order = 1)]
-  [System.Serializable]
+  [Serializable]
   public class SimulatorConfiguration : ScriptableObject {
     /// <summary>
     ///
@@ -114,7 +116,7 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
     ///
     /// </summary>
     [SerializeField]
-    Messaging.Messages.ExecutionPhase _step_execution_phase = Messaging.Messages.ExecutionPhase.Middle_;
+    ExecutionPhase _step_execution_phase = ExecutionPhase.Middle_;
 
     /// <summary>
     /// Allows physics loop to be run more often than frame loop
@@ -281,7 +283,7 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
     /// <summary>
     ///
     /// </summary>
-    public System.Single MaxReplyInterval {
+    public Single MaxReplyInterval {
       get { return this._max_reply_interval; }
       set { this._max_reply_interval = value; }
     }
@@ -297,7 +299,7 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
     /// <summary>
     ///
     /// </summary>
-    public Messaging.Messages.ExecutionPhase StepExecutionPhase {
+    public ExecutionPhase StepExecutionPhase {
       get { return this._step_execution_phase; }
       set { this._step_execution_phase = value; }
     }

@@ -1,7 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading;
 using AsyncIO;
 using droid.Neodroid.Utilities.Messaging.FBS;
+using droid.Neodroid.Utilities.Messaging.Messages;
 using FlatBuffers;
 using NetMQ;
 using NetMQ.Sockets;
@@ -11,7 +13,7 @@ namespace droid.Neodroid.Utilities.Messaging {
   /// <summary>
   ///
   /// </summary>
-  [System.Serializable]
+  [Serializable]
   public class MessageServer {
     #region PublicMembers
 
@@ -90,7 +92,7 @@ namespace droid.Neodroid.Utilities.Messaging {
     /// <summary>
     ///
     /// </summary>
-    System.Double _wait_time_seconds;
+    Double _wait_time_seconds;
 
 
     #endregion
@@ -104,7 +106,7 @@ namespace droid.Neodroid.Utilities.Messaging {
     /// </summary>
     /// <param name="callback"></param>
     /// <param name="debug_callback"></param>
-    void BindSocket(System.Action callback, System.Action<System.String> debug_callback) {
+    void BindSocket(Action callback, Action<String> debug_callback) {
       if (this._debugging) {
         debug_callback?.Invoke("Start listening for clients");
       }
@@ -122,7 +124,7 @@ namespace droid.Neodroid.Utilities.Messaging {
         }
 
         this._Listening_For_Clients = true;
-      } catch (System.Exception exception) {
+      } catch (Exception exception) {
         if (this._debugging) {
           debug_callback?.Invoke($"BindSocket threw exception: {exception}");
         }
@@ -134,15 +136,15 @@ namespace droid.Neodroid.Utilities.Messaging {
     /// </summary>
     /// <param name="wait_time"></param>
     /// <returns></returns>
-    public Messages.Reaction[] Receive(System.TimeSpan wait_time) {
+    public Reaction[] Receive(TimeSpan wait_time) {
       //this._socket.Poll(); // TODO: MAYBE WAIT FOR CLIENT TO SEND
 
-      Messages.Reaction[] reactions = null;
+      Reaction[] reactions = null;
       lock (this._thread_lock) {
         try {
           byte[] msg;
 
-          if (wait_time > System.TimeSpan.Zero) {
+          if (wait_time > TimeSpan.Zero) {
 
             #if NEODROID_DEBUG
                         var received = this._socket.TryReceiveFrameBytes(wait_time, out msg);
@@ -162,13 +164,13 @@ namespace droid.Neodroid.Utilities.Messaging {
 
           if (msg != null) { //&& msg.Length >= 4) {
             var flat_reaction = FReactions.GetRootAsFReactions(new ByteBuffer(msg));
-            var tuple = FBS.FbsReactionUtilities.deserialise_reactions(flat_reaction);
+            var tuple = FbsReactionUtilities.deserialise_reactions(flat_reaction);
             reactions = tuple.Item1; //TODO: Change tuple to the Reactions class
             var close = tuple.Item2;
             var api_version = tuple.Item3;
             var simulator_configuration = tuple.Item4;
           }
-        } catch (System.Exception exception) {
+        } catch (Exception exception) {
           if (exception is TerminatingException) {
             return reactions;
           }
@@ -187,13 +189,13 @@ namespace droid.Neodroid.Utilities.Messaging {
     /// <param name="disconnect_callback"></param>
     /// <param name="debug_callback"></param>
     void PollingThread(
-        System.Action<Messages.Reaction[]> receive_callback,
-        System.Action disconnect_callback,
-        System.Action<string> debug_callback) {
+        Action<Reaction[]> receive_callback,
+        Action disconnect_callback,
+        Action<string> debug_callback) {
       while (this._stop_thread == false) {
         lock (this._thread_lock) {
           if (!this._waiting_for_main_loop_to_send) {
-            var reactions = this.Receive(System.TimeSpan.FromSeconds(this._wait_time_seconds));
+            var reactions = this.Receive(TimeSpan.FromSeconds(this._wait_time_seconds));
             if (reactions != null) {
               receive_callback(reactions);
               this._waiting_for_main_loop_to_send = true;
@@ -231,7 +233,7 @@ namespace droid.Neodroid.Utilities.Messaging {
     ///
     /// </summary>
     /// <param name="environment_states"></param>
-    public void SendStates(Messages.EnvironmentState[] environment_states) {
+    public void SendStates(EnvironmentState[] environment_states) {
       lock (this._thread_lock) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
@@ -265,7 +267,7 @@ namespace droid.Neodroid.Utilities.Messaging {
         }
         #endif
 
-        this._byte_buffer = FBS.FbsStateUtilities.serialise_states(environment_states);
+        this._byte_buffer = FbsStateUtilities.serialise_states(environment_states);
         this._socket.SendFrame(this._byte_buffer);
         this._waiting_for_main_loop_to_send = false;
       }
@@ -275,7 +277,7 @@ namespace droid.Neodroid.Utilities.Messaging {
     ///
     /// </summary>
     /// <param name="debug_callback"></param>
-    public void ListenForClientToConnect(System.Action<string> debug_callback) {
+    public void ListenForClientToConnect(Action<string> debug_callback) {
       this.BindSocket(null, debug_callback);
     }
 
@@ -284,7 +286,7 @@ namespace droid.Neodroid.Utilities.Messaging {
     /// </summary>
     /// <param name="callback"></param>
     /// <param name="debug_callback"></param>
-    public void ListenForClientToConnect(System.Action callback, System.Action<string> debug_callback) {
+    public void ListenForClientToConnect(Action callback, Action<string> debug_callback) {
       this._wait_for_client_thread =
           new Thread(unused_param => this.BindSocket(callback, debug_callback)) {IsBackground = true};
       // Is terminated with foreground threads, when they terminate
@@ -298,9 +300,9 @@ namespace droid.Neodroid.Utilities.Messaging {
     /// <param name="disconnect_callback"></param>
     /// <param name="debug_callback"></param>
     public void StartReceiving(
-        System.Action<Messages.Reaction[]> cmd_callback,
-        System.Action disconnect_callback,
-        System.Action<string> debug_callback) {
+        Action<Reaction[]> cmd_callback,
+        Action disconnect_callback,
+        Action<string> debug_callback) {
       this._polling_thread =
           new Thread(unused_param => this.PollingThread(cmd_callback, disconnect_callback, debug_callback)) {
               IsBackground = true
@@ -316,7 +318,7 @@ namespace droid.Neodroid.Utilities.Messaging {
         int port = 6969,
         bool use_inter_process_communication = false,
         bool debug = false,
-        System.Double wait_time_seconds = 2) {
+        Double wait_time_seconds = 2) {
       this._wait_time_seconds = wait_time_seconds;
       this.Debugging = debug;
       this._ip_address = ip_address;
@@ -377,7 +379,7 @@ namespace droid.Neodroid.Utilities.Messaging {
         this._wait_for_client_thread?.Join();
         this._polling_thread?.Join();
       } catch {
-        System.Console.WriteLine("Exception thrown while killing threads");
+        Console.WriteLine("Exception thrown while killing threads");
       }
     }
 

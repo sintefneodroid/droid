@@ -9,7 +9,7 @@ using droid.Neodroid.Utilities.BoundingBoxes;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Editor.GameObjects {
+namespace droid.Neodroid.Editor.GameObjects {
   public class PrebuiltSpawner : MonoBehaviour {
     /// <summary>
     /// 

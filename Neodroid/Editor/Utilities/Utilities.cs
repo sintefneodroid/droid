@@ -1,4 +1,4 @@
-﻿namespace Neodroid.Editor.Utilities {
+﻿namespace droid.Neodroid.Editor.Utilities {
 #if UNITY_EDITOR
 
   /// <summary>

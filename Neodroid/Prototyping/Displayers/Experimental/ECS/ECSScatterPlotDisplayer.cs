@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Neodroid.Prototyping.Displayers.ECS {
+namespace droid.Neodroid.Prototyping.Displayers.ECS {
   [ExecuteInEditMode]
   [AddComponentMenu("Neodroid/Displayers/ECSScatterPlot")]
   [RequireComponent(typeof(ParticleSystem))]

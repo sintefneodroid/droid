@@ -1,5 +1,6 @@
 ﻿using System;
 using droid.Neodroid.Utilities.GameObjects;
+using droid.Neodroid.Utilities.Unsorted;
 
 namespace droid.Neodroid.Prototyping.Evaluation.Terms {
   /// <summary>
@@ -27,7 +28,7 @@ namespace droid.Neodroid.Prototyping.Evaluation.Terms {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this._objective_function = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterComponent(this._objective_function, this);
+      this._objective_function = NeodroidUtilities.MaybeRegisterComponent(this._objective_function, this);
     }
 
     /// <inheritdoc />

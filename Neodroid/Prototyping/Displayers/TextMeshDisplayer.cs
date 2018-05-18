@@ -1,10 +1,11 @@
 ﻿using System;
+using droid.Neodroid.Utilities.Structs;
 using UnityEngine;
 
 #if TEXT_MESH_PRO_EXISTS
 using TMPro;
 
-namespace Neodroid.Prototyping.Displayers {
+namespace droid.Neodroid.Prototyping.Displayers {
   /// <summary>
   ///
   /// </summary>
@@ -135,16 +136,16 @@ namespace droid.Neodroid.Prototyping.Displayers {
     public override void Display(Vector3 value) { throw new NotImplementedException(); }
     public override void Display(Vector3[] value) { throw new NotImplementedException(); }
 
-    public override void Display(Utilities.Structs.Points.ValuePoint points) {
+    public override void Display(Points.ValuePoint points) {
       throw new NotImplementedException();
     }
 
-    public override void Display(Utilities.Structs.Points.ValuePoint[] points) {
+    public override void Display(Points.ValuePoint[] points) {
       throw new NotImplementedException();
     }
 
-    public override void Display(Utilities.Structs.Points.StringPoint point) { throw new NotImplementedException(); }
-    public override void Display(Utilities.Structs.Points.StringPoint[] points) { throw new NotImplementedException(); }
+    public override void Display(Points.StringPoint point) { throw new NotImplementedException(); }
+    public override void Display(Points.StringPoint[] points) { throw new NotImplementedException(); }
   }
 }
 #endif

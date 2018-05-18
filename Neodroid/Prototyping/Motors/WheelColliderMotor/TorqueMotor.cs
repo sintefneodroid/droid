@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using droid.Neodroid.Utilities.Messaging.Messages;
+using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Motors.WheelColliderMotor {
   [AddComponentMenu(
@@ -11,7 +12,7 @@ namespace droid.Neodroid.Prototyping.Motors.WheelColliderMotor {
 
     protected override void Setup() { this._wheel_collider = this.GetComponent<WheelCollider>(); }
 
-    protected override void InnerApplyMotion(Utilities.Messaging.Messages.MotorMotion motion) {
+    protected override void InnerApplyMotion(MotorMotion motion) {
       this._wheel_collider.motorTorque = motion.Strength;
     }
 

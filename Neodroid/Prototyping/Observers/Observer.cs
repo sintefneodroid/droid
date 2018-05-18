@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using droid.Neodroid.Environments;
 using droid.Neodroid.Utilities.GameObjects;
 using droid.Neodroid.Utilities.Interfaces;
+using droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Observers {
@@ -57,7 +58,7 @@ namespace droid.Neodroid.Prototyping.Observers {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterComponent(this.ParentEnvironment, this);
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterComponent(this.ParentEnvironment, this);
     }
 
     /// <inheritdoc />

@@ -1,11 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using droid.Neodroid.Environments;
 using droid.Neodroid.Utilities.Interfaces;
+using droid.Neodroid.Utilities.Messaging;
+using droid.Neodroid.Utilities.Messaging.Messages;
 using droid.Neodroid.Utilities.ScriptableObjects;
 using UnityEditor;
 using UnityEngine;
 using Object = System.Object;
+using SimulatorConfiguration = droid.Neodroid.Utilities.ScriptableObjects.SimulatorConfiguration;
+
 #if UNITY_EDITOR
 
 #endif
@@ -106,58 +111,58 @@ namespace droid.Neodroid.Managers {
     /// <summary>
     /// Can be subscribed to for pre fixed update events (Will be called before any FixedUpdate on any script)
     /// </summary>
-    public event System.Action EarlyFixedUpdateEvent;
+    public event Action EarlyFixedUpdateEvent;
 
     /// <summary>
     ///
     /// </summary>
-    public event System.Action FixedUpdateEvent;
+    public event Action FixedUpdateEvent;
 
     /// <summary>
     ///
     /// </summary>
-    public event System.Action LateFixedUpdateEvent;
+    public event Action LateFixedUpdateEvent;
 
     /// <summary>
     /// Can be subscribed to for pre update events (Will be called before any Update on any script)
     /// </summary>
-    public event System.Action EarlyUpdateEvent;
+    public event Action EarlyUpdateEvent;
 
     /// <summary>
     ///
     /// </summary>
-    public event System.Action UpdateEvent;
+    public event Action UpdateEvent;
 
     /// <summary>
     ///
     /// </summary>
-    public event System.Action LateUpdateEvent;
+    public event Action LateUpdateEvent;
 
     /// <summary>
     ///
     /// </summary>
-    public event System.Action OnPostRenderEvent;
+    public event Action OnPostRenderEvent;
 
     /// <summary>
     ///
     /// </summary>
-    public event System.Action OnRenderImageEvent;
+    public event Action OnRenderImageEvent;
 
     /// <summary>
     ///
     /// </summary>
-    public event System.Action OnEndOfFrameEvent;
+    public event Action OnEndOfFrameEvent;
 
     /// <summary>
     ///
     /// </summary>
-    public event System.Action OnReceiveEvent;
+    public event Action OnReceiveEvent;
 
     /// <summary>
     ///
     /// </summary>
     void FetchCommmandLineArguments() {
-      var arguments = System.Environment.GetCommandLineArgs();
+      var arguments = Environment.GetCommandLineArgs();
 
       for (var i = 0; i < arguments.Length; i++) {
         if (arguments[i] == "-ip") {
@@ -176,15 +181,15 @@ namespace droid.Neodroid.Managers {
     void CreateMessagingServer() {
       try {
         if (this.IpAddress != "" || this.Port != 0) {
-          this._Message_Server = new Utilities.Messaging.MessageServer(
+          this._Message_Server = new MessageServer(
               this.IpAddress,
               this.Port,
               false,
               this.Debugging);
         } else {
-          this._Message_Server = new Utilities.Messaging.MessageServer(this.Debugging);
+          this._Message_Server = new MessageServer(this.Debugging);
         }
-      } catch (System.Exception exception) {
+      } catch (Exception exception) {
         Debug.Log(exception);
         throw;
 
@@ -226,7 +231,7 @@ namespace droid.Neodroid.Managers {
     /// <summary>
     ///
     /// </summary>
-    public Utilities.Messaging.Messages.Reaction[] CurrentReactions {
+    public Reaction[] CurrentReactions {
       get {
         lock (this._send_lock) {
           return this._Current_Reactions;
@@ -316,13 +321,13 @@ namespace droid.Neodroid.Managers {
     /// <summary>
     ///
     /// </summary>
-    protected Utilities.Messaging.MessageServer _Message_Server;
+    protected MessageServer _Message_Server;
 
     /// <summary>
     ///
     /// </summary>
-    protected Utilities.Messaging.Messages.Reaction[] _Current_Reactions =
-        new Utilities.Messaging.Messages.Reaction[] { };
+    protected Reaction[] _Current_Reactions =
+        new Reaction[] { };
 
     #endregion
 
@@ -394,7 +399,7 @@ namespace droid.Neodroid.Managers {
             this.StartCoroutine(this.EndOfFrameEventGenerator());
             this.OnEndOfFrameEvent += this.PostStep;
             break;
-          default: throw new System.ArgumentOutOfRangeException();
+          default: throw new ArgumentOutOfRangeException();
         }
       }
 
@@ -502,7 +507,7 @@ namespace droid.Neodroid.Managers {
     ///
     /// </summary>
     protected void PreStep() {
-      if (this.Configuration.StepExecutionPhase == Utilities.Messaging.Messages.ExecutionPhase.Before_) {
+      if (this.Configuration.StepExecutionPhase == ExecutionPhase.Before_) {
         this.ExecuteStep();
       }
     }
@@ -511,7 +516,7 @@ namespace droid.Neodroid.Managers {
     ///
     /// </summary>
     protected void Step() {
-      if (this.Configuration.StepExecutionPhase == Utilities.Messaging.Messages.ExecutionPhase.Middle_) {
+      if (this.Configuration.StepExecutionPhase == ExecutionPhase.Middle_) {
         this.ExecuteStep();
       }
     }
@@ -559,7 +564,7 @@ namespace droid.Neodroid.Managers {
     ///
     /// </summary>
     protected void PostStep() {
-      if (this.Configuration.StepExecutionPhase == Utilities.Messaging.Messages.ExecutionPhase.After_) {
+      if (this.Configuration.StepExecutionPhase == ExecutionPhase.After_) {
         this.ExecuteStep();
       }
     }
@@ -568,7 +573,7 @@ namespace droid.Neodroid.Managers {
     ///
     /// </summary>
     /// <param name="states"></param>
-    protected void PostReact(Utilities.Messaging.Messages.EnvironmentState[] states) {
+    protected void PostReact(EnvironmentState[] states) {
       lock (this._send_lock) {
         foreach (var env in this._Environments.Values) {
           if (env.IsResetting) {
@@ -604,8 +609,8 @@ namespace droid.Neodroid.Managers {
     ///
     /// </summary>
     /// <returns></returns>
-    protected Utilities.Messaging.Messages.Reaction[] SampleRandomReactions() {
-      var reactions = new List<Utilities.Messaging.Messages.Reaction>();
+    protected Reaction[] SampleRandomReactions() {
+      var reactions = new List<Reaction>();
       foreach (var environment in this._Environments.Values) {
         reactions.Add(environment.SampleReaction());
       }
@@ -618,7 +623,7 @@ namespace droid.Neodroid.Managers {
     ///
     /// </summary>
     /// <param name="states"></param>
-    void Reply(Utilities.Messaging.Messages.EnvironmentState[] states) {
+    void Reply(EnvironmentState[] states) {
       lock (this._send_lock) {
         this._Message_Server.SendStates(states);
         #if NEODROID_DEBUG
@@ -633,7 +638,7 @@ namespace droid.Neodroid.Managers {
     /// <summary>
     ///
     /// </summary>
-    void ClearCurrentReactions() { this.CurrentReactions = new Utilities.Messaging.Messages.Reaction[] { }; }
+    void ClearCurrentReactions() { this.CurrentReactions = new Reaction[] { }; }
 
     #endregion
 
@@ -644,9 +649,9 @@ namespace droid.Neodroid.Managers {
     /// </summary>
     /// <param name="reaction"></param>
     /// <returns></returns>
-    public Utilities.Messaging.Messages.EnvironmentState[] ReactAndCollectStates(
-        Utilities.Messaging.Messages.Reaction reaction) {
-      var states = new Utilities.Messaging.Messages.EnvironmentState[this._Environments.Values.Count];
+    public EnvironmentState[] ReactAndCollectStates(
+        Reaction reaction) {
+      var states = new EnvironmentState[this._Environments.Values.Count];
       var i = 0;
       foreach (var environment in this._Environments.Values) {
         if (reaction.RecipientEnvironment != "all") {
@@ -685,7 +690,7 @@ namespace droid.Neodroid.Managers {
     /// </summary>
     /// <param name="reaction"></param>
     /// <returns></returns>
-    public void React(Utilities.Messaging.Messages.Reaction reaction) {
+    public void React(Reaction reaction) {
       if (this._Environments.ContainsKey(reaction.RecipientEnvironment)) {
         this._Environments[reaction.RecipientEnvironment].React(reaction);
       } else {
@@ -712,7 +717,7 @@ namespace droid.Neodroid.Managers {
     /// </summary>
     /// <param name="reactions"></param>
     /// <returns></returns>
-    public void React(Utilities.Messaging.Messages.Reaction[] reactions) {
+    public void React(Reaction[] reactions) {
       foreach (var reaction in reactions) {
         if (this._Environments.ContainsKey(reaction.RecipientEnvironment)) {
           this._Environments[reaction.RecipientEnvironment].React(reaction);
@@ -740,9 +745,9 @@ namespace droid.Neodroid.Managers {
     ///
     /// </summary>
     /// <returns></returns>
-    public Utilities.Messaging.Messages.EnvironmentState[] CollectStates() {
+    public EnvironmentState[] CollectStates() {
       var environments = this._Environments.Values;
-      var states = new Utilities.Messaging.Messages.EnvironmentState[environments.Count];
+      var states = new EnvironmentState[environments.Count];
       var i = 0;
       foreach (var environment in environments) {
         states[i++] = environment.CollectState();
@@ -756,10 +761,10 @@ namespace droid.Neodroid.Managers {
     /// </summary>
     /// <param name="reactions"></param>
     /// <returns></returns>
-    public Utilities.Messaging.Messages.EnvironmentState[] ReactAndCollectStates(
-        Utilities.Messaging.Messages.Reaction[] reactions) {
+    public EnvironmentState[] ReactAndCollectStates(
+        Reaction[] reactions) {
       var states =
-          new Utilities.Messaging.Messages.EnvironmentState[reactions.Length * this._Environments.Count];
+          new EnvironmentState[reactions.Length * this._Environments.Count];
       var i = 0;
       foreach (var reaction in reactions) {
         if (this._Environments.ContainsKey(reaction.RecipientEnvironment)) {
@@ -791,8 +796,8 @@ namespace droid.Neodroid.Managers {
     /// </summary>
     public void ResetAllEnvironments() {
       this.React(
-          new Utilities.Messaging.Messages.Reaction(
-              new Utilities.Messaging.Messages.ReactionParameters(true, false, true, episode_count : true),
+          new Reaction(
+              new ReactionParameters(true, false, true, episode_count : true),
               null,
               null,
               null,
@@ -873,7 +878,7 @@ namespace droid.Neodroid.Managers {
     ///
     ///  </summary>
     /// <param name="reactions"></param>
-    void OnReceiveCallback(Utilities.Messaging.Messages.Reaction[] reactions) {
+    void OnReceiveCallback(Reaction[] reactions) {
       lock (this._send_lock) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
@@ -891,7 +896,7 @@ namespace droid.Neodroid.Managers {
     ///
     ///  </summary>
     /// <param name="reactions"></param>
-    protected void SetReactionsFromExternalSource(Utilities.Messaging.Messages.Reaction[] reactions) {
+    protected void SetReactionsFromExternalSource(Reaction[] reactions) {
       lock (this._send_lock) {
         if (reactions != null) {
           this.CurrentReactions = reactions;

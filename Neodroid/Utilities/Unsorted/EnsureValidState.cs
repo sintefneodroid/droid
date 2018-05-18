@@ -1,5 +1,6 @@
 ﻿using droid.Neodroid.Environments;
 using droid.Neodroid.Prototyping.Actors;
+using droid.Neodroid.Prototyping.Internals;
 using droid.Neodroid.Utilities.BoundingBoxes;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ namespace droid.Neodroid.Utilities.Unsorted {
   /// <summary>
   ///
   /// </summary>
-  public class EnsureValidState : Prototyping.Internals.EnvironmentListener {
+  public class EnsureValidState : EnvironmentListener {
     [SerializeField] Actor _actor;
 
     [SerializeField] PrototypingEnvironment _environment;

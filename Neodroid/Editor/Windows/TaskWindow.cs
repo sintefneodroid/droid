@@ -3,7 +3,7 @@ using droid.Neodroid.Prototyping.Evaluation.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Editor.Windows {
+namespace droid.Neodroid.Editor.Windows {
   public class TaskWindow : EditorWindow {
     Texture _icon;
     Vector2 _scroll_position;

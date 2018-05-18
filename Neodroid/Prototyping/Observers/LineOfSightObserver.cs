@@ -1,5 +1,6 @@
 ﻿using System;
 using droid.Neodroid.Utilities.Interfaces;
+using droid.Neodroid.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Observers {
@@ -21,7 +22,7 @@ namespace droid.Neodroid.Prototyping.Observers {
     ///
     /// </summary>
     [SerializeField]
-    Utilities.Structs.ValueSpace _observation_value_space;
+    ValueSpace _observation_value_space;
 
     public override string PrototypingType { get { return "LineOfSight"; } }
 
@@ -30,7 +31,7 @@ namespace droid.Neodroid.Prototyping.Observers {
       private set { this._obs_value = value; }
     }
 
-    public Utilities.Structs.ValueSpace SingleSpace { get { return this._observation_value_space; } }
+    public ValueSpace SingleSpace { get { return this._observation_value_space; } }
 
     protected override void PreSetup() { this.FloatEnumerable = new[] {this.ObservationValue}; }
 

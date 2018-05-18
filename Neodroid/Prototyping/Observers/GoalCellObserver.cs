@@ -1,4 +1,6 @@
 ﻿using droid.Neodroid.Utilities.Interfaces;
+using droid.Neodroid.Utilities.Structs;
+using droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Observers {
@@ -6,7 +8,7 @@ namespace droid.Neodroid.Prototyping.Observers {
       ObserverComponentMenuPath._ComponentMenuPath + "GoalCell" + ObserverComponentMenuPath._Postfix)]
   public class GoalCellObserver : Observer,
                                   IHasTriple {
-    [SerializeField] Utilities.Unsorted.EmptyCell _current_goal;
+    [SerializeField] EmptyCell _current_goal;
     [SerializeField] Vector3 _current_goal_position;
 
     [SerializeField] bool _draw_names = true;
@@ -19,7 +21,7 @@ namespace droid.Neodroid.Prototyping.Observers {
 
     public override string PrototypingType { get { return "GoalObserver"; } }
 
-    public Utilities.Unsorted.EmptyCell CurrentGoal {
+    public EmptyCell CurrentGoal {
       get {
         this.UpdateObservation();
         return this._current_goal;
@@ -35,7 +37,7 @@ namespace droid.Neodroid.Prototyping.Observers {
     /// <summary>
     ///
     /// </summary>
-    public Utilities.Structs.Space3 TripleSpace { get; }
+    public Space3 TripleSpace { get; }
 
     public override void UpdateObservation() {
       this._current_goal_position = this._current_goal.transform.position;
@@ -45,7 +47,7 @@ namespace droid.Neodroid.Prototyping.Observers {
     void OnDrawGizmosSelected() {
       if (this.DrawNames) {
         if (this._current_goal) {
-          Utilities.Unsorted.NeodroidUtilities.DrawString(
+          NeodroidUtilities.DrawString(
               this._current_goal.name,
               this._current_goal.transform.position,
               Color.green);

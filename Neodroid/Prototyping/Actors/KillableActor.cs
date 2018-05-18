@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using droid.Neodroid.Utilities.Messaging.Messages;
+using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Actors {
   /// <summary>
@@ -10,7 +11,7 @@ namespace droid.Neodroid.Prototyping.Actors {
     public void Kill() { this._is_alive = false; }
     public bool IsAlive { get { return this._is_alive; } }
 
-    public override void ApplyMotion(Utilities.Messaging.Messages.MotorMotion motion) {
+    public override void ApplyMotion(MotorMotion motion) {
       if (this._is_alive) {
         base.ApplyMotion(motion);
       } else {

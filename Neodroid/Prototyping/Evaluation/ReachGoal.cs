@@ -1,4 +1,5 @@
 ﻿using droid.Neodroid.Prototyping.Actors;
+using droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Evaluation {
@@ -9,7 +10,7 @@ namespace droid.Neodroid.Prototyping.Evaluation {
 
     [SerializeField] bool _based_on_tags;
 
-    [SerializeField] Utilities.Unsorted.EmptyCell _goal;
+    [SerializeField] EmptyCell _goal;
 
     //Used for.. if outside playable area then reset
     [SerializeField] ActorOverlapping _overlapping = ActorOverlapping.Outside_area_;
@@ -31,14 +32,14 @@ namespace droid.Neodroid.Prototyping.Evaluation {
       this._overlapping = ActorOverlapping.Outside_area_;
     }
 
-    public void SetGoal(Utilities.Unsorted.EmptyCell goal) {
+    public void SetGoal(EmptyCell goal) {
       this._goal = goal;
       this.InternalReset();
     }
 
     protected override void Setup() {
       if (!this._goal) {
-        this._goal = FindObjectOfType<Utilities.Unsorted.EmptyCell>();
+        this._goal = FindObjectOfType<EmptyCell>();
       }
 
       if (!this._actor) {
@@ -46,7 +47,7 @@ namespace droid.Neodroid.Prototyping.Evaluation {
       }
 
       if (this._goal) {
-        Utilities.Unsorted.NeodroidUtilities.RegisterCollisionTriggerCallbacksOnChildren(
+        NeodroidUtilities.RegisterCollisionTriggerCallbacksOnChildren(
             this,
             this._goal.transform,
             null,
@@ -55,7 +56,7 @@ namespace droid.Neodroid.Prototyping.Evaluation {
       }
 
       if (this._actor) {
-        Utilities.Unsorted.NeodroidUtilities.RegisterCollisionTriggerCallbacksOnChildren(
+        NeodroidUtilities.RegisterCollisionTriggerCallbacksOnChildren(
             this,
             this._actor.transform,
             null,

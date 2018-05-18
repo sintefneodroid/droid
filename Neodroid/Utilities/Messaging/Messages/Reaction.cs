@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Linq;
+using droid.Neodroid.Utilities.Messaging.Messages.Displayables;
 using UnityEngine;
-using Enumerable = System.Linq.Enumerable;
 
 namespace droid.Neodroid.Utilities.Messaging.Messages {
   /// <summary>
@@ -49,7 +50,7 @@ namespace droid.Neodroid.Utilities.Messaging.Messages {
         MotorMotion[] motions,
         Configuration[] configurations,
         Unobservables unobservables,
-        Displayables.Displayable[] displayables,
+        Displayable[] displayables,
         String serialised_message,
         string recipient_environment = "all") {
       this.Parameters = parameters;
@@ -85,7 +86,7 @@ namespace droid.Neodroid.Utilities.Messaging.Messages {
     /// <summary>
     ///
     /// </summary>
-    public Displayables.Displayable[] Displayables { get; }
+    public Displayable[] Displayables { get; }
 
     /// <summary>
     ///

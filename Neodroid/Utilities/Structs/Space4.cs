@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace droid.Neodroid.Utilities.Structs {
   /// <summary>
   ///
   /// </summary>
-  [System.Serializable]
+  [Serializable]
   public struct Space4 {
     public int _DecimalGranularity;
     public Vector4 _MinValues;
@@ -54,6 +55,6 @@ namespace droid.Neodroid.Utilities.Structs {
       return v;
     }
 
-    public float Round(float v) { return (float)System.Math.Round(v, this._DecimalGranularity); }
+    public float Round(float v) { return (float)Math.Round(v, this._DecimalGranularity); }
   }
 }

@@ -1,5 +1,8 @@
 ﻿using droid.Neodroid.Environments;
+using droid.Neodroid.Utilities.Messaging.Messages;
+using droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
+using Random = System.Random;
 
 namespace droid.Neodroid.Prototyping.Configurables {
   /// <summary>
@@ -54,7 +57,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
     ///
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterComponent(this.ParentEnvironment, this);
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterComponent(this.ParentEnvironment, this);
     }
 
     /// <inheritdoc />
@@ -70,7 +73,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
     ///
     /// </summary>
     /// <param name="configuration"></param>
-    public override void ApplyConfiguration(Utilities.Messaging.Messages.Configuration configuration) { }
+    public override void ApplyConfiguration(Configuration configuration) { }
 
     #region Fields
 
@@ -96,7 +99,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
     /// <param name="random_generator"></param>
     /// <returns></returns>
     /// <exception cref="System.NotImplementedException"></exception>
-    public abstract Utilities.Messaging.Messages.Configuration SampleConfiguration(
-        System.Random random_generator);
+    public abstract Configuration SampleConfiguration(
+        Random random_generator);
   }
 }

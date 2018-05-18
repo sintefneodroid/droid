@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using droid.Neodroid.Managers;
+using droid.Neodroid.Utilities.Messaging.Messages;
+using droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -121,7 +123,7 @@ namespace droid.Neodroid.Environments {
         }
       }
 
-      this._time_simulation_manager = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterComponent(
+      this._time_simulation_manager = NeodroidUtilities.MaybeRegisterComponent(
           this._time_simulation_manager,
           (NeodroidEnvironment)this);
     }
@@ -144,16 +146,16 @@ namespace droid.Neodroid.Environments {
     ///
     /// </summary>
     /// <returns></returns>
-    public override Utilities.Messaging.Messages.Reaction SampleReaction() {
-      var motions = new List<Utilities.Messaging.Messages.MotorMotion>();
+    public override Reaction SampleReaction() {
+      var motions = new List<MotorMotion>();
 
       var strength = Random.Range(0, 4);
-      motions.Add(new Utilities.Messaging.Messages.MotorMotion("", "", strength));
+      motions.Add(new MotorMotion("", "", strength));
 
-      var rp = new Utilities.Messaging.Messages.ReactionParameters(true, true, episode_count : true) {
+      var rp = new ReactionParameters(true, true, episode_count : true) {
           IsExternal = false
       };
-      return new Utilities.Messaging.Messages.Reaction(rp, motions.ToArray(), null, null, null, "");
+      return new Reaction(rp, motions.ToArray(), null, null, null, "");
     }
 
     /// <inheritdoc />
@@ -163,8 +165,8 @@ namespace droid.Neodroid.Environments {
     /// <param name="reaction"></param>
     /// <returns></returns>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public override Utilities.Messaging.Messages.EnvironmentState ReactAndCollectState(
-        Utilities.Messaging.Messages.Reaction reaction) {
+    public override EnvironmentState ReactAndCollectState(
+        Reaction reaction) {
       foreach (var motion in reaction.Motions) {
         switch ((int)motion.Strength) {
           case 0:
@@ -192,7 +194,7 @@ namespace droid.Neodroid.Environments {
 
       var time = Time.time - this._Lastest_Reset_Time;
 
-      return new Utilities.Messaging.Messages.EnvironmentState(
+      return new EnvironmentState(
           this.Identifier,
           0,
           time,
@@ -203,7 +205,7 @@ namespace droid.Neodroid.Environments {
           new Transform[] { });
     }
 
-    public override void React(Utilities.Messaging.Messages.Reaction reaction) {
+    public override void React(Reaction reaction) {
       throw new NotImplementedException();
     }
 
@@ -213,7 +215,7 @@ namespace droid.Neodroid.Environments {
     /// <exception cref="T:System.NotImplementedException"></exception>
     public override void Tick() { throw new NotImplementedException(); }
 
-    public override Utilities.Messaging.Messages.EnvironmentState CollectState() {
+    public override EnvironmentState CollectState() {
       throw new NotImplementedException();
     }
   }

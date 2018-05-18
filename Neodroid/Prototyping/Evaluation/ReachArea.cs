@@ -1,6 +1,7 @@
 ﻿using droid.Neodroid.Prototyping.Actors;
 using droid.Neodroid.Prototyping.Observers;
 using droid.Neodroid.Utilities.BoundingBoxes;
+using droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Evaluation {
@@ -26,7 +27,7 @@ namespace droid.Neodroid.Prototyping.Evaluation {
     [SerializeField] bool _based_on_tags;
     [SerializeField] ActorColliding _colliding = ActorColliding.Not_colliding_;
 
-    [SerializeField] Utilities.Unsorted.Obstruction[] _obstructions;
+    [SerializeField] Obstruction[] _obstructions;
 
     //Used for.. if outside playable area then reset
     [SerializeField] ActorOverlapping _overlapping = ActorOverlapping.Outside_area_;
@@ -75,14 +76,14 @@ namespace droid.Neodroid.Prototyping.Evaluation {
       }
 
       if (this._obstructions.Length <= 0) {
-        this._obstructions = FindObjectsOfType<Utilities.Unsorted.Obstruction>();
+        this._obstructions = FindObjectsOfType<Obstruction>();
       }
 
       if (!this._playable_area) {
         this._playable_area = FindObjectOfType<BoundingBox>();
       }
 
-      Utilities.Unsorted.NeodroidUtilities.RegisterCollisionTriggerCallbacksOnChildren(
+      NeodroidUtilities.RegisterCollisionTriggerCallbacksOnChildren(
           this,
           this._area.transform,
           this.OnCollisionEnterChild,
@@ -93,7 +94,7 @@ namespace droid.Neodroid.Prototyping.Evaluation {
           this.OnTriggerStayChild,
           this.Debugging);
 
-      Utilities.Unsorted.NeodroidUtilities.RegisterCollisionTriggerCallbacksOnChildren(
+      NeodroidUtilities.RegisterCollisionTriggerCallbacksOnChildren(
           this,
           this._actor.transform,
           this.OnCollisionEnterChild,

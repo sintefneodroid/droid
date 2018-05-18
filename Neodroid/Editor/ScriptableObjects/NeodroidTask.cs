@@ -3,7 +3,7 @@ using droid.Neodroid.Utilities.ScriptableObjects;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Editor.ScriptableObjects {
+namespace droid.Neodroid.Editor.ScriptableObjects {
   public static class CreateNeodroidTask {
     [MenuItem(EditorScriptableObjectMenuPath._ScriptableObjectMenuPath + "NeodroidTask")]
     public static void CreateNeodroidTaskAsset() {

@@ -12,7 +12,7 @@ using droid.Neodroid.Prototyping.Observers;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Editor.Windows {
+namespace droid.Neodroid.Editor.Windows {
   public class DebugWindow : EditorWindow {
     Actor[] _actors;
 

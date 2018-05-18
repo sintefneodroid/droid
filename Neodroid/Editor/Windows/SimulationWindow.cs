@@ -16,7 +16,7 @@ using droid.Neodroid.Utilities.Unsorted;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Editor.Windows {
+namespace droid.Neodroid.Editor.Windows {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

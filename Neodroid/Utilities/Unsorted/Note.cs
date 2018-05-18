@@ -1,11 +1,13 @@
 ﻿#if UNITY_EDITOR
+using System;
+using UnityEditor;
 using UnityEngine;
 
 namespace droid.Neodroid.Utilities.Unsorted {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [System.Serializable]
+  [Serializable]
   public class Note : MonoBehaviour {
     /// <summary>
     ///
@@ -18,7 +20,7 @@ namespace droid.Neodroid.Utilities.Unsorted {
     /// <summary>
     ///
     /// </summary>
-    [System.NonSerialized]
+    [NonSerialized]
     public bool _Editing;
 
     /// <summary>
@@ -48,8 +50,8 @@ namespace droid.Neodroid.Utilities.Unsorted {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [UnityEditor.CustomEditor(typeof(Note))]
-  public class NoteEditor : UnityEditor.Editor {
+  [CustomEditor(typeof(Note))]
+  public class NoteEditor : Editor {
     NoteType _note_type = NoteType.Box_info_;
 
     /// <inheritdoc />
@@ -60,11 +62,11 @@ namespace droid.Neodroid.Utilities.Unsorted {
 
       if (note._Editing) {
         //DrawDefaultInspector();// Unity function
-        note._Text = UnityEditor.EditorGUILayout.TextArea(note._Text);
+        note._Text = EditorGUILayout.TextArea(note._Text);
 
-        UnityEditor.EditorGUILayout.Separator();
+        EditorGUILayout.Separator();
 
-        this._note_type = (NoteType)UnityEditor.EditorGUILayout.EnumPopup(this._note_type);
+        this._note_type = (NoteType)EditorGUILayout.EnumPopup(this._note_type);
 
         if (GUILayout.Button("Done")) {
           note.EditToggle();
@@ -74,40 +76,40 @@ namespace droid.Neodroid.Utilities.Unsorted {
 
         switch (this._note_type) {
           case NoteType.Text_area_:
-            UnityEditor.EditorGUILayout.TextArea(note._Text);
+            EditorGUILayout.TextArea(note._Text);
             break;
           case NoteType.Text_field_:
-            UnityEditor.EditorGUILayout.TextField(note._Text);
+            EditorGUILayout.TextField(note._Text);
             break;
           case NoteType.Label_:
-            UnityEditor.EditorGUILayout.LabelField(note._Text);
+            EditorGUILayout.LabelField(note._Text);
             break;
           case NoteType.Box_text_:
-            UnityEditor.EditorGUILayout.HelpBox(
+            EditorGUILayout.HelpBox(
                 note._Text,
-                UnityEditor.MessageType.None);
+                MessageType.None);
             break;
           case NoteType.Box_info_:
-            UnityEditor.EditorGUILayout.HelpBox(note._Text, UnityEditor.MessageType.Info);
+            EditorGUILayout.HelpBox(note._Text, MessageType.Info);
             break;
           case NoteType.Box_warning_:
-            UnityEditor.EditorGUILayout.HelpBox(
+            EditorGUILayout.HelpBox(
                 note._Text,
-                UnityEditor.MessageType.Warning);
+                MessageType.Warning);
             break;
           case NoteType.Box_error_:
-            UnityEditor.EditorGUILayout.HelpBox(
+            EditorGUILayout.HelpBox(
                 note._Text,
-                UnityEditor.MessageType.Error);
+                MessageType.Error);
             break;
           case NoteType.Delayed_text_field_:
             break;
           default:
-            UnityEditor.EditorGUILayout.HelpBox(note._Text, UnityEditor.MessageType.Info);
+            EditorGUILayout.HelpBox(note._Text, MessageType.Info);
             break;
         }
 
-        UnityEditor.EditorGUILayout.Separator();
+        EditorGUILayout.Separator();
 
         if (GUILayout.Button("Edit")) {
           note.EditToggle();

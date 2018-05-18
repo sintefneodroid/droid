@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using droid.Neodroid.Utilities.Messaging.Messages;
+using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Motors.WheelColliderMotor {
   /// <summary>
@@ -33,7 +34,7 @@ namespace droid.Neodroid.Prototyping.Motors.WheelColliderMotor {
     /// 
     /// </summary>
     /// <param name="motion"></param>
-    protected override void InnerApplyMotion(Utilities.Messaging.Messages.MotorMotion motion) {
+    protected override void InnerApplyMotion(MotorMotion motion) {
       this._wheel_collider.steerAngle = motion.Strength;
     }
 

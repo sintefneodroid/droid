@@ -1,5 +1,7 @@
 ﻿using droid.Neodroid.Environments;
 using droid.Neodroid.Utilities.GameObjects;
+using droid.Neodroid.Utilities.Structs;
+using droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Displayers {
@@ -23,7 +25,7 @@ namespace droid.Neodroid.Prototyping.Displayers {
     public override string PrototypingType { get { return "Displayer"; } }
 
     protected override void RegisterComponent() {
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterComponent(this.ParentEnvironment, this);
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterComponent(this.ParentEnvironment, this);
     }
 
     protected override void UnRegisterComponent() {
@@ -38,9 +40,9 @@ namespace droid.Neodroid.Prototyping.Displayers {
     public abstract void Display(string value);
     public abstract void Display(Vector3 value);
     public abstract void Display(Vector3[] value);
-    public abstract void Display(Utilities.Structs.Points.ValuePoint point);
-    public abstract void Display(Utilities.Structs.Points.ValuePoint[] points);
-    public abstract void Display(Utilities.Structs.Points.StringPoint point);
-    public abstract void Display(Utilities.Structs.Points.StringPoint[] points);
+    public abstract void Display(Points.ValuePoint point);
+    public abstract void Display(Points.ValuePoint[] points);
+    public abstract void Display(Points.StringPoint point);
+    public abstract void Display(Points.StringPoint[] points);
   }
 }

@@ -1,4 +1,6 @@
-﻿using droid.Neodroid.Utilities.Messaging.FBS;
+﻿using System;
+using droid.Neodroid.Utilities.Messaging.FBS;
+using droid.Neodroid.Utilities.ScriptableObjects;
 
 namespace droid.Neodroid.Utilities.Messaging.Messages
 {
@@ -10,7 +12,7 @@ namespace droid.Neodroid.Utilities.Messaging.Messages
     bool _full_screen;
     int _height;
     int _width;
-    ScriptableObjects.FrameFinishes _frame_finishes;
+    FrameFinishes _frame_finishes;
     int _num_of_environments;
     int _reset_iterations;
 
@@ -22,7 +24,7 @@ namespace droid.Neodroid.Utilities.Messaging.Messages
     public int FrameSkips { get { return this._frame_skips;} set { this._frame_skips = value; } }
 
 
-    public System.Single TimeScale { get; set; }
+    public Single TimeScale { get; set; }
   }
 
   /// <summary>
@@ -38,7 +40,7 @@ namespace droid.Neodroid.Utilities.Messaging.Messages
       this._full_screen = flat_simulator_configuration.FullScreen;
       this._height = flat_simulator_configuration.Height;
       this._width = flat_simulator_configuration.Width;
-      this._frame_finishes = (ScriptableObjects.FrameFinishes)flat_simulator_configuration.WaitEvery;
+      this._frame_finishes = (FrameFinishes)flat_simulator_configuration.WaitEvery;
       this._num_of_environments = flat_simulator_configuration.NumOfEnvironments;
       this.TimeScale = flat_simulator_configuration.TimeScale;
       this._reset_iterations = flat_simulator_configuration.ResetIterations;

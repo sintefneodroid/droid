@@ -1,6 +1,10 @@
 ﻿using System;
 using droid.Neodroid.Utilities.Interfaces;
+using droid.Neodroid.Utilities.Messaging.Messages;
+using droid.Neodroid.Utilities.Structs;
+using droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
+using Random = System.Random;
 
 namespace droid.Neodroid.Prototyping.Configurables {
   /// <inheritdoc cref="ConfigurableGameObject" />
@@ -59,7 +63,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
     ///
     /// </summary>
     [SerializeField]
-    Utilities.Structs.Space3 _velocity_space;
+    Space3 _velocity_space;
 
     /// <summary>
     ///
@@ -71,7 +75,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
     ///
     /// </summary>
     [SerializeField]
-    Utilities.Structs.Space3 _angular_velocity_space;
+    Space3 _angular_velocity_space;
 
     /// <summary>
     ///
@@ -94,12 +98,12 @@ namespace droid.Neodroid.Prototyping.Configurables {
     /// <summary>
     ///
     /// </summary>
-    public Utilities.Structs.Space3 VelocitySpace { get { return this._velocity_space; } }
+    public Space3 VelocitySpace { get { return this._velocity_space; } }
 
     /// <summary>
     ///
     /// </summary>
-    public Utilities.Structs.Space3 AngularSpace { get { return this._angular_velocity_space; } }
+    public Space3 AngularSpace { get { return this._angular_velocity_space; } }
 
     /// <summary>
     ///
@@ -127,27 +131,27 @@ namespace droid.Neodroid.Prototyping.Configurables {
     ///
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this,
           this._vel_x);
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this,
           this._vel_y);
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this,
           this._vel_z);
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this,
           this._ang_x);
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this,
           this._ang_y);
-      this.ParentEnvironment = Utilities.Unsorted.NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           this.ParentEnvironment,
           (ConfigurableGameObject)this,
           this._ang_z);
@@ -171,7 +175,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
     ///
     /// </summary>
     /// <param name="configuration"></param>
-    public override void ApplyConfiguration(Utilities.Messaging.Messages.Configuration configuration) {
+    public override void ApplyConfiguration(Configuration configuration) {
       var vel = this._rigidbody.velocity;
       var ang = this._rigidbody.velocity;
 
@@ -239,8 +243,8 @@ namespace droid.Neodroid.Prototyping.Configurables {
     /// <param name="random_generator"></param>
     /// <returns></returns>
     /// <exception cref="T:System.NotImplementedException"></exception>
-    public override Utilities.Messaging.Messages.Configuration SampleConfiguration(
-        System.Random random_generator) {
+    public override Configuration SampleConfiguration(
+        Random random_generator) {
       throw new NotImplementedException();
     }
   }

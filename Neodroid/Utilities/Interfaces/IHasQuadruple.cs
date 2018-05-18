@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using droid.Neodroid.Utilities.Structs;
+using UnityEngine;
 
 namespace droid.Neodroid.Utilities.Interfaces {
   /// <summary>
@@ -10,6 +11,6 @@ namespace droid.Neodroid.Utilities.Interfaces {
     /// </summary>
     Quaternion ObservationValue { get; }
 
-    Structs.Space4 QuadSpace { get; }
+    Space4 QuadSpace { get; }
   }
 }

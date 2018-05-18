@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using droid.Neodroid.Utilities.Plotting;
+using droid.Neodroid.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Displayers {
@@ -97,9 +98,9 @@ namespace droid.Neodroid.Prototyping.Displayers {
     public override void Display(Vector3 value) { throw new NotImplementedException(); }
     public override void Display(Vector3[] value) { this.ScatterPlot(value); }
 
-    public override void Display(Utilities.Structs.Points.ValuePoint points) { this.PlotSeries(new[] {points}); }
+    public override void Display(Points.ValuePoint points) { this.PlotSeries(new[] {points}); }
 
-    public override void Display(Utilities.Structs.Points.ValuePoint[] points) {
+    public override void Display(Points.ValuePoint[] points) {
       if (this._particles == null || this._particles.Length != points.Length) {
         this._particles = new ParticleSystem.Particle[points.Length];
       }
@@ -126,8 +127,8 @@ namespace droid.Neodroid.Prototyping.Displayers {
       this._particle_system.SetParticles(this._particles, points.Length);
     }
 
-    public override void Display(Utilities.Structs.Points.StringPoint point) { throw new NotImplementedException(); }
-    public override void Display(Utilities.Structs.Points.StringPoint[] points) { throw new NotImplementedException(); }
+    public override void Display(Points.StringPoint point) { throw new NotImplementedException(); }
+    public override void Display(Points.StringPoint[] points) { throw new NotImplementedException(); }
 
     public override void Display(Single values) {
       #if NEODROID_DEBUG
@@ -206,7 +207,7 @@ namespace droid.Neodroid.Prototyping.Displayers {
     ///
     /// </summary>
     /// <param name="points"></param>
-    public void PlotSeries(Utilities.Structs.Points.ValuePoint[] points) {
+    public void PlotSeries(Points.ValuePoint[] points) {
       var alive = this._particle_system.GetParticles(this._particles);
       if (alive < points.Length) {
         this._particles = new ParticleSystem.Particle[points.Length];

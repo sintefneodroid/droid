@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using droid.Neodroid.Utilities.Structs;
+using UnityEngine;
 
 namespace droid.Neodroid.Utilities.Interfaces {
   /// <summary>
@@ -15,7 +16,7 @@ namespace droid.Neodroid.Utilities.Interfaces {
     /// </summary>
     Vector3 AngularVelocity { get; }
 
-    Structs.Space3 VelocitySpace { get; }
-    Structs.Space3 AngularSpace { get; }
+    Space3 VelocitySpace { get; }
+    Space3 AngularSpace { get; }
   }
 }
