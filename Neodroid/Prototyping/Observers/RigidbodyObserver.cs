@@ -9,22 +9,26 @@ namespace droid.Neodroid.Prototyping.Observers {
   [RequireComponent(typeof(Rigidbody))]
   public class RigidbodyObserver : Observer,
                                    IHasRigidbody {
-    [SerializeField] Space3 _angular_space = new Space3(10);
 
-    [Header("Observation", order = 103)]
+
+    [Header("Observation", order = 100)]
     [SerializeField]
     Vector3 _angular_velocity;
+    [SerializeField] Vector3 _velocity;
 
-    [SerializeField] bool _differential;
     [SerializeField] float _last_update_time;
 
-    [Header("Specfic", order = 103)]
+    [Header("Configuration", order = 110)]
     [SerializeField]
     Rigidbody _rigidbody;
 
-    [SerializeField] Vector3 _velocity;
+    [SerializeField] bool _differential;
     [SerializeField] Space3 _velocity_space = new Space3(10);
+    [SerializeField] Space3 _angular_space = new Space3(10);
 
+    /// <summary>
+    /// 
+    /// </summary>
     public override string PrototypingType {
       get {
         if (this._differential) {
@@ -53,10 +57,15 @@ namespace droid.Neodroid.Prototyping.Observers {
       }
     }
 
-    public Space3 VelocitySpace { get; }
-    public Space3 AngularSpace { get; }
+    public Space3 VelocitySpace {
+      get {
+        return this._velocity_space;
+      }
+    }
 
-    protected override void Setup() { this._rigidbody = this.GetComponent<Rigidbody>(); }
+    public Space3 AngularSpace {
+      get { return this._angular_space; }
+    }
 
     public override void UpdateObservation() {
       var update_time_difference = Time.time - this._last_update_time;
@@ -91,7 +100,11 @@ namespace droid.Neodroid.Prototyping.Observers {
       };
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     protected override void PreSetup() {
+      this._rigidbody = this.GetComponent<Rigidbody>();
       this.FloatEnumerable = new[] {
           this.Velocity.x,
           this.Velocity.y,

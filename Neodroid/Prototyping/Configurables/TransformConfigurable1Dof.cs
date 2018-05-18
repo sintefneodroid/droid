@@ -80,7 +80,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
     /// <summary>
     ///
     /// </summary>
-    protected override void Setup() {
+    protected override void PreSetup() {
       if (this._use_bounding_box_for_range) {
         if (this._bounding_box != null) {
           var valid_input = new ValueSpace {

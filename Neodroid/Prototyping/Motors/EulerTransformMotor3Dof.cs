@@ -62,7 +62,6 @@ namespace droid.Neodroid.Prototyping.Motors {
     ///
     /// </summary>
     protected override void Setup() {
-      base.Setup();
       if (!this._Rotational_Motors) {
         this._x = this.Identifier + "X";
         this._y = this.Identifier + "Y";

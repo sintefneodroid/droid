@@ -85,7 +85,7 @@ namespace droid.Neodroid.Prototyping.Evaluation {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void Setup() {
+    protected override void PostSetup() {
       if (!this._goal) {
         this._goal = FindObjectOfType<Transform>();
       }

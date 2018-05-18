@@ -46,12 +46,12 @@ namespace droid.Neodroid.Prototyping.Configurables {
     /// <summary>
     ///
     /// </summary>
-    protected override void Setup() {
-      this.InnerStart();
+    protected sealed override void Setup() {
+      this.PreSetup();
       this.UpdateCurrentConfiguration();
     }
 
-    protected virtual void InnerStart() { }
+    protected virtual void PreSetup() { }
 
     /// <summary>
     ///

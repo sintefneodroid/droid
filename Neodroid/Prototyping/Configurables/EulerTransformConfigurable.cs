@@ -100,7 +100,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
           this._rot_z);
     }
 
-    protected override void Setup() {
+    protected override void PreSetup() {
       base.Setup();
       this._x = this.Identifier + "X";
       this._y = this.Identifier + "Y";

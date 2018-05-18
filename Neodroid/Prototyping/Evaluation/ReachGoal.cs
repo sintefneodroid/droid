@@ -37,7 +37,7 @@ namespace droid.Neodroid.Prototyping.Evaluation {
       this.InternalReset();
     }
 
-    protected override void Setup() {
+    protected override void PostSetup() {
       if (!this._goal) {
         this._goal = FindObjectOfType<EmptyCell>();
       }

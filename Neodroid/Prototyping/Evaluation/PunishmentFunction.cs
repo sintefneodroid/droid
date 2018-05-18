@@ -15,7 +15,7 @@ namespace droid.Neodroid.Prototyping.Evaluation {
     [SerializeField] GameObject _player;
 
     // Use this for initialization
-    protected override void Setup() {
+    protected override void PostSetup() {
       this.ResetHits();
       var balls = GameObject.FindGameObjectsWithTag("balls");
 

@@ -66,7 +66,7 @@ namespace droid.Neodroid.Prototyping.Evaluation {
       return 0f;
     }
 
-    protected override void Setup() {
+    protected override void PostSetup() {
       if (!this._area) {
         this._area = FindObjectOfType<Observer>().gameObject.GetComponent<Collider>();
       }

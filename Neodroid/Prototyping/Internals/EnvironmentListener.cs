@@ -15,15 +15,24 @@ namespace droid.Neodroid.Prototyping.Internals {
     /// </summary>
     public PrototypingEnvironment _Parent_Environment;
 
+    /// <summary>
+    /// 
+    /// </summary>
     protected abstract void PreStep();
 
+    /// <summary>
+    /// 
+    /// </summary>
     protected abstract void Step();
 
+    /// <summary>
+    /// 
+    /// </summary>
     protected abstract void PostStep();
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     protected override void RegisterComponent() {
       this._Parent_Environment =
           NeodroidUtilities.MaybeRegisterComponent(this._Parent_Environment, this);
@@ -35,15 +44,18 @@ namespace droid.Neodroid.Prototyping.Internals {
       }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     protected override void UnRegisterComponent() {
       if (this._Parent_Environment) {
         this._Parent_Environment.UnRegister(this);
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public abstract override String PrototypingType { get; }
   }
 }

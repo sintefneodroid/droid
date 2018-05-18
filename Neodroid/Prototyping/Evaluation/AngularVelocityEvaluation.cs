@@ -23,7 +23,7 @@ namespace droid.Neodroid.Prototyping.Evaluation {
       return 0;
     }
 
-    protected override void Setup() {
+    protected override void PostSetup() {
       if (this._rigidbody == null) {
         this._rigidbody = FindObjectOfType<Rigidbody>();
       }

@@ -19,7 +19,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
 
     List<GameObject> _spawned_objects;
 
-    protected override void Setup() {
+    protected override void PreSetup() {
       this.DestroyObjects();
       this._spawned_objects = new List<GameObject>();
       this.SpawnObjects();

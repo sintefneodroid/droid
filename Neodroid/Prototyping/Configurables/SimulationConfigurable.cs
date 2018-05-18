@@ -20,8 +20,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
     string _time_scale;
     string _width;
 
-    protected override void Setup() {
-      base.Setup();
+    protected override void PreSetup() {
       this._quality_level = this.Identifier + "QualityLevel";
       this._target_frame_rate = this.Identifier + "TargetFrameRate";
       this._time_scale = this.Identifier + "TimeScale";

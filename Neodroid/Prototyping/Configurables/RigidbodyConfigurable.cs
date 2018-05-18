@@ -116,7 +116,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
     /// <summary>
     ///
     /// </summary>
-    protected override void Setup() {
+    protected override void PreSetup() {
       this._rigidbody = this.GetComponent<Rigidbody>();
       this.UpdateCurrentConfiguration();
       this._vel_x = this.Identifier + "VelX";

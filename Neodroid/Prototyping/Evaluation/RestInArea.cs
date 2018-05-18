@@ -63,7 +63,7 @@ namespace droid.Neodroid.Prototyping.Evaluation {
       this._is_resting = true;
     }
 
-    protected override void Setup() {
+    protected override void PostSetup() {
       if (!this._area) {
         this._area = FindObjectOfType<Observer>().gameObject.GetComponent<Collider>();
       }

@@ -39,18 +39,18 @@ namespace droid.Neodroid.Prototyping.Configurables {
     /// </summary>
     public override string PrototypingType { get { return "Color"; } }
 
-    protected override void Setup() {
-      base.Setup();
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    protected override void PreSetup() {
+      
       this._r = this.Identifier + "R";
       this._g = this.Identifier + "G";
       this._b = this.Identifier + "B";
       this._a = this.Identifier + "A";
+      
+      this._renderer = this.GetComponent<Renderer>();
     }
-
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    protected override void InnerStart() { this._renderer = this.GetComponent<Renderer>(); }
 
     /// <summary>
     ///

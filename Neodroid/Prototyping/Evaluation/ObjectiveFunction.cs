@@ -99,13 +99,18 @@ namespace droid.Neodroid.Prototyping.Evaluation {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void Setup() {
+    protected sealed override void Setup() {
       //foreach (var go in this._extra_terms_external)
       //  this.Register(go);
 
       if (!this.ParentEnvironment) {
         this.ParentEnvironment = FindObjectOfType<PrototypingEnvironment>();
       }
+      this.PostSetup();
+    }
+
+    protected virtual void PostSetup() {
+      
     }
 
     /// <inheritdoc />

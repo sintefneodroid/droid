@@ -14,7 +14,7 @@ namespace droid.Neodroid.Prototyping.Evaluation {
       return Vector3.Distance(this._g1.position, this._g2.position);
     }
 
-    protected override void Setup() {
+    protected override void PostSetup() {
       if (this._g1 == null) {
         this._g1 = FindObjectOfType<Actor>().transform;
       }

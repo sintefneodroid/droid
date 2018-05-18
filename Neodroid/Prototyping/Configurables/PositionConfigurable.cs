@@ -32,7 +32,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
     /// </summary>
     string _z;
 
-    protected override void Setup() {
+    protected override void PreSetup() {
       base.Setup();
       this._x = this.Identifier + "X";
       this._y = this.Identifier + "Y";

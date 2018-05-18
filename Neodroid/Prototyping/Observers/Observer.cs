@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using droid.Neodroid.Environments;
 using droid.Neodroid.Utilities.GameObjects;
 using droid.Neodroid.Utilities.Interfaces;
 using droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
+using UnityEngine.Playables;
 
 namespace droid.Neodroid.Prototyping.Observers {
   /// <inheritdoc cref="PrototypingGameObject" />
@@ -43,7 +45,7 @@ namespace droid.Neodroid.Prototyping.Observers {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void Setup() {
+    protected sealed override void Setup() {
       this.PreSetup();
       this.FloatEnumerable = new float[] { };
       this.UpdateObservation();
@@ -74,6 +76,15 @@ namespace droid.Neodroid.Prototyping.Observers {
     /// 
     /// </summary>
     public virtual void UpdateObservation() { }
+
+    void Update() {
+      if(Application.isPlaying) {
+        if (this.FloatEnumerable == null || !this.FloatEnumerable.Any()) {
+          Debug.LogWarning(
+              $"FloatEnumerable of {this.Identifier} is empty! Maybe you forget an assignment to it when updating observations");
+        }
+      }
+    }
 
     /// <summary>
     /// 
