@@ -69,11 +69,6 @@ namespace droid.Neodroid.Prototyping.Configurables {
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="configuration"></param>
-    public override void ApplyConfiguration(Configuration configuration) { }
 
     #region Fields
 

@@ -31,5 +31,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
         Random random_generator) {
       throw new NotImplementedException();
     }
+
+    public override void ApplyConfiguration(Configuration obj) { throw new NotImplementedException(); }
   }
 }

@@ -63,5 +63,6 @@ namespace droid.Neodroid.Prototyping.Configurables {
     }
 
     void OnApplicationQuit() { this.DestroyObjects(); }
+    public override void ApplyConfiguration(Configuration obj) { throw new NotImplementedException(); }
   }
 }

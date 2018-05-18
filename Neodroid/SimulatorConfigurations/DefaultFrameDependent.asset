@@ -14,7 +14,7 @@ MonoBehaviour:
   _full_screen: 0
   _width: 500
   _height: 500
-  _quality_level: 4
+  _quality_level: 1
   _frame_finishes: 0
   _reset_iterations: 1
   _frame_skips: 0
@@ -24,3 +24,4 @@ MonoBehaviour:
   _target_frame_rate: -1
   _update_fixed_time_scale: 0
   _max_reply_interval: 0
+  _num_of_environments: 0
