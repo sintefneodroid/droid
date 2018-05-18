@@ -157,6 +157,11 @@ namespace droid.Neodroid.Prototyping.Observers {
       }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    protected override void Update() {  }
+
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>

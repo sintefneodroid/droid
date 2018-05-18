@@ -77,7 +77,10 @@ namespace droid.Neodroid.Prototyping.Observers {
     /// </summary>
     public virtual void UpdateObservation() { }
 
-    void Update() {
+    /// <summary>
+    /// 
+    /// </summary>
+    protected virtual void Update() {
       if(Application.isPlaying) {
         if (this.FloatEnumerable == null || !this.FloatEnumerable.Any()) {
           Debug.LogWarning(
