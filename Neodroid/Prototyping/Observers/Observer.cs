@@ -27,14 +27,14 @@ namespace droid.Neodroid.Prototyping.Observers {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingType { get { return "Observer"; } }
+    public override string PrototypingTypeName { get { return "Observer"; } }
 
     /// <summary>
     /// 
     /// </summary>
     public bool NormaliseObservation {
-      get { return this._normaliseObservation; }
-      set { this._normaliseObservation = value; }
+      get { return this._normalise_observation; }
+      set { this._normalise_observation = value; }
     }
 
     /// <inheritdoc />
@@ -102,7 +102,7 @@ namespace droid.Neodroid.Prototyping.Observers {
 
     [Header("Normalisation", order = 100)]
     [SerializeField]
-    bool _normaliseObservation;
+    bool _normalise_observation;
 
     #endregion
   }

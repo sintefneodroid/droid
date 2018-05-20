@@ -31,6 +31,6 @@ namespace droid.Neodroid.Prototyping.Evaluation.Terms {
     /// <summary>
     ///
     /// </summary>
-    public override string PrototypingType { get { return "Rush"; } }
+    public override string PrototypingTypeName { get { return "Rush"; } }
   }
 }

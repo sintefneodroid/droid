@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Globalization;
 using droid.Neodroid.Managers;
+using droid.Neodroid.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Neodroid.Utilities.GameObjects;
 using droid.Neodroid.Utilities.Messaging.Messages;
 using droid.Neodroid.Utilities.Unsorted;
@@ -13,7 +15,7 @@ namespace droid.Neodroid.Environments {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public abstract override String PrototypingType { get; }
+    public abstract override String PrototypingTypeName { get; }
 
     /// <summary>
     ///
@@ -27,7 +29,7 @@ namespace droid.Neodroid.Environments {
     /// </summary>
     [SerializeField]
     int _episode_length = 1000;
-
+    
     /// <summary>
     ///
     /// </summary>
@@ -42,21 +44,58 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-    protected float _energy_spent;
+    protected float _Energy_Spent;
 
     /// <summary>
     ///
     /// </summary>
     protected bool _Terminated;
 
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    public void IdentifierString(DataPoller recipient) {
+      recipient.PollData(this.Identifier);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    public void EnergyString(DataPoller recipient) {
+      recipient.PollData(this._Energy_Spent.ToString(CultureInfo.InvariantCulture));
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    public void FrameString(DataPoller recipient) {
+      recipient.PollData($"{this.CurrentFrameNumber}/{this.EpisodeLength}");
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    public void TerminatedBoolean(DataPoller recipient) {
+      if (this._Terminated) {
+        recipient.PollData(true);
+      }
+
+      recipient.PollData(false);
+    }
+    
     /// <summary>
     ///
     /// </summary>
-    protected bool _terminable = true;
+    protected bool _Terminable = true;
     /// <summary>
     ///
     /// </summary>
-    protected string _Termination_reason = "None";
+    protected string _Termination_Reason = "None";
 
     /// <summary>
     ///
@@ -66,7 +105,7 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-    protected bool _describe;
+    protected bool _Describe;
 
     /// <summary>
     ///
@@ -92,7 +131,7 @@ namespace droid.Neodroid.Environments {
     ///
     /// </summary>
     public String TerminationReason {
-      get { return this._Termination_reason; }
+      get { return this._Termination_Reason; }
     }
 
     /// <inheritdoc />

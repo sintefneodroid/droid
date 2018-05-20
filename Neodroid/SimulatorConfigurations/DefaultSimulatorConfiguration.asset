@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Name: DefaultSimulatorConfiguration
   m_EditorClassIdentifier: 
   _full_screen: 0
-  _height: 600
   _width: 800
+  _height: 600
   _quality_level: 2
-  _frame_finishes: 0
+  _frame_finishes: 3
   _reset_iterations: 1
   _frame_skips: 0
   _simulation_type: 0
@@ -24,3 +24,4 @@ MonoBehaviour:
   _target_frame_rate: -1
   _update_fixed_time_scale: 0
   _max_reply_interval: 0
+  _num_of_environments: 0

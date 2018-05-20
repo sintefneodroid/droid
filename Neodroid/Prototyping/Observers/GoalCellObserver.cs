@@ -19,7 +19,7 @@ namespace droid.Neodroid.Prototyping.Observers {
 
     public bool DrawNames { get { return this._draw_names; } set { this._draw_names = value; } }
 
-    public override string PrototypingType { get { return "GoalObserver"; } }
+    public override string PrototypingTypeName { get { return "GoalObserver"; } }
 
     public EmptyCell CurrentGoal {
       get {

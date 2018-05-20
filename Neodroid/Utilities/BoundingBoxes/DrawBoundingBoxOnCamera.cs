@@ -5,16 +5,13 @@ namespace droid.Neodroid.Utilities.BoundingBoxes {
   [RequireComponent(typeof(Camera))]
   [ExecuteInEditMode]
   public class DrawBoundingBoxOnCamera : MonoBehaviour {
-    List<Color> _colors;
+    List<Color> _colors= new List<Color>();
     public Color _L_Color = Color.green;
     public Material _Line_Material;
-    List<Vector3[,]> _outlines;
-    List<Vector3[,]> _triangles;
+    List<Vector3[,]> _outlines= new List<Vector3[,]>();
+    List<Vector3[,]> _triangles= new List<Vector3[,]>();
 
     void Awake() {
-      this._outlines = new List<Vector3[,]>();
-      this._colors = new List<Color>();
-      this._triangles = new List<Vector3[,]>();
     }
 
     void OnPostRender() {
@@ -80,9 +77,9 @@ namespace droid.Neodroid.Utilities.BoundingBoxes {
     }
 
     void Update() {
-      this._outlines = new List<Vector3[,]>();
-      this._colors = new List<Color>();
-      this._triangles = new List<Vector3[,]>();
+      this._outlines.Clear();
+      this._colors.Clear();
+      this._triangles.Clear();
     }
   }
 }

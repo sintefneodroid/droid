@@ -39,7 +39,7 @@ namespace droid.Neodroid.Prototyping.Motors {
     /// <summary>
     ///
     /// </summary>
-    public override string PrototypingType { get { return "Rigidbody" + this._Axis_Of_Motion; } }
+    public override string PrototypingTypeName { get { return "Rigidbody" + this._Axis_Of_Motion; } }
 
     /// <summary>
     ///

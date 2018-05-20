@@ -17,7 +17,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
       + ConfigurableComponentMenuPath._Postfix)]
   public class TransformConfigurable1Dof : ConfigurableGameObject,
                                                  IHasSingle {
-    public override string PrototypingType { get { return "Transform" + this._axis_of_configuration; } }
+    public override string PrototypingTypeName { get { return "Transform" + this._axis_of_configuration; } }
 
     public float ObservationValue {
       get { return this._observation_value; }

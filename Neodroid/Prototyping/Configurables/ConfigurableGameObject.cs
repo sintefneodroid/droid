@@ -36,7 +36,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
     /// <summary>
     ///
     /// </summary>
-    public override string PrototypingType { get { return "Configurable"; } }
+    public override string PrototypingTypeName { get { return "Configurable"; } }
 
     /// <summary>
     ///

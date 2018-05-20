@@ -8,7 +8,7 @@ namespace droid.Neodroid.Prototyping.Motors.WheelColliderMotor {
   public class TorqueMotor : Motor {
     [SerializeField] WheelCollider _wheel_collider;
 
-    public override string PrototypingType { get { return "Torque"; } }
+    public override string PrototypingTypeName { get { return "Torque"; } }
 
     protected override void Setup() { this._wheel_collider = this.GetComponent<WheelCollider>(); }
 

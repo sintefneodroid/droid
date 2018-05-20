@@ -29,7 +29,7 @@ namespace droid.Neodroid.Prototyping.Observers {
     /// <summary>
     /// 
     /// </summary>
-    public override string PrototypingType {
+    public override string PrototypingTypeName {
       get {
         if (this._differential) {
           return "RigidbodyDifferential";

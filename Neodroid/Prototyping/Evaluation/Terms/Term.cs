@@ -17,7 +17,7 @@ namespace droid.Neodroid.Prototyping.Evaluation.Terms {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public abstract override String PrototypingType { get; }
+    public abstract override String PrototypingTypeName { get; }
 
     /// <summary>
     /// 

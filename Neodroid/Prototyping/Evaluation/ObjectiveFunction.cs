@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using droid.Neodroid.Environments;
 using droid.Neodroid.Prototyping.Evaluation.Terms;
+using droid.Neodroid.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Neodroid.Utilities.GameObjects;
 using droid.Neodroid.Utilities.Interfaces;
 using UnityEngine;
+using Object = System.Object;
 
 namespace droid.Neodroid.Prototyping.Evaluation {
   /// <inheritdoc cref="ObjectiveFunction" />
@@ -24,7 +27,7 @@ namespace droid.Neodroid.Prototyping.Evaluation {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override String PrototypingType { get { return ""; } }
+    public override String PrototypingTypeName { get { return ""; } }
 
     /// <summary>
     ///
@@ -112,6 +115,20 @@ namespace droid.Neodroid.Prototyping.Evaluation {
     protected virtual void PostSetup() {
       
     }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    public void SignalString(DataPoller recipient) {
+      recipient.PollData($"{this._last_signal.ToString(CultureInfo.InvariantCulture)}, {this._Episode_Return}");
+    }
+    
+    /// <summary>
+    ///
+    /// </summary>
+    [SerializeField]
+    public float _Episode_Return = 0;
 
     /// <inheritdoc />
     /// <summary>
@@ -145,13 +162,21 @@ namespace droid.Neodroid.Prototyping.Evaluation {
       }
       #endif
 
+      this._last_signal = signal;
+
+      this._Episode_Return += signal;
+      
       return signal;
     }
 
     /// <summary>
     ///
     /// </summary>
-    public void Reset() { this.InternalReset(); }
+    public void Reset() {
+      this._last_signal = 0;
+      this._Episode_Return = 0;
+      this.InternalReset();
+    }
 
     /// <summary>
     ///
@@ -210,6 +235,8 @@ namespace droid.Neodroid.Prototyping.Evaluation {
     [Header("General", order = 101)]
     [SerializeField]
     float _solved_threshold;
+
+    [SerializeField] float _last_signal;
 
     #endregion
   }

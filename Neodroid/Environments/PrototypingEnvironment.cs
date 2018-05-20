@@ -52,6 +52,13 @@ namespace droid.Neodroid.Environments {
 
     int _reset_i;
 
+    [SerializeField] bool _ordered_observables;
+    [SerializeField] bool _keep_unobservables;
+    
+    WaitForFixedUpdate _wait_for_fixed_update =  new WaitForFixedUpdate();
+    List<float> _observables = new List<float>();
+    List<MotorMotion> _sample_motions = new List<MotorMotion>();
+
     #region UnityCallbacks
 
     #endregion
@@ -103,7 +110,7 @@ namespace droid.Neodroid.Environments {
       }
 
       if (!this._Simulation_Manager.IsSyncingEnvironments) {
-        this._describe = false;
+        this._Describe = false;
       }
     }
 
@@ -118,14 +125,14 @@ namespace droid.Neodroid.Environments {
       }
       #endif
 
-      var motions = new List<MotorMotion>();
+      this._sample_motions.Clear();
 
       foreach (var actor in this.Actors) {
         foreach (var motor in actor.Value.Motors) {
           var strength = Random.Range(
               (int)motor.Value.MotionValueSpace._Min_Value,
               (int)(motor.Value.MotionValueSpace._Max_Value + 1));
-          motions.Add(new MotorMotion(actor.Key, motor.Key, strength));
+          this._sample_motions.Add(new MotorMotion(actor.Key, motor.Key, strength));
         }
       }
 
@@ -148,7 +155,7 @@ namespace droid.Neodroid.Environments {
       };
       return new Reaction(
           rp,
-          motions.ToArray(),
+          this._sample_motions.ToArray(),
           null,
           null,
           null,
@@ -325,7 +332,7 @@ namespace droid.Neodroid.Environments {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingType { get { return "PrototypingEnvironment"; } }
+    public override string PrototypingTypeName { get { return "PrototypingEnvironment"; } }
 
     /// <summary>
     ///
@@ -368,7 +375,7 @@ namespace droid.Neodroid.Environments {
     /// <param name="reason"></param>
     public void Terminate(string reason = "None") {
       lock (this._react_lock) {
-        if (this._terminable) {
+        if (this._Terminable) {
           #if NEODROID_DEBUG
           if (this.Debugging) {
             Debug.LogWarning($"Environment {this.Identifier} as terminated because {reason}");
@@ -376,7 +383,7 @@ namespace droid.Neodroid.Environments {
           #endif
 
           this._Terminated = true;
-          this._Termination_reason = reason;
+          this._Termination_Reason = reason;
         }
       }
     }
@@ -389,12 +396,12 @@ namespace droid.Neodroid.Environments {
     public override EnvironmentState ReactAndCollectState(
         Reaction reaction) {
       lock (this._react_lock) {
-        this._terminable = reaction.Parameters.Terminable;
+        this._Terminable = reaction.Parameters.Terminable;
 
         if (reaction.Parameters.IsExternal) {
           this._received_configurations = reaction.Configurations;
-          if (!this._describe) {
-            this._describe = reaction.Parameters.Describe;
+          if (!this._Describe) {
+            this._Describe = reaction.Parameters.Describe;
           }
 
           this._Configure = reaction.Parameters.Configure;
@@ -425,13 +432,13 @@ namespace droid.Neodroid.Environments {
     /// <returns></returns>
     public override void React(Reaction reaction) {
       lock (this._react_lock) {
-        this._terminable = reaction.Parameters.Terminable;
+        this._Terminable = reaction.Parameters.Terminable;
 
         if (reaction.Parameters.IsExternal) {
           this._received_configurations = reaction.Configurations;
 
-          if (!this._describe) {
-            this._describe = reaction.Parameters.Describe;
+          if (!this._Describe) {
+            this._Describe = reaction.Parameters.Describe;
           }
 
           this._Configure = reaction.Parameters.Configure;
@@ -895,14 +902,18 @@ namespace droid.Neodroid.Environments {
         this._tracked_game_objects = NeodroidUtilities.FindAllGameObjectsExceptLayer(ignored_layer);
       }
 
-      this._reset_positions = new Vector3[this._tracked_game_objects.Length];
-      this._reset_rotations = new Quaternion[this._tracked_game_objects.Length];
-      this._poses = new Transform[this._tracked_game_objects.Length];
-      for (var i = 0; i < this._tracked_game_objects.Length; i++) {
-        this._reset_positions[i] = this._tracked_game_objects[i].transform.position;
-        this._reset_rotations[i] = this._tracked_game_objects[i].transform.rotation;
-        this._poses[i] = this._tracked_game_objects[i].transform;
-        var maybe_joint = this._tracked_game_objects[i].GetComponent<Joint>();
+      var length = this._tracked_game_objects.Length;
+      
+      this._reset_positions = new Vector3[length];
+      this._reset_rotations = new Quaternion[length];
+      this._poses = new Transform[length];
+      for (var i = 0; i < length; i++) {
+        var go = this._tracked_game_objects[i];
+        var transf = go.transform;
+        this._reset_positions[i] = transf.position;
+        this._reset_rotations[i] = transf.rotation;
+        this._poses[i] = transf;
+        var maybe_joint = go.GetComponent<Joint>();
         if (maybe_joint != null) {
           var maybe_joint_fix = maybe_joint.GetComponent<JointFix>();
           if (maybe_joint_fix == null) {
@@ -963,7 +974,7 @@ namespace droid.Neodroid.Environments {
     /// </summary>
     /// <returns></returns>
     IEnumerator SaveInitialBodiesIe() {
-      yield return new WaitForFixedUpdate();
+      yield return this._wait_for_fixed_update;
       this.SaveInitialBodies();
     }
 
@@ -975,7 +986,7 @@ namespace droid.Neodroid.Environments {
       lock (this._react_lock) {
         foreach (var a in this.Actors.Values) {
           foreach (var m in a.Motors.Values) {
-            this._energy_spent += m.GetEnergySpend();
+            this._Energy_Spent += m.GetEnergySpend();
           }
         }
 
@@ -987,7 +998,7 @@ namespace droid.Neodroid.Environments {
         //}
 
         EnvironmentDescription description = null;
-        if (this._describe) {
+        if (this._Describe) {
           #if NEODROID_DEBUG
           if (this.Debugging) {
             Debug.Log("Describing Environment");
@@ -1005,40 +1016,76 @@ namespace droid.Neodroid.Environments {
               threshold);
         }
 
-        var observables = new List<float>();
-        foreach (var item in this.Observers.OrderBy(i => i.Key)) {
-          if (item.Value != null) {
-            if (item.Value.FloatEnumerable != null) {
-              observables.AddRange(item.Value.FloatEnumerable);
+        this._observables.Clear();
+        if (this._ordered_observables) {
+          foreach (var item in this.Observers.OrderBy(i => i.Key)) {
+            if (item.Value != null) {
+              if (item.Value.FloatEnumerable != null) {
+                this._observables.AddRange(item.Value.FloatEnumerable);
+              } else {
+                #if NEODROID_DEBUG
+                if (this.Debugging) {
+                  Debug.Log($"Observer with key {item.Key} has a null FloatEnumerable value");
+                }
+                #endif
+              }
             } else {
               #if NEODROID_DEBUG
               if (this.Debugging) {
-                Debug.Log($"Observer with key {item.Key} has a null FloatEnumerable value");
+                Debug.Log($"Observer with key {item.Key} has a null value");
               }
               #endif
             }
-          } else {
-            #if NEODROID_DEBUG
-            if (this.Debugging) {
-              Debug.Log($"Observer with key {item.Key} has a null value");
+          }
+        } else {
+          foreach (var item in this.Observers) {
+            if (item.Value != null) {
+              if (item.Value.FloatEnumerable != null) {
+                this._observables.AddRange(item.Value.FloatEnumerable);
+              } else {
+                #if NEODROID_DEBUG
+                if (this.Debugging) {
+                  Debug.Log($"Observer with key {item.Key} has a null FloatEnumerable value");
+                }
+                #endif
+              }
+            } else {
+              #if NEODROID_DEBUG
+              if (this.Debugging) {
+                Debug.Log($"Observer with key {item.Key} has a null value");
+              }
+              #endif
             }
-            #endif
           }
         }
 
         var time = Time.time - this._Lastest_Reset_Time;
+        var obs = this._observables.ToArray();
+        if (this._keep_unobservables) {
+          return new EnvironmentState(
+              this.Identifier,
+              this._Energy_Spent,
+              this.Observers,
+              this.CurrentFrameNumber,
+              time,
+              signal,
+              this._Terminated,
+              ref obs,
+              ref this._bodies,
+              ref this._poses,
+              this.TerminationReason,
+              description);
+        }
 
         return new EnvironmentState(
             this.Identifier,
-            this._energy_spent,
+            this._Energy_Spent,
             this.Observers,
             this.CurrentFrameNumber,
             time,
             signal,
             this._Terminated,
-            observables.ToArray(),
-            this._bodies,
-            this._poses,
+            ref obs,
             this.TerminationReason,
             description);
       }
@@ -1054,8 +1101,8 @@ namespace droid.Neodroid.Environments {
         this._objective_function.Reset();
       }
 
-      this.SetEnvironmentPoses(this._tracked_game_objects, this._reset_positions, this._reset_rotations);
-      this.SetEnvironmentBodies(this._bodies, this._reset_velocities, this._reset_angulars);
+        this.SetEnvironmentPoses(this._tracked_game_objects, this._reset_positions, this._reset_rotations);
+        this.SetEnvironmentBodies(this._bodies, this._reset_velocities, this._reset_angulars);
 
       this.ResetRegisteredObjects();
       this.Configure();

@@ -191,7 +191,7 @@ namespace droid.Neodroid.Utilities.GameObjects {
     /// <summary>
     ///
     /// </summary>
-    public virtual string PrototypingType { get { return "PrototypingGameObject"; } }
+    public virtual string PrototypingTypeName { get { return "PrototypingGameObject"; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -202,8 +202,8 @@ namespace droid.Neodroid.Utilities.GameObjects {
           return this._Custom_Name;
         }
 
-        if(this.PrototypingType!=null) {
-          return this.name + this.PrototypingType;
+        if(this.PrototypingTypeName!=null) {
+          return this.name + this.PrototypingTypeName;
         }
 
         return "CriticalFailure";

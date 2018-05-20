@@ -24,7 +24,7 @@ namespace droid.Neodroid.Prototyping.Observers {
     [SerializeField]
     float _observation_value;
 
-    public override string PrototypingType {
+    public override string PrototypingTypeName {
       get { return "Raycast" + $"{this._direction.x}{this._direction.y}{this._direction.z}"; }
     }
 

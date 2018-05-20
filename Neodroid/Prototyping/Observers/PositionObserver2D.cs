@@ -24,7 +24,7 @@ namespace droid.Neodroid.Prototyping.Observers {
 
     public ObservationSpace Space { get { return this._space; } }
 
-    public override string PrototypingType { get { return "DoublePosition"; } }
+    public override string PrototypingTypeName { get { return "DoublePosition"; } }
 
     public Vector3 Position {
       get { return this._position; }

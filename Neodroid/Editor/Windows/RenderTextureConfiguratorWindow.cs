@@ -10,7 +10,7 @@ namespace droid.Neodroid.Editor.Windows {
     //float[] _render_texture_height;
     //float[] _render_texture_width;
 
-    List<RenderTexture> _render_textures;
+    List<RenderTexture> _render_textures = new List<RenderTexture>();
 
     Vector2 _scroll_position;
     Vector2 _texture_size;
@@ -30,7 +30,7 @@ namespace droid.Neodroid.Editor.Windows {
     }
 
     void OnGUI() {
-      this._render_textures = new List<RenderTexture>();
+      this._render_textures.Clear();
       var cameras = FindObjectsOfType<Camera>();
       foreach (var camera in cameras) {
         if (camera.targetTexture != null) {

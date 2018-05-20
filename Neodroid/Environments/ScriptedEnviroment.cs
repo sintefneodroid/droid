@@ -64,6 +64,10 @@ namespace droid.Neodroid.Environments {
     /// </summary>
     [SerializeField]
     NeodroidManager _time_simulation_manager;
+    
+    List<MotorMotion> _motions = new List<MotorMotion>();
+    Rigidbody[] _null_rigidbodies = new Rigidbody[] { };
+    Transform[] _null_transforms = new Transform[] { };
 
     /// <summary>
     ///
@@ -75,7 +79,7 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-    public override string PrototypingType { get { return "ScriptedEnvironment"; } }
+    public override string PrototypingTypeName { get { return "ScriptedEnvironment"; } }
 
     /// <summary>
     ///
@@ -147,15 +151,15 @@ namespace droid.Neodroid.Environments {
     /// </summary>
     /// <returns></returns>
     public override Reaction SampleReaction() {
-      var motions = new List<MotorMotion>();
+      this._motions.Clear();
 
       var strength = Random.Range(0, 4);
-      motions.Add(new MotorMotion("", "", strength));
+      this._motions.Add(new MotorMotion("", "", strength));
 
       var rp = new ReactionParameters(true, true, episode_count : true) {
           IsExternal = false
       };
-      return new Reaction(rp, motions.ToArray(), null, null, null, "");
+      return new Reaction(rp, this._motions.ToArray(), null, null, null, "");
     }
 
     /// <inheritdoc />
@@ -194,15 +198,17 @@ namespace droid.Neodroid.Environments {
 
       var time = Time.time - this._Lastest_Reset_Time;
 
+      var observables = new float[] {actor_idx};
+      
       return new EnvironmentState(
           this.Identifier,
           0,
           time,
           signal,
           terminated,
-          new float[] {actor_idx},
-          new Rigidbody[] { },
-          new Transform[] { });
+          ref observables,
+          ref this._null_rigidbodies,
+          ref this._null_transforms);
     }
 
     public override void React(Reaction reaction) {

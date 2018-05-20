@@ -46,7 +46,7 @@ namespace droid.Neodroid.Prototyping.Observers {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingType { get { return "Compass"; } }
+    public override string PrototypingTypeName { get { return "Compass"; } }
 
     public Space2 ObservationSpace2D {
       get {

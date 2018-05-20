@@ -36,6 +36,6 @@ namespace droid.Neodroid.Prototyping.Internals {
     /// <summary>
     ///
     /// </summary>
-    public abstract override String PrototypingType { get; }
+    public abstract override String PrototypingTypeName { get; }
   }
 }

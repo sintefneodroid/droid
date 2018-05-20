@@ -28,7 +28,7 @@ namespace droid.Neodroid.Prototyping.Observers {
     /// <summary>
     ///
     /// </summary>
-    public override string PrototypingType { get { return "Value"; } }
+    public override string PrototypingTypeName { get { return "Value"; } }
 
     /// <summary>
     ///

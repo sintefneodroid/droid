@@ -29,7 +29,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
       this._fullscreen = this.Identifier + "Fullscreen";
     }
 
-    public override string PrototypingType { get { return "Simulation"; } }
+    public override string PrototypingTypeName { get { return "Simulation"; } }
 
     protected override void RegisterComponent() {
       this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(

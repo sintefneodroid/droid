@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using droid.Neodroid.Environments;
 using droid.Neodroid.Utilities.Interfaces;
 using droid.Neodroid.Utilities.Messaging;
@@ -47,7 +48,7 @@ namespace droid.Neodroid.Managers {
     ///
     /// </summary>
     [SerializeField]
-    int _script_execution_order = -9999;
+    int _script_execution_order = -1000;
 #endif
 
     /// <summary>
@@ -57,10 +58,13 @@ namespace droid.Neodroid.Managers {
     [SerializeField]
     SimulatorConfiguration _configuration;
 
+    [SerializeField] bool _do_serialise_unobservables;
+    [SerializeField] bool _serialise_indidual_observables;
+
     /// <summary>
     ///
     /// </summary>
-    [SerializeField]
+
     int _skip_frame_i;
 
     /// <summary>
@@ -84,8 +88,14 @@ namespace droid.Neodroid.Managers {
     /// <summary>
     ///
     /// </summary>
-    [SerializeField]
+
     bool _awaiting_reply;
+
+    bool _step;
+    
+    WaitForEndOfFrame _wait_for_end_of_frame= new WaitForEndOfFrame();
+    WaitForFixedUpdate _wait_for_fixed_update = new WaitForFixedUpdate();
+    List<Reaction> _sample_reactions = new List<Reaction>();
 
     #endregion
 
@@ -303,6 +313,8 @@ namespace droid.Neodroid.Managers {
       set { this._syncing_environments = value; }
     }
 
+    public bool Stepping { get { return this._step; }}
+
     #endregion
 
     #region PrivateMembers
@@ -350,15 +362,17 @@ namespace droid.Neodroid.Managers {
       }
 
       #if UNITY_EDITOR
-      var manager_script = MonoScript.FromMonoBehaviour(this);
-      if (MonoImporter.GetExecutionOrder(manager_script) != this._script_execution_order) {
-        MonoImporter.SetExecutionOrder(
-            manager_script,
-            this._script_execution_order); // Ensures that PreStep is called first, before all other scripts.
-        Debug.LogWarning(
-            "Execution Order changed, you will need to restart to make everything function correctly!");
-        EditorApplication.isPlaying = false;
-        //TODO: UnityEngine.Experimental.LowLevel.PlayerLoop.SetPlayerLoop(new UnityEngine.Experimental.LowLevel.PlayerLoopSystem());
+      if (!Application.isPlaying) {
+        var manager_script = MonoScript.FromMonoBehaviour(this);
+        if (MonoImporter.GetExecutionOrder(manager_script) != this._script_execution_order) {
+          MonoImporter.SetExecutionOrder(
+              manager_script,
+              this._script_execution_order); // Ensures that PreStep is called first, before all other scripts.
+          Debug.LogWarning(
+              "Execution Order changed, you will need to press play again to make everything function correctly!");
+          EditorApplication.isPlaying = false;
+          //TODO: UnityEngine.Experimental.LowLevel.PlayerLoop.SetPlayerLoop(new UnityEngine.Experimental.LowLevel.PlayerLoopSystem());
+        }
       }
       #endif
     }
@@ -456,7 +470,7 @@ namespace droid.Neodroid.Managers {
     /// <returns></returns>
     IEnumerator LateFixedUpdateEventGenerator() {
       while (true) {
-        yield return new WaitForFixedUpdate();
+        yield return this._wait_for_fixed_update;
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log("LateFixedUpdate");
@@ -474,10 +488,10 @@ namespace droid.Neodroid.Managers {
     /// <returns></returns>
     protected IEnumerator EndOfFrameEventGenerator() {
       while (true) {
-        yield return new WaitForEndOfFrame();
+        yield return this._wait_for_end_of_frame;
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log("LateFixedUpdate");
+          Debug.Log("EndOfFrameEvent");
         }
         #endif
         this.OnEndOfFrameEvent?.Invoke();
@@ -547,7 +561,6 @@ namespace droid.Neodroid.Managers {
     void ExecuteStep() {
       if (!this._syncing_environments) {
         this.React(this.CurrentReactions);
-        this.ClearCurrentReactions();
       }
 
       if (this.AwaitingReply) {
@@ -555,18 +568,22 @@ namespace droid.Neodroid.Managers {
         this.PostReact(states);
       }
 
-      foreach (var environment in this._Environments.Values) {
-        environment.PostStep();
-      }
+
     }
 
     /// <summary>
     ///
     /// </summary>
     protected void PostStep() {
+      foreach (var environment in this._Environments.Values) {
+        environment.PostStep();
+      }
+      
       if (this.Configuration.StepExecutionPhase == ExecutionPhase.After_) {
         this.ExecuteStep();
       }
+
+
     }
 
     /// <summary>
@@ -602,20 +619,25 @@ namespace droid.Neodroid.Managers {
           }
           #endif
         }
+        
+        this._step = false;
+        this.ClearCurrentReactions();
       }
     }
 
+
+    
     /// <summary>
     ///
     /// </summary>
     /// <returns></returns>
     protected Reaction[] SampleRandomReactions() {
-      var reactions = new List<Reaction>();
+      this._sample_reactions.Clear();
       foreach (var environment in this._Environments.Values) {
-        reactions.Add(environment.SampleReaction());
+        this._sample_reactions.Add(environment.SampleReaction());
       }
 
-      return reactions.ToArray();
+      return this._sample_reactions.ToArray();
     }
 
     //TODO: EnvironmentState[][] states for aggregation of states
@@ -625,7 +647,8 @@ namespace droid.Neodroid.Managers {
     /// <param name="states"></param>
     void Reply(EnvironmentState[] states) {
       lock (this._send_lock) {
-        this._Message_Server.SendStates(states);
+        var configuration_message = new SimulatorConfigurationMessage(this.Configuration);
+        this._Message_Server.SendStates(states,simulator_configuration_message:configuration_message,do_serialise_unobservables:this._do_serialise_unobservables,serialise_indidual_observables:this._serialise_indidual_observables);
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log("Replying");
@@ -651,6 +674,7 @@ namespace droid.Neodroid.Managers {
     /// <returns></returns>
     public EnvironmentState[] ReactAndCollectStates(
         Reaction reaction) {
+      this.SetStepping(reaction);
       var states = new EnvironmentState[this._Environments.Values.Count];
       var i = 0;
       foreach (var environment in this._Environments.Values) {
@@ -691,6 +715,7 @@ namespace droid.Neodroid.Managers {
     /// <param name="reaction"></param>
     /// <returns></returns>
     public void React(Reaction reaction) {
+      this.SetStepping(reaction);
       if (this._Environments.ContainsKey(reaction.RecipientEnvironment)) {
         this._Environments[reaction.RecipientEnvironment].React(reaction);
       } else {
@@ -718,6 +743,7 @@ namespace droid.Neodroid.Managers {
     /// <param name="reactions"></param>
     /// <returns></returns>
     public void React(Reaction[] reactions) {
+      this.SetStepping(reactions);
       foreach (var reaction in reactions) {
         if (this._Environments.ContainsKey(reaction.RecipientEnvironment)) {
           this._Environments[reaction.RecipientEnvironment].React(reaction);
@@ -756,6 +782,36 @@ namespace droid.Neodroid.Managers {
       return states;
     }
 
+    void SetStepping(Reaction reaction) {
+      if (reaction.Parameters.Step) {
+        #if NEODROID_DEBUG
+        if(this.Debugging) {
+          Debug.Log("Stepping");
+        }
+
+        #endif
+
+        this._step = true;
+      }else {
+        this._step = false;
+      }
+    }
+    
+    void SetStepping(Reaction[] reactions) {
+      if (reactions.Any(reac => reac.Parameters.Step)) {
+        #if NEODROID_DEBUG
+        if(this.Debugging) {
+          Debug.Log("Stepping");
+        }
+
+        #endif
+
+        this._step = true;
+      } else {
+        this._step = false;
+      }
+    }
+    
     /// <summary>
     ///
     /// </summary>
@@ -763,6 +819,7 @@ namespace droid.Neodroid.Managers {
     /// <returns></returns>
     public EnvironmentState[] ReactAndCollectStates(
         Reaction[] reactions) {
+      this.SetStepping(reactions);
       var states =
           new EnvironmentState[reactions.Length * this._Environments.Count];
       var i = 0;

@@ -94,6 +94,7 @@ namespace droid.Neodroid.Utilities.Messaging {
     /// </summary>
     Double _wait_time_seconds;
 
+    const string _api_version = "0.0.1";
 
     #endregion
 
@@ -229,11 +230,17 @@ namespace droid.Neodroid.Utilities.Messaging {
 
     #region PublicMethods
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="environment_states"></param>
-    public void SendStates(EnvironmentState[] environment_states) {
+    ///  <summary>
+    /// 
+    ///  </summary>
+    ///  <param name="environment_states"></param>
+    /// <param name="do_serialise_unobservables"></param>
+    /// <param name="serialise_indidual_observables"></param>
+    /// <param name="simulator_configuration_message"></param>
+    /// <param name="api_vesion"></param>
+    public void SendStates(EnvironmentState[] environment_states,bool do_serialise_unobservables=false ,bool 
+        serialise_indidual_observables=false,SimulatorConfigurationMessage simulator_configuration_message=null,string 
+        api_vesion=_api_version) {
       lock (this._thread_lock) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
@@ -267,7 +274,7 @@ namespace droid.Neodroid.Utilities.Messaging {
         }
         #endif
 
-        this._byte_buffer = FbsStateUtilities.serialise_states(environment_states);
+        this._byte_buffer = FbsStateUtilities.serialise_states(environment_states,do_serialise_unobservables:do_serialise_unobservables,serialise_indidual_observables:serialise_indidual_observables,simulator_configuration:simulator_configuration_message,api_version:api_vesion);
         this._socket.SendFrame(this._byte_buffer);
         this._waiting_for_main_loop_to_send = false;
       }

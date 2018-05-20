@@ -90,7 +90,7 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
     /// </summary>
     [Header("Simulation")]
     [SerializeField]
-    FrameFinishes _frame_finishes = FrameFinishes.Late_update_;
+    FrameFinishes _frame_finishes = FrameFinishes.End_of_frame_;
 
     /// <summary>
     /// Allow relative transforms to reset a couple of times.

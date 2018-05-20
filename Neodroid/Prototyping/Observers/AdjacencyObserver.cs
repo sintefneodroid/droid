@@ -22,7 +22,7 @@ namespace droid.Neodroid.Prototyping.Observers {
     /// <summary>
     /// 
     /// </summary>
-    public override string PrototypingType { get { return "Adjencency"; } }
+    public override string PrototypingTypeName { get { return "Adjencency"; } }
 
     /// <summary>
     /// 

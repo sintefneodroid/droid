@@ -25,7 +25,7 @@ namespace droid.Neodroid.Prototyping.Observers {
 
     [SerializeField] Texture2D _texture;
 
-    public override string PrototypingType { get { return "Camera"; } }
+    public override string PrototypingTypeName { get { return "Camera"; } }
 
     public float[] ObservationArray { get { return this._array; } private set { this._array = value; } }
 

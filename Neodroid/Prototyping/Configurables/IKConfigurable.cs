@@ -1,8 +1,10 @@
 ﻿using System;
+using droid.Neodroid.Utilities.Interfaces;
 using droid.Neodroid.Utilities.Messaging.Messages;
+using droid.Neodroid.Utilities.Unsorted;
 
 namespace droid.Neodroid.Prototyping.Configurables {
-  /// <inheritdoc />
+  /// <inheritdoc cref="StringRecipient" />
   /// <summary>
   /// </summary>
   public class IkConfigurable  : ConfigurableGameObject {

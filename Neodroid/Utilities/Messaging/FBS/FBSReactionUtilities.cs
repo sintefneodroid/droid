@@ -12,36 +12,45 @@ namespace droid.Neodroid.Utilities.Messaging.FBS {
   public static class FbsReactionUtilities {
     #region PublicMethods
 
+    static Reaction _null_reaction = new Reaction(null, null, null, null, null, "");
+    static ReactionParameters _null_reaction_parameters = new ReactionParameters();
+    static List<Reaction> _out_reactions = new List<Reaction>();
+
     /// <summary>
     ///
     /// </summary>
     /// <param name="reactions"></param>
     /// <returns></returns>
-    public static Tuple<Reaction[],bool,string,SimulatorConfiguration> deserialise_reactions(FReactions? reactions) {
-      var out_reactions = new List<Reaction>();
+    public static Tuple<Reaction[], bool, string, SimulatorConfigurationMessage> deserialise_reactions(
+        FReactions? reactions) {
+      _out_reactions.Clear();
 
       var close = false;
       var api_version = "";
-      var simulator_configuration = new SimulatorConfiguration();
+      var simulator_configuration = new SimulatorConfigurationMessage();
 
       if (reactions.HasValue) {
         var rs = reactions.Value;
-        for(var i = 0; i < rs.ReactionsLength; i++) {
-          out_reactions.Add(deserialise_reaction(rs.Reactions(i)));
+        for (var i = 0; i < rs.ReactionsLength; i++) {
+          _out_reactions.Add(deserialise_reaction(rs.Reactions(i)));
         }
 
         close = rs.Close;
         api_version = rs.ApiVersion;
-        if(rs.SimulatorConfiguration.HasValue) {
+        if (rs.SimulatorConfiguration.HasValue) {
           simulator_configuration.FbsParse(rs.SimulatorConfiguration.Value);
         }
       }
 
-      if(out_reactions.Count==0) {
+      if (_out_reactions.Count == 0) {
         Debug.LogWarning("Empty reactions received");
       }
 
-      return new Tuple<Reaction[], bool, String, SimulatorConfiguration>(out_reactions.ToArray(),close,api_version,simulator_configuration);
+      return new Tuple<Reaction[], bool, String, SimulatorConfigurationMessage>(
+          _out_reactions.ToArray(),
+          close,
+          api_version,
+          simulator_configuration);
     }
 
     /// <summary>
@@ -66,16 +75,21 @@ namespace droid.Neodroid.Utilities.Messaging.FBS {
             unobservables,
             displayables,
             serialised_message,
-            recipient_environment:r.EnvironmentName);
+            recipient_environment : r.EnvironmentName);
       }
 
       Debug.LogWarning("Empty reaction received");
-      return new Reaction(null, null, null, null, null, "");
+      return _null_reaction;
     }
 
     #endregion
 
+    static List<Vector3> _vector_out = new List<Vector3>();
+    static List<float> _float_out = new List<float>();
+    static List<Points.ValuePoint> _output = new List<Points.ValuePoint>();
+
     #region PrivateMethods
+
     static String deserialise_simulator_configuration(FReaction reaction_value) {
       return reaction_value.SerialisedMessage;
     }
@@ -90,7 +104,7 @@ namespace droid.Neodroid.Utilities.Messaging.FBS {
 
         var poses = deserialise_poses(reaction.Unobservables.Value);
 
-        return new Unobservables(bodies, poses);
+        return new Unobservables(ref bodies, ref poses);
       }
 
       return new Unobservables();
@@ -107,7 +121,7 @@ namespace droid.Neodroid.Utilities.Messaging.FBS {
             reaction.Parameters.Value.EpisodeCount);
       }
 
-      return new ReactionParameters();
+      return _null_reaction_parameters;
     }
 
     static Configuration[] deserialise_configurations(FReaction reaction) {
@@ -138,50 +152,43 @@ namespace droid.Neodroid.Utilities.Messaging.FBS {
           case FDisplayableValue.NONE: break;
 
           case FDisplayableValue.FValue:
-            return new DisplayableFloat(
-                d.DisplayableName,
-                d.DisplayableValue<FValue>()?.Val);
+            return new DisplayableFloat(d.DisplayableName, d.DisplayableValue<FValue>()?.Val);
 
           case FDisplayableValue.FValues:
             var v3 = d.DisplayableValue<FValues>().GetValueOrDefault();
-            var a1 = new List<float>();
+            _float_out.Clear();
             for (var i = 0; i < v3.ValsLength; i++) {
-              a1.Add((float)v3.Vals(i));
+              _float_out.Add((float)v3.Vals(i));
             }
 
-            return new DisplayableValues(d.DisplayableName, a1.ToArray());
+            return new DisplayableValues(d.DisplayableName, _float_out.ToArray());
 
           case FDisplayableValue.FVector3s:
             var v2 = d.DisplayableValue<FVector3s>().GetValueOrDefault();
-            var a = new List<Vector3>();
+            _vector_out.Clear();
             for (var i = 0; i < v2.PointsLength; i++) {
               var p = v2.Points(i).GetValueOrDefault();
               var v = new Vector3((float)p.X, (float)p.Y, (float)p.Z);
-              a.Add(v);
+              _vector_out.Add(v);
             }
 
-            return new DisplayableVector3S(d.DisplayableName, a.ToArray());
+            return new DisplayableVector3S(d.DisplayableName, _vector_out.ToArray());
 
           case FDisplayableValue.FValuedVector3s:
             var flat_fvec3 = d.DisplayableValue<FValuedVector3s>().GetValueOrDefault();
-            var output = new List<Points.ValuePoint>();
+            _output.Clear();
 
             for (var i = 0; i < flat_fvec3.PointsLength; i++) {
               var val = (float)flat_fvec3.Vals(i);
               var p = flat_fvec3.Points(i).GetValueOrDefault();
-              var v = new Points.ValuePoint(
-                  new Vector3((float)p.X, (float)p.Y, (float)p.Z),
-                  val,
-                  1);
-              output.Add(v);
+              var v = new Points.ValuePoint(new Vector3((float)p.X, (float)p.Y, (float)p.Z), val, 1);
+              _output.Add(v);
             }
 
-            return new DisplayableValuedVector3S(d.DisplayableName, output.ToArray());
+            return new DisplayableValuedVector3S(d.DisplayableName, _output.ToArray());
 
           case FDisplayableValue.FString:
-            return new DisplayableString(
-                d.DisplayableName,
-                d.DisplayableValue<FString>()?.Str);
+            return new DisplayableString(d.DisplayableName, d.DisplayableValue<FString>()?.Str);
 
           case FDisplayableValue.FByteArray: break;
           default: throw new ArgumentOutOfRangeException();
@@ -204,9 +211,7 @@ namespace droid.Neodroid.Utilities.Messaging.FBS {
     static Configuration deserialise_configuration(FConfiguration? configuration) {
       if (configuration.HasValue) {
         var c = configuration.Value;
-        return new Configuration(
-c.ConfigurableName,
-            (float)c.ConfigurableValue);
+        return new Configuration(c.ConfigurableName, (float)c.ConfigurableValue);
       }
 
       return null;
@@ -214,10 +219,7 @@ c.ConfigurableName,
 
     static MotorMotion deserialise_motion(FMotion? motion) {
       if (motion.HasValue) {
-        return new MotorMotion(
-            motion.Value.ActorName,
-            motion.Value.MotorName,
-            (float)motion.Value.Strength);
+        return new MotorMotion(motion.Value.ActorName, motion.Value.MotorName, (float)motion.Value.Strength);
       }
 
       return null;

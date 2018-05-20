@@ -253,17 +253,17 @@ namespace droid.Neodroid.Utilities.Unsorted {
 
       return results.ToArray();
     }
-
+    
     public static GameObject[] FindAllGameObjectsExceptLayer(int layer) {
       var goa = Object.FindObjectsOfType<GameObject>();
-      var gol = new List<GameObject>();
+      var game_objects = new List<GameObject>();
       foreach (var go in goa) {
         if (go.layer != layer) {
-          gol.Add(go);
+          game_objects.Add(go);
         }
       }
 
-      return gol.Count == 0 ? null : gol.ToArray();
+      return game_objects.ToArray();
     }
 
     /// <summary>
@@ -273,20 +273,20 @@ namespace droid.Neodroid.Utilities.Unsorted {
     /// <param name="layer"></param>
     /// <returns></returns>
     public static GameObject[] RecursiveChildGameObjectsExceptLayer(Transform parent, int layer) {
-      var gol = new List<GameObject>();
+      var game_objects = new List<GameObject>();
       foreach (Transform go in parent) {
         if (go) {
           if (go.gameObject.layer != layer) {
-            gol.Add(go.gameObject);
+            game_objects.Add(go.gameObject);
             var children = RecursiveChildGameObjectsExceptLayer(go, layer);
             if (children != null && children.Length > 0) {
-              gol.AddRange(children);
+              game_objects.AddRange(children);
             }
           }
         }
       }
 
-      return gol.Count == 0 ? null : gol.ToArray();
+      return game_objects.ToArray();
     }
 
 

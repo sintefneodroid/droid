@@ -34,7 +34,7 @@ namespace droid.Neodroid.Prototyping.Motors {
       this._rot_z = this.Identifier + "RotZ";
     }
 
-    public override string PrototypingType { get { return "Transform"; } }
+    public override string PrototypingTypeName { get { return "Transform"; } }
 
     protected override void RegisterComponent() {
       this.ParentActor =

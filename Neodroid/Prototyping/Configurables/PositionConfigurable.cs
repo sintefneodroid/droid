@@ -42,7 +42,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
     /// <summary>
     ///
     /// </summary>
-    public override string PrototypingType { get { return "PositionConfigurable"; } }
+    public override string PrototypingTypeName { get { return "PositionConfigurable"; } }
 
     /// <summary>
     ///

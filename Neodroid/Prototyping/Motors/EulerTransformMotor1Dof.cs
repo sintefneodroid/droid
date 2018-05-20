@@ -21,7 +21,7 @@ namespace droid.Neodroid.Prototyping.Motors {
 
     [SerializeField] protected Space _Relative_To = Space.Self;
 
-    public override string PrototypingType { get { return "Transform" + this._Axis_Of_Motion; } }
+    public override string PrototypingTypeName { get { return "Transform" + this._Axis_Of_Motion; } }
 
     protected override void InnerApplyMotion(MotorMotion motion) {
       var layer_mask = 1 << LayerMask.NameToLayer(this._Layer_Mask);

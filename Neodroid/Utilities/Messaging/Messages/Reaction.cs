@@ -106,7 +106,7 @@ namespace droid.Neodroid.Utilities.Messaging.Messages {
     /// <summary>
     ///
     /// </summary>
-    public Unobservables Unobservables { get; } = new Unobservables(null, new Transform[] { });
+    public Unobservables Unobservables { get; } = new Unobservables();
 
     #endregion
   }

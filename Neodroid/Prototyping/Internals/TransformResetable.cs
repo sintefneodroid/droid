@@ -18,7 +18,7 @@ namespace droid.Neodroid.Prototyping.Internals {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingType { get { return "Transform"; } }
+    public override string PrototypingTypeName { get { return "Transform"; } }
 
     /// <summary>
     /// 

@@ -79,7 +79,7 @@ namespace droid.Neodroid.Prototyping.Observers {
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public override string PrototypingType { get { return "Camera"; } }
+    public override string PrototypingTypeName { get { return "Camera"; } }
 
     /// <inheritdoc />
     /// <summary>

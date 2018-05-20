@@ -57,7 +57,13 @@ namespace droid.Neodroid.Managers {
     ///
     /// </summary>
     void MaybeResume() {
-      if (this.TestMotors || (this.CurrentReactions.Length > 0 && this.CurrentReactions[0].Parameters.Step)) {
+      if (this.TestMotors || this.Stepping) {
+        #if NEODROID_DEBUG
+        if(this.Debugging) {
+          Debug.Log("Resuming simulation");
+        }
+        #endif
+
         this.ResumeSimulation(this.Configuration.TimeScale);
       }
     }
@@ -70,7 +76,14 @@ namespace droid.Neodroid.Managers {
     /// <summary>
     ///
     /// </summary>
-    void PauseSimulation() { this.SimulationTime = 0; }
+    void PauseSimulation() {
+      #if NEODROID_DEBUG
+      if(this.Debugging) {
+        Debug.Log("Pausing simulation");
+      }
+      #endif
+      this.SimulationTime = 0;
+    }
 
     /// <summary>
     ///

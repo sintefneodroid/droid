@@ -209,7 +209,7 @@ namespace droid.Neodroid.Prototyping.Actors {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingType { get { return "Actor"; } }
+    public override string PrototypingTypeName { get { return "Actor"; } }
 
     /// <inheritdoc />
     /// <summary>

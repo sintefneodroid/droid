@@ -16,7 +16,7 @@ namespace droid.Neodroid.Prototyping.Observers {
 
     public ValueSpace SingleSpace { get { return this._observation_value_space; } }
 
-    public override string PrototypingType { get { return "Value"; } }
+    public override string PrototypingTypeName { get { return "Value"; } }
 
     public float ObservationValue {
       get { return this._observation_value; }

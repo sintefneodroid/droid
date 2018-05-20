@@ -76,6 +76,6 @@ namespace droid.Neodroid.Utilities.Unsorted {
     protected override void PreStep() { this.ValidateState();  }
     protected override void Step() { this.ValidateState(); }
     protected override void PostStep() { this.ValidateState(); }
-    public override string PrototypingType { get { return "ValidityChecker"; } }
+    public override string PrototypingTypeName { get { return "ValidityChecker"; } }
   }
 }

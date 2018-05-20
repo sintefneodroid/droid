@@ -25,7 +25,7 @@ namespace droid.Neodroid.Prototyping.Motors {
     string _y;
     string _z;
 
-    public override string PrototypingType { get { return "Rigidbody"; } }
+    public override string PrototypingTypeName { get { return "Rigidbody"; } }
 
     protected override void Setup() {
       this._Rigidbody = this.GetComponent<Rigidbody>();

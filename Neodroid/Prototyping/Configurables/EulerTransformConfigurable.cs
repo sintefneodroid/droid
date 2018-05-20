@@ -35,7 +35,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
     string _y;
     string _z;
 
-    public override string PrototypingType { get { return "EulerTransform"; } }
+    public override string PrototypingTypeName { get { return "EulerTransform"; } }
 
     public Vector3 Position { get { return this._position; } set { this._position = value; } }
 

@@ -80,7 +80,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
     /// <summary>
     ///
     /// </summary>
-    public override string PrototypingType { get { return "RigidbodyConfigurable"; } }
+    public override string PrototypingTypeName { get { return "RigidbodyConfigurable"; } }
 
     /// <summary>
     ///

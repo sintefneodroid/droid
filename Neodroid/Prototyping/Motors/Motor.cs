@@ -24,7 +24,7 @@ namespace droid.Neodroid.Prototyping.Motors {
       set { this._motion_value_space = value; }
     }
 
-    public override String PrototypingType { get { return "Motor"; } }
+    public override String PrototypingTypeName { get { return "Motor"; } }
 
     /// <summary>
     ///

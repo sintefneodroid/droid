@@ -22,6 +22,7 @@ namespace droid.Neodroid.Prototyping.Evaluation {
 
     [SerializeField] BoundingBox _playable_area;
     [SerializeField] Coroutine _wait_for_resting;
+    WaitForSeconds _wait_for_seconds = new WaitForSeconds(3f);
 
     /// <summary>
     ///
@@ -58,7 +59,7 @@ namespace droid.Neodroid.Prototyping.Evaluation {
     }
 
     IEnumerator WaitForResting() {
-      yield return new WaitForSeconds(this._resting_time);
+      yield return this._wait_for_seconds;
 
       this._is_resting = true;
     }
@@ -101,6 +102,7 @@ namespace droid.Neodroid.Prototyping.Evaluation {
           null,
           this.OnTriggerStayChild,
           this.Debugging);
+      this._wait_for_seconds= new WaitForSeconds(this._resting_time);
     }
 
     void OnTriggerEnterChild(GameObject child_game_object, Collider other_game_object) {

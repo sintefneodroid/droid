@@ -23,6 +23,7 @@ namespace droid.Neodroid.Prototyping.Displayers {
     [SerializeField] Gradient _gradient;
     [SerializeField] float _size = 0.6f;
     [SerializeField] bool _plot_random_series;
+    List<float> _vs = new List<float>();
 
     protected override void Setup() {
       this._particle_system = this.GetComponent<ParticleSystem>();
@@ -86,12 +87,12 @@ namespace droid.Neodroid.Prototyping.Displayers {
       }
       #endif
 
-      var vs = new List<float>();
+      this._vs.Clear();
       foreach (var value in values.Split(',')) {
-        vs.Add(float.Parse(value));
+        this._vs.Add(float.Parse(value));
       }
 
-      this._values = vs.ToArray();
+      this._values = this._vs.ToArray();
       this.PlotSeries(this._values);
     }
 

@@ -22,7 +22,7 @@ namespace droid.Neodroid.Prototyping.Displayers {
       set { this._environment = value; }
     }
 
-    public override string PrototypingType { get { return "Displayer"; } }
+    public override string PrototypingTypeName { get { return "Displayer"; } }
 
     protected override void RegisterComponent() {
       this.ParentEnvironment = NeodroidUtilities.MaybeRegisterComponent(this.ParentEnvironment, this);

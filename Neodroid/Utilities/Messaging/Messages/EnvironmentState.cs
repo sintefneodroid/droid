@@ -14,9 +14,9 @@ namespace droid.Neodroid.Utilities.Messaging.Messages {
         float time,
         float signal,
         bool terminated,
-        float[] observables,
-        Rigidbody[] bodies,
-        Transform[] poses,
+        ref float[] observables,
+        ref Rigidbody[] bodies,
+        ref Transform[] poses,
         string termination_reason = "",
         EnvironmentDescription description = null,
         string debug_message = "") {
@@ -31,18 +31,44 @@ namespace droid.Neodroid.Utilities.Messaging.Messages {
       this.Time = time;
       this.Terminated = terminated;
       this.Description = description;
-      this.Unobservables = new Unobservables(bodies, poses);
+      this.Unobservables = new Unobservables(ref bodies, ref poses);
+    }
+    
+    public EnvironmentState(
+        string environment_name,
+        float total_energy_spent_since_reset,
+        Dictionary<string, Observer> observations,
+        int frame_number,
+        float time,
+        float signal,
+        bool terminated,
+        ref float[] observables,
+        string termination_reason = "",
+        EnvironmentDescription description = null,
+        string debug_message = "") {
+      this.Observables = observables;
+      this.DebugMessage = debug_message;
+      this.TerminationReason = termination_reason;
+      this.EnvironmentName = environment_name;
+      this.TotalEnergySpentSinceReset = total_energy_spent_since_reset;
+      this.Observations = observations;
+      this.Signal = signal;
+      this.FrameNumber = frame_number;
+      this.Time = time;
+      this.Terminated = terminated;
+      this.Description = description;
     }
 
+    
     public EnvironmentState(
         string environment_name,
         int frame_number,
         float time,
         float signal,
         bool terminated,
-        float[] observables,
-        Rigidbody[] bodies,
-        Transform[] poses,
+        ref float[] observables,
+        ref Rigidbody[] bodies,
+        ref Transform[] poses,
         string termination_reason = "",
         EnvironmentDescription description = null,
         string debug_message = "") {
@@ -55,7 +81,7 @@ namespace droid.Neodroid.Utilities.Messaging.Messages {
       this.Time = time;
       this.Terminated = terminated;
       this.Description = description;
-      this.Unobservables = new Unobservables(bodies, poses);
+      this.Unobservables = new Unobservables(ref bodies, ref poses);
     }
 
     public float[] Observables { get; }

@@ -15,12 +15,13 @@ MonoBehaviour:
   _width: 500
   _height: 500
   _quality_level: 1
-  _frame_finishes: 0
+  _frame_finishes: 3
   _reset_iterations: 1
   _frame_skips: 0
   _simulation_type: 1
   _step_execution_phase: 1
-  _time_scale: 10
-  _target_frame_rate: -1
+  _time_scale: 100
+  _target_frame_rate: 1
   _update_fixed_time_scale: 0
   _max_reply_interval: 0
+  _num_of_environments: 0

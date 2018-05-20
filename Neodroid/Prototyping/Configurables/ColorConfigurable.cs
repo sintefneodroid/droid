@@ -37,7 +37,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
     /// <summary>
     ///
     /// </summary>
-    public override string PrototypingType { get { return "Color"; } }
+    public override string PrototypingTypeName { get { return "Color"; } }
 
     /// <inheritdoc />
     /// <summary>

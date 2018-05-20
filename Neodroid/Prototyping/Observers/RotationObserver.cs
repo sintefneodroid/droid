@@ -19,7 +19,7 @@ namespace droid.Neodroid.Prototyping.Observers {
 
     public ObservationSpace Space { get { return this._space; } }
 
-    public override string PrototypingType { get { return "Position"; } }
+    public override string PrototypingTypeName { get { return "Position"; } }
 
     protected override void PreSetup() {
       this.FloatEnumerable =

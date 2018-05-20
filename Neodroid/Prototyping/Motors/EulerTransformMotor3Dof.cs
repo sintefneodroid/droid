@@ -56,7 +56,7 @@ namespace droid.Neodroid.Prototyping.Motors {
     /// <summary>
     ///
     /// </summary>
-    public override string PrototypingType { get { return "Transform"; } }
+    public override string PrototypingTypeName { get { return "Transform"; } }
 
     /// <summary>
     ///

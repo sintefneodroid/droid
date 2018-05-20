@@ -24,7 +24,7 @@ namespace droid.Neodroid.Prototyping.Observers {
     [SerializeField]
     ValueSpace _observation_value_space;
 
-    public override string PrototypingType { get { return "LineOfSight"; } }
+    public override string PrototypingTypeName { get { return "LineOfSight"; } }
 
     public float ObservationValue {
       get { return this._obs_value; }

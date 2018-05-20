@@ -116,6 +116,8 @@ namespace droid.Neodroid.Utilities.BoundingBoxes {
     Vector3 _top_front_left;
     Vector3 _top_front_right;
 
+    List<Vector3[]> _lines_list = new List<Vector3[]>();
+    
     public Vector3[] BoundingBoxCoordinates {
       get {
         return new[] {
@@ -379,27 +381,27 @@ namespace droid.Neodroid.Utilities.BoundingBoxes {
       var rot = this.transform.rotation;
       var pos = this.transform.position;
 
-      var lines = new List<Vector3[]>();
+      this._lines_list.Clear();
       //int linesCount = 12;
 
       for (var i = 0; i < 4; i++) {
         //width
         var line = new[] {rot * this._corners[2 * i] + pos, rot * this._corners[2 * i + 1] + pos};
-        lines.Add(line);
+        this._lines_list.Add(line);
 
         //height
         line = new[] {rot * this._corners[i] + pos, rot * this._corners[i + 4] + pos};
-        lines.Add(line);
+        this._lines_list.Add(line);
 
         //depth
         line = new[] {rot * this._corners[2 * i] + pos, rot * this._corners[2 * i + 3 - 4 * (i % 2)] + pos};
-        lines.Add(line);
+        this._lines_list.Add(line);
       }
 
-      this._lines = new Vector3[lines.Count, 2];
-      for (var j = 0; j < lines.Count; j++) {
-        this._lines[j, 0] = lines[j][0];
-        this._lines[j, 1] = lines[j][1];
+      this._lines = new Vector3[this._lines_list.Count, 2];
+      for (var j = 0; j < this._lines_list.Count; j++) {
+        this._lines[j, 0] = this._lines_list[j][0];
+        this._lines[j, 1] = this._lines_list[j][1];
       }
     }
 

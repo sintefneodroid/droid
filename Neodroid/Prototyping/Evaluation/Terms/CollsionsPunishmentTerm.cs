@@ -16,6 +16,6 @@ namespace droid.Neodroid.Prototyping.Evaluation.Terms {
       return 0;
     }
 
-    public override string PrototypingType { get { return "CollisionPunishment"; } }
+    public override string PrototypingTypeName { get { return "CollisionPunishment"; } }
   }
 }

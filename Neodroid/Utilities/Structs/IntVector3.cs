@@ -27,10 +27,10 @@ namespace droid.Neodroid.Utilities.Structs {
       this._Z = z;
     }
 
-    public int x { get { return this._X; } set { this._X = value; } }
+    public int X { get { return this._X; } set { this._X = value; } }
 
-    public int y { get { return this._Y; } set { this._Y = value; } }
+    public int Y { get { return this._Y; } set { this._Y = value; } }
 
-    public int z { get { return this._Z; } set { this._Z = value; } }
+    public int Z { get { return this._Z; } set { this._Z = value; } }
   }
 }

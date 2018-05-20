@@ -9,7 +9,7 @@ namespace droid.Neodroid.Prototyping.Motors {
     [SerializeField] protected string _Layer_Mask = "Obstructions";
     [SerializeField] protected bool _No_Collisions = true;
     [SerializeField] protected Space _Relative_To = Space.Self;
-    public override string PrototypingType { get { return "Index"; } }
+    public override string PrototypingTypeName { get { return "Index"; } }
 
     protected override void InnerApplyMotion(MotorMotion motion) {
       var layer_mask = 1 << LayerMask.NameToLayer(this._Layer_Mask);
