@@ -25,7 +25,7 @@ namespace droid.Neodroid.Utilities.Segmentation {
     /// <summary>
     ///
     /// </summary>
-    public Dictionary<GameObject, Color> InstanceColorsDict { get; private set; }
+    public Dictionary<GameObject, Color> InstanceColorsDict { get; private set; } = new Dictionary<GameObject, Color>();
 
     /// <summary>
     ///
@@ -90,7 +90,7 @@ namespace droid.Neodroid.Utilities.Segmentation {
         this._block = new MaterialPropertyBlock();
       }
 
-      this.InstanceColorsDict = new Dictionary<GameObject, Color>(this._all_renders.Length);
+      this.InstanceColorsDict.Clear();
       foreach (var rend in this._all_renders) {
         if (rend) {
           this.InstanceColorsDict.Add(rend.gameObject, Random.ColorHSV());

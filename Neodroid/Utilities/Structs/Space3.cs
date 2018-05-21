@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace droid.Neodroid.Utilities.Structs {
   [Serializable]
@@ -16,6 +17,14 @@ namespace droid.Neodroid.Utilities.Structs {
 
     public Vector3 Span { get { return this._Max_Values - this._Min_Values; } }
 
+    public Vector3 RandomVector3() {
+      var x = Random.Range(this._Min_Values.x, this._Max_Values.x);
+      var y = Random.Range(this._Min_Values.y, this._Max_Values.y);
+      var z = Random.Range(this._Min_Values.z, this._Max_Values.z);
+      
+      return new Vector3(x,y,z);
+    }
+    
     public Vector3 ClipNormaliseRound(Vector3 v) {
       if (v.x > this._Max_Values.x) {
         v.x = this._Max_Values.x;

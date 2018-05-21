@@ -9,7 +9,7 @@ using UnityEngine;
 namespace droid.Neodroid.Prototyping.Motors {
   [ExecuteInEditMode]
   [Serializable]
-  public class Motor : PrototypingGameObject {
+  public abstract class Motor : PrototypingGameObject {
     public Actor ParentActor { get { return this._actor; } set { this._actor = value; } }
 
     public float EnergySpendSinceReset {

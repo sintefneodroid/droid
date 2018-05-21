@@ -38,8 +38,7 @@ namespace droid.Neodroid.Editor.Windows {
     /// <summary>
     ///
     /// </summary>
-    [SerializeField]
-    bool _refresh_enabled;
+    bool _refresh_enabled=false;
 
     /// <summary>
     ///
@@ -56,10 +55,10 @@ namespace droid.Neodroid.Editor.Windows {
     /// </summary>
     void OnEnable() {
       this._icon = (Texture2D)AssetDatabase.LoadAssetAtPath(
-          "Assets/Neodroid/Gizmos/Icons/world.png",
+          "Assets/droid/Neodroid/Gizmos/Icons/world.png",
           typeof(Texture2D));
       this._neodroid_icon = (Texture)AssetDatabase.LoadAssetAtPath(
-          "Assets/Neodroid/Gizmos/Icons/neodroid_favicon_cut.png",
+          "Assets/droid/Neodroid/Gizmos/Icons/neodroid_favicon_cut.png",
           typeof(Texture));
       this.titleContent = new GUIContent("Neo:Sim", this._icon, "Window for configuring simulation");
       this.Setup();

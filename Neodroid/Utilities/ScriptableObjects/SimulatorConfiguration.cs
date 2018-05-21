@@ -152,6 +152,10 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
     /// </summary>
     [SerializeField]
     [Range(0, 999)] int _num_of_environments;
+    
+    
+    [SerializeField] bool _do_serialise_unobservables;
+    [SerializeField] bool _do_serialise_indidual_observables;
 
     /// <summary>
     ///
@@ -313,6 +317,15 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
       set { this._update_fixed_time_scale = value; }
     }
 
+    public Boolean DoSerialiseUnobservables {
+      get { return this._do_serialise_unobservables; }
+      set { this._do_serialise_unobservables = value; }
+    }
+
+    public Boolean DoSerialiseIndidualObservables {
+      get { return this._do_serialise_indidual_observables; }
+      set { this._do_serialise_indidual_observables = value; }
+    }
 
     #endregion
   }

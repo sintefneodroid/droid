@@ -35,7 +35,7 @@ namespace droid.Neodroid.Utilities.Segmentation {
     /// <summary>
     ///
     /// </summary>
-    Dictionary<string, Color> _tag_colors;
+    Dictionary<string, Color> _tag_colors= new Dictionary<string, Color>();
 
     /// <summary>
     ///
@@ -52,7 +52,7 @@ namespace droid.Neodroid.Utilities.Segmentation {
     /// </summary>
     void Awake() {
       this._block = new MaterialPropertyBlock();
-      this._tag_colors = new Dictionary<string, Color>();
+      this._tag_colors.Clear();
       if (this._Colors_By_Tag.Length > 0) {
         foreach (var tag_color in this._Colors_By_Tag) {
           if (!this._tag_colors.ContainsKey(tag_color._Tag)) {

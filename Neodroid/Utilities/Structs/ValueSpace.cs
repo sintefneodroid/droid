@@ -1,4 +1,5 @@
 ﻿using System;
+using Random = UnityEngine.Random;
 
 namespace droid.Neodroid.Utilities.Structs {
   [Serializable]
@@ -13,6 +14,12 @@ namespace droid.Neodroid.Utilities.Structs {
       this._Max_Value = 100f; //float.PositiveInfinity;
     }
 
+    public float RandomValue() {
+      var x = Random.Range(this._Min_Value, this._Max_Value);
+
+      return x;
+    }
+    
     public float Span { get { return this._Max_Value - this._Min_Value; } }
 
     public float ClipNormaliseRound(float v) {

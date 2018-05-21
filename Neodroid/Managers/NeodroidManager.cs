@@ -58,9 +58,6 @@ namespace droid.Neodroid.Managers {
     [SerializeField]
     SimulatorConfiguration _configuration;
 
-    [SerializeField] bool _do_serialise_unobservables;
-    [SerializeField] bool _serialise_indidual_observables;
-
     /// <summary>
     ///
     /// </summary>
@@ -328,7 +325,7 @@ namespace droid.Neodroid.Managers {
     /// <summary>
     ///
     /// </summary>
-    public void Clear() { this._Environments = new Dictionary<string, NeodroidEnvironment>(); }
+    public void Clear() { this._Environments.Clear(); }
 
     /// <summary>
     ///
@@ -648,7 +645,7 @@ namespace droid.Neodroid.Managers {
     void Reply(EnvironmentState[] states) {
       lock (this._send_lock) {
         var configuration_message = new SimulatorConfigurationMessage(this.Configuration);
-        this._Message_Server.SendStates(states,simulator_configuration_message:configuration_message,do_serialise_unobservables:this._do_serialise_unobservables,serialise_indidual_observables:this._serialise_indidual_observables);
+        this._Message_Server.SendStates(states,simulator_configuration_message:configuration_message,do_serialise_unobservables:this.Configuration.DoSerialiseUnobservables,serialise_indidual_observables:this.Configuration.DoSerialiseIndidualObservables);
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log("Replying");

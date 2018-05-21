@@ -89,8 +89,8 @@ namespace droid.Neodroid.Prototyping.Evaluation {
     /// <summary>
     /// </summary>
     protected override void Clear() {
-      this._Extra_Term_Weights = new Dictionary<Term, float>();
-      this._Extra_Terms_Dict = new Dictionary<string, Term>();
+      this._Extra_Term_Weights.Clear();
+      this._Extra_Terms_Dict.Clear();
     }
 
     /// <summary>

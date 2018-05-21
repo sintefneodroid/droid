@@ -992,7 +992,7 @@ namespace droid.Neodroid.Environments {
 
         var signal = 0f;
         //if (!this._Terminated) {
-        if (this._objective_function != null) {
+        if (this._objective_function) {
           signal = this._objective_function.Evaluate();
         }
         //}
@@ -1005,7 +1005,7 @@ namespace droid.Neodroid.Environments {
           }
           #endif
           var threshold = 0f;
-          if (this._objective_function != null) {
+          if (this._objective_function) {
             threshold = this._objective_function.SolvedThreshold;
           }
 

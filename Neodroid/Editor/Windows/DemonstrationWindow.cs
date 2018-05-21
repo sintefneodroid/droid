@@ -22,7 +22,7 @@ namespace droid.Neodroid.Editor.Windows {
 
     void OnEnable() {
       this._icon = (Texture2D)AssetDatabase.LoadAssetAtPath(
-          "Assets/Neodroid/Gizmos/Icons/bullet_red.png",
+          "Assets/droid/Neodroid/Gizmos/Icons/bullet_red.png",
           typeof(Texture2D));
       this.titleContent = new GUIContent("Neo:Rec", this._icon, "Window for recording demonstrations");
     }

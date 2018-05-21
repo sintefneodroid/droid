@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using droid.Neodroid.Environments;
 using droid.Neodroid.Prototyping.Motors;
 using droid.Neodroid.Utilities.BoundingBoxes;
@@ -6,7 +7,9 @@ using droid.Neodroid.Utilities.GameObjects;
 using droid.Neodroid.Utilities.Interfaces;
 using droid.Neodroid.Utilities.Messaging.Messages;
 using droid.Neodroid.Utilities.Unsorted;
+using UnityEditor;
 using UnityEngine;
+using Object = System.Object;
 
 namespace droid.Neodroid.Prototyping.Actors {
   /// <inheritdoc cref="PrototypingGameObject" />
@@ -53,12 +56,27 @@ namespace droid.Neodroid.Prototyping.Actors {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void Setup() { }
+    protected override void Setup() {
+      #if UNITY_EDITOR
+      if (!Application.isPlaying) {
+        var manager_script = MonoScript.FromMonoBehaviour(this);
+        if (MonoImporter.GetExecutionOrder(manager_script) != this._script_execution_order) {
+          MonoImporter.SetExecutionOrder(
+              manager_script,
+              this._script_execution_order); // Ensures that PreStep is called first, before all other scripts.
+          Debug.LogWarning(
+              "Execution Order changed, you will need to press play again to make everything function correctly!");
+          EditorApplication.isPlaying = false;
+          //TODO: UnityEngine.Experimental.LowLevel.PlayerLoop.SetPlayerLoop(new UnityEngine.Experimental.LowLevel.PlayerLoopSystem());
+        }
+      }
+      #endif
+    }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void Clear() { this._Motors = new Dictionary<string, Motor>(); }
+    protected override void Clear() { this._Motors.Clear(); }
 
     /// <inheritdoc />
     /// <summary>
@@ -134,10 +152,6 @@ namespace droid.Neodroid.Prototyping.Actors {
       }
       #endif
 
-      if (this._Motors == null) {
-        this._Motors = new Dictionary<string, Motor>();
-      }
-
       if (!this._Motors.ContainsKey(identifier)) {
         this._Motors.Add(identifier, motor);
       } else {
@@ -200,8 +214,12 @@ namespace droid.Neodroid.Prototyping.Actors {
     /// </summary>
     [Header("General", order = 101)]
     [SerializeField]
-    protected Dictionary<string, Motor> _Motors;
+    protected Dictionary<string, Motor> _Motors = new Dictionary<string, Motor>();
 
+    #if UNITY_EDITOR
+    [SerializeField] int _script_execution_order = -10;
+    #endif
+    
     #endregion
 
     #region Getters

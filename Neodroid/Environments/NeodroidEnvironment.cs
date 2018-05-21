@@ -5,6 +5,7 @@ using droid.Neodroid.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted
 using droid.Neodroid.Utilities.GameObjects;
 using droid.Neodroid.Utilities.Messaging.Messages;
 using droid.Neodroid.Utilities.Unsorted;
+using UnityEditor;
 using UnityEngine;
 
 namespace droid.Neodroid.Environments {
@@ -51,6 +52,9 @@ namespace droid.Neodroid.Environments {
     /// </summary>
     protected bool _Terminated;
 
+    #if UNITY_EDITOR
+    [SerializeField] int _script_execution_order = -20;
+    #endif
     
     /// <summary>
     /// 
@@ -142,6 +146,21 @@ namespace droid.Neodroid.Environments {
       if (!this._Simulation_Manager) {
         this._Simulation_Manager = FindObjectOfType<NeodroidManager>();
       }
+      
+      #if UNITY_EDITOR
+      if (!Application.isPlaying) {
+        var manager_script = MonoScript.FromMonoBehaviour(this);
+        if (MonoImporter.GetExecutionOrder(manager_script) != this._script_execution_order) {
+          MonoImporter.SetExecutionOrder(
+              manager_script,
+              this._script_execution_order); // Ensures that PreStep is called first, before all other scripts.
+          Debug.LogWarning(
+              "Execution Order changed, you will need to press play again to make everything function correctly!");
+          EditorApplication.isPlaying = false;
+          //TODO: UnityEngine.Experimental.LowLevel.PlayerLoop.SetPlayerLoop(new UnityEngine.Experimental.LowLevel.PlayerLoopSystem());
+        }
+      }
+      #endif
     }
 
     /// <inheritdoc />
