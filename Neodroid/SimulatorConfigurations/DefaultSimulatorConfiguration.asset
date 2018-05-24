@@ -14,7 +14,7 @@ MonoBehaviour:
   _full_screen: 0
   _width: 800
   _height: 600
-  _quality_level: 2
+  _quality_level: 4
   _frame_finishes: 3
   _reset_iterations: 1
   _frame_skips: 0
@@ -25,3 +25,5 @@ MonoBehaviour:
   _update_fixed_time_scale: 0
   _max_reply_interval: 0
   _num_of_environments: 0
+  _do_serialise_unobservables: 0
+  _do_serialise_indidual_observables: 0
