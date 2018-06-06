@@ -30,11 +30,11 @@ namespace droid.Neodroid.Utilities.Messaging {
     ///
     /// </summary>
     Thread _polling_thread;
-#if NEODROID_DEBUG
+    #if NEODROID_DEBUG
     int _last_send_frame_number = 0;
 
     float _last_send_time = 0;
-#endif
+    #endif
 
     /// <summary>
     ///
@@ -146,9 +146,8 @@ namespace droid.Neodroid.Utilities.Messaging {
           byte[] msg;
 
           if (wait_time > TimeSpan.Zero) {
-
             #if NEODROID_DEBUG
-                        var received = this._socket.TryReceiveFrameBytes(wait_time, out msg);
+            var received = this._socket.TryReceiveFrameBytes(wait_time, out msg);
             if (this.Debugging) {
               if (received) {
                 Debug.Log($"Received frame bytes");
@@ -160,7 +159,8 @@ namespace droid.Neodroid.Utilities.Messaging {
             this._socket.TryReceiveFrameBytes(wait_time, out msg);
             #endif
           } else {
-            msg = this._socket.ReceiveFrameBytes(); //TODO: Occasionally receives non-valid reactions framebytes either before or after a valid reaction.
+            msg = this._socket
+                .ReceiveFrameBytes(); //TODO: Occasionally receives non-valid reactions framebytes either before or after a valid reaction.
           }
 
           if (msg != null) { //&& msg.Length >= 4) {
@@ -238,9 +238,12 @@ namespace droid.Neodroid.Utilities.Messaging {
     /// <param name="serialise_indidual_observables"></param>
     /// <param name="simulator_configuration_message"></param>
     /// <param name="api_vesion"></param>
-    public void SendStates(EnvironmentState[] environment_states,bool do_serialise_unobservables=false ,bool 
-        serialise_indidual_observables=false,SimulatorConfigurationMessage simulator_configuration_message=null,string 
-        api_vesion=_api_version) {
+    public void SendStates(
+        EnvironmentState[] environment_states,
+        bool do_serialise_unobservables = false,
+        bool serialise_indidual_observables = false,
+        SimulatorConfigurationMessage simulator_configuration_message = null,
+        string api_vesion = _api_version) {
       lock (this._thread_lock) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
@@ -274,7 +277,12 @@ namespace droid.Neodroid.Utilities.Messaging {
         }
         #endif
 
-        this._byte_buffer = FbsStateUtilities.serialise_states(environment_states,do_serialise_unobservables:do_serialise_unobservables,serialise_indidual_observables:serialise_indidual_observables,simulator_configuration:simulator_configuration_message,api_version:api_vesion);
+        this._byte_buffer = FbsStateUtilities.serialise_states(
+            environment_states,
+            do_serialise_unobservables : do_serialise_unobservables,
+            serialise_indidual_observables : serialise_indidual_observables,
+            simulator_configuration : simulator_configuration_message,
+            api_version : api_vesion);
         this._socket.SendFrame(this._byte_buffer);
         this._waiting_for_main_loop_to_send = false;
       }

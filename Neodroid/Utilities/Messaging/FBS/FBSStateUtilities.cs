@@ -45,11 +45,9 @@ namespace droid.Neodroid.Utilities.Messaging.FBS {
       }
 
       var states_vector_offset = FStates.CreateStatesVector(b, state_offsets);
-      
+
       var api_version_offset = b.CreateString(api_version);
 
-      
-      
       FStates.StartFStates(b);
       FStates.AddStates(b, states_vector_offset);
       FStates.AddApiVersion(b, api_version_offset);
@@ -102,9 +100,9 @@ namespace droid.Neodroid.Utilities.Messaging.FBS {
 
       var observers_vector = _null_vector_offset;
       if (serialise_indidual_observables) {
-        var observations = state.Observations.Values;
+        var observations = state.Observers;
 
-        var observers = new Offset<FOBS>[observations.Count];
+        var observers = new Offset<FOBS>[observations.Length];
         var k = 0;
         foreach (var observer in observations) {
           observers[k++] = serialise_observer(b, observer);

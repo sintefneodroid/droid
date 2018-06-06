@@ -5,7 +5,7 @@ namespace droid.Neodroid.Utilities.BoundingBoxes {
   [ExecuteInEditMode]
   public class ShowBoundingBoxes : MonoBehaviour {
     public GameObject _Line_Object;
-    Dictionary<GameObject, GameObject> _lines= new Dictionary<GameObject, GameObject>();
+    Dictionary<GameObject, GameObject> _lines = new Dictionary<GameObject, GameObject>();
 
     MeshFilter[] _mesh_filter_objects;
     public Color _Color = Color.green;

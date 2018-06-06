@@ -25,15 +25,15 @@ namespace droid.Neodroid.Utilities.Structs {
       var y = Random.Range(this._Min_Values.y, this._Max_Values.y);
       var z = Random.Range(this._Min_Values.z, this._Max_Values.z);
       var w = Random.Range(this._Min_Values.w, this._Max_Values.w);
-      
-      return new Vector4(x,y,z,w);
+
+      return new Vector4(x, y, z, w);
     }
 
     public Quaternion RandomQuaternion() {
       var vector = this.RandomVector4();
-      return new Quaternion(vector.x,vector.y,vector.z,vector.w);
+      return new Quaternion(vector.x, vector.y, vector.z, vector.w);
     }
-    
+
     public Vector4 ClipNormaliseRound(Vector4 v) {
       if (v.x > this._Max_Values.x) {
         v.x = this._Max_Values.x;

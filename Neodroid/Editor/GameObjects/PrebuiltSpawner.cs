@@ -5,6 +5,7 @@ using droid.Neodroid.Prototyping.Actors;
 using droid.Neodroid.Prototyping.Configurables;
 using droid.Neodroid.Prototyping.Motors;
 using droid.Neodroid.Prototyping.Observers;
+using droid.Neodroid.Prototyping.Observers.Transform;
 using droid.Neodroid.Utilities.BoundingBoxes;
 using UnityEditor;
 using UnityEngine;

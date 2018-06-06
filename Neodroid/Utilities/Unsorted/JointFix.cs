@@ -1,7 +1,11 @@
 ﻿using System;
 using UnityEngine;
+using Object = System.Object;
 
 namespace droid.Neodroid.Utilities.Unsorted {
+  /// <inheritdoc />
+  /// <summary>
+  /// </summary>
   [RequireComponent(typeof(Joint))]
   public class JointFix : MonoBehaviour {
     JointDrive[] _angular_x_drive;
@@ -28,6 +32,16 @@ namespace droid.Neodroid.Utilities.Unsorted {
     ConfigurableJointMotion[] _y_motion;
     ConfigurableJointMotion[] _z_ang_motion;
     ConfigurableJointMotion[] _z_motion;
+    Vector3[] _target_angulars;
+    Vector3[] _target_positions;
+    Vector3[] _target_velocities;
+    JointDrive[] _x_drives;
+    JointDrive[] _y_drives;
+    JointDrive[] _z_drives;
+    SoftJointLimit[] _linear_limits;
+    SoftJointLimitSpring[] _linear_limit_springs;
+    JointDrive[] _slerp_drives;
+    bool[] _enable_processings;
 
     void Awake() { this.Setup(); }
 
@@ -35,27 +49,39 @@ namespace droid.Neodroid.Utilities.Unsorted {
       this._initial_local_rotation = this.transform.localRotation;
       this._initial_local_position = this.transform.localPosition;
       this._joints = this.GetComponents<Joint>();
-      this._connected_bodies = new Rigidbody[this._joints.Length];
-      this._joint_types = new Type[this._joints.Length];
-      this._x_ang_low_limits = new SoftJointLimit[this._joints.Length];
-      this._x_ang_high_limits = new SoftJointLimit[this._joints.Length];
-      this._limits = new JointLimits[this._joints.Length];
-      this._force_break_limits = new float[this._joints.Length];
-      this._torque_break_limits = new float[this._joints.Length];
-      this._x_motion = new ConfigurableJointMotion[this._joints.Length];
-      this._y_motion = new ConfigurableJointMotion[this._joints.Length];
-      this._z_motion = new ConfigurableJointMotion[this._joints.Length];
-      this._x_ang_motion = new ConfigurableJointMotion[this._joints.Length];
-      this._y_ang_motion = new ConfigurableJointMotion[this._joints.Length];
-      this._z_ang_motion = new ConfigurableJointMotion[this._joints.Length];
-      this._angular_x_drive = new JointDrive[this._joints.Length];
-      this._target_rotations = new Quaternion[this._joints.Length];
+      var length = this._joints.Length;
+      this._connected_bodies = new Rigidbody[length];
+      this._joint_types = new Type[length];
+      this._x_ang_low_limits = new SoftJointLimit[length];
+      this._x_ang_high_limits = new SoftJointLimit[length];
+      this._limits = new JointLimits[length];
+      this._force_break_limits = new float[length];
+      this._torque_break_limits = new float[length];
+      this._x_motion = new ConfigurableJointMotion[length];
+      this._y_motion = new ConfigurableJointMotion[length];
+      this._z_motion = new ConfigurableJointMotion[length];
+      this._x_ang_motion = new ConfigurableJointMotion[length];
+      this._y_ang_motion = new ConfigurableJointMotion[length];
+      this._z_ang_motion = new ConfigurableJointMotion[length];
+      this._angular_x_drive = new JointDrive[length];
+      this._target_rotations = new Quaternion[length];
+      this._target_angulars = new Vector3[length];
+      this._target_positions = new Vector3[length];
+      this._target_velocities = new Vector3[length];
+      this._x_drives = new JointDrive[length];
+      this._y_drives = new JointDrive[length];
+      this._z_drives = new JointDrive[length];
+      this._linear_limits = new SoftJointLimit[length];
+      this._linear_limit_springs = new SoftJointLimitSpring[length];
+      this._slerp_drives = new JointDrive[length];
+      this._enable_processings = new bool[length];
 
-      for (var i = 0; i < this._joints.Length; i++) {
+      for (var i = 0; i < length; i++) {
         this._connected_bodies[i] = this._joints[i].connectedBody;
         this._joint_types[i] = this._joints[i].GetType();
         this._force_break_limits[i] = this._joints[i].breakForce;
         this._torque_break_limits[i] = this._joints[i].breakTorque;
+        this._enable_processings[i] = this._joints[i].enablePreprocessing;
         if (this._joints[i] is HingeJoint) {
           this._limits[i] = ((HingeJoint)this._joints[i]).limits;
         } else if (this._joints[i] is ConfigurableJoint) {
@@ -69,6 +95,15 @@ namespace droid.Neodroid.Utilities.Unsorted {
           this._z_ang_motion[i] = ((ConfigurableJoint)this._joints[i]).angularZMotion;
           this._angular_x_drive[i] = ((ConfigurableJoint)this._joints[i]).angularXDrive;
           this._target_rotations[i] = ((ConfigurableJoint)this._joints[i]).targetRotation;
+          this._linear_limits[i] = ((ConfigurableJoint)this._joints[i]).linearLimit;
+          this._slerp_drives[i] = ((ConfigurableJoint)this._joints[i]).slerpDrive;
+          this._linear_limit_springs[i] = ((ConfigurableJoint)this._joints[i]).linearLimitSpring;
+          this._x_drives[i] = ((ConfigurableJoint)this._joints[i]).xDrive;
+          this._y_drives[i] = ((ConfigurableJoint)this._joints[i]).yDrive;
+          this._z_drives[i] = ((ConfigurableJoint)this._joints[i]).zDrive;
+          this._target_positions[i] = ((ConfigurableJoint)this._joints[i]).targetPosition;
+          this._target_velocities[i] = ((ConfigurableJoint)this._joints[i]).targetVelocity;
+          this._target_angulars[i] = ((ConfigurableJoint)this._joints[i]).targetAngularVelocity;
         }
       }
     }
@@ -109,6 +144,7 @@ namespace droid.Neodroid.Utilities.Unsorted {
 
         this._joints[i].breakForce = this._force_break_limits[i];
         this._joints[i].breakTorque = this._torque_break_limits[i];
+        this._joints[i].enablePreprocessing = this._enable_processings[i];
 
         if (this._joints[i] is HingeJoint) {
           ((HingeJoint)this._joints[i]).limits = this._limits[i];
@@ -125,6 +161,15 @@ namespace droid.Neodroid.Utilities.Unsorted {
           ((ConfigurableJoint)this._joints[i]).angularZMotion = this._z_ang_motion[i];
           ((ConfigurableJoint)this._joints[i]).angularXDrive = this._angular_x_drive[i];
           ((ConfigurableJoint)this._joints[i]).targetRotation = this._target_rotations[i];
+          ((ConfigurableJoint)this._joints[i]).linearLimit = this._linear_limits[i];
+          ((ConfigurableJoint)this._joints[i]).linearLimitSpring = this._linear_limit_springs[i];
+          ((ConfigurableJoint)this._joints[i]).xDrive = this._x_drives[i];
+          ((ConfigurableJoint)this._joints[i]).yDrive = this._y_drives[i];
+          ((ConfigurableJoint)this._joints[i]).zDrive = this._z_drives[i];
+          ((ConfigurableJoint)this._joints[i]).targetPosition = this._target_positions[i];
+          ((ConfigurableJoint)this._joints[i]).targetVelocity = this._target_velocities[i];
+          ((ConfigurableJoint)this._joints[i]).targetAngularVelocity = this._target_angulars[i];
+          ((ConfigurableJoint)this._joints[i]).slerpDrive = this._slerp_drives[i];
         }
       }
     }

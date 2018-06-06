@@ -2,25 +2,24 @@
 using droid.Neodroid.Utilities.Structs;
 using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Observers {
+namespace droid.Neodroid.Prototyping.Observers.Rigidbody {
   [AddComponentMenu(
       ObserverComponentMenuPath._ComponentMenuPath + "Rigidbody" + ObserverComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
-  [RequireComponent(typeof(Rigidbody))]
+  [RequireComponent(typeof(UnityEngine.Rigidbody))]
   public class RigidbodyObserver : Observer,
                                    IHasRigidbody {
-
-
     [Header("Observation", order = 100)]
     [SerializeField]
     Vector3 _angular_velocity;
+
     [SerializeField] Vector3 _velocity;
 
     [SerializeField] float _last_update_time;
 
     [Header("Configuration", order = 110)]
     [SerializeField]
-    Rigidbody _rigidbody;
+    UnityEngine.Rigidbody _rigidbody;
 
     [SerializeField] bool _differential;
     [SerializeField] Space3 _velocity_space = new Space3(10);
@@ -42,30 +41,21 @@ namespace droid.Neodroid.Prototyping.Observers {
     public Vector3 Velocity {
       get { return this._velocity; }
       set {
-        this._velocity = this.NormaliseObservation
-                             ? this._velocity_space.ClipNormaliseRound(value)
-                             : value;
+        this._velocity = this.NormaliseObservation ? this._velocity_space.ClipNormaliseRound(value) : value;
       }
     }
 
     public Vector3 AngularVelocity {
       get { return this._angular_velocity; }
       set {
-        this._angular_velocity = this.NormaliseObservation
-                                     ? this._angular_space.ClipNormaliseRound(value)
-                                     : value;
+        this._angular_velocity =
+            this.NormaliseObservation ? this._angular_space.ClipNormaliseRound(value) : value;
       }
     }
 
-    public Space3 VelocitySpace {
-      get {
-        return this._velocity_space;
-      }
-    }
+    public Space3 VelocitySpace { get { return this._velocity_space; } }
 
-    public Space3 AngularSpace {
-      get { return this._angular_space; }
-    }
+    public Space3 AngularSpace { get { return this._angular_space; } }
 
     public override void UpdateObservation() {
       var update_time_difference = Time.time - this._last_update_time;
@@ -104,7 +94,7 @@ namespace droid.Neodroid.Prototyping.Observers {
     /// 
     /// </summary>
     protected override void PreSetup() {
-      this._rigidbody = this.GetComponent<Rigidbody>();
+      this._rigidbody = this.GetComponent<UnityEngine.Rigidbody>();
       this.FloatEnumerable = new[] {
           this.Velocity.x,
           this.Velocity.y,

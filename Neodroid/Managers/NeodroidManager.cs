@@ -22,7 +22,7 @@ namespace droid.Neodroid.Managers {
   /// </summary>
   [AddComponentMenu("Neodroid/Managers/VanillaManager")]
   public abstract class NeodroidManager : MonoBehaviour,
-                                 IHasRegister<NeodroidEnvironment> {
+                                          IHasRegister<NeodroidEnvironment> {
     #region PrivateFields
 
     /// <summary>
@@ -49,7 +49,7 @@ namespace droid.Neodroid.Managers {
     /// </summary>
     [SerializeField]
     int _script_execution_order = -1000;
-#endif
+    #endif
 
     /// <summary>
     ///
@@ -61,7 +61,6 @@ namespace droid.Neodroid.Managers {
     /// <summary>
     ///
     /// </summary>
-
     int _skip_frame_i;
 
     /// <summary>
@@ -85,12 +84,11 @@ namespace droid.Neodroid.Managers {
     /// <summary>
     ///
     /// </summary>
-
     bool _awaiting_reply;
 
     bool _step;
-    
-    WaitForEndOfFrame _wait_for_end_of_frame= new WaitForEndOfFrame();
+
+    WaitForEndOfFrame _wait_for_end_of_frame = new WaitForEndOfFrame();
     WaitForFixedUpdate _wait_for_fixed_update = new WaitForFixedUpdate();
     List<Reaction> _sample_reactions = new List<Reaction>();
 
@@ -188,11 +186,7 @@ namespace droid.Neodroid.Managers {
     void CreateMessagingServer() {
       try {
         if (this.IpAddress != "" || this.Port != 0) {
-          this._Message_Server = new MessageServer(
-              this.IpAddress,
-              this.Port,
-              false,
-              this.Debugging);
+          this._Message_Server = new MessageServer(this.IpAddress, this.Port, false, this.Debugging);
         } else {
           this._Message_Server = new MessageServer(this.Debugging);
         }
@@ -310,7 +304,7 @@ namespace droid.Neodroid.Managers {
       set { this._syncing_environments = value; }
     }
 
-    public bool Stepping { get { return this._step; }}
+    public bool Stepping { get { return this._step; } }
 
     #endregion
 
@@ -335,8 +329,7 @@ namespace droid.Neodroid.Managers {
     /// <summary>
     ///
     /// </summary>
-    protected Reaction[] _Current_Reactions =
-        new Reaction[] { };
+    protected Reaction[] _Current_Reactions = new Reaction[] { };
 
     #endregion
 
@@ -350,12 +343,13 @@ namespace droid.Neodroid.Managers {
         Instance = this;
       } else if (Instance == this) {
         #if NEODROID_DEBUG
-        if(this.Debugging){
-        Debug.Log("Using " + Instance);
-}
+        if (this.Debugging) {
+          Debug.Log("Using " + Instance);
+        }
         #endif
-      }else {
-        Debug.LogWarning("WARNING! There are multiple SimulationManagers in the scene! Only using " + Instance);
+      } else {
+        Debug.LogWarning(
+            "WARNING! There are multiple SimulationManagers in the scene! Only using " + Instance);
       }
 
       #if UNITY_EDITOR
@@ -564,8 +558,6 @@ namespace droid.Neodroid.Managers {
         var states = this.CollectStates();
         this.PostReact(states);
       }
-
-
     }
 
     /// <summary>
@@ -575,12 +567,10 @@ namespace droid.Neodroid.Managers {
       foreach (var environment in this._Environments.Values) {
         environment.PostStep();
       }
-      
+
       if (this.Configuration.StepExecutionPhase == ExecutionPhase.After_) {
         this.ExecuteStep();
       }
-
-
     }
 
     /// <summary>
@@ -595,7 +585,6 @@ namespace droid.Neodroid.Managers {
             if (this.Debugging) {
               Debug.Log($"Environment {env} is resetting");
             }
-
             #endif
 
             this._syncing_environments = true;
@@ -615,15 +604,17 @@ namespace droid.Neodroid.Managers {
             Debug.Log($"Skipping frame, {this._skip_frame_i}/{this.Configuration.FrameSkips}");
           }
           #endif
+          var replay_reaction_in_skips = false;
+          if (replay_reaction_in_skips) {
+            return;
+          }
         }
-        
+
         this._step = false;
         this.ClearCurrentReactions();
       }
     }
 
-
-    
     /// <summary>
     ///
     /// </summary>
@@ -645,7 +636,11 @@ namespace droid.Neodroid.Managers {
     void Reply(EnvironmentState[] states) {
       lock (this._send_lock) {
         var configuration_message = new SimulatorConfigurationMessage(this.Configuration);
-        this._Message_Server.SendStates(states,simulator_configuration_message:configuration_message,do_serialise_unobservables:this.Configuration.DoSerialiseUnobservables,serialise_indidual_observables:this.Configuration.DoSerialiseIndidualObservables);
+        this._Message_Server.SendStates(
+            states,
+            simulator_configuration_message : configuration_message,
+            do_serialise_unobservables : this.Configuration.DoSerialiseUnobservables,
+            serialise_indidual_observables : this.Configuration.DoSerialiseIndidualObservables);
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log("Replying");
@@ -669,8 +664,7 @@ namespace droid.Neodroid.Managers {
     /// </summary>
     /// <param name="reaction"></param>
     /// <returns></returns>
-    public EnvironmentState[] ReactAndCollectStates(
-        Reaction reaction) {
+    public EnvironmentState[] ReactAndCollectStates(Reaction reaction) {
       this.SetStepping(reaction);
       var states = new EnvironmentState[this._Environments.Values.Count];
       var i = 0;
@@ -686,11 +680,9 @@ namespace droid.Neodroid.Managers {
           }
           #if NEODROID_DEBUG
           else {
-
-          if (this.Debugging) {
-            Debug.Log($"Could not find environment: {reaction.RecipientEnvironment}");
-          }
-
+            if (this.Debugging) {
+              Debug.Log($"Could not find environment: {reaction.RecipientEnvironment}");
+            }
           }
           #endif
         } else {
@@ -782,22 +774,7 @@ namespace droid.Neodroid.Managers {
     void SetStepping(Reaction reaction) {
       if (reaction.Parameters.Step) {
         #if NEODROID_DEBUG
-        if(this.Debugging) {
-          Debug.Log("Stepping");
-        }
-
-        #endif
-
-        this._step = true;
-      }else {
-        this._step = false;
-      }
-    }
-    
-    void SetStepping(Reaction[] reactions) {
-      if (reactions.Any(reac => reac.Parameters.Step)) {
-        #if NEODROID_DEBUG
-        if(this.Debugging) {
+        if (this.Debugging) {
           Debug.Log("Stepping");
         }
 
@@ -808,17 +785,30 @@ namespace droid.Neodroid.Managers {
         this._step = false;
       }
     }
-    
+
+    void SetStepping(Reaction[] reactions) {
+      if (reactions.Any(reac => reac.Parameters.Step)) {
+        #if NEODROID_DEBUG
+        if (this.Debugging) {
+          Debug.Log("Stepping");
+        }
+
+        #endif
+
+        this._step = true;
+      } else {
+        this._step = false;
+      }
+    }
+
     /// <summary>
     ///
     /// </summary>
     /// <param name="reactions"></param>
     /// <returns></returns>
-    public EnvironmentState[] ReactAndCollectStates(
-        Reaction[] reactions) {
+    public EnvironmentState[] ReactAndCollectStates(Reaction[] reactions) {
       this.SetStepping(reactions);
-      var states =
-          new EnvironmentState[reactions.Length * this._Environments.Count];
+      var states = new EnvironmentState[reactions.Length * this._Environments.Count];
       var i = 0;
       foreach (var reaction in reactions) {
         if (this._Environments.ContainsKey(reaction.RecipientEnvironment)) {
@@ -957,6 +947,7 @@ namespace droid.Neodroid.Managers {
           foreach (var current_reaction in this.CurrentReactions) {
             current_reaction.Parameters.IsExternal = true;
           }
+
           this.Configuration.StepExecutionPhase = this.CurrentReactions[0].Parameters.Phase;
           this.AwaitingReply = true;
           this.HasStepped = false;
@@ -965,8 +956,6 @@ namespace droid.Neodroid.Managers {
         }
       }
     }
-
-
 
     /// <summary>
     ///

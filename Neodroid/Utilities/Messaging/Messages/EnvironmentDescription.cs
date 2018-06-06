@@ -17,7 +17,6 @@ namespace droid.Neodroid.Utilities.Messaging.Messages {
       this.MaxSteps = max_steps;
 
       this.SolvedThreshold = solved_threshold;
-
     }
 
     /// <summary>
@@ -34,8 +33,6 @@ namespace droid.Neodroid.Utilities.Messaging.Messages {
     ///
     /// </summary>
     public int MaxSteps { get; }
-
-
 
     /// <summary>
     ///

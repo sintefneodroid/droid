@@ -3,7 +3,7 @@ using droid.Neodroid.Utilities.Structs;
 using droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Observers {
+namespace droid.Neodroid.Prototyping.Observers.Grid {
   [AddComponentMenu(
       ObserverComponentMenuPath._ComponentMenuPath + "GoalCell" + ObserverComponentMenuPath._Postfix)]
   public class GoalCellObserver : Observer,
@@ -15,12 +15,24 @@ namespace droid.Neodroid.Prototyping.Observers {
 
     [SerializeField] int _order_index;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public int OrderIndex { get { return this._order_index; } set { this._order_index = value; } }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public bool DrawNames { get { return this._draw_names; } set { this._draw_names = value; } }
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
     public override string PrototypingTypeName { get { return "GoalObserver"; } }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public EmptyCell CurrentGoal {
       get {
         this.UpdateObservation();
@@ -29,18 +41,26 @@ namespace droid.Neodroid.Prototyping.Observers {
       set { this._current_goal = value; }
     }
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
     public Vector3 ObservationValue {
       get { return this._current_goal_position; }
       private set { this._current_goal_position = value; }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    public Space3 TripleSpace { get; }
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    public Space3 TripleSpace { get; } = new Space3();
 
+    /// <summary>
+    /// 
+    /// </summary>
     public override void UpdateObservation() {
-      this._current_goal_position = this._current_goal.transform.position;
+      if (this._current_goal) {
+        this._current_goal_position = this._current_goal.transform.position;
+      }
     }
 
     #if UNITY_EDITOR

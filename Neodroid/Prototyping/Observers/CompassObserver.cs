@@ -4,9 +4,9 @@ using droid.Neodroid.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Observers {
-  /// <summary>
-  ///
-  /// </summary>
+  /// <inheritdoc cref="Observer" />
+  ///  <summary>
+  ///  </summary>
   [AddComponentMenu(
       ObserverComponentMenuPath._ComponentMenuPath + "Compass" + ObserverComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
@@ -41,7 +41,7 @@ namespace droid.Neodroid.Prototyping.Observers {
     /// </summary>
     [Header("Specfic", order = 102)]
     [SerializeField]
-    Transform _target;
+    UnityEngine.Transform _target;
 
     /// <inheritdoc />
     /// <summary>
@@ -63,9 +63,7 @@ namespace droid.Neodroid.Prototyping.Observers {
     public Vector3 Position {
       get { return this._position; }
       set {
-        this._position = this.NormaliseObservation
-                             ? this._position_space.ClipNormaliseRound(value)
-                             : value;
+        this._position = this.NormaliseObservation ? this._position_space.ClipNormaliseRound(value) : value;
         this._2_d_position = new Vector2(this._position.x, this._position.z);
       }
     }

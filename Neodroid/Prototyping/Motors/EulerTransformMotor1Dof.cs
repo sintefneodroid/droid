@@ -27,22 +27,22 @@ namespace droid.Neodroid.Prototyping.Motors {
       var layer_mask = 1 << LayerMask.NameToLayer(this._Layer_Mask);
       var vec = Vector3.zero;
       switch (this._Axis_Of_Motion) {
-        case Axis.X_:
+        case Axis.X_: // Translational 
           vec = Vector3.right * motion.Strength;
           break;
-        case Axis.Y_:
+        case Axis.Y_: // Translational 
           vec = -Vector3.up * motion.Strength;
           break;
-        case Axis.Z_:
+        case Axis.Z_: // Translational 
           vec = -Vector3.forward * motion.Strength;
           break;
-        case Axis.Rot_x_:
+        case Axis.Rot_x_: // Rotational
           this.transform.Rotate(Vector3.left, motion.Strength, this._Relative_To);
           break;
-        case Axis.Rot_y_:
+        case Axis.Rot_y_: // Rotational
           this.transform.Rotate(Vector3.up, motion.Strength, this._Relative_To);
           break;
-        case Axis.Rot_z_:
+        case Axis.Rot_z_: // Rotational
           this.transform.Rotate(Vector3.forward, motion.Strength, this._Relative_To);
           break;
         case Axis.Dir_x_: break;

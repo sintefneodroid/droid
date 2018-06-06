@@ -17,7 +17,6 @@ namespace droid.Neodroid.Utilities.EventRecipients {
     [SerializeField]
     Text _text;
 
-
     // Use this for initialization
     /// <summary>
     /// 
@@ -37,4 +36,3 @@ namespace droid.Neodroid.Utilities.EventRecipients {
     }
   }
 }
-

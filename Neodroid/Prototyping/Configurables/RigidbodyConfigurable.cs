@@ -243,8 +243,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
     /// <param name="random_generator"></param>
     /// <returns></returns>
     /// <exception cref="T:System.NotImplementedException"></exception>
-    public override Configuration SampleConfiguration(
-        Random random_generator) {
+    public override Configuration SampleConfiguration(Random random_generator) {
       throw new NotImplementedException();
     }
   }

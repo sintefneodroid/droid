@@ -1,10 +1,9 @@
-﻿using System;
-using droid.Neodroid.Managers;
+﻿using droid.Neodroid.Managers;
 using droid.Neodroid.Utilities.Interfaces;
 using droid.Neodroid.Utilities.ScriptableObjects;
 using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Observers {
+namespace droid.Neodroid.Prototyping.Observers.Camera {
   [AddComponentMenu(
       ObserverComponentMenuPath._ComponentMenuPath + "FloatArrayCamera" + ObserverComponentMenuPath._Postfix)]
   public class FloatArrayCameraObserver : Observer,
@@ -17,7 +16,7 @@ namespace droid.Neodroid.Prototyping.Observers {
 
     [Header("Specific", order = 102)]
     [SerializeField]
-    Camera _camera;
+    UnityEngine.Camera _camera;
 
     bool _grab = true;
 
@@ -31,7 +30,7 @@ namespace droid.Neodroid.Prototyping.Observers {
 
     protected override void PreSetup() {
       this._manager = FindObjectOfType<NeodroidManager>();
-      this._camera = this.GetComponent<Camera>();
+      this._camera = this.GetComponent<UnityEngine.Camera>();
       if (this._camera.targetTexture) {
         this._texture = new Texture2D(this._camera.targetTexture.width, this._camera.targetTexture.height);
         if (this._black_white) {
@@ -91,8 +90,8 @@ namespace droid.Neodroid.Prototyping.Observers {
     }
 
     public override void UpdateObservation() {
-      if(this._manager) {
-        if(this._manager.Configuration) {
+      if (this._manager) {
+        if (this._manager.Configuration) {
           if (this._manager.Configuration.SimulationType != SimulationType.Frame_dependent_) {
             Debug.LogWarning("WARNING! Camera Observations may be out of sync other data");
           }

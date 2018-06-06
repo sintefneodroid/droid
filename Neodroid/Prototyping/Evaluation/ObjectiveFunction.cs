@@ -109,26 +109,26 @@ namespace droid.Neodroid.Prototyping.Evaluation {
       if (!this.ParentEnvironment) {
         this.ParentEnvironment = FindObjectOfType<PrototypingEnvironment>();
       }
+
       this.PostSetup();
     }
 
-    protected virtual void PostSetup() {
-      
-    }
-    
+    protected virtual void PostSetup() { }
+
     /// <summary>
     /// 
     /// </summary>
     /// <returns></returns>
     public void SignalString(DataPoller recipient) {
-      recipient.PollData($"{this._last_signal.ToString(CultureInfo.InvariantCulture)}, {this._Episode_Return}");
+      recipient.PollData(
+          $"{this._last_signal.ToString(CultureInfo.InvariantCulture)}, {this._Episode_Return}");
     }
-    
+
     /// <summary>
     ///
     /// </summary>
     [SerializeField]
-    public float _Episode_Return = 0;
+    public float _Episode_Return;
 
     /// <inheritdoc />
     /// <summary>
@@ -165,7 +165,7 @@ namespace droid.Neodroid.Prototyping.Evaluation {
       this._last_signal = signal;
 
       this._Episode_Return += signal;
-      
+
       return signal;
     }
 

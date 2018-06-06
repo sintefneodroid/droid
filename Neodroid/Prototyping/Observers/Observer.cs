@@ -15,7 +15,7 @@ namespace droid.Neodroid.Prototyping.Observers {
   [ExecuteInEditMode]
   [Serializable]
   public abstract class Observer : PrototypingGameObject,
-                          IHasFloatEnumarable {
+                                   IHasFloatEnumarable {
     /// <summary>
     /// 
     /// </summary>
@@ -81,7 +81,7 @@ namespace droid.Neodroid.Prototyping.Observers {
     /// 
     /// </summary>
     protected virtual void Update() {
-      if(Application.isPlaying) {
+      if (Application.isPlaying) {
         if (this.FloatEnumerable == null || !this.FloatEnumerable.Any()) {
           Debug.LogWarning(
               $"FloatEnumerable of {this.Identifier} is empty! Maybe you forget an assignment to it when updating observations");

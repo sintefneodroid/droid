@@ -25,7 +25,8 @@ namespace droid.Neodroid.Utilities.Segmentation {
     /// <summary>
     ///
     /// </summary>
-    public Dictionary<GameObject, Color> InstanceColorsDict { get; private set; } = new Dictionary<GameObject, Color>();
+    public Dictionary<GameObject, Color> InstanceColorsDict { get; private set; } =
+      new Dictionary<GameObject, Color>();
 
     /// <summary>
     ///

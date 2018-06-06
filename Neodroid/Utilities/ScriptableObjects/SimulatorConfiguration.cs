@@ -151,9 +151,9 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
     ///
     /// </summary>
     [SerializeField]
-    [Range(0, 999)] int _num_of_environments;
-    
-    
+    [Range(0, 999)]
+    int _num_of_environments;
+
     [SerializeField] bool _do_serialise_unobservables;
     [SerializeField] bool _do_serialise_indidual_observables;
 
@@ -246,7 +246,6 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
       get { return this._num_of_environments; }
       set { this._num_of_environments = value; }
     }
-
 
     /// <summary>
     ///

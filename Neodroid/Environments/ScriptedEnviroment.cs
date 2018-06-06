@@ -64,10 +64,8 @@ namespace droid.Neodroid.Environments {
     /// </summary>
     [SerializeField]
     NeodroidManager _time_simulation_manager;
-    
+
     List<MotorMotion> _motions = new List<MotorMotion>();
-    Rigidbody[] _null_rigidbodies = new Rigidbody[] { };
-    Transform[] _null_transforms = new Transform[] { };
 
     /// <summary>
     ///
@@ -156,9 +154,7 @@ namespace droid.Neodroid.Environments {
       var strength = Random.Range(0, 4);
       this._motions.Add(new MotorMotion("", "", strength));
 
-      var rp = new ReactionParameters(true, true, episode_count : true) {
-          IsExternal = false
-      };
+      var rp = new ReactionParameters(true, true, episode_count : true) {IsExternal = false};
       return new Reaction(rp, this._motions.ToArray(), null, null, null, "");
     }
 
@@ -169,8 +165,7 @@ namespace droid.Neodroid.Environments {
     /// <param name="reaction"></param>
     /// <returns></returns>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public override EnvironmentState ReactAndCollectState(
-        Reaction reaction) {
+    public override EnvironmentState ReactAndCollectState(Reaction reaction) {
       foreach (var motion in reaction.Motions) {
         switch ((int)motion.Strength) {
           case 0:
@@ -199,21 +194,11 @@ namespace droid.Neodroid.Environments {
       var time = Time.time - this._Lastest_Reset_Time;
 
       var observables = new float[] {actor_idx};
-      
-      return new EnvironmentState(
-          this.Identifier,
-          0,
-          time,
-          signal,
-          terminated,
-          ref observables,
-          ref this._null_rigidbodies,
-          ref this._null_transforms);
+
+      return new EnvironmentState(this.Identifier, 0, 0, time, signal, terminated, ref observables);
     }
 
-    public override void React(Reaction reaction) {
-      throw new NotImplementedException();
-    }
+    public override void React(Reaction reaction) { throw new NotImplementedException(); }
 
     /// <inheritdoc />
     /// <summary>
@@ -221,8 +206,6 @@ namespace droid.Neodroid.Environments {
     /// <exception cref="T:System.NotImplementedException"></exception>
     public override void Tick() { throw new NotImplementedException(); }
 
-    public override EnvironmentState CollectState() {
-      throw new NotImplementedException();
-    }
+    public override EnvironmentState CollectState() { throw new NotImplementedException(); }
   }
 }

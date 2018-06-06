@@ -33,7 +33,6 @@ namespace droid.Neodroid.Prototyping.Configurables {
     string _z;
 
     protected override void PreSetup() {
-      base.Setup();
       this._x = this.Identifier + "X";
       this._y = this.Identifier + "Y";
       this._z = this.Identifier + "Z";
@@ -49,7 +48,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
     /// </summary>
     public Vector3 ObservationValue { get { return this._position; } }
 
-    public Space3 TripleSpace { get; }
+    public Space3 TripleSpace { get; } = new Space3();
 
     /// <summary>
     ///
@@ -104,11 +103,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
         //TODO NOT IMPLEMENTED CORRECTLY VelocitySpace should not be index but should check all pairwise values, TripleSpace._Min_Values == TripleSpace._Max_Values
         if (v < this.TripleSpace._Min_Values[0] || v > this.TripleSpace._Max_Values[0]) {
           Debug.Log(
-              string.Format(
-                  "Configurable does not accept input{2}, outside allowed range {0} to {1}",
-                  this.TripleSpace._Min_Values[0],
-                  this.TripleSpace._Max_Values[0],
-                  v));
+              $"Configurable does not accept input{v}, outside allowed range {this.TripleSpace._Min_Values[0]} to {this.TripleSpace._Max_Values[0]}");
           return; // Do nothing
         }
       }
@@ -145,9 +140,10 @@ namespace droid.Neodroid.Prototyping.Configurables {
       this.transform.position = inv_pos;
     }
 
-    public override Configuration SampleConfiguration(
-        Random random_generator) {
-      throw new NotImplementedException();
+    public override Configuration SampleConfiguration(Random random_generator) {
+      var random_vector3 = this.TripleSpace.RandomVector3();
+
+      return new Configuration(this._x, random_vector3.x);
     }
   }
 }

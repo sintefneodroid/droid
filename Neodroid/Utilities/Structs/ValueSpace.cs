@@ -19,7 +19,9 @@ namespace droid.Neodroid.Utilities.Structs {
 
       return x;
     }
-    
+
+    public float Sample() { return this.RandomValue(); }
+
     public float Span { get { return this._Max_Value - this._Min_Value; } }
 
     public float ClipNormaliseRound(float v) {

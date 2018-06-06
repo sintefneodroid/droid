@@ -20,10 +20,10 @@ namespace droid.Neodroid.Utilities.Structs {
     public Vector2 RandomVector2() {
       var x = Random.Range(this._Min_Values.x, this._Max_Values.x);
       var y = Random.Range(this._Min_Values.y, this._Max_Values.y);
-      
-      return new Vector3(x,y);
+
+      return new Vector3(x, y);
     }
-    
+
     public Vector2 ClipNormaliseRound(Vector2 v) {
       if (v.x > this._Max_Values.x) {
         v.x = this._Max_Values.x;

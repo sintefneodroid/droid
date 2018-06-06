@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using droid.Neodroid.Prototyping.Observers;
+using droid.Neodroid.Prototyping.Observers.Grid;
 using droid.Neodroid.Utilities.ScriptableObjects;
 using UnityEngine;
 

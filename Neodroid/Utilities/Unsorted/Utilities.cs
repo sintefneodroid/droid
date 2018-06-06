@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using droid.Neodroid.Prototyping.Actors;
+using droid.Neodroid.Prototyping.Motors;
 using droid.Neodroid.Utilities.Interfaces;
 using droid.Neodroid.Utilities.Sensors;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Object = UnityEngine.Object;
 
 #if UNITY_EDITOR
 
@@ -180,14 +184,17 @@ namespace droid.Neodroid.Utilities.Unsorted {
       return s;
     }
 
-    public static TRecipient MaybeRegisterComponent<TRecipient, TCaller>(TRecipient r, TCaller c)
+    public static TRecipient MaybeRegisterComponent<TRecipient, TCaller>(
+        TRecipient r,
+        TCaller c,
+        bool only_parents = false)
         where TRecipient : Object, IHasRegister<TCaller> where TCaller : Component, IRegisterable {
-      TRecipient component;
+      TRecipient component = null;
       if (r != null) {
         component = r; //.GetComponent<Recipient>();
       } else if (c.GetComponentInParent<TRecipient>() != null) {
         component = c.GetComponentInParent<TRecipient>();
-      } else {
+      } else if (!only_parents) {
         component = Object.FindObjectOfType<TRecipient>();
       }
 
@@ -253,7 +260,7 @@ namespace droid.Neodroid.Utilities.Unsorted {
 
       return results.ToArray();
     }
-    
+
     public static GameObject[] FindAllGameObjectsExceptLayer(int layer) {
       var goa = Object.FindObjectsOfType<GameObject>();
       var game_objects = new List<GameObject>();
@@ -288,13 +295,6 @@ namespace droid.Neodroid.Utilities.Unsorted {
 
       return game_objects.ToArray();
     }
-
-
-
-
-
-
-
 
     /** Contains logic for coverting a camera component into a Texture2D. */
     /*public Texture2D ObservationToTex(Camera camera, int width, int height)

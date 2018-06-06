@@ -8,7 +8,9 @@ using UnityEngine;
 namespace droid.Neodroid.Prototyping.Displayers {
   [ExecuteInEditMode]
   [AddComponentMenu(
-      DisplayerComponentMenuPath._ComponentMenuPath + "GameObjectScatterPlotDisplayer" + DisplayerComponentMenuPath._Postfix)]
+      DisplayerComponentMenuPath._ComponentMenuPath
+      + "GameObjectScatterPlotDisplayer"
+      + DisplayerComponentMenuPath._Postfix)]
   public class GameObjectScatterPlotDisplayer : Displayer {
     ParticleSystem _particle_system;
     ParticleSystemRenderer _particle_system_renderer;

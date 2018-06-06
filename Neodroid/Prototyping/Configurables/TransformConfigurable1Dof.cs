@@ -16,7 +16,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
       + "TransformConfigurable1Dof"
       + ConfigurableComponentMenuPath._Postfix)]
   public class TransformConfigurable1Dof : ConfigurableGameObject,
-                                                 IHasSingle {
+                                           IHasSingle {
     public override string PrototypingTypeName { get { return "Transform" + this._axis_of_configuration; } }
 
     public float ObservationValue {
@@ -208,8 +208,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
       this.transform.rotation = Quaternion.LookRotation(inv_dir, inv_rot);
     }
 
-    public override Configuration SampleConfiguration(
-        Random random_generator) {
+    public override Configuration SampleConfiguration(Random random_generator) {
       throw new NotImplementedException();
     }
 

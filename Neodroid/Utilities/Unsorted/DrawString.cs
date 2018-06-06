@@ -4,7 +4,6 @@ using UnityEngine;
 #if UNITY_EDITOR
 namespace droid.Neodroid.Utilities.Unsorted {
   public static partial class NeodroidUtilities {
-
     /// <summary>
     ///
     /// </summary>
@@ -39,7 +38,6 @@ namespace droid.Neodroid.Utilities.Unsorted {
         Handles.EndGUI();
         return;
       }
-
 
       Handles.Label(TransformByPixel(world_pos, o_x, o_y), text);
 

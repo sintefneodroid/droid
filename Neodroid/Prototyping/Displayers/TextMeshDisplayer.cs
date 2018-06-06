@@ -136,13 +136,9 @@ namespace droid.Neodroid.Prototyping.Displayers {
     public override void Display(Vector3 value) { throw new NotImplementedException(); }
     public override void Display(Vector3[] value) { throw new NotImplementedException(); }
 
-    public override void Display(Points.ValuePoint points) {
-      throw new NotImplementedException();
-    }
+    public override void Display(Points.ValuePoint points) { throw new NotImplementedException(); }
 
-    public override void Display(Points.ValuePoint[] points) {
-      throw new NotImplementedException();
-    }
+    public override void Display(Points.ValuePoint[] points) { throw new NotImplementedException(); }
 
     public override void Display(Points.StringPoint point) { throw new NotImplementedException(); }
     public override void Display(Points.StringPoint[] points) { throw new NotImplementedException(); }

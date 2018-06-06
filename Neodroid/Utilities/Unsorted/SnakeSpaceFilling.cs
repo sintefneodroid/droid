@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace droid.Neodroid.Utilities.Unsorted {
   public static partial class NeodroidUtilities {
-
     /// <summary>
     ///
     /// </summary>

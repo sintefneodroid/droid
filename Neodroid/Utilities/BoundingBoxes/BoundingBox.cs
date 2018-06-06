@@ -93,7 +93,7 @@ namespace droid.Neodroid.Utilities.BoundingBoxes {
     /// <summary>
     /// 
     /// </summary>
-    public Color _Line_Color = new Color(0f, 1f, 0.4f, 0.74f);
+    public Color _Line_Color = new Color(1f, 0.36f, 0.38f, 0.74f);
 
     /// <summary>
     /// 
@@ -117,7 +117,7 @@ namespace droid.Neodroid.Utilities.BoundingBoxes {
     Vector3 _top_front_right;
 
     List<Vector3[]> _lines_list = new List<Vector3[]>();
-    
+
     public Vector3[] BoundingBoxCoordinates {
       get {
         return new[] {

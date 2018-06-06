@@ -27,8 +27,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
 
     public Vector3 Position { get { return this._position; } }
 
-    public override Configuration SampleConfiguration(
-        Random random_generator) {
+    public override Configuration SampleConfiguration(Random random_generator) {
       throw new NotImplementedException();
     }
 

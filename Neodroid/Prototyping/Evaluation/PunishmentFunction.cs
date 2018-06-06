@@ -24,11 +24,11 @@ namespace droid.Neodroid.Prototyping.Evaluation {
     /// </summary>
     protected override void PostSetup() {
       this.ResetHits();
-      
+
       var tagged_gos = GameObject.FindGameObjectsWithTag(this._avoid_tag);
 
       foreach (var ball in tagged_gos) {
-        if(ball) {
+        if (ball) {
           var publisher = ball.AddComponent<ChildCollisionPublisher>();
           publisher.CollisionDelegate = this.OnChildCollision;
         }

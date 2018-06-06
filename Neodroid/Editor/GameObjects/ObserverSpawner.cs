@@ -1,5 +1,6 @@
 ﻿#if UNITY_EDITOR
 using droid.Neodroid.Prototyping.Observers;
+using droid.Neodroid.Prototyping.Observers.Transform;
 using UnityEditor;
 using UnityEngine;
 

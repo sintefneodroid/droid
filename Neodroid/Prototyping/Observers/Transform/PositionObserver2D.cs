@@ -4,20 +4,22 @@ using droid.Neodroid.Utilities.Interfaces;
 using droid.Neodroid.Utilities.Structs;
 using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Observers {
+namespace droid.Neodroid.Prototyping.Observers.Transform {
   [AddComponentMenu(
-      ObserverComponentMenuPath._ComponentMenuPath + "PositionObserver2D" + ObserverComponentMenuPath._Postfix)]
+      ObserverComponentMenuPath._ComponentMenuPath
+      + "PositionObserver2D"
+      + ObserverComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [Serializable]
   public class PositionObserver2D : Observer,
-                                                IHasDouble {
+                                    IHasDouble {
     [Header("Specfic", order = 102)]
     [SerializeField]
     ObservationSpace _use_space = ObservationSpace.Environment_;
 
     [Header("Observation", order = 103)]
-
-    [SerializeField] Vector2 _2_d_position;
+    [SerializeField]
+    Vector2 _2_d_position;
 
     [SerializeField] Dimension2DCombination _dim_combination;
 
@@ -32,26 +34,24 @@ namespace droid.Neodroid.Prototyping.Observers {
     /// </summary>
     /// <param name="position"></param>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public void SetPosition(Vector3 position){
-        Vector2 vector2_pos;
-        switch (this._dim_combination) {
-          case Dimension2DCombination.Xy_:
-            vector2_pos = new Vector2(position.x, position.y);
-            break;
-          case Dimension2DCombination.Xz_:
-            vector2_pos = new Vector2(position.x, position.z);
-            break;
-          case Dimension2DCombination.Yz_:
-            vector2_pos = new Vector2(position.y, position.z);
-            break;
-          default: throw new ArgumentOutOfRangeException();
-        }
+    public void SetPosition(Vector3 position) {
+      Vector2 vector2_pos;
+      switch (this._dim_combination) {
+        case Dimension2DCombination.Xy_:
+          vector2_pos = new Vector2(position.x, position.y);
+          break;
+        case Dimension2DCombination.Xz_:
+          vector2_pos = new Vector2(position.x, position.z);
+          break;
+        case Dimension2DCombination.Yz_:
+          vector2_pos = new Vector2(position.y, position.z);
+          break;
+        default: throw new ArgumentOutOfRangeException();
+      }
 
-        
-        this._2_d_position = this.NormaliseObservation
-            ? this._position_space.ClipNormaliseRound(vector2_pos)
-            : vector2_pos;
-      
+      this._2_d_position = this.NormaliseObservation
+                               ? this._position_space.ClipNormaliseRound(vector2_pos)
+                               : vector2_pos;
     }
 
     public Vector2 ObservationValue { get { return this._2_d_position; } set { this._2_d_position = value; } }
@@ -80,6 +80,8 @@ namespace droid.Neodroid.Prototyping.Observers {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() { this.FloatEnumerable = new[] {this._2_d_position.x, this._2_d_position.y}; }
+    protected override void PreSetup() {
+      this.FloatEnumerable = new[] {this._2_d_position.x, this._2_d_position.y};
+    }
   }
 }

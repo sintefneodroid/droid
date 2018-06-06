@@ -102,7 +102,7 @@ namespace droid.Neodroid.Prototyping.Evaluation {
           null,
           this.OnTriggerStayChild,
           this.Debugging);
-      this._wait_for_seconds= new WaitForSeconds(this._resting_time);
+      this._wait_for_seconds = new WaitForSeconds(this._resting_time);
     }
 
     void OnTriggerEnterChild(GameObject child_game_object, Collider other_game_object) {

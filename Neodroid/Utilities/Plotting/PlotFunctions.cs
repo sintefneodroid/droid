@@ -4,9 +4,8 @@ using UnityEngine;
 
 namespace droid.Neodroid.Utilities.Plotting {
   public static class PlotFunctions {
-    
     static List<Points.ValuePoint> _points = new List<Points.ValuePoint>();
-    
+
     /// <summary>
     /// 
     /// </summary>

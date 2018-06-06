@@ -3,6 +3,9 @@ using droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Motors {
+  /// <inheritdoc />
+  /// <summary>
+  /// </summary>
   [AddComponentMenu(
       MotorComponentMenuPath._ComponentMenuPath + "EulerTransform" + MotorComponentMenuPath._Postfix)]
   public class EulerTransformMotor : Motor {

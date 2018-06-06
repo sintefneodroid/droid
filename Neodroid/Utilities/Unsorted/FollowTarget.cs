@@ -11,9 +11,9 @@ namespace droid.Neodroid.Utilities.Unsorted {
     public Transform _Target;
 
     void LateUpdate() {
-    if(this._Target) {
-      this.transform.position = this._Target.position + this._Offset;
-    }
+      if (this._Target) {
+        this.transform.position = this._Target.position + this._Offset;
+      }
     }
   }
 }

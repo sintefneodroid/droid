@@ -3,7 +3,7 @@ using droid.Neodroid.Utilities.Interfaces;
 using droid.Neodroid.Utilities.Structs;
 using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Observers {
+namespace droid.Neodroid.Prototyping.Observers.Rays {
   [AddComponentMenu(
       ObserverComponentMenuPath._ComponentMenuPath + "LineOfSight" + ObserverComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
@@ -16,7 +16,7 @@ namespace droid.Neodroid.Prototyping.Observers {
 
     [Header("Specfic", order = 102)]
     [SerializeField]
-    Transform _target;
+    UnityEngine.Transform _target;
 
     /// <summary>
     ///
@@ -26,10 +26,7 @@ namespace droid.Neodroid.Prototyping.Observers {
 
     public override string PrototypingTypeName { get { return "LineOfSight"; } }
 
-    public float ObservationValue {
-      get { return this._obs_value; }
-      private set { this._obs_value = value; }
-    }
+    public float ObservationValue { get { return this._obs_value; } private set { this._obs_value = value; } }
 
     public ValueSpace SingleSpace { get { return this._observation_value_space; } }
 

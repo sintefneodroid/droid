@@ -219,7 +219,7 @@ namespace droid.Neodroid.Prototyping.Actors {
     #if UNITY_EDITOR
     [SerializeField] int _script_execution_order = -10;
     #endif
-    
+
     #endregion
 
     #region Getters

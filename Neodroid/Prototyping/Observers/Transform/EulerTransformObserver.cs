@@ -3,7 +3,7 @@ using droid.Neodroid.Utilities.Interfaces;
 using droid.Neodroid.Utilities.Structs;
 using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Observers {
+namespace droid.Neodroid.Prototyping.Observers.Transform {
   /// <summary>
   ///
   /// </summary>
@@ -34,52 +34,48 @@ namespace droid.Neodroid.Prototyping.Observers {
     [SerializeField]
     ObservationSpace _space = ObservationSpace.Environment_;
 
-    [SerializeField] Vector3 _direction;
-    [SerializeField] Space3 _direction_space = new Space3(10);
-
     [Header("Observation", order = 103)]
     [SerializeField]
     Vector3 _position;
 
     [SerializeField] Space3 _position_space = new Space3(10);
+
     [SerializeField] Vector3 _rotation;
     [SerializeField] Space3 _rotation_space = new Space3(10);
 
-    public ObservationSpace Space { get { return this._space; } }
+    [SerializeField] Vector3 _direction;
+    [SerializeField] Space3 _direction_space = new Space3(10);
 
     public override string PrototypingTypeName { get { return "EulerTransform"; } }
 
     public Vector3 Position {
       get { return this._position; }
       set {
-        this._position = this.NormaliseObservation
-                             ? this._position_space.ClipNormaliseRound(value)
-                             : value;
+        this._position = this.NormaliseObservation ? this._position_space.ClipNormaliseRound(value) : value;
       }
     }
 
     public Vector3 Rotation {
       get { return this._rotation; }
       set {
-        this._rotation = this.NormaliseObservation
-                             ? this._rotation_space.ClipNormaliseRound(value)
-                             : value;
+        this._rotation = this.NormaliseObservation ? this._rotation_space.ClipNormaliseRound(value) : value;
       }
     }
 
-    public Space3 PositionSpace { get; }
-    public Space3 DirectionSpace { get; }
-    public Space3 RotationSpace { get; }
+    public Space3 PositionSpace { get; } = new Space3();
+    public Space3 DirectionSpace { get; } = new Space3();
+    public Space3 RotationSpace { get; } = new Space3();
 
     public Vector3 Direction {
       get { return this._direction; }
       set {
-        this._direction = this.NormaliseObservation
-                              ? this._direction_space.ClipNormaliseRound(value)
-                              : value;
+        this._direction = this.NormaliseObservation ? this._direction_space.ClipNormaliseRound(value) : value;
       }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public override void UpdateObservation() {
       if (this.ParentEnvironment && this._space == ObservationSpace.Environment_) {
         this.Position = this.ParentEnvironment.TransformPosition(this.transform.position);

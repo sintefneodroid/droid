@@ -69,7 +69,6 @@ namespace droid.Neodroid.Prototyping.Configurables {
       }
     }
 
-
     #region Fields
 
     /// <summary>
@@ -94,7 +93,6 @@ namespace droid.Neodroid.Prototyping.Configurables {
     /// <param name="random_generator"></param>
     /// <returns></returns>
     /// <exception cref="System.NotImplementedException"></exception>
-    public abstract Configuration SampleConfiguration(
-        Random random_generator);
+    public abstract Configuration SampleConfiguration(Random random_generator);
   }
 }

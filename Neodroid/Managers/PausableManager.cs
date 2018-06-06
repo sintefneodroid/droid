@@ -59,7 +59,7 @@ namespace droid.Neodroid.Managers {
     void MaybeResume() {
       if (this.TestMotors || this.Stepping) {
         #if NEODROID_DEBUG
-        if(this.Debugging) {
+        if (this.Debugging) {
           Debug.Log("Resuming simulation");
         }
         #endif
@@ -78,7 +78,7 @@ namespace droid.Neodroid.Managers {
     /// </summary>
     void PauseSimulation() {
       #if NEODROID_DEBUG
-      if(this.Debugging) {
+      if (this.Debugging) {
         Debug.Log("Pausing simulation");
       }
       #endif

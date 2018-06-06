@@ -3,13 +3,24 @@ using droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Motors {
+  /// <summary>
+  /// 
+  /// </summary>
   [AddComponentMenu(
       MotorComponentMenuPath._ComponentMenuPath + "Rigidbody" + MotorComponentMenuPath._Postfix)]
   [RequireComponent(typeof(Rigidbody))]
   public class RigidbodyMotor : Motor {
-    [SerializeField] protected Space _Relative_To = Space.Self;
+    /// <summary>
+    /// 
+    /// </summary>
+    [SerializeField]
+    protected Space _Relative_To = Space.Self;
 
-    [SerializeField] protected Rigidbody _Rigidbody;
+    /// <summary>
+    /// 
+    /// </summary>
+    [SerializeField]
+    protected Rigidbody _Rigidbody;
 
     /// <summary>
     /// 
@@ -27,6 +38,9 @@ namespace droid.Neodroid.Prototyping.Motors {
 
     public override string PrototypingTypeName { get { return "Rigidbody"; } }
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
     protected override void Setup() {
       this._Rigidbody = this.GetComponent<Rigidbody>();
 
@@ -38,6 +52,9 @@ namespace droid.Neodroid.Prototyping.Motors {
       this._rot_z = this.Identifier + "RotZ";
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     protected override void RegisterComponent() {
       this.ParentActor = NeodroidUtilities.MaybeRegisterComponent(this.ParentActor, (Motor)this);
 
@@ -55,6 +72,10 @@ namespace droid.Neodroid.Prototyping.Motors {
           NeodroidUtilities.MaybeRegisterNamedComponent(this.ParentActor, (Motor)this, this._rot_z);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="motion"></param>
     protected override void InnerApplyMotion(MotorMotion motion) {
       if (this._Relative_To == Space.World) {
         if (motion.MotorName == this._x) {
@@ -69,7 +90,9 @@ namespace droid.Neodroid.Prototyping.Motors {
           this._Rigidbody.AddTorque(Vector3.up * motion.Strength, this._ForceMode);
         } else if (motion.MotorName == this._rot_z) {
           this._Rigidbody.AddTorque(Vector3.forward * motion.Strength, this._ForceMode);
-        } else if (motion.MotorName == this._x) {
+        }
+      } else if (this._Relative_To == Space.Self) {
+        if (motion.MotorName == this._x) {
           this._Rigidbody.AddRelativeForce(Vector3.left * motion.Strength, this._ForceMode);
         } else if (motion.MotorName == this._y) {
           this._Rigidbody.AddRelativeForce(Vector3.up * motion.Strength, this._ForceMode);
@@ -82,6 +105,8 @@ namespace droid.Neodroid.Prototyping.Motors {
         } else if (motion.MotorName == this._rot_z) {
           this._Rigidbody.AddRelativeTorque(Vector3.forward * motion.Strength, this._ForceMode);
         }
+      } else {
+        Debug.LogWarning($"Not applying force in space {this._Relative_To}");
       }
     }
   }

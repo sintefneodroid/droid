@@ -3,23 +3,33 @@ using droid.Neodroid.Utilities.Interfaces;
 using droid.Neodroid.Utilities.Structs;
 using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Observers {
-  [AddComponentMenu(PrototypingComponentMenuPath._ComponentMenuPath + "Observers/Position")]
+namespace droid.Neodroid.Prototyping.Observers.Transform {
+  [AddComponentMenu(
+      ObserverComponentMenuPath._ComponentMenuPath + "Position" + ObserverComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [Serializable]
-  public class RotationObserver : Observer,
-                                  IHasQuadruple {
+  public class PositionObserver : Observer,
+                                  IHasTriple {
     [Header("Specfic", order = 102)]
     [SerializeField]
     ObservationSpace _space = ObservationSpace.Environment_;
 
     [Header("Observation", order = 103)]
     [SerializeField]
-    Quaternion _rotation;
+    Vector3 _position;
 
-    public ObservationSpace Space { get { return this._space; } }
+    [SerializeField] Space3 _position_space = new Space3(10);
 
     public override string PrototypingTypeName { get { return "Position"; } }
+
+    public Vector3 ObservationValue {
+      get { return this._position; }
+      set {
+        this._position = this.NormaliseObservation ? this._position_space.ClipNormaliseRound(value) : value;
+      }
+    }
+
+    public Space3 TripleSpace { get; } = new Space3();
 
     protected override void PreSetup() {
       this.FloatEnumerable =
@@ -28,18 +38,15 @@ namespace droid.Neodroid.Prototyping.Observers {
 
     public override void UpdateObservation() {
       if (this.ParentEnvironment && this._space == ObservationSpace.Environment_) {
-        this.ObservationValue = this.ParentEnvironment.TransformRotation(this.transform.rotation);
+        this.ObservationValue = this.ParentEnvironment.TransformPosition(this.transform.position);
       } else if (this._space == ObservationSpace.Local_) {
-        this.ObservationValue = this.transform.localRotation;
+        this.ObservationValue = this.transform.localPosition;
       } else {
-        this.ObservationValue = this.transform.rotation;
+        this.ObservationValue = this.transform.position;
       }
 
       this.FloatEnumerable =
           new[] {this.ObservationValue.x, this.ObservationValue.y, this.ObservationValue.z};
     }
-
-    public Quaternion ObservationValue { get { return this._rotation; } set { this._rotation = value; } }
-    public Space4 QuadSpace { get; }
   }
 }

@@ -2,7 +2,7 @@
 using droid.Neodroid.Utilities.Interfaces;
 using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Observers {
+namespace droid.Neodroid.Prototyping.Observers.Transform {
   [AddComponentMenu(
       ObserverComponentMenuPath._ComponentMenuPath
       + "QuaternionTransform"

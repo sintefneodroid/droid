@@ -202,7 +202,7 @@ namespace droid.Neodroid.Utilities.GameObjects {
           return this._Custom_Name;
         }
 
-        if(this.PrototypingTypeName!=null) {
+        if (this.PrototypingTypeName != null) {
           return this.name + this.PrototypingTypeName;
         }
 

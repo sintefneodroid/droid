@@ -6,7 +6,7 @@ namespace droid.Neodroid.Utilities.Unsorted {
   /// </summary>
   public class GameObjectCloner : MonoBehaviour {
     [SerializeField] GameObject _prefab;
-    [SerializeField][Range(0,99)] int _num_clones;
+    [SerializeField] [Range(0, 99)] int _num_clones;
     [SerializeField] Vector3 _initial_offset = new Vector3(20, 0);
     [SerializeField] Vector3 _offset = new Vector3(20, 0, 20);
 

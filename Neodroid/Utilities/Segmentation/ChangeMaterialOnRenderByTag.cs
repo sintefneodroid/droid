@@ -35,7 +35,7 @@ namespace droid.Neodroid.Utilities.Segmentation {
     /// <summary>
     ///
     /// </summary>
-    Dictionary<string, Color> _tag_colors= new Dictionary<string, Color>();
+    Dictionary<string, Color> _tag_colors = new Dictionary<string, Color>();
 
     /// <summary>
     ///

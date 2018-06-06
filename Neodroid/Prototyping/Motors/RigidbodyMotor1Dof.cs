@@ -4,9 +4,9 @@ using droid.Neodroid.Utilities.Messaging.Messages;
 using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Motors {
-  /// <summary>
-  ///
-  /// </summary>
+  /// <inheritdoc />
+  ///  <summary>
+  ///  </summary>
   [AddComponentMenu(
       MotorComponentMenuPath._ComponentMenuPath + "RigidbodyMotor1Dof" + MotorComponentMenuPath._Postfix)]
   [RequireComponent(typeof(Rigidbody))]

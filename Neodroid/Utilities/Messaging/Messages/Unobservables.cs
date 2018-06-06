@@ -37,11 +37,12 @@ namespace droid.Neodroid.Utilities.Messaging.Messages {
 
     public Unobservables(ref Rigidbody[] rigidbodies, ref Transform[] transforms) {
       if (rigidbodies != null) {
-      this.Bodies = new Body[rigidbodies.Length];
-      for (var i = 0; i < this.Bodies.Length; i++) {
+        this.Bodies = new Body[rigidbodies.Length];
+        for (var i = 0; i < this.Bodies.Length; i++) {
           this.Bodies[i] = new Body(rigidbodies[i].velocity, rigidbodies[i].angularVelocity);
         }
       }
+
       if (transforms != null) {
         this.Poses = new Pose[transforms.Length];
         for (var i = 0; i < this.Poses.Length; i++) {

@@ -1,9 +1,8 @@
-﻿using System;
-using droid.Neodroid.Utilities.Interfaces;
+﻿using droid.Neodroid.Utilities.Interfaces;
 using droid.Neodroid.Utilities.Structs;
 using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Observers {
+namespace droid.Neodroid.Prototyping.Observers.Rays {
   [AddComponentMenu(
       ObserverComponentMenuPath._ComponentMenuPath + "Raycast" + ObserverComponentMenuPath._Postfix)]
   public class RaycastObserver : Observer,

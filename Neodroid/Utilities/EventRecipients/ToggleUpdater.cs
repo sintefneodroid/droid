@@ -36,4 +36,3 @@ namespace droid.Neodroid.Utilities.EventRecipients {
     }
   }
 }
-

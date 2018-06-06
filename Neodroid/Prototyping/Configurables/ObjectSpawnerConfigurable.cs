@@ -25,8 +25,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
       this.SpawnObjects();
     }
 
-    public override Configuration SampleConfiguration(
-        Random random_generator) {
+    public override Configuration SampleConfiguration(Random random_generator) {
       throw new NotImplementedException();
     }
 

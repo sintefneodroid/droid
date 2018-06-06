@@ -4,7 +4,7 @@ using droid.Neodroid.Utilities.Interfaces;
 using droid.Neodroid.Utilities.ScriptableObjects;
 using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Observers {
+namespace droid.Neodroid.Prototyping.Observers.Camera {
   /// <summary>
   ///
   /// </summary>
@@ -31,7 +31,7 @@ namespace droid.Neodroid.Prototyping.Observers {
   [AddComponentMenu(
       ObserverComponentMenuPath._ComponentMenuPath + "Camera" + ObserverComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
-  [RequireComponent(typeof(Camera))]
+  [RequireComponent(typeof(UnityEngine.Camera))]
   public class CameraObserver : Observer,
                                 IHasByteArray {
     /// <summary>
@@ -59,7 +59,7 @@ namespace droid.Neodroid.Prototyping.Observers {
     /// </summary>
     [Header("Specific", order = 102)]
     [SerializeField]
-    Camera _camera;
+    UnityEngine.Camera _camera;
 
     /// <summary>
     ///
@@ -91,7 +91,7 @@ namespace droid.Neodroid.Prototyping.Observers {
     ///  </summary>
     protected override void PreSetup() {
       this._manager = FindObjectOfType<NeodroidManager>();
-      this._camera = this.GetComponent<Camera>();
+      this._camera = this.GetComponent<UnityEngine.Camera>();
       if (this._camera) {
         var target_texture = this._camera.targetTexture;
         if (!target_texture) {
@@ -113,12 +113,29 @@ namespace droid.Neodroid.Prototyping.Observers {
           }
         }
       }
+
+      if (this._manager) {
+        if (this._manager.Configuration) {
+          if (this._manager.Configuration.SimulationType != SimulationType.Frame_dependent_) {
+            Debug.LogWarning(
+                "WARNING! Camera Observations may be out of sync with other observation data, because simulation configuration is not frame dependent");
+          }
+        }
+      }
     }
 
     /// <summary>
     ///
     /// </summary>
     protected virtual void OnPostRender() { this.UpdateBytes(); }
+
+    // ReSharper disable once Unity.RedundantEventFunction
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    protected override void Update() {
+      //Dont assign anything the floatenumerable
+    }
 
     /// <summary>
     ///
@@ -157,24 +174,9 @@ namespace droid.Neodroid.Prototyping.Observers {
       }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    protected override void Update() {  }
-
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public override void UpdateObservation() {
-      if(this._manager) {
-        if(this._manager.Configuration) {
-          if (this._manager.Configuration.SimulationType != SimulationType.Frame_dependent_) {
-            Debug.LogWarning("WARNING! Camera Observations may be out of sync other data");
-          }
-        }
-      }
-
-      this._grab = true;
-    }
+    public override void UpdateObservation() { this._grab = true; }
   }
 }

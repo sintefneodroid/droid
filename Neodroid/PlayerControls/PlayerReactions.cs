@@ -41,6 +41,7 @@ namespace droid.Neodroid.PlayerControls {
     ///
     /// </summary>
     EnvironmentState[] _states;
+
     List<MotorMotion> _motions = new List<MotorMotion>();
 
     #if UNITY_EDITOR
@@ -66,7 +67,7 @@ namespace droid.Neodroid.PlayerControls {
       } else {
         Debug.LogWarning("WARNING! Multiple PlayerReactions in the scene! Only using " + Instance);
       }
-      
+
       #if UNITY_EDITOR
       if (!Application.isPlaying) {
         var manager_script = MonoScript.FromMonoBehaviour(this);
@@ -81,9 +82,7 @@ namespace droid.Neodroid.PlayerControls {
         }
       }
       #endif
-
     }
-    
 
     /// <summary>
     ///
@@ -96,9 +95,6 @@ namespace droid.Neodroid.PlayerControls {
       }
     }
 
-
-    
-    
     /// <summary>
     ///
     /// </summary>

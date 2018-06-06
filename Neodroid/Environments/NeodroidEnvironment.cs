@@ -30,12 +30,11 @@ namespace droid.Neodroid.Environments {
     /// </summary>
     [SerializeField]
     int _episode_length = 1000;
-    
+
     /// <summary>
     ///
     /// </summary>
     protected float _Lastest_Reset_Time;
-
 
     /// <summary>
     ///
@@ -55,15 +54,13 @@ namespace droid.Neodroid.Environments {
     #if UNITY_EDITOR
     [SerializeField] int _script_execution_order = -20;
     #endif
-    
+
     /// <summary>
     /// 
     /// </summary>
     /// <returns></returns>
-    public void IdentifierString(DataPoller recipient) {
-      recipient.PollData(this.Identifier);
-    }
-    
+    public void IdentifierString(DataPoller recipient) { recipient.PollData(this.Identifier); }
+
     /// <summary>
     /// 
     /// </summary>
@@ -71,7 +68,7 @@ namespace droid.Neodroid.Environments {
     public void EnergyString(DataPoller recipient) {
       recipient.PollData(this._Energy_Spent.ToString(CultureInfo.InvariantCulture));
     }
-    
+
     /// <summary>
     /// 
     /// </summary>
@@ -79,7 +76,7 @@ namespace droid.Neodroid.Environments {
     public void FrameString(DataPoller recipient) {
       recipient.PollData($"{this.CurrentFrameNumber}/{this.EpisodeLength}");
     }
-    
+
     /// <summary>
     /// 
     /// </summary>
@@ -91,11 +88,12 @@ namespace droid.Neodroid.Environments {
 
       recipient.PollData(false);
     }
-    
+
     /// <summary>
     ///
     /// </summary>
     protected bool _Terminable = true;
+
     /// <summary>
     ///
     /// </summary>
@@ -134,9 +132,7 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-    public String TerminationReason {
-      get { return this._Termination_Reason; }
-    }
+    public String TerminationReason { get { return this._Termination_Reason; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -146,7 +142,7 @@ namespace droid.Neodroid.Environments {
       if (!this._Simulation_Manager) {
         this._Simulation_Manager = FindObjectOfType<NeodroidManager>();
       }
-      
+
       #if UNITY_EDITOR
       if (!Application.isPlaying) {
         var manager_script = MonoScript.FromMonoBehaviour(this);
@@ -202,8 +198,7 @@ namespace droid.Neodroid.Environments {
     /// </summary>
     /// <param name="reaction"></param>
     /// <returns></returns>
-    public abstract EnvironmentState ReactAndCollectState(
-        Reaction reaction);
+    public abstract EnvironmentState ReactAndCollectState(Reaction reaction);
 
     /// <summary>
     ///

@@ -34,8 +34,7 @@ namespace droid.Neodroid.Prototyping.Internals {
     ///  <summary>
     ///  </summary>
     protected override void RegisterComponent() {
-      this._Parent_Environment =
-          NeodroidUtilities.MaybeRegisterComponent(this._Parent_Environment, this);
+      this._Parent_Environment = NeodroidUtilities.MaybeRegisterComponent(this._Parent_Environment, this);
 
       if (this._Parent_Environment) {
         this._Parent_Environment.PreStepEvent += this.PreStep;

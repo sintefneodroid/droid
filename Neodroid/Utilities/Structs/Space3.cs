@@ -21,10 +21,10 @@ namespace droid.Neodroid.Utilities.Structs {
       var x = Random.Range(this._Min_Values.x, this._Max_Values.x);
       var y = Random.Range(this._Min_Values.y, this._Max_Values.y);
       var z = Random.Range(this._Min_Values.z, this._Max_Values.z);
-      
-      return new Vector3(x,y,z);
+
+      return new Vector3(x, y, z);
     }
-    
+
     public Vector3 ClipNormaliseRound(Vector3 v) {
       if (v.x > this._Max_Values.x) {
         v.x = this._Max_Values.x;

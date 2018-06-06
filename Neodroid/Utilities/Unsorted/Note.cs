@@ -28,9 +28,7 @@ namespace droid.Neodroid.Utilities.Unsorted {
     /// </summary>
     public void EditToggle() { this._Editing = !this._Editing; }
 
-    void Start() {
-      this.enabled = false;
-    }
+    void Start() { this.enabled = false; }
   }
 
   /// <summary>
@@ -71,9 +69,7 @@ namespace droid.Neodroid.Utilities.Unsorted {
         if (GUILayout.Button("Done")) {
           note.EditToggle();
         }
-
       } else {
-
         switch (this._note_type) {
           case NoteType.Text_area_:
             EditorGUILayout.TextArea(note._Text);
@@ -85,22 +81,16 @@ namespace droid.Neodroid.Utilities.Unsorted {
             EditorGUILayout.LabelField(note._Text);
             break;
           case NoteType.Box_text_:
-            EditorGUILayout.HelpBox(
-                note._Text,
-                MessageType.None);
+            EditorGUILayout.HelpBox(note._Text, MessageType.None);
             break;
           case NoteType.Box_info_:
             EditorGUILayout.HelpBox(note._Text, MessageType.Info);
             break;
           case NoteType.Box_warning_:
-            EditorGUILayout.HelpBox(
-                note._Text,
-                MessageType.Warning);
+            EditorGUILayout.HelpBox(note._Text, MessageType.Warning);
             break;
           case NoteType.Box_error_:
-            EditorGUILayout.HelpBox(
-                note._Text,
-                MessageType.Error);
+            EditorGUILayout.HelpBox(note._Text, MessageType.Error);
             break;
           case NoteType.Delayed_text_field_:
             break;
@@ -119,4 +109,3 @@ namespace droid.Neodroid.Utilities.Unsorted {
   }
 }
 #endif
-

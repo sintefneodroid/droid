@@ -17,7 +17,11 @@ namespace droid.Neodroid.Utilities.Unsorted {
     [SerializeField] Obstruction[] _obstructions;
 
     [SerializeField] BoundingBox _playable_area;
+    [SerializeField] bool _only_initial_state = true;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public PrototypingEnvironment ParentEnvironment {
       get { return this._environment; }
       set { this._environment = value; }
@@ -34,7 +38,6 @@ namespace droid.Neodroid.Utilities.Unsorted {
 
       if (!this._environment) {
         this._environment = FindObjectOfType<PrototypingEnvironment>();
-
       }
 
       if (this._obstructions.Length <= 0) {
@@ -50,6 +53,10 @@ namespace droid.Neodroid.Utilities.Unsorted {
     ///
     /// </summary>
     void ValidateState() {
+      if (this._only_initial_state && this._environment.CurrentFrameNumber != 0) {
+        return;
+      }
+
       if (this._playable_area != null && !this._playable_area.Bounds.Intersects(this._actor.ActorBounds)) {
         this._environment.Terminate("Actor outside playable area");
       }
@@ -73,7 +80,7 @@ namespace droid.Neodroid.Utilities.Unsorted {
       }
     }
 
-    protected override void PreStep() { this.ValidateState();  }
+    protected override void PreStep() { this.ValidateState(); }
     protected override void Step() { this.ValidateState(); }
     protected override void PostStep() { this.ValidateState(); }
     public override string PrototypingTypeName { get { return "ValidityChecker"; } }
