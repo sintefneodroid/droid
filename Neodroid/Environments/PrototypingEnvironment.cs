@@ -52,9 +52,6 @@ namespace droid.Neodroid.Environments {
 
     int _reset_i;
 
-    [SerializeField] bool _ordered_observables;
-    [SerializeField] bool _keep_unobservables;
-
     WaitForFixedUpdate _wait_for_fixed_update = new WaitForFixedUpdate();
     List<float> _observables = new List<float>();
     List<MotorMotion> _sample_motions = new List<MotorMotion>();
@@ -272,8 +269,6 @@ namespace droid.Neodroid.Environments {
     ///
     /// </summary>
     float[] _reset_animation_times;
-
-    [SerializeField] bool _keep_named_observables;
 
     #endregion
 
@@ -1030,11 +1025,11 @@ namespace droid.Neodroid.Environments {
             this.TerminationReason,
             description);
 
-        if (this._keep_unobservables) {
+        if (this._Simulation_Manager.Configuration.DoSerialiseUnobservables) {
           state.Unobservables = new Unobservables(ref this._bodies, ref this._poses);
         }
 
-        if (this._keep_named_observables) {
+        if (this._Simulation_Manager.Configuration.DoSerialiseIndidualObservables) {
           state.Observers = this.Observers.Values.ToArray();
         }
 

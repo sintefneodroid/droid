@@ -71,19 +71,6 @@ namespace droid.Neodroid.Managers {
     /// <summary>
     ///
     /// </summary>
-    [Header("Connection", order = 90)]
-    [SerializeField]
-    string _ip_address = "localhost";
-
-    /// <summary>
-    ///
-    /// </summary>
-    [SerializeField]
-    int _port = 6969;
-
-    /// <summary>
-    ///
-    /// </summary>
     bool _awaiting_reply;
 
     bool _step;
@@ -171,11 +158,11 @@ namespace droid.Neodroid.Managers {
 
       for (var i = 0; i < arguments.Length; i++) {
         if (arguments[i] == "-ip") {
-          this.IpAddress = arguments[i + 1];
+          this.Configuration.IpAddress = arguments[i + 1];
         }
 
         if (arguments[i] == "-port") {
-          this.Port = int.Parse(arguments[i + 1]);
+          this.Configuration.Port = int.Parse(arguments[i + 1]);
         }
       }
     }
@@ -185,8 +172,8 @@ namespace droid.Neodroid.Managers {
     /// </summary>
     void CreateMessagingServer() {
       try {
-        if (this.IpAddress != "" || this.Port != 0) {
-          this._Message_Server = new MessageServer(this.IpAddress, this.Port, false, this.Debugging);
+        if (this.Configuration.IpAddress != "" || this.Configuration.Port != 0) {
+          this._Message_Server = new MessageServer(this.Configuration.IpAddress, this.Configuration.Port, false, this.Debugging);
         } else {
           this._Message_Server = new MessageServer(this.Debugging);
         }
@@ -264,16 +251,6 @@ namespace droid.Neodroid.Managers {
     ///
     /// </summary>
     public bool TestMotors { get { return this._testing_motors; } set { this._testing_motors = value; } }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public string IpAddress { get { return this._ip_address; } set { this._ip_address = value; } }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public int Port { get { return this._port; } set { this._port = value; } }
 
     /// <summary>
     ///
@@ -604,8 +581,7 @@ namespace droid.Neodroid.Managers {
             Debug.Log($"Skipping frame, {this._skip_frame_i}/{this.Configuration.FrameSkips}");
           }
           #endif
-          var replay_reaction_in_skips = false;
-          if (replay_reaction_in_skips) {
+          if (this.Configuration.ReplayReactionInSkips) {
             return;
           }
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using droid.Neodroid.Utilities.Messaging.Messages;
 using UnityEngine;
+using Object = System.Object;
 
 namespace droid.Neodroid.Utilities.ScriptableObjects {
   /// <summary>
@@ -132,7 +133,25 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
     [SerializeField]
     [Range(-1, 9999)]
     int _target_frame_rate = -1;
+    
+    /// <summary>
+    ///
+    /// </summary>
+    [Header("Connection")]
+    [SerializeField]
+    string _ip_address = "localhost";
 
+    /// <summary>
+    ///
+    /// </summary>
+    [SerializeField]
+    int _port = 6969;
+
+    [Header("Performance (Disable for faster serialisation, but with loss of functionality)")]
+    
+    [SerializeField] bool _do_serialise_unobservables;
+    [SerializeField] bool _do_serialise_indidual_observables;
+    
     /// <summary>
     /// WARNING When _update_fixed_time_scale is true, MAJOR slow downs due to PHYSX updates on change.
     /// </summary>
@@ -154,8 +173,7 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
     [Range(0, 999)]
     int _num_of_environments;
 
-    [SerializeField] bool _do_serialise_unobservables;
-    [SerializeField] bool _do_serialise_indidual_observables;
+    bool _replay_reaction_in_skips;
 
     /// <summary>
     ///
@@ -316,15 +334,30 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
       set { this._update_fixed_time_scale = value; }
     }
 
-    public Boolean DoSerialiseUnobservables {
+    public bool DoSerialiseUnobservables {
       get { return this._do_serialise_unobservables; }
       set { this._do_serialise_unobservables = value; }
     }
 
-    public Boolean DoSerialiseIndidualObservables {
+    public bool DoSerialiseIndidualObservables {
       get { return this._do_serialise_indidual_observables; }
       set { this._do_serialise_indidual_observables = value; }
     }
+
+    public bool ReplayReactionInSkips {
+      get { return this._replay_reaction_in_skips; }
+      set { this._replay_reaction_in_skips = value; }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public Int32 Port { get { return this._port; } set { this._port = value; } }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public String IpAddress { get { return this._ip_address; } set { this._ip_address = value; } }
 
     #endregion
   }

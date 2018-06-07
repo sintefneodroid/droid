@@ -79,6 +79,8 @@ namespace droid.Neodroid.Prototyping.Motors {
         return; // Do nothing
       }
 
+      motion.Strength = this._motion_value_space.Round(motion.Strength);
+
       this.InnerApplyMotion(motion);
       this.EnergySpendSinceReset += Mathf.Abs(this.EnergyCost * motion.Strength);
     }
@@ -87,7 +89,7 @@ namespace droid.Neodroid.Prototyping.Motors {
     /// 
     /// </summary>
     /// <param name="motion"></param>
-    protected virtual void InnerApplyMotion(MotorMotion motion) { }
+    protected abstract void InnerApplyMotion(MotorMotion motion);
 
     /// <summary>
     /// 

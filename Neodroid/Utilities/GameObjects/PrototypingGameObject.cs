@@ -39,8 +39,6 @@ namespace droid.Neodroid.Utilities.GameObjects {
 
     [SerializeField] bool _debugging;
 
-    [Space(20)] [SerializeField] string _;
-
     /// <summary>
     ///
     /// </summary>

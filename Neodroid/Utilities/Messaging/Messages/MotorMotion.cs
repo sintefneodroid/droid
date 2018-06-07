@@ -11,7 +11,7 @@ namespace droid.Neodroid.Utilities.Messaging.Messages {
       this.Strength = strength;
     }
 
-    public float Strength { get; }
+    public float Strength { get; set; }
 
     public string ActorName { get; }
 
