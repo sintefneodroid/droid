@@ -1,4 +1,4 @@
-﻿#if UNITY_EDITOR
+﻿#if UNITY_EDITOR && BIOIK_EXISTS
 using System;
 using System.Collections.Generic;
 using System.Linq;

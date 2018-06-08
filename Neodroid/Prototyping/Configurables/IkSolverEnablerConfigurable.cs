@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿#if BIOIK_EXISTS
+
+using System.Collections;
 using droid.Neodroid.Utilities.Messaging.Messages;
 using SceneAssets.Manipulator.Excluded.BioIK;
 using UnityEngine;
@@ -82,3 +84,4 @@ namespace droid.Neodroid.Prototyping.Configurables {
     }
   }
 }
+#endif

@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using UnityEngine;
 
-namespace NeodroidTests {
+namespace droid.NeodroidTests {
 	[TestFixture]
 	public class SimulatorTests {
 		[Test]
@@ -10,10 +10,10 @@ namespace NeodroidTests {
 		}
 		
 		[Test]
-		public void RegistrationNameCheck()
-		{
-			var go = new GameObject("MyGameObject");
-			Assert.AreEqual("MyGameObject", go.name);
+		public void RegistrationNameCheck() {
+			var go_name = "MyGameObject";
+			var go = new GameObject(go_name);
+			Assert.AreEqual(go_name, go.name);
 		}
 	}
 }

@@ -22,6 +22,10 @@ MonoBehaviour:
   _step_execution_phase: 1
   _time_scale: 1
   _target_frame_rate: 60
+  _ip_address: localhost
+  _port: 6969
+  _do_serialise_unobservables: 1
+  _do_serialise_indidual_observables: 0
   _update_fixed_time_scale: 0
   _max_reply_interval: 0
   _num_of_environments: 0
