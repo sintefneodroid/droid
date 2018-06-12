@@ -5,6 +5,7 @@ using AsyncIO;
 using droid.Neodroid.Utilities.Messaging.FBS;
 using droid.Neodroid.Utilities.Messaging.Messages;
 using FlatBuffers;
+using Neodroid.FBS.Reaction;
 using NetMQ;
 using NetMQ.Sockets;
 using UnityEngine;

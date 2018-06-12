@@ -1,8 +1,8 @@
 using UnityEngine;
 
 namespace droid.Neodroid.Utilities.Unsorted {
+  /// <inheritdoc />
   /// <summary>
-  /// 
   /// </summary>
   [ExecuteInEditMode]
   public class FollowTarget : MonoBehaviour {

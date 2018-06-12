@@ -1,8 +1,10 @@
 ﻿#if BIOIK_EXISTS
+using SceneAssets.Manipulator.Excluded.BioIK;
+#endif
 
 using System.Collections;
 using droid.Neodroid.Utilities.Messaging.Messages;
-using SceneAssets.Manipulator.Excluded.BioIK;
+
 using UnityEngine;
 using Random = System.Random;
 
@@ -11,6 +13,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
   /// <summary>
   /// </summary>
   public class IkSolverEnablerConfigurable : ConfigurableGameObject {
+    #if BIOIK_EXISTS
     /// <summary>
     /// 
     /// </summary>
@@ -52,9 +55,17 @@ namespace droid.Neodroid.Prototyping.Configurables {
       this.Disable();
     }
 
-    public void Disable() { this._Enablee.enabled = false; }
+    public void Disable() {
+      if(this._Enablee) {
+        this._Enablee.enabled = false;
+      }
+    }
 
-    public void Enable() { this._Enablee.enabled = true; }
+    public void Enable() {
+      if(this._Enablee) {
+        this._Enablee.enabled = true;
+      }
+    }
 
     /// <inheritdoc />
     /// <summary>
@@ -82,6 +93,6 @@ namespace droid.Neodroid.Prototyping.Configurables {
 
       this.ApplyConfiguration(conf);
     }
+    #endif
   }
 }
-#endif

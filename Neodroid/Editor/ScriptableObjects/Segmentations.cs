@@ -7,7 +7,7 @@ namespace droid.Neodroid.Editor.ScriptableObjects {
   public static class CreateSegmentations {
     [MenuItem(EditorScriptableObjectMenuPath._ScriptableObjectMenuPath + "Segmentations")]
     public static void CreateSegmentationsAsset() {
-      var asset = ScriptableObject.CreateInstance<Segmentations>();
+      var asset = ScriptableObject.CreateInstance<Segmentation>();
 
       AssetDatabase.CreateAsset(asset, "Assets/NewSegmentations.asset");
       AssetDatabase.SaveAssets();

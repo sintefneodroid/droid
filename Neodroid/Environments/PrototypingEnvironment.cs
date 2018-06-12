@@ -1025,11 +1025,11 @@ namespace droid.Neodroid.Environments {
             this.TerminationReason,
             description);
 
-        if (this._Simulation_Manager.Configuration.DoSerialiseUnobservables) {
+        if (this._Simulation_Manager.Configuration.DoSerialiseUnobservables || this._Describe) {
           state.Unobservables = new Unobservables(ref this._bodies, ref this._poses);
         }
 
-        if (this._Simulation_Manager.Configuration.DoSerialiseIndidualObservables) {
+        if (this._Simulation_Manager.Configuration.DoSerialiseIndidualObservables || this._Describe) {
           state.Observers = this.Observers.Values.ToArray();
         }
 

@@ -5,6 +5,8 @@ using droid.Neodroid.Prototyping.Observers;
 using droid.Neodroid.Utilities.Interfaces;
 using droid.Neodroid.Utilities.Messaging.Messages;
 using FlatBuffers;
+using Neodroid.FBS;
+using Neodroid.FBS.State;
 using UnityEngine;
 using SimulatorConfiguration = droid.Neodroid.Utilities.ScriptableObjects.SimulatorConfiguration;
 
@@ -78,7 +80,9 @@ namespace droid.Neodroid.Utilities.Messaging.FBS {
           configuration.SimulationType,
           configuration.FrameSkips,
           configuration.ResetIterations,
-          configuration.NumOfEnvironments);
+          configuration.NumOfEnvironments,
+          configuration.DoSerialiseIndidualObservables,
+          configuration.DoSerialiseUnobservables);
     }
 
     ///  <summary>

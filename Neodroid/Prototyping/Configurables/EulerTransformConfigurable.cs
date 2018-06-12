@@ -42,9 +42,9 @@ namespace droid.Neodroid.Prototyping.Configurables {
     public Vector3 Direction { get { return this._direction; } set { this._direction = value; } }
 
     public Vector3 Rotation { get { return this._rotation; } set { this._rotation = value; } }
-    public Space3 PositionSpace { get; }
-    public Space3 DirectionSpace { get; }
-    public Space3 RotationSpace { get; }
+    public Space3 PositionSpace { get; } = new Space3();
+    public Space3 DirectionSpace { get; }= new Space3();
+    public Space3 RotationSpace { get; }= new Space3();
 
     public override void UpdateCurrentConfiguration() {
       if (this._use_environments_space) {

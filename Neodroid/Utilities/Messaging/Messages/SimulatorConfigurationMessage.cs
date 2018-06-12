@@ -1,6 +1,5 @@
-﻿using System;
-using droid.Neodroid.Utilities.Messaging.FBS;
-using droid.Neodroid.Utilities.ScriptableObjects;
+﻿using droid.Neodroid.Utilities.ScriptableObjects;
+using Neodroid.FBS;
 
 namespace droid.Neodroid.Utilities.Messaging.Messages {
   /// <summary>
@@ -43,6 +42,8 @@ namespace droid.Neodroid.Utilities.Messaging.Messages {
     public int QualityLevel { get; set; }
     public float TargetFrameRate { get; set; }
     public int SimulationType { get; set; }
+    public bool DoSerialiseUnobservables{ get; set; }
+    public bool DoSerialiseIndidualObservables{ get; set; }
   }
 
   /// <summary>
@@ -58,7 +59,7 @@ namespace droid.Neodroid.Utilities.Messaging.Messages {
       this._full_screen = simulator_configuration.FullScreen;
       this._height = simulator_configuration.Height;
       this._width = simulator_configuration.Width;
-      this._frame_finishes = (Int32)simulator_configuration.FrameFinishes;
+      this._frame_finishes = (int)simulator_configuration.FrameFinishes;
       this._num_of_environments = simulator_configuration.NumOfEnvironments;
       this.TimeScale = simulator_configuration.TimeScale;
       this._reset_iterations = simulator_configuration.ResetIterations;
@@ -66,8 +67,10 @@ namespace droid.Neodroid.Utilities.Messaging.Messages {
       this.TargetFrameRate = simulator_configuration.TargetFrameRate;
       this.SimulationType = (int)simulator_configuration.SimulationType;
       this.Finishes = (int)simulator_configuration.FrameFinishes;
+      this.DoSerialiseIndidualObservables = simulator_configuration.DoSerialiseIndidualObservables;
+      this.DoSerialiseUnobservables = simulator_configuration.DoSerialiseUnobservables;
       //TODO: CANT BE CHANGE while running
-//TODO: Exhaust list!
+      //TODO: Exhaust list!
     }
 
     public SimulatorConfigurationMessage() { }
@@ -87,8 +90,9 @@ namespace droid.Neodroid.Utilities.Messaging.Messages {
       this._reset_iterations = flat_simulator_configuration.ResetIterations;
       this.QualityLevel = flat_simulator_configuration.QualityLevel;
       this.TargetFrameRate = flat_simulator_configuration.TargetFrameRate;
-      //this.SimulationType = flat_simulator_configuration.S //TODO: CANT BE CHANGE while running
-//TODO: Exhaust list!
+      this.DoSerialiseIndidualObservables = flat_simulator_configuration.DoSerialiseIndidualObservables;
+      this.DoSerialiseUnobservables = flat_simulator_configuration.DoSerialiseUnobservables;
+      //TODO: Exhaust list!
     }
   }
 }

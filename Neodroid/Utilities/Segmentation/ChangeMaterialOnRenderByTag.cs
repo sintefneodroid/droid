@@ -2,9 +2,9 @@
 using UnityEngine;
 
 namespace droid.Neodroid.Utilities.Segmentation {
-  /// <summary>
-  ///
-  /// </summary>
+  /// <inheritdoc />
+  ///  <summary>
+  ///  </summary>
   [ExecuteInEditMode]
   public class ChangeMaterialOnRenderByTag : MonoBehaviour {
     /// <summary>
@@ -21,6 +21,8 @@ namespace droid.Neodroid.Utilities.Segmentation {
     ///
     /// </summary>
     public ColorByTag[] _Colors_By_Tag;
+
+    [SerializeField] ScriptableObjects.Segmentation _segmentation;
 
     /// <summary>
     ///
@@ -55,6 +57,14 @@ namespace droid.Neodroid.Utilities.Segmentation {
       this._tag_colors.Clear();
       if (this._Colors_By_Tag.Length > 0) {
         foreach (var tag_color in this._Colors_By_Tag) {
+          if (!this._tag_colors.ContainsKey(tag_color._Tag)) {
+            this._tag_colors.Add(tag_color._Tag, tag_color._Col);
+          }
+        }
+      }
+
+      if (this._segmentation) {
+        foreach (var tag_color in this._segmentation._Color_By_Tags) {
           if (!this._tag_colors.ContainsKey(tag_color._Tag)) {
             this._tag_colors.Add(tag_color._Tag, tag_color._Col);
           }

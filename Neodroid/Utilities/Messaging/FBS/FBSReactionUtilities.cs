@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using droid.Neodroid.Utilities.Messaging.Messages;
 using droid.Neodroid.Utilities.Messaging.Messages.Displayables;
 using droid.Neodroid.Utilities.Structs;
+using Neodroid.FBS;
+using Neodroid.FBS.Reaction;
 using UnityEngine;
 
 namespace droid.Neodroid.Utilities.Messaging.FBS {
