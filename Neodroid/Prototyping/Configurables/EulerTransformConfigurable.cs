@@ -7,6 +7,9 @@ using UnityEngine;
 using Random = System.Random;
 
 namespace droid.Neodroid.Prototyping.Configurables {
+  /// <inheritdoc cref="ConfigurableGameObject" />
+  /// <summary>
+  /// </summary>
   [AddComponentMenu(
       ConfigurableComponentMenuPath._ComponentMenuPath
       + "EulerTransform"
@@ -43,9 +46,12 @@ namespace droid.Neodroid.Prototyping.Configurables {
 
     public Vector3 Rotation { get { return this._rotation; } set { this._rotation = value; } }
     public Space3 PositionSpace { get; } = new Space3();
-    public Space3 DirectionSpace { get; }= new Space3();
-    public Space3 RotationSpace { get; }= new Space3();
+    public Space3 DirectionSpace { get; } = new Space3();
+    public Space3 RotationSpace { get; } = new Space3();
 
+    /// <summary>
+    /// 
+    /// </summary>
     public override void UpdateCurrentConfiguration() {
       if (this._use_environments_space) {
         this.Position = this.ParentEnvironment.TransformPosition(this.transform.position);
@@ -58,6 +64,9 @@ namespace droid.Neodroid.Prototyping.Configurables {
       }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment = NeodroidUtilities.MaybeRegisterComponent(
           this.ParentEnvironment,
@@ -100,8 +109,10 @@ namespace droid.Neodroid.Prototyping.Configurables {
           this._rot_z);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     protected override void PreSetup() {
-      base.Setup();
       this._x = this.Identifier + "X";
       this._y = this.Identifier + "Y";
       this._z = this.Identifier + "Z";
@@ -113,6 +124,9 @@ namespace droid.Neodroid.Prototyping.Configurables {
       this._rot_z = this.Identifier + "RotZ";
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     protected override void UnRegisterComponent() {
       if (this.ParentEnvironment) {
         this.ParentEnvironment.UnRegisterConfigurable(this._x);
@@ -127,6 +141,10 @@ namespace droid.Neodroid.Prototyping.Configurables {
       }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="configuration"></param>
     public override void ApplyConfiguration(Configuration configuration) {
       var pos = this.transform.position;
       var dir = this.transform.forward;
@@ -216,8 +234,13 @@ namespace droid.Neodroid.Prototyping.Configurables {
       this.transform.rotation = Quaternion.LookRotation(inv_dir, inv_rot);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="random_generator"></param>
+    /// <returns></returns>
     public override Configuration SampleConfiguration(Random random_generator) {
-      throw new NotImplementedException();
+      return new Configuration(this.Identifier, random_generator.Next());
     }
   }
 }

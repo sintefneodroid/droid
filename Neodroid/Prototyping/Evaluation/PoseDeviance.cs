@@ -55,10 +55,10 @@ namespace droid.Neodroid.Prototyping.Evaluation {
       #if NEODROID_DEBUG
       if (this.Debugging) {
         Debug.Log(
-            $"Frame number: {this.ParentEnvironment.CurrentFrameNumber}, "
+            $"Frame Number: {this.ParentEnvironment.CurrentFrameNumber}, "
             + $"Terminated: {this.ParentEnvironment.Terminated}, "
-            + $"Reason: {this.ParentEnvironment.TerminationReason}, "
-            + $"Internal reward signal: {reward}, "
+            + $"Last Reason: {this.ParentEnvironment.LastTerminationReason}, "
+            + $"Internal Feedback Signal: {reward}, "
             + $"Distance: {distance}");
       }
       #endif

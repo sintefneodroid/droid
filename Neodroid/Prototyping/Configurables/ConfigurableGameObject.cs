@@ -43,19 +43,22 @@ namespace droid.Neodroid.Prototyping.Configurables {
     /// </summary>
     public virtual void UpdateCurrentConfiguration() { }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     protected sealed override void Setup() {
       this.PreSetup();
       this.UpdateCurrentConfiguration();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     protected virtual void PreSetup() { }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment = NeodroidUtilities.MaybeRegisterComponent(this.ParentEnvironment, this);
     }

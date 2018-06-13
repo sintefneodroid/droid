@@ -27,8 +27,10 @@ namespace droid.Neodroid.Prototyping.Motors {
     string _y;
     string _z;
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
     protected override void Setup() {
-      base.Setup();
       this._x = this.Identifier + "X";
       this._y = this.Identifier + "Y";
       this._z = this.Identifier + "Z";
@@ -37,8 +39,14 @@ namespace droid.Neodroid.Prototyping.Motors {
       this._rot_z = this.Identifier + "RotZ";
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public override string PrototypingTypeName { get { return "Transform"; } }
 
+    /// <summary>
+    /// 
+    /// </summary>
     protected override void RegisterComponent() {
       this.ParentActor =
           NeodroidUtilities.MaybeRegisterNamedComponent(this.ParentActor, (Motor)this, this._x);
@@ -54,6 +62,10 @@ namespace droid.Neodroid.Prototyping.Motors {
           NeodroidUtilities.MaybeRegisterNamedComponent(this.ParentActor, (Motor)this, this._rot_z);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="motion"></param>
     protected override void InnerApplyMotion(MotorMotion motion) {
       if (motion.MotorName == this._x) {
         this.transform.Translate(Vector3.left * motion.Strength, this._Relative_To);

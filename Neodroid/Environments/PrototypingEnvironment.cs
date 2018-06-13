@@ -362,7 +362,7 @@ namespace droid.Neodroid.Environments {
           #endif
 
           this._Terminated = true;
-          this._Termination_Reason = reason;
+          this._LastTermination_Reason = reason;
         }
       }
     }
@@ -1022,7 +1022,7 @@ namespace droid.Neodroid.Environments {
             signal,
             this._Terminated,
             ref obs,
-            this.TerminationReason,
+            this.LastTerminationReason,
             description);
 
         if (this._Simulation_Manager.Configuration.DoSerialiseUnobservables || this._Describe) {

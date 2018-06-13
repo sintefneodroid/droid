@@ -6,6 +6,9 @@ using UnityEngine;
 using Random = System.Random;
 
 namespace droid.Neodroid.Prototyping.Configurables {
+  /// <inheritdoc />
+  /// <summary>
+  /// </summary>
   [AddComponentMenu(
       ConfigurableComponentMenuPath._ComponentMenuPath
       + "Simulation"
@@ -20,6 +23,9 @@ namespace droid.Neodroid.Prototyping.Configurables {
     string _time_scale;
     string _width;
 
+    /// <summary>
+    /// 
+    /// </summary>
     protected override void PreSetup() {
       this._quality_level = this.Identifier + "QualityLevel";
       this._target_frame_rate = this.Identifier + "TargetFrameRate";
@@ -29,8 +35,14 @@ namespace droid.Neodroid.Prototyping.Configurables {
       this._fullscreen = this.Identifier + "Fullscreen";
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public override string PrototypingTypeName { get { return "Simulation"; } }
 
+    /// <summary>
+    /// 
+    /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           this.ParentEnvironment,
@@ -58,6 +70,9 @@ namespace droid.Neodroid.Prototyping.Configurables {
           this._time_scale);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     protected override void UnRegisterComponent() {
       if (this.ParentEnvironment) {
         this.ParentEnvironment.UnRegisterConfigurable(this._quality_level);
@@ -69,6 +84,10 @@ namespace droid.Neodroid.Prototyping.Configurables {
       }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="configuration"></param>
     public override void ApplyConfiguration(Configuration configuration) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
@@ -91,6 +110,12 @@ namespace droid.Neodroid.Prototyping.Configurables {
       }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="random_generator"></param>
+    /// <returns></returns>
+    /// <exception cref="NotImplementedException"></exception>
     public override Configuration SampleConfiguration(Random random_generator) {
       throw new NotImplementedException();
     }

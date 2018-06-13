@@ -97,7 +97,7 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-    protected string _Termination_Reason = "None";
+    protected string _LastTermination_Reason = "None";
 
     /// <summary>
     ///
@@ -132,7 +132,7 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-    public String TerminationReason { get { return this._Termination_Reason; } }
+    public String LastTerminationReason { get { return this._LastTermination_Reason; } }
 
     /// <inheritdoc />
     /// <summary>

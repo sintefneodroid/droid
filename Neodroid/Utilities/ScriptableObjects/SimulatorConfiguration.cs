@@ -11,7 +11,7 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
     /// <summary>
     /// Waiting for frame instead means stable physics(Multiple fixed updates) and camera has updated their rendertextures. Pauses the game after every reaction until next reaction is received.
     /// </summary>
-    Frame_dependent_,
+    Frame_dependent_, // TODO: Sometimes some frame seems to be dropped with the frame dependent configuration at high frame rates. 
 
     /// <summary>
     /// Camera observers should be manually rendered to ensure validity and freshness with camera.Render()
