@@ -1,5 +1,5 @@
-﻿using droid.Neodroid.Utilities.ScriptableObjects;
-using Neodroid.FBS;
+﻿using droid.Neodroid.Utilities.Messaging.FBS;
+using droid.Neodroid.Utilities.ScriptableObjects;
 
 namespace droid.Neodroid.Utilities.Messaging.Messages {
   /// <summary>
