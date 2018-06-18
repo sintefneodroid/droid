@@ -2,22 +2,36 @@
 using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Motors.WheelColliderMotor {
+  /// <inheritdoc />
+  /// <summary>
+  /// </summary>
   [AddComponentMenu(
       MotorComponentMenuPath._ComponentMenuPath + "WheelCollider/Torque" + MotorComponentMenuPath._Postfix)]
   [RequireComponent(typeof(WheelCollider))]
   public class TorqueMotor : Motor {
     [SerializeField] WheelCollider _wheel_collider;
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
     public override string PrototypingTypeName { get { return "Torque"; } }
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
     protected override void Setup() { this._wheel_collider = this.GetComponent<WheelCollider>(); }
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
     protected override void InnerApplyMotion(MotorMotion motion) {
       this._wheel_collider.motorTorque = motion.Strength;
     }
 
     void FixedUpdate() { this.ApplyLocalPositionToVisuals(this._wheel_collider); }
 
+    /// <summary>
+    /// </summary>
     void ApplyLocalPositionToVisuals(WheelCollider col) {
       if (col.transform.childCount == 0) {
         return;

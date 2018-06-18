@@ -35,18 +35,13 @@ namespace droid.Neodroid.Prototyping.Observers.Rigidbody {
 
       this.FloatEnumerable = new[] {this.Velocity.x, this.Velocity.y, this.Velocity.z,};
     }
-    
-    
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     protected override void PreSetup() {
       this._rigidbody = this.GetComponent<UnityEngine.Rigidbody>();
-      this.FloatEnumerable = new[] {
-          this.Velocity.x,
-          this.Velocity.y,
-          this.Velocity.z
-      };
+      this.FloatEnumerable = new[] {this.Velocity.x, this.Velocity.y, this.Velocity.z};
     }
   }
 }

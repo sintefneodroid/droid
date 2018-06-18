@@ -31,12 +31,12 @@ namespace droid.Neodroid.Prototyping.Motors {
     /// <summary>
     /// </summary>
     protected override void Setup() {
-      this._x = this.Identifier + "X";
-      this._y = this.Identifier + "Y";
-      this._z = this.Identifier + "Z";
-      this._rot_x = this.Identifier + "RotX";
-      this._rot_y = this.Identifier + "RotY";
-      this._rot_z = this.Identifier + "RotZ";
+      this._x = this.Identifier + "X_";
+      this._y = this.Identifier + "Y_";
+      this._z = this.Identifier + "Z_";
+      this._rot_x = this.Identifier + "RotX_";
+      this._rot_y = this.Identifier + "RotY_";
+      this._rot_z = this.Identifier + "RotZ_";
     }
 
     /// <summary>

@@ -11,6 +11,7 @@ namespace droid.Neodroid.Utilities.Segmentation {
     /// 
     /// </summary>
     public string _Tag;
+
     /// <summary>
     /// 
     /// </summary>
@@ -26,6 +27,7 @@ namespace droid.Neodroid.Utilities.Segmentation {
     /// 
     /// </summary>
     public GameObject _Obj;
+
     /// <summary>
     /// 
     /// </summary>

@@ -14,6 +14,9 @@ namespace droid.Neodroid.Editor.Windows {
     Vector2 _scroll_position;
     bool[] _show_camera_properties;
 
+    /// <summary>
+    /// 
+    /// </summary>
     [MenuItem(EditorWindowMenuPath._WindowMenuPath + "CameraSynchronisationWindow")]
     [MenuItem(EditorWindowMenuPath._ToolMenuPath + "CameraSynchronisationWindow")]
     public static void ShowWindow() {

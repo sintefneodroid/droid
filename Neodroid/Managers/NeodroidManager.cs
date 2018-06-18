@@ -173,7 +173,11 @@ namespace droid.Neodroid.Managers {
     void CreateMessagingServer() {
       try {
         if (this.Configuration.IpAddress != "" || this.Configuration.Port != 0) {
-          this._Message_Server = new MessageServer(this.Configuration.IpAddress, this.Configuration.Port, false, this.Debugging);
+          this._Message_Server = new MessageServer(
+              this.Configuration.IpAddress,
+              this.Configuration.Port,
+              false,
+              this.Debugging);
         } else {
           this._Message_Server = new MessageServer(this.Debugging);
         }

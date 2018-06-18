@@ -3,6 +3,9 @@ using droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Motors {
+  /// <inheritdoc />
+  /// <summary>
+  /// </summary>
   [AddComponentMenu(
       MotorComponentMenuPath._ComponentMenuPath + "RigidbodyMotor3Dof" + MotorComponentMenuPath._Postfix)]
   [RequireComponent(typeof(Rigidbody))]
@@ -25,7 +28,11 @@ namespace droid.Neodroid.Prototyping.Motors {
     [SerializeField]
     protected ForceMode _ForceMode = ForceMode.Force;
 
-    [SerializeField] protected bool _Rotational_Motors;
+    /// <summary>
+    /// 
+    /// </summary>
+    [SerializeField]
+    protected bool _Angular_Motors;
 
     /// <summary>
     ///
@@ -56,13 +63,13 @@ namespace droid.Neodroid.Prototyping.Motors {
     ///
     /// </summary>
     protected override void RegisterComponent() {
-      this._x = this.Identifier + "X";
-      this._y = this.Identifier + "Y";
-      this._z = this.Identifier + "Z";
-      if (this._Rotational_Motors) {
-        this._x = this.Identifier + "RotX";
-        this._y = this.Identifier + "RotY";
-        this._z = this.Identifier + "RotZ";
+      this._x = this.Identifier + "X_";
+      this._y = this.Identifier + "Y_";
+      this._z = this.Identifier + "Z_";
+      if (this._Angular_Motors) {
+        this._x = this.Identifier + "RotX_";
+        this._y = this.Identifier + "RotY_";
+        this._z = this.Identifier + "RotZ_";
       }
 
       this.ParentActor =
@@ -78,7 +85,7 @@ namespace droid.Neodroid.Prototyping.Motors {
     /// </summary>
     /// <param name="motion"></param>
     protected override void InnerApplyMotion(MotorMotion motion) {
-      if (!this._Rotational_Motors) {
+      if (!this._Angular_Motors) {
         if (motion.MotorName == this._x) {
           if (this._Relative_To == Space.World) {
             this._Rigidbody.AddForce(Vector3.left * motion.Strength, this._ForceMode);

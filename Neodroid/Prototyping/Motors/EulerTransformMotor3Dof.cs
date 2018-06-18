@@ -63,13 +63,13 @@ namespace droid.Neodroid.Prototyping.Motors {
     /// </summary>
     protected override void Setup() {
       if (!this._Rotational_Motors) {
-        this._x = this.Identifier + "X";
-        this._y = this.Identifier + "Y";
-        this._z = this.Identifier + "Z";
+        this._x = this.Identifier + "X_";
+        this._y = this.Identifier + "Y_";
+        this._z = this.Identifier + "Z_";
       } else {
-        this._x = this.Identifier + "RotX";
-        this._y = this.Identifier + "RotY";
-        this._z = this.Identifier + "RotZ";
+        this._x = this.Identifier + "RotX_";
+        this._y = this.Identifier + "RotY_";
+        this._z = this.Identifier + "RotZ_";
       }
     }
 

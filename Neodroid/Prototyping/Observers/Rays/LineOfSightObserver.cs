@@ -4,6 +4,9 @@ using droid.Neodroid.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Observers.Rays {
+  /// <inheritdoc cref="Observer" />
+  /// <summary>
+  /// </summary>
   [AddComponentMenu(
       ObserverComponentMenuPath._ComponentMenuPath + "LineOfSight" + ObserverComponentMenuPath._Postfix)]
   [ExecuteInEditMode]

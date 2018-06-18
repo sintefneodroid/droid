@@ -33,9 +33,9 @@ namespace droid.Neodroid.Prototyping.Configurables {
     string _z;
 
     protected override void PreSetup() {
-      this._x = this.Identifier + "X";
-      this._y = this.Identifier + "Y";
-      this._z = this.Identifier + "Z";
+      this._x = this.Identifier + "X_";
+      this._y = this.Identifier + "Y_";
+      this._z = this.Identifier + "Z_";
     }
 
     /// <summary>

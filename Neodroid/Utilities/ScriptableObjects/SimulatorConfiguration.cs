@@ -133,7 +133,7 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
     [SerializeField]
     [Range(-1, 9999)]
     int _target_frame_rate = -1;
-    
+
     /// <summary>
     ///
     /// </summary>
@@ -148,10 +148,11 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
     int _port = 6969;
 
     [Header("Performance (Disable for faster serialisation, but with loss of functionality)")]
-    
-    [SerializeField] bool _do_serialise_unobservables;
+    [SerializeField]
+    bool _do_serialise_unobservables;
+
     [SerializeField] bool _do_serialise_indidual_observables;
-    
+
     /// <summary>
     /// WARNING When _update_fixed_time_scale is true, MAJOR slow downs due to PHYSX updates on change.
     /// </summary>
