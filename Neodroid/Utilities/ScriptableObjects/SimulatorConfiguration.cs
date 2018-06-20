@@ -98,7 +98,7 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
     /// </summary>
     [SerializeField]
     [Range(1, 99)]
-    int _reset_iterations = 10;
+    int _reset_iterations = 1;
 
     /// <summary>
     ///
@@ -189,7 +189,7 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
       this.SimulationType = SimulationType.Frame_dependent_;
       this.FrameFinishes = FrameFinishes.Late_update_;
       this.FrameSkips = 0;
-      this.ResetIterations = 10;
+      this.ResetIterations = 1;
       this.MaxReplyInterval = 0;
       this.NumOfEnvironments = 1;
     }

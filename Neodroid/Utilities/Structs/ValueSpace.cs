@@ -8,10 +8,10 @@ namespace droid.Neodroid.Utilities.Structs {
     public float _Min_Value;
     public float _Max_Value;
 
-    public ValueSpace(int decimal_granularity = 10) {
+    public ValueSpace(int decimal_granularity = 2) {
       this._Decimal_Granularity = decimal_granularity;
-      this._Min_Value = -100f; //float.NegativeInfinity;
-      this._Max_Value = 100f; //float.PositiveInfinity;
+      this._Min_Value = -1f; //float.NegativeInfinity;
+      this._Max_Value = 1f; //float.PositiveInfinity;
     }
 
     public float RandomValue() {

@@ -937,9 +937,14 @@ namespace droid.Neodroid.Environments {
           .Select(go => go.GetComponent<Animation>()).Where(anim => anim).ToArray();
       this._reset_animation_times = new float[this._animations.Length];
       for (var i = 0; i < this._animations.Length; i++) {
-        this._reset_animation_times[i] =
-            this._animations[i].CrossFadeQueued(this._animations[i].clip.name)
-                .time; //TODO: IS NOT USED AS RIGHT NOW and should use animations clips instead the legacy "clip.name".
+        if(this._animations[i]) {
+          if(this._animations[i].clip) {
+            this._reset_animation_times[i] =
+                this._animations[i].CrossFadeQueued(this._animations[i].clip.name)
+                    .time; //TODO: IS NOT USED AS RIGHT NOW and should use animations clips instead the legacy "clip.name".
+            //TODO: DOES NOT WORK
+          }
+        }
       }
     }
 

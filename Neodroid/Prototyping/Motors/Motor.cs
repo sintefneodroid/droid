@@ -117,7 +117,7 @@ namespace droid.Neodroid.Prototyping.Motors {
     [Header("General", order = 101)]
     [SerializeField]
     ValueSpace _motion_value_space =
-        new ValueSpace {_Decimal_Granularity = 0, _Min_Value = -10, _Max_Value = 10};
+        new ValueSpace {_Decimal_Granularity = 0, _Min_Value = -1, _Max_Value = 1};
 
     [SerializeField] float _energy_spend_since_reset;
 

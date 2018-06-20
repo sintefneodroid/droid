@@ -3,16 +3,32 @@ using droid.Neodroid.Utilities.Messaging.Messages;
 using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Motors {
+  /// <summary>
+  /// 
+  /// </summary>
   [AddComponentMenu(
-      MotorComponentMenuPath._ComponentMenuPath + "IndexedMotor" + MotorComponentMenuPath._Postfix)]
-  public class IndexedMotor : Motor {
+      MotorComponentMenuPath._ComponentMenuPath + "IndexedMotion" + MotorComponentMenuPath._Postfix)]
+  public class IndexedMotionMotor : Motor {
+    /// <summary>
+    /// 
+    /// </summary>
     [SerializeField] protected string _Layer_Mask = "Obstructions";
+    /// <summary>
+    /// 
+    /// </summary>
     [SerializeField] protected bool _No_Collisions = true;
+    /// <summary>
+    /// 
+    /// </summary>
     [SerializeField] protected Space _Relative_To = Space.Self;
-    public override string PrototypingTypeName { get { return "Index"; } }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    public override string PrototypingTypeName { get { return "IndexedMotion"; } }
+    
     protected override void InnerApplyMotion(MotorMotion motion) {
       var layer_mask = 1 << LayerMask.NameToLayer(this._Layer_Mask);
+      
 
       Vector3 vec;
       switch ((int)motion.Strength) {

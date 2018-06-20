@@ -125,7 +125,7 @@ environments and ease of integration with existing projects)
 # Citation
 
 For citation you may use the following bibtex entry:
-
+````
 @misc{neodroid,
   author = {Heider, Christian},
   title = {Neodroid Platform},
@@ -134,7 +134,7 @@ For citation you may use the following bibtex entry:
   journal = {GitHub repository},
   howpublished = {\url{https://github.com/sintefneodroid}},
 }
-
+````
 # Other Components Of The Neodroid Platform
 - [agent](https://github.com/sintefneodroid/agent)
 - [neo](https://github.com/sintefneodroid/neo)
