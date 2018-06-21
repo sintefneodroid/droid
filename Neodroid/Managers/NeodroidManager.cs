@@ -362,28 +362,28 @@ namespace droid.Neodroid.Managers {
       this.ApplyConfigurationToUnity(this.Configuration);
 
       if (this.Configuration.SimulationType == SimulationType.Physics_dependent_) {
-        this.EarlyFixedUpdateEvent += this.PreStep;
-        this.FixedUpdateEvent += this.Step;
+        this.EarlyFixedUpdateEvent += this.OnPreTick;
+        this.FixedUpdateEvent += this.OnTick;
         this.FixedUpdateEvent += this.Tick;
-        this.LateFixedUpdateEvent += this.PostStep;
+        this.LateFixedUpdateEvent += this.OnPostTick;
         this.StartCoroutine(this.LateFixedUpdateEventGenerator());
       } else {
-        this.EarlyUpdateEvent += this.PreStep;
-        this.UpdateEvent += this.Step;
+        this.EarlyUpdateEvent += this.OnPreTick;
+        this.UpdateEvent += this.OnTick;
         this.UpdateEvent += this.Tick;
         switch (this.Configuration.FrameFinishes) {
           case FrameFinishes.Late_update_:
-            this.LateUpdateEvent += this.PostStep;
+            this.LateUpdateEvent += this.OnPostTick;
             break;
           case FrameFinishes.On_post_render_:
-            this.OnPostRenderEvent += this.PostStep;
+            this.OnPostRenderEvent += this.OnPostTick;
             break;
           case FrameFinishes.On_render_image_:
-            this.OnRenderImageEvent += this.PostStep;
+            this.OnRenderImageEvent += this.OnPostTick;
             break;
           case FrameFinishes.End_of_frame_:
             this.StartCoroutine(this.EndOfFrameEventGenerator());
-            this.OnEndOfFrameEvent += this.PostStep;
+            this.OnEndOfFrameEvent += this.OnPostTick;
             break;
           default: throw new ArgumentOutOfRangeException();
         }
@@ -492,7 +492,7 @@ namespace droid.Neodroid.Managers {
     /// <summary>
     ///
     /// </summary>
-    protected void PreStep() {
+    protected void OnPreTick() {
       if (this.Configuration.StepExecutionPhase == ExecutionPhase.Before_) {
         this.ExecuteStep();
       }
@@ -501,12 +501,41 @@ namespace droid.Neodroid.Managers {
     /// <summary>
     ///
     /// </summary>
-    protected void Step() {
+    protected void OnTick() {
       if (this.Configuration.StepExecutionPhase == ExecutionPhase.Middle_) {
         this.ExecuteStep();
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    protected void OnPostTick() {
+      foreach (var environment in this._Environments.Values) {
+        environment.PostStep();
+      }
+
+      if (this.Configuration.StepExecutionPhase == ExecutionPhase.After_) {
+        this.ExecuteStep();
+      }
+      
+      this.ClearCurrentReactions();
+    }
+    
+    /// <summary>
+    ///
+    /// </summary>
+    void ExecuteStep() {
+      if (!this._syncing_environments) {
+        this.React(this.CurrentReactions);
+      }
+
+      if (this.AwaitingReply) {
+        var states = this.CollectStates();
+        this.PostReact(states);
+      }
+    }
+    
     /// <summary>
     ///
     /// </summary>
@@ -525,33 +554,6 @@ namespace droid.Neodroid.Managers {
         Debug.Log("Tick");
       }
       #endif
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    void ExecuteStep() {
-      if (!this._syncing_environments) {
-        this.React(this.CurrentReactions);
-      }
-
-      if (this.AwaitingReply) {
-        var states = this.CollectStates();
-        this.PostReact(states);
-      }
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    protected void PostStep() {
-      foreach (var environment in this._Environments.Values) {
-        environment.PostStep();
-      }
-
-      if (this.Configuration.StepExecutionPhase == ExecutionPhase.After_) {
-        this.ExecuteStep();
-      }
     }
 
     /// <summary>
@@ -590,8 +592,7 @@ namespace droid.Neodroid.Managers {
           }
         }
 
-        this._step = false;
-        this.ClearCurrentReactions();
+
       }
     }
 
@@ -633,7 +634,10 @@ namespace droid.Neodroid.Managers {
     /// <summary>
     ///
     /// </summary>
-    void ClearCurrentReactions() { this.CurrentReactions = new Reaction[] { }; }
+    void ClearCurrentReactions() {
+      this._step = false;
+      this.CurrentReactions = new Reaction[] { };
+    }
 
     #endregion
 
@@ -755,14 +759,16 @@ namespace droid.Neodroid.Managers {
       if (reaction.Parameters.Step) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log("Stepping");
+          Debug.Log("Stepping from Reaction");
         }
 
         #endif
 
         this._step = true;
       } else {
-        this._step = false;
+        if (HasStepped) {
+          this._step = false;
+        }
       }
     }
 
@@ -770,17 +776,20 @@ namespace droid.Neodroid.Managers {
       if (reactions.Any(reac => reac.Parameters.Step)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log("Stepping");
+          Debug.Log("Stepping from any reactions");
         }
 
         #endif
 
         this._step = true;
       } else {
-        this._step = false;
+        if(HasStepped) {
+          this._step = false;
+        }
       }
     }
 
+/*
     /// <summary>
     ///
     /// </summary>
@@ -814,7 +823,8 @@ namespace droid.Neodroid.Managers {
 
       return states;
     }
-
+*/
+    
     /// <summary>
     ///
     /// </summary>

@@ -57,10 +57,18 @@ namespace droid.Neodroid.Managers {
     ///
     /// </summary>
     void MaybeResume() {
-      if (this.TestMotors || this.Stepping) {
+      if (this.Stepping) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log("Resuming simulation");
+          Debug.Log("Resuming simulation because of stepping");
+        }
+        #endif
+
+        this.ResumeSimulation(this.Configuration.TimeScale);
+      } else if(this.TestMotors) {
+        #if NEODROID_DEBUG
+        if (this.Debugging) {
+          Debug.Log("Resuming simulation because of TestMotors");
         }
         #endif
 
@@ -90,6 +98,11 @@ namespace droid.Neodroid.Managers {
     /// </summary>
     /// <param name="simulation_time_scale"></param>
     void ResumeSimulation(float simulation_time_scale) {
+      #if NEODROID_DEBUG
+      if (this.Debugging) {
+        Debug.Log("Resuming simulation");
+      }
+      #endif
       this.SimulationTime = simulation_time_scale > 0 ? simulation_time_scale : 1;
     }
 

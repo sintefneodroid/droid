@@ -73,10 +73,18 @@ namespace droid.Neodroid.Environments {
       if (!this.PlayableArea) {
         this.PlayableArea = this.GetComponent<BoundingBox>();
       }
+      
+      #if NEODROID_DEBUG
+      if (this.Debugging) {
+        Debug.Log($"Setting up");
+      }
+      #endif
 
-      this.SaveInitialPoses();
-      this.SaveInitialAnimations();
-      this.StartCoroutine(this.SaveInitialBodiesIe());
+      if (this._tracked_game_objects == null || this._tracked_game_objects.Length == 0) {
+        this.SaveInitialPoses();
+        this.SaveInitialAnimations();
+        this.StartCoroutine(this.SaveInitialBodiesIe());
+      }
     }
 
     /// <inheritdoc />
@@ -238,7 +246,7 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-    Rigidbody[] _bodies;
+    Rigidbody[] _tracked_rigid_bodies;
 
     /// <summary>
     ///
@@ -269,6 +277,8 @@ namespace droid.Neodroid.Environments {
     ///
     /// </summary>
     float[] _reset_animation_times;
+
+    [SerializeField] bool _initials_saved_flag;
 
     #endregion
 
@@ -918,14 +928,14 @@ namespace droid.Neodroid.Environments {
             this._bodies = body_list.ToArray();
       */ //Should be equalvalent to the line below, but kept as a reference in case of confusion
 
-      this._bodies = this._tracked_game_objects.Where(go => go != null)
+      this._tracked_rigid_bodies = this._tracked_game_objects.Where(go => go != null)
           .Select(go => go.GetComponent<Rigidbody>()).Where(body => body).ToArray();
 
-      this._reset_velocities = new Vector3[this._bodies.Length];
-      this._reset_angulars = new Vector3[this._bodies.Length];
-      for (var i = 0; i < this._bodies.Length; i++) {
-        this._reset_velocities[i] = this._bodies[i].velocity;
-        this._reset_angulars[i] = this._bodies[i].angularVelocity;
+      this._reset_velocities = new Vector3[this._tracked_rigid_bodies.Length];
+      this._reset_angulars = new Vector3[this._tracked_rigid_bodies.Length];
+      for (var i = 0; i < this._tracked_rigid_bodies.Length; i++) {
+        this._reset_velocities[i] = this._tracked_rigid_bodies[i].velocity;
+        this._reset_angulars[i] = this._tracked_rigid_bodies[i].angularVelocity;
       }
     }
 
@@ -1031,7 +1041,7 @@ namespace droid.Neodroid.Environments {
             description);
 
         if (this._Simulation_Manager.Configuration.DoSerialiseUnobservables || this._Describe) {
-          state.Unobservables = new Unobservables(ref this._bodies, ref this._poses);
+          state.Unobservables = new Unobservables(ref this._tracked_rigid_bodies, ref this._poses);
         }
 
         if (this._Simulation_Manager.Configuration.DoSerialiseIndidualObservables || this._Describe) {
@@ -1053,7 +1063,7 @@ namespace droid.Neodroid.Environments {
       }
 
       this.SetEnvironmentPoses(this._tracked_game_objects, this._reset_positions, this._reset_rotations);
-      this.SetEnvironmentBodies(this._bodies, this._reset_velocities, this._reset_angulars);
+      this.SetEnvironmentBodies(this._tracked_rigid_bodies, this._reset_velocities, this._reset_angulars);
 
       this.ResetRegisteredObjects();
       this.Configure();
@@ -1096,7 +1106,7 @@ namespace droid.Neodroid.Environments {
           angs[i] = this._received_bodies[i].AngularVelocity;
         }
 
-        this.SetEnvironmentBodies(this._bodies, vels, angs);
+        this.SetEnvironmentBodies(this._tracked_rigid_bodies, vels, angs);
       }
 
       if (this._received_configurations != null) {
