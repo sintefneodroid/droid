@@ -45,20 +45,7 @@ namespace droid.Neodroid.Environments {
     /// </summary>
     public event Action PostStepEvent;
 
-    /// <summary>
-    ///
-    /// </summary>
-    Object _react_lock = new Object();
 
-    int _reset_i;
-
-    WaitForFixedUpdate _wait_for_fixed_update = new WaitForFixedUpdate();
-    List<float> _observables = new List<float>();
-    List<MotorMotion> _sample_motions = new List<MotorMotion>();
-
-    #region UnityCallbacks
-
-    #endregion
 
     #region NeodroidCallbacks
 
@@ -73,7 +60,7 @@ namespace droid.Neodroid.Environments {
       if (!this.PlayableArea) {
         this.PlayableArea = this.GetComponent<BoundingBox>();
       }
-      
+
       #if NEODROID_DEBUG
       if (this.Debugging) {
         Debug.Log($"Setting up");
@@ -115,7 +102,7 @@ namespace droid.Neodroid.Environments {
       }
 
       if (!this._Simulation_Manager.IsSyncingEnvironments) {
-        this._Describe = false;
+        this._ReplyWithDescriptionThisStep = false;
       }
     }
 
@@ -213,6 +200,17 @@ namespace droid.Neodroid.Environments {
     [Header("(Optional)", order = 80)]
     [SerializeField]
     BoundingBox _playable_area;
+    
+    /// <summary>
+    ///
+    /// </summary>
+    Object _react_lock = new Object();
+
+    [SerializeField] int _reset_i;
+
+    WaitForFixedUpdate _wait_for_fixed_update = new WaitForFixedUpdate();
+    List<float> _observables = new List<float>();
+    List<MotorMotion> _sample_motions = new List<MotorMotion>();
 
     #endregion
 
@@ -289,34 +287,39 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-    public Dictionary<string, Displayer> Displayers { get; set; } = new Dictionary<string, Displayer>();
+    public Dictionary<string, Displayer> Displayers { get; } = new Dictionary<string, Displayer>();
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    public Reaction LastReaction { get; protected set; }
 
     /// <summary>
     ///
     /// </summary>
-    public Dictionary<string, ConfigurableGameObject> Configurables { get; set; } =
+    public Dictionary<string, ConfigurableGameObject> Configurables { get; } =
       new Dictionary<string, ConfigurableGameObject>();
 
     /// <summary>
     ///
     /// </summary>
-    public Dictionary<string, Actor> Actors { get; set; } = new Dictionary<string, Actor>();
+    public Dictionary<string, Actor> Actors { get; } = new Dictionary<string, Actor>();
 
     /// <summary>
     ///
     /// </summary>
-    public SortedDictionary<string, Observer> Observers { get; set; } =
+    public SortedDictionary<string, Observer> Observers { get; } =
       new SortedDictionary<string, Observer>();
 
     /// <summary>
     ///
     /// </summary>
-    public Dictionary<string, Resetable> Resetables { get; set; } = new Dictionary<string, Resetable>();
+    public Dictionary<string, Resetable> Resetables { get; } = new Dictionary<string, Resetable>();
 
     /// <summary>
     ///
     /// </summary>
-    public Dictionary<string, EnvironmentListener> Listeners { get; set; } =
+    public Dictionary<string, EnvironmentListener> Listeners { get; } =
       new Dictionary<string, EnvironmentListener>();
 
     /// <inheritdoc />
@@ -383,34 +386,9 @@ namespace droid.Neodroid.Environments {
     /// <param name="reaction"></param>
     /// <returns></returns>
     public override EnvironmentState ReactAndCollectState(Reaction reaction) {
-      lock (this._react_lock) {
-        this._Terminable = reaction.Parameters.Terminable;
+      this.React(reaction);
 
-        if (reaction.Parameters.IsExternal) {
-          this._received_configurations = reaction.Configurations;
-          if (!this._Describe) {
-            this._Describe = reaction.Parameters.Describe;
-          }
-
-          this._Configure = reaction.Parameters.Configure;
-          if (this._Configure && reaction.Unobservables != null) {
-            this._received_poses = reaction.Unobservables.Poses;
-            this._received_bodies = reaction.Unobservables.Bodies;
-          }
-        }
-
-        this.SendToDisplayers(reaction);
-
-        if (reaction.Parameters.Reset) {
-          this.Terminate(
-              $"{(reaction.Parameters.IsExternal ? "External" : "Internal")} reaction caused a reset");
-          this._Resetting = true;
-        } else if (reaction.Parameters.Step) {
-          this.Step(reaction);
-        }
-
-        return this.CollectState();
-      }
+      return this.CollectState();
     }
 
     /// <inheritdoc />
@@ -420,13 +398,14 @@ namespace droid.Neodroid.Environments {
     /// <returns></returns>
     public override void React(Reaction reaction) {
       lock (this._react_lock) {
+        this.LastReaction = reaction;
         this._Terminable = reaction.Parameters.Terminable;
 
         if (reaction.Parameters.IsExternal) {
           this._received_configurations = reaction.Configurations;
 
-          if (!this._Describe) {
-            this._Describe = reaction.Parameters.Describe;
+          if (!this._ReplyWithDescriptionThisStep) {
+            this._ReplyWithDescriptionThisStep = reaction.Parameters.Describe;
           }
 
           this._Configure = reaction.Parameters.Configure;
@@ -447,6 +426,8 @@ namespace droid.Neodroid.Environments {
         }
       }
     }
+
+
 
     /// <inheritdoc />
     /// <summary>
@@ -458,10 +439,13 @@ namespace droid.Neodroid.Environments {
           this._reset_i = 0;
           this.UpdateConfigurableValues();
           this.UpdateObserversData();
+          
+
         } else {
           this.Reset();
           this._reset_i += 1;
         }
+        
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log($"Reset {this._reset_i}/{this._Simulation_Manager.Configuration.ResetIterations}");
@@ -947,8 +931,8 @@ namespace droid.Neodroid.Environments {
           .Select(go => go.GetComponent<Animation>()).Where(anim => anim).ToArray();
       this._reset_animation_times = new float[this._animations.Length];
       for (var i = 0; i < this._animations.Length; i++) {
-        if(this._animations[i]) {
-          if(this._animations[i].clip) {
+        if (this._animations[i]) {
+          if (this._animations[i].clip) {
             this._reset_animation_times[i] =
                 this._animations[i].CrossFadeQueued(this._animations[i].clip.name)
                     .time; //TODO: IS NOT USED AS RIGHT NOW and should use animations clips instead the legacy "clip.name".
@@ -986,7 +970,7 @@ namespace droid.Neodroid.Environments {
         }
 
         EnvironmentDescription description = null;
-        if (this._Describe) {
+        if (this._ReplyWithDescriptionThisStep) {
           #if NEODROID_DEBUG
           if (this.Debugging) {
             Debug.Log("Describing Environment");
@@ -1040,11 +1024,13 @@ namespace droid.Neodroid.Environments {
             this.LastTerminationReason,
             description);
 
-        if (this._Simulation_Manager.Configuration.DoSerialiseUnobservables || this._Describe) {
+        if (this._Simulation_Manager.Configuration.AlwaysSerialiseUnobservables
+            || this._ReplyWithDescriptionThisStep) {
           state.Unobservables = new Unobservables(ref this._tracked_rigid_bodies, ref this._poses);
         }
 
-        if (this._Simulation_Manager.Configuration.DoSerialiseIndidualObservables || this._Describe) {
+        if (this._Simulation_Manager.Configuration.AlwaysSerialiseIndidualObservables
+            || this._ReplyWithDescriptionThisStep) {
           state.Observers = this.Observers.Values.ToArray();
         }
 
@@ -1205,10 +1191,6 @@ namespace droid.Neodroid.Environments {
       lock (this._react_lock) {
         this.PreStepEvent?.Invoke();
 
-        /*#if NEODROID_DEBUG
- if (this.Debugging) {
-          Debug.Log($"Step! CurrentFrameNumber: {this.CurrentFrameNumber}");
-        }                    #endif*/
         if (reaction.Parameters.EpisodeCount) {
           this.CurrentFrameNumber++;
         } else {
@@ -1276,8 +1258,8 @@ namespace droid.Neodroid.Environments {
     /// <param name="rotations"></param>
     void SetEnvironmentPoses(GameObject[] child_game_objects, Vector3[] positions, Quaternion[] rotations) {
       if (this._Simulation_Manager) {
-        for (var iterations = 0;
-             iterations < this._Simulation_Manager.Configuration.ResetIterations;
+        for (var iterations = 1;
+             iterations <= this._Simulation_Manager.Configuration.ResetIterations;
              iterations++) {
           for (var i = 0; i < child_game_objects.Length; i++) {
             if (child_game_objects[i] != null && i < positions.Length && i < rotations.Length) {

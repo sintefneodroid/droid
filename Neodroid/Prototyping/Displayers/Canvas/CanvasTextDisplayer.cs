@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using droid.Neodroid.Utilities.Structs;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,15 +17,39 @@ namespace droid.Neodroid.Prototyping.Displayers.Canvas {
   public class CanvasTextDisplayer : Displayer {
     Text _text_component;
 
-    protected override void Setup() {
-      this._text_component = this.GetComponent<Text>();
-      this._text_component.text = "TEEEEEXT!";
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    protected override void Setup() { this._text_component = this.GetComponent<Text>(); }
+
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public override void Display(float value) {
+      if(this._text_component) {
+        this._text_component.text = value.ToString(CultureInfo.InvariantCulture);
+      }
     }
 
-    public override void Display(float value) { throw new NotImplementedException(); }
-    public override void Display(Double value) { throw new NotImplementedException(); }
-    public override void Display(float[] values) { throw new NotImplementedException(); }
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public override void Display(Double value) { if(this._text_component) {
+        this._text_component.text = value.ToString(CultureInfo.InvariantCulture);
+      }
+    }
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public override void Display(float[] values) { if(this._text_component) {
+        this._text_component.text = values.ToString();
+      }
+    }
+
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
     public override void Display(String value) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
@@ -35,16 +60,61 @@ namespace droid.Neodroid.Prototyping.Displayers.Canvas {
       this.SetText(value);
     }
 
-    public override void Display(Vector3 value) { throw new NotImplementedException(); }
-    public override void Display(Vector3[] value) { throw new NotImplementedException(); }
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public override void Display(Vector3 value) { if(this._text_component) {
+        this._text_component.text = value.ToString();
+      }
+    }
 
-    public override void Display(Points.ValuePoint points) { throw new NotImplementedException(); }
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public override void Display(Vector3[] value) { if(this._text_component) {
+        this._text_component.text = value.ToString();
+      }
+    }
 
-    public override void Display(Points.ValuePoint[] points) { throw new NotImplementedException(); }
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public override void Display(Points.ValuePoint points) { if(this._text_component) {
+        this._text_component.text = points.ToString();
+      }
+    }
 
-    public override void Display(Points.StringPoint point) { throw new NotImplementedException(); }
-    public override void Display(Points.StringPoint[] points) { throw new NotImplementedException(); }
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public override void Display(Points.ValuePoint[] points) { if(this._text_component) {
+        this._text_component.text = points.ToString();
+      }
+    }
 
-    public void SetText(string text) { this._text_component.text = text; }
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public override void Display(Points.StringPoint point) { if(this._text_component) {
+        this._text_component.text = point.ToString();
+      }
+    }
+
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public override void Display(Points.StringPoint[] points) { if(this._text_component) {
+        this._text_component.text = points.ToString();
+      }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="text"></param>
+    public void SetText(string text) { if(this._text_component) {
+        this._text_component.text = text;
+      }
+    }
   }
 }

@@ -1,4 +1,5 @@
 ﻿#if UNITY_EDITOR
+using droid.Neodroid.Editor.Utilities;
 using droid.Neodroid.Environments;
 using droid.Neodroid.Managers;
 using droid.Neodroid.PlayerControls;
@@ -21,7 +22,7 @@ namespace droid.Neodroid.Editor.Windows {
   /// <summary>
   /// </summary>
   public class SimulationWindow : EditorWindow {
-    int _logo_image_size = 120;
+    const int _logo_image_size = 100;
     PrototypingEnvironment[] _environments;
     Texture _icon;
     Texture _neodroid_icon;
@@ -35,10 +36,13 @@ namespace droid.Neodroid.Editor.Windows {
 
     PlayerReactions _player_reactions;
 
+    const string _neodroid_url_text = "Documentation";
+    const string _neodroid_url = "https://github.com/sintefneodroid/droid";
+
     /// <summary>
     ///
     /// </summary>
-    bool _refresh_enabled=false;
+    const bool _refresh_enabled = false;
 
     /// <summary>
     ///
@@ -84,10 +88,18 @@ namespace droid.Neodroid.Editor.Windows {
       if (this._simulation_manager) {
         EditorGUILayout.BeginHorizontal();
 
+        EditorGUILayout.BeginVertical();
         GUILayout.Label(
             this._neodroid_icon,
-            GUILayout.Width(this._logo_image_size),
-            GUILayout.Height(this._logo_image_size));
+            GUILayout.Width(_logo_image_size),
+            GUILayout.Height(_logo_image_size));
+        
+
+        if (NeodroidEditorUtilities.LinkLabel(new GUIContent(_neodroid_url_text))) {
+          Application.OpenURL(_neodroid_url);
+        }
+        
+        EditorGUILayout.EndVertical();
 
         EditorGUILayout.BeginVertical();
         EditorGUILayout.ObjectField(this._simulation_manager, typeof(NeodroidManager), true);
@@ -123,7 +135,9 @@ namespace droid.Neodroid.Editor.Windows {
         this._scroll_position = EditorGUILayout.BeginScrollView(this._scroll_position);
 
         EditorGUILayout.BeginVertical("Box");
-        GUILayout.Label($"Environments - Active(?), Inactive(?), Total({this._environments.Length})");
+        var num_active_environments = this._environments.Length; //TODO: Calculate actual number
+        var num_inactive_environments = this._environments.Length-num_active_environments; //TODO: Calculate actual number
+        GUILayout.Label($"Environments - Active({num_active_environments}), Inactive({num_inactive_environments}), Total({this._environments.Length})");
         if (this._show_environment_properties != null) {
           for (var i = 0; i < this._show_environment_properties.Length; i++) {
             if (this._environments[i].isActiveAndEnabled) {
@@ -367,7 +381,7 @@ namespace droid.Neodroid.Editor.Windows {
     /// </summary>
     void OnValidate() {
 
-      if(EditorApplication.isPlaying || !this._refresh_enabled) {
+      if(EditorApplication.isPlaying || !_refresh_enabled) {
         return;
       }
 

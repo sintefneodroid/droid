@@ -34,6 +34,10 @@ namespace droid.Neodroid.Prototyping.Evaluation {
 
     [SerializeField] BoundingBox _playable_area;
 
+    public override void InternalReset() {
+      
+    }
+    
     public override float InternalEvaluate() {
       /*var regularising_term = 0f;
 

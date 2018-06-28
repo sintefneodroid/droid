@@ -5,9 +5,9 @@ using droid.Neodroid.Utilities.BoundingBoxes;
 using UnityEngine;
 
 namespace droid.Neodroid.Utilities.Unsorted {
-  /// <summary>
-  ///
-  /// </summary>
+  /// <inheritdoc />
+  ///  <summary>
+  ///  </summary>
   public class EnsureValidState : EnvironmentListener {
     [SerializeField] Actor _actor;
 

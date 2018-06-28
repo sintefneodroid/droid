@@ -24,8 +24,8 @@ MonoBehaviour:
   _target_frame_rate: -1
   _ip_address: localhost
   _port: 6969
-  _do_serialise_unobservables: 1
-  _do_serialise_indidual_observables: 1
+  _always_serialise_unobservables: 0
+  _always_serialise_indidual_observables: 0
   _update_fixed_time_scale: 0
   _max_reply_interval: 0
   _num_of_environments: 0

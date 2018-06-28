@@ -9,6 +9,10 @@ namespace droid.Neodroid.Prototyping.Evaluation {
     [SerializeField] bool _penalty;
     [SerializeField] Rigidbody _rigidbody;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     public override float InternalEvaluate() {
       if (this._penalty) {
         if (this._rigidbody) {
@@ -21,6 +25,13 @@ namespace droid.Neodroid.Prototyping.Evaluation {
       }
 
       return 0;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public override void InternalReset() {
+      
     }
 
     protected override void PostSetup() {

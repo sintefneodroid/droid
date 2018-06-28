@@ -155,7 +155,8 @@ namespace droid.Neodroid.Prototyping.Evaluation {
       signal += this.InternalEvaluate();
       signal += this.EvaluateExtraTerms();
 
-      signal = signal * Mathf.Pow(this._in_mdp_discount_factor, this._environment.CurrentFrameNumber);
+      //signal = signal * Mathf.Pow(this._internal_discount_factor, this._environment.CurrentFrameNumber);
+      
       #if NEODROID_DEBUG
       if (this.Debugging) {
         Debug.Log(signal);
@@ -181,7 +182,7 @@ namespace droid.Neodroid.Prototyping.Evaluation {
     /// <summary>
     ///
     /// </summary>
-    public virtual void InternalReset() { }
+    public abstract void InternalReset();
 
     /// <summary>
     ///
@@ -221,8 +222,7 @@ namespace droid.Neodroid.Prototyping.Evaluation {
     #region Fields
 
     [Header("References", order = 100)]
-    [SerializeField]
-    float _in_mdp_discount_factor = 1.0f;
+    //[SerializeField]float _internal_discount_factor = 1.0f;
 
     [SerializeField] PrototypingEnvironment _environment;
 

@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 
 namespace droid.Neodroid.Utilities.BoundingBoxes {
+  /// <summary>
+  /// 
+  /// </summary>
   public static class Corners {
     public static Vector3[] ExtractCorners(
         Vector3 v3_center,
@@ -61,6 +64,18 @@ namespace droid.Neodroid.Utilities.BoundingBoxes {
       };
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="v3_front_top_left"></param>
+    /// <param name="v3_front_top_right"></param>
+    /// <param name="v3_front_bottom_left"></param>
+    /// <param name="v3_front_bottom_right"></param>
+    /// <param name="v3_back_top_left"></param>
+    /// <param name="v3_back_top_right"></param>
+    /// <param name="v3_back_bottom_left"></param>
+    /// <param name="v3_back_bottom_right"></param>
+    /// <param name="color"></param>
     public static void DrawBox(
         Vector3 v3_front_top_left,
         Vector3 v3_front_top_right,

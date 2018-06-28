@@ -63,6 +63,8 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
     ///
     /// </summary>
     [Header("Graphics")]
+    [SerializeField] bool _apply_resolution_settings;
+
     [SerializeField] bool _full_screen;
 
     /// <summary>
@@ -149,9 +151,9 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
 
     [Header("Performance (Disable for faster serialisation, but with loss of functionality)")]
     [SerializeField]
-    bool _do_serialise_unobservables;
+    bool _always_serialise_unobservables;
 
-    [SerializeField] bool _do_serialise_indidual_observables;
+    [SerializeField] bool _always_serialise_indidual_observables;
 
     /// <summary>
     /// WARNING When _update_fixed_time_scale is true, MAJOR slow downs due to PHYSX updates on change.
@@ -174,7 +176,7 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
     [Range(0, 999)]
     int _num_of_environments;
 
-    bool _replay_reaction_in_skips;
+    [SerializeField] bool _replay_reaction_in_skips;
 
     /// <summary>
     ///
@@ -227,6 +229,11 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
     public SimulationType SimulationType {
       get { return this._simulation_type; }
       set { this._simulation_type = value; }
+    }
+
+    public bool ApplyResolutionSettings {
+      get { return this._apply_resolution_settings; }
+      set { this._apply_resolution_settings = value; }
     }
 
     /// <summary>
@@ -335,14 +342,14 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
       set { this._update_fixed_time_scale = value; }
     }
 
-    public bool DoSerialiseUnobservables {
-      get { return this._do_serialise_unobservables; }
-      set { this._do_serialise_unobservables = value; }
+    public bool AlwaysSerialiseUnobservables {
+      get { return this._always_serialise_unobservables; }
+      set { this._always_serialise_unobservables = value; }
     }
 
-    public bool DoSerialiseIndidualObservables {
-      get { return this._do_serialise_indidual_observables; }
-      set { this._do_serialise_indidual_observables = value; }
+    public bool AlwaysSerialiseIndidualObservables {
+      get { return this._always_serialise_indidual_observables; }
+      set { this._always_serialise_indidual_observables = value; }
     }
 
     public bool ReplayReactionInSkips {

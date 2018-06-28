@@ -34,7 +34,7 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-    protected float _Lastest_Reset_Time;
+    [SerializeField] protected float _Lastest_Reset_Time;
 
     /// <summary>
     ///
@@ -44,15 +44,15 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-    protected float _Energy_Spent;
+[SerializeField]    protected float _Energy_Spent;
 
     /// <summary>
     ///
     /// </summary>
-    protected bool _Terminated;
+    [SerializeField] protected bool _Terminated;
 
     #if UNITY_EDITOR
-    [SerializeField] int _script_execution_order = -20;
+    const int _script_execution_order = -20;
     #endif
 
     /// <summary>
@@ -92,12 +92,12 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-    protected bool _Terminable = true;
+    [SerializeField] protected bool _Terminable = true;
 
     /// <summary>
     ///
     /// </summary>
-    protected string _LastTermination_Reason = "None";
+    [SerializeField] protected string _LastTermination_Reason = "None";
 
     /// <summary>
     ///
@@ -107,12 +107,15 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-    protected bool _Describe;
+    protected bool _ReplyWithDescriptionThisStep;
 
     /// <summary>
     ///
     /// </summary>
-    public int CurrentFrameNumber { get; protected set; }
+    public int CurrentFrameNumber {
+      get { return this._current_frame_number; }
+      protected set { this._current_frame_number = value; }
+    }
 
     /// <summary>
     ///
@@ -122,7 +125,9 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-    protected bool _Resetting = false;
+    [SerializeField] protected bool _Resetting = false;
+
+    [SerializeField] int _current_frame_number;
 
     /// <summary>
     ///
@@ -146,10 +151,10 @@ namespace droid.Neodroid.Environments {
       #if UNITY_EDITOR
       if (!Application.isPlaying) {
         var manager_script = MonoScript.FromMonoBehaviour(this);
-        if (MonoImporter.GetExecutionOrder(manager_script) != this._script_execution_order) {
+        if (MonoImporter.GetExecutionOrder(manager_script) != _script_execution_order) {
           MonoImporter.SetExecutionOrder(
               manager_script,
-              this._script_execution_order); // Ensures that PreStep is called first, before all other scripts.
+              _script_execution_order); // Ensures that PreStep is called first, before all other scripts.
           Debug.LogWarning(
               "Execution Order changed, you will need to press play again to make everything function correctly!");
           EditorApplication.isPlaying = false;

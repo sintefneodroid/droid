@@ -12,6 +12,14 @@ namespace droid.Neodroid.Prototyping.Evaluation {
     [SerializeField]
     Rigidbody _rigidbody;
 
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    public override void InternalReset() {
+      
+    }
+    
     /// <inheritdoc />
     /// <summary>
     /// </summary>
@@ -47,9 +55,5 @@ namespace droid.Neodroid.Prototyping.Evaluation {
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    void Update() { }
   }
 }

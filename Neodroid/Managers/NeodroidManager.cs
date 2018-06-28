@@ -47,8 +47,7 @@ namespace droid.Neodroid.Managers {
     /// <summary>
     ///
     /// </summary>
-    [SerializeField]
-    int _script_execution_order = -1000;
+    const int _script_execution_order = -1000;
     #endif
 
     /// <summary>
@@ -61,19 +60,19 @@ namespace droid.Neodroid.Managers {
     /// <summary>
     ///
     /// </summary>
-    int _skip_frame_i;
+    [SerializeField] int _skip_frame_i;
 
     /// <summary>
     ///
     /// </summary>
-    bool _syncing_environments;
+    [SerializeField] bool _syncing_environments;
 
     /// <summary>
     ///
     /// </summary>
-    bool _awaiting_reply;
+    [SerializeField] bool _awaiting_reply;
 
-    bool _step;
+    [SerializeField] bool _step;
 
     WaitForEndOfFrame _wait_for_end_of_frame = new WaitForEndOfFrame();
     WaitForFixedUpdate _wait_for_fixed_update = new WaitForFixedUpdate();
@@ -249,7 +248,10 @@ namespace droid.Neodroid.Managers {
       }
     }
 
-    public bool HasStepped { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public bool HasStepped { get { return this._has_stepped; } set { this._has_stepped = value; } }
 
     /// <summary>
     ///
@@ -311,8 +313,10 @@ namespace droid.Neodroid.Managers {
     ///
     /// </summary>
     protected Reaction[] _Current_Reactions = new Reaction[] { };
+    
+    [SerializeField] bool _has_stepped;
 
-    #endregion
+#endregion
 
     #region UnityCallbacks
 
@@ -336,10 +340,10 @@ namespace droid.Neodroid.Managers {
       #if UNITY_EDITOR
       if (!Application.isPlaying) {
         var manager_script = MonoScript.FromMonoBehaviour(this);
-        if (MonoImporter.GetExecutionOrder(manager_script) != this._script_execution_order) {
+        if (MonoImporter.GetExecutionOrder(manager_script) != _script_execution_order) {
           MonoImporter.SetExecutionOrder(
               manager_script,
-              this._script_execution_order); // Ensures that PreStep is called first, before all other scripts.
+              _script_execution_order); // Ensures that PreStep is called first, before all other scripts.
           Debug.LogWarning(
               "Execution Order changed, you will need to press play again to make everything function correctly!");
           EditorApplication.isPlaying = false;
@@ -406,11 +410,14 @@ namespace droid.Neodroid.Managers {
       Application.targetFrameRate = configuration.TargetFrameRate;
       QualitySettings.vSyncCount = 0;
 
+
       #if !UNITY_EDITOR
+      if(      configuration.ApplyResolutionSettings){
       Screen.SetResolution(
           width : configuration.Width,
           height : configuration.Height,
           fullscreen : configuration.FullScreen);
+        }
       #endif
     }
 
@@ -620,8 +627,8 @@ namespace droid.Neodroid.Managers {
         this._Message_Server.SendStates(
             states,
             simulator_configuration_message : configuration_message,
-            do_serialise_unobservables : this.Configuration.DoSerialiseUnobservables,
-            serialise_indidual_observables : this.Configuration.DoSerialiseIndidualObservables);
+            do_serialise_unobservables : this.Configuration.AlwaysSerialiseUnobservables,
+            serialise_indidual_observables : this.Configuration.AlwaysSerialiseIndidualObservables);
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log("Replying");
@@ -766,7 +773,7 @@ namespace droid.Neodroid.Managers {
 
         this._step = true;
       } else {
-        if (HasStepped) {
+        if (this.HasStepped) {
           this._step = false;
         }
       }
@@ -783,7 +790,7 @@ namespace droid.Neodroid.Managers {
 
         this._step = true;
       } else {
-        if(HasStepped) {
+        if(this.HasStepped) {
           this._step = false;
         }
       }
@@ -916,7 +923,7 @@ namespace droid.Neodroid.Managers {
       lock (this._send_lock) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log("Received: " + reactions);
+          Debug.Log($"Received: {reactions.Select(r => r.ToString()).Aggregate((current, next) => $"{current}, {next}")}" );
         }
         #endif
 
@@ -933,6 +940,16 @@ namespace droid.Neodroid.Managers {
     protected void SetReactionsFromExternalSource(Reaction[] reactions) {
       lock (this._send_lock) {
         if (reactions != null) {
+          if (this.AwaitingReply || !this.HasStepped) {
+            #if NEODROID_DEBUG
+            if (this.Debugging) {
+              Debug.Log($"Got new reaction while not having stepped({!this.HasStepped}) or replied({this.AwaitingReply})" );
+            }
+            #endif
+          }
+              
+
+          
           this.CurrentReactions = reactions;
           foreach (var current_reaction in this.CurrentReactions) {
             current_reaction.Parameters.IsExternal = true;
@@ -941,6 +958,7 @@ namespace droid.Neodroid.Managers {
           this.Configuration.StepExecutionPhase = this.CurrentReactions[0].Parameters.Phase;
           this.AwaitingReply = true;
           this.HasStepped = false;
+          
         } else {
           Debug.LogWarning("Reaction was null");
         }

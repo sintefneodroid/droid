@@ -67,8 +67,8 @@ namespace droid.Neodroid.Utilities.Messaging.Messages {
       this.TargetFrameRate = simulator_configuration.TargetFrameRate;
       this.SimulationType = (int)simulator_configuration.SimulationType;
       this.Finishes = (int)simulator_configuration.FrameFinishes;
-      this.DoSerialiseIndidualObservables = simulator_configuration.DoSerialiseIndidualObservables;
-      this.DoSerialiseUnobservables = simulator_configuration.DoSerialiseUnobservables;
+      this.DoSerialiseIndidualObservables = simulator_configuration.AlwaysSerialiseIndidualObservables;
+      this.DoSerialiseUnobservables = simulator_configuration.AlwaysSerialiseUnobservables;
       //TODO: CANT BE CHANGE while running
       //TODO: Exhaust list!
     }

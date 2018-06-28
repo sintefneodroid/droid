@@ -60,10 +60,10 @@ namespace droid.Neodroid.Prototyping.Actors {
       #if UNITY_EDITOR
       if (!Application.isPlaying) {
         var manager_script = MonoScript.FromMonoBehaviour(this);
-        if (MonoImporter.GetExecutionOrder(manager_script) != this._script_execution_order) {
+        if (MonoImporter.GetExecutionOrder(manager_script) != _script_execution_order) {
           MonoImporter.SetExecutionOrder(
               manager_script,
-              this._script_execution_order); // Ensures that PreStep is called first, before all other scripts.
+              _script_execution_order); // Ensures that PreStep is called first, before all other scripts.
           Debug.LogWarning(
               "Execution Order changed, you will need to press play again to make everything function correctly!");
           EditorApplication.isPlaying = false;
@@ -217,7 +217,7 @@ namespace droid.Neodroid.Prototyping.Actors {
     protected Dictionary<string, Motor> _Motors = new Dictionary<string, Motor>();
 
     #if UNITY_EDITOR
-    [SerializeField] int _script_execution_order = -10;
+    const int _script_execution_order = -10;
     #endif
 
     #endregion
