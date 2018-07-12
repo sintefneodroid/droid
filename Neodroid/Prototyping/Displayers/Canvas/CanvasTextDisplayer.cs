@@ -8,12 +8,11 @@ namespace droid.Neodroid.Prototyping.Displayers.Canvas {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [ExecuteInEditMode]
-  [RequireComponent(typeof(Text))]
-  [AddComponentMenu(
-      DisplayerComponentMenuPath._ComponentMenuPath
-      + "Canvas/CanvasText"
-      + DisplayerComponentMenuPath._Postfix)]
+  [ExecuteInEditMode, RequireComponent(typeof(Text)),
+   AddComponentMenu(
+       DisplayerComponentMenuPath._ComponentMenuPath
+       + "Canvas/CanvasText"
+       + DisplayerComponentMenuPath._Postfix)]
   public class CanvasTextDisplayer : Displayer {
     Text _text_component;
 

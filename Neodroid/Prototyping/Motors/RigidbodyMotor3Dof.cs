@@ -7,8 +7,8 @@ namespace droid.Neodroid.Prototyping.Motors {
   /// <summary>
   /// </summary>
   [AddComponentMenu(
-      MotorComponentMenuPath._ComponentMenuPath + "RigidbodyMotor3Dof" + MotorComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(Rigidbody))]
+       MotorComponentMenuPath._ComponentMenuPath + "RigidbodyMotor3Dof" + MotorComponentMenuPath._Postfix),
+   RequireComponent(typeof(Rigidbody))]
   public class RigidbodyMotor3Dof : Motor {
     /// <summary>
     ///
@@ -59,9 +59,9 @@ namespace droid.Neodroid.Prototyping.Motors {
     /// </summary>
     protected override void Setup() { this._Rigidbody = this.GetComponent<Rigidbody>(); }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     protected override void RegisterComponent() {
       this._x = this.Identifier + "X_";
       this._y = this.Identifier + "Y_";

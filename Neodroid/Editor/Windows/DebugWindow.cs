@@ -10,7 +10,9 @@ using droid.Neodroid.Prototyping.Internals;
 using droid.Neodroid.Prototyping.Motors;
 using droid.Neodroid.Prototyping.Observers;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace droid.Neodroid.Editor.Windows {
   public class DebugWindow : EditorWindow {
@@ -18,7 +20,7 @@ namespace droid.Neodroid.Editor.Windows {
 
     ConfigurableGameObject[] _configurables;
 
-    PrototypingEnvironment[] _environments;
+    NeodroidEnvironment[] _environments;
 
     Texture _icon;
 
@@ -51,8 +53,8 @@ namespace droid.Neodroid.Editor.Windows {
     bool _show_listeners_debug;
     bool _debug_all;
 
-    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "DebugWindow")]
-    [MenuItem(EditorWindowMenuPath._ToolMenuPath + "DebugWindow")]
+    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "DebugWindow"),
+     MenuItem(EditorWindowMenuPath._ToolMenuPath + "DebugWindow")]
     public static void ShowWindow() {
       GetWindow<DebugWindow>(); //Show existing window instance. If one doesn't exist, make one.
     }
@@ -67,7 +69,7 @@ namespace droid.Neodroid.Editor.Windows {
 
     void FindObjects() {
       this._manager = FindObjectOfType<PausableManager>();
-      this._environments = FindObjectsOfType<PrototypingEnvironment>();
+      this._environments = FindObjectsOfType<NeodroidEnvironment>();
       this._actors = FindObjectsOfType<Actor>();
       this._motors = FindObjectsOfType<Motor>();
       this._observers = FindObjectsOfType<Observer>();
@@ -219,11 +221,11 @@ namespace droid.Neodroid.Editor.Windows {
         }
       }
 
-      /*if (GUI.changed) {
-      EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
+      if (GUI.changed) {
+      EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
       // Unity not tracking changes to properties of gameobject made through this window automatically and
       // are not saved unless other changes are made from a working inpector window
-      }*/
+      }
     }
 
     public void OnInspectorUpdate() { this.Repaint(); }

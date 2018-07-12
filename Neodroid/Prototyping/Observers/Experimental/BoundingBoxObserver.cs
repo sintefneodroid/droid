@@ -6,11 +6,9 @@ namespace droid.Neodroid.Prototyping.Observers.Experimental {
   /// <summary>
   /// </summary>
   [AddComponentMenu(
-      ObserverComponentMenuPath._ComponentMenuPath
-      + "Experimental/BoundingBox"
-      + ObserverComponentMenuPath._Postfix)]
-  [ExecuteInEditMode]
-  [RequireComponent(typeof(BoundingBox))]
+       ObserverComponentMenuPath._ComponentMenuPath
+       + "Experimental/BoundingBox"
+       + ObserverComponentMenuPath._Postfix), ExecuteInEditMode, RequireComponent(typeof(BoundingBox))]
   public class BoundingBoxObserver : Observer {
     /// <inheritdoc />
     /// <summary>

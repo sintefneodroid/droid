@@ -32,7 +32,7 @@ namespace droid.Neodroid.Environments {
                                         IHasRegister<EnvironmentListener> {
     /// <summary>
     ///
-    /// </summary>
+    /// </summary>hea
     public event Action PreStepEvent;
 
     /// <summary>
@@ -171,15 +171,13 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-    [Header("References", order = 20)]
-    [SerializeField]
+    [Header("References", order = 20), SerializeField]
     ObjectiveFunction _objective_function;
 
     /// <summary>
     ///
     /// </summary>
-    [Header("General", order = 30)]
-    [SerializeField]
+    [Header("General", order = 30), SerializeField]
     Transform _coordinate_reference_point;
 
     /// <summary>
@@ -197,8 +195,7 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-    [Header("(Optional)", order = 80)]
-    [SerializeField]
+    [Header("(Optional)", order = 80), SerializeField]
     BoundingBox _playable_area;
     
     /// <summary>
@@ -422,6 +419,11 @@ namespace droid.Neodroid.Environments {
               $"{(reaction.Parameters.IsExternal ? "External" : "Internal")} reaction caused a reset");
           this._Resetting = true;
         } else if (reaction.Parameters.Step) {
+          #if NEODROID_DEBUG
+          if (this.Debugging) {
+            Debug.Log($"Stepping in environment({this.Identifier})");
+          }
+          #endif
           this.Step(reaction);
         }
       }

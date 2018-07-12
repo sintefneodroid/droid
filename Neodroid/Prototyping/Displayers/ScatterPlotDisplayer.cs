@@ -6,10 +6,10 @@ using droid.Neodroid.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Displayers {
-  [ExecuteInEditMode]
-  [AddComponentMenu(
-      DisplayerComponentMenuPath._ComponentMenuPath + "ScatterPlot" + DisplayerComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(ParticleSystem))]
+  [ExecuteInEditMode,
+   AddComponentMenu(
+       DisplayerComponentMenuPath._ComponentMenuPath + "ScatterPlot" + DisplayerComponentMenuPath._Postfix),
+   RequireComponent(typeof(ParticleSystem))]
   public class ScatterPlotDisplayer : Displayer {
     ParticleSystem _particle_system;
     ParticleSystemRenderer _particle_system_renderer;

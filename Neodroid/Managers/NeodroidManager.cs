@@ -28,8 +28,7 @@ namespace droid.Neodroid.Managers {
     /// <summary>
     ///
     /// </summary>
-    [Header("Development", order = 110)]
-    [SerializeField]
+    [Header("Development", order = 110), SerializeField]
     bool _debugging;
 
     /// <summary>
@@ -53,8 +52,7 @@ namespace droid.Neodroid.Managers {
     /// <summary>
     ///
     /// </summary>
-    [Header("Simulation", order = 80)]
-    [SerializeField]
+    [Header("Simulation", order = 80), SerializeField]
     SimulatorConfiguration _configuration;
 
     /// <summary>
@@ -261,7 +259,11 @@ namespace droid.Neodroid.Managers {
     /// <summary>
     ///
     /// </summary>
-    public bool Debugging { get { return this._debugging; } set { this._debugging = value; } }
+    public bool Debugging { get { return this._debugging; }
+      set {
+        this._Message_Server.Debugging = value;
+        this._debugging = value;
+      } }
 
     /// <summary>
     ///
@@ -287,6 +289,9 @@ namespace droid.Neodroid.Managers {
       set { this._syncing_environments = value; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public bool Stepping { get { return this._step; } }
 
     #endregion
@@ -468,6 +473,7 @@ namespace droid.Neodroid.Managers {
     protected IEnumerator EndOfFrameEventGenerator() {
       while (true) {
         yield return this._wait_for_end_of_frame;
+        //yield return new WaitForEndOfFrame();
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log("EndOfFrameEvent");
@@ -475,7 +481,10 @@ namespace droid.Neodroid.Managers {
         #endif
         this.OnEndOfFrameEvent?.Invoke();
       }
-
+      #pragma warning disable 162
+      // ReSharper disable once HeuristicUnreachableCode
+      yield return null;
+      #pragma warning restore 162
       // ReSharper disable once IteratorNeverReturns
     }
 
@@ -500,6 +509,12 @@ namespace droid.Neodroid.Managers {
     ///
     /// </summary>
     protected void OnPreTick() {
+      #if NEODROID_DEBUG
+      if (this.Debugging) {
+        Debug.Log($"OnPreTick");
+      }
+      #endif
+      
       if (this.Configuration.StepExecutionPhase == ExecutionPhase.Before_) {
         this.ExecuteStep();
       }
@@ -509,6 +524,11 @@ namespace droid.Neodroid.Managers {
     ///
     /// </summary>
     protected void OnTick() {
+      #if NEODROID_DEBUG
+      if (this.Debugging) {
+        Debug.Log($"OnTick");
+      }
+      #endif
       if (this.Configuration.StepExecutionPhase == ExecutionPhase.Middle_) {
         this.ExecuteStep();
       }
@@ -518,6 +538,12 @@ namespace droid.Neodroid.Managers {
     ///
     /// </summary>
     protected void OnPostTick() {
+      #if NEODROID_DEBUG
+      if (this.Debugging) {
+        Debug.Log($"OnPostTick");
+      }
+      #endif
+      
       foreach (var environment in this._Environments.Values) {
         environment.PostStep();
       }
@@ -525,8 +551,10 @@ namespace droid.Neodroid.Managers {
       if (this.Configuration.StepExecutionPhase == ExecutionPhase.After_) {
         this.ExecuteStep();
       }
-      
-      this.ClearCurrentReactions();
+
+      if (this._has_stepped) {
+        this.ClearCurrentReactions();
+      }
     }
     
     /// <summary>
@@ -535,12 +563,16 @@ namespace droid.Neodroid.Managers {
     void ExecuteStep() {
       if (!this._syncing_environments) {
         this.React(this.CurrentReactions);
+              
+
       }
 
       if (this.AwaitingReply) {
         var states = this.CollectStates();
         this.PostReact(states);
       }
+
+      this.HasStepped = true;
     }
     
     /// <summary>
@@ -584,6 +616,12 @@ namespace droid.Neodroid.Managers {
 
         this._syncing_environments = false;
         if (this._skip_frame_i >= this.Configuration.FrameSkips) {
+          #if NEODROID_DEBUG
+          if (this.Debugging) {
+            Debug.Log($"Not skipping frame, replying...");
+          }
+          #endif
+          
           this.Reply(states);
           this.AwaitingReply = false;
           this._skip_frame_i = 0;
@@ -764,15 +802,25 @@ namespace droid.Neodroid.Managers {
 
     void SetStepping(Reaction reaction) {
       if (reaction.Parameters.Step) {
+        this.SetStepping(true);
+      }
+    }
+    
+    void SetStepping(bool step) {
+      if (step) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log("Stepping from Reaction");
         }
-
         #endif
 
         this._step = true;
       } else {
+        #if NEODROID_DEBUG
+        if (this.Debugging) {
+          Debug.Log("Not stepping from Reaction");
+        }
+        #endif
         if (this.HasStepped) {
           this._step = false;
         }
@@ -781,18 +829,7 @@ namespace droid.Neodroid.Managers {
 
     void SetStepping(Reaction[] reactions) {
       if (reactions.Any(reac => reac.Parameters.Step)) {
-        #if NEODROID_DEBUG
-        if (this.Debugging) {
-          Debug.Log("Stepping from any reactions");
-        }
-
-        #endif
-
-        this._step = true;
-      } else {
-        if(this.HasStepped) {
-          this._step = false;
-        }
+        this.SetStepping(true);
       }
     }
 
@@ -947,8 +984,6 @@ namespace droid.Neodroid.Managers {
             }
             #endif
           }
-              
-
           
           this.CurrentReactions = reactions;
           foreach (var current_reaction in this.CurrentReactions) {

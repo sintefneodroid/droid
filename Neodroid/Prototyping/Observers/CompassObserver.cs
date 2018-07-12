@@ -8,9 +8,8 @@ namespace droid.Neodroid.Prototyping.Observers {
   ///  <summary>
   ///  </summary>
   [AddComponentMenu(
-      ObserverComponentMenuPath._ComponentMenuPath + "Compass" + ObserverComponentMenuPath._Postfix)]
-  [ExecuteInEditMode]
-  [Serializable]
+       ObserverComponentMenuPath._ComponentMenuPath + "Compass" + ObserverComponentMenuPath._Postfix),
+   ExecuteInEditMode, Serializable]
   public class CompassObserver : Observer,
                                  IHasDouble {
     /// <summary>
@@ -22,8 +21,7 @@ namespace droid.Neodroid.Prototyping.Observers {
     /// <summary>
     ///
     /// </summary>
-    [Header("Observation", order = 103)]
-    [SerializeField]
+    [Header("Observation", order = 103), SerializeField]
     Vector3 _position;
 
     /// <summary>
@@ -39,8 +37,7 @@ namespace droid.Neodroid.Prototyping.Observers {
     /// <summary>
     ///
     /// </summary>
-    [Header("Specfic", order = 102)]
-    [SerializeField]
+    [Header("Specfic", order = 102), SerializeField]
     UnityEngine.Transform _target;
 
     /// <inheritdoc />

@@ -4,21 +4,17 @@ using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Observers.Transform {
   [AddComponentMenu(
-      ObserverComponentMenuPath._ComponentMenuPath
-      + "QuaternionTransform"
-      + ObserverComponentMenuPath._Postfix)]
-  [ExecuteInEditMode]
-  [Serializable]
+       ObserverComponentMenuPath._ComponentMenuPath
+       + "QuaternionTransform"
+       + ObserverComponentMenuPath._Postfix), ExecuteInEditMode, Serializable]
   public class QuaternionTransformObserver : Observer,
                                              IHasQuaternionTransform {
-    [Header("Specfic", order = 102)]
-    [SerializeField]
+    [Header("Specfic", order = 102), SerializeField]
     ObservationSpace _space = ObservationSpace.Environment_;
 
     [SerializeField] bool _use_environments_coordinates = true;
 
-    [Header("Observation", order = 103)]
-    [SerializeField]
+    [Header("Observation", order = 103), SerializeField]
     Vector3 _position;
 
     [SerializeField] Quaternion _rotation;

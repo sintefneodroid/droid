@@ -21,8 +21,7 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-    [Header("Environment", order = 100)]
-    [SerializeField]
+    [Header("Environment", order = 100), SerializeField]
     protected NeodroidManager _Simulation_Manager;
 
     /// <summary>

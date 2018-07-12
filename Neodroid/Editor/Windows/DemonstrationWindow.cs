@@ -14,8 +14,8 @@ namespace droid.Neodroid.Editor.Windows {
 
     string _status = "Idle";
 
-    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "DemonstrationWindow")]
-    [MenuItem(EditorWindowMenuPath._ToolMenuPath + "DemonstrationWindow")]
+    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "DemonstrationWindow"),
+     MenuItem(EditorWindowMenuPath._ToolMenuPath + "DemonstrationWindow")]
     public static void ShowWindow() {
       GetWindow(typeof(DemonstrationWindow)); //Show existing window instance. If one doesn't exist, make one.
     }

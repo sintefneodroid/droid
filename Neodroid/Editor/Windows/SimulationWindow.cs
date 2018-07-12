@@ -47,8 +47,8 @@ namespace droid.Neodroid.Editor.Windows {
     /// <summary>
     ///
     /// </summary>
-    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "SimulationWindow")]
-    [MenuItem(EditorWindowMenuPath._ToolMenuPath + "SimulationWindow")]
+    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "SimulationWindow"),
+     MenuItem(EditorWindowMenuPath._ToolMenuPath + "SimulationWindow")]
     public static void ShowWindow() {
       GetWindow(typeof(SimulationWindow)); //Show existing window instance. If one doesn't exist, make one.
       //window.Show();

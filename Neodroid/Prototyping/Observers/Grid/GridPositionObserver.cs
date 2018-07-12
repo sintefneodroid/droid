@@ -18,8 +18,7 @@ namespace droid.Neodroid.Prototyping.Observers.Grid {
     [SerializeField]
     int _height;
 
-    [Header("Observation", order = 103)]
-    [SerializeField]
+    [Header("Observation", order = 103), SerializeField]
     float _observation_value;
 
     [SerializeField] ValueSpace _observation_value_space;

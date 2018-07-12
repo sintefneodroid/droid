@@ -4,17 +4,14 @@ using droid.Neodroid.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Observers.Transform {
-  [AddComponentMenu(PrototypingComponentMenuPath._ComponentMenuPath + "Observers/Position")]
-  [ExecuteInEditMode]
-  [Serializable]
+  [AddComponentMenu(PrototypingComponentMenuPath._ComponentMenuPath + "Observers/Position"),
+   ExecuteInEditMode, Serializable]
   public class RotationObserver : Observer,
                                   IHasQuadruple {
-    [Header("Specfic", order = 102)]
-    [SerializeField]
+    [Header("Specfic", order = 102), SerializeField]
     ObservationSpace _space = ObservationSpace.Environment_;
 
-    [Header("Observation", order = 103)]
-    [SerializeField]
+    [Header("Observation", order = 103), SerializeField]
     Quaternion _rotation;
 
     public ObservationSpace Space { get { return this._space; } }

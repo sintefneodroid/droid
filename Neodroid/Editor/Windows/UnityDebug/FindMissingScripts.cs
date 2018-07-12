@@ -14,8 +14,7 @@ namespace droid.Neodroid.Editor.Windows.UnityDebug {
     /// <summary>
     /// 
     /// </summary>
-    [MenuItem("Tools/Debug/FindMissingScripts")]
-    [MenuItem("Window/Debug/FindMissingScripts")]
+    [MenuItem("Tools/Debug/FindMissingScripts"), MenuItem("Window/Debug/FindMissingScripts")]
     public static void ShowWindow() { GetWindow(typeof(FindMissingScripts)); }
 
     void OnEnable() {

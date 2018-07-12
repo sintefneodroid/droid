@@ -4,21 +4,18 @@ using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Observers.Rigidbody {
   [AddComponentMenu(
-      ObserverComponentMenuPath._ComponentMenuPath + "Rigidbody" + ObserverComponentMenuPath._Postfix)]
-  [ExecuteInEditMode]
-  [RequireComponent(typeof(UnityEngine.Rigidbody))]
+       ObserverComponentMenuPath._ComponentMenuPath + "Rigidbody" + ObserverComponentMenuPath._Postfix),
+   ExecuteInEditMode, RequireComponent(typeof(UnityEngine.Rigidbody))]
   public class RigidbodyObserver : Observer,
                                    IHasRigidbody {
-    [Header("Observation", order = 100)]
-    [SerializeField]
+    [Header("Observation", order = 100), SerializeField]
     Vector3 _angular_velocity;
 
     [SerializeField] Vector3 _velocity;
 
     [SerializeField] float _last_update_time;
 
-    [Header("Configuration", order = 110)]
-    [SerializeField]
+    [Header("Configuration", order = 110), SerializeField]
     UnityEngine.Rigidbody _rigidbody;
 
     [SerializeField] bool _differential;

@@ -1,19 +1,50 @@
 ﻿using UnityEngine;
 
 namespace droid.Neodroid.Utilities.Sensors {
-  public class ChildSensor : MonoBehaviour {
-    //public GameObject Caller{ get { return _caller; } set { _caller = value; } }
-
+  /// <inheritdoc />
+  /// <summary>
+  /// </summary>
+  public class ChildColliderSensor : MonoBehaviour {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="child_game_object"></param>
+    /// <param name="collision"></param>
     public delegate void OnChildCollisionEnterDelegate(GameObject child_game_object, Collision collision);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="child_game_object"></param>
+    /// <param name="collision"></param>
     public delegate void OnChildCollisionExitDelegate(GameObject child_game_object, Collision collision);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="child_game_object"></param>
+    /// <param name="collision"></param>
     public delegate void OnChildCollisionStayDelegate(GameObject child_game_object, Collision collision);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="child_game_object"></param>
+    /// <param name="collider"></param>
     public delegate void OnChildTriggerEnterDelegate(GameObject child_game_object, Collider collider);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="child_game_object"></param>
+    /// <param name="collider"></param>
     public delegate void OnChildTriggerExitDelegate(GameObject child_game_object, Collider collider);
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="child_game_object"></param>
+    /// <param name="collider"></param>
     public delegate void OnChildTriggerStayDelegate(GameObject child_game_object, Collider collider);
 
     [SerializeField] Component _caller;
@@ -30,30 +61,51 @@ namespace droid.Neodroid.Utilities.Sensors {
 
     OnChildTriggerStayDelegate _on_trigger_stay_delegate;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public OnChildCollisionEnterDelegate OnCollisionEnterDelegate {
       set { this._on_collision_enter_delegate = value; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public OnChildTriggerEnterDelegate OnTriggerEnterDelegate {
       set { this._on_trigger_enter_delegate = value; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public OnChildTriggerStayDelegate OnTriggerStayDelegate {
       set { this._on_trigger_stay_delegate = value; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public OnChildCollisionStayDelegate OnCollisionStayDelegate {
       set { this._on_collision_stay_delegate = value; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public OnChildCollisionExitDelegate OnCollisionExitDelegate {
       set { this._on_collision_exit_delegate = value; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public OnChildTriggerExitDelegate OnTriggerExitDelegate {
       set { this._on_trigger_exit_delegate = value; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public Component Caller { get { return this._caller; } set { this._caller = value; } }
 
     void OnCollisionEnter(Collision collision) {

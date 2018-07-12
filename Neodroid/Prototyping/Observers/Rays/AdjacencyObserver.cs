@@ -14,8 +14,7 @@ namespace droid.Neodroid.Prototyping.Observers.Rays {
 
     [SerializeField] bool _is_2_d;
 
-    [Header("Observation", order = 103)]
-    [SerializeField]
+    [Header("Observation", order = 103), SerializeField]
     float[] _obs_array;
 
     /// <summary>

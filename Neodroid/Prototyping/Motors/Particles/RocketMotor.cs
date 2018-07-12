@@ -8,9 +8,8 @@ namespace droid.Neodroid.Prototyping.Motors.Particles {
   /// <summary>
   /// </summary>
   [AddComponentMenu(
-      MotorComponentMenuPath._ComponentMenuPath + "Particles/Rocket" + MotorComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(ParticleSystem))]
-  [RequireComponent(typeof(Rigidbody))]
+       MotorComponentMenuPath._ComponentMenuPath + "Particles/Rocket" + MotorComponentMenuPath._Postfix),
+   RequireComponent(typeof(ParticleSystem)), RequireComponent(typeof(Rigidbody))]
   public class RocketMotor : RigidbodyMotor1Dof {
     /// <summary>
     ///
@@ -29,9 +28,9 @@ namespace droid.Neodroid.Prototyping.Motors.Particles {
     /// </summary>
     public override string PrototypingTypeName { get { return "Rocket" + this._Axis_Of_Motion; } }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     protected override void Setup() {
       this._Rigidbody = this.GetComponent<Rigidbody>();
       this._Particle_System = this.GetComponent<ParticleSystem>();

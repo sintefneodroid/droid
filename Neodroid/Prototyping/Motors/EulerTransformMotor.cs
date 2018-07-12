@@ -15,8 +15,14 @@ namespace droid.Neodroid.Prototyping.Motors {
     [SerializeField]
     protected string _Layer_Mask = "Obstructions";
 
+    /// <summary>
+    /// 
+    /// </summary>
     [SerializeField] protected bool _No_Collisions = true;
 
+    /// <summary>
+    /// 
+    /// </summary>
     [SerializeField] protected Space _Relative_To = Space.Self;
 
     string _rot_x;
@@ -39,13 +45,13 @@ namespace droid.Neodroid.Prototyping.Motors {
       this._rot_z = this.Identifier + "RotZ_";
     }
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
     public override string PrototypingTypeName { get { return "Transform"; } }
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentActor =
@@ -62,8 +68,8 @@ namespace droid.Neodroid.Prototyping.Motors {
           NeodroidUtilities.MaybeRegisterNamedComponent(this.ParentActor, (Motor)this, this._rot_z);
     }
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="motion"></param>
     protected override void InnerApplyMotion(MotorMotion motion) {

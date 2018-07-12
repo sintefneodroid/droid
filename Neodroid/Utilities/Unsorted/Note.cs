@@ -12,9 +12,7 @@ namespace droid.Neodroid.Utilities.Unsorted {
     /// <summary>
     ///
     /// </summary>
-    [TextArea]
-    [Tooltip("A component for holding notes or comments")]
-    [SerializeField]
+    [TextArea, Tooltip("A component for holding notes or comments"), SerializeField]
     public string _Text;
 
     /// <summary>

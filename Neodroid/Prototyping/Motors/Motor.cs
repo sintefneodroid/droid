@@ -10,8 +10,7 @@ namespace droid.Neodroid.Prototyping.Motors {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [ExecuteInEditMode]
-  [Serializable]
+  [ExecuteInEditMode, Serializable]
   public abstract class Motor : PrototypingGameObject {
     /// <summary>
     /// 
@@ -110,12 +109,10 @@ namespace droid.Neodroid.Prototyping.Motors {
 
     #region Fields
 
-    [Header("References", order = 99)]
-    [SerializeField]
+    [Header("References", order = 99), SerializeField]
     Actor _actor;
 
-    [Header("General", order = 101)]
-    [SerializeField]
+    [Header("General", order = 101), SerializeField]
     ValueSpace _motion_value_space =
         new ValueSpace {_Decimal_Granularity = 0, _Min_Value = -1, _Max_Value = 1};
 

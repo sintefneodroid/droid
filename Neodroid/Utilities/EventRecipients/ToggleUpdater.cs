@@ -8,8 +8,7 @@ namespace droid.Neodroid.Utilities.EventRecipients {
   /// <inheritdoc cref="DataPoller" />
   /// <summary>
   /// </summary>
-  [RequireComponent(typeof(Toggle))]
-  [ExecuteInEditMode]
+  [RequireComponent(typeof(Toggle)), ExecuteInEditMode]
   public class ToggleUpdater : DataPoller {
     /// <summary>
     /// 

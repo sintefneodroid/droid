@@ -15,8 +15,8 @@ namespace droid.Neodroid.Editor.Windows {
     Vector2 _scroll_position;
     Vector2 _texture_size;
 
-    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "RenderTextureConfiguratorWindow")]
-    [MenuItem(EditorWindowMenuPath._ToolMenuPath + "RenderTextureConfiguratorWindow")]
+    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "RenderTextureConfiguratorWindow"),
+     MenuItem(EditorWindowMenuPath._ToolMenuPath + "RenderTextureConfiguratorWindow")]
     public static void ShowWindow() {
       GetWindow(
           typeof(RenderTextureConfiguratorWindow)); //Show existing window instance. If one doesn't exist, make one.

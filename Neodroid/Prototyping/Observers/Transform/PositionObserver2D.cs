@@ -6,19 +6,15 @@ using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Observers.Transform {
   [AddComponentMenu(
-      ObserverComponentMenuPath._ComponentMenuPath
-      + "PositionObserver2D"
-      + ObserverComponentMenuPath._Postfix)]
-  [ExecuteInEditMode]
-  [Serializable]
+       ObserverComponentMenuPath._ComponentMenuPath
+       + "PositionObserver2D"
+       + ObserverComponentMenuPath._Postfix), ExecuteInEditMode, Serializable]
   public class PositionObserver2D : Observer,
                                     IHasDouble {
-    [Header("Specfic", order = 102)]
-    [SerializeField]
+    [Header("Specfic", order = 102), SerializeField]
     ObservationSpace _use_space = ObservationSpace.Environment_;
 
-    [Header("Observation", order = 103)]
-    [SerializeField]
+    [Header("Observation", order = 103), SerializeField]
     Vector2 _2_d_position;
 
     [SerializeField] Dimension2DCombination _dim_combination;

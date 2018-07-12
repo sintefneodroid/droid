@@ -6,10 +6,9 @@ namespace droid.Neodroid.Prototyping.Evaluation {
   /// <summary>
   /// </summary>
   [AddComponentMenu(
-      EvaluationComponentMenuPath._ComponentMenuPath
-      + "PunishmentFunction"
-      + EvaluationComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(Rigidbody))]
+       EvaluationComponentMenuPath._ComponentMenuPath
+       + "PunishmentFunction"
+       + EvaluationComponentMenuPath._Postfix), RequireComponent(typeof(Rigidbody))]
   public class PunishmentFunction : ObjectiveFunction {
     [SerializeField] int _hits;
 

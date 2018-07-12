@@ -6,6 +6,9 @@ using droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Evaluation {
+  /// <summary>
+  /// 
+  /// </summary>
   [AddComponentMenu(
       EvaluationComponentMenuPath._ComponentMenuPath + "RestInArea" + EvaluationComponentMenuPath._Postfix)]
   public class RestInArea : ObjectiveFunction {
@@ -22,13 +25,16 @@ namespace droid.Neodroid.Prototyping.Evaluation {
 
     [SerializeField] BoundingBox _playable_area;
     [SerializeField] Coroutine _wait_for_resting;
+    [SerializeField] bool _sparse;
     WaitForSeconds _wait_for_seconds = new WaitForSeconds(3f);
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <returns></returns>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <returns></returns>
     public override float InternalEvaluate() {
+      var signal = 0f;
+      
       if (this._overlapping == ActorOverlapping.Inside_area_ && this._is_resting) {
         if (this._actor is KillableActor) {
           if (((KillableActor)this._actor).IsAlive) {
@@ -41,15 +47,22 @@ namespace droid.Neodroid.Prototyping.Evaluation {
         }
       }
 
+      if (!this._sparse) {
+        signal += 1 / Vector3.Distance(this._actor.transform.position, this._area.transform.position);
+      }
+
       if (this._playable_area && this._actor) {
         if (!this._playable_area.Bounds.Intersects(this._actor.GetComponent<Collider>().bounds)) {
           this.ParentEnvironment.Terminate("Actor is outside playable area");
         }
       }
 
-      return 0f;
+      return signal;
     }
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
     public override void InternalReset() {
       if (this._wait_for_resting != null) {
         this.StopCoroutine(this._wait_for_resting);

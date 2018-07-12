@@ -3,12 +3,12 @@ using droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Motors {
+  /// <inheritdoc />
   /// <summary>
-  /// 
   /// </summary>
   [AddComponentMenu(
-      MotorComponentMenuPath._ComponentMenuPath + "Rigidbody" + MotorComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(Rigidbody))]
+       MotorComponentMenuPath._ComponentMenuPath + "Rigidbody" + MotorComponentMenuPath._Postfix),
+   RequireComponent(typeof(Rigidbody))]
   public class RigidbodyMotor : Motor {
     /// <summary>
     /// 

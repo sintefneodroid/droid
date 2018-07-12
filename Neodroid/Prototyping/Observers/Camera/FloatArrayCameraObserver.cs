@@ -14,8 +14,7 @@ namespace droid.Neodroid.Prototyping.Observers.Camera {
 
     [SerializeField] bool _black_white;
 
-    [Header("Specific", order = 102)]
-    [SerializeField]
+    [Header("Specific", order = 102), SerializeField]
     UnityEngine.Camera _camera;
 
     bool _grab = true;

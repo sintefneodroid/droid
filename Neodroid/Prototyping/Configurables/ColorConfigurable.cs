@@ -6,8 +6,8 @@ using Random = System.Random;
 
 namespace droid.Neodroid.Prototyping.Configurables {
   [AddComponentMenu(
-      ConfigurableComponentMenuPath._ComponentMenuPath + "Color" + ConfigurableComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(Renderer))]
+       ConfigurableComponentMenuPath._ComponentMenuPath + "Color" + ConfigurableComponentMenuPath._Postfix),
+   RequireComponent(typeof(Renderer))]
   public class ColorConfigurable : ConfigurableGameObject {
     /// <summary>
     /// Alpha

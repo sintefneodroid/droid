@@ -103,65 +103,65 @@ namespace droid.Neodroid.Utilities.Unsorted {
     public static void RegisterCollisionTriggerCallbacksOnChildren(
         Component caller,
         Transform parent,
-        ChildSensor.OnChildCollisionEnterDelegate on_collision_enter_child,
-        ChildSensor.OnChildTriggerEnterDelegate on_trigger_enter_child = null,
-        ChildSensor.OnChildCollisionExitDelegate on_collision_exit_child = null,
-        ChildSensor.OnChildTriggerExitDelegate on_trigger_exit_child = null,
-        ChildSensor.OnChildCollisionStayDelegate on_collision_stay_child = null,
-        ChildSensor.OnChildTriggerStayDelegate on_trigger_stay_child = null,
+        ChildColliderSensor.OnChildCollisionEnterDelegate on_collision_enter_child,
+        ChildColliderSensor.OnChildTriggerEnterDelegate on_trigger_enter_child = null,
+        ChildColliderSensor.OnChildCollisionExitDelegate on_collision_exit_child = null,
+        ChildColliderSensor.OnChildTriggerExitDelegate on_trigger_exit_child = null,
+        ChildColliderSensor.OnChildCollisionStayDelegate on_collision_stay_child = null,
+        ChildColliderSensor.OnChildTriggerStayDelegate on_trigger_stay_child = null,
         bool debug = false) {
       var children_with_colliders = parent.GetComponentsInChildren<Collider>();
 
       foreach (var child in children_with_colliders) {
-        var child_sensors = child.GetComponents<ChildSensor>();
-        ChildSensor sensor = null;
+        var child_sensors = child.GetComponents<ChildColliderSensor>();
+        ChildColliderSensor collider_sensor = null;
         foreach (var child_sensor in child_sensors) {
           if (child_sensor.Caller != null && child_sensor.Caller == caller) {
-            sensor = child_sensor;
+            collider_sensor = child_sensor;
             break;
           }
 
           if (child_sensor.Caller == null) {
             child_sensor.Caller = caller;
-            sensor = child_sensor;
+            collider_sensor = child_sensor;
             break;
           }
         }
 
-        if (sensor == null) {
-          sensor = child.gameObject.AddComponent<ChildSensor>();
-          sensor.Caller = caller;
+        if (collider_sensor == null) {
+          collider_sensor = child.gameObject.AddComponent<ChildColliderSensor>();
+          collider_sensor.Caller = caller;
         }
 
         if (on_collision_enter_child != null) {
-          sensor.OnCollisionEnterDelegate = on_collision_enter_child;
+          collider_sensor.OnCollisionEnterDelegate = on_collision_enter_child;
         }
 
         if (on_trigger_enter_child != null) {
-          sensor.OnTriggerEnterDelegate = on_trigger_enter_child;
+          collider_sensor.OnTriggerEnterDelegate = on_trigger_enter_child;
         }
 
         if (on_collision_exit_child != null) {
-          sensor.OnCollisionExitDelegate = on_collision_exit_child;
+          collider_sensor.OnCollisionExitDelegate = on_collision_exit_child;
         }
 
         if (on_trigger_exit_child != null) {
-          sensor.OnTriggerExitDelegate = on_trigger_exit_child;
+          collider_sensor.OnTriggerExitDelegate = on_trigger_exit_child;
         }
 
         if (on_trigger_stay_child != null) {
-          sensor.OnTriggerStayDelegate = on_trigger_stay_child;
+          collider_sensor.OnTriggerStayDelegate = on_trigger_stay_child;
         }
 
         if (on_collision_stay_child != null) {
-          sensor.OnCollisionStayDelegate = on_collision_stay_child;
+          collider_sensor.OnCollisionStayDelegate = on_collision_stay_child;
         }
 
         if (debug) {
           Debug.Log(
               caller.name
               + " has created "
-              + sensor.name
+              + collider_sensor.name
               + " on "
               + child.name
               + " under parent "

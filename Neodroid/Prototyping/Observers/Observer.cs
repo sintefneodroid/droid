@@ -12,8 +12,7 @@ namespace droid.Neodroid.Prototyping.Observers {
   /// <inheritdoc cref="PrototypingGameObject" />
   /// <summary>
   /// </summary>
-  [ExecuteInEditMode]
-  [Serializable]
+  [ExecuteInEditMode, Serializable]
   public abstract class Observer : PrototypingGameObject,
                                    IHasFloatEnumarable {
     /// <summary>
@@ -96,12 +95,10 @@ namespace droid.Neodroid.Prototyping.Observers {
 
     #region Fields
 
-    [Header("References", order = 99)]
-    [SerializeField]
+    [Header("References", order = 99), SerializeField]
     PrototypingEnvironment _environment;
 
-    [Header("Normalisation", order = 100)]
-    [SerializeField]
+    [Header("Normalisation", order = 100), SerializeField]
     bool _normalise_observation;
 
     #endregion

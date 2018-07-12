@@ -8,14 +8,13 @@ namespace droid.Neodroid.Prototyping.Motors {
   ///  <summary>
   ///  </summary>
   [AddComponentMenu(
-      MotorComponentMenuPath._ComponentMenuPath + "RigidbodyMotor1Dof" + MotorComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(Rigidbody))]
+       MotorComponentMenuPath._ComponentMenuPath + "RigidbodyMotor1Dof" + MotorComponentMenuPath._Postfix),
+   RequireComponent(typeof(Rigidbody))]
   public class RigidbodyMotor1Dof : Motor {
     /// <summary>
     ///
     /// </summary>
-    [Header("General", order = 101)]
-    [SerializeField]
+    [Header("General", order = 101), SerializeField]
     protected Axis _Axis_Of_Motion;
 
     /// <summary>

@@ -5,8 +5,7 @@ namespace droid.Neodroid.Utilities.BoundingBoxes {
   /// <summary>
   /// 
   /// </summary>
-  [RequireComponent(typeof(Camera))]
-  [ExecuteInEditMode]
+  [RequireComponent(typeof(Camera)), ExecuteInEditMode]
   public class DrawBoundingBoxOnCamera : MonoBehaviour {
     List<Color> _colors = new List<Color>();
     public Color _L_Color = Color.green;

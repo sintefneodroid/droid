@@ -12,8 +12,8 @@ namespace droid.Neodroid.Editor.Windows {
 
     Vector2 _scroll_position;
 
-    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "SegmentationWindow")]
-    [MenuItem(EditorWindowMenuPath._ToolMenuPath + "SegmentationWindow")]
+    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "SegmentationWindow"),
+     MenuItem(EditorWindowMenuPath._ToolMenuPath + "SegmentationWindow")]
     public static void ShowWindow() {
       GetWindow(typeof(SegmentationWindow)); //Show existing window instance. If one doesn't exist, make one.
     }

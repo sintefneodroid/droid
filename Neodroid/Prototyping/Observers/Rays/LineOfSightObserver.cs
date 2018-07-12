@@ -8,17 +8,15 @@ namespace droid.Neodroid.Prototyping.Observers.Rays {
   /// <summary>
   /// </summary>
   [AddComponentMenu(
-      ObserverComponentMenuPath._ComponentMenuPath + "LineOfSight" + ObserverComponentMenuPath._Postfix)]
-  [ExecuteInEditMode]
-  [Serializable]
+       ObserverComponentMenuPath._ComponentMenuPath + "LineOfSight" + ObserverComponentMenuPath._Postfix),
+   ExecuteInEditMode, Serializable]
   public class LineOfSightObserver : Observer,
                                      IHasSingle {
     RaycastHit _hit;
 
     [SerializeField] float _obs_value;
 
-    [Header("Specfic", order = 102)]
-    [SerializeField]
+    [Header("Specfic", order = 102), SerializeField]
     UnityEngine.Transform _target;
 
     /// <summary>

@@ -30,23 +30,25 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
   public enum FrameFinishes {
     /// <summary>
     /// When ever all scripts has run their respective updates
+    /// NOTE: Not working as expected, does not seem to work with physics engine.
     /// </summary>
     Late_update_,
+    
+    /// <summary>
+    ///  NOTE: Not working as expected, does not seem to work with physics engine.
+    /// </summary>
+    End_of_frame_,
 
     /// <summary>
-    ///
+    /// When ever the scene has been rendered
     /// </summary>
     On_render_image_,
 
     /// <summary>
-    /// When ever a
+    /// When ever the scene has been rendered, default
     /// </summary>
     On_post_render_,
 
-    /// <summary>
-    ///
-    /// </summary>
-    End_of_frame_
   }
 
   /// <inheritdoc />
@@ -54,59 +56,53 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
   /// Contains everything relevant to configuring simulation environments engine specific settings
   /// </summary>
   [CreateAssetMenu(
-      fileName = "SimulatorConfiguration",
-      menuName = "Neodroid/ScriptableObjects/SimulatorConfiguration",
-      order = 1)]
-  [Serializable]
+       fileName = "SimulatorConfiguration",
+       menuName = "Neodroid/ScriptableObjects/SimulatorConfiguration",
+       order = 1), Serializable]
   public class SimulatorConfiguration : ScriptableObject {
     /// <summary>
     ///
     /// </summary>
-    [Header("Graphics")]
-    [SerializeField] bool _apply_resolution_settings;
+    [Header("Graphics"), SerializeField]
+    
+    bool _apply_resolution_settings;
 
     [SerializeField] bool _full_screen;
 
     /// <summary>
     ///
     /// </summary>
-    [SerializeField]
-    [Range(0, 9999)]
+    [SerializeField, Range(0, 9999)]
     int _width = 500;
 
     /// <summary>
     ///
     /// </summary>
-    [SerializeField]
-    [Range(0, 9999)]
+    [SerializeField, Range(0, 9999)]
     int _height = 500;
 
     /// <summary>
     ///
     /// </summary>
-    [SerializeField]
-    [Range(1, 4)]
+    [SerializeField, Range(1, 4)]
     int _quality_level = 1;
 
     /// <summary>
     ///
     /// </summary>
-    [Header("Simulation")]
-    [SerializeField]
-    FrameFinishes _frame_finishes = FrameFinishes.End_of_frame_;
+    [Header("Simulation"), SerializeField]
+    FrameFinishes _frame_finishes = FrameFinishes.On_post_render_;
 
     /// <summary>
     /// Allow relative transforms to reset a couple of times.
     /// </summary>
-    [SerializeField]
-    [Range(1, 99)]
+    [SerializeField, Range(1, 99)]
     int _reset_iterations = 1;
 
     /// <summary>
     ///
     /// </summary>
-    [SerializeField]
-    [Range(0, 99)]
+    [SerializeField, Range(0, 99)]
     int _frame_skips;
 
     /// <summary>
@@ -124,23 +120,19 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
     /// <summary>
     /// Allows physics loop to be run more often than frame loop
     /// </summary>
-    [Header("Time")]
-    [SerializeField]
-    [Range(0f, float.MaxValue)]
+    [Header("Time"), SerializeField, Range(0f, float.MaxValue)]
     float _time_scale = 1;
 
     /// <summary>
     /// Target frame rate = -1 means that no waiting/v-syncing is done and the simulation can run as fast as possible.
     /// </summary>
-    [SerializeField]
-    [Range(-1, 9999)]
+    [SerializeField, Range(-1, 9999)]
     int _target_frame_rate = -1;
 
     /// <summary>
     ///
     /// </summary>
-    [Header("Connection")]
-    [SerializeField]
+    [Header("Connection"), SerializeField]
     string _ip_address = "localhost";
 
     /// <summary>
@@ -149,8 +141,7 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
     [SerializeField]
     int _port = 6969;
 
-    [Header("Performance (Disable for faster serialisation, but with loss of functionality)")]
-    [SerializeField]
+    [Header("Performance (Disable for faster serialisation, but with loss of functionality)"), SerializeField]
     bool _always_serialise_unobservables;
 
     [SerializeField] bool _always_serialise_indidual_observables;
@@ -158,22 +149,19 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
     /// <summary>
     /// WARNING When _update_fixed_time_scale is true, MAJOR slow downs due to PHYSX updates on change.
     /// </summary>
-    [Header("Experimental (Warning, it is important to read docs before use!)")]
-    [SerializeField]
+    [Header("Experimental (Warning, it is important to read docs before use!)"), SerializeField]
     bool _update_fixed_time_scale;
 
     /// <summary>
     ///
     /// </summary>
-    [SerializeField]
-    [Range(0, 9999)]
+    [SerializeField, Range(0, 9999)]
     float _max_reply_interval;
 
     /// <summary>
     ///
     /// </summary>
-    [SerializeField]
-    [Range(0, 999)]
+    [SerializeField, Range(0, 999)]
     int _num_of_environments;
 
     [SerializeField] bool _replay_reaction_in_skips;

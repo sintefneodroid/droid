@@ -5,17 +5,14 @@ using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Observers.Transform {
   [AddComponentMenu(
-      ObserverComponentMenuPath._ComponentMenuPath + "Position" + ObserverComponentMenuPath._Postfix)]
-  [ExecuteInEditMode]
-  [Serializable]
+       ObserverComponentMenuPath._ComponentMenuPath + "Position" + ObserverComponentMenuPath._Postfix),
+   ExecuteInEditMode, Serializable]
   public class PositionObserver : Observer,
                                   IHasTriple {
-    [Header("Specfic", order = 102)]
-    [SerializeField]
+    [Header("Specfic", order = 102), SerializeField]
     ObservationSpace _space = ObservationSpace.Environment_;
 
-    [Header("Observation", order = 103)]
-    [SerializeField]
+    [Header("Observation", order = 103), SerializeField]
     Vector3 _position;
 
     [SerializeField] Space3 _position_space = new Space3(10);

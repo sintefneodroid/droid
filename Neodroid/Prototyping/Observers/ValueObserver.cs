@@ -4,12 +4,11 @@ using UnityEngine;
 
 namespace droid.Neodroid.Prototyping.Observers {
   [AddComponentMenu(
-      ObserverComponentMenuPath._ComponentMenuPath + "Value" + ObserverComponentMenuPath._Postfix)]
-  [ExecuteInEditMode]
+       ObserverComponentMenuPath._ComponentMenuPath + "Value" + ObserverComponentMenuPath._Postfix),
+   ExecuteInEditMode]
   public class ValueObserver : Observer,
                                IHasSingle {
-    [Header("Observation", order = 103)]
-    [SerializeField]
+    [Header("Observation", order = 103), SerializeField]
     float _observation_value;
 
     [SerializeField] ValueSpace _observation_value_space;

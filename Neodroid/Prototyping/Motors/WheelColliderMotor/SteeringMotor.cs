@@ -6,8 +6,9 @@ namespace droid.Neodroid.Prototyping.Motors.WheelColliderMotor {
   /// 
   /// </summary>
   [AddComponentMenu(
-      MotorComponentMenuPath._ComponentMenuPath + "WheelCollider/Steering" + MotorComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(WheelCollider))]
+       MotorComponentMenuPath._ComponentMenuPath
+       + "WheelCollider/Steering"
+       + MotorComponentMenuPath._Postfix), RequireComponent(typeof(WheelCollider))]
   public class SteeringMotor : Motor {
     /// <summary>
     /// 

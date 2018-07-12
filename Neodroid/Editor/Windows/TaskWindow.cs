@@ -10,8 +10,8 @@ namespace droid.Neodroid.Editor.Windows {
 
     TaskSequence _task_sequence;
 
-    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "TaskWindow")]
-    [MenuItem(EditorWindowMenuPath._ToolMenuPath + "TaskWindow")]
+    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "TaskWindow"),
+     MenuItem(EditorWindowMenuPath._ToolMenuPath + "TaskWindow")]
     public static void ShowWindow() {
       GetWindow(typeof(TaskWindow)); //Show existing window instance. If one doesn't exist, make one.
     }

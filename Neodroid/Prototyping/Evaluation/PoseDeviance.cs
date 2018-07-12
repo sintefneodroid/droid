@@ -94,11 +94,10 @@ namespace droid.Neodroid.Prototyping.Evaluation {
 
     #region Fields
 
-    [Header("Specific", order = 102)]
-    [SerializeField]
+    [Header("Specific", order = 102), SerializeField]
     float _peak_reward;
 
-    [SerializeField] [Range(0.1f, 10f)] float _exponent = 2;
+    [SerializeField, Range(0.1f, 10f)]  float _exponent = 2;
 
     [SerializeField] bool _sparse = true;
 

@@ -221,10 +221,11 @@ namespace droid.Neodroid.Prototyping.Evaluation {
 
     #region Fields
 
-    [Header("References", order = 100)]
+    [Header("References", order = 100), SerializeField]
     //[SerializeField]float _internal_discount_factor = 1.0f;
 
-    [SerializeField] PrototypingEnvironment _environment;
+    
+    PrototypingEnvironment _environment;
 
     //[SerializeField] Term[] _extra_terms_external;
 
@@ -232,8 +233,7 @@ namespace droid.Neodroid.Prototyping.Evaluation {
 
     [SerializeField] protected Dictionary<Term, float> _Extra_Term_Weights = new Dictionary<Term, float>();
 
-    [Header("General", order = 101)]
-    [SerializeField]
+    [Header("General", order = 101), SerializeField]
     float _solved_threshold;
 
     [SerializeField] float _last_signal;

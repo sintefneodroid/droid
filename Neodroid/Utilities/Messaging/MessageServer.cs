@@ -259,7 +259,7 @@ namespace droid.Neodroid.Utilities.Messaging {
 
               if (frame_number <= this._last_send_frame_number) {
                 Debug.LogWarning(
-                    $"The current frame number {frame_number} is less or equal the last {this._last_send_frame_number}");
+                    $"The current frame number {frame_number} is less or equal the last {this._last_send_frame_number}, SINCE AWAKE ({Time.frameCount})");
               }
 
               if (time <= this._last_send_time) {
@@ -273,6 +273,8 @@ namespace droid.Neodroid.Utilities.Messaging {
               this._last_send_frame_number = frame_number;
               this._last_send_time = time;
             }
+          } else {
+            Debug.LogWarning($"No environment states where send.");
           }
         }
         #endif
@@ -348,6 +350,8 @@ namespace droid.Neodroid.Utilities.Messaging {
     }
 
     public MessageServer(bool debug = false) : this("127.0.0.1", 6969, false, debug) { }
+    
+    
 
     #endregion
 

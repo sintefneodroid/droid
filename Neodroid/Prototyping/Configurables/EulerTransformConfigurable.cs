@@ -22,8 +22,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
 
     [SerializeField] Vector3 _direction;
 
-    [Header("Observation", order = 103)]
-    [SerializeField]
+    [Header("Observation", order = 103), SerializeField]
     Vector3 _position;
 
     string _rot_x;

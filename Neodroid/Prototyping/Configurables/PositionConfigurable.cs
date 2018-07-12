@@ -11,8 +11,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
       ConfigurableComponentMenuPath._ComponentMenuPath + "Position" + ConfigurableComponentMenuPath._Postfix)]
   public class PositionConfigurable : ConfigurableGameObject,
                                       IHasTriple {
-    [Header("Observation", order = 103)]
-    [SerializeField]
+    [Header("Observation", order = 103), SerializeField]
     Vector3 _position;
 
     [SerializeField] bool _use_environments_space;

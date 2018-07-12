@@ -11,10 +11,9 @@ namespace droid.Neodroid.Prototyping.Configurables {
   ///  <summary>
   ///  </summary>
   [AddComponentMenu(
-      ConfigurableComponentMenuPath._ComponentMenuPath
-      + "Rigidbody"
-      + ConfigurableComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(Rigidbody))]
+       ConfigurableComponentMenuPath._ComponentMenuPath
+       + "Rigidbody"
+       + ConfigurableComponentMenuPath._Postfix), RequireComponent(typeof(Rigidbody))]
   public class RigidbodyConfigurable : ConfigurableGameObject,
                                        IHasRigidbody {
     /// <summary>
@@ -55,8 +54,7 @@ namespace droid.Neodroid.Prototyping.Configurables {
     /// <summary>
     ///
     /// </summary>
-    [Header("Observation", order = 110)]
-    [SerializeField]
+    [Header("Observation", order = 110), SerializeField]
     Vector3 _velocity;
 
     /// <summary>

@@ -29,9 +29,8 @@ namespace droid.Neodroid.Prototyping.Observers.Camera {
   ///  <summary>
   ///  </summary>
   [AddComponentMenu(
-      ObserverComponentMenuPath._ComponentMenuPath + "Camera" + ObserverComponentMenuPath._Postfix)]
-  [ExecuteInEditMode]
-  [RequireComponent(typeof(UnityEngine.Camera))]
+       ObserverComponentMenuPath._ComponentMenuPath + "Camera" + ObserverComponentMenuPath._Postfix),
+   ExecuteInEditMode, RequireComponent(typeof(UnityEngine.Camera))]
   public class CameraObserver : Observer,
                                 IHasByteArray {
     /// <summary>
@@ -43,8 +42,7 @@ namespace droid.Neodroid.Prototyping.Observers.Camera {
     /// <summary>
     ///
     /// </summary>
-    [SerializeField]
-    [Range(0, 100)]
+    [SerializeField, Range(0, 100)]
     int _jpeg_quality = 75;
 
     /// <summary>
@@ -57,8 +55,7 @@ namespace droid.Neodroid.Prototyping.Observers.Camera {
     /// <summary>
     ///
     /// </summary>
-    [Header("Specific", order = 102)]
-    [SerializeField]
+    [Header("Specific", order = 102), SerializeField]
     UnityEngine.Camera _camera;
 
     /// <summary>

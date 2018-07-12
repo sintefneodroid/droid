@@ -15,8 +15,8 @@ namespace droid.Neodroid.Prototyping.Actors {
   /// <inheritdoc cref="PrototypingGameObject" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ActorComponentMenuPath._ComponentMenuPath + "Vanilla" + ActorComponentMenuPath._Postfix)]
-  [ExecuteInEditMode]
+  [AddComponentMenu(ActorComponentMenuPath._ComponentMenuPath + "Vanilla" + ActorComponentMenuPath._Postfix),
+   ExecuteInEditMode]
   public class Actor : PrototypingGameObject,
                        IHasRegister<Motor> {
     /// <summary>
@@ -205,15 +205,13 @@ namespace droid.Neodroid.Prototyping.Actors {
     /// <summary>
     ///
     /// </summary>
-    [Header("References", order = 99)]
-    [SerializeField]
+    [Header("References", order = 99), SerializeField]
     PrototypingEnvironment _environment;
 
     /// <summary>
     ///
     /// </summary>
-    [Header("General", order = 101)]
-    [SerializeField]
+    [Header("General", order = 101), SerializeField]
     protected Dictionary<string, Motor> _Motors = new Dictionary<string, Motor>();
 
     #if UNITY_EDITOR

@@ -26,15 +26,15 @@ namespace droid.Neodroid.Utilities.BoundingBoxes.Experimental {
 
     public static void RegisterCollisionTriggerCallbacksOnChildren(
         Transform transform,
-        ChildSensor.OnChildCollisionEnterDelegate on_collision_enter_child,
-        ChildSensor.OnChildTriggerEnterDelegate on_trigger_enter_child,
-        ChildSensor.OnChildCollisionExitDelegate on_collision_exit_child,
-        ChildSensor.OnChildTriggerExitDelegate on_trigger_exit_child,
+        ChildColliderSensor.OnChildCollisionEnterDelegate on_collision_enter_child,
+        ChildColliderSensor.OnChildTriggerEnterDelegate on_trigger_enter_child,
+        ChildColliderSensor.OnChildCollisionExitDelegate on_collision_exit_child,
+        ChildColliderSensor.OnChildTriggerExitDelegate on_trigger_exit_child,
         bool debug = false) {
       var children_with_colliders = transform.GetComponentsInChildren<Collider>(transform.gameObject);
 
       foreach (var child in children_with_colliders) {
-        var child_sensor = child.gameObject.AddComponent<ChildSensor>();
+        var child_sensor = child.gameObject.AddComponent<ChildColliderSensor>();
         child_sensor.OnCollisionEnterDelegate = on_collision_enter_child;
         child_sensor.OnTriggerEnterDelegate = on_trigger_enter_child;
         child_sensor.OnCollisionExitDelegate = on_collision_exit_child;

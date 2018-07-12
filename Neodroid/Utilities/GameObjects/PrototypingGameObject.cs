@@ -12,8 +12,7 @@ namespace droid.Neodroid.Utilities.GameObjects {
     /// <summary>
     ///
     /// </summary>
-    [SerializeField]
-    [Header("Naming", order = 10)]
+    [SerializeField, Header("Naming", order = 10)]
     protected string _Custom_Name = "";
 
     /// <summary>
@@ -25,8 +24,7 @@ namespace droid.Neodroid.Utilities.GameObjects {
     /// <summary>
     ///
     /// </summary>
-    [Header("Development", order = 90)]
-    [SerializeField]
+    [Header("Development", order = 90), SerializeField]
     bool _disables_children;
 
     #if UNITY_EDITOR

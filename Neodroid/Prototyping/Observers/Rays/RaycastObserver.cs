@@ -19,8 +19,7 @@ namespace droid.Neodroid.Prototyping.Observers.Rays {
     ValueSpace _observation_space =
         new ValueSpace {_Decimal_Granularity = 3, _Min_Value = 0, _Max_Value = 100.0f};
 
-    [Header("Observation", order = 103)]
-    [SerializeField]
+    [Header("Observation", order = 103), SerializeField]
     float _observation_value;
 
     public override string PrototypingTypeName {

@@ -19,30 +19,66 @@ namespace droid.Neodroid.Utilities.Messaging.Messages {
     /// </summary>
     public int FrameSkips { get { return this._frame_skips; } set { this._frame_skips = value; } }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public float TimeScale { get; set; }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public bool FullScreen { get { return this._full_screen; } set { this._full_screen = value; } }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public int Height { get { return this._height; } set { this._height = value; } }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public int Width { get { return this._width; } set { this._width = value; } }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public int Finishes { get { return this._frame_finishes; } set { this._frame_finishes = value; } }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public int NumOfEnvironments {
       get { return this._num_of_environments; }
       set { this._num_of_environments = value; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public int ResetIterations {
       get { return this._reset_iterations; }
       set { this._reset_iterations = value; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public int QualityLevel { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
     public float TargetFrameRate { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
     public int SimulationType { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
     public bool DoSerialiseUnobservables { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
     public bool DoSerialiseIndidualObservables { get; set; }
   }
 

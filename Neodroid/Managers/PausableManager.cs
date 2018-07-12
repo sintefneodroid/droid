@@ -16,9 +16,8 @@ namespace droid.Neodroid.Managers {
     ///
     /// </summary>
     [Header(
-        "Warning! Will block editor requiring a restart, if not terminated while receiving.",
-        order = 120)]
-    [SerializeField]
+         "Warning! Will block editor requiring a restart, if not terminated while receiving.",
+         order = 120), SerializeField]
     bool _allow_in_editor_blockage;
     #endif
 
@@ -73,6 +72,12 @@ namespace droid.Neodroid.Managers {
         #endif
 
         this.ResumeSimulation(this.Configuration.TimeScale);
+      } else {
+        #if NEODROID_DEBUG
+        if (this.Debugging) {
+          Debug.Log("Not resuming simulation because of stepping");
+        }
+        #endif
       }
     }
 

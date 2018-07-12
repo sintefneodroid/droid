@@ -78,8 +78,7 @@ namespace droid.Neodroid.Prototyping.Displayers {
   /// <summary>
   ///
   /// </summary>
-  [ExecuteInEditMode]
-  [AddComponentMenu("Neodroid/Displayers/TextMesh")]
+  [ExecuteInEditMode, AddComponentMenu("Neodroid/Displayers/TextMesh")]
   public class TextMeshDisplayer : Displayer {
     /// <inheritdoc />
     protected override void Setup() {

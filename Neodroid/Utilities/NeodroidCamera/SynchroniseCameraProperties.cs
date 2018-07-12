@@ -5,9 +5,7 @@ namespace droid.Neodroid.Utilities.NeodroidCamera {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [RequireComponent(typeof(Camera))]
-  [ExecuteInEditMode]
-  [Serializable]
+  [RequireComponent(typeof(Camera)), ExecuteInEditMode, Serializable]
   public class SynchroniseCameraProperties : MonoBehaviour {
     /// <summary>
     ///

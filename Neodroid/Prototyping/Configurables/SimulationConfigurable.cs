@@ -10,10 +10,9 @@ namespace droid.Neodroid.Prototyping.Configurables {
   /// <summary>
   /// </summary>
   [AddComponentMenu(
-      ConfigurableComponentMenuPath._ComponentMenuPath
-      + "Simulation"
-      + ConfigurableComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(PausableManager))]
+       ConfigurableComponentMenuPath._ComponentMenuPath
+       + "Simulation"
+       + ConfigurableComponentMenuPath._Postfix), RequireComponent(typeof(PausableManager))]
   public class SimulationConfigurable : ConfigurableGameObject {
     string _fullscreen;
     string _height;

@@ -17,8 +17,8 @@ namespace droid.Neodroid.Editor.Windows {
     /// <summary>
     /// 
     /// </summary>
-    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "CameraSynchronisationWindow")]
-    [MenuItem(EditorWindowMenuPath._ToolMenuPath + "CameraSynchronisationWindow")]
+    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "CameraSynchronisationWindow"),
+     MenuItem(EditorWindowMenuPath._ToolMenuPath + "CameraSynchronisationWindow")]
     public static void ShowWindow() {
       GetWindow(
           typeof(CameraSynchronisationWindow)); //Show existing window instance. If one doesn't exist, make one.

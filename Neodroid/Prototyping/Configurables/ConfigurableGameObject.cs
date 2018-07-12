@@ -77,15 +77,13 @@ namespace droid.Neodroid.Prototyping.Configurables {
     /// <summary>
     ///
     /// </summary>
-    [Header("References", order = 20)]
-    [SerializeField]
+    [Header("References", order = 20), SerializeField]
     PrototypingEnvironment _environment;
 
     /// <summary>
     ///
     /// </summary>
-    [Header("Configurable", order = 30)]
-    [SerializeField]
+    [Header("Configurable", order = 30), SerializeField]
     bool _relative_to_existing_value;
 
     #endregion
