@@ -156,7 +156,7 @@ namespace droid.Neodroid.Prototyping.Evaluation {
       signal += this.EvaluateExtraTerms();
 
       //signal = signal * Mathf.Pow(this._internal_discount_factor, this._environment.CurrentFrameNumber);
-      
+
       #if NEODROID_DEBUG
       if (this.Debugging) {
         Debug.Log(signal);
@@ -223,8 +223,6 @@ namespace droid.Neodroid.Prototyping.Evaluation {
 
     [Header("References", order = 100), SerializeField]
     //[SerializeField]float _internal_discount_factor = 1.0f;
-
-    
     PrototypingEnvironment _environment;
 
     //[SerializeField] Term[] _extra_terms_external;

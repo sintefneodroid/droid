@@ -12,9 +12,9 @@ namespace droid.Neodroid.Utilities.NeodroidCamera {
     [SerializeField]
     Color _background_color = Color.white;
 
-    [SerializeField, Range(0, 1)]  float _blending = 0.5f;
+    [SerializeField, Range(0, 1)] float _blending = 0.5f;
 
-    [SerializeField, Range(0, 100)]  float _overlay_amplitude = 60;
+    [SerializeField, Range(0, 100)] float _overlay_amplitude = 60;
 
     /// <summary>
     ///

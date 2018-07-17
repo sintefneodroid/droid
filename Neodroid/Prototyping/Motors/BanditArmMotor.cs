@@ -9,7 +9,6 @@ namespace droid.Neodroid.Prototyping.Motors {
   [AddComponentMenu(
       MotorComponentMenuPath._ComponentMenuPath + "BanditArm" + MotorComponentMenuPath._Postfix)]
   public class BanditArmMotor : Motor {
-
     [SerializeField] Material _material;
 
     /// <summary>
@@ -35,24 +34,24 @@ namespace droid.Neodroid.Prototyping.Motors {
     /// <param name="motion"></param>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
     protected override void InnerApplyMotion(MotorMotion motion) {
-     if(this._material) {
-       switch ((int)motion.Strength) {
-         case 1:
-           this._material.color = Color.blue;
-           break;
-         case 2:
-           this._material.color = Color.black;
-           break;
-         case 3:
-           this._material.color = Color.red;
-           break;
-         case 4:
-           this._material.color = Color.green;
-           break;
-         default:
-           throw new ArgumentOutOfRangeException();
-       }
-     }
+      if (this._material) {
+        switch ((int)motion.Strength) {
+          case 1:
+            this._material.color = Color.blue;
+            break;
+          case 2:
+            this._material.color = Color.black;
+            break;
+          case 3:
+            this._material.color = Color.red;
+            break;
+          case 4:
+            this._material.color = Color.green;
+            break;
+          default:
+            throw new ArgumentOutOfRangeException();
+        }
+      }
     }
   }
 }

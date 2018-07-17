@@ -25,7 +25,6 @@ namespace droid.Neodroid.Editor.GameObjects {
       var bounding_box = go.AddComponent<BoundingBox>();
       env.PlayableArea = bounding_box;
 
-
       var plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
       plane.transform.parent = go.transform;
 
@@ -41,7 +40,7 @@ namespace droid.Neodroid.Editor.GameObjects {
       capsule.transform.localPosition = Vector3.up;
 
       bounding_box.Initialise();
-      
+
       GameObjectUtility.SetParentAndAlign(
           go,
           menu_command

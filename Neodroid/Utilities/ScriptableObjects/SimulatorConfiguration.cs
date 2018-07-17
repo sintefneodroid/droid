@@ -33,7 +33,7 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
     /// NOTE: Not working as expected, does not seem to work with physics engine.
     /// </summary>
     Late_update_,
-    
+
     /// <summary>
     ///  NOTE: Not working as expected, does not seem to work with physics engine.
     /// </summary>
@@ -48,7 +48,6 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
     /// When ever the scene has been rendered, default
     /// </summary>
     On_post_render_,
-
   }
 
   /// <inheritdoc />
@@ -64,7 +63,6 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
     ///
     /// </summary>
     [Header("Graphics"), SerializeField]
-    
     bool _apply_resolution_settings;
 
     [SerializeField] bool _full_screen;

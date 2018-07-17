@@ -349,8 +349,6 @@ namespace droid.Neodroid.Utilities.Messaging {
     }
 
     public MessageServer(bool debug = false) : this("127.0.0.1", 6969, false, debug) { }
-    
-    
 
     #endregion
 

@@ -8,7 +8,6 @@ namespace droid.Neodroid.Utilities.Unsorted {
   /// <inheritdoc />
   ///  <summary>
   ///  </summary>
-  
   public class ActionCounter : EnvironmentListener {
     [SerializeField] PrototypingEnvironment _environment;
 
@@ -40,7 +39,7 @@ namespace droid.Neodroid.Utilities.Unsorted {
     protected override void PreStep() { }
     protected override void Step() { this.HandleStep(); }
     protected override void PostStep() { }
-    
+
     public override string PrototypingTypeName { get { return "ActionCounter"; } }
   }
 }

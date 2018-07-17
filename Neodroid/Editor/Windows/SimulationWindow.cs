@@ -77,8 +77,6 @@ namespace droid.Neodroid.Editor.Windows {
       }
     }
 
-
-
     /// <summary>
     ///
     /// </summary>
@@ -93,18 +91,20 @@ namespace droid.Neodroid.Editor.Windows {
             this._neodroid_icon,
             GUILayout.Width(_logo_image_size),
             GUILayout.Height(_logo_image_size));
-        
 
         if (NeodroidEditorUtilities.LinkLabel(new GUIContent(_neodroid_url_text))) {
           Application.OpenURL(_neodroid_url);
         }
-        
+
         EditorGUILayout.EndVertical();
 
         EditorGUILayout.BeginVertical();
         EditorGUILayout.ObjectField(this._simulation_manager, typeof(NeodroidManager), true);
 
-        this._simulation_manager.Configuration = (SimulatorConfiguration)EditorGUILayout.ObjectField(this._simulation_manager.Configuration, typeof(SimulatorConfiguration), true);
+        this._simulation_manager.Configuration = (SimulatorConfiguration)EditorGUILayout.ObjectField(
+            this._simulation_manager.Configuration,
+            typeof(SimulatorConfiguration),
+            true);
 
         this._simulation_manager.Configuration.FrameSkips = EditorGUILayout.IntField(
             "Frame Skips",
@@ -112,10 +112,9 @@ namespace droid.Neodroid.Editor.Windows {
         this._simulation_manager.Configuration.ResetIterations = EditorGUILayout.IntField(
             "Reset Iterations",
             this._simulation_manager.Configuration.ResetIterations);
-        this._simulation_manager.Configuration.SimulationType =
-            (SimulationType)EditorGUILayout.EnumPopup(
-                "Simulation Type",
-                this._simulation_manager.Configuration.SimulationType);
+        this._simulation_manager.Configuration.SimulationType = (SimulationType)EditorGUILayout.EnumPopup(
+            "Simulation Type",
+            this._simulation_manager.Configuration.SimulationType);
         this._simulation_manager.TestMotors = EditorGUILayout.Toggle(
             "Test Motors",
             this._simulation_manager.TestMotors);
@@ -136,8 +135,10 @@ namespace droid.Neodroid.Editor.Windows {
 
         EditorGUILayout.BeginVertical("Box");
         var num_active_environments = this._environments.Length; //TODO: Calculate actual number
-        var num_inactive_environments = this._environments.Length-num_active_environments; //TODO: Calculate actual number
-        GUILayout.Label($"Environments - Active({num_active_environments}), Inactive({num_inactive_environments}), Total({this._environments.Length})");
+        var num_inactive_environments =
+            this._environments.Length - num_active_environments; //TODO: Calculate actual number
+        GUILayout.Label(
+            $"Environments - Active({num_active_environments}), Inactive({num_inactive_environments}), Total({this._environments.Length})");
         if (this._show_environment_properties != null) {
           for (var i = 0; i < this._show_environment_properties.Length; i++) {
             if (this._environments[i].isActiveAndEnabled) {
@@ -176,12 +177,12 @@ namespace droid.Neodroid.Editor.Windows {
                 this._environments[i].EpisodeLength = EditorGUILayout.IntField(
                     "Episode Length",
                     this._environments[i].EpisodeLength);
-                
+
                 EditorGUI.BeginDisabledGroup(true);
                 EditorGUILayout.LabelField("Info:");
-                EditorGUILayout.Toggle("Terminated",this._environments[i].Terminated);
+                EditorGUILayout.Toggle("Terminated", this._environments[i].Terminated);
                 EditorGUI.EndDisabledGroup();
-                
+
                 EditorGUILayout.BeginVertical("Box");
                 GUILayout.Label("Actors");
                 foreach (var actor in actors) {
@@ -251,8 +252,6 @@ namespace droid.Neodroid.Editor.Windows {
 
                 EditorGUILayout.EndVertical();
 
-
-
                 EditorGUILayout.BeginVertical("Box");
                 GUILayout.Label("Displayers");
                 foreach (var displayer in displayers) {
@@ -281,7 +280,6 @@ namespace droid.Neodroid.Editor.Windows {
                     EditorGUILayout.EndToggleGroup();
                     EditorGUILayout.EndVertical();
                   }
-
                 }
 
                 foreach (var listener in listeners) {
@@ -290,10 +288,7 @@ namespace droid.Neodroid.Editor.Windows {
                     listener.Value.enabled = EditorGUILayout.BeginToggleGroup(
                         listener.Key,
                         listener.Value.enabled && listener.Value.gameObject.activeSelf);
-                    EditorGUILayout.ObjectField(
-                        listener.Value,
-                        typeof(EnvironmentListener),
-                        true);
+                    EditorGUILayout.ObjectField(listener.Value, typeof(EnvironmentListener), true);
                     EditorGUILayout.EndToggleGroup();
                     EditorGUILayout.EndVertical();
                   }
@@ -313,7 +308,7 @@ namespace droid.Neodroid.Editor.Windows {
           GUILayout.Label("Disabled environments");
           for (var i = 0; i < this._show_environment_properties.Length; i++) {
             if (!this._environments[i].isActiveAndEnabled) {
-              EditorGUILayout.ObjectField(this._environments[i], typeof(NeodroidEnvironment),true);
+              EditorGUILayout.ObjectField(this._environments[i], typeof(NeodroidEnvironment), true);
             }
           }
 
@@ -361,8 +356,7 @@ namespace droid.Neodroid.Editor.Windows {
     ///
     /// </summary>
     void Refresh() {
-
-      if(this._simulation_manager) {
+      if (this._simulation_manager) {
         this._simulation_manager.Clear();
       }
 
@@ -380,8 +374,7 @@ namespace droid.Neodroid.Editor.Windows {
     ///
     /// </summary>
     void OnValidate() {
-
-      if(EditorApplication.isPlaying || !_refresh_enabled) {
+      if (EditorApplication.isPlaying || !_refresh_enabled) {
         return;
       }
 
@@ -391,9 +384,7 @@ namespace droid.Neodroid.Editor.Windows {
     /// <summary>
     ///
     /// </summary>
-    void OnHierarchyChange() {
-      this.Refresh();
-    }
+    void OnHierarchyChange() { this.Refresh(); }
 
     /// <summary>
     ///

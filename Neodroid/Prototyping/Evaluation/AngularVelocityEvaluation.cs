@@ -30,9 +30,7 @@ namespace droid.Neodroid.Prototyping.Evaluation {
     /// <summary>
     /// 
     /// </summary>
-    public override void InternalReset() {
-      
-    }
+    public override void InternalReset() { }
 
     protected override void PostSetup() {
       if (this._rigidbody == null) {

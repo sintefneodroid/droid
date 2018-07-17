@@ -34,7 +34,7 @@ namespace droid.Neodroid.Prototyping.Evaluation {
     ///  <returns></returns>
     public override float InternalEvaluate() {
       var signal = 0f;
-      
+
       if (this._overlapping == ActorOverlapping.Inside_area_ && this._is_resting) {
         if (this._actor is KillableActor) {
           if (((KillableActor)this._actor).IsAlive) {

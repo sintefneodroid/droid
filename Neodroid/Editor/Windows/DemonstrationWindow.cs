@@ -30,7 +30,6 @@ namespace droid.Neodroid.Editor.Windows {
     public void OnInspectorUpdate() { this.Repaint(); }
 
     void OnGUI() {
-
       this._file_name = EditorGUILayout.TextField("File Name:", this._file_name);
 
       if (GUILayout.Button(this._record_button)) {

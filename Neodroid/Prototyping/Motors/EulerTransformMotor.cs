@@ -18,12 +18,14 @@ namespace droid.Neodroid.Prototyping.Motors {
     /// <summary>
     /// 
     /// </summary>
-    [SerializeField] protected bool _No_Collisions = true;
+    [SerializeField]
+    protected bool _No_Collisions = true;
 
     /// <summary>
     /// 
     /// </summary>
-    [SerializeField] protected Space _Relative_To = Space.Self;
+    [SerializeField]
+    protected Space _Relative_To = Space.Self;
 
     string _rot_x;
     string _rot_y;

@@ -47,7 +47,7 @@ namespace droid.Neodroid.Prototyping.Evaluation {
     void ResetHits() { this._hits = 0; }
 
     public override void InternalReset() { this.ResetHits(); }
-    
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>

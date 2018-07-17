@@ -45,8 +45,6 @@ namespace droid.Neodroid.Environments {
     /// </summary>
     public event Action PostStepEvent;
 
-
-
     #region NeodroidCallbacks
 
     /// <inheritdoc />
@@ -197,7 +195,7 @@ namespace droid.Neodroid.Environments {
     /// </summary>
     [Header("(Optional)", order = 80), SerializeField]
     BoundingBox _playable_area;
-    
+
     /// <summary>
     ///
     /// </summary>
@@ -285,7 +283,7 @@ namespace droid.Neodroid.Environments {
     ///
     /// </summary>
     public Dictionary<string, Displayer> Displayers { get; } = new Dictionary<string, Displayer>();
-    
+
     /// <summary>
     /// 
     /// </summary>
@@ -305,8 +303,7 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-    public SortedDictionary<string, Observer> Observers { get; } =
-      new SortedDictionary<string, Observer>();
+    public SortedDictionary<string, Observer> Observers { get; } = new SortedDictionary<string, Observer>();
 
     /// <summary>
     ///
@@ -429,8 +426,6 @@ namespace droid.Neodroid.Environments {
       }
     }
 
-
-
     /// <inheritdoc />
     /// <summary>
     /// </summary>
@@ -441,13 +436,11 @@ namespace droid.Neodroid.Environments {
           this._reset_i = 0;
           this.UpdateConfigurableValues();
           this.UpdateObserversData();
-          
-
         } else {
           this.Reset();
           this._reset_i += 1;
         }
-        
+
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log($"Reset {this._reset_i}/{this._Simulation_Manager.Configuration.ResetIterations}");

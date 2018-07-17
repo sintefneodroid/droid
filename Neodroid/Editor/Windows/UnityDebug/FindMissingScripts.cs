@@ -3,7 +3,6 @@ using UnityEngine;
 using Object = System.Object;
 
 namespace droid.Neodroid.Editor.Windows.UnityDebug {
-
   /// <inheritdoc />
   /// <summary>
   /// </summary>
@@ -24,7 +23,6 @@ namespace droid.Neodroid.Editor.Windows.UnityDebug {
       this.titleContent = new GUIContent("Unity:Debug", this._icon, "Window for debugging Unity");
     }
 
-    
     /// <summary>
     /// 
     /// </summary>

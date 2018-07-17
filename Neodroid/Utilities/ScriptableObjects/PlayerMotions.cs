@@ -25,14 +25,17 @@ namespace droid.Neodroid.Utilities.ScriptableObjects {
     /// 
     /// </summary>
     public KeyCode _Key;
+
     /// <summary>
     /// 
     /// </summary>
     public string _Actor;
+
     /// <summary>
     /// 
     /// </summary>
     public string _Motor;
+
     /// <summary>
     /// 
     /// </summary>

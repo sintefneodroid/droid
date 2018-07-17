@@ -64,18 +64,22 @@ namespace droid.Neodroid.Utilities.Messaging.Messages {
     /// 
     /// </summary>
     public int QualityLevel { get; set; }
+
     /// <summary>
     /// 
     /// </summary>
     public float TargetFrameRate { get; set; }
+
     /// <summary>
     /// 
     /// </summary>
     public int SimulationType { get; set; }
+
     /// <summary>
     /// 
     /// </summary>
     public bool DoSerialiseUnobservables { get; set; }
+
     /// <summary>
     /// 
     /// </summary>

@@ -33,7 +33,8 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-    [SerializeField] protected float _Lastest_Reset_Time;
+    [SerializeField]
+    protected float _Lastest_Reset_Time;
 
     /// <summary>
     ///
@@ -43,12 +44,14 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-[SerializeField]    protected float _Energy_Spent;
+    [SerializeField]
+    protected float _Energy_Spent;
 
     /// <summary>
     ///
     /// </summary>
-    [SerializeField] protected bool _Terminated;
+    [SerializeField]
+    protected bool _Terminated;
 
     #if UNITY_EDITOR
     const int _script_execution_order = -20;
@@ -91,12 +94,14 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-    [SerializeField] protected bool _Terminable = true;
+    [SerializeField]
+    protected bool _Terminable = true;
 
     /// <summary>
     ///
     /// </summary>
-    [SerializeField] protected string _LastTermination_Reason = "None";
+    [SerializeField]
+    protected string _LastTermination_Reason = "None";
 
     /// <summary>
     ///
@@ -124,7 +129,8 @@ namespace droid.Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-    [SerializeField] protected bool _Resetting = false;
+    [SerializeField]
+    protected bool _Resetting = false;
 
     [SerializeField] int _current_frame_number;
 

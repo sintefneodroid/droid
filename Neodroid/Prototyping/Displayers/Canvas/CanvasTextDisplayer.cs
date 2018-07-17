@@ -25,7 +25,7 @@ namespace droid.Neodroid.Prototyping.Displayers.Canvas {
     /// <summary>
     /// </summary>
     public override void Display(float value) {
-      if(this._text_component) {
+      if (this._text_component) {
         this._text_component.text = value.ToString(CultureInfo.InvariantCulture);
       }
     }
@@ -33,7 +33,8 @@ namespace droid.Neodroid.Prototyping.Displayers.Canvas {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override void Display(Double value) { if(this._text_component) {
+    public override void Display(Double value) {
+      if (this._text_component) {
         this._text_component.text = value.ToString(CultureInfo.InvariantCulture);
       }
     }
@@ -41,7 +42,8 @@ namespace droid.Neodroid.Prototyping.Displayers.Canvas {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override void Display(float[] values) { if(this._text_component) {
+    public override void Display(float[] values) {
+      if (this._text_component) {
         this._text_component.text = values.ToString();
       }
     }
@@ -62,7 +64,8 @@ namespace droid.Neodroid.Prototyping.Displayers.Canvas {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override void Display(Vector3 value) { if(this._text_component) {
+    public override void Display(Vector3 value) {
+      if (this._text_component) {
         this._text_component.text = value.ToString();
       }
     }
@@ -70,7 +73,8 @@ namespace droid.Neodroid.Prototyping.Displayers.Canvas {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override void Display(Vector3[] value) { if(this._text_component) {
+    public override void Display(Vector3[] value) {
+      if (this._text_component) {
         this._text_component.text = value.ToString();
       }
     }
@@ -78,7 +82,8 @@ namespace droid.Neodroid.Prototyping.Displayers.Canvas {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override void Display(Points.ValuePoint points) { if(this._text_component) {
+    public override void Display(Points.ValuePoint points) {
+      if (this._text_component) {
         this._text_component.text = points.ToString();
       }
     }
@@ -86,7 +91,8 @@ namespace droid.Neodroid.Prototyping.Displayers.Canvas {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override void Display(Points.ValuePoint[] points) { if(this._text_component) {
+    public override void Display(Points.ValuePoint[] points) {
+      if (this._text_component) {
         this._text_component.text = points.ToString();
       }
     }
@@ -94,7 +100,8 @@ namespace droid.Neodroid.Prototyping.Displayers.Canvas {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override void Display(Points.StringPoint point) { if(this._text_component) {
+    public override void Display(Points.StringPoint point) {
+      if (this._text_component) {
         this._text_component.text = point.ToString();
       }
     }
@@ -102,7 +109,8 @@ namespace droid.Neodroid.Prototyping.Displayers.Canvas {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override void Display(Points.StringPoint[] points) { if(this._text_component) {
+    public override void Display(Points.StringPoint[] points) {
+      if (this._text_component) {
         this._text_component.text = points.ToString();
       }
     }
@@ -111,7 +119,8 @@ namespace droid.Neodroid.Prototyping.Displayers.Canvas {
     /// 
     /// </summary>
     /// <param name="text"></param>
-    public void SetText(string text) { if(this._text_component) {
+    public void SetText(string text) {
+      if (this._text_component) {
         this._text_component.text = text;
       }
     }

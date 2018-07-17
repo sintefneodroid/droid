@@ -131,11 +131,9 @@ namespace droid.Neodroid.Editor.Windows {
       this.FindObjects();
 
       var prev_debug_all = this._debug_all;
-      this._debug_all = EditorGUILayout.Toggle(
-          "Debug everything",
-          this._debug_all);
+      this._debug_all = EditorGUILayout.Toggle("Debug everything", this._debug_all);
       if (this._debug_all != prev_debug_all) {
-        if(this._debug_all) {
+        if (this._debug_all) {
           this.EnableAll();
         } else {
           this.DisableAll();
@@ -169,9 +167,7 @@ namespace droid.Neodroid.Editor.Windows {
       this._show_resetables_debug = EditorGUILayout.Toggle(
           "Debug all resetables",
           this._show_resetables_debug);
-      this._show_listeners_debug = EditorGUILayout.Toggle(
-          "Debug all listeners",
-          this._show_listeners_debug);
+      this._show_listeners_debug = EditorGUILayout.Toggle("Debug all listeners", this._show_listeners_debug);
 
       this._debug_all = this.AreAllChecked();
 
@@ -222,9 +218,9 @@ namespace droid.Neodroid.Editor.Windows {
       }
 
       if (GUI.changed) {
-      EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
-      // Unity not tracking changes to properties of gameobject made through this window automatically and
-      // are not saved unless other changes are made from a working inpector window
+        EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+        // Unity not tracking changes to properties of gameobject made through this window automatically and
+        // are not saved unless other changes are made from a working inpector window
       }
     }
 

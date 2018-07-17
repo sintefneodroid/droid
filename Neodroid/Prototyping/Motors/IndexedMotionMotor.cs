@@ -12,23 +12,28 @@ namespace droid.Neodroid.Prototyping.Motors {
     /// <summary>
     /// 
     /// </summary>
-    [SerializeField] protected string _Layer_Mask = "Obstructions";
+    [SerializeField]
+    protected string _Layer_Mask = "Obstructions";
+
     /// <summary>
     /// 
     /// </summary>
-    [SerializeField] protected bool _No_Collisions = true;
+    [SerializeField]
+    protected bool _No_Collisions = true;
+
     /// <summary>
     /// 
     /// </summary>
-    [SerializeField] protected Space _Relative_To = Space.Self;
+    [SerializeField]
+    protected Space _Relative_To = Space.Self;
+
     /// <summary>
     /// 
     /// </summary>
     public override string PrototypingTypeName { get { return "IndexedMotion"; } }
-    
+
     protected override void InnerApplyMotion(MotorMotion motion) {
       var layer_mask = 1 << LayerMask.NameToLayer(this._Layer_Mask);
-      
 
       Vector3 vec;
       switch ((int)motion.Strength) {

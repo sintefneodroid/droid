@@ -14,12 +14,12 @@ namespace droid.Neodroid.Prototyping.Displayers.Canvas {
        + DisplayerComponentMenuPath._Postfix)]
   public class CanvasBarDisplayer : Displayer {
     Image _image;
-    [SerializeField, Range(0.0f, 1.0f)]  float _value;
+    [SerializeField, Range(0.0f, 1.0f)] float _value;
 
     /// <summary>
     /// 
     /// </summary>
-    public float Value { 
+    public float Value {
       get { return this._value; }
       set {
         this._value = value;
@@ -30,19 +30,18 @@ namespace droid.Neodroid.Prototyping.Displayers.Canvas {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void Setup() {
-      this._image = this.GetComponent<Image>();
-    }
+    protected override void Setup() { this._image = this.GetComponent<Image>(); }
 
     /// <summary>
     /// 
     /// </summary>
     /// <param name="amount"></param>
     public void SetFillAmount(float amount) {
-      if(this._image) {
+      if (this._image) {
         this._image.fillAmount = amount;
       }
     }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>
@@ -55,6 +54,7 @@ namespace droid.Neodroid.Prototyping.Displayers.Canvas {
 
       this.SetFillAmount(value);
     }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>
@@ -67,34 +67,42 @@ namespace droid.Neodroid.Prototyping.Displayers.Canvas {
 
       this.SetFillAmount((float)value);
     }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void Display(float[] values) { throw new NotImplementedException(); }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void Display(String value) { throw new NotImplementedException(); }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void Display(Vector3 value) { throw new NotImplementedException(); }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void Display(Vector3[] value) { throw new NotImplementedException(); }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void Display(Points.ValuePoint points) { throw new NotImplementedException(); }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void Display(Points.ValuePoint[] points) { throw new NotImplementedException(); }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void Display(Points.StringPoint point) { throw new NotImplementedException(); }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>

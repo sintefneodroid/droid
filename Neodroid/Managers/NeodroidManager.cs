@@ -58,17 +58,20 @@ namespace droid.Neodroid.Managers {
     /// <summary>
     ///
     /// </summary>
-    [SerializeField] int _skip_frame_i;
+    [SerializeField]
+    int _skip_frame_i;
 
     /// <summary>
     ///
     /// </summary>
-    [SerializeField] bool _syncing_environments;
+    [SerializeField]
+    bool _syncing_environments;
 
     /// <summary>
     ///
     /// </summary>
-    [SerializeField] bool _awaiting_reply;
+    [SerializeField]
+    bool _awaiting_reply;
 
     [SerializeField] bool _step;
 
@@ -259,11 +262,13 @@ namespace droid.Neodroid.Managers {
     /// <summary>
     ///
     /// </summary>
-    public bool Debugging { get { return this._debugging; }
+    public bool Debugging {
+      get { return this._debugging; }
       set {
         this._Message_Server.Debugging = value;
         this._debugging = value;
-      } }
+      }
+    }
 
     /// <summary>
     ///
@@ -318,10 +323,10 @@ namespace droid.Neodroid.Managers {
     ///
     /// </summary>
     protected Reaction[] _Current_Reactions = new Reaction[] { };
-    
+
     [SerializeField] bool _has_stepped;
 
-#endregion
+    #endregion
 
     #region UnityCallbacks
 
@@ -414,7 +419,6 @@ namespace droid.Neodroid.Managers {
       this.SimulationTime = configuration.TimeScale;
       Application.targetFrameRate = configuration.TargetFrameRate;
       QualitySettings.vSyncCount = 0;
-
 
       #if !UNITY_EDITOR
       if(      configuration.ApplyResolutionSettings){
@@ -514,7 +518,7 @@ namespace droid.Neodroid.Managers {
         Debug.Log($"OnPreTick");
       }
       #endif
-      
+
       if (this.Configuration.StepExecutionPhase == ExecutionPhase.Before_) {
         this.ExecuteStep();
       }
@@ -543,7 +547,7 @@ namespace droid.Neodroid.Managers {
         Debug.Log($"OnPostTick");
       }
       #endif
-      
+
       foreach (var environment in this._Environments.Values) {
         environment.PostStep();
       }
@@ -556,15 +560,13 @@ namespace droid.Neodroid.Managers {
         this.ClearCurrentReactions();
       }
     }
-    
+
     /// <summary>
     ///
     /// </summary>
     void ExecuteStep() {
       if (!this._syncing_environments) {
         this.React(this.CurrentReactions);
-              
-
       }
 
       if (this.AwaitingReply) {
@@ -574,7 +576,7 @@ namespace droid.Neodroid.Managers {
 
       this.HasStepped = true;
     }
-    
+
     /// <summary>
     ///
     /// </summary>
@@ -621,7 +623,7 @@ namespace droid.Neodroid.Managers {
             Debug.Log($"Not skipping frame, replying...");
           }
           #endif
-          
+
           this.Reply(states);
           this.AwaitingReply = false;
           this._skip_frame_i = 0;
@@ -636,8 +638,6 @@ namespace droid.Neodroid.Managers {
             return;
           }
         }
-
-
       }
     }
 
@@ -805,7 +805,7 @@ namespace droid.Neodroid.Managers {
         this.SetStepping(true);
       }
     }
-    
+
     void SetStepping(bool step) {
       if (step) {
         #if NEODROID_DEBUG
@@ -868,7 +868,7 @@ namespace droid.Neodroid.Managers {
       return states;
     }
 */
-    
+
     /// <summary>
     ///
     /// </summary>
@@ -960,7 +960,8 @@ namespace droid.Neodroid.Managers {
       lock (this._send_lock) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Received: {reactions.Select(r => r.ToString()).Aggregate((current, next) => $"{current}, {next}")}" );
+          Debug.Log(
+              $"Received: {reactions.Select(r => r.ToString()).Aggregate((current, next) => $"{current}, {next}")}");
         }
         #endif
 
@@ -980,11 +981,12 @@ namespace droid.Neodroid.Managers {
           if (this.AwaitingReply || !this.HasStepped) {
             #if NEODROID_DEBUG
             if (this.Debugging) {
-              Debug.Log($"Got new reaction while not having stepped({!this.HasStepped}) or replied({this.AwaitingReply})" );
+              Debug.Log(
+                  $"Got new reaction while not having stepped({!this.HasStepped}) or replied({this.AwaitingReply})");
             }
             #endif
           }
-          
+
           this.CurrentReactions = reactions;
           foreach (var current_reaction in this.CurrentReactions) {
             current_reaction.Parameters.IsExternal = true;
@@ -993,7 +995,6 @@ namespace droid.Neodroid.Managers {
           this.Configuration.StepExecutionPhase = this.CurrentReactions[0].Parameters.Phase;
           this.AwaitingReply = true;
           this.HasStepped = false;
-          
         } else {
           Debug.LogWarning("Reaction was null");
         }

@@ -6,6 +6,7 @@ using UnityEngine;
 namespace droid.Neodroid.Editor.Windows {
   public class RenderTextureConfiguratorWindow : EditorWindow {
     int _preview_image_size = 100;
+
     Texture _icon;
     //float[] _render_texture_height;
     //float[] _render_texture_width;

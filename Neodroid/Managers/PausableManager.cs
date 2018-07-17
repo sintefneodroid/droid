@@ -64,7 +64,7 @@ namespace droid.Neodroid.Managers {
         #endif
 
         this.ResumeSimulation(this.Configuration.TimeScale);
-      } else if(this.TestMotors) {
+      } else if (this.TestMotors) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log("Resuming simulation because of TestMotors");
