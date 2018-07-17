@@ -20,7 +20,7 @@ namespace droid.Neodroid.Editor.Windows {
 
     void OnEnable() {
       this._icon = (Texture2D)AssetDatabase.LoadAssetAtPath(
-          "Assets/droid/Neodroid/Gizmos/Icons/color_wheel.png",
+          NeodroidInfo._ImportLocation + "Gizmos/Icons/color_wheel.png",
           typeof(Texture2D));
       this.titleContent = new GUIContent("Neo:Seg", this._icon, "Window for segmentation");
     }

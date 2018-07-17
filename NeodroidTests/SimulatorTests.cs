@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using UnityEngine;
 
-namespace droid.NeodroidTests {
+namespace Packages.droid.NeodroidTests {
 	[TestFixture]
 	public class SimulatorTests {
 		[Test]

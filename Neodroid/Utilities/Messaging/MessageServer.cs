@@ -6,7 +6,6 @@ using droid.Neodroid.Utilities.Messaging.FBS;
 using droid.Neodroid.Utilities.Messaging.Messages;
 using FlatBuffers;
 using NetMQ;
-using NetMQ.Sockets;
 using UnityEngine;
 
 namespace droid.Neodroid.Utilities.Messaging {
@@ -71,7 +70,7 @@ namespace droid.Neodroid.Utilities.Messaging {
     /// <summary>
     ///
     /// </summary>
-    ResponseSocket _socket;
+    NetMQ.Sockets.ResponseSocket _socket;
 
     //PairSocket _socket;
     /// <summary>
@@ -346,7 +345,7 @@ namespace droid.Neodroid.Utilities.Messaging {
         ForceDotNet.Force();
       }
 
-      this._socket = new ResponseSocket();
+      this._socket = new NetMQ.Sockets.ResponseSocket();
     }
 
     public MessageServer(bool debug = false) : this("127.0.0.1", 6969, false, debug) { }

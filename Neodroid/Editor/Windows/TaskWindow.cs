@@ -18,7 +18,7 @@ namespace droid.Neodroid.Editor.Windows {
 
     void OnEnable() {
       this._icon = (Texture2D)AssetDatabase.LoadAssetAtPath(
-          "Assets/droid/Neodroid/Gizmos/Icons/script.png",
+          NeodroidInfo._ImportLocation + "Gizmos/Icons/script.png",
           typeof(Texture2D));
       this.titleContent = new GUIContent("Neo:Task", this._icon, "Window for task descriptions");
       if (!this._task_sequence) {

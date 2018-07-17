@@ -47,7 +47,7 @@ namespace droid.Neodroid.Utilities.Unsorted {
   /// <summary>
   /// </summary>
   [CustomEditor(typeof(Note))]
-  public class NoteEditor : Editor {
+  public class NoteEditor : UnityEditor.Editor {
     NoteType _note_type = NoteType.Box_info_;
 
     /// <inheritdoc />
