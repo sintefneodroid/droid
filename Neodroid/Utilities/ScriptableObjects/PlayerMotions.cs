@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace droid.Neodroid.Utilities.ScriptableObjects {
+namespace Neodroid.Utilities.ScriptableObjects {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

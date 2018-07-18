@@ -1,4 +1,4 @@
-﻿namespace droid.Neodroid.Prototyping.Observers {
+﻿namespace Neodroid.Prototyping.Observers {
   /// <summary>
   ///
   /// </summary>

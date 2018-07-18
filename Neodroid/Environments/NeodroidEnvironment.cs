@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Globalization;
-using droid.Neodroid.Managers;
-using droid.Neodroid.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
-using droid.Neodroid.Utilities.GameObjects;
-using droid.Neodroid.Utilities.Messaging.Messages;
-using droid.Neodroid.Utilities.Unsorted;
+using Neodroid.Managers;
+using Neodroid.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
+using Neodroid.Utilities.GameObjects;
+using Neodroid.Utilities.Messaging.Messages;
+using Neodroid.Utilities.Unsorted;
 using UnityEditor;
 using UnityEngine;
 
-namespace droid.Neodroid.Environments {
+namespace Neodroid.Environments {
   /// <inheritdoc />
   ///  <summary>
   ///  </summary>

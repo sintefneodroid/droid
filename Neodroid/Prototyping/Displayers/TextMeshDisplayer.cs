@@ -1,5 +1,5 @@
 ﻿using System;
-using droid.Neodroid.Utilities.Structs;
+using Neodroid.Utilities.Structs;
 using UnityEngine;
 
 #if TEXT_MESH_PRO_EXISTS
@@ -74,7 +74,7 @@ namespace droid.Neodroid.Prototyping.Displayers {
   }
 }
 #else
-namespace droid.Neodroid.Prototyping.Displayers {
+namespace Neodroid.Prototyping.Displayers {
   /// <summary>
   ///
   /// </summary>

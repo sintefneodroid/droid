@@ -1,8 +1,8 @@
-﻿using droid.Neodroid.Utilities.GameObjects;
-using droid.Neodroid.Utilities.Messaging.Messages;
+﻿using Neodroid.Utilities.GameObjects;
+using Neodroid.Utilities.Messaging.Messages;
 using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Configurables {
+namespace Neodroid.Prototyping.Configurables {
   /// <summary>
   /// 
   /// </summary>

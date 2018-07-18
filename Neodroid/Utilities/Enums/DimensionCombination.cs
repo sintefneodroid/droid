@@ -1,4 +1,4 @@
-﻿namespace droid.Neodroid.Utilities.Enums {
+﻿namespace Neodroid.Utilities.Enums {
   /// <summary>
   /// 
   /// </summary>

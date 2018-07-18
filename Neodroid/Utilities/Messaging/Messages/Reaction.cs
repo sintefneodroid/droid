@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
-using droid.Neodroid.Utilities.Messaging.Messages.Displayables;
-using UnityEngine;
+using Neodroid.Utilities.Messaging.Messages.Displayables;
 
-namespace droid.Neodroid.Utilities.Messaging.Messages {
+namespace Neodroid.Utilities.Messaging.Messages {
   /// <summary>
   ///
   /// </summary>

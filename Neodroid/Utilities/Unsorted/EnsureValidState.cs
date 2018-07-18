@@ -1,10 +1,10 @@
-﻿using droid.Neodroid.Environments;
-using droid.Neodroid.Prototyping.Actors;
-using droid.Neodroid.Prototyping.Internals;
-using droid.Neodroid.Utilities.BoundingBoxes;
+﻿using Neodroid.Environments;
+using Neodroid.Prototyping.Actors;
+using Neodroid.Prototyping.Internals;
+using Neodroid.Utilities.BoundingBoxes;
 using UnityEngine;
 
-namespace droid.Neodroid.Utilities.Unsorted {
+namespace Neodroid.Utilities.Unsorted {
   /// <inheritdoc />
   ///  <summary>
   ///  </summary>

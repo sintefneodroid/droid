@@ -1,14 +1,13 @@
-﻿using droid.Neodroid.Prototyping.Actors;
-using droid.Neodroid.Prototyping.Configurables;
-using droid.Neodroid.Prototyping.Motors;
-using droid.Neodroid.Prototyping.Observers;
-using droid.Neodroid.Utilities.Interfaces;
-using droid.Neodroid.Utilities.Messaging.Messages;
-using FlatBuffers;
+﻿using FlatBuffers;
+using Neodroid.Prototyping.Actors;
+using Neodroid.Prototyping.Configurables;
+using Neodroid.Prototyping.Motors;
+using Neodroid.Prototyping.Observers;
+using Neodroid.Utilities.Interfaces;
+using Neodroid.Utilities.Messaging.Messages;
 using UnityEngine;
-using SimulatorConfiguration = droid.Neodroid.Utilities.ScriptableObjects.SimulatorConfiguration;
 
-namespace droid.Neodroid.Utilities.Messaging.FBS {
+namespace Neodroid.Utilities.Messaging.FBS {
   /// <summary>
   ///
   /// </summary>

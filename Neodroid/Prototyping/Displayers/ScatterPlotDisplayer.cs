@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using droid.Neodroid.Utilities.Plotting;
-using droid.Neodroid.Utilities.Structs;
+using Neodroid.Utilities.Plotting;
+using Neodroid.Utilities.Structs;
 using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Displayers {
+namespace Neodroid.Prototyping.Displayers {
   [ExecuteInEditMode,
    AddComponentMenu(
        DisplayerComponentMenuPath._ComponentMenuPath + "ScatterPlot" + DisplayerComponentMenuPath._Postfix),

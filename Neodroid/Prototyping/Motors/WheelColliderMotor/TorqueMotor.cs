@@ -1,7 +1,7 @@
-﻿using droid.Neodroid.Utilities.Messaging.Messages;
+﻿using Neodroid.Utilities.Messaging.Messages;
 using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Motors.WheelColliderMotor {
+namespace Neodroid.Prototyping.Motors.WheelColliderMotor {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

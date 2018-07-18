@@ -1,8 +1,8 @@
-﻿using droid.Neodroid.Utilities.Interfaces;
-using droid.Neodroid.Utilities.Structs;
+﻿using Neodroid.Utilities.Interfaces;
+using Neodroid.Utilities.Structs;
 using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Observers {
+namespace Neodroid.Prototyping.Observers {
   [AddComponentMenu(
        ObserverComponentMenuPath._ComponentMenuPath + "Value" + ObserverComponentMenuPath._Postfix),
    ExecuteInEditMode]

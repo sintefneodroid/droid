@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace droid.Neodroid.Utilities.SerialisableDictionary {
+namespace Neodroid.Utilities.SerialisableDictionary {
   [CustomPropertyDrawer(typeof(StringIntDictionary))]
   public class StringIntDictionaryDrawer : SerializableDictionaryDrawer<string, int> {
     protected override SerializableKeyValueTemplate<string, int> GetTemplate() {

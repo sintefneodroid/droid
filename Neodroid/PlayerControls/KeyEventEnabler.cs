@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace droid.Neodroid.PlayerControls {
+namespace Neodroid.PlayerControls {
   /// <summary>
   ///
   /// </summary>

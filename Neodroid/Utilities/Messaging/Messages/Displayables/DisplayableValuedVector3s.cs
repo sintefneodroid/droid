@@ -1,7 +1,7 @@
 ﻿using System;
-using droid.Neodroid.Utilities.Structs;
+using Neodroid.Utilities.Structs;
 
-namespace droid.Neodroid.Utilities.Messaging.Messages.Displayables {
+namespace Neodroid.Utilities.Messaging.Messages.Displayables {
   public class DisplayableValuedVector3S : Displayable {
     public DisplayableValuedVector3S(String displayable_name, Points.ValuePoint[] displayable_value) {
       this.DisplayableName = displayable_name;

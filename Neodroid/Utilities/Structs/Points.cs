@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace droid.Neodroid.Utilities.Structs {
+namespace Neodroid.Utilities.Structs {
   public class Points : MonoBehaviour {
     public struct StringPoint {
       public Vector3 _Pos;

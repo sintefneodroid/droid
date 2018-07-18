@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace droid.Neodroid.Editor.Windows {
+namespace Neodroid.Editor.Windows {
   public class RenderTextureConfiguratorWindow : EditorWindow {
     int _preview_image_size = 100;
 

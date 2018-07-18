@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace droid.Neodroid.Utilities.BoundingBoxes {
+namespace Neodroid.Utilities.BoundingBoxes {
   [ExecuteInEditMode]
   public class ShowBoundingBoxes : MonoBehaviour {
     public GameObject _Line_Object;

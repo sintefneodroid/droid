@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Evaluation {
+namespace Neodroid.Prototyping.Evaluation {
   [AddComponentMenu(
       EvaluationComponentMenuPath._ComponentMenuPath
       + "AngularVelocity"

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace droid.Neodroid.Utilities.Unsorted {
+namespace Neodroid.Utilities.Unsorted {
   public static partial class NeodroidUtilities {
     /// <summary>
     ///

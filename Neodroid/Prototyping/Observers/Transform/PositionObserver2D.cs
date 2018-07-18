@@ -1,10 +1,10 @@
 ﻿using System;
-using droid.Neodroid.Utilities.Enums;
-using droid.Neodroid.Utilities.Interfaces;
-using droid.Neodroid.Utilities.Structs;
+using Neodroid.Utilities.Enums;
+using Neodroid.Utilities.Interfaces;
+using Neodroid.Utilities.Structs;
 using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Observers.Transform {
+namespace Neodroid.Prototyping.Observers.Transform {
   [AddComponentMenu(
        ObserverComponentMenuPath._ComponentMenuPath
        + "PositionObserver2D"

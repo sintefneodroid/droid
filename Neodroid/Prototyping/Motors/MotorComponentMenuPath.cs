@@ -1,4 +1,4 @@
-﻿namespace droid.Neodroid.Prototyping.Motors {
+﻿namespace Neodroid.Prototyping.Motors {
   /// <summary>
   /// 
   /// </summary>

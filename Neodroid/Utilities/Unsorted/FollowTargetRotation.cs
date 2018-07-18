@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace droid.Neodroid.Utilities.Unsorted {
+namespace Neodroid.Utilities.Unsorted {
   [ExecuteInEditMode]
   public class FollowTargetRotation : MonoBehaviour {
     /// <summary>

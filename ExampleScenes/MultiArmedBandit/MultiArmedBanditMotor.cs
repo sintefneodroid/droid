@@ -1,10 +1,10 @@
 ﻿using System;
-using droid.Neodroid.Prototyping.Displayers;
-using droid.Neodroid.Prototyping.Motors;
-using droid.Neodroid.Utilities.Messaging.Messages;
+using Neodroid.Prototyping.Displayers;
+using Neodroid.Prototyping.Motors;
+using Neodroid.Utilities.Messaging.Messages;
 using UnityEngine;
 
-namespace SceneAssets.Sanity.NoHorison.MultiArmedBandit {
+namespace ExampleScenes.MultiArmedBandit {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

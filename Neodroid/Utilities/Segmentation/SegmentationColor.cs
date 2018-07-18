@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace droid.Neodroid.Utilities.Segmentation {
+namespace Neodroid.Utilities.Segmentation {
   /// <summary>
   /// 
   /// </summary>

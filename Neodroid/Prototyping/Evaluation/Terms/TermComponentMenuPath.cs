@@ -1,4 +1,4 @@
-﻿namespace droid.Neodroid.Prototyping.Evaluation.Terms {
+﻿namespace Neodroid.Prototyping.Evaluation.Terms {
   /// <summary>
   ///
   /// </summary>

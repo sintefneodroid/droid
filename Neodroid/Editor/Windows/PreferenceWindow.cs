@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace droid.Neodroid.Editor.Windows {
+namespace Neodroid.Editor.Windows {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

@@ -1,10 +1,10 @@
-﻿using droid.Neodroid.Environments;
-using droid.Neodroid.Utilities.Messaging.Messages;
-using droid.Neodroid.Utilities.Unsorted;
+﻿using Neodroid.Environments;
+using Neodroid.Utilities.Messaging.Messages;
+using Neodroid.Utilities.Unsorted;
 using UnityEngine;
 using Random = System.Random;
 
-namespace droid.Neodroid.Prototyping.Configurables {
+namespace Neodroid.Prototyping.Configurables {
   /// <summary>
   ///
   /// </summary>

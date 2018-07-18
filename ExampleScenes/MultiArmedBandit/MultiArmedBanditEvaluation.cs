@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Linq;
-using droid.Neodroid.Prototyping.Evaluation;
-using droid.Neodroid.Prototyping.Motors;
+using Neodroid.Prototyping.Evaluation;
 using UnityEngine;
 
-namespace SceneAssets.Sanity.NoHorison.MultiArmedBandit {
+namespace ExampleScenes.MultiArmedBandit {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

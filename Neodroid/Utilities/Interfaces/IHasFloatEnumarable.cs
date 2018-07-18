@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace droid.Neodroid.Utilities.Interfaces {
+namespace Neodroid.Utilities.Interfaces {
   /// <summary>
   ///
   /// </summary>

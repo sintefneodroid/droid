@@ -1,8 +1,8 @@
-﻿using droid.Neodroid.Utilities.Messaging.Messages;
-using droid.Neodroid.Utilities.Unsorted;
+﻿using Neodroid.Utilities.Messaging.Messages;
+using Neodroid.Utilities.Unsorted;
 using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Motors {
+namespace Neodroid.Prototyping.Motors {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

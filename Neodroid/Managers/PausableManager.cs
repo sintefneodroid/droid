@@ -1,8 +1,8 @@
 ﻿using System;
-using droid.Neodroid.Utilities.ScriptableObjects;
+using Neodroid.Utilities.ScriptableObjects;
 using UnityEngine;
 
-namespace droid.Neodroid.Managers {
+namespace Neodroid.Managers {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

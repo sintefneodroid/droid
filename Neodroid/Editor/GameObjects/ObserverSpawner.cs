@@ -1,10 +1,10 @@
 ﻿#if UNITY_EDITOR
-using droid.Neodroid.Prototyping.Observers;
-using droid.Neodroid.Prototyping.Observers.Transform;
+using Neodroid.Prototyping.Observers;
+using Neodroid.Prototyping.Observers.Transform;
 using UnityEditor;
 using UnityEngine;
 
-namespace droid.Neodroid.Editor.GameObjects {
+namespace Neodroid.Editor.GameObjects {
   public class ObserverSpawner : MonoBehaviour {
     [MenuItem(EditorGameObjectMenuPath._GameObjectMenuPath + "Observers/Base", false, 10)]
     static void CreateObserverGameObject(MenuCommand menu_command) {

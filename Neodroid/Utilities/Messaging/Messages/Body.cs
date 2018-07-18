@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace droid.Neodroid.Utilities.Messaging.Messages {
+namespace Neodroid.Utilities.Messaging.Messages {
   /// <summary>
   /// 
   /// </summary>

@@ -1,7 +1,7 @@
-﻿using droid.Neodroid.Environments;
+﻿using Neodroid.Environments;
 using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Evaluation.Terms {
+namespace Neodroid.Prototyping.Evaluation.Terms {
   [AddComponentMenu(TermComponentMenuPath._ComponentMenuPath + "Rush" + TermComponentMenuPath._Postfix)]
   public class RushTerm : Term {
     [SerializeField] float _penalty_size = 0.01f;

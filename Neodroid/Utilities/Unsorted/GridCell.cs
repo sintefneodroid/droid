@@ -1,7 +1,7 @@
-﻿using droid.Neodroid.Utilities.Structs;
+﻿using Neodroid.Utilities.Structs;
 using UnityEngine;
 
-namespace droid.Neodroid.Utilities.Unsorted {
+namespace Neodroid.Utilities.Unsorted {
   public abstract class GridCell : MonoBehaviour {
     protected Collider _Col;
     protected Renderer _Rend;

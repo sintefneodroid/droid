@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using droid.Neodroid.Prototyping.Actors;
-using droid.Neodroid.Prototyping.Motors;
-using droid.Neodroid.Utilities.Interfaces;
-using droid.Neodroid.Utilities.Sensors;
+﻿using System.Collections.Generic;
+using Neodroid.Utilities.Interfaces;
+using Neodroid.Utilities.Sensors;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
@@ -12,7 +9,7 @@ using Object = UnityEngine.Object;
 
 #endif
 
-namespace droid.Neodroid.Utilities.Unsorted {
+namespace Neodroid.Utilities.Unsorted {
   /// <summary>
   ///
   /// </summary>

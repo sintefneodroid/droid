@@ -2,7 +2,7 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace droid.Neodroid.Utilities.Structs {
+namespace Neodroid.Utilities.Structs {
   [Serializable]
   public struct Space2 {
     public int _Decimal_Granularity;

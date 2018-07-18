@@ -1,7 +1,7 @@
-﻿using droid.Neodroid.Utilities.Interfaces;
+﻿using Neodroid.Utilities.Interfaces;
 using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Observers.Rays {
+namespace Neodroid.Prototyping.Observers.Rays {
   /// <summary>
   /// 
   /// </summary>

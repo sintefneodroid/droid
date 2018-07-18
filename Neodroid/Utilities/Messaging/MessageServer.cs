@@ -2,13 +2,13 @@
 using System.Linq;
 using System.Threading;
 using AsyncIO;
-using droid.Neodroid.Utilities.Messaging.FBS;
-using droid.Neodroid.Utilities.Messaging.Messages;
 using FlatBuffers;
+using Neodroid.Utilities.Messaging.FBS;
+using Neodroid.Utilities.Messaging.Messages;
 using NetMQ;
 using UnityEngine;
 
-namespace droid.Neodroid.Utilities.Messaging {
+namespace Neodroid.Utilities.Messaging {
   /// <summary>
   ///
   /// </summary>

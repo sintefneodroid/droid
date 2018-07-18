@@ -1,4 +1,4 @@
-﻿namespace droid.Neodroid.Prototyping.Configurables {
+﻿namespace Neodroid.Prototyping.Configurables {
   /// <summary>
   /// 
   /// </summary>

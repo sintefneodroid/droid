@@ -1,9 +1,9 @@
-﻿using droid.Neodroid.Utilities.Interfaces;
-using droid.Neodroid.Utilities.Structs;
-using droid.Neodroid.Utilities.Unsorted;
+﻿using Neodroid.Utilities.Interfaces;
+using Neodroid.Utilities.Structs;
+using Neodroid.Utilities.Unsorted;
 using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Observers.Grid {
+namespace Neodroid.Prototyping.Observers.Grid {
   [AddComponentMenu(
       ObserverComponentMenuPath._ComponentMenuPath + "GoalCell" + ObserverComponentMenuPath._Postfix)]
   public class GoalCellObserver : Observer,

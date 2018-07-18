@@ -1,6 +1,6 @@
-﻿using droid.Neodroid.Utilities.Structs;
+﻿using Neodroid.Utilities.Structs;
 
-namespace droid.Neodroid.Utilities.Interfaces {
+namespace Neodroid.Utilities.Interfaces {
   /// <summary>
   ///
   /// </summary>

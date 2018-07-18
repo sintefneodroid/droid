@@ -1,12 +1,12 @@
 ﻿using System;
-using droid.Neodroid.Prototyping.Actors;
-using droid.Neodroid.Utilities.GameObjects;
-using droid.Neodroid.Utilities.Messaging.Messages;
-using droid.Neodroid.Utilities.Structs;
-using droid.Neodroid.Utilities.Unsorted;
+using Neodroid.Prototyping.Actors;
+using Neodroid.Utilities.GameObjects;
+using Neodroid.Utilities.Messaging.Messages;
+using Neodroid.Utilities.Structs;
+using Neodroid.Utilities.Unsorted;
 using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Motors {
+namespace Neodroid.Prototyping.Motors {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

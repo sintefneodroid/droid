@@ -1,4 +1,4 @@
-﻿namespace droid.Neodroid.Utilities.Messaging.Messages.Displayables {
+﻿namespace Neodroid.Utilities.Messaging.Messages.Displayables {
   /// <summary>
   /// 
   /// </summary>

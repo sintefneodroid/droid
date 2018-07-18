@@ -1,11 +1,10 @@
 ﻿using System;
-using droid.Neodroid.Prototyping.Displayers;
-using droid.Neodroid.Prototyping.Displayers.Canvas;
-using droid.Neodroid.Prototyping.Internals;
-using droid.Neodroid.Utilities.Structs;
+using Neodroid.Prototyping.Displayers;
+using Neodroid.Prototyping.Displayers.Canvas;
+using Neodroid.Prototyping.Internals;
 using UnityEngine;
 
-namespace SceneAssets.Sanity.NoHorison.MultiArmedBandit {
+namespace ExampleScenes.MultiArmedBandit {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

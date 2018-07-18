@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace droid.Neodroid.Editor.Windows {
+namespace Neodroid.Editor.Windows {
   public class DemonstrationWindow : EditorWindow {
     int _captured_frame;
 

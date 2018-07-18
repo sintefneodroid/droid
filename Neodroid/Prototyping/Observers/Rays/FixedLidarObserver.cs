@@ -1,8 +1,8 @@
-﻿using droid.Neodroid.Utilities.Interfaces;
-using droid.Neodroid.Utilities.Structs;
+﻿using Neodroid.Utilities.Interfaces;
+using Neodroid.Utilities.Structs;
 using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Observers.Rays {
+namespace Neodroid.Prototyping.Observers.Rays {
   [AddComponentMenu(
       ObserverComponentMenuPath._ComponentMenuPath + "FixedLidar" + ObserverComponentMenuPath._Postfix)]
   public class FixedLidarObserver : Observer,

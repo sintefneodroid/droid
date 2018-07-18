@@ -1,10 +1,8 @@
-﻿using System;
-using droid.Neodroid.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
+﻿using Neodroid.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace droid.Neodroid.Utilities.EventRecipients {
+namespace Neodroid.Utilities.EventRecipients {
   /// <inheritdoc cref="DataPoller" />
   /// <summary>
   /// </summary>

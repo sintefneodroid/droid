@@ -1,7 +1,7 @@
-﻿using droid.Neodroid.Utilities.Unsorted;
+﻿using Neodroid.Utilities.Unsorted;
 using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Evaluation {
+namespace Neodroid.Prototyping.Evaluation {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

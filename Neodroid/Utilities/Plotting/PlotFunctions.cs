@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using droid.Neodroid.Utilities.Structs;
+using Neodroid.Utilities.Structs;
 using UnityEngine;
 
-namespace droid.Neodroid.Utilities.Plotting {
+namespace Neodroid.Utilities.Plotting {
   public static class PlotFunctions {
     static List<Points.ValuePoint> _points = new List<Points.ValuePoint>();
 

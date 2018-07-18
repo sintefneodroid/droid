@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using droid.Neodroid.Managers;
-using droid.Neodroid.Utilities.Messaging.Messages;
-using droid.Neodroid.Utilities.Unsorted;
+using Neodroid.Managers;
+using Neodroid.Utilities.Messaging.Messages;
+using Neodroid.Utilities.Unsorted;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace droid.Neodroid.Environments {
+namespace Neodroid.Environments {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

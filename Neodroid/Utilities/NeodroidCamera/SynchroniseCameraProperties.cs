@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace droid.Neodroid.Utilities.NeodroidCamera {
+namespace Neodroid.Utilities.NeodroidCamera {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

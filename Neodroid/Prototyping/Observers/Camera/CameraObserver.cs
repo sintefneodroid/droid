@@ -1,10 +1,10 @@
 ﻿using System;
-using droid.Neodroid.Managers;
-using droid.Neodroid.Utilities.Interfaces;
-using droid.Neodroid.Utilities.ScriptableObjects;
+using Neodroid.Managers;
+using Neodroid.Utilities.Interfaces;
+using Neodroid.Utilities.ScriptableObjects;
 using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Observers.Camera {
+namespace Neodroid.Prototyping.Observers.Camera {
   /// <summary>
   ///
   /// </summary>

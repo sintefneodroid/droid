@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Evaluation.Terms {
+namespace Neodroid.Prototyping.Evaluation.Terms {
   [AddComponentMenu(
       TermComponentMenuPath._ComponentMenuPath + "CollisionPunishment" + TermComponentMenuPath._Postfix)]
   public class CollsionsPunishmentTerm : Term {

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using droid.Neodroid.Managers;
-using droid.Neodroid.Utilities.Messaging.Messages;
-using droid.Neodroid.Utilities.ScriptableObjects;
-using UnityEditor;
+﻿using System.Collections.Generic;
+using Neodroid.Managers;
+using Neodroid.Utilities.Messaging.Messages;
+using Neodroid.Utilities.ScriptableObjects;
 using UnityEngine;
-using Object = System.Object;
 
-namespace droid.Neodroid.PlayerControls {
+namespace Neodroid.PlayerControls {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

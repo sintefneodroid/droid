@@ -1,9 +1,9 @@
 ﻿using System;
-using droid.Neodroid.Utilities.Interfaces;
-using droid.Neodroid.Utilities.Structs;
+using Neodroid.Utilities.Interfaces;
+using Neodroid.Utilities.Structs;
 using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Observers {
+namespace Neodroid.Prototyping.Observers {
   /// <inheritdoc cref="Observer" />
   ///  <summary>
   ///  </summary>

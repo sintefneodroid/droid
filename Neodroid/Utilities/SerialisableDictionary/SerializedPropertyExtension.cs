@@ -2,7 +2,7 @@
 using System;
 using UnityEditor;
 
-namespace droid.Neodroid.Utilities.SerialisableDictionary {
+namespace Neodroid.Utilities.SerialisableDictionary {
   /// <summary>
   /// 
   /// </summary>

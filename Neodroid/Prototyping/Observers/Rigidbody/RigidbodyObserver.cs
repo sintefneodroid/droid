@@ -1,8 +1,8 @@
-﻿using droid.Neodroid.Utilities.Interfaces;
-using droid.Neodroid.Utilities.Structs;
+﻿using Neodroid.Utilities.Interfaces;
+using Neodroid.Utilities.Structs;
 using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Observers.Rigidbody {
+namespace Neodroid.Prototyping.Observers.Rigidbody {
   [AddComponentMenu(
        ObserverComponentMenuPath._ComponentMenuPath + "Rigidbody" + ObserverComponentMenuPath._Postfix),
    ExecuteInEditMode, RequireComponent(typeof(UnityEngine.Rigidbody))]

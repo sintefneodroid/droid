@@ -1,9 +1,9 @@
 ﻿using System;
-using droid.Neodroid.Utilities.Enums;
-using droid.Neodroid.Utilities.Messaging.Messages;
+using Neodroid.Utilities.Enums;
+using Neodroid.Utilities.Messaging.Messages;
 using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Motors {
+namespace Neodroid.Prototyping.Motors {
   /// <inheritdoc />
   [AddComponentMenu(
       MotorComponentMenuPath._ComponentMenuPath

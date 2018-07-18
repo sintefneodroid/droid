@@ -1,7 +1,7 @@
-﻿using droid.Neodroid.Utilities.Segmentation;
+﻿using Neodroid.Utilities.Segmentation;
 using UnityEngine;
 
-namespace droid.Neodroid.Utilities.ScriptableObjects {
+namespace Neodroid.Utilities.ScriptableObjects {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

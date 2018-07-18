@@ -1,10 +1,10 @@
 ﻿using System;
-using droid.Neodroid.Utilities.Messaging.Messages;
-using droid.Neodroid.Utilities.Unsorted;
+using Neodroid.Utilities.Messaging.Messages;
+using Neodroid.Utilities.Unsorted;
 using UnityEngine;
 using Random = System.Random;
 
-namespace droid.Neodroid.Prototyping.Configurables {
+namespace Neodroid.Prototyping.Configurables {
   [AddComponentMenu(
        ConfigurableComponentMenuPath._ComponentMenuPath + "Color" + ConfigurableComponentMenuPath._Postfix),
    RequireComponent(typeof(Renderer))]

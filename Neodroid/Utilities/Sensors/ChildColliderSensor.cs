@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace droid.Neodroid.Utilities.Sensors {
+namespace Neodroid.Utilities.Sensors {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

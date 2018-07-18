@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace droid.Neodroid.Utilities.EventRecipients {
+namespace Neodroid.Utilities.EventRecipients {
   namespace droid.Neodroid.Utilities.Unsorted {
     /// <inheritdoc />
     /// <summary>

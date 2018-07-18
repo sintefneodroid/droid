@@ -1,8 +1,7 @@
-﻿using droid.Neodroid.Utilities.Structs;
+﻿using Neodroid.Utilities.Structs;
 using UnityEngine;
-using Object = System.Object;
 
-namespace droid.Neodroid.Prototyping.Observers.Rigidbody {
+namespace Neodroid.Prototyping.Observers.Rigidbody {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

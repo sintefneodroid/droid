@@ -1,9 +1,9 @@
 ﻿#if UNITY_EDITOR
-using droid.Neodroid.Utilities.Segmentation;
+using Neodroid.Utilities.Segmentation;
 using UnityEditor;
 using UnityEngine;
 
-namespace droid.Neodroid.Editor.Windows {
+namespace Neodroid.Editor.Windows {
   public class SegmentationWindow : EditorWindow {
     [SerializeField] ColorByInstance[] _colors_by_instance;
 

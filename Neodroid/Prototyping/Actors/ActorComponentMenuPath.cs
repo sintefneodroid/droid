@@ -1,4 +1,4 @@
-﻿namespace droid.Neodroid.Prototyping.Actors {
+﻿namespace Neodroid.Prototyping.Actors {
   /// <summary>
   /// 
   /// </summary>

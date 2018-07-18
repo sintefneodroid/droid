@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace droid.Neodroid.Utilities.BoundingBoxes {
+namespace Neodroid.Utilities.BoundingBoxes {
   /// <summary>
   /// 
   /// </summary>

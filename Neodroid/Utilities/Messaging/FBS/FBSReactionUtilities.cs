@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using droid.Neodroid.Utilities.Messaging.Messages;
-using droid.Neodroid.Utilities.Messaging.Messages.Displayables;
-using droid.Neodroid.Utilities.Structs;
+using Neodroid.Utilities.Messaging.Messages;
+using Neodroid.Utilities.Messaging.Messages.Displayables;
+using Neodroid.Utilities.Structs;
 using UnityEngine;
 
-namespace droid.Neodroid.Utilities.Messaging.FBS {
+namespace Neodroid.Utilities.Messaging.FBS {
   /// <summary>
   ///
   /// </summary>

@@ -1,9 +1,9 @@
 ﻿using System;
-using droid.Neodroid.Utilities.Structs;
+using Neodroid.Utilities.Structs;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace droid.Neodroid.Prototyping.Displayers.Canvas {
+namespace Neodroid.Prototyping.Displayers.Canvas {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

@@ -1,9 +1,8 @@
-﻿using System;
-using droid.Neodroid.Managers;
+﻿using Neodroid.Managers;
 using UnityEditor;
 using UnityEngine;
 
-namespace droid.Neodroid.PlayerControls {
+namespace Neodroid.PlayerControls {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using droid.Neodroid.Utilities.Enums;
-using droid.Neodroid.Utilities.Messaging.Messages;
+using Neodroid.Utilities.Enums;
+using Neodroid.Utilities.Messaging.Messages;
 using UnityEngine;
 using Random = System.Random;
 
-namespace droid.Neodroid.Prototyping.Configurables {
+namespace Neodroid.Prototyping.Configurables {
   [AddComponentMenu(
       ConfigurableComponentMenuPath._ComponentMenuPath
       + "ObjectSpawner"

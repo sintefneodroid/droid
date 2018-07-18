@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace droid.Neodroid.Utilities.Segmentation {
+namespace Neodroid.Utilities.Segmentation {
   /// <inheritdoc />
   ///  <summary>
   ///  </summary>

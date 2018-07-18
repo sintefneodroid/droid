@@ -1,13 +1,13 @@
 ﻿using System;
-using droid.Neodroid.Utilities.BoundingBoxes;
-using droid.Neodroid.Utilities.Enums;
-using droid.Neodroid.Utilities.Interfaces;
-using droid.Neodroid.Utilities.Messaging.Messages;
-using droid.Neodroid.Utilities.Structs;
+using Neodroid.Utilities.BoundingBoxes;
+using Neodroid.Utilities.Enums;
+using Neodroid.Utilities.Interfaces;
+using Neodroid.Utilities.Messaging.Messages;
+using Neodroid.Utilities.Structs;
 using UnityEngine;
 using Random = System.Random;
 
-namespace droid.Neodroid.Prototyping.Configurables {
+namespace Neodroid.Prototyping.Configurables {
   /// <inheritdoc cref="ConfigurableGameObject" />
   ///  <summary>
   ///  </summary>

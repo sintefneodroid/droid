@@ -1,4 +1,4 @@
-﻿namespace droid.Neodroid.Prototyping.Displayers {
+﻿namespace Neodroid.Prototyping.Displayers {
   /// <summary>
   /// 
   /// </summary>

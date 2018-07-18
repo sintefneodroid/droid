@@ -1,8 +1,8 @@
-﻿using droid.Neodroid.Utilities.Interfaces;
-using droid.Neodroid.Utilities.Structs;
+﻿using Neodroid.Utilities.Interfaces;
+using Neodroid.Utilities.Structs;
 using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Observers.Grid {
+namespace Neodroid.Prototyping.Observers.Grid {
   [AddComponentMenu(
       ObserverComponentMenuPath._ComponentMenuPath + "GridPosition" + ObserverComponentMenuPath._Postfix)]
   public class GridPositionObserver : Observer,

@@ -1,9 +1,9 @@
 ﻿using System;
-using droid.Neodroid.Utilities.Messaging.Messages;
+using Neodroid.Utilities.Messaging.Messages;
 using UnityEngine;
 using Random = System.Random;
 
-namespace droid.Neodroid.Prototyping.Configurables {
+namespace Neodroid.Prototyping.Configurables {
   [AddComponentMenu(
       ConfigurableComponentMenuPath._ComponentMenuPath
       + "Difficulty"

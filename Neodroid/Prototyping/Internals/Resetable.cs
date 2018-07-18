@@ -1,10 +1,10 @@
 ﻿using System;
-using droid.Neodroid.Environments;
-using droid.Neodroid.Utilities.GameObjects;
-using droid.Neodroid.Utilities.Unsorted;
+using Neodroid.Environments;
+using Neodroid.Utilities.GameObjects;
+using Neodroid.Utilities.Unsorted;
 using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Internals {
+namespace Neodroid.Prototyping.Internals {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

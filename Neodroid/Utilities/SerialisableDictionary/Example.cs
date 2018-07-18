@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace droid.Neodroid.Utilities.SerialisableDictionary {
+namespace Neodroid.Utilities.SerialisableDictionary {
   /// <inheritdoc />
   ///  <summary>
   ///  </summary>

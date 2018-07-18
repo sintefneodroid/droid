@@ -2,21 +2,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using droid.Neodroid.Environments;
-using droid.Neodroid.Utilities.Interfaces;
-using droid.Neodroid.Utilities.Messaging;
-using droid.Neodroid.Utilities.Messaging.Messages;
-using droid.Neodroid.Utilities.ScriptableObjects;
+using Neodroid.Environments;
+using Neodroid.Utilities.Interfaces;
+using Neodroid.Utilities.Messaging;
+using Neodroid.Utilities.Messaging.Messages;
+using Neodroid.Utilities.ScriptableObjects;
 using UnityEditor;
 using UnityEngine;
 using Object = System.Object;
-using SimulatorConfiguration = droid.Neodroid.Utilities.ScriptableObjects.SimulatorConfiguration;
+using SimulatorConfiguration = Neodroid.Utilities.ScriptableObjects.SimulatorConfiguration;
 
 #if UNITY_EDITOR
 
 #endif
 
-namespace droid.Neodroid.Managers {
+namespace Neodroid.Managers {
   /// <inheritdoc cref="UnityEngine.MonoBehaviour" />
   /// <summary>
   /// </summary>

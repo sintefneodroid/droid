@@ -5,7 +5,7 @@ using UnityEngine;
 #if UNITY_EDITOR
 #endif
 
-namespace droid.Neodroid.Utilities.BoundingBoxes {
+namespace Neodroid.Utilities.BoundingBoxes {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

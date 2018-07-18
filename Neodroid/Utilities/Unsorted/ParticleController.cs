@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-namespace droid.Neodroid.Utilities.Unsorted {
+namespace Neodroid.Utilities.Unsorted {
   [RequireComponent(typeof(ParticleSystem))]
   public class ParticleController : MonoBehaviour {
     ParticleSystem _particle_system;

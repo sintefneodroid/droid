@@ -1,4 +1,4 @@
-﻿namespace droid.Neodroid.Utilities.Unsorted {
+﻿namespace Neodroid.Utilities.Unsorted {
   public interface IMotionTracker {
     bool IsInMotion();
 

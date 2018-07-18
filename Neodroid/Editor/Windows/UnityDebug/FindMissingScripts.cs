@@ -1,8 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
-using Object = System.Object;
 
-namespace droid.Neodroid.Editor.Windows.UnityDebug {
+namespace Neodroid.Editor.Windows.UnityDebug {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

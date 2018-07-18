@@ -1,7 +1,7 @@
-using droid.Neodroid.Utilities.Structs;
+using Neodroid.Utilities.Structs;
 using UnityEngine;
 
-namespace droid.Neodroid.Utilities.Interfaces {
+namespace Neodroid.Utilities.Interfaces {
   /// <summary>
   ///
   /// </summary>

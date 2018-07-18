@@ -1,4 +1,4 @@
-﻿namespace droid.Neodroid.Utilities.Interfaces {
+﻿namespace Neodroid.Utilities.Interfaces {
   /// <summary>
   /// 
   /// </summary>

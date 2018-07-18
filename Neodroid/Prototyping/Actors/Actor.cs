@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using droid.Neodroid.Environments;
-using droid.Neodroid.Prototyping.Motors;
-using droid.Neodroid.Utilities.BoundingBoxes;
-using droid.Neodroid.Utilities.GameObjects;
-using droid.Neodroid.Utilities.Interfaces;
-using droid.Neodroid.Utilities.Messaging.Messages;
-using droid.Neodroid.Utilities.Unsorted;
+﻿using System.Collections.Generic;
+using Neodroid.Environments;
+using Neodroid.Prototyping.Motors;
+using Neodroid.Utilities.BoundingBoxes;
+using Neodroid.Utilities.GameObjects;
+using Neodroid.Utilities.Interfaces;
+using Neodroid.Utilities.Messaging.Messages;
+using Neodroid.Utilities.Unsorted;
 using UnityEditor;
 using UnityEngine;
-using Object = System.Object;
 
-namespace droid.Neodroid.Prototyping.Actors {
+namespace Neodroid.Prototyping.Actors {
   /// <inheritdoc cref="PrototypingGameObject" />
   /// <summary>
   /// </summary>

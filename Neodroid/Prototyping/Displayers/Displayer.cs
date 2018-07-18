@@ -1,10 +1,10 @@
-﻿using droid.Neodroid.Environments;
-using droid.Neodroid.Utilities.GameObjects;
-using droid.Neodroid.Utilities.Structs;
-using droid.Neodroid.Utilities.Unsorted;
+﻿using Neodroid.Environments;
+using Neodroid.Utilities.GameObjects;
+using Neodroid.Utilities.Structs;
+using Neodroid.Utilities.Unsorted;
 using UnityEngine;
 
-namespace droid.Neodroid.Prototyping.Displayers {
+namespace Neodroid.Prototyping.Displayers {
   /// <inheritdoc />
   ///  <summary>
   ///  </summary>

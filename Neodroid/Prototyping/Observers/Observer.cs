@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using droid.Neodroid.Environments;
-using droid.Neodroid.Utilities.GameObjects;
-using droid.Neodroid.Utilities.Interfaces;
-using droid.Neodroid.Utilities.Unsorted;
+using Neodroid.Environments;
+using Neodroid.Utilities.GameObjects;
+using Neodroid.Utilities.Interfaces;
+using Neodroid.Utilities.Unsorted;
 using UnityEngine;
-using UnityEngine.Playables;
 
-namespace droid.Neodroid.Prototyping.Observers {
+namespace Neodroid.Prototyping.Observers {
   /// <inheritdoc cref="PrototypingGameObject" />
   /// <summary>
   /// </summary>

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace droid.Neodroid.Utilities.NeodroidCamera {
+namespace Neodroid.Utilities.NeodroidCamera {
   [ExecuteInEditMode]
   public class IgnoreLightSource : MonoBehaviour {
     [SerializeField] bool _ignore_infrared_if_empty = true;

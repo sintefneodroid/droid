@@ -1,9 +1,8 @@
 ﻿using System;
-using droid.Neodroid.Utilities.Messaging.Messages;
+using Neodroid.Utilities.Messaging.Messages;
 using UnityEngine;
-using Object = System.Object;
 
-namespace droid.Neodroid.Utilities.ScriptableObjects {
+namespace Neodroid.Utilities.ScriptableObjects {
   /// <summary>
   /// Determines the discrete timesteps of the simulation environment.
   /// </summary>

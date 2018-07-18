@@ -1,20 +1,20 @@
 ﻿#if UNITY_EDITOR
-using droid.Neodroid.Environments;
-using droid.Neodroid.Managers;
-using droid.Neodroid.PlayerControls;
-using droid.Neodroid.Prototyping.Actors;
-using droid.Neodroid.Prototyping.Configurables;
-using droid.Neodroid.Prototyping.Displayers;
-using droid.Neodroid.Prototyping.Evaluation;
-using droid.Neodroid.Prototyping.Internals;
-using droid.Neodroid.Prototyping.Motors;
-using droid.Neodroid.Prototyping.Observers;
+using Neodroid.Environments;
+using Neodroid.Managers;
+using Neodroid.PlayerControls;
+using Neodroid.Prototyping.Actors;
+using Neodroid.Prototyping.Configurables;
+using Neodroid.Prototyping.Displayers;
+using Neodroid.Prototyping.Evaluation;
+using Neodroid.Prototyping.Internals;
+using Neodroid.Prototyping.Motors;
+using Neodroid.Prototyping.Observers;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace droid.Neodroid.Editor.Windows {
+namespace Neodroid.Editor.Windows {
   public class DebugWindow : EditorWindow {
     Actor[] _actors;
 

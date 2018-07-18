@@ -1,9 +1,9 @@
 ﻿using System;
-using droid.Neodroid.Utilities.Interfaces;
+using Neodroid.Utilities.Interfaces;
 using UnityEditor;
 using UnityEngine;
 
-namespace droid.Neodroid.Utilities.GameObjects {
+namespace Neodroid.Utilities.GameObjects {
   /// <summary>
   ///
   /// </summary>
