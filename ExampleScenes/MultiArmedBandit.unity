@@ -408,7 +408,17 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1388701424054228, guid: 9b61d6c901c1941578eed89185a25d35, type: 2}
       propertyPath: m_Name
-      value: BeliefTextMIddle
+      value: BeliefTextMiddle
+      objectReference: {fileID: 0}
+    - target: {fileID: 114476191495675034, guid: 9b61d6c901c1941578eed89185a25d35,
+        type: 2}
+      propertyPath: _debugging
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114508576442056390, guid: 9b61d6c901c1941578eed89185a25d35,
+        type: 2}
+      propertyPath: _debugging
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b61d6c901c1941578eed89185a25d35, type: 2}
@@ -1250,6 +1260,30 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1381552606}
+    - target: {fileID: 114988635351345222, guid: 2e92782f81c5740819ca66bda35481ce,
+        type: 2}
+      propertyPath: _poll_event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: Neodroid.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted.DataPoller,
+        net.cnheider.neodroid
+      objectReference: {fileID: 0}
+    - target: {fileID: 114501781773825270, guid: 2e92782f81c5740819ca66bda35481ce,
+        type: 2}
+      propertyPath: _poll_event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: Neodroid.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted.DataPoller,
+        net.cnheider.neodroid
+      objectReference: {fileID: 0}
+    - target: {fileID: 114088500222901950, guid: 2e92782f81c5740819ca66bda35481ce,
+        type: 2}
+      propertyPath: _poll_event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: Neodroid.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted.DataPoller,
+        net.cnheider.neodroid
+      objectReference: {fileID: 0}
+    - target: {fileID: 114221796099513398, guid: 2e92782f81c5740819ca66bda35481ce,
+        type: 2}
+      propertyPath: _poll_event.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: Neodroid.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted.DataPoller,
+        net.cnheider.neodroid
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e92782f81c5740819ca66bda35481ce, type: 2}
   m_IsPrefabAsset: 0

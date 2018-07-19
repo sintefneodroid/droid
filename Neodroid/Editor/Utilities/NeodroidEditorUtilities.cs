@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
 
 namespace Neodroid.Editor.Utilities {
@@ -43,3 +44,4 @@ namespace Neodroid.Editor.Utilities {
     }
   }
 }
+#endif

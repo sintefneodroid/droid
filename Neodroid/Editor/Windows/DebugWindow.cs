@@ -217,7 +217,7 @@ namespace Neodroid.Editor.Windows {
         }
       }
 
-      if (GUI.changed) {
+      if (GUI.changed && !Application.isPlaying) {
         EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
         // Unity not tracking changes to properties of gameobject made through this window automatically and
         // are not saved unless other changes are made from a working inpector window

@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
 
 namespace Neodroid.Editor.Windows.UnityDebug {
@@ -69,3 +70,4 @@ namespace Neodroid.Editor.Windows.UnityDebug {
     }
   }
 }
+#endif

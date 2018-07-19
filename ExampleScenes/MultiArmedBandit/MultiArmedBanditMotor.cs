@@ -52,8 +52,16 @@ namespace ExampleScenes.MultiArmedBandit {
       foreach (var indicator in this._indicators) {
         indicator.color = this._inactive_color;
       }
+      
+      var index = (int)motion.Strength;
 
-      this._last_index = (int)motion.Strength;
+      #if NEODROID_DEBUG
+      if (this.Debugging) {
+        Debug.Log($"MultiArmedBandit got index {index}");
+      }
+      #endif
+
+      this._last_index = index;
       this._indicators[this._last_index].color = this._active_color;
     }
   }
