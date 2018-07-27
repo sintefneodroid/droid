@@ -118,8 +118,7 @@ namespace Neodroid.Environments {
 
       foreach (var actor in this.Actors) {
         foreach (var motor in actor.Value.Motors) {
-          this._sample_motions.Add(
-              new MotorMotion(actor.Key, motor.Key, motor.Value.MotionValueSpace.Sample()));
+          this._sample_motions.Add(new MotorMotion(actor.Key, motor.Key, motor.Value.Sample()));
         }
       }
 

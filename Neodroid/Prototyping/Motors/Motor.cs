@@ -121,5 +121,7 @@ namespace Neodroid.Prototyping.Motors {
     [SerializeField] float _energy_cost;
 
     #endregion
+
+    public virtual float Sample() { return this.MotionValueSpace.Sample(); }
   }
 }

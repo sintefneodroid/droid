@@ -84,7 +84,7 @@ namespace Neodroid.Managers {
     /// <summary>
     ///
     /// </summary>
-    public bool IsSimulationPaused { get { return !(this.SimulationTime > 0); } }
+    public bool IsSimulationPaused { get { return !(this.SimulationTimeScale > 0); } }
 
     /// <summary>
     ///
@@ -95,7 +95,7 @@ namespace Neodroid.Managers {
         Debug.Log("Pausing simulation");
       }
       #endif
-      this.SimulationTime = 0;
+      this.SimulationTimeScale = 0;
     }
 
     /// <summary>
@@ -108,7 +108,7 @@ namespace Neodroid.Managers {
         Debug.Log("Resuming simulation");
       }
       #endif
-      this.SimulationTime = simulation_time_scale > 0 ? simulation_time_scale : 1;
+      this.SimulationTimeScale = simulation_time_scale > 0 ? simulation_time_scale : 1;
     }
 
     /// <summary>

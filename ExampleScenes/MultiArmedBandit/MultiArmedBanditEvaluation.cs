@@ -25,10 +25,18 @@ namespace ExampleScenes.MultiArmedBandit {
         this._arms = FindObjectOfType<MultiArmedBanditMotor>();
       }
 
-      var sum = this._arms.Values.Sum();
-      this._normalised_values = new Single[this._arms.Values.Length];
-      for (var i = 0; i < this._arms.Values.Length; i++) {
-        this._normalised_values[i] = this._arms.Values[i] / sum;
+      /*var sum = this._arms.WinAmounts.Sum();
+      this._normalised_values = new Single[this._arms.WinAmounts.Length];
+      for (var i = 0; i < this._arms.WinAmounts.Length; i++) {
+        this._normalised_values[i] = this._arms.WinAmounts[i] / sum;
+      }*/
+
+      var values = this._arms.WinAmounts.Zip(this._arms.WinLikelihoods, (f, f1) => f * f1).ToArray();
+      var values_sum = values.Sum();
+
+      this._normalised_values = new Single[values.Length];
+      for (var i = 0; i < values.Length; i++) {
+        this._normalised_values[i] = values[i] / values_sum;
       }
 
       this._text_bar_plot_displayer.Display(this._normalised_values);
@@ -44,6 +52,12 @@ namespace ExampleScenes.MultiArmedBandit {
     /// </summary>
     /// <returns></returns>
     /// <exception cref="T:System.NotImplementedException"></exception>
-    public override Single InternalEvaluate() { return this._arms.Values[this._arms.LastIndex]; }
+    public override Single InternalEvaluate() {
+      if (this._arms.Won) {
+        return this._arms.WinAmounts[this._arms.LastIndex];
+      }
+
+      return 0;
+    }
   }
 }

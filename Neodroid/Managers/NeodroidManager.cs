@@ -239,7 +239,7 @@ namespace Neodroid.Managers {
     /// <summary>
     ///
     /// </summary>
-    public float SimulationTime {
+    public float SimulationTimeScale {
       get { return Time.timeScale; }
       set {
         Time.timeScale = value;
@@ -416,7 +416,7 @@ namespace Neodroid.Managers {
     /// </summary>
     public void ApplyConfigurationToUnity(SimulatorConfiguration configuration) {
       QualitySettings.SetQualityLevel(configuration.QualityLevel, true);
-      this.SimulationTime = configuration.TimeScale;
+      this.SimulationTimeScale = configuration.TimeScale;
       Application.targetFrameRate = configuration.TargetFrameRate;
       QualitySettings.vSyncCount = 0;
 

@@ -257,6 +257,59 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1247594942759636, guid: 9b61d6c901c1941578eed89185a25d35, type: 2}
+      propertyPath: m_Name
+      value: ValueBarLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837730243121884, guid: 9b61d6c901c1941578eed89185a25d35, type: 2}
+      propertyPath: m_Name
+      value: ValueTextLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 1380061422114852, guid: 9b61d6c901c1941578eed89185a25d35, type: 2}
+      propertyPath: m_Name
+      value: BeliefBarLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 1685958238231828, guid: 9b61d6c901c1941578eed89185a25d35, type: 2}
+      propertyPath: m_Name
+      value: ValueDisplayerLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 1392557157429368, guid: 9b61d6c901c1941578eed89185a25d35, type: 2}
+      propertyPath: m_Name
+      value: BeliefDisplayerLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808157719511378, guid: 9b61d6c901c1941578eed89185a25d35, type: 2}
+      propertyPath: m_Name
+      value: BeliefTextLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 1388701424054228, guid: 9b61d6c901c1941578eed89185a25d35, type: 2}
+      propertyPath: m_Name
+      value: CountTextLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 114412126352879728, guid: 9b61d6c901c1941578eed89185a25d35,
+        type: 2}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114412126352879728, guid: 9b61d6c901c1941578eed89185a25d35,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114412126352879728, guid: 9b61d6c901c1941578eed89185a25d35,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114412126352879728, guid: 9b61d6c901c1941578eed89185a25d35,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114412126352879728, guid: 9b61d6c901c1941578eed89185a25d35,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b61d6c901c1941578eed89185a25d35, type: 2}
   m_IsPrefabAsset: 0
@@ -279,7 +332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f515b417b121405c809d6e4e30ec5281, type: 3}
 --- !u!114 &578315299 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114508576442056390, guid: 9b61d6c901c1941578eed89185a25d35,
+  m_CorrespondingSourceObject: {fileID: 114334249277451982, guid: 9b61d6c901c1941578eed89185a25d35,
     type: 2}
   m_PrefabInternal: {fileID: 578315295}
   m_Script: {fileID: 11500000, guid: 3b5417bfee9342518a9768fda4c81337, type: 3}
@@ -385,40 +438,6 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1685958238231828, guid: 9b61d6c901c1941578eed89185a25d35, type: 2}
-      propertyPath: m_Name
-      value: ValueDisplayerMiddle
-      objectReference: {fileID: 0}
-    - target: {fileID: 1392557157429368, guid: 9b61d6c901c1941578eed89185a25d35, type: 2}
-      propertyPath: m_Name
-      value: BeliefDisplayerMiddle
-      objectReference: {fileID: 0}
-    - target: {fileID: 1247594942759636, guid: 9b61d6c901c1941578eed89185a25d35, type: 2}
-      propertyPath: m_Name
-      value: ValueBarMiddle
-      objectReference: {fileID: 0}
-    - target: {fileID: 1837730243121884, guid: 9b61d6c901c1941578eed89185a25d35, type: 2}
-      propertyPath: m_Name
-      value: ValueTextMiddle
-      objectReference: {fileID: 0}
-    - target: {fileID: 1380061422114852, guid: 9b61d6c901c1941578eed89185a25d35, type: 2}
-      propertyPath: m_Name
-      value: BeliefBarMiddle
-      objectReference: {fileID: 0}
-    - target: {fileID: 1388701424054228, guid: 9b61d6c901c1941578eed89185a25d35, type: 2}
-      propertyPath: m_Name
-      value: BeliefTextMiddle
-      objectReference: {fileID: 0}
-    - target: {fileID: 114476191495675034, guid: 9b61d6c901c1941578eed89185a25d35,
-        type: 2}
-      propertyPath: _debugging
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114508576442056390, guid: 9b61d6c901c1941578eed89185a25d35,
-        type: 2}
-      propertyPath: _debugging
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b61d6c901c1941578eed89185a25d35, type: 2}
@@ -545,12 +564,18 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 9b8f86f172881439f9ac439ac5f06317, type: 2}
   - {fileID: 2100000, guid: dab1db1368b6744ec954efc08a689113, type: 2}
   _inactive_color: {r: 1, g: 1, b: 0, a: 1}
-  _active_color: {r: 0.05724919, g: 1, b: 0, a: 1}
-  _values:
+  _win_color: {r: 0, g: 1, b: 0, a: 1}
+  _lose_color: {r: 1, g: 0, b: 0, a: 1}
+  _win_amounts:
+  - 3
+  - 2
   - 5
-  - 15
-  - 60
+  _win_likelihoods:
+  - 0.3
+  - 0.6
+  - 0.1
   _last_index: 0
+  _won: 0
 --- !u!1 &903449910
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,6 +742,25 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1698925828775076, guid: cbb15ff2d062f4cec887e06445cf7050, type: 2}
+      propertyPath: m_Name
+      value: CountTextRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 224908010201914998, guid: cbb15ff2d062f4cec887e06445cf7050,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224908010201914998, guid: cbb15ff2d062f4cec887e06445cf7050,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114142010206075190, guid: cbb15ff2d062f4cec887e06445cf7050,
+        type: 2}
+      propertyPath: _value
+      value: 0.432
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbb15ff2d062f4cec887e06445cf7050, type: 2}
   m_IsPrefabAsset: 0
@@ -793,8 +837,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1381552603}
   - component: {fileID: 1381552597}
-  - component: {fileID: 1381552601}
-  - component: {fileID: 1381552600}
   - component: {fileID: 1381552602}
   - component: {fileID: 1381552598}
   - component: {fileID: 1381552604}
@@ -802,6 +844,7 @@ GameObject:
   - component: {fileID: 1381552599}
   - component: {fileID: 1381552606}
   - component: {fileID: 1381552607}
+  - component: {fileID: 1381552600}
   m_Layer: 0
   m_Name: Environment
   m_TagString: Untagged
@@ -837,8 +880,8 @@ MonoBehaviour:
   _objective_function: {fileID: 1381552602}
   _coordinate_reference_point: {fileID: 0}
   _track_only_children: 1
-  _coordinate_system: 1
-  _playable_area: {fileID: 1381552601}
+  _coordinate_system: 0
+  _playable_area: {fileID: 0}
   _reset_i: 0
   _initials_saved_flag: 0
 --- !u!223 &1381552598
@@ -882,19 +925,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!65 &1381552600
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1381552596}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 15, y: 10, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1381552601
+--- !u!114 &1381552600
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -902,15 +933,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1381552596}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69e918915125b4fdfb1a4025246b5ea5, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a1c2f6fda1324e1dbb824ee2e6e7321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Camera: {fileID: 0}
-  _Collider_Based: 1
-  _Freeze: 1
-  _Include_Children: 1
-  _Line_Color: {r: 1, g: 0.36, b: 0.38, a: 0.74}
-  _Setup_On_Awake: 0
+  _Manager: {fileID: 1381552606}
+  _debugging: 0
+  _player_motions: {fileID: 11400000, guid: 9bef801c1f9ee4eb7a656eb2e158eece, type: 2}
+  _auto_reset: 0
 --- !u!114 &1381552602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -932,9 +961,9 @@ MonoBehaviour:
   _solved_threshold: 0
   _last_signal: 0
   _normalised_values:
-  - 0.0625
-  - 0.1875
-  - 0.75
+  - 0.34615386
+  - 0.46153846
+  - 0.19230768
   _arms: {fileID: 898419346}
   _text_bar_plot_displayer: {fileID: 1381552604}
 --- !u!224 &1381552603
@@ -1027,7 +1056,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _debugging: 0
   _testing_motors: 0
-  _configuration: {fileID: 11400000, guid: e2189a3389d5f499e860c3b928a2b944, type: 2}
+  _configuration: {fileID: 11400000, guid: 88c3c899a02384efdba0c7ba008dad77, type: 2}
   _skip_frame_i: 0
   _syncing_environments: 0
   _awaiting_reply: 0
