@@ -34,10 +34,10 @@ namespace Neodroid.Prototyping.Configurables {
     /// </summary>
     Renderer _renderer;
 
-    /// <summary>
-    ///
-    /// </summary>
-    public override string PrototypingTypeName { get { return "Color"; } }
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    public override string PrototypingTypeName { get { return "ColorConfigurable"; } }
 
     /// <inheritdoc />
     /// <summary>

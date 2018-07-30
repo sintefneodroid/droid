@@ -20,6 +20,8 @@ namespace Neodroid.Utilities.EventRecipients {
       /// 
       /// </summary>
       void Update() { this._poll_event?.Invoke(); }
+
+      public UnityEvent PollEvent { get { return this._poll_event; } set { this._poll_event = value; } }
     }
   }
 }

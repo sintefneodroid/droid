@@ -17,6 +17,11 @@ namespace Neodroid.Prototyping.Configurables {
       }
     }
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public override string PrototypingTypeName { get { return "DifficultyConfigurable"; } }
+    
     public override Configuration SampleConfiguration(Random random_generator) {
       throw new NotImplementedException();
     }

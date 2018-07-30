@@ -33,8 +33,6 @@ namespace Neodroid.Utilities.Unsorted {
         return out_vectors;
       }
 
-      //out_vectors[0] = new Vector3(x, 0, y);
-
       for (var i = 0; i < length; i++) {
         switch (state) {
           case GeneratorState.Expand_x_:

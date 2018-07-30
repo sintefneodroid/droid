@@ -37,7 +37,7 @@ namespace Neodroid.Prototyping.Configurables {
     /// <summary>
     /// 
     /// </summary>
-    public override string PrototypingTypeName { get { return "Simulation"; } }
+    public override string PrototypingTypeName { get { return "SimulationConfigurable"; } }
 
     /// <summary>
     /// 

@@ -309,11 +309,17 @@ namespace Neodroid.Utilities.BoundingBoxes {
       }
 
       foreach (var t in this._children_meshes) {
-        var ms = t.sharedMesh;
-        var vc = ms.vertexCount;
-        for (var j = 0; j < vc; j++) {
-          bounds.Encapsulate(t.transform.TransformPoint(ms.vertices[j]));
+        if(t) {
+          var ms = t.sharedMesh;
+          if (ms) {
+            var vc = ms.vertexCount;
+            for (var j = 0; j < vc; j++) {
+              bounds.Encapsulate(t.transform.TransformPoint(ms.vertices[j]));
+            }
+          }
         }
+
+
       }
 
       this._Bounds = bounds;

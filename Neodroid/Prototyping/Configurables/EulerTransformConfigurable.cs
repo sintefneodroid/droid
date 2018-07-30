@@ -37,8 +37,14 @@ namespace Neodroid.Prototyping.Configurables {
     string _y;
     string _z;
 
-    public override string PrototypingTypeName { get { return "EulerTransform"; } }
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public override string PrototypingTypeName { get { return "EulerTransformConfigurable"; } }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public Vector3 Position { get { return this._position; } set { this._position = value; } }
 
     public Vector3 Direction { get { return this._direction; } set { this._direction = value; } }
@@ -108,8 +114,8 @@ namespace Neodroid.Prototyping.Configurables {
           this._rot_z);
     }
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
     protected override void PreSetup() {
       this._x = this.Identifier + "X_";
@@ -123,8 +129,8 @@ namespace Neodroid.Prototyping.Configurables {
       this._rot_z = this.Identifier + "RotZ_";
     }
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
     protected override void UnRegisterComponent() {
       if (this.ParentEnvironment) {
@@ -140,8 +146,8 @@ namespace Neodroid.Prototyping.Configurables {
       }
     }
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="configuration"></param>
     public override void ApplyConfiguration(Configuration configuration) {
@@ -233,8 +239,8 @@ namespace Neodroid.Prototyping.Configurables {
       this.transform.rotation = Quaternion.LookRotation(inv_dir, inv_rot);
     }
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="random_generator"></param>
     /// <returns></returns>

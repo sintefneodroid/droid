@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Neodroid.Environments;
+using Neodroid.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using Neodroid.Utilities.Interfaces;
 using Neodroid.Utilities.Messaging;
 using Neodroid.Utilities.Messaging.Messages;
@@ -833,6 +834,11 @@ namespace Neodroid.Managers {
       }
     }
 
+
+    public void SetTesting(bool arg0) {
+      this.TestMotors = arg0;
+    }
+
 /*
     /// <summary>
     ///
@@ -1055,5 +1061,9 @@ namespace Neodroid.Managers {
     void OnDestroy() { this._Message_Server.Destroy(); }
 
     #endregion
+
+    public void StatusString(DataPoller recipient) {
+          recipient.PollData(this.GetStatus());
+        }
   }
 }

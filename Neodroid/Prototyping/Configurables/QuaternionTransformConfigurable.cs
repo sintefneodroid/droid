@@ -22,10 +22,21 @@ namespace Neodroid.Prototyping.Configurables {
 
     [SerializeField] string _z;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public Quaternion Rotation { get { return this._rotation; } }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public Vector3 Position { get { return this._position; } }
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public override string PrototypingTypeName { get { return "QuaternionTransformConfigurable"; } }
+    
     public override Configuration SampleConfiguration(Random random_generator) {
       throw new NotImplementedException();
     }

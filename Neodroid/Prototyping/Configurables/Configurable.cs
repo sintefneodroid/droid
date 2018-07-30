@@ -3,8 +3,8 @@ using Neodroid.Utilities.Messaging.Messages;
 using UnityEngine;
 
 namespace Neodroid.Prototyping.Configurables {
+  /// <inheritdoc />
   /// <summary>
-  /// 
   /// </summary>
   [ExecuteInEditMode]
   public abstract class Configurable : PrototypingGameObject {

@@ -24,6 +24,9 @@ namespace Neodroid.Prototyping.Observers.Transform {
     Environment_
   }
 
+  /// <inheritdoc cref="Observer" />
+  /// <summary>
+  /// </summary>
   [AddComponentMenu(
        ObserverComponentMenuPath._ComponentMenuPath + "EulerTransform" + ObserverComponentMenuPath._Postfix),
    ExecuteInEditMode, Serializable]
