@@ -1,6 +1,8 @@
-﻿using Neodroid.Utilities.BoundingBoxes;
+﻿using System;
+using Neodroid.Utilities.BoundingBoxes;
 using Neodroid.Utilities.Unsorted;
 using UnityEngine;
+using Object = System.Object;
 
 namespace Neodroid.Prototyping.Evaluation {
   /// <inheritdoc />
@@ -28,10 +30,17 @@ namespace Neodroid.Prototyping.Evaluation {
       var distance = Mathf.Abs(
           Vector3.Distance(this._goal.transform.position, this._actor_transform.transform.position));
       var angle = Quaternion.Angle(this._goal.transform.rotation, this._actor_transform.transform.rotation);
-
+      #if NEODROID_DEBUG
+      if (this.Debugging) {
+        Debug.Log($"Distance: {distance}");
+        Debug.Log($"Angle: {angle}");
+      }
+      #endif
+      
       if (!this._sparse) {
-        reward += 1 / (Mathf.Pow(distance, this._exponent) + 1) - 1;
-        reward += 1 / (Mathf.Pow(angle, this._exponent) + 1) - 1;
+        reward += this._distance_nominator/(Mathf.Pow(this._distance_base,distance)+float.Epsilon);
+        reward += this._angle_nominator/(Mathf.Pow(this._angle_base, angle)+float.Epsilon);
+
         if (this._state_full) {
           if (reward <= this._peak_reward) {
             reward = 0.0f;
@@ -97,7 +106,10 @@ namespace Neodroid.Prototyping.Evaluation {
     [Header("Specific", order = 102), SerializeField]
     float _peak_reward;
 
-    [SerializeField, Range(0.1f, 10f)] float _exponent = 2;
+    [SerializeField, Range(0.1f, 10f)] float _distance_base = 2f;
+    [SerializeField, Range(0.1f, 10f)] float _distance_nominator = 5f;
+    [SerializeField, Range(0.1f, 10f)] float _angle_base = 6f;
+    [SerializeField, Range(0.1f, 10f)] float _angle_nominator = 3f;
 
     [SerializeField] bool _sparse = true;
 
@@ -125,6 +137,7 @@ namespace Neodroid.Prototyping.Evaluation {
     float _default_reward = -0.01f;
 
     [SerializeField] bool _terminate_on_collision; //TODO: implement
+
 
     #endregion
   }

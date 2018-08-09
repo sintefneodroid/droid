@@ -5,6 +5,9 @@ using UnityEngine;
 using Random = System.Random;
 
 namespace Neodroid.Prototyping.Configurables {
+  /// <summary>
+  /// 
+  /// </summary>
   [AddComponentMenu(
        ConfigurableComponentMenuPath._ComponentMenuPath + "Color" + ConfigurableComponentMenuPath._Postfix),
    RequireComponent(typeof(Renderer))]

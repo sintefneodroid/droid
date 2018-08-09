@@ -1,13 +1,14 @@
-﻿using UnityEngine;
+﻿using Neodroid.Utilities.Unsorted.SearchableEnum;
+using UnityEngine;
 
 namespace Neodroid.PlayerControls {
-  /// <summary>
-  ///
-  /// </summary>
+  /// <inheritdoc />
+  ///  <summary>
+  ///  </summary>
   public class KeyEventEnabler : MonoBehaviour {
     [SerializeField] GameObject _game_object;
 
-    [SerializeField] KeyCode _key;
+    [SerializeField] [SearchableEnum] KeyCode _key;
 
     /// <summary>
     ///

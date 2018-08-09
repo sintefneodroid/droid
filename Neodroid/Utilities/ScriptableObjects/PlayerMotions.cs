@@ -1,4 +1,5 @@
 ﻿using System;
+using Neodroid.Utilities.Unsorted.SearchableEnum;
 using UnityEngine;
 
 namespace Neodroid.Utilities.ScriptableObjects {
@@ -24,6 +25,7 @@ namespace Neodroid.Utilities.ScriptableObjects {
     /// <summary>
     /// 
     /// </summary>
+    [SearchableEnum]
     public KeyCode _Key;
 
     /// <summary>

@@ -834,10 +834,7 @@ namespace Neodroid.Managers {
       }
     }
 
-
-    public void SetTesting(bool arg0) {
-      this.TestMotors = arg0;
-    }
+    public void SetTesting(bool arg0) { this.TestMotors = arg0; }
 
 /*
     /// <summary>
@@ -1062,8 +1059,6 @@ namespace Neodroid.Managers {
 
     #endregion
 
-    public void StatusString(DataPoller recipient) {
-          recipient.PollData(this.GetStatus());
-        }
+    public void StatusString(DataPoller recipient) { recipient.PollData(this.GetStatus()); }
   }
 }

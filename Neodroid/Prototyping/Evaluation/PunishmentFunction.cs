@@ -18,8 +18,8 @@ namespace Neodroid.Prototyping.Evaluation {
     [SerializeField] string _avoid_tag = "balls";
 
     // Use this for initialization
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
     protected override void PostSetup() {
       this.ResetHits();
@@ -46,6 +46,9 @@ namespace Neodroid.Prototyping.Evaluation {
 
     void ResetHits() { this._hits = 0; }
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
     public override void InternalReset() { this.ResetHits(); }
 
     /// <inheritdoc />

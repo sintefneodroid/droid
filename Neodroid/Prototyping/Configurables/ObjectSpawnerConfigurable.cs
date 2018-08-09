@@ -29,7 +29,7 @@ namespace Neodroid.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     public override string PrototypingTypeName { get { return "ObjectSpawnerConfigurable"; } }
-    
+
     public override Configuration SampleConfiguration(Random random_generator) {
       throw new NotImplementedException();
     }

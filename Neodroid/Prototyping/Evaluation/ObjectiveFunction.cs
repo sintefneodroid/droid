@@ -112,6 +112,9 @@ namespace Neodroid.Prototyping.Evaluation {
       this.PostSetup();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     protected virtual void PostSetup() { }
 
     /// <summary>

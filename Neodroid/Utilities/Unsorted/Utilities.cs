@@ -28,6 +28,13 @@ namespace Neodroid.Utilities.Unsorted {
               2); // mass in kg, velocity in meters per second, result is joules
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="vec"></param>
+    /// <param name="min_point"></param>
+    /// <param name="max_point"></param>
+    /// <returns></returns>
     public static Vector3 Vector3Clamp(ref Vector3 vec, Vector3 min_point, Vector3 max_point) {
       vec.x = Mathf.Clamp(vec.x, min_point.x, max_point.x);
       vec.y = Mathf.Clamp(vec.y, min_point.y, max_point.y);
@@ -35,6 +42,12 @@ namespace Neodroid.Utilities.Unsorted {
       return vec;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="p1"></param>
+    /// <param name="p2"></param>
+    /// <param name="width"></param>
     public static void DrawLine(Vector3 p1, Vector3 p2, float width) {
       var count = Mathf.CeilToInt(width); // how many lines are needed.
       if (count == 1) {
@@ -181,6 +194,15 @@ namespace Neodroid.Utilities.Unsorted {
       return s;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="r"></param>
+    /// <param name="c"></param>
+    /// <param name="only_parents"></param>
+    /// <typeparam name="TRecipient"></typeparam>
+    /// <typeparam name="TCaller"></typeparam>
+    /// <returns></returns>
     public static TRecipient MaybeRegisterComponent<TRecipient, TCaller>(
         TRecipient r,
         TCaller c,
@@ -258,6 +280,11 @@ namespace Neodroid.Utilities.Unsorted {
       return results.ToArray();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="layer"></param>
+    /// <returns></returns>
     public static GameObject[] FindAllGameObjectsExceptLayer(int layer) {
       var goa = Object.FindObjectsOfType<GameObject>();
       var game_objects = new List<GameObject>();

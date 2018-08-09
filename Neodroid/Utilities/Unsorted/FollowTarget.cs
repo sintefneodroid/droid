@@ -6,8 +6,12 @@ namespace Neodroid.Utilities.Unsorted {
   /// </summary>
   [ExecuteInEditMode]
   public class FollowTarget : MonoBehaviour {
+    /// <summary>
+    /// </summary>
     public Vector3 _Offset = new Vector3(0f, 7.5f, 0f);
 
+    /// <summary>
+    /// </summary>
     public Transform _Target;
 
     void LateUpdate() {

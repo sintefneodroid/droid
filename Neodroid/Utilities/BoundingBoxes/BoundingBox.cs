@@ -309,7 +309,7 @@ namespace Neodroid.Utilities.BoundingBoxes {
       }
 
       foreach (var t in this._children_meshes) {
-        if(t) {
+        if (t) {
           var ms = t.sharedMesh;
           if (ms) {
             var vc = ms.vertexCount;
@@ -318,8 +318,6 @@ namespace Neodroid.Utilities.BoundingBoxes {
             }
           }
         }
-
-
       }
 
       this._Bounds = bounds;

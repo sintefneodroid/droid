@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.Win32.SafeHandles;
 using Neodroid.Prototyping.Displayers;
 using Neodroid.Prototyping.Motors;
 using Neodroid.Utilities.Messaging.Messages;

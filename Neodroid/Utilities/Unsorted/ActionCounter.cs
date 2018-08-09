@@ -17,8 +17,9 @@ namespace Neodroid.Utilities.Unsorted {
       set { this._environment = value; }
     }
 
+
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
     protected override void Clear() {
       if (!this._environment) {
@@ -34,10 +35,22 @@ namespace Neodroid.Utilities.Unsorted {
       var motions = reaction.Motions;
     }
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
     protected override void PreStep() { }
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
     protected override void Step() { this.HandleStep(); }
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
     protected override void PostStep() { }
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
     public override string PrototypingTypeName { get { return "ActionCounter"; } }
   }
 }
