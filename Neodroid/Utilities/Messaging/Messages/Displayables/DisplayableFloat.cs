@@ -19,23 +19,5 @@ namespace Neodroid.Utilities.Messaging.Messages.Displayables {
       this.DisplayableName = displayable_name;
       this.DisplayableValue = displayable_value;
     }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
-    public override string ToString() {
-      return "<Displayable> " + this.DisplayableName + ", " + this.DisplayableValue + " </Displayable>";
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public override String DisplayableName { get; }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public override dynamic DisplayableValue { get; }
   }
 }

@@ -17,7 +17,6 @@ namespace Neodroid.Utilities.Unsorted {
       set { this._environment = value; }
     }
 
-
     /// <inheritdoc />
     /// <summary>
     /// </summary>
@@ -39,10 +38,12 @@ namespace Neodroid.Utilities.Unsorted {
     /// <summary>
     /// </summary>
     protected override void PreStep() { }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     protected override void Step() { this.HandleStep(); }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>

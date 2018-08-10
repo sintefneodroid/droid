@@ -1,6 +1,7 @@
 ﻿using System;
 using Neodroid.Utilities.Interfaces;
 using Neodroid.Utilities.Structs;
+using Neodroid.Utilities.Unsorted.SearchableEnum;
 using UnityEngine;
 
 namespace Neodroid.Prototyping.Observers.Transform {
@@ -32,7 +33,7 @@ namespace Neodroid.Prototyping.Observers.Transform {
    ExecuteInEditMode, Serializable]
   public class EulerTransformObserver : Observer,
                                         IHasEulerTransform {
-    [Header("Specfic", order = 102), SerializeField]
+    [Header("Specfic", order = 102), SerializeField, SearchableEnum]
     ObservationSpace _space = ObservationSpace.Environment_;
 
     [Header("Observation", order = 103), SerializeField]

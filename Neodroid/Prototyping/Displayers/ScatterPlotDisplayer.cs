@@ -198,8 +198,10 @@ namespace Neodroid.Prototyping.Displayers {
 
     #if UNITY_EDITOR
     void OnDrawGizmos() {
-      if (this._plot_random_series) {
-        this.PlotSeries(PlotFunctions.SampleRandomSeries(1));
+      if (this.enabled) {
+        if (this._plot_random_series) {
+          this.PlotSeries(PlotFunctions.SampleRandomSeries(1));
+        }
       }
     }
     #endif

@@ -37,7 +37,11 @@ namespace Neodroid.Utilities.Unsorted.SearchableEnum.Editor {
     /// <param name="on_selection_made">
     /// Callback to trigger when a choice is made.
     /// </param>
-    public static void Show(Rect activator_rect, string[] options, int current, Action<int> on_selection_made) {
+    public static void Show(
+        Rect activator_rect,
+        string[] options,
+        int current,
+        Action<int> on_selection_made) {
       var win = new SearchablePopup(options, current, on_selection_made);
       PopupWindow.Show(activator_rect, win);
     }

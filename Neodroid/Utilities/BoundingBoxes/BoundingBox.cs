@@ -436,10 +436,14 @@ namespace Neodroid.Utilities.BoundingBoxes {
     /// 
     /// </summary>
     void OnDrawGizmos() {
-      Gizmos.color = this._Line_Color;
-      if (this._lines != null) {
-        for (var i = 0; i < this._lines.GetLength(0); i++) {
-          Gizmos.DrawLine(this._lines[i, 0], this._lines[i, 1]);
+      if (this.enabled) {
+        if (this.enabled) {
+          Gizmos.color = this._Line_Color;
+          if (this._lines != null) {
+            for (var i = 0; i < this._lines.GetLength(0); i++) {
+              Gizmos.DrawLine(this._lines[i, 0], this._lines[i, 1]);
+            }
+          }
         }
       }
     }

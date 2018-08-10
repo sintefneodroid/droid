@@ -82,7 +82,7 @@ namespace Neodroid.Utilities.Unsorted.SceneReference.Editor {
 
       if (this._scene_asset != null) {
         this._scene_asset_path = AssetDatabase.GetAssetPath(this._scene.objectReferenceValue);
-        if(this._scene_asset_path != null) {
+        if (this._scene_asset_path != null) {
           this._scene_asset_guid = AssetDatabase.AssetPathToGUID(this._scene_asset_path);
         }
       } else {

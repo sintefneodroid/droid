@@ -7,6 +7,7 @@
     /// 
     /// </summary>
     public const string _Version = "0.1.7";
+
     /// <summary>
     /// 
     /// </summary>

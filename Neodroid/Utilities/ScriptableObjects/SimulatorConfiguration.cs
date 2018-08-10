@@ -1,5 +1,6 @@
 ﻿using System;
 using Neodroid.Utilities.Messaging.Messages;
+using Neodroid.Utilities.Unsorted.SearchableEnum;
 using UnityEngine;
 
 namespace Neodroid.Utilities.ScriptableObjects {
@@ -105,7 +106,7 @@ namespace Neodroid.Utilities.ScriptableObjects {
     /// <summary>
     ///
     /// </summary>
-    [SerializeField]
+    [SerializeField, SearchableEnum]
     SimulationType _simulation_type = SimulationType.Frame_dependent_;
 
     /// <summary>

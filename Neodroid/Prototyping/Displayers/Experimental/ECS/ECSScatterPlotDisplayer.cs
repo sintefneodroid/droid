@@ -135,10 +135,12 @@ namespace droid.Neodroid.Prototyping.Displayers.ECS {
     }
 
     #if UNITY_EDITOR
-    void OnDrawGizmos() {
+    void OnDrawGizmos() { if (this.enabled) {
+        if (this.enabled) {
       if(this._plot_random_series){
         this.ScatterPlot(PlotFunctions.SampleRandomSeries(1));
       }
+  }
     }
     #endif
 

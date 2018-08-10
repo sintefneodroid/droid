@@ -2,6 +2,7 @@
 using Neodroid.Utilities.Enums;
 using Neodroid.Utilities.Interfaces;
 using Neodroid.Utilities.Structs;
+using Neodroid.Utilities.Unsorted.SearchableEnum;
 using UnityEngine;
 
 namespace Neodroid.Prototyping.Observers.Transform {
@@ -17,7 +18,7 @@ namespace Neodroid.Prototyping.Observers.Transform {
     [Header("Observation", order = 103), SerializeField]
     Vector2 _2_d_position;
 
-    [SerializeField] Dimension2DCombination _dim_combination;
+    [SerializeField, SearchableEnum] Dimension2DCombination _dim_combination = Dimension2DCombination.Xz_;
 
     [SerializeField] Space2 _position_space;
 
@@ -78,6 +79,26 @@ namespace Neodroid.Prototyping.Observers.Transform {
     /// </summary>
     protected override void PreSetup() {
       this.FloatEnumerable = new[] {this._2_d_position.x, this._2_d_position.y};
+    }
+
+    void OnDrawGizmos() {
+      if (this.enabled) {
+        switch (this._dim_combination) {
+          case Dimension2DCombination.Xy_:
+            Debug.DrawLine(this.transform.position, this.transform.position + Vector3.right * 2, Color.green);
+            Debug.DrawLine(this.transform.position, this.transform.position + Vector3.up * 2, Color.red);
+            break;
+          case Dimension2DCombination.Xz_:
+            Debug.DrawLine(this.transform.position, this.transform.position + Vector3.right * 2, Color.green);
+            Debug.DrawLine(this.transform.position, this.transform.position + Vector3.forward * 2, Color.red);
+            break;
+          case Dimension2DCombination.Yz_:
+            Debug.DrawLine(this.transform.position, this.transform.position + Vector3.up * 2, Color.green);
+            Debug.DrawLine(this.transform.position, this.transform.position + Vector3.forward * 2, Color.red);
+            break;
+          default: throw new ArgumentOutOfRangeException();
+        }
+      }
     }
   }
 }

@@ -10,6 +10,7 @@ using Neodroid.Prototyping.Internals;
 using Neodroid.Prototyping.Observers;
 using Neodroid.Utilities.BoundingBoxes;
 using Neodroid.Utilities.Enums;
+using Neodroid.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using Neodroid.Utilities.Interfaces;
 using Neodroid.Utilities.Messaging.Messages;
 using Neodroid.Utilities.Unsorted;
@@ -1029,6 +1030,16 @@ namespace Neodroid.Environments {
 
         return state;
       }
+    }
+
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    /// <param name="recipient"></param>
+    public override void ObservationsString(DataPoller recipient) {
+      recipient.PollData(      string.Join("\n\n", this.Observers.Values.Select(e=>  $"{e.Identifier}:\n"
+                                                                                   + string.Join(",",e.FloatEnumerable))));
+
     }
 
     /// <summary>

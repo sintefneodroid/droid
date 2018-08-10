@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Neodroid.Managers;
+using Neodroid.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using Neodroid.Utilities.Messaging.Messages;
 using Neodroid.Utilities.Unsorted;
 using UnityEngine;
@@ -207,5 +208,13 @@ namespace Neodroid.Environments {
     public override void Tick() { throw new NotImplementedException(); }
 
     public override EnvironmentState CollectState() { throw new NotImplementedException(); }
+    
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    /// <param name="recipient"></param>
+    public override void ObservationsString(DataPoller recipient) {
+      recipient.PollData(this.CollectState().ToString());
+    }
   }
 }

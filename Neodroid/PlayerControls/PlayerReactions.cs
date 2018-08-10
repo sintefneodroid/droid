@@ -60,13 +60,13 @@ namespace Neodroid.PlayerControls {
                 if (player_motion._Motor == "Reset") {
                   reset = true;
                   break;
-                } else {
-                  var motion = new MotorMotion(
-                      player_motion._Actor,
-                      player_motion._Motor,
-                      player_motion._Strength);
-                  this._motions.Add(motion);
                 }
+
+                var motion = new MotorMotion(
+                    player_motion._Actor,
+                    player_motion._Motor,
+                    player_motion._Strength);
+                this._motions.Add(motion);
               }
             }
           }

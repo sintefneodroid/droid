@@ -51,10 +51,12 @@ namespace Neodroid.Prototyping.Observers.Rays {
     [SerializeField] Color _color = Color.green;
 
     void OnDrawGizmosSelected() {
-      Debug.DrawLine(
-          this.transform.position,
-          this.transform.position - this._direction * this._range,
-          this._color);
+      if (this.enabled) {
+        Debug.DrawLine(
+            this.transform.position,
+            this.transform.position - this._direction * this._range,
+            this._color);
+      }
     }
     #endif
   }

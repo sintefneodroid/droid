@@ -20,6 +20,7 @@ namespace Neodroid.Utilities.Unsorted {
 
     [SerializeField] TextUpdater _enviroment_text;
     [SerializeField] TextUpdater _enviroment_frame;
+    [SerializeField] TextUpdater _enviroment_obs;
     [SerializeField] TextUpdater _signal;
     [SerializeField] ToggleUpdater _terminated;
     [SerializeField] TextUpdater _status_text;
@@ -108,6 +109,7 @@ namespace Neodroid.Utilities.Unsorted {
       if (this._environment) {
         this.RegisterIfSomething(this._enviroment_text, this._environment.IdentifierString);
         this.RegisterIfSomething(this._enviroment_frame, this._environment.FrameString);
+        this.RegisterIfSomething(this._enviroment_obs, this._environment.ObservationsString);
         this.RegisterIfSomething(this._terminated, this._environment.TerminatedBoolean);
       }
 

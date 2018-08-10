@@ -36,10 +36,10 @@ namespace Neodroid.Prototyping.Evaluation {
         Debug.Log($"Angle: {angle}");
       }
       #endif
-      
+
       if (!this._sparse) {
-        reward += this._distance_nominator/(Mathf.Pow(this._distance_base,distance)+float.Epsilon);
-        reward += this._angle_nominator/(Mathf.Pow(this._angle_base, angle)+float.Epsilon);
+        reward += this._distance_nominator / (Mathf.Pow(this._distance_base, distance) + float.Epsilon);
+        reward += this._angle_nominator / (Mathf.Pow(this._angle_base, angle) + float.Epsilon);
 
         if (this._state_full) {
           if (reward <= this._peak_reward) {
@@ -137,7 +137,6 @@ namespace Neodroid.Prototyping.Evaluation {
     float _default_reward = -0.01f;
 
     [SerializeField] bool _terminate_on_collision; //TODO: implement
-
 
     #endregion
   }

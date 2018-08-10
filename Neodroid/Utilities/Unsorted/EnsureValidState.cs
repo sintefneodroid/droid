@@ -87,14 +87,17 @@ namespace Neodroid.Utilities.Unsorted {
     /// <summary>
     /// </summary>
     protected override void PreStep() { this.ValidateState(); }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     protected override void Step() { this.ValidateState(); }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     protected override void PostStep() { this.ValidateState(); }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>

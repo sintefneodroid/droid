@@ -122,31 +122,33 @@ namespace Neodroid.Prototyping.Observers.Rays {
     [SerializeField] Color _color = Color.green;
 
     void OnDrawGizmosSelected() {
-      Debug.DrawLine(
-          this.transform.position,
-          this.transform.position - Vector3.forward * this._range,
-          this._color);
-      Debug.DrawLine(
-          this.transform.position,
-          this.transform.position - Vector3.left * this._range,
-          this._color);
-      Debug.DrawLine(
-          this.transform.position,
-          this.transform.position - Vector3.right * this._range,
-          this._color);
-      Debug.DrawLine(
-          this.transform.position,
-          this.transform.position - Vector3.back * this._range,
-          this._color);
-      if (!this._is_2_d) {
+      if (this.enabled) {
         Debug.DrawLine(
             this.transform.position,
-            this.transform.position - Vector3.up * this._range,
+            this.transform.position - Vector3.forward * this._range,
             this._color);
         Debug.DrawLine(
             this.transform.position,
-            this.transform.position - Vector3.down * this._range,
+            this.transform.position - Vector3.left * this._range,
             this._color);
+        Debug.DrawLine(
+            this.transform.position,
+            this.transform.position - Vector3.right * this._range,
+            this._color);
+        Debug.DrawLine(
+            this.transform.position,
+            this.transform.position - Vector3.back * this._range,
+            this._color);
+        if (!this._is_2_d) {
+          Debug.DrawLine(
+              this.transform.position,
+              this.transform.position - Vector3.up * this._range,
+              this._color);
+          Debug.DrawLine(
+              this.transform.position,
+              this.transform.position - Vector3.down * this._range,
+              this._color);
+        }
       }
     }
     #endif

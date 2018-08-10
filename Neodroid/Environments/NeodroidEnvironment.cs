@@ -62,7 +62,6 @@ namespace Neodroid.Environments {
     /// </summary>
     /// <returns></returns>
     public void IdentifierString(DataPoller recipient) { recipient.PollData(this.Identifier); }
-
     /// <summary>
     /// 
     /// </summary>
@@ -227,5 +226,13 @@ namespace Neodroid.Environments {
     /// </summary>
     /// <returns></returns>
     public abstract EnvironmentState CollectState();
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    public abstract void ObservationsString(DataPoller recipient);
+
+
   }
 }
