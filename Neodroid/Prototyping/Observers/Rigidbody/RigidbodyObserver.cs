@@ -3,6 +3,8 @@ using Neodroid.Utilities.Structs;
 using UnityEngine;
 
 namespace Neodroid.Prototyping.Observers.Rigidbody {
+  /// <summary>
+  /// </summary>
   [AddComponentMenu(
        ObserverComponentMenuPath._ComponentMenuPath + "Rigidbody" + ObserverComponentMenuPath._Postfix),
    ExecuteInEditMode, RequireComponent(typeof(UnityEngine.Rigidbody))]
@@ -22,8 +24,8 @@ namespace Neodroid.Prototyping.Observers.Rigidbody {
     [SerializeField] Space3 _velocity_space = new Space3(10);
     [SerializeField] Space3 _angular_space = new Space3(10);
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
     public override string PrototypingTypeName {
       get {
@@ -35,6 +37,9 @@ namespace Neodroid.Prototyping.Observers.Rigidbody {
       }
     }
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
     public Vector3 Velocity {
       get { return this._velocity; }
       set {
@@ -42,6 +47,9 @@ namespace Neodroid.Prototyping.Observers.Rigidbody {
       }
     }
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
     public Vector3 AngularVelocity {
       get { return this._angular_velocity; }
       set {
@@ -50,8 +58,14 @@ namespace Neodroid.Prototyping.Observers.Rigidbody {
       }
     }
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
     public Space3 VelocitySpace { get { return this._velocity_space; } }
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
     public Space3 AngularSpace { get { return this._angular_space; } }
 
     public override void UpdateObservation() {
@@ -59,13 +73,16 @@ namespace Neodroid.Prototyping.Observers.Rigidbody {
       if (this._differential && update_time_difference > 0) {
         var vel_diff = this.Velocity - this._rigidbody.velocity;
         var ang_diff = this.AngularVelocity - this._rigidbody.angularVelocity;
-        if (vel_diff.magnitude > 0) {
+        
+        var vel_magnitude = vel_diff.magnitude;
+        if (vel_magnitude > 0) {
           this.Velocity = vel_diff / (update_time_difference + float.Epsilon);
         } else {
           this.Velocity = vel_diff;
         }
 
-        if (ang_diff.magnitude > 0) {
+        var ang_magnitude = ang_diff.magnitude;
+        if (ang_magnitude > 0) {
           this.AngularVelocity = ang_diff / (update_time_difference + float.Epsilon);
         } else {
           this.AngularVelocity = ang_diff;
@@ -87,8 +104,8 @@ namespace Neodroid.Prototyping.Observers.Rigidbody {
       };
     }
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
     protected override void PreSetup() {
       this._rigidbody = this.GetComponent<UnityEngine.Rigidbody>();

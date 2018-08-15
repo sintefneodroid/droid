@@ -208,7 +208,7 @@ namespace Neodroid.Environments {
     public override void Tick() { throw new NotImplementedException(); }
 
     public override EnvironmentState CollectState() { throw new NotImplementedException(); }
-    
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>

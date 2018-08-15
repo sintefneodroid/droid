@@ -1037,9 +1037,10 @@ namespace Neodroid.Environments {
     /// </summary>
     /// <param name="recipient"></param>
     public override void ObservationsString(DataPoller recipient) {
-      recipient.PollData(      string.Join("\n\n", this.Observers.Values.Select(e=>  $"{e.Identifier}:\n"
-                                                                                   + string.Join(",",e.FloatEnumerable))));
-
+      recipient.PollData(
+          string.Join(
+              "\n\n",
+              this.Observers.Values.Select(e => $"{e.Identifier}:\n{string.Join(",", e.FloatEnumerable)}")));
     }
 
     /// <summary>

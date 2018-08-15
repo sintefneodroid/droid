@@ -2,25 +2,33 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Neodroid.Utilities.BoundingBoxes {
+  /// <inheritdoc />
   /// <summary>
-  /// 
   /// </summary>
   [RequireComponent(typeof(Camera)), ExecuteInEditMode]
   public class DrawBoundingBoxOnCamera : MonoBehaviour {
     List<Color> _colors = new List<Color>();
-    public Color _L_Color = Color.green;
-    public Material _Line_Material;
+    [SerializeField] Color _l_color = Color.green;
+    [SerializeField] Material _line_material;
     List<Vector3[,]> _outlines = new List<Vector3[,]>();
     List<Vector3[,]> _triangles = new List<Vector3[,]>();
 
-    void Awake() { }
+    void Awake() {
+      if (!this._line_material) {
+        var shader = Shader.Find("Unlit/Color");
+        this._line_material = new Material(shader);
+      }
+    }
 
     void OnPostRender() {
       if (this._outlines == null) {
         return;
       }
 
-      this._Line_Material.SetPass(0);
+      if (this._line_material) {
+        this._line_material.SetPass(0);
+      }
+
       GL.Begin(GL.LINES);
       for (var j = 0; j < this._outlines.Count; j++) {
         GL.Color(this._colors[j]);

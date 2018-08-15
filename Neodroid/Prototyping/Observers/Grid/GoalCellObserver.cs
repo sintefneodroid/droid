@@ -61,6 +61,8 @@ namespace Neodroid.Prototyping.Observers.Grid {
       if (this._current_goal) {
         this._current_goal_position = this._current_goal.transform.position;
       }
+      
+      this.FloatEnumerable = new[] {this._current_goal_position.x, this._current_goal_position.y, this._current_goal_position.z,};
     }
 
     #if UNITY_EDITOR
