@@ -1,6 +1,7 @@
 ﻿#if UNITY_EDITOR
 
 using System;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,7 +26,7 @@ namespace Neodroid.Utilities.Unsorted.SceneReference.Editor {
     /// <summary>
     /// 
     /// </summary>
-    public UnityEditor.SceneAsset _Scene;
+    public SceneAsset _Scene;
     #endif
 
     /// <summary>
@@ -67,10 +68,10 @@ namespace Neodroid.Utilities.Unsorted.SceneReference.Editor {
     public void OnBeforeSerialize() {
       #if UNITY_EDITOR
       if (this._Scene != null) {
-        var scene_asset_path = UnityEditor.AssetDatabase.GetAssetPath(this._Scene);
-        var scene_asset_guid = UnityEditor.AssetDatabase.AssetPathToGUID(scene_asset_path);
+        var scene_asset_path = AssetDatabase.GetAssetPath(this._Scene);
+        var scene_asset_guid = AssetDatabase.AssetPathToGUID(scene_asset_path);
 
-        var scenes = UnityEditor.EditorBuildSettings.scenes;
+        var scenes = EditorBuildSettings.scenes;
 
         this._scene_index = -1;
         for (var i = 0; i < scenes.Length; i++) {

@@ -131,9 +131,9 @@ public struct FArray : IFlatbufferObject
       VectorOffset arrayOffset = default(VectorOffset),
       VectorOffset rangesOffset = default(VectorOffset)) {
     builder.StartObject(2);
-    FArray.AddRanges(builder, rangesOffset);
-    FArray.AddArray(builder, arrayOffset);
-    return FArray.EndFArray(builder);
+    AddRanges(builder, rangesOffset);
+    AddArray(builder, arrayOffset);
+    return EndFArray(builder);
   }
 
   public static void StartFArray(FlatBufferBuilder builder) { builder.StartObject(2); }
@@ -224,8 +224,8 @@ public struct FString : IFlatbufferObject
   public static Offset<FString> CreateFString(FlatBufferBuilder builder,
       StringOffset strOffset = default(StringOffset)) {
     builder.StartObject(1);
-    FString.AddStr(builder, strOffset);
-    return FString.EndFString(builder);
+    AddStr(builder, strOffset);
+    return EndFString(builder);
   }
 
   public static void StartFString(FlatBufferBuilder builder) { builder.StartObject(1); }
@@ -255,9 +255,9 @@ public struct FByteArray : IFlatbufferObject
       VectorOffset bytesOffset = default(VectorOffset),
       FByteDataType type = FByteDataType.PNG) {
     builder.StartObject(2);
-    FByteArray.AddBytes(builder, bytesOffset);
-    FByteArray.AddType(builder, type);
-    return FByteArray.EndFByteArray(builder);
+    AddBytes(builder, bytesOffset);
+    AddType(builder, type);
+    return EndFByteArray(builder);
   }
 
   public static void StartFByteArray(FlatBufferBuilder builder) { builder.StartObject(2); }
@@ -286,8 +286,8 @@ public struct FValue : IFlatbufferObject
   public static Offset<FValue> CreateFValue(FlatBufferBuilder builder,
       double val = 0.0) {
     builder.StartObject(1);
-    FValue.AddVal(builder, val);
-    return FValue.EndFValue(builder);
+    AddVal(builder, val);
+    return EndFValue(builder);
   }
 
   public static void StartFValue(FlatBufferBuilder builder) { builder.StartObject(1); }
@@ -314,8 +314,8 @@ public struct FValues : IFlatbufferObject
   public static Offset<FValues> CreateFValues(FlatBufferBuilder builder,
       VectorOffset valsOffset = default(VectorOffset)) {
     builder.StartObject(1);
-    FValues.AddVals(builder, valsOffset);
-    return FValues.EndFValues(builder);
+    AddVals(builder, valsOffset);
+    return EndFValues(builder);
   }
 
   public static void StartFValues(FlatBufferBuilder builder) { builder.StartObject(1); }
@@ -365,8 +365,8 @@ public struct FVector3s : IFlatbufferObject
   public static Offset<FVector3s> CreateFVector3s(FlatBufferBuilder builder,
       VectorOffset pointsOffset = default(VectorOffset)) {
     builder.StartObject(1);
-    FVector3s.AddPoints(builder, pointsOffset);
-    return FVector3s.EndFVector3s(builder);
+    AddPoints(builder, pointsOffset);
+    return EndFVector3s(builder);
   }
 
   public static void StartFVector3s(FlatBufferBuilder builder) { builder.StartObject(1); }
@@ -398,9 +398,9 @@ public struct FValuedVector3s : IFlatbufferObject
       VectorOffset valsOffset = default(VectorOffset),
       VectorOffset pointsOffset = default(VectorOffset)) {
     builder.StartObject(2);
-    FValuedVector3s.AddPoints(builder, pointsOffset);
-    FValuedVector3s.AddVals(builder, valsOffset);
-    return FValuedVector3s.EndFValuedVector3s(builder);
+    AddPoints(builder, pointsOffset);
+    AddVals(builder, valsOffset);
+    return EndFValuedVector3s(builder);
   }
 
   public static void StartFValuedVector3s(FlatBufferBuilder builder) { builder.StartObject(2); }

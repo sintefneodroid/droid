@@ -4,7 +4,6 @@ using Neodroid.Utilities.Messaging.Messages;
 using Neodroid.Utilities.Structs;
 using Neodroid.Utilities.Unsorted;
 using UnityEngine;
-using Random = System.Random;
 
 namespace Neodroid.Prototyping.Configurables {
   /// <inheritdoc cref="ConfigurableGameObject" />
@@ -244,7 +243,7 @@ namespace Neodroid.Prototyping.Configurables {
     /// </summary>
     /// <param name="random_generator"></param>
     /// <returns></returns>
-    public override Configuration SampleConfiguration(Random random_generator) {
+    public override Configuration SampleConfiguration(System.Random random_generator) {
       return new Configuration(this.Identifier, random_generator.Next());
     }
   }

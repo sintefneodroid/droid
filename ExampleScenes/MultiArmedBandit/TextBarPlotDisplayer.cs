@@ -23,7 +23,7 @@ namespace ExampleScenes.MultiArmedBandit {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override void Reset() {
+    public override void EnvironmentReset() {
       foreach (var bar in this._canvas_bars) {
         bar.Display(0.5);
       }

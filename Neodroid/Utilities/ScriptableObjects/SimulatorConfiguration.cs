@@ -47,7 +47,7 @@ namespace Neodroid.Utilities.ScriptableObjects {
     /// <summary>
     /// When ever the scene has been rendered, default
     /// </summary>
-    On_post_render_,
+    On_post_render_
   }
 
   /// <inheritdoc />

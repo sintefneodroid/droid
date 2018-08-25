@@ -3,6 +3,7 @@
 // </auto-generated>
 
 using System;
+using System.Text;
 using FlatBuffers;
 
 namespace Neodroid.Utilities.Messaging.FBS
@@ -49,18 +50,18 @@ namespace Neodroid.Utilities.Messaging.FBS
       Offset<FEnvironmentDescription> environment_descriptionOffset = default(Offset<FEnvironmentDescription>),
       StringOffset serialised_messageOffset = default(StringOffset)) {
     builder.StartObject(11);
-    FState.AddSerialisedMessage(builder, serialised_messageOffset);
-    FState.AddEnvironmentDescription(builder, environment_descriptionOffset);
-    FState.AddUnobservables(builder, unobservablesOffset);
-    FState.AddObservables(builder, observablesOffset);
-    FState.AddObservations(builder, observationsOffset);
-    FState.AddTotalEnergySpent(builder, total_energy_spent);
-    FState.AddTerminationReason(builder, termination_reasonOffset);
-    FState.AddSignal(builder, signal);
-    FState.AddFrameNumber(builder, frame_number);
-    FState.AddEnvironmentName(builder, environment_nameOffset);
-    FState.AddTerminated(builder, terminated);
-    return FState.EndFState(builder);
+    AddSerialisedMessage(builder, serialised_messageOffset);
+    AddEnvironmentDescription(builder, environment_descriptionOffset);
+    AddUnobservables(builder, unobservablesOffset);
+    AddObservables(builder, observablesOffset);
+    AddObservations(builder, observationsOffset);
+    AddTotalEnergySpent(builder, total_energy_spent);
+    AddTerminationReason(builder, termination_reasonOffset);
+    AddSignal(builder, signal);
+    AddFrameNumber(builder, frame_number);
+    AddEnvironmentName(builder, environment_nameOffset);
+    AddTerminated(builder, terminated);
+    return EndFState(builder);
   }
 
   public static void StartFState(FlatBufferBuilder builder) { builder.StartObject(11); }
@@ -92,7 +93,7 @@ namespace Neodroid.Utilities.Messaging.FBS
   }
 
   public static FState? __lookup_by_key(int vectorLocation, string key, ByteBuffer bb) {
-    byte[] byteKey = System.Text.Encoding.UTF8.GetBytes(key);
+    byte[] byteKey = Encoding.UTF8.GetBytes(key);
     int span = bb.GetInt(vectorLocation - 4);
     int start = 0;
     while (span != 0) {
@@ -132,10 +133,10 @@ public struct FObjective : IFlatbufferObject
       int max_episode_length = 0,
       float solved_threshold = 0.0f) {
     builder.StartObject(3);
-    FObjective.AddSolvedThreshold(builder, solved_threshold);
-    FObjective.AddMaxEpisodeLength(builder, max_episode_length);
-    FObjective.AddObjectiveName(builder, objective_nameOffset);
-    return FObjective.EndFObjective(builder);
+    AddSolvedThreshold(builder, solved_threshold);
+    AddMaxEpisodeLength(builder, max_episode_length);
+    AddObjectiveName(builder, objective_nameOffset);
+    return EndFObjective(builder);
   }
 
   public static void StartFObjective(FlatBufferBuilder builder) { builder.StartObject(3); }
@@ -173,11 +174,11 @@ public struct FEnvironmentDescription : IFlatbufferObject
       VectorOffset actorsOffset = default(VectorOffset),
       VectorOffset configurablesOffset = default(VectorOffset)) {
     builder.StartObject(4);
-    FEnvironmentDescription.AddConfigurables(builder, configurablesOffset);
-    FEnvironmentDescription.AddActors(builder, actorsOffset);
-    FEnvironmentDescription.AddAvailableObjectives(builder, available_objectivesOffset);
-    FEnvironmentDescription.AddObjective(builder, objectiveOffset);
-    return FEnvironmentDescription.EndFEnvironmentDescription(builder);
+    AddConfigurables(builder, configurablesOffset);
+    AddActors(builder, actorsOffset);
+    AddAvailableObjectives(builder, available_objectivesOffset);
+    AddObjective(builder, objectiveOffset);
+    return EndFEnvironmentDescription(builder);
   }
 
   public static void StartFEnvironmentDescription(FlatBufferBuilder builder) { builder.StartObject(4); }
@@ -216,10 +217,10 @@ public struct FConfigurable : IFlatbufferObject
       FObservation observation_type = FObservation.NONE,
       int observationOffset = 0) {
     builder.StartObject(3);
-    FConfigurable.AddObservation(builder, observationOffset);
-    FConfigurable.AddConfigurableName(builder, configurable_nameOffset);
-    FConfigurable.AddObservationType(builder, observation_type);
-    return FConfigurable.EndFConfigurable(builder);
+    AddObservation(builder, observationOffset);
+    AddConfigurableName(builder, configurable_nameOffset);
+    AddObservationType(builder, observation_type);
+    return EndFConfigurable(builder);
   }
 
   public static void StartFConfigurable(FlatBufferBuilder builder) { builder.StartObject(3); }
@@ -238,7 +239,7 @@ public struct FConfigurable : IFlatbufferObject
   }
 
   public static FConfigurable? __lookup_by_key(int vectorLocation, string key, ByteBuffer bb) {
-    byte[] byteKey = System.Text.Encoding.UTF8.GetBytes(key);
+    byte[] byteKey = Encoding.UTF8.GetBytes(key);
     int span = bb.GetInt(vectorLocation - 4);
     int start = 0;
     while (span != 0) {
@@ -280,10 +281,10 @@ public struct FActor : IFlatbufferObject
       bool alive = false,
       VectorOffset motorsOffset = default(VectorOffset)) {
     builder.StartObject(3);
-    FActor.AddMotors(builder, motorsOffset);
-    FActor.AddActorName(builder, actor_nameOffset);
-    FActor.AddAlive(builder, alive);
-    return FActor.EndFActor(builder);
+    AddMotors(builder, motorsOffset);
+    AddActorName(builder, actor_nameOffset);
+    AddAlive(builder, alive);
+    return EndFActor(builder);
   }
 
   public static void StartFActor(FlatBufferBuilder builder) { builder.StartObject(3); }
@@ -304,7 +305,7 @@ public struct FActor : IFlatbufferObject
   }
 
   public static FActor? __lookup_by_key(int vectorLocation, string key, ByteBuffer bb) {
-    byte[] byteKey = System.Text.Encoding.UTF8.GetBytes(key);
+    byte[] byteKey = Encoding.UTF8.GetBytes(key);
     int span = bb.GetInt(vectorLocation - 4);
     int start = 0;
     while (span != 0) {
@@ -356,7 +357,7 @@ public struct FMotor : IFlatbufferObject
   }
 
   public static FMotor? __lookup_by_key(int vectorLocation, string key, ByteBuffer bb) {
-    byte[] byteKey = System.Text.Encoding.UTF8.GetBytes(key);
+    byte[] byteKey = Encoding.UTF8.GetBytes(key);
     int span = bb.GetInt(vectorLocation - 4);
     int start = 0;
     while (span != 0) {
@@ -396,10 +397,10 @@ public struct FOBS : IFlatbufferObject
       FObservation observation_type = FObservation.NONE,
       int observationOffset = 0) {
     builder.StartObject(3);
-    FOBS.AddObservation(builder, observationOffset);
-    FOBS.AddObservationName(builder, observation_nameOffset);
-    FOBS.AddObservationType(builder, observation_type);
-    return FOBS.EndFOBS(builder);
+    AddObservation(builder, observationOffset);
+    AddObservationName(builder, observation_nameOffset);
+    AddObservationType(builder, observation_type);
+    return EndFOBS(builder);
   }
 
   public static void StartFOBS(FlatBufferBuilder builder) { builder.StartObject(3); }
@@ -418,7 +419,7 @@ public struct FOBS : IFlatbufferObject
   }
 
   public static FOBS? __lookup_by_key(int vectorLocation, string key, ByteBuffer bb) {
-    byte[] byteKey = System.Text.Encoding.UTF8.GetBytes(key);
+    byte[] byteKey = Encoding.UTF8.GetBytes(key);
     int span = bb.GetInt(vectorLocation - 4);
     int start = 0;
     while (span != 0) {

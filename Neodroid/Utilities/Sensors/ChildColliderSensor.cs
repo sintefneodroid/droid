@@ -8,58 +8,64 @@ namespace Neodroid.Utilities.Sensors {
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="child_game_object"></param>
+    /// <param name="child_sensor_game_object"></param>
     /// <param name="collision"></param>
-    public delegate void OnChildCollisionEnterDelegate(GameObject child_game_object, Collision collision);
+    public delegate void OnChildCollisionEnterDelegate(
+        GameObject child_sensor_game_object,
+        Collision collision);
 
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="child_game_object"></param>
+    /// <param name="child_sensor_game_object"></param>
     /// <param name="collision"></param>
-    public delegate void OnChildCollisionExitDelegate(GameObject child_game_object, Collision collision);
+    public delegate void OnChildCollisionExitDelegate(
+        GameObject child_sensor_game_object,
+        Collision collision);
 
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="child_game_object"></param>
+    /// <param name="child_sensor_game_object"></param>
     /// <param name="collision"></param>
-    public delegate void OnChildCollisionStayDelegate(GameObject child_game_object, Collision collision);
+    public delegate void OnChildCollisionStayDelegate(
+        GameObject child_sensor_game_object,
+        Collision collision);
 
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="child_game_object"></param>
+    /// <param name="child_sensor_game_object"></param>
     /// <param name="collider"></param>
-    public delegate void OnChildTriggerEnterDelegate(GameObject child_game_object, Collider collider);
+    public delegate void OnChildTriggerEnterDelegate(GameObject child_sensor_game_object, Collider collider);
 
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="child_game_object"></param>
+    /// <param name="child_sensor_game_object"></param>
     /// <param name="collider"></param>
-    public delegate void OnChildTriggerExitDelegate(GameObject child_game_object, Collider collider);
+    public delegate void OnChildTriggerExitDelegate(GameObject child_sensor_game_object, Collider collider);
 
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="child_game_object"></param>
+    /// <param name="child_sensor_game_object"></param>
     /// <param name="collider"></param>
-    public delegate void OnChildTriggerStayDelegate(GameObject child_game_object, Collider collider);
+    public delegate void OnChildTriggerStayDelegate(GameObject child_sensor_game_object, Collider collider);
 
     [SerializeField] Component _caller;
 
-    OnChildCollisionEnterDelegate _on_collision_enter_delegate;
+    [SerializeField] OnChildCollisionEnterDelegate _on_collision_enter_delegate;
 
-    OnChildCollisionExitDelegate _on_collision_exit_delegate;
+    [SerializeField] OnChildCollisionExitDelegate _on_collision_exit_delegate;
 
-    OnChildCollisionStayDelegate _on_collision_stay_delegate;
+    [SerializeField] OnChildCollisionStayDelegate _on_collision_stay_delegate;
 
-    OnChildTriggerEnterDelegate _on_trigger_enter_delegate;
+    [SerializeField] OnChildTriggerEnterDelegate _on_trigger_enter_delegate;
 
-    OnChildTriggerExitDelegate _on_trigger_exit_delegate;
+    [SerializeField] OnChildTriggerExitDelegate _on_trigger_exit_delegate;
 
-    OnChildTriggerStayDelegate _on_trigger_stay_delegate;
+    [SerializeField] OnChildTriggerStayDelegate _on_trigger_stay_delegate;
 
     /// <summary>
     /// 

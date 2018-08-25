@@ -1,17 +1,20 @@
 ﻿using System;
 using Neodroid.Prototyping.Actors;
+using Neodroid.Prototyping.Internals;
 using Neodroid.Utilities.GameObjects;
+using Neodroid.Utilities.Interfaces;
 using Neodroid.Utilities.Messaging.Messages;
 using Neodroid.Utilities.Structs;
 using Neodroid.Utilities.Unsorted;
 using UnityEngine;
 
 namespace Neodroid.Prototyping.Motors {
-  /// <inheritdoc />
+  /// <inheritdoc cref="PrototypingGameObject" />
   /// <summary>
   /// </summary>
   [ExecuteInEditMode, Serializable]
-  public abstract class Motor : PrototypingGameObject {
+  public abstract class Motor : PrototypingGameObject,
+                                IResetable {
     /// <summary>
     /// 
     /// </summary>
@@ -105,7 +108,7 @@ namespace Neodroid.Prototyping.Motors {
     /// <summary>
     /// 
     /// </summary>
-    public virtual void Reset() { this._energy_spend_since_reset = 0; }
+    public void EnvironmentReset() { this._energy_spend_since_reset = 0; }
 
     #region Fields
 

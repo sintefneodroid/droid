@@ -1,19 +1,19 @@
 ﻿#if UNITY_EDITOR
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using System.Linq;
 
 namespace Neodroid.Editor.Windows {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
   public class PreferenceWindow : MonoBehaviour {
-    static bool _prefs_loaded = false;
+    static bool _prefs_loaded;
 
     /// <summary>
     ///
     /// </summary>
-    public static bool _EnableNeodroidDebug = false;
+    public static bool _EnableNeodroidDebug;
 
     const string _debug_pref_key = "EnableNeodroidDebug";
 

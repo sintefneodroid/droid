@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using Neodroid.Environments;
 using Neodroid.Prototyping.Evaluation.Terms;
+using Neodroid.Prototyping.Internals;
 using Neodroid.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using Neodroid.Utilities.GameObjects;
 using Neodroid.Utilities.Interfaces;
@@ -14,7 +15,8 @@ namespace Neodroid.Prototyping.Evaluation {
   /// </summary>
   [Serializable]
   public abstract class ObjectiveFunction : PrototypingGameObject,
-                                            IHasRegister<Term> {
+                                            IHasRegister<Term>,
+                                            IResetable {
     /// <summary>
     ///
     /// </summary>
@@ -172,10 +174,9 @@ namespace Neodroid.Prototyping.Evaluation {
       return signal;
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    public void Reset() {
+    ///  <summary>
+    ///  </summary>
+    public void EnvironmentReset() {
       this._last_signal = 0;
       this._Episode_Return = 0;
       this.InternalReset();

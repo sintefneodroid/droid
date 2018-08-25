@@ -1,18 +1,21 @@
 ﻿using System;
 using System.Globalization;
 using Neodroid.Managers;
+using Neodroid.Prototyping.Internals;
 using Neodroid.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using Neodroid.Utilities.GameObjects;
+using Neodroid.Utilities.Interfaces;
 using Neodroid.Utilities.Messaging.Messages;
 using Neodroid.Utilities.Unsorted;
 using UnityEditor;
 using UnityEngine;
 
 namespace Neodroid.Environments {
-  /// <inheritdoc />
+  /// <inheritdoc cref="PrototypingGameObject" />
   ///  <summary>
   ///  </summary>
-  public abstract class NeodroidEnvironment : PrototypingGameObject {
+  public abstract class NeodroidEnvironment : PrototypingGameObject,
+                                              IResetable {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
@@ -130,7 +133,7 @@ namespace Neodroid.Environments {
     ///
     /// </summary>
     [SerializeField]
-    protected bool _Resetting = false;
+    protected bool _Resetting;
 
     [SerializeField] int _current_frame_number;
 
@@ -233,5 +236,7 @@ namespace Neodroid.Environments {
     /// </summary>
     /// <returns></returns>
     public abstract void ObservationsString(DataPoller recipient);
+
+    public abstract void EnvironmentReset();
   }
 }

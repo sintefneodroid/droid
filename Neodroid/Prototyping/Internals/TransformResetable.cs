@@ -10,7 +10,7 @@ namespace Neodroid.Prototyping.Internals {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override void Reset() {
+    public override void EnvironmentReset() {
       this.transform.position = this._original_position;
       this.transform.rotation = this._original_rotation;
     }

@@ -174,6 +174,12 @@ namespace Neodroid.Prototyping.Observers.Camera {
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public override void UpdateObservation() { this._grab = true; }
+    public override void UpdateObservation() {
+      this._grab = true;
+      if (this._manager.Configuration.SimulationType != SimulationType.Frame_dependent_) {
+        this._camera.Render();
+        this.UpdateBytes();
+      }
+    }
   }
 }

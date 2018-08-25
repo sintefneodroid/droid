@@ -1,8 +1,8 @@
 ﻿using Neodroid.Environments;
+using Neodroid.Utilities.Interfaces;
 using Neodroid.Utilities.Messaging.Messages;
 using Neodroid.Utilities.Unsorted;
 using UnityEngine;
-using Random = System.Random;
 
 namespace Neodroid.Prototyping.Configurables {
   /// <summary>
@@ -10,7 +10,8 @@ namespace Neodroid.Prototyping.Configurables {
   /// </summary>
   [AddComponentMenu(
       ConfigurableComponentMenuPath._ComponentMenuPath + "Vanilla" + ConfigurableComponentMenuPath._Postfix)]
-  public abstract class ConfigurableGameObject : Configurable {
+  public abstract class ConfigurableGameObject : Configurable,
+                                                 IResetable {
     /// <summary>
     ///
     /// </summary>
@@ -56,6 +57,11 @@ namespace Neodroid.Prototyping.Configurables {
     /// </summary>
     protected virtual void PreSetup() { }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    public void EnvironmentReset() { }
+
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
@@ -94,6 +100,6 @@ namespace Neodroid.Prototyping.Configurables {
     /// <param name="random_generator"></param>
     /// <returns></returns>
     /// <exception cref="System.NotImplementedException"></exception>
-    public abstract Configuration SampleConfiguration(Random random_generator);
+    public abstract Configuration SampleConfiguration(System.Random random_generator);
   }
 }

@@ -3,7 +3,6 @@ using Neodroid.Utilities.Interfaces;
 using Neodroid.Utilities.Sensors;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Object = UnityEngine.Object;
 
 #if UNITY_EDITOR
 

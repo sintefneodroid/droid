@@ -124,7 +124,7 @@ namespace Neodroid.Utilities.Messaging.Messages {
       this._full_screen = flat_simulator_configuration.FullScreen;
       this._height = flat_simulator_configuration.Height;
       this._width = flat_simulator_configuration.Width;
-      this._frame_finishes = (int)flat_simulator_configuration.WaitEvery;
+      this._frame_finishes = flat_simulator_configuration.WaitEvery;
       this._num_of_environments = flat_simulator_configuration.NumOfEnvironments;
       this.TimeScale = flat_simulator_configuration.TimeScale;
       this._reset_iterations = flat_simulator_configuration.ResetIterations;

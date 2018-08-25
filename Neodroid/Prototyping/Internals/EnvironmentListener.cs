@@ -1,34 +1,21 @@
 ﻿using System;
 using Neodroid.Environments;
 using Neodroid.Utilities.GameObjects;
+using Neodroid.Utilities.Interfaces;
 using Neodroid.Utilities.Unsorted;
 using UnityEngine;
 
 namespace Neodroid.Prototyping.Internals {
-  /// <inheritdoc />
+  /// <inheritdoc cref="PrototypingGameObject" />
   /// <summary>
   /// </summary>
   [ExecuteInEditMode]
-  public abstract class EnvironmentListener : PrototypingGameObject {
+  public abstract class EnvironmentListener : PrototypingGameObject,
+                                              IEnvironmentListener {
     /// <summary>
     ///
     /// </summary>
     public PrototypingEnvironment _Parent_Environment;
-
-    /// <summary>
-    /// 
-    /// </summary>
-    protected abstract void PreStep();
-
-    /// <summary>
-    /// 
-    /// </summary>
-    protected abstract void Step();
-
-    /// <summary>
-    /// 
-    /// </summary>
-    protected abstract void PostStep();
 
     /// <inheritdoc />
     ///  <summary>
@@ -43,8 +30,8 @@ namespace Neodroid.Prototyping.Internals {
       }
     }
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
     protected override void UnRegisterComponent() {
       if (this._Parent_Environment) {
@@ -56,5 +43,25 @@ namespace Neodroid.Prototyping.Internals {
     ///  <summary>
     ///  </summary>
     public abstract override String PrototypingTypeName { get; }
+
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public virtual void PreStep() { }
+
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public virtual void Step() { }
+
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public virtual void PostStep() { }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public virtual void EnvironmentReset() { }
   }
 }

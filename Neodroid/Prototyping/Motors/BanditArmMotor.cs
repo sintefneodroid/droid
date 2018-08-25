@@ -11,11 +11,14 @@ namespace Neodroid.Prototyping.Motors {
   public class BanditArmMotor : Motor {
     [SerializeField] Material _material;
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
     public override string PrototypingTypeName { get { return "BanditArm"; } }
 
+    /// <summary>
+    /// 
+    /// </summary>
     protected override void Setup() {
       var renderr = this.GetComponent<Renderer>();
       if (renderr) {
@@ -28,11 +31,11 @@ namespace Neodroid.Prototyping.Motors {
       }
     }
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="motion"></param>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    /// <exception cref="T:System.ArgumentOutOfRangeException"></exception>
     protected override void InnerApplyMotion(MotorMotion motion) {
       if (this._material) {
         switch ((int)motion.Strength) {

@@ -6,5 +6,9 @@ namespace Neodroid.Prototyping.Observers.Rigidbody {
       base.PreSetup();
       throw new NotImplementedException();
     }
+
+    public override void UpdateObservation() { throw new NotImplementedException(); }
+
+    public override String PrototypingTypeName { get; }
   }
 }

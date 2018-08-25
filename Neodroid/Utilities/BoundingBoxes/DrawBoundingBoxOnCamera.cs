@@ -8,7 +8,6 @@ namespace Neodroid.Utilities.BoundingBoxes {
   [RequireComponent(typeof(Camera)), ExecuteInEditMode]
   public class DrawBoundingBoxOnCamera : MonoBehaviour {
     List<Color> _colors = new List<Color>();
-    [SerializeField] Color _l_color = Color.green;
     [SerializeField] Material _line_material;
     List<Vector3[,]> _outlines = new List<Vector3[,]>();
     List<Vector3[,]> _triangles = new List<Vector3[,]>();
@@ -54,6 +53,11 @@ namespace Neodroid.Utilities.BoundingBoxes {
       GL.End();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="new_outlines"></param>
+    /// <param name="newcolor"></param>
     public void SetOutlines(Vector3[,] new_outlines, Color newcolor) {
       if (new_outlines == null) {
         return;
@@ -69,6 +73,12 @@ namespace Neodroid.Utilities.BoundingBoxes {
       }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="new_outlines"></param>
+    /// <param name="newcolor"></param>
+    /// <param name="new_triangles"></param>
     public void SetOutlines(Vector3[,] new_outlines, Color newcolor, Vector3[,] new_triangles) {
       if (new_outlines == null) {
         return;

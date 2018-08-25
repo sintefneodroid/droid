@@ -98,6 +98,11 @@ namespace Neodroid.Prototyping.Observers.Camera {
       }
 
       this._grab = true;
+      if (this._manager.Configuration.SimulationType != SimulationType.Frame_dependent_) {
+        this._camera.Render();
+
+        this.UpdateArray();
+      }
     }
   }
 }

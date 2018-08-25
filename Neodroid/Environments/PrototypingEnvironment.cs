@@ -29,7 +29,7 @@ namespace Neodroid.Environments {
                                         IHasRegister<ConfigurableGameObject>,
                                         IHasRegister<Resetable>,
                                         IHasRegister<Displayer>,
-                                        IHasRegister<EnvironmentListener> {
+                                        IHasRegister<IEnvironmentListener> {
     /// <summary>
     ///
     /// </summary>hea
@@ -312,8 +312,8 @@ namespace Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-    public Dictionary<string, EnvironmentListener> Listeners { get; } =
-      new Dictionary<string, EnvironmentListener>();
+    public Dictionary<string, IEnvironmentListener> Listeners { get; } =
+      new Dictionary<string, IEnvironmentListener>();
 
     /// <inheritdoc />
     /// <summary>
@@ -436,7 +436,7 @@ namespace Neodroid.Environments {
           this.UpdateConfigurableValues();
           this.UpdateObserversData();
         } else {
-          this.Reset();
+          this.EnvironmentReset();
           this._reset_i += 1;
         }
 
@@ -589,11 +589,11 @@ namespace Neodroid.Environments {
     /// <param name="resetable"></param>
     public void Register(Resetable resetable) { this.Register(resetable, resetable.Identifier); }
 
-    public void Register(EnvironmentListener environment_listener) {
+    public void Register(IEnvironmentListener environment_listener) {
       this.Register(environment_listener, environment_listener.Identifier);
     }
 
-    public void Register(EnvironmentListener environment_listener, string identifier) {
+    public void Register(IEnvironmentListener environment_listener, string identifier) {
       if (!this.Listeners.ContainsKey(identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
@@ -1046,11 +1046,11 @@ namespace Neodroid.Environments {
     /// <summary>
     ///
     /// </summary>
-    protected void Reset() {
+    public override void EnvironmentReset() {
       this._Lastest_Reset_Time = Time.time;
       this.CurrentFrameNumber = 0;
       if (this._objective_function) {
-        this._objective_function.Reset();
+        this._objective_function.EnvironmentReset();
       }
 
       this.SetEnvironmentPoses(this._tracked_game_objects, this._reset_positions, this._reset_rotations);
@@ -1234,22 +1234,32 @@ namespace Neodroid.Environments {
       }
       #endif
 
+      foreach (var configurable in this.Configurables.Values) {
+        if (configurable != null) {
+          configurable.EnvironmentReset();
+        }
+      }
+
       foreach (var resetable in this.Resetables.Values) {
         if (resetable != null) {
-          resetable.Reset();
+          resetable.EnvironmentReset();
         }
       }
 
       foreach (var actor in this.Actors.Values) {
         if (actor) {
-          actor.Reset();
+          actor.EnvironmentReset();
         }
       }
 
       foreach (var observer in this.Observers.Values) {
         if (observer) {
-          observer.Reset();
+          observer.EnvironmentReset();
         }
+      }
+
+      foreach (var listener in this.Listeners.Values) {
+        listener?.EnvironmentReset();
       }
     }
 

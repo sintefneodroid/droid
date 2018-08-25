@@ -4,6 +4,7 @@ using Neodroid.Managers;
 using Neodroid.Prototyping.Evaluation;
 using Neodroid.Utilities.EventRecipients;
 using Neodroid.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
+using UnityEditor.Events;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -38,14 +39,14 @@ namespace Neodroid.Utilities.Unsorted {
           for (var i = 0; i < count; i++) {
             if (poller.PollEvent.GetPersistentTarget(i) == null
                 || poller.PollEvent.GetPersistentMethodName(i) == null) {
-              UnityEditor.Events.UnityEventTools.RemovePersistentListener(poller.PollEvent, i);
+              UnityEventTools.RemovePersistentListener(poller.PollEvent, i);
             }
           }
         }
 
         count = poller.PollEvent.GetPersistentEventCount();
         if (count == 0) {
-          UnityEditor.Events.UnityEventTools.AddObjectPersistentListener(poller.PollEvent, f, poller);
+          UnityEventTools.AddObjectPersistentListener(poller.PollEvent, f, poller);
           poller.PollEvent.SetPersistentListenerState(0, this._unity_event_call_state);
         } else if (count > 0 && poller.PollEvent.GetPersistentTarget(0) != poller) {
           if (this.Debugging) {
@@ -61,14 +62,14 @@ namespace Neodroid.Utilities.Unsorted {
         //poller.PollEvent.RemoveAllListeners(); // Only non-persistant listeners.
         for (var i = 0; i < count; i++) {
           if (poller.GetPersistentTarget(i) == null || poller.GetPersistentMethodName(i) == null) {
-            UnityEditor.Events.UnityEventTools.RemovePersistentListener(poller, i);
+            UnityEventTools.RemovePersistentListener(poller, i);
           }
         }
       }
 
       count = poller.GetPersistentEventCount();
       if (count == 0) {
-        UnityEditor.Events.UnityEventTools.AddVoidPersistentListener(poller, f);
+        UnityEventTools.AddVoidPersistentListener(poller, f);
         poller.SetPersistentListenerState(0, this._unity_event_call_state);
       } else if (count > 0) {
         if (this.Debugging) {
@@ -83,14 +84,14 @@ namespace Neodroid.Utilities.Unsorted {
         //poller.PollEvent.RemoveAllListeners(); // Only non-persistant listeners.
         for (var i = 0; i < count; i++) {
           if (poller.GetPersistentTarget(i) == null || poller.GetPersistentMethodName(i) == null) {
-            UnityEditor.Events.UnityEventTools.RemovePersistentListener(poller, i);
+            UnityEventTools.RemovePersistentListener(poller, i);
           }
         }
       }
 
       count = poller.GetPersistentEventCount();
       if (count == 0) {
-        UnityEditor.Events.UnityEventTools.AddPersistentListener(poller, f);
+        UnityEventTools.AddPersistentListener(poller, f);
         poller.SetPersistentListenerState(0, this._unity_event_call_state);
       } else if (count > 0) {
         if (this.Debugging) {

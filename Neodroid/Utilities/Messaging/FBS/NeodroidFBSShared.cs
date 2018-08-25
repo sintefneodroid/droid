@@ -24,9 +24,9 @@ namespace Neodroid.Utilities.Messaging.FBS
       VectorOffset posesOffset = default(VectorOffset),
       VectorOffset bodiesOffset = default(VectorOffset)) {
     builder.StartObject(2);
-    FUnobservables.AddBodies(builder, bodiesOffset);
-    FUnobservables.AddPoses(builder, posesOffset);
-    return FUnobservables.EndFUnobservables(builder);
+    AddBodies(builder, bodiesOffset);
+    AddPoses(builder, posesOffset);
+    return EndFUnobservables(builder);
   }
 
   public static void StartFUnobservables(FlatBufferBuilder builder) { builder.StartObject(2); }

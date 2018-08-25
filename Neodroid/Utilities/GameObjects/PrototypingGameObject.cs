@@ -7,8 +7,8 @@ namespace Neodroid.Utilities.GameObjects {
   /// <summary>
   ///
   /// </summary>
-  public class PrototypingGameObject : MonoBehaviour,
-                                       IRegisterable {
+  public abstract class PrototypingGameObject : MonoBehaviour,
+                                                IRegisterable {
     /// <summary>
     ///
     /// </summary>
@@ -158,13 +158,13 @@ namespace Neodroid.Utilities.GameObjects {
     ///
     /// </summary>
     /// <exception cref="System.NotImplementedException"></exception>
-    protected virtual void UnRegisterComponent() { throw new NotImplementedException(); }
+    protected abstract void UnRegisterComponent();
 
     /// <summary>
     ///
     /// </summary>
     /// <exception cref="System.NotImplementedException"></exception>
-    protected virtual void RegisterComponent() { throw new NotImplementedException(); }
+    protected abstract void RegisterComponent();
 
     /// <summary>
     ///
@@ -187,7 +187,7 @@ namespace Neodroid.Utilities.GameObjects {
     /// <summary>
     ///
     /// </summary>
-    public virtual string PrototypingTypeName { get { return "PrototypingGameObject"; } }
+    public virtual string PrototypingTypeName { get { return this.GetType().Name; } }
 
     /// <inheritdoc />
     /// <summary>

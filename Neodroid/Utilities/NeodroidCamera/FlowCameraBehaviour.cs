@@ -41,13 +41,19 @@ namespace Neodroid.Utilities.NeodroidCamera {
     /// <param name="destination"></param>
     void OnRenderImage(RenderTexture source, RenderTexture destination) {
       if (this._material == null) {
-        this._material = new Material(this._shader) {hideFlags = HideFlags.DontSave};
+        var shader = this._shader;
+        if (shader != null) {
+          this._material = new Material(shader) {hideFlags = HideFlags.DontSave};
+        }
       }
 
-      this._material.SetColor("_BackgroundColor", this._background_color);
-      this._material.SetFloat("_Blending", this._blending);
-      this._material.SetFloat("_Amplitude", this._overlay_amplitude);
-      Graphics.Blit(source, destination, this._material);
+      var material = this._material;
+      if (material != null) {
+        material.SetColor("_BackgroundColor", this._background_color);
+        material.SetFloat("_Blending", this._blending);
+        material.SetFloat("_Amplitude", this._overlay_amplitude);
+        Graphics.Blit(source, destination, material);
+      }
     }
 
     /// <summary>

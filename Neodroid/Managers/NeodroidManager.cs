@@ -11,7 +11,6 @@ using Neodroid.Utilities.ScriptableObjects;
 using UnityEditor;
 using UnityEngine;
 using Object = System.Object;
-using SimulatorConfiguration = Neodroid.Utilities.ScriptableObjects.SimulatorConfiguration;
 
 #if UNITY_EDITOR
 
@@ -323,7 +322,7 @@ namespace Neodroid.Managers {
     /// <summary>
     ///
     /// </summary>
-    protected Reaction[] _Current_Reactions = new Reaction[] { };
+    protected Reaction[] _Current_Reactions = { };
 
     [SerializeField] bool _has_stepped;
 
@@ -635,9 +634,7 @@ namespace Neodroid.Managers {
             Debug.Log($"Skipping frame, {this._skip_frame_i}/{this.Configuration.FrameSkips}");
           }
           #endif
-          if (this.Configuration.ReplayReactionInSkips) {
-            return;
-          }
+          if (this.Configuration.ReplayReactionInSkips) { }
         }
       }
     }

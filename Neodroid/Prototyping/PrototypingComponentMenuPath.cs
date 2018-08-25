@@ -3,6 +3,6 @@
   /// 
   /// </summary>
   public static class PrototypingComponentMenuPath {
-    public const string _ComponentMenuPath = "Neodroid/Prototyping/";
+    public const string _ComponentMenuPath = "Neodroid/" + "Prototyping/";
   }
 }

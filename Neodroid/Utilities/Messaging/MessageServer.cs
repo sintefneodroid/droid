@@ -6,6 +6,7 @@ using FlatBuffers;
 using Neodroid.Utilities.Messaging.FBS;
 using Neodroid.Utilities.Messaging.Messages;
 using NetMQ;
+using NetMQ.Sockets;
 using UnityEngine;
 
 namespace Neodroid.Utilities.Messaging {
@@ -30,9 +31,9 @@ namespace Neodroid.Utilities.Messaging {
     /// </summary>
     Thread _polling_thread;
     #if NEODROID_DEBUG
-    int _last_send_frame_number = 0;
+    int _last_send_frame_number;
 
-    float _last_send_time = 0;
+    float _last_send_time;
     #endif
 
     /// <summary>
@@ -70,7 +71,7 @@ namespace Neodroid.Utilities.Messaging {
     /// <summary>
     ///
     /// </summary>
-    NetMQ.Sockets.ResponseSocket _socket;
+    ResponseSocket _socket;
 
     //PairSocket _socket;
     /// <summary>
@@ -345,7 +346,7 @@ namespace Neodroid.Utilities.Messaging {
         ForceDotNet.Force();
       }
 
-      this._socket = new NetMQ.Sockets.ResponseSocket();
+      this._socket = new ResponseSocket();
     }
 
     public MessageServer(bool debug = false) : this("127.0.0.1", 6969, false, debug) { }

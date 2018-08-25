@@ -25,8 +25,8 @@ namespace Neodroid.Prototyping.Actors {
 
     public override string PrototypingTypeName { get { return "KillableActor"; } }
 
-    public override void Reset() {
-      base.Reset();
+    public override void EnvironmentReset() {
+      base.EnvironmentReset();
 
       this._is_alive = true;
     }

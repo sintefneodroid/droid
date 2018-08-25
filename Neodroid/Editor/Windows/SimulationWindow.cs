@@ -282,6 +282,7 @@ namespace Neodroid.Editor.Windows {
                   }
                 }
 
+/*
                 foreach (var listener in listeners) {
                   if (listener.Value != null) {
                     EditorGUILayout.BeginVertical("Box");
@@ -293,7 +294,7 @@ namespace Neodroid.Editor.Windows {
                     EditorGUILayout.EndVertical();
                   }
                 }
-
+*/
                 EditorGUILayout.EndVertical();
 
                 EditorGUILayout.EndToggleGroup();

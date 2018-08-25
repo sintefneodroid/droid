@@ -15,24 +15,19 @@ namespace Neodroid.Utilities.Messaging.Messages {
     public override string ToString() {
       var motions_str = "";
       if (this.Motions != null) {
-        motions_str = Enumerable.Aggregate(
-            this.Motions,
-            motions_str,
-            (current, motion) => current + (motion + "\n"));
+        motions_str = this.Motions.Aggregate(motions_str, (current, motion) => current + (motion + "\n"));
       }
 
       var configurations_str = "";
       if (this.Configurations != null) {
-        configurations_str = Enumerable.Aggregate(
-            this.Configurations,
+        configurations_str = this.Configurations.Aggregate(
             configurations_str,
             (current, configuration) => current + (configuration + "\n"));
       }
 
       var displayables_str = "";
       if (this.Displayables != null) {
-        displayables_str = Enumerable.Aggregate(
-            this.Displayables,
+        displayables_str = this.Displayables.Aggregate(
             displayables_str,
             (current, displayable) => current + (displayable + "\n"));
       }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Neodroid.Environments;
+using Neodroid.Prototyping.Internals;
 using Neodroid.Prototyping.Motors;
 using Neodroid.Utilities.BoundingBoxes;
 using Neodroid.Utilities.GameObjects;
@@ -16,7 +17,8 @@ namespace Neodroid.Prototyping.Actors {
   [AddComponentMenu(ActorComponentMenuPath._ComponentMenuPath + "Vanilla" + ActorComponentMenuPath._Postfix),
    ExecuteInEditMode]
   public class Actor : PrototypingGameObject,
-                       IHasRegister<Motor> {
+                       IHasRegister<Motor>,
+                       IResetable {
     /// <summary>
     ///
     /// </summary>
@@ -185,14 +187,14 @@ namespace Neodroid.Prototyping.Actors {
     /// <param name="motor"></param>
     public void UnRegister(Motor motor) { this.UnRegisterMotor(motor.Identifier); }
 
-    /// <summary>
-    ///
-    /// </summary>
-    public virtual void Reset() {
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    public virtual void EnvironmentReset() {
       if (this._Motors != null) {
         foreach (var motor in this._Motors.Values) {
           if (motor != null) {
-            motor.Reset();
+            motor.EnvironmentReset();
           }
         }
       }

@@ -1,8 +1,6 @@
-﻿using System;
-using Neodroid.Utilities.BoundingBoxes;
+﻿using Neodroid.Utilities.BoundingBoxes;
 using Neodroid.Utilities.Unsorted;
 using UnityEngine;
-using Object = System.Object;
 
 namespace Neodroid.Prototyping.Evaluation {
   /// <inheritdoc />
@@ -128,7 +126,7 @@ namespace Neodroid.Prototyping.Evaluation {
     ///
     /// </summary>
     [SerializeField]
-    float _solved_reward = 1.0f;
+    float _solved_reward = 1000.0f;
 
     /// <summary>
     ///

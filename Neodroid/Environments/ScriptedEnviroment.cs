@@ -216,5 +216,7 @@ namespace Neodroid.Environments {
     public override void ObservationsString(DataPoller recipient) {
       recipient.PollData(this.CollectState().ToString());
     }
+
+    public override void EnvironmentReset() { }
   }
 }

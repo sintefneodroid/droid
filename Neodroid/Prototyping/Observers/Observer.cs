@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Neodroid.Environments;
+using Neodroid.Prototyping.Internals;
 using Neodroid.Utilities.GameObjects;
 using Neodroid.Utilities.Interfaces;
 using Neodroid.Utilities.Unsorted;
@@ -13,7 +14,8 @@ namespace Neodroid.Prototyping.Observers {
   /// </summary>
   [ExecuteInEditMode, Serializable]
   public abstract class Observer : PrototypingGameObject,
-                                   IHasFloatEnumarable {
+                                   IHasFloatEnumarable,
+                                   IResetable {
     /// <summary>
     /// 
     /// </summary>
@@ -21,11 +23,6 @@ namespace Neodroid.Prototyping.Observers {
       get { return this._environment; }
       set { this._environment = value; }
     }
-
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "Observer"; } }
 
     /// <summary>
     /// 
@@ -39,6 +36,8 @@ namespace Neodroid.Prototyping.Observers {
     /// <summary>
     /// </summary>
     public virtual IEnumerable<float> FloatEnumerable { get; protected set; }
+
+    //protected abstract void UpdateFloatEnumerable(IEnumerable<float> vals);
 
     /// <inheritdoc />
     /// <summary>
@@ -73,7 +72,7 @@ namespace Neodroid.Prototyping.Observers {
     /// <summary>
     /// 
     /// </summary>
-    public virtual void UpdateObservation() { }
+    public abstract void UpdateObservation();
 
     /// <summary>
     /// 
@@ -87,11 +86,6 @@ namespace Neodroid.Prototyping.Observers {
       }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    public virtual void Reset() { }
-
     #region Fields
 
     [Header("References", order = 99), SerializeField]
@@ -101,5 +95,10 @@ namespace Neodroid.Prototyping.Observers {
     bool _normalise_observation;
 
     #endregion
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void EnvironmentReset() { }
   }
 }

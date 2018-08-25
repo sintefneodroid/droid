@@ -37,17 +37,17 @@ namespace Neodroid.Utilities.Unsorted {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreStep() { }
+    public override void PreStep() { }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void Step() { this.HandleStep(); }
+    public override void Step() { this.HandleStep(); }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PostStep() { }
+    public override void PostStep() { }
 
     /// <inheritdoc />
     /// <summary>

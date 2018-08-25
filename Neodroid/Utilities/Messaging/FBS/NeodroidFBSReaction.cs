@@ -3,6 +3,7 @@
 // </auto-generated>
 
 using System;
+using System.Text;
 using FlatBuffers;
 
 namespace Neodroid.Utilities.Messaging.FBS
@@ -72,7 +73,7 @@ public struct FReaction : IFlatbufferObject
   }
 
   public static FReaction? __lookup_by_key(int vectorLocation, string key, ByteBuffer bb) {
-    byte[] byteKey = System.Text.Encoding.UTF8.GetBytes(key);
+    byte[] byteKey = Encoding.UTF8.GetBytes(key);
     int span = bb.GetInt(vectorLocation - 4);
     int start = 0;
     while (span != 0) {
@@ -139,10 +140,10 @@ public struct FMotion : IFlatbufferObject
       StringOffset motor_nameOffset = default(StringOffset),
       double strength = 0.0) {
     builder.StartObject(3);
-    FMotion.AddStrength(builder, strength);
-    FMotion.AddMotorName(builder, motor_nameOffset);
-    FMotion.AddActorName(builder, actor_nameOffset);
-    return FMotion.EndFMotion(builder);
+    AddStrength(builder, strength);
+    AddMotorName(builder, motor_nameOffset);
+    AddActorName(builder, actor_nameOffset);
+    return EndFMotion(builder);
   }
 
   public static void StartFMotion(FlatBufferBuilder builder) { builder.StartObject(3); }
@@ -162,7 +163,7 @@ public struct FMotion : IFlatbufferObject
   }
 
   public static FMotion? __lookup_by_key(int vectorLocation, string key, ByteBuffer bb) {
-    byte[] byteKey = System.Text.Encoding.UTF8.GetBytes(key);
+    byte[] byteKey = Encoding.UTF8.GetBytes(key);
     int span = bb.GetInt(vectorLocation - 4);
     int start = 0;
     while (span != 0) {
@@ -200,9 +201,9 @@ public struct FConfiguration : IFlatbufferObject
       StringOffset configurable_nameOffset = default(StringOffset),
       double configurable_value = 0.0) {
     builder.StartObject(2);
-    FConfiguration.AddConfigurableValue(builder, configurable_value);
-    FConfiguration.AddConfigurableName(builder, configurable_nameOffset);
-    return FConfiguration.EndFConfiguration(builder);
+    AddConfigurableValue(builder, configurable_value);
+    AddConfigurableName(builder, configurable_nameOffset);
+    return EndFConfiguration(builder);
   }
 
   public static void StartFConfiguration(FlatBufferBuilder builder) { builder.StartObject(2); }
@@ -220,7 +221,7 @@ public struct FConfiguration : IFlatbufferObject
   }
 
   public static FConfiguration? __lookup_by_key(int vectorLocation, string key, ByteBuffer bb) {
-    byte[] byteKey = System.Text.Encoding.UTF8.GetBytes(key);
+    byte[] byteKey = Encoding.UTF8.GetBytes(key);
     int span = bb.GetInt(vectorLocation - 4);
     int start = 0;
     while (span != 0) {
@@ -260,10 +261,10 @@ public struct FDisplayable : IFlatbufferObject
       FDisplayableValue displayable_value_type = FDisplayableValue.NONE,
       int displayable_valueOffset = 0) {
     builder.StartObject(3);
-    FDisplayable.AddDisplayableValue(builder, displayable_valueOffset);
-    FDisplayable.AddDisplayableName(builder, displayable_nameOffset);
-    FDisplayable.AddDisplayableValueType(builder, displayable_value_type);
-    return FDisplayable.EndFDisplayable(builder);
+    AddDisplayableValue(builder, displayable_valueOffset);
+    AddDisplayableName(builder, displayable_nameOffset);
+    AddDisplayableValueType(builder, displayable_value_type);
+    return EndFDisplayable(builder);
   }
 
   public static void StartFDisplayable(FlatBufferBuilder builder) { builder.StartObject(3); }
@@ -282,7 +283,7 @@ public struct FDisplayable : IFlatbufferObject
   }
 
   public static FDisplayable? __lookup_by_key(int vectorLocation, string key, ByteBuffer bb) {
-    byte[] byteKey = System.Text.Encoding.UTF8.GetBytes(key);
+    byte[] byteKey = Encoding.UTF8.GetBytes(key);
     int span = bb.GetInt(vectorLocation - 4);
     int start = 0;
     while (span != 0) {

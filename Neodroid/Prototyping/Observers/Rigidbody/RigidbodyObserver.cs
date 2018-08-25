@@ -73,7 +73,7 @@ namespace Neodroid.Prototyping.Observers.Rigidbody {
       if (this._differential && update_time_difference > 0) {
         var vel_diff = this.Velocity - this._rigidbody.velocity;
         var ang_diff = this.AngularVelocity - this._rigidbody.angularVelocity;
-        
+
         var vel_magnitude = vel_diff.magnitude;
         if (vel_magnitude > 0) {
           this.Velocity = vel_diff / (update_time_difference + float.Epsilon);

@@ -17,8 +17,14 @@ namespace Neodroid.Prototyping.Observers.Transform {
 
     [SerializeField] Space3 _position_space = new Space3(10);
 
+    /// <summary>
+    /// 
+    /// </summary>
     public override string PrototypingTypeName { get { return "Position"; } }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public Vector3 ObservationValue {
       get { return this._position; }
       set {
@@ -26,13 +32,22 @@ namespace Neodroid.Prototyping.Observers.Transform {
       }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public Space3 TripleSpace { get; } = new Space3();
 
+    /// <summary>
+    /// 
+    /// </summary>
     protected override void PreSetup() {
       this.FloatEnumerable =
           new[] {this.ObservationValue.x, this.ObservationValue.y, this.ObservationValue.z};
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public override void UpdateObservation() {
       if (this.ParentEnvironment && this._space == ObservationSpace.Environment_) {
         this.ObservationValue = this.ParentEnvironment.TransformPosition(this.transform.position);

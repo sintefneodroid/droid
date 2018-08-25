@@ -36,7 +36,7 @@ namespace Neodroid.Environments {
     public override void PostStep() {
       if (this._Terminated) {
         this._Terminated = false;
-        this.Reset();
+        this.EnvironmentReset();
 
         this.RandomiseEnvironment();
       }

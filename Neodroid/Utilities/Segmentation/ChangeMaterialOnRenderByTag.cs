@@ -55,7 +55,8 @@ namespace Neodroid.Utilities.Segmentation {
     void Awake() {
       this._block = new MaterialPropertyBlock();
       this._tag_colors.Clear();
-      if (this._Colors_By_Tag.Length > 0) {
+      var colors_by_tag = this._Colors_By_Tag;
+      if (colors_by_tag != null && colors_by_tag.Length > 0) {
         foreach (var tag_color in this._Colors_By_Tag) {
           if (!this._tag_colors.ContainsKey(tag_color._Tag)) {
             this._tag_colors.Add(tag_color._Tag, tag_color._Col);
@@ -64,9 +65,12 @@ namespace Neodroid.Utilities.Segmentation {
       }
 
       if (this._segmentation) {
-        foreach (var tag_color in this._segmentation._Color_By_Tags) {
-          if (!this._tag_colors.ContainsKey(tag_color._Tag)) {
-            this._tag_colors.Add(tag_color._Tag, tag_color._Col);
+        var segmentation_color_by_tags = this._segmentation._Color_By_Tags;
+        if (segmentation_color_by_tags != null) {
+          foreach (var tag_color in segmentation_color_by_tags) {
+            if (!this._tag_colors.ContainsKey(tag_color._Tag)) {
+              this._tag_colors.Add(tag_color._Tag, tag_color._Col);
+            }
           }
         }
       }

@@ -32,7 +32,7 @@ namespace Neodroid.Prototyping.Observers.Rigidbody {
     public override void UpdateObservation() {
       this.Velocity = this._rigidbody.velocity;
 
-      this.FloatEnumerable = new[] {this.Velocity.x, this.Velocity.y, this.Velocity.z,};
+      this.FloatEnumerable = new[] {this.Velocity.x, this.Velocity.y, this.Velocity.z};
     }
 
     /// <inheritdoc />

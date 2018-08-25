@@ -40,8 +40,8 @@ namespace Neodroid.Utilities.Unsorted.SceneReference.Editor {
 
     #endregion -- Private Variables ---------------------------------------
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="position"></param>
     /// <param name="property"></param>
