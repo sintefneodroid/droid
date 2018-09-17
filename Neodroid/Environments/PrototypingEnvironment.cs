@@ -871,10 +871,10 @@ namespace Neodroid.Environments {
       this._poses = new Transform[length];
       for (var i = 0; i < length; i++) {
         var go = this._tracked_game_objects[i];
-        var transf = go.transform;
-        this._reset_positions[i] = transf.position;
-        this._reset_rotations[i] = transf.rotation;
-        this._poses[i] = transf;
+        var trans = go.transform;
+        this._reset_positions[i] = trans.position;
+        this._reset_rotations[i] = trans.rotation;
+        this._poses[i] = trans;
         var maybe_joint = go.GetComponent<Joint>();
         if (maybe_joint != null) {
           var maybe_joint_fix = maybe_joint.GetComponent<JointFix>();

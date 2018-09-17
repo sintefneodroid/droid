@@ -8,7 +8,7 @@ namespace Neodroid.Prototyping.Observers.Transform {
    ExecuteInEditMode, Serializable]
   public class RotationObserver : Observer,
                                   IHasQuadruple {
-    [Header("Specfic", order = 102), SerializeField]
+    [Header("Specific", order = 102), SerializeField]
     ObservationSpace _space = ObservationSpace.Environment_;
 
     [Header("Observation", order = 103), SerializeField]

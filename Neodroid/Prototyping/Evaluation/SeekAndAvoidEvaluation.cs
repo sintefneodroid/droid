@@ -38,7 +38,7 @@ namespace Neodroid.Prototyping.Evaluation {
         var is_over = game_objects != null && (game_objects.Count == 0 || dist > this._end_game_radius);
 
         if (is_over) {
-          this.ParentEnvironment.Terminate($"Ending Game: Dist {dist} radius { this._spawn_radius}");
+          this.ParentEnvironment.Terminate($"Ending Game: Dist {dist} radius {this._spawn_radius}");
         }
       }
 
@@ -87,7 +87,7 @@ namespace Neodroid.Prototyping.Evaluation {
 
     void OnChildTriggerEnter(GameObject child_game_object, Collider collider1) {
       #if NEODROID_DEBUG
-      if(this.Debugging) {
+      if (this.Debugging) {
         print($"{child_game_object} is colliding with {collider1}");
       }
       #endif

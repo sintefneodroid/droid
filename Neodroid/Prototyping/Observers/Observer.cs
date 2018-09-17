@@ -14,7 +14,7 @@ namespace Neodroid.Prototyping.Observers {
   /// </summary>
   [ExecuteInEditMode, Serializable]
   public abstract class Observer : PrototypingGameObject,
-                                   IHasFloatEnumarable,
+                                   IHasFloatEnumerable,
                                    IResetable {
     /// <summary>
     /// 

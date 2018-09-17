@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Neodroid.Utilities.Plotting;
 using Neodroid.Utilities.Structs;
 using UnityEngine;
 
-namespace Neodroid.Prototyping.Displayers {
+namespace Neodroid.Prototyping.Displayers.ScatterPlots {
+  /// <summary>
+  /// 
+  /// </summary>
   [ExecuteInEditMode,
    AddComponentMenu(
        DisplayerComponentMenuPath._ComponentMenuPath + "ScatterPlot" + DisplayerComponentMenuPath._Postfix),
    RequireComponent(typeof(ParticleSystem))]
-  public class ScatterPlotDisplayer : Displayer {
+  public class TextScatterPlotDisplayer : Displayer {
     ParticleSystem _particle_system;
     ParticleSystemRenderer _particle_system_renderer;
 
@@ -19,11 +23,11 @@ namespace Neodroid.Prototyping.Displayers {
 
     ParticleSystem.MainModule _particle_system_main_module;
     ParticleSystem.Particle[] _particles;
-    [SerializeField] float[] _values;
+    [SerializeField] string[] _values;
     [SerializeField] Gradient _gradient;
     [SerializeField] float _size = 0.6f;
     [SerializeField] bool _plot_random_series;
-    List<float> _vs = new List<float>();
+    List<string> _vs = new List<string>();
 
     protected override void Setup() {
       this._particle_system = this.GetComponent<ParticleSystem>();
@@ -47,8 +51,7 @@ namespace Neodroid.Prototyping.Displayers {
       if (this._gradient == null) {
         this._gradient = new Gradient {
             colorKeys = new[] {
-                new GradientColorKey(new Color(1, 0, 0), 0f),
-                new GradientColorKey(new Color(0, 1, 0), 1f)
+                new GradientColorKey(new Color(1, 0, 0), 0f), new GradientColorKey(new Color(0, 1, 0), 1f)
             }
         };
       }
@@ -61,7 +64,7 @@ namespace Neodroid.Prototyping.Displayers {
       }
       #endif
 
-      this._values = new[] {(float)value};
+      this._values = new[] {value.ToString(CultureInfo.InvariantCulture)};
       this.PlotSeries(this._values);
     }
 
@@ -76,7 +79,7 @@ namespace Neodroid.Prototyping.Displayers {
         Debug.Log("Applying the float array " + s + " To " + this.name);
       }
       #endif
-      this._values = values;
+      this._values = values.Select(v => v.ToString(CultureInfo.InvariantCulture)).ToArray();
       this.PlotSeries(values);
     }
 
@@ -89,7 +92,7 @@ namespace Neodroid.Prototyping.Displayers {
 
       this._vs.Clear();
       foreach (var value in values.Split(',')) {
-        this._vs.Add(float.Parse(value));
+        this._vs.Add(value);
       }
 
       this._values = this._vs.ToArray();
@@ -138,7 +141,7 @@ namespace Neodroid.Prototyping.Displayers {
       }
       #endif
 
-      this._values = new[] {values};
+      this._values = new[] {values.ToString(CultureInfo.InvariantCulture)};
       this.PlotSeries(this._values);
     }
 
@@ -189,6 +192,28 @@ namespace Neodroid.Prototyping.Displayers {
         this._particles[i].position = Vector3.one * i;
         var clamped = Math.Min(Math.Max(0.0f, point), 1.0f);
         this._particles[i].startColor = this._gradient.Evaluate(clamped);
+        this._particles[i].startSize = 1f;
+        i++;
+      }
+
+      this._particle_system.SetParticles(this._particles, points.Length);
+    }
+
+    public void PlotSeries(string[] points) {
+      if (this._particles == null || this._particles.Length != points.Length) {
+        this._particles = new ParticleSystem.Particle[points.Length];
+      }
+
+      #if NEODROID_DEBUG
+      if (this.Debugging) {
+        Debug.Log("Applying the series " + points + " To " + this.name);
+      }
+      #endif
+
+      var i = 0;
+      foreach (var point in points) {
+        this._particles[i].remainingLifetime = 100000;
+        this._particles[i].position = Vector3.one * i;
         this._particles[i].startSize = 1f;
         i++;
       }

@@ -11,6 +11,9 @@ namespace Neodroid.Utilities.Interfaces {
     /// </summary>
     Quaternion ObservationValue { get; }
 
+    /// <summary>
+    /// 
+    /// </summary>
     Space4 QuadSpace { get; }
   }
 }

@@ -19,6 +19,9 @@
     Yz_
   }
 
+  /// <summary>
+  /// 
+  /// </summary>
   public enum Dimension3DCombination {
     /// <summary>
     /// 

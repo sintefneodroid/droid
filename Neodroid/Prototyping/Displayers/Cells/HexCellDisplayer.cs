@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.Linq;
 using Neodroid.Utilities.Plotting;
 using Neodroid.Utilities.Structs;
 using Neodroid.Utilities.Unsorted;
 using UnityEngine;
 
-namespace Neodroid.Prototyping.Displayers {
+namespace Neodroid.Prototyping.Displayers.Cells {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
   [ExecuteInEditMode,
    AddComponentMenu(
-       DisplayerComponentMenuPath._ComponentMenuPath
-       + "IndexedScatterPlot"
-       + DisplayerComponentMenuPath._Postfix)]
-  public class IndexedScatterPlotDisplayer : Displayer {
+       DisplayerComponentMenuPath._ComponentMenuPath + "VectorField" + DisplayerComponentMenuPath._Postfix)]
+  public class HexCellDisplayer : QuadCellDisplayer {
     [SerializeField] float[] _values;
     [SerializeField] bool _retain_last_plot = true;
     [SerializeField] bool _plot_random_series;
@@ -56,7 +53,7 @@ namespace Neodroid.Prototyping.Displayers {
     ///
     /// </summary>
     /// <param name="points"></param>
-    public void ScatterPlot(Vector3[] points) { }
+    public new void ScatterPlot(Vector3[] points) { }
 
     /*public void PlotSeries(float[] points) {
 
@@ -80,7 +77,7 @@ namespace Neodroid.Prototyping.Displayers {
     ///
     /// </summary>
     /// <param name="points"></param>
-    public void PlotSeries(Points.ValuePoint[] points) {
+    public new void PlotSeries(Points.ValuePoint[] points) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
         Debug.Log("Plotting value points");
@@ -109,9 +106,6 @@ namespace Neodroid.Prototyping.Displayers {
             break;
           case 5:
             DrawArrow.ForDebug(point._Pos, Vector3.right, Color.cyan);
-            break;
-
-          default:
             break;
         }
       }

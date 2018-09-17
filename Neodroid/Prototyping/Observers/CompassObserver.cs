@@ -29,15 +29,13 @@ namespace Neodroid.Prototyping.Observers {
     /// </summary>
     [SerializeField]
     Space3 _position_space = new Space3 {
-        _Decimal_Granularity = 1,
-        _Max_Values = Vector3.one,
-        _Min_Values = -Vector3.one
+        _Decimal_Granularity = 1, _Max_Values = Vector3.one, _Min_Values = -Vector3.one
     };
 
     /// <summary>
     ///
     /// </summary>
-    [Header("Specfic", order = 102), SerializeField]
+    [Header("Specific", order = 102), SerializeField]
     UnityEngine.Transform _target;
 
     /// <inheritdoc />
@@ -45,6 +43,9 @@ namespace Neodroid.Prototyping.Observers {
     /// </summary>
     public override string PrototypingTypeName { get { return "Compass"; } }
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
     public Space2 ObservationSpace2D {
       get {
         return new Space2(this._position_space._Decimal_Granularity) {

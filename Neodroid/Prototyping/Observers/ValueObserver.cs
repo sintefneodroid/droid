@@ -3,6 +3,9 @@ using Neodroid.Utilities.Structs;
 using UnityEngine;
 
 namespace Neodroid.Prototyping.Observers {
+  /// <inheritdoc cref="Observer" />
+  /// <summary>
+  /// </summary>
   [AddComponentMenu(
        ObserverComponentMenuPath._ComponentMenuPath + "Value" + ObserverComponentMenuPath._Postfix),
    ExecuteInEditMode]

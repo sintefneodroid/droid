@@ -2,8 +2,8 @@
 using UnityEngine;
 
 namespace Neodroid.Prototyping.Observers.Rays {
+  /// <inheritdoc cref="Observer" />
   /// <summary>
-  /// 
   /// </summary>
   [AddComponentMenu(
       ObserverComponentMenuPath._ComponentMenuPath + "Adjacency" + ObserverComponentMenuPath._Postfix)]
@@ -20,7 +20,7 @@ namespace Neodroid.Prototyping.Observers.Rays {
     /// <summary>
     /// 
     /// </summary>
-    public override string PrototypingTypeName { get { return "Adjencency"; } }
+    public override string PrototypingTypeName { get { return "Adjacency"; } }
 
     /// <summary>
     /// 

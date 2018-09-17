@@ -2,17 +2,27 @@
 using UnityEngine;
 
 namespace Neodroid.Prototyping.Observers {
+  /// <summary>
+  /// 
+  /// </summary>
   enum Category {
     One_,
     Two_,
     Three_
   }
 
+  /// <inheritdoc />
+  /// <summary>
+  /// </summary>
   [AddComponentMenu(
       ObserverComponentMenuPath._ComponentMenuPath + "Categorical" + ObserverComponentMenuPath._Postfix)]
   public class CategoricalObserver : Observer {
     void OneHotEncoding() { }
-    public override String PrototypingTypeName { get; }
+
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    /// <exception cref="T:System.NotImplementedException"></exception>
     public override void UpdateObservation() { throw new NotImplementedException(); }
   }
 }

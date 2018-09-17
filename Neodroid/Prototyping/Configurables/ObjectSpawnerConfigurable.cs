@@ -6,6 +6,9 @@ using UnityEngine;
 using Random = System.Random;
 
 namespace Neodroid.Prototyping.Configurables {
+  /// <inheritdoc />
+  /// <summary>
+  /// </summary>
   [AddComponentMenu(
       ConfigurableComponentMenuPath._ComponentMenuPath
       + "ObjectSpawner"

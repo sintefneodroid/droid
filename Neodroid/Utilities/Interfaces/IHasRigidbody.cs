@@ -16,7 +16,13 @@ namespace Neodroid.Utilities.Interfaces {
     /// </summary>
     Vector3 AngularVelocity { get; }
 
+    /// <summary>
+    /// 
+    /// </summary>
     Space3 VelocitySpace { get; }
+    /// <summary>
+    /// 
+    /// </summary>
     Space3 AngularSpace { get; }
   }
 }

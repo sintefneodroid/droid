@@ -88,9 +88,7 @@ namespace Neodroid.Utilities.Unsorted {
           },
           // This sets the alpha to 1 at both ends of the gradient
           alphaKeys = new[] {
-              new GradientAlphaKey(1, 0),
-              new GradientAlphaKey(1, 1),
-              new GradientAlphaKey(1, 0)
+              new GradientAlphaKey(1, 0), new GradientAlphaKey(1, 1), new GradientAlphaKey(1, 0)
           }
       };
 

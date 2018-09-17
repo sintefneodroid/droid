@@ -9,7 +9,7 @@ namespace Neodroid.Prototyping.Observers.Transform {
        + ObserverComponentMenuPath._Postfix), ExecuteInEditMode, Serializable]
   public class QuaternionTransformObserver : Observer,
                                              IHasQuaternionTransform {
-    [Header("Specfic", order = 102), SerializeField]
+    [Header("Specific", order = 102), SerializeField]
     ObservationSpace _space = ObservationSpace.Environment_;
 
     [SerializeField] bool _use_environments_coordinates = true;

@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ff5f73ed10ef42709ef975f07e9b1a3, type: 3}
-  m_Name: FrameRate1PhysicsDependent
+  m_Name: FrameRate60PhysicsDependent
   m_EditorClassIdentifier: 
   _apply_resolution_settings: 0
   _full_screen: 0
@@ -21,7 +21,7 @@ MonoBehaviour:
   _frame_skips: 0
   _simulation_type: 1
   _step_execution_phase: 1
-  _time_scale: 100
+  _time_scale: 8
   _target_frame_rate: 60
   _ip_address: localhost
   _port: 6969

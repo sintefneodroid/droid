@@ -23,11 +23,6 @@ namespace ExampleScenes.MultiArmedBandit {
     [SerializeField] int _last_index;
     [SerializeField] bool _won;
 
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "MultiArmedBanditMotor"; } }
-
     /// <summary>
     /// 
     /// </summary>
@@ -38,8 +33,14 @@ namespace ExampleScenes.MultiArmedBandit {
     /// </summary>
     public Int32 LastIndex { get { return this._last_index; } set { this._last_index = value; } }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public Boolean Won { get { return this._won; } set { this._won = value; } }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public Single[] WinLikelihoods {
       get { return this._win_likelihoods; }
       set { this._win_likelihoods = value; }

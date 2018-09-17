@@ -1,12 +1,25 @@
 ﻿namespace Neodroid.Utilities.Enums {
+  /// <summary>
+  /// 
+  /// </summary>
   public enum WaitOn {
+    /// <summary>
+    /// 
+    /// </summary>
     Never_,
 
-    // Dont wait from reactions from agent
+
+    /// <summary>
+    ///     // Do not wait from reactions from agent
+    /// </summary>
     Update_,
 
-    // Frame
+
+    /// <summary>
+    ///     // Frame
+    ///     // Note: unstable physics with the FixedUpdate setting
+    /// </summary>
     Fixed_update_
-    // Note: unstable physics with the FixedUpdate setting
+
   }
 }

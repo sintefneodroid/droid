@@ -2,6 +2,9 @@
 using UnityEngine;
 
 namespace Neodroid.Utilities.NeodroidCamera {
+  /// <inheritdoc />
+  /// <summary>
+  /// </summary>
   [ExecuteInEditMode]
   public class IgnoreLightSource : MonoBehaviour {
     [SerializeField] bool _ignore_infrared_if_empty = true;

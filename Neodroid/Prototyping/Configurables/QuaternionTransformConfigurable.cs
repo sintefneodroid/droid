@@ -11,7 +11,7 @@ namespace Neodroid.Prototyping.Configurables {
       + ConfigurableComponentMenuPath._Postfix)]
   public class QuaternionTransformConfigurable : ConfigurableGameObject,
                                                  IHasQuaternionTransform {
-    [Header("Specfic", order = 102), SerializeField]
+    [Header("Specific", order = 102), SerializeField]
     Vector3 _position;
 
     [SerializeField] Quaternion _rotation;

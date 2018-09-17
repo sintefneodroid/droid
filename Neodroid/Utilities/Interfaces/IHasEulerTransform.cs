@@ -21,8 +21,17 @@ namespace Neodroid.Utilities.Interfaces {
     /// </summary>
     Vector3 Rotation { get; }
 
+    /// <summary>
+    /// 
+    /// </summary>
     Space3 PositionSpace { get; }
+    /// <summary>
+    /// 
+    /// </summary>
     Space3 DirectionSpace { get; }
+    /// <summary>
+    /// 
+    /// </summary>
     Space3 RotationSpace { get; }
   }
 }

@@ -12,7 +12,7 @@ namespace Neodroid.Prototyping.Observers.Transform {
        + ObserverComponentMenuPath._Postfix), ExecuteInEditMode, Serializable]
   public class PositionObserver2D : Observer,
                                     IHasDouble {
-    [Header("Specfic", order = 102), SerializeField]
+    [Header("Specific", order = 102), SerializeField]
     ObservationSpace _use_space = ObservationSpace.Environment_;
 
     [Header("Observation", order = 103), SerializeField]

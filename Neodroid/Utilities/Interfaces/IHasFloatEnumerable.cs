@@ -4,7 +4,7 @@ namespace Neodroid.Utilities.Interfaces {
   /// <summary>
   ///
   /// </summary>
-  public interface IHasFloatEnumarable {
+  public interface IHasFloatEnumerable {
     /// <summary>
     ///
     /// </summary>

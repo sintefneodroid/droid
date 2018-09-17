@@ -16,7 +16,7 @@ namespace Neodroid.Prototyping.Observers.Rays {
 
     [SerializeField] float _obs_value;
 
-    [Header("Specfic", order = 102), SerializeField]
+    [Header("Specific", order = 102), SerializeField]
     UnityEngine.Transform _target;
 
     /// <summary>

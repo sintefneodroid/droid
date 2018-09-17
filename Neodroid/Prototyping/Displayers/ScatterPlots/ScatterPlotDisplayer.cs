@@ -5,13 +5,12 @@ using Neodroid.Utilities.Plotting;
 using Neodroid.Utilities.Structs;
 using UnityEngine;
 
-namespace Neodroid.Prototyping.Displayers {
+namespace Neodroid.Prototyping.Displayers.ScatterPlots {
   [ExecuteInEditMode,
    AddComponentMenu(
-       DisplayerComponentMenuPath._ComponentMenuPath
-       + "GameObjectScatterPlotDisplayer"
-       + DisplayerComponentMenuPath._Postfix)]
-  public class GameObjectScatterPlotDisplayer : Displayer {
+       DisplayerComponentMenuPath._ComponentMenuPath + "ScatterPlot" + DisplayerComponentMenuPath._Postfix),
+   RequireComponent(typeof(ParticleSystem))]
+  public class ScatterPlotDisplayer : Displayer {
     ParticleSystem _particle_system;
     ParticleSystemRenderer _particle_system_renderer;
 
@@ -48,8 +47,7 @@ namespace Neodroid.Prototyping.Displayers {
       if (this._gradient == null) {
         this._gradient = new Gradient {
             colorKeys = new[] {
-                new GradientColorKey(new Color(1, 0, 0), 0f),
-                new GradientColorKey(new Color(0, 1, 0), 1f)
+                new GradientColorKey(new Color(1, 0, 0), 0f), new GradientColorKey(new Color(0, 1, 0), 1f)
             }
         };
       }

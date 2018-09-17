@@ -4,12 +4,15 @@ using Neodroid.Utilities.Structs;
 using UnityEngine;
 
 namespace Neodroid.Prototyping.Observers.Transform {
+  /// <inheritdoc cref="Observer" />
+  /// <summary>
+  /// </summary>
   [AddComponentMenu(
        ObserverComponentMenuPath._ComponentMenuPath + "Position" + ObserverComponentMenuPath._Postfix),
    ExecuteInEditMode, Serializable]
   public class PositionObserver : Observer,
                                   IHasTriple {
-    [Header("Specfic", order = 102), SerializeField]
+    [Header("Specific", order = 102), SerializeField]
     ObservationSpace _space = ObservationSpace.Environment_;
 
     [Header("Observation", order = 103), SerializeField]

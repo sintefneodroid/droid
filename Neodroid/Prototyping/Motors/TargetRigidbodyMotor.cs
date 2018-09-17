@@ -86,7 +86,7 @@ namespace Neodroid.Prototyping.Motors {
     void OnStep() {
       this._Rigidbody.velocity = Vector3.zero;
       this._Rigidbody.angularVelocity = Vector3.zero;
-      
+
       // Move
       var movement = this.transform.forward * this._movement_speed * Time.deltaTime;
       this._Rigidbody.MovePosition(this._Rigidbody.position + movement);

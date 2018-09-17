@@ -63,9 +63,7 @@ namespace Neodroid.Prototyping.Observers.Grid {
       }
 
       this.FloatEnumerable = new[] {
-          this._current_goal_position.x,
-          this._current_goal_position.y,
-          this._current_goal_position.z
+          this._current_goal_position.x, this._current_goal_position.y, this._current_goal_position.z
       };
     }
 
