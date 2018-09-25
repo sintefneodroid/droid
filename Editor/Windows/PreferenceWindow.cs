@@ -1,7 +1,10 @@
 ﻿#if UNITY_EDITOR
 using System.Linq;
+using Neodroid.Editor.ScriptableObjects;
 using Neodroid.Runtime;
+using TMPro;
 using UnityEditor;
+using UnityEditor.Graphs;
 using UnityEngine;
 
 namespace Neodroid.Editor.Windows {
@@ -24,8 +27,7 @@ namespace Neodroid.Editor.Windows {
     [PreferenceItem("Neodroid")]
     public static void PreferencesGui() {
       EditorGUILayout.HelpBox($"Version {NeodroidInfo._Version}", MessageType.Info);
-      
-      
+
       if (!_preferences_loaded) {
         _EnableNeodroidDebug = EditorPrefs.GetBool(_debug_pref_key, false);
         _preferences_loaded = true;
@@ -34,7 +36,7 @@ namespace Neodroid.Editor.Windows {
       _EnableNeodroidDebug = EditorGUILayout.Toggle(_debug_pref_key, _EnableNeodroidDebug);
 
       EditorGUILayout.HelpBox("Enter import path of Neodroid!", MessageType.Info);
-      
+
       NeodroidInfo._ImportLocation = EditorGUILayout.TextField(NeodroidInfo._ImportLocation);
 
       if (GUI.changed) {
@@ -47,7 +49,7 @@ namespace Neodroid.Editor.Windows {
         EditorPrefs.SetBool(_debug_pref_key, _EnableNeodroidDebug);
       }
     }
-    
+
     /*[SettingsProvider]
     static SettingsProvider CreateProjectSettingsProvider()
     {
@@ -58,6 +60,18 @@ namespace Neodroid.Editor.Windows {
       SettingsProvider.GetSearchKeywordsFromSerializedObject(provider.CreateEditor().serializedObject, provider.keywords);
       return provider;
     }*/
+
+    /*
+     #if UNITY_2018_3_OR_NEWER
+    [SettingsProvider]
+    static SettingsProvider CreateNeodroidSettingsProvider() {
+      var provider = new AssetSettingsProvider("Project/Neodroid", () => NeodroidSettings.Instance);
+      provider.PopulateSearchKeywordsFromGUIContentProperties<Styles>();
+      return provider;
+    }
+    #endif
+    
+    */
   }
 
   /// <inheritdoc />
