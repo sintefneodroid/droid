@@ -1,5 +1,6 @@
 ﻿using System;
 using Neodroid.Runtime.Interfaces;
+using Neodroid.Runtime.Messaging.Messages;
 using UnityEngine;
 using Random = System.Random;
 
@@ -24,8 +25,6 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
       get { return "DifficultyConfigurable"; }
     }
 
-    public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
-      throw new NotImplementedException();
-    }
+
   }
 }

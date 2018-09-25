@@ -1,6 +1,7 @@
 ﻿using System;
 using Neodroid.Runtime.Environments;
 using Neodroid.Runtime.Interfaces;
+using Neodroid.Runtime.Messaging.Messages;
 using Neodroid.Runtime.Utilities.Structs;
 using Neodroid.Runtime.Utilities.Unsorted;
 using UnityEngine;
@@ -250,7 +251,7 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     /// <returns></returns>
     /// <exception cref="T:System.NotImplementedException"></exception>
     public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
-      throw new NotImplementedException();
+      return new Configuration(this._ang_x,random_generator.Next());
     }
   }
 }

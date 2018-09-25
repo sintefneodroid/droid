@@ -305,9 +305,11 @@ namespace Neodroid.Runtime.Environments {
       set { this._objective_function = (ObjectiveFunction)value; }
     }
 
-    public Transform LocalTransform {
+    /// <summary>
+    /// 
+    /// </summary>
+    public Transform Transform {
       get { return this.transform; }
-      set { throw new NotImplementedException(); }
     }
 
     /// <summary>

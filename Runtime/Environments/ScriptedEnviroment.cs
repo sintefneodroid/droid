@@ -79,9 +79,7 @@ namespace Neodroid.Runtime.Environments {
     /// <summary>
     ///
     /// </summary>
-    public override string PrototypingTypeName {
-      get { return "ScriptedEnvironment"; }
-    }
+    public override string PrototypingTypeName { get { return "ScriptedEnvironment"; } }
 
     /// <summary>
     ///
@@ -170,6 +168,11 @@ namespace Neodroid.Runtime.Environments {
     /// <returns></returns>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
     public override EnvironmentState ReactAndCollectState(Reaction reaction) {
+      this.React(reaction);
+      return this.CollectState();
+    }
+
+    public override void React(Reaction reaction) {
       foreach (var motion in reaction.Motions) {
         switch ((int)motion.Strength) {
           case 0:
@@ -188,7 +191,14 @@ namespace Neodroid.Runtime.Environments {
             throw new ArgumentOutOfRangeException();
         }
       }
+    }
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public override void Tick() { }
+
+    public override EnvironmentState CollectState() {
       var actor_idx = this._grid[this.ActorX, this.ActorY];
       var goal_idx = this._grid[this.GoalX, this.GoalY];
 
@@ -201,16 +211,6 @@ namespace Neodroid.Runtime.Environments {
 
       return new EnvironmentState(this.Identifier, 0, 0, time, signal, terminated, ref observables);
     }
-
-    public override void React(Reaction reaction) { throw new NotImplementedException(); }
-
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    /// <exception cref="T:System.NotImplementedException"></exception>
-    public override void Tick() { throw new NotImplementedException(); }
-
-    public override EnvironmentState CollectState() { throw new NotImplementedException(); }
 
     /// <inheritdoc />
     /// <summary>

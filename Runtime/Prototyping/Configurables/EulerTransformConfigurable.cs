@@ -256,7 +256,7 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     /// <param name="random_generator"></param>
     /// <returns></returns>
     public override IConfigurableConfiguration SampleConfiguration(System.Random random_generator) {
-      return new Configuration(this.Identifier, random_generator.Next());
+      return new Configuration(this._rot_x, random_generator.Next());
     }
   }
 }

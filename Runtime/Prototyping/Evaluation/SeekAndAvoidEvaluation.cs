@@ -143,7 +143,7 @@ namespace Neodroid.Runtime.Prototyping.Evaluation {
 
         this._spawned_locations.Add(location);
 
-        return Instantiate(prefab, location, Quaternion.identity, this.ParentEnvironment.LocalTransform);
+        return Instantiate(prefab, location, Quaternion.identity, this.ParentEnvironment.Transform);
       }
 
       return null;

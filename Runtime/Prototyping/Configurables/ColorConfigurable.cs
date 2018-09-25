@@ -1,6 +1,7 @@
 ﻿using System;
 using Neodroid.Runtime.Environments;
 using Neodroid.Runtime.Interfaces;
+using Neodroid.Runtime.Messaging.Messages;
 using Neodroid.Runtime.Utilities.Unsorted;
 using UnityEngine;
 using Random = System.Random;
@@ -57,9 +58,9 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
       this._renderer = this.GetComponent<Renderer>();
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
@@ -79,6 +80,9 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
           this._a);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     protected override void UnRegisterComponent() {
       if (this.ParentEnvironment == null) return;
       this.ParentEnvironment.UnRegister(this, this._r);
@@ -116,7 +120,7 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     }
 
     public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
-      throw new NotImplementedException();
+      return new Configuration(this._r,(float)random_generator.NextDouble());
     }
   }
 }

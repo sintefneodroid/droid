@@ -212,9 +212,6 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
       this.transform.rotation = Quaternion.LookRotation(inv_dir, inv_rot);
     }
 
-    public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
-      throw new NotImplementedException();
-    }
 
     #region Fields
 

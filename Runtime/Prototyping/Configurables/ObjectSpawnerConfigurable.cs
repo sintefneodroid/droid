@@ -35,10 +35,6 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
       get { return "ObjectSpawnerConfigurable"; }
     }
 
-    public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
-      throw new NotImplementedException();
-    }
-
     void DestroyObjects() {
       if (this._spawned_objects != null) {
         foreach (var o in this._spawned_objects) {
@@ -74,7 +70,14 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     void OnApplicationQuit() { this.DestroyObjects(); }
 
     public override void ApplyConfiguration(IConfigurableConfiguration obj) {
-      throw new NotImplementedException();
+      if (this._spawned_objects.Count < obj.ConfigurableValue) {
+        var go = Instantiate(this._object_to_spawn, this.transform);
+        this._spawned_objects.Add(go);
+      }else if (this._spawned_objects.Count > obj.ConfigurableValue) {
+        if(this._spawned_objects.Count>0) {
+          this._spawned_objects.RemoveAt(this._spawned_objects.Count-1);
+        }
+      }
     }
   }
 }

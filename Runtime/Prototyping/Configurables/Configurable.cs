@@ -1,5 +1,6 @@
 ﻿using Neodroid.Runtime.Environments;
 using Neodroid.Runtime.Interfaces;
+using Neodroid.Runtime.Messaging.Messages;
 using Neodroid.Runtime.Utilities.GameObjects;
 using Neodroid.Runtime.Utilities.Unsorted;
 using UnityEngine;
@@ -49,9 +50,7 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     /// </summary>
     public virtual void UpdateCurrentConfiguration() { }
 
-    public virtual void ApplyConfiguration(IConfigurableConfiguration configuration) {
-      throw new System.NotImplementedException();
-    }
+    public abstract void ApplyConfiguration(IConfigurableConfiguration configuration);
 
     /// <inheritdoc />
     ///  <summary>
@@ -107,6 +106,8 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     /// <param name="random_generator"></param>
     /// <returns></returns>
     /// <exception cref="System.NotImplementedException"></exception>
-    public abstract IConfigurableConfiguration SampleConfiguration(System.Random random_generator);
+    public virtual IConfigurableConfiguration SampleConfiguration(System.Random random_generator) {
+      return new Configuration(this.Identifier,random_generator.Next());
+    }
   }
 }

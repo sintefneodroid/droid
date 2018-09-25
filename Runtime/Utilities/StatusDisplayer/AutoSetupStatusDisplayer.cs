@@ -7,7 +7,6 @@ using Neodroid.Runtime.Managers;
 using Neodroid.Runtime.Prototyping.Evaluation;
 using Neodroid.Runtime.Utilities.EventRecipients;
 using Neodroid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
-
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;

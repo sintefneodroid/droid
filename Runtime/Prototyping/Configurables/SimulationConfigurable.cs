@@ -2,6 +2,7 @@
 using Neodroid.Runtime.Environments;
 using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Managers;
+using Neodroid.Runtime.Messaging.Messages;
 using Neodroid.Runtime.Utilities.Unsorted;
 using UnityEngine;
 using Random = System.Random;
@@ -118,7 +119,7 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
     public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
-      throw new NotImplementedException();
+      return new Configuration(this._time_scale,(float)random_generator.NextDouble());
     }
   }
 }
