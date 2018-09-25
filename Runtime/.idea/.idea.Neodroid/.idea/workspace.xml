@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="960a7bdf-f114-46ca-8549-657e9fd337e3" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/../Examples/.idea/.idea.Examples/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Examples/.idea/.idea.Examples/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Examples/Assembly-CSharp-Editor-firstpass.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Examples/Assembly-CSharp-Editor-firstpass.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Examples/Assembly-CSharp-Editor.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Examples/Assembly-CSharp-Editor.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Examples/Assembly-CSharp-firstpass.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Examples/Assembly-CSharp-firstpass.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Examples/Assembly-CSharp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Examples/Assembly-CSharp.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Examples/NeodroidTests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Examples/NeodroidTests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Neodroid/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Neodroid/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Neodroid/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Neodroid/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Environments/StatusUpdater.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Environments/StatusUpdater.cs" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="StatusUpdater.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Environments/StatusUpdater.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="418">
+              <caret line="21" column="14" lean-forward="true" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
+              <folding>
+                <marker date="1525187963249" expanded="false" signature="6:65" ph="..." />
+                <marker date="1525187963249" expanded="true" signature="99:931" ph="{...}" />
+                <marker date="1525187963249" expanded="true" signature="103:154" ph="/// ... " />
+                <marker date="1525187963249" expanded="true" signature="200:929" ph="{...}" />
+                <marker date="1525187963249" expanded="true" signature="206:247" ph="///  ... " />
+                <marker date="1525187963249" expanded="true" signature="292:333" ph="///  ... " />
+                <marker date="1525187963249" expanded="true" signature="437:478" ph="///  ... " />
+                <marker date="1525187963249" expanded="true" signature="496:686" ph="{...}" />
+                <marker date="1525187963249" expanded="true" signature="540:626" ph="{...}" />
+                <marker date="1525187963249" expanded="true" signature="731:772" ph="///  ... " />
+                <marker date="1525187963249" expanded="false" signature="791:925" ph="{...}" />
+                <marker date="1525187963249" expanded="true" signature="834:919" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NeodroidEnvironment.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Environments/NeodroidEnvironment.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="6" selection-start-column="6" selection-end-column="6" />
+              <folding>
+                <marker date="1525013517147" expanded="true" signature="6:193" ph="..." />
+                <marker date="1525013517147" expanded="true" signature="227:1880" ph="{...}" />
+                <marker date="1525013517147" expanded="false" signature="231:268" ph="///  ... " />
+                <marker date="1525013517147" expanded="true" signature="337:1878" ph="{...}" />
+                <marker date="1525013517147" expanded="false" signature="343:398" ph="/// ... " />
+                <marker date="1525013517147" expanded="false" signature="465:506" ph="///  ... " />
+                <marker date="1525013517147" expanded="false" signature="584:625" ph="///  ... " />
+                <marker date="1525013517147" expanded="false" signature="672:727" ph="/// ... " />
+                <marker date="1525013517147" expanded="false" signature="764:913" ph="{...}" />
+                <marker date="1525013517147" expanded="true" signature="826:907" ph="{...}" />
+                <marker date="1525013517147" expanded="false" signature="919:974" ph="/// ... " />
+                <marker date="1525013517147" expanded="false" signature="1023:1185" ph="{...}" />
+                <marker date="1525013517147" expanded="true" signature="1061:1179" ph="{...}" />
+                <marker date="1525013517147" expanded="false" signature="1191:1246" ph="/// ... " />
+                <marker date="1525013517147" expanded="false" signature="1297:1401" ph="{...}" />
+                <marker date="1525013517147" expanded="true" signature="1335:1395" ph="{...}" />
+                <marker date="1525013517147" expanded="false" signature="1407:1448" ph="///  ... " />
+                <marker date="1525013517147" expanded="false" signature="1496:1537" ph="///  ... " />
+                <marker date="1525013517147" expanded="false" signature="1580:1649" ph="///  ... " />
+                <marker date="1525013517147" expanded="false" signature="1702:1811" ph="///  ... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Environments/StatusUpdater.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Environments/NeodroidEnvironment.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/droid/MonoBehaviour1.cs" />
+        <option value="$PROJECT_DIR$/Environments/StatusUpdater.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="72" />
+    <option name="width" value="1910" />
+    <option name="height" value="1098" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="SolutionExplorer" proportions="" version="1">
+      <autoscrollFromSource SolutionExplorer="true" />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="SolutionExplorer">
+        <subPane>
+          <expand>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="Neodroid (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+        <option name="show-file-system" value="false" />
+        <option name="show-all-items" value="false" />
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="/opt/Unity-2018.1.0b8/Editor/Data/Managed/UnityEngine/UnityEngine.UIModule.dll" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="960a7bdf-f114-46ca-8549-657e9fd337e3" name="Default" comment="" />
+      <created>1522074927137</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1522074927137</updated>
+      <workItem from="1522074928607" duration="169000" />
+      <workItem from="1522075719995" duration="805000" />
+      <workItem from="1522076953267" duration="222000" />
+      <workItem from="1522077201052" duration="591000" />
+      <workItem from="1525187912727" duration="60000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1847000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="25" y="25" width="1870" height="1030" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="TODO" order="7" side_tool="true" />
+      <window_info anchor="right" id="Errors In Solution" order="13" />
+      <window_info id="DB Browser" order="2" />
+      <window_info anchor="bottom" id="DB Execution Console" order="3" />
+      <window_info anchor="right" id="Event Log" order="15" sideWeight="0.50516695" side_tool="true" visible="true" weight="0.17937465" />
+      <window_info id="Unit Tests" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info anchor="right" id="Run" order="6" weight="0.32853332" />
+      <window_info id="Version Control" order="4" side_tool="true" />
+      <window_info anchor="right" id="Terminal" order="11" />
+      <window_info active="true" id="NuGet" order="6" sideWeight="0.52061856" side_tool="true" visible="true" weight="0.40208447" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.47938144" visible="true" weight="0.40208447" />
+      <window_info anchor="bottom" id="Docker" order="4" show_stripe_button="false" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info id="Structure" order="1" sideWeight="0.49600798" side_tool="true" weight="0.2496" />
+      <window_info anchor="right" id="Debug" order="12" weight="0.39979124" />
+      <window_info id="Favorites" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Build" order="5" sideWeight="0.49841017" weight="0.3299045" />
+      <window_info anchor="bottom" id="Inspection" order="2" weight="0.4" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Python Console" order="7" />
+      <window_info id="Find" order="3" sideWeight="0.51171875" side_tool="true" visible="true" weight="0.32746667" />
+      <window_info anchor="right" id="REST Client" order="14" side_tool="true" />
+      <window_info anchor="bottom" id="Cvs" order="1" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" x="0" y="0" width="418" height="862" id="Documentation" order="8" weight="0.3298687" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" id="SciView" order="9" />
+      <window_info anchor="right" id="Concurrent Activities Diagram" order="10" weight="0.32985386" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Data View" order="4" />
+      <window_info active="true" anchor="right" id="Inspection Results" order="5" visible="true" weight="0.24890591" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="UnityProjectConfiguration" isUnityUI="false" />
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Environments/StatusUpdater.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" column="32" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+          <folding>
+            <marker date="1525187963249" expanded="false" signature="6:65" ph="..." />
+            <marker date="1525187963249" expanded="true" signature="99:931" ph="{...}" />
+            <marker date="1525187963249" expanded="true" signature="103:154" ph="/// ... " />
+            <marker date="1525187963249" expanded="true" signature="200:929" ph="{...}" />
+            <marker date="1525187963249" expanded="true" signature="206:247" ph="///  ... " />
+            <marker date="1525187963249" expanded="true" signature="292:333" ph="///  ... " />
+            <marker date="1525187963249" expanded="true" signature="437:478" ph="///  ... " />
+            <marker date="1525187963249" expanded="true" signature="496:686" ph="{...}" />
+            <marker date="1525187963249" expanded="true" signature="540:626" ph="{...}" />
+            <marker date="1525187963249" expanded="true" signature="731:772" ph="///  ... " />
+            <marker date="1525187963249" expanded="false" signature="791:925" ph="{...}" />
+            <marker date="1525187963249" expanded="true" signature="834:919" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Environments/NeodroidEnvironment.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="6" selection-start-column="6" selection-end-column="6" />
+          <folding>
+            <marker date="1525013517147" expanded="true" signature="6:193" ph="..." />
+            <marker date="1525013517147" expanded="true" signature="227:1880" ph="{...}" />
+            <marker date="1525013517147" expanded="false" signature="231:268" ph="///  ... " />
+            <marker date="1525013517147" expanded="true" signature="337:1878" ph="{...}" />
+            <marker date="1525013517147" expanded="false" signature="343:398" ph="/// ... " />
+            <marker date="1525013517147" expanded="false" signature="465:506" ph="///  ... " />
+            <marker date="1525013517147" expanded="false" signature="584:625" ph="///  ... " />
+            <marker date="1525013517147" expanded="false" signature="672:727" ph="/// ... " />
+            <marker date="1525013517147" expanded="false" signature="764:913" ph="{...}" />
+            <marker date="1525013517147" expanded="true" signature="826:907" ph="{...}" />
+            <marker date="1525013517147" expanded="false" signature="919:974" ph="/// ... " />
+            <marker date="1525013517147" expanded="false" signature="1023:1185" ph="{...}" />
+            <marker date="1525013517147" expanded="true" signature="1061:1179" ph="{...}" />
+            <marker date="1525013517147" expanded="false" signature="1191:1246" ph="/// ... " />
+            <marker date="1525013517147" expanded="false" signature="1297:1401" ph="{...}" />
+            <marker date="1525013517147" expanded="true" signature="1335:1395" ph="{...}" />
+            <marker date="1525013517147" expanded="false" signature="1407:1448" ph="///  ... " />
+            <marker date="1525013517147" expanded="false" signature="1496:1537" ph="///  ... " />
+            <marker date="1525013517147" expanded="false" signature="1580:1649" ph="///  ... " />
+            <marker date="1525013517147" expanded="false" signature="1702:1811" ph="///  ... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Environments/StatusUpdater.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="32" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+          <folding>
+            <marker date="1525187963249" expanded="false" signature="6:65" ph="..." />
+            <marker date="1525187963249" expanded="true" signature="99:931" ph="{...}" />
+            <marker date="1525187963249" expanded="true" signature="103:154" ph="/// ... " />
+            <marker date="1525187963249" expanded="true" signature="200:929" ph="{...}" />
+            <marker date="1525187963249" expanded="true" signature="206:247" ph="///  ... " />
+            <marker date="1525187963249" expanded="true" signature="292:333" ph="///  ... " />
+            <marker date="1525187963249" expanded="true" signature="437:478" ph="///  ... " />
+            <marker date="1525187963249" expanded="true" signature="496:686" ph="{...}" />
+            <marker date="1525187963249" expanded="true" signature="540:626" ph="{...}" />
+            <marker date="1525187963249" expanded="true" signature="731:772" ph="///  ... " />
+            <marker date="1525187963249" expanded="false" signature="791:925" ph="{...}" />
+            <marker date="1525187963249" expanded="true" signature="834:919" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Environments/NeodroidEnvironment.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="6" selection-start-column="6" selection-end-column="6" />
+          <folding>
+            <marker date="1525013517147" expanded="true" signature="6:193" ph="..." />
+            <marker date="1525013517147" expanded="true" signature="227:1880" ph="{...}" />
+            <marker date="1525013517147" expanded="false" signature="231:268" ph="///  ... " />
+            <marker date="1525013517147" expanded="true" signature="337:1878" ph="{...}" />
+            <marker date="1525013517147" expanded="false" signature="343:398" ph="/// ... " />
+            <marker date="1525013517147" expanded="false" signature="465:506" ph="///  ... " />
+            <marker date="1525013517147" expanded="false" signature="584:625" ph="///  ... " />
+            <marker date="1525013517147" expanded="false" signature="672:727" ph="/// ... " />
+            <marker date="1525013517147" expanded="false" signature="764:913" ph="{...}" />
+            <marker date="1525013517147" expanded="true" signature="826:907" ph="{...}" />
+            <marker date="1525013517147" expanded="false" signature="919:974" ph="/// ... " />
+            <marker date="1525013517147" expanded="false" signature="1023:1185" ph="{...}" />
+            <marker date="1525013517147" expanded="true" signature="1061:1179" ph="{...}" />
+            <marker date="1525013517147" expanded="false" signature="1191:1246" ph="/// ... " />
+            <marker date="1525013517147" expanded="false" signature="1297:1401" ph="{...}" />
+            <marker date="1525013517147" expanded="true" signature="1335:1395" ph="{...}" />
+            <marker date="1525013517147" expanded="false" signature="1407:1448" ph="///  ... " />
+            <marker date="1525013517147" expanded="false" signature="1496:1537" ph="///  ... " />
+            <marker date="1525013517147" expanded="false" signature="1580:1649" ph="///  ... " />
+            <marker date="1525013517147" expanded="false" signature="1702:1811" ph="///  ... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Environments/NotUsed/ImitationEnvironment.cs" />
+    <entry file="file://$PROJECT_DIR$/Environments/StatusUpdater.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="32" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+          <folding>
+            <marker date="1525187963249" expanded="false" signature="6:65" ph="..." />
+            <marker date="1525187963249" expanded="true" signature="99:931" ph="{...}" />
+            <marker date="1525187963249" expanded="true" signature="103:154" ph="/// ... " />
+            <marker date="1525187963249" expanded="true" signature="200:929" ph="{...}" />
+            <marker date="1525187963249" expanded="true" signature="206:247" ph="///  ... " />
+            <marker date="1525187963249" expanded="true" signature="292:333" ph="///  ... " />
+            <marker date="1525187963249" expanded="true" signature="437:478" ph="///  ... " />
+            <marker date="1525187963249" expanded="true" signature="496:686" ph="{...}" />
+            <marker date="1525187963249" expanded="true" signature="540:626" ph="{...}" />
+            <marker date="1525187963249" expanded="true" signature="731:772" ph="///  ... " />
+            <marker date="1525187963249" expanded="false" signature="791:925" ph="{...}" />
+            <marker date="1525187963249" expanded="true" signature="834:919" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Environments/NeodroidEnvironment.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="54" selection-start-line="5" selection-start-column="54" selection-end-line="5" selection-end-column="54" />
+          <folding>
+            <marker date="1525013517147" expanded="true" signature="6:193" ph="..." />
+            <marker date="1525013517147" expanded="true" signature="227:1880" ph="{...}" />
+            <marker date="1525013517147" expanded="false" signature="231:268" ph="///  ... " />
+            <marker date="1525013517147" expanded="true" signature="337:1878" ph="{...}" />
+            <marker date="1525013517147" expanded="false" signature="343:398" ph="/// ... " />
+            <marker date="1525013517147" expanded="false" signature="465:506" ph="///  ... " />
+            <marker date="1525013517147" expanded="false" signature="584:625" ph="///  ... " />
+            <marker date="1525013517147" expanded="false" signature="672:727" ph="/// ... " />
+            <marker date="1525013517147" expanded="false" signature="764:913" ph="{...}" />
+            <marker date="1525013517147" expanded="true" signature="826:907" ph="{...}" />
+            <marker date="1525013517147" expanded="false" signature="919:974" ph="/// ... " />
+            <marker date="1525013517147" expanded="false" signature="1023:1185" ph="{...}" />
+            <marker date="1525013517147" expanded="true" signature="1061:1179" ph="{...}" />
+            <marker date="1525013517147" expanded="false" signature="1191:1246" ph="/// ... " />
+            <marker date="1525013517147" expanded="false" signature="1297:1401" ph="{...}" />
+            <marker date="1525013517147" expanded="true" signature="1335:1395" ph="{...}" />
+            <marker date="1525013517147" expanded="false" signature="1407:1448" ph="///  ... " />
+            <marker date="1525013517147" expanded="false" signature="1496:1537" ph="///  ... " />
+            <marker date="1525013517147" expanded="false" signature="1580:1649" ph="///  ... " />
+            <marker date="1525013517147" expanded="false" signature="1702:1811" ph="///  ... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/droid/Properties/AssemblyInfo.cs" />
+    <entry file="file://$PROJECT_DIR$/droid/MonoBehaviour1.cs" />
+    <entry file="file://$PROJECT_DIR$/droid.csproj" />
+    <entry file="file://$PROJECT_DIR$/Environments/StatusUpdater.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="21" column="14" lean-forward="true" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
+          <folding>
+            <marker date="1525187963249" expanded="false" signature="6:65" ph="..." />
+            <marker date="1525187963249" expanded="true" signature="99:931" ph="{...}" />
+            <marker date="1525187963249" expanded="true" signature="103:154" ph="/// ... " />
+            <marker date="1525187963249" expanded="true" signature="200:929" ph="{...}" />
+            <marker date="1525187963249" expanded="true" signature="206:247" ph="///  ... " />
+            <marker date="1525187963249" expanded="true" signature="292:333" ph="///  ... " />
+            <marker date="1525187963249" expanded="true" signature="437:478" ph="///  ... " />
+            <marker date="1525187963249" expanded="true" signature="496:686" ph="{...}" />
+            <marker date="1525187963249" expanded="true" signature="540:626" ph="{...}" />
+            <marker date="1525187963249" expanded="true" signature="731:772" ph="///  ... " />
+            <marker date="1525187963249" expanded="false" signature="791:925" ph="{...}" />
+            <marker date="1525187963249" expanded="true" signature="834:919" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Environments/NeodroidEnvironment.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="6" selection-start-column="6" selection-end-column="6" />
+          <folding>
+            <marker date="1525013517147" expanded="true" signature="6:193" ph="..." />
+            <marker date="1525013517147" expanded="true" signature="227:1880" ph="{...}" />
+            <marker date="1525013517147" expanded="false" signature="231:268" ph="///  ... " />
+            <marker date="1525013517147" expanded="true" signature="337:1878" ph="{...}" />
+            <marker date="1525013517147" expanded="false" signature="343:398" ph="/// ... " />
+            <marker date="1525013517147" expanded="false" signature="465:506" ph="///  ... " />
+            <marker date="1525013517147" expanded="false" signature="584:625" ph="///  ... " />
+            <marker date="1525013517147" expanded="false" signature="672:727" ph="/// ... " />
+            <marker date="1525013517147" expanded="false" signature="764:913" ph="{...}" />
+            <marker date="1525013517147" expanded="true" signature="826:907" ph="{...}" />
+            <marker date="1525013517147" expanded="false" signature="919:974" ph="/// ... " />
+            <marker date="1525013517147" expanded="false" signature="1023:1185" ph="{...}" />
+            <marker date="1525013517147" expanded="true" signature="1061:1179" ph="{...}" />
+            <marker date="1525013517147" expanded="false" signature="1191:1246" ph="/// ... " />
+            <marker date="1525013517147" expanded="false" signature="1297:1401" ph="{...}" />
+            <marker date="1525013517147" expanded="true" signature="1335:1395" ph="{...}" />
+            <marker date="1525013517147" expanded="false" signature="1407:1448" ph="///  ... " />
+            <marker date="1525013517147" expanded="false" signature="1496:1537" ph="///  ... " />
+            <marker date="1525013517147" expanded="false" signature="1580:1649" ph="///  ... " />
+            <marker date="1525013517147" expanded="false" signature="1702:1811" ph="///  ... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Environments/NotUsed/ImitationEnvironment.cs" />
+  </component>
+</project>
