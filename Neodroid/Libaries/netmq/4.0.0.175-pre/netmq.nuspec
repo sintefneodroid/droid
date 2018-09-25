@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>NetMQ</id>
+    <version>4.0.0.175-pre</version>
+    <authors>NetMQ</authors>
+    <owners>NetMQ</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/zeromq/netmq/blob/master/COPYING.LESSER</licenseUrl>
+    <projectUrl>https://github.com/zeromq/netmq</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/zeromq/netmq/master/img/NetMQ.ico</iconUrl>
+    <description>A 100% native C# port of the lightweight high performance messaging library ZeroMQ</description>
+    <tags>ZeroMQ 0MQ CLRZMQ NetMQ Messaging ZMQ transport distributed</tags>
+    <repository type="git" url="https://github.com/zeromq/netmq" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.0">
+        <dependency id="AsyncIO" version="0.1.40" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard1.6">
+        <dependency id="AsyncIO" version="0.1.40" exclude="Build,Analyzers" />
+        <dependency id="NETStandard.Library" version="1.6.0" exclude="Build,Analyzers" />
+        <dependency id="System.Net.NetworkInformation" version="4.1.0" exclude="Build,Analyzers" />
+        <dependency id="System.ServiceModel.Primitives" version="4.1.0" exclude="Build,Analyzers" />
+        <dependency id="System.Threading" version="4.0.11" exclude="Build,Analyzers" />
+        <dependency id="System.Threading.Thread" version="4.0.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.ServiceModel" targetFramework=".NETFramework4.0" />
+    </frameworkAssemblies>
+  </metadata>
+</package>
