@@ -249,6 +249,7 @@ namespace Neodroid.Runtime.Environments {
     float[] _reset_animation_times;
 
     [SerializeField] bool _initials_saved_flag;
+    [SerializeField] bool _update_observations_with_every_tick;
 
     #endregion
 
@@ -427,7 +428,13 @@ namespace Neodroid.Runtime.Environments {
               $"Reset {this._reset_i}/{this._Simulation_Manager.SimulatorConfiguration.ResetIterations}");
         }
         #endif
+      } else {
+        if (_update_observations_with_every_tick) {
+          this.UpdateObserversData();
+        }
       }
+      
+
 
       #if NEODROID_DEBUG
       if (this.Debugging) {

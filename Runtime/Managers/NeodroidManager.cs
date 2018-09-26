@@ -241,12 +241,15 @@ namespace Neodroid.Runtime.Managers {
       get { return Time.timeScale; }
       set {
         Time.timeScale = value;
+        this._last_simulation_time = value;
         if (this.Configuration.UpdateFixedTimeScale) {
           Time.fixedDeltaTime = 0.02F * Time.timeScale;
         }
       }
     }
 
+    [SerializeField] float _last_simulation_time=0;
+    
     /// <summary>
     /// 
     /// </summary>
@@ -931,9 +934,10 @@ namespace Neodroid.Runtime.Managers {
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    ///  <summary>
+    /// 
+    ///  </summary>
+    /// <param name="environment"></param>
     /// <param name="identifier"></param>
     public void UnRegister(IEnvironment environment, string identifier) {
       if (this._Environments.ContainsKey(identifier)) {

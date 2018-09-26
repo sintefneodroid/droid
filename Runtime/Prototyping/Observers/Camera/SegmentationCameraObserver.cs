@@ -33,10 +33,9 @@ namespace Neodroid.Runtime.Prototyping.Observers.Camera {
         this.UpdateBytes();
       }
 
-      this._Serialised_String = this._segmenter
-          .ColorsDict
-          .Select(c=>$"{c.Key}: {c.Value.ToString()}")
-          .Aggregate("", (current, next) => $"{current}, {next}");
+      this._Serialised_String = this._segmenter != null ? this._segmenter.ColorsDict
+                                    .Select(c=>$"{c.Key}: {c.Value.ToString()}")
+                                    .Aggregate("", (current, next) => $"{current}, {next}") : "Nothing";
       
     }
   }

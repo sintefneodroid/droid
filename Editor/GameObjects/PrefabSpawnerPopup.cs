@@ -55,7 +55,7 @@ namespace Neodroid.Editor.GameObjects {
       // 's:softLockState' syntax (e.g 's:inprogress' will show objects that are modified by anyone (except you))
       // 'a:area' syntax (e.g 'a:all' will s search in all assets, 'a:assets' will s search in assets folder only and 'a:packages' will s search in packages folder only)
 
-      var prefabs =AssetDatabase.FindAssets("t:Prefab a:packages");
+      var prefabs =AssetDatabase.FindAssets("t:Prefab a:all");
       
       this._scroll_position = EditorGUILayout.BeginScrollView(this._scroll_position);
       EditorGUILayout.BeginVertical();
@@ -63,9 +63,9 @@ namespace Neodroid.Editor.GameObjects {
         var path = AssetDatabase.GUIDToAssetPath(prefab);
         //Debug.Log(path);
         var go = AssetDatabase.LoadAssetAtPath(path, typeof(GameObject));
-        if (path.Contains("net.cnheider.neodroid")) {
+        if (path.Contains("Neodroid")) {
           if (GUILayout.Button(go.name)) {
-            Object.Instantiate(go);
+            Object.Instantiate(go,Selection.activeTransform);
           }
         }
       }

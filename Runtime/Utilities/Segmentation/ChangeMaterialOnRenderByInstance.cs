@@ -101,13 +101,17 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
       }
     }
 
+    void CheckBlock() {
+      if (this._block == null) {
+        this._block = new MaterialPropertyBlock();
+      }
+    }
+    
     /// <summary>
     ///
     /// </summary>
     void Setup() {
-      if (this._block == null) {
-        this._block = new MaterialPropertyBlock();
-      }
+      this.CheckBlock();
 
       this.ColorsDictGameObject.Clear();
       foreach (var rend in this._all_renders) {
@@ -121,6 +125,7 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
     ///
     /// </summary>
     void Change() {
+      this.CheckBlock();
       this._original_colors = new LinkedList<Color>[this._all_renders.Length];
 
       for (var i = 0; i < this._original_colors.Length; i++) {
@@ -135,7 +140,11 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
               this._original_colors[i].AddFirst(mat.color);
             }
 
-            this._block.SetColor("_Color", this.ColorsDictGameObject[c_renderer.gameObject]);
+            if (this.ColorsDictGameObject.ContainsKey(c_renderer.gameObject)) {
+              var val = this.ColorsDictGameObject[c_renderer.gameObject];
+              this._block.SetColor("_Color", val);
+            }
+
             c_renderer.SetPropertyBlock(this._block);
           }
         }
@@ -146,6 +155,7 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
     ///
     /// </summary>
     void Restore() {
+      this.CheckBlock();
       for (var i = 0; i < this._all_renders.Length; i++) {
         var c_renderer = this._all_renders[i];
         if (c_renderer) {
@@ -156,7 +166,8 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
                 && i < this._original_colors.Length) {
               var c_original_color = this._original_colors[i];
               if (c_original_color != null) {
-                this._block.SetColor("_Color", c_original_color.Last.Value);
+                var last_val = c_original_color.Last.Value;
+                this._block.SetColor("_Color", last_val);
                 c_original_color.RemoveLast();
                 c_renderer.SetPropertyBlock(this._block);
               }

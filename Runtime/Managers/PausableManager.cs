@@ -84,9 +84,7 @@ namespace Neodroid.Runtime.Managers {
     /// <summary>
     ///
     /// </summary>
-    public bool IsSimulationPaused {
-      get { return !(this.SimulationTimeScale > 0); }
-    }
+    public bool IsSimulationPaused { get { return !(this.SimulationTimeScale > 0); } }
 
     /// <summary>
     ///
@@ -111,6 +109,13 @@ namespace Neodroid.Runtime.Managers {
       }
       #endif
       this.SimulationTimeScale = simulation_time_scale > 0 ? simulation_time_scale : 1;
+    }
+
+    void SetAnimationSpeeds(float speed) {
+      var animators = FindObjectsOfType<Animator>();
+      foreach (var animator in animators) {
+        animator.speed = speed;
+      }
     }
 
     /// <summary>
