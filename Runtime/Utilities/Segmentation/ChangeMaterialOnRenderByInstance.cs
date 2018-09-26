@@ -1,13 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Utilities.Structs;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Neodroid.Runtime.Utilities.Segmentation {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
   [ExecuteInEditMode]
-  public class ChangeMaterialOnRenderByInstance : MonoBehaviour {
+  public class ChangeMaterialOnRenderByInstance : Segmenter{
     /// <summary>
     ///
     /// </summary>
@@ -23,22 +26,36 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
     /// </summary>
     LinkedList<Color>[] _original_colors;
 
-    /// <summary>
-    ///
-    /// </summary>
-    public Dictionary<GameObject, Color> InstanceColorsDict { get; private set; } =
+    ///  <summary>
+    ///  </summary>
+    public Dictionary<GameObject, Color> ColorsDictGameObject { get; private set; } =
       new Dictionary<GameObject, Color>();
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public override Dictionary<String, Color> ColorsDict {
+      get {
+        var colors = new Dictionary<String, Color>();
+        foreach (var key_val in this.ColorsDictGameObject) {
+          colors.Add(key_val.Key.GetInstanceID().ToString(),key_val.Value);
+        }
+
+        return colors;
+      }
+    }
 
     /// <summary>
     ///
     /// </summary>
     public ColorByInstance[] InstanceColors {
       get {
-        if (this.InstanceColorsDict != null) {
-          var instance_color_array = new ColorByInstance[this.InstanceColorsDict.Keys.Count];
+        if (this.ColorsDictGameObject != null) {
+          var instance_color_array = new ColorByInstance[this.ColorsDictGameObject.Keys.Count];
           var i = 0;
-          foreach (var key in this.InstanceColorsDict.Keys) {
-            var seg = new ColorByInstance {_Obj = key, _Col = this.InstanceColorsDict[key]};
+          foreach (var key in this.ColorsDictGameObject.Keys) {
+            var seg = new ColorByInstance {_Obj = key, _Col = this.ColorsDictGameObject[key]};
             instance_color_array[i] = seg;
             i++;
           }
@@ -50,7 +67,7 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
       }
       set {
         foreach (var seg in value) {
-          this.InstanceColorsDict[seg._Obj] = seg._Col;
+          this.ColorsDictGameObject[seg._Obj] = seg._Col;
         }
       }
     }
@@ -76,9 +93,9 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
     /// </summary>
     void Update() {
       var renderers = FindObjectsOfType<Renderer>();
-      if (this.InstanceColorsDict == null) {
+      if (this.ColorsDictGameObject == null) {
         this.Setup();
-      } else if (this.InstanceColorsDict.Keys.Count != renderers.Length) {
+      } else if (this.ColorsDictGameObject.Keys.Count != renderers.Length) {
         this._all_renders = renderers;
         this.Setup();
       }
@@ -92,10 +109,10 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
         this._block = new MaterialPropertyBlock();
       }
 
-      this.InstanceColorsDict.Clear();
+      this.ColorsDictGameObject.Clear();
       foreach (var rend in this._all_renders) {
         if (rend) {
-          this.InstanceColorsDict.Add(rend.gameObject, Random.ColorHSV());
+          this.ColorsDictGameObject.Add(rend.gameObject, Random.ColorHSV());
         }
       }
     }
@@ -118,7 +135,7 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
               this._original_colors[i].AddFirst(mat.color);
             }
 
-            this._block.SetColor("_Color", this.InstanceColorsDict[c_renderer.gameObject]);
+            this._block.SetColor("_Color", this.ColorsDictGameObject[c_renderer.gameObject]);
             c_renderer.SetPropertyBlock(this._block);
           }
         }
@@ -164,5 +181,6 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
       // change back
       this.Restore();
     }
+
   }
 }

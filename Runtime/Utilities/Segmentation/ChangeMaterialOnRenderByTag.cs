@@ -1,13 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace Neodroid.Runtime.Utilities.Segmentation {
-  /// <inheritdoc />
+  /// <inheritdoc cref="MonoBehaviour" />
   ///  <summary>
   ///  </summary>
   [ExecuteInEditMode]
-  public class ChangeMaterialOnRenderByTag : MonoBehaviour {
+  public class ChangeMaterialOnRenderByTag : Segmenter {
     /// <summary>
     ///
     /// </summary>
@@ -21,7 +23,7 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
     /// <summary>
     ///
     /// </summary>
-    public ColorByTag[] _Colors_By_Tag;
+    protected ColorByTag[] _Colors_By_Tag;
 
     [SerializeField] ScriptableObjects.Segmentation _segmentation;
 
@@ -38,7 +40,7 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
     /// <summary>
     ///
     /// </summary>
-    Dictionary<string, Color> _tag_colors = new Dictionary<string, Color>();
+    Dictionary<string, Color> _tag_colors_dict = new Dictionary<string, Color>();
 
     /// <summary>
     ///
@@ -55,14 +57,21 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
     /// <summary>
     ///
     /// </summary>
+    public override Dictionary<String, Color> ColorsDict {
+      get { return this._tag_colors_dict; }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
     void Awake() {
       this._block = new MaterialPropertyBlock();
-      this._tag_colors.Clear();
+      this._tag_colors_dict.Clear();
       var colors_by_tag = this._Colors_By_Tag;
       if (colors_by_tag != null && colors_by_tag.Length > 0) {
         foreach (var tag_color in this._Colors_By_Tag) {
-          if (!this._tag_colors.ContainsKey(tag_color._Tag)) {
-            this._tag_colors.Add(tag_color._Tag, tag_color._Col);
+          if (!this._tag_colors_dict.ContainsKey(tag_color._Tag)) {
+            this._tag_colors_dict.Add(tag_color._Tag, tag_color._Col);
           }
         }
       }
@@ -71,8 +80,8 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
         var segmentation_color_by_tags = this._segmentation._Color_By_Tags;
         if (segmentation_color_by_tags != null) {
           foreach (var tag_color in segmentation_color_by_tags) {
-            if (!this._tag_colors.ContainsKey(tag_color._Tag)) {
-              this._tag_colors.Add(tag_color._Tag, tag_color._Col);
+            if (!this._tag_colors_dict.ContainsKey(tag_color._Tag)) {
+              this._tag_colors_dict.Add(tag_color._Tag, tag_color._Col);
             }
           }
         }
@@ -111,13 +120,13 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
       for (var i = 0; i < this._all_renders.Length; i++) {
         var c_renderer = this._all_renders[i];
         if (c_renderer) {
-          if (this._tag_colors != null && this._tag_colors.ContainsKey(this._all_renders[i].tag)) {
+          if (this._tag_colors_dict != null && this._tag_colors_dict.ContainsKey(this._all_renders[i].tag)) {
             foreach (var mat in this._all_renders[i].sharedMaterials) {
               if (mat != null && mat.HasProperty("_Color")) {
                 this._original_colors[i].AddFirst(mat.color);
               }
 
-              this._block.SetColor("_Color", this._tag_colors[this._all_renders[i].tag]);
+              this._block.SetColor("_Color", this._tag_colors_dict[this._all_renders[i].tag]);
               this._all_renders[i].SetPropertyBlock(this._block);
             }
           } else if (this._Replace_Untagged_Color) {

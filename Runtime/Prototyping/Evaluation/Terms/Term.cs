@@ -1,6 +1,7 @@
 ﻿using System;
 using Neodroid.Runtime.Utilities.GameObjects;
-using Neodroid.Runtime.Utilities.Unsorted;
+using Neodroid.Runtime.Utilities.Misc.Drawing;
+using Neodroid.Runtime.Utilities.Misc.Grasping;
 
 namespace Neodroid.Runtime.Prototyping.Evaluation.Terms {
   /// <inheritdoc />

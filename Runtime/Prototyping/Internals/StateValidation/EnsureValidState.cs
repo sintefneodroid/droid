@@ -1,7 +1,7 @@
 ﻿using Neodroid.Runtime.Environments;
 using Neodroid.Runtime.Prototyping.Actors;
 using Neodroid.Runtime.Utilities.BoundingBoxes;
-using Neodroid.Runtime.Utilities.Unsorted;
+using Neodroid.Runtime.Utilities.Misc.Extensions;
 using UnityEngine;
 
 namespace Neodroid.Runtime.Prototyping.Internals.StateValidation {

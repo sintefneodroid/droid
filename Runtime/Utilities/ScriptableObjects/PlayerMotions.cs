@@ -1,5 +1,5 @@
 ﻿using System;
-using Neodroid.Runtime.Utilities.Unsorted.SearchableEnum;
+using Neodroid.Runtime.Utilities.Misc.SearchableEnum;
 using UnityEngine;
 
 namespace Neodroid.Runtime.Utilities.ScriptableObjects {

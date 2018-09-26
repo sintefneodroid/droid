@@ -1,5 +1,5 @@
+using Common.Editors;
 using Excluded;
-using Excluded.Common.Editors;
 using UnityEngine;
 
 namespace Neodroid.Editor.ScriptableObjects {
@@ -27,13 +27,13 @@ namespace Neodroid.Editor.ScriptableObjects {
     {
       get
       {
-        if (NeodroidSettings._instance == null)
+        if (_instance == null)
         {
-          NeodroidSettings._instance = Resources.Load<NeodroidSettings>("TMP Settings");
+          _instance = Resources.Load<NeodroidSettings>("TMP Settings");
 
           #if UNITY_EDITOR
           // Make sure UPM(Unity Package Manager) packages resources have been added to the user project
-          if (NeodroidSettings._instance == null)
+          if (_instance == null)
           {
             // Open Resources Importer
             NeodroidPackageImporterWindow.ShowPackageImporterWindow();
@@ -41,7 +41,7 @@ namespace Neodroid.Editor.ScriptableObjects {
           #endif
         }
 
-        return NeodroidSettings._instance;
+        return _instance;
       }
     }
 
@@ -71,11 +71,11 @@ namespace Neodroid.Editor.ScriptableObjects {
     /// <returns></returns>
     public static NeodroidSettings GetSettings()
     {
-      if (NeodroidSettings.Instance == null) {
+      if (Instance == null) {
         return null;
       }
 
-      return NeodroidSettings.Instance;
+      return Instance;
     }
   }
 }

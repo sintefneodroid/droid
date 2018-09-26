@@ -1,7 +1,7 @@
 ﻿using System;
 using Neodroid.Runtime.Interfaces;
+using Neodroid.Runtime.Utilities.Misc.SearchableEnum;
 using Neodroid.Runtime.Utilities.Structs;
-using Neodroid.Runtime.Utilities.Unsorted.SearchableEnum;
 using UnityEngine;
 
 namespace Neodroid.Runtime.Prototyping.Observers.Transform {

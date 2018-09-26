@@ -8,7 +8,9 @@ using Neodroid.Runtime.Prototyping.Evaluation;
 using Neodroid.Runtime.Utilities.BoundingBoxes;
 using Neodroid.Runtime.Utilities.Enums;
 using Neodroid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
-using Neodroid.Runtime.Utilities.Unsorted;
+using Neodroid.Runtime.Utilities.Misc.Drawing;
+using Neodroid.Runtime.Utilities.Misc.Extensions;
+using Neodroid.Runtime.Utilities.Misc.Grasping;
 using UnityEngine;
 using Object = System.Object;
 
@@ -258,11 +260,6 @@ namespace Neodroid.Runtime.Environments {
     ///
     /// </summary>
     public Dictionary<string, IDisplayer> Displayers { get; } = new Dictionary<string, IDisplayer>();
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public Reaction LastReaction { get; protected set; }
 
     /// <summary>
     ///

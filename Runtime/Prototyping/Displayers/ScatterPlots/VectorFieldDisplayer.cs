@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
+using Neodroid.Runtime.Utilities.Misc.Drawing;
 using Neodroid.Runtime.Utilities.Plotting;
 using Neodroid.Runtime.Utilities.Structs;
-using Neodroid.Runtime.Utilities.Unsorted;
 using UnityEngine;
 
 namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {

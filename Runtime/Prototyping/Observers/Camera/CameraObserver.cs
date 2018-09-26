@@ -56,17 +56,17 @@ namespace Neodroid.Runtime.Prototyping.Observers.Camera {
     ///
     /// </summary>
     [Header("Specific", order = 102), SerializeField]
-    UnityEngine.Camera _camera;
+    protected UnityEngine.Camera _camera;
 
     /// <summary>
     ///
     /// </summary>
-    bool _grab = true;
+    protected bool _grab = true;
 
     /// <summary>
     ///
     /// </summary>
-    IManager _manager;
+    protected IManager _manager;
 
     /// <summary>
     ///

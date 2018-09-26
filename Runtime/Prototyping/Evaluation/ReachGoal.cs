@@ -1,5 +1,7 @@
 ﻿using Neodroid.Runtime.Prototyping.Actors;
-using Neodroid.Runtime.Utilities.Unsorted;
+using Neodroid.Runtime.Utilities.Misc.Drawing;
+using Neodroid.Runtime.Utilities.Misc.Grasping;
+using Neodroid.Runtime.Utilities.Misc.Grid;
 using UnityEngine;
 
 namespace Neodroid.Runtime.Prototyping.Evaluation {
