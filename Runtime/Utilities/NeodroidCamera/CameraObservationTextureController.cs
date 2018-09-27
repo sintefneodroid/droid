@@ -8,7 +8,7 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera {
     /// <summary>
     /// </summary>
     [ExecuteInEditMode, Serializable]
-    public class CameraObservationResolutionController : MonoBehaviour
+    public class CameraObservationTextureController : MonoBehaviour
     {
         [SerializeField]
         Camera[] _cameras;
@@ -16,7 +16,10 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera {
         [SerializeField] Texture[] _textures;
 
         [SerializeField] Vector2Int _size = new Vector2Int(84,84);
-        
+        [SerializeField] TextureFormat _texture_format = TextureFormat.ARGB32;
+        [SerializeField] FilterMode _filter_mode = FilterMode.Bilinear;
+        [SerializeField] TextureWrapMode _wrap_mode = TextureWrapMode.Clamp;
+         
         void Awake() {
             this._cameras = FindObjectsOfType<Camera>();
 
@@ -35,6 +38,8 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera {
                 if (texture) {
                     texture.height = this._size.y;
                     texture.width = this._size.x;
+                    texture.filterMode = this._filter_mode;
+                    texture.wrapMode = this._wrap_mode;
                 }
             }
         }

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ff5f73ed10ef42709ef975f07e9b1a3, type: 3}
   m_Name: DefaultIndependentIndividualObs
   m_EditorClassIdentifier: 
-  _apply_resolution_settings: 1
+  _apply_resolution_settings: 0
   _full_screen: 0
-  _width: 250
-  _height: 150
+  _width: 500
+  _height: 500
   _quality_level: 1
   _frame_finishes: 1
   _reset_iterations: 1

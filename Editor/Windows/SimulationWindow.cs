@@ -281,6 +281,7 @@ namespace Neodroid.Editor.Windows {
                 EditorGUILayout.EndVertical();
 
                 EditorGUILayout.BeginVertical("Box");
+                /*
                 GUILayout.Label("Internals");
                 foreach (var resetable in resetables) {
                   var resetable_value = (Resetable) resetable.Value;
@@ -295,6 +296,7 @@ namespace Neodroid.Editor.Windows {
                     EditorGUILayout.EndVertical();
                   }
                 }
+                */
 
 /*
                 foreach (var listener in listeners) {
