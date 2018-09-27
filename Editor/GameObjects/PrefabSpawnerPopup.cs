@@ -23,8 +23,8 @@ namespace Neodroid.Editor.GameObjects {
   }
   
   
+  /// <inheritdoc />
   /// <summary>
-  /// 
   /// </summary>
   public class PrefabsPopup: PopupWindowContent {
     bool _updated_pos;

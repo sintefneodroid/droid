@@ -1,13 +1,13 @@
 using Common.Editors;
-using Excluded;
 using UnityEngine;
 
 namespace Neodroid.Editor.ScriptableObjects {
+  /// <inheritdoc />
   /// <summary>
-  /// 
   /// </summary>
   [System.Serializable]
   [ExecuteInEditMode]
+  // ReSharper disable once RequiredBaseTypesIsNotInherited
   public class NeodroidSettings : ScriptableObject {
     static NeodroidSettings _instance;
 

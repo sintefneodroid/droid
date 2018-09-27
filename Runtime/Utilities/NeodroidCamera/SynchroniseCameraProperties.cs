@@ -90,7 +90,7 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera {
 
         this._cameras = FindObjectsOfType<SynchroniseCameraProperties>();
       } else {
-        Debug.Log("No camera component found on gameobject");
+        Debug.Log("No camera component found on GameObject");
       }
     }
 
@@ -144,7 +144,7 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera {
           }
         }
       } else {
-        Debug.Log("No camera component found on gameobject");
+        Debug.Log("No camera component found on GameObject");
       }
     }
   }

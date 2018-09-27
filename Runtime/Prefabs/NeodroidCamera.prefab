@@ -1172,6 +1172,7 @@ GameObject:
   - component: {fileID: 114716082362535994}
   - component: {fileID: 114376289421041340}
   - component: {fileID: 124821388434305126}
+  - component: {fileID: 9119703340410289289}
   m_Layer: 0
   m_Name: NeodroidCamera
   m_TagString: Untagged
@@ -1292,6 +1293,21 @@ Behaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866968490669790}
   m_Enabled: 1
+--- !u!114 &9119703340410289289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866968490669790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3dd815fb29337f73b480c9dd61a4ae2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameras: []
+  _textures: []
+  _size: {x: 10, y: 10}
 --- !u!1 &1870355748897446
 GameObject:
   m_ObjectHideFlags: 0
@@ -1448,7 +1464,7 @@ MonoBehaviour:
   _image_format: 0
   _jpeg_quality: 75
   _camera: {fileID: 20687481563768866}
-  _Serialised_String: ', -41976: RGBA(0.492, 0.542, 0.404, 1.000), -34326: RGBA(0.634, 0.486, 0.751, 1.000), -33378: RGBA(0.218, 0.218, 0.227, 1.000), -33310: RGBA(0.615, 0.504, 0.661, 1.000), -32990: RGBA(0.198, 0.152, 0.592, 1.000)'
+  _Serialised_String: 
   _segmenter: {fileID: 114910394560810596}
 --- !u!1 &1975208461797724
 GameObject:
@@ -1755,5 +1771,5 @@ MonoBehaviour:
   _image_format: 1
   _jpeg_quality: 75
   _camera: {fileID: 20713194616804364}
-  _Serialised_String: ', Actor: RGBA(0.000, 0.000, 1.000, 1.000), Goal: RGBA(0.000, 1.000, 0.000, 1.000), Obstruction: RGBA(1.000, 0.000, 0.000, 1.000), Box: RGBA(1.000, 0.000, 1.000, 1.000), Player: RGBA(0.000, 0.000, 1.000, 1.000)'
+  _Serialised_String: 
   _segmenter: {fileID: 114319058318530508}
