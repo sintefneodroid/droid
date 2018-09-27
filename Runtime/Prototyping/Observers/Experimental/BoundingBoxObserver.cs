@@ -13,9 +13,7 @@ namespace Neodroid.Runtime.Prototyping.Observers.Experimental {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName {
-      get { return "BoundingBox"; }
-    }
+    public override string PrototypingTypeName { get { return "BoundingBox"; } }
     //BoundingBox _bounding_box;
 
     /// <inheritdoc />

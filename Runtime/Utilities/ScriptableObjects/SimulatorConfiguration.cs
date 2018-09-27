@@ -144,7 +144,7 @@ namespace Neodroid.Runtime.Utilities.ScriptableObjects {
     [Header("Performance (Disable for faster serialisation, but with loss of functionality)"), SerializeField]
     bool _always_serialise_unobservables;
 
-    [SerializeField] bool _always_serialise_indidual_observables;
+    [SerializeField] bool _always_serialise_individual_observables;
 
     /// <summary>
     /// WARNING When _update_fixed_time_scale is true, MAJOR slow downs due to PHYSX updates on change.
@@ -251,10 +251,7 @@ namespace Neodroid.Runtime.Utilities.ScriptableObjects {
     /// <summary>
     ///
     /// </summary>
-    public bool FullScreen {
-      get { return this._full_screen; }
-      set { this._full_screen = value; }
-    }
+    public bool FullScreen { get { return this._full_screen; } set { this._full_screen = value; } }
 
     /// <summary>
     ///
@@ -339,8 +336,8 @@ namespace Neodroid.Runtime.Utilities.ScriptableObjects {
     }
 
     public bool AlwaysSerialiseIndividualObservables {
-      get { return this._always_serialise_indidual_observables; }
-      set { this._always_serialise_indidual_observables = value; }
+      get { return this._always_serialise_individual_observables; }
+      set { this._always_serialise_individual_observables = value; }
     }
 
     public bool ReplayReactionInSkips {
@@ -351,18 +348,12 @@ namespace Neodroid.Runtime.Utilities.ScriptableObjects {
     /// <summary>
     ///
     /// </summary>
-    public Int32 Port {
-      get { return this._port; }
-      set { this._port = value; }
-    }
+    public Int32 Port { get { return this._port; } set { this._port = value; } }
 
     /// <summary>
     ///
     /// </summary>
-    public String IpAddress {
-      get { return this._ip_address; }
-      set { this._ip_address = value; }
-    }
+    public String IpAddress { get { return this._ip_address; } set { this._ip_address = value; } }
 
     #endregion
   }

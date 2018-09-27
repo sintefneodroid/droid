@@ -3,6 +3,7 @@ using Neodroid.Runtime.Prototyping.Actors;
 using Neodroid.Runtime.Utilities.Misc.Drawing;
 using Neodroid.Runtime.Utilities.Misc.Grasping;
 using UnityEngine;
+using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 
 namespace Neodroid.Runtime.Prototyping.Motors {
   /// <inheritdoc />
@@ -38,9 +39,7 @@ namespace Neodroid.Runtime.Prototyping.Motors {
     string _y;
     string _z;
 
-    public override string PrototypingTypeName {
-      get { return "Rigidbody"; }
-    }
+    public override string PrototypingTypeName { get { return "Rigidbody"; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -60,29 +59,29 @@ namespace Neodroid.Runtime.Prototyping.Motors {
     /// 
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentActor = NeodroidUtilities.MaybeRegisterComponent((Actor)this.ParentActor, (Motor)this);
+      this.ParentActor = NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Motor)this);
 
-      this.ParentActor = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentActor = NeodroidUtilities.RegisterComponent(
           (Actor)this.ParentActor,
           (Motor)this,
           this._x);
-      this.ParentActor = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentActor = NeodroidUtilities.RegisterComponent(
           (Actor)this.ParentActor,
           (Motor)this,
           this._y);
-      this.ParentActor = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentActor = NeodroidUtilities.RegisterComponent(
           (Actor)this.ParentActor,
           (Motor)this,
           this._z);
-      this.ParentActor = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentActor = NeodroidUtilities.RegisterComponent(
           (Actor)this.ParentActor,
           (Motor)this,
           this._rot_x);
-      this.ParentActor = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentActor = NeodroidUtilities.RegisterComponent(
           (Actor)this.ParentActor,
           (Motor)this,
           this._rot_y);
-      this.ParentActor = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentActor = NeodroidUtilities.RegisterComponent(
           (Actor)this.ParentActor,
           (Motor)this,
           this._rot_z);

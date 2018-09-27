@@ -83,9 +83,7 @@ namespace Neodroid.Runtime.Prototyping.Evaluation {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override String PrototypingTypeName {
-      get { return "SeekAndAvoidListener"; }
-    }
+    public override String PrototypingTypeName { get { return "SeekAndAvoidListener"; } }
 
     void OnChildTriggerEnter(GameObject child_game_object, Collider collider1) {
       #if NEODROID_DEBUG

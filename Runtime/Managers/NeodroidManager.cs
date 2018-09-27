@@ -248,23 +248,17 @@ namespace Neodroid.Runtime.Managers {
       }
     }
 
-    [SerializeField] float _last_simulation_time=0;
-    
+    [SerializeField] float _last_simulation_time = 0;
+
     /// <summary>
     /// 
     /// </summary>
-    public bool HasStepped {
-      get { return this._has_stepped; }
-      set { this._has_stepped = value; }
-    }
+    public bool HasStepped { get { return this._has_stepped; } set { this._has_stepped = value; } }
 
     /// <summary>
     ///
     /// </summary>
-    public bool TestMotors {
-      get { return this._testing_motors; }
-      set { this._testing_motors = value; }
-    }
+    public bool TestMotors { get { return this._testing_motors; } set { this._testing_motors = value; } }
 
     /// <summary>
     ///
@@ -293,9 +287,7 @@ namespace Neodroid.Runtime.Managers {
       }
     }
 
-    public ISimulatorConfiguration SimulatorConfiguration {
-      get { return this._configuration; }
-    }
+    public ISimulatorConfiguration SimulatorConfiguration { get { return this._configuration; } }
 
     /// <summary>
     ///
@@ -308,9 +300,7 @@ namespace Neodroid.Runtime.Managers {
     /// <summary>
     /// 
     /// </summary>
-    public bool Stepping {
-      get { return this._step; }
-    }
+    public bool Stepping { get { return this._step; } }
 
     #endregion
 
@@ -676,7 +666,7 @@ namespace Neodroid.Runtime.Managers {
             states,
             simulator_configuration_message : configuration_message,
             do_serialise_unobservables : this.Configuration.AlwaysSerialiseUnobservables,
-            serialise_indidual_observables : this.Configuration.AlwaysSerialiseIndividualObservables);
+            serialise_individual_observables : this.Configuration.AlwaysSerialiseIndividualObservables);
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log("Replying");

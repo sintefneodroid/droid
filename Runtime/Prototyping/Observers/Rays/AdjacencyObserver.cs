@@ -20,17 +20,12 @@ namespace Neodroid.Runtime.Prototyping.Observers.Rays {
     /// <summary>
     /// 
     /// </summary>
-    public override string PrototypingTypeName {
-      get { return "Adjacency"; }
-    }
+    public override string PrototypingTypeName { get { return "Adjacency"; } }
 
     /// <summary>
     /// 
     /// </summary>
-    public RaycastHit Hit {
-      get { return this._hit; }
-      set { this._hit = value; }
-    }
+    public RaycastHit Hit { get { return this._hit; } set { this._hit = value; } }
 
     /// <summary>
     /// 

@@ -212,7 +212,6 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
       this.transform.rotation = Quaternion.LookRotation(inv_dir, inv_rot);
     }
 
-
     #region Fields
 
     [SerializeField] Axis _axis_of_configuration;

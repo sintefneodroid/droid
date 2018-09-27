@@ -18,6 +18,7 @@ using Neodroid.Runtime.Utilities.Misc.Grasping;
 using Neodroid.Runtime.Utilities.ScriptableObjects;
 using UnityEditor;
 using UnityEngine;
+using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 
 namespace Neodroid.Editor.Windows {
   /// <inheritdoc />
@@ -104,7 +105,7 @@ namespace Neodroid.Editor.Windows {
         EditorGUILayout.ObjectField(this._simulation_manager, typeof(NeodroidManager), true);
 
         this._simulation_manager.Configuration = (SimulatorConfiguration)EditorGUILayout.ObjectField(
-          (SimulatorConfiguration)this._simulation_manager.Configuration,
+            (SimulatorConfiguration)this._simulation_manager.Configuration,
             typeof(SimulatorConfiguration),
             true);
 
@@ -188,7 +189,7 @@ namespace Neodroid.Editor.Windows {
                 EditorGUILayout.BeginVertical("Box");
                 GUILayout.Label("Actors");
                 foreach (var actor in actors) {
-                  var actor_value = (Actor) actor.Value;
+                  var actor_value = (Actor)actor.Value;
                   if (actor_value != null) {
                     var motors = actor_value.Motors;
 
@@ -202,9 +203,8 @@ namespace Neodroid.Editor.Windows {
                     EditorGUILayout.BeginVertical("Box");
                     GUILayout.Label("Motors");
                     foreach (var motor in motors) {
-                      var motor_value = (Motor) motor.Value;
+                      var motor_value = (Motor)motor.Value;
                       if (motor_value != null) {
-
                         EditorGUILayout.BeginVertical("Box");
                         motor_value.enabled = EditorGUILayout.BeginToggleGroup(
                             motor.Key,
@@ -229,9 +229,8 @@ namespace Neodroid.Editor.Windows {
                 EditorGUILayout.BeginVertical("Box");
                 GUILayout.Label("Observers");
                 foreach (var observer in observers) {
-                  var observer_value = (Observer) observer.Value;
-                  if (observer_value != null){
-
+                  var observer_value = (Observer)observer.Value;
+                  if (observer_value != null) {
                     EditorGUILayout.BeginVertical("Box");
                     observer_value.enabled = EditorGUILayout.BeginToggleGroup(
                         observer.Key,
@@ -247,9 +246,8 @@ namespace Neodroid.Editor.Windows {
                 EditorGUILayout.BeginVertical("Box");
                 GUILayout.Label("Configurables");
                 foreach (var configurable in configurables) {
-                  var configurable_value = (Configurable) configurable.Value;
+                  var configurable_value = (Configurable)configurable.Value;
                   if (configurable_value != null) {
-
                     EditorGUILayout.BeginVertical("Box");
                     configurable_value.enabled = EditorGUILayout.BeginToggleGroup(
                         configurable.Key,
@@ -265,9 +263,8 @@ namespace Neodroid.Editor.Windows {
                 EditorGUILayout.BeginVertical("Box");
                 GUILayout.Label("Displayers");
                 foreach (var displayer in displayers) {
-                  var displayer_value = (Displayer) displayer.Value;
+                  var displayer_value = (Displayer)displayer.Value;
                   if (displayer_value != null) {
-
                     EditorGUILayout.BeginVertical("Box");
                     displayer_value.enabled = EditorGUILayout.BeginToggleGroup(
                         displayer.Key,

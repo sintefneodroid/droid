@@ -5,6 +5,7 @@ using Neodroid.Runtime.Messaging.Messages;
 using Neodroid.Runtime.Utilities.Misc.Drawing;
 using Neodroid.Runtime.Utilities.Misc.Grasping;
 using UnityEngine;
+using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 using Random = System.Random;
 
 namespace Neodroid.Runtime.Prototyping.Configurables {
@@ -43,9 +44,7 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public override string PrototypingTypeName {
-      get { return "ColorConfigurable"; }
-    }
+    public override string PrototypingTypeName { get { return "ColorConfigurable"; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -63,19 +62,19 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     ///  <summary>
     ///  </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
           this._r);
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
           this._g);
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
           this._b);
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
           this._a);
@@ -121,7 +120,7 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     }
 
     public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
-      return new Configuration(this._r,(float)random_generator.NextDouble());
+      return new Configuration(this._r, (float)random_generator.NextDouble());
     }
   }
 }

@@ -101,8 +101,6 @@ namespace Neodroid.Runtime.Prototyping.Internals.StateValidation {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName {
-      get { return "ValidityChecker"; }
-    }
+    public override string PrototypingTypeName { get { return "ValidityChecker"; } }
   }
 }

@@ -19,18 +19,21 @@ namespace Neodroid.Runtime.Interfaces {
     /// <param name="transform_forward"></param>
     /// <returns></returns>
     Vector3 TransformDirection(Vector3 transform_forward);
+
     /// <summary>
     /// 
     /// </summary>
     /// <param name="transform_position"></param>
     /// <returns></returns>
     Vector3 TransformPosition(Vector3 transform_position);
+
     /// <summary>
     /// 
     /// </summary>
     /// <param name="inv_pos"></param>
     /// <returns></returns>
     Vector3 InverseTransformPosition(Vector3 inv_pos);
+
     /// <summary>
     /// 
     /// </summary>
@@ -49,10 +52,12 @@ namespace Neodroid.Runtime.Interfaces {
     /// 
     /// </summary>
     event Action PreStepEvent;
+
     /// <summary>
     /// 
     /// </summary>
     event Action StepEvent;
+
     /// <summary>
     /// 
     /// </summary>
@@ -61,7 +66,8 @@ namespace Neodroid.Runtime.Interfaces {
     /// <summary>
     /// 
     /// </summary>
-    Transform Transform { get;  }
+    Transform Transform { get; }
+
     /// <summary>
     /// 
     /// </summary>

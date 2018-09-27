@@ -15,9 +15,7 @@ namespace Neodroid.Runtime.Utilities.Structs {
       this._Max_Values = Vector3.one * 100f; //Vector3.positiveInfinity;
     }
 
-    public Vector3 Span {
-      get { return this._Max_Values - this._Min_Values; }
-    }
+    public Vector3 Span { get { return this._Max_Values - this._Min_Values; } }
 
     public Vector3 RandomVector3() {
       var x = Random.Range(this._Min_Values.x, this._Max_Values.x);

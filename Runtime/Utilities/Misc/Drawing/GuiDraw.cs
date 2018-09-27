@@ -4,10 +4,10 @@ namespace Neodroid.Runtime.Utilities.Misc.Drawing {
   /// <summary>
   /// 
   /// </summary>
-  public static class GuiDraw {
+  public static partial class NeodroidDrawingUtilities {
     static Texture2D _s_line_tex;
 
-    static GuiDraw() {
+    static NeodroidDrawingUtilities() {
       _s_line_tex = new Texture2D(1, 3, TextureFormat.ARGB32, true);
       _s_line_tex.SetPixel(0, 0, new Color(1, 1, 1, 0));
       _s_line_tex.SetPixel(0, 1, Color.white);

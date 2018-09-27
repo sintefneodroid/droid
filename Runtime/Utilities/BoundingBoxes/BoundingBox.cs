@@ -133,17 +133,11 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
       }
     }
 
-    public Bounds Bounds {
-      get { return this._Bounds; }
-    }
+    public Bounds Bounds { get { return this._Bounds; } }
 
-    public Vector3 Max {
-      get { return this._Bounds.max; }
-    }
+    public Vector3 Max { get { return this._Bounds.max; } }
 
-    public Vector3 Min {
-      get { return this._Bounds.min; }
-    }
+    public Vector3 Min { get { return this._Bounds.min; } }
 
     /// <summary>
     /// 

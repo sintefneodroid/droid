@@ -214,9 +214,6 @@ namespace Neodroid.Runtime.Messaging {
         if (this._use_inter_process_communication) {
           this._socket.Disconnect("inproc://neodroid");
         } else {
-
-
-
           this._socket.Disconnect("tcp://" + this._ip_address + ":" + this._port);
         }
       }
@@ -240,13 +237,13 @@ namespace Neodroid.Runtime.Messaging {
     ///  </summary>
     ///  <param name="environment_states"></param>
     /// <param name="do_serialise_unobservables"></param>
-    /// <param name="serialise_indidual_observables"></param>
+    /// <param name="serialise_individual_observables"></param>
     /// <param name="simulator_configuration_message"></param>
     /// <param name="api_vesion"></param>
     public void SendStates(
         EnvironmentState[] environment_states,
         bool do_serialise_unobservables = false,
-        bool serialise_indidual_observables = false,
+        bool serialise_individual_observables = false,
         SimulatorConfigurationMessage simulator_configuration_message = null,
         string api_vesion = _api_version) {
       lock (this._thread_lock) {
@@ -284,10 +281,10 @@ namespace Neodroid.Runtime.Messaging {
         }
         #endif
 
-        this._byte_buffer = FbsStateUtilities.serialise_states(
+        this._byte_buffer = FbsStateUtilities.Serialise(
             environment_states,
             do_serialise_unobservables : do_serialise_unobservables,
-            serialise_indidual_observables : serialise_indidual_observables,
+            serialise_individual_observables : serialise_individual_observables,
             simulator_configuration : simulator_configuration_message,
             api_version : api_vesion);
         this._socket.SendFrame(this._byte_buffer);
@@ -363,10 +360,7 @@ namespace Neodroid.Runtime.Messaging {
     /// <summary>
     ///
     /// </summary>
-    public bool Debugging {
-      get { return this._debugging; }
-      set { this._debugging = value; }
-    }
+    public bool Debugging { get { return this._debugging; } set { this._debugging = value; } }
 
     #endregion
 

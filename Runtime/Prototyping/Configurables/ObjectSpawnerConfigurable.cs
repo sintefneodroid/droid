@@ -31,9 +31,7 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName {
-      get { return "ObjectSpawnerConfigurable"; }
-    }
+    public override string PrototypingTypeName { get { return "ObjectSpawnerConfigurable"; } }
 
     void DestroyObjects() {
       if (this._spawned_objects != null) {
@@ -73,9 +71,9 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
       if (this._spawned_objects.Count < obj.ConfigurableValue) {
         var go = Instantiate(this._object_to_spawn, this.transform);
         this._spawned_objects.Add(go);
-      }else if (this._spawned_objects.Count > obj.ConfigurableValue) {
-        if(this._spawned_objects.Count>0) {
-          this._spawned_objects.RemoveAt(this._spawned_objects.Count-1);
+      } else if (this._spawned_objects.Count > obj.ConfigurableValue) {
+        if (this._spawned_objects.Count > 0) {
+          this._spawned_objects.RemoveAt(this._spawned_objects.Count - 1);
         }
       }
     }

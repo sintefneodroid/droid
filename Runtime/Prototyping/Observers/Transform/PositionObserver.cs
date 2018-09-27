@@ -23,9 +23,7 @@ namespace Neodroid.Runtime.Prototyping.Observers.Transform {
     /// <summary>
     /// 
     /// </summary>
-    public override string PrototypingTypeName {
-      get { return "Position"; }
-    }
+    public override string PrototypingTypeName { get { return "Position"; } }
 
     /// <summary>
     /// 

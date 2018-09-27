@@ -4,6 +4,7 @@ using Neodroid.Runtime.Utilities.Misc.Grasping;
 using Neodroid.Runtime.Utilities.Misc.Grid;
 using Neodroid.Runtime.Utilities.Structs;
 using UnityEngine;
+using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 
 namespace Neodroid.Runtime.Prototyping.Observers.Grid {
   [AddComponentMenu(
@@ -20,25 +21,17 @@ namespace Neodroid.Runtime.Prototyping.Observers.Grid {
     /// <summary>
     /// 
     /// </summary>
-    public int OrderIndex {
-      get { return this._order_index; }
-      set { this._order_index = value; }
-    }
+    public int OrderIndex { get { return this._order_index; } set { this._order_index = value; } }
 
     /// <summary>
     /// 
     /// </summary>
-    public bool DrawNames {
-      get { return this._draw_names; }
-      set { this._draw_names = value; }
-    }
+    public bool DrawNames { get { return this._draw_names; } set { this._draw_names = value; } }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName {
-      get { return "GoalObserver"; }
-    }
+    public override string PrototypingTypeName { get { return "GoalObserver"; } }
 
     /// <summary>
     /// 
@@ -81,7 +74,7 @@ namespace Neodroid.Runtime.Prototyping.Observers.Grid {
     void OnDrawGizmosSelected() {
       if (this.DrawNames) {
         if (this._current_goal) {
-          NeodroidUtilities.DrawString(
+          NeodroidDrawingUtilities.DrawString(
               this._current_goal.name,
               this._current_goal.transform.position,
               Color.green);

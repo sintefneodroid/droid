@@ -25,18 +25,11 @@ namespace Neodroid.Runtime.Prototyping.Observers.Rays {
     [SerializeField]
     ValueSpace _observation_value_space;
 
-    public override string PrototypingTypeName {
-      get { return "LineOfSight"; }
-    }
+    public override string PrototypingTypeName { get { return "LineOfSight"; } }
 
-    public float ObservationValue {
-      get { return this._obs_value; }
-      private set { this._obs_value = value; }
-    }
+    public float ObservationValue { get { return this._obs_value; } private set { this._obs_value = value; } }
 
-    public ValueSpace SingleSpace {
-      get { return this._observation_value_space; }
-    }
+    public ValueSpace SingleSpace { get { return this._observation_value_space; } }
 
     protected override void PreSetup() { this.FloatEnumerable = new[] {this.ObservationValue}; }
 

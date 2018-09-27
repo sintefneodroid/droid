@@ -6,6 +6,7 @@ using Neodroid.Runtime.Utilities.Misc.Drawing;
 using Neodroid.Runtime.Utilities.Misc.Grasping;
 using Neodroid.Runtime.Utilities.Structs;
 using UnityEngine;
+using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 using Random = System.Random;
 
 namespace Neodroid.Runtime.Prototyping.Configurables {
@@ -80,17 +81,12 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     /// <summary>
     ///
     /// </summary>
-    public override string PrototypingTypeName {
-      get { return "RigidbodyConfigurable"; }
-    }
+    public override string PrototypingTypeName { get { return "RigidbodyConfigurable"; } }
 
     /// <summary>
     ///
     /// </summary>
-    public Vector3 Velocity {
-      get { return this._velocity; }
-      set { this._velocity = value; }
-    }
+    public Vector3 Velocity { get { return this._velocity; } set { this._velocity = value; } }
 
     /// <summary>
     ///
@@ -103,16 +99,12 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     /// <summary>
     ///
     /// </summary>
-    public Space3 VelocitySpace {
-      get { return this._velocity_space; }
-    }
+    public Space3 VelocitySpace { get { return this._velocity_space; } }
 
     /// <summary>
     ///
     /// </summary>
-    public Space3 AngularSpace {
-      get { return this._angular_velocity_space; }
-    }
+    public Space3 AngularSpace { get { return this._angular_velocity_space; } }
 
     /// <summary>
     ///
@@ -140,27 +132,27 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     ///
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
           this._vel_x);
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
           this._vel_y);
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
           this._vel_z);
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
           this._ang_x);
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
           this._ang_y);
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
           this._ang_z);
@@ -252,7 +244,7 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     /// <returns></returns>
     /// <exception cref="T:System.NotImplementedException"></exception>
     public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
-      return new Configuration(this._ang_x,random_generator.Next());
+      return new Configuration(this._ang_x, random_generator.Next());
     }
   }
 }

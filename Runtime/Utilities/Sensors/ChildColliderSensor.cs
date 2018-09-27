@@ -112,10 +112,7 @@ namespace Neodroid.Runtime.Utilities.Sensors {
     /// <summary>
     /// 
     /// </summary>
-    public Component Caller {
-      get { return this._caller; }
-      set { this._caller = value; }
-    }
+    public Component Caller { get { return this._caller; } set { this._caller = value; } }
 
     void OnCollisionEnter(Collision collision) {
       this._on_collision_enter_delegate?.Invoke(this.gameObject, collision);

@@ -12,6 +12,7 @@ using Neodroid.Runtime.Utilities.Misc.Drawing;
 using Neodroid.Runtime.Utilities.Misc.Extensions;
 using Neodroid.Runtime.Utilities.Misc.Grasping;
 using UnityEngine;
+using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 using Object = System.Object;
 
 namespace Neodroid.Runtime.Environments {
@@ -291,9 +292,7 @@ namespace Neodroid.Runtime.Environments {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName {
-      get { return "PrototypingEnvironment"; }
-    }
+    public override string PrototypingTypeName { get { return "PrototypingEnvironment"; } }
 
     /// <summary>
     ///
@@ -306,9 +305,7 @@ namespace Neodroid.Runtime.Environments {
     /// <summary>
     /// 
     /// </summary>
-    public Transform Transform {
-      get { return this.transform; }
-    }
+    public Transform Transform { get { return this.transform; } }
 
     /// <summary>
     ///
@@ -433,8 +430,6 @@ namespace Neodroid.Runtime.Environments {
           this.UpdateObserversData();
         }
       }
-      
-
 
       #if NEODROID_DEBUG
       if (this.Debugging) {

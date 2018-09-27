@@ -41,8 +41,6 @@ namespace Neodroid.Runtime.Prototyping.Evaluation.Terms {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName {
-      get { return "CollidersPunishment"; }
-    }
+    public override string PrototypingTypeName { get { return "CollidersPunishment"; } }
   }
 }

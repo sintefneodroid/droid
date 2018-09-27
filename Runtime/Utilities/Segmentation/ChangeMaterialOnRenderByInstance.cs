@@ -10,7 +10,7 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
   /// <summary>
   /// </summary>
   [ExecuteInEditMode]
-  public class ChangeMaterialOnRenderByInstance : Segmenter{
+  public class ChangeMaterialOnRenderByInstance : Segmenter {
     /// <summary>
     ///
     /// </summary>
@@ -31,7 +31,6 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
     public Dictionary<GameObject, Color> ColorsDictGameObject { get; private set; } =
       new Dictionary<GameObject, Color>();
 
-
     /// <summary>
     /// 
     /// </summary>
@@ -39,7 +38,7 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
       get {
         var colors = new Dictionary<String, Color>();
         foreach (var key_val in this.ColorsDictGameObject) {
-          colors.Add(key_val.Key.GetInstanceID().ToString(),key_val.Value);
+          colors.Add(key_val.Key.GetInstanceID().ToString(), key_val.Value);
         }
 
         return colors;
@@ -106,7 +105,7 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
         this._block = new MaterialPropertyBlock();
       }
     }
-    
+
     /// <summary>
     ///
     /// </summary>
@@ -192,6 +191,5 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
       // change back
       this.Restore();
     }
-
   }
 }

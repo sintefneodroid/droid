@@ -6,6 +6,7 @@ using Neodroid.Runtime.Utilities.Misc.Drawing;
 using Neodroid.Runtime.Utilities.Misc.Grasping;
 using Neodroid.Runtime.Utilities.Structs;
 using UnityEngine;
+using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 using Random = System.Random;
 
 namespace Neodroid.Runtime.Prototyping.Configurables {
@@ -42,16 +43,12 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     /// <summary>
     ///
     /// </summary>
-    public override string PrototypingTypeName {
-      get { return "PositionConfigurable"; }
-    }
+    public override string PrototypingTypeName { get { return "PositionConfigurable"; } }
 
     /// <summary>
     ///
     /// </summary>
-    public Vector3 ObservationValue {
-      get { return this._position; }
-    }
+    public Vector3 ObservationValue { get { return this._position; } }
 
     public Space3 TripleSpace { get; } = new Space3();
 
@@ -59,18 +56,18 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     ///
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this);
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
           this._x);
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
           this._y);
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
           this._z);

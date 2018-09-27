@@ -19,9 +19,7 @@ namespace Neodroid.Runtime.Prototyping.Observers.Rays {
     ValueSpace _observation_value_space =
         new ValueSpace {_Decimal_Granularity = 10, _Min_Value = 0.0f, _Max_Value = 100.0f};
 
-    public override string PrototypingTypeName {
-      get { return "Lidar"; }
-    }
+    public override string PrototypingTypeName { get { return "Lidar"; } }
 
     public float[] ObservationArray {
       get { return this._obs_array; }

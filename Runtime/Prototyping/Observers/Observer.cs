@@ -7,6 +7,7 @@ using Neodroid.Runtime.Utilities.GameObjects;
 using Neodroid.Runtime.Utilities.Misc.Drawing;
 using Neodroid.Runtime.Utilities.Misc.Grasping;
 using UnityEngine;
+using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 
 namespace Neodroid.Runtime.Prototyping.Observers {
   /// <inheritdoc cref="PrototypingGameObject" />
@@ -57,7 +58,7 @@ namespace Neodroid.Runtime.Prototyping.Observers {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           this);
     }

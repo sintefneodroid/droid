@@ -4,7 +4,7 @@ namespace Neodroid.Runtime.Utilities.Misc.Drawing {
   /// <summary>
   /// 
   /// </summary>
-  public static class DrawArrow {
+  public static partial class NeodroidDrawingUtilities {
     /// <summary>
     /// 
     /// </summary>
@@ -20,7 +20,7 @@ namespace Neodroid.Runtime.Utilities.Misc.Drawing {
         float arrow_head_length = 0.25f,
         float arrow_head_angle = 20.0f) {
       Gizmos.DrawRay(pos, direction);
-      DrawArrowEnd(true, pos, direction, color, arrow_head_length, arrow_head_angle);
+      NeodroidDrawingUtilitiesEnd(true, pos, direction, color, arrow_head_length, arrow_head_angle);
     }
 
     /// <summary>
@@ -45,10 +45,10 @@ namespace Neodroid.Runtime.Utilities.Misc.Drawing {
         Debug.DrawRay(pos, direction, color);
       }
 
-      DrawArrowEnd(false, pos, direction, color, arrow_head_length, arrow_head_angle, ray_duration);
+      NeodroidDrawingUtilitiesEnd(false, pos, direction, color, arrow_head_length, arrow_head_angle, ray_duration);
     }
 
-    static void DrawArrowEnd(
+    static void NeodroidDrawingUtilitiesEnd(
         bool gizmos,
         Vector3 pos,
         Vector3 direction,

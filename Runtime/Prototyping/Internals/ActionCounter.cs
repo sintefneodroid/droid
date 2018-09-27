@@ -51,8 +51,6 @@ namespace Neodroid.Runtime.Prototyping.Internals {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName {
-      get { return "ActionCounter"; }
-    }
+    public override string PrototypingTypeName { get { return "ActionCounter"; } }
   }
 }

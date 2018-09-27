@@ -47,9 +47,7 @@ namespace Neodroid.Runtime.Prototyping.Observers.Transform {
     [SerializeField] Vector3 _direction;
     [SerializeField] Space3 _direction_space = new Space3(10);
 
-    public override string PrototypingTypeName {
-      get { return "EulerTransform"; }
-    }
+    public override string PrototypingTypeName { get { return "EulerTransform"; } }
 
     public Vector3 Position {
       get { return this._position; }

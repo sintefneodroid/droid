@@ -2,6 +2,7 @@
 using Neodroid.Runtime.Utilities.Misc.Grasping;
 using Neodroid.Runtime.Utilities.ScriptableObjects;
 using UnityEngine;
+using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 
 namespace Neodroid.Runtime.Managers.Experimental {
   [AddComponentMenu("Neodroid/Managers/NotUsed/Curriculum")]
@@ -27,22 +28,22 @@ namespace Neodroid.Runtime.Managers.Experimental {
                 Gizmos.DrawWireSphere(configurable.transform.position, entry._Max_Value);
                 var pos_up = configurable.transform.position;
                 pos_up.y += entry._Max_Value;
-                NeodroidUtilities.DrawString(i.ToString(), pos_up, new Color(1, 1, 1, 1));
+                NeodroidDrawingUtilities.DrawString(i.ToString(), pos_up, new Color(1, 1, 1, 1));
                 var pos_left = configurable.transform.position;
                 pos_left.x += entry._Max_Value;
-                NeodroidUtilities.DrawString(i.ToString(), pos_left, new Color(1, 1, 1, 1));
+                NeodroidDrawingUtilities.DrawString(i.ToString(), pos_left, new Color(1, 1, 1, 1));
                 var pos_forward = configurable.transform.position;
                 pos_forward.z += entry._Max_Value;
-                NeodroidUtilities.DrawString(i.ToString(), pos_forward, new Color(1, 1, 1, 1));
+                NeodroidDrawingUtilities.DrawString(i.ToString(), pos_forward, new Color(1, 1, 1, 1));
                 var pos_down = configurable.transform.position;
                 pos_down.y -= entry._Max_Value;
-                NeodroidUtilities.DrawString(i.ToString(), pos_down, new Color(1, 1, 1, 1));
+                NeodroidDrawingUtilities.DrawString(i.ToString(), pos_down, new Color(1, 1, 1, 1));
                 var pos_right = configurable.transform.position;
                 pos_right.x -= entry._Max_Value;
-                NeodroidUtilities.DrawString(i.ToString(), pos_right, new Color(1, 1, 1, 1));
+                NeodroidDrawingUtilities.DrawString(i.ToString(), pos_right, new Color(1, 1, 1, 1));
                 var pos_backward = configurable.transform.position;
                 pos_backward.z -= entry._Max_Value;
-                NeodroidUtilities.DrawString(i.ToString(), pos_backward, new Color(1, 1, 1, 1));
+                NeodroidDrawingUtilities.DrawString(i.ToString(), pos_backward, new Color(1, 1, 1, 1));
               }
             }
           }

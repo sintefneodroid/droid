@@ -17,16 +17,12 @@ namespace Neodroid.Runtime.Prototyping.Observers.Transform {
     /// <summary>
     /// 
     /// </summary>
-    public ObservationSpace Space {
-      get { return this._space; }
-    }
+    public ObservationSpace Space { get { return this._space; } }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName {
-      get { return "Position"; }
-    }
+    public override string PrototypingTypeName { get { return "Position"; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -55,10 +51,7 @@ namespace Neodroid.Runtime.Prototyping.Observers.Transform {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public Quaternion ObservationValue {
-      get { return this._rotation; }
-      set { this._rotation = value; }
-    }
+    public Quaternion ObservationValue { get { return this._rotation; } set { this._rotation = value; } }
 
     /// <inheritdoc />
     /// <summary>

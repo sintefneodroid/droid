@@ -6,7 +6,6 @@ namespace Neodroid.Runtime.Interfaces {
   /// 
   /// </summary>
   public interface IMaterialManipulator {
-
     /// <summary>
     /// 
     /// </summary>

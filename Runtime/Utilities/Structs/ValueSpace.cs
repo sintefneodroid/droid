@@ -22,9 +22,7 @@ namespace Neodroid.Runtime.Utilities.Structs {
 
     public float Sample() { return this.RandomValue(); }
 
-    public float Span {
-      get { return this._Max_Value - this._Min_Value; }
-    }
+    public float Span { get { return this._Max_Value - this._Min_Value; } }
 
     public float ClipNormaliseRound(float v) {
       if (v > this._Max_Value) {

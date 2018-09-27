@@ -6,6 +6,7 @@ using Neodroid.Runtime.Utilities.Misc.Drawing;
 using Neodroid.Runtime.Utilities.Misc.Grasping;
 using Neodroid.Runtime.Utilities.Structs;
 using UnityEngine;
+using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 
 namespace Neodroid.Runtime.Prototyping.Configurables {
   /// <inheritdoc cref="Configurable" />
@@ -41,27 +42,16 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName {
-      get { return "EulerTransformConfigurable"; }
-    }
+    public override string PrototypingTypeName { get { return "EulerTransformConfigurable"; } }
 
     /// <summary>
     /// 
     /// </summary>
-    public Vector3 Position {
-      get { return this._position; }
-      set { this._position = value; }
-    }
+    public Vector3 Position { get { return this._position; } set { this._position = value; } }
 
-    public Vector3 Direction {
-      get { return this._direction; }
-      set { this._direction = value; }
-    }
+    public Vector3 Direction { get { return this._direction; } set { this._direction = value; } }
 
-    public Vector3 Rotation {
-      get { return this._rotation; }
-      set { this._rotation = value; }
-    }
+    public Vector3 Rotation { get { return this._rotation; } set { this._rotation = value; } }
 
     public Space3 PositionSpace { get; } = new Space3();
     public Space3 DirectionSpace { get; } = new Space3();
@@ -86,42 +76,42 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     /// 
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this);
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
           this._x);
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
           this._y);
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
           this._z);
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
           this._dir_x);
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
           this._dir_y);
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
           this._dir_z);
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
           this._rot_x);
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
           this._rot_y);
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
           this._rot_z);

@@ -13,9 +13,7 @@ namespace Neodroid.Runtime.Prototyping.Observers.Rays {
 
     [SerializeField] RaycastHit _hit;
     [SerializeField] ValueSpace _observation_value_space;
-    public ValueSpace SingleSpace {
-      get { return this._observation_value_space; }
-    }
+    public ValueSpace SingleSpace { get { return this._observation_value_space; } }
 
     [SerializeField]
     ValueSpace _observation_space =

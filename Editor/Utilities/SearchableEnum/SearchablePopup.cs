@@ -98,9 +98,7 @@ namespace Neodroid.Editor.Utilities.SearchableEnum {
       public List<Entry> Entries { get; private set; }
 
       /// <summary> Total possible entries in the list. </summary>
-      public int MaxLength {
-        get { return this._all_items.Length; }
-      }
+      public int MaxLength { get { return this._all_items.Length; } }
 
       /// <summary>
       /// Sets a new filter string and updates the Entries that match the

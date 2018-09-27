@@ -21,9 +21,7 @@ namespace Neodroid.Runtime.Prototyping.Observers.Rays {
     [SerializeField] Vector3 _rotation;
     [SerializeField] Space3 _rotation_space = new Space3(10);
 
-    public override string PrototypingTypeName {
-      get { return "Nearest" + this._tag; }
-    }
+    public override string PrototypingTypeName { get { return "Nearest" + this._tag; } }
 
     public Vector3 Position {
       get { return this._position; }

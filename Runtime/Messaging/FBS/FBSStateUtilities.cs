@@ -3,6 +3,7 @@ using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Messaging.Messages;
 using Neodroid.Runtime.Prototyping.Actors;
 using Neodroid.Runtime.Prototyping.Configurables;
+using Neodroid.Runtime.Prototyping.Observers.Camera;
 using UnityEngine;
 
 namespace Neodroid.Runtime.Messaging.FBS {
@@ -20,14 +21,14 @@ namespace Neodroid.Runtime.Messaging.FBS {
     ///   </summary>
     ///   <param name="states"></param>
     ///  <param name="simulator_configuration"></param>
-    /// <param name="serialise_indidual_observables"></param>
+    /// <param name="serialise_individual_observables"></param>
     /// <param name="do_serialise_unobservables"></param>
     /// <param name="api_version"></param>
     ///  <returns></returns>
-    public static byte[] serialise_states(
+    public static byte[] Serialise(
         EnvironmentState[] states,
         SimulatorConfigurationMessage simulator_configuration = null,
-        bool serialise_indidual_observables = false,
+        bool serialise_individual_observables = false,
         bool do_serialise_unobservables = false,
         string api_version = "") {
       var b = new FlatBufferBuilder(1);
@@ -37,7 +38,7 @@ namespace Neodroid.Runtime.Messaging.FBS {
         state_offsets[i++] = serialise_state(
             b,
             state,
-            serialise_indidual_observables,
+            serialise_individual_observables,
             do_serialise_unobservables);
       }
 
@@ -48,7 +49,7 @@ namespace Neodroid.Runtime.Messaging.FBS {
       FStates.StartFStates(b);
       FStates.AddStates(b, states_vector_offset);
       FStates.AddApiVersion(b, api_version_offset);
-      FStates.AddSimulatorConfiguration(b, serialise_simulator_configuration(b, simulator_configuration));
+      FStates.AddSimulatorConfiguration(b, Serialise(b, simulator_configuration));
       var states_offset = FStates.EndFStates(b);
 
       FStates.FinishFStatesBuffer(b, states_offset);
@@ -63,7 +64,7 @@ namespace Neodroid.Runtime.Messaging.FBS {
     /// <param name="configuration"></param>
     /// <returns></returns>
     public static Offset<FSimulatorConfiguration>
-        serialise_simulator_configuration(FlatBufferBuilder b, SimulatorConfigurationMessage configuration) {
+        Serialise(FlatBufferBuilder b, SimulatorConfigurationMessage configuration) {
       return FSimulatorConfiguration.CreateFSimulatorConfiguration(
           b,
           configuration.Width,
@@ -85,26 +86,26 @@ namespace Neodroid.Runtime.Messaging.FBS {
     ///  </summary>
     ///  <param name="b"></param>
     ///  <param name="state"></param>
-    /// <param name="serialise_indidual_observables"></param>
+    /// <param name="serialise_individual_observables"></param>
     /// <param name="do_serialise_unobservables"></param>
     /// <returns></returns>
     public static Offset<FState> serialise_state(
         FlatBufferBuilder b,
         EnvironmentState state,
-        bool serialise_indidual_observables = false,
+        bool serialise_individual_observables = false,
         bool do_serialise_unobservables = false) {
       var n = b.CreateString(state.EnvironmentName);
 
       var observables_vector = FState.CreateObservablesVector(b, state.Observables);
 
       var observers_vector = _null_vector_offset;
-      if (serialise_indidual_observables) {
+      if (serialise_individual_observables) {
         var observations = state.Observers;
 
         var observers = new Offset<FOBS>[observations.Length];
         var k = 0;
         foreach (var observer in observations) {
-          observers[k++] = serialise_observer(b, observer);
+          observers[k++] = Serialise(b, observer);
         }
 
         observers_vector = FState.CreateObservationsVector(b, observers);
@@ -112,8 +113,8 @@ namespace Neodroid.Runtime.Messaging.FBS {
 
       var unobservables = _null_unobservables_offset;
       if (do_serialise_unobservables) {
-        var state_eunobservables = state.Unobservables;
-        var bodies = state_eunobservables.Bodies;
+        var state_unobservables = state.Unobservables;
+        var bodies = state_unobservables.Bodies;
 
         FUnobservables.StartBodiesVector(b, bodies.Length);
         foreach (var rig in bodies) {
@@ -124,7 +125,7 @@ namespace Neodroid.Runtime.Messaging.FBS {
 
         var bodies_vector = b.EndVector();
 
-        var poses = state_eunobservables.Poses;
+        var poses = state_unobservables.Poses;
 
         FUnobservables.StartPosesVector(b, poses.Length);
         foreach (var tra in poses) {
@@ -143,7 +144,7 @@ namespace Neodroid.Runtime.Messaging.FBS {
 
       var description_offset = new Offset<FEnvironmentDescription>();
       if (state.Description != null) {
-        description_offset = serialise_description(b, state);
+        description_offset = Serialise(b, state);
       }
 
       var d = new StringOffset();
@@ -169,7 +170,7 @@ namespace Neodroid.Runtime.Messaging.FBS {
       FState.AddTerminated(b, state.Terminated);
       FState.AddTerminationReason(b, t);
 
-      if (serialise_indidual_observables) {
+      if (serialise_individual_observables) {
         FState.AddObservations(b, observers_vector);
       }
 
@@ -188,7 +189,7 @@ namespace Neodroid.Runtime.Messaging.FBS {
 
     #region PrivateMethods
 
-    static Offset<FMotor> serialise_motor(FlatBufferBuilder b, IMotor motor, string identifier) {
+    static Offset<FMotor> Serialise(FlatBufferBuilder b, IMotor motor, string identifier) {
       var n = b.CreateString(identifier);
       FMotor.StartFMotor(b);
       FMotor.AddMotorName(b, n);
@@ -209,9 +210,7 @@ namespace Neodroid.Runtime.Messaging.FBS {
     /// <param name="b"></param>
     /// <param name="observer"></param>
     /// <returns></returns>
-    static Offset<FEulerTransform> serialise_euler_transform(
-        FlatBufferBuilder b,
-        IHasEulerTransform observer) {
+    static Offset<FEulerTransform> Serialise(FlatBufferBuilder b, IHasEulerTransform observer) {
       Vector3 pos = observer.Position, rot = observer.Rotation, dir = observer.Direction;
       return FEulerTransform.CreateFEulerTransform(
           b,
@@ -232,7 +231,7 @@ namespace Neodroid.Runtime.Messaging.FBS {
     /// <param name="b"></param>
     /// <param name="observer"></param>
     /// <returns></returns>
-    static Offset<FQT> serialise_quaternion_transform(FlatBufferBuilder b, IHasQuaternionTransform observer) {
+    static Offset<FQT> Serialise(FlatBufferBuilder b, IHasQuaternionTransform observer) {
       var pos = observer.Position;
       var rot = observer.Rotation;
       FQT.StartFQT(b);
@@ -250,7 +249,7 @@ namespace Neodroid.Runtime.Messaging.FBS {
       return FQT.EndFQT(b);
     }
 
-    static Offset<FByteArray> serialise_byte_array(FlatBufferBuilder b, IHasByteArray camera) {
+    static Offset<FByteArray> Serialise(FlatBufferBuilder b, IHasByteArray camera) {
       //var v_offset = FByteArray.CreateBytesVector(b, camera.Bytes);
       var v_offset = CustomFlatBufferImplementation.CreateByteVector(b, camera.Bytes);
       FByteArray.StartFByteArray(b);
@@ -259,7 +258,7 @@ namespace Neodroid.Runtime.Messaging.FBS {
       return FByteArray.EndFByteArray(b);
     }
 
-    static Offset<FArray> serialise_array(FlatBufferBuilder b, IHasArray float_a) {
+    static Offset<FArray> Serialise(FlatBufferBuilder b, IHasArray float_a) {
       //var v_offset = FArray.CreateArrayVector(b, camera.ObservationArray);
       var v_offset = CustomFlatBufferImplementation.CreateFloatVector(b, float_a.ObservationArray);
       //FArray.StartRangesVector(b,);
@@ -276,13 +275,13 @@ namespace Neodroid.Runtime.Messaging.FBS {
     /// <param name="vel"></param>
     /// <param name="ang"></param>
     /// <returns></returns>
-    static Offset<FRB> serialise_body_observation(FlatBufferBuilder b, Vector3 vel, Vector3 ang) {
+    static Offset<FRB> Serialise(FlatBufferBuilder b, Vector3 vel, Vector3 ang) {
       FRB.StartFRB(b);
       FRB.AddBody(b, FBody.CreateFBody(b, vel.x, vel.y, vel.z, ang.x, ang.y, ang.z));
       return FRB.EndFRB(b);
     }
 
-    static Offset<FSingle> serialise_single(FlatBufferBuilder b, IHasSingle numeral) {
+    static Offset<FSingle> Serialise(FlatBufferBuilder b, IHasSingle numeral) {
       FSingle.StartFSingle(b);
       FSingle.AddValue(b, numeral.ObservationValue);
 
@@ -295,7 +294,7 @@ namespace Neodroid.Runtime.Messaging.FBS {
       return FSingle.EndFSingle(b);
     }
 
-    static Offset<FDouble> serialise_double(FlatBufferBuilder b, IHasDouble numeral) {
+    static Offset<FDouble> Serialise(FlatBufferBuilder b, IHasDouble numeral) {
       FDouble.StartFDouble(b);
       var vec2 = numeral.ObservationValue;
       FDouble.AddVec2(b, FVector2.CreateFVector2(b, vec2.x, vec2.y));
@@ -303,7 +302,7 @@ namespace Neodroid.Runtime.Messaging.FBS {
       return FDouble.EndFDouble(b);
     }
 
-    static Offset<FTriple> serialise_triple(FlatBufferBuilder b, IHasTriple numeral) {
+    static Offset<FTriple> Serialise(FlatBufferBuilder b, IHasTriple numeral) {
       FTriple.StartFTriple(b);
       var vec3 = numeral.ObservationValue;
       FTriple.AddVec3(b, FVector3.CreateFVector3(b, vec3.x, vec3.y, vec3.z));
@@ -311,7 +310,7 @@ namespace Neodroid.Runtime.Messaging.FBS {
       return FTriple.EndFTriple(b);
     }
 
-    static Offset<FQuadruple> serialise_quadruple(FlatBufferBuilder b, IHasQuadruple numeral) {
+    static Offset<FQuadruple> Serialise(FlatBufferBuilder b, IHasQuadruple numeral) {
       FQuadruple.StartFQuadruple(b);
       var quad = numeral.ObservationValue;
       FQuadruple.AddQuat(b, FQuaternion.CreateFQuaternion(b, quad.x, quad.y, quad.z, quad.z));
@@ -319,7 +318,15 @@ namespace Neodroid.Runtime.Messaging.FBS {
       return FQuadruple.EndFQuadruple(b);
     }
 
-    static Offset<FActor> serialise_actor(
+    static Offset<FString> Serialise(FlatBufferBuilder b, IHasString numeral) {
+      var string_offset = b.CreateString(numeral.ObservationValue);
+      FString.StartFString(b);
+      FString.AddStr(b, string_offset);
+
+      return FString.EndFString(b);
+    }
+
+    static Offset<FActor> Serialise(
         FlatBufferBuilder b,
         Offset<FMotor>[] motors,
         IActor actor,
@@ -338,41 +345,49 @@ namespace Neodroid.Runtime.Messaging.FBS {
       return FActor.EndFActor(b);
     }
 
-    static Offset<FOBS> serialise_observer(FlatBufferBuilder b, IObserver observer) {
+    static Offset<FOBS> Serialise(FlatBufferBuilder b, IObserver observer) {
       var n = b.CreateString(observer.Identifier);
 
       int observation_offset;
       FObservation observation_type;
-
-      if (observer is IHasArray) {
-        observation_offset = serialise_array(b, (IHasArray)observer).Value;
+      if (observer.Identifier == StringAugmentedCameraObserver._Seg_Obs_Identifier && observer is IHasString) { //TODO: Refactor to a better solution only allow one augmented cam
+        observation_offset = Serialise(b, (IHasString)observer).Value;
+        observation_type = FObservation.FString; 
+      } else if (observer.Identifier == StringAugmentedCameraObserver._Cam_Obs_Identifier && observer is IHasByteArray) {//TODO: Refactor to a better solution only allow one augmented cam
+        observation_offset = Serialise(b, (IHasByteArray)observer).Value;
+        observation_type = FObservation.FByteArray;
+      } else if (observer is IHasString) {
+        observation_offset = Serialise(b, (IHasString)observer).Value;
+        observation_type = FObservation.FString;
+      } else if (observer is IHasArray) {
+        observation_offset = Serialise(b, (IHasArray)observer).Value;
         observation_type = FObservation.FArray;
       } else if (observer is IHasSingle) {
-        observation_offset = serialise_single(b, (IHasSingle)observer).Value;
+        observation_offset = Serialise(b, (IHasSingle)observer).Value;
         observation_type = FObservation.FSingle;
       } else if (observer is IHasDouble) {
-        observation_offset = serialise_double(b, (IHasDouble)observer).Value;
+        observation_offset = Serialise(b, (IHasDouble)observer).Value;
         observation_type = FObservation.FDouble;
       } else if (observer is IHasTriple) {
-        observation_offset = serialise_triple(b, (IHasTriple)observer).Value;
+        observation_offset = Serialise(b, (IHasTriple)observer).Value;
         observation_type = FObservation.FTriple;
       } else if (observer is IHasQuadruple) {
-        observation_offset = serialise_quadruple(b, (IHasQuadruple)observer).Value;
+        observation_offset = Serialise(b, (IHasQuadruple)observer).Value;
         observation_type = FObservation.FQuadruple;
       } else if (observer is IHasEulerTransform) {
-        observation_offset = serialise_euler_transform(b, (IHasEulerTransform)observer).Value;
+        observation_offset = Serialise(b, (IHasEulerTransform)observer).Value;
         observation_type = FObservation.FET;
       } else if (observer is IHasQuaternionTransform) {
-        observation_offset = serialise_quaternion_transform(b, (IHasQuaternionTransform)observer).Value;
+        observation_offset = Serialise(b, (IHasQuaternionTransform)observer).Value;
         observation_type = FObservation.FQT;
       } else if (observer is IHasRigidbody) {
-        observation_offset = serialise_body_observation(
+        observation_offset = Serialise(
             b,
             ((IHasRigidbody)observer).Velocity,
             ((IHasRigidbody)observer).AngularVelocity).Value;
         observation_type = FObservation.FRB;
       } else if (observer is IHasByteArray) {
-        observation_offset = serialise_byte_array(b, (IHasByteArray)observer).Value;
+        observation_offset = Serialise(b, (IHasByteArray)observer).Value;
         observation_type = FObservation.FByteArray;
       } else {
         return FOBS.CreateFOBS(b, n);
@@ -385,19 +400,17 @@ namespace Neodroid.Runtime.Messaging.FBS {
       return FOBS.EndFOBS(b);
     }
 
-    static Offset<FEnvironmentDescription> serialise_description(
-        FlatBufferBuilder b,
-        EnvironmentState state) {
+    static Offset<FEnvironmentDescription> Serialise(FlatBufferBuilder b, EnvironmentState state) {
       var actors_offsets = new Offset<FActor>[state.Description.Actors.Values.Count];
       var j = 0;
       foreach (var actor in state.Description.Actors) {
         var motors_offsets = new Offset<FMotor>[actor.Value.Motors.Values.Count];
         var i = 0;
         foreach (var motor in actor.Value.Motors) {
-          motors_offsets[i++] = serialise_motor(b, motor.Value, motor.Key);
+          motors_offsets[i++] = Serialise(b, motor.Value, motor.Key);
         }
 
-        actors_offsets[j++] = serialise_actor(b, motors_offsets, actor.Value, actor.Key);
+        actors_offsets[j++] = Serialise(b, motors_offsets, actor.Value, actor.Key);
       }
 
       var actors_vector_offset = FEnvironmentDescription.CreateActorsVector(b, actors_offsets);
@@ -405,13 +418,13 @@ namespace Neodroid.Runtime.Messaging.FBS {
       var configurables_offsets = new Offset<FConfigurable>[state.Description.Configurables.Values.Count];
       var k = 0;
       foreach (var configurable in state.Description.Configurables) {
-        configurables_offsets[k++] = serialise_configurable(b, configurable.Value, configurable.Key);
+        configurables_offsets[k++] = Serialise(b, configurable.Value, configurable.Key);
       }
 
       var configurables_vector_offset =
           FEnvironmentDescription.CreateConfigurablesVector(b, configurables_offsets);
 
-      var objective_offset = serialise_objective(b, state.Description);
+      var objective_offset = Serialise(b, state.Description);
 
       FEnvironmentDescription.StartFEnvironmentDescription(b);
       FEnvironmentDescription.AddObjective(b, objective_offset);
@@ -422,7 +435,7 @@ namespace Neodroid.Runtime.Messaging.FBS {
       return FEnvironmentDescription.EndFEnvironmentDescription(b);
     }
 
-    static Offset<FObjective> serialise_objective(FlatBufferBuilder b, EnvironmentDescription description) {
+    static Offset<FObjective> Serialise(FlatBufferBuilder b, EnvironmentDescription description) {
       var objective_name_offset = b.CreateString("Default objective");
       FObjective.StartFObjective(b);
       FObjective.AddMaxEpisodeLength(b, description.MaxSteps);
@@ -431,14 +444,14 @@ namespace Neodroid.Runtime.Messaging.FBS {
       return FObjective.EndFObjective(b);
     }
 
-    static Offset<FTriple> serialise_position(FlatBufferBuilder b, PositionConfigurable observer) {
+    static Offset<FTriple> Serialise(FlatBufferBuilder b, PositionConfigurable observer) {
       var pos = observer.ObservationValue;
       FTriple.StartFTriple(b);
       FTriple.AddVec3(b, FVector3.CreateFVector3(b, pos.x, pos.y, pos.z));
       return FTriple.EndFTriple(b);
     }
 
-    static Offset<FConfigurable> serialise_configurable(
+    static Offset<FConfigurable> Serialise(
         FlatBufferBuilder b,
         IConfigurable configurable,
         string identifier) {
@@ -448,21 +461,21 @@ namespace Neodroid.Runtime.Messaging.FBS {
       FObservation observation_type;
 
       if (configurable is IHasQuaternionTransform) {
-        observation_offset = serialise_quaternion_transform(b, (IHasQuaternionTransform)configurable).Value;
+        observation_offset = Serialise(b, (IHasQuaternionTransform)configurable).Value;
         observation_type = FObservation.FQT;
       } else if (configurable is PositionConfigurable) {
-        observation_offset = serialise_position(b, (PositionConfigurable)configurable).Value;
+        observation_offset = Serialise(b, (PositionConfigurable)configurable).Value;
         observation_type = FObservation.FTriple;
       } else if (configurable is IHasSingle) {
-        observation_offset = serialise_single(b, (IHasSingle)configurable).Value;
+        observation_offset = Serialise(b, (IHasSingle)configurable).Value;
         observation_type = FObservation.FSingle;
         // ReSharper disable once SuspiciousTypeConversion.Global
       } else if (configurable is IHasDouble) {
         // ReSharper disable once SuspiciousTypeConversion.Global
-        observation_offset = serialise_double(b, (IHasDouble)configurable).Value;
+        observation_offset = Serialise(b, (IHasDouble)configurable).Value;
         observation_type = FObservation.FDouble;
       } else if (configurable is EulerTransformConfigurable) {
-        observation_offset = serialise_euler_transform(b, (IHasEulerTransform)configurable).Value;
+        observation_offset = Serialise(b, (IHasEulerTransform)configurable).Value;
         observation_type = FObservation.FET;
       } else {
         FConfigurable.StartFConfigurable(b);

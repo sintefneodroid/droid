@@ -15,9 +15,6 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
        + "IndexedScatterPlot"
        + DisplayerComponentMenuPath._Postfix)]
   public class IndexedScatterPlotDisplayer : Displayer {
-    
-  
-    
     dynamic _vals;
 
     [SerializeField] GameObject[] _designs;

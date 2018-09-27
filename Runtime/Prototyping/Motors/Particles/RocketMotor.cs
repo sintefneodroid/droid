@@ -26,9 +26,7 @@ namespace Neodroid.Runtime.Prototyping.Motors.Particles {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName {
-      get { return "Rocket" + this._Axis_Of_Motion; }
-    }
+    public override string PrototypingTypeName { get { return "Rocket" + this._Axis_Of_Motion; } }
 
     /// <inheritdoc />
     ///  <summary>

@@ -15,9 +15,7 @@ namespace Neodroid.Runtime.Utilities.Structs {
       this._Decimal_Granularity = decimal_granularity;
     }
 
-    public Vector2 Span {
-      get { return this._Max_Values - this._Min_Values; }
-    }
+    public Vector2 Span { get { return this._Max_Values - this._Min_Values; } }
 
     public Vector2 RandomVector2() {
       var x = Random.Range(this._Min_Values.x, this._Max_Values.x);

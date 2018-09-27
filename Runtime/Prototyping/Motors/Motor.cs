@@ -6,6 +6,7 @@ using Neodroid.Runtime.Utilities.Misc.Drawing;
 using Neodroid.Runtime.Utilities.Misc.Grasping;
 using Neodroid.Runtime.Utilities.Structs;
 using UnityEngine;
+using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 
 namespace Neodroid.Runtime.Prototyping.Motors {
   /// <inheritdoc cref="PrototypingGameObject" />
@@ -18,10 +19,7 @@ namespace Neodroid.Runtime.Prototyping.Motors {
     /// <summary>
     /// 
     /// </summary>
-    public IActor ParentActor {
-      get { return this._actor; }
-      set { this._actor = value; }
-    }
+    public IActor ParentActor { get { return this._actor; } set { this._actor = value; } }
 
     /// <summary>
     /// 
@@ -34,10 +32,7 @@ namespace Neodroid.Runtime.Prototyping.Motors {
     /// <summary>
     /// 
     /// </summary>
-    public float EnergyCost {
-      get { return this._energy_cost; }
-      set { this._energy_cost = value; }
-    }
+    public float EnergyCost { get { return this._energy_cost; } set { this._energy_cost = value; } }
 
     /// <summary>
     /// 
@@ -50,15 +45,13 @@ namespace Neodroid.Runtime.Prototyping.Motors {
     /// <summary>
     /// 
     /// </summary>
-    public override String PrototypingTypeName {
-      get { return "Motor"; }
-    }
+    public override String PrototypingTypeName { get { return "Motor"; } }
 
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
     protected override void RegisterComponent() {
-      this.ParentActor = NeodroidUtilities.MaybeRegisterComponent(
+      this.ParentActor = NeodroidUtilities.RegisterComponent(
           (Actor)this.ParentActor,
           this,
           only_parents : true);

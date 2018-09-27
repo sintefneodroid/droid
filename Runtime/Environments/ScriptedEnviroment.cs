@@ -7,6 +7,7 @@ using Neodroid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsort
 using Neodroid.Runtime.Utilities.Misc.Drawing;
 using Neodroid.Runtime.Utilities.Misc.Grasping;
 using UnityEngine;
+using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 using Random = UnityEngine.Random;
 
 namespace Neodroid.Runtime.Environments {
@@ -128,7 +129,7 @@ namespace Neodroid.Runtime.Environments {
         }
       }
 
-      this._time_simulation_manager = (IManager)NeodroidUtilities.MaybeRegisterComponent(
+      this._time_simulation_manager = (IManager)NeodroidUtilities.RegisterComponent(
           (NeodroidManager)this._time_simulation_manager,
           this);
     }

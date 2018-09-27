@@ -21,10 +21,6 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName {
-      get { return "DifficultyConfigurable"; }
-    }
-
-
+    public override string PrototypingTypeName { get { return "DifficultyConfigurable"; } }
   }
 }

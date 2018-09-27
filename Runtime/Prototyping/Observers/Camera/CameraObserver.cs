@@ -74,19 +74,9 @@ namespace Neodroid.Runtime.Prototyping.Observers.Camera {
     Texture2D _texture;
 
     /// <inheritdoc />
-    ///  <summary>
-    ///  </summary>
-    public override string PrototypingTypeName {
-      get { return "Camera"; }
-    }
-
-    /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public byte[] Bytes {
-      get { return this._bytes; }
-      private set { this._bytes = value; }
-    }
+    public byte[] Bytes { get { return this._bytes; } private set { this._bytes = value; } }
 
     /// <inheritdoc />
     ///  <summary>
@@ -98,15 +88,17 @@ namespace Neodroid.Runtime.Prototyping.Observers.Camera {
         var target_texture = this._camera.targetTexture;
         if (!target_texture) {
           Debug.LogWarning("No targetTexture defaulting to a texture of size (256, 256)");
-          this._texture = new Texture2D(256, 256);
+          const Int32 default_width = 256;
+          const Int32 default_height = default_width;
+          this._texture = new Texture2D(default_width, default_height);
         } else {
           var texture_format_str = target_texture.format.ToString();
-          TextureFormat o;
-          if (Enum.TryParse(texture_format_str, out o)) {
+          TextureFormat texture_format;
+          if (Enum.TryParse(texture_format_str, out texture_format)) {
             this._texture = new Texture2D(
                 target_texture.width,
                 target_texture.height,
-                o,
+                texture_format,
                 target_texture.useMipMap,
                 !target_texture.sRGB);
           } else {
@@ -116,12 +108,10 @@ namespace Neodroid.Runtime.Prototyping.Observers.Camera {
         }
       }
 
-      if (this._manager != null) {
-        if (this._manager.SimulatorConfiguration != null) {
-          if (this._manager.SimulatorConfiguration.SimulationType != SimulationType.Frame_dependent_) {
-            Debug.LogWarning(
-                "WARNING! Camera Observations may be out of sync with other observation data, because simulation configuration is not frame dependent");
-          }
+      if (this._manager?.SimulatorConfiguration != null) {
+        if (this._manager.SimulatorConfiguration.SimulationType != SimulationType.Frame_dependent_) {
+          Debug.LogWarning(
+              "WARNING! Camera Observations may be out of sync with other observation data, because simulation configuration is not frame dependent");
         }
       }
     }
@@ -136,7 +126,7 @@ namespace Neodroid.Runtime.Prototyping.Observers.Camera {
     /// <summary>
     /// </summary>
     protected override void Update() {
-      //Dont assign anything the floatenumerable
+      //Do not assign anything to the FloatEnumerable
     }
 
     /// <summary>

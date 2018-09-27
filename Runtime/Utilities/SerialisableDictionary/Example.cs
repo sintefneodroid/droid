@@ -23,15 +23,11 @@ namespace Neodroid.Runtime.Utilities.SerialisableDictionary {
     /// <summary>
     ///
     /// </summary>
-    Dictionary<string, int> StringIntegers {
-      get { return this._string_integer_store._Dict; }
-    }
+    Dictionary<string, int> StringIntegers { get { return this._string_integer_store._Dict; } }
 
     /// <summary>
     ///
     /// </summary>
-    Dictionary<GameObject, float> Screenshots {
-      get { return this._game_object_float_store._Dict; }
-    }
+    Dictionary<GameObject, float> Screenshots { get { return this._game_object_float_store._Dict; } }
   }
 }

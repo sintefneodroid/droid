@@ -17,9 +17,7 @@ namespace Neodroid.Runtime.Utilities.Misc.Extensions {
     /// <summary>
     /// 
     /// </summary>
-    public OnCollisionDelegate CollisionDelegate {
-      set { this._collision_delegate = value; }
-    }
+    public OnCollisionDelegate CollisionDelegate { set { this._collision_delegate = value; } }
 
     void OnCollisionEnter(Collision collision) { this._collision_delegate?.Invoke(collision); }
   }

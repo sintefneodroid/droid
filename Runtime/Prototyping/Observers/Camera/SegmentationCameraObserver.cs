@@ -13,15 +13,15 @@ namespace Neodroid.Runtime.Prototyping.Observers.Camera {
   ///  <summary>
   ///  </summary>
   [AddComponentMenu(
-       ObserverComponentMenuPath._ComponentMenuPath + "SegmentationCamera" + ObserverComponentMenuPath._Postfix),
-   ExecuteInEditMode, RequireComponent(typeof(UnityEngine.Camera))]
+       ObserverComponentMenuPath._ComponentMenuPath
+       + "SegmentationCamera"
+       + ObserverComponentMenuPath._Postfix), ExecuteInEditMode, RequireComponent(typeof(UnityEngine.Camera))]
   public class SegmentationCameraObserver : StringAugmentedCameraObserver {
     /// <summary>
     ///
     /// </summary>
-
-    [SerializeField] Segmenter _segmenter;
-
+    [SerializeField]
+    Segmenter _segmenter;
 
     /// <inheritdoc />
     ///  <summary>
@@ -33,10 +33,10 @@ namespace Neodroid.Runtime.Prototyping.Observers.Camera {
         this.UpdateBytes();
       }
 
-      this._Serialised_String = this._segmenter != null ? this._segmenter.ColorsDict
-                                    .Select(c=>$"{c.Key}: {c.Value.ToString()}")
-                                    .Aggregate("", (current, next) => $"{current}, {next}") : "Nothing";
-      
+      this._Serialised_String = this._segmenter != null
+                                    ? this._segmenter.ColorsDict.Select(c => $"{c.Key}: {c.Value.ToString()}")
+                                        .Aggregate("", (current, next) => $"{current}, {next}")
+                                    : "Nothing";
     }
   }
 }

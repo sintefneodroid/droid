@@ -37,8 +37,6 @@ namespace Neodroid.Runtime.Prototyping.Observers {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public Space2 ObservationSpace2D {
-      get { return this._observation_space2_d; }
-    }
+    public Space2 ObservationSpace2D { get { return this._observation_space2_d; } }
   }
 }

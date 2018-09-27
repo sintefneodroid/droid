@@ -7,6 +7,7 @@ using Neodroid.Runtime.Utilities.Misc.Drawing;
 using Neodroid.Runtime.Utilities.Misc.Grasping;
 using UnityEditor;
 using UnityEngine;
+using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 
 namespace Neodroid.Runtime.Prototyping.Actors {
   /// <inheritdoc cref="PrototypingGameObject" />
@@ -82,7 +83,7 @@ namespace Neodroid.Runtime.Prototyping.Actors {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           this);
     }
@@ -115,13 +116,9 @@ namespace Neodroid.Runtime.Prototyping.Actors {
       }
     }
 
-    Dictionary<string, IMotor> IActor.Motors {
-      get { return this._Motors; }
-    }
+    Dictionary<string, IMotor> IActor.Motors { get { return this._Motors; } }
 
-    public Transform Transform {
-      get { return this.transform; }
-    }
+    public Transform Transform { get { return this.transform; } }
 
     /// <summary>
     ///
@@ -229,9 +226,7 @@ namespace Neodroid.Runtime.Prototyping.Actors {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName {
-      get { return "Actor"; }
-    }
+    public override string PrototypingTypeName { get { return "Actor"; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -249,9 +244,7 @@ namespace Neodroid.Runtime.Prototyping.Actors {
     /// <summary>
     ///
     /// </summary>
-    public Dictionary<string, IMotor> Motors {
-      get { return this._Motors; }
-    }
+    public Dictionary<string, IMotor> Motors { get { return this._Motors; } }
 
     /// <summary>
     ///

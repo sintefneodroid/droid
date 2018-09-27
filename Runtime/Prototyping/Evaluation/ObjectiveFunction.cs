@@ -28,9 +28,7 @@ namespace Neodroid.Runtime.Prototyping.Evaluation {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override String PrototypingTypeName {
-      get { return ""; }
-    }
+    public override String PrototypingTypeName { get { return ""; } }
 
     /// <summary>
     ///

@@ -22,14 +22,9 @@ namespace Neodroid.Runtime.Prototyping.Observers.Camera {
 
     [SerializeField] Texture2D _texture;
 
-    public override string PrototypingTypeName {
-      get { return "Camera"; }
-    }
+    public override string PrototypingTypeName { get { return "Camera"; } }
 
-    public float[] ObservationArray {
-      get { return this._array; }
-      private set { this._array = value; }
-    }
+    public float[] ObservationArray { get { return this._array; } private set { this._array = value; } }
 
     protected override void PreSetup() {
       //this._manager = FindObjectOfType<NeodroidManager>();

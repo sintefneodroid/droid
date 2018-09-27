@@ -5,6 +5,7 @@ using Neodroid.Runtime.Prototyping.Actors;
 using Neodroid.Runtime.Utilities.Misc.Drawing;
 using Neodroid.Runtime.Utilities.Misc.Grasping;
 using UnityEngine;
+using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 
 namespace Neodroid.Runtime.Prototyping.Motors {
   /// <inheritdoc cref="Motor" />
@@ -30,17 +31,11 @@ namespace Neodroid.Runtime.Prototyping.Motors {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName {
-      get { return "TargetRigidbody"; }
-    }
+    public override string PrototypingTypeName { get { return "TargetRigidbody"; } }
 
-    public Single MovementSpeed {
-      get { return this._movement_speed; }
-    }
+    public Single MovementSpeed { get { return this._movement_speed; } }
 
-    public Single RotationSpeed {
-      get { return this._rotation_speed; }
-    }
+    public Single RotationSpeed { get { return this._rotation_speed; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -56,16 +51,16 @@ namespace Neodroid.Runtime.Prototyping.Motors {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentActor = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentActor = NeodroidUtilities.RegisterComponent(
           (Actor)this.ParentActor,
           (Motor)this,
           this._movement);
-      this.ParentActor = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentActor = NeodroidUtilities.RegisterComponent(
           (Actor)this.ParentActor,
           (Motor)this,
           this._turn);
 
-      this._parent_environment = NeodroidUtilities.MaybeRegisterComponent(
+      this._parent_environment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this._parent_environment,
           this);
 

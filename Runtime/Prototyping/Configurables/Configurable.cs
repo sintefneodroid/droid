@@ -5,6 +5,7 @@ using Neodroid.Runtime.Utilities.GameObjects;
 using Neodroid.Runtime.Utilities.Misc.Drawing;
 using Neodroid.Runtime.Utilities.Misc.Grasping;
 using UnityEngine;
+using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 
 namespace Neodroid.Runtime.Prototyping.Configurables {
   /// <inheritdoc cref="PrototypingGameObject" />
@@ -18,9 +19,7 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     /// <summary>
     ///
     /// </summary>
-    public bool RelativeToExistingValue {
-      get { return this._relative_to_existing_value; }
-    }
+    public bool RelativeToExistingValue { get { return this._relative_to_existing_value; } }
 
     /*
     /// <summary>
@@ -42,9 +41,7 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     /// <summary>
     ///
     /// </summary>
-    public override string PrototypingTypeName {
-      get { return "Configurable"; }
-    }
+    public override string PrototypingTypeName { get { return "Configurable"; } }
 
     /// <summary>
     ///
@@ -75,7 +72,7 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     ///  <summary>
     ///  </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           this);
     }
@@ -108,7 +105,7 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     /// <returns></returns>
     /// <exception cref="System.NotImplementedException"></exception>
     public virtual IConfigurableConfiguration SampleConfiguration(System.Random random_generator) {
-      return new Configuration(this.Identifier,random_generator.Next());
+      return new Configuration(this.Identifier, random_generator.Next());
     }
   }
 }

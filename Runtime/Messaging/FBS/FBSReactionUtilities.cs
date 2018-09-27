@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Messaging.Messages;
 using Neodroid.Runtime.Messaging.Messages.Displayables;
 using Neodroid.Runtime.Utilities.Structs;
@@ -198,9 +199,9 @@ namespace Neodroid.Runtime.Messaging.FBS {
       return null;
     }
 
-    static MotorMotion[] deserialise_motions(FReaction reaction) {
+    static IMotorMotion[] deserialise_motions(FReaction reaction) {
       var l = reaction.MotionsLength;
-      var motions = new MotorMotion[l];
+      var motions = new IMotorMotion[l];
       for (var i = 0; i < l; i++) {
         motions[i] = deserialise_motion(reaction.Motions(i));
       }

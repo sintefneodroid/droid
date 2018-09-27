@@ -4,7 +4,7 @@ using Neodroid.Runtime.Utilities.Sensors;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Neodroid.Runtime.Utilities.Misc.Drawing {
+namespace Neodroid.Runtime.Utilities.Misc {
   /// <summary>
   ///
   /// </summary>
@@ -196,7 +196,7 @@ namespace Neodroid.Runtime.Utilities.Misc.Drawing {
     /// <typeparam name="TRecipient"></typeparam>
     /// <typeparam name="TCaller"></typeparam>
     /// <returns></returns>
-    public static TRecipient MaybeRegisterComponent<TRecipient, TCaller>(
+    public static TRecipient RegisterComponent<TRecipient, TCaller>(
         TRecipient r,
         TCaller c,
         bool only_parents = false)
@@ -219,26 +219,28 @@ namespace Neodroid.Runtime.Utilities.Misc.Drawing {
       return component;
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="r"></param>
-    /// <param name="c"></param>
-    /// <param name="identifier"></param>
+    ///  <summary>
+    /// 
+    ///  </summary>
+    ///  <param name="r"></param>
+    ///  <param name="c"></param>
+    ///  <param name="identifier"></param>
+    /// <param name="only_parents"></param>
     /// <typeparam name="TRecipient"></typeparam>
-    /// <typeparam name="TCaller"></typeparam>
-    /// <returns></returns>
-    public static TRecipient MaybeRegisterNamedComponent<TRecipient, TCaller>(
+    ///  <typeparam name="TCaller"></typeparam>
+    ///  <returns></returns>
+    public static TRecipient RegisterComponent<TRecipient, TCaller>(
         TRecipient r,
         TCaller c,
-        string identifier)
+        string identifier,
+        bool only_parents = false)
         where TRecipient : Object, IHasRegister<TCaller> where TCaller : Component, IRegisterable {
-      TRecipient component;
+      TRecipient component = null;
       if (r != null) {
         component = r;
       } else if (c.GetComponentInParent<TRecipient>() != null) {
         component = c.GetComponentInParent<TRecipient>();
-      } else {
+      } else if (!only_parents) {
         component = Object.FindObjectOfType<TRecipient>();
       }
 

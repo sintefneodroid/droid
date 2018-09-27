@@ -19,9 +19,7 @@ namespace Neodroid.Runtime.Prototyping.Motors.WheelColliderMotor {
     /// <summary>
     /// 
     /// </summary>
-    public override string PrototypingTypeName {
-      get { return "Steering"; }
-    }
+    public override string PrototypingTypeName { get { return "Steering"; } }
 
     /// <summary>
     /// 

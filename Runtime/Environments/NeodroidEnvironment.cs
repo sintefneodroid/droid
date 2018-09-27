@@ -9,6 +9,7 @@ using Neodroid.Runtime.Utilities.Misc.Drawing;
 using Neodroid.Runtime.Utilities.Misc.Grasping;
 using UnityEditor;
 using UnityEngine;
+using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 
 namespace Neodroid.Runtime.Environments {
   /// <inheritdoc cref="PrototypingGameObject" />
@@ -43,10 +44,7 @@ namespace Neodroid.Runtime.Environments {
     /// <summary>
     ///
     /// </summary>
-    public bool Terminated {
-      get { return this._Terminated; }
-      set { this._Terminated = value; }
-    }
+    public bool Terminated { get { return this._Terminated; } set { this._Terminated = value; } }
 
     /// <summary>
     ///
@@ -133,10 +131,7 @@ namespace Neodroid.Runtime.Environments {
     /// <summary>
     ///
     /// </summary>
-    public int EpisodeLength {
-      get { return this._episode_length; }
-      set { this._episode_length = value; }
-    }
+    public int EpisodeLength { get { return this._episode_length; } set { this._episode_length = value; } }
 
     /// <summary>
     ///
@@ -150,9 +145,7 @@ namespace Neodroid.Runtime.Environments {
     /// <summary>
     ///
     /// </summary>
-    public bool IsResetting {
-      get { return this._Resetting; }
-    }
+    public bool IsResetting { get { return this._Resetting; } }
 
     /// <summary>
     ///
@@ -192,7 +185,7 @@ namespace Neodroid.Runtime.Environments {
     /// </summary>
     protected override void RegisterComponent() {
       if (this._Simulation_Manager != null) {
-        this._Simulation_Manager = (IManager)NeodroidUtilities.MaybeRegisterComponent(
+        this._Simulation_Manager = (IManager)NeodroidUtilities.RegisterComponent(
             (PausableManager)this._Simulation_Manager,
             this);
       }

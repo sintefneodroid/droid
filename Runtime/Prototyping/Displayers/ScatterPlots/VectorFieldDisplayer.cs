@@ -13,9 +13,6 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
    AddComponentMenu(
        DisplayerComponentMenuPath._ComponentMenuPath + "VectorField" + DisplayerComponentMenuPath._Postfix)]
   public class VectorFieldDisplayer : Displayer {
-    
-
-
     dynamic _vals;
 
     /// <inheritdoc />
@@ -90,22 +87,22 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
         //point._Size
         switch ((int)(point._Val)) {
           case 0:
-            DrawArrow.ForDebug(point._Pos, Vector3.forward, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.forward, Color.cyan);
             break;
           case 1:
-            DrawArrow.ForDebug(point._Pos, Vector3.back, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.back, Color.cyan);
             break;
           case 2:
-            DrawArrow.ForDebug(point._Pos, Vector3.up, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.up, Color.cyan);
             break;
           case 3:
-            DrawArrow.ForDebug(point._Pos, Vector3.down, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.down, Color.cyan);
             break;
           case 4:
-            DrawArrow.ForDebug(point._Pos, Vector3.left, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.left, Color.cyan);
             break;
           case 5:
-            DrawArrow.ForDebug(point._Pos, Vector3.right, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.right, Color.cyan);
             break;
         }
       }

@@ -32,10 +32,7 @@ namespace Neodroid.Runtime.PlayerControls {
     /// <summary>
     ///
     /// </summary>
-    public bool Debugging {
-      get { return this._debugging; }
-      set { this._debugging = value; }
-    }
+    public bool Debugging { get { return this._debugging; } set { this._debugging = value; } }
 
     /// <summary>
     ///

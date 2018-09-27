@@ -3,7 +3,7 @@ using UnityEngine;
 
 #if UNITY_EDITOR
 namespace Neodroid.Runtime.Utilities.Misc.Drawing {
-  public static partial class NeodroidUtilities {
+  public static partial class NeodroidDrawingUtilities {
     /// <summary>
     ///
     /// </summary>

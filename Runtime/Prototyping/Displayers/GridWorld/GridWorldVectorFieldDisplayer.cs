@@ -11,11 +11,10 @@ namespace Neodroid.Runtime.Prototyping.Displayers.GridWorld {
   /// </summary>
   [ExecuteInEditMode,
    AddComponentMenu(
-       DisplayerComponentMenuPath._ComponentMenuPath + "GridWorldVectorField" + DisplayerComponentMenuPath._Postfix)]
+       DisplayerComponentMenuPath._ComponentMenuPath
+       + "GridWorldVectorField"
+       + DisplayerComponentMenuPath._Postfix)]
   public class GridWorldVectorFieldDisplayer : Displayer {
-    
-  
-    
     dynamic _vals;
 
     /// <summary>
@@ -90,22 +89,22 @@ namespace Neodroid.Runtime.Prototyping.Displayers.GridWorld {
         //point._Size
         switch ((int)(point._Val)) {
           case 0:
-            DrawArrow.ForDebug(point._Pos, Vector3.forward, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.forward, Color.cyan);
             break;
           case 1:
-            DrawArrow.ForDebug(point._Pos, Vector3.back, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.back, Color.cyan);
             break;
           case 2:
-            DrawArrow.ForDebug(point._Pos, Vector3.up, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.up, Color.cyan);
             break;
           case 3:
-            DrawArrow.ForDebug(point._Pos, Vector3.down, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.down, Color.cyan);
             break;
           case 4:
-            DrawArrow.ForDebug(point._Pos, Vector3.left, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.left, Color.cyan);
             break;
           case 5:
-            DrawArrow.ForDebug(point._Pos, Vector3.right, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.right, Color.cyan);
             break;
         }
       }

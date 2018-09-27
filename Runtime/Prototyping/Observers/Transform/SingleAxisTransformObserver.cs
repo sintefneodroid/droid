@@ -12,7 +12,6 @@ namespace Neodroid.Runtime.Prototyping.Observers.Transform {
        + "SingleAxisTransform"
        + ObserverComponentMenuPath._Postfix), ExecuteInEditMode]
   public class SingleAxisTransformObserver : ValueObserver {
-
     [SerializeField, SearchableEnum] Axis _dim = Axis.X_;
 
     /// <summary>

@@ -27,9 +27,7 @@ namespace Neodroid.Runtime.Prototyping.Observers.Grid {
     /// <summary>
     ///
     /// </summary>
-    public override string PrototypingTypeName {
-      get { return "Value"; }
-    }
+    public override string PrototypingTypeName { get { return "Value"; } }
 
     /// <summary>
     ///
@@ -43,9 +41,7 @@ namespace Neodroid.Runtime.Prototyping.Observers.Grid {
       }
     }
 
-    public ValueSpace SingleSpace {
-      get { return this._observation_value_space; }
-    }
+    public ValueSpace SingleSpace { get { return this._observation_value_space; } }
 
     protected override void PreSetup() {
       this._grid = new int[this._width, this._height];

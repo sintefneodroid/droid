@@ -14,9 +14,7 @@ namespace Neodroid.Samples.MultiArmedBandit {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override String PrototypingTypeName {
-      get { return "TextBarPlot"; }
-    }
+    public override String PrototypingTypeName { get { return "TextBarPlot"; } }
 
     [SerializeField] CanvasBarDisplayer[] _canvas_bars;
     [SerializeField] CanvasTextDisplayer[] _canvas_text;

@@ -14,9 +14,7 @@ namespace Neodroid.Runtime.Prototyping.Motors {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName {
-      get { return "BanditArm"; }
-    }
+    public override string PrototypingTypeName { get { return "BanditArm"; } }
 
     /// <summary>
     /// 

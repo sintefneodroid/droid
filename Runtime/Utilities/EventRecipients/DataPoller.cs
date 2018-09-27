@@ -24,10 +24,7 @@ namespace Neodroid.Runtime.Utilities.EventRecipients {
       /// <summary>
       /// 
       /// </summary>
-      public UnityEvent PollEvent {
-        get { return this._poll_event; }
-        set { this._poll_event = value; }
-      }
+      public UnityEvent PollEvent { get { return this._poll_event; } set { this._poll_event = value; } }
     }
   }
 }

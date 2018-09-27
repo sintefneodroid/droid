@@ -23,10 +23,10 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
 
     ParticleSystem.MainModule _particle_system_main_module;
     ParticleSystem.Particle[] _particles;
-    
+
     [SerializeField] Gradient _gradient;
     [SerializeField] float _size = 0.6f;
-    
+
     List<string> _vs = new List<string>();
 
     protected override void Setup() {

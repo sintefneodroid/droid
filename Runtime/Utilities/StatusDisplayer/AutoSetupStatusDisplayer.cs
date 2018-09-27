@@ -1,7 +1,5 @@
 ﻿#if UNITY_EDITOR
 using UnityEditor.Events;
-
-
 using Neodroid.Runtime.Environments;
 using Neodroid.Runtime.Managers;
 using Neodroid.Runtime.Prototyping.Evaluation;
@@ -102,10 +100,7 @@ namespace Neodroid.Runtime.Utilities.StatusDisplayer {
       }
     }
 
-    bool Debugging {
-      get { return this._debugging; }
-      set { this._debugging = value; }
-    }
+    bool Debugging { get { return this._debugging; } set { this._debugging = value; } }
 
     void Start() {
       if (!this._environment) {

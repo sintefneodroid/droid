@@ -41,9 +41,7 @@ namespace Neodroid.Runtime.Prototyping.Observers {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName {
-      get { return "Compass"; }
-    }
+    public override string PrototypingTypeName { get { return "Compass"; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -71,10 +69,7 @@ namespace Neodroid.Runtime.Prototyping.Observers {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public Vector2 ObservationValue {
-      get { return this._2_d_position; }
-      set { this._2_d_position = value; }
-    }
+    public Vector2 ObservationValue { get { return this._2_d_position; } set { this._2_d_position = value; } }
 
     /// <inheritdoc />
     /// <summary>

@@ -40,10 +40,7 @@ namespace Neodroid.Runtime.Utilities.GameObjects {
     /// <summary>
     ///
     /// </summary>
-    public bool Debugging {
-      get { return this._debugging; }
-      set { this._debugging = value; }
-    }
+    public bool Debugging { get { return this._debugging; } set { this._debugging = value; } }
 
     /// <summary>
     ///
@@ -190,9 +187,7 @@ namespace Neodroid.Runtime.Utilities.GameObjects {
     /// <summary>
     ///
     /// </summary>
-    public virtual string PrototypingTypeName {
-      get { return this.GetType().Name; }
-    }
+    public virtual string PrototypingTypeName { get { return this.GetType().Name; } }
 
     /// <inheritdoc />
     /// <summary>

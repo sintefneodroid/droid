@@ -27,19 +27,10 @@ namespace Neodroid.Runtime.Utilities.Structs {
       this._Z = z;
     }
 
-    public Double X {
-      get { return this._X; }
-      set { this._X = value; }
-    }
+    public Double X { get { return this._X; } set { this._X = value; } }
 
-    public Double Y {
-      get { return this._Y; }
-      set { this._Y = value; }
-    }
+    public Double Y { get { return this._Y; } set { this._Y = value; } }
 
-    public Double Z {
-      get { return this._Z; }
-      set { this._Z = value; }
-    }
+    public Double Z { get { return this._Z; } set { this._Z = value; } }
   }
 }

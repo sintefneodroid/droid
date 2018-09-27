@@ -30,9 +30,7 @@ namespace Neodroid.Runtime.Prototyping.Motors {
     /// <summary>
     /// 
     /// </summary>
-    public override string PrototypingTypeName {
-      get { return "IndexedMotion"; }
-    }
+    public override string PrototypingTypeName { get { return "IndexedMotion"; } }
 
     protected override void InnerApplyMotion(IMotorMotion motion) {
       var layer_mask = 1 << LayerMask.NameToLayer(this._Layer_Mask);

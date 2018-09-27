@@ -5,6 +5,7 @@ using Neodroid.Runtime.Utilities.Misc.Drawing;
 using Neodroid.Runtime.Utilities.Misc.Grasping;
 using Neodroid.Runtime.Utilities.Structs;
 using UnityEngine;
+using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 
 namespace Neodroid.Runtime.Prototyping.Displayers {
   /// <inheritdoc cref="PrototypingGameObject" />
@@ -22,10 +23,10 @@ namespace Neodroid.Runtime.Prototyping.Displayers {
     /// 
     /// </summary>
     protected bool _PlotRandomSeries;
-#endif
-    
+    #endif
+
     [SerializeField] protected bool _RetainLastPlot = true;
-    
+
     /// <summary>
     ///
     /// </summary>
@@ -37,15 +38,13 @@ namespace Neodroid.Runtime.Prototyping.Displayers {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName {
-      get { return "Displayer"; }
-    }
+    public override string PrototypingTypeName { get { return "Displayer"; } }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           this);
     }

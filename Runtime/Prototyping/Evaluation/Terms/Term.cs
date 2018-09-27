@@ -2,6 +2,7 @@
 using Neodroid.Runtime.Utilities.GameObjects;
 using Neodroid.Runtime.Utilities.Misc.Drawing;
 using Neodroid.Runtime.Utilities.Misc.Grasping;
+using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 
 namespace Neodroid.Runtime.Prototyping.Evaluation.Terms {
   /// <inheritdoc />
@@ -29,7 +30,7 @@ namespace Neodroid.Runtime.Prototyping.Evaluation.Terms {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this._objective_function = NeodroidUtilities.MaybeRegisterComponent(this._objective_function, this);
+      this._objective_function = NeodroidUtilities.RegisterComponent(this._objective_function, this);
     }
 
     /// <inheritdoc />

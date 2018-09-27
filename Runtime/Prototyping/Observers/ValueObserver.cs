@@ -16,9 +16,7 @@ namespace Neodroid.Runtime.Prototyping.Observers {
 
     [SerializeField] ValueSpace _observation_value_space;
 
-    public ValueSpace SingleSpace {
-      get { return this._observation_value_space; }
-    }
+    public ValueSpace SingleSpace { get { return this._observation_value_space; } }
 
     public float ObservationValue {
       get { return this._observation_value; }

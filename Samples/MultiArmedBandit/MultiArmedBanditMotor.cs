@@ -23,26 +23,17 @@ namespace Neodroid.Samples.MultiArmedBandit {
     /// <summary>
     /// 
     /// </summary>
-    public Single[] WinAmounts {
-      get { return this._win_amounts; }
-      set { this._win_amounts = value; }
-    }
+    public Single[] WinAmounts { get { return this._win_amounts; } set { this._win_amounts = value; } }
 
     /// <summary>
     /// 
     /// </summary>
-    public Int32 LastIndex {
-      get { return this._last_index; }
-      set { this._last_index = value; }
-    }
+    public Int32 LastIndex { get { return this._last_index; } set { this._last_index = value; } }
 
     /// <summary>
     /// 
     /// </summary>
-    public Boolean Won {
-      get { return this._won; }
-      set { this._won = value; }
-    }
+    public Boolean Won { get { return this._won; } set { this._won = value; } }
 
     /// <summary>
     /// 

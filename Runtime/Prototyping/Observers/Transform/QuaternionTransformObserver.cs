@@ -19,21 +19,13 @@ namespace Neodroid.Runtime.Prototyping.Observers.Transform {
 
     [SerializeField] Quaternion _rotation;
 
-    public ObservationSpace Space {
-      get { return this._space; }
-    }
+    public ObservationSpace Space { get { return this._space; } }
 
-    public override string PrototypingTypeName {
-      get { return "QuaternionTransform"; }
-    }
+    public override string PrototypingTypeName { get { return "QuaternionTransform"; } }
 
-    public Vector3 Position {
-      get { return this._position; }
-    }
+    public Vector3 Position { get { return this._position; } }
 
-    public Quaternion Rotation {
-      get { return this._rotation; }
-    }
+    public Quaternion Rotation { get { return this._rotation; } }
 
     public override void UpdateObservation() {
       if (this.ParentEnvironment != null && this._use_environments_coordinates) {

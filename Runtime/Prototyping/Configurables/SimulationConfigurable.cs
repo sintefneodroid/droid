@@ -6,6 +6,7 @@ using Neodroid.Runtime.Messaging.Messages;
 using Neodroid.Runtime.Utilities.Misc.Drawing;
 using Neodroid.Runtime.Utilities.Misc.Grasping;
 using UnityEngine;
+using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 using Random = System.Random;
 
 namespace Neodroid.Runtime.Prototyping.Configurables {
@@ -40,35 +41,33 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// 
     /// </summary>
-    public override string PrototypingTypeName {
-      get { return "SimulationConfigurable"; }
-    }
+    public override string PrototypingTypeName { get { return "SimulationConfigurable"; } }
 
     /// <summary>
     /// 
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
           this._quality_level);
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
           this._target_frame_rate);
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
           this._width);
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
           this._height);
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
           this._fullscreen);
-      this.ParentEnvironment = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
           this._time_scale);
@@ -107,7 +106,10 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
       } else if (simulator_configuration.ConfigurableName == this._height) {
         Screen.SetResolution(Screen.width, (int)simulator_configuration.ConfigurableValue, false);
       } else if (simulator_configuration.ConfigurableName == this._fullscreen) {
-        Screen.SetResolution(Screen.width, Screen.height, (int)simulator_configuration.ConfigurableValue != 0);
+        Screen.SetResolution(
+            Screen.width,
+            Screen.height,
+            (int)simulator_configuration.ConfigurableValue != 0);
       } else if (simulator_configuration.ConfigurableName == this._time_scale) {
         Time.timeScale = simulator_configuration.ConfigurableValue;
       }
@@ -120,7 +122,7 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
     public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
-      return new Configuration(this._time_scale,(float)random_generator.NextDouble());
+      return new Configuration(this._time_scale, (float)random_generator.NextDouble());
     }
   }
 }

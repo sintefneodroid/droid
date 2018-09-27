@@ -61,16 +61,12 @@ namespace Neodroid.Runtime.Prototyping.Observers.Rigidbody {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public Space3 VelocitySpace {
-      get { return this._velocity_space; }
-    }
+    public Space3 VelocitySpace { get { return this._velocity_space; } }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public Space3 AngularSpace {
-      get { return this._angular_space; }
-    }
+    public Space3 AngularSpace { get { return this._angular_space; } }
 
     public override void UpdateObservation() {
       var update_time_difference = Time.time - this._last_update_time;

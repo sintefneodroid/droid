@@ -50,16 +50,12 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
     /// <summary>
     ///
     /// </summary>
-    public ColorByTag[] ColorsByTag {
-      get { return this._Colors_By_Tag; }
-    }
+    public ColorByTag[] ColorsByTag { get { return this._Colors_By_Tag; } }
 
     /// <summary>
     ///
     /// </summary>
-    public override Dictionary<String, Color> ColorsDict {
-      get { return this._tag_colors_dict; }
-    }
+    public override Dictionary<String, Color> ColorsDict { get { return this._tag_colors_dict; } }
 
     /// <summary>
     ///
@@ -116,7 +112,7 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
       }
 
       this.CheckBlock();
-      
+
       for (var i = 0; i < this._all_renders.Length; i++) {
         var c_renderer = this._all_renders[i];
         if (c_renderer) {
@@ -148,13 +144,13 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
         this._block = new MaterialPropertyBlock();
       }
     }
-    
+
     /// <summary>
     ///
     /// </summary>
     void Restore() {
       this.CheckBlock();
-      
+
       for (var i = 0; i < this._all_renders.Length; i++) {
         if (this._all_renders[i]) {
           foreach (var mat in this._all_renders[i].sharedMaterials) {
@@ -163,7 +159,7 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
                 && this._original_colors != null
                 && i < this._original_colors.Length) {
               var last_val = this._original_colors[i].Last.Value;
-              this._block.SetColor("_Color",last_val);
+              this._block.SetColor("_Color", last_val);
               this._original_colors[i].RemoveLast();
               this._all_renders[i].SetPropertyBlock(this._block);
             }

@@ -3,6 +3,7 @@ using Neodroid.Runtime.Prototyping.Actors;
 using Neodroid.Runtime.Utilities.Misc.Drawing;
 using Neodroid.Runtime.Utilities.Misc.Grasping;
 using UnityEngine;
+using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 
 namespace Neodroid.Runtime.Prototyping.Motors {
   /// <inheritdoc />
@@ -54,9 +55,7 @@ namespace Neodroid.Runtime.Prototyping.Motors {
     /// <summary>
     ///
     /// </summary>
-    public override string PrototypingTypeName {
-      get { return "Rigidbody"; }
-    }
+    public override string PrototypingTypeName { get { return "Rigidbody"; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -76,15 +75,15 @@ namespace Neodroid.Runtime.Prototyping.Motors {
         this._z = this.Identifier + "RotZ_";
       }
 
-      this.ParentActor = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentActor = NeodroidUtilities.RegisterComponent(
           (Actor)this.ParentActor,
           (Motor)this,
           this._x);
-      this.ParentActor = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentActor = NeodroidUtilities.RegisterComponent(
           (Actor)this.ParentActor,
           (Motor)this,
           this._y);
-      this.ParentActor = NeodroidUtilities.MaybeRegisterNamedComponent(
+      this.ParentActor = NeodroidUtilities.RegisterComponent(
           (Actor)this.ParentActor,
           (Motor)this,
           this._z);

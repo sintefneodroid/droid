@@ -22,13 +22,7 @@ namespace Neodroid.Runtime.Prototyping.Observers.Transform {
 
     [SerializeField] Space2 _position_space;
 
-    public ObservationSpace UseSpace {
-      get { return this._use_space; }
-    }
-
-    public override string PrototypingTypeName {
-      get { return "DoublePosition"; }
-    }
+    public ObservationSpace UseSpace { get { return this._use_space; } }
 
     /// <summary>
     /// 
@@ -55,10 +49,7 @@ namespace Neodroid.Runtime.Prototyping.Observers.Transform {
                                : vector2_pos;
     }
 
-    public Vector2 ObservationValue {
-      get { return this._2_d_position; }
-      set { this._2_d_position = value; }
-    }
+    public Vector2 ObservationValue { get { return this._2_d_position; } set { this._2_d_position = value; } }
 
     public Space2 ObservationSpace2D {
       get {

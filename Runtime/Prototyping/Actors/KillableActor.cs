@@ -9,9 +9,7 @@ namespace Neodroid.Runtime.Prototyping.Actors {
   public class KillableActor : Actor {
     [SerializeField] bool _is_alive = true;
     public void Kill() { this._is_alive = false; }
-    public bool IsAlive {
-      get { return this._is_alive; }
-    }
+    public bool IsAlive { get { return this._is_alive; } }
 
     public override void ApplyMotion(IMotorMotion motion) {
       if (this._is_alive) {
@@ -25,9 +23,7 @@ namespace Neodroid.Runtime.Prototyping.Actors {
       }
     }
 
-    public override string PrototypingTypeName {
-      get { return "KillableActor"; }
-    }
+    public override string PrototypingTypeName { get { return "KillableActor"; } }
 
     public override void EnvironmentReset() {
       base.EnvironmentReset();

@@ -50,16 +50,15 @@ namespace Neodroid.Runtime.Prototyping.Evaluation {
         }
       }
 
+      if (distance < this._goal_reached_radius) {
+        #if NEODROID_DEBUG
+        if (this.Debugging) {
+          Debug.Log("Within range of goal");
+        }
+        #endif
 
-        if (distance < this._goal_reached_radius) {
-          #if NEODROID_DEBUG
-          if (this.Debugging) {
-            Debug.Log("Within range of goal");
-          }
-          #endif
-
-          reward += this._solved_reward;
-          if(this._terminate_on_goal_reached) {
+        reward += this._solved_reward;
+        if (this._terminate_on_goal_reached) {
           this.ParentEnvironment?.Terminate("Within range of goal");
         }
       }
@@ -95,7 +94,7 @@ namespace Neodroid.Runtime.Prototyping.Evaluation {
         this._actor_transform = FindObjectOfType<Transform>();
       }
 
-      if (this._obstructions ==null|| this._obstructions.Length <= 0) {
+      if (this._obstructions == null || this._obstructions.Length <= 0) {
         this._obstructions = FindObjectsOfType<Obstruction>();
       }
 
@@ -140,7 +139,7 @@ namespace Neodroid.Runtime.Prototyping.Evaluation {
     float _default_reward = -0.01f;
 
     [SerializeField] bool _terminate_on_obstruction_collision; //TODO: implement
-    [SerializeField] bool _terminate_on_goal_reached=true;
+    [SerializeField] bool _terminate_on_goal_reached = true;
 
     #endregion
   }

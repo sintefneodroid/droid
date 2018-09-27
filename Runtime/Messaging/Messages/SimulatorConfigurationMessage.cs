@@ -17,10 +17,7 @@ namespace Neodroid.Runtime.Messaging.Messages {
     /// <summary>
     ///
     /// </summary>
-    public int FrameSkips {
-      get { return this._frame_skips; }
-      set { this._frame_skips = value; }
-    }
+    public int FrameSkips { get { return this._frame_skips; } set { this._frame_skips = value; } }
 
     /// <summary>
     /// 
@@ -30,34 +27,22 @@ namespace Neodroid.Runtime.Messaging.Messages {
     /// <summary>
     /// 
     /// </summary>
-    public bool FullScreen {
-      get { return this._full_screen; }
-      set { this._full_screen = value; }
-    }
+    public bool FullScreen { get { return this._full_screen; } set { this._full_screen = value; } }
 
     /// <summary>
     /// 
     /// </summary>
-    public int Height {
-      get { return this._height; }
-      set { this._height = value; }
-    }
+    public int Height { get { return this._height; } set { this._height = value; } }
 
     /// <summary>
     /// 
     /// </summary>
-    public int Width {
-      get { return this._width; }
-      set { this._width = value; }
-    }
+    public int Width { get { return this._width; } set { this._width = value; } }
 
     /// <summary>
     /// 
     /// </summary>
-    public int Finishes {
-      get { return this._frame_finishes; }
-      set { this._frame_finishes = value; }
-    }
+    public int Finishes { get { return this._frame_finishes; } set { this._frame_finishes = value; } }
 
     /// <summary>
     /// 

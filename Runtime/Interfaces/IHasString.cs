@@ -2,7 +2,7 @@
   /// <summary>
   /// 
   /// </summary>
-  public interface IHasSerialisedString {
+  public interface IHasString {
     string ObservationValue { get; }
   }
 }
