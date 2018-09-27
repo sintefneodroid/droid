@@ -35,7 +35,7 @@ namespace Neodroid.Editor.Utilities {
     /// <summary>
     /// </summary>
     public override void OnInspectorGUI() {
-      AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
+      //AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
       var scene_names = this.targets.Select(t => ((SceneAsset)t).name).OrderBy(n => n).ToArray();
 
       var previews_count = scene_names.Length;
