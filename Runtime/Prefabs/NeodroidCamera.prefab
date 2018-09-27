@@ -1305,9 +1305,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3dd815fb29337f73b480c9dd61a4ae2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cameras: []
-  _textures: []
-  _size: {x: 10, y: 10}
+  _cameras:
+  - {fileID: 20145353716750142}
+  - {fileID: 20768847776266208}
+  - {fileID: 20598539646069560}
+  - {fileID: 20687481563768866}
+  - {fileID: 20713194616804364}
+  - {fileID: 20367486579053346}
+  - {fileID: 20940602749366906}
+  - {fileID: 20793825365236440}
+  _textures:
+  - {fileID: 8400000, guid: b22ce111b5af44afe8b8f2f085799a5f, type: 2}
+  - {fileID: 8400000, guid: 8fb1467d625b3486199ecd1d9d21ef7d, type: 2}
+  - {fileID: 8400000, guid: afc5604d79d0849129803e463fc07bca, type: 2}
+  - {fileID: 8400000, guid: 4c7dcaf7e8ef74c11bd8ad06365ea216, type: 2}
+  - {fileID: 8400000, guid: c0062e72afb4348d9b9bb702fba6c398, type: 2}
+  - {fileID: 8400000, guid: bc593ac7628a042ac93b20ca1c0101b6, type: 2}
+  - {fileID: 8400000, guid: 5d9eca522a1944267b89beea11ffc58c, type: 2}
+  - {fileID: 8400000, guid: 63f7bf9c3a80b4d169b394696cbbd9ab, type: 2}
+  _size: {x: 84, y: 84}
 --- !u!1 &1870355748897446
 GameObject:
   m_ObjectHideFlags: 0
@@ -1464,7 +1480,7 @@ MonoBehaviour:
   _image_format: 0
   _jpeg_quality: 75
   _camera: {fileID: 20687481563768866}
-  _Serialised_String: 
+  _Serialised_String: ', 37240: RGBA(0.492, 0.083, 0.070, 1.000), 37540: RGBA(0.819, 0.591, 0.571, 1.000), 37762: RGBA(0.065, 0.065, 0.061, 1.000), 37930: RGBA(0.126, 0.046, 0.014, 1.000), 38088: RGBA(0.102, 0.126, 0.134, 1.000)'
   _segmenter: {fileID: 114910394560810596}
 --- !u!1 &1975208461797724
 GameObject:
@@ -1771,5 +1787,5 @@ MonoBehaviour:
   _image_format: 1
   _jpeg_quality: 75
   _camera: {fileID: 20713194616804364}
-  _Serialised_String: 
+  _Serialised_String: ', Actor: RGBA(0.000, 0.000, 1.000, 1.000), Goal: RGBA(0.000, 1.000, 0.000, 1.000), Obstruction: RGBA(1.000, 0.000, 0.000, 1.000), Box: RGBA(1.000, 0.000, 1.000, 1.000), Player: RGBA(0.000, 0.000, 1.000, 1.000)'
   _segmenter: {fileID: 114319058318530508}
