@@ -15,9 +15,9 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
        + "IndexedScatterPlot"
        + DisplayerComponentMenuPath._Postfix)]
   public class IndexedScatterPlotDisplayer : Displayer {
-    [SerializeField] float[] _values;
-    [SerializeField] bool _retain_last_plot = true;
-    [SerializeField] bool _plot_random_series;
+    
+  
+    
     dynamic _vals;
 
     [SerializeField] GameObject[] _designs;
@@ -47,7 +47,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
     public override void Display(float values) { }
 
     void Update() {
-      if (this._retain_last_plot) {
+      if (this._RetainLastPlot) {
         if (this._vals != null) {
           PlotSeries(this._vals);
         }
@@ -84,7 +84,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
     void OnDrawGizmos() {
       if (this.enabled) {
         if (this._values == null || this._values.Length == 0) {
-          if (this._plot_random_series) {
+          if (this._PlotRandomSeries) {
             var vs = PlotFunctions.SampleRandomSeries(9);
             this._values = vs.Select(v => v._Val).ToArray();
             this.PlotSeries(vs);
@@ -98,7 +98,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
     ///
     /// </summary>
     /// <param name="points"></param>
-    public void PlotSeries(Points.ValuePoint[] points) {
+    public override void PlotSeries(Points.ValuePoint[] points) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
         Debug.Log("Plotting value points");

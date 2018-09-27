@@ -20,7 +20,7 @@ namespace Neodroid.Samples.MultiArmedBandit {
 
     [SerializeField] CanvasBarDisplayer[] _canvas_bars;
     [SerializeField] CanvasTextDisplayer[] _canvas_text;
-    [SerializeField] float[] _values;
+    [SerializeField] float[] _Values;
 
     /// <inheritdoc />
     /// <summary>
@@ -33,7 +33,7 @@ namespace Neodroid.Samples.MultiArmedBandit {
 
     void Update() {
       if (this.Debugging) {
-        this.Display(this._values);
+        this.Display(this._Values);
       }
     }
 

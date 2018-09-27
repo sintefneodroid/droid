@@ -13,9 +13,9 @@ namespace Neodroid.Runtime.Prototyping.Displayers.Cells {
    AddComponentMenu(
        DisplayerComponentMenuPath._ComponentMenuPath + "VectorField" + DisplayerComponentMenuPath._Postfix)]
   public class QuadCellDisplayer : Displayer {
-    [SerializeField] float[] _values;
-    [SerializeField] bool _retain_last_plot = true;
-    [SerializeField] bool _plot_random_series;
+    
+  
+    
     dynamic _vals;
 
     /// <summary>
@@ -41,13 +41,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers.Cells {
 
     public override void Display(float values) { }
 
-    void Update() {
-      if (this._retain_last_plot) {
-        if (this._vals != null) {
-          PlotSeries(this._vals);
-        }
-      }
-    }
+
 
     /// <summary>
     ///
@@ -63,7 +57,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers.Cells {
     void OnDrawGizmos() {
       if (this.enabled) {
         if (this._values == null || this._values.Length == 0) {
-          if (this._plot_random_series) {
+          if (this._PlotRandomSeries) {
             var vs = PlotFunctions.SampleRandomSeries(9);
             this._values = vs.Select(v => v._Val).ToArray();
             this.PlotSeries(vs);
@@ -77,7 +71,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers.Cells {
     ///
     /// </summary>
     /// <param name="points"></param>
-    public void PlotSeries(Points.ValuePoint[] points) {
+    public override void PlotSeries(Points.ValuePoint[] points) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
         Debug.Log("Plotting value points");

@@ -107,5 +107,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers.Canvas {
     /// <summary>
     /// </summary>
     public override void Display(Points.StringPoint[] points) { throw new NotImplementedException(); }
+
+    public override void PlotSeries(Points.ValuePoint[] points) { throw new NotImplementedException(); }
   }
 }

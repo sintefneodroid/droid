@@ -141,6 +141,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers {
 
     public override void Display(Points.StringPoint point) { throw new NotImplementedException(); }
     public override void Display(Points.StringPoint[] points) { throw new NotImplementedException(); }
+    public override void PlotSeries(Points.ValuePoint[] points) { throw new NotImplementedException(); }
   }
 }
 #endif

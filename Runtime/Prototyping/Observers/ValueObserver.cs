@@ -20,10 +20,6 @@ namespace Neodroid.Runtime.Prototyping.Observers {
       get { return this._observation_value_space; }
     }
 
-    public override string PrototypingTypeName {
-      get { return "Value"; }
-    }
-
     public float ObservationValue {
       get { return this._observation_value; }
       set {

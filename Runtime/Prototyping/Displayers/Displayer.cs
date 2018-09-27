@@ -7,7 +7,7 @@ using Neodroid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace Neodroid.Runtime.Prototyping.Displayers {
-  /// <inheritdoc />
+  /// <inheritdoc cref="PrototypingGameObject" />
   ///  <summary>
   ///  </summary>
   public abstract class Displayer : PrototypingGameObject,
@@ -17,6 +17,15 @@ namespace Neodroid.Runtime.Prototyping.Displayers {
     /// </summary>
     IPrototypingEnvironment _environment;
 
+    #if UNITY_EDITOR
+    /// <summary>
+    /// 
+    /// </summary>
+    protected bool _PlotRandomSeries;
+#endif
+    
+    [SerializeField] protected bool _RetainLastPlot = true;
+    
     /// <summary>
     ///
     /// </summary>
@@ -107,5 +116,18 @@ namespace Neodroid.Runtime.Prototyping.Displayers {
     public abstract void Display(Points.StringPoint[] points);
 
     public void Display(object o) { throw new System.NotImplementedException(); }
+
+    protected dynamic _values;
+
+    //public abstract void PlotSeries(dynamic points);
+    public abstract void PlotSeries(Points.ValuePoint[] points);
+
+    void Update() {
+      if (this._RetainLastPlot) {
+        if (this._values != null) {
+          PlotSeries(this._values);
+        }
+      }
+    }
   }
 }

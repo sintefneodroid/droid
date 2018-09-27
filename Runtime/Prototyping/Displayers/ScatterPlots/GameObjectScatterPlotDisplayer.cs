@@ -20,10 +20,10 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
 
     ParticleSystem.MainModule _particle_system_main_module;
     ParticleSystem.Particle[] _particles;
-    [SerializeField] float[] _values;
+    
     [SerializeField] Gradient _gradient;
     [SerializeField] float _size = 0.6f;
-    [SerializeField] bool _plot_random_series;
+    
     List<float> _vs = new List<float>();
 
     protected override void Setup() {
@@ -199,7 +199,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
     #if UNITY_EDITOR
     void OnDrawGizmos() {
       if (this.enabled) {
-        if (this._plot_random_series) {
+        if (this._PlotRandomSeries) {
           this.PlotSeries(PlotFunctions.SampleRandomSeries(1));
         }
       }
@@ -210,7 +210,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
     ///
     /// </summary>
     /// <param name="points"></param>
-    public void PlotSeries(Points.ValuePoint[] points) {
+    public override void PlotSeries(Points.ValuePoint[] points) {
       var alive = this._particle_system.GetParticles(this._particles);
       if (alive < points.Length) {
         this._particles = new ParticleSystem.Particle[points.Length];
