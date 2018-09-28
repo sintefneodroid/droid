@@ -426,7 +426,7 @@ namespace Neodroid.Runtime.Environments {
         }
         #endif
       } else {
-        if (_update_observations_with_every_tick) {
+        if (this._update_observations_with_every_tick) {
           this.UpdateObserversData();
         }
       }
@@ -1000,8 +1000,9 @@ namespace Neodroid.Runtime.Environments {
       recipient.PollData(
           string.Join(
               "\n\n",
-              this.Observers.Values.Select(e => $"{e.Identifier}:\n{string.Join(",", e.FloatEnumerable)}")));
+              this.Observers.Values.Select(e => $"{e.Identifier}:\n{ e.ToString()}")));
     }
+    
 
     /// <summary>
     ///

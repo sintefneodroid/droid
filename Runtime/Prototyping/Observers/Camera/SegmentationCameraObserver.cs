@@ -15,7 +15,7 @@ namespace Neodroid.Runtime.Prototyping.Observers.Camera {
   [AddComponentMenu(
        ObserverComponentMenuPath._ComponentMenuPath
        + "SegmentationCamera"
-       + ObserverComponentMenuPath._Postfix), ExecuteInEditMode, RequireComponent(typeof(UnityEngine.Camera))]
+       + ObserverComponentMenuPath._Postfix), ExecuteInEditMode, RequireComponent(typeof(UnityEngine.Camera),typeof(Segmenter))]
   public class SegmentationCameraObserver : StringAugmentedCameraObserver {
     /// <summary>
     ///

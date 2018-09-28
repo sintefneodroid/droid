@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
+using LightType = UnityEngine.LightType;
 
 namespace Neodroid.Runtime.Utilities.NeodroidCamera {
   /// <inheritdoc />
@@ -10,6 +13,8 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera {
     [SerializeField] bool _ignore_infrared_if_empty = true;
 
     [SerializeField] Light[] _lights_to_ignore;
+
+    [SerializeField] bool _automatically_add_directional_lights_if_not_empty = false;
 
     // Use this for initialization
     void Start() {
@@ -22,6 +27,19 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera {
         }
 
         this._lights_to_ignore = lights.ToArray();
+      }else if (this._automatically_add_directional_lights_if_not_empty) {
+        var lights = this._lights_to_ignore.ToList();
+        var d = FindObjectsOfType<Light>();
+        foreach (var light1 in d) {
+          if(light1.type==LightType.Directional) {
+            if(!lights.Exists(l=>l != null && light1.GetHashCode()==l.GetHashCode())) {
+              lights.Add(light1);
+            }
+          }
+        }
+
+        this._lights_to_ignore = lights.ToArray();
+
       }
     }
 

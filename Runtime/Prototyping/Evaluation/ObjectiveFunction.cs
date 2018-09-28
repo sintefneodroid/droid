@@ -151,10 +151,10 @@ namespace Neodroid.Runtime.Prototyping.Evaluation {
     /// <returns></returns>
     public abstract float InternalEvaluate();
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <returns></returns>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <returns></returns>
     public float Evaluate() {
       var signal = 0.0f;
       signal += this.InternalEvaluate();
@@ -175,8 +175,9 @@ namespace Neodroid.Runtime.Prototyping.Evaluation {
       return signal;
     }
 
-    ///  <summary>
-    ///  </summary>
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
     public void EnvironmentReset() {
       this._last_signal = 0;
       this._Episode_Return = 0;
