@@ -58,6 +58,9 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera {
     [SerializeField] bool _sync_orthographic_projection = true;
     [SerializeField] bool _sync_orthographic_size = true;
     [SerializeField] bool _sync_fov = true;
+    
+    [SerializeField] bool _only_run_on_awake; //TODO: Does nothing as of right now
+    [SerializeField] bool _only_run_in_edit_mode = true;
 
 
     /// <summary>
@@ -76,22 +79,34 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera {
       set { this._sync_orthographic_projection = value; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public bool SyncNearClipPlane {
       get { return this._sync_near_clip_plane; }
       set { this._sync_near_clip_plane = value; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public bool SyncFarClipPlane {
       get { return this._sync_far_clip_plane; }
       set { this._sync_far_clip_plane = value; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public bool SyncCullingMask {
       get { return this._sync_culling_mask; }
       set { this._sync_culling_mask = value; }
     }
     
-    public bool SyncFOV {
+    /// <summary>
+    /// 
+    /// </summary>
+    public bool SyncFov {
       get { return this._sync_fov; }
       set { this._sync_fov = value; }
     }
@@ -114,12 +129,11 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera {
       } else {
         Debug.Log("No camera component found on GameObject");
       }
+      
+      this.Sync_Cameras();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    public void Update() {
+    void Sync_Cameras() {
       if (this._camera) {
         var this_camera = this._camera.GetComponent<Camera>();
         if (this_camera) {
@@ -214,7 +228,7 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera {
               this._old_fov = fov;
               foreach (var cam in this._cameras) {
                 if (cam != this._camera) {
-                  if (cam.SyncFOV) {
+                  if (cam.SyncFov) {
                     var other_cam = cam.GetComponent<Camera>();
                     if (other_cam) {
                       other_cam.fieldOfView = fov;
@@ -230,6 +244,24 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera {
       } else {
         Debug.Log("No SyncCameraProperties component found on GameObject");
       }
+    }
+    
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void Update() {
+      if (!this._only_run_on_awake) {
+        if(this._only_run_in_edit_mode) {
+          #if UNITY_EDITOR
+            if(!Application.isPlaying) {
+              this.Sync_Cameras();
+            }
+          #endif
+        } else {
+          this.Sync_Cameras();
+        }
+      } 
     }
   }
 }

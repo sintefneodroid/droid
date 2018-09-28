@@ -99,5 +99,13 @@ namespace Neodroid.Runtime.Prototyping.Observers {
     /// 
     /// </summary>
     public void EnvironmentReset() { }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    public override String ToString() {
+      return (this.FloatEnumerable.Any() ? string.Join(",", this.FloatEnumerable) : "Empty");
+    }
   }
 }

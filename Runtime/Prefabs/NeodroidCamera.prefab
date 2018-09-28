@@ -151,7 +151,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -165,9 +165,9 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 20
-  field of view: 58.6
-  orthographic: 1
-  orthographic size: 3
+  field of view: 80
+  orthographic: 0
+  orthographic size: 5
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -197,23 +197,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114307586759802868}
   _cameras:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114594705335718820}
+  - {fileID: 114608562479145288}
+  - {fileID: 114480522672753226}
+  - {fileID: 114307586759802868}
+  - {fileID: 114197453280488484}
+  - {fileID: 114203530777878686}
+  - {fileID: 114716082362535994}
+  - {fileID: 114798311224295254}
+  - {fileID: 114203839715900738}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
   _old_near_clip_plane: 0.01
-  _old_orthographic_size: 3
+  _old_orthographic_size: 5
+  _old_orthographic_projection: 0
+  _old_fov: 80
   _sync_culling_mask: 1
   _sync_far_clip_plane: 1
   _sync_near_clip_plane: 1
+  _sync_orthographic_projection: 1
   _sync_orthographic_size: 1
+  _sync_fov: 1
+  _only_run_on_awake: 0
+  _only_run_in_edit_mode: 1
 --- !u!114 &114622768315461166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,7 +369,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -377,9 +383,9 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 20
-  field of view: 58.6
-  orthographic: 1
-  orthographic size: 3
+  field of view: 80
+  orthographic: 0
+  orthographic size: 5
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -409,23 +415,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114203839715900738}
   _cameras:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114594705335718820}
+  - {fileID: 114608562479145288}
+  - {fileID: 114480522672753226}
+  - {fileID: 114307586759802868}
+  - {fileID: 114197453280488484}
+  - {fileID: 114203530777878686}
+  - {fileID: 114716082362535994}
+  - {fileID: 114798311224295254}
+  - {fileID: 114203839715900738}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
   _old_near_clip_plane: 0.01
-  _old_orthographic_size: 3
+  _old_orthographic_size: 5
+  _old_orthographic_projection: 0
+  _old_fov: 80
   _sync_culling_mask: 1
   _sync_far_clip_plane: 1
   _sync_near_clip_plane: 1
+  _sync_orthographic_projection: 1
   _sync_orthographic_size: 1
+  _sync_fov: 1
+  _only_run_on_awake: 0
+  _only_run_in_edit_mode: 1
 --- !u!114 &114789472510660598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,6 +474,7 @@ MonoBehaviour:
   _ignore_infrared_if_empty: 1
   _lights_to_ignore:
   - {fileID: 108906297679887750}
+  _automatically_add_directional_lights_if_not_empty: 0
 --- !u!1 &1238596673498848
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,13 +677,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1568745427337830}
-  m_LocalRotation: {x: 0.3265056, y: -0.32650563, z: 0.6272114, w: 0.62721133}
-  m_LocalPosition: {x: 0, y: -0.81745243, z: 12.780132}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4232321861901436}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 23.84, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 55.000004, y: 0, z: 0}
 --- !u!20 &20793825365236440
 Camera:
   m_ObjectHideFlags: 0
@@ -681,7 +694,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -693,18 +706,18 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 20
-  field of view: 60
+  field of view: 80
   orthographic: 1
-  orthographic size: 3
+  orthographic size: 5
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967263
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: bc593ac7628a042ac93b20ca1c0101b6, type: 2}
-  m_TargetDisplay: 0
+  m_TargetDisplay: 1
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 0
@@ -720,30 +733,36 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1568745427337830}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 114594705335718820}
   _cameras:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114594705335718820}
+  - {fileID: 114608562479145288}
+  - {fileID: 114480522672753226}
+  - {fileID: 114307586759802868}
+  - {fileID: 114197453280488484}
+  - {fileID: 114203530777878686}
+  - {fileID: 114716082362535994}
+  - {fileID: 114798311224295254}
+  - {fileID: 114203839715900738}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
-  _old_near_clip_plane: 0.3
-  _old_orthographic_size: 3
+  _old_near_clip_plane: 0.01
+  _old_orthographic_size: 5
+  _old_orthographic_projection: 1
+  _old_fov: 80
   _sync_culling_mask: 1
   _sync_far_clip_plane: 1
   _sync_near_clip_plane: 1
+  _sync_orthographic_projection: 0
   _sync_orthographic_size: 1
+  _sync_fov: 1
+  _only_run_on_awake: 0
+  _only_run_in_edit_mode: 1
 --- !u!114 &114844159235485554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -777,8 +796,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 246cc59c7a84ea44f87f6b70acfe30c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Offset: {x: 0, y: 2, z: 0}
-  _Target: {fileID: 0}
+  _Offset: {x: 0, y: 10, z: 0}
+  _Target: {fileID: 4129864042203872}
 --- !u!114 &114764329013616076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -794,6 +813,7 @@ MonoBehaviour:
   _ignore_infrared_if_empty: 1
   _lights_to_ignore:
   - {fileID: 108906297679887750}
+  _automatically_add_directional_lights_if_not_empty: 0
 --- !u!114 &114907179650593844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -851,7 +871,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -865,9 +885,9 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 20
-  field of view: 30
-  orthographic: 1
-  orthographic size: 3
+  field of view: 80
+  orthographic: 0
+  orthographic size: 5
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -897,23 +917,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114203530777878686}
   _cameras:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114594705335718820}
+  - {fileID: 114608562479145288}
+  - {fileID: 114480522672753226}
+  - {fileID: 114307586759802868}
+  - {fileID: 114197453280488484}
+  - {fileID: 114203530777878686}
+  - {fileID: 114716082362535994}
+  - {fileID: 114798311224295254}
+  - {fileID: 114203839715900738}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
   _old_near_clip_plane: 0.01
-  _old_orthographic_size: 3
+  _old_orthographic_size: 5
+  _old_orthographic_projection: 0
+  _old_fov: 80
   _sync_culling_mask: 1
   _sync_far_clip_plane: 1
   _sync_near_clip_plane: 1
+  _sync_orthographic_projection: 1
   _sync_orthographic_size: 1
+  _sync_fov: 1
+  _only_run_on_awake: 0
+  _only_run_in_edit_mode: 1
 --- !u!114 &114155819769717986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1043,9 +1069,9 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 20
-  field of view: 30
-  orthographic: 1
-  orthographic size: 3
+  field of view: 80
+  orthographic: 0
+  orthographic size: 5
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -1075,23 +1101,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114798311224295254}
   _cameras:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114594705335718820}
+  - {fileID: 114608562479145288}
+  - {fileID: 114480522672753226}
+  - {fileID: 114307586759802868}
+  - {fileID: 114197453280488484}
+  - {fileID: 114203530777878686}
+  - {fileID: 114716082362535994}
+  - {fileID: 114798311224295254}
+  - {fileID: 114203839715900738}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
   _old_near_clip_plane: 0.01
-  _old_orthographic_size: 3
+  _old_orthographic_size: 5
+  _old_orthographic_projection: 0
+  _old_fov: 80
   _sync_culling_mask: 1
   _sync_far_clip_plane: 1
   _sync_near_clip_plane: 1
+  _sync_orthographic_projection: 1
   _sync_orthographic_size: 1
+  _sync_fov: 1
+  _only_run_on_awake: 0
+  _only_run_in_edit_mode: 1
 --- !u!114 &114216501179093510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1128,6 +1160,7 @@ MonoBehaviour:
   _ignore_infrared_if_empty: 1
   _lights_to_ignore:
   - {fileID: 108906297679887750}
+  _automatically_add_directional_lights_if_not_empty: 0
 --- !u!114 &114442928199698278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1221,9 +1254,9 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 20
-  field of view: 60
+  field of view: 80
   orthographic: 0
-  orthographic size: 3
+  orthographic size: 5
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -1253,23 +1286,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114716082362535994}
   _cameras:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114594705335718820}
+  - {fileID: 114608562479145288}
+  - {fileID: 114480522672753226}
+  - {fileID: 114307586759802868}
+  - {fileID: 114197453280488484}
+  - {fileID: 114203530777878686}
+  - {fileID: 114716082362535994}
+  - {fileID: 114798311224295254}
+  - {fileID: 114203839715900738}
   _old_culling_mask: -1
   _old_far_clip_plane: 20
   _old_near_clip_plane: 0.01
-  _old_orthographic_size: 3
+  _old_orthographic_size: 5
+  _old_orthographic_projection: 0
+  _old_fov: 80
   _sync_culling_mask: 0
   _sync_far_clip_plane: 1
   _sync_near_clip_plane: 1
+  _sync_orthographic_projection: 1
   _sync_orthographic_size: 1
+  _sync_fov: 1
+  _only_run_on_awake: 0
+  _only_run_in_edit_mode: 1
 --- !u!114 &114376289421041340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1285,6 +1324,7 @@ MonoBehaviour:
   _ignore_infrared_if_empty: 1
   _lights_to_ignore:
   - {fileID: 108906297679887750}
+  _automatically_add_directional_lights_if_not_empty: 0
 --- !u!124 &124821388434305126
 Behaviour:
   m_ObjectHideFlags: 0
@@ -1306,24 +1346,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 20145353716750142}
-  - {fileID: 20768847776266208}
   - {fileID: 20598539646069560}
   - {fileID: 20687481563768866}
-  - {fileID: 20713194616804364}
   - {fileID: 20367486579053346}
+  - {fileID: 20713194616804364}
+  - {fileID: 20145353716750142}
+  - {fileID: 20768847776266208}
   - {fileID: 20940602749366906}
   - {fileID: 20793825365236440}
+  - {fileID: 20224209517257972}
   _textures:
   - {fileID: 8400000, guid: b22ce111b5af44afe8b8f2f085799a5f, type: 2}
   - {fileID: 8400000, guid: 8fb1467d625b3486199ecd1d9d21ef7d, type: 2}
+  - {fileID: 8400000, guid: 63f7bf9c3a80b4d169b394696cbbd9ab, type: 2}
+  - {fileID: 8400000, guid: c0062e72afb4348d9b9bb702fba6c398, type: 2}
+  - {fileID: 8400000, guid: 5d9eca522a1944267b89beea11ffc58c, type: 2}
   - {fileID: 8400000, guid: afc5604d79d0849129803e463fc07bca, type: 2}
   - {fileID: 8400000, guid: 4c7dcaf7e8ef74c11bd8ad06365ea216, type: 2}
-  - {fileID: 8400000, guid: c0062e72afb4348d9b9bb702fba6c398, type: 2}
   - {fileID: 8400000, guid: bc593ac7628a042ac93b20ca1c0101b6, type: 2}
-  - {fileID: 8400000, guid: 5d9eca522a1944267b89beea11ffc58c, type: 2}
-  - {fileID: 8400000, guid: 63f7bf9c3a80b4d169b394696cbbd9ab, type: 2}
   _size: {x: 84, y: 84}
+  _texture_format: 5
+  _filter_mode: 1
+  _wrap_mode: 1
 --- !u!1 &1870355748897446
 GameObject:
   m_ObjectHideFlags: 0
@@ -1337,7 +1381,8 @@ GameObject:
   - component: {fileID: 114480522672753226}
   - component: {fileID: 114867302115997544}
   - component: {fileID: 114910394560810596}
-  - component: {fileID: 8108044723890373889}
+  - component: {fileID: 7241136312313026172}
+  - component: {fileID: 496854507969095742}
   m_Layer: 0
   m_Name: InstanceSegmentation
   m_TagString: Untagged
@@ -1369,7 +1414,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -1383,9 +1428,9 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 20
-  field of view: 58.6
-  orthographic: 1
-  orthographic size: 3
+  field of view: 80
+  orthographic: 0
+  orthographic size: 5
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -1415,23 +1460,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114480522672753226}
   _cameras:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114594705335718820}
+  - {fileID: 114608562479145288}
+  - {fileID: 114480522672753226}
+  - {fileID: 114307586759802868}
+  - {fileID: 114197453280488484}
+  - {fileID: 114203530777878686}
+  - {fileID: 114716082362535994}
+  - {fileID: 114798311224295254}
+  - {fileID: 114203839715900738}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
   _old_near_clip_plane: 0.01
-  _old_orthographic_size: 3
+  _old_orthographic_size: 5
+  _old_orthographic_projection: 0
+  _old_fov: 80
   _sync_culling_mask: 1
   _sync_far_clip_plane: 1
   _sync_near_clip_plane: 1
+  _sync_orthographic_projection: 1
   _sync_orthographic_size: 1
+  _sync_fov: 1
+  _only_run_on_awake: 0
+  _only_run_in_edit_mode: 1
 --- !u!114 &114867302115997544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1459,7 +1510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 956749cb3cb1149b1933eb1da9bf66b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8108044723890373889
+--- !u!114 &7241136312313026172
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1468,7 +1519,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1870355748897446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e799660541044f0ba271413b7431532, type: 3}
+  m_Script: {fileID: 11500000, guid: 96d2b2d8cb1664b2c9870ffd997b2f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
@@ -1477,10 +1528,28 @@ MonoBehaviour:
   _editor_reregistering: 1
   _debugging: 0
   _normalise_observation: 0
-  _image_format: 0
+  _image_format: 1
   _jpeg_quality: 75
   _camera: {fileID: 20687481563768866}
-  _Serialised_String: ', 37240: RGBA(0.492, 0.083, 0.070, 1.000), 37540: RGBA(0.819, 0.591, 0.571, 1.000), 37762: RGBA(0.065, 0.065, 0.061, 1.000), 37930: RGBA(0.126, 0.046, 0.014, 1.000), 38088: RGBA(0.102, 0.126, 0.134, 1.000)'
+--- !u!114 &496854507969095742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870355748897446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1003e9e65c5a4495a80b404ca321593b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Custom_Name: 
+  _Use_Custom_Name: 0
+  _disables_children: 0
+  _editor_reregistering: 1
+  _debugging: 0
+  _normalise_observation: 0
+  _observation_value: ', -5696: RGBA(0.535, 0.564, 0.588, 1.000), 25176: RGBA(0.016, 0.012, 0.024, 1.000), 25190: RGBA(0.116, 0.012, 0.188, 1.000), 25208: RGBA(0.135, 0.033, 0.151, 1.000), 25266: RGBA(0.251, 0.255, 0.264, 1.000)'
   _segmenter: {fileID: 114910394560810596}
 --- !u!1 &1975208461797724
 GameObject:
@@ -1526,7 +1595,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -1540,9 +1609,9 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 20
-  field of view: 58.6
-  orthographic: 1
-  orthographic size: 3
+  field of view: 80
+  orthographic: 0
+  orthographic size: 5
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -1593,23 +1662,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114608562479145288}
   _cameras:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114594705335718820}
+  - {fileID: 114608562479145288}
+  - {fileID: 114480522672753226}
+  - {fileID: 114307586759802868}
+  - {fileID: 114197453280488484}
+  - {fileID: 114203530777878686}
+  - {fileID: 114716082362535994}
+  - {fileID: 114798311224295254}
+  - {fileID: 114203839715900738}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
   _old_near_clip_plane: 0.01
-  _old_orthographic_size: 3
+  _old_orthographic_size: 5
+  _old_orthographic_projection: 0
+  _old_fov: 80
   _sync_culling_mask: 1
   _sync_far_clip_plane: 1
   _sync_near_clip_plane: 1
+  _sync_orthographic_projection: 1
   _sync_orthographic_size: 1
+  _sync_fov: 1
+  _only_run_on_awake: 0
+  _only_run_in_edit_mode: 1
 --- !u!114 &114100763809553962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1627,7 +1702,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 108322580981299036}
   - {fileID: 108133865239658186}
-  - {fileID: 0}
+  _automatically_add_directional_lights_if_not_empty: 1
 --- !u!1 &1975303641184726
 GameObject:
   m_ObjectHideFlags: 0
@@ -1641,7 +1716,8 @@ GameObject:
   - component: {fileID: 114197453280488484}
   - component: {fileID: 114939049052965380}
   - component: {fileID: 114319058318530508}
-  - component: {fileID: 962180073}
+  - component: {fileID: 810406206229323000}
+  - component: {fileID: 8729723661813516162}
   m_Layer: 0
   m_Name: Segmentation
   m_TagString: Untagged
@@ -1673,7 +1749,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -1687,9 +1763,9 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 20
-  field of view: 58.6
-  orthographic: 1
-  orthographic size: 3
+  field of view: 80
+  orthographic: 0
+  orthographic size: 5
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -1719,23 +1795,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114197453280488484}
   _cameras:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114594705335718820}
+  - {fileID: 114608562479145288}
+  - {fileID: 114480522672753226}
+  - {fileID: 114307586759802868}
+  - {fileID: 114197453280488484}
+  - {fileID: 114203530777878686}
+  - {fileID: 114716082362535994}
+  - {fileID: 114798311224295254}
+  - {fileID: 114203839715900738}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
   _old_near_clip_plane: 0.01
-  _old_orthographic_size: 3
+  _old_orthographic_size: 5
+  _old_orthographic_projection: 0
+  _old_fov: 80
   _sync_culling_mask: 1
   _sync_far_clip_plane: 1
   _sync_near_clip_plane: 1
+  _sync_orthographic_projection: 1
   _sync_orthographic_size: 1
+  _sync_fov: 1
+  _only_run_on_awake: 0
+  _only_run_in_edit_mode: 1
 --- !u!114 &114939049052965380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1766,7 +1848,7 @@ MonoBehaviour:
   _segmentation: {fileID: 11400000, guid: 1387513cbea10420eaa5a7ac8f932b80, type: 2}
   _Replace_Untagged_Color: 1
   _Untagged_Color: {r: 0, g: 0, b: 0, a: 1}
---- !u!114 &962180073
+--- !u!114 &810406206229323000
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1775,7 +1857,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1975303641184726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e799660541044f0ba271413b7431532, type: 3}
+  m_Script: {fileID: 11500000, guid: 96d2b2d8cb1664b2c9870ffd997b2f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
@@ -1787,5 +1869,23 @@ MonoBehaviour:
   _image_format: 1
   _jpeg_quality: 75
   _camera: {fileID: 20713194616804364}
-  _Serialised_String: ', Actor: RGBA(0.000, 0.000, 1.000, 1.000), Goal: RGBA(0.000, 1.000, 0.000, 1.000), Obstruction: RGBA(1.000, 0.000, 0.000, 1.000), Box: RGBA(1.000, 0.000, 1.000, 1.000), Player: RGBA(0.000, 0.000, 1.000, 1.000)'
+--- !u!114 &8729723661813516162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975303641184726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1003e9e65c5a4495a80b404ca321593b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Custom_Name: 
+  _Use_Custom_Name: 0
+  _disables_children: 0
+  _editor_reregistering: 1
+  _debugging: 0
+  _normalise_observation: 0
+  _observation_value: ', Actor: RGBA(0.000, 0.000, 1.000, 1.000), Goal: RGBA(0.000, 1.000, 0.000, 1.000), Obstruction: RGBA(1.000, 0.000, 0.000, 1.000), Box: RGBA(1.000, 0.000, 1.000, 1.000), Player: RGBA(0.000, 0.000, 1.000, 1.000)'
   _segmenter: {fileID: 114319058318530508}
