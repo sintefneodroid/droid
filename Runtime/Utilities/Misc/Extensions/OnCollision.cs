@@ -7,7 +7,6 @@ namespace Neodroid.Runtime.Utilities.Misc.Extensions {
   [RequireComponent(typeof(Collider))]
   public class ChildCollisionPublisher : MonoBehaviour {
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="collision"></param>
     public delegate void OnCollisionDelegate(Collision collision);
@@ -15,7 +14,6 @@ namespace Neodroid.Runtime.Utilities.Misc.Extensions {
     OnCollisionDelegate _collision_delegate;
 
     /// <summary>
-    /// 
     /// </summary>
     public OnCollisionDelegate CollisionDelegate { set { this._collision_delegate = value; } }
 

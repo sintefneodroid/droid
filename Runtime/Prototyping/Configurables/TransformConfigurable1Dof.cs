@@ -4,18 +4,19 @@ using Neodroid.Runtime.Utilities.BoundingBoxes;
 using Neodroid.Runtime.Utilities.Enums;
 using Neodroid.Runtime.Utilities.Structs;
 using UnityEngine;
-using Random = System.Random;
 
 namespace Neodroid.Runtime.Prototyping.Configurables {
   /// <inheritdoc cref="Configurable" />
-  ///  <summary>
-  ///  </summary>
+  /// <summary>
+  /// </summary>
   [AddComponentMenu(
       ConfigurableComponentMenuPath._ComponentMenuPath
       + "TransformConfigurable1Dof"
       + ConfigurableComponentMenuPath._Postfix)]
   public class TransformConfigurable1Dof : Configurable,
                                            IHasSingle {
+    [SerializeField] ValueSpace _single_value_space;
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>
@@ -28,11 +29,9 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
       private set { this._observation_value = value; }
     }
 
-    [SerializeField] ValueSpace _single_value_space;
-
     /// <inheritdoc />
-    ///  <summary>
-    ///  </summary>
+    /// <summary>
+    /// </summary>
     public ValueSpace SingleSpace {
       get { return this._single_value_space; }
       set { this._single_value_space = value; }
@@ -82,7 +81,6 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     }
 
     /// <summary>
-    ///
     /// </summary>
     protected override void PreSetup() {
       if (this._use_bounding_box_for_range) {

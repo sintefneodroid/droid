@@ -1,9 +1,7 @@
 ﻿using Neodroid.Runtime.Prototyping.Actors;
-using Neodroid.Runtime.Utilities.Misc.Drawing;
-using Neodroid.Runtime.Utilities.Misc.Grasping;
+using Neodroid.Runtime.Utilities.Misc;
 using Neodroid.Runtime.Utilities.Misc.Grid;
 using UnityEngine;
-using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 
 namespace Neodroid.Runtime.Prototyping.Evaluation {
   [AddComponentMenu(
@@ -96,16 +94,13 @@ namespace Neodroid.Runtime.Prototyping.Evaluation {
     }
 
     /// <summary>
-    ///
     /// </summary>
     enum ActorOverlapping {
       /// <summary>
-      ///
       /// </summary>
       Inside_area_,
 
       /// <summary>
-      ///
       /// </summary>
       Outside_area_
     }

@@ -5,7 +5,8 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [RequireComponent(typeof(Camera)), ExecuteInEditMode]
+  [RequireComponent(typeof(Camera))]
+  [ExecuteInEditMode]
   public class DrawBoundingBoxOnCamera : MonoBehaviour {
     List<Color> _colors = new List<Color>();
     [SerializeField] Material _line_material;
@@ -54,7 +55,6 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="new_outlines"></param>
     /// <param name="newcolor"></param>
@@ -74,7 +74,6 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="new_outlines"></param>
     /// <param name="newcolor"></param>

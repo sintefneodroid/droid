@@ -2,11 +2,9 @@
 using Neodroid.Runtime.Prototyping.Actors;
 using Neodroid.Runtime.Prototyping.Observers;
 using Neodroid.Runtime.Utilities.BoundingBoxes;
-using Neodroid.Runtime.Utilities.Misc.Drawing;
+using Neodroid.Runtime.Utilities.Misc;
 using Neodroid.Runtime.Utilities.Misc.Extensions;
-using Neodroid.Runtime.Utilities.Misc.Grasping;
 using UnityEngine;
-using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 
 namespace Neodroid.Runtime.Prototyping.Evaluation {
   /// <inheritdoc />
@@ -15,7 +13,6 @@ namespace Neodroid.Runtime.Prototyping.Evaluation {
   [AddComponentMenu(
       EvaluationComponentMenuPath._ComponentMenuPath + "RestInArea" + EvaluationComponentMenuPath._Postfix)]
   public class RestInArea : ObjectiveFunction {
-    [SerializeField] float _resting_time = 3f;
     [SerializeField] Actor _actor;
 
     [SerializeField] Collider _area;
@@ -27,14 +24,15 @@ namespace Neodroid.Runtime.Prototyping.Evaluation {
     [SerializeField] ActorOverlapping _overlapping = ActorOverlapping.Outside_area_;
 
     [SerializeField] BoundingBox _playable_area;
-    [SerializeField] Coroutine _wait_for_resting;
+    [SerializeField] float _resting_time = 3f;
     [SerializeField] bool _sparse;
+    [SerializeField] Coroutine _wait_for_resting;
     WaitForSeconds _wait_for_seconds = new WaitForSeconds(3f);
 
     /// <inheritdoc />
-    ///  <summary>
-    ///  </summary>
-    ///  <returns></returns>
+    /// <summary>
+    /// </summary>
+    /// <returns></returns>
     public override float InternalEvaluate() {
       var signal = 0f;
 

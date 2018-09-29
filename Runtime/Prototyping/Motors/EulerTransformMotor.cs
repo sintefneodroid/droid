@@ -1,9 +1,7 @@
 ﻿using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Prototyping.Actors;
-using Neodroid.Runtime.Utilities.Misc.Drawing;
-using Neodroid.Runtime.Utilities.Misc.Grasping;
+using Neodroid.Runtime.Utilities.Misc;
 using UnityEngine;
-using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 
 namespace Neodroid.Runtime.Prototyping.Motors {
   /// <inheritdoc />
@@ -13,19 +11,16 @@ namespace Neodroid.Runtime.Prototyping.Motors {
       MotorComponentMenuPath._ComponentMenuPath + "EulerTransform" + MotorComponentMenuPath._Postfix)]
   public class EulerTransformMotor : Motor {
     /// <summary>
-    /// 
     /// </summary>
     [SerializeField]
     protected string _Layer_Mask = "Obstructions";
 
     /// <summary>
-    /// 
     /// </summary>
     [SerializeField]
     protected bool _No_Collisions = true;
 
     /// <summary>
-    /// 
     /// </summary>
     [SerializeField]
     protected Space _Relative_To = Space.Self;
@@ -37,6 +32,11 @@ namespace Neodroid.Runtime.Prototyping.Motors {
     string _x;
     string _y;
     string _z;
+
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public override string PrototypingTypeName { get { return "Transform"; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -53,24 +53,10 @@ namespace Neodroid.Runtime.Prototyping.Motors {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName { get { return "Transform"; } }
-
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
     protected override void RegisterComponent() {
-      this.ParentActor = NeodroidUtilities.RegisterComponent(
-          (Actor)this.ParentActor,
-          (Motor)this,
-          this._x);
-      this.ParentActor = NeodroidUtilities.RegisterComponent(
-          (Actor)this.ParentActor,
-          (Motor)this,
-          this._y);
-      this.ParentActor = NeodroidUtilities.RegisterComponent(
-          (Actor)this.ParentActor,
-          (Motor)this,
-          this._z);
+      this.ParentActor = NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Motor)this, this._x);
+      this.ParentActor = NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Motor)this, this._y);
+      this.ParentActor = NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Motor)this, this._z);
       this.ParentActor = NeodroidUtilities.RegisterComponent(
           (Actor)this.ParentActor,
           (Motor)this,

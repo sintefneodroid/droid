@@ -20,10 +20,17 @@ namespace Neodroid.Editor.Windows {
     Actor[] _actors;
 
     Configurable[] _configurables;
+    bool _debug_all;
+
+    Displayer[] _displayers;
 
     NeodroidEnvironment[] _environments;
 
     Texture _icon;
+
+    EnvironmentListener[] _listeners;
+
+    NeodroidManager _manager;
 
     Motor[] _motors;
 
@@ -31,31 +38,24 @@ namespace Neodroid.Editor.Windows {
 
     Observer[] _observers;
 
-    Displayer[] _displayers;
+    PlayerReactions _player_reactions;
 
     Resetable[] _resetables;
 
-    EnvironmentListener[] _listeners;
-
-    PlayerReactions _player_reactions;
-
-    NeodroidManager _manager;
-
     bool _show_actors_debug;
     bool _show_configurables_debug;
+    bool _show_displayers_debug;
     bool _show_environments_debug;
+    bool _show_listeners_debug;
     bool _show_motors_debug;
     bool _show_objective_functions_debug;
     bool _show_observers_debug;
-    bool _show_simulation_manager_debug;
-    bool _show_displayers_debug;
     bool _show_player_reactions_debug;
     bool _show_resetables_debug;
-    bool _show_listeners_debug;
-    bool _debug_all;
+    bool _show_simulation_manager_debug;
 
-    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "DebugWindow"),
-     MenuItem(EditorWindowMenuPath._ToolMenuPath + "DebugWindow")]
+    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "DebugWindow")]
+    [MenuItem(EditorWindowMenuPath._ToolMenuPath + "DebugWindow")]
     public static void ShowWindow() {
       GetWindow<DebugWindow>(); //Show existing window instance. If one doesn't exist, make one.
     }

@@ -3,18 +3,22 @@ using UnityEngine;
 
 namespace Neodroid.Runtime.Prototyping.Internals {
   /// <inheritdoc />
-  ///  <summary>
-  ///  </summary>
+  /// <summary>
+  /// </summary>
   public class ActionCounter : EnvironmentListener {
     [SerializeField] IPrototypingEnvironment _environment;
 
     /// <summary>
-    /// 
     /// </summary>
     public IPrototypingEnvironment ParentEnvironment {
       get { return this._environment; }
       set { this._environment = value; }
     }
+
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public override string PrototypingTypeName { get { return "ActionCounter"; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -26,7 +30,6 @@ namespace Neodroid.Runtime.Prototyping.Internals {
     }
 
     /// <summary>
-    ///
     /// </summary>
     void HandleStep() {
       var reaction = this._environment.LastReaction;
@@ -47,10 +50,5 @@ namespace Neodroid.Runtime.Prototyping.Internals {
     /// <summary>
     /// </summary>
     public override void PostStep() { }
-
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "ActionCounter"; } }
   }
 }

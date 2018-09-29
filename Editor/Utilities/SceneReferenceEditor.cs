@@ -6,40 +6,11 @@ using UnityEngine;
 namespace Neodroid.Editor.Utilities {
   /// <inheritdoc />
   /// <summary>
-  /// Editor for a scene reference that can display error prompts and offer
-  /// solutions when the scene is not valid.
+  ///   Editor for a scene reference that can display error prompts and offer
+  ///   solutions when the scene is not valid.
   /// </summary>
   [CustomPropertyDrawer(typeof(SceneReference))]
   public class SceneReferenceEditor : PropertyDrawer {
-    #region -- Constants --------------------------------------------------
-
-    const string _tooltip_scene_missing = "Scene is not in build settings.";
-
-    const string _error_scene_missing =
-        "You are refencing a scene that is not added to the build. Add it to the editor build settings now?";
-
-    const string _tooltip_scene_disabled = "Scene is not enebled in build settings.";
-
-    const string _error_scene_disabled =
-        "You are refencing a scene that is not active the build. Enable it in the build settings now?";
-
-    #endregion -- Constants -----------------------------------------------
-
-    #region -- Private Variables ------------------------------------------
-
-    SerializedProperty _scene;
-    SerializedProperty _scene_name;
-    SerializedProperty _scene_index;
-    SerializedProperty _scene_enabled;
-    SceneAsset _scene_asset;
-    string _scene_asset_path;
-    string _scene_asset_guid;
-
-    GUIContent _error_tooltip;
-    GUIStyle _error_style;
-
-    #endregion -- Private Variables ---------------------------------------
-
     /// <inheritdoc />
     /// <summary>
     /// </summary>
@@ -68,9 +39,9 @@ namespace Neodroid.Editor.Utilities {
     }
 
     /// <summary>
-    /// Cache all used properties as local variables so that they can be
-    /// used by other methods. This needs to be called every frame since a
-    /// PropertyDrawer can be reused on different properties.
+    ///   Cache all used properties as local variables so that they can be
+    ///   used by other methods. This needs to be called every frame since a
+    ///   PropertyDrawer can be reused on different properties.
     /// </summary>
     /// <param name="property">Property to search through.</param>
     void CacheProperties(SerializedProperty property) {
@@ -92,8 +63,8 @@ namespace Neodroid.Editor.Utilities {
     }
 
     /// <summary>
-    /// Updates the scene index and enabled flags of a scene property by
-    /// scanning through the scenes in EditorBuildSettings.
+    ///   Updates the scene index and enabled flags of a scene property by
+    ///   scanning through the scenes in EditorBuildSettings.
     /// </summary>
     void UpdateSceneState() {
       if (this._scene_asset != null) {
@@ -122,9 +93,9 @@ namespace Neodroid.Editor.Utilities {
     }
 
     /// <summary>
-    /// Display a popup error message about the selected scene and respond
-    /// to the user choice by either fixing the issue in the build
-    /// settings, doing nothing, or opening the build settings.
+    ///   Display a popup error message about the selected scene and respond
+    ///   to the user choice by either fixing the issue in the build
+    ///   settings, doing nothing, or opening the build settings.
     /// </summary>
     /// <param name="message">Message to display.</param>
     void DisplaySceneErrorPrompt(string message) {
@@ -156,16 +127,16 @@ namespace Neodroid.Editor.Utilities {
     }
 
     /// <summary>
-    /// If there is anything wrong with the selected scene, this will
-    /// display an error icon that the user can click on for more info.
+    ///   If there is anything wrong with the selected scene, this will
+    ///   display an error icon that the user can click on for more info.
     /// </summary>
     /// <param name="position">
-    /// Full rect that will be used to draw the property.
+    ///   Full rect that will be used to draw the property.
     /// </param>
     /// <returns>
-    /// The rect that should be used to draw the rest of the property. If
-    /// there are no errors, this is the same as the input position Rect.
-    /// Otherwise, it will be the input rect adjusted to fit the error.
+    ///   The rect that should be used to draw the rest of the property. If
+    ///   there are no errors, this is the same as the input position Rect.
+    ///   Otherwise, it will be the input rect adjusted to fit the error.
     /// </returns>
     Rect DisplayErrorsIfNecessary(Rect position) {
       if (this._error_style == null) {
@@ -197,8 +168,8 @@ namespace Neodroid.Editor.Utilities {
     }
 
     /// <summary>
-    /// Validate any new values in the scene property. This will display
-    /// popup errors if there are issues with the current value.
+    ///   Validate any new values in the scene property. This will display
+    ///   popup errors if there are issues with the current value.
     /// </summary>
     void Validate() {
       if (this._scene_asset != null) {
@@ -232,6 +203,35 @@ namespace Neodroid.Editor.Utilities {
         this._scene_name.stringValue = "";
       }
     }
+
+    #region -- Constants --------------------------------------------------
+
+    const string _tooltip_scene_missing = "Scene is not in build settings.";
+
+    const string _error_scene_missing =
+        "You are refencing a scene that is not added to the build. Add it to the editor build settings now?";
+
+    const string _tooltip_scene_disabled = "Scene is not enebled in build settings.";
+
+    const string _error_scene_disabled =
+        "You are refencing a scene that is not active the build. Enable it in the build settings now?";
+
+    #endregion -- Constants -----------------------------------------------
+
+    #region -- Private Variables ------------------------------------------
+
+    SerializedProperty _scene;
+    SerializedProperty _scene_name;
+    SerializedProperty _scene_index;
+    SerializedProperty _scene_enabled;
+    SceneAsset _scene_asset;
+    string _scene_asset_path;
+    string _scene_asset_guid;
+
+    GUIContent _error_tooltip;
+    GUIStyle _error_style;
+
+    #endregion -- Private Variables ---------------------------------------
   }
 }
 #endif

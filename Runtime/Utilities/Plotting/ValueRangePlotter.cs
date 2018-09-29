@@ -3,10 +3,9 @@
 namespace Neodroid.Runtime.Utilities.Plotting {
   [ExecuteInEditMode]
   public class ValueRangePlotter : MonoBehaviour {
+    Material _material;
     [SerializeField] Shader _shader;
     [SerializeField] Bounds _value_range = new Bounds(Vector3.zero, Vector3.one * 2);
-
-    Material _material;
 
     void OnDestroy() {
       if (this._material != null) {

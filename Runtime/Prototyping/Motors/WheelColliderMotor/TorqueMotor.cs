@@ -6,8 +6,8 @@ namespace Neodroid.Runtime.Prototyping.Motors.WheelColliderMotor {
   /// <summary>
   /// </summary>
   [AddComponentMenu(
-       MotorComponentMenuPath._ComponentMenuPath + "WheelCollider/Torque" + MotorComponentMenuPath._Postfix),
-   RequireComponent(typeof(WheelCollider))]
+      MotorComponentMenuPath._ComponentMenuPath + "WheelCollider/Torque" + MotorComponentMenuPath._Postfix)]
+  [RequireComponent(typeof(WheelCollider))]
   public class TorqueMotor : Motor {
     [SerializeField] WheelCollider _wheel_collider;
 

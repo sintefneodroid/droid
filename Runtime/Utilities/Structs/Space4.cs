@@ -4,7 +4,6 @@ using Random = UnityEngine.Random;
 
 namespace Neodroid.Runtime.Utilities.Structs {
   /// <summary>
-  ///
   /// </summary>
   [Serializable]
   public struct Space4 {

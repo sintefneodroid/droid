@@ -6,13 +6,11 @@ namespace Neodroid.Runtime.Prototyping.Evaluation {
   /// </summary>
   public class VelocityEvaluation : ObjectiveFunction {
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     Rigidbody _rigidbody;
 
     /// <summary>
-    /// 
     /// </summary>
     public override void InternalReset() { }
 
@@ -29,7 +27,6 @@ namespace Neodroid.Runtime.Prototyping.Evaluation {
     }
 
     /// <summary>
-    ///
     /// </summary>
     void IsOutsideBound() {
       if (this.ParentEnvironment.PlayableArea && this._rigidbody) {

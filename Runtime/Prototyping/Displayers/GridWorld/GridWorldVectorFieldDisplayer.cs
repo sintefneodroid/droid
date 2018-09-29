@@ -9,16 +9,15 @@ namespace Neodroid.Runtime.Prototyping.Displayers.GridWorld {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [ExecuteInEditMode,
-   AddComponentMenu(
-       DisplayerComponentMenuPath._ComponentMenuPath
-       + "GridWorldVectorField"
-       + DisplayerComponentMenuPath._Postfix)]
+  [ExecuteInEditMode]
+  [AddComponentMenu(
+      DisplayerComponentMenuPath._ComponentMenuPath
+      + "GridWorldVectorField"
+      + DisplayerComponentMenuPath._Postfix)]
   public class GridWorldVectorFieldDisplayer : Displayer {
     dynamic _vals;
 
     /// <summary>
-    /// 
     /// </summary>
     protected override void Setup() { }
 
@@ -49,7 +48,6 @@ namespace Neodroid.Runtime.Prototyping.Displayers.GridWorld {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="points"></param>
     public void ScatterPlot(Vector3[] points) { }
@@ -73,7 +71,6 @@ namespace Neodroid.Runtime.Prototyping.Displayers.GridWorld {
     #endif
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="points"></param>
     public override void PlotSeries(Points.ValuePoint[] points) {
@@ -87,7 +84,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers.GridWorld {
 
       foreach (var point in points) {
         //point._Size
-        switch ((int)(point._Val)) {
+        switch ((int)point._Val) {
           case 0:
             NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.forward, Color.cyan);
             break;

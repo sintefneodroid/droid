@@ -1,3 +1,4 @@
+using System;
 using Common.Editors;
 using UnityEngine;
 
@@ -5,19 +6,19 @@ namespace Neodroid.Editor.ScriptableObjects {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [System.Serializable]
+  [Serializable]
   [ExecuteInEditMode]
   // ReSharper disable once RequiredBaseTypesIsNotInherited
   public class NeodroidSettings : ScriptableObject {
     static NeodroidSettings _instance;
 
     /// <summary>
-    /// Returns the release version of the product.
+    ///   Returns the release version of the product.
     /// </summary>
     public static string Version { get { return "1.3.0"; } }
 
     /// <summary>
-    /// Get a singleton instance of the settings class.
+    ///   Get a singleton instance of the settings class.
     /// </summary>
     public static NeodroidSettings Instance {
       get {
@@ -38,7 +39,7 @@ namespace Neodroid.Editor.ScriptableObjects {
     }
 
     /// <summary>
-    /// Static Function to load the Settings file.
+    ///   Static Function to load the Settings file.
     /// </summary>
     /// <returns></returns>
     public static NeodroidSettings LoadDefaultSettings() {
@@ -54,7 +55,7 @@ namespace Neodroid.Editor.ScriptableObjects {
     }
 
     /// <summary>
-    /// Returns the Sprite Asset defined in the Settings file.
+    ///   Returns the Sprite Asset defined in the Settings file.
     /// </summary>
     /// <returns></returns>
     public static NeodroidSettings GetSettings() {

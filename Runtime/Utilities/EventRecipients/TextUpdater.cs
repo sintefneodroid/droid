@@ -6,17 +6,16 @@ namespace Neodroid.Runtime.Utilities.EventRecipients {
   /// <inheritdoc cref="DataPoller" />
   /// <summary>
   /// </summary>
-  [RequireComponent(typeof(Text)), ExecuteInEditMode]
+  [RequireComponent(typeof(Text))]
+  [ExecuteInEditMode]
   public class TextUpdater : DataPoller {
     /// <summary>
-    /// 
     /// </summary>
     [SerializeField]
     Text _text;
 
     // Use this for initialization
     /// <summary>
-    /// 
     /// </summary>
     void Start() { this._text = this.GetComponent<Text>(); }
 

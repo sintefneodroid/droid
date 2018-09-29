@@ -3,36 +3,29 @@ using UnityEngine;
 
 namespace Neodroid.Runtime.Prototyping.Motors.WheelColliderMotor {
   /// <summary>
-  /// 
   /// </summary>
   [AddComponentMenu(
-       MotorComponentMenuPath._ComponentMenuPath
-       + "WheelCollider/Steering"
-       + MotorComponentMenuPath._Postfix), RequireComponent(typeof(WheelCollider))]
+      MotorComponentMenuPath._ComponentMenuPath + "WheelCollider/Steering" + MotorComponentMenuPath._Postfix)]
+  [RequireComponent(typeof(WheelCollider))]
   public class SteeringMotor : Motor {
     /// <summary>
-    /// 
     /// </summary>
     [SerializeField]
     WheelCollider _wheel_collider;
 
     /// <summary>
-    /// 
     /// </summary>
     public override string PrototypingTypeName { get { return "Steering"; } }
 
     /// <summary>
-    /// 
     /// </summary>
     protected override void Setup() { this._wheel_collider = this.GetComponent<WheelCollider>(); }
 
     /// <summary>
-    /// 
     /// </summary>
     void FixedUpdate() { ApplyLocalPositionToVisuals(this._wheel_collider); }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="motion"></param>
     protected override void InnerApplyMotion(IMotorMotion motion) {
@@ -40,7 +33,6 @@ namespace Neodroid.Runtime.Prototyping.Motors.WheelColliderMotor {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="col"></param>
     static void ApplyLocalPositionToVisuals(WheelCollider col) {

@@ -6,21 +6,17 @@ using UnityEngine;
 
 namespace Neodroid.Runtime.Prototyping.Observers.Transform {
   /// <summary>
-  ///
   /// </summary>
   public enum ObservationSpace {
     /// <summary>
-    ///
     /// </summary>
     Local_,
 
     /// <summary>
-    ///
     /// </summary>
     Global_,
 
     /// <summary>
-    ///
     /// </summary>
     Environment_
   }
@@ -29,14 +25,16 @@ namespace Neodroid.Runtime.Prototyping.Observers.Transform {
   /// <summary>
   /// </summary>
   [AddComponentMenu(
-       ObserverComponentMenuPath._ComponentMenuPath + "EulerTransform" + ObserverComponentMenuPath._Postfix),
-   ExecuteInEditMode, Serializable]
+      ObserverComponentMenuPath._ComponentMenuPath + "EulerTransform" + ObserverComponentMenuPath._Postfix)]
+  [ExecuteInEditMode]
+  [Serializable]
   public class EulerTransformObserver : Observer,
                                         IHasEulerTransform {
-    [Header("Specific", order = 102), SerializeField, SearchableEnum]
-    ObservationSpace _space = ObservationSpace.Environment_;
+    [SerializeField] Vector3 _direction;
+    [SerializeField] Space3 _direction_space = new Space3(10);
 
-    [Header("Observation", order = 103), SerializeField]
+    [Header("Observation", order = 103)]
+    [SerializeField]
     Vector3 _position;
 
     [SerializeField] Space3 _position_space = new Space3(10);
@@ -44,8 +42,10 @@ namespace Neodroid.Runtime.Prototyping.Observers.Transform {
     [SerializeField] Vector3 _rotation;
     [SerializeField] Space3 _rotation_space = new Space3(10);
 
-    [SerializeField] Vector3 _direction;
-    [SerializeField] Space3 _direction_space = new Space3(10);
+    [Header("Specific", order = 102)]
+    [SerializeField]
+    [SearchableEnum]
+    ObservationSpace _space = ObservationSpace.Environment_;
 
     public override string PrototypingTypeName { get { return "EulerTransform"; } }
 
@@ -75,7 +75,6 @@ namespace Neodroid.Runtime.Prototyping.Observers.Transform {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     public override void UpdateObservation() {
       if (this.ParentEnvironment != null && this._space == ObservationSpace.Environment_) {

@@ -53,7 +53,6 @@ namespace Neodroid.Runtime.Utilities.Structs {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>

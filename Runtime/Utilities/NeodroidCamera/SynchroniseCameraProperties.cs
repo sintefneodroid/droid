@@ -1,70 +1,64 @@
 ﻿using System;
 using UnityEngine;
-using Object = System.Object;
 
 namespace Neodroid.Runtime.Utilities.NeodroidCamera {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [RequireComponent(typeof(Camera)), ExecuteInEditMode, Serializable]
+  [RequireComponent(typeof(Camera))]
+  [ExecuteInEditMode]
+  [Serializable]
   public class SynchroniseCameraProperties : MonoBehaviour {
     /// <summary>
-    ///
     /// </summary>
-    const double _tolerance = Double.Epsilon;
+    const double _tolerance = double.Epsilon;
 
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     SynchroniseCameraProperties _camera;
 
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     SynchroniseCameraProperties[] _cameras;
 
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     int _old_culling_mask;
 
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     float _old_far_clip_plane;
 
+    [SerializeField] float _old_fov;
+
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     float _old_near_clip_plane;
 
+    [SerializeField] bool _old_orthographic_projection;
+
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     float _old_orthographic_size;
 
-    [SerializeField] bool _old_orthographic_projection;
-    [SerializeField] float _old_fov;
+    [SerializeField] bool _only_run_in_edit_mode = true;
+
+    [SerializeField] bool _only_run_on_awake; //TODO: Does nothing as of right now
 
     [SerializeField] bool _sync_culling_mask = true;
     [SerializeField] bool _sync_far_clip_plane = true;
+    [SerializeField] bool _sync_fov = true;
     [SerializeField] bool _sync_near_clip_plane = true;
     [SerializeField] bool _sync_orthographic_projection = true;
     [SerializeField] bool _sync_orthographic_size = true;
-    [SerializeField] bool _sync_fov = true;
-    
-    [SerializeField] bool _only_run_on_awake; //TODO: Does nothing as of right now
-    [SerializeField] bool _only_run_in_edit_mode = true;
-
 
     /// <summary>
-    ///
     /// </summary>
     public bool SyncOrthographicSize {
       get { return this._sync_orthographic_size; }
@@ -72,7 +66,6 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera {
     }
 
     /// <summary>
-    ///
     /// </summary>
     public bool SyncOrthographicProjection {
       get { return this._sync_orthographic_projection; }
@@ -80,7 +73,6 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     public bool SyncNearClipPlane {
       get { return this._sync_near_clip_plane; }
@@ -88,7 +80,6 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     public bool SyncFarClipPlane {
       get { return this._sync_far_clip_plane; }
@@ -96,23 +87,17 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     public bool SyncCullingMask {
       get { return this._sync_culling_mask; }
       set { this._sync_culling_mask = value; }
     }
-    
-    /// <summary>
-    /// 
-    /// </summary>
-    public bool SyncFov {
-      get { return this._sync_fov; }
-      set { this._sync_fov = value; }
-    }
 
     /// <summary>
-    ///
+    /// </summary>
+    public bool SyncFov { get { return this._sync_fov; } set { this._sync_fov = value; } }
+
+    /// <summary>
     /// </summary>
     public void Awake() {
       this._camera = this.GetComponent<SynchroniseCameraProperties>();
@@ -129,7 +114,7 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera {
       } else {
         Debug.Log("No camera component found on GameObject");
       }
-      
+
       this.Sync_Cameras();
     }
 
@@ -190,7 +175,7 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera {
 
           if (this._sync_culling_mask) {
             var culling_mask = this_camera.cullingMask;
-            if (this._old_culling_mask !=culling_mask ) {
+            if (this._old_culling_mask != culling_mask) {
               this._old_culling_mask = culling_mask;
               foreach (var cam in this._cameras) {
                 if (cam != this._camera) {
@@ -221,7 +206,7 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera {
               }
             }
           }
-          
+
           if (this._sync_fov) {
             var fov = this_camera.fieldOfView;
             if (Math.Abs(this._old_fov - fov) > _tolerance) {
@@ -245,23 +230,21 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera {
         Debug.Log("No SyncCameraProperties component found on GameObject");
       }
     }
-    
 
     /// <summary>
-    /// 
     /// </summary>
     public void Update() {
       if (!this._only_run_on_awake) {
-        if(this._only_run_in_edit_mode) {
+        if (this._only_run_in_edit_mode) {
           #if UNITY_EDITOR
-            if(!Application.isPlaying) {
-              this.Sync_Cameras();
-            }
+          if (!Application.isPlaying) {
+            this.Sync_Cameras();
+          }
           #endif
         } else {
           this.Sync_Cameras();
         }
-      } 
+      }
     }
   }
 }

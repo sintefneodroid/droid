@@ -8,17 +8,16 @@ namespace Neodroid.Runtime.Prototyping.Motors.Particles {
   /// <summary>
   /// </summary>
   [AddComponentMenu(
-       MotorComponentMenuPath._ComponentMenuPath + "Particles/Rocket" + MotorComponentMenuPath._Postfix),
-   RequireComponent(typeof(ParticleSystem)), RequireComponent(typeof(Rigidbody))]
+      MotorComponentMenuPath._ComponentMenuPath + "Particles/Rocket" + MotorComponentMenuPath._Postfix)]
+  [RequireComponent(typeof(ParticleSystem))]
+  [RequireComponent(typeof(Rigidbody))]
   public class RocketMotor : RigidbodyMotor1Dof {
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     bool _fired_this_step;
 
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     protected ParticleSystem _Particle_System;
@@ -29,8 +28,8 @@ namespace Neodroid.Runtime.Prototyping.Motors.Particles {
     public override string PrototypingTypeName { get { return "Rocket" + this._Axis_Of_Motion; } }
 
     /// <inheritdoc />
-    ///  <summary>
-    ///  </summary>
+    /// <summary>
+    /// </summary>
     protected override void Setup() {
       this._Rigidbody = this.GetComponent<Rigidbody>();
       this._Particle_System = this.GetComponent<ParticleSystem>();
@@ -41,7 +40,6 @@ namespace Neodroid.Runtime.Prototyping.Motors.Particles {
     }
 
     /// <summary>
-    ///
     /// </summary>
     void LateUpdate() {
       if (this._fired_this_step) {

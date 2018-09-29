@@ -2,15 +2,15 @@
 
 namespace Neodroid.Runtime.Utilities.Noise {
   public class ProjectileSpammer : MonoBehaviour {
-    [SerializeField] Transform _target;
-    [SerializeField] float _spawn_rate = 0.5f;
-    [SerializeField] float _spawn_radius = 20f;
-    [SerializeField] float _projectile_multiplier = 100f;
-    [SerializeField] Vector2 _mass_range = new Vector2(1f, 4f);
-    [SerializeField, Range(.0f, 1.0f)] float _scale_modifier = 0.2f;
-    [SerializeField, Range(.0f, 3.0f)] float _life_time = 2f;
     [SerializeField] string _assigned_tag = "Obstruction";
     float _last_spawn = 0f;
+    [SerializeField] [Range(.0f, 3.0f)] float _life_time = 2f;
+    [SerializeField] Vector2 _mass_range = new Vector2(1f, 4f);
+    [SerializeField] float _projectile_multiplier = 100f;
+    [SerializeField] [Range(.0f, 1.0f)] float _scale_modifier = 0.2f;
+    [SerializeField] float _spawn_radius = 20f;
+    [SerializeField] float _spawn_rate = 0.5f;
+    [SerializeField] Transform _target;
 
     void Update() {
       if (this._last_spawn + 1 / this._spawn_rate < Time.time) {

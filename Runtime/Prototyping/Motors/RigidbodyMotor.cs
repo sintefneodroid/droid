@@ -1,35 +1,30 @@
 ﻿using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Prototyping.Actors;
-using Neodroid.Runtime.Utilities.Misc.Drawing;
-using Neodroid.Runtime.Utilities.Misc.Grasping;
+using Neodroid.Runtime.Utilities.Misc;
 using UnityEngine;
-using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 
 namespace Neodroid.Runtime.Prototyping.Motors {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
   [AddComponentMenu(
-       MotorComponentMenuPath._ComponentMenuPath + "Rigidbody" + MotorComponentMenuPath._Postfix),
-   RequireComponent(typeof(Rigidbody))]
+      MotorComponentMenuPath._ComponentMenuPath + "Rigidbody" + MotorComponentMenuPath._Postfix)]
+  [RequireComponent(typeof(Rigidbody))]
   public class RigidbodyMotor : Motor {
     /// <summary>
-    /// 
+    /// </summary>
+    [SerializeField]
+    protected ForceMode _ForceMode = ForceMode.Force;
+
+    /// <summary>
     /// </summary>
     [SerializeField]
     protected Space _Relative_To = Space.Self;
 
     /// <summary>
-    /// 
     /// </summary>
     [SerializeField]
     protected Rigidbody _Rigidbody;
-
-    /// <summary>
-    /// 
-    /// </summary>
-    [SerializeField]
-    protected ForceMode _ForceMode = ForceMode.Force;
 
     string _rot_x;
     string _rot_y;
@@ -56,23 +51,13 @@ namespace Neodroid.Runtime.Prototyping.Motors {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentActor = NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Motor)this);
 
-      this.ParentActor = NeodroidUtilities.RegisterComponent(
-          (Actor)this.ParentActor,
-          (Motor)this,
-          this._x);
-      this.ParentActor = NeodroidUtilities.RegisterComponent(
-          (Actor)this.ParentActor,
-          (Motor)this,
-          this._y);
-      this.ParentActor = NeodroidUtilities.RegisterComponent(
-          (Actor)this.ParentActor,
-          (Motor)this,
-          this._z);
+      this.ParentActor = NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Motor)this, this._x);
+      this.ParentActor = NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Motor)this, this._y);
+      this.ParentActor = NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Motor)this, this._z);
       this.ParentActor = NeodroidUtilities.RegisterComponent(
           (Actor)this.ParentActor,
           (Motor)this,
@@ -88,7 +73,6 @@ namespace Neodroid.Runtime.Prototyping.Motors {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="motion"></param>
     protected override void InnerApplyMotion(IMotorMotion motion) {

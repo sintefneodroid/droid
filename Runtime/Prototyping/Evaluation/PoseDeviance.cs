@@ -1,8 +1,6 @@
-﻿using System;
-using Neodroid.Runtime.Utilities.BoundingBoxes;
+﻿using Neodroid.Runtime.Utilities.BoundingBoxes;
 using Neodroid.Runtime.Utilities.Misc.Extensions;
 using UnityEngine;
-using Object = System.Object;
 
 namespace Neodroid.Runtime.Prototyping.Evaluation {
   /// <inheritdoc />
@@ -105,13 +103,14 @@ namespace Neodroid.Runtime.Prototyping.Evaluation {
 
     #region Fields
 
-    [Header("Specific", order = 102), SerializeField]
+    [Header("Specific", order = 102)]
+    [SerializeField]
     float _peak_reward;
 
-    [SerializeField, Range(0.1f, 10f)] float _distance_base = 2f;
-    [SerializeField, Range(0.1f, 10f)] float _distance_nominator = 5f;
-    [SerializeField, Range(0.1f, 10f)] float _angle_base = 6f;
-    [SerializeField, Range(0.1f, 10f)] float _angle_nominator = 3f;
+    [SerializeField] [Range(0.1f, 10f)] float _distance_base = 2f;
+    [SerializeField] [Range(0.1f, 10f)] float _distance_nominator = 5f;
+    [SerializeField] [Range(0.1f, 10f)] float _angle_base = 6f;
+    [SerializeField] [Range(0.1f, 10f)] float _angle_nominator = 3f;
 
     [SerializeField] bool _sparse = true;
 
@@ -127,13 +126,11 @@ namespace Neodroid.Runtime.Prototyping.Evaluation {
     [SerializeField] float _goal_reached_radius = 0.01f; // Equivalent to 1 cm.
 
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     float _solved_reward = 1000.0f;
 
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     float _default_reward = -0.01f;

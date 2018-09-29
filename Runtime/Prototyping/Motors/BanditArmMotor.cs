@@ -17,7 +17,6 @@ namespace Neodroid.Runtime.Prototyping.Motors {
     public override string PrototypingTypeName { get { return "BanditArm"; } }
 
     /// <summary>
-    /// 
     /// </summary>
     protected override void Setup() {
       var renderr = this.GetComponent<Renderer>();

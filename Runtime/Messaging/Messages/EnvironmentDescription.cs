@@ -3,7 +3,6 @@ using Neodroid.Runtime.Interfaces;
 
 namespace Neodroid.Runtime.Messaging.Messages {
   /// <summary>
-  ///
   /// </summary>
   public class EnvironmentDescription {
     public EnvironmentDescription(
@@ -19,22 +18,18 @@ namespace Neodroid.Runtime.Messaging.Messages {
     }
 
     /// <summary>
-    ///
     /// </summary>
     public Dictionary<string, IActor> Actors { get; }
 
     /// <summary>
-    ///
     /// </summary>
     public Dictionary<string, IConfigurable> Configurables { get; }
 
     /// <summary>
-    ///
     /// </summary>
     public int MaxSteps { get; }
 
     /// <summary>
-    ///
     /// </summary>
     public float SolvedThreshold { get; }
   }

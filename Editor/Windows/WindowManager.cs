@@ -14,8 +14,8 @@ namespace Neodroid.Editor.Windows {
         typeof(DemonstrationWindow)
     };
 
-    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "ShowAllWindows"),
-     MenuItem(EditorWindowMenuPath._ToolMenuPath + "ShowAllWindows")]
+    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "ShowAllWindows")]
+    [MenuItem(EditorWindowMenuPath._ToolMenuPath + "ShowAllWindows")]
     public static void ShowWindow() {
       GetWindow<RenderTextureConfiguratorWindow>(
           _desired_dock_next_toos); //Show existing window instance. If one doesn't exist, make one.

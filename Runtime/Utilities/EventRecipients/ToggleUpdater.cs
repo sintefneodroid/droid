@@ -6,17 +6,16 @@ namespace Neodroid.Runtime.Utilities.EventRecipients {
   /// <inheritdoc cref="DataPoller" />
   /// <summary>
   /// </summary>
-  [RequireComponent(typeof(Toggle)), ExecuteInEditMode]
+  [RequireComponent(typeof(Toggle))]
+  [ExecuteInEditMode]
   public class ToggleUpdater : DataPoller {
     /// <summary>
-    /// 
     /// </summary>
     [SerializeField]
     Toggle _toggle;
 
     // Use this for initialization
     /// <summary>
-    /// 
     /// </summary>
     void Start() { this._toggle = this.GetComponent<Toggle>(); }
 

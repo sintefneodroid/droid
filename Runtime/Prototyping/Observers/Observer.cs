@@ -4,22 +4,18 @@ using System.Linq;
 using Neodroid.Runtime.Environments;
 using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Utilities.GameObjects;
-using Neodroid.Runtime.Utilities.Misc.Drawing;
-using Neodroid.Runtime.Utilities.Misc.Grasping;
+using Neodroid.Runtime.Utilities.Misc;
 using UnityEngine;
-using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 
 namespace Neodroid.Runtime.Prototyping.Observers {
   /// <inheritdoc cref="PrototypingGameObject" />
   /// <summary>
   /// </summary>
-  [ExecuteInEditMode, Serializable]
+  [ExecuteInEditMode]
+  [Serializable]
   public abstract class Observer : PrototypingGameObject,
-
-                                   //IResetable,
                                    IObserver {
     /// <summary>
-    /// 
     /// </summary>
     public IPrototypingEnvironment ParentEnvironment {
       get { return this._environment; }
@@ -27,16 +23,26 @@ namespace Neodroid.Runtime.Prototyping.Observers {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     public bool NormaliseObservation {
       get { return this._normalise_observation; }
       set { this._normalise_observation = value; }
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public virtual IEnumerable<float> FloatEnumerable { get; set; }
+
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public abstract void UpdateObservation();
+
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public void EnvironmentReset() { }
 
     //protected abstract void UpdateFloatEnumerable(IEnumerable<float> vals);
 
@@ -50,7 +56,6 @@ namespace Neodroid.Runtime.Prototyping.Observers {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     protected virtual void PreSetup() { }
 
@@ -69,12 +74,6 @@ namespace Neodroid.Runtime.Prototyping.Observers {
     protected override void UnRegisterComponent() { this.ParentEnvironment?.UnRegister(this); }
 
     /// <summary>
-    /// 
-    /// </summary>
-    public abstract void UpdateObservation();
-
-    /// <summary>
-    /// 
     /// </summary>
     protected virtual void Update() {
       if (Application.isPlaying) {
@@ -85,27 +84,24 @@ namespace Neodroid.Runtime.Prototyping.Observers {
       }
     }
 
-    #region Fields
-
-    [Header("References", order = 99), SerializeField]
-    IPrototypingEnvironment _environment;
-
-    [Header("Normalisation", order = 100), SerializeField]
-    bool _normalise_observation;
-
-    #endregion
-
+    /// <inheritdoc />
     /// <summary>
-    /// 
-    /// </summary>
-    public void EnvironmentReset() { }
-
-    /// <summary>
-    /// 
     /// </summary>
     /// <returns></returns>
     public override String ToString() {
-      return (this.FloatEnumerable.Any() ? string.Join(",", this.FloatEnumerable) : "Empty");
+      return this.FloatEnumerable.Any() ? string.Join(",", this.FloatEnumerable) : "Empty";
     }
+
+    #region Fields
+
+    [Header("References", order = 99)]
+    [SerializeField]
+    IPrototypingEnvironment _environment;
+
+    [Header("Normalisation", order = 100)]
+    [SerializeField]
+    bool _normalise_observation;
+
+    #endregion
   }
 }

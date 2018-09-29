@@ -76,9 +76,9 @@ namespace droid.Neodroid.Prototyping.Displayers {
 #else
 namespace Neodroid.Runtime.Prototyping.Displayers {
   /// <summary>
-  ///
   /// </summary>
-  [ExecuteInEditMode, AddComponentMenu("Neodroid/Displayers/TextMesh")]
+  [ExecuteInEditMode]
+  [AddComponentMenu("Neodroid/Displayers/TextMesh")]
   public class TextMeshDisplayer : Displayer {
     /// <inheritdoc />
     protected override void Setup() {
@@ -87,7 +87,6 @@ namespace Neodroid.Runtime.Prototyping.Displayers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="text"></param>
     public void SetText(string text) {
@@ -99,28 +98,24 @@ namespace Neodroid.Runtime.Prototyping.Displayers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="value"></param>
     /// <exception cref="NotImplementedException"></exception>
     public override void Display(float value) { throw new NotImplementedException(); }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="value"></param>
     /// <exception cref="NotImplementedException"></exception>
     public override void Display(Double value) { throw new NotImplementedException(); }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="values"></param>
     /// <exception cref="NotImplementedException"></exception>
     public override void Display(float[] values) { throw new NotImplementedException(); }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="value"></param>
     public override void Display(String value) {

@@ -2,11 +2,9 @@
 using Neodroid.Runtime.Environments;
 using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Messaging.Messages;
-using Neodroid.Runtime.Utilities.Misc.Drawing;
-using Neodroid.Runtime.Utilities.Misc.Grasping;
+using Neodroid.Runtime.Utilities.Misc;
 using Neodroid.Runtime.Utilities.Structs;
 using UnityEngine;
-using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 using Random = System.Random;
 
 namespace Neodroid.Runtime.Prototyping.Configurables {
@@ -14,25 +12,33 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
       ConfigurableComponentMenuPath._ComponentMenuPath + "Position" + ConfigurableComponentMenuPath._Postfix)]
   public class PositionConfigurable : Configurable,
                                       IHasTriple {
-    [Header("Observation", order = 103), SerializeField]
+    [Header("Observation", order = 103)]
+    [SerializeField]
     Vector3 _position;
 
     [SerializeField] bool _use_environments_space;
 
     /// <summary>
-    ///
     /// </summary>
     string _x;
 
     /// <summary>
-    ///
     /// </summary>
     string _y;
 
     /// <summary>
-    ///
     /// </summary>
     string _z;
+
+    /// <summary>
+    /// </summary>
+    public override string PrototypingTypeName { get { return "PositionConfigurable"; } }
+
+    /// <summary>
+    /// </summary>
+    public Vector3 ObservationValue { get { return this._position; } }
+
+    public Space3 TripleSpace { get; } = new Space3();
 
     protected override void PreSetup() {
       this._x = this.Identifier + "X_";
@@ -41,19 +47,6 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     }
 
     /// <summary>
-    ///
-    /// </summary>
-    public override string PrototypingTypeName { get { return "PositionConfigurable"; } }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public Vector3 ObservationValue { get { return this._position; } }
-
-    public Space3 TripleSpace { get; } = new Space3();
-
-    /// <summary>
-    ///
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
@@ -74,7 +67,10 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     }
 
     protected override void UnRegisterComponent() {
-      if (this.ParentEnvironment == null) return;
+      if (this.ParentEnvironment == null) {
+        return;
+      }
+
       this.ParentEnvironment.UnRegister(this);
       this.ParentEnvironment.UnRegister(this, this._x);
       this.ParentEnvironment.UnRegister(this, this._y);

@@ -8,7 +8,6 @@ using UnityEngine;
 
 namespace Neodroid.Runtime.Messaging.FBS {
   /// <summary>
-  ///
   /// </summary>
   public static class FbsStateUtilities {
     static VectorOffset _null_vector_offset = new VectorOffset();
@@ -16,15 +15,14 @@ namespace Neodroid.Runtime.Messaging.FBS {
 
     #region PublicMethods
 
-    ///   <summary>
-    /// 
-    ///   </summary>
-    ///   <param name="states"></param>
-    ///  <param name="simulator_configuration"></param>
+    /// <summary>
+    /// </summary>
+    /// <param name="states"></param>
+    /// <param name="simulator_configuration"></param>
     /// <param name="serialise_individual_observables"></param>
     /// <param name="do_serialise_unobservables"></param>
     /// <param name="api_version"></param>
-    ///  <returns></returns>
+    /// <returns></returns>
     public static byte[] Serialise(
         EnvironmentState[] states,
         SimulatorConfigurationMessage simulator_configuration = null,
@@ -58,7 +56,6 @@ namespace Neodroid.Runtime.Messaging.FBS {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="b"></param>
     /// <param name="configuration"></param>
@@ -81,11 +78,10 @@ namespace Neodroid.Runtime.Messaging.FBS {
           configuration.DoSerialiseUnobservables);
     }
 
-    ///  <summary>
-    /// 
-    ///  </summary>
-    ///  <param name="b"></param>
-    ///  <param name="state"></param>
+    /// <summary>
+    /// </summary>
+    /// <param name="b"></param>
+    /// <param name="state"></param>
     /// <param name="serialise_individual_observables"></param>
     /// <param name="do_serialise_unobservables"></param>
     /// <returns></returns>
@@ -205,7 +201,6 @@ namespace Neodroid.Runtime.Messaging.FBS {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="b"></param>
     /// <param name="observer"></param>
@@ -226,7 +221,6 @@ namespace Neodroid.Runtime.Messaging.FBS {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="b"></param>
     /// <param name="observer"></param>
@@ -269,7 +263,6 @@ namespace Neodroid.Runtime.Messaging.FBS {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="b"></param>
     /// <param name="vel"></param>
@@ -350,13 +343,7 @@ namespace Neodroid.Runtime.Messaging.FBS {
 
       int observation_offset;
       FObservation observation_type;
-      if (observer.Identifier == StringAugmentedCameraObserver._Seg_Obs_Identifier && observer is IHasString) { //TODO: Refactor to a better solution only allow one augmented cam
-        observation_offset = Serialise(b, (IHasString)observer).Value;
-        observation_type = FObservation.FString; 
-      } else if (observer.Identifier == StringAugmentedCameraObserver._Cam_Obs_Identifier && observer is IHasByteArray) {//TODO: Refactor to a better solution only allow one augmented cam
-        observation_offset = Serialise(b, (IHasByteArray)observer).Value;
-        observation_type = FObservation.FByteArray;
-      } else if (observer is IHasString) {
+      if (observer is IHasString) {
         observation_offset = Serialise(b, (IHasString)observer).Value;
         observation_type = FObservation.FString;
       } else if (observer is IHasArray) {

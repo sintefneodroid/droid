@@ -5,12 +5,10 @@ using Neodroid.Runtime.Messaging.Messages.Displayables;
 
 namespace Neodroid.Runtime.Messaging.Messages {
   /// <summary>
-  ///
   /// </summary>
   [Serializable]
   public class Reaction {
     /// <summary>
-    ///
     /// </summary>
     /// <returns></returns>
     public override string ToString() {
@@ -58,12 +56,10 @@ namespace Neodroid.Runtime.Messaging.Messages {
     }
 
     /// <summary>
-    ///
     /// </summary>
     public String RecipientEnvironment { get; } = "all";
 
     /// <summary>
-    ///
     /// </summary>
     public string SerialisedMessage { get; }
 
@@ -79,27 +75,22 @@ namespace Neodroid.Runtime.Messaging.Messages {
     #region Getters
 
     /// <summary>
-    ///
     /// </summary>
     public Displayable[] Displayables { get; }
 
     /// <summary>
-    ///
     /// </summary>
     public IMotorMotion[] Motions { get; }
 
     /// <summary>
-    ///
     /// </summary>
     public Configuration[] Configurations { get; }
 
     /// <summary>
-    ///
     /// </summary>
     public ReactionParameters Parameters { get; } = new ReactionParameters();
 
     /// <summary>
-    ///
     /// </summary>
     public Unobservables Unobservables { get; } = new Unobservables();
 

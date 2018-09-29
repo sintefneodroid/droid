@@ -2,7 +2,6 @@
 
 namespace Neodroid.Runtime.Messaging.Messages {
   /// <summary>
-  /// 
   /// </summary>
   public class Body {
     public Body(Vector3 vel, Vector3 ang) {
@@ -11,12 +10,10 @@ namespace Neodroid.Runtime.Messaging.Messages {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     public Vector3 Velocity { get; }
 
     /// <summary>
-    /// 
     /// </summary>
     public Vector3 AngularVelocity { get; }
   }

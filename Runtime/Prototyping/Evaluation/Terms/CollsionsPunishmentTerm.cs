@@ -8,6 +8,8 @@ namespace Neodroid.Runtime.Prototyping.Evaluation.Terms {
 
     [SerializeField] Collider _b;
 
+    public override string PrototypingTypeName { get { return "CollisionPunishment"; } }
+
     public override float Evaluate() {
       if (this._a.bounds.Intersects(this._b.bounds)) {
         return -1;
@@ -15,7 +17,5 @@ namespace Neodroid.Runtime.Prototyping.Evaluation.Terms {
 
       return 0;
     }
-
-    public override string PrototypingTypeName { get { return "CollisionPunishment"; } }
   }
 }

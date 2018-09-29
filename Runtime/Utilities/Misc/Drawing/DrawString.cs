@@ -5,7 +5,6 @@ using UnityEngine;
 namespace Neodroid.Runtime.Utilities.Misc.Drawing {
   public static partial class NeodroidDrawingUtilities {
     /// <summary>
-    ///
     /// </summary>
     /// <param name="text"></param>
     /// <param name="world_pos"></param>
@@ -46,7 +45,6 @@ namespace Neodroid.Runtime.Utilities.Misc.Drawing {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="position"></param>
     /// <param name="x"></param>
@@ -57,7 +55,6 @@ namespace Neodroid.Runtime.Utilities.Misc.Drawing {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="position"></param>
     /// <param name="translate_by"></param>

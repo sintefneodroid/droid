@@ -2,94 +2,80 @@
 using Neodroid.Runtime.Environments;
 using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Messaging.Messages;
-using Neodroid.Runtime.Utilities.Misc.Drawing;
-using Neodroid.Runtime.Utilities.Misc.Grasping;
+using Neodroid.Runtime.Utilities.Misc;
 using Neodroid.Runtime.Utilities.Structs;
 using UnityEngine;
-using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 using Random = System.Random;
 
 namespace Neodroid.Runtime.Prototyping.Configurables {
   /// <inheritdoc cref="Configurable" />
-  ///  <summary>
-  ///  </summary>
+  /// <summary>
+  /// </summary>
   [AddComponentMenu(
-       ConfigurableComponentMenuPath._ComponentMenuPath
-       + "Rigidbody"
-       + ConfigurableComponentMenuPath._Postfix), RequireComponent(typeof(Rigidbody))]
+      ConfigurableComponentMenuPath._ComponentMenuPath
+      + "Rigidbody"
+      + ConfigurableComponentMenuPath._Postfix)]
+  [RequireComponent(typeof(Rigidbody))]
   public class RigidbodyConfigurable : Configurable,
                                        IHasRigidbody {
     /// <summary>
-    ///
-    /// </summary>
-    Rigidbody _rigidbody;
-
-    /// <summary>
-    ///
     /// </summary>
     string _ang_x;
 
     /// <summary>
-    ///
     /// </summary>
     string _ang_y;
 
     /// <summary>
-    ///
     /// </summary>
     string _ang_z;
 
     /// <summary>
-    ///
-    /// </summary>
-    string _vel_x;
-
-    /// <summary>
-    ///
-    /// </summary>
-    string _vel_y;
-
-    /// <summary>
-    ///
-    /// </summary>
-    string _vel_z;
-
-    /// <summary>
-    ///
-    /// </summary>
-    [Header("Observation", order = 110), SerializeField]
-    Vector3 _velocity;
-
-    /// <summary>
-    ///
-    /// </summary>
-    [SerializeField]
-    Space3 _velocity_space;
-
-    /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     Vector3 _angular_velocity;
 
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     Space3 _angular_velocity_space;
 
     /// <summary>
-    ///
+    /// </summary>
+    Rigidbody _rigidbody;
+
+    /// <summary>
+    /// </summary>
+    string _vel_x;
+
+    /// <summary>
+    /// </summary>
+    string _vel_y;
+
+    /// <summary>
+    /// </summary>
+    string _vel_z;
+
+    /// <summary>
+    /// </summary>
+    [Header("Observation", order = 110)]
+    [SerializeField]
+    Vector3 _velocity;
+
+    /// <summary>
+    /// </summary>
+    [SerializeField]
+    Space3 _velocity_space;
+
+    /// <summary>
     /// </summary>
     public override string PrototypingTypeName { get { return "RigidbodyConfigurable"; } }
 
     /// <summary>
-    ///
     /// </summary>
     public Vector3 Velocity { get { return this._velocity; } set { this._velocity = value; } }
 
     /// <summary>
-    ///
     /// </summary>
     public Vector3 AngularVelocity {
       get { return this._angular_velocity; }
@@ -97,17 +83,14 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     }
 
     /// <summary>
-    ///
     /// </summary>
     public Space3 VelocitySpace { get { return this._velocity_space; } }
 
     /// <summary>
-    ///
     /// </summary>
     public Space3 AngularSpace { get { return this._angular_velocity_space; } }
 
     /// <summary>
-    ///
     /// </summary>
     public override void UpdateCurrentConfiguration() {
       this.Velocity = this._rigidbody.velocity;
@@ -115,7 +98,6 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     }
 
     /// <summary>
-    ///
     /// </summary>
     protected override void PreSetup() {
       this._rigidbody = this.GetComponent<Rigidbody>();
@@ -129,7 +111,6 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     }
 
     /// <summary>
-    ///
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
@@ -159,10 +140,12 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     }
 
     /// <summary>
-    ///
     /// </summary>
     protected override void UnRegisterComponent() {
-      if (this.ParentEnvironment == null) return;
+      if (this.ParentEnvironment == null) {
+        return;
+      }
+
       this.ParentEnvironment.UnRegister(this, this._vel_x);
       this.ParentEnvironment.UnRegister(this, this._vel_y);
       this.ParentEnvironment.UnRegister(this, this._vel_z);
@@ -172,7 +155,6 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="simulator_configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration) {

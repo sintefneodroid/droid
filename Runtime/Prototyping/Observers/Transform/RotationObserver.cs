@@ -4,18 +4,20 @@ using Neodroid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace Neodroid.Runtime.Prototyping.Observers.Transform {
-  [AddComponentMenu(PrototypingComponentMenuPath._ComponentMenuPath + "Observers/Position"),
-   ExecuteInEditMode, Serializable]
+  [AddComponentMenu(PrototypingComponentMenuPath._ComponentMenuPath + "Observers/Position")]
+  [ExecuteInEditMode]
+  [Serializable]
   public class RotationObserver : Observer,
                                   IHasQuadruple {
-    [Header("Specific", order = 102), SerializeField]
-    ObservationSpace _space = ObservationSpace.Environment_;
-
-    [Header("Observation", order = 103), SerializeField]
+    [Header("Observation", order = 103)]
+    [SerializeField]
     Quaternion _rotation;
 
+    [Header("Specific", order = 102)]
+    [SerializeField]
+    ObservationSpace _space = ObservationSpace.Environment_;
+
     /// <summary>
-    /// 
     /// </summary>
     public ObservationSpace Space { get { return this._space; } }
 
@@ -23,6 +25,16 @@ namespace Neodroid.Runtime.Prototyping.Observers.Transform {
     /// <summary>
     /// </summary>
     public override string PrototypingTypeName { get { return "Position"; } }
+
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public Quaternion ObservationValue { get { return this._rotation; } set { this._rotation = value; } }
+
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public Space4 QuadSpace { get; } = new Space4();
 
     /// <inheritdoc />
     /// <summary>
@@ -47,15 +59,5 @@ namespace Neodroid.Runtime.Prototyping.Observers.Transform {
       this.FloatEnumerable =
           new[] {this.ObservationValue.x, this.ObservationValue.y, this.ObservationValue.z};
     }
-
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public Quaternion ObservationValue { get { return this._rotation; } set { this._rotation = value; } }
-
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public Space4 QuadSpace { get; } = new Space4();
   }
 }

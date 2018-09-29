@@ -8,9 +8,12 @@ using UnityEngine;
 
 namespace Neodroid.Runtime.Messaging.FBS {
   /// <summary>
-  ///
   /// </summary>
   public static class FbsReactionUtilities {
+    static List<Vector3> _vector_out = new List<Vector3>();
+    static List<float> _float_out = new List<float>();
+    static List<Points.ValuePoint> _output = new List<Points.ValuePoint>();
+
     #region PublicMethods
 
     static Reaction _null_reaction = new Reaction(null, null, null, null, null, "");
@@ -18,7 +21,6 @@ namespace Neodroid.Runtime.Messaging.FBS {
     static List<Reaction> _out_reactions = new List<Reaction>();
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="reactions"></param>
     /// <returns></returns>
@@ -55,7 +57,6 @@ namespace Neodroid.Runtime.Messaging.FBS {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="reaction"></param>
     /// <returns></returns>
@@ -76,7 +77,7 @@ namespace Neodroid.Runtime.Messaging.FBS {
             unobservables,
             displayables,
             serialised_message,
-            recipient_environment : r.EnvironmentName);
+            r.EnvironmentName);
       }
 
       Debug.LogWarning("Empty reaction received");
@@ -84,10 +85,6 @@ namespace Neodroid.Runtime.Messaging.FBS {
     }
 
     #endregion
-
-    static List<Vector3> _vector_out = new List<Vector3>();
-    static List<float> _float_out = new List<float>();
-    static List<Points.ValuePoint> _output = new List<Points.ValuePoint>();
 
     #region PrivateMethods
 

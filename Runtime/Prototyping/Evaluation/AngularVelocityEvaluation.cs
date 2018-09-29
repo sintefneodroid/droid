@@ -10,7 +10,6 @@ namespace Neodroid.Runtime.Prototyping.Evaluation {
     [SerializeField] Rigidbody _rigidbody;
 
     /// <summary>
-    /// 
     /// </summary>
     /// <returns></returns>
     public override float InternalEvaluate() {
@@ -28,7 +27,6 @@ namespace Neodroid.Runtime.Prototyping.Evaluation {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     public override void InternalReset() { }
 

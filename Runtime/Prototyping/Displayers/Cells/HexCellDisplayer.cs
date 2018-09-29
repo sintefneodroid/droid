@@ -9,17 +9,16 @@ namespace Neodroid.Runtime.Prototyping.Displayers.Cells {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [ExecuteInEditMode,
-   AddComponentMenu(
-       DisplayerComponentMenuPath._ComponentMenuPath + "VectorField" + DisplayerComponentMenuPath._Postfix)]
+  [ExecuteInEditMode]
+  [AddComponentMenu(
+      DisplayerComponentMenuPath._ComponentMenuPath + "VectorField" + DisplayerComponentMenuPath._Postfix)]
   public class HexCellDisplayer : QuadCellDisplayer {
-    [SerializeField] float[] _values;
-    [SerializeField] bool _retain_last_plot = true;
     [SerializeField] bool _plot_random_series;
+    [SerializeField] bool _retain_last_plot = true;
     dynamic _vals;
+    [SerializeField] float[] _values;
 
     /// <summary>
-    /// 
     /// </summary>
     protected override void Setup() { }
 
@@ -50,7 +49,6 @@ namespace Neodroid.Runtime.Prototyping.Displayers.Cells {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="points"></param>
     public new void ScatterPlot(Vector3[] points) { }
@@ -74,7 +72,6 @@ namespace Neodroid.Runtime.Prototyping.Displayers.Cells {
     #endif
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="points"></param>
     public new void PlotSeries(Points.ValuePoint[] points) {
@@ -88,7 +85,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers.Cells {
 
       foreach (var point in points) {
         //point._Size
-        switch ((int)(point._Val)) {
+        switch ((int)point._Val) {
           case 0:
             NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.forward, Color.cyan);
             break;

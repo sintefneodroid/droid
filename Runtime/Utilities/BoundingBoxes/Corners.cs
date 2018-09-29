@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 
 namespace Neodroid.Runtime.Utilities.BoundingBoxes {
-  /// <summary>
-  /// 
-  /// </summary>
-  public static class Corners {
+    /// <summary>
+    /// </summary>
+    public static class Corners {
     public static Vector3[] ExtractCorners(
         Vector3 v3_center,
         Vector3 v3_extents,
@@ -64,19 +63,18 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
       };
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="v3_front_top_left"></param>
-    /// <param name="v3_front_top_right"></param>
-    /// <param name="v3_front_bottom_left"></param>
-    /// <param name="v3_front_bottom_right"></param>
-    /// <param name="v3_back_top_left"></param>
-    /// <param name="v3_back_top_right"></param>
-    /// <param name="v3_back_bottom_left"></param>
-    /// <param name="v3_back_bottom_right"></param>
-    /// <param name="color"></param>
-    public static void DrawBox(
+        /// <summary>
+        /// </summary>
+        /// <param name="v3_front_top_left"></param>
+        /// <param name="v3_front_top_right"></param>
+        /// <param name="v3_front_bottom_left"></param>
+        /// <param name="v3_front_bottom_right"></param>
+        /// <param name="v3_back_top_left"></param>
+        /// <param name="v3_back_top_right"></param>
+        /// <param name="v3_back_bottom_left"></param>
+        /// <param name="v3_back_bottom_right"></param>
+        /// <param name="color"></param>
+        public static void DrawBox(
         Vector3 v3_front_top_left,
         Vector3 v3_front_top_right,
         Vector3 v3_front_bottom_left,

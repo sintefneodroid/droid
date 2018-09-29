@@ -3,11 +3,10 @@ using UnityEngine;
 
 namespace Neodroid.Runtime.Utilities.SerialisableDictionary {
   public abstract class SerializableDictionary<TK, TV> : ISerializationCallbackReceiver {
+    public Dictionary<TK, TV> _Dict;
     [SerializeField] TK[] _keys;
 
     [SerializeField] TV[] _values;
-
-    public Dictionary<TK, TV> _Dict;
 
     public void OnAfterDeserialize() {
       var c = this._keys.Length;

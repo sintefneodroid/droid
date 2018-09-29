@@ -7,17 +7,16 @@ namespace Neodroid.Runtime.Prototyping.Displayers.Canvas {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [ExecuteInEditMode,
-   AddComponentMenu(
-       DisplayerComponentMenuPath._ComponentMenuPath
-       + "Canvas/CanvasBar"
-       + DisplayerComponentMenuPath._Postfix)]
+  [ExecuteInEditMode]
+  [AddComponentMenu(
+      DisplayerComponentMenuPath._ComponentMenuPath
+      + "Canvas/CanvasBar"
+      + DisplayerComponentMenuPath._Postfix)]
   public class DistributionDisplayer : Displayer {
     [SerializeField] Image[] _images;
-    [SerializeField, Range(0.0f, 1.0f)] float _value;
+    [SerializeField] [Range(0.0f, 1.0f)] float _value;
 
     /// <summary>
-    /// 
     /// </summary>
     public float Value {
       get { return this._value; }
@@ -37,7 +36,6 @@ namespace Neodroid.Runtime.Prototyping.Displayers.Canvas {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="amount"></param>
     public void SetFillAmount(float amount) {

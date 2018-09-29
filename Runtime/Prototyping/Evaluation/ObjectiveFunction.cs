@@ -18,12 +18,9 @@ namespace Neodroid.Runtime.Prototyping.Evaluation {
                                             //IResetable,
                                             IObjective {
     /// <summary>
-    ///
     /// </summary>
-    public float SolvedThreshold {
-      get { return this._solved_threshold; }
-      set { this._solved_threshold = value; }
-    }
+    [SerializeField]
+    public float _Episode_Return;
 
     /// <inheritdoc />
     /// <summary>
@@ -31,7 +28,6 @@ namespace Neodroid.Runtime.Prototyping.Evaluation {
     public override String PrototypingTypeName { get { return ""; } }
 
     /// <summary>
-    ///
     /// </summary>
     public IPrototypingEnvironment ParentEnvironment {
       get { return this._environment; }
@@ -69,9 +65,8 @@ namespace Neodroid.Runtime.Prototyping.Evaluation {
       }
     }
 
-    ///  <summary>
-    /// 
-    ///  </summary>
+    /// <summary>
+    /// </summary>
     /// <param name="term"></param>
     /// <param name="identifier"></param>
     public void UnRegister(Term term, string identifier) {
@@ -87,74 +82,22 @@ namespace Neodroid.Runtime.Prototyping.Evaluation {
       }
     }
 
-    /// <inheritdoc />
     /// <summary>
-    /// </summary>
-    protected override void Clear() {
-      this._Extra_Term_Weights.Clear();
-      this._Extra_Terms_Dict.Clear();
-    }
-
-    /// <summary>
-    ///
     /// </summary>
     /// <param name="term"></param>
     public void UnRegister(Term term) { this.UnRegister(term, term.Identifier); }
 
-    /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected sealed override void Setup() {
-      //foreach (var go in this._extra_terms_external)
-      //  this.Register(go);
-
-      if (this.ParentEnvironment == null) {
-        this.ParentEnvironment = FindObjectOfType<PrototypingEnvironment>();
-      }
-
-      this.PostSetup();
+    public float SolvedThreshold {
+      get { return this._solved_threshold; }
+      set { this._solved_threshold = value; }
     }
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
-    /// </summary>
-    protected virtual void PostSetup() { }
-
-    /// <summary>
-    /// 
     /// </summary>
     /// <returns></returns>
-    public void SignalString(DataPoller recipient) {
-      recipient.PollData(
-          $"{this._last_signal.ToString(CultureInfo.InvariantCulture)}, {this._Episode_Return}");
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    [SerializeField]
-    public float _Episode_Return;
-
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    protected override void RegisterComponent() { }
-
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    protected override void UnRegisterComponent() { }
-
-    /// <summary>
-    ///
-    /// </summary>
-    /// <returns></returns>
-    public abstract float InternalEvaluate();
-
-    /// <inheritdoc />
-    ///  <summary>
-    ///  </summary>
-    ///  <returns></returns>
     public float Evaluate() {
       var signal = 0.0f;
       signal += this.InternalEvaluate();
@@ -184,13 +127,60 @@ namespace Neodroid.Runtime.Prototyping.Evaluation {
       this.InternalReset();
     }
 
+    /// <inheritdoc />
     /// <summary>
-    ///
+    /// </summary>
+    protected override void Clear() {
+      this._Extra_Term_Weights.Clear();
+      this._Extra_Terms_Dict.Clear();
+    }
+
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    protected sealed override void Setup() {
+      //foreach (var go in this._extra_terms_external)
+      //  this.Register(go);
+
+      if (this.ParentEnvironment == null) {
+        this.ParentEnvironment = FindObjectOfType<PrototypingEnvironment>();
+      }
+
+      this.PostSetup();
+    }
+
+    /// <summary>
+    /// </summary>
+    protected virtual void PostSetup() { }
+
+    /// <summary>
+    /// </summary>
+    /// <returns></returns>
+    public void SignalString(DataPoller recipient) {
+      recipient.PollData(
+          $"{this._last_signal.ToString(CultureInfo.InvariantCulture)}, {this._Episode_Return}");
+    }
+
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    protected override void RegisterComponent() { }
+
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    protected override void UnRegisterComponent() { }
+
+    /// <summary>
+    /// </summary>
+    /// <returns></returns>
+    public abstract float InternalEvaluate();
+
+    /// <summary>
     /// </summary>
     public abstract void InternalReset();
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="term"></param>
     /// <param name="new_weight"></param>
@@ -201,7 +191,6 @@ namespace Neodroid.Runtime.Prototyping.Evaluation {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <returns></returns>
     public virtual float EvaluateExtraTerms() {
@@ -226,7 +215,8 @@ namespace Neodroid.Runtime.Prototyping.Evaluation {
 
     #region Fields
 
-    [Header("References", order = 100), SerializeField]
+    [Header("References", order = 100)]
+    [SerializeField]
     //[SerializeField]float _internal_discount_factor = 1.0f;
     PrototypingEnvironment _environment;
 
@@ -236,7 +226,8 @@ namespace Neodroid.Runtime.Prototyping.Evaluation {
 
     [SerializeField] protected Dictionary<Term, float> _Extra_Term_Weights = new Dictionary<Term, float>();
 
-    [Header("General", order = 101), SerializeField]
+    [Header("General", order = 101)]
+    [SerializeField]
     float _solved_threshold;
 
     [SerializeField] float _last_signal;

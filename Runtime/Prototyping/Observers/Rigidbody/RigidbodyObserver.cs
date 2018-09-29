@@ -6,23 +6,27 @@ namespace Neodroid.Runtime.Prototyping.Observers.Rigidbody {
   /// <summary>
   /// </summary>
   [AddComponentMenu(
-       ObserverComponentMenuPath._ComponentMenuPath + "Rigidbody" + ObserverComponentMenuPath._Postfix),
-   ExecuteInEditMode, RequireComponent(typeof(UnityEngine.Rigidbody))]
+      ObserverComponentMenuPath._ComponentMenuPath + "Rigidbody" + ObserverComponentMenuPath._Postfix)]
+  [ExecuteInEditMode]
+  [RequireComponent(typeof(UnityEngine.Rigidbody))]
   public class RigidbodyObserver : Observer,
                                    IHasRigidbody {
-    [Header("Observation", order = 100), SerializeField]
+    [SerializeField] Space3 _angular_space = new Space3(10);
+
+    [Header("Observation", order = 100)]
+    [SerializeField]
     Vector3 _angular_velocity;
 
-    [SerializeField] Vector3 _velocity;
+    [SerializeField] bool _differential;
 
     [SerializeField] float _last_update_time;
 
-    [Header("Configuration", order = 110), SerializeField]
+    [Header("Configuration", order = 110)]
+    [SerializeField]
     UnityEngine.Rigidbody _rigidbody;
 
-    [SerializeField] bool _differential;
+    [SerializeField] Vector3 _velocity;
     [SerializeField] Space3 _velocity_space = new Space3(10);
-    [SerializeField] Space3 _angular_space = new Space3(10);
 
     /// <inheritdoc />
     /// <summary>

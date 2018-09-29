@@ -1,8 +1,6 @@
 ﻿using System;
 using Neodroid.Runtime.Utilities.GameObjects;
-using Neodroid.Runtime.Utilities.Misc.Drawing;
-using Neodroid.Runtime.Utilities.Misc.Grasping;
-using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
+using Neodroid.Runtime.Utilities.Misc;
 
 namespace Neodroid.Runtime.Prototyping.Evaluation.Terms {
   /// <inheritdoc />
@@ -11,10 +9,8 @@ namespace Neodroid.Runtime.Prototyping.Evaluation.Terms {
   [Serializable]
   public abstract class Term : PrototypingGameObject {
     /// <summary>
-    /// 
     /// </summary>
-    /// <returns></returns>
-    public abstract float Evaluate();
+    ObjectiveFunction _objective_function;
 
     /// <inheritdoc />
     /// <summary>
@@ -22,9 +18,9 @@ namespace Neodroid.Runtime.Prototyping.Evaluation.Terms {
     public abstract override String PrototypingTypeName { get; }
 
     /// <summary>
-    /// 
     /// </summary>
-    ObjectiveFunction _objective_function;
+    /// <returns></returns>
+    public abstract float Evaluate();
 
     /// <inheritdoc />
     /// <summary>

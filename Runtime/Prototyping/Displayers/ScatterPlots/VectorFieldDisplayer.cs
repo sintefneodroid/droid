@@ -9,9 +9,9 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [ExecuteInEditMode,
-   AddComponentMenu(
-       DisplayerComponentMenuPath._ComponentMenuPath + "VectorField" + DisplayerComponentMenuPath._Postfix)]
+  [ExecuteInEditMode]
+  [AddComponentMenu(
+      DisplayerComponentMenuPath._ComponentMenuPath + "VectorField" + DisplayerComponentMenuPath._Postfix)]
   public class VectorFieldDisplayer : Displayer {
     dynamic _vals;
 
@@ -47,7 +47,6 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="points"></param>
     public void ScatterPlot(Vector3[] points) { }
@@ -71,7 +70,6 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
     #endif
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="points"></param>
     public override void PlotSeries(Points.ValuePoint[] points) {
@@ -85,7 +83,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
 
       foreach (var point in points) {
         //point._Size
-        switch ((int)(point._Val)) {
+        switch ((int)point._Val) {
           case 0:
             NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.forward, Color.cyan);
             break;

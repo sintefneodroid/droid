@@ -4,11 +4,11 @@ using UnityEngine;
 namespace Neodroid.Runtime.Utilities.BoundingBoxes {
   [ExecuteInEditMode]
   public class ShowBoundingBoxes : MonoBehaviour {
+    public Color _Color = Color.green;
     public GameObject _Line_Object;
     Dictionary<GameObject, GameObject> _lines = new Dictionary<GameObject, GameObject>();
 
     MeshFilter[] _mesh_filter_objects;
-    public Color _Color = Color.green;
 
     void ReallocateLineRenderers() {
       this._mesh_filter_objects = FindObjectsOfType<MeshFilter>();

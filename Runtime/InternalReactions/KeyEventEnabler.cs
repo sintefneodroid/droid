@@ -3,15 +3,14 @@ using UnityEngine;
 
 namespace Neodroid.Runtime.PlayerControls {
   /// <inheritdoc />
-  ///  <summary>
-  ///  </summary>
+  /// <summary>
+  /// </summary>
   public class KeyEventEnabler : MonoBehaviour {
     [SerializeField] GameObject _game_object;
 
     [SerializeField] [SearchableEnum] KeyCode _key;
 
     /// <summary>
-    ///
     /// </summary>
     void Update() {
       if (Input.GetKeyDown(this._key)) {

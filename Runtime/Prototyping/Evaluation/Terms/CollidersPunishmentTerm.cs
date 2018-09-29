@@ -9,16 +9,19 @@ namespace Neodroid.Runtime.Prototyping.Evaluation.Terms {
       TermComponentMenuPath._ComponentMenuPath + "CollidersPunishment" + TermComponentMenuPath._Postfix)]
   public class CollidersPunishmentTerm : Term {
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     Collider[] _avoid_collders;
 
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     Collider _subject_collider;
+
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public override string PrototypingTypeName { get { return "CollidersPunishment"; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -37,10 +40,5 @@ namespace Neodroid.Runtime.Prototyping.Evaluation.Terms {
 
       return 0;
     }
-
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "CollidersPunishment"; } }
   }
 }

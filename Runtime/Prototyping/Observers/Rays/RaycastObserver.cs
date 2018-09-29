@@ -9,22 +9,25 @@ namespace Neodroid.Runtime.Prototyping.Observers.Rays {
                                  IHasSingle {
     [SerializeField] Vector3 _direction = Vector3.forward;
 
-    [SerializeField] float _range = 100.0f;
-
     [SerializeField] RaycastHit _hit;
-    [SerializeField] ValueSpace _observation_value_space;
-    public ValueSpace SingleSpace { get { return this._observation_value_space; } }
 
     [SerializeField]
     ValueSpace _observation_space =
         new ValueSpace {_Decimal_Granularity = 3, _Min_Value = 0, _Max_Value = 100.0f};
 
-    [Header("Observation", order = 103), SerializeField]
+    [Header("Observation", order = 103)]
+    [SerializeField]
     float _observation_value;
+
+    [SerializeField] ValueSpace _observation_value_space;
+
+    [SerializeField] float _range = 100.0f;
 
     public override string PrototypingTypeName {
       get { return "Raycast" + $"{this._direction.x}{this._direction.y}{this._direction.z}"; }
     }
+
+    public ValueSpace SingleSpace { get { return this._observation_value_space; } }
 
     public float ObservationValue {
       get { return this._observation_value; }

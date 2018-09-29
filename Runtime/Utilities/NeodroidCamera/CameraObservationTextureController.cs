@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Neodroid.Runtime.Utilities.NeodroidCamera {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [ExecuteInEditMode, Serializable]
+  [ExecuteInEditMode]
+  [Serializable]
   public class CameraObservationTextureController : MonoBehaviour {
     [SerializeField] Camera[] _cameras;
-
-    [SerializeField] Texture[] _textures;
+    [SerializeField] FilterMode _filter_mode = FilterMode.Bilinear;
 
     [SerializeField] Vector2Int _size = new Vector2Int(84, 84);
     [SerializeField] TextureFormat _texture_format = TextureFormat.ARGB32;
-    [SerializeField] FilterMode _filter_mode = FilterMode.Bilinear;
+
+    [SerializeField] Texture[] _textures;
     [SerializeField] TextureWrapMode _wrap_mode = TextureWrapMode.Clamp;
 
     void Awake() {

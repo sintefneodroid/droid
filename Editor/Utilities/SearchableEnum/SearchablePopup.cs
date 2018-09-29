@@ -7,79 +7,31 @@ using UnityEngine;
 namespace Neodroid.Editor.Utilities.SearchableEnum {
   /// <inheritdoc />
   /// <summary>
-  /// A popup window that displays a list of options and may use a search
-  /// string to filter the displayed content. 
+  ///   A popup window that displays a list of options and may use a search
+  ///   string to filter the displayed content.
   /// </summary>
   public class SearchablePopup : PopupWindowContent {
-    #region -- Constants --------------------------------------------------
+    #region -- Initialization ---------------------------------------------
 
-    /// <summary> Height of each element in the popup list. </summary>
-    const float _row_height = 16.0f;
+    SearchablePopup(string[] names, int current_index, Action<int> on_selection_made) {
+      this._list = new FilteredList(names);
+      this._current_index = current_index;
+      this._on_selection_made = on_selection_made;
 
-    /// <summary> How far to indent list entries. </summary>
-    const float _row_indent = 8.0f;
-
-    /// <summary> Name to use for the text field for search. </summary>
-    const string _search_control_name = "EnumSearchText";
-
-    #endregion -- Constants -----------------------------------------------
-
-    #region -- Static Functions -------------------------------------------
-
-    /// <summary> Show a new SearchablePopup. </summary>
-    /// <param name="activator_rect">
-    /// Rectangle of the button that triggered the popup.
-    /// </param>
-    /// <param name="options">List of strings to choose from.</param>
-    /// <param name="current">
-    /// Index of the currently selected string.
-    /// </param>
-    /// <param name="on_selection_made">
-    /// Callback to trigger when a choice is made.
-    /// </param>
-    public static void Show(
-        Rect activator_rect,
-        string[] options,
-        int current,
-        Action<int> on_selection_made) {
-      var win = new SearchablePopup(options, current, on_selection_made);
-      PopupWindow.Show(activator_rect, win);
+      this._hover_index = current_index;
+      this._scroll_to_index = current_index;
+      this._scroll_offset = this.GetWindowSize().y - _row_height * 2;
     }
 
-    /// <summary>
-    /// Force the focused window to redraw. This can be used to make the
-    /// popup more responsive to mouse movement.
-    /// </summary>
-    static void Repaint() { EditorWindow.focusedWindow.Repaint(); }
-
-    /// <summary> Draw a generic box. </summary>
-    /// <param name="rect">Where to draw.</param>
-    /// <param name="tint">Color to tint the box.</param>
-    static void DrawBox(Rect rect, Color tint) {
-      var c = GUI.color;
-      GUI.color = tint;
-      GUI.Box(rect, "", _selection);
-      GUI.color = c;
-    }
-
-    #endregion -- Static Functions ----------------------------------------
+    #endregion -- Initialization ------------------------------------------
 
     #region -- Helper Classes ---------------------------------------------
 
     /// <summary>
-    /// Stores a list of strings and can return a subset of that list that
-    /// matches a given filter string.
+    ///   Stores a list of strings and can return a subset of that list that
+    ///   matches a given filter string.
     /// </summary>
     class FilteredList {
-      /// <summary>
-      /// An entry in the filtererd list, mapping the text to the
-      /// original index.
-      /// </summary>
-      public struct Entry {
-        public int _Index;
-        public string _Text;
-      }
-
       /// <summary> All posibile items in the list. </summary>
       readonly string[] _all_items;
 
@@ -95,19 +47,19 @@ namespace Neodroid.Editor.Utilities.SearchableEnum {
       public string Filter { get; private set; }
 
       /// <summary> All valid entries for the current filter. </summary>
-      public List<Entry> Entries { get; private set; }
+      public List<Entry> Entries { get; }
 
       /// <summary> Total possible entries in the list. </summary>
       public int MaxLength { get { return this._all_items.Length; } }
 
       /// <summary>
-      /// Sets a new filter string and updates the Entries that match the
-      /// new filter if it has changed.
+      ///   Sets a new filter string and updates the Entries that match the
+      ///   new filter if it has changed.
       /// </summary>
       /// <param name="filter">String to use to filter the list.</param>
       /// <returns>
-      /// True if the filter is updated, false if newFilter is the same
-      /// as the current Filter and no update is necessary.
+      ///   True if the filter is updated, false if newFilter is the same
+      ///   as the current Filter and no update is necessary.
       /// </returns>
       public bool UpdateFilter(string filter) {
         if (this.Filter == filter) {
@@ -131,9 +83,71 @@ namespace Neodroid.Editor.Utilities.SearchableEnum {
 
         return true;
       }
+
+      /// <summary>
+      ///   An entry in the filtererd list, mapping the text to the
+      ///   original index.
+      /// </summary>
+      public struct Entry {
+        public int _Index;
+        public string _Text;
+      }
     }
 
     #endregion -- Helper Classes ------------------------------------------
+
+    #region -- Constants --------------------------------------------------
+
+    /// <summary> Height of each element in the popup list. </summary>
+    const float _row_height = 16.0f;
+
+    /// <summary> How far to indent list entries. </summary>
+    const float _row_indent = 8.0f;
+
+    /// <summary> Name to use for the text field for search. </summary>
+    const string _search_control_name = "EnumSearchText";
+
+    #endregion -- Constants -----------------------------------------------
+
+    #region -- Static Functions -------------------------------------------
+
+    /// <summary> Show a new SearchablePopup. </summary>
+    /// <param name="activator_rect">
+    ///   Rectangle of the button that triggered the popup.
+    /// </param>
+    /// <param name="options">List of strings to choose from.</param>
+    /// <param name="current">
+    ///   Index of the currently selected string.
+    /// </param>
+    /// <param name="on_selection_made">
+    ///   Callback to trigger when a choice is made.
+    /// </param>
+    public static void Show(
+        Rect activator_rect,
+        string[] options,
+        int current,
+        Action<int> on_selection_made) {
+      var win = new SearchablePopup(options, current, on_selection_made);
+      PopupWindow.Show(activator_rect, win);
+    }
+
+    /// <summary>
+    ///   Force the focused window to redraw. This can be used to make the
+    ///   popup more responsive to mouse movement.
+    /// </summary>
+    static void Repaint() { EditorWindow.focusedWindow.Repaint(); }
+
+    /// <summary> Draw a generic box. </summary>
+    /// <param name="rect">Where to draw.</param>
+    /// <param name="tint">Color to tint the box.</param>
+    static void DrawBox(Rect rect, Color tint) {
+      var c = GUI.color;
+      GUI.color = tint;
+      GUI.Box(rect, "", _selection);
+      GUI.color = c;
+    }
+
+    #endregion -- Static Functions ----------------------------------------
 
     #region -- Private Variables ------------------------------------------
 
@@ -141,13 +155,13 @@ namespace Neodroid.Editor.Utilities.SearchableEnum {
     readonly Action<int> _on_selection_made;
 
     /// <summary>
-    /// Index of the item that was selected when the list was opened.
+    ///   Index of the item that was selected when the list was opened.
     /// </summary>
     readonly int _current_index;
 
     /// <summary>
-    /// Container for all available options that does the actual string
-    /// filtering of the content.  
+    ///   Container for all available options that does the actual string
+    ///   filtering of the content.
     /// </summary>
     readonly FilteredList _list;
 
@@ -155,19 +169,19 @@ namespace Neodroid.Editor.Utilities.SearchableEnum {
     Vector2 _scroll;
 
     /// <summary>
-    /// Index of the item under the mouse or selected with the keyboard.
+    ///   Index of the item under the mouse or selected with the keyboard.
     /// </summary>
     int _hover_index;
 
     /// <summary>
-    /// An item index to scroll to on the next draw.
+    ///   An item index to scroll to on the next draw.
     /// </summary>
     int _scroll_to_index;
 
     /// <summary>
-    /// An offset to apply after scrolling to scrollToIndex. This can be
-    /// used to control if the selection appears at the top, bottom, or
-    /// center of the popup.
+    ///   An offset to apply after scrolling to scrollToIndex. This can be
+    ///   used to control if the selection appears at the top, bottom, or
+    ///   center of the popup.
     /// </summary>
     float _scroll_offset;
 
@@ -185,20 +199,6 @@ namespace Neodroid.Editor.Utilities.SearchableEnum {
     static GUIStyle _selection = "SelectionRect";
 
     #endregion -- GUI Styles ----------------------------------------------
-
-    #region -- Initialization ---------------------------------------------
-
-    SearchablePopup(string[] names, int current_index, Action<int> on_selection_made) {
-      this._list = new FilteredList(names);
-      this._current_index = current_index;
-      this._on_selection_made = on_selection_made;
-
-      this._hover_index = current_index;
-      this._scroll_to_index = current_index;
-      this._scroll_offset = this.GetWindowSize().y - _row_height * 2;
-    }
-
-    #endregion -- Initialization ------------------------------------------
 
     #region -- PopupWindowContent Overrides -------------------------------
 
@@ -331,7 +331,7 @@ namespace Neodroid.Editor.Utilities.SearchableEnum {
     }
 
     /// <summary>
-    /// Process keyboard input to navigate the choices or make a selection.
+    ///   Process keyboard input to navigate the choices or make a selection.
     /// </summary>
     void HandleKeyboard() {
       if (Event.current.type == EventType.KeyDown) {

@@ -6,8 +6,8 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera {
   /// </summary>
   [ExecuteInEditMode]
   public class ReplacementShaderEffect : MonoBehaviour {
-    [SerializeField] string _replace_render_type = "";
     [SerializeField] Color _color = Color.black;
+    [SerializeField] string _replace_render_type = "";
     [SerializeField] Shader _replacement_shader;
 
     void OnValidate() {

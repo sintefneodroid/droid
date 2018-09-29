@@ -11,14 +11,14 @@ namespace Neodroid.Samples.MultiArmedBandit {
   [AddComponentMenu(
       DisplayerComponentMenuPath._ComponentMenuPath + "TextBarPlot" + DisplayerComponentMenuPath._Postfix)]
   public class TextBarPlotDisplayer : Resetable {
+    [SerializeField] CanvasBarDisplayer[] _canvas_bars;
+    [SerializeField] CanvasTextDisplayer[] _canvas_text;
+    [SerializeField] float[] _Values;
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override String PrototypingTypeName { get { return "TextBarPlot"; } }
-
-    [SerializeField] CanvasBarDisplayer[] _canvas_bars;
-    [SerializeField] CanvasTextDisplayer[] _canvas_text;
-    [SerializeField] float[] _Values;
 
     /// <inheritdoc />
     /// <summary>
@@ -36,7 +36,6 @@ namespace Neodroid.Samples.MultiArmedBandit {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="values"></param>
     public void Display(float[] values) {

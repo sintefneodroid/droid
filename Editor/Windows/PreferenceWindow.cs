@@ -1,10 +1,7 @@
 ﻿#if UNITY_EDITOR
 using System.Linq;
-using Neodroid.Editor.ScriptableObjects;
 using Neodroid.Runtime;
-using TMPro;
 using UnityEditor;
-using UnityEditor.Graphs;
 using UnityEngine;
 
 namespace Neodroid.Editor.Windows {
@@ -12,17 +9,14 @@ namespace Neodroid.Editor.Windows {
   /// <summary>
   /// </summary>
   public class PreferenceWindow : MonoBehaviour {
+    const string _debug_pref_key = "EnableNeodroidDebug";
     static bool _preferences_loaded;
 
     /// <summary>
-    ///
     /// </summary>
     public static bool _EnableNeodroidDebug;
 
-    const string _debug_pref_key = "EnableNeodroidDebug";
-
     /// <summary>
-    ///
     /// </summary>
     [PreferenceItem("Neodroid")]
     public static void PreferencesGui() {
@@ -76,30 +70,29 @@ namespace Neodroid.Editor.Windows {
 
   /// <inheritdoc />
   /// <summary>
-  /// Adds the given define symbols to PlayerSettings define symbols.
-  /// Just add your own define symbols to the Symbols property at the below.
+  ///   Adds the given define symbols to PlayerSettings define symbols.
+  ///   Just add your own define symbols to the Symbols property at the below.
   /// </summary>
   [InitializeOnLoad]
   public class DefineSymbolsController : UnityEditor.Editor {
     /// <summary>
-    /// Add define symbols as soon as Unity gets done compiling.
+    ///   Add define symbols as soon as Unity gets done compiling.
     /// </summary>
     static DefineSymbolsController() { DefineSymbolsFunctionality.AddDefineSymbols(); }
   }
 
   public static class DefineSymbolsFunctionality {
     /// <summary>
-    /// Symbols that will be added to the editor
+    ///   Symbols that will be added to the editor
     /// </summary>
     public static readonly string[] _Symbols = {"NEODROID", "NEODROID_EXISTS"};
 
     /// <summary>
-    ///  Debug symbols that will be added to the editor
+    ///   Debug symbols that will be added to the editor
     /// </summary>
     public static readonly string[] _Debug_Symbols = {"NEODROID_DEBUG"};
 
     /// <summary>
-    /// 
     /// </summary>
     public static void AddDefineSymbols() {
       var defines_string =
@@ -112,7 +105,6 @@ namespace Neodroid.Editor.Windows {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     public static void AddDebugDefineSymbol() {
       var defines_string =
@@ -128,7 +120,6 @@ namespace Neodroid.Editor.Windows {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     public static void RemoveDebugDefineSymbol() {
       var defines_string =

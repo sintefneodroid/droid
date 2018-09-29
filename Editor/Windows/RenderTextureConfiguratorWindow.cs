@@ -6,9 +6,9 @@ using UnityEngine;
 
 namespace Neodroid.Editor.Windows {
   public class RenderTextureConfiguratorWindow : EditorWindow {
-    int _preview_image_size = 100;
-
     Texture _icon;
+
+    int _preview_image_size = 100;
     //float[] _render_texture_height;
     //float[] _render_texture_width;
 
@@ -17,8 +17,8 @@ namespace Neodroid.Editor.Windows {
     Vector2 _scroll_position;
     Vector2 _texture_size;
 
-    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "RenderTextureConfiguratorWindow"),
-     MenuItem(EditorWindowMenuPath._ToolMenuPath + "RenderTextureConfiguratorWindow")]
+    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "RenderTextureConfiguratorWindow")]
+    [MenuItem(EditorWindowMenuPath._ToolMenuPath + "RenderTextureConfiguratorWindow")]
     public static void ShowWindow() {
       GetWindow(
           typeof(RenderTextureConfiguratorWindow)); //Show existing window instance. If one doesn't exist, make one.

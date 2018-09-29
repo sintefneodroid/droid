@@ -1,8 +1,6 @@
 ﻿using System;
 using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Messaging.Messages;
 using UnityEngine;
-using Random = System.Random;
 
 namespace Neodroid.Runtime.Prototyping.Configurables {
   [AddComponentMenu(
@@ -10,6 +8,11 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
       + "Difficulty"
       + ConfigurableComponentMenuPath._Postfix)]
   public class DifficultyConfigurable : Configurable {
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public override string PrototypingTypeName { get { return "DifficultyConfigurable"; } }
+
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
       if (Math.Abs(configuration.ConfigurableValue - 1) < double.Epsilon) {
         //print ("Increased Difficulty");
@@ -17,10 +20,5 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
         //print ("Decreased Difficulty");
       }
     }
-
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "DifficultyConfigurable"; } }
   }
 }

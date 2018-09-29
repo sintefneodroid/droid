@@ -12,9 +12,9 @@ namespace Neodroid.Editor.Windows.UnityDebug {
     [SerializeField] Texture2D _icon;
 
     /// <summary>
-    /// 
     /// </summary>
-    [MenuItem("Tools/Debug/FindMissingScripts"), MenuItem("Window/Debug/FindMissingScripts")]
+    [MenuItem("Tools/Debug/FindMissingScripts")]
+    [MenuItem("Window/Debug/FindMissingScripts")]
     public static void ShowWindow() { GetWindow(typeof(FindMissingScripts)); }
 
     void OnEnable() {
@@ -25,7 +25,6 @@ namespace Neodroid.Editor.Windows.UnityDebug {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     public void OnGUI() {
       if (GUILayout.Button("Find Missing Scripts in selected GameObjects")) {

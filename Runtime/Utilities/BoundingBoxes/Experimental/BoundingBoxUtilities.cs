@@ -157,7 +157,6 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes.Experimental {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="object_transform"></param>
     /// <returns></returns>
@@ -182,7 +181,6 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes.Experimental {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="g"></param>
     /// <returns></returns>

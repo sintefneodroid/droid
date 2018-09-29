@@ -9,19 +9,17 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [ExecuteInEditMode,
-   AddComponentMenu(
-       DisplayerComponentMenuPath._ComponentMenuPath
-       + "IndexedScatterPlot"
-       + DisplayerComponentMenuPath._Postfix)]
+  [ExecuteInEditMode]
+  [AddComponentMenu(
+      DisplayerComponentMenuPath._ComponentMenuPath
+      + "IndexedScatterPlot"
+      + DisplayerComponentMenuPath._Postfix)]
   public class IndexedScatterPlotDisplayer : Displayer {
-    dynamic _vals;
-
     [SerializeField] GameObject[] _designs;
     [SerializeField] List<GameObject> _instances;
+    dynamic _vals;
 
     /// <summary>
-    /// 
     /// </summary>
     protected override void Setup() { }
 
@@ -51,7 +49,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
       }
     }
 
-    void SpawnDesign(GameObject design, Vector3 position, Quaternion rotation = default(Quaternion)) {
+    void SpawnDesign(GameObject design, Vector3 position, Quaternion rotation = default) {
       //var go = Instantiate(design, position, rotation,this.transform);
       var go = Instantiate(design, position, design.transform.rotation, this.transform);
       this._instances.Add(go);
@@ -68,7 +66,6 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="points"></param>
     public void ScatterPlot(Vector3[] points) { }
@@ -92,7 +89,6 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
     #endif
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="points"></param>
     public override void PlotSeries(Points.ValuePoint[] points) {
@@ -111,7 +107,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
           continue;
         }
 
-        this.SpawnDesign(this._designs[(int)(point._Val)], point._Pos);
+        this.SpawnDesign(this._designs[(int)point._Val], point._Pos);
       }
     }
 

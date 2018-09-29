@@ -1,6 +1,5 @@
 ﻿namespace Neodroid.Runtime.Prototyping.Evaluation {
   /// <summary>
-  /// 
   /// </summary>
   public static class EvaluationComponentMenuPath {
     public const string _ComponentMenuPath = PrototypingComponentMenuPath._ComponentMenuPath + "Evaluation/";

@@ -6,22 +6,22 @@ using Neodroid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
-  [ExecuteInEditMode,
-   AddComponentMenu(
-       DisplayerComponentMenuPath._ComponentMenuPath
-       + "GameObjectScatterPlotDisplayer"
-       + DisplayerComponentMenuPath._Postfix)]
+  [ExecuteInEditMode]
+  [AddComponentMenu(
+      DisplayerComponentMenuPath._ComponentMenuPath
+      + "GameObjectScatterPlotDisplayer"
+      + DisplayerComponentMenuPath._Postfix)]
   public class GameObjectScatterPlotDisplayer : Displayer {
+    [SerializeField] Gradient _gradient;
     ParticleSystem _particle_system;
+
+    ParticleSystem.MainModule _particle_system_main_module;
     ParticleSystemRenderer _particle_system_renderer;
 
     [SerializeField]
     ParticleSystemSimulationSpace _particle_system_simulation_space = ParticleSystemSimulationSpace.World;
 
-    ParticleSystem.MainModule _particle_system_main_module;
     ParticleSystem.Particle[] _particles;
-
-    [SerializeField] Gradient _gradient;
     [SerializeField] float _size = 0.6f;
 
     List<float> _vs = new List<float>();
@@ -110,7 +110,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
       if (this.Debugging) {
         var points_str = points.Aggregate(
             "",
-            (current, point) => current + ($"({point._Pos.ToString()}, {point._Val},{point._Size})" + ", "));
+            (current, point) => current + $"({point._Pos.ToString()}, {point._Val},{point._Size})" + ", ");
         Debug.Log("Applying the points " + points_str + " to " + this.name);
       }
       #endif
@@ -143,7 +143,6 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="points"></param>
     public void ScatterPlot(Vector3[] points) {
@@ -153,7 +152,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        var points_str = points.Aggregate("", (current, point) => current + (point.ToString() + ", "));
+        var points_str = points.Aggregate("", (current, point) => current + point.ToString() + ", ");
         Debug.Log("Applying the points " + points_str + " To " + this.name);
       }
       #endif
@@ -207,7 +206,6 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
     #endif
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="points"></param>
     public override void PlotSeries(Points.ValuePoint[] points) {

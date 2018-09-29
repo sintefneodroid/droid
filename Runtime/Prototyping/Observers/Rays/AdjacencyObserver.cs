@@ -9,26 +9,25 @@ namespace Neodroid.Runtime.Prototyping.Observers.Rays {
       ObserverComponentMenuPath._ComponentMenuPath + "Adjacency" + ObserverComponentMenuPath._Postfix)]
   public class AdjacencyObserver : Observer,
                                    IHasArray {
-    [SerializeField] float _range = 1.0f;
     [SerializeField] RaycastHit _hit;
 
     [SerializeField] bool _is_2_d;
 
-    [Header("Observation", order = 103), SerializeField]
+    [Header("Observation", order = 103)]
+    [SerializeField]
     float[] _obs_array;
 
+    [SerializeField] float _range = 1.0f;
+
     /// <summary>
-    /// 
     /// </summary>
     public override string PrototypingTypeName { get { return "Adjacency"; } }
 
     /// <summary>
-    /// 
     /// </summary>
     public RaycastHit Hit { get { return this._hit; } set { this._hit = value; } }
 
     /// <summary>
-    /// 
     /// </summary>
     public float[] ObservationArray {
       get { return this._obs_array; }
@@ -36,7 +35,6 @@ namespace Neodroid.Runtime.Prototyping.Observers.Rays {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     protected override void PreSetup() {
       if (this._is_2_d) {
@@ -49,7 +47,6 @@ namespace Neodroid.Runtime.Prototyping.Observers.Rays {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     public override void UpdateObservation() {
       if (this._is_2_d) {

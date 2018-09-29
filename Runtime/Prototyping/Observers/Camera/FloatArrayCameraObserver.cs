@@ -13,7 +13,8 @@ namespace Neodroid.Runtime.Prototyping.Observers.Camera {
 
     [SerializeField] bool _black_white;
 
-    [Header("Specific", order = 102), SerializeField]
+    [Header("Specific", order = 102)]
+    [SerializeField]
     UnityEngine.Camera _camera;
 
     bool _grab = true;
@@ -21,8 +22,6 @@ namespace Neodroid.Runtime.Prototyping.Observers.Camera {
     IManager _manager;
 
     [SerializeField] Texture2D _texture;
-
-    public override string PrototypingTypeName { get { return "Camera"; } }
 
     public float[] ObservationArray { get { return this._array; } private set { this._array = value; } }
 

@@ -2,10 +2,8 @@
 using Neodroid.Runtime.Environments;
 using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Utilities.GameObjects;
-using Neodroid.Runtime.Utilities.Misc.Drawing;
-using Neodroid.Runtime.Utilities.Misc.Grasping;
+using Neodroid.Runtime.Utilities.Misc;
 using UnityEngine;
-using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 
 namespace Neodroid.Runtime.Prototyping.Internals {
   /// <inheritdoc cref="PrototypingGameObject" />
@@ -15,9 +13,12 @@ namespace Neodroid.Runtime.Prototyping.Internals {
   public abstract class Resetable : PrototypingGameObject,
                                     IResetable {
     /// <summary>
-    ///
     /// </summary>
     public IPrototypingEnvironment _Parent_Environment;
+
+    /// <summary>
+    /// </summary>
+    public abstract override String PrototypingTypeName { get; }
 
     /// <inheritdoc />
     /// <summary>
@@ -25,8 +26,8 @@ namespace Neodroid.Runtime.Prototyping.Internals {
     public abstract void EnvironmentReset();
 
     /// <inheritdoc />
-    ///  <summary>
-    ///  </summary>
+    /// <summary>
+    /// </summary>
     protected override void RegisterComponent() {
       this._Parent_Environment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this._Parent_Environment,
@@ -41,10 +42,5 @@ namespace Neodroid.Runtime.Prototyping.Internals {
         this._Parent_Environment.UnRegister(this);
       }
     }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public abstract override String PrototypingTypeName { get; }
   }
 }

@@ -36,42 +36,34 @@ namespace Neodroid.Runtime.Messaging.Messages {
     public float TotalEnergySpentSinceReset { get; }
 
     /// <summary>
-    ///
     /// </summary>
     public int FrameNumber { get; }
 
     /// <summary>
-    ///
     /// </summary>
     public float Time { get; }
 
     /// <summary>
-    ///
     /// </summary>
     public bool Terminated { get; }
 
     /// <summary>
-    ///
     /// </summary>
     public string DebugMessage { get; }
 
     /// <summary>
-    ///
     /// </summary>
     public IObserver[] Observers { get; set; }
 
     /// <summary>
-    ///
     /// </summary>
     public EnvironmentDescription Description { get; }
 
     /// <summary>
-    ///
     /// </summary>
     public float Signal { get; }
 
     /// <summary>
-    ///
     /// </summary>
     public Unobservables Unobservables { get; set; }
   }

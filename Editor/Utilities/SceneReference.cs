@@ -7,60 +7,27 @@ using UnityEngine.SceneManagement;
 
 namespace Neodroid.Editor.Utilities {
   /// <summary>
-  /// Class used to serialize a reference to a scene asset that can be used
-  /// at runtime in a build, when the asset can no longer be directly
-  /// referenced. This caches the scene name based on the SceneAsset to use
-  /// at runtime to load.
+  ///   Class used to serialize a reference to a scene asset that can be used
+  ///   at runtime in a build, when the asset can no longer be directly
+  ///   referenced. This caches the scene name based on the SceneAsset to use
+  ///   at runtime to load.
   /// </summary>
   [Serializable]
   public class SceneReference : ISerializationCallbackReceiver {
-    /// <summary>
-    /// Exception that is raised when there is an issue resolving and
-    /// loading a scene reference.
-    /// </summary>
-    public class SceneLoadException : Exception {
-      public SceneLoadException(string message) : base(message) { }
-    }
-
     #if UNITY_EDITOR
     /// <summary>
-    /// 
     /// </summary>
     public SceneAsset _Scene;
     #endif
 
-    /// <summary>
-    /// 
-    /// </summary>
-    [Tooltip("The name of the referenced scene. This may be used at runtime to load the scene.")]
-    public string _SceneName;
+    [SerializeField] bool _scene_enabled;
 
     [SerializeField] int _scene_index = -1;
 
-    [SerializeField] bool _scene_enabled;
-
-    void ValidateScene() {
-      if (string.IsNullOrEmpty(this._SceneName)) {
-        throw new SceneLoadException("No scene specified.");
-      }
-
-      if (this._scene_index < 0) {
-        throw new SceneLoadException("Scene " + this._SceneName + " is not in the build settings");
-      }
-
-      if (!this._scene_enabled) {
-        throw new SceneLoadException("Scene " + this._SceneName + " is not enabled in the build settings");
-      }
-    }
-
     /// <summary>
-    /// 
     /// </summary>
-    /// <param name="mode"></param>
-    public void LoadScene(LoadSceneMode mode = LoadSceneMode.Single) {
-      this.ValidateScene();
-      SceneManager.LoadScene(this._SceneName, mode);
-    }
+    [Tooltip("The name of the referenced scene. This may be used at runtime to load the scene.")]
+    public string _SceneName;
 
     /// <inheritdoc />
     /// <summary>
@@ -95,6 +62,36 @@ namespace Neodroid.Editor.Utilities {
     /// <summary>
     /// </summary>
     public void OnAfterDeserialize() { }
+
+    void ValidateScene() {
+      if (string.IsNullOrEmpty(this._SceneName)) {
+        throw new SceneLoadException("No scene specified.");
+      }
+
+      if (this._scene_index < 0) {
+        throw new SceneLoadException("Scene " + this._SceneName + " is not in the build settings");
+      }
+
+      if (!this._scene_enabled) {
+        throw new SceneLoadException("Scene " + this._SceneName + " is not enabled in the build settings");
+      }
+    }
+
+    /// <summary>
+    /// </summary>
+    /// <param name="mode"></param>
+    public void LoadScene(LoadSceneMode mode = LoadSceneMode.Single) {
+      this.ValidateScene();
+      SceneManager.LoadScene(this._SceneName, mode);
+    }
+
+    /// <summary>
+    ///   Exception that is raised when there is an issue resolving and
+    ///   loading a scene reference.
+    /// </summary>
+    public class SceneLoadException : Exception {
+      public SceneLoadException(string message) : base(message) { }
+    }
   }
 }
 #endif

@@ -2,11 +2,10 @@
 using Neodroid.Runtime.Environments;
 using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Messaging.Messages;
-using Neodroid.Runtime.Utilities.Misc.Drawing;
-using Neodroid.Runtime.Utilities.Misc.Grasping;
+using Neodroid.Runtime.Utilities.Misc;
 using Neodroid.Runtime.Utilities.Structs;
 using UnityEngine;
-using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
+using Random = System.Random;
 
 namespace Neodroid.Runtime.Prototyping.Configurables {
   /// <inheritdoc cref="Configurable" />
@@ -24,7 +23,8 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
 
     [SerializeField] Vector3 _direction;
 
-    [Header("Observation", order = 103), SerializeField]
+    [Header("Observation", order = 103)]
+    [SerializeField]
     Vector3 _position;
 
     string _rot_x;
@@ -45,7 +45,6 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     public override string PrototypingTypeName { get { return "EulerTransformConfigurable"; } }
 
     /// <summary>
-    /// 
     /// </summary>
     public Vector3 Position { get { return this._position; } set { this._position = value; } }
 
@@ -58,7 +57,6 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     public Space3 RotationSpace { get; } = new Space3();
 
     /// <summary>
-    /// 
     /// </summary>
     public override void UpdateCurrentConfiguration() {
       if (this._use_environments_space) {
@@ -73,7 +71,6 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
@@ -136,7 +133,10 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     protected override void UnRegisterComponent() {
-      if (this.ParentEnvironment == null) return;
+      if (this.ParentEnvironment == null) {
+        return;
+      }
+
       this.ParentEnvironment.UnRegister(this, this._x);
       this.ParentEnvironment.UnRegister(this, this._y);
       this.ParentEnvironment.UnRegister(this, this._z);
@@ -246,7 +246,7 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     /// </summary>
     /// <param name="random_generator"></param>
     /// <returns></returns>
-    public override IConfigurableConfiguration SampleConfiguration(System.Random random_generator) {
+    public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
       return new Configuration(this._rot_x, random_generator.Next());
     }
   }

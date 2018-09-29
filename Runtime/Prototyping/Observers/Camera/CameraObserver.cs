@@ -6,70 +6,62 @@ using UnityEngine;
 
 namespace Neodroid.Runtime.Prototyping.Observers.Camera {
   /// <summary>
-  ///
   /// </summary>
   enum ImageFormat {
     /// <summary>
-    ///
     /// </summary>
     Jpg_,
 
     /// <summary>
-    ///
     /// </summary>
     Png_,
 
     /// <summary>
-    ///
     /// </summary>
     Exr_
   }
 
   /// <inheritdoc cref="Observer" />
-  ///  <summary>
-  ///  </summary>
+  /// <summary>
+  /// </summary>
   [AddComponentMenu(
-       ObserverComponentMenuPath._ComponentMenuPath + "Camera" + ObserverComponentMenuPath._Postfix),
-   ExecuteInEditMode, RequireComponent(typeof(UnityEngine.Camera))]
+      ObserverComponentMenuPath._ComponentMenuPath + "Camera" + ObserverComponentMenuPath._Postfix)]
+  [ExecuteInEditMode]
+  [RequireComponent(typeof(UnityEngine.Camera))]
   public class CameraObserver : Observer,
                                 IHasByteArray {
     /// <summary>
-    ///
-    /// </summary>
-    [SerializeField]
-    ImageFormat _image_format = ImageFormat.Jpg_;
-
-    /// <summary>
-    ///
-    /// </summary>
-    [SerializeField, Range(0, 100)]
-    int _jpeg_quality = 75;
-
-    /// <summary>
-    ///
     /// </summary>
     [Header("Observation", order = 103)]
     //[SerializeField]
     byte[] _bytes = { };
 
     /// <summary>
-    ///
     /// </summary>
-    [Header("Specific", order = 102), SerializeField]
-    protected UnityEngine.Camera _camera;
+    [Header("Specific", order = 102)]
+    [SerializeField]
+    protected UnityEngine.Camera _Camera;
 
     /// <summary>
-    ///
     /// </summary>
-    protected bool _grab = true;
+    protected bool _Grab = true;
 
     /// <summary>
-    ///
     /// </summary>
-    protected IManager _manager;
+    [SerializeField]
+    ImageFormat _image_format = ImageFormat.Jpg_;
 
     /// <summary>
-    ///
+    /// </summary>
+    [SerializeField]
+    [Range(0, 100)]
+    int _jpeg_quality = 75;
+
+    /// <summary>
+    /// </summary>
+    protected IManager _Manager;
+
+    /// <summary>
     /// </summary>
     Texture2D _texture;
 
@@ -79,13 +71,13 @@ namespace Neodroid.Runtime.Prototyping.Observers.Camera {
     public byte[] Bytes { get { return this._bytes; } private set { this._bytes = value; } }
 
     /// <inheritdoc />
-    ///  <summary>
-    ///  </summary>
+    /// <summary>
+    /// </summary>
     protected override void PreSetup() {
-      this._manager = FindObjectOfType<NeodroidManager>();
-      this._camera = this.GetComponent<UnityEngine.Camera>();
-      if (this._camera) {
-        var target_texture = this._camera.targetTexture;
+      this._Manager = FindObjectOfType<NeodroidManager>();
+      this._Camera = this.GetComponent<UnityEngine.Camera>();
+      if (this._Camera) {
+        var target_texture = this._Camera.targetTexture;
         if (!target_texture) {
           Debug.LogWarning("No targetTexture defaulting to a texture of size (256, 256)");
           const Int32 default_width = 256;
@@ -108,8 +100,8 @@ namespace Neodroid.Runtime.Prototyping.Observers.Camera {
         }
       }
 
-      if (this._manager?.SimulatorConfiguration != null) {
-        if (this._manager.SimulatorConfiguration.SimulationType != SimulationType.Frame_dependent_) {
+      if (this._Manager?.SimulatorConfiguration != null) {
+        if (this._Manager.SimulatorConfiguration.SimulationType != SimulationType.Frame_dependent_) {
           Debug.LogWarning(
               "WARNING! Camera Observations may be out of sync with other observation data, because simulation configuration is not frame dependent");
         }
@@ -117,7 +109,6 @@ namespace Neodroid.Runtime.Prototyping.Observers.Camera {
     }
 
     /// <summary>
-    ///
     /// </summary>
     protected virtual void OnPostRender() { this.UpdateBytes(); }
 
@@ -130,19 +121,18 @@ namespace Neodroid.Runtime.Prototyping.Observers.Camera {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
-    protected virtual void UpdateBytes() {
-      if (!this._grab) {
+    protected void UpdateBytes() {
+      if (!this._Grab) {
         return;
       }
 
-      this._grab = false;
+      this._Grab = false;
 
-      if (this._camera) {
+      if (this._Camera) {
         var current_render_texture = RenderTexture.active;
-        RenderTexture.active = this._camera.targetTexture;
+        RenderTexture.active = this._Camera.targetTexture;
 
         this._texture.ReadPixels(new Rect(0, 0, this._texture.width, this._texture.height), 0, 0);
         this._texture.Apply();
@@ -167,12 +157,12 @@ namespace Neodroid.Runtime.Prototyping.Observers.Camera {
     }
 
     /// <inheritdoc />
-    ///  <summary>
-    ///  </summary>
+    /// <summary>
+    /// </summary>
     public override void UpdateObservation() {
-      this._grab = true;
-      if (this._manager?.SimulatorConfiguration?.SimulationType != SimulationType.Frame_dependent_) {
-        this._camera.Render();
+      this._Grab = true;
+      if (this._Manager?.SimulatorConfiguration?.SimulationType != SimulationType.Frame_dependent_) {
+        this._Camera.Render();
         this.UpdateBytes();
       }
     }

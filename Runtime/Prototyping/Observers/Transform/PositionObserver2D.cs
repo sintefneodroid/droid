@@ -7,25 +7,39 @@ using UnityEngine;
 
 namespace Neodroid.Runtime.Prototyping.Observers.Transform {
   [AddComponentMenu(
-       ObserverComponentMenuPath._ComponentMenuPath
-       + "PositionObserver2D"
-       + ObserverComponentMenuPath._Postfix), ExecuteInEditMode, Serializable]
+      ObserverComponentMenuPath._ComponentMenuPath
+      + "PositionObserver2D"
+      + ObserverComponentMenuPath._Postfix)]
+  [ExecuteInEditMode]
+  [Serializable]
   public class PositionObserver2D : Observer,
                                     IHasDouble {
-    [Header("Specific", order = 102), SerializeField]
-    ObservationSpace _use_space = ObservationSpace.Environment_;
-
-    [Header("Observation", order = 103), SerializeField]
+    [Header("Observation", order = 103)]
+    [SerializeField]
     Vector2 _2_d_position;
 
-    [SerializeField, SearchableEnum] Dimension2DCombination _dim_combination = Dimension2DCombination.Xz_;
+    [SerializeField] [SearchableEnum] Dimension2DCombination _dim_combination = Dimension2DCombination.Xz_;
 
     [SerializeField] Space2 _position_space;
 
+    [Header("Specific", order = 102)]
+    [SerializeField]
+    ObservationSpace _use_space = ObservationSpace.Environment_;
+
     public ObservationSpace UseSpace { get { return this._use_space; } }
 
+    public Vector2 ObservationValue { get { return this._2_d_position; } set { this._2_d_position = value; } }
+
+    public Space2 ObservationSpace2D {
+      get {
+        return new Space2(this._position_space._Decimal_Granularity) {
+            _Max_Values = new Vector2(this._position_space._Max_Values.x, this._position_space._Max_Values.y),
+            _Min_Values = new Vector2(this._position_space._Min_Values.x, this._position_space._Min_Values.y)
+        };
+      }
+    }
+
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="position"></param>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
@@ -47,17 +61,6 @@ namespace Neodroid.Runtime.Prototyping.Observers.Transform {
       this._2_d_position = this.NormaliseObservation
                                ? this._position_space.ClipNormaliseRound(vector2_pos)
                                : vector2_pos;
-    }
-
-    public Vector2 ObservationValue { get { return this._2_d_position; } set { this._2_d_position = value; } }
-
-    public Space2 ObservationSpace2D {
-      get {
-        return new Space2(this._position_space._Decimal_Granularity) {
-            _Max_Values = new Vector2(this._position_space._Max_Values.x, this._position_space._Max_Values.y),
-            _Min_Values = new Vector2(this._position_space._Min_Values.x, this._position_space._Min_Values.y)
-        };
-      }
     }
 
     public override void UpdateObservation() {

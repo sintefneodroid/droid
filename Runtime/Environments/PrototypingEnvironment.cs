@@ -8,17 +8,15 @@ using Neodroid.Runtime.Prototyping.Evaluation;
 using Neodroid.Runtime.Utilities.BoundingBoxes;
 using Neodroid.Runtime.Utilities.Enums;
 using Neodroid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
-using Neodroid.Runtime.Utilities.Misc.Drawing;
+using Neodroid.Runtime.Utilities.Misc;
 using Neodroid.Runtime.Utilities.Misc.Extensions;
-using Neodroid.Runtime.Utilities.Misc.Grasping;
 using UnityEngine;
-using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 using Object = System.Object;
 
 namespace Neodroid.Runtime.Environments {
   /// <inheritdoc cref="NeodroidEnvironment" />
   /// <summary>
-  /// Environment to be used with the prototyping components.
+  ///   Environment to be used with the prototyping components.
   /// </summary>
   [AddComponentMenu("Neodroid/Environments/PrototypingEnvironment")]
   public class PrototypingEnvironment : NeodroidEnvironment,
@@ -39,7 +37,7 @@ namespace Neodroid.Runtime.Environments {
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log($"Setting up");
+        Debug.Log("Setting up");
       }
       #endif
 
@@ -70,7 +68,7 @@ namespace Neodroid.Runtime.Environments {
       if (this._Configure) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Configuring");
+          Debug.Log("Configuring");
         }
         #endif
         this._Configure = false;
@@ -100,8 +98,9 @@ namespace Neodroid.Runtime.Environments {
         if (actor_value != null && actor_value.Motors != null) {
           foreach (var motor in actor_value.Motors) {
             var motor_value = motor.Value;
-            if (motor_value != null)
+            if (motor_value != null) {
               this._sample_motions.Add(new MotorMotion(actor.Key, motor.Key, motor_value.Sample()));
+            }
           }
         }
       }
@@ -123,7 +122,6 @@ namespace Neodroid.Runtime.Environments {
     }
 
     /// <summary>
-    ///
     /// </summary>
     protected void UpdateObserversData() {
       foreach (var obs in this.Observers.Values) {
@@ -132,7 +130,6 @@ namespace Neodroid.Runtime.Environments {
     }
 
     /// <summary>
-    ///
     /// </summary>
     protected void UpdateConfigurableValues() {
       foreach (var con in this.Configurables.Values) {
@@ -145,37 +142,34 @@ namespace Neodroid.Runtime.Environments {
     #region Fields
 
     /// <summary>
-    ///
     /// </summary>
-    [Header("References", order = 20), SerializeField]
+    [Header("References", order = 20)]
+    [SerializeField]
     ObjectiveFunction _objective_function;
 
     /// <summary>
-    ///
     /// </summary>
-    [Header("General", order = 30), SerializeField]
+    [Header("General", order = 30)]
+    [SerializeField]
     Transform _coordinate_reference_point;
 
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     bool _track_only_children = true;
 
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     CoordinateSystem _coordinate_system = CoordinateSystem.Local_coordinates_;
 
     /// <summary>
-    ///
     /// </summary>
-    [Header("(Optional)", order = 80), SerializeField]
+    [Header("(Optional)", order = 80)]
+    [SerializeField]
     BoundingBox _playable_area;
 
     /// <summary>
-    ///
     /// </summary>
     Object _react_lock = new Object();
 
@@ -190,62 +184,50 @@ namespace Neodroid.Runtime.Environments {
     #region PrivateMembers
 
     /// <summary>
-    ///
     /// </summary>
     Vector3[] _reset_positions;
 
     /// <summary>
-    ///
     /// </summary>
     Quaternion[] _reset_rotations;
 
     /// <summary>
-    ///
     /// </summary>
     GameObject[] _tracked_game_objects;
 
     /// <summary>
-    ///
     /// </summary>
     Vector3[] _reset_velocities;
 
     /// <summary>
-    ///
     /// </summary>
     Vector3[] _reset_angulars;
 
     /// <summary>
-    ///
     /// </summary>
     Rigidbody[] _tracked_rigid_bodies;
 
     /// <summary>
-    ///
     /// </summary>
     Transform[] _poses;
 
     /// <summary>
-    ///
     /// </summary>
     Pose[] _received_poses;
 
     /// <summary>
-    ///
     /// </summary>
     Body[] _received_bodies;
 
     /// <summary>
-    ///
     /// </summary>
     Configuration[] _received_configurations;
 
     /// <summary>
-    ///
     /// </summary>
     Animation[] _animations;
 
     /// <summary>
-    ///
     /// </summary>
     float[] _reset_animation_times;
 
@@ -259,32 +241,26 @@ namespace Neodroid.Runtime.Environments {
     #region Getters
 
     /// <summary>
-    ///
     /// </summary>
     public Dictionary<string, IDisplayer> Displayers { get; } = new Dictionary<string, IDisplayer>();
 
     /// <summary>
-    ///
     /// </summary>
     public Dictionary<string, IConfigurable> Configurables { get; } = new Dictionary<string, IConfigurable>();
 
     /// <summary>
-    ///
     /// </summary>
     public Dictionary<string, IActor> Actors { get; } = new Dictionary<string, IActor>();
 
     /// <summary>
-    ///
     /// </summary>
     public SortedDictionary<string, IObserver> Observers { get; } = new SortedDictionary<string, IObserver>();
 
     /// <summary>
-    ///
     /// </summary>
     public Dictionary<string, IResetable> Resetables { get; } = new Dictionary<string, IResetable>();
 
     /// <summary>
-    ///
     /// </summary>
     public Dictionary<string, IEnvironmentListener> Listeners { get; } =
       new Dictionary<string, IEnvironmentListener>();
@@ -295,7 +271,6 @@ namespace Neodroid.Runtime.Environments {
     public override string PrototypingTypeName { get { return "PrototypingEnvironment"; } }
 
     /// <summary>
-    ///
     /// </summary>
     public IObjective ObjectiveFunction {
       get { return this._objective_function; }
@@ -303,12 +278,10 @@ namespace Neodroid.Runtime.Environments {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     public Transform Transform { get { return this.transform; } }
 
     /// <summary>
-    ///
     /// </summary>
     public BoundingBox PlayableArea {
       get { return this._playable_area; }
@@ -316,7 +289,6 @@ namespace Neodroid.Runtime.Environments {
     }
 
     /// <summary>
-    ///
     /// </summary>
     public Transform CoordinateReferencePoint {
       get { return this._coordinate_reference_point; }
@@ -324,7 +296,6 @@ namespace Neodroid.Runtime.Environments {
     }
 
     /// <summary>
-    ///
     /// </summary>
     public CoordinateSystem CoordinateSystem {
       get { return this._coordinate_system; }
@@ -334,7 +305,8 @@ namespace Neodroid.Runtime.Environments {
     #endregion
 
     /// <summary>
-    /// Termination of an episode, can be supplied with a reason for various purposes debugging or clarification for a learner.
+    ///   Termination of an episode, can be supplied with a reason for various purposes debugging or clarification
+    ///   for a learner.
     /// </summary>
     /// <param name="reason"></param>
     public void Terminate(string reason = "None") {
@@ -497,7 +469,8 @@ namespace Neodroid.Runtime.Environments {
     public void Register(IObserver observer) { this.Register(observer, observer.Identifier); }
 
     /// <inheritdoc />
-    ///     /// <summary>
+    /// ///
+    /// <summary>
     /// </summary>
     /// <param name="observer"></param>
     /// <param name="identifier"></param>
@@ -594,7 +567,6 @@ namespace Neodroid.Runtime.Environments {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="actor"></param>
     public void UnRegister(IActor actor) { this.UnRegister(actor, actor.Identifier); }
@@ -611,7 +583,6 @@ namespace Neodroid.Runtime.Environments {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="observer"></param>
     public void UnRegister(IObserver observer) { this.UnRegister(observer, observer.Identifier); }
@@ -628,7 +599,6 @@ namespace Neodroid.Runtime.Environments {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="configurable"></param>
     public void UnRegister(IConfigurable configurable) {
@@ -647,7 +617,6 @@ namespace Neodroid.Runtime.Environments {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="displayer"></param>
     public void UnRegister(IDisplayer displayer) { this.UnRegister(displayer, displayer.Identifier); }
@@ -664,7 +633,6 @@ namespace Neodroid.Runtime.Environments {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="resetable"></param>
     public void UnRegister(IResetable resetable) { this.UnRegister(resetable, resetable.Identifier); }
@@ -680,9 +648,8 @@ namespace Neodroid.Runtime.Environments {
       }
     }
 
-    ///  <summary>
-    ///
-    ///  </summary>
+    /// <summary>
+    /// </summary>
     /// <param name="environment_listener"></param>
     public void UnRegister(IEnvironmentListener environment_listener) {
       this.UnRegister(environment_listener, environment_listener.Identifier);
@@ -704,7 +671,6 @@ namespace Neodroid.Runtime.Environments {
     #region Transformations
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="position"></param>
     /// <returns></returns>
@@ -725,7 +691,6 @@ namespace Neodroid.Runtime.Environments {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="position"></param>
     /// <returns></returns>
@@ -746,7 +711,6 @@ namespace Neodroid.Runtime.Environments {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="direction"></param>
     /// <returns></returns>
@@ -767,7 +731,6 @@ namespace Neodroid.Runtime.Environments {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="direction"></param>
     /// <returns></returns>
@@ -788,7 +751,6 @@ namespace Neodroid.Runtime.Environments {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="quaternion"></param>
     /// <returns></returns>
@@ -811,7 +773,6 @@ namespace Neodroid.Runtime.Environments {
     #region PrivateMethods
 
     /// <summary>
-    ///
     /// </summary>
     void SaveInitialPoses() {
       var ignored_layer = LayerMask.NameToLayer("IgnoredByNeodroid");
@@ -850,7 +811,6 @@ namespace Neodroid.Runtime.Environments {
     }
 
     /// <summary>
-    ///
     /// </summary>
     void SaveInitialBodies() {
       /*var body_list = new List<Rigidbody>();
@@ -876,7 +836,6 @@ namespace Neodroid.Runtime.Environments {
     }
 
     /// <summary>
-    ///
     /// </summary>
     void SaveInitialAnimations() {
       this._animations = this._tracked_game_objects.Where(go => go != null)
@@ -895,7 +854,6 @@ namespace Neodroid.Runtime.Environments {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <returns></returns>
     IEnumerator SaveInitialBodiesIe() {
@@ -904,18 +862,20 @@ namespace Neodroid.Runtime.Environments {
     }
 
     /// <inheritdoc />
-    ///  <summary>
-    ///  </summary>
-    ///  <returns></returns>
+    /// <summary>
+    /// </summary>
+    /// <returns></returns>
     public override EnvironmentState CollectState() {
       lock (this._react_lock) {
-        if (this.Actors != null)
+        if (this.Actors != null) {
           foreach (var a in this.Actors.Values) {
-            if (a.Motors != null)
+            if (a.Motors != null) {
               foreach (var m in a.Motors.Values) {
                 this._Energy_Spent += m.GetEnergySpend();
               }
+            }
           }
+        }
 
         var signal = 0f;
 
@@ -998,14 +958,10 @@ namespace Neodroid.Runtime.Environments {
     /// <param name="recipient"></param>
     public override void ObservationsString(DataPoller recipient) {
       recipient.PollData(
-          string.Join(
-              "\n\n",
-              this.Observers.Values.Select(e => $"{e.Identifier}:\n{ e.ToString()}")));
+          string.Join("\n\n", this.Observers.Values.Select(e => $"{e.Identifier}:\n{e.ToString()}")));
     }
-    
 
     /// <summary>
-    ///
     /// </summary>
     public override void EnvironmentReset() {
       this._Lastest_Reset_Time = Time.time;
@@ -1028,12 +984,11 @@ namespace Neodroid.Runtime.Environments {
     }
 
     /// <summary>
-    ///
     /// </summary>
     protected void Configure() {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log($"Configure was called");
+        Debug.Log("Configure was called");
       }
       #endif
 
@@ -1068,7 +1023,7 @@ namespace Neodroid.Runtime.Environments {
         foreach (var configuration in this._received_configurations) {
           #if NEODROID_DEBUG
           if (this.Debugging) {
-            Debug.Log($"Configuring configurable with the specified name: " + configuration.ConfigurableName);
+            Debug.Log("Configuring configurable with the specified name: " + configuration.ConfigurableName);
           }
           #endif
           if (this.Configurables.ContainsKey(configuration.ConfigurableName)) {
@@ -1095,7 +1050,6 @@ namespace Neodroid.Runtime.Environments {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="reaction"></param>
     void SendToDisplayers(Reaction reaction) {
@@ -1122,7 +1076,6 @@ namespace Neodroid.Runtime.Environments {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="reaction"></param>
     void SendToMotors(Reaction reaction) {
@@ -1148,22 +1101,18 @@ namespace Neodroid.Runtime.Environments {
     }
 
     /// <summary>
-    ///
     /// </summary>
     public event Action PreStepEvent;
 
     /// <summary>
-    ///
     /// </summary>
     public event Action StepEvent;
 
     /// <summary>
-    ///
     /// </summary>
     public event Action PostStepEvent;
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="reaction"></param>
     void Step(Reaction reaction) {
@@ -1199,7 +1148,6 @@ namespace Neodroid.Runtime.Environments {
     }
 
     /// <summary>
-    ///
     /// </summary>
     protected void ResetRegisteredObjects() {
       #if NEODROID_DEBUG
@@ -1232,7 +1180,6 @@ namespace Neodroid.Runtime.Environments {
     #region EnvironmentStateSetters
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="child_game_objects"></param>
     /// <param name="positions"></param>
@@ -1274,7 +1221,6 @@ namespace Neodroid.Runtime.Environments {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="bodies"></param>
     /// <param name="velocities"></param>

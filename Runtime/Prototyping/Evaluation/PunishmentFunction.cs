@@ -6,16 +6,17 @@ namespace Neodroid.Runtime.Prototyping.Evaluation {
   /// <summary>
   /// </summary>
   [AddComponentMenu(
-       EvaluationComponentMenuPath._ComponentMenuPath
-       + "PunishmentFunction"
-       + EvaluationComponentMenuPath._Postfix), RequireComponent(typeof(Rigidbody))]
+      EvaluationComponentMenuPath._ComponentMenuPath
+      + "PunishmentFunction"
+      + EvaluationComponentMenuPath._Postfix)]
+  [RequireComponent(typeof(Rigidbody))]
   public class PunishmentFunction : ObjectiveFunction {
+    [SerializeField] string _avoid_tag = "balls";
     [SerializeField] int _hits;
 
     //[SerializeField] LayerMask _layer_mask;
 
     [SerializeField] GameObject _player;
-    [SerializeField] string _avoid_tag = "balls";
 
     // Use this for initialization
     /// <inheritdoc />

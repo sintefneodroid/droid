@@ -3,13 +3,14 @@ using UnityEngine;
 
 namespace Neodroid.Runtime.Prototyping.Actors {
   /// <summary>
-  ///
   /// </summary>
   [AddComponentMenu(ActorComponentMenuPath._ComponentMenuPath + "Killable" + ActorComponentMenuPath._Postfix)]
   public class KillableActor : Actor {
     [SerializeField] bool _is_alive = true;
-    public void Kill() { this._is_alive = false; }
     public bool IsAlive { get { return this._is_alive; } }
+
+    public override string PrototypingTypeName { get { return "KillableActor"; } }
+    public void Kill() { this._is_alive = false; }
 
     public override void ApplyMotion(IMotorMotion motion) {
       if (this._is_alive) {
@@ -22,8 +23,6 @@ namespace Neodroid.Runtime.Prototyping.Actors {
         #endif
       }
     }
-
-    public override string PrototypingTypeName { get { return "KillableActor"; } }
 
     public override void EnvironmentReset() {
       base.EnvironmentReset();

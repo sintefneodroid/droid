@@ -4,10 +4,8 @@ using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Managers;
 using Neodroid.Runtime.Messaging.Messages;
 using Neodroid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
-using Neodroid.Runtime.Utilities.Misc.Drawing;
-using Neodroid.Runtime.Utilities.Misc.Grasping;
+using Neodroid.Runtime.Utilities.Misc;
 using UnityEngine;
-using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 using Random = UnityEngine.Random;
 
 namespace Neodroid.Runtime.Environments {
@@ -17,74 +15,62 @@ namespace Neodroid.Runtime.Environments {
   [AddComponentMenu("Neodroid/Environments/ScriptedEnvironment")]
   public class ScriptedEnvironment : NeodroidEnvironment {
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     Renderer _actor_renderer;
 
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     int _actor_x;
 
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     int _actor_y;
 
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     Renderer _goal_renderer;
 
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     int _goal_x;
 
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     int _goal_y;
 
     /// <summary>
-    ///
     /// </summary>
     int[,] _grid;
 
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     int _height;
 
+    List<IMotorMotion> _motions = new List<IMotorMotion>();
+
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     IManager _time_simulation_manager;
 
-    List<IMotorMotion> _motions = new List<IMotorMotion>();
-
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     int _width;
 
     /// <inheritdoc />
     /// <summary>
-    ///
     /// </summary>
     public override string PrototypingTypeName { get { return "ScriptedEnvironment"; } }
 
     /// <summary>
-    ///
     /// </summary>
     public int ActorX {
       get { return this._actor_x; }
@@ -92,7 +78,6 @@ namespace Neodroid.Runtime.Environments {
     }
 
     /// <summary>
-    ///
     /// </summary>
     public int ActorY {
       get { return this._actor_y; }
@@ -100,7 +85,6 @@ namespace Neodroid.Runtime.Environments {
     }
 
     /// <summary>
-    ///
     /// </summary>
     public int GoalX {
       get { return this._goal_x; }
@@ -108,7 +92,6 @@ namespace Neodroid.Runtime.Environments {
     }
 
     /// <summary>
-    ///
     /// </summary>
     public int GoalY {
       get { return this._goal_y; }
@@ -117,7 +100,6 @@ namespace Neodroid.Runtime.Environments {
 
     /// <inheritdoc />
     /// <summary>
-    ///
     /// </summary>
     protected override void Setup() {
       this._grid = new int[this._width, this._height];
@@ -129,7 +111,7 @@ namespace Neodroid.Runtime.Environments {
         }
       }
 
-      this._time_simulation_manager = (IManager)NeodroidUtilities.RegisterComponent(
+      this._time_simulation_manager = NeodroidUtilities.RegisterComponent(
           (NeodroidManager)this._time_simulation_manager,
           this);
     }
@@ -149,7 +131,6 @@ namespace Neodroid.Runtime.Environments {
 
     /// <inheritdoc />
     /// <summary>
-    ///
     /// </summary>
     /// <returns></returns>
     public override Reaction SampleReaction() {
@@ -164,7 +145,6 @@ namespace Neodroid.Runtime.Environments {
 
     /// <inheritdoc />
     /// <summary>
-    ///
     /// </summary>
     /// <param name="reaction"></param>
     /// <returns></returns>

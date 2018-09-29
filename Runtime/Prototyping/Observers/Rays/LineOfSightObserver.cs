@@ -8,22 +8,23 @@ namespace Neodroid.Runtime.Prototyping.Observers.Rays {
   /// <summary>
   /// </summary>
   [AddComponentMenu(
-       ObserverComponentMenuPath._ComponentMenuPath + "LineOfSight" + ObserverComponentMenuPath._Postfix),
-   ExecuteInEditMode, Serializable]
+      ObserverComponentMenuPath._ComponentMenuPath + "LineOfSight" + ObserverComponentMenuPath._Postfix)]
+  [ExecuteInEditMode]
+  [Serializable]
   public class LineOfSightObserver : Observer,
                                      IHasSingle {
     RaycastHit _hit;
 
     [SerializeField] float _obs_value;
 
-    [Header("Specific", order = 102), SerializeField]
-    UnityEngine.Transform _target;
-
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     ValueSpace _observation_value_space;
+
+    [Header("Specific", order = 102)]
+    [SerializeField]
+    UnityEngine.Transform _target;
 
     public override string PrototypingTypeName { get { return "LineOfSight"; } }
 

@@ -1,9 +1,7 @@
 ﻿using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Prototyping.Actors;
-using Neodroid.Runtime.Utilities.Misc.Drawing;
-using Neodroid.Runtime.Utilities.Misc.Grasping;
+using Neodroid.Runtime.Utilities.Misc;
 using UnityEngine;
-using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 
 namespace Neodroid.Runtime.Prototyping.Motors {
   /// <inheritdoc />
@@ -15,57 +13,50 @@ namespace Neodroid.Runtime.Prototyping.Motors {
       + MotorComponentMenuPath._Postfix)]
   public class EulerTransformMotor3Dof : Motor {
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     protected string _Layer_Mask = "Obstructions";
 
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     protected bool _No_Collisions = true;
 
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     protected Space _Relative_To = Space.Self;
 
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     protected bool _Rotational_Motors;
 
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     protected bool _Use_Mask = true;
 
     /// <summary>
-    /// XAxisIdentifier
+    ///   XAxisIdentifier
     /// </summary>
     string _x;
 
     /// <summary>
-    /// YAxisIdentifier
+    ///   YAxisIdentifier
     /// </summary>
     string _y;
 
     /// <summary>
-    /// ZAxisIdentifier
+    ///   ZAxisIdentifier
     /// </summary>
     string _z;
 
     /// <summary>
-    ///
     /// </summary>
     public override string PrototypingTypeName { get { return "Transform"; } }
 
     /// <summary>
-    ///
     /// </summary>
     protected override void Setup() {
       if (!this._Rotational_Motors) {
@@ -80,25 +71,14 @@ namespace Neodroid.Runtime.Prototyping.Motors {
     }
 
     /// <summary>
-    ///
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentActor = NeodroidUtilities.RegisterComponent(
-          (Actor)this.ParentActor,
-          (Motor)this,
-          this._x);
-      this.ParentActor = NeodroidUtilities.RegisterComponent(
-          (Actor)this.ParentActor,
-          (Motor)this,
-          this._y);
-      this.ParentActor = NeodroidUtilities.RegisterComponent(
-          (Actor)this.ParentActor,
-          (Motor)this,
-          this._z);
+      this.ParentActor = NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Motor)this, this._x);
+      this.ParentActor = NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Motor)this, this._y);
+      this.ParentActor = NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Motor)this, this._z);
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="motion"></param>
     protected override void InnerApplyMotion(IMotorMotion motion) {

@@ -2,40 +2,42 @@
 using Neodroid.Runtime.Environments;
 using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Prototyping.Actors;
-using Neodroid.Runtime.Utilities.Misc.Drawing;
-using Neodroid.Runtime.Utilities.Misc.Grasping;
+using Neodroid.Runtime.Utilities.Misc;
 using UnityEngine;
-using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 
 namespace Neodroid.Runtime.Prototyping.Motors {
   /// <inheritdoc cref="Motor" />
   /// <summary>
   /// </summary>
   [AddComponentMenu(
-       MotorComponentMenuPath._ComponentMenuPath + "TargetRigidbody" + MotorComponentMenuPath._Postfix),
-   RequireComponent(typeof(Rigidbody))]
+      MotorComponentMenuPath._ComponentMenuPath + "TargetRigidbody" + MotorComponentMenuPath._Postfix)]
+  [RequireComponent(typeof(Rigidbody))]
   public class TargetRigidbodyMotor : Motor,
                                       IEnvironmentListener {
+    string _movement;
+    IPrototypingEnvironment _parent_environment;
+
     /// <summary>
-    /// 
     /// </summary>
     [SerializeField]
     protected Rigidbody _Rigidbody;
 
-    string _movement;
     string _turn;
-    Single _movement_speed;
-    Single _rotation_speed;
-    IPrototypingEnvironment _parent_environment;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override string PrototypingTypeName { get { return "TargetRigidbody"; } }
 
-    public Single MovementSpeed { get { return this._movement_speed; } }
+    public Single MovementSpeed { get; set; }
 
-    public Single RotationSpeed { get { return this._rotation_speed; } }
+    public Single RotationSpeed { get; set; }
+
+    public void PreStep() { }
+
+    public void Step() { this.OnStep(); }
+
+    public void PostStep() { }
 
     /// <inheritdoc />
     /// <summary>
@@ -83,28 +85,22 @@ namespace Neodroid.Runtime.Prototyping.Motors {
       }
     }
 
-    void ApplyRotation(float rotation_change = 0f) { this._rotation_speed = rotation_change; }
+    void ApplyRotation(float rotation_change = 0f) { this.RotationSpeed = rotation_change; }
 
-    void ApplyMovement(float movement_change = 0f) { this._movement_speed = movement_change; }
+    void ApplyMovement(float movement_change = 0f) { this.MovementSpeed = movement_change; }
 
     void OnStep() {
       this._Rigidbody.velocity = Vector3.zero;
       this._Rigidbody.angularVelocity = Vector3.zero;
 
       // Move
-      var movement = this.transform.forward * this._movement_speed * Time.deltaTime;
+      var movement = this.transform.forward * this.MovementSpeed * Time.deltaTime;
       this._Rigidbody.MovePosition(this._Rigidbody.position + movement);
 
       // Turn
-      var turn = this._rotation_speed * Time.deltaTime;
+      var turn = this.RotationSpeed * Time.deltaTime;
       var turn_rotation = Quaternion.Euler(0f, turn, 0f);
       this._Rigidbody.MoveRotation(this._Rigidbody.rotation * turn_rotation);
     }
-
-    public void PreStep() { }
-
-    public void Step() { this.OnStep(); }
-
-    public void PostStep() { }
   }
 }

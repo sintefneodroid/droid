@@ -1,10 +1,8 @@
 ﻿using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Utilities.Misc.Drawing;
-using Neodroid.Runtime.Utilities.Misc.Grasping;
 using Neodroid.Runtime.Utilities.Misc.Grid;
 using Neodroid.Runtime.Utilities.Structs;
 using UnityEngine;
-using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 
 namespace Neodroid.Runtime.Prototyping.Observers.Grid {
   [AddComponentMenu(
@@ -19,12 +17,10 @@ namespace Neodroid.Runtime.Prototyping.Observers.Grid {
     [SerializeField] int _order_index;
 
     /// <summary>
-    /// 
     /// </summary>
     public int OrderIndex { get { return this._order_index; } set { this._order_index = value; } }
 
     /// <summary>
-    /// 
     /// </summary>
     public bool DrawNames { get { return this._draw_names; } set { this._draw_names = value; } }
 
@@ -34,7 +30,6 @@ namespace Neodroid.Runtime.Prototyping.Observers.Grid {
     public override string PrototypingTypeName { get { return "GoalObserver"; } }
 
     /// <summary>
-    /// 
     /// </summary>
     public EmptyCell CurrentGoal {
       get {
@@ -53,12 +48,11 @@ namespace Neodroid.Runtime.Prototyping.Observers.Grid {
     }
 
     /// <inheritdoc />
-    ///  <summary>
-    ///  </summary>
+    /// <summary>
+    /// </summary>
     public Space3 TripleSpace { get; } = new Space3();
 
     /// <summary>
-    /// 
     /// </summary>
     public override void UpdateObservation() {
       if (this._current_goal) {

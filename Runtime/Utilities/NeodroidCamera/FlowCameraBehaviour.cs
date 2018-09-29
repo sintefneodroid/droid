@@ -4,38 +4,34 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [ExecuteInEditMode, RequireComponent(typeof(Camera))]
+  [ExecuteInEditMode]
+  [RequireComponent(typeof(Camera))]
   public class FlowCameraBehaviour : MonoBehaviour {
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     Color _background_color = Color.white;
 
-    [SerializeField, Range(0, 1)] float _blending = 0.5f;
-
-    [SerializeField, Range(0, 100)] float _overlay_amplitude = 60;
+    [SerializeField] [Range(0, 1)] float _blending = 0.5f;
 
     /// <summary>
-    ///
     /// </summary>
     Material _material;
 
+    [SerializeField] [Range(0, 100)] float _overlay_amplitude = 60;
+
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     Shader _shader;
 
     /// <summary>
-    ///
     /// </summary>
     void Awake() {
       this.GetComponent<Camera>().depthTextureMode |= DepthTextureMode.Depth | DepthTextureMode.MotionVectors;
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="source"></param>
     /// <param name="destination"></param>
@@ -57,7 +53,6 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera {
     }
 
     /// <summary>
-    ///
     /// </summary>
     void OnDestroy() {
       if (this._material != null) {

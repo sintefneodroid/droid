@@ -16,17 +16,15 @@ namespace Neodroid.Editor.Windows {
     bool[] _show_camera_properties;
 
     /// <summary>
-    /// 
     /// </summary>
-    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "CameraSynchronisationWindow"),
-     MenuItem(EditorWindowMenuPath._ToolMenuPath + "CameraSynchronisationWindow")]
+    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "CameraSynchronisationWindow")]
+    [MenuItem(EditorWindowMenuPath._ToolMenuPath + "CameraSynchronisationWindow")]
     public static void ShowWindow() {
       GetWindow(
           typeof(CameraSynchronisationWindow)); //Show existing window instance. If one doesn't exist, make one.
     }
 
     /// <summary>
-    /// 
     /// </summary>
     void OnEnable() {
       this._cameras = FindObjectsOfType<SynchroniseCameraProperties>();
@@ -41,7 +39,6 @@ namespace Neodroid.Editor.Windows {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     void Setup() {
       this._show_camera_properties = new bool[this._cameras.Length];
@@ -51,7 +48,6 @@ namespace Neodroid.Editor.Windows {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     void OnGUI() {
       this._cameras = FindObjectsOfType<SynchroniseCameraProperties>();
@@ -94,7 +90,6 @@ namespace Neodroid.Editor.Windows {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     public void OnInspectorUpdate() { this.Repaint(); }
   }

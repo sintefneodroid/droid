@@ -1,11 +1,8 @@
-﻿using System;
-using Neodroid.Runtime.Environments;
+﻿using Neodroid.Runtime.Environments;
 using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Messaging.Messages;
-using Neodroid.Runtime.Utilities.Misc.Drawing;
-using Neodroid.Runtime.Utilities.Misc.Grasping;
+using Neodroid.Runtime.Utilities.Misc;
 using UnityEngine;
-using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 using Random = System.Random;
 
 namespace Neodroid.Runtime.Prototyping.Configurables {
@@ -13,37 +10,36 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
   /// <summary>
   /// </summary>
   [AddComponentMenu(
-       ConfigurableComponentMenuPath._ComponentMenuPath + "Color" + ConfigurableComponentMenuPath._Postfix),
-   RequireComponent(typeof(Renderer))]
+      ConfigurableComponentMenuPath._ComponentMenuPath + "Color" + ConfigurableComponentMenuPath._Postfix)]
+  [RequireComponent(typeof(Renderer))]
   public class ColorConfigurable : Configurable {
     /// <summary>
-    /// Alpha
+    ///   Alpha
     /// </summary>
     string _a;
 
     /// <summary>
-    /// Blue
+    ///   Blue
     /// </summary>
     string _b;
 
     /// <summary>
-    /// Green
+    ///   Green
     /// </summary>
     string _g;
 
     /// <summary>
-    /// Red
+    ///   Red
     /// </summary>
     string _r;
 
     /// <summary>
-    ///
     /// </summary>
     Renderer _renderer;
 
     /// <inheritdoc />
-    ///  <summary>
-    ///  </summary>
+    /// <summary>
+    /// </summary>
     public override string PrototypingTypeName { get { return "ColorConfigurable"; } }
 
     /// <inheritdoc />
@@ -59,8 +55,8 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     }
 
     /// <inheritdoc />
-    ///  <summary>
-    ///  </summary>
+    /// <summary>
+    /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
@@ -81,10 +77,12 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     protected override void UnRegisterComponent() {
-      if (this.ParentEnvironment == null) return;
+      if (this.ParentEnvironment == null) {
+        return;
+      }
+
       this.ParentEnvironment.UnRegister(this, this._r);
       this.ParentEnvironment.UnRegister(this, this._g);
       this.ParentEnvironment.UnRegister(this, this._b);
@@ -92,7 +90,6 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {

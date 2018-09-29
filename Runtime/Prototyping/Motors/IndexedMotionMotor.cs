@@ -4,31 +4,26 @@ using UnityEngine;
 
 namespace Neodroid.Runtime.Prototyping.Motors {
   /// <summary>
-  /// 
   /// </summary>
   [AddComponentMenu(
       MotorComponentMenuPath._ComponentMenuPath + "IndexedMotion" + MotorComponentMenuPath._Postfix)]
   public class IndexedMotionMotor : Motor {
     /// <summary>
-    /// 
     /// </summary>
     [SerializeField]
     protected string _Layer_Mask = "Obstructions";
 
     /// <summary>
-    /// 
     /// </summary>
     [SerializeField]
     protected bool _No_Collisions = true;
 
     /// <summary>
-    /// 
     /// </summary>
     [SerializeField]
     protected Space _Relative_To = Space.Self;
 
     /// <summary>
-    /// 
     /// </summary>
     public override string PrototypingTypeName { get { return "IndexedMotion"; } }
 

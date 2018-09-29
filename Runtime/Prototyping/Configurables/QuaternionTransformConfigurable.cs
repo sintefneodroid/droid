@@ -1,7 +1,5 @@
-﻿using System;
-using Neodroid.Runtime.Interfaces;
+﻿using Neodroid.Runtime.Interfaces;
 using UnityEngine;
-using Random = System.Random;
 
 namespace Neodroid.Runtime.Prototyping.Configurables {
   [AddComponentMenu(
@@ -10,36 +8,36 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
       + ConfigurableComponentMenuPath._Postfix)]
   public class QuaternionTransformConfigurable : Configurable,
                                                  IHasQuaternionTransform {
-    [Header("Specific", order = 102), SerializeField]
-    Vector3 _position;
-
-    [SerializeField] Quaternion _rotation;
-
     [SerializeField] string _pos_x = "pos_x";
 
     [SerializeField] string _pos_y = "pos_y";
 
     [SerializeField] string _pos_z = "pos_z";
 
+    [Header("Specific", order = 102)]
+    [SerializeField]
+    Vector3 _position;
+
+    [SerializeField] string _rot_w = "row_w";
+
     [SerializeField] string _rot_x = "rot_x";
     [SerializeField] string _rot_y = "rot_y";
     [SerializeField] string _rot_z = "rot_z";
-    [SerializeField] string _rot_w = "row_w";
 
-    /// <summary>
-    /// 
-    /// </summary>
-    public Quaternion Rotation { get { return this._rotation; } }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public Vector3 Position { get { return this._position; } }
+    [SerializeField] Quaternion _rotation;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override string PrototypingTypeName { get { return "QuaternionTransformConfigurable"; } }
+
+    /// <summary>
+    /// </summary>
+    public Quaternion Rotation { get { return this._rotation; } }
+
+    /// <summary>
+    /// </summary>
+    public Vector3 Position { get { return this._position; } }
 
     protected override void PreSetup() {
       this._pos_x = this.Identifier + "pos_x";

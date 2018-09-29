@@ -13,11 +13,11 @@ namespace Neodroid.Runtime.Managers {
     //[SerializeField] bool _blocked;
     #if UNITY_EDITOR
     /// <summary>
-    ///
     /// </summary>
     [Header(
-         "Warning! Will block editor requiring a restart, if not terminated while receiving.",
-         order = 120), SerializeField]
+        "Warning! Will block editor requiring a restart, if not terminated while receiving.",
+        order = 120)]
+    [SerializeField]
     bool _allow_in_editor_blockage;
     #endif
 
@@ -26,7 +26,6 @@ namespace Neodroid.Runtime.Managers {
     #region UnityCallbacks
 
     /// <summary>
-    ///
     /// </summary>
     protected new void Awake() {
       base.Awake();
@@ -53,7 +52,6 @@ namespace Neodroid.Runtime.Managers {
     #region PrivateMethods
 
     /// <summary>
-    ///
     /// </summary>
     void MaybeResume() {
       if (this.Stepping) {
@@ -82,12 +80,10 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     public bool IsSimulationPaused { get { return !(this.SimulationTimeScale > 0); } }
 
     /// <summary>
-    ///
     /// </summary>
     void PauseSimulation() {
       #if NEODROID_DEBUG
@@ -99,7 +95,6 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="simulation_time_scale"></param>
     void ResumeSimulation(float simulation_time_scale) {
@@ -119,7 +114,6 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     void Receive() {
       var reaction = this._Message_Server.Receive(TimeSpan.Zero);

@@ -2,11 +2,9 @@
 
 namespace Neodroid.Runtime.Utilities.Misc.Grasping {
   /// <summary>
-  /// 
   /// </summary>
   public static class GraspingUtilities {
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="p"></param>
     /// <param name="r"></param>
@@ -33,7 +31,6 @@ namespace Neodroid.Runtime.Utilities.Misc.Grasping {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="x_size"></param>
     /// <param name="y_size"></param>
@@ -101,7 +98,6 @@ namespace Neodroid.Runtime.Utilities.Misc.Grasping {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="old_transforms"></param>
     /// <param name="newly_acquired_transforms"></param>
@@ -127,7 +123,6 @@ namespace Neodroid.Runtime.Utilities.Misc.Grasping {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="object_transform"></param>
     /// <returns></returns>
@@ -163,7 +158,6 @@ namespace Neodroid.Runtime.Utilities.Misc.Grasping {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="object_transform"></param>
     /// <returns></returns>
@@ -188,7 +182,6 @@ namespace Neodroid.Runtime.Utilities.Misc.Grasping {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="g"></param>
     /// <returns></returns>

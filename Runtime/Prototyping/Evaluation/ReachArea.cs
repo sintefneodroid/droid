@@ -1,11 +1,9 @@
 ﻿using Neodroid.Runtime.Prototyping.Actors;
 using Neodroid.Runtime.Prototyping.Observers;
 using Neodroid.Runtime.Utilities.BoundingBoxes;
-using Neodroid.Runtime.Utilities.Misc.Drawing;
+using Neodroid.Runtime.Utilities.Misc;
 using Neodroid.Runtime.Utilities.Misc.Extensions;
-using Neodroid.Runtime.Utilities.Misc.Grasping;
 using UnityEngine;
-using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 
 namespace Neodroid.Runtime.Prototyping.Evaluation {
   enum ActorOverlapping {

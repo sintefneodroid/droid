@@ -23,10 +23,10 @@ namespace Neodroid.Editor.GameObjects {
   /// <summary>
   /// </summary>
   public class PrefabsPopup : PopupWindowContent {
+    Vector2 _scroll_position;
     bool _updated_pos;
     int _x_size = 300;
     int _y_size = 200;
-    Vector2 _scroll_position;
 
     public override Vector2 GetWindowSize() { return new Vector2(this._x_size, this._y_size); }
 

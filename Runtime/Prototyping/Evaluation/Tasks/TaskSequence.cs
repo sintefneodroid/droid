@@ -7,7 +7,6 @@ using UnityEngine;
 namespace Neodroid.Runtime.Prototyping.Evaluation.Tasks {
   //[ExecuteInEditMode]
   /// <summary>
-  /// 
   /// </summary>
   public class TaskSequence : NeodroidTask {
     [SerializeField] GoalCellObserver _current_goal_cell;

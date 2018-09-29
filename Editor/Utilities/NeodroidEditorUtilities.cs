@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Neodroid.Editor.Utilities {
   /// <summary>
-  ///
   /// </summary>
   public static class NeodroidEditorUtilities {
     static GUIStyle _default_link_style = new GUIStyle(EditorStyles.label) {
@@ -15,7 +14,6 @@ namespace Neodroid.Editor.Utilities {
     };
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="label"></param>
     /// <param name="link_style"></param>

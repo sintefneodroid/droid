@@ -1,59 +1,49 @@
 ﻿using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Prototyping.Actors;
-using Neodroid.Runtime.Utilities.Misc.Drawing;
-using Neodroid.Runtime.Utilities.Misc.Grasping;
+using Neodroid.Runtime.Utilities.Misc;
 using UnityEngine;
-using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 
 namespace Neodroid.Runtime.Prototyping.Motors {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
   [AddComponentMenu(
-       MotorComponentMenuPath._ComponentMenuPath + "RigidbodyMotor3Dof" + MotorComponentMenuPath._Postfix),
-   RequireComponent(typeof(Rigidbody))]
+      MotorComponentMenuPath._ComponentMenuPath + "RigidbodyMotor3Dof" + MotorComponentMenuPath._Postfix)]
+  [RequireComponent(typeof(Rigidbody))]
   public class RigidbodyMotor3Dof : Motor {
     /// <summary>
-    ///
-    /// </summary>
-    [SerializeField]
-    protected Space _Relative_To = Space.Self;
-
-    /// <summary>
-    ///
-    /// </summary>
-    [SerializeField]
-    protected Rigidbody _Rigidbody;
-
-    /// <summary>
-    ///
-    /// </summary>
-    [SerializeField]
-    protected ForceMode _ForceMode = ForceMode.Force;
-
-    /// <summary>
-    /// 
     /// </summary>
     [SerializeField]
     protected bool _Angular_Motors;
 
     /// <summary>
-    ///
+    /// </summary>
+    [SerializeField]
+    protected ForceMode _ForceMode = ForceMode.Force;
+
+    /// <summary>
+    /// </summary>
+    [SerializeField]
+    protected Space _Relative_To = Space.Self;
+
+    /// <summary>
+    /// </summary>
+    [SerializeField]
+    protected Rigidbody _Rigidbody;
+
+    /// <summary>
     /// </summary>
     string _x;
 
     /// <summary>
-    ///
     /// </summary>
     string _y;
 
     /// <summary>
-    ///
     /// </summary>
     string _z;
 
     /// <summary>
-    ///
     /// </summary>
     public override string PrototypingTypeName { get { return "Rigidbody"; } }
 
@@ -63,8 +53,8 @@ namespace Neodroid.Runtime.Prototyping.Motors {
     protected override void Setup() { this._Rigidbody = this.GetComponent<Rigidbody>(); }
 
     /// <inheritdoc />
-    ///  <summary>
-    ///  </summary>
+    /// <summary>
+    /// </summary>
     protected override void RegisterComponent() {
       this._x = this.Identifier + "X_";
       this._y = this.Identifier + "Y_";
@@ -75,22 +65,12 @@ namespace Neodroid.Runtime.Prototyping.Motors {
         this._z = this.Identifier + "RotZ_";
       }
 
-      this.ParentActor = NeodroidUtilities.RegisterComponent(
-          (Actor)this.ParentActor,
-          (Motor)this,
-          this._x);
-      this.ParentActor = NeodroidUtilities.RegisterComponent(
-          (Actor)this.ParentActor,
-          (Motor)this,
-          this._y);
-      this.ParentActor = NeodroidUtilities.RegisterComponent(
-          (Actor)this.ParentActor,
-          (Motor)this,
-          this._z);
+      this.ParentActor = NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Motor)this, this._x);
+      this.ParentActor = NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Motor)this, this._y);
+      this.ParentActor = NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Motor)this, this._z);
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="motion"></param>
     protected override void InnerApplyMotion(IMotorMotion motion) {

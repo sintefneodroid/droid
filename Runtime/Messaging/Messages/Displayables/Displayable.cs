@@ -1,31 +1,16 @@
-﻿using System;
-
-namespace Neodroid.Runtime.Messaging.Messages.Displayables {
+﻿namespace Neodroid.Runtime.Messaging.Messages.Displayables {
   /// <summary>
-  /// 
   /// </summary>
   public abstract class Displayable {
-    String _displayable_name;
-    dynamic _displayable_value;
-
     /// <summary>
-    /// 
     /// </summary>
-    public virtual string DisplayableName {
-      get { return this._displayable_name; }
-      set { this._displayable_name = value; }
-    }
+    public virtual string DisplayableName { get; set; }
 
     /// <summary>
-    /// 
     /// </summary>
-    public virtual dynamic DisplayableValue {
-      get { return this._displayable_value; }
-      set { this._displayable_value = value; }
-    }
+    public virtual dynamic DisplayableValue { get; set; }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <returns></returns>
     public override string ToString() {

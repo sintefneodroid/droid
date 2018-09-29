@@ -12,7 +12,6 @@ using UnityEngine;
 namespace Neodroid.Editor.GameObjects {
   public class PrebuiltSpawner : MonoBehaviour {
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="menu_command"></param>
     [MenuItem(EditorGameObjectMenuPath._GameObjectMenuPath + "Prebuilt/SimpleEnvironment", false, 10)]

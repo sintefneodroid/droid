@@ -6,8 +6,8 @@ using UnityEngine;
 
 namespace Neodroid.Runtime.Prototyping.Internals.StateValidation {
   /// <inheritdoc />
-  ///  <summary>
-  ///  </summary>
+  /// <summary>
+  /// </summary>
   public class EnsureValidState : EnvironmentListener {
     [SerializeField] Actor _actor;
 
@@ -15,17 +15,21 @@ namespace Neodroid.Runtime.Prototyping.Internals.StateValidation {
     [SerializeField] Transform _goal;
 
     [SerializeField] Obstruction[] _obstructions;
-
-    [SerializeField] BoundingBox _playable_area;
     [SerializeField] bool _only_initial_state = true;
 
+    [SerializeField] BoundingBox _playable_area;
+
     /// <summary>
-    /// 
     /// </summary>
     public PrototypingEnvironment ParentEnvironment {
       get { return this._environment; }
       set { this._environment = value; }
     }
+
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public override string PrototypingTypeName { get { return "ValidityChecker"; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -53,7 +57,6 @@ namespace Neodroid.Runtime.Prototyping.Internals.StateValidation {
     }
 
     /// <summary>
-    ///
     /// </summary>
     void ValidateState() {
       if (this._only_initial_state && this._environment.CurrentFrameNumber != 0) {
@@ -97,10 +100,5 @@ namespace Neodroid.Runtime.Prototyping.Internals.StateValidation {
     /// <summary>
     /// </summary>
     public override void PostStep() { this.ValidateState(); }
-
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "ValidityChecker"; } }
   }
 }

@@ -2,12 +2,10 @@
 
 namespace Neodroid.Runtime.Messaging.FBS {
   /// <summary>
-  ///
   /// </summary>
   public static class CustomFlatBufferImplementation {
     //Custom implementation of copying bytearray, faster than generated code
     /// <summary>
-    ///
     /// </summary>
     /// <param name="builder"></param>
     /// <param name="data"></param>
@@ -25,7 +23,6 @@ namespace Neodroid.Runtime.Messaging.FBS {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="builder"></param>
     /// <param name="data"></param>

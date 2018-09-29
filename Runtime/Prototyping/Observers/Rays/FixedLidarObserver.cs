@@ -7,17 +7,19 @@ namespace Neodroid.Runtime.Prototyping.Observers.Rays {
       ObserverComponentMenuPath._ComponentMenuPath + "FixedLidar" + ObserverComponentMenuPath._Postfix)]
   public class FixedLidarObserver : Observer,
                                     IHasArray {
-    [SerializeField] float _range = 100.0f;
     [SerializeField] RaycastHit _hit;
 
     [SerializeField] bool _is_2_d;
 
-    [Header("Observation", order = 103), SerializeField]
+    [Header("Observation", order = 103)]
+    [SerializeField]
     float[] _obs_array;
 
     [SerializeField]
     ValueSpace _observation_value_space =
         new ValueSpace {_Decimal_Granularity = 10, _Min_Value = 0.0f, _Max_Value = 100.0f};
+
+    [SerializeField] float _range = 100.0f;
 
     public override string PrototypingTypeName { get { return "Lidar"; } }
 

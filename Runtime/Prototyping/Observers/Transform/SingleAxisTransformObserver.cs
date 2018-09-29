@@ -8,14 +8,14 @@ namespace Neodroid.Runtime.Prototyping.Observers.Transform {
   /// <summary>
   /// </summary>
   [AddComponentMenu(
-       ObserverComponentMenuPath._ComponentMenuPath
-       + "SingleAxisTransform"
-       + ObserverComponentMenuPath._Postfix), ExecuteInEditMode]
+      ObserverComponentMenuPath._ComponentMenuPath
+      + "SingleAxisTransform"
+      + ObserverComponentMenuPath._Postfix)]
+  [ExecuteInEditMode]
   public class SingleAxisTransformObserver : ValueObserver {
-    [SerializeField, SearchableEnum] Axis _dim = Axis.X_;
+    [SerializeField] [SearchableEnum] Axis _dim = Axis.X_;
 
     /// <summary>
-    /// 
     /// </summary>
     protected override void PreSetup() { this.FloatEnumerable = new[] {this.ObservationValue}; }
 

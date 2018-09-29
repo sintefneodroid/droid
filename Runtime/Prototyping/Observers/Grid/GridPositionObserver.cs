@@ -8,29 +8,26 @@ namespace Neodroid.Runtime.Prototyping.Observers.Grid {
   public class GridPositionObserver : Observer,
                                       IHasSingle {
     /// <summary>
-    ///
     /// </summary>
     int[,] _grid;
 
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     int _height;
 
-    [Header("Observation", order = 103), SerializeField]
+    [Header("Observation", order = 103)]
+    [SerializeField]
     float _observation_value;
 
     [SerializeField] ValueSpace _observation_value_space;
     [SerializeField] int _width;
 
     /// <summary>
-    ///
     /// </summary>
     public override string PrototypingTypeName { get { return "Value"; } }
 
     /// <summary>
-    ///
     /// </summary>
     public float ObservationValue {
       get { return this._observation_value; }

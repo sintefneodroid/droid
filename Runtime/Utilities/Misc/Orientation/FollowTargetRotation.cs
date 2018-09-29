@@ -3,14 +3,13 @@
 namespace Neodroid.Runtime.Utilities.Misc.Orientation {
   [ExecuteInEditMode]
   public class FollowTargetRotation : MonoBehaviour {
-    /// <summary>
-    /// 
-    /// </summary>
-    public Transform _TargetPose;
+    [SerializeField] Vector3 _forward;
 
     public Quaternion _Rot;
 
-    [SerializeField] Vector3 _forward;
+    /// <summary>
+    /// </summary>
+    public Transform _TargetPose;
 
     void LateUpdate() {
       if (this._TargetPose) {

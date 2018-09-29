@@ -9,6 +9,7 @@ namespace Neodroid.Runtime.Utilities.Misc.Extensions {
   public class JointFix : MonoBehaviour {
     JointDrive[] _angular_x_drive;
     Rigidbody[] _connected_bodies;
+    bool[] _enable_processings;
     float[] _force_break_limits;
     Vector3 _initial_local_position;
     Quaternion _initial_local_rotation;
@@ -16,31 +17,30 @@ namespace Neodroid.Runtime.Utilities.Misc.Extensions {
 
     Joint[] _joints;
     JointLimits[] _limits;
+    SoftJointLimitSpring[] _linear_limit_springs;
+    SoftJointLimit[] _linear_limits;
     Vector3 _local_position_on_disable;
 
     Quaternion _local_rotation_on_disable;
+    JointDrive[] _slerp_drives;
+    Vector3[] _target_angulars;
+    Vector3[] _target_positions;
     Quaternion[] _target_rotations;
+    Vector3[] _target_velocities;
     float[] _torque_break_limits;
 
     bool _was_disabled;
     SoftJointLimit[] _x_ang_high_limits;
     SoftJointLimit[] _x_ang_low_limits;
     ConfigurableJointMotion[] _x_ang_motion;
+    JointDrive[] _x_drives;
     ConfigurableJointMotion[] _x_motion;
     ConfigurableJointMotion[] _y_ang_motion;
+    JointDrive[] _y_drives;
     ConfigurableJointMotion[] _y_motion;
     ConfigurableJointMotion[] _z_ang_motion;
-    ConfigurableJointMotion[] _z_motion;
-    Vector3[] _target_angulars;
-    Vector3[] _target_positions;
-    Vector3[] _target_velocities;
-    JointDrive[] _x_drives;
-    JointDrive[] _y_drives;
     JointDrive[] _z_drives;
-    SoftJointLimit[] _linear_limits;
-    SoftJointLimitSpring[] _linear_limit_springs;
-    JointDrive[] _slerp_drives;
-    bool[] _enable_processings;
+    ConfigurableJointMotion[] _z_motion;
 
     void Awake() { this.Setup(); }
 
@@ -126,7 +126,6 @@ namespace Neodroid.Runtime.Utilities.Misc.Extensions {
     }
 
     /// <summary>
-    ///
     /// </summary>
     public void Reset() {
       if (this._joints == null) {

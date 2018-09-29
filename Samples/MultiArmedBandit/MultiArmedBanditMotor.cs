@@ -11,32 +11,28 @@ namespace Neodroid.Samples.MultiArmedBandit {
   [AddComponentMenu(
       MotorComponentMenuPath._ComponentMenuPath + "MultiArmedBanditMotor" + MotorComponentMenuPath._Postfix)]
   public class MultiArmedBanditMotor : Motor {
-    [SerializeField] Material[] _indicators;
     [SerializeField] Color _inactive_color;
-    [SerializeField] Color _win_color = Color.green;
+    [SerializeField] Material[] _indicators;
+    [SerializeField] int _last_index;
     [SerializeField] Color _lose_color = Color.red;
     [SerializeField] float[] _win_amounts;
+    [SerializeField] Color _win_color = Color.green;
     [SerializeField] float[] _win_likelihoods;
-    [SerializeField] int _last_index;
     [SerializeField] bool _won;
 
     /// <summary>
-    /// 
     /// </summary>
     public Single[] WinAmounts { get { return this._win_amounts; } set { this._win_amounts = value; } }
 
     /// <summary>
-    /// 
     /// </summary>
     public Int32 LastIndex { get { return this._last_index; } set { this._last_index = value; } }
 
     /// <summary>
-    /// 
     /// </summary>
     public Boolean Won { get { return this._won; } set { this._won = value; } }
 
     /// <summary>
-    /// 
     /// </summary>
     public Single[] WinLikelihoods {
       get { return this._win_likelihoods; }

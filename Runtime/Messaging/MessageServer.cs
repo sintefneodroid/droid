@@ -11,14 +11,12 @@ using UnityEngine;
 
 namespace Neodroid.Runtime.Messaging {
   /// <summary>
-  ///
   /// </summary>
   [Serializable]
   public class MessageServer {
     #region PublicMembers
 
     /// <summary>
-    ///
     /// </summary>
     public bool _Listening_For_Clients;
 
@@ -27,7 +25,6 @@ namespace Neodroid.Runtime.Messaging {
     #region PrivateMembers
 
     /// <summary>
-    ///
     /// </summary>
     Thread _polling_thread;
     #if NEODROID_DEBUG
@@ -37,60 +34,49 @@ namespace Neodroid.Runtime.Messaging {
     #endif
 
     /// <summary>
-    ///
     /// </summary>
     Thread _wait_for_client_thread;
 
     /// <summary>
-    ///
     /// </summary>
     object _stop_lock = new object();
 
     object _thread_lock = new object();
 
     /// <summary>
-    ///
     /// </summary>
     bool _stop_thread;
 
     /// <summary>
-    ///
     /// </summary>
     bool _waiting_for_main_loop_to_send;
 
     /// <summary>
-    ///
     /// </summary>
     bool _use_inter_process_communication;
 
     /// <summary>
-    ///
     /// </summary>
     bool _debugging;
 
     /// <summary>
-    ///
     /// </summary>
     ResponseSocket _socket;
 
     //PairSocket _socket;
     /// <summary>
-    ///
     /// </summary>
     string _ip_address;
 
     /// <summary>
-    ///
     /// </summary>
     int _port;
 
     /// <summary>
-    ///
     /// </summary>
     byte[] _byte_buffer;
 
     /// <summary>
-    ///
     /// </summary>
     Double _wait_time_seconds;
 
@@ -103,7 +89,6 @@ namespace Neodroid.Runtime.Messaging {
     #region Threads
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="callback"></param>
     /// <param name="debug_callback"></param>
@@ -133,7 +118,6 @@ namespace Neodroid.Runtime.Messaging {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="wait_time"></param>
     /// <returns></returns>
@@ -150,7 +134,7 @@ namespace Neodroid.Runtime.Messaging {
             var received = this._socket.TryReceiveFrameBytes(wait_time, out msg);
             if (this.Debugging) {
               if (received) {
-                Debug.Log($"Received frame bytes");
+                Debug.Log("Received frame bytes");
               } else {
                 Debug.Log($"Received nothing in {wait_time} seconds");
               }
@@ -184,7 +168,6 @@ namespace Neodroid.Runtime.Messaging {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="receive_callback"></param>
     /// <param name="disconnect_callback"></param>
@@ -232,10 +215,9 @@ namespace Neodroid.Runtime.Messaging {
 
     #region PublicMethods
 
-    ///  <summary>
-    /// 
-    ///  </summary>
-    ///  <param name="environment_states"></param>
+    /// <summary>
+    /// </summary>
+    /// <param name="environment_states"></param>
     /// <param name="do_serialise_unobservables"></param>
     /// <param name="serialise_individual_observables"></param>
     /// <param name="simulator_configuration_message"></param>
@@ -276,7 +258,7 @@ namespace Neodroid.Runtime.Messaging {
               this._last_send_time = time;
             }
           } else {
-            Debug.LogWarning($"No environment states where send.");
+            Debug.LogWarning("No environment states where send.");
           }
         }
         #endif
@@ -293,7 +275,6 @@ namespace Neodroid.Runtime.Messaging {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="debug_callback"></param>
     public void ListenForClientToConnect(Action<string> debug_callback) {
@@ -301,7 +282,6 @@ namespace Neodroid.Runtime.Messaging {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="callback"></param>
     /// <param name="debug_callback"></param>
@@ -313,7 +293,6 @@ namespace Neodroid.Runtime.Messaging {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="cmd_callback"></param>
     /// <param name="disconnect_callback"></param>
@@ -358,7 +337,6 @@ namespace Neodroid.Runtime.Messaging {
     #region Getters
 
     /// <summary>
-    ///
     /// </summary>
     public bool Debugging { get { return this._debugging; } set { this._debugging = value; } }
 
@@ -369,12 +347,10 @@ namespace Neodroid.Runtime.Messaging {
     #region Deconstruction
 
     /// <summary>
-    ///
     /// </summary>
     public void Destroy() { this.CleanUp(); }
 
     /// <summary>
-    ///
     /// </summary>
     public void CleanUp() {
       try {

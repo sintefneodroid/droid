@@ -4,11 +4,10 @@ namespace Neodroid.Runtime.Interfaces {
   /// </summary>
   public interface IManager : IHasRegister<IEnvironment> {
     /// <summary>
-    /// 
     /// </summary>
     ISimulatorConfiguration SimulatorConfiguration { get; }
+
     /// <summary>
-    /// 
     /// </summary>
     bool IsSyncingEnvironments { get; }
   }

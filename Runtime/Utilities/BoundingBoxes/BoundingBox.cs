@@ -12,69 +12,56 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
   [ExecuteInEditMode]
   public class BoundingBox : MonoBehaviour {
     /// <summary>
-    /// 
     /// </summary>
     Vector3 _bottom_back_left;
 
     /// <summary>
-    /// 
     /// </summary>
     Vector3 _bottom_back_right;
 
     /// <summary>
-    /// 
     /// </summary>
     Vector3 _bottom_front_left;
 
     /// <summary>
-    /// 
     /// </summary>
     Vector3 _bottom_front_right;
 
     /// <summary>
-    /// 
     /// </summary>
     [HideInInspector]
     protected Bounds _Bounds;
 
     /// <summary>
-    /// 
     /// </summary>
     [HideInInspector]
     protected Vector3 _Bounds_Offset;
 
     /// <summary>
-    /// 
     /// </summary>
     public DrawBoundingBoxOnCamera _Camera;
 
     /// <summary>
-    /// 
     /// </summary>
     Collider[] _children_colliders;
 
     /// <summary>
-    /// 
     /// </summary>
     MeshFilter[] _children_meshes;
 
     /// <summary>
-    /// 
     /// </summary>
     public bool _Collider_Based;
 
     /// <summary>
-    /// 
     /// </summary>
     Vector3[] _corners;
 
     /// <summary>
-    /// 
     /// </summary>
     public bool _Freeze = true;
 
     /// <summary>
-    /// 
     /// </summary>
     public bool _Include_Children = true;
 
@@ -84,29 +71,26 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
     Quaternion _last_rotation;
 
     /// <summary>
-    /// 
     /// </summary>
     [HideInInspector]
     //public Vector3 startingScale;
     Vector3 _last_scale;
 
     /// <summary>
-    /// 
     /// </summary>
     public Color _Line_Color = new Color(1f, 0.36f, 0.38f, 0.74f);
 
     /// <summary>
-    /// 
     /// </summary>
     Vector3[,] _lines;
 
+    List<Vector3[]> _lines_list = new List<Vector3[]>();
+
     /// <summary>
-    /// 
     /// </summary>
     Quaternion _rotation;
 
     /// <summary>
-    /// 
     /// </summary>
     public bool _Setup_On_Awake;
 
@@ -115,8 +99,6 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
 
     Vector3 _top_front_left;
     Vector3 _top_front_right;
-
-    List<Vector3[]> _lines_list = new List<Vector3[]>();
 
     public Vector3[] BoundingBoxCoordinates {
       get {
@@ -140,7 +122,6 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
     public Vector3 Min { get { return this._Bounds.min; } }
 
     /// <summary>
-    /// 
     /// </summary>
     public string BoundingBoxCoordinatesAsString {
       get {
@@ -158,7 +139,6 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     public string BoundingBoxCoordinatesAsJson {
       get {
@@ -171,14 +151,12 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="vec"></param>
     /// <returns></returns>
     string JsonifyVec3(Vector3 vec) { return $"[{vec.x},{vec.y},{vec.z}]"; }
 
     /// <summary>
-    /// 
     /// </summary>
     void Reset() {
       this.Awake();
@@ -186,7 +164,6 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     void Start() {
       if (!this._Setup_On_Awake) {
@@ -195,7 +172,6 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     void Awake() {
       if (this._Setup_On_Awake) {
@@ -204,7 +180,6 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     void Setup() {
       this._last_position = this.transform.position;
@@ -220,7 +195,6 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     public void Initialise() {
       this.RecalculatePoints();
@@ -228,7 +202,6 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     void LateUpdate() {
       if (this._Freeze) {
@@ -263,7 +236,6 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     public void ScaleBounds() {
       //this._Bounds.size = new Vector3(startingBoundSize.x * transform.localScale.x / startingScale.x, startingBoundSize.y * transform.localScale.y / startingScale.y, startingBoundSize.z * transform.localScale.z / startingScale.z);
@@ -271,7 +243,6 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     void FitBoundingBoxToChildrenColliders() {
       var col = this.GetComponent<BoxCollider>();
@@ -294,7 +265,6 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     void FitBoundingBoxToChildrenRenders() {
       var bounds = new Bounds(this.transform.position, Vector3.zero);
@@ -325,7 +295,6 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     void CalculateBounds() {
       this._rotation = this.transform.rotation;
@@ -341,7 +310,6 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     void RecalculatePoints() {
       this._Bounds.size = new Vector3(
@@ -379,7 +347,6 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     void RecalculateLines() {
       var rot = this.transform.rotation;
@@ -410,7 +377,6 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     void OnMouseDown() {
       //if (_permanent)
@@ -420,7 +386,6 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
 
     #if UNITY_EDITOR
     /// <summary>
-    /// 
     /// </summary>
     void OnValidate() {
       if (EditorApplication.isPlaying) {
@@ -433,7 +398,6 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
     #endif
 
     /// <summary>
-    /// 
     /// </summary>
     void OnDrawGizmos() {
       if (this.enabled) {

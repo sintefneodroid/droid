@@ -11,7 +11,6 @@ namespace Neodroid.Runtime.Utilities.ScriptableObjects {
       order = 1)]
   public class Segmentation : ScriptableObject {
     /// <summary>
-    /// 
     /// </summary>
     public ColorByTag[] _Color_By_Tags;
   }

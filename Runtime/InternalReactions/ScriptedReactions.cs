@@ -8,34 +8,29 @@ namespace Neodroid.Runtime.PlayerControls {
   /// </summary>
   [ExecuteInEditMode]
   public abstract class ScriptedReactions : MonoBehaviour {
-    /// <summary>
-    ///
-    /// </summary>
-    [SerializeField]
-    protected NeodroidManager _Manager;
-
-    /// <summary>
-    ///
-    /// </summary>
-    [SerializeField]
-    bool _debugging;
-
     #if UNITY_EDITOR
     const int _script_execution_order = -10000;
     #endif
 
     /// <summary>
-    ///
+    /// </summary>
+    [SerializeField]
+    bool _debugging;
+
+    /// <summary>
+    /// </summary>
+    [SerializeField]
+    protected NeodroidManager _Manager;
+
+    /// <summary>
     /// </summary>
     public static ScriptedReactions Instance { get; private set; }
 
     /// <summary>
-    ///
     /// </summary>
     public bool Debugging { get { return this._debugging; } set { this._debugging = value; } }
 
     /// <summary>
-    ///
     /// </summary>
     void Awake() {
       if (Instance == null) {

@@ -9,21 +9,25 @@ namespace Neodroid.Runtime.Prototyping.Evaluation {
   /// <summary>
   /// </summary>
   public class SeekAndAvoidEvaluation : ObjectiveFunction {
-    [SerializeField] int _num_collectibles = 50;
-    [SerializeField] int _num_avoidables = 50;
-    [SerializeField] int _spawn_radius = 10;
-    [SerializeField] int _end_game_radius = 10;
-    [SerializeField] int _reward = 1;
-    [SerializeField] int _penalty = -1;
-    Vector3 _initial_actor_position;
-
     [SerializeField] Transform _actor;
-    [SerializeField] GameObject _collectible;
     [SerializeField] GameObject _avoidable;
-    float _score;
-    List<Vector3> _spawned_locations;
-    List<GameObject> _collectibles;
     List<GameObject> _avoidables;
+    [SerializeField] GameObject _collectible;
+    List<GameObject> _collectibles;
+    [SerializeField] int _end_game_radius = 10;
+    Vector3 _initial_actor_position;
+    [SerializeField] int _num_avoidables = 50;
+    [SerializeField] int _num_collectibles = 50;
+    [SerializeField] int _penalty = -1;
+    [SerializeField] int _reward = 1;
+    float _score;
+    [SerializeField] int _spawn_radius = 10;
+    List<Vector3> _spawned_locations;
+
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public override String PrototypingTypeName { get { return "SeekAndAvoidListener"; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -79,11 +83,6 @@ namespace Neodroid.Runtime.Prototyping.Evaluation {
     void OnChildTriggerEnter(GameObject child_game_object, Collision collision) {
       this.OnChildTriggerEnter(child_game_object, collision.collider);
     }
-
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public override String PrototypingTypeName { get { return "SeekAndAvoidListener"; } }
 
     void OnChildTriggerEnter(GameObject child_game_object, Collider collider1) {
       #if NEODROID_DEBUG

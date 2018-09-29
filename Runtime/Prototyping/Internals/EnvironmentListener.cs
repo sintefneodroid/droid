@@ -2,10 +2,8 @@
 using Neodroid.Runtime.Environments;
 using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Utilities.GameObjects;
-using Neodroid.Runtime.Utilities.Misc.Drawing;
-using Neodroid.Runtime.Utilities.Misc.Grasping;
+using Neodroid.Runtime.Utilities.Misc;
 using UnityEngine;
-using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 
 namespace Neodroid.Runtime.Prototyping.Internals {
   /// <inheritdoc cref="PrototypingGameObject" />
@@ -15,33 +13,12 @@ namespace Neodroid.Runtime.Prototyping.Internals {
   public abstract class EnvironmentListener : PrototypingGameObject,
                                               IEnvironmentListener {
     /// <summary>
-    ///
     /// </summary>
     public IPrototypingEnvironment _Parent_Environment;
 
     /// <inheritdoc />
-    ///  <summary>
-    ///  </summary>
-    protected override void RegisterComponent() {
-      this._Parent_Environment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this._Parent_Environment,
-          this);
-
-      if (this._Parent_Environment != null) {
-        this._Parent_Environment.PreStepEvent += this.PreStep;
-        this._Parent_Environment.StepEvent += this.Step;
-        this._Parent_Environment.PostStepEvent += this.PostStep;
-      }
-    }
-
-    /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void UnRegisterComponent() { this._Parent_Environment?.UnRegister(this); }
-
-    /// <inheritdoc />
-    ///  <summary>
-    ///  </summary>
     public abstract override String PrototypingTypeName { get; }
 
     /// <inheritdoc />
@@ -60,8 +37,27 @@ namespace Neodroid.Runtime.Prototyping.Internals {
     public virtual void PostStep() { }
 
     /// <summary>
-    /// 
     /// </summary>
     public virtual void EnvironmentReset() { }
+
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    protected override void RegisterComponent() {
+      this._Parent_Environment = NeodroidUtilities.RegisterComponent(
+          (PrototypingEnvironment)this._Parent_Environment,
+          this);
+
+      if (this._Parent_Environment != null) {
+        this._Parent_Environment.PreStepEvent += this.PreStep;
+        this._Parent_Environment.StepEvent += this.Step;
+        this._Parent_Environment.PostStepEvent += this.PostStep;
+      }
+    }
+
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    protected override void UnRegisterComponent() { this._Parent_Environment?.UnRegister(this); }
   }
 }

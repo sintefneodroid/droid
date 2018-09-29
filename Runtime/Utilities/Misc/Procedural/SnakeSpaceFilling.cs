@@ -3,23 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Neodroid.Runtime.Utilities.Misc.Procedural {
-  public static partial class NeodroidUtilities {
+  public static class NeodroidUtilities {
     /// <summary>
-    ///
-    /// </summary>
-    enum GeneratorState {
-      Expand_x_ = 0,
-      Expand_y_ = 1,
-
-      Inc_x_ = 2,
-      Dec_x_ = 3,
-
-      Inc_y_ = 4,
-      Dec_y_ = 5
-    }
-
-    /// <summary>
-    ///
     /// </summary>
     /// <param name="length"></param>
     /// <returns></returns>
@@ -79,6 +64,19 @@ namespace Neodroid.Runtime.Utilities.Misc.Procedural {
       }
 
       return out_vectors;
+    }
+
+    /// <summary>
+    /// </summary>
+    enum GeneratorState {
+      Expand_x_ = 0,
+      Expand_y_ = 1,
+
+      Inc_x_ = 2,
+      Dec_x_ = 3,
+
+      Inc_y_ = 4,
+      Dec_y_ = 5
     }
   }
 }

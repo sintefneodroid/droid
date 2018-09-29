@@ -8,11 +8,12 @@ namespace Neodroid.Runtime.Prototyping.Displayers.Canvas {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [ExecuteInEditMode, RequireComponent(typeof(Text)),
-   AddComponentMenu(
-       DisplayerComponentMenuPath._ComponentMenuPath
-       + "Canvas/CanvasText"
-       + DisplayerComponentMenuPath._Postfix)]
+  [ExecuteInEditMode]
+  [RequireComponent(typeof(Text))]
+  [AddComponentMenu(
+      DisplayerComponentMenuPath._ComponentMenuPath
+      + "Canvas/CanvasText"
+      + DisplayerComponentMenuPath._Postfix)]
   public class CanvasTextDisplayer : Displayer {
     Text _text_component;
 
@@ -118,7 +119,6 @@ namespace Neodroid.Runtime.Prototyping.Displayers.Canvas {
     public override void PlotSeries(Points.ValuePoint[] points) { throw new NotImplementedException(); }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="text"></param>
     public void SetText(string text) {

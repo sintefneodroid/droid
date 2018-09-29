@@ -2,7 +2,6 @@
 
 namespace Neodroid.Runtime.Messaging.Messages.Displayables {
   /// <summary>
-  /// 
   /// </summary>
   public class DisplayableFloat : Displayable {
     public DisplayableFloat(String displayable_name, double displayable_value) {

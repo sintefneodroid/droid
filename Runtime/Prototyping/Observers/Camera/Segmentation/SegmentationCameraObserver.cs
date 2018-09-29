@@ -1,35 +1,31 @@
-﻿using System;
-using System.Linq;
-using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Managers;
+﻿using System.Linq;
 using Neodroid.Runtime.Utilities.ScriptableObjects;
 using Neodroid.Runtime.Utilities.Segmentation;
 using UnityEngine;
-using UnityEngine.Serialization;
-using Object = System.Object;
 
-namespace Neodroid.Runtime.Prototyping.Observers.Camera {
+namespace Neodroid.Runtime.Prototyping.Observers.Camera.Segmentation {
   /// <inheritdoc cref="Observer" />
-  ///  <summary>
-  ///  </summary>
+  /// <summary>
+  /// </summary>
   [AddComponentMenu(
-       ObserverComponentMenuPath._ComponentMenuPath
-       + "SegmentationCamera"
-       + ObserverComponentMenuPath._Postfix), ExecuteInEditMode, RequireComponent(typeof(UnityEngine.Camera),typeof(Segmenter))]
+      ObserverComponentMenuPath._ComponentMenuPath
+      + "SegmentationCamera"
+      + ObserverComponentMenuPath._Postfix)]
+  [ExecuteInEditMode]
+  [RequireComponent(typeof(UnityEngine.Camera), typeof(Segmenter))]
   public class SegmentationCameraObserver : StringAugmentedCameraObserver {
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     Segmenter _segmenter;
 
     /// <inheritdoc />
-    ///  <summary>
-    ///  </summary>
+    /// <summary>
+    /// </summary>
     public override void UpdateObservation() {
-      this._grab = true;
-      if (this._manager?.SimulatorConfiguration?.SimulationType != SimulationType.Frame_dependent_) {
-        this._camera.Render();
+      this._Grab = true;
+      if (this._Manager?.SimulatorConfiguration?.SimulationType != SimulationType.Frame_dependent_) {
+        this._Camera.Render();
         this.UpdateBytes();
       }
 

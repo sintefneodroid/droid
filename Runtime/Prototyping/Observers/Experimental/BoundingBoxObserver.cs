@@ -6,9 +6,11 @@ namespace Neodroid.Runtime.Prototyping.Observers.Experimental {
   /// <summary>
   /// </summary>
   [AddComponentMenu(
-       ObserverComponentMenuPath._ComponentMenuPath
-       + "Experimental/BoundingBox"
-       + ObserverComponentMenuPath._Postfix), ExecuteInEditMode, RequireComponent(typeof(BoundingBox))]
+      ObserverComponentMenuPath._ComponentMenuPath
+      + "Experimental/BoundingBox"
+      + ObserverComponentMenuPath._Postfix)]
+  [ExecuteInEditMode]
+  [RequireComponent(typeof(BoundingBox))]
   public class BoundingBoxObserver : Observer {
     /// <inheritdoc />
     /// <summary>
@@ -24,7 +26,6 @@ namespace Neodroid.Runtime.Prototyping.Observers.Experimental {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     public override void UpdateObservation() {
       //Data = Encoding.ASCII.GetBytes (_bounding_box.BoundingBoxCoordinatesAsJSON);

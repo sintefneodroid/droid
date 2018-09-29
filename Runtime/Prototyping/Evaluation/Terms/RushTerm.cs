@@ -4,11 +4,14 @@ using UnityEngine;
 namespace Neodroid.Runtime.Prototyping.Evaluation.Terms {
   [AddComponentMenu(TermComponentMenuPath._ComponentMenuPath + "Rush" + TermComponentMenuPath._Postfix)]
   public class RushTerm : Term {
-    [SerializeField] float _penalty_size = 0.01f;
     [SerializeField] IPrototypingEnvironment _env;
+    [SerializeField] float _penalty_size = 0.01f;
 
     /// <summary>
-    ///
+    /// </summary>
+    public override string PrototypingTypeName { get { return "Rush"; } }
+
+    /// <summary>
     /// </summary>
     protected override void Setup() {
       if (this._env == null) {
@@ -17,7 +20,6 @@ namespace Neodroid.Runtime.Prototyping.Evaluation.Terms {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <returns></returns>
     public override float Evaluate() {
@@ -27,10 +29,5 @@ namespace Neodroid.Runtime.Prototyping.Evaluation.Terms {
 
       return -this._penalty_size;
     }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public override string PrototypingTypeName { get { return "Rush"; } }
   }
 }

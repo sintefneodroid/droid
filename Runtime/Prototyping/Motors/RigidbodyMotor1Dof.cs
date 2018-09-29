@@ -5,48 +5,42 @@ using UnityEngine;
 
 namespace Neodroid.Runtime.Prototyping.Motors {
   /// <inheritdoc />
-  ///  <summary>
-  ///  </summary>
+  /// <summary>
+  /// </summary>
   [AddComponentMenu(
-       MotorComponentMenuPath._ComponentMenuPath + "RigidbodyMotor1Dof" + MotorComponentMenuPath._Postfix),
-   RequireComponent(typeof(Rigidbody))]
+      MotorComponentMenuPath._ComponentMenuPath + "RigidbodyMotor1Dof" + MotorComponentMenuPath._Postfix)]
+  [RequireComponent(typeof(Rigidbody))]
   public class RigidbodyMotor1Dof : Motor {
     /// <summary>
-    ///
     /// </summary>
-    [Header("General", order = 101), SerializeField]
+    [Header("General", order = 101)]
+    [SerializeField]
     protected Axis _Axis_Of_Motion;
 
     /// <summary>
-    ///
-    /// </summary>
-    [SerializeField]
-    protected Space _Relative_To = Space.Self;
-
-    /// <summary>
-    ///
-    /// </summary>
-    [SerializeField]
-    protected Rigidbody _Rigidbody;
-
-    /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     protected ForceMode _ForceMode = ForceMode.Force;
 
     /// <summary>
-    ///
+    /// </summary>
+    [SerializeField]
+    protected Space _Relative_To = Space.Self;
+
+    /// <summary>
+    /// </summary>
+    [SerializeField]
+    protected Rigidbody _Rigidbody;
+
+    /// <summary>
     /// </summary>
     public override string PrototypingTypeName { get { return "Rigidbody" + this._Axis_Of_Motion; } }
 
     /// <summary>
-    ///
     /// </summary>
     protected override void Setup() { this._Rigidbody = this.GetComponent<Rigidbody>(); }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="motion"></param>
     /// <exception cref="ArgumentOutOfRangeException"></exception>

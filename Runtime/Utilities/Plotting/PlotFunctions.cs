@@ -7,7 +7,6 @@ namespace Neodroid.Runtime.Utilities.Plotting {
     static List<Points.ValuePoint> _points = new List<Points.ValuePoint>();
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="size"></param>
     /// <param name="min_val"></param>

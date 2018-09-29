@@ -2,7 +2,6 @@
 
 namespace Neodroid.Runtime.Utilities.Misc.Drawing {
   /// <summary>
-  /// 
   /// </summary>
   public static partial class NeodroidDrawingUtilities {
     static Texture2D _s_line_tex;

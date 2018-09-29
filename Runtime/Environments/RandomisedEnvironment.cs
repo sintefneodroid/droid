@@ -8,12 +8,10 @@ namespace Neodroid.Runtime.Environments {
   [AddComponentMenu("Neodroid/Environments/RandomisedEnvironment")]
   public class RandomisedEnvironment : PrototypingEnvironment {
     /// <summary>
-    ///
     /// </summary>
     Random _random_generator = new Random();
 
     /// <summary>
-    ///
     /// </summary>
     void RandomiseEnvironment() {
       foreach (var configurable in this.Configurables) {

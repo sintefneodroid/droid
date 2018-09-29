@@ -10,19 +10,18 @@ namespace Neodroid.Editor.Utilities {
   [Serializable]
   public class Note : MonoBehaviour {
     /// <summary>
-    ///
-    /// </summary>
-    [TextArea, Tooltip("A component for holding notes or comments"), SerializeField]
-    public string _Text;
-
-    /// <summary>
-    ///
     /// </summary>
     [NonSerialized]
     public bool _Editing;
 
     /// <summary>
-    ///
+    /// </summary>
+    [TextArea]
+    [Tooltip("A component for holding notes or comments")]
+    [SerializeField]
+    public string _Text;
+
+    /// <summary>
     /// </summary>
     public void EditToggle() { this._Editing = !this._Editing; }
 
@@ -30,7 +29,6 @@ namespace Neodroid.Editor.Utilities {
   }
 
   /// <summary>
-  ///
   /// </summary>
   enum NoteType {
     Text_area_,

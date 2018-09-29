@@ -8,10 +8,9 @@ namespace Neodroid.Runtime.Prototyping.Observers.Rigidbody {
   /// </summary>
   public class VelocityObserver : Observer,
                                   IHasTriple {
-    [SerializeField] Space3 _velocity_space = new Space3(10);
-    [SerializeField] Vector3 _velocity;
-
     [SerializeField] UnityEngine.Rigidbody _rigidbody;
+    [SerializeField] Vector3 _velocity;
+    [SerializeField] Space3 _velocity_space = new Space3(10);
 
     /// <inheritdoc />
     /// <summary>
@@ -19,7 +18,6 @@ namespace Neodroid.Runtime.Prototyping.Observers.Rigidbody {
     public override string PrototypingTypeName { get { return "Rigidbody"; } }
 
     /// <summary>
-    /// 
     /// </summary>
     public Vector3 ObservationValue {
       get { return this._velocity; }
@@ -28,8 +26,9 @@ namespace Neodroid.Runtime.Prototyping.Observers.Rigidbody {
       }
     }
 
+    public Space3 TripleSpace { get { return this._velocity_space; } }
+
     /// <summary>
-    /// 
     /// </summary>
     public override void UpdateObservation() {
       this.ObservationValue = this._rigidbody.velocity;
@@ -46,7 +45,5 @@ namespace Neodroid.Runtime.Prototyping.Observers.Rigidbody {
       this.FloatEnumerable =
           new[] {this.ObservationValue.x, this.ObservationValue.y, this.ObservationValue.z};
     }
-
-    public Space3 TripleSpace { get { return this._velocity_space; } }
   }
 }

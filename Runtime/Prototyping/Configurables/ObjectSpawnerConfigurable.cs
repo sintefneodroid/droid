@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Utilities.Enums;
 using UnityEngine;
-using Random = System.Random;
 
 namespace Neodroid.Runtime.Prototyping.Configurables {
   /// <inheritdoc />
@@ -22,16 +20,16 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
 
     List<GameObject> _spawned_objects;
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public override string PrototypingTypeName { get { return "ObjectSpawnerConfigurable"; } }
+
     protected override void PreSetup() {
       this.DestroyObjects();
       this._spawned_objects = new List<GameObject>();
       this.SpawnObjects();
     }
-
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "ObjectSpawnerConfigurable"; } }
 
     void DestroyObjects() {
       if (this._spawned_objects != null) {
@@ -59,7 +57,7 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
               Instantiate(
                   this._object_to_spawn,
                   this.transform.position + dir * i,
-                  UnityEngine.Random.rotation,
+                  Random.rotation,
                   this.transform));
         }
       }

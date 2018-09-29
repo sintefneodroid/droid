@@ -1,64 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
-using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace Neodroid.Runtime.Utilities.Segmentation {
   /// <inheritdoc cref="MonoBehaviour" />
-  ///  <summary>
-  ///  </summary>
+  /// <summary>
+  /// </summary>
   [ExecuteInEditMode]
   public class ChangeMaterialOnRenderByTag : Segmenter {
     /// <summary>
-    ///
     /// </summary>
     Renderer[] _all_renders;
 
     /// <summary>
-    ///
     /// </summary>
     MaterialPropertyBlock _block;
 
     /// <summary>
-    ///
     /// </summary>
     protected ColorByTag[] _Colors_By_Tag;
 
-    [SerializeField] ScriptableObjects.Segmentation _segmentation;
-
     /// <summary>
-    ///
     /// </summary>
     LinkedList<Color>[] _original_colors;
 
     /// <summary>
-    ///
     /// </summary>
     public bool _Replace_Untagged_Color = true;
 
+    [SerializeField] ScriptableObjects.Segmentation _segmentation;
+
     /// <summary>
-    ///
     /// </summary>
     Dictionary<string, Color> _tag_colors_dict = new Dictionary<string, Color>();
 
     /// <summary>
-    ///
     /// </summary>
     public Color _Untagged_Color = Color.black;
 
     /// <summary>
-    ///
     /// </summary>
     public ColorByTag[] ColorsByTag { get { return this._Colors_By_Tag; } }
 
     /// <summary>
-    ///
     /// </summary>
     public override Dictionary<String, Color> ColorsDict { get { return this._tag_colors_dict; } }
 
     /// <summary>
-    ///
     /// </summary>
     void Awake() {
       this._block = new MaterialPropertyBlock();
@@ -87,14 +76,12 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
     }
 
     /// <summary>
-    ///
     /// </summary>
     void Update() {
       this.Setup(); // renderes maybe be disable and enabled, that is why every update we find all renderers again
     }
 
     /// <summary>
-    ///
     /// </summary>
     void Setup() {
       this.CheckBlock();
@@ -103,7 +90,6 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
     }
 
     /// <summary>
-    ///
     /// </summary>
     void Change() {
       this._original_colors = new LinkedList<Color>[this._all_renders.Length];
@@ -146,7 +132,6 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
     }
 
     /// <summary>
-    ///
     /// </summary>
     void Restore() {
       this.CheckBlock();

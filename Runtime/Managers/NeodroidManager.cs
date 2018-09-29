@@ -21,71 +21,11 @@ namespace Neodroid.Runtime.Managers {
   [AddComponentMenu("Neodroid/Managers/VanillaManager")]
   public abstract class NeodroidManager : MonoBehaviour,
                                           IManager {
-    #region PrivateFields
-
     /// <summary>
-    ///
-    /// </summary>
-    [Header("Development", order = 110), SerializeField]
-    bool _debugging;
-
-    /// <summary>
-    ///
-    /// </summary>
-    Object _send_lock = new Object();
-
-    /// <summary>
-    ///
-    /// </summary>
-    [SerializeField]
-    bool _testing_motors;
-
-    #if UNITY_EDITOR
-    /// <summary>
-    ///
-    /// </summary>
-    const int _script_execution_order = -1000;
-    #endif
-
-    /// <summary>
-    ///
-    /// </summary>
-    [Header("Simulation", order = 80), SerializeField]
-    SimulatorConfiguration _configuration;
-
-    /// <summary>
-    ///
-    /// </summary>
-    [SerializeField]
-    int _skip_frame_i;
-
-    /// <summary>
-    ///
-    /// </summary>
-    [SerializeField]
-    bool _syncing_environments;
-
-    /// <summary>
-    ///
-    /// </summary>
-    [SerializeField]
-    bool _awaiting_reply;
-
-    [SerializeField] bool _step;
-
-    WaitForEndOfFrame _wait_for_end_of_frame = new WaitForEndOfFrame();
-    WaitForFixedUpdate _wait_for_fixed_update = new WaitForFixedUpdate();
-    List<Reaction> _sample_reactions = new List<Reaction>();
-
-    #endregion
-
-    /// <summary>
-    ///
     /// </summary>
     public static NeodroidManager Instance { get; private set; }
 
     /// <summary>
-    ///
     /// </summary>
     public ISimulatorConfiguration Configuration {
       get {
@@ -99,57 +39,48 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    /// Can be subscribed to for pre fixed update events (Will be called before any FixedUpdate on any script)
+    ///   Can be subscribed to for pre fixed update events (Will be called before any FixedUpdate on any script)
     /// </summary>
     public event Action EarlyFixedUpdateEvent;
 
     /// <summary>
-    ///
     /// </summary>
     public event Action FixedUpdateEvent;
 
     /// <summary>
-    ///
     /// </summary>
     public event Action LateFixedUpdateEvent;
 
     /// <summary>
-    /// Can be subscribed to for pre update events (Will be called before any Update on any script)
+    ///   Can be subscribed to for pre update events (Will be called before any Update on any script)
     /// </summary>
     public event Action EarlyUpdateEvent;
 
     /// <summary>
-    ///
     /// </summary>
     public event Action UpdateEvent;
 
     /// <summary>
-    ///
     /// </summary>
     public event Action LateUpdateEvent;
 
     /// <summary>
-    ///
     /// </summary>
     public event Action OnPostRenderEvent;
 
     /// <summary>
-    ///
     /// </summary>
     public event Action OnRenderImageEvent;
 
     /// <summary>
-    ///
     /// </summary>
     public event Action OnEndOfFrameEvent;
 
     /// <summary>
-    ///
     /// </summary>
     public event Action OnReceiveEvent;
 
     /// <summary>
-    ///
     /// </summary>
     void FetchCommandLineArguments() {
       var arguments = Environment.GetCommandLineArgs();
@@ -166,7 +97,6 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     void CreateMessagingServer() {
       try {
@@ -188,7 +118,6 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="threaded"></param>
     void StartMessagingServer(bool threaded = false) {
@@ -216,10 +145,63 @@ namespace Neodroid.Runtime.Managers {
       //}
     }
 
+    public void StatusString(DataPoller recipient) { recipient.PollData(this.GetStatus()); }
+
+    #region PrivateFields
+
+    /// <summary>
+    /// </summary>
+    [Header("Development", order = 110)]
+    [SerializeField]
+    bool _debugging;
+
+    /// <summary>
+    /// </summary>
+    Object _send_lock = new Object();
+
+    /// <summary>
+    /// </summary>
+    [SerializeField]
+    bool _testing_motors;
+
+    #if UNITY_EDITOR
+    /// <summary>
+    /// </summary>
+    const int _script_execution_order = -1000;
+    #endif
+
+    /// <summary>
+    /// </summary>
+    [Header("Simulation", order = 80)]
+    [SerializeField]
+    SimulatorConfiguration _configuration;
+
+    /// <summary>
+    /// </summary>
+    [SerializeField]
+    int _skip_frame_i;
+
+    /// <summary>
+    /// </summary>
+    [SerializeField]
+    bool _syncing_environments;
+
+    /// <summary>
+    /// </summary>
+    [SerializeField]
+    bool _awaiting_reply;
+
+    [SerializeField] bool _step;
+
+    WaitForEndOfFrame _wait_for_end_of_frame = new WaitForEndOfFrame();
+    WaitForFixedUpdate _wait_for_fixed_update = new WaitForFixedUpdate();
+    List<Reaction> _sample_reactions = new List<Reaction>();
+
+    #endregion
+
     #region Getter And Setters
 
     /// <summary>
-    ///
     /// </summary>
     public Reaction[] CurrentReactions {
       get {
@@ -235,7 +217,6 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     public float SimulationTimeScale {
       get { return Time.timeScale; }
@@ -248,20 +229,17 @@ namespace Neodroid.Runtime.Managers {
       }
     }
 
-    [SerializeField] float _last_simulation_time = 0;
+    [SerializeField] float _last_simulation_time;
 
     /// <summary>
-    /// 
     /// </summary>
     public bool HasStepped { get { return this._has_stepped; } set { this._has_stepped = value; } }
 
     /// <summary>
-    ///
     /// </summary>
     public bool TestMotors { get { return this._testing_motors; } set { this._testing_motors = value; } }
 
     /// <summary>
-    ///
     /// </summary>
     public bool Debugging {
       get { return this._debugging; }
@@ -272,7 +250,6 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     public bool AwaitingReply {
       get {
@@ -290,7 +267,6 @@ namespace Neodroid.Runtime.Managers {
     public ISimulatorConfiguration SimulatorConfiguration { get { return this._configuration; } }
 
     /// <summary>
-    ///
     /// </summary>
     public bool IsSyncingEnvironments {
       get { return this._syncing_environments; }
@@ -298,7 +274,6 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     public bool Stepping { get { return this._step; } }
 
@@ -307,22 +282,18 @@ namespace Neodroid.Runtime.Managers {
     #region PrivateMembers
 
     /// <summary>
-    ///
     /// </summary>
     protected Dictionary<string, IEnvironment> _Environments = new Dictionary<string, IEnvironment>();
 
     /// <summary>
-    ///
     /// </summary>
     public void Clear() { this._Environments.Clear(); }
 
     /// <summary>
-    ///
     /// </summary>
     protected MessageServer _Message_Server;
 
     /// <summary>
-    ///
     /// </summary>
     protected Reaction[] _Current_Reactions = { };
 
@@ -333,7 +304,6 @@ namespace Neodroid.Runtime.Managers {
     #region UnityCallbacks
 
     /// <summary>
-    ///
     /// </summary>
     protected void Awake() {
       if (Instance == null) {
@@ -366,7 +336,6 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     protected void Start() {
       this.FetchCommandLineArguments();
@@ -409,12 +378,11 @@ namespace Neodroid.Runtime.Managers {
       if (this.Configuration.SimulationType == SimulationType.Physics_dependent_) {
         this.StartMessagingServer(); // Remember to manually bind receive to an event in a derivation
       } else {
-        this.StartMessagingServer(threaded : true);
+        this.StartMessagingServer(true);
       }
     }
 
     /// <summary>
-    ///
     /// </summary>
     public void ApplyConfigurationToUnity(ISimulatorConfiguration configuration) {
       QualitySettings.SetQualityLevel(configuration.QualityLevel, true);
@@ -433,12 +401,10 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     void OnPostRender() { this.OnPostRenderEvent?.Invoke(); }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="src"></param>
     /// <param name="dest"></param>
@@ -447,7 +413,6 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     protected void FixedUpdate() {
       this.EarlyFixedUpdateEvent?.Invoke();
@@ -455,7 +420,6 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <returns></returns>
     IEnumerator LateFixedUpdateEventGenerator() {
@@ -473,7 +437,6 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <returns></returns>
     protected IEnumerator EndOfFrameEventGenerator() {
@@ -495,7 +458,6 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     protected void Update() {
       this.EarlyUpdateEvent?.Invoke();
@@ -503,7 +465,6 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     protected void LateUpdate() { this.LateUpdateEvent?.Invoke(); }
 
@@ -512,12 +473,11 @@ namespace Neodroid.Runtime.Managers {
     #region PrivateMethods
 
     /// <summary>
-    ///
     /// </summary>
     protected void OnPreTick() {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log($"OnPreTick");
+        Debug.Log("OnPreTick");
       }
       #endif
 
@@ -527,12 +487,11 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     protected void OnTick() {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log($"OnTick");
+        Debug.Log("OnTick");
       }
       #endif
       if (this.Configuration.StepExecutionPhase == ExecutionPhase.Middle_) {
@@ -541,12 +500,11 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     protected void OnPostTick() {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log($"OnPostTick");
+        Debug.Log("OnPostTick");
       }
       #endif
 
@@ -564,7 +522,6 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     void ExecuteStep() {
       if (!this._syncing_environments) {
@@ -580,7 +537,6 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     protected void Tick() {
       if (this.TestMotors) {
@@ -600,7 +556,6 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="states"></param>
     protected void PostReact(EnvironmentState[] states) {
@@ -622,7 +577,7 @@ namespace Neodroid.Runtime.Managers {
         if (this._skip_frame_i >= this.Configuration.FrameSkips) {
           #if NEODROID_DEBUG
           if (this.Debugging) {
-            Debug.Log($"Not skipping frame, replying...");
+            Debug.Log("Not skipping frame, replying...");
           }
           #endif
 
@@ -642,7 +597,6 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <returns></returns>
     protected Reaction[] SampleRandomReactions() {
@@ -656,7 +610,6 @@ namespace Neodroid.Runtime.Managers {
 
     //TODO: EnvironmentState[][] states for aggregation of states
     /// <summary>
-    ///
     /// </summary>
     /// <param name="states"></param>
     void Reply(EnvironmentState[] states) {
@@ -677,7 +630,6 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     void ClearCurrentReactions() {
       this._step = false;
@@ -689,7 +641,6 @@ namespace Neodroid.Runtime.Managers {
     #region PublicMethods
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="reaction"></param>
     /// <returns></returns>
@@ -728,7 +679,6 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="reaction"></param>
     /// <returns></returns>
@@ -745,7 +695,7 @@ namespace Neodroid.Runtime.Managers {
 
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Applying to all environments");
+          Debug.Log("Applying to all environments");
         }
         #endif
 
@@ -756,7 +706,6 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="reactions"></param>
     /// <returns></returns>
@@ -774,7 +723,7 @@ namespace Neodroid.Runtime.Managers {
 
           #if NEODROID_DEBUG
           if (this.Debugging) {
-            Debug.Log($"Applying to all environments");
+            Debug.Log("Applying to all environments");
           }
           #endif
 
@@ -786,7 +735,6 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <returns></returns>
     public EnvironmentState[] CollectStates() {
@@ -872,7 +820,6 @@ namespace Neodroid.Runtime.Managers {
 */
 
     /// <summary>
-    ///
     /// </summary>
     public void ResetAllEnvironments() {
       this.React(
@@ -886,7 +833,6 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <returns></returns>
     public string GetStatus() {
@@ -924,9 +870,8 @@ namespace Neodroid.Runtime.Managers {
       }
     }
 
-    ///  <summary>
-    /// 
-    ///  </summary>
+    /// <summary>
+    /// </summary>
     /// <param name="environment"></param>
     /// <param name="identifier"></param>
     public void UnRegister(IEnvironment environment, string identifier) {
@@ -942,7 +887,6 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="neodroid_environment"></param>
     public void UnRegister(IEnvironment neodroid_environment) {
@@ -953,9 +897,8 @@ namespace Neodroid.Runtime.Managers {
 
     #region MessageServerCallbacks
 
-    ///  <summary>
-    ///
-    ///  </summary>
+    /// <summary>
+    /// </summary>
     /// <param name="reactions"></param>
     void OnReceiveCallback(Reaction[] reactions) {
       lock (this._send_lock) {
@@ -972,9 +915,8 @@ namespace Neodroid.Runtime.Managers {
       }
     }
 
-    ///  <summary>
-    ///
-    ///  </summary>
+    /// <summary>
+    /// </summary>
     /// <param name="reactions"></param>
     protected void SetReactionsFromExternalSource(Reaction[] reactions) {
       lock (this._send_lock) {
@@ -1003,7 +945,6 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     void OnDisconnectCallback() {
       #if NEODROID_DEBUG
@@ -1014,7 +955,6 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="error"></param>
     void OnDebugCallback(string error) {
@@ -1026,7 +966,6 @@ namespace Neodroid.Runtime.Managers {
     }
 
     /// <summary>
-    ///
     /// </summary>
     void OnListeningCallback() {
       #if NEODROID_DEBUG
@@ -1046,17 +985,13 @@ namespace Neodroid.Runtime.Managers {
     #region Deconstruction
 
     /// <summary>
-    ///
     /// </summary>
     void OnApplicationQuit() { this._Message_Server.CleanUp(); }
 
     /// <summary>
-    ///
     /// </summary>
     void OnDestroy() { this._Message_Server.Destroy(); }
 
     #endregion
-
-    public void StatusString(DataPoller recipient) { recipient.PollData(this.GetStatus()); }
   }
 }

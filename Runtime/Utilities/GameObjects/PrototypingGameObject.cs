@@ -5,45 +5,61 @@ using UnityEngine;
 
 namespace Neodroid.Runtime.Utilities.GameObjects {
   /// <summary>
-  ///
   /// </summary>
   public abstract class PrototypingGameObject : MonoBehaviour,
                                                 IRegisterable {
     /// <summary>
-    ///
-    /// </summary>
-    [SerializeField, Header("Naming", order = 10)]
-    protected string _Custom_Name = "";
-
-    /// <summary>
-    ///
     /// </summary>
     [SerializeField]
-    protected bool _Use_Custom_Name;
+    [Header("Naming", order = 10)]
+    protected string _Custom_Name = "";
+
+    [SerializeField] bool _debugging;
 
     /// <summary>
-    ///
     /// </summary>
-    [Header("Development", order = 90), SerializeField]
+    [Header("Development", order = 90)]
+    [SerializeField]
     bool _disables_children;
 
     #if UNITY_EDITOR
     /// <summary>
-    ///
     /// </summary>
     [SerializeField]
     bool _editor_reregistering = true;
     #endif
 
-    [SerializeField] bool _debugging;
+    /// <summary>
+    /// </summary>
+    [SerializeField]
+    protected bool _Use_Custom_Name;
 
     /// <summary>
-    ///
     /// </summary>
     public bool Debugging { get { return this._debugging; } set { this._debugging = value; } }
 
     /// <summary>
-    ///
+    /// </summary>
+    public virtual string PrototypingTypeName { get { return this.GetType().Name; } }
+
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public string Identifier {
+      get {
+        if (this._Use_Custom_Name) {
+          return this._Custom_Name;
+        }
+
+        if (this.PrototypingTypeName != null) {
+          return this.name + this.PrototypingTypeName;
+        }
+
+        return "CriticalFailure";
+      }
+    }
+
+    /// <summary>
     /// </summary>
     protected void Start() {
       try {
@@ -59,7 +75,6 @@ namespace Neodroid.Runtime.Utilities.GameObjects {
     }
 
     /// <summary>
-    ///
     /// </summary>
     protected void Awake() {
       if (this.enabled && this.isActiveAndEnabled) {
@@ -68,7 +83,6 @@ namespace Neodroid.Runtime.Utilities.GameObjects {
     }
 
     /// <summary>
-    ///
     /// </summary>
     void OnDisable() {
       if (this._disables_children) {
@@ -90,17 +104,14 @@ namespace Neodroid.Runtime.Utilities.GameObjects {
     }
 
     /// <summary>
-    ///
     /// </summary>
     void CallOnDisable() { this.OnDisable(); }
 
     /// <summary>
-    ///
     /// </summary>
     void CallOnEnable() { this.OnEnable(); }
 
     /// <summary>
-    ///
     /// </summary>
     void OnEnable() {
       if (this._disables_children) {
@@ -122,18 +133,15 @@ namespace Neodroid.Runtime.Utilities.GameObjects {
     }
 
     /// <summary>
-    ///
     /// </summary>
     protected virtual void Setup() { }
 
     /// <summary>
-    ///
     /// </summary>
     protected virtual void Clear() { }
 
     #if UNITY_EDITOR
     /// <summary>
-    ///
     /// </summary>
     void OnValidate() { // Only called in the editor
       if (EditorApplication.isPlaying || !this._editor_reregistering) {
@@ -155,19 +163,16 @@ namespace Neodroid.Runtime.Utilities.GameObjects {
     #endif
 
     /// <summary>
-    ///
     /// </summary>
     /// <exception cref="System.NotImplementedException"></exception>
     protected abstract void UnRegisterComponent();
 
     /// <summary>
-    ///
     /// </summary>
     /// <exception cref="System.NotImplementedException"></exception>
     protected abstract void RegisterComponent();
 
     /// <summary>
-    ///
     /// </summary>
     public void RefreshStart() {
       if (this.enabled && this.isActiveAndEnabled) {
@@ -176,33 +181,10 @@ namespace Neodroid.Runtime.Utilities.GameObjects {
     }
 
     /// <summary>
-    ///
     /// </summary>
     public void RefreshAwake() {
       if (this.enabled && this.isActiveAndEnabled) {
         this.Awake();
-      }
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public virtual string PrototypingTypeName { get { return this.GetType().Name; } }
-
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public string Identifier {
-      get {
-        if (this._Use_Custom_Name) {
-          return this._Custom_Name;
-        }
-
-        if (this.PrototypingTypeName != null) {
-          return this.name + this.PrototypingTypeName;
-        }
-
-        return "CriticalFailure";
       }
     }
   }

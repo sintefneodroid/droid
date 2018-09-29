@@ -1,10 +1,10 @@
 ﻿#if UNITY_EDITOR
-using UnityEditor.Events;
 using Neodroid.Runtime.Environments;
 using Neodroid.Runtime.Managers;
 using Neodroid.Runtime.Prototyping.Evaluation;
 using Neodroid.Runtime.Utilities.EventRecipients;
 using Neodroid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
+using UnityEditor.Events;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -15,21 +15,23 @@ namespace Neodroid.Runtime.Utilities.StatusDisplayer {
   /// </summary>
   [ExecuteInEditMode]
   public class AutoSetupStatusDisplayer : MonoBehaviour {
-    [SerializeField] NeodroidManager _manager;
-    [SerializeField] NeodroidEnvironment _environment;
-    [SerializeField] ObjectiveFunction _evaluation_function;
-
-    [SerializeField] TextUpdater _environment_text;
-    [SerializeField] TextUpdater _environment_frame;
-    [SerializeField] TextUpdater _environment_obs;
-    [SerializeField] TextUpdater _signal;
-    [SerializeField] ToggleUpdater _terminated;
-    [SerializeField] TextUpdater _status_text;
-    [SerializeField] Toggle _testing_toggle;
-    [SerializeField] Button _reset_button;
     [SerializeField] bool _clean_empty_no_target_events = true;
     [SerializeField] bool _debugging;
+    [SerializeField] NeodroidEnvironment _environment;
+    [SerializeField] TextUpdater _environment_frame;
+    [SerializeField] TextUpdater _environment_obs;
+
+    [SerializeField] TextUpdater _environment_text;
+    [SerializeField] ObjectiveFunction _evaluation_function;
+    [SerializeField] NeodroidManager _manager;
+    [SerializeField] Button _reset_button;
+    [SerializeField] TextUpdater _signal;
+    [SerializeField] TextUpdater _status_text;
+    [SerializeField] ToggleUpdater _terminated;
+    [SerializeField] Toggle _testing_toggle;
     [SerializeField] UnityEventCallState _unity_event_call_state = UnityEventCallState.RuntimeOnly;
+
+    bool Debugging { get { return this._debugging; } set { this._debugging = value; } }
 
     void TryRegister(DataPoller poller, UnityAction<DataPoller> f) {
       if (poller) {
@@ -99,8 +101,6 @@ namespace Neodroid.Runtime.Utilities.StatusDisplayer {
         }
       }
     }
-
-    bool Debugging { get { return this._debugging; } set { this._debugging = value; } }
 
     void Start() {
       if (!this._environment) {

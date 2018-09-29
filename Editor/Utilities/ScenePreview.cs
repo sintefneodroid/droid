@@ -8,8 +8,8 @@ using UnityEngine.Windows;
 namespace Neodroid.Editor.Utilities {
   /// <inheritdoc />
   /// <summary>
-  /// Scene preview.
-  /// https://diegogiacomelli.com.br/unity3d-scenepreview-inspector/
+  ///   Scene preview.
+  ///   https://diegogiacomelli.com.br/unity3d-scenepreview-inspector/
   /// </summary>
   [CustomEditor(typeof(SceneAsset))]
   [CanEditMultipleObjects]
@@ -22,7 +22,6 @@ namespace Neodroid.Editor.Utilities {
     const float _preview_margin = 5;
 
     /// <summary>
-    /// 
     /// </summary>
     [RuntimeInitializeOnLoadMethod]
     public static void CaptureScreenShot() {
@@ -40,7 +39,7 @@ namespace Neodroid.Editor.Utilities {
 
       var previews_count = scene_names.Length;
       var preview_width = Screen.width;
-      var preview_height = (Screen.height - _editor_margin * 2 - (_preview_margin * previews_count))
+      var preview_height = (Screen.height - _editor_margin * 2 - _preview_margin * previews_count)
                            / previews_count;
 
       for (var i = 0; i < scene_names.Length; i++) {
@@ -71,7 +70,6 @@ namespace Neodroid.Editor.Utilities {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="file_path"></param>
     /// <returns></returns>

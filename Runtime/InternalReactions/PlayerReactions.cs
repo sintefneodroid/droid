@@ -11,26 +11,22 @@ namespace Neodroid.Runtime.PlayerControls {
   [ExecuteInEditMode]
   public class PlayerReactions : ScriptedReactions {
     /// <summary>
-    ///
+    /// </summary>
+    [SerializeField]
+    bool _auto_reset = true;
+
+    List<MotorMotion> _motions = new List<MotorMotion>();
+
+    /// <summary>
     /// </summary>
     [SerializeField]
     PlayerMotions _player_motions;
 
     /// <summary>
-    ///
-    /// </summary>
-    [SerializeField]
-    bool _auto_reset = true;
-
-    /// <summary>
-    ///
     /// </summary>
     EnvironmentState[] _states;
 
-    List<MotorMotion> _motions = new List<MotorMotion>();
-
     /// <summary>
-    ///
     /// </summary>
     void Start() {
       this._Manager = FindObjectOfType<NeodroidManager>();
@@ -85,10 +81,7 @@ namespace Neodroid.Runtime.PlayerControls {
                 }
               }
 
-              var parameters =
-                  new ReactionParameters(terminable : true, step : true, episode_count : true) {
-                      IsExternal = false
-                  };
+              var parameters = new ReactionParameters(true, true, episode_count : true) {IsExternal = false};
               var reaction = new Reaction(parameters, this._motions.ToArray(), null, null, null, "");
               this._states = this._Manager.ReactAndCollectStates(reaction);
             }

@@ -3,10 +3,8 @@ using Neodroid.Runtime.Environments;
 using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Managers;
 using Neodroid.Runtime.Messaging.Messages;
-using Neodroid.Runtime.Utilities.Misc.Drawing;
-using Neodroid.Runtime.Utilities.Misc.Grasping;
+using Neodroid.Runtime.Utilities.Misc;
 using UnityEngine;
-using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 using Random = System.Random;
 
 namespace Neodroid.Runtime.Prototyping.Configurables {
@@ -14,9 +12,10 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
   /// <summary>
   /// </summary>
   [AddComponentMenu(
-       ConfigurableComponentMenuPath._ComponentMenuPath
-       + "Simulation"
-       + ConfigurableComponentMenuPath._Postfix), RequireComponent(typeof(PausableManager))]
+      ConfigurableComponentMenuPath._ComponentMenuPath
+      + "Simulation"
+      + ConfigurableComponentMenuPath._Postfix)]
+  [RequireComponent(typeof(PausableManager))]
   public class SimulationConfigurable : Configurable {
     string _fullscreen;
     string _height;
@@ -27,7 +26,10 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     string _width;
 
     /// <summary>
-    /// 
+    /// </summary>
+    public override string PrototypingTypeName { get { return "SimulationConfigurable"; } }
+
+    /// <summary>
     /// </summary>
     protected override void PreSetup() {
       this._quality_level = this.Identifier + "QualityLevel";
@@ -39,12 +41,6 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     }
 
     /// <summary>
-    /// 
-    /// </summary>
-    public override string PrototypingTypeName { get { return "SimulationConfigurable"; } }
-
-    /// <summary>
-    /// 
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
@@ -74,10 +70,12 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     protected override void UnRegisterComponent() {
-      if (this.ParentEnvironment == null) return;
+      if (this.ParentEnvironment == null) {
+        return;
+      }
+
       this.ParentEnvironment.UnRegister(this, this._quality_level);
       this.ParentEnvironment.UnRegister(this, this._target_frame_rate);
       this.ParentEnvironment.UnRegister(this, this._time_scale);
@@ -87,7 +85,6 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="simulator_configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration) {
@@ -116,7 +113,6 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="random_generator"></param>
     /// <returns></returns>

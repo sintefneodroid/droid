@@ -2,11 +2,9 @@
 
 namespace Neodroid.Runtime.Utilities.Misc.Drawing {
   /// <summary>
-  /// 
   /// </summary>
   public static partial class NeodroidDrawingUtilities {
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="pos"></param>
     /// <param name="direction"></param>
@@ -16,7 +14,7 @@ namespace Neodroid.Runtime.Utilities.Misc.Drawing {
     public static void ForGizmo(
         Vector3 pos,
         Vector3 direction,
-        Color color = default(Color),
+        Color color = default,
         float arrow_head_length = 0.25f,
         float arrow_head_angle = 20.0f) {
       Gizmos.DrawRay(pos, direction);
@@ -24,7 +22,6 @@ namespace Neodroid.Runtime.Utilities.Misc.Drawing {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="pos"></param>
     /// <param name="direction"></param>
@@ -35,7 +32,7 @@ namespace Neodroid.Runtime.Utilities.Misc.Drawing {
     public static void ForDebug(
         Vector3 pos,
         Vector3 direction,
-        Color color = default(Color),
+        Color color = default,
         float arrow_head_length = 0.25f,
         float arrow_head_angle = 20.0f,
         float ray_duration = 0f) {
@@ -45,14 +42,21 @@ namespace Neodroid.Runtime.Utilities.Misc.Drawing {
         Debug.DrawRay(pos, direction, color);
       }
 
-      NeodroidDrawingUtilitiesEnd(false, pos, direction, color, arrow_head_length, arrow_head_angle, ray_duration);
+      NeodroidDrawingUtilitiesEnd(
+          false,
+          pos,
+          direction,
+          color,
+          arrow_head_length,
+          arrow_head_angle,
+          ray_duration);
     }
 
     static void NeodroidDrawingUtilitiesEnd(
         bool gizmos,
         Vector3 pos,
         Vector3 direction,
-        Color color = default(Color),
+        Color color = default,
         float arrow_head_length = 0.25f,
         float arrow_head_angle = 20.0f,
         float ray_duration = 0f) {

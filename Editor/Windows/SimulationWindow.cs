@@ -8,17 +8,14 @@ using Neodroid.Runtime.Prototyping.Actors;
 using Neodroid.Runtime.Prototyping.Configurables;
 using Neodroid.Runtime.Prototyping.Displayers;
 using Neodroid.Runtime.Prototyping.Evaluation;
-using Neodroid.Runtime.Prototyping.Internals;
 using Neodroid.Runtime.Prototyping.Motors;
 using Neodroid.Runtime.Prototyping.Observers;
 using Neodroid.Runtime.Utilities.Enums;
 using Neodroid.Runtime.Utilities.GameObjects;
-using Neodroid.Runtime.Utilities.Misc.Drawing;
-using Neodroid.Runtime.Utilities.Misc.Grasping;
+using Neodroid.Runtime.Utilities.Misc;
 using Neodroid.Runtime.Utilities.ScriptableObjects;
 using UnityEditor;
 using UnityEngine;
-using NeodroidUtilities = Neodroid.Runtime.Utilities.Misc.NeodroidUtilities;
 
 namespace Neodroid.Editor.Windows {
   /// <inheritdoc />
@@ -26,39 +23,36 @@ namespace Neodroid.Editor.Windows {
   /// </summary>
   public class SimulationWindow : EditorWindow {
     const int _logo_image_size = 100;
-    PrototypingEnvironment[] _environments;
-    Texture _icon;
-    Texture _neodroid_icon;
-    Vector2 _scroll_position;
-    bool[] _show_environment_properties = new bool[1];
-
-    /// <summary>
-    ///
-    /// </summary>
-    NeodroidManager _simulation_manager;
-
-    PlayerReactions _player_reactions;
 
     const string _neodroid_url_text = "Documentation";
     const string _neodroid_url = "https://github.com/sintefneodroid/droid";
 
     /// <summary>
-    ///
     /// </summary>
     const bool _refresh_enabled = false;
 
+    PrototypingEnvironment[] _environments;
+    Texture _icon;
+    Texture _neodroid_icon;
+
+    PlayerReactions _player_reactions;
+    Vector2 _scroll_position;
+    bool[] _show_environment_properties = new bool[1];
+
     /// <summary>
-    ///
     /// </summary>
-    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "SimulationWindow"),
-     MenuItem(EditorWindowMenuPath._ToolMenuPath + "SimulationWindow")]
+    NeodroidManager _simulation_manager;
+
+    /// <summary>
+    /// </summary>
+    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "SimulationWindow")]
+    [MenuItem(EditorWindowMenuPath._ToolMenuPath + "SimulationWindow")]
     public static void ShowWindow() {
       GetWindow(typeof(SimulationWindow)); //Show existing window instance. If one doesn't exist, make one.
       //window.Show();
     }
 
     /// <summary>
-    ///
     /// </summary>
     void OnEnable() {
       this._icon = (Texture2D)AssetDatabase.LoadAssetAtPath(
@@ -72,7 +66,6 @@ namespace Neodroid.Editor.Windows {
     }
 
     /// <summary>
-    ///
     /// </summary>
     void Setup() {
       if (this._environments != null) {
@@ -81,7 +74,6 @@ namespace Neodroid.Editor.Windows {
     }
 
     /// <summary>
-    ///
     /// </summary>
     void OnGUI() {
       var serialised_object = new SerializedObject(this);
@@ -367,7 +359,6 @@ namespace Neodroid.Editor.Windows {
     }
 
     /// <summary>
-    ///
     /// </summary>
     void Refresh() {
       if (this._simulation_manager) {
@@ -385,7 +376,6 @@ namespace Neodroid.Editor.Windows {
     }
 
     /// <summary>
-    ///
     /// </summary>
     void OnValidate() {
       if (EditorApplication.isPlaying || !_refresh_enabled) {
@@ -396,12 +386,10 @@ namespace Neodroid.Editor.Windows {
     }
 
     /// <summary>
-    ///
     /// </summary>
     void OnHierarchyChange() { this.Refresh(); }
 
     /// <summary>
-    ///
     /// </summary>
     public void OnInspectorUpdate() {
       this.Repaint();

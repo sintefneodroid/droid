@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Neodroid.Runtime.Prototyping.Observers {
   /// <summary>
-  /// 
   /// </summary>
   enum Category {
     One_,

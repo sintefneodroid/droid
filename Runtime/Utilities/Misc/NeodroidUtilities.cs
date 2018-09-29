@@ -6,11 +6,9 @@ using UnityEngine.SceneManagement;
 
 namespace Neodroid.Runtime.Utilities.Misc {
   /// <summary>
-  ///
   /// </summary>
-  public static partial class NeodroidUtilities {
+  public static class NeodroidUtilities {
     /// <summary>
-    ///
     /// </summary>
     /// <param name="rb"></param>
     /// <returns></returns>
@@ -24,7 +22,6 @@ namespace Neodroid.Runtime.Utilities.Misc {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="vec"></param>
     /// <param name="min_point"></param>
@@ -38,7 +35,6 @@ namespace Neodroid.Runtime.Utilities.Misc {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="p1"></param>
     /// <param name="p2"></param>
@@ -70,7 +66,6 @@ namespace Neodroid.Runtime.Utilities.Misc {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <returns></returns>
     public static Gradient DefaultGradient() {
@@ -174,7 +169,6 @@ namespace Neodroid.Runtime.Utilities.Misc {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="colors"></param>
     /// <returns></returns>
@@ -188,7 +182,6 @@ namespace Neodroid.Runtime.Utilities.Misc {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="r"></param>
     /// <param name="c"></param>
@@ -219,16 +212,15 @@ namespace Neodroid.Runtime.Utilities.Misc {
       return component;
     }
 
-    ///  <summary>
-    /// 
-    ///  </summary>
-    ///  <param name="r"></param>
-    ///  <param name="c"></param>
-    ///  <param name="identifier"></param>
+    /// <summary>
+    /// </summary>
+    /// <param name="r"></param>
+    /// <param name="c"></param>
+    /// <param name="identifier"></param>
     /// <param name="only_parents"></param>
     /// <typeparam name="TRecipient"></typeparam>
-    ///  <typeparam name="TCaller"></typeparam>
-    ///  <returns></returns>
+    /// <typeparam name="TCaller"></typeparam>
+    /// <returns></returns>
     public static TRecipient RegisterComponent<TRecipient, TCaller>(
         TRecipient r,
         TCaller c,
@@ -276,7 +268,6 @@ namespace Neodroid.Runtime.Utilities.Misc {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="layer"></param>
     /// <returns></returns>
@@ -293,7 +284,6 @@ namespace Neodroid.Runtime.Utilities.Misc {
     }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="parent"></param>
     /// <param name="layer"></param>

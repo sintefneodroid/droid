@@ -10,13 +10,12 @@ namespace Neodroid.Samples.MultiArmedBandit {
   [AddComponentMenu(
       EvaluationComponentMenuPath._ComponentMenuPath + "PoseDeviance" + EvaluationComponentMenuPath._Postfix)]
   public class MultiArmedBanditEvaluation : ObjectiveFunction {
-    [SerializeField] float[] _normalised_values;
     [SerializeField] MultiArmedBanditMotor _arms;
+    [SerializeField] float[] _normalised_values;
 
     [SerializeField] TextBarPlotDisplayer _text_bar_plot_displayer;
 
     /// <summary>
-    /// 
     /// </summary>
     protected override void PostSetup() {
       if (this._arms == null) {
@@ -41,7 +40,6 @@ namespace Neodroid.Samples.MultiArmedBandit {
     }
 
     /// <summary>
-    /// 
     /// </summary>
     public override void InternalReset() { this._text_bar_plot_displayer.Display(this._normalised_values); }
 

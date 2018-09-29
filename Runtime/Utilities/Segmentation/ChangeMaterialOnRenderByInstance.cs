@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Utilities.Structs;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -12,27 +11,22 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
   [ExecuteInEditMode]
   public class ChangeMaterialOnRenderByInstance : Segmenter {
     /// <summary>
-    ///
     /// </summary>
     Renderer[] _all_renders;
 
     /// <summary>
-    ///
     /// </summary>
     MaterialPropertyBlock _block;
 
     /// <summary>
-    ///
     /// </summary>
     LinkedList<Color>[] _original_colors;
 
-    ///  <summary>
-    ///  </summary>
-    public Dictionary<GameObject, Color> ColorsDictGameObject { get; private set; } =
-      new Dictionary<GameObject, Color>();
+    /// <summary>
+    /// </summary>
+    public Dictionary<GameObject, Color> ColorsDictGameObject { get; } = new Dictionary<GameObject, Color>();
 
     /// <summary>
-    /// 
     /// </summary>
     public override Dictionary<String, Color> ColorsDict {
       get {
@@ -46,7 +40,6 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
     }
 
     /// <summary>
-    ///
     /// </summary>
     public ColorByInstance[] InstanceColors {
       get {
@@ -73,12 +66,10 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
 
     // Use this for initialization
     /// <summary>
-    ///
     /// </summary>
     void Start() { this.Setup(); }
 
     /// <summary>
-    ///
     /// </summary>
     void Awake() {
       this._all_renders = FindObjectsOfType<Renderer>();
@@ -88,7 +79,6 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
 
     // Update is called once per frame
     /// <summary>
-    ///
     /// </summary>
     void Update() {
       var renderers = FindObjectsOfType<Renderer>();
@@ -107,7 +97,6 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
     }
 
     /// <summary>
-    ///
     /// </summary>
     void Setup() {
       this.CheckBlock();
@@ -121,7 +110,6 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
     }
 
     /// <summary>
-    ///
     /// </summary>
     void Change() {
       this.CheckBlock();
@@ -151,7 +139,6 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
     }
 
     /// <summary>
-    ///
     /// </summary>
     void Restore() {
       this.CheckBlock();
@@ -177,7 +164,6 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
     }
 
     /// <summary>
-    ///
     /// </summary>
     void OnPreRender() {
       // change
@@ -185,7 +171,6 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
     }
 
     /// <summary>
-    ///
     /// </summary>
     void OnPostRender() {
       // change back

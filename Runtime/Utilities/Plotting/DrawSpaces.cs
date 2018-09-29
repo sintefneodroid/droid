@@ -2,7 +2,6 @@
 
 namespace Neodroid.Runtime.Utilities.Plotting {
   /// <summary>
-  ///
   /// </summary>
   public class DrawSpaces : MonoBehaviour {
     void OnDrawGizmos() {

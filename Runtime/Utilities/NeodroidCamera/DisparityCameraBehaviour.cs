@@ -2,8 +2,8 @@
 
 namespace Neodroid.Runtime.Utilities.NeodroidCamera {
   /// <inheritdoc />
-  ///  <summary>
-  ///  </summary>
+  /// <summary>
+  /// </summary>
   public class DisparityCameraBehaviour : MonoBehaviour {
     //TODO: Implement
   }
