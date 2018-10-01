@@ -4,7 +4,7 @@ using Neodroid.Runtime.Messaging.Messages;
 using Neodroid.Runtime.Utilities.ScriptableObjects;
 using UnityEngine;
 
-namespace Neodroid.Runtime.PlayerControls {
+namespace Neodroid.Runtime.InternalReactions {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

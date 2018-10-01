@@ -1,8 +1,11 @@
-﻿using Neodroid.Runtime.Utilities.BoundingBoxes;
+﻿using System;
+using System.Text;
+using Neodroid.Runtime.Interfaces;
+using Neodroid.Runtime.Utilities.BoundingBoxes;
 using UnityEngine;
 
 namespace Neodroid.Runtime.Prototyping.Observers.Experimental {
-  /// <inheritdoc />
+  /// <inheritdoc cref="Observer" />
   /// <summary>
   /// </summary>
   [AddComponentMenu(
@@ -11,24 +14,26 @@ namespace Neodroid.Runtime.Prototyping.Observers.Experimental {
       + ObserverComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [RequireComponent(typeof(BoundingBox))]
-  public class BoundingBoxObserver : Observer {
+  public class BoundingBoxObserver : Observer, IHasString {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override string PrototypingTypeName { get { return "BoundingBox"; } }
-    //BoundingBox _bounding_box;
+    BoundingBox _bounding_box;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     protected override void PreSetup() {
-      //_bounding_box = this.GetComponent<BoundingBox> ();
+      this._bounding_box = this.GetComponent<BoundingBox> ();
     }
 
     /// <summary>
     /// </summary>
     public override void UpdateObservation() {
-      //Data = Encoding.ASCII.GetBytes (_bounding_box.BoundingBoxCoordinatesAsJSON);
+      this.ObservationValue = this._bounding_box.BoundingBoxCoordinatesAsJson;
     }
+
+    public String ObservationValue { get; set; }
   }
 }

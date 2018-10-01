@@ -2,8 +2,8 @@
 using Neodroid.Editor.Utilities;
 using Neodroid.Runtime;
 using Neodroid.Runtime.Environments;
+using Neodroid.Runtime.InternalReactions;
 using Neodroid.Runtime.Managers;
-using Neodroid.Runtime.PlayerControls;
 using Neodroid.Runtime.Prototyping.Actors;
 using Neodroid.Runtime.Prototyping.Configurables;
 using Neodroid.Runtime.Prototyping.Displayers;

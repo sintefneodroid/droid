@@ -1,7 +1,7 @@
 ﻿using Neodroid.Runtime.Utilities.Misc.SearchableEnum;
 using UnityEngine;
 
-namespace Neodroid.Runtime.PlayerControls {
+namespace Neodroid.Runtime.InternalReactions {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
