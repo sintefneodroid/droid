@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Neodroid.Runtime.Utilities.Segmentation;
+using Neodroid.Runtime.Utilities.NeodroidCamera.Segmentation;
 using Newtonsoft.Json;
 using UnityEngine;
 

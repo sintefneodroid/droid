@@ -104,7 +104,7 @@
 			"RenderType"="Transparent" // Replaces shaders with "Transparent" as RenderType
 		}
 
-		ZWrite Off // Dont show depth on transparent objects
+		ZWrite Off // Do not show depth on transparent objects
 		Blend SrcAlpha OneMinusSrcAlpha
 
 		Pass{

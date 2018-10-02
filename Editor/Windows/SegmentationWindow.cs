@@ -1,6 +1,6 @@
 ﻿#if UNITY_EDITOR
 using Neodroid.Runtime;
-using Neodroid.Runtime.Utilities.Segmentation;
+using Neodroid.Runtime.Utilities.NeodroidCamera.Segmentation;
 using Neodroid.Runtime.Utilities.Structs;
 using UnityEditor;
 using UnityEngine;

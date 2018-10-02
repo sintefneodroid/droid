@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Neodroid.Runtime.Interfaces;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Utilities.Segmentation {
+namespace Neodroid.Runtime.Utilities.NeodroidCamera.Segmentation {
 
   class Seri {
 

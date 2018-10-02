@@ -1,6 +1,6 @@
 ﻿using System.Linq;
+using Neodroid.Runtime.Utilities.NeodroidCamera.Segmentation;
 using Neodroid.Runtime.Utilities.ScriptableObjects;
-using Neodroid.Runtime.Utilities.Segmentation;
 using UnityEngine;
 
 namespace Neodroid.Runtime.Prototyping.Observers.Camera.Segmentation {

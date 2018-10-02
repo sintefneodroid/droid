@@ -34,6 +34,9 @@ namespace Neodroid.Runtime.Prototyping.Observers.Experimental {
       this.ObservationValue = this._bounding_box.BoundingBoxCoordinatesAsJson;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public String ObservationValue { get; set; }
   }
 }

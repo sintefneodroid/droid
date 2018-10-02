@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using Neodroid.Runtime.Utilities.Structs;
 using UnityEngine;
+using Object = System.Object;
 using Random = UnityEngine.Random;
 
-namespace Neodroid.Runtime.Utilities.Segmentation {
+namespace Neodroid.Runtime.Utilities.NeodroidCamera.Segmentation {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
@@ -21,6 +22,13 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
     /// <summary>
     /// </summary>
     LinkedList<Color>[] _original_colors;
+
+    [SerializeField] string _default_color_tag = "_Color";
+    [SerializeField] string _segmentation_color_tag = "_SegmentationColor";
+    [SerializeField] string _outline_color_tag = "_OutlineColor";
+    [SerializeField] string _outline_width_factor_tag = "_OutlineWidthFactor";
+    [SerializeField, Range(0,1)] float _outline_width_factor = 0.2f;
+    [SerializeField] Color _outline_color = Color.magenta;
 
     /// <summary>
     /// </summary>
@@ -123,13 +131,15 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
         var c_renderer = this._all_renders[i];
         if (c_renderer) {
           foreach (var mat in c_renderer.sharedMaterials) {
-            if (mat != null && mat.HasProperty("_Color")) {
+            if (mat != null && mat.HasProperty(this._default_color_tag)) {
               this._original_colors[i].AddFirst(mat.color);
             }
 
             if (this.ColorsDictGameObject.ContainsKey(c_renderer.gameObject)) {
               var val = this.ColorsDictGameObject[c_renderer.gameObject];
-              this._block.SetColor("_Color", val);
+              this._block.SetColor(this._segmentation_color_tag, val);
+              this._block.SetColor(this._outline_color_tag, this._outline_color);
+              this._block.SetFloat(this._outline_width_factor_tag, this._outline_width_factor);
             }
 
             c_renderer.SetPropertyBlock(this._block);
@@ -147,13 +157,12 @@ namespace Neodroid.Runtime.Utilities.Segmentation {
         if (c_renderer) {
           foreach (var mat in c_renderer.sharedMaterials) {
             if (mat != null
-                && mat.HasProperty("_Color")
                 && this._original_colors != null
                 && i < this._original_colors.Length) {
               var c_original_color = this._original_colors[i];
               if (c_original_color != null) {
                 var last_val = c_original_color.Last.Value;
-                this._block.SetColor("_Color", last_val);
+                this._block.SetColor(this._default_color_tag, last_val);
                 c_original_color.RemoveLast();
                 c_renderer.SetPropertyBlock(this._block);
               }
