@@ -201,6 +201,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
   _old_fov: 80
@@ -409,6 +414,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114203839715900738}
   _cameras:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -733,6 +743,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
   _old_fov: 80
@@ -901,6 +916,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114203530777878686}
   _cameras:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -1079,6 +1099,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114798311224295254}
   _cameras:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -1262,6 +1287,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _old_culling_mask: -1
   _old_far_clip_plane: 20
   _old_fov: 80
@@ -1317,13 +1347,23 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _filter_mode: 1
   _size: {x: 84, y: 84}
   _texture_format: 5
   _textures:
-  - {fileID: 8400000, guid: 4c7dcaf7e8ef74c11bd8ad06365ea216, type: 2}
   - {fileID: 8400000, guid: c0062e72afb4348d9b9bb702fba6c398, type: 2}
+  - {fileID: 8400000, guid: b22ce111b5af44afe8b8f2f085799a5f, type: 2}
   - {fileID: 8400000, guid: 8fb1467d625b3486199ecd1d9d21ef7d, type: 2}
+  - {fileID: 8400000, guid: afc5604d79d0849129803e463fc07bca, type: 2}
+  - {fileID: 8400000, guid: 5d9eca522a1944267b89beea11ffc58c, type: 2}
+  - {fileID: 8400000, guid: bc593ac7628a042ac93b20ca1c0101b6, type: 2}
+  - {fileID: 8400000, guid: 4c7dcaf7e8ef74c11bd8ad06365ea216, type: 2}
+  - {fileID: 8400000, guid: 63f7bf9c3a80b4d169b394696cbbd9ab, type: 2}
   _wrap_mode: 1
 --- !u!1 &1870355748897446
 GameObject:
@@ -1421,6 +1461,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
   _old_fov: 80
@@ -1465,7 +1510,7 @@ MonoBehaviour:
   _segmentation_color_tag: _SegmentationColor
   _outline_color_tag: _OutlineColor
   _outline_width_factor_tag: _OutlineWidthFactor
-  _outline_width_factor: 0.15
+  _outline_width_factor: 0.12
   _outline_color: {r: 1, g: 0, b: 1, a: 1}
 --- !u!114 &7241136312313026172
 MonoBehaviour:
@@ -1506,7 +1551,7 @@ MonoBehaviour:
   _editor_reregistering: 1
   _Use_Custom_Name: 0
   _normalise_observation: 0
-  _observation_value: '-1968: RGBA(0.001, 0.017, 0.014, 1.000), 22064: RGBA(0.272, 0.371, 0.496, 1.000), 22078: RGBA(0.208, 0.171, 0.172, 1.000), 22096: RGBA(0.200, 0.239, 0.058, 1.000), 22118: RGBA(0.643, 0.599, 0.766, 1.000)'
+  _observation_value: '-3992: RGBA(0.094, 0.955, 0.672, 1.000), -3568: RGBA(0.115, 0.110, 0.105, 1.000), -3562: RGBA(0.079, 0.067, 0.046, 1.000), -3438: RGBA(0.298, 0.862, 0.913, 1.000), -3440: RGBA(0.070, 0.078, 0.085, 1.000), -3442: RGBA(0.047, 0.091, 0.087, 1.000), -3386: RGBA(0.535, 0.218, 0.199, 1.000), -3376: RGBA(0.313, 0.191, 0.128, 1.000), -3380: RGBA(0.050, 0.056, 0.074, 1.000), -3372: RGBA(0.820, 0.342, 0.735, 1.000), -3382: RGBA(0.014, 0.189, 0.168, 1.000), -3374: RGBA(0.472, 0.416, 0.779, 1.000), -3384: RGBA(0.777, 0.735, 0.714, 1.000), -2674: RGBA(0.898, 0.845, 0.778, 1.000), -2658: RGBA(0.007, 0.001, 0.021, 1.000), -2760: RGBA(0.761, 0.850, 0.419, 1.000), -2804: RGBA(0.410, 0.429, 0.427, 1.000), -2816: RGBA(0.363, 0.226, 0.246, 1.000), -2686: RGBA(0.176, 0.362, 0.240, 1.000), -2678: RGBA(0.479, 0.166, 0.091, 1.000), -2836: RGBA(0.313, 0.645, 0.243, 1.000), -2670: RGBA(0.119, 0.016, 0.167, 1.000), -2808: RGBA(0.448, 0.238, 0.754, 1.000), -2820: RGBA(0.337, 0.442, 0.425, 1.000), -2772: RGBA(0.256, 0.429, 0.376, 1.000), -2750: RGBA(0.159, 0.421, 0.320, 1.000), -2852: RGBA(0.615, 0.178, 0.655, 1.000), -2638: RGBA(0.342, 0.060, 0.167, 1.000), -2726: RGBA(0.048, 0.067, 0.003, 1.000), -2870: RGBA(0.239, 0.683, 0.501, 1.000), -2840: RGBA(0.666, 0.585, 0.078, 1.000), -2780: RGBA(0.273, 0.266, 0.384, 1.000), -2626: RGBA(0.280, 0.066, 0.097, 1.000), -2712: RGBA(0.015, 0.029, 0.026, 1.000), -2616: RGBA(0.612, 0.336, 0.024, 1.000), -2792: RGBA(0.222, 0.430, 0.261, 1.000), -2784: RGBA(0.578, 0.400, 0.409, 1.000), -2690: RGBA(0.881, 0.882, 0.872, 1.000), -2768: RGBA(0.341, 0.340, 0.343, 1.000), -2848: RGBA(0.531, 0.128, 0.463, 1.000), -2716: RGBA(0.228, 0.351, 0.319, 1.000), -2856: RGBA(0.721, 0.528, 0.777, 1.000), -2878: RGBA(0.287, 0.089, 0.327, 1.000), -2650: RGBA(0.633, 0.258, 0.279, 1.000), -2736: RGBA(0.988, 0.310, 0.048, 1.000), -2828: RGBA(0.018, 0.184, 0.005, 1.000), -2776: RGBA(0.517, 0.450, 0.728, 1.000), -2646: RGBA(0.600, 0.723, 0.517, 1.000), -2708: RGBA(0.142, 0.181, 0.151, 1.000), -2844: RGBA(0.281, 0.451, 0.773, 1.000), -2634: RGBA(0.137, 0.165, 0.132, 1.000), -2630: RGBA(0.372, 0.371, 0.422, 1.000), -2654: RGBA(0.149, 0.047, 0.476, 1.000), -2764: RGBA(0.096, 0.379, 0.496, 1.000), -2746: RGBA(0.090, 0.312, 0.071, 1.000), -2682: RGBA(0.015, 0.015, 0.014, 1.000), -2874: RGBA(0.909, 0.263, 0.916, 1.000), -2732: RGBA(0.425, 0.474, 0.506, 1.000), -2800: RGBA(0.116, 0.732, 0.145, 1.000), -2350: RGBA(0.052, 0.110, 0.022, 1.000), -2352: RGBA(0.243, 0.582, 0.202, 1.000), -2340: RGBA(0.276, 0.252, 0.267, 1.000), -2342: RGBA(0.058, 0.378, 0.020, 1.000), -2346: RGBA(0.290, 0.232, 0.258, 1.000), -2358: RGBA(0.737, 0.908, 0.321, 1.000), -2348: RGBA(0.092, 0.084, 0.103, 1.000), -2330: RGBA(0.266, 0.144, 0.342, 1.000), -2360: RGBA(0.453, 0.264, 0.779, 1.000), -2338: RGBA(0.161, 0.257, 0.174, 1.000), -2356: RGBA(0.365, 0.414, 0.079, 1.000), -2332: RGBA(0.296, 0.606, 0.441, 1.000), -2344: RGBA(0.533, 0.208, 0.393, 1.000), -2092: RGBA(0.542, 0.850, 0.471, 1.000), -2096: RGBA(0.498, 0.442, 0.376, 1.000), -2094: RGBA(0.810, 0.550, 0.026, 1.000), -2100: RGBA(0.147, 0.148, 0.105, 1.000), -2098: RGBA(0.063, 0.331, 0.348, 1.000), -2052: RGBA(0.179, 0.447, 0.445, 1.000), -2054: RGBA(0.848, 0.957, 0.828, 1.000), -2056: RGBA(0.225, 0.176, 0.638, 1.000), -1178: RGBA(0.122, 0.117, 0.232, 1.000), 14540: RGBA(0.848, 0.747, 0.274, 1.000), 14552: RGBA(0.692, 0.625, 0.676, 1.000), 14634: RGBA(0.109, 0.193, 0.362, 1.000), 14688: RGBA(0.153, 0.093, 0.130, 1.000), 14710: RGBA(0.083, 0.027, 0.090, 1.000), 14720: RGBA(0.785, 0.637, 0.558, 1.000), 14806: RGBA(0.838, 0.772, 0.625, 1.000), 14926: RGBA(0.361, 0.306, 0.243, 1.000), 14978: RGBA(0.019, 0.024, 0.027, 1.000), 15058: RGBA(0.040, 0.036, 0.046, 1.000), 15076: RGBA(0.141, 0.050, 0.022, 1.000)'
   _segmenter: {fileID: 114910394560810596}
 --- !u!1 &1975208461797724
 GameObject:
@@ -1623,6 +1668,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
   _old_fov: 80
@@ -1655,6 +1705,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 108322580981299036}
   - {fileID: 108133865239658186}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
 --- !u!1 &1975303641184726
@@ -1753,6 +1804,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
   _old_fov: 80
@@ -1799,7 +1855,7 @@ MonoBehaviour:
   _segmentation_color_tag: _SegmentationColor
   _outline_color_tag: _OutlineColor
   _outline_width_factor_tag: _OutlineWidthFactor
-  _outline_width_factor: 0.15
+  _outline_width_factor: 0.12
   _outline_color: {r: 1, g: 0, b: 1, a: 1}
   _Untagged_Color: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &810406206229323000

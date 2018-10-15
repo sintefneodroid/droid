@@ -161,10 +161,14 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera.Segmentation {
                 && i < this._original_colors.Length) {
               var c_original_color = this._original_colors[i];
               if (c_original_color != null) {
-                var last_val = c_original_color.Last.Value;
-                this._block.SetColor(this._default_color_tag, last_val);
-                c_original_color.RemoveLast();
-                c_renderer.SetPropertyBlock(this._block);
+                var c = this._original_colors[i];
+                var last = c?.Last;
+                if (last != null) {
+                  var last_val = last.Value;
+                  this._block.SetColor(this._default_color_tag, last_val);
+                  c_original_color.RemoveLast();
+                  c_renderer.SetPropertyBlock(this._block);
+                }
               }
             }
           }

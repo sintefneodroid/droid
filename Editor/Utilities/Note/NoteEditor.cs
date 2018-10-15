@@ -1,45 +1,9 @@
-﻿#if UNITY_EDITOR
-using System;
+#if UNITY_EDITOR
+
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Editor.Utilities {
-  /// <inheritdoc />
-  /// <summary>
-  /// </summary>
-  [Serializable]
-  public class Note : MonoBehaviour {
-    /// <summary>
-    /// </summary>
-    [NonSerialized]
-    public bool _Editing;
-
-    /// <summary>
-    /// </summary>
-    [TextArea]
-    [Tooltip("A component for holding notes or comments")]
-    [SerializeField]
-    public string _Text;
-
-    /// <summary>
-    /// </summary>
-    public void EditToggle() { this._Editing = !this._Editing; }
-
-    void Start() { this.enabled = false; }
-  }
-
-  /// <summary>
-  /// </summary>
-  enum NoteType {
-    Text_area_,
-    Text_field_,
-    Delayed_text_field_,
-    Label_,
-    Box_text_,
-    Box_info_,
-    Box_warning_,
-    Box_error_
-  }
+namespace Neodroid.Editor.Utilities.Note {
 
   /// <inheritdoc />
   /// <summary>

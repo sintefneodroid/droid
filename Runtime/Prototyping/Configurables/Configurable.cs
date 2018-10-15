@@ -79,6 +79,13 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
           this);
     }
 
+    protected virtual void Update() {
+      if (this.Debugging && Application.isPlaying) {
+        var random_generator = new Random();
+        this.ApplyConfiguration(this.SampleConfiguration(random_generator));
+      }
+    }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>

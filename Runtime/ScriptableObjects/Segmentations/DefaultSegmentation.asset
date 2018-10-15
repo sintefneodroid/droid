@@ -4,7 +4,8 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -19,6 +20,6 @@ MonoBehaviour:
   - _Tag: Obstruction
     _Col: {r: 1, g: 0, b: 0, a: 1}
   - _Tag: Box
-    _Col: {r: 1, g: 0, b: 1, a: 1}
+    _Col: {r: 0, g: 0.9454925, b: 1, a: 1}
   - _Tag: Player
     _Col: {r: 0, g: 0, b: 1, a: 1}

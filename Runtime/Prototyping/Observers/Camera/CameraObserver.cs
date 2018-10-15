@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Managers;
 using Neodroid.Runtime.Utilities.ScriptableObjects;
@@ -112,13 +112,7 @@ namespace Neodroid.Runtime.Prototyping.Observers.Camera {
     /// </summary>
     protected virtual void OnPostRender() { this.UpdateBytes(); }
 
-    // ReSharper disable once Unity.RedundantEventFunction
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    protected override void Update() {
-      //Do not assign anything to the FloatEnumerable
-    }
+
 
     /// <summary>
     /// </summary>
@@ -155,6 +149,7 @@ namespace Neodroid.Runtime.Prototyping.Observers.Camera {
         Debug.LogWarning($"No camera found on {this}");
       }
     }
+
 
     /// <inheritdoc />
     /// <summary>

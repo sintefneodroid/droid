@@ -78,8 +78,10 @@ namespace Neodroid.Runtime.Prototyping.Observers {
     protected virtual void Update() {
       if (Application.isPlaying) {
         if (this.FloatEnumerable == null || !this.FloatEnumerable.Any()) {
-          Debug.LogWarning(
-              $"FloatEnumerable of {this.Identifier} is empty! Maybe you forget an assignment to it when updating observations");
+          if(this.Debugging) {
+            Debug.LogWarning(
+                $"FloatEnumerable of {this.Identifier} is empty! Maybe you forget an assignment to it when updating observations");
+          }
         }
       }
     }

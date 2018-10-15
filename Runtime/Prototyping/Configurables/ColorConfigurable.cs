@@ -40,11 +40,6 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName { get { return "ColorConfigurable"; } }
-
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
     protected override void PreSetup() {
       this._r = this.Identifier + "R";
       this._g = this.Identifier + "G";
@@ -76,6 +71,7 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
           this._a);
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     protected override void UnRegisterComponent() {
@@ -116,8 +112,20 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
       }
     }
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    /// <param name="random_generator"></param>
+    /// <returns></returns>
     public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
       return new Configuration(this._r, (float)random_generator.NextDouble());
+    }
+
+    void Update() {
+      if (this.Debugging && Application.isPlaying) {
+        var random_generator = new Random();
+        this.ApplyConfiguration(this.SampleConfiguration(random_generator));
+      }
     }
   }
 }
