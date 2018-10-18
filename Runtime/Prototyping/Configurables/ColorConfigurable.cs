@@ -118,14 +118,17 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     /// <param name="random_generator"></param>
     /// <returns></returns>
     public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
-      return new Configuration(this._r, (float)random_generator.NextDouble());
-    }
+      var sample = random_generator.NextDouble();
 
-    void Update() {
-      if (this.Debugging && Application.isPlaying) {
-        var random_generator = new Random();
-        this.ApplyConfiguration(this.SampleConfiguration(random_generator));
+      if (sample < .33f) {
+        return new Configuration(this._r, (float)random_generator.NextDouble());
       }
+
+      if (sample > .66f) {
+        return new Configuration(this._g, (float)random_generator.NextDouble());
+      }
+
+      return new Configuration(this._b, (float)random_generator.NextDouble());
     }
   }
 }

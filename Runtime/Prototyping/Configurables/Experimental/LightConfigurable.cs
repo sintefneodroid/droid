@@ -15,7 +15,9 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
   public class LightConfigurable : Configurable {
 
     string _shadow_strength;
-    string _color;
+    string _color_r;
+    string _color_g;
+    string _color_b;
     string _intensity;
     string _indirect_multiplier;
 
@@ -26,7 +28,9 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     protected override void PreSetup() {
       this._shadow_strength = this.Identifier + "ShadowStrength";
-      this._color = this.Identifier + "Color";
+      this._color_r = this.Identifier + "ColorR";
+      this._color_g = this.Identifier + "ColorG";
+      this._color_b = this.Identifier + "ColorB";
       this._intensity = this.Identifier + "Intensity";
       this._indirect_multiplier = this.Identifier + "IndirectMultiplier";
 
@@ -44,7 +48,15 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
       this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
-          this._color);
+          this._color_r);
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
+          (PrototypingEnvironment)this.ParentEnvironment,
+          (Configurable)this,
+          this._color_b);
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
+          (PrototypingEnvironment)this.ParentEnvironment,
+          (Configurable)this,
+          this._color_g);
       this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
@@ -64,7 +76,9 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
       }
 
       this.ParentEnvironment.UnRegister(this, this._shadow_strength);
-      this.ParentEnvironment.UnRegister(this, this._color);
+      this.ParentEnvironment.UnRegister(this, this._color_r);
+      this.ParentEnvironment.UnRegister(this, this._color_g);
+      this.ParentEnvironment.UnRegister(this, this._color_b);
       this.ParentEnvironment.UnRegister(this, this._intensity);
       this.ParentEnvironment.UnRegister(this, this._indirect_multiplier);
     }
@@ -83,9 +97,17 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
 
       if (configuration.ConfigurableName == this._shadow_strength) {
         this._light.shadowStrength = configuration.ConfigurableValue;
-      } else if (configuration.ConfigurableName == this._color) {
+      } else if (configuration.ConfigurableName == this._color_r) {
+        var c = this._light.color;
+        c.r = configuration.ConfigurableValue;
+        this._light.color = c;
+      } else if (configuration.ConfigurableName == this._color_g) {
         var c = this._light.color;
         c.g = configuration.ConfigurableValue;
+        this._light.color = c;
+      } else if (configuration.ConfigurableName == this._color_b) {
+        var c = this._light.color;
+        c.b = configuration.ConfigurableValue;
         this._light.color = c;
       } else if (configuration.ConfigurableName == this._intensity) {
         this._light.intensity = configuration.ConfigurableValue;
@@ -100,9 +122,20 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
     /// <param name="random_generator"></param>
     /// <returns></returns>
     public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
-      return new Configuration(this._intensity, (float)random_generator.NextDouble());
+      var sample = random_generator.NextDouble();
+
+      if (sample < .33f) {
+        return new Configuration(this._color_r, (float)random_generator.NextDouble());
+      }
+
+      if (sample > .66f) {
+        return new Configuration(this._color_g, (float)random_generator.NextDouble());
+      }
+
+      return new Configuration(this._color_b, (float)random_generator.NextDouble());
     }
 
 
-  }
+
+}
 }

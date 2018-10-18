@@ -4,6 +4,7 @@ Shader "Neodroid/Segmentation/Outlined" {
 		_SegmentationColor ("_SegmentationColor", Color) = (.5,.5,.5,1.)
 		_OutlineColor ("_OutlineColor", Color) = (1.,.0,1.,1.)
 		_OutlineWidthFactor ("_OutlineWidthFactor", Range (0, 1)) = 0.3
+		_SkipOutline ("_SkipOutline", Float) = 0
 	}
 
 
@@ -22,15 +23,27 @@ Shader "Neodroid/Segmentation/Outlined" {
 
         uniform float _OutlineWidthFactor;
         uniform float4 _OutlineColor;
+        uniform float _SkipOutline;
 
         v2f vert(appdata v) {
-            v.vertex *= ( 1 + _OutlineWidthFactor);
-
             v2f o;
-            o.pos = UnityObjectToClipPos(v.vertex);
-            o.color = _OutlineColor;
+            if(_SkipOutline==1){
+                o.pos = UnityObjectToClipPos(v.vertex);
+                o.color =(.0,.0,.0,1.);
+                return o;
+            }
 
+            float mult = 1/UnityObjectToClipPos(v.vertex).z;
+            v.vertex *= 1+((_OutlineWidthFactor)/(mult));
+
+            o.pos = UnityObjectToClipPos(v.vertex);
+
+
+            o.color = _OutlineColor;
             return o;
+
+
+
         }
     ENDCG
 
@@ -40,7 +53,7 @@ Shader "Neodroid/Segmentation/Outlined" {
         CGPROGRAM
             #pragma surface surf NoLighting noforwardadd
 
-            fixed4 _SegmentationColor;
+        uniform float4 _SegmentationColor;
 
             struct Input {
                 float2 uv_MainTex;

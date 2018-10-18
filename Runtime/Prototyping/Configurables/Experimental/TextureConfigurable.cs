@@ -38,7 +38,7 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
 
     /// <inheritdoc />
     /// <summary>
-    /// </summary>
+    /// </summary>n
     protected override void UnRegisterComponent() {
       if (this.ParentEnvironment == null) {
         return;

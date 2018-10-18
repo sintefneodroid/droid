@@ -23,7 +23,7 @@ MonoBehaviour:
   _max_reply_interval: 0
   _num_of_environments: 0
   _port: 6969
-  _quality_level: 1
+  _quality_level: 2
   _replay_reaction_in_skips: 0
   _reset_iterations: 1
   _simulation_type: 2

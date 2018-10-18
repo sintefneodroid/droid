@@ -25,10 +25,7 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera.Segmentation {
 
     [SerializeField] string _default_color_tag = "_Color";
     [SerializeField] string _segmentation_color_tag = "_SegmentationColor";
-    [SerializeField] string _outline_color_tag = "_OutlineColor";
-    [SerializeField] string _outline_width_factor_tag = "_OutlineWidthFactor";
-    [SerializeField, Range(0,1)] float _outline_width_factor = 0.2f;
-    [SerializeField] Color _outline_color = Color.magenta;
+
 
     /// <summary>
     /// </summary>
@@ -138,8 +135,8 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera.Segmentation {
             if (this.ColorsDictGameObject.ContainsKey(c_renderer.gameObject)) {
               var val = this.ColorsDictGameObject[c_renderer.gameObject];
               this._block.SetColor(this._segmentation_color_tag, val);
-              this._block.SetColor(this._outline_color_tag, this._outline_color);
-              this._block.SetFloat(this._outline_width_factor_tag, this._outline_width_factor);
+              this._block.SetColor(_Outline_Color_Tag, this._Outline_Color);
+              this._block.SetFloat(_Outline_Width_Factor_Tag, this._Outline_Width_Factor);
             }
 
             c_renderer.SetPropertyBlock(this._block);
