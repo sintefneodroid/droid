@@ -27,7 +27,9 @@ namespace Neodroid.Runtime.Prototyping.Observers.Camera.Segmentation {
                                       .Aggregate("", (current, next) =>  current!="" ? $"{current}, {next}" : $"{next}")
                                   : "Nothing";
       //TODO:ADD this Type(COLOR) and ColorDict as serialisation option instead of a string
-      this.ObservationValue += $", Outline: {this._segmenter.OutlineColor.ToString()}";
+      if(this._segmenter!=null) {
+        this.ObservationValue += $", Outline: {this._segmenter.OutlineColor.ToString()}";
+      }
     }
 
     /// <inheritdoc />
