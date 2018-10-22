@@ -1,4 +1,5 @@
-﻿using Neodroid.Runtime.Environments;
+﻿using System.Collections.Generic;
+using Neodroid.Runtime.Environments;
 using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Messaging.Messages;
 using Neodroid.Runtime.Utilities.Misc;
@@ -35,7 +36,10 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
 
     /// <summary>
     /// </summary>
-    Renderer _renderer;
+    Camera _camera;
+
+    GameObject[] _prefabs;
+    List<GameObject> _spawned= new List<GameObject>();
 
     /// <inheritdoc />
     /// <summary>
@@ -46,7 +50,30 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
       this._b = this.Identifier + "B";
       this._a = this.Identifier + "A";
 
-      this._renderer = this.GetComponent<Renderer>();
+      var rand = new Random();
+
+      if(this._prefabs != null && this._prefabs.Length>0) {
+        for (var i = 0; i < 10; i++) {
+          var banana = this._prefabs[(int)(rand.Next() * this._prefabs.Length)];
+
+
+          var x = rand.NextDouble();
+          var y = rand.NextDouble();
+          var z = rand.NextDouble() * this._camera.farClipPlane;
+          var a = new Vector2((float)x, (float)y);
+
+
+          var c = this._camera.ViewportToWorldPoint(a);
+          c.z = (float)z;
+
+          var b = new Quaternion((float)rand.NextDouble(), (float)rand.NextDouble(), (float)rand.NextDouble(),
+            (float)rand.NextDouble());
+
+          var d = Instantiate(banana, c, b);
+
+          this._spawned.Add(d);
+        }
+      }
     }
 
     /// <inheritdoc />
@@ -95,21 +122,8 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
       }
       #endif
 
-      foreach (var mat in this._renderer.materials) {
-        var c = mat.color;
 
-        if (configuration.ConfigurableName == this._r) {
-          c.r = configuration.ConfigurableValue;
-        } else if (configuration.ConfigurableName == this._g) {
-          c.g = configuration.ConfigurableValue;
-        } else if (configuration.ConfigurableName == this._b) {
-          c.b = configuration.ConfigurableValue;
-        } else if (configuration.ConfigurableName == this._a) {
-          c.a = configuration.ConfigurableValue;
-        }
-
-        mat.color = c;
-      }
+      
     }
 
     /// <inheritdoc />

@@ -17,63 +17,45 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     /// <summary>
     ///   Alpha
     /// </summary>
-    string _a;
+    string _x;
 
     /// <summary>
     ///   Blue
     /// </summary>
-    string _b;
+    string _y;
 
     /// <summary>
     ///   Green
     /// </summary>
-    string _g;
+    string _z;
 
     /// <summary>
     ///   Red
     /// </summary>
-    string _r;
+    string _rx;
+    string _ry;
+    string _rw;
+    string _rz;
+    
 
     /// <summary>
     /// </summary>
     Camera _camera;
 
-    GameObject[] _prefabs;
-    List<GameObject> _spawned= new List<GameObject>();
-
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     protected override void PreSetup() {
-      this._r = this.Identifier + "R";
-      this._g = this.Identifier + "G";
-      this._b = this.Identifier + "B";
-      this._a = this.Identifier + "A";
+      this._x = this.Identifier + "X";
+      this._y = this.Identifier + "Y";
+      this._z = this.Identifier + "Z";
+      this._rx = this.Identifier + "RX";
+      this._ry = this.Identifier + "RY";
+      this._rz = this.Identifier + "RZ";
+      this._rw = this.Identifier + "RW";
 
-      this._spawned= new List<GameObject>();
-      var rand = new Random();
-
-      if(this._prefabs != null && this._prefabs.Length>0) {
-        for (var i = 0; i < 10; i++) {
-          var banana = this._prefabs[(int)(rand.Next() * this._prefabs.Length)];
-
-
-          var x = rand.Next();
-          var y = rand.Next();
-         var z =   rand.Next() * this._camera.farClipPlane;
-          var a = new Vector2(x, y);
-
-
-          var c = this._camera.ViewportToWorldPoint(a);
-          c.z = z;
-
-          var b = new Quaternion(rand.Next(), rand.Next(),rand.Next(), rand.Next());
-
-          var d = Instantiate(banana, c, b);
-
-          this._spawned.Add(d);
-        }
-      }
+      if (!_camera)
+        _camera = FindObjectOfType<Camera>();
     }
 
     /// <inheritdoc />
@@ -83,19 +65,31 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
       this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
-          this._r);
+          this._x);
       this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
-          this._g);
+          this._y);
       this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
-          this._b);
+          this._z);
       this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._a);
+        (PrototypingEnvironment)this.ParentEnvironment,
+        (Configurable)this,
+        this._rx);
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
+        (PrototypingEnvironment)this.ParentEnvironment,
+        (Configurable)this,
+        this._ry);
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
+        (PrototypingEnvironment)this.ParentEnvironment,
+        (Configurable)this,
+        this._rz);
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
+        (PrototypingEnvironment)this.ParentEnvironment,
+        (Configurable)this,
+        this._rw);
     }
 
     /// <inheritdoc />
@@ -106,10 +100,13 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
         return;
       }
 
-      this.ParentEnvironment.UnRegister(this, this._r);
-      this.ParentEnvironment.UnRegister(this, this._g);
-      this.ParentEnvironment.UnRegister(this, this._b);
-      this.ParentEnvironment.UnRegister(this, this._a);
+      this.ParentEnvironment.UnRegister(this, this._x);
+      this.ParentEnvironment.UnRegister(this, this._y);
+      this.ParentEnvironment.UnRegister(this, this._z);
+      this.ParentEnvironment.UnRegister(this, this._rx);
+      this.ParentEnvironment.UnRegister(this, this._ry);
+      this.ParentEnvironment.UnRegister(this, this._rz);
+      this.ParentEnvironment.UnRegister(this, this._rw);
     }
 
     /// <summary>
@@ -122,6 +119,42 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
       }
       #endif
 
+      var pos = this.transform.position;
+      var rot = this.transform.rotation;
+      
+
+      if (configuration.ConfigurableName == this._x)
+      {
+        pos.x = configuration.ConfigurableValue;
+      }
+      else if (configuration.ConfigurableName == this._y)
+      {
+        pos.y = configuration.ConfigurableValue;
+      }
+      else if (configuration.ConfigurableName == this._z)
+      {
+        pos.z = configuration.ConfigurableValue;
+      }
+      else if (configuration.ConfigurableName == this._rx)
+      {
+        rot.x = configuration.ConfigurableValue;
+      }
+      else if (configuration.ConfigurableName == this._ry)
+      {
+        rot.y = configuration.ConfigurableValue;
+      }
+      else if (configuration.ConfigurableName == this._rz)
+      {
+        rot.z = configuration.ConfigurableValue;
+      }
+      else if (configuration.ConfigurableName == this._rw)
+      {
+        rot.w = configuration.ConfigurableValue;
+      }
+
+      this.transform.position = pos;
+      this.transform.rotation = rot;
+
     }
 
     /// <inheritdoc />
@@ -129,18 +162,57 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     /// </summary>
     /// <param name="random_generator"></param>
     /// <returns></returns>
-    public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
+    public override IConfigurableConfiguration SampleConfiguration(Random random_generator)
+    {
+
+
+      var x = random_generator.NextDouble();
+      var y = random_generator.NextDouble();
+
+      var a = new Vector2((float)x, (float)y);
+      var bounded = Vector2.Min(Vector2.Max(a,new Vector2(0.2f,0.2f)),new Vector2(0.8f,0.8f));
+
+      //var z = random_generator.NextDouble() * this._camera.farClipPlane;
+      var z =  _camera.nearClipPlane+2;
+      var bounded3 = new Vector3(bounded.x,bounded.y,z);
+
+      
+      var c = this._camera.ViewportToWorldPoint(bounded3);
+
+      var b = new Quaternion((float)random_generator.NextDouble(), (float)random_generator.NextDouble(), (float)random_generator.NextDouble(),
+        (float)random_generator.NextDouble());
+      var sample1 = random_generator.NextDouble();
       var sample = random_generator.NextDouble();
 
-      if (sample < .33f) {
-        return new Configuration(this._r, (float)random_generator.NextDouble());
-      }
+      if (sample1 > 0.5f)
+      {
+        if (sample < .33f)
+        {
+          return new Configuration(this._x, c.x);
+        }
 
-      if (sample > .66f) {
-        return new Configuration(this._g, (float)random_generator.NextDouble());
-      }
+        if (sample > .66f)
+        {
+          return new Configuration(this._y,  c.y);
+        }
 
-      return new Configuration(this._b, (float)random_generator.NextDouble());
+        return new Configuration(this._z,  c.z);
+      }
+      else
+      {
+        if (sample < .33f)
+        {
+          return new Configuration(this._rx,  b.x);
+        }
+
+        if (sample > .66f)
+        {
+          return new Configuration(this._ry, b.y);
+        }
+
+        return new Configuration(this._rz,b.z);
+      
+      }
     }
   }
 }
