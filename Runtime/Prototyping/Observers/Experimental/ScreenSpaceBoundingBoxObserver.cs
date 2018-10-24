@@ -30,6 +30,7 @@ namespace Neodroid.Runtime.Prototyping.Observers.Experimental {
       this._bounding_box = this.GetComponent<BoundingBox> ();
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void UpdateObservation() {
@@ -51,13 +52,14 @@ namespace Neodroid.Runtime.Prototyping.Observers.Experimental {
       for( var i = 0; i < 8; i++ ){
         screen_pos[i] = this._camera.WorldToScreenPoint( points[i] );
 
-        if( i == 0 )
+        if( i == 0 ) {
           screen_bounds = new Bounds( screen_pos[0], Vector3.zero);
+        }
 
         screen_bounds.Encapsulate( screen_pos[i] );
       }
 
-      Debug.Log(screen_bounds.ToString());
+      //Debug.Log(screen_bounds.ToString());
 
       this._scr_rect.xMin = screen_bounds.min.x;
       this._scr_rect.yMin = screen_bounds.min.y;

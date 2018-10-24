@@ -22,9 +22,7 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
-      this._texture_str = this.Identifier + "Texture";
-    }
+    protected override void PreSetup() { this._texture_str = this.Identifier + "Texture"; }
 
     /// <inheritdoc />
     /// <summary>
@@ -57,13 +55,11 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
       }
       #endif
 
-
-
-        if (configuration.ConfigurableName == this._texture_str) {
-          if(this._texture) {
-            this._texture.anisoLevel = (int)configuration.ConfigurableValue;
-          }
+      if (configuration.ConfigurableName == this._texture_str) {
+        if (this._texture) {
+          this._texture.anisoLevel = (int)configuration.ConfigurableValue;
         }
+      }
     }
 
     /// <inheritdoc />
@@ -74,7 +70,5 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
     public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
       return new Configuration(this._texture_str, (float)random_generator.NextDouble());
     }
-
-
   }
 }

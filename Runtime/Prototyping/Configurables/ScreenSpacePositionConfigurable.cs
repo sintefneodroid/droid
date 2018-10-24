@@ -11,7 +11,9 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
   /// <summary>
   /// </summary>
   [AddComponentMenu(
-      ConfigurableComponentMenuPath._ComponentMenuPath + "ScreenSpacePosition" + ConfigurableComponentMenuPath._Postfix)]
+      ConfigurableComponentMenuPath._ComponentMenuPath
+      + "ScreenSpacePosition"
+      + ConfigurableComponentMenuPath._Postfix)]
   [RequireComponent(typeof(Renderer))]
   public class ScreenSpacePositionConfigurable : Configurable {
     /// <summary>
@@ -33,14 +35,14 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     ///   Red
     /// </summary>
     string _rx;
+
     string _ry;
     string _rw;
     string _rz;
-    
 
     /// <summary>
     /// </summary>
-    Camera _camera;
+    [SerializeField] Camera _camera;
 
     /// <inheritdoc />
     /// <summary>
@@ -54,8 +56,7 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
       this._rz = this.Identifier + "RZ";
       this._rw = this.Identifier + "RW";
 
-      if (!_camera)
-        _camera = FindObjectOfType<Camera>();
+      if (!this._camera) this._camera = FindObjectOfType<Camera>();
     }
 
     /// <inheritdoc />
@@ -75,21 +76,21 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
           (Configurable)this,
           this._z);
       this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-        (PrototypingEnvironment)this.ParentEnvironment,
-        (Configurable)this,
-        this._rx);
+          (PrototypingEnvironment)this.ParentEnvironment,
+          (Configurable)this,
+          this._rx);
       this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-        (PrototypingEnvironment)this.ParentEnvironment,
-        (Configurable)this,
-        this._ry);
+          (PrototypingEnvironment)this.ParentEnvironment,
+          (Configurable)this,
+          this._ry);
       this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-        (PrototypingEnvironment)this.ParentEnvironment,
-        (Configurable)this,
-        this._rz);
+          (PrototypingEnvironment)this.ParentEnvironment,
+          (Configurable)this,
+          this._rz);
       this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-        (PrototypingEnvironment)this.ParentEnvironment,
-        (Configurable)this,
-        this._rw);
+          (PrototypingEnvironment)this.ParentEnvironment,
+          (Configurable)this,
+          this._rw);
     }
 
     /// <inheritdoc />
@@ -121,40 +122,25 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
 
       var pos = this.transform.position;
       var rot = this.transform.rotation;
-      
 
-      if (configuration.ConfigurableName == this._x)
-      {
+      if (configuration.ConfigurableName == this._x) {
         pos.x = configuration.ConfigurableValue;
-      }
-      else if (configuration.ConfigurableName == this._y)
-      {
+      } else if (configuration.ConfigurableName == this._y) {
         pos.y = configuration.ConfigurableValue;
-      }
-      else if (configuration.ConfigurableName == this._z)
-      {
+      } else if (configuration.ConfigurableName == this._z) {
         pos.z = configuration.ConfigurableValue;
-      }
-      else if (configuration.ConfigurableName == this._rx)
-      {
+      } else if (configuration.ConfigurableName == this._rx) {
         rot.x = configuration.ConfigurableValue;
-      }
-      else if (configuration.ConfigurableName == this._ry)
-      {
+      } else if (configuration.ConfigurableName == this._ry) {
         rot.y = configuration.ConfigurableValue;
-      }
-      else if (configuration.ConfigurableName == this._rz)
-      {
+      } else if (configuration.ConfigurableName == this._rz) {
         rot.z = configuration.ConfigurableValue;
-      }
-      else if (configuration.ConfigurableName == this._rw)
-      {
+      } else if (configuration.ConfigurableName == this._rw) {
         rot.w = configuration.ConfigurableValue;
       }
 
       this.transform.position = pos;
       this.transform.rotation = rot;
-
     }
 
     /// <inheritdoc />
@@ -162,56 +148,47 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     /// </summary>
     /// <param name="random_generator"></param>
     /// <returns></returns>
-    public override IConfigurableConfiguration SampleConfiguration(Random random_generator)
-    {
-
-
+    public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
       var x = random_generator.NextDouble();
       var y = random_generator.NextDouble();
 
       var a = new Vector2((float)x, (float)y);
-      var bounded = Vector2.Min(Vector2.Max(a,new Vector2(0.2f,0.2f)),new Vector2(0.8f,0.8f));
+      var bounded = Vector2.Min(Vector2.Max(a, new Vector2(0.2f, 0.2f)), new Vector2(0.8f, 0.8f));
 
       //var z = random_generator.NextDouble() * this._camera.farClipPlane;
-      var z =  _camera.nearClipPlane+2;
-      var bounded3 = new Vector3(bounded.x,bounded.y,z);
+      var z = this._camera.nearClipPlane + 2;
+      var bounded3 = new Vector3(bounded.x, bounded.y, z);
 
-      
       var c = this._camera.ViewportToWorldPoint(bounded3);
 
-      var b = new Quaternion((float)random_generator.NextDouble(), (float)random_generator.NextDouble(), (float)random_generator.NextDouble(),
-        (float)random_generator.NextDouble());
+      var b = new Quaternion(
+          (float)random_generator.NextDouble(),
+          (float)random_generator.NextDouble(),
+          (float)random_generator.NextDouble(),
+          (float)random_generator.NextDouble());
       var sample1 = random_generator.NextDouble();
       var sample = random_generator.NextDouble();
 
-      if (sample1 > 0.5f)
-      {
-        if (sample < .33f)
-        {
+      if (sample1 > 0.5f) {
+        if (sample < .33f) {
           return new Configuration(this._x, c.x);
         }
 
-        if (sample > .66f)
-        {
-          return new Configuration(this._y,  c.y);
+        if (sample > .66f) {
+          return new Configuration(this._y, c.y);
         }
 
-        return new Configuration(this._z,  c.z);
-      }
-      else
-      {
-        if (sample < .33f)
-        {
-          return new Configuration(this._rx,  b.x);
+        return new Configuration(this._z, c.z);
+      } else {
+        if (sample < .33f) {
+          return new Configuration(this._rx, b.x);
         }
 
-        if (sample > .66f)
-        {
+        if (sample > .66f) {
           return new Configuration(this._ry, b.y);
         }
 
-        return new Configuration(this._rz,b.z);
-      
+        return new Configuration(this._rz, b.z);
       }
     }
   }

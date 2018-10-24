@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Utilities.BoundingBoxes {
+namespace Neodroid.Runtime.Utilities.BoundingBoxes.Experimental {
   [ExecuteInEditMode]
   public class ShowBoundingBoxes : MonoBehaviour {
     public Color _Color = Color.green;
@@ -15,15 +15,17 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
       this._lines.Clear();
     }
 
+    // void OnWillRenderObject() { throw new System.NotImplementedException(); }
+
     void Update() {
       if (this._lines == null || this._mesh_filter_objects == null) {
         this.ReallocateLineRenderers();
       }
 
-      this.CalcPositonsAndDrawBoxes();
+      this.CalcPositionsAndDrawBoxes();
     }
 
-    void CalcPositonsAndDrawBoxes() {
+    void CalcPositionsAndDrawBoxes() {
       foreach (var mesh_filter_object in this._mesh_filter_objects) {
         if (mesh_filter_object.gameObject.CompareTag("Target")) {
           GameObject liner;

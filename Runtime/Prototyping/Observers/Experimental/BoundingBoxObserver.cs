@@ -28,6 +28,7 @@ namespace Neodroid.Runtime.Prototyping.Observers.Experimental {
       this._bounding_box = this.GetComponent<BoundingBox> ();
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void UpdateObservation() {
@@ -35,7 +36,7 @@ namespace Neodroid.Runtime.Prototyping.Observers.Experimental {
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public String ObservationValue { get; set; }
   }
