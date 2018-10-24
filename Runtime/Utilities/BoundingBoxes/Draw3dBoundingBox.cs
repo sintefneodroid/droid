@@ -9,7 +9,7 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
   /// </summary>
   [RequireComponent(typeof(Camera))]
   [ExecuteInEditMode]
-  public class DrawBounding3DBoxOnCamera : MonoBehaviour {
+  public class Draw3dBoundingBox : MonoBehaviour {
     List<Color> _colors = new List<Color>();
     [SerializeField] Material _line_material;
     List<GameObject> _names = new List<GameObject>();

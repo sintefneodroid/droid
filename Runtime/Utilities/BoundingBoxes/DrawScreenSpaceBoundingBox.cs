@@ -9,7 +9,7 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
   /// </summary>
   [RequireComponent(typeof(Camera))]
   [ExecuteInEditMode]
-  public class DrawScreenSpaceBoundingBoxOnCamera : MonoBehaviour {
+  public class DrawScreenSpaceBoundingBox : MonoBehaviour {
     List<GameObject> _names = new List<GameObject>();
 
     List<Rect> _rects = new List<Rect>();
