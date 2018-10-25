@@ -13,6 +13,7 @@ namespace Neodroid.Runtime.Prototyping.Observers.Experimental {
       + "Experimental/ScreenSpaceBoundingBox"
       + ObserverComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
+  //[ExecuteAlways]
   [RequireComponent(typeof(BoundingBox))]
   public class ScreenSpaceBoundingBoxObserver : Observer, IHasString {
     /// <inheritdoc />
