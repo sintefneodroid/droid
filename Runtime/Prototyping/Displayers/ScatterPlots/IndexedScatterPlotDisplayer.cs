@@ -17,7 +17,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
   public class IndexedScatterPlotDisplayer : Displayer {
     [SerializeField] GameObject[] _designs;
     [SerializeField] List<GameObject> _instances;
-    dynamic _vals;
+
 
     /// <summary>
     /// </summary>
@@ -43,8 +43,8 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
 
     void Update() {
       if (this._RetainLastPlot) {
-        if (this._vals != null) {
-          PlotSeries(this._vals);
+        if (this._values != null) {
+          PlotSeries(this._values);
         }
       }
     }
@@ -98,7 +98,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
       }
       #endif
 
-      this._vals = points;
+      this._values = points;
       this.DestroyInstances(true);
 
       foreach (var point in points) {

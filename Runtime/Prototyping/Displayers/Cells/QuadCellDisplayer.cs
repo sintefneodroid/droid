@@ -13,7 +13,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers.Cells {
   [AddComponentMenu(
       DisplayerComponentMenuPath._ComponentMenuPath + "VectorField" + DisplayerComponentMenuPath._Postfix)]
   public class QuadCellDisplayer : Displayer {
-    dynamic _vals;
+
 
     /// <summary>
     /// </summary>
@@ -70,7 +70,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers.Cells {
       }
       #endif
 
-      this._vals = points;
+      this._values = points;
 
       foreach (var point in points) {
         //point._Size

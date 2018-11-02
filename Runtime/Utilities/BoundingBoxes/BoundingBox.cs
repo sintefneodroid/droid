@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Neodroid.Runtime.Utilities.Misc.SearchableEnum;
-
 using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
+
 #endif
 
 namespace Neodroid.Runtime.Utilities.BoundingBoxes {
@@ -71,7 +71,6 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
 
     /// <summary>
     /// </summary>
-
     Vector3 _last_scale;
 
     /// <summary>
@@ -234,8 +233,6 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
         this._last_position = this.transform.position;
         this._last_scale = this.transform.localScale;
       }
-
-
     }
 
     /// <summary>
@@ -398,8 +395,6 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
       this.Initialise();
     }
 
-
-
     /// <summary>
     /// </summary>
     void OnDrawGizmos() {
@@ -409,9 +404,9 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
           if (this.Lines != null) {
             for (var i = 0; i < this.Lines.GetLength(0); i++) {
               Gizmos.DrawLine(this.Lines[i, 0], this.Lines[i, 1]);
-
             }
           }
+
           Handles.Label(this.transform.position, this.transform.gameObject.name);
         }
       }

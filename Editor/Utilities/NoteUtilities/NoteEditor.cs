@@ -6,7 +6,6 @@ using UnityEditor;
 using UnityEngine;
 
 namespace Neodroid.Editor.Utilities.NoteUtilities {
-
   /// <inheritdoc />
   /// <summary>
   /// </summary>

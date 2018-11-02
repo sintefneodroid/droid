@@ -63,13 +63,11 @@ namespace Neodroid.Runtime.Utilities.ScriptableObjects {
   [Serializable]
   public class SimulatorConfiguration : ScriptableObject,
                                         ISimulatorConfiguration {
-
-
     [Header("Performance (Disable for faster serialisation, but with loss of functionality)")]
     [SerializeField]
     bool _always_serialise_unobservables;
-    [SerializeField]
-    bool _always_serialise_individual_observables;
+
+    [SerializeField] bool _always_serialise_individual_observables;
 
     /// <summary>
     /// </summary>

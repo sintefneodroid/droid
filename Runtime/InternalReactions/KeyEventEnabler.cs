@@ -1,4 +1,5 @@
-﻿using Neodroid.Runtime.Utilities.Misc.SearchableEnum;
+﻿using JetBrains.Annotations;
+using Neodroid.Runtime.Utilities.Misc.SearchableEnum;
 using UnityEngine;
 
 namespace Neodroid.Runtime.InternalReactions {
@@ -6,7 +7,7 @@ namespace Neodroid.Runtime.InternalReactions {
   /// <summary>
   /// </summary>
   public class KeyEventEnabler : MonoBehaviour {
-    [SerializeField] GameObject _game_object;
+    [CanBeNull] [SerializeField] GameObject _game_object;
 
     [SerializeField] [SearchableEnum] KeyCode _key;
 

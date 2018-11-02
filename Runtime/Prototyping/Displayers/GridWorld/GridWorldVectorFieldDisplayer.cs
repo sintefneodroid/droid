@@ -15,7 +15,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers.GridWorld {
       + "GridWorldVectorField"
       + DisplayerComponentMenuPath._Postfix)]
   public class GridWorldVectorFieldDisplayer : Displayer {
-    dynamic _vals;
+
 
     /// <summary>
     /// </summary>
@@ -41,8 +41,8 @@ namespace Neodroid.Runtime.Prototyping.Displayers.GridWorld {
 
     void Update() {
       if (this._RetainLastPlot) {
-        if (this._vals != null) {
-          PlotSeries(this._vals);
+        if (this._values != null) {
+          PlotSeries(this._values);
         }
       }
     }
@@ -80,7 +80,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers.GridWorld {
       }
       #endif
 
-      this._vals = points;
+      this._values = points;
 
       foreach (var point in points) {
         //point._Size

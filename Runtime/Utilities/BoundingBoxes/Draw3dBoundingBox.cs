@@ -20,7 +20,7 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
     //[SerializeField] GUISkin _gui_skin;
 
     Camera _camera;
-    [SerializeField] bool _draw_label=true;
+    [SerializeField] bool _draw_label = true;
 
     void Awake() {
       if (!this._line_material) {
@@ -126,7 +126,6 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
 
     void OnGUI() {
       if (this._draw_label) {
-
         var i = 0;
         foreach (var t in this._outlines) {
           var point = t[0, 0];
@@ -138,16 +137,16 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
           var content = GUI.skin.box.CalcSize(new GUIContent(text));
           content.x = content.x + _padding;
           content.y = content.y + _padding;
-          var _rect = new Rect(box_position.x - content.x/2, box_position.y - content.y/2, content.x, content.y);
+          var _rect = new Rect(
+              box_position.x - content.x / 2,
+              box_position.y - content.y / 2,
+              content.x,
+              content.y);
           GUI.Box(_rect, text);
           //GUI.Label(this._rect, text);
           i++;
         }
-
-
-
       }
-
     }
   }
 }

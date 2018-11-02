@@ -15,8 +15,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers.Cells {
   public class HexCellDisplayer : QuadCellDisplayer {
     [SerializeField] bool _plot_random_series;
     [SerializeField] bool _retain_last_plot = true;
-    dynamic _vals;
-    [SerializeField] float[] _values;
+
 
     /// <summary>
     /// </summary>
@@ -42,8 +41,8 @@ namespace Neodroid.Runtime.Prototyping.Displayers.Cells {
 
     void Update() {
       if (this._retain_last_plot) {
-        if (this._vals != null) {
-          PlotSeries(this._vals);
+        if (this._values != null) {
+          PlotSeries(this._values);
         }
       }
     }
@@ -81,7 +80,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers.Cells {
       }
       #endif
 
-      this._vals = points;
+      this._values = points;
 
       foreach (var point in points) {
         //point._Size

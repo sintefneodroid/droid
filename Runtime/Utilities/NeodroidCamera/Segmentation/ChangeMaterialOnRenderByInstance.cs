@@ -26,7 +26,6 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera.Segmentation {
     [SerializeField] string _default_color_tag = "_Color";
     [SerializeField] string _segmentation_color_tag = "_SegmentationColor";
 
-
     /// <summary>
     /// </summary>
     public Dictionary<GameObject, Color> ColorsDictGameObject { get; } = new Dictionary<GameObject, Color>();
@@ -153,9 +152,7 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera.Segmentation {
         var c_renderer = this._all_renders[i];
         if (c_renderer) {
           foreach (var mat in c_renderer.sharedMaterials) {
-            if (mat != null
-                && this._original_colors != null
-                && i < this._original_colors.Length) {
+            if (mat != null && this._original_colors != null && i < this._original_colors.Length) {
               var c_original_color = this._original_colors[i];
               if (c_original_color != null) {
                 var c = this._original_colors[i];

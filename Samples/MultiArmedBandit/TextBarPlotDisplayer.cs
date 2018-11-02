@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 using Neodroid.Runtime.Prototyping.Displayers;
 using Neodroid.Runtime.Prototyping.Displayers.Canvas;
 using Neodroid.Runtime.Prototyping.Internals;
@@ -11,9 +12,9 @@ namespace Neodroid.Samples.MultiArmedBandit {
   [AddComponentMenu(
       DisplayerComponentMenuPath._ComponentMenuPath + "TextBarPlot" + DisplayerComponentMenuPath._Postfix)]
   public class TextBarPlotDisplayer : Resetable {
-    [SerializeField] CanvasBarDisplayer[] _canvas_bars;
-    [SerializeField] CanvasTextDisplayer[] _canvas_text;
-    [SerializeField] float[] _Values;
+    [CanBeNull] [SerializeField] CanvasBarDisplayer[] _canvas_bars;
+    [CanBeNull] [SerializeField] CanvasTextDisplayer[] _canvas_text;
+    [CanBeNull] [SerializeField] float[] _Values;
 
     /// <inheritdoc />
     /// <summary>
