@@ -13,7 +13,6 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
   [AddComponentMenu(
       DisplayerComponentMenuPath._ComponentMenuPath + "VectorField" + DisplayerComponentMenuPath._Postfix)]
   public class VectorFieldDisplayer : Displayer {
-    dynamic _vals;
 
     /// <inheritdoc />
     /// <summary>
@@ -40,8 +39,8 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
 
     void Update() {
       if (this._RetainLastPlot) {
-        if (this._vals != null) {
-          PlotSeries(this._vals);
+        if (this._values != null) {
+          PlotSeries(this._values);
         }
       }
     }
@@ -79,7 +78,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
       }
       #endif
 
-      this._vals = points;
+      this._values = points;
 
       foreach (var point in points) {
         //point._Size

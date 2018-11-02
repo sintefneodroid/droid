@@ -42,7 +42,8 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
 
     /// <summary>
     /// </summary>
-    [SerializeField] Camera _camera;
+    [SerializeField]
+    Camera _camera;
 
     /// <inheritdoc />
     /// <summary>

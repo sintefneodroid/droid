@@ -35,10 +35,6 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera.Segmentation {
     /// </summary>
     Dictionary<string, Color> _tag_colors_dict = new Dictionary<string, Color>();
 
-
-
-
-
     /// <summary>
     /// </summary>
     public Color _Untagged_Color = Color.black;
@@ -115,7 +111,7 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera.Segmentation {
               this._block.SetFloat(_Skip_Outline_Tag, 0);
               this._block.SetColor(_Segmentation_Color_Tag, this._tag_colors_dict[this._all_renders[i].tag]);
 
-              this._block.SetColor(_Outline_Color_Tag,this._Outline_Color);
+              this._block.SetColor(_Outline_Color_Tag, this._Outline_Color);
               this._block.SetFloat(_Outline_Width_Factor_Tag, this._Outline_Width_Factor);
               this._all_renders[i].SetPropertyBlock(this._block);
             }
@@ -131,7 +127,6 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera.Segmentation {
               this._block.SetColor(_Outline_Color_Tag, this._Outline_Color);
               this._block.SetFloat(_Outline_Width_Factor_Tag, this._Outline_Width_Factor);
               this._all_renders[i].SetPropertyBlock(this._block);
-
             }
           }
         }
@@ -152,9 +147,7 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera.Segmentation {
       for (var i = 0; i < this._all_renders.Length; i++) {
         if (this._all_renders[i]) {
           foreach (var mat in this._all_renders[i].sharedMaterials) {
-            if (mat != null
-                && this._original_colors != null
-                && i < this._original_colors.Length) {
+            if (mat != null && this._original_colors != null && i < this._original_colors.Length) {
               var c = this._original_colors[i];
               var last = c?.Last;
               if (last != null) {

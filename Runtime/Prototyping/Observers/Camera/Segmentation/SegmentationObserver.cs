@@ -24,10 +24,12 @@ namespace Neodroid.Runtime.Prototyping.Observers.Camera.Segmentation {
     public override void UpdateObservation() {
       this.ObservationValue = this._segmenter != null
                                   ? this._segmenter.ColorsDict.Select(c => $"{c.Key}: {c.Value.ToString()}")
-                                      .Aggregate("", (current, next) =>  current!="" ? $"{current}, {next}" : $"{next}")
+                                      .Aggregate(
+                                          "",
+                                          (current, next) => current != "" ? $"{current}, {next}" : $"{next}")
                                   : "Nothing";
       //TODO:ADD this Type(COLOR) and ColorDict as serialisation option instead of a string
-      if(this._segmenter!=null) {
+      if (this._segmenter != null) {
         this.ObservationValue += $", Outline: {this._segmenter.OutlineColor.ToString()}";
       }
     }

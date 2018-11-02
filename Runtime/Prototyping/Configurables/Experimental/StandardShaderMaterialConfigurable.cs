@@ -10,7 +10,9 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
   /// <summary>
   /// </summary>
   [AddComponentMenu(
-      ConfigurableComponentMenuPath._ComponentMenuPath + "StandardShaderMaterial" + ConfigurableComponentMenuPath._Postfix)]
+      ConfigurableComponentMenuPath._ComponentMenuPath
+      + "StandardShaderMaterial"
+      + ConfigurableComponentMenuPath._Postfix)]
   [RequireComponent(typeof(Renderer))]
   public class StandardShaderMaterialConfigurable : Configurable {
     /// <summary>

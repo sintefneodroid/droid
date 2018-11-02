@@ -11,7 +11,9 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
   /// <summary>
   /// </summary>
   [AddComponentMenu(
-      ConfigurableComponentMenuPath._ComponentMenuPath + "ScreenSpaceOcclusion" + ConfigurableComponentMenuPath._Postfix)]
+      ConfigurableComponentMenuPath._ComponentMenuPath
+      + "ScreenSpaceOcclusion"
+      + ConfigurableComponentMenuPath._Postfix)]
   [RequireComponent(typeof(Renderer))]
   public class ScreenSpaceOcclusionConfigurable : Configurable {
     /// <summary>
@@ -39,7 +41,7 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
     Camera _camera;
 
     GameObject[] _prefabs;
-    List<GameObject> _spawned= new List<GameObject>();
+    List<GameObject> _spawned = new List<GameObject>();
 
     /// <inheritdoc />
     /// <summary>
@@ -52,22 +54,23 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
 
       var rand = new Random();
 
-      if(this._prefabs != null && this._prefabs.Length>0) {
+      if (this._prefabs != null && this._prefabs.Length > 0) {
         for (var i = 0; i < 10; i++) {
           var banana = this._prefabs[(int)(rand.Next() * this._prefabs.Length)];
-
 
           var x = rand.NextDouble();
           var y = rand.NextDouble();
           var z = rand.NextDouble() * this._camera.farClipPlane;
           var a = new Vector2((float)x, (float)y);
 
-
           var c = this._camera.ViewportToWorldPoint(a);
           c.z = (float)z;
 
-          var b = new Quaternion((float)rand.NextDouble(), (float)rand.NextDouble(), (float)rand.NextDouble(),
-            (float)rand.NextDouble());
+          var b = new Quaternion(
+              (float)rand.NextDouble(),
+              (float)rand.NextDouble(),
+              (float)rand.NextDouble(),
+              (float)rand.NextDouble());
 
           var d = Instantiate(banana, c, b);
 
@@ -121,9 +124,6 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
         Debug.Log("Applying " + configuration + " To " + this.Identifier);
       }
       #endif
-
-
-      
     }
 
     /// <inheritdoc />

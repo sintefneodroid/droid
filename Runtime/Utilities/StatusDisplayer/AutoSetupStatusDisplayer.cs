@@ -1,4 +1,5 @@
 ﻿#if UNITY_EDITOR
+using JetBrains.Annotations;
 using Neodroid.Runtime.Environments;
 using Neodroid.Runtime.Managers;
 using Neodroid.Runtime.Prototyping.Evaluation;
@@ -17,18 +18,18 @@ namespace Neodroid.Runtime.Utilities.StatusDisplayer {
   public class AutoSetupStatusDisplayer : MonoBehaviour {
     [SerializeField] bool _clean_empty_no_target_events = true;
     [SerializeField] bool _debugging;
-    [SerializeField] NeodroidEnvironment _environment;
-    [SerializeField] TextUpdater _environment_frame;
-    [SerializeField] TextUpdater _environment_obs;
+    [CanBeNull] [SerializeField] NeodroidEnvironment _environment;
+    [CanBeNull] [SerializeField] TextUpdater _environment_frame;
+    [CanBeNull] [SerializeField] TextUpdater _environment_obs;
 
-    [SerializeField] TextUpdater _environment_text;
-    [SerializeField] ObjectiveFunction _evaluation_function;
-    [SerializeField] NeodroidManager _manager;
-    [SerializeField] Button _reset_button;
-    [SerializeField] TextUpdater _signal;
-    [SerializeField] TextUpdater _status_text;
-    [SerializeField] ToggleUpdater _terminated;
-    [SerializeField] Toggle _testing_toggle;
+    [CanBeNull] [SerializeField] TextUpdater _environment_text;
+    [CanBeNull] [SerializeField] ObjectiveFunction _evaluation_function;
+    [CanBeNull] [SerializeField] NeodroidManager _manager;
+    [CanBeNull] [SerializeField] Button _reset_button;
+    [CanBeNull] [SerializeField] TextUpdater _signal;
+    [CanBeNull] [SerializeField] TextUpdater _status_text  = null;
+    [CanBeNull] [SerializeField] ToggleUpdater _terminated;
+    [CanBeNull] [SerializeField] Toggle _testing_toggle;
     [SerializeField] UnityEventCallState _unity_event_call_state = UnityEventCallState.RuntimeOnly;
 
     bool Debugging { get { return this._debugging; } set { this._debugging = value; } }

@@ -82,7 +82,7 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
       } else if (configuration.ConfigurableName == this._y) {
         local_scale.y = configuration.ConfigurableValue;
       } else if (configuration.ConfigurableName == this._z) {
-         local_scale.z = configuration.ConfigurableValue;
+        local_scale.z = configuration.ConfigurableValue;
       }
 
       this.transform.localScale = local_scale;

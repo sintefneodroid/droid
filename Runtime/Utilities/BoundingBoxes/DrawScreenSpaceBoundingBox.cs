@@ -14,12 +14,10 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
 
     List<Rect> _rects = new List<Rect>();
     Camera _camera;
-    [SerializeField] bool _draw_label=true;
+    [SerializeField] bool _draw_label = true;
     List<Vector3> _screen_pos = new List<Vector3>();
 
-    void Awake() {
-      this._camera = this.GetComponent<Camera>();
-    }
+    void Awake() { this._camera = this.GetComponent<Camera>(); }
 
     /// <summary>
     /// </summary>
@@ -36,17 +34,17 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
       var screen_pos = new Vector3[le];
 
       var screen_bounds = new Bounds();
-      for( var i = 0; i < le; i++ ){
-        screen_pos[i] = this._camera.WorldToScreenPoint( new_points[i] );
+      for (var i = 0; i < le; i++) {
+        screen_pos[i] = this._camera.WorldToScreenPoint(new_points[i]);
 
-        if( i == 0 ) {
-          screen_bounds = new Bounds( screen_pos[0], Vector3.zero);
+        if (i == 0) {
+          screen_bounds = new Bounds(screen_pos[0], Vector3.zero);
         } else {
           screen_bounds.Encapsulate(screen_pos[i]);
         }
       }
 
-      var a = this._camera.WorldToScreenPoint(game_object.transform.position );
+      var a = this._camera.WorldToScreenPoint(game_object.transform.position);
 
       scr_rect.xMin = screen_bounds.min.x;
       scr_rect.yMin = screen_bounds.min.y;
@@ -74,7 +72,6 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
         var i = 0;
         foreach (var rect in this._rects) {
           var text = this._names[i].name;
-
 
           var x = this._screen_pos[i].x;
 

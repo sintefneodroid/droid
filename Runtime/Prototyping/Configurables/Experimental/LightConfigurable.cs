@@ -13,7 +13,6 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
       ConfigurableComponentMenuPath._ComponentMenuPath + "Light" + ConfigurableComponentMenuPath._Postfix)]
   [RequireComponent(typeof(Light))]
   public class LightConfigurable : Configurable {
-
     string _shadow_strength;
     string _color_r;
     string _color_g;
@@ -93,8 +92,6 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
       }
       #endif
 
-
-
       if (configuration.ConfigurableName == this._shadow_strength) {
         this._light.shadowStrength = configuration.ConfigurableValue;
       } else if (configuration.ConfigurableName == this._color_r) {
@@ -134,8 +131,5 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
 
       return new Configuration(this._color_b, (float)random_generator.NextDouble());
     }
-
-
-
-}
+  }
 }

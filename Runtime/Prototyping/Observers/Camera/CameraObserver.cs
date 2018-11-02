@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Managers;
 using Neodroid.Runtime.Utilities.ScriptableObjects;
@@ -112,8 +112,6 @@ namespace Neodroid.Runtime.Prototyping.Observers.Camera {
     /// </summary>
     protected virtual void OnPostRender() { this.UpdateBytes(); }
 
-
-
     /// <summary>
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
@@ -149,7 +147,6 @@ namespace Neodroid.Runtime.Prototyping.Observers.Camera {
         Debug.LogWarning($"No camera found on {this}");
       }
     }
-
 
     /// <inheritdoc />
     /// <summary>

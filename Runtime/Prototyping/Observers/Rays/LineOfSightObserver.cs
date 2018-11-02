@@ -32,7 +32,9 @@ namespace Neodroid.Runtime.Prototyping.Observers.Rays {
 
     public ValueSpace SingleSpace { get { return this._observation_value_space; } }
 
-    protected override void PreSetup() { this.FloatEnumerable = new[] {this.ObservationValue}; }
+    protected override void PreSetup() {
+      this.FloatEnumerable = new[] {this.ObservationValue};
+    }
 
     public override void UpdateObservation() {
       var distance = Vector3.Distance(this.transform.position, this._target.position);
