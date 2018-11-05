@@ -1,8 +1,9 @@
 ﻿using Neodroid.Runtime.Utilities.Sensors;
 using UnityEngine;
+using System.Runtime.CompilerServices;
 
 namespace Neodroid.Runtime.Utilities.BoundingBoxes.Experimental {
-  public static class Utilities {
+  public static class BbUtilities {
     public static void DrawBoxFromCenter(Vector3 p, float r, Color c) {
       // p is pos.yition of the center, r is "radius" and c is the color of the box
       //Bottom lines
@@ -191,6 +192,59 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes.Experimental {
       }
 
       return b;
+    }
+
+
+
+
+    public static Rect GetBoundsScreenRect(this Bounds bounds, Camera cam) {
+      var cen = bounds.center;
+      var ext = bounds.extents;
+
+      Vector2 min = cam.WorldToScreenPoint(new Vector3(cen.x - ext.x, cen.y - ext.y, cen.z - ext.z));
+      var max = min;
+
+      //0
+      var point = min;
+      get_min_max(point, ref min, ref max);
+
+      //1
+      point = cam.WorldToScreenPoint(new Vector3(cen.x + ext.x, cen.y - ext.y, cen.z - ext.z));
+      get_min_max(point, ref min, ref max);
+
+
+      //2
+      point = cam.WorldToScreenPoint(new Vector3(cen.x - ext.x, cen.y - ext.y, cen.z + ext.z));
+      get_min_max(point, ref min, ref max);
+
+      //3
+      point = cam.WorldToScreenPoint(new Vector3(cen.x + ext.x, cen.y - ext.y, cen.z + ext.z));
+      get_min_max(point, ref min, ref max);
+
+      //4
+      point = cam.WorldToScreenPoint(new Vector3(cen.x - ext.x, cen.y + ext.y, cen.z - ext.z));
+      get_min_max(point, ref min, ref max);
+
+      //5
+      point = cam.WorldToScreenPoint(new Vector3(cen.x + ext.x, cen.y + ext.y, cen.z - ext.z));
+      get_min_max(point, ref min, ref max);
+
+      //6
+      point = cam.WorldToScreenPoint(new Vector3(cen.x - ext.x, cen.y + ext.y, cen.z + ext.z));
+      get_min_max(point, ref min, ref max);
+
+      //7
+      point = cam.WorldToScreenPoint(new Vector3(cen.x + ext.x, cen.y + ext.y, cen.z + ext.z));
+      get_min_max(point, ref min, ref max);
+
+      return new Rect(min.x, min.y, max.x - min.x, max.y - min.y);
+    }
+
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    static void get_min_max(Vector2 point, ref Vector2 min, ref Vector2 max) {
+      min = new Vector2(min.x >= point.x ? point.x : min.x, min.y >= point.y ? point.y : min.y);
+      max = new Vector2(max.x <= point.x ? point.x : max.x, max.y <= point.y ? point.y : max.y);
     }
   }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Neodroid.Runtime.Utilities.BoundingBoxes.Experimental;
 using UnityEngine;
 using Object = System.Object;
 
@@ -24,12 +25,13 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
     /// <param name="new_points"></param>
     /// <param name="new_color"></param>
     /// <param name="game_object"></param>
-    public void SetPoints(Vector3[] new_points, GameObject game_object) {
+    public void AddBoundingBox(Bounds new_points, GameObject game_object) {
       if (new_points == null) {
         return;
       }
 
       var scr_rect = new Rect();
+      /*
       var le = new_points.Length;
       var screen_pos = new Vector3[le];
 
@@ -44,6 +46,7 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
         }
       }
 
+
       var a = this._camera.WorldToScreenPoint(game_object.transform.position);
 
       scr_rect.xMin = screen_bounds.min.x;
@@ -51,8 +54,11 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
 
       scr_rect.xMax = screen_bounds.max.x;
       scr_rect.yMax = screen_bounds.max.y;
-
       this._screen_pos.Add(a);
+      */
+
+      scr_rect =   new_points.GetBoundsScreenRect(this._camera);
+
       this._rects.Add(scr_rect);
       this._names.Add((game_object));
     }
@@ -63,7 +69,7 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
 
       var bounding_boxes = FindObjectsOfType<BoundingBox>();
       foreach (var bb in bounding_boxes) {
-        this.SetPoints(bb.Points, bb.gameObject);
+        this.AddBoundingBox(bb.Bounds, bb.gameObject);
       }
     }
 
@@ -73,7 +79,7 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
         foreach (var rect in this._rects) {
           var text = this._names[i].name;
 
-          var x = this._screen_pos[i].x;
+          //var x = this._screen_pos[i].x;
 
           var aa = rect;
           //aa.x = Screen.width - x;

@@ -171,7 +171,7 @@ namespace Neodroid.Runtime.Environments {
 
     /// <summary>
     /// </summary>
-    Object _react_lock = new Object();
+    Object _reaction_lock = new Object();
 
     [SerializeField] int _reset_i;
 
@@ -310,7 +310,7 @@ namespace Neodroid.Runtime.Environments {
     /// </summary>
     /// <param name="reason"></param>
     public void Terminate(string reason = "None") {
-      lock (this._react_lock) {
+      lock (this._reaction_lock) {
         if (this._Terminable) {
           #if NEODROID_DEBUG
           if (this.Debugging) {
@@ -341,7 +341,7 @@ namespace Neodroid.Runtime.Environments {
     /// <param name="reaction"></param>
     /// <returns></returns>
     public override void React(Reaction reaction) {
-      lock (this._react_lock) {
+      lock (this._reaction_lock) {
         this.LastReaction = reaction;
         this._Terminable = reaction.Parameters.Terminable;
 
@@ -866,7 +866,7 @@ namespace Neodroid.Runtime.Environments {
     /// </summary>
     /// <returns></returns>
     public override EnvironmentState CollectState() {
-      lock (this._react_lock) {
+      lock (this._reaction_lock) {
         if (this.Actors != null) {
           foreach (var a in this.Actors.Values) {
             if (a.Motors != null) {
@@ -1004,14 +1004,14 @@ namespace Neodroid.Runtime.Environments {
       }
 
       if (this._received_bodies != null) {
-        var vels = new Vector3[this._received_bodies.Length];
-        var angs = new Vector3[this._received_bodies.Length];
+        var velocities = new Vector3[this._received_bodies.Length];
+        var angulars = new Vector3[this._received_bodies.Length];
         for (var i = 0; i < this._received_bodies.Length; i++) {
-          vels[i] = this._received_bodies[i].Velocity;
-          angs[i] = this._received_bodies[i].AngularVelocity;
+          velocities[i] = this._received_bodies[i].Velocity;
+          angulars[i] = this._received_bodies[i].AngularVelocity;
         }
 
-        this.SetEnvironmentBodies(this._tracked_rigid_bodies, vels, angs);
+        this.SetEnvironmentBodies(this._tracked_rigid_bodies, velocities, angulars);
       }
 
       if (this._received_configurations != null) {
@@ -1116,7 +1116,7 @@ namespace Neodroid.Runtime.Environments {
     /// </summary>
     /// <param name="reaction"></param>
     void Step(Reaction reaction) {
-      lock (this._react_lock) {
+      lock (this._reaction_lock) {
         this.PreStepEvent?.Invoke();
 
         if (reaction.Parameters.EpisodeCount) {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Neodroid.Runtime.Environments;
 using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Messaging.Messages;
@@ -13,11 +14,11 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
   /// </summary>
   [AddComponentMenu(
       ConfigurableComponentMenuPath._ComponentMenuPath + "Mesh" + ConfigurableComponentMenuPath._Postfix)]
-  public class MeshConfigurable : Configurable, IHasString {
+  public class MeshConfigurable : Configurable, IHasFloatEnumerable {
     string _mesh_str;
 
     [SerializeField] Texture _texture;
-    [SerializeField] String _observation_value;
+    [SerializeField] float[] _observation_value;
 
     /// <inheritdoc />
     /// <summary>
@@ -65,6 +66,6 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
       return new Configuration(this._mesh_str, (float)random_generator.NextDouble());
     }
 
-    public String ObservationValue { get { return this._observation_value; } }
+    public IEnumerable<Single> FloatEnumerable { get { return this._observation_value; } }
   }
 }
