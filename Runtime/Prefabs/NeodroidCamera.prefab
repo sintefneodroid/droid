@@ -35,6 +35,7 @@ Transform:
   - {fileID: 4949770021763212}
   - {fileID: 4337138128144672}
   - {fileID: 4725180884745084}
+  - {fileID: 5404288203761531295}
   m_Father: {fileID: 4129864042203872}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -197,8 +198,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114307586759802868}
   _cameras:
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -411,8 +410,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114203839715900738}
   _cameras:
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -735,8 +732,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
   _old_fov: 80
@@ -905,8 +900,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114203530777878686}
   _cameras:
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -1087,8 +1080,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
   _old_fov: 80
@@ -1184,7 +1175,6 @@ GameObject:
   - component: {fileID: 114376289421041340}
   - component: {fileID: 124821388434305126}
   - component: {fileID: 9119703340410289289}
-  - component: {fileID: 7668653744694437367}
   m_Layer: 0
   m_Name: NeodroidCamera
   m_TagString: Untagged
@@ -1268,8 +1258,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   _old_culling_mask: -1
   _old_far_clip_plane: 20
   _old_fov: 79.5
@@ -1324,31 +1312,13 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   _filter_mode: 1
   _size: {x: 84, y: 84}
   _texture_format: 5
   _textures:
-  - {fileID: 8400000, guid: c0062e72afb4348d9b9bb702fba6c398, type: 2}
-  - {fileID: 8400000, guid: 5d9eca522a1944267b89beea11ffc58c, type: 2}
   - {fileID: 8400000, guid: 4c7dcaf7e8ef74c11bd8ad06365ea216, type: 2}
-  - {fileID: 8400000, guid: 63f7bf9c3a80b4d169b394696cbbd9ab, type: 2}
+  - {fileID: 8400000, guid: c0062e72afb4348d9b9bb702fba6c398, type: 2}
   _wrap_mode: 1
---- !u!114 &7668653744694437367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1866968490669790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ef1e70b0e1574993a2c4d202ea421f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _line_material: {fileID: 0}
-  _draw_label: 1
 --- !u!1 &1870355748897446
 GameObject:
   m_ObjectHideFlags: 0
@@ -1444,8 +1414,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
   _old_fov: 80
@@ -1529,13 +1497,14 @@ MonoBehaviour:
   _editor_reregistering: 1
   _Use_Custom_Name: 0
   _normalise_observation: 0
-  _observation_value: '-3940: RGBA(0.031, 0.025, 0.009, 1.000), 20060: RGBA(0.993,
-    0.481, 0.631, 1.000), 20080: RGBA(0.217, 0.210, 0.066, 1.000), 20092: RGBA(0.547,
-    0.713, 0.120, 1.000), 20110: RGBA(0.439, 0.847, 0.848, 1.000), 20124: RGBA(0.906,
-    0.680, 0.867, 1.000), 20138: RGBA(0.509, 0.441, 0.719, 1.000), 20152: RGBA(0.331,
-    0.283, 0.197, 1.000), 20180: RGBA(0.224, 0.446, 0.382, 1.000), 20210: RGBA(0.355,
-    0.126, 0.239, 1.000), 20226: RGBA(0.124, 0.162, 0.136, 1.000), 20244: RGBA(0.128,
-    0.362, 0.320, 1.000), Outline: RGBA(1.000, 0.000, 1.000, 1.000)'
+  _observation_value: '-3060: RGBA(0.611, 0.174, 0.215, 1.000), 20090: RGBA(0.540,
+    0.323, 0.414, 1.000), 20110: RGBA(0.062, 0.025, 0.071, 1.000), 20130: RGBA(0.479,
+    0.543, 0.565, 1.000), 20142: RGBA(0.036, 0.908, 0.151, 1.000), 20160: RGBA(0.010,
+    0.031, 0.030, 1.000), 20174: RGBA(0.469, 0.563, 0.554, 1.000), 20188: RGBA(0.449,
+    0.340, 0.230, 1.000), 20208: RGBA(0.812, 0.673, 0.567, 1.000), 20236: RGBA(0.143,
+    0.013, 0.115, 1.000), 20282: RGBA(0.698, 0.701, 0.601, 1.000), 20298: RGBA(0.011,
+    0.449, 0.326, 1.000), 20318: RGBA(0.797, 0.634, 0.954, 1.000), Outline: RGBA(1.000,
+    0.000, 1.000, 1.000)'
   _segmenter: {fileID: 114910394560810596}
 --- !u!1 &1975208461797724
 GameObject:
@@ -1651,8 +1620,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
   _old_fov: 80
@@ -1685,6 +1652,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 108322580981299036}
   - {fileID: 108133865239658186}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -1785,8 +1753,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
   _old_fov: 79.5
@@ -1876,3 +1842,155 @@ MonoBehaviour:
     0.945, 1.000, 1.000), Player: RGBA(0.000, 0.000, 1.000, 1.000), Outline: RGBA(1.000,
     0.000, 1.000, 1.000)'
   _segmenter: {fileID: 114319058318530508}
+--- !u!1 &7686063924545477276
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5404288203761531295}
+  - component: {fileID: 4614691972182028737}
+  - component: {fileID: 1157515293052786522}
+  - component: {fileID: 3246734891326987255}
+  - component: {fileID: 1692132170337216524}
+  m_Layer: 0
+  m_Name: CameraRelativeCoordinates
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5404288203761531295
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7686063924545477276}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4232321861901436}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &4614691972182028737
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7686063924545477276}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
+  m_projectionMatrixMode: 1
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_GateFitMode: 2
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.01
+  far clip plane: 20
+  field of view: 80
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967263
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 8400000, guid: 0a204b96270826992a5c81c531ea5dcf, type: 2}
+  m_TargetDisplay: 1
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 0
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!114 &1157515293052786522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7686063924545477276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96d2b2d8cb1664b2c9870ffd997b2f1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Custom_Name: 
+  _debugging: 0
+  _disables_children: 0
+  _editor_reregistering: 1
+  _Use_Custom_Name: 0
+  _normalise_observation: 0
+  _Camera: {fileID: 4614691972182028737}
+  _image_format: 1
+  _jpeg_quality: 75
+--- !u!114 &3246734891326987255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7686063924545477276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 3246734891326987255}
+  _cameras:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _old_culling_mask: -33
+  _old_far_clip_plane: 20
+  _old_fov: 80
+  _old_near_clip_plane: 0.01
+  _old_orthographic_projection: 0
+  _old_orthographic_size: 5
+  _only_run_in_edit_mode: 1
+  _only_run_on_awake: 0
+  _sync_culling_mask: 1
+  _sync_far_clip_plane: 1
+  _sync_fov: 1
+  _sync_near_clip_plane: 1
+  _sync_orthographic_projection: 1
+  _sync_orthographic_size: 1
+--- !u!114 &1692132170337216524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7686063924545477276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90d8486c2d1444fb8ac452a5a74cf74b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _automatically_add_directional_lights_if_not_empty: 1
+  _ignore_infrared_if_empty: 0
+  _lights_to_ignore:
+  - {fileID: 0}
+  - {fileID: 108322580981299036}
+  - {fileID: 108133865239658186}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

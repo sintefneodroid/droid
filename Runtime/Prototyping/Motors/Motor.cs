@@ -86,9 +86,7 @@ namespace Neodroid.Runtime.Prototyping.Motors {
     /// <summary>
     /// </summary>
     protected override void UnRegisterComponent() {
-      if (this.ParentActor != null) {
-        this.ParentActor.UnRegister(this);
-      }
+      this.ParentActor?.UnRegister(this);
     }
 
     /// <summary>

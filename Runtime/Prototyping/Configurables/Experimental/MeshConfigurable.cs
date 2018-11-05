@@ -1,4 +1,5 @@
-﻿using Neodroid.Runtime.Environments;
+﻿using System;
+using Neodroid.Runtime.Environments;
 using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Messaging.Messages;
 using Neodroid.Runtime.Utilities.Debugging;
@@ -7,23 +8,21 @@ using UnityEngine;
 using Random = System.Random;
 
 namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
-  /// <inheritdoc />
+  /// <inheritdoc cref="Configurable" />
   /// <summary>
   /// </summary>
   [AddComponentMenu(
-      ConfigurableComponentMenuPath._ComponentMenuPath + "Texture" + ConfigurableComponentMenuPath._Postfix)]
-  public class TextureConfigurable : Configurable {
-    /// <summary>
-    ///   Red
-    /// </summary>
-    string _texture_str;
+      ConfigurableComponentMenuPath._ComponentMenuPath + "Mesh" + ConfigurableComponentMenuPath._Postfix)]
+  public class MeshConfigurable : Configurable, IHasString {
+    string _mesh_str;
 
     [SerializeField] Texture _texture;
+    [SerializeField] String _observation_value;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() { this._texture_str = this.Identifier + "Texture"; }
+    protected override void PreSetup() { this._mesh_str = this.Identifier + "Mesh"; }
 
     /// <inheritdoc />
     /// <summary>
@@ -32,14 +31,14 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
       this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
-          this._texture_str);
+          this._mesh_str);
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>n
     protected override void UnRegisterComponent() {
-      this.ParentEnvironment?.UnRegister(this, this._texture_str);
+      this.ParentEnvironment?.UnRegister(this, this._mesh_str);
     }
 
     /// <summary>
@@ -47,12 +46,10 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
     /// <param name="configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
       #if NEODROID_DEBUG
-      if (this.Debugging) {
         DebugPrinting.ApplyPrint(this.Debugging, configuration, this.Identifier);
-      }
       #endif
 
-      if (configuration.ConfigurableName == this._texture_str) {
+      if (configuration.ConfigurableName == this._mesh_str) {
         if (this._texture) {
           this._texture.anisoLevel = (int)configuration.ConfigurableValue;
         }
@@ -65,7 +62,9 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
     /// <param name="random_generator"></param>
     /// <returns></returns>
     public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
-      return new Configuration(this._texture_str, (float)random_generator.NextDouble());
+      return new Configuration(this._mesh_str, (float)random_generator.NextDouble());
     }
+
+    public String ObservationValue { get { return this._observation_value; } }
   }
 }

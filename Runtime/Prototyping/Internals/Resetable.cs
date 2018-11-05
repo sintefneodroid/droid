@@ -38,9 +38,7 @@ namespace Neodroid.Runtime.Prototyping.Internals {
     /// <summary>
     /// </summary>
     protected override void UnRegisterComponent() {
-      if (this._Parent_Environment != null) {
-        this._Parent_Environment.UnRegister(this);
-      }
+      this._Parent_Environment?.UnRegister(this);
     }
   }
 }

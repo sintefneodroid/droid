@@ -2,6 +2,7 @@
 using Neodroid.Runtime.Environments;
 using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Messaging.Messages;
+using Neodroid.Runtime.Utilities.Debugging;
 using Neodroid.Runtime.Utilities.Misc;
 using UnityEngine;
 using Random = System.Random;
@@ -121,7 +122,7 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log("Applying " + configuration + " To " + this.Identifier);
+        DebugPrinting.ApplyPrint(this.Debugging, configuration, this.Identifier);
       }
       #endif
     }
