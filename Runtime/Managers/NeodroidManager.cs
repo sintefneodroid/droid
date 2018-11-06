@@ -244,7 +244,10 @@ namespace Neodroid.Runtime.Managers {
     public bool Debugging {
       get { return this._debugging; }
       set {
-        this._Message_Server.Debugging = value;
+        if(this._Message_Server!=null) {
+          this._Message_Server.Debugging = value;
+        }
+
         this._debugging = value;
       }
     }

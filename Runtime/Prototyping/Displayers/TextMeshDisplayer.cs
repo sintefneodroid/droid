@@ -1,6 +1,7 @@
 ﻿using System;
 using Neodroid.Runtime.Utilities.Structs;
 using UnityEngine;
+using Object = System.Object;
 
 #if TEXT_MESH_PRO_EXISTS
 using TMPro;
@@ -96,6 +97,8 @@ namespace Neodroid.Runtime.Prototyping.Displayers {
       }
       #endif
     }
+
+    //public override void Display(Object o) { throw new NotImplementedException(); }
 
     /// <summary>
     /// </summary>

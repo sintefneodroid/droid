@@ -24,7 +24,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers {
 
     [SerializeField] protected bool _RetainLastPlot = true;
 
-    protected dynamic _values;
+    protected dynamic _Values;
 
     /// <summary>
     /// </summary>
@@ -38,7 +38,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers {
     /// </summary>
     public override string PrototypingTypeName { get { return "Displayer"; } }
 
-    public void Display(object o) { throw new NotImplementedException(); }
+
 
     /// <inheritdoc />
     /// <summary>
@@ -57,62 +57,26 @@ namespace Neodroid.Runtime.Prototyping.Displayers {
     /// <summary>
     /// </summary>
     /// <param name="value"></param>
-    public abstract void Display(float value);
 
-    /// <summary>
-    /// </summary>
-    /// <param name="value"></param>
-    public abstract void Display(double value);
-
-    /// <summary>
-    /// </summary>
-    /// <param name="values"></param>
-    public abstract void Display(float[] values);
-
-    /// <summary>
-    /// </summary>
-    /// <param name="value"></param>
-    public abstract void Display(string value);
-
-    /// <summary>
-    /// </summary>
-    /// <param name="value"></param>
-    public abstract void Display(Vector3 value);
-
-    /// <summary>
-    /// </summary>
-    /// <param name="value"></param>
-    public abstract void Display(Vector3[] value);
-
-    /// <summary>
-    /// </summary>
-    /// <param name="point"></param>
-    public abstract void Display(Points.ValuePoint point);
-
-    /// <summary>
-    /// </summary>
-    /// <param name="points"></param>
-    public abstract void Display(Points.ValuePoint[] points);
-
-    /// <summary>
-    /// </summary>
-    /// <param name="point"></param>
-    public abstract void Display(Points.StringPoint point);
-
-    /// <summary>
-    /// </summary>
-    /// <param name="points"></param>
-    public abstract void Display(Points.StringPoint[] points);
-
-    //public abstract void PlotSeries(dynamic points);
-    public abstract void PlotSeries(Points.ValuePoint[] points);
 
     void Update() {
       if (this._RetainLastPlot) {
-        if (this._values != null) {
-          PlotSeries(this._values);
+        if (this._Values != null) {
+          PlotSeries(this._Values);
         }
       }
     }
+
+    public abstract void Display(Single value);
+    public abstract void Display(Double value);
+    public abstract void Display(Single[] values);
+    public abstract void Display(String value);
+    public abstract void Display(Vector3 value);
+    public abstract void Display(Vector3[] value);
+    public abstract void Display(Points.ValuePoint point);
+    public abstract void Display(Points.ValuePoint[] points);
+    public abstract void Display(Points.StringPoint point);
+    public abstract void Display(Points.StringPoint[] points);
+    public abstract void PlotSeries(Points.ValuePoint[] points);
   }
 }

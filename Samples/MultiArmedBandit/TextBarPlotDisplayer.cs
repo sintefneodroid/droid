@@ -4,6 +4,7 @@ using Neodroid.Runtime.Prototyping.Displayers;
 using Neodroid.Runtime.Prototyping.Displayers.Canvas;
 using Neodroid.Runtime.Prototyping.Internals;
 using UnityEngine;
+using Object = System.Object;
 
 namespace Neodroid.Samples.MultiArmedBandit {
   /// <inheritdoc />
@@ -14,7 +15,7 @@ namespace Neodroid.Samples.MultiArmedBandit {
   public class TextBarPlotDisplayer : Resetable {
     [CanBeNull] [SerializeField] CanvasBarDisplayer[] _canvas_bars;
     [CanBeNull] [SerializeField] CanvasTextDisplayer[] _canvas_text;
-    [CanBeNull] [SerializeField] float[] _Values;
+    [SerializeField] Single[] _values;
 
     /// <inheritdoc />
     /// <summary>
@@ -25,14 +26,17 @@ namespace Neodroid.Samples.MultiArmedBandit {
     /// <summary>
     /// </summary>
     public override void EnvironmentReset() {
-      foreach (var bar in this._canvas_bars) {
-        bar.Display(0.5);
+      var canvas_bar_displayers = this._canvas_bars;
+      if (canvas_bar_displayers != null) {
+        foreach (var bar in canvas_bar_displayers) {
+          bar.Display(0.5);
+        }
       }
     }
 
     void Update() {
       if (this.Debugging) {
-        this.Display(this._Values);
+        //this.Display(this._values);
       }
     }
 
@@ -40,13 +44,26 @@ namespace Neodroid.Samples.MultiArmedBandit {
     /// </summary>
     /// <param name="values"></param>
     public void Display(float[] values) {
-      for (var i = 0; i < this._canvas_bars.Length; i++) {
-        if (i < values.Length) {
-          var bar = this._canvas_bars[i];
-          bar?.Display(values[i]);
+      #if NEODROID_DEBUG
+        if(this.Debugging) {
+          Debug.Log($"Displaying {values} at {this.Identifier}");
+        }
+      #endif
 
-          var text = this._canvas_text[i];
-          text?.Display(values[i]);
+      var canvas_bar_displayers = this._canvas_bars;
+      var canvas_text_displayers = this._canvas_text;
+      if (canvas_bar_displayers != null) {
+        for (var i = 0; i < canvas_bar_displayers.Length; i++) {
+          if (i < values.Length) {
+            var bar = canvas_bar_displayers[i];
+            bar?.Display(values[i]);
+
+
+            if (canvas_text_displayers != null) {
+              var text = canvas_text_displayers[i];
+              text?.Display(values[i]);
+            }
+          }
         }
       }
     }

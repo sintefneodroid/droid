@@ -4,6 +4,7 @@ using Neodroid.Runtime.Utilities.Misc.Drawing;
 using Neodroid.Runtime.Utilities.Plotting;
 using Neodroid.Runtime.Utilities.Structs;
 using UnityEngine;
+using Object = System.Object;
 
 namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
   /// <inheritdoc />
@@ -35,12 +36,13 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
     public override void Display(Points.StringPoint point) { throw new NotImplementedException(); }
     public override void Display(Points.StringPoint[] points) { throw new NotImplementedException(); }
 
+    //public override void Display(Object o) { throw new NotImplementedException(); }
     public override void Display(float values) { }
 
     void Update() {
       if (this._RetainLastPlot) {
-        if (this._values != null) {
-          PlotSeries(this._values);
+        if (this._Values != null) {
+          PlotSeries(this._Values);
         }
       }
     }
@@ -50,17 +52,17 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
     /// <param name="points"></param>
     public void ScatterPlot(Vector3[] points) { }
 
-    /*public void PlotSeries(float[] points) {
+    /*public override void PlotSeries(float[] points) {
 
     }*/
 
     #if UNITY_EDITOR
     void OnDrawGizmos() {
       if (this.enabled) {
-        if (this._values == null || this._values.Length == 0) {
+        if (this._Values == null || this._Values.Length == 0) {
           if (this._PlotRandomSeries) {
             var vs = PlotFunctions.SampleRandomSeries(9);
-            this._values = vs.Select(v => v._Val).ToArray();
+            this._Values = vs.Select(v => v._Val).ToArray();
             this.PlotSeries(vs);
           }
         }
@@ -78,7 +80,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
       }
       #endif
 
-      this._values = points;
+      this._Values = points;
 
       foreach (var point in points) {
         //point._Size

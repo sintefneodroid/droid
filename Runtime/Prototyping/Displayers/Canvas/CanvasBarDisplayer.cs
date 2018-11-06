@@ -1,7 +1,9 @@
 ﻿using System;
+using Neodroid.Runtime.Utilities.Debugging;
 using Neodroid.Runtime.Utilities.Structs;
 using UnityEngine;
 using UnityEngine.UI;
+using Object = System.Object;
 
 namespace Neodroid.Runtime.Prototyping.Displayers.Canvas {
   /// <inheritdoc />
@@ -41,14 +43,14 @@ namespace Neodroid.Runtime.Prototyping.Displayers.Canvas {
       }
     }
 
+    //public override void Display(Object o) { throw new NotImplementedException(); }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void Display(float value) {
       #if NEODROID_DEBUG
-      if (this.Debugging) {
-        Debug.Log("Applying " + value + " To " + this.name);
-      }
+      DebugPrinting.DisplayPrint(value, this.Identifier, this.Debugging);
       #endif
 
       this.SetFillAmount(value);
@@ -59,9 +61,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers.Canvas {
     /// </summary>
     public override void Display(Double value) {
       #if NEODROID_DEBUG
-      if (this.Debugging) {
-        Debug.Log("Applying " + value + " To " + this.name);
-      }
+      DebugPrinting.DisplayPrint(value, this.Identifier, this.Debugging);
       #endif
 
       this.SetFillAmount((float)value);

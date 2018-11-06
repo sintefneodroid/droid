@@ -41,8 +41,8 @@ namespace Neodroid.Runtime.Prototyping.Displayers.Cells {
 
     void Update() {
       if (this._retain_last_plot) {
-        if (this._values != null) {
-          PlotSeries(this._values);
+        if (this._Values != null) {
+          PlotSeries(this._Values);
         }
       }
     }
@@ -52,17 +52,17 @@ namespace Neodroid.Runtime.Prototyping.Displayers.Cells {
     /// <param name="points"></param>
     public new void ScatterPlot(Vector3[] points) { }
 
-    /*public void PlotSeries(float[] points) {
+    /*public override void PlotSeries(float[] points) {
 
     }*/
 
     #if UNITY_EDITOR
     void OnDrawGizmos() {
       if (this.enabled) {
-        if (this._values == null || this._values.Length == 0) {
+        if (this._Values == null || this._Values.Length == 0) {
           if (this._plot_random_series) {
             var vs = PlotFunctions.SampleRandomSeries(9);
-            this._values = vs.Select(v => v._Val).ToArray();
+            this._Values = vs.Select(v => v._Val).ToArray();
             this.PlotSeries(vs);
           }
         }
@@ -80,7 +80,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers.Cells {
       }
       #endif
 
-      this._values = points;
+      this._Values = points;
 
       foreach (var point in points) {
         //point._Size

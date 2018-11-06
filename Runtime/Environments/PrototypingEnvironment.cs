@@ -28,7 +28,7 @@ namespace Neodroid.Runtime.Environments {
     /// </summary>
     protected override void PreSetup() {
       if (this._objective_function == null) {
-        //this._objective_function = this.GetComponent<IObjective>();
+        this._objective_function = this.GetComponent<ObjectiveFunction>();
       }
 
       if (!this.PlayableArea) {

@@ -2,6 +2,7 @@
 using Neodroid.Runtime.Utilities.Structs;
 using UnityEngine;
 using UnityEngine.UI;
+using Object = System.Object;
 
 namespace Neodroid.Runtime.Prototyping.Displayers.Canvas {
   /// <inheritdoc />
@@ -49,6 +50,8 @@ namespace Neodroid.Runtime.Prototyping.Displayers.Canvas {
         this._images[0].fillAmount = amount;
       }
     }
+
+    //public override void Display(Object o) { throw new NotImplementedException(); }
 
     /// <inheritdoc />
     /// <summary>

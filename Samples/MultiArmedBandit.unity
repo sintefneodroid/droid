@@ -112,6 +112,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &45355145 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114334249277451982, guid: 9b61d6c901c1941578eed89185a25d35,
+    type: 3}
+  m_PrefabInstance: {fileID: 814446580}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b5417bfee9342518a9768fda4c81337, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &149719887 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114638356156934590, guid: cbb15ff2d062f4cec887e06445cf7050,
@@ -476,6 +488,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114540525651406706, guid: 9b61d6c901c1941578eed89185a25d35,
+        type: 3}
+      propertyPath: _debugging
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114334249277451982, guid: 9b61d6c901c1941578eed89185a25d35,
+        type: 3}
+      propertyPath: _debugging
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b61d6c901c1941578eed89185a25d35, type: 3}
 --- !u!224 &814446581 stripped
@@ -506,18 +528,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f515b417b121405c809d6e4e30ec5281, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &814446584 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114508576442056390, guid: 9b61d6c901c1941578eed89185a25d35,
-    type: 3}
-  m_PrefabInstance: {fileID: 814446580}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b5417bfee9342518a9768fda4c81337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &814446585 stripped
@@ -950,7 +960,7 @@ MonoBehaviour:
   _Resetting: 0
   _Terminable: 1
   _Terminated: 0
-  _objective_function: {fileID: 0}
+  _objective_function: {fileID: 1381552602}
   _coordinate_reference_point: {fileID: 0}
   _track_only_children: 1
   _coordinate_system: 0
@@ -1080,7 +1090,7 @@ MonoBehaviour:
   _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
+  _Use_Custom_Name: 1
   _canvas_bars:
   - {fileID: 578315298}
   - {fileID: 814446583}
@@ -1089,7 +1099,7 @@ MonoBehaviour:
   - {fileID: 578315297}
   - {fileID: 814446582}
   - {fileID: 149719887}
-  _Values: []
+  _values: []
 --- !u!114 &1381552605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1106,16 +1116,16 @@ MonoBehaviour:
   _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
+  _Use_Custom_Name: 1
   _canvas_bars:
   - {fileID: 578315300}
   - {fileID: 814446585}
   - {fileID: 1719147517}
   _canvas_text:
   - {fileID: 578315299}
-  - {fileID: 814446584}
+  - {fileID: 45355145}
   - {fileID: 1535647868}
-  _Values: []
+  _values: []
 --- !u!114 &1381552606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1130,7 +1140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _debugging: 0
   _testing_motors: 0
-  _configuration: {fileID: 0}
+  _configuration: {fileID: 11400000, guid: 88c3c899a02384efdba0c7ba008dad77, type: 2}
   _skip_frame_i: 0
   _syncing_environments: 0
   _awaiting_reply: 0
@@ -1413,7 +1423,7 @@ PrefabInstance:
     - target: {fileID: 224701342121933384, guid: 2e92782f81c5740819ca66bda35481ce,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 179
+      value: -596.50037
       objectReference: {fileID: 0}
     - target: {fileID: 224219095199356408, guid: 2e92782f81c5740819ca66bda35481ce,
         type: 3}
@@ -1533,6 +1543,11 @@ PrefabInstance:
     - target: {fileID: 224582703667719680, guid: 2e92782f81c5740819ca66bda35481ce,
         type: 3}
       propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224110368661715722, guid: 2e92782f81c5740819ca66bda35481ce,
+        type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

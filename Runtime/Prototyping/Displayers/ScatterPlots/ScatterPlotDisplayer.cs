@@ -4,6 +4,7 @@ using System.Linq;
 using Neodroid.Runtime.Utilities.Plotting;
 using Neodroid.Runtime.Utilities.Structs;
 using UnityEngine;
+using Object = System.Object;
 
 namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
   [ExecuteInEditMode]
@@ -60,8 +61,8 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
       }
       #endif
 
-      this._values = new[] {(float)value};
-      this.PlotSeries(this._values);
+      this._Values = new[] {(float)value};
+      this.PlotSeries(this._Values);
     }
 
     public override void Display(float[] values) {
@@ -75,7 +76,7 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
         Debug.Log("Applying the float array " + s + " To " + this.name);
       }
       #endif
-      this._values = values;
+      this._Values = values;
       this.PlotSeries(values);
     }
 
@@ -91,8 +92,8 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
         this._vs.Add(float.Parse(value));
       }
 
-      this._values = this._vs.ToArray();
-      this.PlotSeries(this._values);
+      this._Values = this._vs.ToArray();
+      this.PlotSeries(this._Values);
     }
 
     public override void Display(Vector3 value) { throw new NotImplementedException(); }
@@ -130,6 +131,8 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
     public override void Display(Points.StringPoint point) { throw new NotImplementedException(); }
     public override void Display(Points.StringPoint[] points) { throw new NotImplementedException(); }
 
+    //public override void Display(Object o) { throw new NotImplementedException(); }
+
     public override void Display(float values) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
@@ -137,8 +140,8 @@ namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
       }
       #endif
 
-      this._values = new[] {values};
-      this.PlotSeries(this._values);
+      this._Values = new[] {values};
+      this.PlotSeries(this._Values);
     }
 
     /// <summary>
