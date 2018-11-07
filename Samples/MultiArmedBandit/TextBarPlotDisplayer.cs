@@ -15,7 +15,6 @@ namespace Neodroid.Samples.MultiArmedBandit {
   public class TextBarPlotDisplayer : Resetable {
     [CanBeNull] [SerializeField] CanvasBarDisplayer[] _canvas_bars;
     [CanBeNull] [SerializeField] CanvasTextDisplayer[] _canvas_text;
-    [SerializeField] Single[] _values;
 
     /// <inheritdoc />
     /// <summary>
@@ -52,6 +51,7 @@ namespace Neodroid.Samples.MultiArmedBandit {
 
       var canvas_bar_displayers = this._canvas_bars;
       var canvas_text_displayers = this._canvas_text;
+
       if (canvas_bar_displayers != null) {
         for (var i = 0; i < canvas_bar_displayers.Length; i++) {
           if (i < values.Length) {

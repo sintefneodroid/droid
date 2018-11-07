@@ -15,6 +15,7 @@ namespace Neodroid.Samples.MultiArmedBandit {
 
     [SerializeField] TextBarPlotDisplayer _text_bar_plot_displayer;
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     protected override void PostSetup() {
@@ -22,11 +23,15 @@ namespace Neodroid.Samples.MultiArmedBandit {
         this._arms = FindObjectOfType<MultiArmedBanditMotor>();
       }
 
+      this.ComputeNormalisedValues();
+    }
+
+    void ComputeNormalisedValues() {
       /*var sum = this._arms.WinAmounts.Sum();
-      this._normalised_values = new Single[this._arms.WinAmounts.Length];
-      for (var i = 0; i < this._arms.WinAmounts.Length; i++) {
-        this._normalised_values[i] = this._arms.WinAmounts[i] / sum;
-      }*/
+this._normalised_values = new Single[this._arms.WinAmounts.Length];
+for (var i = 0; i < this._arms.WinAmounts.Length; i++) {
+  this._normalised_values[i] = this._arms.WinAmounts[i] / sum;
+}*/
 
       var values = this._arms.WinAmounts.Zip(this._arms.WinLikelihoods, (f, f1) => f * f1).ToArray();
       var values_sum = values.Sum();
@@ -37,11 +42,17 @@ namespace Neodroid.Samples.MultiArmedBandit {
       }
 
       this._text_bar_plot_displayer.Display(this._normalised_values);
+
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override void InternalReset() { this._text_bar_plot_displayer.Display(this._normalised_values); }
+    public override void InternalReset() { this.ComputeNormalisedValues(); }
+
+    void Update() {
+      this.ComputeNormalisedValues();
+    }
 
     /// <inheritdoc />
     /// <summary>

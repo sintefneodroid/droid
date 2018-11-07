@@ -619,7 +619,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 898419343}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18da66e1f21b4429faf09c7a18e49c0a, type: 3}
+  m_Script: {fileID: 11500000, guid: d58b11614d784a5ea4da047aadb42197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
@@ -633,22 +633,22 @@ MonoBehaviour:
     _Max_Value: 2
   _energy_spend_since_reset: 0
   _energy_cost: 0
-  _inactive_color: {r: 1, g: 1, b: 0, a: 1}
-  _indicators:
+  _inactive_color: {r: 0.999918, g: 1, b: 0, a: 0}
+  _Indicators:
   - {fileID: 2100000, guid: b63e9efe7a9924d56ac1acf75e4db8e3, type: 2}
   - {fileID: 2100000, guid: 9b8f86f172881439f9ac439ac5f06317, type: 2}
   - {fileID: 2100000, guid: dab1db1368b6744ec954efc08a689113, type: 2}
   _last_index: 0
   _lose_color: {r: 1, g: 0, b: 0, a: 1}
-  _win_amounts:
-  - 3
-  - 2
-  - 5
+  _Win_Amounts:
+  - 0.63045377
+  - 0.21754397
+  - 0.1265233
   _win_color: {r: 0, g: 1, b: 0, a: 1}
-  _win_likelihoods:
-  - 0.3
-  - 0.6
-  - 0.1
+  _Win_Likelihoods:
+  - 0.23968983
+  - 0.23478422
+  - 0.65216565
   _won: 0
 --- !u!1 &903449910
 GameObject:
@@ -1050,9 +1050,9 @@ MonoBehaviour:
   _last_signal: 0
   _arms: {fileID: 898419346}
   _normalised_values:
-  - 0.34615386
-  - 0.46153846
-  - 0.19230768
+  - 0.24631953
+  - 0.5800647
+  - 0.17361577
   _text_bar_plot_displayer: {fileID: 1381552604}
 --- !u!224 &1381552603
 RectTransform:
@@ -1099,7 +1099,6 @@ MonoBehaviour:
   - {fileID: 578315297}
   - {fileID: 814446582}
   - {fileID: 149719887}
-  _values: []
 --- !u!114 &1381552605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1125,7 +1124,6 @@ MonoBehaviour:
   - {fileID: 578315299}
   - {fileID: 45355145}
   - {fileID: 1535647868}
-  _values: []
 --- !u!114 &1381552606
 MonoBehaviour:
   m_ObjectHideFlags: 0

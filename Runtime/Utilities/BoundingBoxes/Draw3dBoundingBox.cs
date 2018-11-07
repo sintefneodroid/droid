@@ -9,7 +9,7 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
   /// </summary>
   [RequireComponent(typeof(Camera))]
   [ExecuteInEditMode]
-  public class Draw3dBoundingBox : MonoBehaviour {
+  public class Draw3DBoundingBox : MonoBehaviour {
     List<Color> _colors = new List<Color>();
     [SerializeField] Material _line_material;
     List<GameObject> _names = new List<GameObject>();
@@ -137,12 +137,12 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
           var content = GUI.skin.box.CalcSize(new GUIContent(text));
           content.x = content.x + _padding;
           content.y = content.y + _padding;
-          var _rect = new Rect(
+          var rect = new Rect(
               box_position.x - content.x / 2,
               box_position.y - content.y / 2,
               content.x,
               content.y);
-          GUI.Box(_rect, text);
+          GUI.Box(rect, text);
           //GUI.Label(this._rect, text);
           i++;
         }
