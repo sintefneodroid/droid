@@ -11,26 +11,19 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
   /// <summary>
   /// </summary>
   [AddComponentMenu(
-      ConfigurableComponentMenuPath._ComponentMenuPath + "Texture" + ConfigurableComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(Renderer))]
-  public class TextureConfigurable : Configurable {
+      ConfigurableComponentMenuPath._ComponentMenuPath + "ExternalMesh" + ConfigurableComponentMenuPath._Postfix)]
+  public class ExternalMeshConfigurable : Configurable {
     /// <summary>
     ///   Red
     /// </summary>
     string _texture_str;
 
-    [SerializeField] Texture[] _textures;
-
     [SerializeField] Texture _texture;
-    Renderer _renderer;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
-      this._texture_str = this.Identifier + "Texture";
-      this._renderer = this.GetComponent<Renderer>();
-    }
+    protected override void PreSetup() { this._texture_str = this.Identifier + "Texture"; }
 
     /// <inheritdoc />
     /// <summary>
@@ -61,8 +54,7 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
 
       if (configuration.ConfigurableName == this._texture_str) {
         if (this._texture) {
-          this._texture = this._textures[(int)configuration.ConfigurableValue];
-          this._renderer.material.mainTexture = this._texture;
+          this._texture.anisoLevel = (int)configuration.ConfigurableValue;
         }
       }
     }
@@ -73,7 +65,7 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
     /// <param name="random_generator"></param>
     /// <returns></returns>
     public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
-      return new Configuration(this._texture_str, (float)random_generator.NextDouble()* this._textures.Length);
+      return new Configuration(this._texture_str, (float)random_generator.NextDouble());
     }
   }
 }

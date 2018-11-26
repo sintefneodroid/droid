@@ -641,14 +641,14 @@ MonoBehaviour:
   _last_index: 0
   _lose_color: {r: 1, g: 0, b: 0, a: 1}
   _Win_Amounts:
-  - 0.63045377
-  - 0.21754397
-  - 0.1265233
+  - 0.6501262
+  - 0.30426794
+  - 0.618942
   _win_color: {r: 0, g: 1, b: 0, a: 1}
   _Win_Likelihoods:
-  - 0.23968983
-  - 0.23478422
-  - 0.65216565
+  - 0.10519991
+  - 0.3196798
+  - 0.81710994
   _won: 0
 --- !u!1 &903449910
 GameObject:
@@ -1421,7 +1421,7 @@ PrefabInstance:
     - target: {fileID: 224701342121933384, guid: 2e92782f81c5740819ca66bda35481ce,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -596.50006
+      value: -596.5
       objectReference: {fileID: 0}
     - target: {fileID: 224219095199356408, guid: 2e92782f81c5740819ca66bda35481ce,
         type: 3}
