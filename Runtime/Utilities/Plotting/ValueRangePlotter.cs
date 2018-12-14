@@ -32,7 +32,7 @@ namespace Neodroid.Runtime.Utilities.Plotting {
               this._value_range.extents.y + this._value_range.center.y));
 
       this._material.SetPass(0);
-      Graphics.DrawProcedural(MeshTopology.LineStrip, 512, 1);
+      Graphics.DrawProceduralNow(MeshTopology.LineStrip, 512, 1);
     }
   }
 }

@@ -135,7 +135,12 @@ namespace Neodroid.Editor.Utilities.SearchableEnum {
     ///   Force the focused window to redraw. This can be used to make the
     ///   popup more responsive to mouse movement.
     /// </summary>
-    static void Repaint() { EditorWindow.focusedWindow.Repaint(); }
+    static void Repaint() {
+      var window = EditorWindow.focusedWindow;
+      if(window){
+        window.Repaint();
+      }
+    }
 
     /// <summary> Draw a generic box. </summary>
     /// <param name="rect">Where to draw.</param>

@@ -1,5 +1,6 @@
 ﻿using System;
 using Random = UnityEngine.Random;
+using UnityEngine;
 
 namespace Neodroid.Runtime.Utilities.Structs {
   [Serializable]
@@ -32,6 +33,14 @@ namespace Neodroid.Runtime.Utilities.Structs {
       }
 
       return this.Round((v - this._Min_Value) / this.Span);
+    }
+
+    public Vector2 ToVector2(){
+      return new Vector2(this._Min_Value,this._Max_Value);
+    }
+    
+    public Vector3 ToVector3(){
+      return new Vector3(this._Min_Value,this._Decimal_Granularity,this._Max_Value);
     }
 
     public float Round(float v) { return (float)Math.Round(v, this._Decimal_Granularity); }

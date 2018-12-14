@@ -5,52 +5,6 @@ using Neodroid.Runtime.Utilities.Misc.SearchableEnum;
 using UnityEngine;
 
 namespace Neodroid.Runtime.Utilities.ScriptableObjects {
-  /// <summary>
-  ///   Determines the discrete timesteps of the simulation environment.
-  /// </summary>
-  public enum SimulationType {
-    /// <summary>
-    ///   Waiting for frame instead means stable physics(Multiple fixed updates) and camera has updated their
-    ///   rendertextures. Pauses the game after every reaction until next reaction is received.
-    /// </summary>
-    Frame_dependent_, // TODO: Sometimes some frame seems to be dropped with the frame dependent configuration at high frame rates.
-
-    /// <summary>
-    ///   Camera observers should be manually rendered to ensure validity and freshness with camera.Render()
-    /// </summary>
-    Physics_dependent_,
-
-    /// <summary>
-    ///   Continue simulation
-    /// </summary>
-    Independent_
-  }
-
-  /// <summary>
-  ///   Determines where in the monobehaviour cycle a frame/step is finished
-  /// </summary>
-  public enum FrameFinishes {
-    /// <summary>
-    ///   When ever all scripts has run their respective updates
-    ///   NOTE: Not working as expected, does not seem to work with physics engine.
-    /// </summary>
-    Late_update_,
-
-    /// <summary>
-    ///   NOTE: Not working as expected, does not seem to work with physics engine.
-    /// </summary>
-    End_of_frame_,
-
-    /// <summary>
-    ///   When ever the scene has been rendered
-    /// </summary>
-    On_render_image_,
-
-    /// <summary>
-    ///   When ever the scene has been rendered, default
-    /// </summary>
-    On_post_render_
-  }
 
   /// <inheritdoc />
   /// <summary>
@@ -79,6 +33,7 @@ namespace Neodroid.Runtime.Utilities.ScriptableObjects {
     /// </summary>
     [Header("Simulation")]
     [SerializeField]
+    [SearchableEnum]
     FrameFinishes _frame_finishes = FrameFinishes.On_post_render_;
 
     /// <summary>
@@ -142,6 +97,7 @@ namespace Neodroid.Runtime.Utilities.ScriptableObjects {
     /// <summary>
     /// </summary>
     [SerializeField]
+    [SearchableEnum]
     ExecutionPhase _step_execution_phase = ExecutionPhase.Middle_;
 
     /// <summary>

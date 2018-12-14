@@ -42,6 +42,7 @@ namespace Neodroid.Editor.Windows {
     PlayerReactions _player_reactions;
     Vector2 _scroll_position;
     bool[] _show_environment_properties = new bool[1];
+    bool _show_detailed_descriptions = false;
 
     /// <summary>
     /// </summary>
@@ -121,6 +122,10 @@ namespace Neodroid.Editor.Windows {
         this._player_reactions = FindObjectOfType<PlayerReactions>();
         EditorGUILayout.ObjectField(this._player_reactions, typeof(PlayerReactions), true);
 
+        this._show_detailed_descriptions = EditorGUILayout.Toggle(
+            "Show Details",
+          this._show_detailed_descriptions);
+  
         EditorGUILayout.EndVertical();
 
         EditorGUILayout.EndHorizontal();
@@ -133,11 +138,16 @@ namespace Neodroid.Editor.Windows {
         this._scroll_position = EditorGUILayout.BeginScrollView(this._scroll_position);
 
         EditorGUILayout.BeginVertical("Box");
-        var num_active_environments = this._environments.Length; //TODO: Calculate actual number
-        var num_inactive_environments =
-            this._environments.Length - num_active_environments; //TODO: Calculate actual number
-        GUILayout.Label(
+        var num_active_environments = this._environments.Length;
+        var num_inactive_environments = this._environments.Length - num_active_environments;
+  
+        //EditorGUILayout.BeginHorizontal();
+  
+          GUILayout.Label(
             $"Environments - Active({num_active_environments}), Inactive({num_inactive_environments}), Total({this._environments.Length})");
+  
+        //EditorGUILayout.EndHorizontal();
+  
         if (this._show_environment_properties != null) {
           for (var i = 0; i < this._show_environment_properties.Length; i++) {
             if (this._environments[i].isActiveAndEnabled) {
@@ -347,6 +357,11 @@ namespace Neodroid.Editor.Windows {
               motor.Key,
               motor_value.enabled && motor_value.gameObject.activeSelf);
           EditorGUILayout.ObjectField(motor_value, typeof(Motor), true);
+  
+          if (this._show_detailed_descriptions) {
+            EditorGUILayout.Vector3Field("Motion Space (min,gran,max)", motor_value.MotionValueSpace.ToVector3());
+          }
+  
           EditorGUILayout.EndToggleGroup();
 
           EditorGUILayout.EndVertical();
