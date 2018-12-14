@@ -717,13 +717,7 @@ namespace Neodroid.Runtime.Managers {
       foreach (var reaction in reactions) {
         if (this._Environments.ContainsKey(reaction.RecipientEnvironment)) {
           this._Environments[reaction.RecipientEnvironment].React(reaction);
-        } else {
-          #if NEODROID_DEBUG
-          if (this.Debugging) {
-            Debug.Log($"Could not find an environment with the identifier: {reaction.RecipientEnvironment}");
-          }
-          #endif
-
+        } else if(reaction.RecipientEnvironment =="all") {
           #if NEODROID_DEBUG
           if (this.Debugging) {
             Debug.Log("Applying to all environments");
@@ -733,7 +727,13 @@ namespace Neodroid.Runtime.Managers {
           foreach (var environment in this._Environments.Values) {
             environment.React(reaction);
           }
-        }
+        }else{
+          #if NEODROID_DEBUG
+          if (this.Debugging) {
+            Debug.Log($"Could not find an environment with the identifier: {reaction.RecipientEnvironment}");
+          }
+          #endif
+		}	
       }
     }
 
