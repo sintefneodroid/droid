@@ -80,17 +80,19 @@ environments and ease of integration with existing projects)
 ## Usage
 
 - Edit your Unity projects "Packages/manifest.json" to include the string 
-{"net.cnheider.neodroid": "https://github.com/sintefneodroid/droid.git"}
-````
-{
-  "dependencies": {
-    "com.unity.package-manager-ui": "0.0.0-builtin",
-    ...
-    "net.cnheider.neodroid": "https://github.com/sintefneodroid/droid.git"
+  `"net.cnheider.neodroid": "https://github.com/sintefneodroid/droid.git"}`.
+  
+  Example `manifest.json`
+  ````
+  {
+    "dependencies": {
+      "com.unity.package-manager-ui": "0.0.0-builtin",
+      ...
+      "net.cnheider.neodroid": "https://github.com/sintefneodroid/droid.git"
+    }
   }
-}
-````
-use {"net.cnheider.neodroid": "https://github.com/sintefneodroid/droid.git#branch"} for a specific branch.
+  ````
+  You can use `"net.cnheider.neodroid": "https://github.com/sintefneodroid/droid.git#branch"` for a specific branch.
 
 ***Or***
 
