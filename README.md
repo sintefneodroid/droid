@@ -79,7 +79,8 @@ environments and ease of integration with existing projects)
 
 ## Usage
 
-- Edit your Unity projects "Packages/manifest.json" to include the string "net.cnheider.neodroid": "https://github.com/sintefneodroid/droid.git"
+- Edit your Unity projects "Packages/manifest.json" to include the string 
+{"net.cnheider.neodroid": "https://github.com/sintefneodroid/droid.git"}
 ````
 {
   "dependencies": {
@@ -89,6 +90,7 @@ environments and ease of integration with existing projects)
   }
 }
 ````
+use {"net.cnheider.neodroid": "https://github.com/sintefneodroid/droid.git#branch"} for a specific branch.
 
 ***Or***
 
