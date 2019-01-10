@@ -45,8 +45,9 @@ namespace Neodroid.Samples.MultiArmedBandit {
     /// </summary>
     protected override void Setup() {
       var mvs = this.MotionValueSpace;
-      mvs._Min_Value = 0;
-      mvs._Max_Value = this._Indicators.Length - 1;
+      mvs._Min_Value = -1;
+      mvs._Max_Value = 1;
+      mvs._Decimal_Granularity = 0;
       this.MotionValueSpace = mvs;
       if (this._Win_Likelihoods == null || this._Win_Likelihoods.Length == 0) {
         this._Win_Likelihoods = new Single[this._Indicators.Length];
@@ -72,7 +73,7 @@ namespace Neodroid.Samples.MultiArmedBandit {
         indicator.color = this._inactive_color;
       }
 
-      var index = (int)motion.Strength;
+      var index = (int)motion.Strength+1;
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
@@ -82,7 +83,7 @@ namespace Neodroid.Samples.MultiArmedBandit {
 
       this._last_index = index;
 
-      var random_value = Random.Range(0f, 1f);
+      var random_value = Random.Range(-1f, 1f);
       if (random_value <= this._Win_Likelihoods[this._last_index]) {
         this._Indicators[this._last_index].color = this._win_color;
         this._won = true;

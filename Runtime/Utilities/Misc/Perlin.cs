@@ -1,6 +1,6 @@
 using System;
 
-namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
+namespace Neodroid.Runtime.Utilities.Misc {
 
     public class Perlin
     {

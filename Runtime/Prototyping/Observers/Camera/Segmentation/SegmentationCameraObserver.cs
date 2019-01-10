@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Neodroid.Runtime.Utilities.Enums;
 using Neodroid.Runtime.Utilities.NeodroidCamera.Segmentation;
 using Neodroid.Runtime.Utilities.ScriptableObjects;
 using UnityEngine;

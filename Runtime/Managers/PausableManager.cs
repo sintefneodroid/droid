@@ -1,4 +1,5 @@
 ﻿using System;
+using Neodroid.Runtime.Utilities.Enums;
 using Neodroid.Runtime.Utilities.ScriptableObjects;
 using UnityEngine;
 
