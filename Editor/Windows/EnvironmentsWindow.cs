@@ -166,31 +166,42 @@ namespace Neodroid.Editor.Windows {
                 this._environments[i].enabled = EditorGUILayout.BeginToggleGroup(
                     this._environments[i].Identifier,
                     this._environments[i].enabled && this._environments[i].gameObject.activeSelf);
-                EditorGUILayout.ObjectField(this._environments[i], typeof(PrototypingEnvironment), true);
-                this._environments[i].CoordinateSystem = (CoordinateSystem)EditorGUILayout.EnumPopup(
-                    "Coordinate system",
-                    this._environments[i].CoordinateSystem);
-                EditorGUI.BeginDisabledGroup(
-                    this._environments[i].CoordinateSystem != CoordinateSystem.Relative_to_reference_point_);
-                this._environments[i].CoordinateReferencePoint = (Transform)EditorGUILayout.ObjectField(
-                    "Reference point",
-                    this._environments[i].CoordinateReferencePoint,
-                    typeof(Transform),
-                    true);
-                EditorGUI.EndDisabledGroup();
-                this._environments[i].ObjectiveFunction = (ObjectiveFunction)EditorGUILayout.ObjectField(
-                    "Objective function",
-                    (ObjectiveFunction)this._environments[i].ObjectiveFunction,
-                    typeof(ObjectiveFunction),
-                    true);
-                this._environments[i].EpisodeLength = EditorGUILayout.IntField(
-                    "Episode Length",
-                    this._environments[i].EpisodeLength);
 
-                EditorGUI.BeginDisabledGroup(true);
-                EditorGUILayout.LabelField("Info:");
-                EditorGUILayout.Toggle("Terminated", this._environments[i].Terminated);
-                EditorGUI.EndDisabledGroup();
+                EditorGUILayout.ObjectField(this._environments[i], typeof(PrototypingEnvironment), true);
+                
+                if(this._show_detailed_descriptions){
+                  this._environments[i].CoordinateSystem = (CoordinateSystem)EditorGUILayout.EnumPopup(
+                      "Coordinate system",
+                      this._environments[i].CoordinateSystem);
+                  EditorGUI.BeginDisabledGroup(
+                      this._environments[i].CoordinateSystem != CoordinateSystem.Relative_to_reference_point_);
+                  this._environments[i].CoordinateReferencePoint = (Transform)EditorGUILayout.ObjectField(
+                      "Reference point",
+                      this._environments[i].CoordinateReferencePoint,
+                      typeof(Transform),
+                      true);
+                  EditorGUI.EndDisabledGroup();
+                  this._environments[i].ObjectiveFunction = (ObjectiveFunction)EditorGUILayout.ObjectField(
+                      "Objective function",
+                      (ObjectiveFunction)this._environments[i].ObjectiveFunction,
+                      typeof(ObjectiveFunction),
+                      true);
+                  this._environments[i].EpisodeLength = EditorGUILayout.IntField(
+                      "Episode Length",
+                      this._environments[i].EpisodeLength);
+                  //EditorGUILayout.BeginHorizontal("Box");
+                  this._environments[i].Debugging = EditorGUILayout.Toggle(
+                    "Debugging",
+                    this._environments[i].Debugging);
+                  //EditorGUILayout.EndHorizontal();
+  
+                  EditorGUI.BeginDisabledGroup(true);
+                  EditorGUILayout.LabelField("Info:");
+                  EditorGUILayout.Toggle("Terminated", this._environments[i].Terminated);
+                  EditorGUI.EndDisabledGroup();
+                }
+
+
 
                 this.DrawActors(actors);
 
@@ -242,6 +253,13 @@ namespace Neodroid.Editor.Windows {
               resetable.Key,
               resetable_value.enabled && resetable_value.gameObject.activeSelf);
           EditorGUILayout.ObjectField(resetable_value, typeof(Resetable), true);
+          if(this._show_detailed_descriptions){
+              //EditorGUILayout.BeginHorizontal("Box");
+            resetable_value.Debugging = EditorGUILayout.Toggle(
+              "Debugging",
+              resetable_value.Debugging);
+            //EditorGUILayout.EndHorizontal();
+          }
           EditorGUILayout.EndToggleGroup();
           EditorGUILayout.EndVertical();
         }
@@ -255,6 +273,13 @@ namespace Neodroid.Editor.Windows {
               listener.Key,
               listener_value_value.enabled && listener_value_value.gameObject.activeSelf);
           EditorGUILayout.ObjectField(listener_value_value, typeof(EnvironmentListener), true);
+          if(this._show_detailed_descriptions){
+              //EditorGUILayout.BeginHorizontal("Box");
+            listener_value_value.Debugging = EditorGUILayout.Toggle(
+              "Debugging",
+              listener_value_value.Debugging);
+            //EditorGUILayout.EndHorizontal();
+          }
           EditorGUILayout.EndToggleGroup();
           EditorGUILayout.EndVertical();
         }
@@ -277,6 +302,13 @@ namespace Neodroid.Editor.Windows {
               actor.Key,
               actor_value.enabled && actor_value.gameObject.activeSelf);
           EditorGUILayout.ObjectField(actor_value, typeof(Actor), true);
+          if(this._show_detailed_descriptions){
+              //EditorGUILayout.BeginHorizontal("Box");
+            actor_value.Debugging = EditorGUILayout.Toggle(
+              "Debugging",
+              actor_value.Debugging);
+            //EditorGUILayout.EndHorizontal();
+          }
 
           this.DrawMotors(motors);
 
@@ -300,6 +332,13 @@ namespace Neodroid.Editor.Windows {
               observer.Key,
               observer_value.enabled && observer_value.gameObject.activeSelf);
           EditorGUILayout.ObjectField(observer_value, typeof(Observer), true);
+          if(this._show_detailed_descriptions){
+              //EditorGUILayout.BeginHorizontal("Box");
+            observer_value.Debugging = EditorGUILayout.Toggle(
+              "Debugging",
+              observer_value.Debugging);
+            //EditorGUILayout.EndHorizontal();
+          }
           EditorGUILayout.EndToggleGroup();
           EditorGUILayout.EndVertical();
         }
@@ -319,6 +358,13 @@ namespace Neodroid.Editor.Windows {
               displayer.Key,
               displayer_value.enabled && displayer_value.gameObject.activeSelf);
           EditorGUILayout.ObjectField(displayer_value, typeof(Displayer), true);
+          if(this._show_detailed_descriptions){
+              //EditorGUILayout.BeginHorizontal("Box");
+            displayer_value.Debugging = EditorGUILayout.Toggle(
+              "Debugging",
+              displayer_value.Debugging);
+            //EditorGUILayout.EndHorizontal();
+          }
           EditorGUILayout.EndToggleGroup();
           EditorGUILayout.EndVertical();
         }
@@ -338,6 +384,14 @@ namespace Neodroid.Editor.Windows {
               configurable.Key,
               configurable_value.enabled && configurable_value.gameObject.activeSelf);
           EditorGUILayout.ObjectField(configurable_value, typeof(Configurable), true);
+          if(this._show_detailed_descriptions){
+              //EditorGUILayout.BeginHorizontal("Box");
+            configurable_value.Debugging = EditorGUILayout.Toggle(
+              "Debugging",
+              configurable_value.Debugging);
+            //EditorGUILayout.EndHorizontal();
+          }
+  
           EditorGUILayout.EndToggleGroup();
           EditorGUILayout.EndVertical();
         }
@@ -360,6 +414,11 @@ namespace Neodroid.Editor.Windows {
   
           if (this._show_detailed_descriptions) {
             EditorGUILayout.Vector3Field("Motion Space (min,gran,max)", motor_value.MotionValueSpace.ToVector3());
+                        //EditorGUILayout.BeginHorizontal("Box");
+            motor_value.Debugging = EditorGUILayout.Toggle(
+              "Debugging",
+              motor_value.Debugging);
+            //EditorGUILayout.EndHorizontal();
           }
   
           EditorGUILayout.EndToggleGroup();

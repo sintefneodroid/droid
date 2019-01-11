@@ -143,8 +143,17 @@ namespace Neodroid.Runtime.Messaging {
             this._socket.TryReceiveFrameBytes(wait_time, out msg);
             #endif
           } else {
-            msg = this._socket
-                .ReceiveFrameBytes(); //TODO: Occasionally receives non-valid reactions framebytes either before or after a valid reaction.
+            try
+            {
+              msg = this._socket
+                .ReceiveFrameBytes();
+            }
+            catch (ArgumentNullException e)
+            {
+              msg = null;
+              Debug.Log(e);
+            }
+
           }
 
           if (msg != null) { //&& msg.Length >= 4) {

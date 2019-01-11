@@ -6,13 +6,13 @@ namespace Neodroid.Runtime.Utilities.EventRecipients {
   /// <inheritdoc cref="DataPoller" />
   /// <summary>
   /// </summary>
-  [RequireComponent(typeof(Text))]
+  [RequireComponent(typeof(InputField))]
   [ExecuteInEditMode]
-  public class TextUpdater : DataPoller {
+  public class InputFieldUpdater : DataPoller {
     /// <summary>
     /// </summary>
     [SerializeField]
-    Text _text;
+    InputField _input_field;
 
 
 
@@ -20,7 +20,9 @@ namespace Neodroid.Runtime.Utilities.EventRecipients {
     /// <summary>
     /// </summary>
     void Start(){
-      this._text = this.GetComponent<Text>();
+      this._input_field = this.GetComponent<InputField>();
+
+
     }
 
     /// <inheritdoc />
@@ -29,8 +31,8 @@ namespace Neodroid.Runtime.Utilities.EventRecipients {
     /// <param name="data"></param>
     public override void PollData(dynamic data) {
       if (data is string) {
-        if (this._text) {
-          this._text.text = data;
+        if (this._input_field) {
+          this._input_field.text = data;
         }
       }
     }

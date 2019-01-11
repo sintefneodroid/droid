@@ -4,7 +4,9 @@ using UnityEngine;
 
 namespace Neodroid.Editor.Utilities {
   public static class MeshSaverEditor {
-    [MenuItem("CONTEXT/MeshFilter/Save Mesh")]
+    const string _menu_path = "CONTEXT" + "/MeshFilter" + "/SaveMesh";
+
+    [MenuItem(_menu_path)]
     public static void SaveMeshInPlace (MenuCommand menu_command) {
       var mf = menu_command.context as MeshFilter;
 
@@ -14,7 +16,7 @@ namespace Neodroid.Editor.Utilities {
       }
     }
 
-    [MenuItem("CONTEXT/MeshFilter/Save Mesh As New Instance")]
+    [MenuItem(_menu_path+"AsANewInstance")]
     public static void SaveMeshNewInstanceItem (MenuCommand menu_command) {
       var mf = menu_command.context as MeshFilter;
 

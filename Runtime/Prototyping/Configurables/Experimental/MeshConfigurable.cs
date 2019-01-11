@@ -27,6 +27,7 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
 
     [SerializeField] Mesh[ ] _meshes;
     [SerializeField] MeshFilter _mesh_filter;
+    [SerializeField] bool _displace_mesh;
 
     /// <inheritdoc />
     /// <summary>
@@ -34,11 +35,14 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
     protected override void PreSetup() {
       this._mesh_str = this.Identifier + "Mesh";
       this._mesh_filter = this.GetComponent<MeshFilter>();
-      this._deforming_mesh = _mesh_filter.mesh;
-      this._original_vertices = this._deforming_mesh.vertices;
-      this._displaced_vertices = new Vector3[this._original_vertices.Length];
-      for (var i = 0; i < this._original_vertices.Length; i++) {
-        this._displaced_vertices[i] = this._original_vertices[i];
+      if (Application.isPlaying){
+        this._deforming_mesh = _mesh_filter.mesh;
+        this._original_vertices = this._deforming_mesh.vertices;
+        this._displaced_vertices = new Vector3[this._original_vertices.Length];
+        for (var i = 0; i < this._original_vertices.Length; i++)
+        {
+          this._displaced_vertices[i] = this._original_vertices[i];
+        }
       }
 
       this._noise = new Perlin ();
@@ -71,36 +75,33 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
       #endif
 
       if (configuration.ConfigurableName == this._mesh_str) {
-        /*if (this._deforming_mesh) {
-          var time_x = Time.time * this._speed + 0.1365143f;
-          var time_y = Time.time * this._speed + 1.21688f;
-          var time_z = Time.time * this._speed + 2.5564f;
+        if (this._displace_mesh){
+          if (this._deforming_mesh){
+            var time_x = Time.time * this._speed + 0.1365143f;
+            var time_y = Time.time * this._speed + 1.21688f;
+            var time_z = Time.time * this._speed + 2.5564f;
 
-          for (var i = 0; i < this._displaced_vertices.Length; i++) {
-            var orig  = this._original_vertices[i];
-            //orig.y = orig.y * (1+(float)Math.Cos(Time.deltaTime))*(configuration.ConfigurableValue);
-            //orig.x = orig.x * (1+(float)Math.Sin(Time.deltaTime))*(configuration.ConfigurableValue);
+            for (var i = 0; i < this._displaced_vertices.Length; i++){
+              var orig = this._original_vertices[i];
+              //orig.y = orig.y * (1+(float)Math.Cos(Time.deltaTime))*(configuration.ConfigurableValue);
+              //orig.x = orig.x * (1+(float)Math.Sin(Time.deltaTime))*(configuration.ConfigurableValue);
 
-            orig.x += this._noise.Noise(time_x + orig.x, time_x + orig.y, time_x + orig.z) * this._scale;
-            orig.y += this._noise.Noise(time_y + orig.x, time_y + orig.y, time_y + orig.z) * this._scale;
-            orig.z += this._noise.Noise(time_z + orig.x, time_z + orig.y, time_z + orig.z) * this._scale;
+              orig.x += this._noise.Noise(time_x + orig.x, time_x + orig.y, time_x + orig.z) * this._scale;
+              orig.y += this._noise.Noise(time_y + orig.x, time_y + orig.y, time_y + orig.z) * this._scale;
+              orig.z += this._noise.Noise(time_z + orig.x, time_z + orig.y, time_z + orig.z) * this._scale;
 
-            this._displaced_vertices[i] = orig;
+              this._displaced_vertices[i] = orig;
+            }
+
+            this._deforming_mesh.vertices = this._displaced_vertices;
+
+            this._deforming_mesh.RecalculateNormals();
           }
-
-          this._deforming_mesh.vertices = this._displaced_vertices;
-
-
-
-
-
-          this._deforming_mesh.RecalculateNormals();
-        }
-                  */
-        if (this._meshes.Length > 0) {
+        }else if (this._meshes.Length > 0) {
           var idx = (int)(configuration.ConfigurableValue * this._meshes.Length);
           this._mesh_filter.mesh = this._meshes[idx];
         }
+
       }
     }
 
