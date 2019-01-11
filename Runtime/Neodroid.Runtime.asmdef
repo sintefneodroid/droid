@@ -1,0 +1,7 @@
+{
+    "name": "Neodroid.Runtime",
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true
+}
