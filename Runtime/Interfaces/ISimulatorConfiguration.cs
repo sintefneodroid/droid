@@ -1,4 +1,5 @@
 using Neodroid.Runtime.Messaging.Messages;
+using Neodroid.Runtime.Utilities.Enums;
 using Neodroid.Runtime.Utilities.ScriptableObjects;
 
 namespace Neodroid.Runtime.Interfaces {

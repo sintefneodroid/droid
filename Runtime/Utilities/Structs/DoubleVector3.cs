@@ -4,9 +4,9 @@ using UnityEngine;
 namespace Neodroid.Runtime.Utilities.Structs {
   [Serializable]
   public struct DoubleVector3 {
-    [SerializeField] public double _X;
-    [SerializeField] public double _Y;
-    [SerializeField] public double _Z;
+    [SerializeField] double _X;
+    [SerializeField] double _Y;
+    [SerializeField] double _Z;
 
     public DoubleVector3(Vector3 vec3) {
       this._X = vec3.x;
@@ -27,10 +27,10 @@ namespace Neodroid.Runtime.Utilities.Structs {
       this._Z = z;
     }
 
-    public Double X { get { return this._X; } set { this._X = value; } }
+    public Double x { get { return this._X; } set { this._X = value; } }
 
-    public Double Y { get { return this._Y; } set { this._Y = value; } }
+    public Double y { get { return this._Y; } set { this._Y = value; } }
 
-    public Double Z { get { return this._Z; } set { this._Z = value; } }
+    public Double z { get { return this._Z; } set { this._Z = value; } }
   }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Messaging;
 using Neodroid.Runtime.Messaging.Messages;
+using Neodroid.Runtime.Utilities.Enums;
 using Neodroid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using Neodroid.Runtime.Utilities.ScriptableObjects;
 using UnityEngine;
@@ -733,7 +734,7 @@ namespace Neodroid.Runtime.Managers {
             Debug.Log($"Could not find an environment with the identifier: {reaction.RecipientEnvironment}");
           }
           #endif
-		}	
+		}
       }
     }
 
@@ -779,7 +780,7 @@ namespace Neodroid.Runtime.Managers {
     }
 
     void SetStepping(Reaction[] reactions) {
-      if (reactions.Any(reac => reac.Parameters.Step)) {
+      if (reactions.Any(reaction => reaction.Parameters.Step)) {
         this.SetStepping(true);
       }
     }

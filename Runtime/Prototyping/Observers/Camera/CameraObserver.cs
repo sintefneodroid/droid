@@ -1,6 +1,7 @@
 ﻿using System;
 using Neodroid.Runtime.Interfaces;
 using Neodroid.Runtime.Managers;
+using Neodroid.Runtime.Utilities.Enums;
 using Neodroid.Runtime.Utilities.ScriptableObjects;
 using UnityEngine;
 
