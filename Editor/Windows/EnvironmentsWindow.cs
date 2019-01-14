@@ -42,7 +42,7 @@ namespace Neodroid.Editor.Windows {
     PlayerReactions _player_reactions;
     Vector2 _scroll_position;
     bool[] _show_environment_properties = new bool[1];
-    bool _show_detailed_descriptions = false;
+    bool _show_detailed_descriptions;
 
     /// <summary>
     /// </summary>

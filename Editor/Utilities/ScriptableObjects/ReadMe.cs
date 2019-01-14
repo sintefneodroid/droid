@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Common.ReadMe.ScriptableObjects {
+namespace Neodroid.Editor.Utilities.ScriptableObjects {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

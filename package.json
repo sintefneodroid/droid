@@ -11,6 +11,7 @@
     "RigidBody",
     "Component"
   ],
+	"author": "cnheider <mrnaah@gmail.com> (https://github.com/cnheider)",
   "category": "Unity",
   "dependencies": {
     "com.unity.textmeshpro": "1.2.1"

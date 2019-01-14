@@ -5,7 +5,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Common.Editors {
+namespace Neodroid.Editor.Utilities {
   /// <inheritdoc />
   /// <summary>
   ///   A helper editor script for finding missing references to objects.

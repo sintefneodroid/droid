@@ -4,7 +4,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-namespace Common.Editors {
+namespace Neodroid.Editor.Utilities {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

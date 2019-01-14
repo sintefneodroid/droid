@@ -1,12 +1,12 @@
 #if UNITY_EDITOR
 using UnityEditor;
 
-namespace Common.Editors {
+namespace Neodroid.Editor.Utilities {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
   [InitializeOnLoad]
-  public class ExecutionOrderManager : Editor {
+  public class ExecutionOrderManager : UnityEditor.Editor {
     static ExecutionOrderManager() {
       foreach (var mono_script in MonoImporter.GetAllRuntimeMonoScripts()) {
         var type = mono_script.GetClass();

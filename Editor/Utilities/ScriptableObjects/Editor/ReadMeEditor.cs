@@ -1,10 +1,9 @@
 ﻿using System.IO;
 using System.Reflection;
-using Neodroid.Editor.Utilities;
 using UnityEditor;
 using UnityEngine;
 
-namespace Common.ReadMe.ScriptableObjects.Editor {
+namespace Neodroid.Editor.Utilities.ScriptableObjects.Editor {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

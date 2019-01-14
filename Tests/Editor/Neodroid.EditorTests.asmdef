@@ -1,10 +1,11 @@
 {
-    "name": "Neodroid.Editor",
+    "name": "Neodroid.EditorTests",
     "references": [
-        "Neodroid.Runtime",
-        "Unity.PackageManagerUI.Editor"
+        "Neodroid.Editor"
     ],
-    "optionalUnityReferences": [],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
     "includePlatforms": [
         "Editor"
     ],
