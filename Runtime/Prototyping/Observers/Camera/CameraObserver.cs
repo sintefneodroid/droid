@@ -86,8 +86,7 @@ namespace Neodroid.Runtime.Prototyping.Observers.Camera {
           this._texture = new Texture2D(default_width, default_height);
         } else {
           var texture_format_str = target_texture.format.ToString();
-          TextureFormat texture_format;
-          if (Enum.TryParse(texture_format_str, out texture_format)) {
+          if (Enum.TryParse(texture_format_str, out TextureFormat texture_format)) {
             this._texture = new Texture2D(
                 target_texture.width,
                 target_texture.height,

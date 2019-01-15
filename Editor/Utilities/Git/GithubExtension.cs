@@ -1,4 +1,4 @@
-﻿#if UNITY_2019_1_OR_NEWER
+﻿#if UNITY_2019_1_OR_NEWER && USE_GITHUB_EXTENSION
 using UnityEngine.UIElements;
 using System;
 using System.Collections.Generic;

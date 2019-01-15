@@ -52,7 +52,7 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
     /// <summary>
     /// </summary>
     [SearchableEnum]
-    public BasedOn _BasedOn;
+    public BasedOn _BasedOn = BasedOn.Collider_;
 
     /// <summary>
     /// </summary>
@@ -60,11 +60,11 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
 
     /// <summary>
     /// </summary>
-    public bool _FreezeAfterFirstCalculation;
+    [SerializeField] bool _FreezeAfterFirstCalculation = true;
 
     /// <summary>
     /// </summary>
-    public bool _Include_Children = true;
+    [SerializeField] bool _Include_Children = false;
 
     Vector3 _last_position;
     Quaternion _last_rotation;
@@ -89,7 +89,7 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
 
     /// <summary>
     /// </summary>
-    public bool _Setup_On_Awake;
+    [SerializeField] bool _Setup_On_Awake;
 
     Vector3 _top_back_left;
     Vector3 _top_back_right;
@@ -191,8 +191,10 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
       this._last_rotation = this.transform.rotation;
       this._last_scale = this.transform.localScale;
 
-      this._children_meshes = this.GetComponentsInChildren<MeshFilter>();
-      this._children_colliders = this.GetComponentsInChildren<Collider>();
+      if (_Include_Children){
+        this._children_meshes = this.GetComponentsInChildren<MeshFilter>();
+        this._children_colliders = this.GetComponentsInChildren<Collider>();
+      }
 
       this.CalculateBounds();
       this.Initialise();
@@ -212,12 +214,14 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
         return;
       }
 
-      if (this._children_meshes != this.GetComponentsInChildren<MeshFilter>()) {
-        this.Reset();
-      }
+      if (_Include_Children){
+        if (this._children_meshes != this.GetComponentsInChildren<MeshFilter>()){
+          this.Reset();
+        }
 
-      if (this._children_colliders != this.GetComponentsInChildren<Collider>()) {
-        this.Reset();
+        if (this._children_colliders != this.GetComponentsInChildren<Collider>()){
+          this.Reset();
+        }
       }
 
       if (this.transform.localScale != this._last_scale) {

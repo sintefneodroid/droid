@@ -93,7 +93,7 @@ namespace Neodroid.Runtime.Utilities.ScriptableObjects {
     /// </summary>
     [SerializeField]
     [SearchableEnum]
-    SimulationType _simulation_type = SimulationType.Frame_dependent_;
+    SimulationType _simulation_type = SimulationType.Independent_;
 
     /// <summary>
     /// </summary>

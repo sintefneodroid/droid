@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using Neodroid.Runtime.Utilities.Misc.SearchableEnum;
-using UnityEditor.UI;
 using UnityEngine;
 
 namespace Neodroid.Runtime.Utilities.ScriptableObjects {
@@ -28,8 +28,11 @@ namespace Neodroid.Runtime.Utilities.ScriptableObjects {
   */
       var copy = this._Motions;
       for (var i = 0; i < copy.Length; i++) {
-        copy[i]._Actor = copy[i]._Actor.Trim(' ');
-        copy[i]._Motor = copy[i]._Motor.Trim(' ');
+        var actor = copy[i]._Actor;
+        copy[i]._Actor = Regex.Replace(actor, "[^\\w\\._]", "");
+
+        var motor= copy[i]._Motor;
+        copy[i]._Motor = Regex.Replace(motor, "[^\\w\\._]", "");
       }
       this._Motions = copy;
     }
