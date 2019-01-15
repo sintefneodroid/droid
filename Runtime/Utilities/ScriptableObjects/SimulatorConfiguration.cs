@@ -30,6 +30,28 @@ namespace Neodroid.Runtime.Utilities.ScriptableObjects {
     [SerializeField]
     bool _apply_resolution_settings;
 
+    [SerializeField] bool _apply_quality_settings;
+
+    /// <summary>
+    /// </summary>
+    [SerializeField]
+    [Range(0, 9999)]
+    int _height = 500;
+
+    /// <summary>
+    /// </summary>
+    [SerializeField]
+    [Range(0, 9999)]
+    int _width = 500;
+
+    /// <summary>
+    /// </summary>
+    [SerializeField]
+    [Range(1, 4)]
+    int _quality_level = 1;
+
+    //TODO: VSYNC option
+
     /// <summary>
     /// </summary>
     [Header("Simulation")]
@@ -45,11 +67,7 @@ namespace Neodroid.Runtime.Utilities.ScriptableObjects {
 
     [SerializeField] bool _full_screen;
 
-    /// <summary>
-    /// </summary>
-    [SerializeField]
-    [Range(0, 9999)]
-    int _height = 500;
+
 
     /// <summary>
     /// </summary>
@@ -74,11 +92,7 @@ namespace Neodroid.Runtime.Utilities.ScriptableObjects {
     [SerializeField]
     int _port = 6969;
 
-    /// <summary>
-    /// </summary>
-    [SerializeField]
-    [Range(1, 4)]
-    int _quality_level = 1;
+
 
     [SerializeField] bool _replay_reaction_in_skips;
 
@@ -124,11 +138,7 @@ namespace Neodroid.Runtime.Utilities.ScriptableObjects {
     [SerializeField]
     bool _update_fixed_time_scale;
 
-    /// <summary>
-    /// </summary>
-    [SerializeField]
-    [Range(0, 9999)]
-    int _width = 500;
+
 
     /// <summary>
     /// </summary>
@@ -182,6 +192,11 @@ namespace Neodroid.Runtime.Utilities.ScriptableObjects {
     public bool ApplyResolutionSettings {
       get { return this._apply_resolution_settings; }
       set { this._apply_resolution_settings = value; }
+    }
+
+    public bool ApplyQualitySettings{
+      get { return this._apply_quality_settings; }
+      set { this._apply_quality_settings = value; }
     }
 
     /// <summary>

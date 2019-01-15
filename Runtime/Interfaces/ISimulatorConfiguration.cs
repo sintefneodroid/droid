@@ -23,5 +23,6 @@ namespace Neodroid.Runtime.Interfaces {
     int Port { get; set; }
     bool ReplayReactionInSkips { get; set; }
     bool ApplyResolutionSettings { get; set; }
+    bool ApplyQualitySettings { get; set; }
   }
 }
