@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Common.Editors {
+namespace Neodroid.Editor.Utilities {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

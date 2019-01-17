@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 1aa96101fe55749209a8963174b3defa, type: 3}
+  m_Name: DefaultActorMotions
+  m_EditorClassIdentifier: 
+  _Motions:
+  - _Key: 119
+    _Actor: ActorActor
+    _Motor: ActorRigidbodyZ_
+    _Strength: 10
+  - _Key: 115
+    _Actor: ActorActor
+    _Motor: ActorRigidbodyZ_
+    _Strength: -10
+  - _Key: 97
+    _Actor: ActorActor
+    _Motor: ActorRigidbodyX_
+    _Strength: 10
+  - _Key: 100
+    _Actor: ActorActor
+    _Motor: ActorRigidbodyX_
+    _Strength: -10
+  - _Key: 113
+    _Actor: ActorActor
+    _Motor: ActorRigidbodyY_
+    _Strength: 10
+  - _Key: 101
+    _Actor: ActorActor
+    _Motor: ActorRigidbodyY_
+    _Strength: -10
+  - _Key: 8
+    _Actor: Environment
+    _Motor: Reset
+    _Strength: 1
+  - _Key: 32
+    _Actor: Environment
+    _Motor: Step
+    _Strength: 1
+  - _Key: 100
+    _Actor: ActorActor
+    _Motor: ActorTransformX_
+    _Strength: -1
+  - _Key: 97
+    _Actor: ActorActor
+    _Motor: ActorTransformX_
+    _Strength: 1
+  - _Key: 101
+    _Actor: ActorActor
+    _Motor: ActorTransformY_
+    _Strength: 1
+  - _Key: 113
+    _Actor: ActorActor
+    _Motor: ActorTransformY_
+    _Strength: -1
+  - _Key: 119
+    _Actor: ActorActor
+    _Motor: ActorTransformZ_
+    _Strength: -1
+  - _Key: 115
+    _Actor: ActorActor
+    _Motor: ActorTransformZ_
+    _Strength: 1

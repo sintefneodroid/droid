@@ -80,7 +80,7 @@ environments and ease of integration with existing projects)
 ## Usage
 
 - Edit your Unity projects "Packages/manifest.json" to include the string 
-  `"net.cnheider.neodroid": "https://github.com/sintefneodroid/droid.git"}`.
+  `"com.neodroid.droid": "https://github.com/sintefneodroid/droid.git"}`.
   
   Example `manifest.json`
   ````
@@ -88,11 +88,11 @@ environments and ease of integration with existing projects)
     "dependencies": {
       "com.unity.package-manager-ui": "0.0.0-builtin",
       ...
-      "net.cnheider.neodroid": "https://github.com/sintefneodroid/droid.git"
+      "com.neodroid.droid": "https://github.com/sintefneodroid/droid.git",
     }
   }
   ````
-  You can use `"net.cnheider.neodroid": "https://github.com/sintefneodroid/droid.git#branch"` for a specific branch.
+  You can use `"com.neodroid.droid": "https://github.com/sintefneodroid/droid.git#branch"` for a specific branch.
 
 ***Or***
 
@@ -111,26 +111,20 @@ environments and ease of integration with existing projects)
 ## Repository Structure
 ---
 <!--        ├  └  ─  │        -->
-    sintefneodroid/droid      # This repository
+    sintefneodroid/droid         # This repository
     │
-    ├── docs
-    │   ├── source            # Documentation files
-    │   │
-    │   ├── make.bat          # Compile docs
-    │   └── Makefile          # ^
+    ├── Samples                  # Prebuilt Neodroid environments
+    │   └── MultiArmedBandit     # Sample Project
     │
-    ├── Examples              # Prebuilt Neodroid environments
-    │   ├── Assets            # Model checkpoints
-    │   │   ├── Neodroid      # Symlinked folder to top-level Neodroid folder
-    │   │   ├── SceneAssets   # All scene-specific assets for the prebuilt environments
-    │   │   └── Scenes        # All prebuilt environment scenes
-    │   │
-    │   └── Examples.sln      # C# project file
+    ├── Editor                   # Editor Implementation
+    │   ├── GameObjects
+    │   ├── ScriptableObjects
+    │   ├── Windows
+    │   ├── Resources
+    │   └── Utilies
     │
-    ├── .github            # Images and such for this README
-    │
-    ├── Neodroid              # The Neodroid unity package
-    │   ├── Prototyping       # All classes for quick prototyping of observations and actions
+    ├── Runtime                 # Runtime Implementation
+    │   ├── Prototyping         # All classes for quick prototyping of observations and actions
     │   │   ├── Actors
     │   │   ├── Evaluation
     │   │   ├── Observers
@@ -138,12 +132,21 @@ environments and ease of integration with existing projects)
     │   │   ├── Configurables
     │   │   └── Motors
     │   │
-    │   ├── Environments      # Classes for encapsulating all Neodroid environments
-    │   ├── Managers          # Classes for managing the simulation of Neodroid environments
-    │   └── Utilities         # Lots of helper functionalities
+    │   ├── Environments        # Classes for encapsulating all Neodroid environments
+    │   ├── Managers            # Classes for managing the simulation of Neodroid environments
+    │   └── Utilities           # Lots of helper functionalities
     │
-    ├── LICENSE               # License file (Important but boring)
-    └── README.md             # The top-level README
+    ├── Documentation           # Unity Package Documentation
+    │
+    ├── Gizmos                  # Icons
+    │
+    ├── Tests                   # Tests
+    │
+    ├── .github                 # Images and such for this README
+    │
+    ├── LICENSE.md              # License file (Important but boring)
+    ├── README.md               # The top-level README
+    └── TUTORIAL.md             # Very quick tutorial to get started
 ---
 
 # Citation
