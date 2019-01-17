@@ -6,8 +6,6 @@ using UnityEngine;
 
 namespace Neodroid.Editor.Windows {
 
-
-
   /// <inheritdoc />
   /// <summary>
   /// </summary>
@@ -30,8 +28,8 @@ namespace Neodroid.Editor.Windows {
         _EnableNeodroidDebug = EditorPrefs.GetBool(NeodroidInfo._debug_pref_key, false);
         _UseGithubExtension = EditorPrefs.GetBool(NeodroidInfo._debug_pref_key, false);
 
-        #if !NEODROID_PACKAGE
-          NeodroidInfo._ImportLocation = EditorPrefs.GetString(NeodroidInfo._import_location_pref_key, "Assets/Neodroid/");
+        #if NEODROID_ASSET_IMPORT
+          NeodroidInfo._ImportLocation = EditorPrefs.GetString(NeodroidInfo._import_location_pref_key, "droid");
         #endif
 
         _preferences_loaded = true;
@@ -40,9 +38,10 @@ namespace Neodroid.Editor.Windows {
       _EnableNeodroidDebug = EditorGUILayout.Toggle(NeodroidInfo._debug_pref_key, _EnableNeodroidDebug);
       _UseGithubExtension = EditorGUILayout.Toggle(NeodroidInfo._github_extension_pref_key, _UseGithubExtension);
 
-      EditorGUILayout.HelpBox("Enter import path of Neodroid!", MessageType.Info);
 
-      #if !NEODROID_PACKAGE
+
+      #if NEODROID_ASSET_IMPORT
+        EditorGUILayout.HelpBox("Enter import path of Neodroid!", MessageType.Info);
         NeodroidInfo._ImportLocation = EditorGUILayout.TextField(NeodroidInfo._ImportLocation);
       #endif
 
