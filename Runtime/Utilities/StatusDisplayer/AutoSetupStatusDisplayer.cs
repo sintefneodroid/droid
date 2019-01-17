@@ -97,9 +97,11 @@ namespace Neodroid.Runtime.Utilities.StatusDisplayer {
         UnityEventTools.AddPersistentListener(poller, f);
         poller.SetPersistentListenerState(0, this._unity_event_call_state);
       } else if (count > 0) {
+        #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log($"PollEvent on {poller} already has a listeners");
         }
+        #endif
       }
     }
 

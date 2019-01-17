@@ -12,6 +12,11 @@
 JetBrains/
 
 *[Ee]xcluded.*
+*[Ee]xclude.*
+*[Ee]xcluded*
+*[Ee]xclude*
+*.orig
+*.meta~*
 
 sysinfo.txt
 

@@ -1,6 +1,7 @@
-﻿#if UNITY_2019_1_OR_NEWER
+﻿#if UNITY_2019_1_OR_NEWER && USE_GITHUB_EXTENSION
 using System.Collections.Generic;
 using System.Linq;
+using Neodroid.Runtime;
 using UnityEditor;
 using UnityEditor.PackageManager;
 using UnityEditor.PackageManager.UI;
@@ -19,13 +20,10 @@ namespace Neodroid.Editor.Utilities.Git {
     //################################
     // Constant or Static Members.
     //################################
-    #if GH_IN_PROJECT
-      const string _resources_path = "Assets/Neodroid/Editor/Resources/";
-    #else
-      const string _resources_path = "Packages/com.neodroid.droid/Editor/Resources/";
-    #endif
-    const string _template_path = _resources_path + "GithubExtension.uxml";
-    const string _style_path = _resources_path + "GithubExtension.uss";
+
+    static readonly string _resources_path = NeodroidInfo._ImportLocation + "Editor/Resources/";
+    static readonly string _template_path = _resources_path + "GithubExtension.uxml";
+    static readonly string _style_path = _resources_path + "GithubExtension.uss";
 
     static GithubExtensionUserInterface() {
       PackageManagerExtensions.RegisterExtension(new GithubExtensionUserInterface());

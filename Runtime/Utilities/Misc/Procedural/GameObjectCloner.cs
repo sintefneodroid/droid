@@ -11,9 +11,9 @@ namespace Neodroid.Runtime.Utilities.Misc.Procedural {
     [SerializeField] Vector3 _offset = new Vector3(20, 0, 20);
     [SerializeField] GameObject _prefab;
 
-    void Start() { this.InstanciateClones(); }
+    void Start() { this.InstantiateClones(); }
 
-    void InstanciateClones() {
+    void InstantiateClones() {
       if (this._clones.Length > 0) {
         this.ClearClones();
       }
@@ -43,7 +43,7 @@ namespace Neodroid.Runtime.Utilities.Misc.Procedural {
 
     void Update() {
       if (this._num_clones != this._clones.Length) {
-        this.InstanciateClones();
+        this.InstantiateClones();
       }
     }
   }

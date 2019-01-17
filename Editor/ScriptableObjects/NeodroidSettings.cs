@@ -12,10 +12,13 @@ namespace Neodroid.Editor.ScriptableObjects {
   public class NeodroidSettings : ScriptableObject {
     static NeodroidSettings _instance;
 
+    static string _setting_file_name="neodroid_settings";
+    static string _version ="1.3.0";
+
     /// <summary>
     ///   Returns the release version of the product.
     /// </summary>
-    public static string Version { get { return "1.3.0"; } }
+    public static string Version { get { return _version; } }
 
     /// <summary>
     ///   Get a singleton instance of the settings class.
@@ -23,7 +26,7 @@ namespace Neodroid.Editor.ScriptableObjects {
     public static NeodroidSettings Instance {
       get {
         if (_instance == null) {
-          _instance = Resources.Load<NeodroidSettings>("TMP Settings");
+          _instance = Resources.Load<NeodroidSettings>(_setting_file_name);
 
           #if UNITY_EDITOR
           // Make sure UPM(Unity Package Manager) packages resources have been added to the user project
@@ -45,7 +48,7 @@ namespace Neodroid.Editor.ScriptableObjects {
     public static NeodroidSettings LoadDefaultSettings() {
       if (_instance == null) {
         // Load settings from Settings file
-        var settings = Resources.Load<NeodroidSettings>("Neodroid Settings");
+        var settings = Resources.Load<NeodroidSettings>(_setting_file_name);
         if (settings != null) {
           _instance = settings;
         }

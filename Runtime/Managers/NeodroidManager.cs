@@ -389,13 +389,17 @@ namespace Neodroid.Runtime.Managers {
     /// <summary>
     /// </summary>
     public void ApplyConfigurationToUnity(ISimulatorConfiguration configuration) {
-      QualitySettings.SetQualityLevel(configuration.QualityLevel, true);
+      if (configuration.ApplyQualitySettings){
+        QualitySettings.SetQualityLevel(configuration.QualityLevel, true);
+        QualitySettings.vSyncCount = 0;
+      }
+
       this.SimulationTimeScale = configuration.TimeScale;
       Application.targetFrameRate = configuration.TargetFrameRate;
-      QualitySettings.vSyncCount = 0;
+
 
       #if !UNITY_EDITOR
-      if(      configuration.ApplyResolutionSettings){
+      if( configuration.ApplyResolutionSettings){
       Screen.SetResolution(
           width : configuration.Width,
           height : configuration.Height,

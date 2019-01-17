@@ -53,7 +53,7 @@ namespace Neodroid.Runtime.Prototyping.Motors {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentActor = NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Motor)this);
+      //this.ParentActor = NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Motor)this);
 
       this.ParentActor = NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Motor)this, this._x);
       this.ParentActor = NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Motor)this, this._y);

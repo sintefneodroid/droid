@@ -55,13 +55,13 @@ namespace Neodroid.Runtime.Utilities.NeodroidCamera {
     /// <summary>
     /// </summary>
     void OnDestroy() {
-      if (this._material != null) {
-        if (Application.isPlaying) {
-          Destroy(this._material);
-        } else {
-          DestroyImmediate(this._material);
-        }
-      }
+      /*if (this._material != null) {
+          if (Application.isPlaying) {
+            Destroy(this._material);
+          } else {
+            DestroyImmediate(this._material);
+          }
+      }*/
     }
   }
 }

@@ -5,16 +5,18 @@ using UnityEditor;
 using UnityEngine;
 
 namespace Neodroid.Editor.Windows {
+
   /// <inheritdoc />
   /// <summary>
   /// </summary>
   public class PreferenceWindow : MonoBehaviour {
-    const string _debug_pref_key = "EnableNeodroidDebug";
+
     static bool _preferences_loaded;
 
     /// <summary>
     /// </summary>
-    public static bool _EnableNeodroidDebug;
+    static bool _EnableNeodroidDebug;
+    static bool _UseGithubExtension;
 
     /// <summary>
     /// </summary>
@@ -23,24 +25,46 @@ namespace Neodroid.Editor.Windows {
       EditorGUILayout.HelpBox($"Version {NeodroidInfo._Version}", MessageType.Info);
 
       if (!_preferences_loaded) {
-        _EnableNeodroidDebug = EditorPrefs.GetBool(_debug_pref_key, false);
+        _EnableNeodroidDebug = EditorPrefs.GetBool(NeodroidInfo._debug_pref_key, false);
+        _UseGithubExtension = EditorPrefs.GetBool(NeodroidInfo._debug_pref_key, false);
+
+        #if NEODROID_ASSET_IMPORT
+          NeodroidInfo._ImportLocation = EditorPrefs.GetString(NeodroidInfo._import_location_pref_key, "droid");
+        #endif
+
         _preferences_loaded = true;
       }
 
-      _EnableNeodroidDebug = EditorGUILayout.Toggle(_debug_pref_key, _EnableNeodroidDebug);
+      _EnableNeodroidDebug = EditorGUILayout.Toggle(NeodroidInfo._debug_pref_key, _EnableNeodroidDebug);
+      _UseGithubExtension = EditorGUILayout.Toggle(NeodroidInfo._github_extension_pref_key, _UseGithubExtension);
 
-      EditorGUILayout.HelpBox("Enter import path of Neodroid!", MessageType.Info);
 
-      NeodroidInfo._ImportLocation = EditorGUILayout.TextField(NeodroidInfo._ImportLocation);
+
+      #if NEODROID_ASSET_IMPORT
+        EditorGUILayout.HelpBox("Enter import path of Neodroid!", MessageType.Info);
+        NeodroidInfo._ImportLocation = EditorGUILayout.TextField(NeodroidInfo._ImportLocation);
+      #endif
 
       if (GUI.changed) {
         if (_EnableNeodroidDebug) {
           DefineSymbolsFunctionality.AddDebugDefineSymbol();
         } else {
-          DefineSymbolsFunctionality.RemoveDebugDefineSymbol();
+          DefineSymbolsFunctionality.RemoveDebugDefineSymbols();
         }
 
-        EditorPrefs.SetBool(_debug_pref_key, _EnableNeodroidDebug);
+        if (_UseGithubExtension){
+          DefineSymbolsFunctionality.AddGithubDefineSymbol();
+        } else {
+          DefineSymbolsFunctionality.RemoveGithubDefineSymbol();
+        }
+
+        #if !NEODROID_PACKAGE
+          EditorPrefs.SetString(NeodroidInfo._import_location_pref_key, NeodroidInfo._ImportLocation);
+          Debug.Log($"Set Neodroid import location to: {NeodroidInfo._ImportLocation}");
+        #endif
+
+        EditorPrefs.SetBool(NeodroidInfo._debug_pref_key, _EnableNeodroidDebug);
+        EditorPrefs.SetBool(NeodroidInfo._github_extension_pref_key, _UseGithubExtension);
       }
     }
 
@@ -64,7 +88,7 @@ namespace Neodroid.Editor.Windows {
       return provider;
     }
     #endif
-    
+
     */
   }
 
@@ -78,7 +102,9 @@ namespace Neodroid.Editor.Windows {
     /// <summary>
     ///   Add define symbols as soon as Unity gets done compiling.
     /// </summary>
-    static DefineSymbolsController() { DefineSymbolsFunctionality.AddDefineSymbols(); }
+    static DefineSymbolsController(){
+      DefineSymbolsFunctionality.AddDefineSymbols();
+    }
   }
 
   public static class DefineSymbolsFunctionality {
@@ -91,6 +117,8 @@ namespace Neodroid.Editor.Windows {
     ///   Debug symbols that will be added to the editor
     /// </summary>
     public static readonly string[] _Debug_Symbols = {"NEODROID_DEBUG"};
+
+    public static readonly string[] _Github_Symbols = {"USE_GITHUB_EXTENSION"};
 
     /// <summary>
     /// </summary>
@@ -107,27 +135,49 @@ namespace Neodroid.Editor.Windows {
     /// <summary>
     /// </summary>
     public static void AddDebugDefineSymbol() {
-      var defines_string =
-          PlayerSettings.GetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup);
-      var all_defines = defines_string.Split(';').ToList();
-      all_defines.AddRange(_Debug_Symbols.Except(all_defines));
+      AddDefineSymbols(_Debug_Symbols);
 
-      Debug.LogWarning($"Debug enabled: {true}");
+      Debug.LogWarning($"Neodroid Debugging enabled");
+    }
+
+    public static void RemoveDebugDefineSymbols(){
+      RemoveDefineSymbols(_Debug_Symbols);
+
+      Debug.LogWarning($"Neodroid Debugging disabled");
+    }
+
+    public static void AddGithubDefineSymbol() {
+      AddDefineSymbols(_Github_Symbols);
+
+      Debug.LogWarning($"Github Extension enabled");
+    }
+
+    public static void RemoveGithubDefineSymbol(){
+      RemoveDefineSymbols(_Github_Symbols);
+
+      Debug.LogWarning($"Github Extension disabled");
+    }
+
+    public static void AddDefineSymbols(string[] symbols){
+      var defines_string =
+        PlayerSettings.GetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup);
+      var all_defines = defines_string.Split(';').ToList();
+      all_defines.AddRange(symbols.Except(all_defines));
 
       PlayerSettings.SetScriptingDefineSymbolsForGroup(
-          EditorUserBuildSettings.selectedBuildTargetGroup,
-          string.Join(";", all_defines.ToArray()));
+        EditorUserBuildSettings.selectedBuildTargetGroup,
+        string.Join(";", all_defines.ToArray()));
     }
 
     /// <summary>
     /// </summary>
-    public static void RemoveDebugDefineSymbol() {
+    public static void RemoveDefineSymbols(string[] symbols) {
       var defines_string =
           PlayerSettings.GetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup);
       var all_defines = defines_string.Split(';').ToList();
-      foreach (var b in _Debug_Symbols) {
+      foreach (var b in symbols) {
         var res = all_defines.RemoveAll(c => c == b);
-        Debug.LogWarning($"Debug disabled: {res}");
+        Debug.LogWarning($"Removed define symbols {symbols.Aggregate((aa,bb)=>aa+","+bb)} : number of entries removed {res}");
       }
 
       PlayerSettings.SetScriptingDefineSymbolsForGroup(

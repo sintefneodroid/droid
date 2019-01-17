@@ -49,9 +49,11 @@ namespace Neodroid.Runtime.InternalReactions {
           if (this._player_motions._Motions != null) {
             foreach (var player_motion in this._player_motions._Motions) {
               if (Input.GetKey(player_motion._Key)) {
+                #if NEODROID_DEBUG
                 if (this.Debugging) {
                   Debug.Log($"{player_motion._Actor} {player_motion._Motor} {player_motion._Strength}");
                 }
+                #endif
 
                 if (player_motion._Motor == "Reset") {
                   reset = true;
@@ -87,9 +89,11 @@ namespace Neodroid.Runtime.InternalReactions {
             }
           }
         } else {
+          #if NEODROID_DEBUG
           if (this.Debugging) {
             Debug.Log("No PlayerMotions ScriptableObject assigned");
           }
+          #endif
         }
       }
     }
