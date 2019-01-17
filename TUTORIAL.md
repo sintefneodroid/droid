@@ -17,7 +17,7 @@ In this very simple tutorial you create a Neodroid environment from a new scene,
     - 1.2 Select Neodroid/Prebuilt/SimpleEnvironment
    
 2. Using the Player Reaction component to respond to keyboard input
-    - 2.1 Select the "SimpleEnvironment" GameObject in the Scene Hierachy
+    - 2.1 Select the "SimpleEnvironment" GameObject in the Scene Hierarchy 
     - 2.2 [Left click] the "Add Component" button
     - 2.3 Search for "player"
     - 2.4 Select the "Player Reaction" component
@@ -31,7 +31,7 @@ In this very simple tutorial you create a Neodroid environment from a new scene,
 4. Replace the existing TransformMotor component with a RigidbodyMotor component
     - 4.1 Ensure Scene is not playing
     - 4.2 Try opening the accompanying Neodroid:Environment window, by navigating to 
-  Window/Neodroid/EnviromentsWindow in the top menu bar
+  Window/Neodroid/EnvironmentsWindow in the top menu bar
     - 4.3 A window will appear, inside a scrollable view in the bottom part you will be able to inspect a the 
   Neodroid relevant information the currently open scene
     - 4.4 Expand the "SimpleEnvironmentPrototypingEnvironment"
@@ -55,7 +55,7 @@ In this very simple tutorial you create a Neodroid environment from a new scene,
 
 7. Testing the scene again
     - 7.1 Play scene and try moving the actor object about using the [W,A,S,D,Q,E] keys on your keyboard.
-    - 7.2 Now we are affecting the rigidbody of the GameObject throught the physics engine instead of the 
+    - 7.2 Now we are affecting the rigidbody of the GameObject through the physics engine instead of the 
   transform directly.
 
 8. ( Assuming you have installed 'neo' Python package )
@@ -75,5 +75,3 @@ In this very simple tutorial you create a Neodroid environment from a new scene,
 10. Lastly feel free to report any issues at https://github.com/sintefneodroid/droid/issues.
 
 Have a great day!
-                   
-                     
