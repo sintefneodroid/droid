@@ -60,7 +60,7 @@ namespace Neodroid.Runtime.Prototyping.Actors {
     public virtual void ApplyMotion(IMotorMotion motion) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log("Applying " + motion + " To " + this.name + "'s motors");
+        Debug.Log($"Applying {motion} To {this.name}'s motors");
       }
       #endif
 
@@ -70,7 +70,7 @@ namespace Neodroid.Runtime.Prototyping.Actors {
       } else {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log("Could find not motor with the specified name: " + motion_motor_name);
+          Debug.Log($"Could find not motor with the specified name: {motion_motor_name} on actor {this.name}");
         }
         #endif
       }

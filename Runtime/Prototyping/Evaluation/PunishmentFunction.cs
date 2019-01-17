@@ -40,9 +40,11 @@ namespace Neodroid.Runtime.Prototyping.Evaluation {
         this._hits += 1;
       }
 
-      if (true) {
+      #if NEODROID_DEBUG
+      if (this.Debugging) {
         Debug.Log(this._hits);
       }
+      #endif
     }
 
     void ResetHits() { this._hits = 0; }

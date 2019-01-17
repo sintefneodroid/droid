@@ -177,7 +177,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -493.50363, y: 50}
+  m_AnchoredPosition: {x: -460.49997, y: 50}
   m_SizeDelta: {x: 2400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1066881072510320
@@ -563,7 +563,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 114988635351345222}
           m_ObjectArgumentAssemblyTypeName: Neodroid.Runtime.Utilities.EventRecipients.TextUpdater,
-            Assembly-CSharp
+            Neodroid.Runtime
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -571,6 +571,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  _invoke_on_validate: 0
   _text: {fileID: 114369306892687116}
 --- !u!1 &1106671700701944
 GameObject:
@@ -751,7 +752,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 114501781773825270}
           m_ObjectArgumentAssemblyTypeName: Neodroid.Runtime.Utilities.EventRecipients.TextUpdater,
-            Assembly-CSharp
+            Neodroid.Runtime
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -759,6 +760,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  _invoke_on_validate: 0
   _text: {fileID: 114181271829786234}
 --- !u!1 &1148135381051552
 GameObject:
@@ -805,6 +807,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224293318527779910}
+  - component: {fileID: 8078701835271472203}
   - component: {fileID: 114209461203926368}
   - component: {fileID: 223697436474172148}
   - component: {fileID: 114606204937279818}
@@ -837,6 +840,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &8078701835271472203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190758182245004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: e9784003a2f9244879cd7681d6406803, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Text: 
 --- !u!114 &114209461203926368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1626,6 +1643,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  _invoke_on_validate: 0
   _text: {fileID: 114702938980033506}
 --- !u!1 &1401723155215048
 GameObject:
@@ -2421,7 +2439,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 114221796099513398}
           m_ObjectArgumentAssemblyTypeName: Neodroid.Runtime.Utilities.EventRecipients.ToggleUpdater,
-            Assembly-CSharp
+            Neodroid.Runtime
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2429,6 +2447,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  _invoke_on_validate: 0
   _toggle: {fileID: 114559782006378406}
 --- !u!1 &1505478141713430
 GameObject:
@@ -2649,8 +2668,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114942717479311642}
   m_HandleRect: {fileID: 224110368661715722}
   m_Direction: 0
-  m_Value: 1.0000037
-  m_Size: 0.5887405
+  m_Value: 1
+  m_Size: 0.61605436
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2760,7 +2779,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 114790955924512488}
           m_ObjectArgumentAssemblyTypeName: Neodroid.Runtime.Utilities.EventRecipients.TextUpdater,
-            Assembly-CSharp
+            Neodroid.Runtime
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2768,6 +2787,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  _invoke_on_validate: 0
   _text: {fileID: 114992145804104380}
 --- !u!1 &1563356267366460
 GameObject:
@@ -3623,7 +3643,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 114002950248132940}
           m_ObjectArgumentAssemblyTypeName: Neodroid.Runtime.Utilities.EventRecipients.TextUpdater,
-            Assembly-CSharp
+            Neodroid.Runtime
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3631,6 +3651,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  _invoke_on_validate: 0
   _text: {fileID: 114926636315371600}
 --- !u!114 &114991657407947670
 MonoBehaviour:
