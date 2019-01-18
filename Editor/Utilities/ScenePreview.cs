@@ -15,7 +15,6 @@ namespace Neodroid.Editor.Utilities {
   [CustomEditor(typeof(SceneAsset))]
   [CanEditMultipleObjects]
   public class ScenePreview : UnityEditor.Editor {
-    string _preview_folders = NeodroidInfo.ScenePreviewsLocation;
     const float _editor_margin = 50;
     const float _preview_margin = 5;
 
@@ -69,7 +68,7 @@ namespace Neodroid.Editor.Utilities {
     }
 
     string GetPreviewPath(string scene_name) {
-      return $"{Application.dataPath}/{_preview_folders}{scene_name}.png";
+      return $"{Application.dataPath}/{NeodroidInfo.ScenePreviewsLocation}{scene_name}.png";
     }
 
     /// <summary>
