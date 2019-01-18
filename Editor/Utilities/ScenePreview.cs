@@ -23,25 +23,30 @@ namespace Neodroid.Editor.Utilities {
     /// </summary>
     [RuntimeInitializeOnLoadMethod]
     public void CaptureScreenShot() {
-      var preview_path = GetPreviewPath(SceneManager.GetActiveScene().name);
-      //Debug.LogFormat("Saving scene preview at {0}", preview_path);
-      ScreenCapture.CaptureScreenshot(preview_path);
+      if (NeodroidInfo.GenerateScenePreviews){
+        var preview_path = GetPreviewPath(SceneManager.GetActiveScene().name);
+        //Debug.LogFormat("Saving scene preview at {0}", preview_path);
+        ScreenCapture.CaptureScreenshot(preview_path);
+      }
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override void OnInspectorGUI() {
-      //AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
-      var scene_names = this.targets.Select(t => ((SceneAsset)t).name).OrderBy(n => n).ToArray();
+    public override void OnInspectorGUI()
+    {
+      if (NeodroidInfo.GenerateScenePreviews){
+        //AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
+        var scene_names = this.targets.Select(t => ((SceneAsset) t).name).OrderBy(n => n).ToArray();
 
-      var previews_count = scene_names.Length;
-      var preview_width = Screen.width;
-      var preview_height = (Screen.height - _editor_margin * 2 - _preview_margin * previews_count)
-                           / previews_count;
+        var previews_count = scene_names.Length;
+        var preview_width = Screen.width;
+        var preview_height = (Screen.height - _editor_margin * 2 - _preview_margin * previews_count)
+                             / previews_count;
 
-      for (var i = 0; i < scene_names.Length; i++) {
-        DrawPreview(i, scene_names[i], preview_width, preview_height);
+        for (var i = 0; i < scene_names.Length; i++){
+          DrawPreview(i, scene_names[i], preview_width, preview_height);
+        }
       }
     }
 

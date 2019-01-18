@@ -22,6 +22,8 @@ namespace Neodroid.Runtime
             set { _ImportLocation = value.TrimEnd('/') + "/"; }
         }
 
+        public static bool GenerateScenePreviews => EditorPrefs.GetBool(_generate_previews_pref_key, false);
+
         static string _ScenePreviewsLocation = EditorPrefs.GetString(_generate_previews_loc_pref_key, "ScenePreviews");
 
         public static string ScenePreviewsLocation{
