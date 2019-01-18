@@ -23,7 +23,7 @@ namespace Neodroid.Runtime {
       public const string _import_location_pref_key = "NeodroidImportLocation";
       static string _ImportLocation = EditorPrefs.GetString(_import_location_pref_key, "Assets/droid");
 #else
-      static string _ImportLocation = "Packages/com.neodroid.droid";
+      static string _ImportLocation = "Packages/com.neodroid.droid/";
     #endif
   }
 }
