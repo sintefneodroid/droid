@@ -57,7 +57,7 @@ namespace Neodroid.Editor.Utilities {
 
       if (preview == null) {
         EditorGUILayout.HelpBox(
-            $"There is no image preview for scene {scene_name} at {preview_path}. Please play the scene on editor and image preview will be captured automatically or create the missing path: {_preview_folders}.",
+            $"There is no image preview for scene {scene_name} at {preview_path}. Please play the scene on editor and image preview will be captured automatically or create the missing path: {NeodroidInfo.ScenePreviewsLocation}.",
             MessageType.Info);
       } else {
         GUI.DrawTexture(
