@@ -19,7 +19,7 @@ namespace Neodroid.Editor.Windows.UnityDebug {
 
     void OnEnable() {
       this._icon = (Texture2D)AssetDatabase.LoadAssetAtPath(
-          NeodroidInfo._ImportLocation + "Gizmos/Icons/information.png",
+          NeodroidInfo.ImportLocation + "Gizmos/Icons/information.png",
           typeof(Texture2D));
       this.titleContent = new GUIContent("Unity:Debug", this._icon, "Window for debugging Unity");
     }

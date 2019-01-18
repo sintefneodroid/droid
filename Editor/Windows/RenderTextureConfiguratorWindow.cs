@@ -26,7 +26,7 @@ namespace Neodroid.Editor.Windows {
 
     void OnEnable() {
       this._icon = (Texture2D)AssetDatabase.LoadAssetAtPath(
-          NeodroidInfo._ImportLocation + "Gizmos/Icons/images.png",
+          NeodroidInfo.ImportLocation + "Gizmos/Icons/images.png",
           typeof(Texture2D));
       this.titleContent = new GUIContent("Neo:Tex", this._icon, "Window for RenderTexture configuration");
     }

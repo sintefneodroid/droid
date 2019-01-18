@@ -19,32 +19,41 @@ namespace Neodroid.Editor.Windows {
     /// </summary>
     static bool _EnableNeodroidDebug;
     static bool _UseGithubExtension;
+    static bool _ImportedAsset;
+    static string _ImportLocation;
 
     /// <summary>
     /// </summary>
     [PreferenceItem("Neodroid")]
     public static void PreferencesGui() {
-      EditorGUILayout.HelpBox($"Version {NeodroidInfo._Version}", MessageType.Info);
+
 
       if (!_preferences_loaded) {
         _EnableNeodroidDebug = EditorPrefs.GetBool(NeodroidInfo._debug_pref_key, false);
-        _UseGithubExtension = EditorPrefs.GetBool(NeodroidInfo._debug_pref_key, false);
+        _UseGithubExtension = EditorPrefs.GetBool(NeodroidInfo._github_extension_pref_key, false);
+        _ImportedAsset = EditorPrefs.GetBool(NeodroidInfo._imported_asset_pref_key, false);
 
-        #if !NEODROID_PACKAGE
-          NeodroidInfo._ImportLocation = EditorPrefs.GetString(NeodroidInfo._import_location_pref_key, "Assets/Neodroid/");
+        #if NEODROID_IMPORTED_ASSET
+          _ImportLocation = EditorPrefs.GetString(NeodroidInfo._import_location_pref_key, NeodroidInfo.ImportLocation);
         #endif
 
         _preferences_loaded = true;
       }
+      
+      EditorGUILayout.HelpBox($"Version {NeodroidInfo._Version}", MessageType.Info);
+      
+      _ImportedAsset = EditorGUILayout.Toggle(NeodroidInfo._imported_asset_pref_key, _ImportedAsset);
+      
+      #if NEODROID_IMPORTED_ASSET
+        EditorGUILayout.HelpBox("Enter import path of Neodroid!", MessageType.Info);
+        _ImportLocation = EditorGUILayout.TextField(_ImportLocation);
+      #endif
+             
+      EditorGUILayout.HelpBox("Functionality", MessageType.Info);
 
       _EnableNeodroidDebug = EditorGUILayout.Toggle(NeodroidInfo._debug_pref_key, _EnableNeodroidDebug);
       _UseGithubExtension = EditorGUILayout.Toggle(NeodroidInfo._github_extension_pref_key, _UseGithubExtension);
 
-      EditorGUILayout.HelpBox("Enter import path of Neodroid!", MessageType.Info);
-
-      #if !NEODROID_PACKAGE
-        NeodroidInfo._ImportLocation = EditorGUILayout.TextField(NeodroidInfo._ImportLocation);
-      #endif
 
       if (GUI.changed) {
         if (_EnableNeodroidDebug) {
@@ -54,18 +63,31 @@ namespace Neodroid.Editor.Windows {
         }
 
         if (_UseGithubExtension){
-          DefineSymbolsFunctionality.AddGithubDefineSymbol();
+          DefineSymbolsFunctionality.AddGithubDefineSymbols();
         } else {
-          DefineSymbolsFunctionality.RemoveGithubDefineSymbol();
+          DefineSymbolsFunctionality.RemoveGithubDefineSymbols();
+        }
+        
+        if (_ImportedAsset){
+          DefineSymbolsFunctionality.AddImportedAssetDefineSymbols();
+        } else {
+          DefineSymbolsFunctionality.RemoveImportedAssetDefineSymbols();
         }
 
-        #if !NEODROID_PACKAGE
-          EditorPrefs.SetString(NeodroidInfo._import_location_pref_key, NeodroidInfo._ImportLocation);
-          Debug.Log($"Set Neodroid import location to: {NeodroidInfo._ImportLocation}");
+        #if NEODROID_IMPORTED_ASSET
+          if (          NeodroidInfo.ImportLocation != _ImportLocation){
+            NeodroidInfo.ImportLocation = _ImportLocation;
+            Debug.Log($"Set Neodroid import location to: {NeodroidInfo.ImportLocation}");
+          }
+         
+          EditorPrefs.SetString(NeodroidInfo._import_location_pref_key, _ImportLocation);
         #endif
 
         EditorPrefs.SetBool(NeodroidInfo._debug_pref_key, _EnableNeodroidDebug);
         EditorPrefs.SetBool(NeodroidInfo._github_extension_pref_key, _UseGithubExtension);
+        EditorPrefs.SetBool(NeodroidInfo._imported_asset_pref_key, _ImportedAsset);
+        
+        _preferences_loaded = false;
       }
     }
 
@@ -119,7 +141,9 @@ namespace Neodroid.Editor.Windows {
     /// </summary>
     public static readonly string[] _Debug_Symbols = {"NEODROID_DEBUG"};
 
-    public static readonly string[] _Github_Symbols = {"USE_GITHUB_EXTENSION"};
+    public static readonly string[] _Github_Symbols = {"NEODROID_USE_GITHUB_EXTENSION"};
+    
+    public static readonly string[] _ImportedAsset_Symbols = {"NEODROID_IMPORTED_ASSET"};
 
     /// <summary>
     /// </summary>
@@ -147,16 +171,28 @@ namespace Neodroid.Editor.Windows {
       Debug.LogWarning($"Neodroid Debugging disabled");
     }
 
-    public static void AddGithubDefineSymbol() {
+    public static void AddGithubDefineSymbols() {
       AddDefineSymbols(_Github_Symbols);
 
       Debug.LogWarning($"Github Extension enabled");
     }
 
-    public static void RemoveGithubDefineSymbol(){
+    public static void RemoveGithubDefineSymbols(){
       RemoveDefineSymbols(_Github_Symbols);
 
       Debug.LogWarning($"Github Extension disabled");
+    }
+    
+    public static void AddImportedAssetDefineSymbols() {
+      AddDefineSymbols(_ImportedAsset_Symbols);
+
+      Debug.LogWarning($"Neodroid is assumed to be an imported asset");
+    }
+
+    public static void RemoveImportedAssetDefineSymbols(){
+      RemoveDefineSymbols(_ImportedAsset_Symbols);
+
+      Debug.LogWarning($"Neodroid is assumed to be an installed package");
     }
 
     public static void AddDefineSymbols(string[] symbols){

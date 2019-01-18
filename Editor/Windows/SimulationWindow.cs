@@ -21,7 +21,7 @@ namespace Neodroid.Editor.Windows {
     /// </summary>
     void OnEnable() {
       this._icon = (Texture2D)AssetDatabase.LoadAssetAtPath(
-          NeodroidInfo._ImportLocation + "Gizmos/Icons/clock.png",
+          NeodroidInfo.ImportLocation + "Gizmos/Icons/clock.png",
           typeof(Texture2D));
       this.titleContent = new GUIContent("Neo:Sim", this._icon, "Window for controlling simulation");
       this.Setup();

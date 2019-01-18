@@ -177,7 +177,7 @@ namespace Neodroid.Editor.Utilities {
     string ValidateLocation(string[] paths, string project_path) {
       for (var i = 0; i < paths.Length; i++) {
         // Check if the Editor Resources folder exists.
-        if (Directory.Exists(paths[i] + "/Editor Resources")) {
+        if (Directory.Exists(paths[i] + "Editor/Resources")) {
           var folder_path = paths[i].Replace(project_path, "");
           folder_path = folder_path.TrimStart('\\', '/');
           return folder_path;
