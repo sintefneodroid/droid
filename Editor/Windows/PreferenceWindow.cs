@@ -6,8 +6,6 @@ using UnityEngine;
 
 namespace Neodroid.Editor.Windows {
 
-
-
   /// <inheritdoc />
   /// <summary>
   /// </summary>
@@ -33,6 +31,7 @@ namespace Neodroid.Editor.Windows {
         _UseGithubExtension = EditorPrefs.GetBool(NeodroidInfo._github_extension_pref_key, false);
         _ImportedAsset = EditorPrefs.GetBool(NeodroidInfo._imported_asset_pref_key, false);
 
+
         #if NEODROID_IMPORTED_ASSET
           _ImportLocation = EditorPrefs.GetString(NeodroidInfo._import_location_pref_key, NeodroidInfo.ImportLocation);
         #endif
@@ -53,6 +52,7 @@ namespace Neodroid.Editor.Windows {
 
       _EnableNeodroidDebug = EditorGUILayout.Toggle(NeodroidInfo._debug_pref_key, _EnableNeodroidDebug);
       _UseGithubExtension = EditorGUILayout.Toggle(NeodroidInfo._github_extension_pref_key, _UseGithubExtension);
+
 
 
       if (GUI.changed) {

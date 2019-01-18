@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 using Neodroid.Runtime.Utilities.Misc.SearchableEnum;
 using UnityEngine;
+using System.Text.RegularExpressions;
 
 namespace Neodroid.Runtime.Utilities.ScriptableObjects {
   /// <inheritdoc />
