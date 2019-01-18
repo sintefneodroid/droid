@@ -63,7 +63,7 @@ namespace Neodroid.Editor.Windows {
     void OnEnable() {
       this.FindObjects();
       this._icon = (Texture2D)AssetDatabase.LoadAssetAtPath(
-          NeodroidInfo.ImportLocation + "Gizmos/Icons/information.png",
+          NeodroidEditorInfo.ImportLocation + "Gizmos/Icons/information.png",
           typeof(Texture2D));
       this.titleContent = new GUIContent("Neo:Debug", this._icon, "Window for controlling debug messages");
     }

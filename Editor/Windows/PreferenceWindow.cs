@@ -29,12 +29,12 @@ namespace Neodroid.Editor.Windows {
 
 
       if (!_preferences_loaded) {
-        _EnableNeodroidDebug = EditorPrefs.GetBool(NeodroidInfo._debug_pref_key, false);
-        _UseGithubExtension = EditorPrefs.GetBool(NeodroidInfo._github_extension_pref_key, false);
-        _ImportedAsset = EditorPrefs.GetBool(NeodroidInfo._imported_asset_pref_key, false);
-        _GenerateScenePreviews = EditorPrefs.GetBool(NeodroidInfo._generate_previews_pref_key, false);
-        if(_GenerateScenePreviews){_ScenePreviewsLocation = EditorPrefs.GetString(NeodroidInfo
-        ._generate_previews_loc_pref_key, NeodroidInfo.ScenePreviewsLocation);}
+        _EnableNeodroidDebug = EditorPrefs.GetBool(NeodroidEditorInfo._debug_pref_key, false);
+        _UseGithubExtension = EditorPrefs.GetBool(NeodroidEditorInfo._github_extension_pref_key, false);
+        _ImportedAsset = EditorPrefs.GetBool(NeodroidEditorInfo._imported_asset_pref_key, false);
+        _GenerateScenePreviews = EditorPrefs.GetBool(NeodroidEditorInfo._generate_previews_pref_key, false);
+        if(_GenerateScenePreviews){_ScenePreviewsLocation = EditorPrefs.GetString(NeodroidEditorInfo
+        ._generate_previews_loc_pref_key, NeodroidEditorInfo.ScenePreviewsLocation);}
           
         
         #if NEODROID_IMPORTED_ASSET
@@ -44,9 +44,9 @@ namespace Neodroid.Editor.Windows {
         _preferences_loaded = true;
       }
       
-      EditorGUILayout.HelpBox($"Version {NeodroidInfo._Version}", MessageType.Info);
+      EditorGUILayout.HelpBox($"Version {NeodroidEditorInfo._Version}", MessageType.Info);
       
-      _ImportedAsset = EditorGUILayout.Toggle(NeodroidInfo._imported_asset_pref_key, _ImportedAsset);
+      _ImportedAsset = EditorGUILayout.Toggle(NeodroidEditorInfo._imported_asset_pref_key, _ImportedAsset);
       
       #if NEODROID_IMPORTED_ASSET
         EditorGUILayout.HelpBox("Enter import path of Neodroid", MessageType.Info);
@@ -55,9 +55,9 @@ namespace Neodroid.Editor.Windows {
              
       EditorGUILayout.HelpBox("Functionality", MessageType.Info);
 
-      _EnableNeodroidDebug = EditorGUILayout.Toggle(NeodroidInfo._debug_pref_key, _EnableNeodroidDebug);
-      _UseGithubExtension = EditorGUILayout.Toggle(NeodroidInfo._github_extension_pref_key, _UseGithubExtension);
-      _GenerateScenePreviews = EditorGUILayout.Toggle(NeodroidInfo._generate_previews_pref_key, _GenerateScenePreviews);
+      _EnableNeodroidDebug = EditorGUILayout.Toggle(NeodroidEditorInfo._debug_pref_key, _EnableNeodroidDebug);
+      _UseGithubExtension = EditorGUILayout.Toggle(NeodroidEditorInfo._github_extension_pref_key, _UseGithubExtension);
+      _GenerateScenePreviews = EditorGUILayout.Toggle(NeodroidEditorInfo._generate_previews_pref_key, _GenerateScenePreviews);
       if (_GenerateScenePreviews){
         EditorGUILayout.HelpBox("Enter path for scene preview storage", MessageType.Info);
         _ScenePreviewsLocation = EditorGUILayout.TextField(_ScenePreviewsLocation);
@@ -93,13 +93,13 @@ namespace Neodroid.Editor.Windows {
           EditorPrefs.SetString(NeodroidInfo._import_location_pref_key, _ImportLocation);
         #endif
 
-        EditorPrefs.SetBool(NeodroidInfo._debug_pref_key, _EnableNeodroidDebug);
-        EditorPrefs.SetBool(NeodroidInfo._github_extension_pref_key, _UseGithubExtension);
-        EditorPrefs.SetBool(NeodroidInfo._imported_asset_pref_key, _ImportedAsset);
+        EditorPrefs.SetBool(NeodroidEditorInfo._debug_pref_key, _EnableNeodroidDebug);
+        EditorPrefs.SetBool(NeodroidEditorInfo._github_extension_pref_key, _UseGithubExtension);
+        EditorPrefs.SetBool(NeodroidEditorInfo._imported_asset_pref_key, _ImportedAsset);
         
-        EditorPrefs.SetBool(NeodroidInfo._generate_previews_pref_key, _GenerateScenePreviews);
+        EditorPrefs.SetBool(NeodroidEditorInfo._generate_previews_pref_key, _GenerateScenePreviews);
         if (_GenerateScenePreviews){
-          EditorPrefs.SetString(NeodroidInfo._generate_previews_loc_pref_key, _ScenePreviewsLocation);
+          EditorPrefs.SetString(NeodroidEditorInfo._generate_previews_loc_pref_key, _ScenePreviewsLocation);
         }
 
         _preferences_loaded = false;

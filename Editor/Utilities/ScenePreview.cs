@@ -22,7 +22,7 @@ namespace Neodroid.Editor.Utilities {
     /// </summary>
     [RuntimeInitializeOnLoadMethod]
     public void CaptureScreenShot() {
-      if (NeodroidInfo.GenerateScenePreviews){
+      if (NeodroidEditorInfo.GenerateScenePreviews){
         var preview_path = GetPreviewPath(SceneManager.GetActiveScene().name);
         //Debug.LogFormat("Saving scene preview at {0}", preview_path);
         ScreenCapture.CaptureScreenshot(preview_path);
@@ -34,7 +34,7 @@ namespace Neodroid.Editor.Utilities {
     /// </summary>
     public override void OnInspectorGUI()
     {
-      if (NeodroidInfo.GenerateScenePreviews){
+      if (NeodroidEditorInfo.GenerateScenePreviews){
         //AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
         var scene_names = this.targets.Select(t => ((SceneAsset) t).name).OrderBy(n => n).ToArray();
 
@@ -57,7 +57,7 @@ namespace Neodroid.Editor.Utilities {
 
       if (preview == null) {
         EditorGUILayout.HelpBox(
-            $"There is no image preview for scene {scene_name} at {preview_path}. Please play the scene on editor and image preview will be captured automatically or create the missing path: {NeodroidInfo.ScenePreviewsLocation}.",
+            $"There is no image preview for scene {scene_name} at {preview_path}. Please play the scene on editor and image preview will be captured automatically or create the missing path: {NeodroidEditorInfo.ScenePreviewsLocation}.",
             MessageType.Info);
       } else {
         GUI.DrawTexture(
@@ -68,7 +68,7 @@ namespace Neodroid.Editor.Utilities {
     }
 
     string GetPreviewPath(string scene_name) {
-      return $"{Application.dataPath}/{NeodroidInfo.ScenePreviewsLocation}{scene_name}.png";
+      return $"{Application.dataPath}/{NeodroidEditorInfo.ScenePreviewsLocation}{scene_name}.png";
     }
 
     /// <summary>

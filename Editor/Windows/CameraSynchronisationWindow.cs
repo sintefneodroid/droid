@@ -30,7 +30,7 @@ namespace Neodroid.Editor.Windows {
       this._cameras = FindObjectsOfType<SynchroniseCameraProperties>();
       this.Setup();
       this._icon = (Texture2D)AssetDatabase.LoadAssetAtPath(
-          NeodroidInfo.ImportLocation + "Gizmos/Icons/arrow_refresh.png",
+          NeodroidEditorInfo.ImportLocation + "Gizmos/Icons/arrow_refresh.png",
           typeof(Texture2D));
       this.titleContent = new GUIContent(
           "Neo:Sync",

@@ -1,11 +1,10 @@
-﻿using System.Linq;
-using UnityEditor;
+﻿using UnityEditor;
 
-namespace Neodroid.Runtime
+namespace Neodroid.Editor
 {
     /// <summary>
     /// </summary>
-    public static class NeodroidInfo
+    public static class NeodroidEditorInfo
     {
         /// <summary>
         /// </summary>

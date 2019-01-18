@@ -61,10 +61,10 @@ namespace Neodroid.Editor.Windows {
     /// </summary>
     void OnEnable() {
       this._icon = (Texture2D)AssetDatabase.LoadAssetAtPath(
-          NeodroidInfo.ImportLocation + "Gizmos/Icons/world.png",
+          NeodroidEditorInfo.ImportLocation + "Gizmos/Icons/world.png",
           typeof(Texture2D));
       this._neodroid_icon = (Texture)AssetDatabase.LoadAssetAtPath(
-          NeodroidInfo.ImportLocation + "Gizmos/Icons/neodroid_favicon_cut.png",
+          NeodroidEditorInfo.ImportLocation + "Gizmos/Icons/neodroid_favicon_cut.png",
           typeof(Texture));
       this.titleContent = new GUIContent("Neo:Env", this._icon, "Window for configuring environments");
       this.Setup();
