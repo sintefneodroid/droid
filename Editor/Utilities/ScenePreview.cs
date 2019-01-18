@@ -1,5 +1,6 @@
 ﻿#if UNITY_EDITOR
 using System.Linq;
+using Neodroid.Runtime;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,17 +15,14 @@ namespace Neodroid.Editor.Utilities {
   [CustomEditor(typeof(SceneAsset))]
   [CanEditMultipleObjects]
   public class ScenePreview : UnityEditor.Editor {
-    // Change this to a folder in your project. 
-    // Maybe the folder where your scenes are located.
-    // Remember to create a subfolder called "Resources" inside of it.
-    const string _preview_folders = "ScenePreviews";
+    string _preview_folders = NeodroidInfo.ScenePreviewsLocation;
     const float _editor_margin = 50;
     const float _preview_margin = 5;
 
     /// <summary>
     /// </summary>
     [RuntimeInitializeOnLoadMethod]
-    public static void CaptureScreenShot() {
+    public void CaptureScreenShot() {
       var preview_path = GetPreviewPath(SceneManager.GetActiveScene().name);
       //Debug.LogFormat("Saving scene preview at {0}", preview_path);
       ScreenCapture.CaptureScreenshot(preview_path);
@@ -47,7 +45,7 @@ namespace Neodroid.Editor.Utilities {
       }
     }
 
-    static void DrawPreview(int index, string scene_name, float width, float height) {
+    void DrawPreview(int index, string scene_name, float width, float height) {
       var preview_path = GetPreviewPath(scene_name);
       //var ob = Resources.Load(scene_name);
       //var preview = ob as RenderTexture;
@@ -65,8 +63,8 @@ namespace Neodroid.Editor.Utilities {
       }
     }
 
-    static string GetPreviewPath(string scene_name) {
-      return $"{Application.dataPath}/{_preview_folders}/{scene_name}.png";
+    string GetPreviewPath(string scene_name) {
+      return $"{Application.dataPath}/{_preview_folders}{scene_name}.png";
     }
 
     /// <summary>
