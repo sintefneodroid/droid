@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Editor.Utilities {
+namespace droid.Editor.Utilities {
   public static class MeshSaverEditor {
     const string _menu_path = "CONTEXT" + "/MeshFilter" + "/SaveMesh";
 

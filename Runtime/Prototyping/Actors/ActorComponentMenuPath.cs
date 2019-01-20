@@ -1,4 +1,4 @@
-﻿namespace Neodroid.Runtime.Prototyping.Actors {
+﻿namespace droid.Runtime.Prototyping.Actors {
   /// <summary>
   /// </summary>
   public static class ActorComponentMenuPath {

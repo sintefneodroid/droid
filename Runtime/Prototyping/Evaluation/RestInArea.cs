@@ -1,12 +1,12 @@
 ﻿using System.Collections;
-using Neodroid.Runtime.Prototyping.Actors;
-using Neodroid.Runtime.Prototyping.Observers;
-using Neodroid.Runtime.Utilities.BoundingBoxes;
-using Neodroid.Runtime.Utilities.Misc;
-using Neodroid.Runtime.Utilities.Misc.Extensions;
+using droid.Runtime.Prototyping.Actors;
+using droid.Runtime.Prototyping.Observers;
+using droid.Runtime.Utilities.BoundingBoxes;
+using droid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities.Misc.Extensions;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Evaluation {
+namespace droid.Runtime.Prototyping.Evaluation {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

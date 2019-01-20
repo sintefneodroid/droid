@@ -1,12 +1,11 @@
 ﻿using System;
-using Neodroid.Runtime.Environments;
-using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Utilities.Enums;
-using Neodroid.Runtime.Utilities.Misc;
-using Neodroid.Runtime.Utilities.ScriptableObjects;
+using droid.Runtime.Environments;
+using droid.Runtime.Interfaces;
+using droid.Runtime.Utilities.Enums;
+using droid.Runtime.Utilities.Misc;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Observers.Camera {
+namespace droid.Runtime.Prototyping.Observers.Camera {
   /// <inheritdoc cref="Observer" />
   /// <summary>
   /// </summary>

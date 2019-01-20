@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
-using Neodroid.Runtime.Environments;
-using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Utilities.BoundingBoxes;
-using Neodroid.Runtime.Utilities.BoundingBoxes.Experimental;
-using Neodroid.Runtime.Utilities.GameObjects;
-using Neodroid.Runtime.Utilities.Misc;
+using droid.Runtime.Environments;
+using droid.Runtime.Interfaces;
+using droid.Runtime.Utilities.BoundingBoxes.Experimental;
+using droid.Runtime.Utilities.GameObjects;
+using droid.Runtime.Utilities.Misc;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Actors {
+namespace droid.Runtime.Prototyping.Actors {
   /// <inheritdoc cref="PrototypingGameObject" />
   /// <summary>
   /// </summary>

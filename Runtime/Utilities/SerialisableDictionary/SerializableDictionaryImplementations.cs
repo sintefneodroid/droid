@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Utilities.SerialisableDictionary {
+namespace droid.Runtime.Utilities.SerialisableDictionary {
   [Serializable] public class StringIntDictionary : SerializableDictionary<string, int> { }
 
   [Serializable] public class GameObjectFloatDictionary : SerializableDictionary<GameObject, float> { }

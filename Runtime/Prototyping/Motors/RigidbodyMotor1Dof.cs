@@ -1,9 +1,9 @@
 ﻿using System;
-using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Utilities.Enums;
+using droid.Runtime.Interfaces;
+using droid.Runtime.Utilities.Enums;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Motors {
+namespace droid.Runtime.Prototyping.Motors {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

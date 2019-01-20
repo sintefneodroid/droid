@@ -1,11 +1,10 @@
-﻿using Neodroid.Runtime;
-using Neodroid.Runtime.Managers;
-using Neodroid.Runtime.Messaging.Messages;
+﻿using droid.Runtime;
+using droid.Runtime.Managers;
+using droid.Runtime.Messaging.Messages;
 using UnityEditor;
 using UnityEngine;
-using Object = System.Object;
 
-namespace Neodroid.Editor.Windows {
+namespace droid.Editor.Windows {
   public class SimulationWindow : EditorWindow {
     [MenuItem(EditorWindowMenuPath._WindowMenuPath + "SimulationWindow")]
     [MenuItem(EditorWindowMenuPath._ToolMenuPath + "SimulationWindow")]

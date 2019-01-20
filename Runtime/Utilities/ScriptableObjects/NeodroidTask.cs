@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Neodroid.Runtime.Utilities.ScriptableObjects {
+namespace droid.Runtime.Utilities.ScriptableObjects {
   [CreateAssetMenu(
       fileName = "NeodroidTask",
       menuName = "Neodroid/ScriptableObjects/NeodroidTask",

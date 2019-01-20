@@ -1,6 +1,6 @@
 using System;
 
-namespace Neodroid.Editor.Utilities {
+namespace droid.Editor.Utilities {
   /// <summary>
   /// </summary>
   [AttributeUsage(AttributeTargets.Class)]

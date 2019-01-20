@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Neodroid.Runtime.Utilities.Sensors;
+using droid.Runtime.Utilities.Sensors;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Neodroid.Runtime.Prototyping.Evaluation {
+namespace droid.Runtime.Prototyping.Evaluation {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

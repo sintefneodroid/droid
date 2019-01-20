@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Neodroid.Runtime.Utilities.Plotting {
+namespace droid.Runtime.Utilities.Plotting {
   /// <summary>
   /// </summary>
   public class DrawSpaces : MonoBehaviour {

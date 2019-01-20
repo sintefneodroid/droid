@@ -1,9 +1,8 @@
 ﻿using System;
-using Neodroid.Runtime.Utilities.Enums;
-using Neodroid.Runtime.Utilities.ScriptableObjects;
+using droid.Runtime.Utilities.Enums;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Managers {
+namespace droid.Runtime.Managers {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

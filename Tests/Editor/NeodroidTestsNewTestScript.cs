@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using UnityEngine.TestTools;
 
-namespace Neodroid.Tests.Editor {
+namespace droid.Tests.Editor {
   public class NeodroidTestsNewTestScript {
     [Test]
     public void NewTestScriptSimplePasses() {

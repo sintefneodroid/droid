@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Observers {
+namespace droid.Runtime.Prototyping.Observers {
   /// <summary>
   /// </summary>
   enum Category {

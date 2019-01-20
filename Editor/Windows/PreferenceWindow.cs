@@ -1,110 +1,139 @@
 ﻿#if UNITY_EDITOR
 using System.Linq;
-using Neodroid.Runtime;
+using droid.Runtime;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Editor.Windows {
-
+namespace droid.Editor.Windows {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
   public class PreferenceWindow : MonoBehaviour {
-
     static bool _preferences_loaded;
 
     /// <summary>
     /// </summary>
-    static bool _EnableNeodroidDebug;
-    static bool _UseGithubExtension;
-    static bool _ImportedAsset;
-    static string _ImportLocation;
-    static bool _GenerateScenePreviews;
-    static string _ScenePreviewsLocation;
+    static bool _enable_neodroid_debug;
+
+    static bool _use_github_extension;
+    static bool _imported_asset;
+    static string _import_location;
+    static bool _generate_scene_previews;
+    static string _scene_previews_location;
 
     /// <summary>
     /// </summary>
     [PreferenceItem("Neodroid")]
     public static void PreferencesGui() {
-
-
       if (!_preferences_loaded) {
-        _EnableNeodroidDebug = EditorPrefs.GetBool(NeodroidEditorInfo._debug_pref_key, false);
-        _UseGithubExtension = EditorPrefs.GetBool(NeodroidEditorInfo._github_extension_pref_key, false);
-        _ImportedAsset = EditorPrefs.GetBool(NeodroidEditorInfo._imported_asset_pref_key, false);
-        _GenerateScenePreviews = EditorPrefs.GetBool(NeodroidEditorInfo._generate_previews_pref_key, false);
-        if(_GenerateScenePreviews){_ScenePreviewsLocation = EditorPrefs.GetString(NeodroidEditorInfo
-        ._generate_previews_loc_pref_key, NeodroidEditorInfo.ScenePreviewsLocation);}
-          
-        
+        _enable_neodroid_debug = EditorPrefs.GetBool(NeodroidEditorInfo._debug_pref_key, false);
+        _use_github_extension = EditorPrefs.GetBool(NeodroidEditorInfo._github_extension_pref_key, false);
+        _imported_asset = EditorPrefs.GetBool(NeodroidEditorInfo._imported_asset_pref_key, false);
+        _generate_scene_previews = EditorPrefs.GetBool(NeodroidEditorInfo._generate_previews_pref_key, false);
+        if (_generate_scene_previews) {
+          _scene_previews_location = EditorPrefs.GetString(
+              NeodroidEditorInfo._generate_previews_loc_pref_key,
+              NeodroidEditorInfo.ScenePreviewsLocation);
+        }
+
         #if NEODROID_IMPORTED_ASSET
-          _ImportLocation = EditorPrefs.GetString(NeodroidInfo._import_location_pref_key, NeodroidInfo.ImportLocation);
+        _import_location = EditorPrefs.GetString(
+            NeodroidEditorInfo._import_location_pref_key,
+            NeodroidEditorInfo.ImportLocation);
         #endif
 
         _preferences_loaded = true;
       }
-      
+
       EditorGUILayout.HelpBox($"Version {NeodroidEditorInfo._Version}", MessageType.Info);
-      
-      _ImportedAsset = EditorGUILayout.Toggle(NeodroidEditorInfo._imported_asset_pref_key, _ImportedAsset);
-      
+
+      var imported_asset_new = EditorGUILayout.Toggle(
+          NeodroidEditorInfo._imported_asset_pref_key,
+          _imported_asset);
+
       #if NEODROID_IMPORTED_ASSET
-        EditorGUILayout.HelpBox("Enter import path of Neodroid", MessageType.Info);
-        _ImportLocation = EditorGUILayout.TextField(_ImportLocation);
+      EditorGUILayout.HelpBox("Enter import path of Neodroid", MessageType.Info);
+      _import_location = EditorGUILayout.TextField(_import_location);
       #endif
-             
+
       EditorGUILayout.HelpBox("Functionality", MessageType.Info);
 
-      _EnableNeodroidDebug = EditorGUILayout.Toggle(NeodroidEditorInfo._debug_pref_key, _EnableNeodroidDebug);
-      _UseGithubExtension = EditorGUILayout.Toggle(NeodroidEditorInfo._github_extension_pref_key, _UseGithubExtension);
-      _GenerateScenePreviews = EditorGUILayout.Toggle(NeodroidEditorInfo._generate_previews_pref_key, _GenerateScenePreviews);
-      if (_GenerateScenePreviews){
+      var enable_neodroid_debug_new = EditorGUILayout.Toggle(
+          NeodroidEditorInfo._debug_pref_key,
+          _enable_neodroid_debug);
+      var use_github_extension_new = EditorGUILayout.Toggle(
+          NeodroidEditorInfo._github_extension_pref_key,
+          _use_github_extension);
+      var generate_scene_previews_new = EditorGUILayout.Toggle(
+          NeodroidEditorInfo._generate_previews_pref_key,
+          _generate_scene_previews);
+      if (_generate_scene_previews) {
         EditorGUILayout.HelpBox("Enter path for scene preview storage", MessageType.Info);
-        _ScenePreviewsLocation = EditorGUILayout.TextField(_ScenePreviewsLocation);
+        _scene_previews_location = EditorGUILayout.TextField(_scene_previews_location);
       }
 
-
-
       if (GUI.changed) {
-        if (_EnableNeodroidDebug) {
-          DefineSymbolsFunctionality.AddDebugDefineSymbol();
-        } else {
-          DefineSymbolsFunctionality.RemoveDebugDefineSymbols();
+        if (enable_neodroid_debug_new != _enable_neodroid_debug) {
+          _enable_neodroid_debug = enable_neodroid_debug_new;
+          EditorPrefs.SetBool(NeodroidEditorInfo._debug_pref_key, _enable_neodroid_debug);
+          Debug.Log($"Neodroid Debugging {_enable_neodroid_debug}");
+          if (_enable_neodroid_debug) {
+            DefineSymbolsFunctionality.AddDebugDefineSymbol();
+          } else {
+            DefineSymbolsFunctionality.RemoveDebugDefineSymbols();
+          }
         }
 
-        if (_UseGithubExtension){
-          DefineSymbolsFunctionality.AddGithubDefineSymbols();
-        } else {
-          DefineSymbolsFunctionality.RemoveGithubDefineSymbols();
+        if (use_github_extension_new != _use_github_extension) {
+          _use_github_extension = use_github_extension_new;
+          EditorPrefs.SetBool(NeodroidEditorInfo._github_extension_pref_key, _use_github_extension);
+          Debug.Log($"Neodroid GitHub Extension{_use_github_extension}");
+          if (_use_github_extension) {
+            DefineSymbolsFunctionality.AddGithubDefineSymbols();
+          } else {
+            DefineSymbolsFunctionality.RemoveGithubDefineSymbols();
+          }
         }
-        
-        if (_ImportedAsset){
-          DefineSymbolsFunctionality.AddImportedAssetDefineSymbols();
-        } else {
-          DefineSymbolsFunctionality.RemoveImportedAssetDefineSymbols();
+
+        if (imported_asset_new != _imported_asset) {
+          _imported_asset = imported_asset_new;
+          EditorPrefs.SetBool(NeodroidEditorInfo._imported_asset_pref_key, _imported_asset);
+          Debug.Log($"Neodroid is set as an imported asset {_imported_asset}");
+          if (_imported_asset) {
+            DefineSymbolsFunctionality.AddImportedAssetDefineSymbols();
+          } else {
+            DefineSymbolsFunctionality.RemoveImportedAssetDefineSymbols();
+          }
         }
 
         #if NEODROID_IMPORTED_ASSET
-          if (          NeodroidInfo.ImportLocation != _ImportLocation){
-            NeodroidInfo.ImportLocation = _ImportLocation;
-            Debug.Log($"Set Neodroid import location to: {NeodroidInfo.ImportLocation}");
-          }
-         
-          EditorPrefs.SetString(NeodroidInfo._import_location_pref_key, _ImportLocation);
+        if (NeodroidEditorInfo.ImportLocation != _import_location) {
+          NeodroidEditorInfo.ImportLocation = _import_location;
+          EditorPrefs.SetString(NeodroidEditorInfo._import_location_pref_key, _import_location);
+        }
         #endif
 
-        EditorPrefs.SetBool(NeodroidEditorInfo._debug_pref_key, _EnableNeodroidDebug);
-        EditorPrefs.SetBool(NeodroidEditorInfo._github_extension_pref_key, _UseGithubExtension);
-        EditorPrefs.SetBool(NeodroidEditorInfo._imported_asset_pref_key, _ImportedAsset);
-        
-        EditorPrefs.SetBool(NeodroidEditorInfo._generate_previews_pref_key, _GenerateScenePreviews);
-        if (_GenerateScenePreviews){
-          EditorPrefs.SetString(NeodroidEditorInfo._generate_previews_loc_pref_key, _ScenePreviewsLocation);
+        if (generate_scene_previews_new != _generate_scene_previews) {
+          _generate_scene_previews = generate_scene_previews_new;
+          Debug.Log($"Setting Neodroid Generate ScenePreview: {_generate_scene_previews}");
+          EditorPrefs.SetBool(NeodroidEditorInfo._generate_previews_pref_key, _generate_scene_previews);
+        }
+
+        if (_generate_scene_previews) {
+          if (NeodroidEditorInfo.ScenePreviewsLocation != _scene_previews_location) {
+            NeodroidEditorInfo.ScenePreviewsLocation = _scene_previews_location;
+            EditorPrefs.SetString(
+                NeodroidEditorInfo._generate_previews_loc_pref_key,
+                _scene_previews_location);
+
+          }
         }
 
         _preferences_loaded = false;
       }
     }
+
+    void OnValidate() { _preferences_loaded = false; }
 
     /*[SettingsProvider]
     static SettingsProvider CreateProjectSettingsProvider()
@@ -140,9 +169,7 @@ namespace Neodroid.Editor.Windows {
     /// <summary>
     ///   Add define symbols as soon as Unity gets done compiling.
     /// </summary>
-    static DefineSymbolsController(){
-      DefineSymbolsFunctionality.AddDefineSymbols();
-    }
+    static DefineSymbolsController() { DefineSymbolsFunctionality.AddDefineSymbols(); }
   }
 
   public static class DefineSymbolsFunctionality {
@@ -157,8 +184,10 @@ namespace Neodroid.Editor.Windows {
     public static readonly string[] _Debug_Symbols = {"NEODROID_DEBUG"};
 
     public static readonly string[] _Github_Symbols = {"NEODROID_USE_GITHUB_EXTENSION"};
-    
+
     public static readonly string[] _ImportedAsset_Symbols = {"NEODROID_IMPORTED_ASSET"};
+
+    public static readonly string[] _IsImportedAsset_Symbols = {"NEODROID_ASSET_IMPORT"};
 
     /// <summary>
     /// </summary>
@@ -180,7 +209,7 @@ namespace Neodroid.Editor.Windows {
       Debug.LogWarning($"Neodroid Debugging enabled");
     }
 
-    public static void RemoveDebugDefineSymbols(){
+    public static void RemoveDebugDefineSymbols() {
       RemoveDefineSymbols(_Debug_Symbols);
 
       Debug.LogWarning($"Neodroid Debugging disabled");
@@ -192,33 +221,33 @@ namespace Neodroid.Editor.Windows {
       Debug.LogWarning($"Github Extension enabled");
     }
 
-    public static void RemoveGithubDefineSymbols(){
+    public static void RemoveGithubDefineSymbols() {
       RemoveDefineSymbols(_Github_Symbols);
 
       Debug.LogWarning($"Github Extension disabled");
     }
-    
+
     public static void AddImportedAssetDefineSymbols() {
       AddDefineSymbols(_ImportedAsset_Symbols);
 
       Debug.LogWarning($"Neodroid is assumed to be an imported asset");
     }
 
-    public static void RemoveImportedAssetDefineSymbols(){
+    public static void RemoveImportedAssetDefineSymbols() {
       RemoveDefineSymbols(_ImportedAsset_Symbols);
 
       Debug.LogWarning($"Neodroid is assumed to be an installed package");
     }
 
-    public static void AddDefineSymbols(string[] symbols){
+    public static void AddDefineSymbols(string[] symbols) {
       var defines_string =
-        PlayerSettings.GetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup);
+          PlayerSettings.GetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup);
       var all_defines = defines_string.Split(';').ToList();
       all_defines.AddRange(symbols.Except(all_defines));
 
       PlayerSettings.SetScriptingDefineSymbolsForGroup(
-        EditorUserBuildSettings.selectedBuildTargetGroup,
-        string.Join(";", all_defines.ToArray()));
+          EditorUserBuildSettings.selectedBuildTargetGroup,
+          string.Join(";", all_defines.ToArray()));
     }
 
     /// <summary>
@@ -229,7 +258,8 @@ namespace Neodroid.Editor.Windows {
       var all_defines = defines_string.Split(';').ToList();
       foreach (var b in symbols) {
         var res = all_defines.RemoveAll(c => c == b);
-        Debug.LogWarning($"Removed define symbols {symbols.Aggregate((aa,bb)=>aa+","+bb)} : number of entries removed {res}");
+        Debug.LogWarning(
+            $"Removed define symbols {symbols.Aggregate((aa, bb) => aa + "," + bb)} : number of entries removed {res}");
       }
 
       PlayerSettings.SetScriptingDefineSymbolsForGroup(

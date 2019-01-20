@@ -1,4 +1,4 @@
-namespace Neodroid.Runtime.Interfaces {
+namespace droid.Runtime.Interfaces {
   public interface IMotorMotion {
     string MotorName { get; }
     string ActorName { get; }

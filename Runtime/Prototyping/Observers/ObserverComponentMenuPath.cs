@@ -1,4 +1,4 @@
-﻿namespace Neodroid.Runtime.Prototyping.Observers {
+﻿namespace droid.Runtime.Prototyping.Observers {
   /// <summary>
   /// </summary>
   public static class ObserverComponentMenuPath {

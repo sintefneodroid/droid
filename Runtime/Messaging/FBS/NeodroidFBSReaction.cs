@@ -6,7 +6,7 @@ using System;
 using System.Text;
 using FlatBuffers;
 
-namespace Neodroid.Runtime.Messaging.FBS
+namespace droid.Runtime.Messaging.FBS
 {
   public enum FDisplayableValue : byte
 {

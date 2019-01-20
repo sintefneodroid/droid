@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Neodroid.Runtime.Interfaces;
+using droid.Runtime.Interfaces;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Utilities.NeodroidCamera.Segmentation {
+namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
   /// <inheritdoc cref="MonoBehaviour" />
   /// <summary>
   /// </summary>

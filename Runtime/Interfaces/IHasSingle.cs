@@ -1,6 +1,6 @@
-﻿using Neodroid.Runtime.Utilities.Structs;
+﻿using droid.Runtime.Utilities.Structs;
 
-namespace Neodroid.Runtime.Interfaces {
+namespace droid.Runtime.Interfaces {
   /// <summary>
   /// </summary>
   public interface IHasSingle {

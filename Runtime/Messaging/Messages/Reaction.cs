@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Messaging.Messages.Displayables;
+using droid.Runtime.Interfaces;
+using droid.Runtime.Messaging.Messages.Displayables;
 
-namespace Neodroid.Runtime.Messaging.Messages {
+namespace droid.Runtime.Messaging.Messages {
   /// <summary>
   /// </summary>
   [Serializable]

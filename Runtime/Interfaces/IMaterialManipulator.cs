@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Interfaces {
+namespace droid.Runtime.Interfaces {
   /// <summary>
   /// </summary>
   public interface IMaterialManipulator {

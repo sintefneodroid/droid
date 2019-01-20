@@ -1,15 +1,15 @@
 ﻿#if UNITY_EDITOR
-using Neodroid.Runtime;
+using droid.Runtime;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Editor.Windows.UnityDebug {
+namespace droid.Editor.Utilities.UnityDebug {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
   public class FindMissingScripts : EditorWindow {
     static int _game_object_count, _components_count, _missing_count;
-    [SerializeField] Texture2D _icon;
+    [SerializeField] Texture2D icon;
 
     /// <summary>
     /// </summary>
@@ -18,10 +18,9 @@ namespace Neodroid.Editor.Windows.UnityDebug {
     public static void ShowWindow() { GetWindow(typeof(FindMissingScripts)); }
 
     void OnEnable() {
-      this._icon = (Texture2D)AssetDatabase.LoadAssetAtPath(
-          NeodroidEditorInfo.ImportLocation + "Gizmos/Icons/information.png",
+      this.icon = (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidEditorInfo.ImportLocation + "Gizmos/Icons/information.png",
           typeof(Texture2D));
-      this.titleContent = new GUIContent("Unity:Debug", this._icon, "Window for debugging Unity");
+      this.titleContent = new GUIContent("Unity:Debug", this.icon, "Window for debugging Unity");
     }
 
     /// <summary>
@@ -55,8 +54,9 @@ namespace Neodroid.Editor.Windows.UnityDebug {
           var name = game_object.name;
           var parent = game_object.transform;
           while (parent.parent != null) {
-            name = parent.parent.name + "/" + name;
-            parent = parent.parent;
+            var parent1 = parent.parent;
+            name = parent1.name + "/" + name;
+            parent = parent1;
           }
 
           Debug.Log(name + " has an empty script attached in position: " + i, game_object);

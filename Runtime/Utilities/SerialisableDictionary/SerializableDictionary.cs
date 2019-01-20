@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Utilities.SerialisableDictionary {
+namespace droid.Runtime.Utilities.SerialisableDictionary {
   public abstract class SerializableDictionary<TK, TV> : ISerializationCallbackReceiver {
     public Dictionary<TK, TV> _Dict;
     [SerializeField] TK[] _keys;

@@ -1,9 +1,9 @@
 ﻿#if UNITY_EDITOR
-using Neodroid.Runtime.Prototyping.Motors;
+using droid.Runtime.Prototyping.Motors;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Editor.GameObjects {
+namespace droid.Editor.GameObjects {
   public class MotorSpawner : MonoBehaviour {
     [MenuItem(EditorGameObjectMenuPath._GameObjectMenuPath + "Motors/TransformMotor", false, 10)]
     static void CreateTransformMotorGameObject(MenuCommand menu_command) {

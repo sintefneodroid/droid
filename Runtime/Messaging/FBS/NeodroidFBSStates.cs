@@ -5,7 +5,7 @@
 using System;
 using FlatBuffers;
 
-namespace Neodroid.Runtime.Messaging.FBS
+namespace droid.Runtime.Messaging.FBS
 {
   public struct FStates : IFlatbufferObject
 {

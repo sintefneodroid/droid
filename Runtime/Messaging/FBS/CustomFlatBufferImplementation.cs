@@ -1,6 +1,6 @@
 ﻿using FlatBuffers;
 
-namespace Neodroid.Runtime.Messaging.FBS {
+namespace droid.Runtime.Messaging.FBS {
   /// <summary>
   /// </summary>
   public static class CustomFlatBufferImplementation {

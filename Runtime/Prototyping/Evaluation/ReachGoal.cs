@@ -1,9 +1,9 @@
-﻿using Neodroid.Runtime.Prototyping.Actors;
-using Neodroid.Runtime.Utilities.Misc;
-using Neodroid.Runtime.Utilities.Misc.Grid;
+﻿using droid.Runtime.Prototyping.Actors;
+using droid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities.Misc.Grid;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Evaluation {
+namespace droid.Runtime.Prototyping.Evaluation {
   [AddComponentMenu(
       EvaluationComponentMenuPath._ComponentMenuPath + "ReachGoal" + EvaluationComponentMenuPath._Postfix)]
   public class ReachGoal : ObjectiveFunction {

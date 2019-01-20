@@ -1,11 +1,11 @@
 ﻿using System;
-using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Utilities.BoundingBoxes;
-using Neodroid.Runtime.Utilities.Enums;
-using Neodroid.Runtime.Utilities.Structs;
+using droid.Runtime.Interfaces;
+using droid.Runtime.Utilities.BoundingBoxes;
+using droid.Runtime.Utilities.Enums;
+using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Configurables {
+namespace droid.Runtime.Prototyping.Configurables {
   /// <inheritdoc cref="Configurable" />
   /// <summary>
   /// </summary>

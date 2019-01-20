@@ -1,12 +1,11 @@
 ﻿using System;
+using droid.Runtime.Prototyping.Displayers;
+using droid.Runtime.Prototyping.Displayers.Canvas;
+using droid.Runtime.Prototyping.Internals;
 using JetBrains.Annotations;
-using Neodroid.Runtime.Prototyping.Displayers;
-using Neodroid.Runtime.Prototyping.Displayers.Canvas;
-using Neodroid.Runtime.Prototyping.Internals;
 using UnityEngine;
-using Object = System.Object;
 
-namespace Neodroid.Samples.MultiArmedBandit {
+namespace droid.Samples.MultiArmedBandit {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

@@ -1,12 +1,11 @@
-﻿using FlatBuffers;
-using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Messaging.Messages;
-using Neodroid.Runtime.Prototyping.Actors;
-using Neodroid.Runtime.Prototyping.Configurables;
-using Neodroid.Runtime.Prototyping.Observers.Camera;
+﻿using droid.Runtime.Interfaces;
+using droid.Runtime.Messaging.Messages;
+using droid.Runtime.Prototyping.Actors;
+using droid.Runtime.Prototyping.Configurables;
+using FlatBuffers;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Messaging.FBS {
+namespace droid.Runtime.Messaging.FBS {
   /// <summary>
   /// </summary>
   public static class FbsStateUtilities {

@@ -1,4 +1,4 @@
-namespace Neodroid.Runtime.Utilities.Enums
+namespace droid.Runtime.Utilities.Enums
 {
     /// <summary>
     ///   Determines the discrete timesteps of the simulation environment.

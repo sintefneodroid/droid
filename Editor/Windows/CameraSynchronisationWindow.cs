@@ -1,10 +1,10 @@
 ﻿#if UNITY_EDITOR
-using Neodroid.Runtime;
-using Neodroid.Runtime.Utilities.NeodroidCamera;
+using droid.Runtime;
+using droid.Runtime.Utilities.NeodroidCamera;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Editor.Windows {
+namespace droid.Editor.Windows {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

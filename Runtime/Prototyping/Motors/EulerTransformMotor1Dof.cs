@@ -1,9 +1,9 @@
 ﻿using System;
-using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Utilities.Enums;
+using droid.Runtime.Interfaces;
+using droid.Runtime.Utilities.Enums;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Motors {
+namespace droid.Runtime.Prototyping.Motors {
   /// <inheritdoc />
   [AddComponentMenu(
       MotorComponentMenuPath._ComponentMenuPath
@@ -27,13 +27,13 @@ namespace Neodroid.Runtime.Prototyping.Motors {
       var layer_mask = 1 << LayerMask.NameToLayer(this._Layer_Mask);
       var vec = Vector3.zero;
       switch (this._Axis_Of_Motion) {
-        case Axis.X_: // Translational 
+        case Axis.X_: // Translational
           vec = Vector3.right * motion.Strength;
           break;
-        case Axis.Y_: // Translational 
+        case Axis.Y_: // Translational
           vec = -Vector3.up * motion.Strength;
           break;
-        case Axis.Z_: // Translational 
+        case Axis.Z_: // Translational
           vec = -Vector3.forward * motion.Strength;
           break;
         case Axis.Rot_x_: // Rotational

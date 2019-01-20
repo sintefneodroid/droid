@@ -1,6 +1,6 @@
 using System;
 
-namespace Neodroid.Runtime.Utilities.Misc {
+namespace droid.Runtime.Utilities.Misc {
 
     public class Perlin
     {

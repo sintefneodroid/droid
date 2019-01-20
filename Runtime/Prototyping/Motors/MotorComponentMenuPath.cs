@@ -1,4 +1,4 @@
-﻿namespace Neodroid.Runtime.Prototyping.Motors {
+﻿namespace droid.Runtime.Prototyping.Motors {
   /// <summary>
   /// </summary>
   public static class MotorComponentMenuPath {

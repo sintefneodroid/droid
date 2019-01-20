@@ -2,18 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Messaging.Messages;
-using Neodroid.Runtime.Prototyping.Evaluation;
-using Neodroid.Runtime.Utilities.BoundingBoxes;
-using Neodroid.Runtime.Utilities.Enums;
-using Neodroid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
-using Neodroid.Runtime.Utilities.Misc;
-using Neodroid.Runtime.Utilities.Misc.Extensions;
+using droid.Runtime.Interfaces;
+using droid.Runtime.Messaging.Messages;
+using droid.Runtime.Prototyping.Evaluation;
+using droid.Runtime.Utilities.BoundingBoxes;
+using droid.Runtime.Utilities.Enums;
+using droid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
+using droid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities.Misc.Extensions;
 using UnityEngine;
 using Object = System.Object;
 
-namespace Neodroid.Runtime.Environments {
+namespace droid.Runtime.Environments {
   /// <inheritdoc cref="NeodroidEnvironment" />
   /// <summary>
   ///   Environment to be used with the prototyping components.

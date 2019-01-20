@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using Neodroid.Runtime.Prototyping.Evaluation;
+using droid.Runtime.Prototyping.Evaluation;
 using UnityEngine;
 
-namespace Neodroid.Samples.MultiArmedBandit {
+namespace droid.Samples.MultiArmedBandit {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

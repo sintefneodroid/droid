@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Utilities.BoundingBoxes.Experimental {
+namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
   [ExecuteInEditMode]
   public class ShowBoundingBoxes : MonoBehaviour {
     public Color _Color = Color.green;

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Neodroid.Runtime.Interfaces {
+namespace droid.Runtime.Interfaces {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

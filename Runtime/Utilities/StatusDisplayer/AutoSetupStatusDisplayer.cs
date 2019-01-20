@@ -1,16 +1,16 @@
 ﻿#if UNITY_EDITOR
+using droid.Runtime.Environments;
+using droid.Runtime.Managers;
+using droid.Runtime.Prototyping.Evaluation;
+using droid.Runtime.Utilities.EventRecipients;
+using droid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using JetBrains.Annotations;
-using Neodroid.Runtime.Environments;
-using Neodroid.Runtime.Managers;
-using Neodroid.Runtime.Prototyping.Evaluation;
-using Neodroid.Runtime.Utilities.EventRecipients;
-using Neodroid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using UnityEditor.Events;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace Neodroid.Runtime.Utilities.StatusDisplayer {
+namespace droid.Runtime.Utilities.StatusDisplayer {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

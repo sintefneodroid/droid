@@ -1,11 +1,11 @@
 ﻿using System;
-using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Messaging.Messages;
-using Neodroid.Runtime.Utilities.Enums;
-using Neodroid.Runtime.Utilities.Misc.SearchableEnum;
+using droid.Runtime.Interfaces;
+using droid.Runtime.Messaging.Messages;
+using droid.Runtime.Utilities.Enums;
+using droid.Runtime.Utilities.Misc.SearchableEnum;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Utilities.ScriptableObjects {
+namespace droid.Runtime.Utilities.ScriptableObjects {
 
   /// <inheritdoc />
   /// <summary>

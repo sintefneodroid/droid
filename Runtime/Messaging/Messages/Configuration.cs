@@ -1,6 +1,6 @@
-﻿using Neodroid.Runtime.Interfaces;
+﻿using droid.Runtime.Interfaces;
 
-namespace Neodroid.Runtime.Messaging.Messages {
+namespace droid.Runtime.Messaging.Messages {
   /// <summary>
   /// </summary>
   public class Configuration : IConfigurableConfiguration {

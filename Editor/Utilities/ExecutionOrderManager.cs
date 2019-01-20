@@ -1,7 +1,7 @@
 #if UNITY_EDITOR
 using UnityEditor;
 
-namespace Neodroid.Editor.Utilities {
+namespace droid.Editor.Utilities {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

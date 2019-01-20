@@ -1,7 +1,7 @@
-﻿using Neodroid.Runtime.Interfaces;
+﻿using droid.Runtime.Interfaces;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Observers.Rays {
+namespace droid.Runtime.Prototyping.Observers.Rays {
   /// <inheritdoc cref="Observer" />
   /// <summary>
   /// </summary>

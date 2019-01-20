@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Neodroid.Runtime.Utilities.Structs;
+using droid.Runtime.Utilities.Structs;
 using UnityEngine;
-using Object = System.Object;
 using Random = UnityEngine.Random;
 
-namespace Neodroid.Runtime.Utilities.NeodroidCamera.Segmentation {
+namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

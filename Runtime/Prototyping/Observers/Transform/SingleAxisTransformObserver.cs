@@ -1,9 +1,9 @@
 ﻿using System;
-using Neodroid.Runtime.Utilities.Enums;
-using Neodroid.Runtime.Utilities.Misc.SearchableEnum;
+using droid.Runtime.Utilities.Enums;
+using droid.Runtime.Utilities.Misc.SearchableEnum;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Observers.Transform {
+namespace droid.Runtime.Prototyping.Observers.Transform {
   /// <inheritdoc cref="Observer" />
   /// <summary>
   /// </summary>

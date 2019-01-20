@@ -1,9 +1,8 @@
-﻿using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Utilities.Enums;
-using Neodroid.Runtime.Utilities.ScriptableObjects;
+﻿using droid.Runtime.Interfaces;
+using droid.Runtime.Utilities.Enums;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Observers.Camera {
+namespace droid.Runtime.Prototyping.Observers.Camera {
   [AddComponentMenu(
       ObserverComponentMenuPath._ComponentMenuPath + "FloatArrayCamera" + ObserverComponentMenuPath._Postfix)]
   public class FloatArrayCameraObserver : Observer,

@@ -1,10 +1,9 @@
 ﻿using System.Linq;
-using Neodroid.Runtime.Utilities.Enums;
-using Neodroid.Runtime.Utilities.NeodroidCamera.Segmentation;
-using Neodroid.Runtime.Utilities.ScriptableObjects;
+using droid.Runtime.Utilities.Enums;
+using droid.Runtime.Utilities.NeodroidCamera.Segmentation;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Observers.Camera.Segmentation {
+namespace droid.Runtime.Prototyping.Observers.Camera.Segmentation {
   /// <inheritdoc cref="Observer" />
   /// <summary>
   /// </summary>

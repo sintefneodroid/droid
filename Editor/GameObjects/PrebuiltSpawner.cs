@@ -1,15 +1,15 @@
 ﻿#if UNITY_EDITOR
-using Neodroid.Runtime.Environments;
-using Neodroid.Runtime.Managers;
-using Neodroid.Runtime.Prototyping.Actors;
-using Neodroid.Runtime.Prototyping.Configurables;
-using Neodroid.Runtime.Prototyping.Motors;
-using Neodroid.Runtime.Prototyping.Observers.Transform;
-using Neodroid.Runtime.Utilities.BoundingBoxes;
+using droid.Runtime.Environments;
+using droid.Runtime.Managers;
+using droid.Runtime.Prototyping.Actors;
+using droid.Runtime.Prototyping.Configurables;
+using droid.Runtime.Prototyping.Motors;
+using droid.Runtime.Prototyping.Observers.Transform;
+using droid.Runtime.Utilities.BoundingBoxes;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Editor.GameObjects {
+namespace droid.Editor.GameObjects {
   public class PrebuiltSpawner : MonoBehaviour {
     /// <summary>
     /// </summary>

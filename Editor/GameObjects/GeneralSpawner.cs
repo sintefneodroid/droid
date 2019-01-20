@@ -1,11 +1,11 @@
 ﻿#if UNITY_EDITOR
-using Neodroid.Runtime.Environments;
-using Neodroid.Runtime.Managers;
-using Neodroid.Runtime.Prototyping.Actors;
+using droid.Runtime.Environments;
+using droid.Runtime.Managers;
+using droid.Runtime.Prototyping.Actors;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Editor.GameObjects {
+namespace droid.Editor.GameObjects {
   public class GeneralSpawner : MonoBehaviour {
     [MenuItem(EditorGameObjectMenuPath._GameObjectMenuPath + "SimulationManager", false, 10)]
     static void CreateSimulationManagerGameObject(MenuCommand menu_command) {

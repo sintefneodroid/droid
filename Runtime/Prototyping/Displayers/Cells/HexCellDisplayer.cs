@@ -1,11 +1,11 @@
 using System;
 using System.Linq;
-using Neodroid.Runtime.Utilities.Misc.Drawing;
-using Neodroid.Runtime.Utilities.Plotting;
-using Neodroid.Runtime.Utilities.Structs;
+using droid.Runtime.Utilities.Misc.Drawing;
+using droid.Runtime.Utilities.Plotting;
+using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Displayers.Cells {
+namespace droid.Runtime.Prototyping.Displayers.Cells {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

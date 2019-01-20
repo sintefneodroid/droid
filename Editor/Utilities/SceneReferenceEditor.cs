@@ -3,7 +3,7 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Editor.Utilities {
+namespace droid.Editor.Utilities {
   /// <inheritdoc />
   /// <summary>
   ///   Editor for a scene reference that can display error prompts and offer

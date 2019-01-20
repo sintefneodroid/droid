@@ -1,4 +1,4 @@
-﻿namespace Neodroid.Runtime.Messaging.Messages.Displayables {
+﻿namespace droid.Runtime.Messaging.Messages.Displayables {
   /// <summary>
   /// </summary>
   public abstract class Displayable {

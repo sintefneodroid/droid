@@ -1,12 +1,12 @@
 using System.Collections.Generic;
-using Neodroid.Runtime.Utilities.Misc.SearchableEnum;
+using droid.Runtime.Utilities.Misc.SearchableEnum;
+using UnityEditor;
 using UnityEngine;
 #if UNITY_EDITOR
-using UnityEditor;
 
 #endif
 
-namespace Neodroid.Runtime.Utilities.BoundingBoxes {
+namespace droid.Runtime.Utilities.BoundingBoxes {
   public enum BasedOn {
     Geometry_,
     Collider_
@@ -191,7 +191,7 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
       this._last_rotation = this.transform.rotation;
       this._last_scale = this.transform.localScale;
 
-      if (_Include_Children){
+      if (this._Include_Children){
         this._children_meshes = this.GetComponentsInChildren<MeshFilter>();
         this._children_colliders = this.GetComponentsInChildren<Collider>();
       }
@@ -214,7 +214,7 @@ namespace Neodroid.Runtime.Utilities.BoundingBoxes {
         return;
       }
 
-      if (_Include_Children){
+      if (this._Include_Children){
         if (this._children_meshes != this.GetComponentsInChildren<MeshFilter>()){
           this.Reset();
         }

@@ -1,13 +1,13 @@
 ﻿using System;
-using Neodroid.Runtime.Environments;
-using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Messaging.Messages;
-using Neodroid.Runtime.Utilities.Misc;
-using Neodroid.Runtime.Utilities.Structs;
+using droid.Runtime.Environments;
+using droid.Runtime.Interfaces;
+using droid.Runtime.Messaging.Messages;
+using droid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 using Random = System.Random;
 
-namespace Neodroid.Runtime.Prototyping.Configurables {
+namespace droid.Runtime.Prototyping.Configurables {
   /// <inheritdoc cref="Configurable" />
   /// <summary>
   /// </summary>
@@ -34,7 +34,7 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
     string _vel_x;
 
     Rigidbody _rigidbody;
-    
+
 
     /// <summary>
     /// </summary>
@@ -121,11 +121,11 @@ namespace Neodroid.Runtime.Prototyping.Configurables {
       if (this.RelativeToExistingValue) {
         if (simulator_configuration.ConfigurableName == this._vel_x) {
           //vel.Set(v - vel.x, vel.y, vel.z);
-        } 
+        }
       } else {
         if (simulator_configuration.ConfigurableName == this._vel_x) {
           //vel.Set(v, vel.y, vel.z);
-        } 
+        }
       }
 
 

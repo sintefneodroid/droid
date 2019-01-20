@@ -1,11 +1,11 @@
 ﻿using System;
-using Neodroid.Runtime.Environments;
-using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Utilities.GameObjects;
-using Neodroid.Runtime.Utilities.Misc;
+using droid.Runtime.Environments;
+using droid.Runtime.Interfaces;
+using droid.Runtime.Utilities.GameObjects;
+using droid.Runtime.Utilities.Misc;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Internals {
+namespace droid.Runtime.Prototyping.Internals {
   /// <inheritdoc cref="PrototypingGameObject" />
   /// <summary>
   /// </summary>

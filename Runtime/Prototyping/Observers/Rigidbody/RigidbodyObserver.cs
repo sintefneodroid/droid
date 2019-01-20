@@ -1,8 +1,8 @@
-﻿using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Utilities.Structs;
+﻿using droid.Runtime.Interfaces;
+using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Observers.Rigidbody {
+namespace droid.Runtime.Prototyping.Observers.Rigidbody {
   /// <summary>
   /// </summary>
   [AddComponentMenu(

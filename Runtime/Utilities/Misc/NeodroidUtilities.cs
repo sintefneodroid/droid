@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Utilities.Sensors;
+using droid.Runtime.Interfaces;
+using droid.Runtime.Utilities.Sensors;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Neodroid.Runtime.Utilities.Misc {
+namespace droid.Runtime.Utilities.Misc {
   /// <summary>
   /// </summary>
   public static class NeodroidUtilities {

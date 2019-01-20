@@ -1,8 +1,7 @@
-using Neodroid.Runtime.Messaging.Messages;
-using Neodroid.Runtime.Utilities.Enums;
-using Neodroid.Runtime.Utilities.ScriptableObjects;
+using droid.Runtime.Messaging.Messages;
+using droid.Runtime.Utilities.Enums;
 
-namespace Neodroid.Runtime.Interfaces {
+namespace droid.Runtime.Interfaces {
   public interface ISimulatorConfiguration {
     int ResetIterations { get; set; }
     bool AlwaysSerialiseIndividualObservables { get; set; }

@@ -1,4 +1,4 @@
-﻿namespace Neodroid.Runtime.Prototyping.Evaluation {
+﻿namespace droid.Runtime.Prototyping.Evaluation {
   /// <summary>
   /// </summary>
   public static class EvaluationComponentMenuPath {

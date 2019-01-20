@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using Neodroid.Runtime.Managers;
-using Neodroid.Runtime.Messaging.Messages;
-using Neodroid.Runtime.Utilities.ScriptableObjects;
+using droid.Runtime.Managers;
+using droid.Runtime.Messaging.Messages;
+using droid.Runtime.Utilities.ScriptableObjects;
 using UnityEngine;
 
-namespace Neodroid.Runtime.InternalReactions {
+namespace droid.Runtime.InternalReactions {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

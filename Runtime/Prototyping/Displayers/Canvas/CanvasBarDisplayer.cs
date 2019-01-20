@@ -1,11 +1,10 @@
 ﻿using System;
-using Neodroid.Runtime.Utilities.Debugging;
-using Neodroid.Runtime.Utilities.Structs;
+using droid.Runtime.Utilities.Debugging;
+using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 using UnityEngine.UI;
-using Object = System.Object;
 
-namespace Neodroid.Runtime.Prototyping.Displayers.Canvas {
+namespace droid.Runtime.Prototyping.Displayers.Canvas {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

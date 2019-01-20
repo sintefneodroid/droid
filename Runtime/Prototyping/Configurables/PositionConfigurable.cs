@@ -1,13 +1,13 @@
 ﻿using System;
-using Neodroid.Runtime.Environments;
-using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Messaging.Messages;
-using Neodroid.Runtime.Utilities.Misc;
-using Neodroid.Runtime.Utilities.Structs;
+using droid.Runtime.Environments;
+using droid.Runtime.Interfaces;
+using droid.Runtime.Messaging.Messages;
+using droid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 using Random = System.Random;
 
-namespace Neodroid.Runtime.Prototyping.Configurables {
+namespace droid.Runtime.Prototyping.Configurables {
   [AddComponentMenu(
       ConfigurableComponentMenuPath._ComponentMenuPath + "Position" + ConfigurableComponentMenuPath._Postfix)]
   public class PositionConfigurable : Configurable,

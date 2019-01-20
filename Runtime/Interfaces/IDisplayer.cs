@@ -1,7 +1,7 @@
-using Neodroid.Runtime.Utilities.Structs;
+using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Interfaces {
+namespace droid.Runtime.Interfaces {
   public interface IDisplayer : IRegisterable {
     //void Display(dynamic o);
     //void Display(object o);

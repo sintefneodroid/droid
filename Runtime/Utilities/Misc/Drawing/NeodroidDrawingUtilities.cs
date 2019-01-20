@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Neodroid.Runtime.Utilities.Misc.Drawing {
+namespace droid.Runtime.Utilities.Misc.Drawing {
   /// <summary>
   /// </summary>
   public static partial class NeodroidDrawingUtilities {

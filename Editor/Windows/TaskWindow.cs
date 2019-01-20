@@ -1,10 +1,10 @@
 ﻿#if UNITY_EDITOR
-using Neodroid.Runtime;
-using Neodroid.Runtime.Prototyping.Evaluation.Tasks;
+using droid.Runtime;
+using droid.Runtime.Prototyping.Evaluation.Tasks;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Editor.Windows {
+namespace droid.Editor.Windows {
   public class TaskWindow : EditorWindow {
     Texture _icon;
     Vector2 _scroll_position;

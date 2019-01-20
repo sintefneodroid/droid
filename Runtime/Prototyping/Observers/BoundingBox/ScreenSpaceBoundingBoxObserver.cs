@@ -1,8 +1,8 @@
 ﻿using System;
-using Neodroid.Runtime.Interfaces;
+using droid.Runtime.Interfaces;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Observers.BoundingBox {
+namespace droid.Runtime.Prototyping.Observers.BoundingBox {
   /// <inheritdoc cref="Observer" />
   /// <summary>
   /// </summary>

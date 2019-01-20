@@ -1,7 +1,7 @@
-﻿using Neodroid.Runtime.Interfaces;
+﻿using droid.Runtime.Interfaces;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Internals {
+namespace droid.Runtime.Prototyping.Internals {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

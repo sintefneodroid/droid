@@ -1,7 +1,7 @@
 ﻿using System;
-using Neodroid.Runtime.Interfaces;
+using droid.Runtime.Interfaces;
 
-namespace Neodroid.Runtime.Messaging.Messages {
+namespace droid.Runtime.Messaging.Messages {
   /// <summary>
   ///   Has a possible direction given by the sign of the float in strength
   /// </summary>

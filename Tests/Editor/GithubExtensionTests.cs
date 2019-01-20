@@ -2,15 +2,13 @@
 using System.Collections;
 using System.IO;
 using System.Linq;
+using droid.Editor.Utilities.Git;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
-using Neodroid.Editor.Utilities.Git;
-using UnityEditor.PackageManager;
 using UnityEngine.UIElements;
 
-
-namespace Neodroid.Tests.Editor {
+namespace droid.Tests.Editor {
   public class GithubExtensionTests {
     const string _package_name = "com.cnheider.gitpackagetest";
     const string _user_repo = "cnheider/GitPackageTest";

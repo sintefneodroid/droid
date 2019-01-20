@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Neodroid.Runtime.Messaging.Messages {
+namespace droid.Runtime.Messaging.Messages {
   /// <summary>
   /// </summary>
   public class Body {

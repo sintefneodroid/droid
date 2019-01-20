@@ -1,7 +1,7 @@
-﻿using Neodroid.Runtime.Interfaces;
+﻿using droid.Runtime.Interfaces;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Configurables {
+namespace droid.Runtime.Prototyping.Configurables {
   [AddComponentMenu(
       ConfigurableComponentMenuPath._ComponentMenuPath
       + "QuaternionTransform"

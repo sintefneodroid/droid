@@ -1,7 +1,6 @@
 ﻿using System;
-using Neodroid.Runtime.Utilities.Structs;
+using droid.Runtime.Utilities.Structs;
 using UnityEngine;
-using Object = System.Object;
 
 #if TEXT_MESH_PRO_EXISTS
 using TMPro;
@@ -75,7 +74,7 @@ namespace droid.Neodroid.Prototyping.Displayers {
   }
 }
 #else
-namespace Neodroid.Runtime.Prototyping.Displayers {
+namespace droid.Runtime.Prototyping.Displayers {
   /// <summary>
   /// </summary>
   [ExecuteInEditMode]

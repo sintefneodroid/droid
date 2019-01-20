@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Editor.Utilities {
+namespace droid.Editor.Utilities {
   /// <summary>
   /// </summary>
   public static class NeodroidEditorUtilities {

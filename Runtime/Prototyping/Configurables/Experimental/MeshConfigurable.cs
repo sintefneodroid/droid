@@ -1,15 +1,12 @@
-﻿using System;
-using Neodroid.Runtime.Environments;
-using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Messaging.Messages;
-using Neodroid.Runtime.Utilities.Debugging;
-using Neodroid.Runtime.Utilities.Misc;
+﻿using droid.Runtime.Environments;
+using droid.Runtime.Interfaces;
+using droid.Runtime.Messaging.Messages;
+using droid.Runtime.Utilities.Debugging;
+using droid.Runtime.Utilities.Misc;
 using UnityEngine;
-using UnityEngine.Serialization;
-using Object = System.Object;
 using Random = System.Random;
 
-namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
+namespace droid.Runtime.Prototyping.Configurables.Experimental {
   /// <inheritdoc cref="Configurable" />
   /// <summary>
   /// </summary>
@@ -36,7 +33,7 @@ namespace Neodroid.Runtime.Prototyping.Configurables.Experimental {
       this._mesh_str = this.Identifier + "Mesh";
       this._mesh_filter = this.GetComponent<MeshFilter>();
       if (Application.isPlaying){
-        this._deforming_mesh = _mesh_filter.mesh;
+        this._deforming_mesh = this._mesh_filter.mesh;
         this._original_vertices = this._deforming_mesh.vertices;
         this._displaced_vertices = new Vector3[this._original_vertices.Length];
         for (var i = 0; i < this._original_vertices.Length; i++)

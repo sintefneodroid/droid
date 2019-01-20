@@ -1,10 +1,10 @@
 ﻿#if UNITY_EDITOR
 using System.Collections.Generic;
-using Neodroid.Runtime;
+using droid.Runtime;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Editor.Windows {
+namespace droid.Editor.Windows {
   public class RenderTextureConfiguratorWindow : EditorWindow {
     Texture _icon;
 

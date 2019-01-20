@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Utilities.Enums;
+using droid.Runtime.Interfaces;
+using droid.Runtime.Utilities.Enums;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Configurables {
+namespace droid.Runtime.Prototyping.Configurables {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Neodroid.Runtime.Utilities.Misc.Procedural {
+namespace droid.Runtime.Utilities.Misc.Procedural {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

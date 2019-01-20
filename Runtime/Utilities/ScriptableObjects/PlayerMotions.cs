@@ -1,9 +1,9 @@
 ﻿using System;
-using Neodroid.Runtime.Utilities.Misc.SearchableEnum;
-using UnityEngine;
 using System.Text.RegularExpressions;
+using droid.Runtime.Utilities.Misc.SearchableEnum;
+using UnityEngine;
 
-namespace Neodroid.Runtime.Utilities.ScriptableObjects {
+namespace droid.Runtime.Utilities.ScriptableObjects {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

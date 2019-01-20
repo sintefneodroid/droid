@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Utilities.Misc.Procedural {
+namespace droid.Runtime.Utilities.Misc.Procedural {
   public static class NeodroidUtilities {
     /// <summary>
     /// </summary>

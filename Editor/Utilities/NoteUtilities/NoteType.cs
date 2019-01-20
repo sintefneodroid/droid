@@ -1,4 +1,4 @@
-namespace Neodroid.Editor.Utilities.NoteUtilities {
+namespace droid.Editor.Utilities.NoteUtilities {
   /// <summary>
   /// </summary>
   enum NoteType {

@@ -1,11 +1,10 @@
 ﻿using System;
-using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Managers;
-using Neodroid.Runtime.Utilities.Enums;
-using Neodroid.Runtime.Utilities.ScriptableObjects;
+using droid.Runtime.Interfaces;
+using droid.Runtime.Managers;
+using droid.Runtime.Utilities.Enums;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Observers.Camera {
+namespace droid.Runtime.Prototyping.Observers.Camera {
   /// <summary>
   /// </summary>
   enum ImageFormat {

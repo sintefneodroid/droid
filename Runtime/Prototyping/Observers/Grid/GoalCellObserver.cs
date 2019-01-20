@@ -1,10 +1,10 @@
-﻿using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Utilities.Misc.Drawing;
-using Neodroid.Runtime.Utilities.Misc.Grid;
-using Neodroid.Runtime.Utilities.Structs;
+﻿using droid.Runtime.Interfaces;
+using droid.Runtime.Utilities.Misc.Drawing;
+using droid.Runtime.Utilities.Misc.Grid;
+using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Observers.Grid {
+namespace droid.Runtime.Prototyping.Observers.Grid {
   [AddComponentMenu(
       ObserverComponentMenuPath._ComponentMenuPath + "GoalCell" + ObserverComponentMenuPath._Postfix)]
   public class GoalCellObserver : Observer,

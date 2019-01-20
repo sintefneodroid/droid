@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Random = System.Random;
 
-namespace Neodroid.Runtime.Environments {
+namespace droid.Runtime.Environments {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

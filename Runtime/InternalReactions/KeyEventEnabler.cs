@@ -1,8 +1,8 @@
-﻿using JetBrains.Annotations;
-using Neodroid.Runtime.Utilities.Misc.SearchableEnum;
+﻿using droid.Runtime.Utilities.Misc.SearchableEnum;
+using JetBrains.Annotations;
 using UnityEngine;
 
-namespace Neodroid.Runtime.InternalReactions {
+namespace droid.Runtime.InternalReactions {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

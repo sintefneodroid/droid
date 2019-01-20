@@ -1,8 +1,8 @@
 using System;
-using Neodroid.Editor.Utilities;
+using droid.Editor.Utilities;
 using UnityEngine;
 
-namespace Neodroid.Editor.ScriptableObjects {
+namespace droid.Editor.ScriptableObjects {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

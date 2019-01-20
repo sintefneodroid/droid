@@ -1,7 +1,7 @@
-﻿using Neodroid.Runtime.Utilities.Structs;
+﻿using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Interfaces {
+namespace droid.Runtime.Interfaces {
   /// <summary>
   /// </summary>
   public interface IHasQuadruple {

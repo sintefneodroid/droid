@@ -2,14 +2,14 @@
 using System.Linq;
 using System.Threading;
 using AsyncIO;
+using droid.Runtime.Messaging.FBS;
+using droid.Runtime.Messaging.Messages;
 using FlatBuffers;
-using Neodroid.Runtime.Messaging.FBS;
-using Neodroid.Runtime.Messaging.Messages;
 using NetMQ;
 using NetMQ.Sockets;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Messaging {
+namespace droid.Runtime.Messaging {
   /// <summary>
   /// </summary>
   [Serializable]

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Utilities.Structs {
+namespace droid.Runtime.Utilities.Structs {
   [Serializable]
   public struct DoubleVector3 {
     [SerializeField] double _X;

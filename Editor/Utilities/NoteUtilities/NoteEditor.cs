@@ -1,9 +1,9 @@
 #if UNITY_EDITOR
-using Neodroid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities.Misc;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Editor.Utilities.NoteUtilities {
+namespace droid.Editor.Utilities.NoteUtilities {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

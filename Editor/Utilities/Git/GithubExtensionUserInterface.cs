@@ -1,22 +1,21 @@
-﻿#if UNITY_2019_1_OR_NEWER && USE_GITHUB_EXTENSION
+﻿#if UNITY_2019_1_OR_NEWER && UNITY_EDITOR && USE_GITHUB_EXTENSION
 using System.Collections.Generic;
 using System.Linq;
-using Neodroid.Runtime;
+using droid.Runtime;
 using UnityEditor;
 using UnityEditor.PackageManager;
-using UnityEditor.PackageManager.UI;
+//using UnityEditor.PackageManager.UI;
 using UnityEngine;
-using PackageInfo = UnityEditor.PackageManager.PackageInfo;
 using UnityEngine.UIElements;
+using PackageInfo = UnityEditor.PackageManager.PackageInfo;
 
-
-namespace Neodroid.Editor.Utilities.Git {
+namespace droid.Editor.Utilities.Git {
   /// <inheritdoc cref="IPackageManagerExtension" />
   /// <summary>
   /// </summary>
   [InitializeOnLoad]
-  class GithubExtensionUserInterface : VisualElement,
-                                       IPackageManagerExtension {
+  class GithubExtensionUserInterface : VisualElement{
+                                       //IPackageManagerExtension {
     //################################
     // Constant or Static Members.
     //################################
@@ -26,7 +25,7 @@ namespace Neodroid.Editor.Utilities.Git {
     static readonly string _style_path = _resources_path + "GithubExtension.uss";
 
     static GithubExtensionUserInterface() {
-      PackageManagerExtensions.RegisterExtension(new GithubExtensionUserInterface());
+      //PackageManagerExtensions.RegisterExtension(new GithubExtensionUserInterface());
     }
 
     //################################

@@ -1,4 +1,4 @@
-﻿namespace Neodroid.Runtime.Prototyping.Displayers {
+﻿namespace droid.Runtime.Prototyping.Displayers {
   /// <summary>
   /// </summary>
   public static class DisplayerComponentMenuPath {

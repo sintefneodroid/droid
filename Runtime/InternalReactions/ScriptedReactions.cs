@@ -1,8 +1,8 @@
-﻿using Neodroid.Runtime.Managers;
+﻿using droid.Runtime.Managers;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Runtime.InternalReactions {
+namespace droid.Runtime.InternalReactions {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

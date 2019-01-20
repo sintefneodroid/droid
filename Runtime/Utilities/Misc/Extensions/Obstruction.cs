@@ -1,7 +1,7 @@
-﻿using Neodroid.Runtime.Utilities.Misc.Orientation;
+﻿using droid.Runtime.Utilities.Misc.Orientation;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Utilities.Misc.Extensions {
+namespace droid.Runtime.Utilities.Misc.Extensions {
   public class Obstruction : MonoBehaviour,
                              IMotionTracker {
     Vector3 _last_recorded_move;

@@ -1,13 +1,13 @@
 ﻿using System;
-using Neodroid.Runtime.Environments;
-using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Managers;
-using Neodroid.Runtime.Messaging.Messages;
-using Neodroid.Runtime.Utilities.Misc;
+using droid.Runtime.Environments;
+using droid.Runtime.Interfaces;
+using droid.Runtime.Managers;
+using droid.Runtime.Messaging.Messages;
+using droid.Runtime.Utilities.Misc;
 using UnityEngine;
 using Random = System.Random;
 
-namespace Neodroid.Runtime.Prototyping.Configurables {
+namespace droid.Runtime.Prototyping.Configurables {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

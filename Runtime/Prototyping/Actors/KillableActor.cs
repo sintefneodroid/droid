@@ -1,7 +1,7 @@
-﻿using Neodroid.Runtime.Interfaces;
+﻿using droid.Runtime.Interfaces;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Actors {
+namespace droid.Runtime.Prototyping.Actors {
   /// <summary>
   /// </summary>
   [AddComponentMenu(ActorComponentMenuPath._ComponentMenuPath + "Killable" + ActorComponentMenuPath._Postfix)]

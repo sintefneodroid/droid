@@ -1,27 +1,27 @@
 ﻿#if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
-using Neodroid.Editor.Utilities;
-using Neodroid.Runtime;
-using Neodroid.Runtime.Environments;
-using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.InternalReactions;
-using Neodroid.Runtime.Managers;
-using Neodroid.Runtime.Prototyping.Actors;
-using Neodroid.Runtime.Prototyping.Configurables;
-using Neodroid.Runtime.Prototyping.Displayers;
-using Neodroid.Runtime.Prototyping.Evaluation;
-using Neodroid.Runtime.Prototyping.Internals;
-using Neodroid.Runtime.Prototyping.Motors;
-using Neodroid.Runtime.Prototyping.Observers;
-using Neodroid.Runtime.Utilities.Enums;
-using Neodroid.Runtime.Utilities.GameObjects;
-using Neodroid.Runtime.Utilities.Misc;
-using Neodroid.Runtime.Utilities.ScriptableObjects;
+using droid.Editor.Utilities;
+using droid.Runtime;
+using droid.Runtime.Environments;
+using droid.Runtime.Interfaces;
+using droid.Runtime.InternalReactions;
+using droid.Runtime.Managers;
+using droid.Runtime.Prototyping.Actors;
+using droid.Runtime.Prototyping.Configurables;
+using droid.Runtime.Prototyping.Displayers;
+using droid.Runtime.Prototyping.Evaluation;
+using droid.Runtime.Prototyping.Internals;
+using droid.Runtime.Prototyping.Motors;
+using droid.Runtime.Prototyping.Observers;
+using droid.Runtime.Utilities.Enums;
+using droid.Runtime.Utilities.GameObjects;
+using droid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities.ScriptableObjects;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Editor.Windows {
+namespace droid.Editor.Windows {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
@@ -125,7 +125,7 @@ namespace Neodroid.Editor.Windows {
         this._show_detailed_descriptions = EditorGUILayout.Toggle(
             "Show Details",
           this._show_detailed_descriptions);
-  
+
         EditorGUILayout.EndVertical();
 
         EditorGUILayout.EndHorizontal();
@@ -140,14 +140,14 @@ namespace Neodroid.Editor.Windows {
         EditorGUILayout.BeginVertical("Box");
         var num_active_environments = this._environments.Length;
         var num_inactive_environments = this._environments.Length - num_active_environments;
-  
+
         //EditorGUILayout.BeginHorizontal();
-  
+
           GUILayout.Label(
             $"Environments - Active({num_active_environments}), Inactive({num_inactive_environments}), Total({this._environments.Length})");
-  
+
         //EditorGUILayout.EndHorizontal();
-  
+
         if (this._show_environment_properties != null) {
           for (var i = 0; i < this._show_environment_properties.Length; i++) {
             if (this._environments[i].isActiveAndEnabled) {
@@ -168,7 +168,7 @@ namespace Neodroid.Editor.Windows {
                     this._environments[i].enabled && this._environments[i].gameObject.activeSelf);
 
                 EditorGUILayout.ObjectField(this._environments[i], typeof(PrototypingEnvironment), true);
-                
+
                 if(this._show_detailed_descriptions){
                   this._environments[i].CoordinateSystem = (CoordinateSystem)EditorGUILayout.EnumPopup(
                       "Coordinate system",
@@ -194,7 +194,7 @@ namespace Neodroid.Editor.Windows {
                     "Debugging",
                     this._environments[i].Debugging);
                   //EditorGUILayout.EndHorizontal();
-  
+
                   EditorGUI.BeginDisabledGroup(true);
                   EditorGUILayout.LabelField("Info:");
                   EditorGUILayout.Toggle("Terminated", this._environments[i].Terminated);
@@ -391,7 +391,7 @@ namespace Neodroid.Editor.Windows {
               configurable_value.Debugging);
             //EditorGUILayout.EndHorizontal();
           }
-  
+
           EditorGUILayout.EndToggleGroup();
           EditorGUILayout.EndVertical();
         }
@@ -411,7 +411,7 @@ namespace Neodroid.Editor.Windows {
               motor.Key,
               motor_value.enabled && motor_value.gameObject.activeSelf);
           EditorGUILayout.ObjectField(motor_value, typeof(Motor), true);
-  
+
           if (this._show_detailed_descriptions) {
             EditorGUILayout.Vector3Field("Motion Space (min,gran,max)", motor_value.MotionValueSpace.ToVector3());
                         //EditorGUILayout.BeginHorizontal("Box");
@@ -420,7 +420,7 @@ namespace Neodroid.Editor.Windows {
               motor_value.Debugging);
             //EditorGUILayout.EndHorizontal();
           }
-  
+
           EditorGUILayout.EndToggleGroup();
 
           EditorGUILayout.EndVertical();

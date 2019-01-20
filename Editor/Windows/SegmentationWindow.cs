@@ -1,15 +1,15 @@
 ﻿#if UNITY_EDITOR
-using Neodroid.Runtime;
-using Neodroid.Runtime.Utilities.NeodroidCamera.Segmentation;
-using Neodroid.Runtime.Utilities.Structs;
+using droid.Runtime;
+using droid.Runtime.Utilities.NeodroidCamera.Segmentation;
+using droid.Runtime.Utilities.Structs;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Editor.Windows {
+namespace droid.Editor.Windows {
   public class SegmentationWindow : EditorWindow {
-    [SerializeField] ColorByInstance[] _colors_by_instance;
+    [SerializeField] ColorByInstance[] colorsByInstance;
 
-    [SerializeField] ColorByTag[] _colors_by_tag;
+    [SerializeField] ColorByTag[] colorsByTag;
     Texture _icon;
 
     Vector2 _scroll_position;
@@ -35,8 +35,8 @@ namespace Neodroid.Editor.Windows {
       GUILayout.Label("By Tag");
       var material_changers_by_tag = FindObjectsOfType<ChangeMaterialOnRenderByTag>();
       foreach (var material_changer_by_tag in material_changers_by_tag) {
-        this._colors_by_tag = material_changer_by_tag.ColorsByTag;
-        if (this._colors_by_tag != null) {
+        this.colorsByTag = material_changer_by_tag.ColorsByTag;
+        if (this.colorsByTag != null) {
           var tag_colors_property = serialised_object.FindProperty("_segmentation_colors_by_tag");
           EditorGUILayout.PropertyField(
               tag_colors_property,
@@ -63,8 +63,8 @@ namespace Neodroid.Editor.Windows {
       GUILayout.Label("By Instance (Not changable, only for inspection) ");
       var material_changers_by_instance = FindObjectsOfType<ChangeMaterialOnRenderByInstance>();
       foreach (var material_changer_by_instance in material_changers_by_instance) {
-        this._colors_by_instance = material_changer_by_instance.InstanceColors;
-        if (this._colors_by_instance != null) {
+        this.colorsByInstance = material_changer_by_instance.InstanceColors;
+        if (this.colorsByInstance != null) {
           var instance_colors_property = serialised_object.FindProperty("_segmentation_colors_by_instance");
           EditorGUILayout.PropertyField(
               instance_colors_property,

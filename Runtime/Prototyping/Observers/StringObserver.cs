@@ -1,8 +1,8 @@
 using System;
-using Neodroid.Runtime.Interfaces;
+using droid.Runtime.Interfaces;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Observers {
+namespace droid.Runtime.Prototyping.Observers {
   public abstract class StringObserver : Observer,
                                          IHasString {
     [Header("Observation", order = 103)]

@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections;
-using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Prototyping.Motors;
+using droid.Runtime.Prototyping.Motors;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Neodroid.Samples.MultiArmedBandit {
+namespace droid.Samples.MultiArmedBandit {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

@@ -4,14 +4,14 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Editor.Utilities {
+namespace droid.Editor.Utilities {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
   public class NeodroidPackageImporterWindow : EditorWindow {
-    [SerializeField] bool _k_essential_resources_imported;
-    [SerializeField] bool _k_examples_and_extras_resources_imported;
-    [SerializeField] bool _k_is_importing_examples;
+    [SerializeField] bool kEssentialResourcesImported;
+    [SerializeField] bool kExamplesAndExtrasResourcesImported;
+    [SerializeField] bool kIsImportingExamples;
 
     /// <summary>
     /// </summary>
@@ -26,15 +26,15 @@ namespace Neodroid.Editor.Utilities {
       this.SetEditorWindowSize();
 
       // Special handling due to scripts imported in a .unitypackage result in resulting in an assembly reload which clears the callbacks.
-      if (this._k_is_importing_examples) {
+      if (this.kIsImportingExamples) {
         AssetDatabase.importPackageCompleted += this.ImportCallback;
-        this._k_is_importing_examples = false;
+        this.kIsImportingExamples = false;
       }
     }
 
     void OnDestroy() {
-      this._k_essential_resources_imported = false;
-      this._k_examples_and_extras_resources_imported = false;
+      this.kEssentialResourcesImported = false;
+      this.kExamplesAndExtrasResourcesImported = false;
     }
 
     void OnGUI() {
@@ -52,7 +52,7 @@ namespace Neodroid.Editor.Utilities {
               new GUIStyle(EditorStyles.label) {wordWrap = true});
           GUILayout.Space(5f);
 
-          GUI.enabled = !this._k_essential_resources_imported;
+          GUI.enabled = !this.kEssentialResourcesImported;
           if (GUILayout.Button("Import TMP Essentials")) {
             import_essentials_package = true;
           }
@@ -71,8 +71,8 @@ namespace Neodroid.Editor.Utilities {
               new GUIStyle(EditorStyles.label) {wordWrap = true});
           GUILayout.Space(5f);
 
-          GUI.enabled = this._k_essential_resources_imported
-                        && !this._k_examples_and_extras_resources_imported;
+          GUI.enabled = this.kEssentialResourcesImported
+                        && !this.kExamplesAndExtrasResourcesImported;
           if (GUILayout.Button("Import TMP Examples & Extras")) {
             import_examples_package = true;
           }
@@ -85,7 +85,7 @@ namespace Neodroid.Editor.Utilities {
       GUILayout.EndVertical();
       GUILayout.Space(5f);
 
-      // Import Essential Resources 
+      // Import Essential Resources
       if (import_essentials_package) {
         AssetDatabase.importPackageCompleted += this.ImportCallback;
 
@@ -98,7 +98,7 @@ namespace Neodroid.Editor.Utilities {
       // Import Examples & Extras
       if (import_examples_package) {
         // Set flag to get around importing scripts as per of this package which results in an assembly reload which in turn prevents / clears any callbacks.
-        this._k_is_importing_examples = true;
+        this.kIsImportingExamples = true;
 
         var package_full_path = this.GetPackageFullPath();
         AssetDatabase.ImportPackage(
@@ -125,15 +125,15 @@ namespace Neodroid.Editor.Utilities {
     /// <param name="package_name"></param>
     void ImportCallback(string package_name) {
       if (package_name == "TMP Essential Resources") {
-        this._k_essential_resources_imported = true;
+        this.kEssentialResourcesImported = true;
         //TMPro_EventManager.ON_RESOURCES_LOADED();
 
         #if UNITY_2018_3_OR_NEWER
         SettingsService.NotifySettingsProviderChanged();
         #endif
       } else if (package_name == "TMP Examples & Extras") {
-        this._k_examples_and_extras_resources_imported = true;
-        this._k_is_importing_examples = false;
+        this.kExamplesAndExtrasResourcesImported = true;
+        this.kIsImportingExamples = false;
       }
 
       Debug.Log("[" + package_name + "] have been imported.");

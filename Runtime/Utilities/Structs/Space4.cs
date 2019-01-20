@@ -2,7 +2,7 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Neodroid.Runtime.Utilities.Structs {
+namespace droid.Runtime.Utilities.Structs {
   /// <summary>
   /// </summary>
   [Serializable]

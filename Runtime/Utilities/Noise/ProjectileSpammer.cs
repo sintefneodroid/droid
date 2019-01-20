@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Neodroid.Runtime.Utilities.Noise {
+namespace droid.Runtime.Utilities.Noise {
   public class ProjectileSpammer : MonoBehaviour {
     [SerializeField] string _assigned_tag = "Obstruction";
     float _last_spawn = 0f;

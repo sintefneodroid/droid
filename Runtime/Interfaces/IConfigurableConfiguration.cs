@@ -1,4 +1,4 @@
-namespace Neodroid.Runtime.Interfaces {
+namespace droid.Runtime.Interfaces {
   public interface IConfigurableConfiguration {
     float ConfigurableValue { get; }
     string ConfigurableName { get; }

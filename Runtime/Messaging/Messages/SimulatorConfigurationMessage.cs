@@ -1,7 +1,7 @@
-﻿using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Messaging.FBS;
+﻿using droid.Runtime.Interfaces;
+using droid.Runtime.Messaging.FBS;
 
-namespace Neodroid.Runtime.Messaging.Messages {
+namespace droid.Runtime.Messaging.Messages {
   /// <summary>
   /// </summary>
   public partial class SimulatorConfigurationMessage {

@@ -1,26 +1,26 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Neodroid.Editor.Utilities.ScriptableObjects {
+namespace droid.Editor.Utilities.ScriptableObjects {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
   public class ReadMe : ScriptableObject {
     /// <summary>
     /// </summary>
-    public Texture2D _Icon;
+    public Texture2D icon;
 
     /// <summary>
     /// </summary>
-    public bool _LoadedLayout;
+    public bool loadedLayout;
 
     /// <summary>
     /// </summary>
-    public Section[] _Sections;
+    public Section[] sections;
 
     /// <summary>
     /// </summary>
-    public string _Title;
+    public string title;
 
     /// <summary>
     /// </summary>
@@ -28,7 +28,7 @@ namespace Neodroid.Editor.Utilities.ScriptableObjects {
     public class Section {
       /// <summary>
       /// </summary>
-      public string _Heading, _Text, _LinkText, _Url;
+      public string heading, text, linkText, url;
     }
   }
 }

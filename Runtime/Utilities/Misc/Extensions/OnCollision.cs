@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Neodroid.Runtime.Utilities.Misc.Extensions {
+namespace droid.Runtime.Utilities.Misc.Extensions {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

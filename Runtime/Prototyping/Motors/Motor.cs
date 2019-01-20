@@ -1,12 +1,12 @@
 ﻿using System;
-using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Prototyping.Actors;
-using Neodroid.Runtime.Utilities.GameObjects;
-using Neodroid.Runtime.Utilities.Misc;
-using Neodroid.Runtime.Utilities.Structs;
+using droid.Runtime.Interfaces;
+using droid.Runtime.Prototyping.Actors;
+using droid.Runtime.Utilities.GameObjects;
+using droid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Motors {
+namespace droid.Runtime.Prototyping.Motors {
   /// <inheritdoc cref="PrototypingGameObject" />
   /// <summary>
   /// </summary>

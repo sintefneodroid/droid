@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Utilities.NeodroidCamera {
+namespace droid.Runtime.Utilities.NeodroidCamera {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

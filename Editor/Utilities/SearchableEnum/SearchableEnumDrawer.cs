@@ -1,10 +1,10 @@
 ﻿#if UNITY_EDITOR
 using System;
-using Neodroid.Runtime.Utilities.Misc.SearchableEnum;
+using droid.Runtime.Utilities.Misc.SearchableEnum;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Editor.Utilities.SearchableEnum {
+namespace droid.Editor.Utilities.SearchableEnum {
   /// <inheritdoc />
   /// <summary>
   ///   Draws the custom enum selector popup for enum fileds using the

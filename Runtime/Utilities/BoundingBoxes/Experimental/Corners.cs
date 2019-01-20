@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Utilities.BoundingBoxes.Experimental {
+namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
   /// <summary>
   /// </summary>
   public static class Corners {

@@ -1,7 +1,7 @@
-﻿using Neodroid.Runtime.Interfaces;
+﻿using droid.Runtime.Interfaces;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Motors.WheelColliderMotor {
+namespace droid.Runtime.Prototyping.Motors.WheelColliderMotor {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

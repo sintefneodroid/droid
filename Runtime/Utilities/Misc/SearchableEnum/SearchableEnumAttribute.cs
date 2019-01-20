@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Utilities.Misc.SearchableEnum {
+namespace droid.Runtime.Utilities.Misc.SearchableEnum {
   /// <inheritdoc />
   /// <summary>
   ///   Put this attribute on a public (or SerialzeField) enum in a

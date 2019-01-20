@@ -1,8 +1,8 @@
-﻿using Neodroid.Runtime.Utilities.Sensors;
+﻿using System.Runtime.CompilerServices;
+using droid.Runtime.Utilities.Sensors;
 using UnityEngine;
-using System.Runtime.CompilerServices;
 
-namespace Neodroid.Runtime.Utilities.BoundingBoxes.Experimental {
+namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
   public static class BbUtilities {
     public static void DrawBoxFromCenter(Vector3 p, float r, Color c) {
       // p is pos.yition of the center, r is "radius" and c is the color of the box

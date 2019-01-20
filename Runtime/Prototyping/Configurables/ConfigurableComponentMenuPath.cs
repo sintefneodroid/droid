@@ -1,4 +1,4 @@
-﻿namespace Neodroid.Runtime.Prototyping.Configurables {
+﻿namespace droid.Runtime.Prototyping.Configurables {
   /// <summary>
   /// </summary>
   public static class ConfigurableComponentMenuPath {

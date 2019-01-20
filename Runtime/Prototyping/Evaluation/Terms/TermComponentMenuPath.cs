@@ -1,4 +1,4 @@
-﻿namespace Neodroid.Runtime.Prototyping.Evaluation.Terms {
+﻿namespace droid.Runtime.Prototyping.Evaluation.Terms {
   /// <summary>
   /// </summary>
   public static class TermComponentMenuPath {

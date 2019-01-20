@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Globalization;
-using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Prototyping.Motors;
-
-using Neodroid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
+using droid.Runtime.Interfaces;
+using droid.Runtime.Prototyping.Motors;
+using droid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
 using UnityEngine.Serialization;
-using Random = UnityEngine.Random;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
-namespace Neodroid.Samples.MultiArmedBandit {
+namespace droid.Samples.MultiArmedBandit {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

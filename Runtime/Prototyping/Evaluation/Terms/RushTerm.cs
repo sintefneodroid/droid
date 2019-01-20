@@ -1,7 +1,7 @@
-﻿using Neodroid.Runtime.Interfaces;
+﻿using droid.Runtime.Interfaces;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Evaluation.Terms {
+namespace droid.Runtime.Prototyping.Evaluation.Terms {
   [AddComponentMenu(TermComponentMenuPath._ComponentMenuPath + "Rush" + TermComponentMenuPath._Postfix)]
   public class RushTerm : Term {
     [SerializeField] IPrototypingEnvironment _env;

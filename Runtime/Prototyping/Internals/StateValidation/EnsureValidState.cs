@@ -1,10 +1,10 @@
-﻿using Neodroid.Runtime.Environments;
-using Neodroid.Runtime.Prototyping.Actors;
-using Neodroid.Runtime.Utilities.BoundingBoxes;
-using Neodroid.Runtime.Utilities.Misc.Extensions;
+﻿using droid.Runtime.Environments;
+using droid.Runtime.Prototyping.Actors;
+using droid.Runtime.Utilities.BoundingBoxes;
+using droid.Runtime.Utilities.Misc.Extensions;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Internals.StateValidation {
+namespace droid.Runtime.Prototyping.Internals.StateValidation {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

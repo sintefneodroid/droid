@@ -1,8 +1,8 @@
 ﻿using System;
-using Random = UnityEngine.Random;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-namespace Neodroid.Runtime.Utilities.Structs {
+namespace droid.Runtime.Utilities.Structs {
   [Serializable]
   public struct ValueSpace {
     public int _Decimal_Granularity;
@@ -38,7 +38,7 @@ namespace Neodroid.Runtime.Utilities.Structs {
     public Vector2 ToVector2(){
       return new Vector2(this._Min_Value,this._Max_Value);
     }
-    
+
     public Vector3 ToVector3(){
       return new Vector3(this._Min_Value,this._Decimal_Granularity,this._Max_Value);
     }

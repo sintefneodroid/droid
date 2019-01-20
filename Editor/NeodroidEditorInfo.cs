@@ -1,6 +1,7 @@
 ﻿using UnityEditor;
+using UnityEngine;
 
-namespace Neodroid.Editor
+namespace droid.Editor
 {
     /// <summary>
     /// </summary>
@@ -17,26 +18,35 @@ namespace Neodroid.Editor
         public const string _generate_previews_loc_pref_key = "NeodroidPreviewsLocation";
 
         public static string ImportLocation{
-            get { return _ImportLocation; }
-            set { _ImportLocation = value.TrimEnd('/') + "/"; }
+            get { return _import_location; }
+            set { var new_path = value.TrimEnd('/') +"/";
+                Debug.Log($"Setting Neodroid import location to: {new_path}");
+                _import_location = new_path;
+            }
         }
 
-        public static bool GenerateScenePreviews => EditorPrefs.GetBool(_generate_previews_pref_key, false);
+        public static bool GenerateScenePreviews {
+            get { return EditorPrefs.GetBool(_generate_previews_pref_key, false); }
+        }
 
-        static string _ScenePreviewsLocation = EditorPrefs.GetString(_generate_previews_loc_pref_key, "ScenePreviews");
+        static string _scene_previews_location = EditorPrefs.GetString(_generate_previews_loc_pref_key, "ScenePreviews/");
 
         public static string ScenePreviewsLocation{
-            get { return _ScenePreviewsLocation; }
-            set { _ScenePreviewsLocation = value.TrimEnd('/') + "/"; }
+            get { return _scene_previews_location; }
+            set {
+              var new_path = value.TrimEnd('/') + "/";
+                Debug.Log($"Setting Neodroid ScenePreview location to: {new_path}");
+                _scene_previews_location = new_path;
+            }
         }
 
 
 
 #if NEODROID_IMPORTED_ASSET
         public const string _import_location_pref_key = "NeodroidImportLocation";
-        static string _ImportLocation = EditorPrefs.GetString(_import_location_pref_key, "Assets/droid/");
+        static string _import_location = EditorPrefs.GetString(_import_location_pref_key, "Assets/droid/");
 #else
-        static string _ImportLocation = "Packages/com.neodroid.droid/";
+        static string _import_location = "Packages/com.neodroid.droid/";
 #endif
     }
 }

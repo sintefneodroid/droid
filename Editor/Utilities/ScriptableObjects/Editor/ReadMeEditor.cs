@@ -3,7 +3,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Editor.Utilities.ScriptableObjects.Editor {
+namespace droid.Editor.Utilities.ScriptableObjects.Editor {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
@@ -16,29 +16,29 @@ namespace Neodroid.Editor.Utilities.ScriptableObjects.Editor {
     public const string _NewAssetPath = "Assets/";
 
     const string _scriptable_object_menu_path = "Tools/ReadMe/";
-    [SerializeField] GUIStyle _body_style = new GUIStyle(EditorStyles.label) {wordWrap = true, fontSize = 14};
-    [SerializeField] GUIStyle _heading_style;
-    [SerializeField] GUIStyle _link_style;
+    [SerializeField] GUIStyle bodyStyle = new GUIStyle(EditorStyles.label) {wordWrap = true, fontSize = 14};
+    [SerializeField] GUIStyle headingStyle;
+    [SerializeField] GUIStyle linkStyle;
 
     bool _m_initialized;
-    [SerializeField] GUIStyle _title_style;
+    [SerializeField] GUIStyle titleStyle;
 
-    GUIStyle LinkStyle { get { return this._link_style; } }
+    GUIStyle LinkStyle { get { return this.linkStyle; } }
 
-    GUIStyle TitleStyle { get { return this._title_style; } }
+    GUIStyle TitleStyle { get { return this.titleStyle; } }
 
-    GUIStyle HeadingStyle { get { return this._heading_style; } }
+    GUIStyle HeadingStyle { get { return this.headingStyle; } }
 
-    GUIStyle BodyStyle { get { return this._body_style; } }
+    GUIStyle BodyStyle { get { return this.bodyStyle; } }
 
     static void SelectReadmeAutomatically() {
       if (!SessionState.GetBool(_showed_readme_session_state_name, false)) {
         var readme = SelectReadme();
         SessionState.SetBool(_showed_readme_session_state_name, true);
 
-        if (readme && !readme._LoadedLayout) {
+        if (readme && !readme.loadedLayout) {
           LoadLayout();
-          readme._LoadedLayout = true;
+          readme.loadedLayout = true;
         }
       }
     }
@@ -93,8 +93,8 @@ namespace Neodroid.Editor.Utilities.ScriptableObjects.Editor {
 
       GUILayout.BeginHorizontal("In BigTitle");
       {
-        GUILayout.Label(readme._Icon, GUILayout.Width(icon_width), GUILayout.Height(icon_width));
-        GUILayout.Label(readme._Title, this.TitleStyle);
+        GUILayout.Label(readme.icon, GUILayout.Width(icon_width), GUILayout.Height(icon_width));
+        GUILayout.Label(readme.title, this.TitleStyle);
       }
       GUILayout.EndHorizontal();
     }
@@ -106,19 +106,19 @@ namespace Neodroid.Editor.Utilities.ScriptableObjects.Editor {
       var readme = (ReadMe)this.target;
       this.Init();
 
-      if (readme._Sections != null) {
-        foreach (var section in readme._Sections) {
-          if (!string.IsNullOrEmpty(section._Heading)) {
-            GUILayout.Label(section._Heading, this.HeadingStyle);
+      if (readme.sections != null) {
+        foreach (var section in readme.sections) {
+          if (!string.IsNullOrEmpty(section.heading)) {
+            GUILayout.Label(section.heading, this.HeadingStyle);
           }
 
-          if (!string.IsNullOrEmpty(section._Text)) {
-            GUILayout.Label(section._Text, this.BodyStyle);
+          if (!string.IsNullOrEmpty(section.text)) {
+            GUILayout.Label(section.text, this.BodyStyle);
           }
 
-          if (!string.IsNullOrEmpty(section._LinkText)) {
-            if (NeodroidEditorUtilities.LinkLabel(new GUIContent(section._LinkText), this.LinkStyle)) {
-              Application.OpenURL(section._Url);
+          if (!string.IsNullOrEmpty(section.linkText)) {
+            if (NeodroidEditorUtilities.LinkLabel(new GUIContent(section.linkText), this.LinkStyle)) {
+              Application.OpenURL(section.url);
             }
           }
 
@@ -132,11 +132,11 @@ namespace Neodroid.Editor.Utilities.ScriptableObjects.Editor {
         return;
       }
 
-      this._title_style = new GUIStyle(this._body_style) {fontSize = 26};
+      this.titleStyle = new GUIStyle(this.bodyStyle) {fontSize = 26};
 
-      this._heading_style = new GUIStyle(this._body_style) {fontSize = 18};
+      this.headingStyle = new GUIStyle(this.bodyStyle) {fontSize = 18};
 
-      this._link_style = new GUIStyle(this._body_style) {
+      this.linkStyle = new GUIStyle(this.bodyStyle) {
           wordWrap = false,
           normal = {textColor = new Color(0x00 / 255f, 0x78 / 255f, 0xDA / 255f, 1f)},
           stretchWidth = false

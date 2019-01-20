@@ -1,9 +1,9 @@
 ﻿using System;
-using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Utilities.Structs;
+using droid.Runtime.Interfaces;
+using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Observers.Transform {
+namespace droid.Runtime.Prototyping.Observers.Transform {
   /// <inheritdoc cref="Observer" />
   /// <summary>
   /// </summary>

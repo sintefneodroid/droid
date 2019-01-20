@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Interfaces {
+namespace droid.Runtime.Interfaces {
   public interface IActor : IRegisterable {
     Dictionary<string, IMotor> Motors { get; }
     Transform Transform { get; }

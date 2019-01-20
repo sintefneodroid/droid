@@ -1,8 +1,8 @@
 ﻿using System;
-using Neodroid.Runtime.Interfaces;
+using droid.Runtime.Interfaces;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Motors {
+namespace droid.Runtime.Prototyping.Motors {
   /// <summary>
   /// </summary>
   [AddComponentMenu(

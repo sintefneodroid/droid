@@ -1,4 +1,4 @@
-﻿namespace Neodroid.Runtime.Prototyping.Internals {
+﻿namespace droid.Runtime.Prototyping.Internals {
   /// <summary>
   /// </summary>
   public static class ResetableComponentMenuPath {

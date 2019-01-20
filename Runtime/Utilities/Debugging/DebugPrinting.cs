@@ -1,8 +1,7 @@
-using System;
-using Neodroid.Runtime.Interfaces;
+using droid.Runtime.Interfaces;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Utilities.Debugging {
+namespace droid.Runtime.Utilities.Debugging {
   public static class DebugPrinting {
     public static void ApplyPrint(
         bool debugging,

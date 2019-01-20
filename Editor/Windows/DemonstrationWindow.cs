@@ -1,9 +1,9 @@
 ﻿#if UNITY_EDITOR
-using Neodroid.Runtime;
+using droid.Runtime;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Editor.Windows {
+namespace droid.Editor.Windows {
   public class DemonstrationWindow : EditorWindow {
     int _captured_frame;
 

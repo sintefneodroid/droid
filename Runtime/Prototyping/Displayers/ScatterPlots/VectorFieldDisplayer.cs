@@ -1,12 +1,11 @@
 using System;
 using System.Linq;
-using Neodroid.Runtime.Utilities.Misc.Drawing;
-using Neodroid.Runtime.Utilities.Plotting;
-using Neodroid.Runtime.Utilities.Structs;
+using droid.Runtime.Utilities.Misc.Drawing;
+using droid.Runtime.Utilities.Plotting;
+using droid.Runtime.Utilities.Structs;
 using UnityEngine;
-using Object = System.Object;
 
-namespace Neodroid.Runtime.Prototyping.Displayers.ScatterPlots {
+namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

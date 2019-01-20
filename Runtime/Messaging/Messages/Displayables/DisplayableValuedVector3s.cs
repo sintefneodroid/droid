@@ -1,7 +1,7 @@
 ﻿using System;
-using Neodroid.Runtime.Utilities.Structs;
+using droid.Runtime.Utilities.Structs;
 
-namespace Neodroid.Runtime.Messaging.Messages.Displayables {
+namespace droid.Runtime.Messaging.Messages.Displayables {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

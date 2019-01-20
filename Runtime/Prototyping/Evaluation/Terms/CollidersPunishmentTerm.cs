@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Evaluation.Terms {
+namespace droid.Runtime.Prototyping.Evaluation.Terms {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

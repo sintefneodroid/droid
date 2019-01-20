@@ -1,8 +1,8 @@
 using System;
-using Neodroid.Runtime.Utilities.BoundingBoxes;
+using droid.Runtime.Utilities.BoundingBoxes;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Interfaces {
+namespace droid.Runtime.Interfaces {
   /// <inheritdoc cref="IEnvironment" />
   /// <summary>
   /// </summary>

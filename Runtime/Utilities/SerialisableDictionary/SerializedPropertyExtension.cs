@@ -2,7 +2,7 @@
 using System;
 using UnityEditor;
 
-namespace Neodroid.Runtime.Utilities.SerialisableDictionary {
+namespace droid.Runtime.Utilities.SerialisableDictionary {
   /// <summary>
   /// </summary>
   public static class SerializedPropertyExtension {

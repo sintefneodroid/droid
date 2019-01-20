@@ -1,10 +1,8 @@
-using System;
 using System.Collections.Generic;
-using Neodroid.Runtime.Utilities.BoundingBoxes.Experimental;
+using droid.Runtime.Utilities.BoundingBoxes.Experimental;
 using UnityEngine;
-using Object = System.Object;
 
-namespace Neodroid.Runtime.Utilities.BoundingBoxes {
+namespace droid.Runtime.Utilities.BoundingBoxes {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

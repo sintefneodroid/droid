@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Utilities.Misc {
+namespace droid.Runtime.Utilities.Misc {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

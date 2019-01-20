@@ -1,4 +1,4 @@
-﻿namespace Neodroid.Tests.Runtime {
+﻿namespace droid.Tests.Runtime {
   /*[TestFixture]
   public class SimulatorTests {
     [Test] public void Sanity() { Assert.That(true, Is.True); }

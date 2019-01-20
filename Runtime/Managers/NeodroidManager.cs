@@ -2,20 +2,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Messaging;
-using Neodroid.Runtime.Messaging.Messages;
-using Neodroid.Runtime.Utilities.Enums;
-using Neodroid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
-using Neodroid.Runtime.Utilities.ScriptableObjects;
+using droid.Runtime.Interfaces;
+using droid.Runtime.Messaging;
+using droid.Runtime.Messaging.Messages;
+using droid.Runtime.Utilities.Enums;
+using droid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
+using droid.Runtime.Utilities.ScriptableObjects;
+using UnityEditor;
 using UnityEngine;
 using Object = System.Object;
 #if UNITY_EDITOR
-using UnityEditor;
 
 #endif
 
-namespace Neodroid.Runtime.Managers {
+namespace droid.Runtime.Managers {
   /// <inheritdoc cref="UnityEngine.MonoBehaviour" />
   /// <summary>
   /// </summary>

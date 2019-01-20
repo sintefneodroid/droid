@@ -1,5 +1,4 @@
-﻿#if UNITY_2019_1_OR_NEWER && USE_GITHUB_EXTENSION
-using UnityEngine.UIElements;
+﻿#if UNITY_2019_1_OR_NEWER && UNITY_EDITOR && USE_GITHUB_EXTENSION
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,9 +6,10 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UIElements;
 using PackageInfo = UnityEditor.PackageManager.PackageInfo;
 
-namespace Neodroid.Editor.Utilities.Git {
+namespace droid.Editor.Utilities.Git {
   /// <summary>
   ///
   /// </summary>

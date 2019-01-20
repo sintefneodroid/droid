@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Editor.GameObjects {
+namespace droid.Editor.GameObjects {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

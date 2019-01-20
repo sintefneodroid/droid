@@ -1,5 +1,5 @@
 ﻿#if UNITY_EDITOR
-namespace Neodroid.Editor.GameObjects {
+namespace droid.Editor.GameObjects {
   /// <summary>
   /// </summary>
   public static class EditorGameObjectMenuPath {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Editor.Utilities.SearchableEnum {
+namespace droid.Editor.Utilities.SearchableEnum {
   /// <inheritdoc />
   /// <summary>
   ///   A popup window that displays a list of options and may use a search

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using Neodroid.Runtime.Environments;
-using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Prototyping.Evaluation.Terms;
-using Neodroid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
-using Neodroid.Runtime.Utilities.GameObjects;
+using droid.Runtime.Environments;
+using droid.Runtime.Interfaces;
+using droid.Runtime.Prototyping.Evaluation.Terms;
+using droid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
+using droid.Runtime.Utilities.GameObjects;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Evaluation {
+namespace droid.Runtime.Prototyping.Evaluation {
   /// <inheritdoc cref="ObjectiveFunction" />
   /// <summary>
   /// </summary>

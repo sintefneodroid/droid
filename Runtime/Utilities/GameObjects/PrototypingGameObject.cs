@@ -1,9 +1,9 @@
 ﻿using System;
-using Neodroid.Runtime.Interfaces;
+using droid.Runtime.Interfaces;
 using UnityEditor;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Utilities.GameObjects {
+namespace droid.Runtime.Utilities.GameObjects {
   /// <summary>
   /// </summary>
   public abstract class PrototypingGameObject : MonoBehaviour,

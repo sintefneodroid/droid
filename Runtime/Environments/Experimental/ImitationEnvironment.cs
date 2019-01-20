@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Neodroid.Runtime.Environments.Experimental {
+namespace droid.Runtime.Environments.Experimental {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

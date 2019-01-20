@@ -1,8 +1,8 @@
-﻿using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Utilities.Structs;
+﻿using droid.Runtime.Interfaces;
+using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Prototyping.Observers.Rays {
+namespace droid.Runtime.Prototyping.Observers.Rays {
   [AddComponentMenu(
       ObserverComponentMenuPath._ComponentMenuPath + "NearestByTag" + ObserverComponentMenuPath._Postfix)]
   public class NearestByTagObserver : Observer,

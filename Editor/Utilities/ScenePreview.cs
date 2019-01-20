@@ -1,12 +1,12 @@
 ﻿#if UNITY_EDITOR
+using System.Collections;
 using System.Linq;
-using Neodroid.Runtime;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Windows;
 
-namespace Neodroid.Editor.Utilities {
+namespace droid.Editor.Utilities {
   /// <inheritdoc />
   /// <summary>
   ///   Scene preview.
@@ -21,12 +21,55 @@ namespace Neodroid.Editor.Utilities {
     /// <summary>
     /// </summary>
     [RuntimeInitializeOnLoadMethod]
-    public void CaptureScreenShot() {
+    public static void CaptureScreenShot() {
       if (NeodroidEditorInfo.GenerateScenePreviews){
         var preview_path = GetPreviewPath(SceneManager.GetActiveScene().name);
-        //Debug.LogFormat("Saving scene preview at {0}", preview_path);
-        ScreenCapture.CaptureScreenshot(preview_path);
+        Debug.Log($"Saving scene preview at {preview_path}");
+        TakeScreenshot(preview_path);
       }
+    }
+
+    public static void TakeScreenshot(string name) {
+
+      // Take the screenshot
+      ScreenCapture.CaptureScreenshot(name); // TODO: VERY broken, unitys fault
+
+/*
+      //Wait for 4 frames
+      for (int i = 0; i < 5; i++)
+      {
+        yield return null;
+      }
+
+      // Read the data from the file
+      byte[] data = File.ReadAllBytes(Application.persistentDataPath + "/" + name);
+
+      // Create the texture
+      Texture2D screenshotTexture = new Texture2D(Screen.width, Screen.height);
+
+      // Load the image
+      screenshotTexture.LoadImage(data);
+
+      // Create a sprite
+      Sprite screenshotSprite = Sprite.Create(screenshotTexture, new Rect(0, 0, Screen.width, Screen.height), new Vector2(0.5f, 0.5f));
+
+      // Set the sprite to the screenshotPreview
+      screenshotPreview.GetComponent<Image>().sprite = screenshotSprite;
+
+      OR
+
+          Texture2D screenImage = new Texture2D(Screen.width, Screen.height);
+    //Get Image from screen
+    screenImage.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+    screenImage.Apply();
+    //Convert to png
+    byte[] imageBytes = screenImage.EncodeToPNG();
+
+    //Save image to file
+    System.IO.File.WriteAllBytes(path, imageBytes);
+
+*/
+
     }
 
     /// <inheritdoc />
@@ -44,7 +87,7 @@ namespace Neodroid.Editor.Utilities {
                              / previews_count;
 
         for (var i = 0; i < scene_names.Length; i++){
-          DrawPreview(i, scene_names[i], preview_width, preview_height);
+          this.DrawPreview(i, scene_names[i], preview_width, preview_height);
         }
       }
     }
@@ -67,7 +110,9 @@ namespace Neodroid.Editor.Utilities {
       }
     }
 
-    string GetPreviewPath(string scene_name) {
+
+    static string GetPreviewPath(string scene_name) {
+      //return $"{NeodroidEditorInfo.ScenePreviewsLocation}{scene_name}.png";
       return $"{Application.dataPath}/{NeodroidEditorInfo.ScenePreviewsLocation}{scene_name}.png";
     }
 

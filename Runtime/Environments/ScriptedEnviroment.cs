@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using Neodroid.Runtime.Interfaces;
-using Neodroid.Runtime.Managers;
-using Neodroid.Runtime.Messaging.Messages;
-using Neodroid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
-using Neodroid.Runtime.Utilities.Misc;
+using droid.Runtime.Interfaces;
+using droid.Runtime.Managers;
+using droid.Runtime.Messaging.Messages;
+using droid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
+using droid.Runtime.Utilities.Misc;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Neodroid.Runtime.Environments {
+namespace droid.Runtime.Environments {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

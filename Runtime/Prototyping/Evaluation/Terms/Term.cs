@@ -1,8 +1,8 @@
 ﻿using System;
-using Neodroid.Runtime.Utilities.GameObjects;
-using Neodroid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities.GameObjects;
+using droid.Runtime.Utilities.Misc;
 
-namespace Neodroid.Runtime.Prototyping.Evaluation.Terms {
+namespace droid.Runtime.Prototyping.Evaluation.Terms {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

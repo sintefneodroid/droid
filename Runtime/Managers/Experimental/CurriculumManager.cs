@@ -1,8 +1,8 @@
-﻿using Neodroid.Runtime.Utilities.Misc.Drawing;
-using Neodroid.Runtime.Utilities.ScriptableObjects;
+﻿using droid.Runtime.Utilities.Misc.Drawing;
+using droid.Runtime.Utilities.ScriptableObjects;
 using UnityEngine;
 
-namespace Neodroid.Runtime.Managers.Experimental {
+namespace droid.Runtime.Managers.Experimental {
   [AddComponentMenu("Neodroid/Managers/NotUsed/Curriculum")]
   public class CurriculumManager : NeodroidManager {
     [SerializeField] Curriculum _curriculum;

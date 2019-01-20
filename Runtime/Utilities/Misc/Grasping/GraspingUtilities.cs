@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Neodroid.Runtime.Utilities.Misc.Grasping {
+namespace droid.Runtime.Utilities.Misc.Grasping {
   /// <summary>
   /// </summary>
   public static class GraspingUtilities {
