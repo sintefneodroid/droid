@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿#if UNITY_2019_1_OR_NEWER
+using System;
+using UnityEngine;
 
 namespace droid.Runtime.Utilities.Plotting {
   [ExecuteInEditMode]
@@ -6,6 +8,7 @@ namespace droid.Runtime.Utilities.Plotting {
     Material _material;
     [SerializeField] Shader _shader;
     [SerializeField] Bounds _value_range = new Bounds(Vector3.zero, Vector3.one * 2);
+    static readonly Int32 _range = Shader.PropertyToID("_Range");
 
     void OnDestroy() {
       if (this._material != null) {
@@ -24,7 +27,7 @@ namespace droid.Runtime.Utilities.Plotting {
       }
 
       this._material.SetVector(
-          "_Range",
+          _range,
           new Vector4(
               this._value_range.min.x,
               this._value_range.max.x,
@@ -36,3 +39,4 @@ namespace droid.Runtime.Utilities.Plotting {
     }
   }
 }
+#endif

@@ -104,28 +104,28 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
         if (c_renderer) {
           if (this._tag_colors_dict != null && this._tag_colors_dict.ContainsKey(this._all_renders[i].tag)) {
             foreach (var mat in this._all_renders[i].sharedMaterials) {
-              if (mat != null && mat.HasProperty(_Default_Color_Tag)) {
+              if (mat != null && mat.HasProperty(this._Default_Color_Tag)) {
                 this._original_colors[i].AddFirst(mat.color);
               }
 
-              this._block.SetFloat(_Skip_Outline_Tag, 0);
-              this._block.SetColor(_Segmentation_Color_Tag, this._tag_colors_dict[this._all_renders[i].tag]);
+              this._block.SetFloat(this._Skip_Outline_Tag, 0);
+              this._block.SetColor(this._Segmentation_Color_Tag, this._tag_colors_dict[this._all_renders[i].tag]);
 
-              this._block.SetColor(_Outline_Color_Tag, this._Outline_Color);
-              this._block.SetFloat(_Outline_Width_Factor_Tag, this._Outline_Width_Factor);
+              this._block.SetColor(this._Outline_Color_Tag, this._Outline_Color);
+              this._block.SetFloat(this._Outline_Width_Factor_Tag, this._Outline_Width_Factor);
               this._all_renders[i].SetPropertyBlock(this._block);
             }
           } else if (this._Replace_Untagged_Color) {
             foreach (var mat in this._all_renders[i].sharedMaterials) {
-              if (mat != null && mat.HasProperty(_Default_Color_Tag)) {
+              if (mat != null && mat.HasProperty(this._Default_Color_Tag)) {
                 this._original_colors[i].AddFirst(mat.color);
               }
 
-              this._block.SetFloat(_Skip_Outline_Tag, 1);
-              this._block.SetColor(_Segmentation_Color_Tag, this._Untagged_Color);
+              this._block.SetFloat(this._Skip_Outline_Tag, 1);
+              this._block.SetColor(this._Segmentation_Color_Tag, this._Untagged_Color);
 
-              this._block.SetColor(_Outline_Color_Tag, this._Outline_Color);
-              this._block.SetFloat(_Outline_Width_Factor_Tag, this._Outline_Width_Factor);
+              this._block.SetColor(this._Outline_Color_Tag, this._Outline_Color);
+              this._block.SetFloat(this._Outline_Width_Factor_Tag, this._Outline_Width_Factor);
               this._all_renders[i].SetPropertyBlock(this._block);
             }
           }
@@ -152,7 +152,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
               var last = c?.Last;
               if (last != null) {
                 var last_val = last.Value;
-                this._block.SetColor(_Default_Color_Tag, last_val);
+                this._block.SetColor(this._Default_Color_Tag, last_val);
                 this._original_colors[i].RemoveLast();
                 this._all_renders[i].SetPropertyBlock(this._block);
               }

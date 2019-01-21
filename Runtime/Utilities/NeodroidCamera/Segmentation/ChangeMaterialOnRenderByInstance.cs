@@ -22,9 +22,6 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
     /// </summary>
     LinkedList<Color>[] _original_colors;
 
-    [SerializeField] string _default_color_tag = "_Color";
-    [SerializeField] string _segmentation_color_tag = "_SegmentationColor";
-
     /// <summary>
     /// </summary>
     public Dictionary<GameObject, Color> ColorsDictGameObject { get; } = new Dictionary<GameObject, Color>();
@@ -126,15 +123,15 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
         var c_renderer = this._all_renders[i];
         if (c_renderer) {
           foreach (var mat in c_renderer.sharedMaterials) {
-            if (mat != null && mat.HasProperty(this._default_color_tag)) {
+            if (mat != null && mat.HasProperty(this._Default_Color_Tag)) {
               this._original_colors[i].AddFirst(mat.color);
             }
 
             if (this.ColorsDictGameObject.ContainsKey(c_renderer.gameObject)) {
               var val = this.ColorsDictGameObject[c_renderer.gameObject];
-              this._block.SetColor(this._segmentation_color_tag, val);
-              this._block.SetColor(_Outline_Color_Tag, this._Outline_Color);
-              this._block.SetFloat(_Outline_Width_Factor_Tag, this._Outline_Width_Factor);
+              this._block.SetColor(this._Segmentation_Color_Tag, val);
+              this._block.SetColor(this._Outline_Color_Tag, this._Outline_Color);
+              this._block.SetFloat(this._Outline_Width_Factor_Tag, this._Outline_Width_Factor);
             }
 
             c_renderer.SetPropertyBlock(this._block);
@@ -158,7 +155,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
                 var last = c?.Last;
                 if (last != null) {
                   var last_val = last.Value;
-                  this._block.SetColor(this._default_color_tag, last_val);
+                  this._block.SetColor(this._Default_Color_Tag, last_val);
                   c_original_color.RemoveLast();
                   c_renderer.SetPropertyBlock(this._block);
                 }
