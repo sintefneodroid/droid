@@ -7,7 +7,9 @@ namespace droid.Editor.Windows {
     static Type[] _desired_dock_next_toos = {
         typeof(RenderTextureConfiguratorWindow),
         typeof(CameraSynchronisationWindow),
+        #if NEODROID_DEBUG
         typeof(DebugWindow),
+        #endif
         typeof(SegmentationWindow),
         typeof(EnvironmentsWindow),
         typeof(TaskWindow),
@@ -21,7 +23,9 @@ namespace droid.Editor.Windows {
       //Show existing window instance. If one doesn't exist, make one.
       GetWindow<RenderTextureConfiguratorWindow>(_desired_dock_next_toos);
       GetWindow<CameraSynchronisationWindow>(_desired_dock_next_toos);
+      #if NEODROID_DEBUG
       GetWindow<DebugWindow>(_desired_dock_next_toos);
+      #endif
       GetWindow<SegmentationWindow>(_desired_dock_next_toos);
       GetWindow<EnvironmentsWindow>(_desired_dock_next_toos);
       GetWindow<TaskWindow>(_desired_dock_next_toos);
