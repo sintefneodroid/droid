@@ -68,7 +68,7 @@ In this very simple tutorial you create a Neodroid environment from a new scene,
 
 9. See the observations and signals given by the environment
     - 9.1 Ensure both the Unity scene and Python process is running
-    - 9.2 Swicth the console and observe the values being printed, these a values return to the process from 
+    - 9.2 Switch to the console and observe the values being printed, these a values return to the process from 
   the running Unity scene, we call these observations and signals and are necessaries for doing reinforcement learning, the Neodroid eco-system set up of this up for you in the scene you built
     - 9.3 Again refer to the online resources for more information at documentation.neodroid.ml
 
