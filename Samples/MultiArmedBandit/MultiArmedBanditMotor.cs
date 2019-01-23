@@ -15,12 +15,12 @@ namespace droid.Samples.MultiArmedBandit {
       MotorComponentMenuPath._ComponentMenuPath + "MultiArmedBandit" + MotorComponentMenuPath._Postfix)]
   public class MultiArmedBanditMotor : Motor {
     [SerializeField] Color _inactive_color = Color.yellow;
-    [FormerlySerializedAs("_indicators")] [SerializeField] protected Material[] _Indicators;
+		[SerializeField] protected Material[] _Indicators;
     [SerializeField] int _last_index;
     [SerializeField] Color _lose_color = Color.red;
-    [FormerlySerializedAs("_win_amounts")] [SerializeField] protected float[] _Win_Amounts;
+    [SerializeField] protected float[] _Win_Amounts;
     [SerializeField] Color _win_color = Color.green;
-    [FormerlySerializedAs("_win_likelihoods")] [SerializeField] protected float[] _Win_Likelihoods;
+    [SerializeField] protected float[] _Win_Likelihoods;
     [SerializeField] bool _won;
 
     /// <summary>
@@ -132,7 +132,7 @@ namespace droid.Samples.MultiArmedBandit {
         indicator.color = this._inactive_color;
       }
 
-      var index = (int)motion.Strength+1;
+      var index = (int)motion.Strength;
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
