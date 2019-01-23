@@ -4,7 +4,10 @@ Shader "Neodroid/ScreenSpaceFlow" {
   }
   Subshader {
     Pass {
-      ZTest Always Cull Off ZWrite Off
+      //ZTest Always
+      //Cull Off
+      //ZWrite Off
+      //ZWrite On
 
       CGPROGRAM
         #include "UnityCG.cginc"

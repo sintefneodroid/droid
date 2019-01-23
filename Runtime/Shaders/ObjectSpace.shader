@@ -1,3 +1,6 @@
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
+
 
 Shader "Neodroid/ObjectSpace" {
 
@@ -20,13 +23,15 @@ Shader "Neodroid/ObjectSpace" {
 
         struct v2f {
             float4 pos : SV_POSITION;
-            float4 textu:COLOR;
+            float4 objPos: COLOR;
         };
 
         v2f vert (appdata v) {
             v2f o;
             o.pos = UnityObjectToClipPos (v.vertex);
-            o.textu = v.vertex;
+            o.objPos = v.vertex;
+            //o.objPos = mul(unity_ObjectToWorld, v.vertex);
+            //o.objPos = mul(unity_WorldToObject, o.objPos);
             return o;
         }
 
@@ -35,12 +40,8 @@ Shader "Neodroid/ObjectSpace" {
         //float4 _ZColor;
 
         fixed4 frag( v2f i) : SV_Target {
-
-
-                float4 p = .5 * (i.textu +1.0);
-
+                float4 p = .5 * (i.objPos + 1.0);
                 p.w = 1.0;
-
                 return p;
              }
             ENDCG

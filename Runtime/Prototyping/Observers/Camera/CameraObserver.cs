@@ -42,6 +42,13 @@ namespace droid.Runtime.Prototyping.Observers.Camera {
     [SerializeField]
     protected UnityEngine.Camera _Camera;
 
+    [SerializeField] Int32 default_2d_texture_width = 256;
+    [SerializeField] Int32 default_2d_texture_height = 256;
+    [SerializeField] Int32 default_depth = 24;
+    [SerializeField] RenderTextureFormat default_format = RenderTextureFormat.Default;
+    [SerializeField] RenderTextureReadWrite default_read_write = RenderTextureReadWrite.Default;
+
+
     /// <summary>
     /// </summary>
     protected bool _Grab = true;
@@ -80,9 +87,7 @@ namespace droid.Runtime.Prototyping.Observers.Camera {
         var target_texture = this._Camera.targetTexture;
         if (!target_texture) {
           Debug.LogWarning("No targetTexture defaulting to a texture of size (256, 256)");
-          const Int32 default_width = 256;
-          const Int32 default_height = default_width;
-          this._texture = new Texture2D(default_width, default_height);
+          this._texture = new Texture2D(this.default_2d_texture_width, this.default_2d_texture_height);
         } else {
           var texture_format_str = target_texture.format.ToString();
           if (Enum.TryParse(texture_format_str, out TextureFormat texture_format)) {
@@ -109,7 +114,11 @@ namespace droid.Runtime.Prototyping.Observers.Camera {
 
     /// <summary>
     /// </summary>
-    protected virtual void OnPostRender() { this.UpdateBytes(); }
+    protected virtual void OnPostRender() {
+      if (this._Manager?.SimulatorConfiguration?.SimulationType == SimulationType.Frame_dependent_) {
+        this.UpdateBytes();
+      }
+    }
 
     /// <summary>
     /// </summary>
@@ -123,10 +132,42 @@ namespace droid.Runtime.Prototyping.Observers.Camera {
 
       if (this._Camera) {
         var current_render_texture = RenderTexture.active;
-        RenderTexture.active = this._Camera.targetTexture;
+        var temporary_render_texture = this._Camera.targetTexture;
 
-        this._texture.ReadPixels(new Rect(0, 0, this._texture.width, this._texture.height), 0, 0);
-        this._texture.Apply();
+        if (temporary_render_texture) {
+          RenderTexture.active = temporary_render_texture;
+          if (this._Manager?.SimulatorConfiguration?.SimulationType != SimulationType.Frame_dependent_) {
+            this._Camera.Render();
+          }
+          this._texture.ReadPixels(new Rect(0, 0, this._texture.width, this._texture.height), 0, 0);
+          this._texture.Apply();
+        } else {
+          var old_rec = this._Camera.rect;
+          this._Camera.rect = new Rect(0f, 0f, 1f, 1f);
+
+          var temp_rt = RenderTexture.GetTemporary(
+              this._texture.width,
+              this._texture.height,
+              this.default_depth,
+              this.default_format,
+              this.default_read_write);
+
+          /*if (width != this._texture.width || height != this._texture.height) {
+            texture2D.Resize(width, height);
+          }*/
+
+          RenderTexture.active = temp_rt; // render to offscreen texture (readonly from CPU side)
+
+          if (this._Manager?.SimulatorConfiguration?.SimulationType != SimulationType.Frame_dependent_) {
+            this._Camera.Render();
+          }
+
+          this._texture.ReadPixels(new Rect(0, 0, this._texture.width, this._texture.height), 0, 0);
+          this._texture.Apply();
+
+          this._Camera.rect = old_rec;
+          RenderTexture.ReleaseTemporary(temp_rt);
+        }
 
         switch (this._image_format) {
           case ImageFormat.Jpg_:
@@ -153,7 +194,6 @@ namespace droid.Runtime.Prototyping.Observers.Camera {
     public override void UpdateObservation() {
       this._Grab = true;
       if (this._Manager?.SimulatorConfiguration?.SimulationType != SimulationType.Frame_dependent_) {
-        this._Camera.Render();
         this.UpdateBytes();
       }
     }

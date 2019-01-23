@@ -22,7 +22,7 @@ namespace droid.Runtime.Utilities.ScriptableObjects {
     [SerializeField]
     bool _always_serialise_unobservables;
 
-    [SerializeField] bool _always_serialise_individual_observables;
+    [SerializeField] bool _always_serialise_individual_observables =true;
 
     /// <summary>
     /// </summary>

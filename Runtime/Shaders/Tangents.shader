@@ -1,5 +1,10 @@
 Shader "Neodroid/Tangents" {
     SubShader {
+        Lighting Off
+    	Cull Off
+		//ZWrite Off
+		//ZTest Always
+
         Pass {
             CGPROGRAM
             #pragma vertex vert
@@ -20,15 +25,17 @@ Shader "Neodroid/Tangents" {
             v2f vert (appdata v) {
                 v2f o;
                 o.pos = UnityObjectToClipPos(v.vertex );
-                //o.color = v.tangent * 0.5 + 0.5;
-                o.color = .5 * (v.tangent + 1);
+                o.color = v.tangent * 0.5 + 0.5;
+                //o.color = .5 * (v.tangent + 1);
+                o.color.w = 1.0;
                 return o;
             }
 
-            fixed4 frag (v2f i) : SV_Target { return i.color; }
+            fixed4 frag (v2f i) : SV_Target {
+                return i.color;
+            }
             ENDCG
         }
     }
-
 	Fallback "Unlit"
 }

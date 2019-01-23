@@ -1,25 +1,23 @@
-// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
-Shader "Excluded/OpticalFlow"
-{
-	Properties
-	{
+Shader "Excluded/OpticalFlow"{
+	Properties	{
 		_Sensitivity("Sensitivity", Float) = 1
 	}
-	SubShader
-	{
+	SubShader	{
 		// No culling or depth
-		Cull Off ZWrite Off ZTest Always
+		Lighting Off
+		Cull Off
+		ZWrite Off
+		ZTest Always
 
 		Pass
 		{
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
-			
+
 			#include "UnityCG.cginc"
 
- 
+
 			struct appdata
 			{
 				float4 vertex : POSITION;
@@ -40,7 +38,7 @@ Shader "Excluded/OpticalFlow"
 				o.uv = TRANSFORM_TEX(v.uv, _CameraMotionVectorsTexture);
 				return o;
 			}
-			
+
 			sampler2D _CameraMotionVectorsTexture;
 
             float3 Hue(float H)
