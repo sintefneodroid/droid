@@ -97,7 +97,9 @@ namespace droid.Runtime.Prototyping.Observers.Transform {
             Debug.DrawLine(this.transform.position, this.transform.position + Vector3.up * 2, Color.green);
             Debug.DrawLine(this.transform.position, this.transform.position + Vector3.forward * 2, Color.red);
             break;
-          default: throw new ArgumentOutOfRangeException();
+          default: //TODO add the Direction cases
+            Gizmos.DrawIcon(this.transform.position, "console.warnicon", true);
+            break;
         }
       }
     }
