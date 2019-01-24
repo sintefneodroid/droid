@@ -24,11 +24,11 @@ namespace droid.Runtime.Prototyping.Observers.Camera {
     /// </summary>
     [Header("Observation", order = 103)]
     [SerializeField]
-    protected string _Serialised_String;
+    protected string serialisedString;
 
     /// <summary>
     /// </summary>
-    public String ObservationValue { get { return this._Serialised_String; } }
+    public String ObservationValue { get { return this.serialisedString; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -59,7 +59,6 @@ namespace droid.Runtime.Prototyping.Observers.Camera {
     public override void UpdateObservation() {
       this._Grab = true;
       if (this._Manager?.SimulatorConfiguration?.SimulationType != SimulationType.Frame_dependent_) {
-        this._Camera.Render();
         this.UpdateBytes();
       }
     }

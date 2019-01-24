@@ -1,5 +1,6 @@
 ﻿using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities.Enums;
+using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Observers.Camera {
@@ -24,12 +25,14 @@ namespace droid.Runtime.Prototyping.Observers.Camera {
     [SerializeField] Texture2D _texture;
 
     public float[] ObservationArray { get { return this._array; } private set { this._array = value; } }
+    public ValueSpace[] ObservationSpace { get; }
 
     protected override void PreSetup() {
       //this._manager = FindObjectOfType<NeodroidManager>();
       this._camera = this.GetComponent<UnityEngine.Camera>();
-      if (this._camera.targetTexture) {
-        this._texture = new Texture2D(this._camera.targetTexture.width, this._camera.targetTexture.height);
+      var target_texture = this._camera.targetTexture;
+      if (target_texture) {
+        this._texture = new Texture2D(target_texture.width, target_texture.height);
         if (this._black_white) {
           this.ObservationArray = new float[this._texture.width * this._texture.height * 1]; // *1 for clarity
         } else {
@@ -97,8 +100,6 @@ namespace droid.Runtime.Prototyping.Observers.Camera {
       var manager = this._manager;
       if (manager != null
           && manager.SimulatorConfiguration.SimulationType != SimulationType.Frame_dependent_) {
-        this._camera.Render();
-
         this.UpdateArray();
       }
     }

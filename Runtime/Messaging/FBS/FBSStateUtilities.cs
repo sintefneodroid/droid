@@ -254,9 +254,12 @@ namespace droid.Runtime.Messaging.FBS {
     static Offset<FArray> Serialise(FlatBufferBuilder b, IHasArray float_a) {
       //var v_offset = FArray.CreateArrayVector(b, camera.ObservationArray);
       var v_offset = CustomFlatBufferImplementation.CreateFloatVector(b, float_a.ObservationArray);
+
+      //  TODO:     var space_offset = CustomFlatBufferImplementation.CreateSpaceVector(b, float_a.ObservationSpace);
       //FArray.StartRangesVector(b,);
       FArray.StartFArray(b);
       FArray.AddArray(b, v_offset);
+      // TODO:       FArray.AddSpace(b, space_offset);
       //FArray.AddRanges(b,);
       return FArray.EndFArray(b);
     }

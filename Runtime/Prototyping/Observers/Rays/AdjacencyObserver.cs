@@ -1,4 +1,5 @@
 ﻿using droid.Runtime.Interfaces;
+using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Observers.Rays {
@@ -34,13 +35,17 @@ namespace droid.Runtime.Prototyping.Observers.Rays {
       private set { this._obs_array = value; }
     }
 
+    public ValueSpace[] ObservationSpace { get; set; }
+
     /// <summary>
     /// </summary>
     protected override void PreSetup() {
       if (this._is_2_d) {
         this.ObservationArray = new float[8];
+        this.ObservationSpace = new ValueSpace[8];
       } else {
         this.ObservationArray = new float[27];
+        this.ObservationSpace = new ValueSpace[27];
       }
 
       this.FloatEnumerable = this.ObservationArray;
@@ -115,6 +120,8 @@ namespace droid.Runtime.Prototyping.Observers.Rays {
           vals[7] = 0;
         }
 
+        //TODO: Normalise observations with observation space
+
         this.ObservationArray = vals;
       } else {
         var vals = new float[27];
@@ -156,6 +163,8 @@ namespace droid.Runtime.Prototyping.Observers.Rays {
 
         //TODO:Missing combinations Vector3.down+Vector3.left...
 
+        //TODO: Normalise observations with observation space
+
         this.ObservationArray = vals;
       }
 
@@ -167,126 +176,128 @@ namespace droid.Runtime.Prototyping.Observers.Rays {
 
     void OnDrawGizmosSelected() {
       if (this.enabled) {
+        var position = this.transform.position;
         Debug.DrawLine(
-            this.transform.position,
-            this.transform.position - Vector3.forward * this._range,
+            position,
+            position - Vector3.forward * this._range,
             this._color);
         Debug.DrawLine(
-            this.transform.position,
-            this.transform.position - Vector3.left * this._range,
+            position,
+            position - Vector3.left * this._range,
             this._color);
         Debug.DrawLine(
-            this.transform.position,
-            this.transform.position - Vector3.right * this._range,
+            position,
+            position - Vector3.right * this._range,
             this._color);
         Debug.DrawLine(
-            this.transform.position,
-            this.transform.position - Vector3.back * this._range,
+            position,
+            position - Vector3.back * this._range,
             this._color);
         Debug.DrawLine(
-            this.transform.position,
-            this.transform.position - (Vector3.forward + Vector3.left).normalized * this._range,
+            position,
+            position - (Vector3.forward + Vector3.left).normalized * this._range,
             this._color);
         Debug.DrawLine(
-            this.transform.position,
-            this.transform.position - (Vector3.forward + Vector3.right).normalized * this._range,
+            position,
+            position - (Vector3.forward + Vector3.right).normalized * this._range,
             this._color);
         Debug.DrawLine(
-            this.transform.position,
-            this.transform.position - (Vector3.back + Vector3.left).normalized * this._range,
+            position,
+            position - (Vector3.back + Vector3.left).normalized * this._range,
             this._color);
         Debug.DrawLine(
-            this.transform.position,
-            this.transform.position - (Vector3.back + Vector3.right).normalized * this._range,
+            position,
+            position - (Vector3.back + Vector3.right).normalized * this._range,
             this._color);
         if (!this._is_2_d) {
+          var position1 = this.transform.position;
           Debug.DrawLine(
-              this.transform.position,
-              this.transform.position - Vector3.up * this._range,
+              position1,
+              position1 - Vector3.up * this._range,
               this._color);
           Debug.DrawLine(
-              this.transform.position,
-              this.transform.position - Vector3.down * this._range,
-              this._color);
-
-          Debug.DrawLine(
-              this.transform.position,
-              this.transform.position - (Vector3.up + Vector3.left).normalized * this._range,
-              this._color);
-          Debug.DrawLine(
-              this.transform.position,
-              this.transform.position - (Vector3.up + Vector3.right).normalized * this._range,
-              this._color);
-          Debug.DrawLine(
-              this.transform.position,
-              this.transform.position - (Vector3.up + Vector3.forward).normalized * this._range,
-              this._color);
-          Debug.DrawLine(
-              this.transform.position,
-              this.transform.position - (Vector3.up + Vector3.back).normalized * this._range,
+              position1,
+              position1 - Vector3.down * this._range,
               this._color);
 
           Debug.DrawLine(
-              this.transform.position,
-              this.transform.position - (Vector3.down + Vector3.left).normalized * this._range,
+              position1,
+              position1 - (Vector3.up + Vector3.left).normalized * this._range,
+              this._color);
+          Debug.DrawLine(
+              position1,
+              position1 - (Vector3.up + Vector3.right).normalized * this._range,
+              this._color);
+          Debug.DrawLine(
+              position1,
+              position1 - (Vector3.up + Vector3.forward).normalized * this._range,
+              this._color);
+          Debug.DrawLine(
+              position1,
+              position1 - (Vector3.up + Vector3.back).normalized * this._range,
               this._color);
 
           Debug.DrawLine(
-              this.transform.position,
-              this.transform.position - (Vector3.down + Vector3.right).normalized * this._range,
+              position1,
+              position1 - (Vector3.down + Vector3.left).normalized * this._range,
               this._color);
 
           Debug.DrawLine(
-              this.transform.position,
-              this.transform.position - (Vector3.down + Vector3.forward).normalized * this._range,
+              position1,
+              position1 - (Vector3.down + Vector3.right).normalized * this._range,
               this._color);
 
           Debug.DrawLine(
-              this.transform.position,
-              this.transform.position - (Vector3.down + Vector3.back).normalized * this._range,
+              position1,
+              position1 - (Vector3.down + Vector3.forward).normalized * this._range,
               this._color);
 
           Debug.DrawLine(
-              this.transform.position,
-              this.transform.position
+              position1,
+              position1 - (Vector3.down + Vector3.back).normalized * this._range,
+              this._color);
+
+          Debug.DrawLine(
+              position1,
+              position1
               - (Vector3.down + Vector3.forward + Vector3.left).normalized * this._range,
               this._color);
 
           Debug.DrawLine(
-              this.transform.position,
-              this.transform.position
+              position1,
+              position1
               - (Vector3.down + Vector3.forward + Vector3.right).normalized * this._range,
               this._color);
           Debug.DrawLine(
-              this.transform.position,
-              this.transform.position - (Vector3.down + Vector3.back + Vector3.left).normalized * this._range,
+              position1,
+              position1 - (Vector3.down + Vector3.back + Vector3.left).normalized * this._range,
               this._color);
 
           Debug.DrawLine(
-              this.transform.position,
-              this.transform.position
+              position1,
+              position1
               - (Vector3.down + Vector3.back + Vector3.right).normalized * this._range,
               this._color);
 
           Debug.DrawLine(
-              this.transform.position,
-              this.transform.position
+              position1,
+              position1
               - (Vector3.up + Vector3.forward + Vector3.left).normalized * this._range,
               this._color);
 
           Debug.DrawLine(
-              this.transform.position,
-              this.transform.position
+              position1,
+              position1
               - (Vector3.up + Vector3.forward + Vector3.right).normalized * this._range,
               this._color);
           Debug.DrawLine(
-              this.transform.position,
-              this.transform.position - (Vector3.up + Vector3.back + Vector3.left).normalized * this._range,
+              position1,
+              position1 - (Vector3.up + Vector3.back + Vector3.left).normalized * this._range,
               this._color);
 
           Debug.DrawLine(
-              this.transform.position,
-              this.transform.position - (Vector3.up + Vector3.back + Vector3.right).normalized * this._range,
+              position1,
+              position1 - (Vector3.up + Vector3.back + Vector3.right).normalized * this._range,
               this._color);
         }
       }
