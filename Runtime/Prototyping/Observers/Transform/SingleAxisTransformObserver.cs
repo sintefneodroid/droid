@@ -57,17 +57,21 @@ namespace droid.Runtime.Prototyping.Observers.Transform {
     void OnDrawGizmos() {
       if (this.enabled) {
         switch (this._dim) {
+          case Axis.Rot_x_:
           case Axis.X_:
             Debug.DrawLine(this.transform.position, this.transform.position + Vector3.right * 2, Color.green);
-
             break;
+          case Axis.Rot_y_:
           case Axis.Y_:
-            Debug.DrawLine(this.transform.position, this.transform.position + Vector3.right * 2, Color.green);
-            break;
-          case Axis.Z_:
             Debug.DrawLine(this.transform.position, this.transform.position + Vector3.up * 2, Color.green);
             break;
-          default: throw new ArgumentOutOfRangeException();
+          case Axis.Rot_z_:
+          case Axis.Z_:
+            Debug.DrawLine(this.transform.position, this.transform.position + Vector3.forward * 2, Color.green);
+            break;
+          default: //TODO add the Direction cases
+            Gizmos.DrawIcon(this.transform.position, "console.warnicon", true);
+            break;
         }
       }
     }
