@@ -25,26 +25,6 @@ namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
       Debug.DrawLine(new Vector3(r + p.x, -r + p.y, r + p.z), new Vector3(r + p.x, r + p.y, r + p.z), c);
     }
 
-    public static void RegisterCollisionTriggerCallbacksOnChildren(
-        Transform transform,
-        ChildColliderSensor.OnChildCollisionEnterDelegate on_collision_enter_child,
-        ChildColliderSensor.OnChildTriggerEnterDelegate on_trigger_enter_child,
-        ChildColliderSensor.OnChildCollisionExitDelegate on_collision_exit_child,
-        ChildColliderSensor.OnChildTriggerExitDelegate on_trigger_exit_child,
-        bool debug = false) {
-      var children_with_colliders = transform.GetComponentsInChildren<Collider>(transform.gameObject);
-
-      foreach (var child in children_with_colliders) {
-        var child_sensor = child.gameObject.AddComponent<ChildColliderSensor>();
-        child_sensor.OnCollisionEnterDelegate = on_collision_enter_child;
-        child_sensor.OnTriggerEnterDelegate = on_trigger_enter_child;
-        child_sensor.OnCollisionExitDelegate = on_collision_exit_child;
-        child_sensor.OnTriggerExitDelegate = on_trigger_exit_child;
-        if (debug) {
-          Debug.Log(transform.name + " has " + child_sensor.name + " registered");
-        }
-      }
-    }
 
     public static void DrawRect(float x_size, float y_size, float z_size, Vector3 pos, Color color) {
       var x = x_size / 2;

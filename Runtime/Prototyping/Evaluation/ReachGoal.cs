@@ -48,7 +48,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
       }
 
       if (this._goal) {
-        NeodroidUtilities.RegisterCollisionTriggerCallbacksOnChildren(
+        NeodroidUtilities.RegisterCollisionTriggerCallbacksOnChildren<Utilities.Sensors.ChildCollider3DSensor, Collider, Collision>(
             this,
             this._goal.transform,
             null,
@@ -57,7 +57,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
       }
 
       if (this._actor) {
-        NeodroidUtilities.RegisterCollisionTriggerCallbacksOnChildren(
+        NeodroidUtilities.RegisterCollisionTriggerCallbacksOnChildren<Utilities.Sensors.ChildCollider3DSensor, Collider, Collision>(
             this,
             this._actor.transform,
             null,

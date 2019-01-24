@@ -98,21 +98,23 @@ namespace droid.Runtime.Utilities.Misc {
       return texture;
     }
 
-    public static void RegisterCollisionTriggerCallbacksOnChildren(
+    public static void RegisterCollisionTriggerCallbacksOnChildren<TChildColliderSensor,TCollider,TCollision>(
         Component caller,
         Transform parent,
-        ChildColliderSensor.OnChildCollisionEnterDelegate on_collision_enter_child,
-        ChildColliderSensor.OnChildTriggerEnterDelegate on_trigger_enter_child = null,
-        ChildColliderSensor.OnChildCollisionExitDelegate on_collision_exit_child = null,
-        ChildColliderSensor.OnChildTriggerExitDelegate on_trigger_exit_child = null,
-        ChildColliderSensor.OnChildCollisionStayDelegate on_collision_stay_child = null,
-        ChildColliderSensor.OnChildTriggerStayDelegate on_trigger_stay_child = null,
-        bool debug = false) {
-      var children_with_colliders = parent.GetComponentsInChildren<Collider>();
+        ChildColliderSensor<TCollider, TCollision>.OnChildCollisionEnterDelegate on_collision_enter_child=null,
+        ChildColliderSensor<TCollider, TCollision>.OnChildTriggerEnterDelegate on_trigger_enter_child = null,
+        ChildColliderSensor<TCollider, TCollision>.OnChildCollisionExitDelegate on_collision_exit_child = null,
+        ChildColliderSensor<TCollider, TCollision>.OnChildTriggerExitDelegate on_trigger_exit_child = null,
+        ChildColliderSensor<TCollider, TCollision>.OnChildCollisionStayDelegate on_collision_stay_child = null,
+        ChildColliderSensor<TCollider, TCollision>.OnChildTriggerStayDelegate on_trigger_stay_child = null,
+        bool debug = false ) where TChildColliderSensor : ChildColliderSensor<TCollider, TCollision> where TCollider : Component {
+      var children_with_colliders = parent.GetComponentsInChildren<TCollider>();
+
+            //TODO add check and warning for not all callbacks = null
 
       foreach (var child in children_with_colliders) {
-        var child_sensors = child.GetComponents<ChildColliderSensor>();
-        ChildColliderSensor collider_sensor = null;
+        var child_sensors = child.GetComponents<TChildColliderSensor>();
+        ChildColliderSensor<TCollider,TCollision> collider_sensor = null;
         foreach (var child_sensor in child_sensors) {
           if (child_sensor.Caller != null && child_sensor.Caller == caller) {
             collider_sensor = child_sensor;
@@ -127,7 +129,7 @@ namespace droid.Runtime.Utilities.Misc {
         }
 
         if (collider_sensor == null) {
-          collider_sensor = child.gameObject.AddComponent<ChildColliderSensor>();
+          collider_sensor = child.gameObject.AddComponent<TChildColliderSensor>();
           collider_sensor.Caller = caller;
         }
 

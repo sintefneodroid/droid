@@ -60,11 +60,11 @@ namespace droid.Runtime.Prototyping.Evaluation {
       var actor = this._actor;
       if (actor != null) {
         this._initial_actor_position = actor.position;
-        var remote_sensor = this._actor.GetComponentInChildren<ChildColliderSensor>();
+        var remote_sensor = this._actor.GetComponentInChildren<ChildColliderSensor<Collider, Collision>>();
         if (!remote_sensor) {
           var col = this._actor.GetComponentInChildren<Collider>();
           if (col) {
-            remote_sensor = col.gameObject.AddComponent<ChildColliderSensor>();
+            remote_sensor = col.gameObject.AddComponent<ChildColliderSensor<Collider, Collision>>();
           }
         }
 

@@ -86,7 +86,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
         this._playable_area = FindObjectOfType<BoundingBox>();
       }
 
-      NeodroidUtilities.RegisterCollisionTriggerCallbacksOnChildren(
+      NeodroidUtilities.RegisterCollisionTriggerCallbacksOnChildren<Utilities.Sensors.ChildCollider3DSensor, Collider, Collision>(
           this,
           this._area.transform,
           this.OnCollisionEnterChild,
@@ -97,7 +97,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
           this.OnTriggerStayChild,
           this.Debugging);
 
-      NeodroidUtilities.RegisterCollisionTriggerCallbacksOnChildren(
+      NeodroidUtilities.RegisterCollisionTriggerCallbacksOnChildren<Utilities.Sensors.ChildCollider3DSensor, Collider, Collision>(
           this,
           this._actor.transform,
           this.OnCollisionEnterChild,

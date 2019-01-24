@@ -13,12 +13,12 @@ namespace droid.Runtime.Utilities.GameObjects {
     [SerializeField]
     [Header("Naming", order = 10)]
     protected string _Custom_Name = "";
-
-    [SerializeField] bool _debugging;
-
-    /// <summary>
-    /// </summary>
-    [Header("Development", order = 90)]
+#if NEODROID_DEBUG
+        [SerializeField] bool _debugging;
+#endif
+        /// <summary>
+        /// </summary>
+        [Header("Development", order = 90)]
     [SerializeField]
     bool _disables_children;
 
@@ -34,13 +34,15 @@ namespace droid.Runtime.Utilities.GameObjects {
     [SerializeField]
     protected bool _Use_Custom_Name;
 
-    /// <summary>
-    /// </summary>
-    public bool Debugging { get { return this._debugging; } set { this._debugging = value; } }
-
-    /// <summary>
-    /// </summary>
-    public virtual string PrototypingTypeName { get { return this.GetType().Name; } }
+#if NEODROID_DEBUG
+        /// <summary>
+        /// </summary>
+        public bool Debugging { get { return this._debugging; } set { this._debugging = value; } }
+#else
+        public bool Debugging { get { return false; } set { } }
+#endif
+        ///
+        public virtual string PrototypingTypeName { get { return this.GetType().Name; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -140,7 +142,7 @@ namespace droid.Runtime.Utilities.GameObjects {
     /// </summary>
     protected virtual void Clear() { }
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     /// <summary>
     /// </summary>
     void OnValidate() { // Only called in the editor
@@ -160,7 +162,7 @@ namespace droid.Runtime.Utilities.GameObjects {
             $"You must override Register and UnRegisterComponent for component {this.GetType()} for gameobject {this.Identifier} in order to Re-register component on every 'OnValidate' while in edit-mode");
       }
     }
-    #endif
+#endif
 
     /// <summary>
     /// </summary>
