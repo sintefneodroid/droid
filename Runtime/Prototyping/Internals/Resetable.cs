@@ -9,7 +9,6 @@ namespace droid.Runtime.Prototyping.Internals {
   /// <inheritdoc cref="PrototypingGameObject" />
   /// <summary>
   /// </summary>
-  [ExecuteInEditMode]
   public abstract class Resetable : PrototypingGameObject,
                                     IResetable {
     /// <summary>
