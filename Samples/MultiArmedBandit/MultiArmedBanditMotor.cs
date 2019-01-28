@@ -132,7 +132,8 @@ namespace droid.Samples.MultiArmedBandit {
         indicator.color = this._inactive_color;
       }
 
-      var index = (int)motion.Strength;
+      var index = motion.Strength;
+      index = MotionValueSpace.ClipRound(index);
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
@@ -140,7 +141,7 @@ namespace droid.Samples.MultiArmedBandit {
       }
       #endif
 
-      this._last_index = index;
+      this._last_index = (int)index +1;
 
       var random_value = Random.Range(-1f, 1f);
       if (random_value <= this._Win_Likelihoods[this._last_index]) {
