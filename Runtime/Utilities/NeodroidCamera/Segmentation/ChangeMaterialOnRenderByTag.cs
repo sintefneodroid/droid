@@ -19,7 +19,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
 
     /// <summary>
     /// </summary>
-    protected ColorByTag[] _Colors_By_Tag;
+    [SerializeField] protected ColorByTag[] _Colors_By_Tag;
 
     /// <summary>
     /// </summary>

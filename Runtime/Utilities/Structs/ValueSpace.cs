@@ -26,33 +26,19 @@ namespace droid.Runtime.Utilities.Structs {
     public float Span { get { return this._Max_Value - this._Min_Value; } }
 
     public float ClipNormaliseRound(float v) {
-      return this.Round(Normalise(Clip(v)));
-    }
-
-    public float ClipRound(float v){
-      return this.Round(Clip(v));
-    }
-    
-
-    public float Clip(float v){
       if (v > this._Max_Value) {
         v = this._Max_Value;
       } else if (v < this._Min_Value) {
         v = this._Min_Value;
       }
 
-      return v;
-    }
-
-    public float Normalise(float v)
-    {
-      return (v - this._Min_Value) / this.Span;
+      return this.Round((v - this._Min_Value) / this.Span);
     }
 
     public Vector2 ToVector2(){
       return new Vector2(this._Min_Value,this._Max_Value);
     }
-
+    
     public Vector3 ToVector3(){
       return new Vector3(this._Min_Value,this._Decimal_Granularity,this._Max_Value);
     }

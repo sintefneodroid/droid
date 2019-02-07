@@ -54,3 +54,4 @@ Environments/Builds/
 
 *.unitypackage
 ScenePreviews/
+*.orig.meta

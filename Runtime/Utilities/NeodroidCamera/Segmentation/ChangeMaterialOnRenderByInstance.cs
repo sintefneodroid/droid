@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
@@ -21,6 +22,8 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
     /// <summary>
     /// </summary>
     LinkedList<Color>[] _original_colors;
+
+    [SerializeField] ColorByInstance[] instanceColorArray;
 
     /// <summary>
     /// </summary>
@@ -43,16 +46,17 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
     /// </summary>
     public ColorByInstance[] InstanceColors {
       get {
+
         if (this.ColorsDictGameObject != null) {
-          var instance_color_array = new ColorByInstance[this.ColorsDictGameObject.Keys.Count];
+          this.instanceColorArray = new ColorByInstance[this.ColorsDictGameObject.Keys.Count];
           var i = 0;
           foreach (var key in this.ColorsDictGameObject.Keys) {
             var seg = new ColorByInstance {_Obj = key, _Col = this.ColorsDictGameObject[key]};
-            instance_color_array[i] = seg;
+            this.instanceColorArray[i] = seg;
             i++;
           }
 
-          return instance_color_array;
+          return this.instanceColorArray;
         }
 
         return null;
