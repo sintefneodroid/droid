@@ -11,6 +11,7 @@ using droid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Misc.Extensions;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Object = System.Object;
 
 namespace droid.Runtime.Environments {
@@ -232,7 +233,7 @@ namespace droid.Runtime.Environments {
     float[] _reset_animation_times;
 
     [SerializeField] bool _initials_saved_flag;
-    [SerializeField] bool _update_observations_with_every_tick;
+    [SerializeField] bool updateObservationsWithEveryTick=true;
 
     #endregion
 
@@ -398,7 +399,7 @@ namespace droid.Runtime.Environments {
         }
         #endif
       } else {
-        if (this._update_observations_with_every_tick) {
+        if (this.updateObservationsWithEveryTick) {
           this.UpdateObserversData();
         }
       }

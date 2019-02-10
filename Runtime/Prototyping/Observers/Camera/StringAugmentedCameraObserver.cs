@@ -17,8 +17,9 @@ namespace droid.Runtime.Prototyping.Observers.Camera {
   [RequireComponent(typeof(UnityEngine.Camera))]
   public class StringAugmentedCameraObserver : CameraObserver,
                                                IHasString {
-    public const string _Cam_Obs_Identifier = "cam";
-    public const string _Seg_Obs_Identifier = "seg";
+    const string _ColorIdentifier = "Colors";
+
+    string _colors;
 
     /// <summary>
     /// </summary>
@@ -30,6 +31,12 @@ namespace droid.Runtime.Prototyping.Observers.Camera {
     /// </summary>
     public String ObservationValue { get { return this.serialisedString; } }
 
+    protected override void PreSetup()
+    {
+      base.PreSetup();
+      this._colors = this.Identifier + _ColorIdentifier;
+    }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>
@@ -37,30 +44,28 @@ namespace droid.Runtime.Prototyping.Observers.Camera {
       this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           this,
-          _Cam_Obs_Identifier);
+          this.Identifier);
 
       this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           this,
-          _Seg_Obs_Identifier);
+          this._colors);
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     protected override void UnRegisterComponent() {
-      this.ParentEnvironment?.UnRegister(this, _Cam_Obs_Identifier);
-      this.ParentEnvironment?.UnRegister(this, _Seg_Obs_Identifier);
+      this.ParentEnvironment?.UnRegister(this, this.Identifier);
+      this.ParentEnvironment?.UnRegister(this, this._colors);
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void UpdateObservation() {
-      this._Grab = true;
-      if (this._Manager?.SimulatorConfiguration?.SimulationType != SimulationType.Frame_dependent_) {
-        this.UpdateBytes();
-      }
+      base.UpdateObservation();
+      this.serialisedString = "";
     }
   }
 }

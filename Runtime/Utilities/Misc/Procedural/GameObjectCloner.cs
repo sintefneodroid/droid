@@ -7,7 +7,7 @@ namespace droid.Runtime.Utilities.Misc.Procedural {
   public class GameObjectCloner : MonoBehaviour {
     [SerializeField] GameObject[] _clones;
     [SerializeField] Vector3 _initial_offset = new Vector3(20, 0);
-    [SerializeField] [Range(0, 99)] int _num_clones;
+    [SerializeField] [Range(0, 99)] int _num_clones=0;
     [SerializeField] Vector3 _offset = new Vector3(20, 0, 20);
     [SerializeField] GameObject _prefab;
 

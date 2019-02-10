@@ -108,7 +108,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
                 this._original_colors[i].AddFirst(mat.color);
               }
 
-              this._block.SetFloat(this._Skip_Outline_Tag, 0);
+
               this._block.SetColor(this._Segmentation_Color_Tag, this._tag_colors_dict[this._all_renders[i].tag]);
 
               this._block.SetColor(this._Outline_Color_Tag, this._Outline_Color);
@@ -121,7 +121,6 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
                 this._original_colors[i].AddFirst(mat.color);
               }
 
-              this._block.SetFloat(this._Skip_Outline_Tag, 1);
               this._block.SetColor(this._Segmentation_Color_Tag, this._Untagged_Color);
 
               this._block.SetColor(this._Outline_Color_Tag, this._Outline_Color);

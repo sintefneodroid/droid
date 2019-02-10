@@ -1,10 +1,9 @@
-Shader "Neodroid/Segmentation/Outlined" {
+Shader "Neodroid/Segmentation/OutlinedSegmentation" {
 
 	Properties {
 		_SegmentationColor ("_SegmentationColor", Color) = (.5,.5,.5,1.)
 		_OutlineColor ("_OutlineColor", Color) = (1.,.0,1.,1.)
-		_OutlineWidthFactor ("_OutlineWidthFactor", Range (0, 1)) = 0.3
-		_SkipOutline ("_SkipOutline", Float) = 0
+		_OutlineWidthFactor ("_OutlineWidthFactor", Range (0, 2)) = 1.1
 	}
 
 
@@ -23,21 +22,21 @@ Shader "Neodroid/Segmentation/Outlined" {
 
         uniform float _OutlineWidthFactor;
         uniform float4 _OutlineColor;
-        uniform float _SkipOutline;
 
         v2f vert(appdata v) {
             v2f o;
-            if(_SkipOutline==1){
-                o.pos = UnityObjectToClipPos(v.vertex);
-                o.color =(.0,.0,.0,1.);
-                return o;
-            }
 
-            float mult = 1/UnityObjectToClipPos(v.vertex).z;
-            v.vertex *= 1+((_OutlineWidthFactor)/(mult));
+
+				//float3 scaleDir = normalize(v.vertex.xyz - float4(0,0,0,1));
+
+					v.vertex.xyz += normalize(v.normal.xyz) * _OutlineWidthFactor;
+
+				//	v.vertex.xyz += scaleDir *_OutlineWidthFactor;
+
+//            float outline_width = _OutlineWidthFactor/(1/UnityObjectToClipPos(v.vertex).z);
+     //       v.vertex *= 1+outline_width;
 
             o.pos = UnityObjectToClipPos(v.vertex);
-
 
             o.color = _OutlineColor;
             return o;

@@ -1,4 +1,9 @@
-﻿Shader "Neodroid/Segmentation/Flat"{ //Draws objects with shader on top always
+﻿Shader "Neodroid/Segmentation/FlatSegmentation"{ //Draws objects with shader on top always
+
+Properties{
+		_SegmentationColor ("_SegmentationColor", Color) = (.5,.5,.5,1.)
+}
+
     SubShader{
       //Tags
       //{
@@ -30,7 +35,7 @@
           float4 vertex : SV_POSITION;
         };
 
-        fixed4 _Color;
+        fixed4 _SegmentationColor;
 
         v2f vert(appdata v)        {
           v2f o;
@@ -41,7 +46,7 @@
         }
 
         fixed4 frag(v2f i) : SV_Target        {
-          return _Color;
+          return _SegmentationColor;
         }
         ENDCG
       }

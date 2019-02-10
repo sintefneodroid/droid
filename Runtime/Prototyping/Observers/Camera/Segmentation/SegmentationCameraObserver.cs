@@ -23,11 +23,10 @@ namespace droid.Runtime.Prototyping.Observers.Camera.Segmentation {
     /// <summary>
     /// </summary>
     public override void UpdateObservation() {
-      this._Grab = true;
-      if (this._Manager?.SimulatorConfiguration?.SimulationType != SimulationType.Frame_dependent_) {
-        this.UpdateBytes();
-      }
+      base.UpdateObservation();
 
+
+      Debug.LogWarning(JsonUtility.ToJson(this._segmenter.ColorsDict));
       this.serialisedString = this._segmenter != null
                                     ? this._segmenter.ColorsDict.Select(c => $"{c.Key}: {c.Value.ToString()}")
                                         .Aggregate("", (current, next) => $"{current}, {next}")

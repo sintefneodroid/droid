@@ -1,16 +1,16 @@
-Shader "Outlined/UltimateOutline"
+Shader "Neodroid/Outline"
 {
 	Properties
 	{
-		_Color("Main Color", Color) = (0.5,0.5,0.5,1)
+		_SegmentationColor ("_SegmentationColor", Color) = (.5,.5,.5,1.)
 		_MainTex("Texture", 2D) = "white" {}
 
-		_FirstOutlineColor("Outline color", Color) = (0,0,0,1)
-		_FirstOutlineWidth("Outlines width", Range(0.0, 2.0)) = 1.1
-
+		_OutlineColor("Outline color", Color) = (0,0,0,1)
+		_OutlineWidthFactor("Outlines width", Range(0.0, 2.0)) = 1.1
+/*
 		_SecondOutlineColor("Outline color", Color) = (0,0,0,1)
 		_SecondOutlineWidth("Outlines width", Range(0.0, 2.0)) = 1.1
-
+*/
 		_Angle("Switch shader on angle", Range(0.0, 180.0)) = 85
 	}
 
@@ -29,9 +29,9 @@ Shader "Outlined/UltimateOutline"
 	uniform float4 _FirstOutlineColor;
 	uniform float _FirstOutlineWidth;
 
-	uniform float4 _SecondOutlineColor;
+	/*uniform float4 _SecondOutlineColor;
 	uniform float _SecondOutlineWidth;
-
+*/
 	uniform sampler2D _MainTex;
 	uniform float4 _Color;
 	uniform float _Angle;
@@ -39,7 +39,9 @@ Shader "Outlined/UltimateOutline"
 	ENDCG
 
 	SubShader{
-		Tags{ "Queue" = "Transparent" "Queue" = "Transparent" "IgnoreProjector" = "True" }
+		Tags{ "Queue" = "Transparent"
+		 //"Queue" = "Transparent"
+		  "IgnoreProjector" = "True" }
 
 		//First outline
 		Pass{
@@ -78,7 +80,7 @@ Shader "Outlined/UltimateOutline"
 		}
 
 		//Second outline
-		Pass{
+		/*Pass{
 			Blend SrcAlpha OneMinusSrcAlpha
 			ZWrite Off
 			Cull Back
@@ -113,7 +115,7 @@ Shader "Outlined/UltimateOutline"
 
 			ENDCG
 		}
-
+*/
 
 		//Surface shader
 		Tags{ "Queue" = "Geometry" }
