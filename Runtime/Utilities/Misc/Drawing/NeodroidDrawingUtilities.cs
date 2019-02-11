@@ -14,7 +14,7 @@ namespace droid.Runtime.Utilities.Misc.Drawing {
     public static void ForGizmo(
         Vector3 pos,
         Vector3 direction,
-        Color color = default,
+        Color color,
         float arrow_head_length = 0.25f,
         float arrow_head_angle = 20.0f) {
       Gizmos.DrawRay(pos, direction);
@@ -32,7 +32,7 @@ namespace droid.Runtime.Utilities.Misc.Drawing {
     public static void ForDebug(
         Vector3 pos,
         Vector3 direction,
-        Color color = default,
+        Color color,
         float arrow_head_length = 0.25f,
         float arrow_head_angle = 20.0f,
         float ray_duration = 0f) {
