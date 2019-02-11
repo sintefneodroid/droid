@@ -79,7 +79,7 @@ namespace droid.Runtime.Prototyping.Configurables {
 
     public override void UpdateCurrentConfiguration() {
       if (this._use_environments_space) {
-        this._position = this.ParentEnvironment.TransformPosition(this.transform.position);
+        this._position = this.ParentEnvironment.TransformPoint(this.transform.position);
       } else {
         this._position = this.transform.position;
       }
@@ -88,7 +88,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration) {
       var pos = this.transform.position;
       if (this._use_environments_space) {
-        pos = this.ParentEnvironment.TransformPosition(this.transform.position);
+        pos = this.ParentEnvironment.TransformPoint(this.transform.position);
       }
 
       var v = simulator_configuration.ConfigurableValue;
@@ -131,7 +131,7 @@ namespace droid.Runtime.Prototyping.Configurables {
 
       var inv_pos = pos;
       if (this._use_environments_space) {
-        inv_pos = this.ParentEnvironment.InverseTransformPosition(inv_pos);
+        inv_pos = this.ParentEnvironment.InverseTransformPoint(inv_pos);
       }
 
       this.transform.position = inv_pos;

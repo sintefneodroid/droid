@@ -18,7 +18,7 @@ namespace droid.Runtime.Prototyping.Observers.BoundingBox {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName { get { return "BoundingBox"; } }
+    public override string PrototypingTypeName => "BoundingBox";
 
     Utilities.BoundingBoxes.BoundingBox _bounding_box;
     [SerializeField] UnityEngine.Camera _camera;
@@ -66,12 +66,18 @@ namespace droid.Runtime.Prototyping.Observers.BoundingBox {
       this._scr_rect.xMax = screen_bounds.max.x;
       this._scr_rect.yMax = screen_bounds.max.y;
 
-      this.ObservationValue = this._bounding_box.BoundingBoxCoordinatesAsJson;
+      this.ObservationValue = this._scr_rect.ToString();
+      this.FloatEnumerable = new float[]{};
     }
 
     /// <summary>
     ///
     /// </summary>
-    public String ObservationValue { get; set; }
+    public string ObservationValue { get; set; }
+
+    public override string ToString()
+    {
+      return this.ObservationValue;
+    }
   }
 }

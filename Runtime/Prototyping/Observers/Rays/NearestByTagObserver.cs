@@ -54,7 +54,7 @@ namespace droid.Runtime.Prototyping.Observers.Rays {
       this._nearest_object = this.FindNearest();
 
       if (this.ParentEnvironment != null) {
-        this.Position = this.ParentEnvironment.TransformPosition(this._nearest_object.transform.position);
+        this.Position = this.ParentEnvironment.TransformPoint(this._nearest_object.transform.position);
         this.Direction = this.ParentEnvironment.TransformDirection(this._nearest_object.transform.forward);
         this.Rotation = this.ParentEnvironment.TransformDirection(this._nearest_object.transform.up);
       } else {

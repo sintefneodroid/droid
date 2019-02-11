@@ -33,7 +33,7 @@ namespace droid.Runtime.Prototyping.Observers.Transform {
 
     public override void UpdateObservation() {
       if (this.ParentEnvironment != null && this._use_environments_coordinates) {
-        this._position = this.ParentEnvironment.TransformPosition(this.transform.position);
+        this._position = this.ParentEnvironment.TransformPoint(this.transform.position);
         this._rotation = Quaternion.Euler(this.ParentEnvironment.TransformDirection(this.transform.forward));
       } else {
         this._position = this.transform.position;

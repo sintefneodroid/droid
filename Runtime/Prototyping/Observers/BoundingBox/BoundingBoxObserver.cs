@@ -17,27 +17,39 @@ namespace droid.Runtime.Prototyping.Observers.BoundingBox {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName { get { return "BoundingBox"; } }
+    public override string PrototypingTypeName => "BoundingBox";
 
-    Utilities.BoundingBoxes.BoundingBox _bounding_box;
+    Utilities.BoundingBoxes.BoundingBox _boundingBox;
+    [SerializeField] string _observationValue;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     protected override void PreSetup() {
-      this._bounding_box = this.GetComponent<Utilities.BoundingBoxes.BoundingBox>();
+      this._boundingBox = this.GetComponent<Utilities.BoundingBoxes.BoundingBox>();
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void UpdateObservation() {
-      this.ObservationValue = this._bounding_box.BoundingBoxCoordinatesAsJson;
+      this.ObservationValue = this._boundingBox.BoundingBoxCoordinatesWorldSpaceAsJson;
+
+      this.FloatEnumerable = new float[] { };
     }
 
     /// <summary>
     ///
     /// </summary>
-    public String ObservationValue { get; set; }
+    public string ObservationValue
+    {
+      get => this._observationValue;
+      set => this._observationValue = value;
+    }
+
+    public override string ToString()
+    {
+      return this.ObservationValue;
+    }
   }
 }

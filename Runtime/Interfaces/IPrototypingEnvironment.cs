@@ -29,15 +29,15 @@ namespace droid.Runtime.Interfaces {
 
     /// <summary>
     /// </summary>
-    /// <param name="transform_position"></param>
+    /// <param name="point"></param>
     /// <returns></returns>
-    Vector3 TransformPosition(Vector3 transform_position);
+    Vector3 TransformPoint(Vector3 point);
 
     /// <summary>
     /// </summary>
-    /// <param name="inv_pos"></param>
+    /// <param name="point"></param>
     /// <returns></returns>
-    Vector3 InverseTransformPosition(Vector3 inv_pos);
+    Vector3 InverseTransformPoint(Vector3 point);
 
     /// <summary>
     /// </summary>

@@ -90,8 +90,8 @@ namespace droid.Runtime.Prototyping.Observers {
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public override String ToString() {
-      return this.FloatEnumerable.Any() ? string.Join(",", this.FloatEnumerable) : "Empty";
+    public override string ToString() {
+      return this.FloatEnumerable.Any() ? string.Join(",", this.FloatEnumerable) : "Empty FloatEnumerable";
     }
 
     #region Fields

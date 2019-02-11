@@ -78,7 +78,7 @@ namespace droid.Runtime.Prototyping.Observers.Transform {
     /// </summary>
     public override void UpdateObservation() {
       if (this.ParentEnvironment != null && this._space == ObservationSpace.Environment_) {
-        this.Position = this.ParentEnvironment.TransformPosition(this.transform.position);
+        this.Position = this.ParentEnvironment.TransformPoint(this.transform.position);
         this.Direction = this.ParentEnvironment.TransformDirection(this.transform.forward);
         this.Rotation = this.ParentEnvironment.TransformDirection(this.transform.up);
       } else if (this._space == ObservationSpace.Local_) {

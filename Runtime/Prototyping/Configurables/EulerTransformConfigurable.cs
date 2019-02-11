@@ -60,7 +60,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     public override void UpdateCurrentConfiguration() {
       if (this._use_environments_space) {
-        this.Position = this.ParentEnvironment.TransformPosition(this.transform.position);
+        this.Position = this.ParentEnvironment.TransformPoint(this.transform.position);
         this.Direction = this.ParentEnvironment.TransformDirection(this.transform.forward);
         this.Rotation = this.ParentEnvironment.TransformDirection(this.transform.up);
       } else {
@@ -157,7 +157,7 @@ namespace droid.Runtime.Prototyping.Configurables {
       var dir = this.transform.forward;
       var rot = this.transform.up;
       if (this._use_environments_space) {
-        pos = this.ParentEnvironment.TransformPosition(pos);
+        pos = this.ParentEnvironment.TransformPoint(pos);
         dir = this.ParentEnvironment.TransformDirection(dir);
         rot = this.ParentEnvironment.TransformDirection(rot);
       }
@@ -231,7 +231,7 @@ namespace droid.Runtime.Prototyping.Configurables {
       var inv_dir = dir;
       var inv_rot = rot;
       if (this._use_environments_space) {
-        inv_pos = this.ParentEnvironment.InverseTransformPosition(pos);
+        inv_pos = this.ParentEnvironment.InverseTransformPoint(pos);
         inv_dir = this.ParentEnvironment.InverseTransformDirection(dir);
         inv_rot = this.ParentEnvironment.InverseTransformDirection(rot);
       }
