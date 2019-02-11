@@ -2,12 +2,16 @@ using System.Collections.Generic;
 using droid.Runtime.Utilities.Misc.SearchableEnum;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
+
 #if UNITY_EDITOR
 
 #endif
 
-namespace droid.Runtime.Utilities.BoundingBoxes {
-  public enum BasedOn {
+namespace droid.Runtime.Utilities.BoundingBoxes
+{
+  public enum BasedOn
+  {
     Geometry_,
     Collider_
   }
@@ -16,7 +20,8 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
   /// <summary>
   /// </summary>
   [ExecuteInEditMode]
-  public class BoundingBox : MonoBehaviour {
+  public class BoundingBox : MonoBehaviour
+  {
     /// <summary>
     /// </summary>
     Vector3 _bottom_back_left;
@@ -51,8 +56,7 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
 
     /// <summary>
     /// </summary>
-    [SearchableEnum]
-    public BasedOn _BasedOn = BasedOn.Collider_;
+    [SearchableEnum] public BasedOn _BasedOn = BasedOn.Collider_;
 
     /// <summary>
     /// </summary>
@@ -96,32 +100,42 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
 
     Vector3 _top_front_left;
     Vector3 _top_front_right;
+    [SerializeField] bool cacheChildren = true;
 
-    public Vector3[] BoundingBoxCoordinates {
-      get {
-        return new[] {
-            this._top_front_left,
-            this._top_front_right,
-            this._top_back_left,
-            this._top_back_right,
-            this._bottom_front_left,
-            this._bottom_front_right,
-            this._bottom_back_left,
-            this._bottom_back_right
-        };
-      }
+    public Vector3[] BoundingBoxCoordinates =>
+      new[]
+      {
+        this._top_front_left,
+        this._top_front_right,
+        this._top_back_left,
+        this._top_back_right,
+        this._bottom_front_left,
+        this._bottom_front_right,
+        this._bottom_back_left,
+        this._bottom_back_right
+      };
+
+    public Bounds Bounds
+    {
+      get { return this._Bounds; }
     }
 
-    public Bounds Bounds { get { return this._Bounds; } }
+    public Vector3 Max
+    {
+      get { return this._Bounds.max; }
+    }
 
-    public Vector3 Max { get { return this._Bounds.max; } }
-
-    public Vector3 Min { get { return this._Bounds.min; } }
+    public Vector3 Min
+    {
+      get { return this._Bounds.min; }
+    }
 
     /// <summary>
     /// </summary>
-    public string BoundingBoxCoordinatesAsString {
-      get {
+    public string BoundingBoxCoordinatesAsString
+    {
+      get
+      {
         var str_rep = "";
         str_rep += "\"_top_front_left\":" + this.BoundingBoxCoordinates[0] + ", ";
         str_rep += "\"_top_front_right\":" + this.BoundingBoxCoordinates[1] + ", ";
@@ -137,8 +151,10 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
 
     /// <summary>
     /// </summary>
-    public string BoundingBoxCoordinatesAsJson {
-      get {
+    public string BoundingBoxCoordinatesAsJson
+    {
+      get
+      {
         var str_rep = "{";
         str_rep += "\"_top_front_left\":" + this.JsonifyVec3(this.BoundingBoxCoordinates[0]) + ", ";
         str_rep += "\"_bottom_back_right\":" + this.JsonifyVec3(this.BoundingBoxCoordinates[7]);
@@ -149,49 +165,67 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
 
     /// <summary>
     /// </summary>
-    public Vector3[,] Lines { get { return this._lines; } set { this._lines = value; } }
+    public Vector3[,] Lines
+    {
+      get { return this._lines; }
+      set { this._lines = value; }
+    }
 
     /// <summary>
     /// </summary>
-    public Vector3[] Points { get { return this._points; } set { this._points = value; } }
+    public Vector3[] Points
+    {
+      get { return this._points; }
+      set { this._points = value; }
+    }
 
     /// <summary>
     /// </summary>
     /// <param name="vec"></param>
     /// <returns></returns>
-    string JsonifyVec3(Vector3 vec) { return $"[{vec.x},{vec.y},{vec.z}]"; }
+    string JsonifyVec3(Vector3 vec)
+    {
+      return $"[{vec.x},{vec.y},{vec.z}]";
+    }
 
     /// <summary>
     /// </summary>
-    void Reset() {
+    void Reset()
+    {
       this.Awake();
       this.Start();
     }
 
     /// <summary>
     /// </summary>
-    void Start() {
-      if (!this._Setup_On_Awake) {
+    void Start()
+    {
+      if (!this._Setup_On_Awake)
+      {
         this.Setup();
       }
     }
 
     /// <summary>
     /// </summary>
-    void Awake() {
-      if (this._Setup_On_Awake) {
+    void Awake()
+    {
+      if (this._Setup_On_Awake)
+      {
         this.Setup();
       }
     }
 
     /// <summary>
     /// </summary>
-    void Setup() {
+    void Setup()
+    {
       this._last_position = this.transform.position;
       this._last_rotation = this.transform.rotation;
       this._last_scale = this.transform.localScale;
 
-      if (this._Include_Children){
+      if (this._Include_Children)
+      {
         this._children_meshes = this.GetComponentsInChildren<MeshFilter>();
         this._children_colliders = this.GetComponentsInChildren<Collider>();
       }
@@ -202,36 +236,44 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
 
     /// <summary>
     /// </summary>
-    public void Initialise() {
+    public void Initialise()
+    {
       this.RecalculatePoints();
       this.RecalculateLines();
     }
 
     /// <summary>
     /// </summary>
-    void Update() {
-      if (this._FreezeAfterFirstCalculation) {
+    void LateUpdate()
+    {
+      if (this._FreezeAfterFirstCalculation)
+      {
         return;
       }
 
-      if (this._Include_Children){
-        if (this._children_meshes != this.GetComponentsInChildren<MeshFilter>()){
+      if (this._Include_Children && !this.cacheChildren)
+      {
+        if (this._children_meshes != this.GetComponentsInChildren<MeshFilter>())
+        {
           this.Reset();
         }
 
-        if (this._children_colliders != this.GetComponentsInChildren<Collider>()){
+        if (this._children_colliders != this.GetComponentsInChildren<Collider>())
+        {
           this.Reset();
         }
       }
 
-      if (this.transform.localScale != this._last_scale) {
+      if (this.transform.localScale != this._last_scale)
+      {
         this.ScaleBounds();
         this.RecalculatePoints();
       }
 
       if (this.transform.position != this._last_position
           || this.transform.rotation != this._last_rotation
-          || this.transform.localScale != this._last_scale) {
+          || this.transform.localScale != this._last_scale)
+      {
         this.RecalculateLines();
         this._last_rotation = this.transform.rotation;
         this._last_position = this.transform.position;
@@ -241,24 +283,30 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
 
     /// <summary>
     /// </summary>
-    public void ScaleBounds() {
+    public void ScaleBounds()
+    {
       //this._Bounds.size = new Vector3(startingBoundSize.x * transform.localScale.x / startingScale.x, startingBoundSize.y * transform.localScale.y / startingScale.y, startingBoundSize.z * transform.localScale.z / startingScale.z);
       //this._Bounds.center = transform.TransformPoint(startingBoundCenterLocal);
     }
 
     /// <summary>
     /// </summary>
-    void FitBoundingBoxToChildrenColliders() {
+    void FitBoundingBoxToChildrenColliders()
+    {
       var col = this.GetComponent<BoxCollider>();
       var bounds = new Bounds(this.transform.position, Vector3.zero); // position and size
 
-      if (col) {
+      if (col)
+      {
         bounds.Encapsulate(col.bounds);
       }
 
-      if (this._Include_Children) {
-        foreach (var child_col in this._children_colliders) {
-          if (child_col != col) {
+      if (this._Include_Children)
+      {
+        foreach (var child_col in this._children_colliders)
+        {
+          if (child_col != col)
+          {
             bounds.Encapsulate(child_col.bounds);
           }
         }
@@ -270,24 +318,31 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
 
     /// <summary>
     /// </summary>
-    void FitBoundingBoxToChildrenRenders() {
+    void FitBoundingBoxToChildrenRenders()
+    {
       var bounds = new Bounds(this.transform.position, Vector3.zero);
 
       var mesh = this.GetComponent<MeshFilter>();
-      if (mesh) {
+      if (mesh)
+      {
         var ms = mesh.sharedMesh;
         var vc = ms.vertexCount;
-        for (var i = 0; i < vc; i++) {
+        for (var i = 0; i < vc; i++)
+        {
           bounds.Encapsulate(mesh.transform.TransformPoint(ms.vertices[i]));
         }
       }
 
-      foreach (var t in this._children_meshes) {
-        if (t) {
+      foreach (var t in this._children_meshes)
+      {
+        if (t)
+        {
           var ms = t.sharedMesh;
-          if (ms) {
+          if (ms)
+          {
             var vc = ms.vertexCount;
-            for (var j = 0; j < vc; j++) {
+            for (var j = 0; j < vc; j++)
+            {
               bounds.Encapsulate(t.transform.TransformPoint(ms.vertices[j]));
             }
           }
@@ -300,13 +355,17 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
 
     /// <summary>
     /// </summary>
-    void CalculateBounds() {
+    void CalculateBounds()
+    {
       this._rotation = this.transform.rotation;
       this.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 
-      if (this._BasedOn == BasedOn.Collider_) {
+      if (this._BasedOn == BasedOn.Collider_)
+      {
         this.FitBoundingBoxToChildrenColliders();
-      } else {
+      }
+      else
+      {
         this.FitBoundingBoxToChildrenRenders();
       }
 
@@ -315,51 +374,55 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
 
     /// <summary>
     /// </summary>
-    void RecalculatePoints() {
+    void RecalculatePoints()
+    {
       this._Bounds.size = new Vector3(
-          this._Bounds.size.x * this.transform.localScale.x / this._last_scale.x,
-          this._Bounds.size.y * this.transform.localScale.y / this._last_scale.y,
-          this._Bounds.size.z * this.transform.localScale.z / this._last_scale.z);
+        this._Bounds.size.x * this.transform.localScale.x / this._last_scale.x,
+        this._Bounds.size.y * this.transform.localScale.y / this._last_scale.y,
+        this._Bounds.size.z * this.transform.localScale.z / this._last_scale.z);
       this._Bounds_Offset = new Vector3(
-          this._Bounds_Offset.x * this.transform.localScale.x / this._last_scale.x,
-          this._Bounds_Offset.y * this.transform.localScale.y / this._last_scale.y,
-          this._Bounds_Offset.z * this.transform.localScale.z / this._last_scale.z);
+        this._Bounds_Offset.x * this.transform.localScale.x / this._last_scale.x,
+        this._Bounds_Offset.y * this.transform.localScale.y / this._last_scale.y,
+        this._Bounds_Offset.z * this.transform.localScale.z / this._last_scale.z);
 
       this._top_front_right = this._Bounds_Offset + Vector3.Scale(this._Bounds.extents, new Vector3(1, 1, 1));
       this._top_front_left = this._Bounds_Offset + Vector3.Scale(this._Bounds.extents, new Vector3(-1, 1, 1));
       this._top_back_left = this._Bounds_Offset + Vector3.Scale(this._Bounds.extents, new Vector3(-1, 1, -1));
       this._top_back_right = this._Bounds_Offset + Vector3.Scale(this._Bounds.extents, new Vector3(1, 1, -1));
       this._bottom_front_right =
-          this._Bounds_Offset + Vector3.Scale(this._Bounds.extents, new Vector3(1, -1, 1));
+        this._Bounds_Offset + Vector3.Scale(this._Bounds.extents, new Vector3(1, -1, 1));
       this._bottom_front_left =
-          this._Bounds_Offset + Vector3.Scale(this._Bounds.extents, new Vector3(-1, -1, 1));
+        this._Bounds_Offset + Vector3.Scale(this._Bounds.extents, new Vector3(-1, -1, 1));
       this._bottom_back_left =
-          this._Bounds_Offset + Vector3.Scale(this._Bounds.extents, new Vector3(-1, -1, -1));
+        this._Bounds_Offset + Vector3.Scale(this._Bounds.extents, new Vector3(-1, -1, -1));
       this._bottom_back_right =
-          this._Bounds_Offset + Vector3.Scale(this._Bounds.extents, new Vector3(1, -1, -1));
+        this._Bounds_Offset + Vector3.Scale(this._Bounds.extents, new Vector3(1, -1, -1));
 
-      this.Points = new[] {
-          this._top_front_right,
-          this._top_front_left,
-          this._top_back_left,
-          this._top_back_right,
-          this._bottom_front_right,
-          this._bottom_front_left,
-          this._bottom_back_left,
-          this._bottom_back_right
+      this.Points = new[]
+      {
+        this._top_front_right,
+        this._top_front_left,
+        this._top_back_left,
+        this._top_back_right,
+        this._bottom_front_right,
+        this._bottom_front_left,
+        this._bottom_back_left,
+        this._bottom_back_right
       };
     }
 
     /// <summary>
     /// </summary>
-    void RecalculateLines() {
+    void RecalculateLines()
+    {
       var rot = this.transform.rotation;
       var pos = this.transform.position;
 
       this._lines_list.Clear();
       //int linesCount = 12;
 
-      for (var i = 0; i < 4; i++) {
+      for (var i = 0; i < 4; i++)
+      {
         //width
         var line = new[] {rot * this.Points[2 * i] + pos, rot * this.Points[2 * i + 1] + pos};
         this._lines_list.Add(line);
@@ -374,7 +437,8 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
       }
 
       this.Lines = new Vector3[this._lines_list.Count, 2];
-      for (var j = 0; j < this._lines_list.Count; j++) {
+      for (var j = 0; j < this._lines_list.Count; j++)
+      {
         this.Lines[j, 0] = this._lines_list[j][0];
         this.Lines[j, 1] = this._lines_list[j][1];
       }
@@ -382,17 +446,20 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
 
     /// <summary>
     /// </summary>
-    void OnMouseDown() {
+    void OnMouseDown()
+    {
       //if (_permanent)
       //  return;
       this.enabled = !this.enabled;
     }
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     /// <summary>
     /// </summary>
-    void OnValidate() {
-      if (EditorApplication.isPlaying) {
+    void OnValidate()
+    {
+      if (EditorApplication.isPlaying)
+      {
         return;
       }
 
@@ -401,12 +468,17 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
 
     /// <summary>
     /// </summary>
-    void OnDrawGizmos() {
-      if (this.enabled) {
-        if (this.enabled) {
+    void OnDrawGizmos()
+    {
+      if (this.enabled)
+      {
+        if (this.enabled)
+        {
           Gizmos.color = this._Line_Color;
-          if (this.Lines != null) {
-            for (var i = 0; i < this.Lines.GetLength(0); i++) {
+          if (this.Lines != null)
+          {
+            for (var i = 0; i < this.Lines.GetLength(0); i++)
+            {
               Gizmos.DrawLine(this.Lines[i, 0], this.Lines[i, 1]);
             }
           }
@@ -415,6 +487,6 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
         }
       }
     }
-    #endif
+#endif
   }
 }
