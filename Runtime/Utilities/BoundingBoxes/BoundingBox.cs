@@ -146,9 +146,14 @@ namespace droid.Runtime.Utilities.BoundingBoxes
         var transform1 = this.transform;
         var rotation = transform1.rotation;
         var position = transform1.position;
-        str_rep += "\"_top_front_left\":" + this.JsonifyVec3(this.environment.TransformPoint(rotation * this._topFrontLeftExtend + position)) + ", ";
-        str_rep += "\"_bottom_back_right\":" +
-                   this.JsonifyVec3(this.environment.TransformPoint(rotation *this._bottomBackRightExtend+ position));
+        if (this.environment != null)
+        {
+          str_rep +=
+            $"\"top_front_left\":{this.JsonifyVec3(this.environment.TransformPoint(rotation * this._topFrontLeftExtend + position))}, ";
+          str_rep +=
+            $"\"bottom_back_right\":{this.JsonifyVec3(this.environment.TransformPoint(rotation * this._bottomBackRightExtend + position))}";
+        }
+
         str_rep += "}";
         return str_rep;
       }
