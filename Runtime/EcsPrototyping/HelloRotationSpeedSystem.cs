@@ -1,4 +1,6 @@
-﻿using Unity.Burst;
+﻿#if ECS_EXISTS
+
+using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;
@@ -37,3 +39,4 @@ namespace droid.Runtime.EcsPrototyping
         }
     }
 }
+#endif

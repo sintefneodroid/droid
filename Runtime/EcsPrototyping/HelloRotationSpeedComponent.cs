@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if ECS_EXISTS
+using System;
 using Unity.Entities;
 using UnityEngine.Serialization;
 
@@ -15,3 +16,4 @@ namespace droid.Runtime.EcsPrototyping
     [UnityEngine.DisallowMultipleComponent]
     public class HelloRotationSpeedComponent : ComponentDataWrapper<HelloRotationSpeed> { }
 }
+#endif

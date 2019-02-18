@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 6b7e9fcb795b84664bfc1ac40799a68f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - segmentationShader: {fileID: 4800000, guid: 97f822d8c331bee3986e92f60eacfa75,
+      type: 3}
+  - opticalFlowShader: {fileID: 4800000, guid: 2a970eca3c9e84f13b5b616e530a7919, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
