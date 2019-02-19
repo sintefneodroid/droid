@@ -1,21 +1,12 @@
 {
     "name": "Neodroid.Runtime",
-
-    "references": [
-        "Unity.Entities",
-        "Unity.Entities.Hybrid",
-        "Unity.Transforms",
-        "Unity.Collections",
-        "Unity.Burst",
-        "Unity.Jobs",
-        "Unity.Mathematics"
-    ],
+    "references": [],
     "optionalUnityReferences": [],
     "includePlatforms": [],
     "excludePlatforms": [],
+    "allowUnsafeCode": true,
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
-    "defineConstraints": [],
-    "allowUnsafeCode": true
+    "defineConstraints": []
 }
