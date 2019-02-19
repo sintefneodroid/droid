@@ -8,7 +8,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
   /// <summary>
   /// </summary>
   public abstract class Segmenter : MonoBehaviour,
-                                    IMaterialManipulator {
+                                    IColorProvider {
     /// <inheritdoc />
     /// <summary>
     /// </summary>

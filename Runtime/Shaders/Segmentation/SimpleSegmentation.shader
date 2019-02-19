@@ -1,7 +1,7 @@
 // Based on builtin Internal-DepthNormalsTexture.shader
 // EncodeDepthNormal() is replaced with custom Output() function
 
-Shader "Neodroid/Experimental/Segmentation" {
+Shader "Neodroid/Segmentation/SimpleSegmentation" {
 Properties {
 	_MainTex ("", 2D) = "white" {}
 	_Cutoff ("", Float) = 0.5

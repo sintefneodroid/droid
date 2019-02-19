@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
-namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
+namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation.Obsolete {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
   [ExecuteInEditMode]
-  public class ChangeMaterialOnRenderByInstance : Segmenter {
+  public class ChangeMaterialOnRenderByInstance : ObsoleteSegmenter {
     /// <summary>
     /// </summary>
     Renderer[] _all_renders;
@@ -115,7 +114,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
 
     /// <summary>
     /// </summary>
-    void Change() {
+    protected override void Change() {
       this.CheckBlock();
       this._original_colors = new LinkedList<Color>[this._all_renders.Length];
 
@@ -146,7 +145,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
 
     /// <summary>
     /// </summary>
-    void Restore() {
+    protected override void Restore() {
       this.CheckBlock();
       for (var i = 0; i < this._all_renders.Length; i++) {
         var c_renderer = this._all_renders[i];
@@ -170,18 +169,5 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
       }
     }
 
-    /// <summary>
-    /// </summary>
-    void OnPreRender() {
-      // change
-      this.Change();
-    }
-
-    /// <summary>
-    /// </summary>
-    void OnPostRender() {
-      // change back
-      this.Restore();
-    }
   }
 }

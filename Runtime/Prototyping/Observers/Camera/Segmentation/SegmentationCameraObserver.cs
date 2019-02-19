@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using droid.Runtime.Utilities.Enums;
 using droid.Runtime.Utilities.NeodroidCamera.Segmentation;
+using droid.Runtime.Utilities.NeodroidCamera.Segmentation.Obsolete;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Observers.Camera.Segmentation {
@@ -12,12 +13,12 @@ namespace droid.Runtime.Prototyping.Observers.Camera.Segmentation {
       + "SegmentationCamera"
       + ObserverComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
-  [RequireComponent(typeof(UnityEngine.Camera), typeof(Segmenter))]
+  [RequireComponent(typeof(UnityEngine.Camera), typeof(ObsoleteSegmenter))]
   public class SegmentationCameraObserver : StringAugmentedCameraObserver {
     /// <summary>
     /// </summary>
     [SerializeField]
-    Segmenter _segmenter;
+    ObsoleteSegmenter _segmenter;
 
     /// <inheritdoc />
     /// <summary>

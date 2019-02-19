@@ -1,4 +1,4 @@
-Shader "Excluded/OpticalFlow"{
+Shader "Neodroid/OpticalFlow"{
 	Properties	{
 		_Sensitivity("Sensitivity", Float) = 1
 	}

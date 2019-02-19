@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
-namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
+namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation.Obsolete {
   /// <inheritdoc cref="MonoBehaviour" />
   /// <summary>
   /// </summary>
   [ExecuteInEditMode]
-  public class ChangeMaterialOnRenderByTag : Segmenter {
+  public class ChangeMaterialOnRenderByTag : ObsoleteSegmenter {
     /// <summary>
     /// </summary>
     Renderer[] _all_renders;
@@ -19,7 +19,8 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
 
     /// <summary>
     /// </summary>
-    [SerializeField] protected ColorByTag[] _Colors_By_Tag;
+    [SerializeField]
+    protected ColorByTag[] _Colors_By_Tag;
 
     /// <summary>
     /// </summary>
@@ -91,7 +92,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
 
     /// <summary>
     /// </summary>
-    void Change() {
+    protected override void Change() {
       this._original_colors = new LinkedList<Color>[this._all_renders.Length];
       for (var i = 0; i < this._original_colors.Length; i++) {
         this._original_colors[i] = new LinkedList<Color>();
@@ -108,8 +109,8 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
                 this._original_colors[i].AddFirst(mat.color);
               }
 
-
-              this._block.SetColor(this._Segmentation_Color_Tag, this._tag_colors_dict[this._all_renders[i].tag]);
+              this._block.SetColor(this._Segmentation_Color_Tag,
+                                   this._tag_colors_dict[this._all_renders[i].tag]);
 
               this._block.SetColor(this._Outline_Color_Tag, this._Outline_Color);
               this._block.SetFloat(this._Outline_Width_Factor_Tag, this._Outline_Width_Factor);
@@ -140,7 +141,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
 
     /// <summary>
     /// </summary>
-    void Restore() {
+    protected override void Restore() {
       this.CheckBlock();
 
       for (var i = 0; i < this._all_renders.Length; i++) {
@@ -159,20 +160,6 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
           }
         }
       }
-    }
-
-    /*void OnPreCull() {
-      // change
-    }*/
-
-    void OnPreRender() {
-      // change
-      this.Change();
-    }
-
-    void OnPostRender() {
-      // change back
-      this.Restore();
     }
   }
 }
