@@ -11,12 +11,12 @@ namespace droid.Runtime.Prototyping.Observers.Camera.Segmentation {
   [AddComponentMenu(
       ObserverComponentMenuPath._ComponentMenuPath + "Segmentation" + ObserverComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
-  [RequireComponent(typeof(ObsoleteSegmenter))]
+  [RequireComponent(typeof(Segmenter))]
   public class SegmentationObserver : StringObserver {
     /// <summary>
     /// </summary>
     [SerializeField]
-    ObsoleteSegmenter _segmenter;
+    Segmenter _segmenter;
 
     /// <inheritdoc />
     /// <summary>

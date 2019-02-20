@@ -50,9 +50,8 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
     /// <summary>
     /// </summary>
     void Awake() {
-      this._all_renders = FindObjectsOfType<Renderer>();
-      this._block = new MaterialPropertyBlock();
-      this.Setup();
+
+      //this.Setup();
     }
 
     /// <summary>
@@ -67,7 +66,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
       }
     }
 
-    SynthesisUtils.CapturePass[] cps = {
+    SynthesisUtils.CapturePass[] _capture_passes = {
       new SynthesisUtils.CapturePass
       {
         _Name = "_object_id", ReplacementMode =
@@ -80,8 +79,10 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
     /// </summary>
     void Setup() {
       this._camera = this.GetComponent<Camera>();
-      SynthesisUtils.SetupCapturePassesReplacementShader(this._camera,this.segmentation_shader, ref cps);
-
+      SynthesisUtils.SetupCapturePassesReplacementShader(this._camera,this.segmentation_shader, ref this._capture_passes);
+      this.ColorsDictGameObject = new Dictionary<GameObject, Color>();
+      this._all_renders = FindObjectsOfType<Renderer>();
+      this._block = new MaterialPropertyBlock();
       this.CheckBlock();
       foreach (var r in this._all_renders) {
         var game_object = r.gameObject;
@@ -89,8 +90,16 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
         var layer = game_object.layer;
         var go_tag = game_object.tag;
 
-        ColorsDictGameObject = new Dictionary<GameObject, Color>();
-        this.ColorsDictGameObject.Add(game_object, ColorEncoding.EncodeIdAsColor(id));
+        if(!this.ColorsDictGameObject.ContainsKey(game_object)) {
+          this.ColorsDictGameObject.Add(game_object, ColorEncoding.EncodeIdAsColor(id));
+        } else {
+          #if NEODROID_DEBUG
+          if (true) {
+            Debug.LogWarning($"ColorDict Duplicate {game_object}");
+          }
+          #endif
+        }
+
         this._block.SetColor("_ObjectIdColor", ColorEncoding.EncodeIdAsColor(id));
         //this._block.SetColor("_CategoryIdColor", ColorEncoding.EncodeLayerAsColor(layer));
         //this._block.SetColor("_MaterialIdColor", ColorEncoding.EncodeIdAsColor(id));

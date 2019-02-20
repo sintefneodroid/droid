@@ -8,7 +8,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera {
   /// </summary>
   [ExecuteInEditMode]
   public class IgnoreLightSource : MonoBehaviour {
-    [SerializeField] bool _automatically_add_directional_lights_if_not_empty;
+    [SerializeField] bool _automatically_add_lights_without_infrared_component;
     [SerializeField] bool _ignore_infrared_if_empty = true;
 
     [SerializeField] Light[] _lights_to_ignore;
@@ -24,11 +24,11 @@ namespace droid.Runtime.Utilities.NeodroidCamera {
         }
 
         this._lights_to_ignore = lights.ToArray();
-      } else if (this._automatically_add_directional_lights_if_not_empty) {
+      } else if (this._automatically_add_lights_without_infrared_component) {
         var lights = this._lights_to_ignore.ToList();
         var d = FindObjectsOfType<Light>();
         foreach (var light1 in d) {
-          if (light1.type == LightType.Directional) {
+          if (!light1.gameObject.GetComponent<InfraredLightSource>()) {
             if (!lights.Exists(l => l != null && light1.GetHashCode() == l.GetHashCode())) {
               lights.Add(light1);
             }

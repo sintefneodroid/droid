@@ -128,11 +128,11 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Synthesis
       SetupHiddenCapturePassCameras(camera, ref capture_passes);
       CleanRefreshPassCameras(camera,ref capture_passes);
 
-      foreach (var capturePass in capture_passes)
+      foreach (var capture_pass in capture_passes)
       {
-        AddReplacementShaderCommandBufferOnCamera(capturePass._Camera,
+        AddReplacementShaderCommandBufferOnCamera(capture_pass._Camera,
           replacement_shader,
-          capturePass.ReplacementMode);
+          capture_pass.ReplacementMode);
       }
     }
 

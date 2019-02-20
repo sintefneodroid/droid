@@ -93,9 +93,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 790114237}
   _cameras:
-  - {fileID: 790114237}
-  - {fileID: 114716082362535994}
+  - {fileID: 1463669859483367840}
+  - {fileID: 3246734891326987255}
+  - {fileID: 4939762416714711659}
+  - {fileID: 114608562479145288}
+  - {fileID: 114798311224295254}
+  - {fileID: 114203530777878686}
+  - {fileID: 114594705335718820}
+  - {fileID: 114307586759802868}
+  - {fileID: 1623028174}
+  - {fileID: 1403684216}
   - {fileID: 114203839715900738}
+  - {fileID: 114716082362535994}
+  - {fileID: 790114237}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
   _old_fov: 80
@@ -151,8 +161,10 @@ MonoBehaviour:
   _editor_reregistering: 1
   _Use_Custom_Name: 0
   _normalise_observation: 0
-  _observation_value: Nothing
-  _segmenter: {fileID: 0}
+  _observation_value: 'Default-Material: RGBA(0.510, 0.035, 0.035, 1.000), NeodroidLogo:
+    RGBA(0.580, 0.000, 0.820, 1.000), Orange: RGBA(0.643, 0.031, 0.596, 1.000), DomainRandomizationMaterial:
+    RGBA(0.078, 0.255, 0.569, 1.000), Outline: RGBA(1.000, 0.000, 1.000, 1.000)'
+  _segmenter: {fileID: 790114238}
 --- !u!114 &790114238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,7 +323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1403684212
 Transform:
   m_ObjectHideFlags: 0
@@ -376,7 +388,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1403684211}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 08d8186d4ab68d634912ff814b6d0f62, type: 3}
@@ -402,11 +414,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 1403684216}
   _cameras:
-  - {fileID: 1403684216}
-  - {fileID: 114716082362535994}
-  - {fileID: 114203839715900738}
-  - {fileID: 114197453280488484}
+  - {fileID: 1463669859483367840}
+  - {fileID: 3246734891326987255}
   - {fileID: 4939762416714711659}
+  - {fileID: 114608562479145288}
+  - {fileID: 114798311224295254}
+  - {fileID: 114203530777878686}
+  - {fileID: 114594705335718820}
+  - {fileID: 114307586759802868}
+  - {fileID: 1623028174}
+  - {fileID: 1403684216}
+  - {fileID: 114203839715900738}
+  - {fileID: 114716082362535994}
+  - {fileID: 790114237}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
   _old_fov: 80
@@ -462,8 +482,15 @@ MonoBehaviour:
   _editor_reregistering: 1
   _Use_Custom_Name: 0
   _normalise_observation: 0
-  _observation_value: Nothing
-  _segmenter: {fileID: 0}
+  _observation_value: '-8158: RGBA(0.714, 0.412, 0.757, 1.000), -8118: RGBA(0.706,
+    0.412, 0.784, 1.000), 25932: RGBA(0.196, 0.031, 0.075, 1.000), 25952: RGBA(0.125,
+    0.031, 0.106, 1.000), 25972: RGBA(0.188, 0.031, 0.357, 1.000), 25986: RGBA(0.627,
+    0.282, 0.071, 1.000), 26006: RGBA(0.690, 0.282, 0.322, 1.000), 26020: RGBA(0.188,
+    0.282, 0.102, 1.000), 26036: RGBA(0.188, 0.282, 0.353, 1.000), 26060: RGBA(0.196,
+    0.282, 0.075, 1.000), 26086: RGBA(0.690, 0.282, 0.106, 1.000), 26124: RGBA(0.196,
+    0.004, 0.071, 1.000), 26140: RGBA(0.196, 0.004, 0.322, 1.000), 26160: RGBA(0.125,
+    0.004, 0.353, 1.000), Outline: RGBA(1.000, 0.000, 1.000, 1.000)'
+  _segmenter: {fileID: 1403684217}
 --- !u!1 &1623028170
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,7 +511,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1623028171
 Transform:
   m_ObjectHideFlags: 0
@@ -579,34 +606,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 1623028174}
   _cameras:
-  - {fileID: 1623028174}
   - {fileID: 1463669859483367840}
-  - {fileID: 4939762416714711659}
   - {fileID: 3246734891326987255}
-  - {fileID: 114197453280488484}
-  - {fileID: 114203530777878686}
-  - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 114480522672753226}
-  - {fileID: 114594705335718820}
+  - {fileID: 4939762416714711659}
   - {fileID: 114608562479145288}
   - {fileID: 114798311224295254}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114203530777878686}
+  - {fileID: 114594705335718820}
+  - {fileID: 114307586759802868}
+  - {fileID: 1623028174}
+  - {fileID: 1403684216}
+  - {fileID: 114203839715900738}
+  - {fileID: 114716082362535994}
+  - {fileID: 790114237}
   _old_culling_mask: -33
-  _old_far_clip_plane: 20
+  _old_far_clip_plane: 100
   _old_fov: 80
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
@@ -632,7 +646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d8486c2d1444fb8ac452a5a74cf74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _automatically_add_directional_lights_if_not_empty: 0
+  _automatically_add_lights_without_infrared_component: 0
   _ignore_infrared_if_empty: 1
   _lights_to_ignore:
   - {fileID: 108906297679887750}
@@ -784,7 +798,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4949770021763212
 Transform:
   m_ObjectHideFlags: 0
@@ -857,34 +871,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114307586759802868}
   _cameras:
-  - {fileID: 1623028174}
   - {fileID: 1463669859483367840}
-  - {fileID: 4939762416714711659}
   - {fileID: 3246734891326987255}
-  - {fileID: 114197453280488484}
-  - {fileID: 114203530777878686}
-  - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 114480522672753226}
-  - {fileID: 114594705335718820}
+  - {fileID: 4939762416714711659}
   - {fileID: 114608562479145288}
   - {fileID: 114798311224295254}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114203530777878686}
+  - {fileID: 114594705335718820}
+  - {fileID: 114307586759802868}
+  - {fileID: 1623028174}
+  - {fileID: 1403684216}
+  - {fileID: 114203839715900738}
+  - {fileID: 114716082362535994}
+  - {fileID: 790114237}
   _old_culling_mask: -33
-  _old_far_clip_plane: 20
+  _old_far_clip_plane: 100
   _old_fov: 79.5
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
@@ -1097,9 +1098,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114203839715900738}
   _cameras:
-  - {fileID: 790114237}
-  - {fileID: 114716082362535994}
+  - {fileID: 1463669859483367840}
+  - {fileID: 3246734891326987255}
+  - {fileID: 4939762416714711659}
+  - {fileID: 114608562479145288}
+  - {fileID: 114798311224295254}
+  - {fileID: 114203530777878686}
+  - {fileID: 114594705335718820}
+  - {fileID: 114307586759802868}
+  - {fileID: 1623028174}
+  - {fileID: 1403684216}
   - {fileID: 114203839715900738}
+  - {fileID: 114716082362535994}
+  - {fileID: 790114237}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
   _old_fov: 79.5
@@ -1149,7 +1160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d8486c2d1444fb8ac452a5a74cf74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _automatically_add_directional_lights_if_not_empty: 0
+  _automatically_add_lights_without_infrared_component: 0
   _ignore_infrared_if_empty: 1
   _lights_to_ignore:
   - {fileID: 108906297679887750}
@@ -1261,7 +1272,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4762047315780166
 Transform:
   m_ObjectHideFlags: 0
@@ -1349,7 +1360,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4725180884745084
 Transform:
   m_ObjectHideFlags: 0
@@ -1357,7 +1368,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1568745427337830}
-  m_LocalRotation: {x: -0.16822357, y: -0.654177, z: 0.71416134, w: -0.18364884}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -0.00000011920929, y: 7.9869027, z: -4.371714}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1422,34 +1433,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114594705335718820}
   _cameras:
-  - {fileID: 1623028174}
   - {fileID: 1463669859483367840}
-  - {fileID: 4939762416714711659}
   - {fileID: 3246734891326987255}
-  - {fileID: 114197453280488484}
-  - {fileID: 114203530777878686}
-  - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 114480522672753226}
-  - {fileID: 114594705335718820}
+  - {fileID: 4939762416714711659}
   - {fileID: 114608562479145288}
   - {fileID: 114798311224295254}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114203530777878686}
+  - {fileID: 114594705335718820}
+  - {fileID: 114307586759802868}
+  - {fileID: 1623028174}
+  - {fileID: 1403684216}
+  - {fileID: 114203839715900738}
+  - {fileID: 114716082362535994}
+  - {fileID: 790114237}
   _old_culling_mask: -33
-  _old_far_clip_plane: 20
+  _old_far_clip_plane: 100
   _old_fov: 80
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 1
@@ -1512,7 +1510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d8486c2d1444fb8ac452a5a74cf74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _automatically_add_directional_lights_if_not_empty: 0
+  _automatically_add_lights_without_infrared_component: 0
   _ignore_infrared_if_empty: 1
   _lights_to_ignore:
   - {fileID: 108906297679887750}
@@ -1549,7 +1547,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4218908600063310
 Transform:
   m_ObjectHideFlags: 0
@@ -1622,34 +1620,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114203530777878686}
   _cameras:
-  - {fileID: 1623028174}
   - {fileID: 1463669859483367840}
-  - {fileID: 4939762416714711659}
   - {fileID: 3246734891326987255}
-  - {fileID: 114197453280488484}
-  - {fileID: 114203530777878686}
-  - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 114480522672753226}
-  - {fileID: 114594705335718820}
+  - {fileID: 4939762416714711659}
   - {fileID: 114608562479145288}
   - {fileID: 114798311224295254}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114203530777878686}
+  - {fileID: 114594705335718820}
+  - {fileID: 114307586759802868}
+  - {fileID: 1623028174}
+  - {fileID: 1403684216}
+  - {fileID: 114203839715900738}
+  - {fileID: 114716082362535994}
+  - {fileID: 790114237}
   _old_culling_mask: -33
-  _old_far_clip_plane: 20
+  _old_far_clip_plane: 100
   _old_fov: 79.5
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
@@ -1753,7 +1738,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4337138128144672
 Transform:
   m_ObjectHideFlags: 0
@@ -1826,34 +1811,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114798311224295254}
   _cameras:
-  - {fileID: 1623028174}
   - {fileID: 1463669859483367840}
-  - {fileID: 4939762416714711659}
   - {fileID: 3246734891326987255}
-  - {fileID: 114197453280488484}
-  - {fileID: 114203530777878686}
-  - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 114480522672753226}
-  - {fileID: 114594705335718820}
+  - {fileID: 4939762416714711659}
   - {fileID: 114608562479145288}
   - {fileID: 114798311224295254}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114203530777878686}
+  - {fileID: 114594705335718820}
+  - {fileID: 114307586759802868}
+  - {fileID: 1623028174}
+  - {fileID: 1403684216}
+  - {fileID: 114203839715900738}
+  - {fileID: 114716082362535994}
+  - {fileID: 790114237}
   _old_culling_mask: -33
-  _old_far_clip_plane: 20
+  _old_far_clip_plane: 100
   _old_fov: 80
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
@@ -1901,7 +1873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d8486c2d1444fb8ac452a5a74cf74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _automatically_add_directional_lights_if_not_empty: 0
+  _automatically_add_lights_without_infrared_component: 0
   _ignore_infrared_if_empty: 1
   _lights_to_ignore:
   - {fileID: 108906297679887750}
@@ -1953,8 +1925,6 @@ GameObject:
   - component: {fileID: 9119703340410289289}
   - component: {fileID: 1625775002}
   - component: {fileID: 1625775003}
-  - component: {fileID: 720544466}
-  - component: {fileID: 1893782658355926037}
   m_Layer: 0
   m_Name: NeodroidCamera
   m_TagString: Untagged
@@ -2038,9 +2008,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114716082362535994}
   _cameras:
-  - {fileID: 790114237}
-  - {fileID: 114716082362535994}
+  - {fileID: 1463669859483367840}
+  - {fileID: 3246734891326987255}
+  - {fileID: 4939762416714711659}
+  - {fileID: 114608562479145288}
+  - {fileID: 114798311224295254}
+  - {fileID: 114203530777878686}
+  - {fileID: 114594705335718820}
+  - {fileID: 114307586759802868}
+  - {fileID: 1623028174}
+  - {fileID: 1403684216}
   - {fileID: 114203839715900738}
+  - {fileID: 114716082362535994}
+  - {fileID: 790114237}
   _old_culling_mask: -1
   _old_far_clip_plane: 100
   _old_fov: 79.5
@@ -2068,7 +2048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d8486c2d1444fb8ac452a5a74cf74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _automatically_add_directional_lights_if_not_empty: 0
+  _automatically_add_lights_without_infrared_component: 0
   _ignore_infrared_if_empty: 1
   _lights_to_ignore:
   - {fileID: 108906297679887750}
@@ -2094,15 +2074,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 790114239}
+  - {fileID: 4956758692426196692}
+  - {fileID: 4614691972182028737}
+  - {fileID: 3337727558481276136}
+  - {fileID: 20598539646069560}
+  - {fileID: 20768847776266208}
+  - {fileID: 20145353716750142}
+  - {fileID: 20793825365236440}
   - {fileID: 20940602749366906}
+  - {fileID: 20367486579053346}
+  - {fileID: 1623028176}
+  - {fileID: 1403684218}
+  - {fileID: 790114239}
   - {fileID: 20224209517257972}
   _filter_mode: 1
   _size: {x: 84, y: 84}
   _texture_format: 5
   _textures:
-  - {fileID: 8400000, guid: e52a2f56c9ffa187abf5021f3338228e, type: 2}
+  - {fileID: 8400000, guid: 7ce5712ecfb6c0929a81d56be34c2333, type: 2}
+  - {fileID: 8400000, guid: 7ce5d7425e7fa3af69f9bdd316de2208, type: 2}
+  - {fileID: 8400000, guid: 43f8b57e2bee2bd6eb1df24b6c88ba79, type: 2}
+  - {fileID: 8400000, guid: b22ce111b5af44afe8b8f2f085799a5f, type: 2}
+  - {fileID: 8400000, guid: afc5604d79d0849129803e463fc07bca, type: 2}
+  - {fileID: 8400000, guid: 5d9eca522a1944267b89beea11ffc58c, type: 2}
+  - {fileID: 8400000, guid: bc593ac7628a042ac93b20ca1c0101b6, type: 2}
   - {fileID: 8400000, guid: 4c7dcaf7e8ef74c11bd8ad06365ea216, type: 2}
+  - {fileID: 8400000, guid: 63f7bf9c3a80b4d169b394696cbbd9ab, type: 2}
+  - {fileID: 8400000, guid: 0a204b96270826992a5c81c531ea5dcf, type: 2}
+  - {fileID: 8400000, guid: 280476064a32df4848434f9b38c2d744, type: 2}
+  - {fileID: 8400000, guid: e52a2f56c9ffa187abf5021f3338228e, type: 2}
   _wrap_mode: 1
 --- !u!114 &1625775002
 MonoBehaviour:
@@ -2134,36 +2134,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _draw_label: 1
---- !u!114 &720544466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1866968490669790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_GeneratorAsset: {fileID: 0}
-  m_Script: {fileID: 11500000, guid: 09d0090ae6da0474694c20703113c086, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  angularVelocity: 20
-  axis: {x: 0, y: 0, z: 1}
---- !u!114 &1893782658355926037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1866968490669790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_GeneratorAsset: {fileID: 0}
-  m_Script: {fileID: 11500000, guid: 09d0090ae6da0474694c20703113c086, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  angularVelocity: 20
-  axis: {x: 0, y: 0, z: 1}
 --- !u!1 &1870355748897446
 GameObject:
   m_ObjectHideFlags: 0
@@ -2370,29 +2340,7 @@ MonoBehaviour:
   _editor_reregistering: 1
   _Use_Custom_Name: 0
   _normalise_observation: 0
-  _observation_value: '-53002: RGBA(0.990, 0.992, 0.990, 1.000), -28696: RGBA(0.134,
-    0.362, 0.240, 1.000), -19368: RGBA(0.104, 0.107, 0.069, 1.000), -19366: RGBA(0.428,
-    0.389, 0.434, 1.000), -19364: RGBA(0.393, 0.230, 0.358, 1.000), -19362: RGBA(0.759,
-    0.854, 0.273, 1.000), -19360: RGBA(0.375, 0.341, 0.349, 1.000), -19358: RGBA(0.113,
-    0.552, 0.954, 1.000), -19356: RGBA(0.207, 0.316, 0.552, 1.000), -19354: RGBA(0.968,
-    0.080, 0.166, 1.000), -19350: RGBA(0.662, 0.363, 0.661, 1.000), -19348: RGBA(0.539,
-    0.362, 0.506, 1.000), -19346: RGBA(0.067, 0.681, 0.250, 1.000), -19344: RGBA(0.054,
-    0.118, 0.191, 1.000), -19342: RGBA(0.691, 0.697, 0.446, 1.000), -19340: RGBA(0.778,
-    0.288, 0.742, 1.000), -19338: RGBA(0.708, 0.597, 0.860, 1.000), -19336: RGBA(0.101,
-    0.093, 0.078, 1.000), -19334: RGBA(0.029, 0.041, 0.025, 1.000), -19332: RGBA(0.045,
-    0.070, 0.113, 1.000), -19330: RGBA(0.443, 0.946, 0.561, 1.000), -19328: RGBA(0.182,
-    0.591, 0.270, 1.000), -19326: RGBA(0.660, 0.480, 0.608, 1.000), -19324: RGBA(0.285,
-    0.268, 0.291, 1.000), -19322: RGBA(0.128, 0.230, 0.054, 1.000), -19320: RGBA(0.109,
-    0.083, 0.737, 1.000), -19318: RGBA(0.152, 0.966, 0.269, 1.000), -19316: RGBA(0.014,
-    0.023, 0.031, 1.000), -19314: RGBA(0.809, 0.340, 0.205, 1.000), -19312: RGBA(0.025,
-    0.038, 0.024, 1.000), -19310: RGBA(0.663, 0.663, 0.664, 1.000), -19308: RGBA(0.000,
-    0.000, 0.001, 1.000), -19302: RGBA(0.287, 0.250, 0.217, 1.000), -19300: RGBA(0.905,
-    0.974, 0.762, 1.000), -19298: RGBA(0.551, 0.471, 0.457, 1.000), -19296: RGBA(0.362,
-    0.814, 0.574, 1.000), -19294: RGBA(0.338, 0.250, 0.403, 1.000), -19292: RGBA(0.934,
-    0.876, 0.653, 1.000), -19290: RGBA(0.020, 0.020, 0.007, 1.000), -19286: RGBA(0.517,
-    0.139, 0.329, 1.000), -19282: RGBA(0.203, 0.197, 0.195, 1.000), -19278: RGBA(0.291,
-    0.289, 0.292, 1.000), -19276: RGBA(0.211, 0.272, 0.243, 1.000), Outline: RGBA(1.000,
-    0.000, 1.000, 1.000)'
+  _observation_value: 
   _segmenter: {fileID: 114910394560810596}
 --- !u!1 &1975208461797724
 GameObject:
@@ -2413,7 +2361,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4453025719616826
 Transform:
   m_ObjectHideFlags: 0
@@ -2508,34 +2456,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114608562479145288}
   _cameras:
-  - {fileID: 1623028174}
   - {fileID: 1463669859483367840}
-  - {fileID: 4939762416714711659}
   - {fileID: 3246734891326987255}
-  - {fileID: 114197453280488484}
-  - {fileID: 114203530777878686}
-  - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 114480522672753226}
-  - {fileID: 114594705335718820}
+  - {fileID: 4939762416714711659}
   - {fileID: 114608562479145288}
   - {fileID: 114798311224295254}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114203530777878686}
+  - {fileID: 114594705335718820}
+  - {fileID: 114307586759802868}
+  - {fileID: 1623028174}
+  - {fileID: 1403684216}
+  - {fileID: 114203839715900738}
+  - {fileID: 114716082362535994}
+  - {fileID: 790114237}
   _old_culling_mask: -33
-  _old_far_clip_plane: 20
+  _old_far_clip_plane: 100
   _old_fov: 80
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
@@ -2561,19 +2496,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d8486c2d1444fb8ac452a5a74cf74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _automatically_add_directional_lights_if_not_empty: 1
+  _automatically_add_lights_without_infrared_component: 1
   _ignore_infrared_if_empty: 0
   _lights_to_ignore:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
 --- !u!1 &1975303641184726
@@ -2742,7 +2667,7 @@ MonoBehaviour:
   _Outline_Color: {r: 1, g: 0, b: 1, a: 1}
   _Colors_By_Tag: []
   _Replace_Untagged_Color: 1
-  _segmentation: {fileID: 11400000, guid: 6c0fd9c01d0bddc8991b33243da84af0, type: 2}
+  _segmentation: {fileID: 0}
   _Untagged_Color: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &3127349130290774320
 MonoBehaviour:
@@ -2807,7 +2732,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4782114267277853685
 Transform:
   m_ObjectHideFlags: 0
@@ -2902,34 +2827,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 4939762416714711659}
   _cameras:
-  - {fileID: 1623028174}
   - {fileID: 1463669859483367840}
-  - {fileID: 4939762416714711659}
   - {fileID: 3246734891326987255}
-  - {fileID: 114197453280488484}
-  - {fileID: 114203530777878686}
-  - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 114480522672753226}
-  - {fileID: 114594705335718820}
+  - {fileID: 4939762416714711659}
   - {fileID: 114608562479145288}
   - {fileID: 114798311224295254}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114203530777878686}
+  - {fileID: 114594705335718820}
+  - {fileID: 114307586759802868}
+  - {fileID: 1623028174}
+  - {fileID: 1403684216}
+  - {fileID: 114203839715900738}
+  - {fileID: 114716082362535994}
+  - {fileID: 790114237}
   _old_culling_mask: -33
-  _old_far_clip_plane: 20
+  _old_far_clip_plane: 100
   _old_fov: 80
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
@@ -2955,7 +2867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d8486c2d1444fb8ac452a5a74cf74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _automatically_add_directional_lights_if_not_empty: 0
+  _automatically_add_lights_without_infrared_component: 0
   _ignore_infrared_if_empty: 1
   _lights_to_ignore:
   - {fileID: 108906297679887750}
@@ -2994,7 +2906,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5404288203761531295
 Transform:
   m_ObjectHideFlags: 0
@@ -3089,34 +3001,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 3246734891326987255}
   _cameras:
-  - {fileID: 1623028174}
   - {fileID: 1463669859483367840}
-  - {fileID: 4939762416714711659}
   - {fileID: 3246734891326987255}
-  - {fileID: 114197453280488484}
-  - {fileID: 114203530777878686}
-  - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 114480522672753226}
-  - {fileID: 114594705335718820}
+  - {fileID: 4939762416714711659}
   - {fileID: 114608562479145288}
   - {fileID: 114798311224295254}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114203530777878686}
+  - {fileID: 114594705335718820}
+  - {fileID: 114307586759802868}
+  - {fileID: 1623028174}
+  - {fileID: 1403684216}
+  - {fileID: 114203839715900738}
+  - {fileID: 114716082362535994}
+  - {fileID: 790114237}
   _old_culling_mask: -33
-  _old_far_clip_plane: 20
+  _old_far_clip_plane: 100
   _old_fov: 80
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
@@ -3142,7 +3041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d8486c2d1444fb8ac452a5a74cf74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _automatically_add_directional_lights_if_not_empty: 0
+  _automatically_add_lights_without_infrared_component: 0
   _ignore_infrared_if_empty: 1
   _lights_to_ignore:
   - {fileID: 108906297679887750}
@@ -3181,7 +3080,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3204711235020128306
 Transform:
   m_ObjectHideFlags: 0
@@ -3276,34 +3175,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 1463669859483367840}
   _cameras:
-  - {fileID: 1623028174}
   - {fileID: 1463669859483367840}
-  - {fileID: 4939762416714711659}
   - {fileID: 3246734891326987255}
-  - {fileID: 114197453280488484}
-  - {fileID: 114203530777878686}
-  - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 114480522672753226}
-  - {fileID: 114594705335718820}
+  - {fileID: 4939762416714711659}
   - {fileID: 114608562479145288}
   - {fileID: 114798311224295254}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114203530777878686}
+  - {fileID: 114594705335718820}
+  - {fileID: 114307586759802868}
+  - {fileID: 1623028174}
+  - {fileID: 1403684216}
+  - {fileID: 114203839715900738}
+  - {fileID: 114716082362535994}
+  - {fileID: 790114237}
   _old_culling_mask: -33
-  _old_far_clip_plane: 20
+  _old_far_clip_plane: 100
   _old_fov: 80
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
@@ -3329,7 +3215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d8486c2d1444fb8ac452a5a74cf74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _automatically_add_directional_lights_if_not_empty: 0
+  _automatically_add_lights_without_infrared_component: 0
   _ignore_infrared_if_empty: 1
   _lights_to_ignore:
   - {fileID: 108906297679887750}
