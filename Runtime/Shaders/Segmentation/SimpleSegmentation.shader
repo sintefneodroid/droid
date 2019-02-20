@@ -7,14 +7,17 @@ Properties {
 	_Cutoff ("", Float) = 0.5
 	_Color ("", Color) = (1,1,1,1)
 
-	_ObjectColor ("Object Color", Color) = (1,1,1,1)
+	_ObjectIdColor ("Object Id Color", Color) = (1,1,1,1)
+    _MaterialIdColor ("Material ID Color", Color) = (0,1,0,1)
 	_CategoryColor ("Catergory Color", Color) = (0,1,0,1)
+    _OutputMode ("Output Mode", int)=0
 }
 
 SubShader {
 CGINCLUDE
 
-fixed4 _ObjectColor;
+fixed4 _ObjectIdColor;
+fixed4 _MaterialIdColor;
 fixed4 _CategoryColor;
 int _OutputMode;
 
@@ -34,38 +37,31 @@ float4 Output(float depth01, float3 normal)
 		CatergoryId			= 1,
 		DepthCompressed		= 2,
 		DepthMultichannel	= 3,
-		Normals				= 4
+		Normals				= 4,
+		MaterialId          = 5
 	};*/
 
-	if (_OutputMode == 0) // ObjectId
-	{
-		return _ObjectColor;
-	}
-	else if (_OutputMode == 1) // CatergoryId
-	{
+	if (_OutputMode == 0){ // ObjectId
+		return _ObjectIdColor;
+	}else if (_OutputMode == 1) 	{// CatergoryId
 		return _CategoryColor;
-	}
-	else if (_OutputMode == 2) // DepthCompressed
-	{
+	}else if (_OutputMode == 2)	{ // DepthCompressed
 		float linearZFromNear = Linear01FromEyeToLinear01FromNear(depth01); 
 		float k = 0.25; // compression factor
 		return pow(linearZFromNear, k);
-	}
-	else if (_OutputMode == 3) // DepthMultichannel
-	{
+	}else if (_OutputMode == 3) 	{// DepthMultichannel
 		float lowBits = frac(depth01 * 256);
 		float highBits = depth01 - lowBits / 256;
 		return float4(lowBits, highBits, depth01, 1);
-	}
-	else if (_OutputMode == 4) // Normals
-	{
+	}else if (_OutputMode == 4)	{ // Normals
 		// [-1 .. 1] => [0 .. 1]
 		float3 c = normal * 0.5 + 0.5;
 		return float4(c, 1);
+	}else if(_OutputMode == 5){
+	    return _MaterialIdColor;
 	}
 
-	// unsupported _OutputMode
-	return float4(1, 0.5, 0.5, 1);
+	return float4(1, 0.5, 0.5, 1); 	// unsupported _OutputMode
 }
 ENDCG
 

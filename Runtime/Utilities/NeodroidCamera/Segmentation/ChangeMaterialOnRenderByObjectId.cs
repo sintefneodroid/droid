@@ -27,7 +27,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
 
     /// <summary>
     /// </summary>
-    public Dictionary<GameObject, Color> ColorsDictGameObject { get; } = new Dictionary<GameObject, Color>();
+    public Dictionary<GameObject, Color> ColorsDictGameObject { get; set; } = new Dictionary<GameObject, Color>();
 
     /// <summary>
     /// </summary>
@@ -39,32 +39,6 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
         }
 
         return colors;
-      }
-    }
-
-    /// <summary>
-    /// </summary>
-    public ColorByInstance[] InstanceColors {
-      get {
-
-        if (this.ColorsDictGameObject != null) {
-          this.instanceColorArray = new ColorByInstance[this.ColorsDictGameObject.Keys.Count];
-          var i = 0;
-          foreach (var key in this.ColorsDictGameObject.Keys) {
-            var seg = new ColorByInstance {_Obj = key, _Col = this.ColorsDictGameObject[key]};
-            this.instanceColorArray[i] = seg;
-            i++;
-          }
-
-          return this.instanceColorArray;
-        }
-
-        return null;
-      }
-      set {
-        foreach (var seg in value) {
-          this.ColorsDictGameObject[seg._Obj] = seg._Col;
-        }
       }
     }
 
@@ -93,24 +67,33 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
       }
     }
 
+    SynthesisUtils.CapturePass[] cps = {
+      new SynthesisUtils.CapturePass
+      {
+        _Name = "_object_id", ReplacementMode =
+          SynthesisUtils.ReplacementModes.Object_id_,
+        _SupportsAntialiasing = false
+      }
+    };
+
     /// <summary>
     /// </summary>
     void Setup() {
       this._camera = this.GetComponent<Camera>();
-      SynthesisUtils.Setup(this._camera);
-      SynthesisUtils.SetupOnCameraChangeObjectId(this._camera, this.segmentation_shader);
-      this._all_renders = FindObjectsOfType<Renderer>();
+      SynthesisUtils.SetupCapturePassesReplacementShader(this._camera,this.segmentation_shader, ref cps);
+
       this.CheckBlock();
       foreach (var r in this._all_renders) {
-        GameObject game_object;
-        GameObject o;
-        var id = (game_object = (o = r.gameObject)).GetInstanceID();
+        var game_object = r.gameObject;
+        var id = game_object.GetInstanceID();
         var layer = game_object.layer;
         var go_tag = game_object.tag;
 
-        this.ColorsDictGameObject.Add(o, ColorEncoding.EncodeIdAsColor(id));
-        this._block.SetColor("_ObjectColor", ColorEncoding.EncodeIdAsColor(id));
-        this._block.SetColor("_CategoryColor", ColorEncoding.EncodeLayerAsColor(layer));
+        ColorsDictGameObject = new Dictionary<GameObject, Color>();
+        this.ColorsDictGameObject.Add(game_object, ColorEncoding.EncodeIdAsColor(id));
+        this._block.SetColor("_ObjectIdColor", ColorEncoding.EncodeIdAsColor(id));
+        //this._block.SetColor("_CategoryIdColor", ColorEncoding.EncodeLayerAsColor(layer));
+        //this._block.SetColor("_MaterialIdColor", ColorEncoding.EncodeIdAsColor(id));
         //this._block.SetColor("_CategoryColor", ColorEncoding.EncodeTagHashCodeAsColor(go_tag));
         r.SetPropertyBlock(this._block);
       }

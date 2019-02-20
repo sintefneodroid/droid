@@ -11,6 +11,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera {
     //[SerializeField, Range(0, 1)] float _outline_width_factor = 0.3f;
     [SerializeField] string _replace_render_type = "";
     [SerializeField] Shader _replacement_shader;
+    //[SerializeField, Range(0, 1)] int _use_right;
 
     void OnValidate() { this.Setup(); }
 
@@ -24,12 +25,16 @@ namespace droid.Runtime.Utilities.NeodroidCamera {
       //Shader.SetGlobalColor("_SegmentationColor", this._color);
       //Shader.SetGlobalColor ("_OutlineColor", this._outline_color);
       //Shader.SetGlobalFloat("_OutlineWidthFactor", this._outline_width_factor);
+      //Shader.SetGlobalFloat("_UseRight", this._use_right);
     }
 
     //void Start() { this.Setup(); }
 
     void OnDisable() { this.GetComponent<Camera>().ResetReplacementShader(); }
 
-    void OnPreRender() { }
+    void OnPreRender()
+    {
+
+    }
   }
 }
