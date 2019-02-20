@@ -47,9 +47,10 @@ Camera:
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -67,7 +68,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967263
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: 8fb1467d625b3486199ecd1d9d21ef7d, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: e52a2f56c9ffa187abf5021f3338228e, type: 2}
   m_TargetDisplay: 1
   m_TargetEye: 3
   m_HDR: 1
@@ -86,13 +87,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 790114233}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 790114237}
   _cameras:
-  - {fileID: 114716082362535994}
   - {fileID: 790114237}
+  - {fileID: 114716082362535994}
   - {fileID: 114203839715900738}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
@@ -117,6 +119,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 790114233}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 96d2b2d8cb1664b2c9870ffd997b2f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -138,6 +141,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 790114233}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 1003e9e65c5a4495a80b404ca321593b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -158,10 +162,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 790114233}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: d7bdd700ad374c83b86a813127e132de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Outline_Width_Factor: 0.05
+  _Outline_Width_Factor: 0
   _Outline_Color: {r: 1, g: 0, b: 1, a: 1}
   instanceColorArray: []
   segmentation_shader: {fileID: 4800000, guid: 106a7bfad8c599727ab5499e52b6f53e, type: 3}
@@ -225,7 +230,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -268,6 +273,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1087285658}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: de609666bdf4489dbac2a6e84eaeb992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -332,9 +338,10 @@ Camera:
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -352,7 +359,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967263
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: 8fb1467d625b3486199ecd1d9d21ef7d, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: 280476064a32df4848434f9b38c2d744, type: 2}
   m_TargetDisplay: 1
   m_TargetEye: 3
   m_HDR: 1
@@ -369,8 +376,9 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1403684211}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 08d8186d4ab68d634912ff814b6d0f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -388,6 +396,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1403684211}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -421,6 +430,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1403684211}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 96d2b2d8cb1664b2c9870ffd997b2f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -442,6 +452,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1403684211}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 1003e9e65c5a4495a80b404ca321593b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -500,9 +511,10 @@ Camera:
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -539,6 +551,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1623028170}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 96d2b2d8cb1664b2c9870ffd997b2f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -560,6 +573,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1623028170}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -614,6 +628,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1623028170}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 90d8486c2d1444fb8ac452a5a74cf74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -630,6 +645,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1623028170}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 2773a5ee782b3475e9f2cac8306134fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -718,12 +734,13 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1037625987720610}
   m_Enabled: 1
-  serializedVersion: 8
+  serializedVersion: 9
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
+  m_InnerSpotAngle: 21.802082
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
@@ -794,9 +811,10 @@ Camera:
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -833,6 +851,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1138998545480074}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -887,6 +906,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1138998545480074}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 96d2b2d8cb1664b2c9870ffd997b2f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -908,6 +928,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1138998545480074}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 2773a5ee782b3475e9f2cac8306134fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -953,12 +974,13 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1176750420014840}
   m_Enabled: 1
-  serializedVersion: 8
+  serializedVersion: 9
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 90
+  m_InnerSpotAngle: 71.41338
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
@@ -1029,9 +1051,10 @@ Camera:
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -1068,13 +1091,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1216578306050604}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 114203839715900738}
   _cameras:
-  - {fileID: 114716082362535994}
   - {fileID: 790114237}
+  - {fileID: 114716082362535994}
   - {fileID: 114203839715900738}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
@@ -1099,6 +1123,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1216578306050604}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 96d2b2d8cb1664b2c9870ffd997b2f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1120,6 +1145,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1216578306050604}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 90d8486c2d1444fb8ac452a5a74cf74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1258,12 +1284,13 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1531565962497132}
   m_Enabled: 1
-  serializedVersion: 8
+  serializedVersion: 9
   m_Type: 0
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_Intensity: 1
   m_Range: 100
   m_SpotAngle: 90
+  m_InnerSpotAngle: 71.41338
   m_CookieSize: 0
   m_Shadows:
     m_Type: 2
@@ -1297,6 +1324,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1531565962497132}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: fb842d57fd4d0474497a6d1b0c477f96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1348,9 +1376,10 @@ Camera:
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -1387,6 +1416,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1568745427337830}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1441,6 +1471,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1568745427337830}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 96d2b2d8cb1664b2c9870ffd997b2f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1462,6 +1493,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1568745427337830}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 246cc59c7a84ea44f87f6b70acfe30c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1476,6 +1508,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1568745427337830}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 90d8486c2d1444fb8ac452a5a74cf74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1492,6 +1525,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1568745427337830}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 85ccef30fe10a486389326bacc3bdfd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1542,9 +1576,10 @@ Camera:
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -1581,6 +1616,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1634100351029940}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1635,6 +1671,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1634100351029940}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 96d2b2d8cb1664b2c9870ffd997b2f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1656,6 +1693,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1634100351029940}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 2773a5ee782b3475e9f2cac8306134fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1742,9 +1780,10 @@ Camera:
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -1781,6 +1820,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1858830691588984}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1835,6 +1875,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1858830691588984}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 96d2b2d8cb1664b2c9870ffd997b2f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1856,6 +1897,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1858830691588984}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 90d8486c2d1444fb8ac452a5a74cf74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1872,6 +1914,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1858830691588984}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 2773a5ee782b3475e9f2cac8306134fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1886,6 +1929,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1858830691588984}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: b2e54ebded2e5489fa2596cf3ab24e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1910,6 +1954,7 @@ GameObject:
   - component: {fileID: 1625775002}
   - component: {fileID: 1625775003}
   - component: {fileID: 720544466}
+  - component: {fileID: 1893782658355926037}
   m_Layer: 0
   m_Name: NeodroidCamera
   m_TagString: Untagged
@@ -1947,9 +1992,10 @@ Camera:
   m_ClearFlags: 2
   m_BackGroundColor: {r: 1, g: 0, b: 1, a: 1}
   m_projectionMatrixMode: 2
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
   m_FocalLength: 14.428431
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -1986,13 +2032,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1866968490669790}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 114716082362535994}
   _cameras:
-  - {fileID: 114716082362535994}
   - {fileID: 790114237}
+  - {fileID: 114716082362535994}
   - {fileID: 114203839715900738}
   _old_culling_mask: -1
   _old_far_clip_plane: 100
@@ -2017,6 +2064,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1866968490669790}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 90d8486c2d1444fb8ac452a5a74cf74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2041,6 +2089,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1866968490669790}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: b3dd815fb29337f73b480c9dd61a4ae2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2052,7 +2101,7 @@ MonoBehaviour:
   _size: {x: 84, y: 84}
   _texture_format: 5
   _textures:
-  - {fileID: 8400000, guid: 8fb1467d625b3486199ecd1d9d21ef7d, type: 2}
+  - {fileID: 8400000, guid: e52a2f56c9ffa187abf5021f3338228e, type: 2}
   - {fileID: 8400000, guid: 4c7dcaf7e8ef74c11bd8ad06365ea216, type: 2}
   _wrap_mode: 1
 --- !u!114 &1625775002
@@ -2064,6 +2113,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1866968490669790}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 1b5262a22bdff171d9c6615614469b95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2079,6 +2129,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1866968490669790}
   m_Enabled: 0
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: a69c9a240ee53baafadb71c70054e1ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2092,6 +2143,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1866968490669790}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 09d0090ae6da0474694c20703113c086, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angularVelocity: 20
+  axis: {x: 0, y: 0, z: 1}
+--- !u!114 &1893782658355926037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866968490669790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 09d0090ae6da0474694c20703113c086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2145,9 +2212,10 @@ Camera:
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -2184,6 +2252,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1870355748897446}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2238,6 +2307,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1870355748897446}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 2773a5ee782b3475e9f2cac8306134fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2252,6 +2322,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1870355748897446}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 956749cb3cb1149b1933eb1da9bf66b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2267,6 +2338,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1870355748897446}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 96d2b2d8cb1664b2c9870ffd997b2f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2288,6 +2360,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1870355748897446}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 1003e9e65c5a4495a80b404ca321593b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2367,9 +2440,10 @@ Camera:
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -2406,6 +2480,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1975208461797724}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 96d2b2d8cb1664b2c9870ffd997b2f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2427,6 +2502,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1975208461797724}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2481,6 +2557,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1975208461797724}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 90d8486c2d1444fb8ac452a5a74cf74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2547,9 +2624,10 @@ Camera:
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -2586,6 +2664,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1975303641184726}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2640,6 +2719,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1975303641184726}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 2773a5ee782b3475e9f2cac8306134fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2654,6 +2734,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1975303641184726}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: e9cfd7b9502dd4091965822449faedd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2672,6 +2753,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1975303641184726}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 96d2b2d8cb1664b2c9870ffd997b2f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2693,6 +2775,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1975303641184726}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 1003e9e65c5a4495a80b404ca321593b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2751,9 +2834,10 @@ Camera:
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -2790,6 +2874,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3025541464077872456}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 96d2b2d8cb1664b2c9870ffd997b2f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2811,6 +2896,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3025541464077872456}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2865,6 +2951,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3025541464077872456}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 90d8486c2d1444fb8ac452a5a74cf74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2881,6 +2968,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3025541464077872456}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 2773a5ee782b3475e9f2cac8306134fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2933,9 +3021,10 @@ Camera:
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -2972,6 +3061,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7686063924545477276}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 96d2b2d8cb1664b2c9870ffd997b2f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2993,6 +3083,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7686063924545477276}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -3047,6 +3138,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7686063924545477276}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 90d8486c2d1444fb8ac452a5a74cf74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -3063,6 +3155,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7686063924545477276}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 2773a5ee782b3475e9f2cac8306134fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -3115,9 +3208,10 @@ Camera:
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_GateFitMode: 2
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -3154,6 +3248,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8900663163298106724}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 96d2b2d8cb1664b2c9870ffd997b2f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -3175,6 +3270,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8900663163298106724}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -3229,6 +3325,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8900663163298106724}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 90d8486c2d1444fb8ac452a5a74cf74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -3245,6 +3342,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8900663163298106724}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: 2773a5ee782b3475e9f2cac8306134fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
