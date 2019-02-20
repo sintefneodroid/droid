@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using Object = System.Object;
 
 namespace droid.Runtime.Utilities.NeodroidCamera.Synthesis
 {
@@ -10,16 +12,21 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Synthesis
   public static class SynthesisUtils
   {
     static readonly int _sensitivity = Shader.PropertyToID("_Sensitivity");
+    public const string _Shader_Layer_Color_Name = "_LayerColor";
+    public const string _Shader_Tag_Color_Name = "_TagColor";
+    public const string _Shader_MaterialId_Color_Name = "_MaterialIdColor";
+    public const string _Shader_ObjectId_Color_Name = "_ObjectIdColor";
+    public const string _Shader_OutputMode_Name = "_OutputMode";
 
-    public static CapturePass[] default_capture_passes =
+    public static CapturePass[] _Default_Capture_Passes =
     {
-      new CapturePass {_Name = "_img", ReplacementMode = ReplacementModes.None},
+      new CapturePass {_Name = "_img", _ReplacementMode = ReplacementModes.None_},
       new CapturePass
       {
         _Name = "_id",
         _SupportsAntialiasing
           = false,
-        ReplacementMode = ReplacementModes.Object_id_
+        _ReplacementMode = ReplacementModes.Object_id_
       },
 
       new CapturePass
@@ -27,25 +34,35 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Synthesis
         _Name = "_layer",
         _SupportsAntialiasing
           = false
-        ,ReplacementMode = ReplacementModes.Category_id_
+        ,_ReplacementMode = ReplacementModes.Layer_id_
       },
-      new CapturePass {_Name = "_depth",ReplacementMode = ReplacementModes.Depth_compressed_},
-      new CapturePass {_Name = "_normals", ReplacementMode = ReplacementModes.Normals_},
-      new CapturePass
-      {
-        _Name = "_flow",
-        _SupportsAntialiasing
-          = false,
-        _NeedsRescale = true,ReplacementMode = ReplacementModes.Flow
-      },
+      new CapturePass {_Name = "_depth",_ReplacementMode = ReplacementModes.Depth_compressed_},
+      new CapturePass {_Name = "_normals", _ReplacementMode = ReplacementModes.Normals_},
+
       new CapturePass
       {
         _Name = "_mat_id",
         _SupportsAntialiasing
           = false,
-        ReplacementMode = ReplacementModes.Material_id_
-      }
+        _ReplacementMode = ReplacementModes.Material_id_
+      }      ,
+      new CapturePass
+      {
+          _Name = "_tag",
+          _SupportsAntialiasing
+              = false,
+          _ReplacementMode = ReplacementModes.Material_id_
+      }      ,
+      new CapturePass
+      {
+      _Name = "_flow",
+      _SupportsAntialiasing
+          = false,
+      _NeedsRescale = true,_ReplacementMode = ReplacementModes.Flow_
+      },
     };
+
+
 
     /// <summary>
     ///
@@ -57,7 +74,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Synthesis
       public bool _SupportsAntialiasing;
       public bool _NeedsRescale;
       public Camera _Camera;
-      public ReplacementModes ReplacementMode;
+      public ReplacementModes _ReplacementMode;
     }
 
     /// <summary>
@@ -65,15 +82,42 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Synthesis
     /// </summary>
     public enum ReplacementModes
     {
+      /// <summary>
+      ///
+      /// </summary>
       Object_id_ = 0,
-      Category_id_ = 1,
-      Depth_compressed_ = 2,
-      Depth_multichannel_ = 3,
-      Normals_ = 4,
-      Material_id_ = 5,
-      None = 6,
-
-      Flow = 7,
+      /// <summary>
+      ///
+      /// </summary>
+      Material_id_ = 1,
+      /// <summary>
+      ///
+      /// </summary>
+      Layer_id_ = 2,
+      /// <summary>
+      ///
+      /// </summary>
+      Tag_id_ = 3,
+      /// <summary>
+      ///
+      /// </summary>
+      Depth_compressed_ = 4,
+      /// <summary>
+      ///
+      /// </summary>
+      Depth_multichannel_ = 5,
+      /// <summary>
+      ///
+      /// </summary>
+      Normals_ = 6,
+      /// <summary>
+      ///
+      /// </summary>
+      None_ = 7,
+      /// <summary>
+      ///
+      /// </summary>
+      Flow_ = 8
     }
 
     /// <summary>
@@ -101,22 +145,26 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Synthesis
       // setup command buffers and replacement shaders
       AddReplacementShaderCommandBufferOnCamera(capture_passes[1]._Camera,
         replacement_shader,
-        capture_passes[1].ReplacementMode);
+        capture_passes[1]._ReplacementMode);
       AddReplacementShaderCommandBufferOnCamera(capture_passes[2]._Camera,
         replacement_shader,
-        capture_passes[2].ReplacementMode);
+        capture_passes[2]._ReplacementMode);
       AddReplacementShaderCommandBufferOnCamera(capture_passes[6]._Camera,
         replacement_shader,
-        capture_passes[6].ReplacementMode);
+        capture_passes[6]._ReplacementMode);
+
+      AddReplacementShaderCommandBufferOnCamera(capture_passes[5]._Camera,
+                                                replacement_shader,
+                                                capture_passes[5]._ReplacementMode);
 
       AddReplacementShaderCommandBufferOnCamera(capture_passes[3]._Camera,
         replacement_shader,
-        capture_passes[3].ReplacementMode,
+        capture_passes[3]._ReplacementMode,
         Color.white);
       AddReplacementShaderCommandBufferOnCamera(capture_passes[4]._Camera,
         replacement_shader,
-        capture_passes[4].ReplacementMode);
-      SetupCameraWithPostShader(capture_passes[5]._Camera,
+        capture_passes[4]._ReplacementMode);
+      SetupCameraWithPostShader(capture_passes[8]._Camera,
         optical_flow_material,
         DepthTextureMode.Depth | DepthTextureMode.MotionVectors);
     }
@@ -126,13 +174,13 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Synthesis
       ref CapturePass[] capture_passes)
     {
       SetupHiddenCapturePassCameras(camera, ref capture_passes);
-      CleanRefreshPassCameras(camera,ref capture_passes);
+      CleanRefreshPassCameras(camera, ref capture_passes);
 
       foreach (var capture_pass in capture_passes)
       {
         AddReplacementShaderCommandBufferOnCamera(capture_pass._Camera,
           replacement_shader,
-          capture_pass.ReplacementMode);
+          capture_pass._ReplacementMode);
       }
     }
 
@@ -163,8 +211,8 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Synthesis
       ReplacementModes mode,
       Color clear_color)
     {
-      var cb = new CommandBuffer();
-      cb.SetGlobalInt("_OutputMode", (int) mode);
+      var cb = new CommandBuffer {name = mode.ToString()};
+      cb.SetGlobalInt(_Shader_OutputMode_Name, (int) mode);
       camera.AddCommandBuffer(CameraEvent.BeforeForwardOpaque, cb);
       camera.AddCommandBuffer(CameraEvent.BeforeFinalPass, cb);
       camera.SetReplacementShader(shader, "");
@@ -176,7 +224,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Synthesis
       Material material,
       DepthTextureMode depth_texture_mode = DepthTextureMode.None)
     {
-      var cb = new CommandBuffer();
+      var cb = new CommandBuffer {name = cam.name};
       cb.Blit(null, BuiltinRenderTextureType.CurrentActive, material);
       cam.AddCommandBuffer(CameraEvent.AfterEverything, cb);
       cam.depthTextureMode = depth_texture_mode;
@@ -186,7 +234,8 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Synthesis
     ///
     /// </summary>
     /// <param name="camera"></param>
-    static void SetupHiddenCapturePassCameras(Camera camera,ref  CapturePass[] capture_passes)
+    /// <param name="capture_passes"></param>
+    static void SetupHiddenCapturePassCameras(Camera camera, ref  CapturePass[] capture_passes)
     {
       capture_passes[0]._Camera = camera;
       for (var q = 1; q < capture_passes.Length; q++)

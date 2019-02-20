@@ -20,7 +20,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation.Obsolete {
     /// <summary>
     /// </summary>
     [SerializeField]
-    protected ColorByTag[] _Colors_By_Tag;
+    protected ColorByCategory[] _colors_by_category;
 
     /// <summary>
     /// </summary>
@@ -42,7 +42,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation.Obsolete {
 
     /// <summary>
     /// </summary>
-    public ColorByTag[] ColorsByTag { get { return this._Colors_By_Tag; } }
+    public ColorByCategory[] ColorsByCategory { get { return this._colors_by_category; } }
 
     /// <summary>
     /// </summary>
@@ -53,9 +53,9 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation.Obsolete {
     void Awake() {
       this._block = new MaterialPropertyBlock();
       this._tag_colors_dict.Clear();
-      var colors_by_tag = this._Colors_By_Tag;
+      var colors_by_tag = this._colors_by_category;
       if (colors_by_tag != null && colors_by_tag.Length > 0) {
-        foreach (var tag_color in this._Colors_By_Tag) {
+        foreach (var tag_color in this._colors_by_category) {
           if (!this._tag_colors_dict.ContainsKey(tag_color._Tag)) {
             this._tag_colors_dict.Add(tag_color._Tag, tag_color._Col);
           }
@@ -63,7 +63,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation.Obsolete {
       }
 
       if (this._segmentation) {
-        var segmentation_color_by_tags = this._segmentation._Color_By_Tags;
+        var segmentation_color_by_tags = this._segmentation._color_by_categories;
         if (segmentation_color_by_tags != null) {
           foreach (var tag_color in segmentation_color_by_tags) {
             if (!this._tag_colors_dict.ContainsKey(tag_color._Tag)) {

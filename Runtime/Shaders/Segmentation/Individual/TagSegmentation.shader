@@ -1,15 +1,13 @@
-// Based on builtin Internal-DepthNormalsTexture.shader
-// EncodeDepthNormal() is replaced with custom Output() function
-
-Shader "Neodroid/Segmentation/SimpleSegmentation" {
+Shader "Neodroid/Segmentation/TagSegmentation" {
 Properties {
 	_MainTex ("", 2D) = "white" {}
 	_Cutoff ("", Float) = 0.5
 	_Color ("", Color) = (1,1,1,1)
 
 	_ObjectIdColor ("Object Id Color", Color) = (1,1,1,1)
-    _MaterialIdColor ("Material ID Color", Color) = (0,1,0,1)
-	_CategoryColor ("Catergory Color", Color) = (0,1,0,1)
+    _MaterialIdColor ("Material Id Color", Color) = (0,1,0,1)
+	_LayerColor ("Layer Color", Color) = (1,1,0,1)
+    _TagColor ("Tag Color", Color) = (0,1,1,1)
     _OutputMode ("Output Mode", int)=0
 }
 
@@ -18,7 +16,8 @@ CGINCLUDE
 
 fixed4 _ObjectIdColor;
 fixed4 _MaterialIdColor;
-fixed4 _CategoryColor;
+fixed4 _LayerColor;
+fixed4 _TagColor;
 int _OutputMode;
 
 // remap depth: [0 @ eye .. 1 @ far] => [0 @ near .. 1 @ far]
@@ -31,37 +30,7 @@ inline float Linear01FromEyeToLinear01FromNear(float depth01)
 
 float4 Output(float depth01, float3 normal)
 {
-	/* see ImageSynthesis.cs
-	enum ReplacelementModes {
-		ObjectId 			= 0,
-		CatergoryId			= 1,
-		DepthCompressed		= 2,
-		DepthMultichannel	= 3,
-		Normals				= 4,
-		MaterialId          = 5
-	};*/
-
-	if (_OutputMode == 0){ // ObjectId
-		return _ObjectIdColor;
-	}else if (_OutputMode == 1) 	{// CatergoryId
-		return _CategoryColor;
-	}else if (_OutputMode == 2)	{ // DepthCompressed
-		float linearZFromNear = Linear01FromEyeToLinear01FromNear(depth01); 
-		float k = 0.25; // compression factor
-		return pow(linearZFromNear, k);
-	}else if (_OutputMode == 3) 	{// DepthMultichannel
-		float lowBits = frac(depth01 * 256);
-		float highBits = depth01 - lowBits / 256;
-		return float4(lowBits, highBits, depth01, 1);
-	}else if (_OutputMode == 4)	{ // Normals
-		// [-1 .. 1] => [0 .. 1]
-		float3 c = normal * 0.5 + 0.5;
-		return float4(c, 1);
-	}else if(_OutputMode == 5){
-	    return _MaterialIdColor;
-	}
-
-	return float4(1, 0.5, 0.5, 1); 	// unsupported _OutputMode
+	    return _TagColor;
 }
 ENDCG
 

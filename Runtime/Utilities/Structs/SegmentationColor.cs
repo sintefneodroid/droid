@@ -5,7 +5,7 @@ namespace droid.Runtime.Utilities.Structs {
   /// <summary>
   /// </summary>
   [Serializable]
-  public struct ColorByTag {
+  public struct ColorByCategory {
     /// <summary>
     /// </summary>
     public string _Tag;

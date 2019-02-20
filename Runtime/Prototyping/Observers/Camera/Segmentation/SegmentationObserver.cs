@@ -29,9 +29,10 @@ namespace droid.Runtime.Prototyping.Observers.Camera.Segmentation {
                                           (current, next) => current != "" ? $"{current}, {next}" : $"{next}")
                                   : "Nothing";
       //TODO:ADD this Type(COLOR) and ColorDict as serialisation option instead of a string
-      if (this._segmenter != null) {
+/*      if (this._segmenter != null) {
         this.ObservationValue += $", Outline: {this._segmenter.OutlineColor.ToString()}";
       }
+      */
     }
 
     /// <inheritdoc />

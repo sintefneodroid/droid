@@ -12,6 +12,6 @@ namespace droid.Runtime.Utilities.ScriptableObjects {
   public class Segmentation : ScriptableObject {
     /// <summary>
     /// </summary>
-    public ColorByTag[] _Color_By_Tags;
+    public ColorByCategory[] _color_by_categories;
   }
 }

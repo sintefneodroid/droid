@@ -10,7 +10,7 @@ namespace droid.Editor.Windows {
   public class SegmentationWindow : EditorWindow {
     [SerializeField] ColorByInstance[] colorsByInstance;
 
-    [SerializeField] ColorByTag[] colorsByTag;
+    [SerializeField] ColorByCategory[] _colorsByCategory;
     Texture _icon;
 
     Vector2 _scroll_position;
@@ -36,8 +36,8 @@ namespace droid.Editor.Windows {
       GUILayout.Label("By Tag");
       var material_changers_by_tag = FindObjectsOfType<ChangeMaterialOnRenderByTag>();
       foreach (var material_changer_by_tag in material_changers_by_tag) {
-        this.colorsByTag = material_changer_by_tag.ColorsByTag;
-        if (this.colorsByTag != null) {
+        this._colorsByCategory = material_changer_by_tag.ColorsByCategory;
+        if (this._colorsByCategory != null) {
           var tag_colors_property = serialised_object.FindProperty("_segmentation_colors_by_tag");
           EditorGUILayout.PropertyField(
               tag_colors_property,

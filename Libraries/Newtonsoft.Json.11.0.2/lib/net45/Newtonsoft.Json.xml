@@ -1765,7 +1765,8 @@
       </summary>
       <example>
         <code lang="cs" region="SerializeObject"
-              source="..\Src\Newtonsoft.Json.Tests\Documentation\SerializationTests.cs" title="Serializing and Deserializing JSON with JsonConvert"/>
+              source="..\Src\Newtonsoft.Json.Tests\Documentation\SerializationTests.cs"
+              title="Serializing and Deserializing JSON with JsonConvert"/>
       </example>
     </member>
     <member name="P:Newtonsoft.Json.JsonConvert.DefaultSettings">
@@ -9821,7 +9822,8 @@
       </summary>
       <example>
         <code lang="cs" region="LinqToJsonCreateParseArray"
-              source="..\Src\Newtonsoft.Json.Tests\Documentation\LinqToJsonTests.cs" title="Parsing a JSON Array from Text"/>
+              source="..\Src\Newtonsoft.Json.Tests\Documentation\LinqToJsonTests.cs"
+              title="Parsing a JSON Array from Text"/>
       </example>
     </member>
     <member
@@ -10017,7 +10019,8 @@
       </returns>
       <example>
         <code lang="cs" region="LinqToJsonCreateParseArray"
-              source="..\Src\Newtonsoft.Json.Tests\Documentation\LinqToJsonTests.cs" title="Parsing a JSON Array from Text"/>
+              source="..\Src\Newtonsoft.Json.Tests\Documentation\LinqToJsonTests.cs"
+              title="Parsing a JSON Array from Text"/>
       </example>
     </member>
     <member
@@ -10043,7 +10046,8 @@
       </returns>
       <example>
         <code lang="cs" region="LinqToJsonCreateParseArray"
-              source="..\Src\Newtonsoft.Json.Tests\Documentation\LinqToJsonTests.cs" title="Parsing a JSON Array from Text"/>
+              source="..\Src\Newtonsoft.Json.Tests\Documentation\LinqToJsonTests.cs"
+              title="Parsing a JSON Array from Text"/>
       </example>
     </member>
     <member name="M:Newtonsoft.Json.Linq.JArray.FromObject(System.Object)">
@@ -10767,7 +10771,8 @@
       </summary>
       <example>
         <code lang="cs" region="LinqToJsonCreateParse"
-              source="..\Src\Newtonsoft.Json.Tests\Documentation\LinqToJsonTests.cs" title="Parsing a JSON Object from Text"/>
+              source="..\Src\Newtonsoft.Json.Tests\Documentation\LinqToJsonTests.cs"
+              title="Parsing a JSON Object from Text"/>
       </example>
     </member>
     <member
@@ -11054,7 +11059,8 @@
       </exception>
       <example>
         <code lang="cs" region="LinqToJsonCreateParse"
-              source="..\Src\Newtonsoft.Json.Tests\Documentation\LinqToJsonTests.cs" title="Parsing a JSON Object from Text"/>
+              source="..\Src\Newtonsoft.Json.Tests\Documentation\LinqToJsonTests.cs"
+              title="Parsing a JSON Object from Text"/>
       </example>
     </member>
     <member
@@ -11084,7 +11090,8 @@
       </exception>
       <example>
         <code lang="cs" region="LinqToJsonCreateParse"
-              source="..\Src\Newtonsoft.Json.Tests\Documentation\LinqToJsonTests.cs" title="Parsing a JSON Object from Text"/>
+              source="..\Src\Newtonsoft.Json.Tests\Documentation\LinqToJsonTests.cs"
+              title="Parsing a JSON Object from Text"/>
       </example>
     </member>
     <member name="M:Newtonsoft.Json.Linq.JObject.FromObject(System.Object)">
@@ -14559,7 +14566,8 @@
       </summary>
       <example>
         <code lang="cs" region="PreservingObjectReferencesOn"
-              source="..\Src\Newtonsoft.Json.Tests\Documentation\SerializationTests.cs" title="Preserve Object References"/>
+              source="..\Src\Newtonsoft.Json.Tests\Documentation\SerializationTests.cs"
+              title="Preserve Object References"/>
       </example>
     </member>
     <member name="F:Newtonsoft.Json.PreserveReferencesHandling.None">

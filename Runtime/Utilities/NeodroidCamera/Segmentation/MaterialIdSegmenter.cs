@@ -12,7 +12,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
   /// <summary>
   /// </summary>
   [ExecuteInEditMode]
-  public class ChangeMaterialOnRenderByMaterialId : Segmenter {
+  public class MaterialIdSegmenter : Segmenter {
     /// <summary>
     /// </summary>
     Renderer[] _all_renders;
@@ -48,14 +48,6 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
       this.Setup();
     }
 
-    /// <summary>
-    /// </summary>
-    void Awake() { //this.Setup();
-                   }
-
-    /// <summary>
-    /// </summary>
-    void Update() { }
 
     void CheckBlock() {
       if (this._block == null) {
@@ -66,7 +58,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
     SynthesisUtils.CapturePass[] _capture_passes = {
                                            new SynthesisUtils.CapturePass {
                                                                               _Name = "_material_id",
-                                                                              ReplacementMode =
+                                                                              _ReplacementMode =
                                                                                   SynthesisUtils
                                                                                       .ReplacementModes
                                                                                       .Material_id_,
@@ -78,7 +70,6 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
     /// </summary>
     void Setup() {
       this._all_renders = FindObjectsOfType<Renderer>();
-      this._block = new MaterialPropertyBlock();
 
       this._camera = this.GetComponent<Camera>();
       SynthesisUtils.SetupCapturePassesReplacementShader(this._camera,
@@ -88,6 +79,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
       this.ColorsDictGameObject = new Dictionary<Material, Color>();
       this.CheckBlock();
       foreach (var r in this._all_renders) {
+        r.GetPropertyBlock(this._block);
         var sm = r.sharedMaterial;
         if (sm) {
           var id = sm.GetInstanceID();
@@ -96,7 +88,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
             this.ColorsDictGameObject.Add(sm, color);
           }
 
-          this._block.SetColor("_MaterialIdColor", color);
+          this._block.SetColor(SynthesisUtils._Shader_MaterialId_Color_Name, color);
           r.SetPropertyBlock(this._block);
         }
       }

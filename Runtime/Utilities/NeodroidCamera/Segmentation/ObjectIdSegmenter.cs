@@ -12,7 +12,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
   /// <summary>
   /// </summary>
   [ExecuteInEditMode]
-  public class ChangeMaterialOnRenderByObjectId : Segmenter {
+  public class ObjectIdSegmenter : Segmenter {
     /// <summary>
     /// </summary>
     Renderer[] _all_renders;
@@ -27,7 +27,8 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
 
     /// <summary>
     /// </summary>
-    public Dictionary<GameObject, Color> ColorsDictGameObject { get; set; } = new Dictionary<GameObject, Color>();
+    public Dictionary<GameObject, Color> ColorsDictGameObject { get; set; } =
+      new Dictionary<GameObject, Color>();
 
     /// <summary>
     /// </summary>
@@ -47,19 +48,6 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
     /// </summary>
     void Start() { this.Setup(); }
 
-    /// <summary>
-    /// </summary>
-    void Awake() {
-
-      //this.Setup();
-    }
-
-    /// <summary>
-    /// </summary>
-    void Update() {
-
-    }
-
     void CheckBlock() {
       if (this._block == null) {
         this._block = new MaterialPropertyBlock();
@@ -67,30 +55,36 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
     }
 
     SynthesisUtils.CapturePass[] _capture_passes = {
-      new SynthesisUtils.CapturePass
-      {
-        _Name = "_object_id", ReplacementMode =
-          SynthesisUtils.ReplacementModes.Object_id_,
-        _SupportsAntialiasing = false
-      }
-    };
+                                                       new SynthesisUtils.CapturePass {
+                                                                                          _Name =
+                                                                                              "_object_id",
+                                                                                          _ReplacementMode =
+                                                                                              SynthesisUtils
+                                                                                                  .ReplacementModes
+                                                                                                  .Object_id_,
+                                                                                          _SupportsAntialiasing
+                                                                                              = false
+                                                                                      }
+                                                   };
 
     /// <summary>
     /// </summary>
     void Setup() {
       this._camera = this.GetComponent<Camera>();
-      SynthesisUtils.SetupCapturePassesReplacementShader(this._camera,this.segmentation_shader, ref this._capture_passes);
+      SynthesisUtils.SetupCapturePassesReplacementShader(this._camera,
+                                                         this.segmentation_shader,
+                                                         ref this._capture_passes);
       this.ColorsDictGameObject = new Dictionary<GameObject, Color>();
       this._all_renders = FindObjectsOfType<Renderer>();
-      this._block = new MaterialPropertyBlock();
       this.CheckBlock();
       foreach (var r in this._all_renders) {
+        r.GetPropertyBlock(this._block);
         var game_object = r.gameObject;
         var id = game_object.GetInstanceID();
         var layer = game_object.layer;
         var go_tag = game_object.tag;
 
-        if(!this.ColorsDictGameObject.ContainsKey(game_object)) {
+        if (!this.ColorsDictGameObject.ContainsKey(game_object)) {
           this.ColorsDictGameObject.Add(game_object, ColorEncoding.EncodeIdAsColor(id));
         } else {
           #if NEODROID_DEBUG
@@ -100,7 +94,11 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
           #endif
         }
 
-        this._block.SetColor("_ObjectIdColor", ColorEncoding.EncodeIdAsColor(id));
+        this._block.SetColor(SynthesisUtils._Shader_ObjectId_Color_Name, ColorEncoding.EncodeIdAsColor(id));
+/*
+this._block?.SetInt(SynthesisUtils._Shader_OutputMode_Name,(int) SynthesisUtils.ReplacementModes
+                                                                          .Object_id_);
+                                                                          */
         //this._block.SetColor("_CategoryIdColor", ColorEncoding.EncodeLayerAsColor(layer));
         //this._block.SetColor("_MaterialIdColor", ColorEncoding.EncodeIdAsColor(id));
         //this._block.SetColor("_CategoryColor", ColorEncoding.EncodeTagHashCodeAsColor(go_tag));
