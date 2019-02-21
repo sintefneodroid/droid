@@ -4,21 +4,15 @@ Properties {
 	_Cutoff ("", Float) = 0.5
 	_Color ("", Color) = (1,1,1,1)
 
-	_ObjectIdColor ("Object Id Color", Color) = (1,1,1,1)
-    _MaterialIdColor ("Material Id Color", Color) = (0,1,0,1)
 	_LayerColor ("Layer Color", Color) = (1,1,0,1)
-    _TagColor ("Tag Color", Color) = (0,1,1,1)
-    _OutputMode ("Output Mode", int)=0
+
 }
 
 SubShader {
 CGINCLUDE
 
-fixed4 _ObjectIdColor;
-fixed4 _MaterialIdColor;
 fixed4 _LayerColor;
-fixed4 _TagColor;
-int _OutputMode;
+
 
 // remap depth: [0 @ eye .. 1 @ far] => [0 @ near .. 1 @ far]
 inline float Linear01FromEyeToLinear01FromNear(float depth01)

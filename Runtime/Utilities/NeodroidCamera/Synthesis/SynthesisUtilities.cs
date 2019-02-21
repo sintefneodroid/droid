@@ -9,7 +9,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Synthesis
   /// <summary>
   ///
   /// </summary>
-  public static class SynthesisUtils
+  public static class SynthesisUtilities
   {
     static readonly int _sensitivity = Shader.PropertyToID("_Sensitivity");
     public const string _Shader_Layer_Color_Name = "_LayerColor";

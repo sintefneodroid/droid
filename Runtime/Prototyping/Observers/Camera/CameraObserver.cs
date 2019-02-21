@@ -96,16 +96,21 @@ namespace droid.Runtime.Prototyping.Observers.Camera {
                 target_texture.useMipMap,
                 !target_texture.sRGB);
           } else {
+            #if NEODROID_DEBUG
             Debug.LogWarning(
                 $"Texture format {texture_format_str} is not a valid TextureFormat for Texture2D$");
+#endif
           }
         }
       }
 
       if (this._Manager?.SimulatorConfiguration != null) {
-        if (this._Manager.SimulatorConfiguration.SimulationType != SimulationType.Frame_dependent_) {
+        if (this._Manager.SimulatorConfiguration.SimulationType != SimulationType.Frame_dependent_ &&
+        Application.isEditor) {
+          #if NEODROID_DEBUG
           Debug.Log(
               "Notice that camera observations may be out of sync with other observation data, because simulation configuration is not frame dependent");
+          #endif
         }
       }
     }
@@ -134,7 +139,9 @@ namespace droid.Runtime.Prototyping.Observers.Camera {
         }
         else
         {
+          #if NEODROID_DEBUG
           Debug.LogWarning("Texture not available!");
+          #endif
           this._texture = new Texture2D(_DefaultWidth, _DefaultHeight);
         }
 

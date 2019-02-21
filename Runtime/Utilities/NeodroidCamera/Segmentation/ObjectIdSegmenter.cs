@@ -54,12 +54,12 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
       }
     }
 
-    SynthesisUtils.CapturePass[] _capture_passes = {
-                                                       new SynthesisUtils.CapturePass {
+    SynthesisUtilities.CapturePass[] _capture_passes = {
+                                                       new SynthesisUtilities.CapturePass {
                                                                                           _Name =
                                                                                               "_object_id",
                                                                                           _ReplacementMode =
-                                                                                              SynthesisUtils
+                                                                                              SynthesisUtilities
                                                                                                   .ReplacementModes
                                                                                                   .Object_id_,
                                                                                           _SupportsAntialiasing
@@ -71,7 +71,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
     /// </summary>
     void Setup() {
       this._camera = this.GetComponent<Camera>();
-      SynthesisUtils.SetupCapturePassesReplacementShader(this._camera,
+      SynthesisUtilities.SetupCapturePassesReplacementShader(this._camera,
                                                          this.segmentation_shader,
                                                          ref this._capture_passes);
       this.ColorsDictGameObject = new Dictionary<GameObject, Color>();
@@ -94,7 +94,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
           #endif
         }
 
-        this._block.SetColor(SynthesisUtils._Shader_ObjectId_Color_Name, ColorEncoding.EncodeIdAsColor(id));
+        this._block.SetColor(SynthesisUtilities._Shader_ObjectId_Color_Name, ColorEncoding.EncodeIdAsColor(id));
 /*
 this._block?.SetInt(SynthesisUtils._Shader_OutputMode_Name,(int) SynthesisUtils.ReplacementModes
                                                                           .Object_id_);

@@ -99,11 +99,11 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
       }
     }
 
-    SynthesisUtils.CapturePass[] _capture_passes = {
-                                                       new SynthesisUtils.CapturePass {
+    SynthesisUtilities.CapturePass[] _capture_passes = {
+                                                       new SynthesisUtilities.CapturePass {
                                                                                           _Name = "_tag_id",
                                                                                           _ReplacementMode =
-                                                                                              SynthesisUtils
+                                                                                              SynthesisUtilities
                                                                                                   .ReplacementModes
                                                                                                   .Tag_id_,
                                                                                           _SupportsAntialiasing
@@ -119,10 +119,10 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
       switch (this._segmentation_mode) {
         case SegmentationMode.Tag:
           this._capture_passes = new[] {
-                                           new SynthesisUtils.CapturePass {
+                                           new SynthesisUtilities.CapturePass {
                                                                               _Name = "_tag_id",
                                                                               _ReplacementMode =
-                                                                                  SynthesisUtils
+                                                                                  SynthesisUtilities
                                                                                       .ReplacementModes
                                                                                       .Tag_id_,
                                                                               _SupportsAntialiasing = false
@@ -131,10 +131,10 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
           break;
         case SegmentationMode.Layer:
           this._capture_passes = new[] {
-                                           new SynthesisUtils.CapturePass {
+                                           new SynthesisUtilities.CapturePass {
                                                                               _Name = "_layer_id",
                                                                               _ReplacementMode =
-                                                                                  SynthesisUtils
+                                                                                  SynthesisUtilities
                                                                                       .ReplacementModes
                                                                                       .Layer_id_,
                                                                               _SupportsAntialiasing = false
@@ -145,7 +145,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
       }
 
       this._camera = this.GetComponent<Camera>();
-      SynthesisUtils.SetupCapturePassesReplacementShader(this._camera,
+      SynthesisUtilities.SetupCapturePassesReplacementShader(this._camera,
                                                          this.segmentation_shader,
                                                          ref this._capture_passes);
 
@@ -159,14 +159,14 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
           case SegmentationMode.Tag:
             category_name = r.tag;
             color = ColorEncoding.EncodeIdAsColor(category_name.GetHashCode());
-            this._block.SetColor(SynthesisUtils._Shader_Tag_Color_Name, color);
+            this._block.SetColor(SynthesisUtilities._Shader_Tag_Color_Name, color);
             break;
           case SegmentationMode.Layer:
             var layer_int = r.gameObject.layer;
             color = ColorEncoding.EncodeLayerAsColor(layer_int);
 
             category_name = LayerMask.LayerToName(layer_int);
-            this._block.SetColor(SynthesisUtils._Shader_Layer_Color_Name, color);
+            this._block.SetColor(SynthesisUtilities._Shader_Layer_Color_Name, color);
             break;
           default: throw new ArgumentOutOfRangeException();
         }

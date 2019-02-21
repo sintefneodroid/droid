@@ -80,7 +80,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     }
 
     protected virtual void Update() {
-      if (this.Debugging && Application.isPlaying) {
+      if (this.SampleRandom && Application.isPlaying) {
         var random_generator = new Random();
         this.ApplyConfiguration(this.SampleConfiguration(random_generator));
       }
@@ -104,6 +104,8 @@ namespace droid.Runtime.Prototyping.Configurables {
     [Header("Configurable", order = 30)]
     [SerializeField]
     bool _relative_to_existing_value;
+
+    [SerializeField] bool SampleRandom;
 
     #endregion
   }

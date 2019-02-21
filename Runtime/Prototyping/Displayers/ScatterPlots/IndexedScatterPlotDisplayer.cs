@@ -50,7 +50,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
       }
     }
 
-    void SpawnDesign(GameObject design, Vector3 position, Quaternion rotation = default) {
+    void SpawnDesign(GameObject design, Vector3 position, Quaternion rotation) {
       //var go = Instantiate(design, position, rotation,this.transform);
       var go = Instantiate(design, position, design.transform.rotation, this.transform);
       this._instances.Add(go);
@@ -108,7 +108,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
           continue;
         }
 
-        this.SpawnDesign(this._designs[(int)point._Val], point._Pos);
+        this.SpawnDesign(this._designs[(int)point._Val], point._Pos,Quaternion.identity);
       }
     }
 

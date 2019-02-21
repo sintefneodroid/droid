@@ -30,6 +30,8 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     protected override void PreSetup() {
       this._texture_str = this.Identifier + "Texture";
       this._renderer = this.GetComponent<Renderer>();
+
+      this._textures = Resources.LoadAll<Texture>("Textures");
     }
 
     /// <inheritdoc />
@@ -60,10 +62,10 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       #endif
 
       if (configuration.ConfigurableName == this._texture_str) {
-        if (this._texture) {
+
           this._texture = this._textures[(int)configuration.ConfigurableValue];
           this._renderer.material.mainTexture = this._texture;
-        }
+
       }
     }
 

@@ -33,8 +33,12 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
     public override Dictionary<String, Color> ColorsDict {
       get {
         var colors = new Dictionary<String, Color>();
-        foreach (var key_val in this.ColorsDictGameObject) {
-          colors.Add(key_val.Key.name, key_val.Value);
+        foreach (var key_val in this.ColorsDictGameObject)
+        {
+          if(!colors.ContainsKey(key_val.Key.name))
+          {
+            colors.Add(key_val.Key.name, key_val.Value);
+          }
         }
 
         return colors;
@@ -55,11 +59,11 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
       }
     }
 
-    SynthesisUtils.CapturePass[] _capture_passes = {
-                                           new SynthesisUtils.CapturePass {
+    SynthesisUtilities.CapturePass[] _capture_passes = {
+                                           new SynthesisUtilities.CapturePass {
                                                                               _Name = "_material_id",
                                                                               _ReplacementMode =
-                                                                                  SynthesisUtils
+                                                                                  SynthesisUtilities
                                                                                       .ReplacementModes
                                                                                       .Material_id_,
                                                                               _SupportsAntialiasing = false
@@ -72,7 +76,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
       this._all_renders = FindObjectsOfType<Renderer>();
 
       this._camera = this.GetComponent<Camera>();
-      SynthesisUtils.SetupCapturePassesReplacementShader(this._camera,
+      SynthesisUtilities.SetupCapturePassesReplacementShader(this._camera,
                                                          this.segmentation_shader,
                                                          ref this._capture_passes);
 
@@ -88,7 +92,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
             this.ColorsDictGameObject.Add(sm, color);
           }
 
-          this._block.SetColor(SynthesisUtils._Shader_MaterialId_Color_Name, color);
+          this._block.SetColor(SynthesisUtilities._Shader_MaterialId_Color_Name, color);
           r.SetPropertyBlock(this._block);
         }
       }
