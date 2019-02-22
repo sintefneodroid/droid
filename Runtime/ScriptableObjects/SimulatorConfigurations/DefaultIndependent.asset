@@ -14,17 +14,19 @@ MonoBehaviour:
   m_Name: DefaultIndependent
   m_EditorClassIdentifier: 
   _always_serialise_unobservables: 0
-  _always_serialise_individual_observables: 0
+  _always_serialise_individual_observables: 1
   _apply_resolution_settings: 0
+  _apply_quality_settings: 0
+  _height: 500
+  _width: 500
+  _quality_level: 3
   _frame_finishes: 1
   _frame_skips: 0
   _full_screen: 0
-  _height: 500
   _ip_address: localhost
   _max_reply_interval: 0
   _num_of_environments: 0
   _port: 6969
-  _quality_level: 3
   _replay_reaction_in_skips: 0
   _reset_iterations: 1
   _simulation_type: 3
@@ -32,4 +34,3 @@ MonoBehaviour:
   _target_frame_rate: -1
   _time_scale: 1
   _update_fixed_time_scale: 0
-  _width: 500
