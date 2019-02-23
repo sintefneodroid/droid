@@ -123,14 +123,14 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       var sample = random_generator.NextDouble();
 
       if (sample < .33f) {
-        return new Configuration(this._color_r, (float)random_generator.NextDouble());
+        return new Configuration(this._color_r, (float)((random_generator.NextDouble()*0.25)+0.75));
       }
 
       if (sample > .66f) {
-        return new Configuration(this._color_g, (float)random_generator.NextDouble());
+        return new Configuration(this._color_g, (float)((random_generator.NextDouble()*0.25)+0.75));
       }
 
-      return new Configuration(this._color_b, (float)random_generator.NextDouble());
+      return new Configuration(this._color_b, (float)((random_generator.NextDouble()*0.25)+0.75));
     }
   }
 }
