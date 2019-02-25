@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Object = System.Object;
 using Random = UnityEngine.Random;
+using System.Linq;
 
 namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
   /// <inheritdoc />
@@ -51,7 +52,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
 
     /// <summary>
     /// </summary>
-    public override Dictionary<String, Color> ColorsDict {
+    public override Dictionary<string, Color> ColorsDict {
       get {
         var colors = new Dictionary<String, Color>();
         foreach (var key_val in this.ColorsDictGameObject) {
@@ -62,7 +63,6 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
       }
     }
 
-    // Use this for initialization
     /// <summary>
     /// </summary>
     void Start() { this.Setup(); }
@@ -70,9 +70,8 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
     /// <summary>
     /// </summary>
     void Awake() {
-      /*
-      var colors_by_tag = this._colors_by_category;
-      if (colors_by_tag != null && colors_by_tag.Length > 0) {
+
+      if (_colors_by_category != null && _colors_by_category.Length > 0) {
         foreach (var tag_color in this._colors_by_category) {
           if (!this.ColorsDictGameObject.ContainsKey(tag_color._Tag)) {
             this.ColorsDictGameObject.Add(tag_color._Tag, tag_color._Col);
@@ -89,7 +88,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
             }
           }
         }
-      }*/
+      }
     }
 
 
@@ -149,7 +148,10 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
                                                          this.segmentation_shader,
                                                          ref this._capture_passes);
 
-      this.ColorsDictGameObject = new Dictionary<string, Color>();
+      if(this.ColorsDictGameObject==null){
+        this.ColorsDictGameObject = new Dictionary<string, Color>();
+      }
+
       this.CheckBlock();
       foreach (var r in this._all_renders) {
         r.GetPropertyBlock(this._block);
@@ -157,37 +159,34 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
         Color color;
         switch (this._segmentation_mode) {
           case SegmentationMode.Tag:
-            category_name = r.tag;
-            color = ColorEncoding.EncodeIdAsColor(category_name.GetHashCode());
-            this._block.SetColor(SynthesisUtilities._Shader_Tag_Color_Name, color);
+            category_name = r.gameObject.tag;
+            if(!this.ColorsDictGameObject.ContainsKey(category_name)){
+              color = ColorEncoding.EncodeIdAsColor(category_name.GetHashCode());
+              if (!this.ColorsDictGameObject.ContainsKey(category_name)) {
+                this.ColorsDictGameObject.Add(category_name, color);
+              }
+            } else {
+              color = this.ColorsDictGameObject[category_name];
+            }
             break;
           case SegmentationMode.Layer:
             var layer_int = r.gameObject.layer;
-            color = ColorEncoding.EncodeLayerAsColor(layer_int);
-
             category_name = LayerMask.LayerToName(layer_int);
-            this._block.SetColor(SynthesisUtilities._Shader_Layer_Color_Name, color);
+            if(!this.ColorsDictGameObject.ContainsKey(category_name)){
+              color = ColorEncoding.EncodeLayerAsColor(layer_int);
+              //color = ColorEncoding.EncodeIdAsColor(category_name.GetHashCode());
+              if (!this.ColorsDictGameObject.ContainsKey(category_name)) {
+                this.ColorsDictGameObject.Add(category_name, color);
+              }
+            } else {
+              color = this.ColorsDictGameObject[category_name];
+            }
             break;
           default: throw new ArgumentOutOfRangeException();
         }
 
-        if (!this.ColorsDictGameObject.ContainsKey(category_name)) {
-          this.ColorsDictGameObject.Add(category_name, color);
-        }
 
-        /*
-switch (this._segmentation_mode) {
-  case SegmentationMode.Tag:
-    this._block?.SetInt(SynthesisUtils._Shader_OutputMode_Name,(int) SynthesisUtils.ReplacementModes
-                                                                                   .Tag_id_);
-    break;
-  case SegmentationMode.Layer:
-    this._block?.SetInt(SynthesisUtils._Shader_OutputMode_Name,(int) SynthesisUtils.ReplacementModes
-                                                                                   .Layer_id_);
-    break;
-  default: throw new ArgumentOutOfRangeException();
-}
-*/
+        this._block.SetColor(SynthesisUtilities._Shader_Layer_Color_Name, color);
 
         r.SetPropertyBlock(this._block);
       }

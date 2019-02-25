@@ -114,23 +114,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 727610264}
   _cameras:
-  - {fileID: 1171208658948452137}
-  - {fileID: 1458531845}
-  - {fileID: 114203530777878686}
-  - {fileID: 114203839715900738}
-  - {fileID: 790114237}
-  - {fileID: 1623028174}
-  - {fileID: 114608562479145288}
-  - {fileID: 4939762416714711659}
-  - {fileID: 114307586759802868}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114798311224295254}
-  - {fileID: 114594705335718820}
-  - {fileID: 727610264}
-  - {fileID: 114716082362535994}
-  - {fileID: 1403684216}
-  - {fileID: 1463669859483367840}
   - {fileID: 1802749280476413633}
+  - {fileID: 1463669859483367840}
+  - {fileID: 1403684216}
+  - {fileID: 727610264}
+  - {fileID: 114594705335718820}
+  - {fileID: 114798311224295254}
+  - {fileID: 3246734891326987255}
+  - {fileID: 114307586759802868}
+  - {fileID: 4939762416714711659}
+  - {fileID: 114608562479145288}
+  - {fileID: 1623028174}
+  - {fileID: 790114237}
+  - {fileID: 114203839715900738}
+  - {fileID: 114203530777878686}
+  - {fileID: 1458531845}
+  - {fileID: 1171208658948452137}
+  - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
   _old_fov: 80
@@ -270,23 +270,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 790114237}
   _cameras:
-  - {fileID: 1171208658948452137}
-  - {fileID: 1458531845}
-  - {fileID: 114203530777878686}
-  - {fileID: 114203839715900738}
-  - {fileID: 790114237}
-  - {fileID: 1623028174}
-  - {fileID: 114608562479145288}
-  - {fileID: 4939762416714711659}
-  - {fileID: 114307586759802868}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114798311224295254}
-  - {fileID: 114594705335718820}
-  - {fileID: 727610264}
-  - {fileID: 114716082362535994}
-  - {fileID: 1403684216}
-  - {fileID: 1463669859483367840}
   - {fileID: 1802749280476413633}
+  - {fileID: 1463669859483367840}
+  - {fileID: 1403684216}
+  - {fileID: 727610264}
+  - {fileID: 114594705335718820}
+  - {fileID: 114798311224295254}
+  - {fileID: 3246734891326987255}
+  - {fileID: 114307586759802868}
+  - {fileID: 4939762416714711659}
+  - {fileID: 114608562479145288}
+  - {fileID: 1623028174}
+  - {fileID: 790114237}
+  - {fileID: 114203839715900738}
+  - {fileID: 114203530777878686}
+  - {fileID: 1458531845}
+  - {fileID: 1171208658948452137}
+  - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
   _old_fov: 80
@@ -340,8 +340,8 @@ MonoBehaviour:
   _editor_reregistering: 1
   _Use_Custom_Name: 0
   _normalise_observation: 0
-  _observation_value: 'material0: RGBA(0.714, 0.004, 0.098, 1.000), BluePlastic (Instance):
-    RGBA(0.125, 0.004, 0.259, 1.000), Default-Material: RGBA(0.063, 0.255, 0.282,
+  _observation_value: 'Default-Material: RGBA(0.502, 0.255, 0.282, 1.000), BluePlastic
+    (Instance): RGBA(0.588, 0.000, 0.600, 1.000), material0: RGBA(0.141, 0.004, 0.098,
     1.000)'
   _segmenter: {fileID: 790114238}
 --- !u!114 &790114238
@@ -1019,23 +1019,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 1403684216}
   _cameras:
-  - {fileID: 1171208658948452137}
-  - {fileID: 1458531845}
-  - {fileID: 114203530777878686}
-  - {fileID: 114203839715900738}
-  - {fileID: 790114237}
-  - {fileID: 1623028174}
-  - {fileID: 114608562479145288}
-  - {fileID: 4939762416714711659}
-  - {fileID: 114307586759802868}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114798311224295254}
-  - {fileID: 114594705335718820}
-  - {fileID: 727610264}
-  - {fileID: 114716082362535994}
-  - {fileID: 1403684216}
-  - {fileID: 1463669859483367840}
   - {fileID: 1802749280476413633}
+  - {fileID: 1463669859483367840}
+  - {fileID: 1403684216}
+  - {fileID: 727610264}
+  - {fileID: 114594705335718820}
+  - {fileID: 114798311224295254}
+  - {fileID: 3246734891326987255}
+  - {fileID: 114307586759802868}
+  - {fileID: 4939762416714711659}
+  - {fileID: 114608562479145288}
+  - {fileID: 1623028174}
+  - {fileID: 790114237}
+  - {fileID: 114203839715900738}
+  - {fileID: 114203530777878686}
+  - {fileID: 1458531845}
+  - {fileID: 1171208658948452137}
+  - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
   _old_fov: 80
@@ -1089,7 +1089,9 @@ MonoBehaviour:
   _editor_reregistering: 1
   _Use_Custom_Name: 0
   _normalise_observation: 0
-  _observation_value: 
+  _observation_value: '-2294: RGBA(0.580, 0.376, 0.286, 1.000), -2340: RGBA(0.078,
+    0.157, 0.031, 1.000), 14456: RGBA(0.024, 0.000, 0.851, 1.000), 14484: RGBA(0.078,
+    0.251, 0.816, 1.000), 14424: RGBA(0.024, 0.000, 0.820, 1.000)'
   _segmenter: {fileID: 1403684217}
 --- !u!1 &1458531844
 GameObject:
@@ -1205,23 +1207,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 1458531845}
   _cameras:
-  - {fileID: 1171208658948452137}
-  - {fileID: 1458531845}
-  - {fileID: 114203530777878686}
-  - {fileID: 114203839715900738}
-  - {fileID: 790114237}
-  - {fileID: 1623028174}
-  - {fileID: 114608562479145288}
-  - {fileID: 4939762416714711659}
-  - {fileID: 114307586759802868}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114798311224295254}
-  - {fileID: 114594705335718820}
-  - {fileID: 727610264}
-  - {fileID: 114716082362535994}
-  - {fileID: 1403684216}
-  - {fileID: 1463669859483367840}
   - {fileID: 1802749280476413633}
+  - {fileID: 1463669859483367840}
+  - {fileID: 1403684216}
+  - {fileID: 727610264}
+  - {fileID: 114594705335718820}
+  - {fileID: 114798311224295254}
+  - {fileID: 3246734891326987255}
+  - {fileID: 114307586759802868}
+  - {fileID: 4939762416714711659}
+  - {fileID: 114608562479145288}
+  - {fileID: 1623028174}
+  - {fileID: 790114237}
+  - {fileID: 114203839715900738}
+  - {fileID: 114203530777878686}
+  - {fileID: 1458531845}
+  - {fileID: 1171208658948452137}
+  - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
   _old_fov: 80
@@ -1382,23 +1384,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 1623028174}
   _cameras:
-  - {fileID: 1171208658948452137}
-  - {fileID: 1458531845}
-  - {fileID: 114203530777878686}
-  - {fileID: 114203839715900738}
-  - {fileID: 790114237}
-  - {fileID: 1623028174}
-  - {fileID: 114608562479145288}
-  - {fileID: 4939762416714711659}
-  - {fileID: 114307586759802868}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114798311224295254}
-  - {fileID: 114594705335718820}
-  - {fileID: 727610264}
-  - {fileID: 114716082362535994}
-  - {fileID: 1403684216}
-  - {fileID: 1463669859483367840}
   - {fileID: 1802749280476413633}
+  - {fileID: 1463669859483367840}
+  - {fileID: 1403684216}
+  - {fileID: 727610264}
+  - {fileID: 114594705335718820}
+  - {fileID: 114798311224295254}
+  - {fileID: 3246734891326987255}
+  - {fileID: 114307586759802868}
+  - {fileID: 4939762416714711659}
+  - {fileID: 114608562479145288}
+  - {fileID: 1623028174}
+  - {fileID: 790114237}
+  - {fileID: 114203839715900738}
+  - {fileID: 114203530777878686}
+  - {fileID: 1458531845}
+  - {fileID: 1171208658948452137}
+  - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
   _old_fov: 80
@@ -1654,23 +1656,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114307586759802868}
   _cameras:
-  - {fileID: 1171208658948452137}
-  - {fileID: 1458531845}
-  - {fileID: 114203530777878686}
-  - {fileID: 114203839715900738}
-  - {fileID: 790114237}
-  - {fileID: 1623028174}
-  - {fileID: 114608562479145288}
-  - {fileID: 4939762416714711659}
-  - {fileID: 114307586759802868}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114798311224295254}
-  - {fileID: 114594705335718820}
-  - {fileID: 727610264}
-  - {fileID: 114716082362535994}
-  - {fileID: 1403684216}
-  - {fileID: 1463669859483367840}
   - {fileID: 1802749280476413633}
+  - {fileID: 1463669859483367840}
+  - {fileID: 1403684216}
+  - {fileID: 727610264}
+  - {fileID: 114594705335718820}
+  - {fileID: 114798311224295254}
+  - {fileID: 3246734891326987255}
+  - {fileID: 114307586759802868}
+  - {fileID: 4939762416714711659}
+  - {fileID: 114608562479145288}
+  - {fileID: 1623028174}
+  - {fileID: 790114237}
+  - {fileID: 114203839715900738}
+  - {fileID: 114203530777878686}
+  - {fileID: 1458531845}
+  - {fileID: 1171208658948452137}
+  - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
   _old_fov: 79.5
@@ -1884,23 +1886,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114203839715900738}
   _cameras:
-  - {fileID: 1171208658948452137}
-  - {fileID: 1458531845}
-  - {fileID: 114203530777878686}
-  - {fileID: 114203839715900738}
-  - {fileID: 790114237}
-  - {fileID: 1623028174}
-  - {fileID: 114608562479145288}
-  - {fileID: 4939762416714711659}
-  - {fileID: 114307586759802868}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114798311224295254}
-  - {fileID: 114594705335718820}
-  - {fileID: 727610264}
-  - {fileID: 114716082362535994}
-  - {fileID: 1403684216}
-  - {fileID: 1463669859483367840}
   - {fileID: 1802749280476413633}
+  - {fileID: 1463669859483367840}
+  - {fileID: 1403684216}
+  - {fileID: 727610264}
+  - {fileID: 114594705335718820}
+  - {fileID: 114798311224295254}
+  - {fileID: 3246734891326987255}
+  - {fileID: 114307586759802868}
+  - {fileID: 4939762416714711659}
+  - {fileID: 114608562479145288}
+  - {fileID: 1623028174}
+  - {fileID: 790114237}
+  - {fileID: 114203839715900738}
+  - {fileID: 114203530777878686}
+  - {fileID: 1458531845}
+  - {fileID: 1171208658948452137}
+  - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
   _old_fov: 79.5
@@ -2222,23 +2224,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114594705335718820}
   _cameras:
-  - {fileID: 1171208658948452137}
-  - {fileID: 1458531845}
-  - {fileID: 114203530777878686}
-  - {fileID: 114203839715900738}
-  - {fileID: 790114237}
-  - {fileID: 1623028174}
-  - {fileID: 114608562479145288}
-  - {fileID: 4939762416714711659}
-  - {fileID: 114307586759802868}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114798311224295254}
-  - {fileID: 114594705335718820}
-  - {fileID: 727610264}
-  - {fileID: 114716082362535994}
-  - {fileID: 1403684216}
-  - {fileID: 1463669859483367840}
   - {fileID: 1802749280476413633}
+  - {fileID: 1463669859483367840}
+  - {fileID: 1403684216}
+  - {fileID: 727610264}
+  - {fileID: 114594705335718820}
+  - {fileID: 114798311224295254}
+  - {fileID: 3246734891326987255}
+  - {fileID: 114307586759802868}
+  - {fileID: 4939762416714711659}
+  - {fileID: 114608562479145288}
+  - {fileID: 1623028174}
+  - {fileID: 790114237}
+  - {fileID: 114203839715900738}
+  - {fileID: 114203530777878686}
+  - {fileID: 1458531845}
+  - {fileID: 1171208658948452137}
+  - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
   _old_fov: 80
@@ -2412,23 +2414,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114203530777878686}
   _cameras:
-  - {fileID: 1171208658948452137}
-  - {fileID: 1458531845}
-  - {fileID: 114203530777878686}
-  - {fileID: 114203839715900738}
-  - {fileID: 790114237}
-  - {fileID: 1623028174}
-  - {fileID: 114608562479145288}
-  - {fileID: 4939762416714711659}
-  - {fileID: 114307586759802868}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114798311224295254}
-  - {fileID: 114594705335718820}
-  - {fileID: 727610264}
-  - {fileID: 114716082362535994}
-  - {fileID: 1403684216}
-  - {fileID: 1463669859483367840}
   - {fileID: 1802749280476413633}
+  - {fileID: 1463669859483367840}
+  - {fileID: 1403684216}
+  - {fileID: 727610264}
+  - {fileID: 114594705335718820}
+  - {fileID: 114798311224295254}
+  - {fileID: 3246734891326987255}
+  - {fileID: 114307586759802868}
+  - {fileID: 4939762416714711659}
+  - {fileID: 114608562479145288}
+  - {fileID: 1623028174}
+  - {fileID: 790114237}
+  - {fileID: 114203839715900738}
+  - {fileID: 114203530777878686}
+  - {fileID: 1458531845}
+  - {fileID: 1171208658948452137}
+  - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
   _old_fov: 79.5
@@ -2606,23 +2608,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114798311224295254}
   _cameras:
-  - {fileID: 1171208658948452137}
-  - {fileID: 1458531845}
-  - {fileID: 114203530777878686}
-  - {fileID: 114203839715900738}
-  - {fileID: 790114237}
-  - {fileID: 1623028174}
-  - {fileID: 114608562479145288}
-  - {fileID: 4939762416714711659}
-  - {fileID: 114307586759802868}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114798311224295254}
-  - {fileID: 114594705335718820}
-  - {fileID: 727610264}
-  - {fileID: 114716082362535994}
-  - {fileID: 1403684216}
-  - {fileID: 1463669859483367840}
   - {fileID: 1802749280476413633}
+  - {fileID: 1463669859483367840}
+  - {fileID: 1403684216}
+  - {fileID: 727610264}
+  - {fileID: 114594705335718820}
+  - {fileID: 114798311224295254}
+  - {fileID: 3246734891326987255}
+  - {fileID: 114307586759802868}
+  - {fileID: 4939762416714711659}
+  - {fileID: 114608562479145288}
+  - {fileID: 1623028174}
+  - {fileID: 790114237}
+  - {fileID: 114203839715900738}
+  - {fileID: 114203530777878686}
+  - {fileID: 1458531845}
+  - {fileID: 1171208658948452137}
+  - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
   _old_fov: 80
@@ -2806,23 +2808,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114716082362535994}
   _cameras:
-  - {fileID: 1171208658948452137}
-  - {fileID: 1458531845}
-  - {fileID: 114203530777878686}
-  - {fileID: 114203839715900738}
-  - {fileID: 790114237}
-  - {fileID: 1623028174}
-  - {fileID: 114608562479145288}
-  - {fileID: 4939762416714711659}
-  - {fileID: 114307586759802868}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114798311224295254}
-  - {fileID: 114594705335718820}
-  - {fileID: 727610264}
-  - {fileID: 114716082362535994}
-  - {fileID: 1403684216}
-  - {fileID: 1463669859483367840}
   - {fileID: 1802749280476413633}
+  - {fileID: 1463669859483367840}
+  - {fileID: 1403684216}
+  - {fileID: 727610264}
+  - {fileID: 114594705335718820}
+  - {fileID: 114798311224295254}
+  - {fileID: 3246734891326987255}
+  - {fileID: 114307586759802868}
+  - {fileID: 4939762416714711659}
+  - {fileID: 114608562479145288}
+  - {fileID: 1623028174}
+  - {fileID: 790114237}
+  - {fileID: 114203839715900738}
+  - {fileID: 114203530777878686}
+  - {fileID: 1458531845}
+  - {fileID: 1171208658948452137}
+  - {fileID: 114716082362535994}
   _old_culling_mask: -1
   _old_far_clip_plane: 100
   _old_fov: 79.5
@@ -2876,43 +2878,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 20768847776266208}
+  - {fileID: 4956758692426196692}
   - {fileID: 1403684218}
-  - {fileID: 20145353716750142}
-  - {fileID: 4614691972182028737}
-  - {fileID: 3337727558481276136}
-  - {fileID: 20598539646069560}
-  - {fileID: 4204259003963777610}
-  - {fileID: 5796786885426895393}
   - {fileID: 727610266}
   - {fileID: 20367486579053346}
+  - {fileID: 5796786885426895393}
+  - {fileID: 20145353716750142}
+  - {fileID: 20768847776266208}
   - {fileID: 1458531849}
+  - {fileID: 4204259003963777610}
   - {fileID: 1623028176}
-  - {fileID: 790114239}
   - {fileID: 20940602749366906}
-  - {fileID: 20224209517257972}
-  - {fileID: 4956758692426196692}
+  - {fileID: 790114239}
   - {fileID: 20793825365236440}
+  - {fileID: 20224209517257972}
+  - {fileID: 20598539646069560}
+  - {fileID: 4614691972182028737}
+  - {fileID: 3337727558481276136}
   _filter_mode: 1
   _size: {x: 256, y: 256}
-  _texture_format: 5
+  _texture_format: 3
   _textures:
-  - {fileID: 8400000, guid: afc5604d79d0849129803e463fc07bca, type: 2}
+  - {fileID: 8400000, guid: 7ce5712ecfb6c0929a81d56be34c2333, type: 2}
   - {fileID: 8400000, guid: 280476064a32df4848434f9b38c2d744, type: 2}
-  - {fileID: 8400000, guid: 5d9eca522a1944267b89beea11ffc58c, type: 2}
-  - {fileID: 8400000, guid: 7ce5d7425e7fa3af69f9bdd316de2208, type: 2}
-  - {fileID: 8400000, guid: 43f8b57e2bee2bd6eb1df24b6c88ba79, type: 2}
-  - {fileID: 8400000, guid: b22ce111b5af44afe8b8f2f085799a5f, type: 2}
-  - {fileID: 8400000, guid: 7355ca23a1b57891dafa75b44c2c5cc8, type: 2}
-  - {fileID: 8400000, guid: 29bfbe75d2faa72cdbf597b2763205ab, type: 2}
   - {fileID: 8400000, guid: 142c9eceec4ee3060b3550e1b2a64cbf, type: 2}
   - {fileID: 8400000, guid: 63f7bf9c3a80b4d169b394696cbbd9ab, type: 2}
+  - {fileID: 8400000, guid: 29bfbe75d2faa72cdbf597b2763205ab, type: 2}
+  - {fileID: 8400000, guid: 5d9eca522a1944267b89beea11ffc58c, type: 2}
+  - {fileID: 8400000, guid: afc5604d79d0849129803e463fc07bca, type: 2}
   - {fileID: 8400000, guid: a2ed3a19ee4cfe303b28c87fca44a286, type: 2}
+  - {fileID: 8400000, guid: 7355ca23a1b57891dafa75b44c2c5cc8, type: 2}
   - {fileID: 8400000, guid: 0a204b96270826992a5c81c531ea5dcf, type: 2}
-  - {fileID: 8400000, guid: e52a2f56c9ffa187abf5021f3338228e, type: 2}
   - {fileID: 8400000, guid: 4c7dcaf7e8ef74c11bd8ad06365ea216, type: 2}
-  - {fileID: 8400000, guid: 7ce5712ecfb6c0929a81d56be34c2333, type: 2}
+  - {fileID: 8400000, guid: e52a2f56c9ffa187abf5021f3338228e, type: 2}
   - {fileID: 8400000, guid: bc593ac7628a042ac93b20ca1c0101b6, type: 2}
+  - {fileID: 8400000, guid: b22ce111b5af44afe8b8f2f085799a5f, type: 2}
+  - {fileID: 8400000, guid: 7ce5d7425e7fa3af69f9bdd316de2208, type: 2}
+  - {fileID: 8400000, guid: 43f8b57e2bee2bd6eb1df24b6c88ba79, type: 2}
   _wrap_mode: 1
 --- !u!114 &1625775002
 MonoBehaviour:
@@ -3263,23 +3265,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114608562479145288}
   _cameras:
-  - {fileID: 1171208658948452137}
-  - {fileID: 1458531845}
-  - {fileID: 114203530777878686}
-  - {fileID: 114203839715900738}
-  - {fileID: 790114237}
-  - {fileID: 1623028174}
-  - {fileID: 114608562479145288}
-  - {fileID: 4939762416714711659}
-  - {fileID: 114307586759802868}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114798311224295254}
-  - {fileID: 114594705335718820}
-  - {fileID: 727610264}
-  - {fileID: 114716082362535994}
-  - {fileID: 1403684216}
-  - {fileID: 1463669859483367840}
   - {fileID: 1802749280476413633}
+  - {fileID: 1463669859483367840}
+  - {fileID: 1403684216}
+  - {fileID: 727610264}
+  - {fileID: 114594705335718820}
+  - {fileID: 114798311224295254}
+  - {fileID: 3246734891326987255}
+  - {fileID: 114307586759802868}
+  - {fileID: 4939762416714711659}
+  - {fileID: 114608562479145288}
+  - {fileID: 1623028174}
+  - {fileID: 790114237}
+  - {fileID: 114203839715900738}
+  - {fileID: 114203530777878686}
+  - {fileID: 1458531845}
+  - {fileID: 1171208658948452137}
+  - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
   _old_fov: 80
@@ -3616,23 +3618,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 1802749280476413633}
   _cameras:
-  - {fileID: 1171208658948452137}
-  - {fileID: 1458531845}
-  - {fileID: 114203530777878686}
-  - {fileID: 114203839715900738}
-  - {fileID: 790114237}
-  - {fileID: 1623028174}
-  - {fileID: 114608562479145288}
-  - {fileID: 4939762416714711659}
-  - {fileID: 114307586759802868}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114798311224295254}
-  - {fileID: 114594705335718820}
-  - {fileID: 727610264}
-  - {fileID: 114716082362535994}
-  - {fileID: 1403684216}
-  - {fileID: 1463669859483367840}
   - {fileID: 1802749280476413633}
+  - {fileID: 1463669859483367840}
+  - {fileID: 1403684216}
+  - {fileID: 727610264}
+  - {fileID: 114594705335718820}
+  - {fileID: 114798311224295254}
+  - {fileID: 3246734891326987255}
+  - {fileID: 114307586759802868}
+  - {fileID: 4939762416714711659}
+  - {fileID: 114608562479145288}
+  - {fileID: 1623028174}
+  - {fileID: 790114237}
+  - {fileID: 114203839715900738}
+  - {fileID: 114203530777878686}
+  - {fileID: 1458531845}
+  - {fileID: 1171208658948452137}
+  - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
   _old_fov: 80
@@ -3686,8 +3688,9 @@ MonoBehaviour:
   _editor_reregistering: 1
   _Use_Custom_Name: 0
   _normalise_observation: 0
-  _observation_value: 'Default: RGBA(1.000, 1.000, 1.000, 1.000), : RGBA(0.000, 1.000,
-    1.000, 1.000)'
+  _observation_value: 'a: RGBA(1.000, 0.000, 0.000, 1.000), b: RGBA(0.000, 1.000,
+    0.000, 1.000), c: RGBA(0.000, 0.001, 1.000, 1.000), Default: RGBA(1.000, 1.000,
+    1.000, 1.000), : RGBA(0.000, 1.000, 1.000, 1.000)'
   _segmenter: {fileID: 8934520332220601364}
 --- !u!114 &8934520332220601364
 MonoBehaviour:
@@ -3704,7 +3707,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   segmentation_shader: {fileID: 4800000, guid: d700b8effb9a06de89e30a220972fe80, type: 3}
   _camera: {fileID: 5796786885426895393}
-  _segmentation: {fileID: 0}
+  _segmentation: {fileID: 11400000, guid: 1387513cbea10420eaa5a7ac8f932b80, type: 2}
   _Replace_Untagged_Color: 1
   _Untagged_Color: {r: 0, g: 0, b: 0, a: 1}
   _colors_by_category: []
@@ -3823,23 +3826,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 4939762416714711659}
   _cameras:
-  - {fileID: 1171208658948452137}
-  - {fileID: 1458531845}
-  - {fileID: 114203530777878686}
-  - {fileID: 114203839715900738}
-  - {fileID: 790114237}
-  - {fileID: 1623028174}
-  - {fileID: 114608562479145288}
-  - {fileID: 4939762416714711659}
-  - {fileID: 114307586759802868}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114798311224295254}
-  - {fileID: 114594705335718820}
-  - {fileID: 727610264}
-  - {fileID: 114716082362535994}
-  - {fileID: 1403684216}
-  - {fileID: 1463669859483367840}
   - {fileID: 1802749280476413633}
+  - {fileID: 1463669859483367840}
+  - {fileID: 1403684216}
+  - {fileID: 727610264}
+  - {fileID: 114594705335718820}
+  - {fileID: 114798311224295254}
+  - {fileID: 3246734891326987255}
+  - {fileID: 114307586759802868}
+  - {fileID: 4939762416714711659}
+  - {fileID: 114608562479145288}
+  - {fileID: 1623028174}
+  - {fileID: 790114237}
+  - {fileID: 114203839715900738}
+  - {fileID: 114203530777878686}
+  - {fileID: 1458531845}
+  - {fileID: 1171208658948452137}
+  - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
   _old_fov: 80
@@ -4032,23 +4035,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 3246734891326987255}
   _cameras:
-  - {fileID: 1171208658948452137}
-  - {fileID: 1458531845}
-  - {fileID: 114203530777878686}
-  - {fileID: 114203839715900738}
-  - {fileID: 790114237}
-  - {fileID: 1623028174}
-  - {fileID: 114608562479145288}
-  - {fileID: 4939762416714711659}
-  - {fileID: 114307586759802868}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114798311224295254}
-  - {fileID: 114594705335718820}
-  - {fileID: 727610264}
-  - {fileID: 114716082362535994}
-  - {fileID: 1403684216}
-  - {fileID: 1463669859483367840}
   - {fileID: 1802749280476413633}
+  - {fileID: 1463669859483367840}
+  - {fileID: 1403684216}
+  - {fileID: 727610264}
+  - {fileID: 114594705335718820}
+  - {fileID: 114798311224295254}
+  - {fileID: 3246734891326987255}
+  - {fileID: 114307586759802868}
+  - {fileID: 4939762416714711659}
+  - {fileID: 114608562479145288}
+  - {fileID: 1623028174}
+  - {fileID: 790114237}
+  - {fileID: 114203839715900738}
+  - {fileID: 114203530777878686}
+  - {fileID: 1458531845}
+  - {fileID: 1171208658948452137}
+  - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
   _old_fov: 80
@@ -4188,23 +4191,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 1171208658948452137}
   _cameras:
-  - {fileID: 1171208658948452137}
-  - {fileID: 1458531845}
-  - {fileID: 114203530777878686}
-  - {fileID: 114203839715900738}
-  - {fileID: 790114237}
-  - {fileID: 1623028174}
-  - {fileID: 114608562479145288}
-  - {fileID: 4939762416714711659}
-  - {fileID: 114307586759802868}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114798311224295254}
-  - {fileID: 114594705335718820}
-  - {fileID: 727610264}
-  - {fileID: 114716082362535994}
-  - {fileID: 1403684216}
-  - {fileID: 1463669859483367840}
   - {fileID: 1802749280476413633}
+  - {fileID: 1463669859483367840}
+  - {fileID: 1403684216}
+  - {fileID: 727610264}
+  - {fileID: 114594705335718820}
+  - {fileID: 114798311224295254}
+  - {fileID: 3246734891326987255}
+  - {fileID: 114307586759802868}
+  - {fileID: 4939762416714711659}
+  - {fileID: 114608562479145288}
+  - {fileID: 1623028174}
+  - {fileID: 790114237}
+  - {fileID: 114203839715900738}
+  - {fileID: 114203530777878686}
+  - {fileID: 1458531845}
+  - {fileID: 1171208658948452137}
+  - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
   _old_fov: 80
@@ -4258,8 +4261,9 @@ MonoBehaviour:
   _editor_reregistering: 1
   _Use_Custom_Name: 0
   _normalise_observation: 0
-  _observation_value: 'Untagged: RGBA(0.102, 0.153, 0.224, 1.000), CameraBody: RGBA(0.075,
-    0.271, 0.561, 1.000)'
+  _observation_value: 'a: RGBA(1.000, 0.000, 0.000, 1.000), b: RGBA(0.000, 1.000,
+    0.000, 1.000), c: RGBA(0.000, 0.001, 1.000, 1.000), Untagged: RGBA(0.102, 0.153,
+    0.224, 1.000), CameraBody: RGBA(0.075, 0.271, 0.561, 1.000)'
   _segmenter: {fileID: 3883913920282434489}
 --- !u!114 &3883913920282434489
 MonoBehaviour:
@@ -4276,7 +4280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   segmentation_shader: {fileID: 4800000, guid: d34875293dcb4a329bbbacec570f78f6, type: 3}
   _camera: {fileID: 4204259003963777610}
-  _segmentation: {fileID: 0}
+  _segmentation: {fileID: 11400000, guid: 1387513cbea10420eaa5a7ac8f932b80, type: 2}
   _Replace_Untagged_Color: 1
   _Untagged_Color: {r: 0, g: 0, b: 0, a: 1}
   _colors_by_category: []
@@ -4395,23 +4399,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 1463669859483367840}
   _cameras:
-  - {fileID: 1171208658948452137}
-  - {fileID: 1458531845}
-  - {fileID: 114203530777878686}
-  - {fileID: 114203839715900738}
-  - {fileID: 790114237}
-  - {fileID: 1623028174}
-  - {fileID: 114608562479145288}
-  - {fileID: 4939762416714711659}
-  - {fileID: 114307586759802868}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114798311224295254}
-  - {fileID: 114594705335718820}
-  - {fileID: 727610264}
-  - {fileID: 114716082362535994}
-  - {fileID: 1403684216}
-  - {fileID: 1463669859483367840}
   - {fileID: 1802749280476413633}
+  - {fileID: 1463669859483367840}
+  - {fileID: 1403684216}
+  - {fileID: 727610264}
+  - {fileID: 114594705335718820}
+  - {fileID: 114798311224295254}
+  - {fileID: 3246734891326987255}
+  - {fileID: 114307586759802868}
+  - {fileID: 4939762416714711659}
+  - {fileID: 114608562479145288}
+  - {fileID: 1623028174}
+  - {fileID: 790114237}
+  - {fileID: 114203839715900738}
+  - {fileID: 114203530777878686}
+  - {fileID: 1458531845}
+  - {fileID: 1171208658948452137}
+  - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
   _old_fov: 80
