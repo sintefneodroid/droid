@@ -8,12 +8,14 @@ using Object = System.Object;
 using Random = UnityEngine.Random;
 using System.Linq;
 
-namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
+namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation
+{
   /// <inheritdoc />
   /// <summary>
   /// </summary>
   [ExecuteInEditMode]
-  public class CategorySegmenter : Segmenter {
+  public class CategorySegmenter : Segmenter
+  {
     /// <summary>
     /// </summary>
     Renderer[] _all_renders;
@@ -25,24 +27,30 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
     [SerializeField] Shader segmentation_shader;
     [SerializeField] Camera _camera;
 
-    enum SegmentationMode {
+    enum SegmentationMode
+    {
       Tag,
       Layer
     }
 
-    [SerializeField] ScriptableObjects.Segmentation _segmentation;
+    [SerializeField] ScriptableObjects.Segmentation _segmentation_preset;
+
     /// <summary>
     /// </summary>
     public bool _Replace_Untagged_Color = true;
+
     /// <summary>
     /// </summary>
     public Color _Untagged_Color = Color.black;
+
     /// <summary>
     /// </summary>
-    public ColorByCategory[] ColorsByCategory { get { return this._colors_by_category; } }
+    public ColorByCategory[] ColorsByCategory
+    {
+      get { return this._colors_by_category; }
+    }
 
-    [SerializeField]
-    protected ColorByCategory[] _colors_by_category;
+    [SerializeField] protected ColorByCategory[] _colors_by_category;
 
     [SerializeField] SegmentationMode _segmentation_mode;
 
@@ -52,10 +60,13 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
 
     /// <summary>
     /// </summary>
-    public override Dictionary<string, Color> ColorsDict {
-      get {
-        var colors = new Dictionary<String, Color>();
-        foreach (var key_val in this.ColorsDictGameObject) {
+    public override Dictionary<string, Color> ColorsDict
+    {
+      get
+      {
+        var colors = new Dictionary<string, Color>();
+        foreach (var key_val in this.ColorsDictGameObject)
+        {
           colors.Add(key_val.Key, key_val.Value);
         }
 
@@ -65,130 +76,154 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
 
     /// <summary>
     /// </summary>
-    void Start() { this.Setup(); }
+    void Start()
+    {
+      //this.Setup();
+    }
 
     /// <summary>
     /// </summary>
-    void Awake() {
+    void Awake()
+    {
+      this.Setup();
+    }
 
-      if (_colors_by_category != null && _colors_by_category.Length > 0) {
-        foreach (var tag_color in this._colors_by_category) {
-          if (!this.ColorsDictGameObject.ContainsKey(tag_color._Tag)) {
+
+    void CheckBlock()
+    {
+      if (this._block == null)
+      {
+        this._block = new MaterialPropertyBlock();
+      }
+    }
+
+    SynthesisUtilities.CapturePass[] _capturePasses;
+
+    /// <summary>
+    /// </summary>
+    void Setup()
+    {
+      if (this._colors_by_category != null && this._colors_by_category.Length > 0)
+      {
+        foreach (var tag_color in this._colors_by_category)
+        {
+          if (!this.ColorsDictGameObject.ContainsKey(tag_color._Tag))
+          {
             this.ColorsDictGameObject.Add(tag_color._Tag, tag_color._Col);
           }
         }
       }
 
-      if (this._segmentation) {
-        var segmentation_color_by_tags = this._segmentation._color_by_categories;
-        if (segmentation_color_by_tags != null) {
-          foreach (var tag_color in segmentation_color_by_tags) {
-            if (!this.ColorsDictGameObject.ContainsKey(tag_color._Tag)) {
+      if (this._segmentation_preset)
+      {
+        var segmentation_color_by_tags = this._segmentation_preset._color_by_categories;
+        if (segmentation_color_by_tags != null)
+        {
+          foreach (var tag_color in segmentation_color_by_tags)
+          {
+            if (!this.ColorsDictGameObject.ContainsKey(tag_color._Tag))
+            {
               this.ColorsDictGameObject.Add(tag_color._Tag, tag_color._Col);
             }
           }
         }
       }
-    }
 
-
-    void CheckBlock() {
-      if (this._block == null) {
-        this._block = new MaterialPropertyBlock();
-      }
-    }
-
-    SynthesisUtilities.CapturePass[] _capture_passes = {
-                                                       new SynthesisUtilities.CapturePass {
-                                                                                          _Name = "_tag_id",
-                                                                                          _ReplacementMode =
-                                                                                              SynthesisUtilities
-                                                                                                  .ReplacementModes
-                                                                                                  .Tag_id_,
-                                                                                          _SupportsAntialiasing
-                                                                                              = false
-                                                                                      }
-                                                   };
-
-    /// <summary>
-    /// </summary>
-    void Setup() {
       this._all_renders = FindObjectsOfType<Renderer>();
+      if (!this._camera)
+      {
+        this._camera = this.GetComponent<Camera>();
+      }
 
-      switch (this._segmentation_mode) {
+      if (this.ColorsDictGameObject == null)
+      {
+        this.ColorsDictGameObject = new Dictionary<string, Color>();
+      }
+
+      switch (this._segmentation_mode)
+      {
         case SegmentationMode.Tag:
-          this._capture_passes = new[] {
-                                           new SynthesisUtilities.CapturePass {
-                                                                              _Name = "_tag_id",
-                                                                              _ReplacementMode =
-                                                                                  SynthesisUtilities
-                                                                                      .ReplacementModes
-                                                                                      .Tag_id_,
-                                                                              _SupportsAntialiasing = false
-                                                                          }
-                                       };
+          this._capturePasses = new[]
+          {
+            new SynthesisUtilities.CapturePass
+            {
+              _Name = "_tag_id",
+              _ReplacementMode =
+                SynthesisUtilities
+                  .ReplacementModes
+                  .Tag_id_,
+              _SupportsAntialiasing = false
+            }
+          };
           break;
         case SegmentationMode.Layer:
-          this._capture_passes = new[] {
-                                           new SynthesisUtilities.CapturePass {
-                                                                              _Name = "_layer_id",
-                                                                              _ReplacementMode =
-                                                                                  SynthesisUtilities
-                                                                                      .ReplacementModes
-                                                                                      .Layer_id_,
-                                                                              _SupportsAntialiasing = false
-                                                                          }
-                                       };
+          this._capturePasses = new[]
+          {
+            new SynthesisUtilities.CapturePass
+            {
+              _Name = "_layer_id",
+              _ReplacementMode =
+                SynthesisUtilities
+                  .ReplacementModes
+                  .Layer_id_,
+              _SupportsAntialiasing = false
+            }
+          };
           break;
         default: throw new ArgumentOutOfRangeException();
       }
 
-      this._camera = this.GetComponent<Camera>();
-      SynthesisUtilities.SetupCapturePassesReplacementShader(this._camera,
-                                                         this.segmentation_shader,
-                                                         ref this._capture_passes);
 
-      if(this.ColorsDictGameObject==null){
-        this.ColorsDictGameObject = new Dictionary<string, Color>();
-      }
+      SynthesisUtilities.SetupCapturePassesReplacementShader(this._camera, this.segmentation_shader,
+        ref this._capturePasses);
+
 
       this.CheckBlock();
-      foreach (var r in this._all_renders) {
-        r.GetPropertyBlock(this._block);
+      foreach (var a_renderer in this._all_renders)
+      {
+        a_renderer.GetPropertyBlock(this._block);
         string category_name;
+        var category_int = 0;
         Color color;
-        switch (this._segmentation_mode) {
+        string shader_data_name;
+        switch (this._segmentation_mode){
           case SegmentationMode.Tag:
-            category_name = r.gameObject.tag;
-            if(!this.ColorsDictGameObject.ContainsKey(category_name)){
-              color = ColorEncoding.EncodeIdAsColor(category_name.GetHashCode());
-              if (!this.ColorsDictGameObject.ContainsKey(category_name)) {
-                this.ColorsDictGameObject.Add(category_name, color);
-              }
-            } else {
-              color = this.ColorsDictGameObject[category_name];
-            }
+            category_name = a_renderer.tag;
+            shader_data_name = SynthesisUtilities._Shader_Tag_Color_Name;
             break;
           case SegmentationMode.Layer:
-            var layer_int = r.gameObject.layer;
-            category_name = LayerMask.LayerToName(layer_int);
-            if(!this.ColorsDictGameObject.ContainsKey(category_name)){
-              color = ColorEncoding.EncodeLayerAsColor(layer_int);
-              //color = ColorEncoding.EncodeIdAsColor(category_name.GetHashCode());
-              if (!this.ColorsDictGameObject.ContainsKey(category_name)) {
-                this.ColorsDictGameObject.Add(category_name, color);
-              }
-            } else {
-              color = this.ColorsDictGameObject[category_name];
-            }
+            category_int = a_renderer.gameObject.layer;
+            category_name = LayerMask.LayerToName(category_int);
+            shader_data_name = SynthesisUtilities._Shader_Layer_Color_Name;
             break;
           default: throw new ArgumentOutOfRangeException();
         }
 
+        if (!this.ColorsDictGameObject.ContainsKey(category_name)){
+          switch (this._segmentation_mode){
+            case SegmentationMode.Tag:
+              category_int = category_name.GetHashCode();
+              color = ColorEncoding.EncodeTagHashCodeAsColor(category_int);
+              //color = ColorEncoding.EncodeIdAsColor(category_int);
+              break;
+            case SegmentationMode.Layer:
+              color = ColorEncoding.EncodeLayerAsColor(category_int);
+              break;
+            default:
+              //color = ColorEncoding.EncodeIdAsColor(category_int);
+              throw new ArgumentOutOfRangeException();
+          }
 
-        this._block.SetColor(SynthesisUtilities._Shader_Layer_Color_Name, color);
+          this.ColorsDictGameObject.Add(category_name, color);
+        }
+        else
+        {
+          color = this.ColorsDictGameObject[category_name];
+        }
 
-        r.SetPropertyBlock(this._block);
+        this._block.SetColor(shader_data_name, color);
+
+        a_renderer.SetPropertyBlock(this._block);
       }
     }
   }

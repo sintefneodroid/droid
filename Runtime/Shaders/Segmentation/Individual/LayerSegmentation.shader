@@ -22,8 +22,7 @@ inline float Linear01FromEyeToLinear01FromNear(float depth01)
 	return (depth01 - near/far) * (1 + near/far);
 }
 
-float4 Output(float depth01, float3 normal)
-{
+float4 Output(float depth01, float3 normal){
     return _LayerColor;
 }
 ENDCG
