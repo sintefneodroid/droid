@@ -56,8 +56,8 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation.Obsolete {
       var colors_by_tag = this._colors_by_category;
       if (colors_by_tag != null && colors_by_tag.Length > 0) {
         foreach (var tag_color in this._colors_by_category) {
-          if (!this._tag_colors_dict.ContainsKey(tag_color._Tag)) {
-            this._tag_colors_dict.Add(tag_color._Tag, tag_color._Col);
+          if (!this._tag_colors_dict.ContainsKey(tag_color._Category_Name)) {
+            this._tag_colors_dict.Add(tag_color._Category_Name, tag_color._Color);
           }
         }
       }
@@ -66,8 +66,8 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation.Obsolete {
         var segmentation_color_by_tags = this._segmentation._color_by_categories;
         if (segmentation_color_by_tags != null) {
           foreach (var tag_color in segmentation_color_by_tags) {
-            if (!this._tag_colors_dict.ContainsKey(tag_color._Tag)) {
-              this._tag_colors_dict.Add(tag_color._Tag, tag_color._Col);
+            if (!this._tag_colors_dict.ContainsKey(tag_color._Category_Name)) {
+              this._tag_colors_dict.Add(tag_color._Category_Name, tag_color._Color);
             }
           }
         }

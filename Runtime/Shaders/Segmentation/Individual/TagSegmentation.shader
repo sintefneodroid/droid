@@ -4,27 +4,27 @@ Properties {
 	_Cutoff ("", Float) = 0.5
 	_Color ("", Color) = (1,1,1,1)
 
-    _TagColor ("Tag Color", Color) = (0,1,1,1)
+    _TagColor ("Tag Color", Color) = (1,1,1,1)
 }
 
 SubShader {
-CGINCLUDE
+    CGINCLUDE
 
-fixed4 _TagColor;
+    fixed4 _TagColor;
 
-// remap depth: [0 @ eye .. 1 @ far] => [0 @ near .. 1 @ far]
-inline float Linear01FromEyeToLinear01FromNear(float depth01)
-{
-	float near = _ProjectionParams.y;
-	float far = _ProjectionParams.z;
-	return (depth01 - near/far) * (1 + near/far);
-}
+    float4 Output(float depth01, float3 normal) {
+        return _TagColor;
+    }
 
-float4 Output(float depth01, float3 normal)
-{
-	    return _TagColor;
-}
-ENDCG
+    // remap depth: [0 @ eye .. 1 @ far] => [0 @ near .. 1 @ far]
+    inline float Linear01FromEyeToLinear01FromNear(float depth01)    {
+        float near = _ProjectionParams.y;
+        float far = _ProjectionParams.z;
+        return (depth01 - near/far) * (1 + near/far);
+    }
+
+
+    ENDCG
 
 // Support for different RenderTypes
 // The following code is based on builtin Internal-DepthNormalsTexture.shader

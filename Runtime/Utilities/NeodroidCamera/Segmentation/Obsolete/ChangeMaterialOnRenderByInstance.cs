@@ -50,7 +50,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation.Obsolete {
           this.instanceColorArray = new ColorByInstance[this.ColorsDictGameObject.Keys.Count];
           var i = 0;
           foreach (var key in this.ColorsDictGameObject.Keys) {
-            var seg = new ColorByInstance {_Obj = key, _Col = this.ColorsDictGameObject[key]};
+            var seg = new ColorByInstance {_Game_Object = key, _Color = this.ColorsDictGameObject[key]};
             this.instanceColorArray[i] = seg;
             i++;
           }
@@ -62,7 +62,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation.Obsolete {
       }
       set {
         foreach (var seg in value) {
-          this.ColorsDictGameObject[seg._Obj] = seg._Col;
+          this.ColorsDictGameObject[seg._Game_Object] = seg._Color;
         }
       }
     }

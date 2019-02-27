@@ -1,7 +1,13 @@
 ﻿using UnityEngine;
 
 namespace droid.Runtime.Utilities.Structs {
+  /// <summary>
+  /// 
+  /// </summary>
   public class Points : MonoBehaviour {
+    /// <summary>
+    /// 
+    /// </summary>
     public struct StringPoint {
       public Vector3 _Pos;
       public float _Size;
@@ -14,6 +20,9 @@ namespace droid.Runtime.Utilities.Structs {
       }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public struct ValuePoint {
       public Vector3 _Pos;
       public float _Size;
