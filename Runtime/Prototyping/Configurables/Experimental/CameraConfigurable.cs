@@ -3,6 +3,7 @@ using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Utilities.Debugging;
 using droid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities.NeodroidCamera;
 using UnityEngine;
 using Random = System.Random;
 
@@ -11,30 +12,32 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
   /// <summary>
   /// </summary>
   [AddComponentMenu(
-      ConfigurableComponentMenuPath._ComponentMenuPath + "Texture" + ConfigurableComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(Renderer))]
-  public class TextureConfigurable : Configurable {
+      ConfigurableComponentMenuPath._ComponentMenuPath + "Camera" + ConfigurableComponentMenuPath._Postfix)]
+  [RequireComponent(typeof(Camera))]
+  public class CameraConfigurable : Configurable {
     /// <summary>
     ///   Red
     /// </summary>
-    string _texture_str;
+    string _fov_str;
 
-    [SerializeField] Texture[] _textures;
-    [SerializeField] bool load_from_resources_if_empty = true;
-    [SerializeField] Texture _texture;
-    Renderer _renderer;
+    [SerializeField] Camera _camera;
+    [SerializeField] SynchroniseCameraProperties _syncer;
+    [SerializeField] float _random_fov_min = 30f;
+    [SerializeField] float _random_fov_max = 90f;
+
+
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     protected override void PreSetup() {
-      this._texture_str = this.Identifier + "Texture";
-      this._renderer = this.GetComponent<Renderer>();
+      this._fov_str = this.Identifier + "Fov";
+      if(!this._camera) {
+        this._camera = this.GetComponent<Camera>();
+      }
 
-      if(this.load_from_resources_if_empty) {
-        if(this._textures == null || this._textures.Length == 0) {
-          this._textures = Resources.LoadAll<Texture>("Textures");
-        }
+      if (!this._syncer) {
+        this._syncer = this.GetComponent<SynchroniseCameraProperties>();
       }
     }
 
@@ -45,14 +48,14 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
           (PrototypingEnvironment)this.ParentEnvironment,
           (Configurable)this,
-          this._texture_str);
+          this._fov_str);
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>n
     protected override void UnRegisterComponent() {
-      this.ParentEnvironment?.UnRegister(this, this._texture_str);
+      this.ParentEnvironment?.UnRegister(this, this._fov_str);
     }
 
     /// <summary>
@@ -65,11 +68,12 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       }
       #endif
 
-      if (configuration.ConfigurableName == this._texture_str) {
+      if (configuration.ConfigurableName == this._fov_str) {
 
-          this._texture = this._textures[(int)configuration.ConfigurableValue];
-          this._renderer.material.mainTexture = this._texture;
-
+          this._camera.fieldOfView = configuration.ConfigurableValue;
+          if(this._syncer) {
+            this._syncer.Sync_Cameras();
+          }
       }
     }
 
@@ -79,7 +83,9 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// <param name="random_generator"></param>
     /// <returns></returns>
     public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
-      return new Configuration(this._texture_str, (float)random_generator.NextDouble()* this._textures.Length);
+      return new Configuration(this._fov_str, Mathf.Clamp((float)random_generator.NextDouble()*(this
+      ._random_fov_max-this._random_fov_min) + this._random_fov_min,this._random_fov_min,
+      this._random_fov_max));
     }
   }
 }

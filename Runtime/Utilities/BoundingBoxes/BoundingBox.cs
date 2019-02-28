@@ -118,14 +118,14 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
     public string BoundingBoxCoordinatesAsString {
       get {
         var str_rep = "";
-        str_rep += "\"_top_front_left\":" + this.BoundingBoxCoordinates[0] + ", ";
-        str_rep += "\"_top_front_right\":" + this.BoundingBoxCoordinates[1] + ", ";
-        str_rep += "\"_top_back_left\":" + this.BoundingBoxCoordinates[2] + ", ";
-        str_rep += "\"_top_back_right\":" + this.BoundingBoxCoordinates[3] + ", ";
-        str_rep += "\"_bottom_front_left\":" + this.BoundingBoxCoordinates[4] + ", ";
-        str_rep += "\"_bottom_front_right\":" + this.BoundingBoxCoordinates[5] + ", ";
-        str_rep += "\"_bottom_back_left\":" + this.BoundingBoxCoordinates[6] + ", ";
-        str_rep += "\"_bottom_back_right\":" + this.BoundingBoxCoordinates[7];
+        str_rep += $"\"_top_front_left\":{this.BoundingBoxCoordinates[0]}, ";
+        str_rep += $"\"_top_front_right\":{this.BoundingBoxCoordinates[1]}, ";
+        str_rep += $"\"_top_back_left\":{this.BoundingBoxCoordinates[2]}, ";
+        str_rep += $"\"_top_back_right\":{this.BoundingBoxCoordinates[3]}, ";
+        str_rep += $"\"_bottom_front_left\":{this.BoundingBoxCoordinates[4]}, ";
+        str_rep += $"\"_bottom_front_right\":{this.BoundingBoxCoordinates[5]}, ";
+        str_rep += $"\"_bottom_back_left\":{this.BoundingBoxCoordinates[6]}, ";
+        str_rep += $"\"_bottom_back_right\":{this.BoundingBoxCoordinates[7]}";
         return str_rep;
       }
     }
@@ -291,15 +291,13 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
         }
       }
 
-      if (_childrenMeshes != null) {
-        foreach (var t in this._childrenMeshes) {
-          if (t) {
-            var ms = t.sharedMesh;
-            if (ms) {
-              var vc = ms.vertexCount;
-              for (var j = 0; j < vc; j++) {
-                bounds.Encapsulate(t.transform.TransformPoint(ms.vertices[j]));
-              }
+      foreach (var t in this._childrenMeshes) {
+        if (t) {
+          var ms = t.sharedMesh;
+          if (ms) {
+            var vc = ms.vertexCount;
+            for (var j = 0; j < vc; j++) {
+              bounds.Encapsulate(t.transform.TransformPoint(ms.vertices[j]));
             }
           }
         }

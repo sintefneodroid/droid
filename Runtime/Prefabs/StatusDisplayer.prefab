@@ -245,12 +245,13 @@ RectTransform:
   - {fileID: 8293669222032376476}
   - {fileID: 8293669221948584488}
   - {fileID: 8293669221749201559}
+  - {fileID: 8293669221498214884}
   m_Father: {fileID: 224015848551928794}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 1154.4, y: 128}
+  m_AnchoredPosition: {x: 1416.4418, y: 128}
   m_SizeDelta: {x: 5200, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1066881072510320
@@ -2694,8 +2695,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114942717479311642}
   m_HandleRect: {fileID: 224110368661715722}
   m_Direction: 0
-  m_Value: 0.22760735
-  m_Size: 0.185
+  m_Value: 0.17378126
+  m_Size: 0.165
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3045,7 +3046,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 224582703667719680}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.06
+  m_Size: 0.05696026
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3554,7 +3555,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 31.499937}
+  m_AnchoredPosition: {x: 0, y: 31.50007}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &222785475415721572
@@ -3599,7 +3600,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'DepthCameraObserver:
+  m_Text: 'CompressedDepthCameraObserver:
+
+    Empty FloatEnumerable
+
+
+    DepthCameraObserver:
 
     Empty FloatEnumerable
 
@@ -3633,8 +3639,8 @@ MonoBehaviour:
 
     MaterialIdSegmentationSegmentationObserver:
 
-    Default-Material: RGBA(0.502, 0.255, 0.282, 1.000), BluePlastic (Instance): RGBA(0.588,
-    0.000, 0.600, 1.000), material0: RGBA(0.141, 0.004, 0.098, 1.000)
+    Default-Material: RGBA(0.000, 0.255, 0.255, 1.000), BluePlastic (Instance): RGBA(0.525,
+    0.000, 0.600, 1.000), New Material: RGBA(0.071, 0.282, 0.600, 1.000)
 
 
     NormalCameraObserver:
@@ -3649,9 +3655,8 @@ MonoBehaviour:
 
     ObjectIdInstanceSegmentationSegmentationObserver:
 
-    -2294: RGBA(0.580, 0.376, 0.286, 1.000), -2340: RGBA(0.078, 0.157, 0.031, 1.000),
-    14456: RGBA(0.024, 0.000, 0.851, 1.000), 14484: RGBA(0.078, 0.251, 0.816, 1.000),
-    14424: RGBA(0.024, 0.000, 0.820, 1.000)
+    -2300: RGBA(0.086, 0.376, 0.286, 1.000), -2342: RGBA(0.580, 0.157, 0.031, 1.000),
+    14468: RGBA(0.078, 0.251, 0.565, 1.000)
 
 
     ObjectSpaceCameraObserver:
@@ -3677,8 +3682,8 @@ MonoBehaviour:
     TagSegmentationSegmentationObserver:
 
     a: RGBA(1.000, 0.000, 0.000, 1.000), b: RGBA(0.000, 1.000, 0.000, 1.000), c: RGBA(0.000,
-    0.001, 1.000, 1.000), Untagged: RGBA(0.102, 0.153, 0.224, 1.000), CameraBody:
-    RGBA(0.075, 0.271, 0.561, 1.000)
+    0.001, 1.000, 1.000), Untagged: RGBA(0.333, 0.867, 0.576, 1.000), CameraBody:
+    RGBA(0.314, 0.322, 0.929, 1.000)
 
 
     TangentsCameraObserver:
@@ -5329,6 +5334,66 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8293669221873235120, guid: fb5eb92b9dcbbe8b6b4bbcb7bb7955e7,
     type: 3}
   m_PrefabInstance: {fileID: 492362814}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &967175508
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 224701342121933384}
+    m_Modifications:
+    - target: {fileID: 8071466158123956510, guid: fb5eb92b9dcbbe8b6b4bbcb7bb7955e7,
+        type: 3}
+      propertyPath: m_Name
+      value: CompressedDepth
+      objectReference: {fileID: 0}
+    - target: {fileID: 8293669221873235120, guid: fb5eb92b9dcbbe8b6b4bbcb7bb7955e7,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8293669221873235120, guid: fb5eb92b9dcbbe8b6b4bbcb7bb7955e7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 2400
+      objectReference: {fileID: 0}
+    - target: {fileID: 8293669221873235120, guid: fb5eb92b9dcbbe8b6b4bbcb7bb7955e7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8293669221873235120, guid: fb5eb92b9dcbbe8b6b4bbcb7bb7955e7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8293669221873235120, guid: fb5eb92b9dcbbe8b6b4bbcb7bb7955e7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8071369112533159026, guid: fb5eb92b9dcbbe8b6b4bbcb7bb7955e7,
+        type: 3}
+      propertyPath: m_Name
+      value: CompressedDepth
+      objectReference: {fileID: 0}
+    - target: {fileID: 8183135098847977450, guid: fb5eb92b9dcbbe8b6b4bbcb7bb7955e7,
+        type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 8400000, guid: 65d4c1ba790a0b02b827d1bca779fd3d, type: 2}
+    - target: {fileID: 8183055892476026740, guid: fb5eb92b9dcbbe8b6b4bbcb7bb7955e7,
+        type: 3}
+      propertyPath: m_Text
+      value: CompDepth
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fb5eb92b9dcbbe8b6b4bbcb7bb7955e7, type: 3}
+--- !u!224 &8293669221498214884 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8293669221873235120, guid: fb5eb92b9dcbbe8b6b4bbcb7bb7955e7,
+    type: 3}
+  m_PrefabInstance: {fileID: 967175508}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &989151146
 PrefabInstance:

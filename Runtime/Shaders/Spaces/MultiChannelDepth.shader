@@ -1,4 +1,4 @@
-﻿Shader "Neodroid/Depth"{
+﻿Shader "Neodroid/MutliChannelDepth"{
 	Properties{
 		_Color("Color", Color) = (1,1,1,1)
 	}
@@ -29,9 +29,9 @@
                     //float k = 0.25; // compression factor
                     //return pow(linearZFromNear, k);
 
-                    // DepthMultichannel
-
-                    float lowBits = frac(depth01 * 256); // #RGB24 is 8 bit per channel, 2**8 = 256
+                    // MultiChannelDepth
+                    float fractional = frac(depth01 * 256); // (depth01*256)-floor(depth01*256)
+                    float lowBits = fractional; // #RGB24 is 8 bit per channel, 2**8 = 256
                     float highBits = depth01 - lowBits / 256;
                     return float4(lowBits, highBits, depth01, 1);
 

@@ -47,9 +47,9 @@ namespace droid.Runtime.Utilities.NeodroidCamera {
     [SerializeField]
     float _old_orthographic_size;
 
-    [SerializeField] bool _only_run_in_edit_mode = true;
+    [SerializeField] bool _run_only_in_edit_mode = true;
 
-    [SerializeField] bool _only_run_on_awake; //TODO: Does nothing as of right now
+    [SerializeField] bool _only_run_on_awake;
 
     [SerializeField] bool _sync_culling_mask = true;
     [SerializeField] bool _sync_far_clip_plane = true;
@@ -118,7 +118,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera {
       this.Sync_Cameras();
     }
 
-    void Sync_Cameras() {
+    public void Sync_Cameras() {
       if (this._camera) {
         var this_camera = this._camera.GetComponent<Camera>();
         if (this_camera) {
@@ -235,7 +235,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera {
     /// </summary>
     public void Update() {
       if (!this._only_run_on_awake) {
-        if (this._only_run_in_edit_mode) {
+        if (this._run_only_in_edit_mode) {
           #if UNITY_EDITOR
           if (!Application.isPlaying) {
             this.Sync_Cameras();
