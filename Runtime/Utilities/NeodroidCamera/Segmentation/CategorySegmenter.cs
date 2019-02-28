@@ -107,9 +107,9 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation
       {
         foreach (var tag_color in this._colors_by_category)
         {
-          if (!this.ColorsDictGameObject.ContainsKey(tag_color._Tag))
+          if (!this.ColorsDictGameObject.ContainsKey(tag_color._Category_Name))
           {
-            this.ColorsDictGameObject.Add(tag_color._Tag, tag_color._Col);
+            this.ColorsDictGameObject.Add(tag_color._Category_Name, tag_color._Color);
           }
         }
       }
@@ -121,9 +121,9 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation
         {
           foreach (var tag_color in segmentation_color_by_tags)
           {
-            if (!this.ColorsDictGameObject.ContainsKey(tag_color._Tag))
+            if (!this.ColorsDictGameObject.ContainsKey(tag_color._Category_Name))
             {
-              this.ColorsDictGameObject.Add(tag_color._Tag, tag_color._Col);
+              this.ColorsDictGameObject.Add(tag_color._Category_Name, tag_color._Color);
             }
           }
         }
