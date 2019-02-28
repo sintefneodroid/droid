@@ -11,6 +11,11 @@
 [Ee]xcluded/
 JetBrains/
 
+*_REMOTE_*
+*_BACKUP_*
+*_LOCAL_*
+*_BASE_*
+
 *[Ee]xcluded.*
 *[Ee]xclude.*
 *[Ee]xcluded*

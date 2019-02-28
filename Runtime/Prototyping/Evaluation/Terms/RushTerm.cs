@@ -1,4 +1,5 @@
-﻿using droid.Runtime.Interfaces;
+﻿using droid.Runtime.Environments;
+using droid.Runtime.Interfaces;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Evaluation.Terms {
@@ -15,7 +16,7 @@ namespace droid.Runtime.Prototyping.Evaluation.Terms {
     /// </summary>
     protected override void Setup() {
       if (this._env == null) {
-        //this._env = FindObjectOfType<PrototypingEnvironment>();
+        this._env = FindObjectOfType<PrototypingEnvironment>();
       }
     }
 

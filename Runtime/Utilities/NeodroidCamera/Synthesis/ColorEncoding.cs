@@ -58,25 +58,26 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Synthesis {
     /// 
     /// </summary>
     /// <param name="tag"></param>
+    /// <param name="hash"></param>
     /// <returns></returns>
-    public static Color EncodeTagHashCodeAsColor(string tag) {
-      var hash = tag.GetHashCode();
-      var a = (byte)(hash >> 24);
+    public static Color EncodeTagHashCodeAsColor(int hash) {
+      //var a = (byte)(hash >> 24);
       var r = (byte)(hash >> 16);
       var g = (byte)(hash >> 8);
       var b = (byte)(hash);
-      return new Color32(r, g, b, a);
+      return new Color32(r, g, b, 255);
     }
 
     /// <summary>
     ///
     /// </summary>
     /// <param name="layer"></param>
+    /// <param name="z"></param>
     /// <returns></returns>
-    public static Color EncodeLayerAsColor(int layer) {
-      // Following value must be in the range (0.5 .. 1.0)
+    public static Color EncodeLayerAsColor(int layer, float z  = .7f) {
+      // z value must be in the range (0.5 .. 1.0)
       // in order to avoid color overlaps when using 'divider' in this func
-      var z = .7f;
+
 
       // First 8 layers are Unity Builtin layers
       // Unity supports up to 32 layers in total
