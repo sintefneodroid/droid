@@ -16,7 +16,6 @@
                     UNITY_VERTEX_OUTPUT_STEREO
                 };
 
-
                 inline float Linear01FromEyeToLinear01FromNear(float depth01) {
                     float near = _ProjectionParams.y;
                     float far = _ProjectionParams.z;
@@ -24,14 +23,8 @@
                 }
 
                 float4 Output(float depth01, float3 normal) {
-                    // DepthCompressed
-                    //float linearZFromNear = Linear01FromEyeToLinear01FromNear(depth01);
-                    //float k = 0.25; // compression factor
-                    //return pow(linearZFromNear, k);
-
-                    // MultiChannelDepth
-                    float fractional = frac(depth01 * 256); // (depth01*256)-floor(depth01*256)
-                    float lowBits = fractional; // #RGB24 is 8 bit per channel, 2**8 = 256
+                    // MultiChannelDepth // (depth01*256)-floor(depth01*256) // #RGB24 is 8 bit per channel, 2**8 = 256
+                    float lowBits = frac(depth01 * 256);
                     float highBits = depth01 - lowBits / 256;
                     return float4(lowBits, highBits, depth01, 1);
 

@@ -1,5 +1,7 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Runtime.CompilerServices;
 using droid.Runtime.Utilities.Sensors;
+using UnityEditor;
 using UnityEngine;
 
 namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
@@ -25,65 +27,52 @@ namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
       Debug.DrawLine(new Vector3(r + p.x, -r + p.y, r + p.z), new Vector3(r + p.x, r + p.y, r + p.z), c);
     }
 
-
     public static void DrawRect(float x_size, float y_size, float z_size, Vector3 pos, Color color) {
       var x = x_size / 2;
       var y = y_size / 2;
       var z = z_size / 2;
 
       //Vertical lines
-      Debug.DrawLine(
-          new Vector3(-x + pos.x, -y + pos.y, -z + pos.z),
-          new Vector3(-x + pos.x, y + pos.y, -z + pos.z),
-          color);
-      Debug.DrawLine(
-          new Vector3(x + pos.x, -y + pos.y, -z + pos.z),
-          new Vector3(x + pos.x, y + pos.y, -z + pos.z),
-          color);
-      Debug.DrawLine(
-          new Vector3(-x + pos.x, -y + pos.y, z + pos.z),
-          new Vector3(-x + pos.x, y + pos.y, z + pos.z),
-          color);
-      Debug.DrawLine(
-          new Vector3(x + pos.x, -y + pos.y, z + pos.z),
-          new Vector3(x + pos.x, y + pos.y, z + pos.z),
-          color);
+      Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, -z + pos.z),
+                     new Vector3(-x + pos.x, y + pos.y, -z + pos.z),
+                     color);
+      Debug.DrawLine(new Vector3(x + pos.x, -y + pos.y, -z + pos.z),
+                     new Vector3(x + pos.x, y + pos.y, -z + pos.z),
+                     color);
+      Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, z + pos.z),
+                     new Vector3(-x + pos.x, y + pos.y, z + pos.z),
+                     color);
+      Debug.DrawLine(new Vector3(x + pos.x, -y + pos.y, z + pos.z),
+                     new Vector3(x + pos.x, y + pos.y, z + pos.z),
+                     color);
 
       //Horizontal top
-      Debug.DrawLine(
-          new Vector3(-x + pos.x, y + pos.y, -z + pos.z),
-          new Vector3(x + pos.x, y + pos.y, -z + pos.z),
-          color);
-      Debug.DrawLine(
-          new Vector3(-x + pos.x, y + pos.y, z + pos.z),
-          new Vector3(x + pos.x, y + pos.y, z + pos.z),
-          color);
-      Debug.DrawLine(
-          new Vector3(-x + pos.x, y + pos.y, -z + pos.z),
-          new Vector3(-x + pos.x, y + pos.y, z + pos.z),
-          color);
-      Debug.DrawLine(
-          new Vector3(x + pos.x, y + pos.y, -z + pos.z),
-          new Vector3(x + pos.x, y + pos.y, z + pos.z),
-          color);
+      Debug.DrawLine(new Vector3(-x + pos.x, y + pos.y, -z + pos.z),
+                     new Vector3(x + pos.x, y + pos.y, -z + pos.z),
+                     color);
+      Debug.DrawLine(new Vector3(-x + pos.x, y + pos.y, z + pos.z),
+                     new Vector3(x + pos.x, y + pos.y, z + pos.z),
+                     color);
+      Debug.DrawLine(new Vector3(-x + pos.x, y + pos.y, -z + pos.z),
+                     new Vector3(-x + pos.x, y + pos.y, z + pos.z),
+                     color);
+      Debug.DrawLine(new Vector3(x + pos.x, y + pos.y, -z + pos.z),
+                     new Vector3(x + pos.x, y + pos.y, z + pos.z),
+                     color);
 
       //Horizontal bottom
-      Debug.DrawLine(
-          new Vector3(-x + pos.x, -y + pos.y, -z + pos.z),
-          new Vector3(x + pos.x, -y + pos.y, -z + pos.z),
-          color);
-      Debug.DrawLine(
-          new Vector3(-x + pos.x, -y + pos.y, z + pos.z),
-          new Vector3(x + pos.x, -y + pos.y, z + pos.z),
-          color);
-      Debug.DrawLine(
-          new Vector3(-x + pos.x, -y + pos.y, -z + pos.z),
-          new Vector3(-x + pos.x, -y + pos.y, z + pos.z),
-          color);
-      Debug.DrawLine(
-          new Vector3(x + pos.x, -y + pos.y, -z + pos.z),
-          new Vector3(x + pos.x, -y + pos.y, z + pos.z),
-          color);
+      Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, -z + pos.z),
+                     new Vector3(x + pos.x, -y + pos.y, -z + pos.z),
+                     color);
+      Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, z + pos.z),
+                     new Vector3(x + pos.x, -y + pos.y, z + pos.z),
+                     color);
+      Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, -z + pos.z),
+                     new Vector3(-x + pos.x, -y + pos.y, z + pos.z),
+                     color);
+      Debug.DrawLine(new Vector3(x + pos.x, -y + pos.y, -z + pos.z),
+                     new Vector3(x + pos.x, -y + pos.y, z + pos.z),
+                     color);
     }
 
     public static bool DidTransformsChange(
@@ -129,10 +118,11 @@ namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
             }
             */
       var scaled_min = result.min;
-      scaled_min.Scale(object_transform.localScale);
+      var local_scale = object_transform.localScale;
+      scaled_min.Scale(local_scale);
       result.min = scaled_min;
       var scaled_max = result.max;
-      scaled_max.Scale(object_transform.localScale);
+      scaled_max.Scale(local_scale);
       result.max = scaled_max;
       return result;
     }
@@ -153,10 +143,11 @@ namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
       }
 
       var scaled_min = result.min;
-      scaled_min.Scale(object_transform.localScale);
+      var local_scale = object_transform.localScale;
+      scaled_min.Scale(local_scale);
       result.min = scaled_min;
       var scaled_max = result.max;
-      scaled_max.Scale(object_transform.localScale);
+      scaled_max.Scale(local_scale);
       result.max = scaled_max;
       return result;
     }
@@ -176,50 +167,167 @@ namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
 
 
 
+    public static Rect
+        GetBoundsScreenRectEncapsulationSlow(this Bounds bounds, Camera cam, float margin = 0) {
+      var rect = new Rect();
 
-    public static Rect GetBoundsScreenRect(this Bounds bounds, Camera cam) {
-      var cen = bounds.center;
-      var ext = bounds.extents;
+      var points = new Vector3[8];
+      var screen_pos = new Vector3[8];
 
-      Vector2 min = cam.WorldToScreenPoint(new Vector3(cen.x - ext.x, cen.y - ext.y, cen.z - ext.z));
+      var b = bounds; // reference object ex Simple
+      points[0] = new Vector3(b.min.x, b.min.y, b.min.z);
+      points[1] = new Vector3(b.max.x, b.min.y, b.min.z);
+      points[2] = new Vector3(b.max.x, b.max.y, b.min.z);
+      points[3] = new Vector3(b.min.x, b.max.y, b.min.z);
+      points[4] = new Vector3(b.min.x, b.min.y, b.max.z);
+      points[5] = new Vector3(b.max.x, b.min.y, b.max.z);
+      points[6] = new Vector3(b.max.x, b.max.y, b.max.z);
+      points[7] = new Vector3(b.min.x, b.max.y, b.max.z);
+
+      var screen_bounds = new Bounds();
+      for (var i = 0; i < 8; i++) {
+        screen_pos[i] = cam.WorldToScreenPoint(points[i]);
+
+        if (i == 0) {
+          screen_bounds = new Bounds(screen_pos[0], Vector3.zero);
+        }
+
+        screen_bounds.Encapsulate(screen_pos[i]);
+      }
+
+      //Debug.Log(screen_bounds.ToString());
+
+      rect.xMin = screen_bounds.min.x;
+      rect.yMin = screen_bounds.min.y;
+      rect.xMax = screen_bounds.max.x;
+      rect.yMax = screen_bounds.max.y;
+
+      return rect;
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="bounds"></param>
+    /// <param name="cam"></param>
+    /// <param name="margin"></param>
+    /// <returns></returns>
+    public static Rect GetBoundingBoxScreenRect(this BoundingBox bounds, Camera cam, float margin = 0) {
+      Vector2 min = cam.WorldToScreenPoint(bounds.transform.TransformPoint(bounds.Points[0]));
       var max = min;
 
-      //0
       var point = min;
       get_min_max(point, ref min, ref max);
 
-      //1
-      point = cam.WorldToScreenPoint(new Vector3(cen.x + ext.x, cen.y - ext.y, cen.z - ext.z));
-      get_min_max(point, ref min, ref max);
+      for (var i = 1; i < bounds.Points.Length; i++) {
+        point = cam.WorldToScreenPoint(bounds.transform.TransformPoint(bounds.Points[i]));
+        get_min_max(point, ref min, ref max);
+      }
 
+      var r = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
+      r.xMin -= margin;
+      r.xMax += margin;
+      r.yMin -= margin;
+      r.yMax += margin;
 
-      //2
-      point = cam.WorldToScreenPoint(new Vector3(cen.x - ext.x, cen.y - ext.y, cen.z + ext.z));
-      get_min_max(point, ref min, ref max);
-
-      //3
-      point = cam.WorldToScreenPoint(new Vector3(cen.x + ext.x, cen.y - ext.y, cen.z + ext.z));
-      get_min_max(point, ref min, ref max);
-
-      //4
-      point = cam.WorldToScreenPoint(new Vector3(cen.x - ext.x, cen.y + ext.y, cen.z - ext.z));
-      get_min_max(point, ref min, ref max);
-
-      //5
-      point = cam.WorldToScreenPoint(new Vector3(cen.x + ext.x, cen.y + ext.y, cen.z - ext.z));
-      get_min_max(point, ref min, ref max);
-
-      //6
-      point = cam.WorldToScreenPoint(new Vector3(cen.x - ext.x, cen.y + ext.y, cen.z + ext.z));
-      get_min_max(point, ref min, ref max);
-
-      //7
-      point = cam.WorldToScreenPoint(new Vector3(cen.x + ext.x, cen.y + ext.y, cen.z + ext.z));
-      get_min_max(point, ref min, ref max);
-
-      return new Rect(min.x, min.y, max.x - min.x, max.y - min.y);
+      return r;
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="bounds"></param>
+    /// <param name="cam"></param>
+    /// <param name="margin"></param>
+    /// <returns></returns>
+    public static Rect GetBoundsScreenRect(this Bounds bounds, Camera cam, float margin = 0) {
+      var cen = bounds.center;
+      var ext = bounds.extents;
+
+      var x_min = cen.x - ext.x;
+      var y_min = cen.y - ext.y;
+      var z_min = cen.z - ext.z;
+      var x_max = cen.x + ext.x;
+      var y_max = cen.y + ext.y;
+      var z_max = cen.z + ext.z;
+
+      Vector2 min = cam.WorldToScreenPoint(new Vector3(x_min, y_min, z_min));
+      var max = min;
+
+      var point = min;
+      get_min_max(point, ref min, ref max);
+
+      point = cam.WorldToScreenPoint(new Vector3(x_max, y_max, z_max));
+      get_min_max(point, ref min, ref max);
+
+      point = cam.WorldToScreenPoint(new Vector3(x_max, y_min, z_min));
+      get_min_max(point, ref min, ref max);
+
+      point = cam.WorldToScreenPoint(new Vector3(x_min, y_max, z_min));
+      get_min_max(point, ref min, ref max);
+
+      point = cam.WorldToScreenPoint(new Vector3(x_min, y_min, z_max));
+      get_min_max(point, ref min, ref max);
+
+      point = cam.WorldToScreenPoint(new Vector3(x_max, y_min, z_max));
+      get_min_max(point, ref min, ref max);
+
+      point = cam.WorldToScreenPoint(new Vector3(x_max, y_max, z_min));
+      get_min_max(point, ref min, ref max);
+
+      point = cam.WorldToScreenPoint(new Vector3(x_min, y_max, z_max));
+      get_min_max(point, ref min, ref max);
+
+      /*
+       var width = max.x - min.x;
+      var height = max.y - min.y;
+      return new Rect(min.x, min.y, width, height);
+      */
+
+      var r = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
+      r.xMin -= margin;
+      r.xMax += margin;
+      r.yMin -= margin;
+      r.yMax += margin;
+
+      return r;
+    }
+
+    public static Rect Normalise(this Rect rect, float width, float height) {
+      if (width < float.Epsilon || Math.Abs(height) < float.Epsilon) {
+        return new Rect();
+      }
+
+      return new Rect {
+                          x = rect.x / width,
+                          width = rect.width / width,
+                          y = rect.y / width,
+                          height = rect.height / height
+                      };
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="transform"></param>
+    /// <param name="local_bounds"></param>
+    /// <returns></returns>
+    public static Bounds TransformBounds(this Transform transform, Bounds local_bounds) {
+      var center = transform.TransformPoint(local_bounds.center);
+
+      // transform the local extents' axes
+      var extents = local_bounds.extents;
+      var axis_x = transform.TransformVector(extents.x, 0, 0);
+      var axis_y = transform.TransformVector(0, extents.y, 0);
+      var axis_z = transform.TransformVector(0, 0, extents.z);
+
+      // sum their absolute value to get the world extents
+      extents.x = Mathf.Abs(axis_x.x) + Mathf.Abs(axis_y.x) + Mathf.Abs(axis_z.x);
+      extents.y = Mathf.Abs(axis_x.y) + Mathf.Abs(axis_y.y) + Mathf.Abs(axis_z.y);
+      extents.z = Mathf.Abs(axis_x.z) + Mathf.Abs(axis_y.z) + Mathf.Abs(axis_z.z);
+
+      return new Bounds {center = center, extents = extents};
+    }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static void get_min_max(Vector2 point, ref Vector2 min, ref Vector2 max) {

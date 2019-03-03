@@ -17,7 +17,9 @@ namespace droid.Runtime.Prototyping.Observers.BoundingBox {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName => "BoundingBox";
+    public override string PrototypingTypeName {
+      get { return "BoundingBox"; }
+    }
 
     Utilities.BoundingBoxes.BoundingBox _boundingBox;
     [SerializeField] string _observationValue;
@@ -41,10 +43,9 @@ namespace droid.Runtime.Prototyping.Observers.BoundingBox {
     /// <summary>
     ///
     /// </summary>
-    public string ObservationValue
-    {
-      get => this._observationValue;
-      set => this._observationValue = value;
+    public string ObservationValue {
+      get { return this._observationValue; }
+      set { this._observationValue = value; }
     }
 
     public override string ToString()

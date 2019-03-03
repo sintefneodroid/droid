@@ -1,15 +1,16 @@
 ﻿using System;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Utilities.BoundingBoxes.Experimental;
+using Microsoft.Win32.SafeHandles;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Observers.BoundingBox {
   /// <inheritdoc cref="Observer" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      ObserverComponentMenuPath._ComponentMenuPath
-      + "Experimental/ScreenSpaceBoundingBox"
-      + ObserverComponentMenuPath._Postfix)]
+  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+                    + "Experimental/ScreenSpaceBoundingBox"
+                    + ObserverComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   //[ExecuteAlways]
   [RequireComponent(typeof(Utilities.BoundingBoxes.BoundingBox))]
@@ -18,11 +19,12 @@ namespace droid.Runtime.Prototyping.Observers.BoundingBox {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName => "BoundingBox";
+    public override string PrototypingTypeName { get { return "BoundingBox"; } }
 
     Utilities.BoundingBoxes.BoundingBox _bounding_box;
     [SerializeField] UnityEngine.Camera _camera;
-    Rect _scr_rect;
+    [SerializeField] Rect _out_rect;
+    [SerializeField] bool normalise = true;
 
     /// <inheritdoc />
     /// <summary>
@@ -35,39 +37,34 @@ namespace droid.Runtime.Prototyping.Observers.BoundingBox {
     /// <summary>
     /// </summary>
     public override void UpdateObservation() {
-      var points = new Vector3[8];
-      var screen_pos = new Vector3[8];
+      if (this._camera) {
+        var rect = this._bounding_box.ScreenSpaceBoundingRect(this._camera);
 
-      var b = this._bounding_box.Bounds; // reference object ex Simple
-      points[0] = new Vector3(b.min.x, b.min.y, b.min.z);
-      points[1] = new Vector3(b.max.x, b.min.y, b.min.z);
-      points[2] = new Vector3(b.max.x, b.max.y, b.min.z);
-      points[3] = new Vector3(b.min.x, b.max.y, b.min.z);
-      points[4] = new Vector3(b.min.x, b.min.y, b.max.z);
-      points[5] = new Vector3(b.max.x, b.min.y, b.max.z);
-      points[6] = new Vector3(b.max.x, b.max.y, b.max.z);
-      points[7] = new Vector3(b.min.x, b.max.y, b.max.z);
+        if (this.normalise) {
+          float w;
+          float h;
+          var target = this._camera.targetTexture;
 
-      var screen_bounds = new Bounds();
-      for (var i = 0; i < 8; i++) {
-        screen_pos[i] = this._camera.WorldToScreenPoint(points[i]);
+          if (target) {
+            w = target.width;
+            h = target.height;
+          } else {
+            var r = this._camera.pixelRect;
+            w = r.width;
+            h = r.height;
+          }
 
-        if (i == 0) {
-          screen_bounds = new Bounds(screen_pos[0], Vector3.zero);
+          this._out_rect = rect.Normalise(w, h);
+        } else {
+          this._out_rect = rect;
         }
-
-        screen_bounds.Encapsulate(screen_pos[i]);
       }
 
-      //Debug.Log(screen_bounds.ToString());
+      var str_rep =
+          $"{{\"x\":{this._out_rect.x},\n\"y\":{this._out_rect.y},\n\"w\":{this._out_rect.width},\n\"h\":{this._out_rect.height}}}";
 
-      this._scr_rect.xMin = screen_bounds.min.x;
-      this._scr_rect.yMin = screen_bounds.min.y;
-      this._scr_rect.xMax = screen_bounds.max.x;
-      this._scr_rect.yMax = screen_bounds.max.y;
-
-      this.ObservationValue = this._scr_rect.ToString();
-      this.FloatEnumerable = new float[]{};
+      this.ObservationValue = str_rep;
+      this.FloatEnumerable = new float[] { };
     }
 
     /// <summary>
@@ -75,9 +72,6 @@ namespace droid.Runtime.Prototyping.Observers.BoundingBox {
     /// </summary>
     public string ObservationValue { get; set; }
 
-    public override string ToString()
-    {
-      return this.ObservationValue;
-    }
+    public override string ToString() { return this.ObservationValue; }
   }
 }

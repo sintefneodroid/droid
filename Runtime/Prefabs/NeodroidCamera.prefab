@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 727610264}
   - component: {fileID: 727610263}
   - component: {fileID: 727610262}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Vs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33,7 +33,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4232321861901436}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &727610266
 Camera:
@@ -62,7 +62,7 @@ Camera:
   far clip plane: 100
   field of view: 28.2
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 20
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -114,29 +114,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 727610264}
   _cameras:
-  - {fileID: 1403684216}
-  - {fileID: 1171208658948452137}
-  - {fileID: 1463669859483367840}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 790114237}
-  - {fileID: 1802749280476413633}
-  - {fileID: 1623028174}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1458531845}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114203839715900738}
-  - {fileID: 114594705335718820}
-  - {fileID: 114716082362535994}
-  - {fileID: 727610264}
-  - {fileID: 114608562479145288}
-  - {fileID: 114307586759802868}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
   _old_fov: 28.2
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
-  _old_orthographic_size: 5
+  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -191,7 +193,7 @@ GameObject:
   - component: {fileID: 790114236}
   - component: {fileID: 790114235}
   - component: {fileID: 790114238}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MaterialIdSegmentation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +212,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4232321861901436}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &790114239
 Camera:
@@ -239,7 +241,7 @@ Camera:
   far clip plane: 20
   field of view: 28.2
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 20
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -270,29 +272,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 790114237}
   _cameras:
-  - {fileID: 1403684216}
-  - {fileID: 1171208658948452137}
-  - {fileID: 1463669859483367840}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 790114237}
-  - {fileID: 1802749280476413633}
-  - {fileID: 1623028174}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1458531845}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114203839715900738}
-  - {fileID: 114594705335718820}
-  - {fileID: 114716082362535994}
-  - {fileID: 727610264}
-  - {fileID: 114608562479145288}
-  - {fileID: 114307586759802868}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
   _old_fov: 28.2
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
-  _old_orthographic_size: 5
+  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -340,9 +344,9 @@ MonoBehaviour:
   _editor_reregistering: 1
   _Use_Custom_Name: 0
   _normalise_observation: 0
-  _observation_value: 'Default-Material: RGBA(0.000, 0.255, 0.255, 1.000), BluePlastic
-    (Instance): RGBA(0.525, 0.000, 0.600, 1.000), New Material: RGBA(0.071, 0.282,
-    0.600, 1.000)'
+  _observation_value: 'Default-Material: RGBA(0.502, 0.255, 0.286, 1.000), BluePlastic
+    (Instance): RGBA(0.714, 0.035, 0.075, 1.000), material1: RGBA(0.204, 0.004, 0.063,
+    1.000)'
   _segmenter: {fileID: 790114238}
 --- !u!114 &790114238
 MonoBehaviour:
@@ -372,7 +376,7 @@ GameObject:
   - component: {fileID: 870147247}
   - component: {fileID: 870147246}
   - component: {fileID: 870147245}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CompressedDepth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -391,7 +395,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4232321861901436}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &870147248
 Camera:
@@ -420,7 +424,7 @@ Camera:
   far clip plane: 100
   field of view: 28.2
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 20
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -451,30 +455,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 870147247}
   _cameras:
-  - {fileID: 870147247}
-  - {fileID: 1403684216}
-  - {fileID: 1171208658948452137}
-  - {fileID: 1463669859483367840}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 790114237}
-  - {fileID: 1802749280476413633}
-  - {fileID: 1623028174}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1458531845}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114203839715900738}
-  - {fileID: 114594705335718820}
-  - {fileID: 114716082362535994}
-  - {fileID: 727610264}
-  - {fileID: 114608562479145288}
-  - {fileID: 114307586759802868}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
   _old_fov: 28.2
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
-  _old_orthographic_size: 5
+  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -532,7 +537,7 @@ GameObject:
   - component: {fileID: 1087285662}
   - component: {fileID: 1087285661}
   - component: {fileID: 1087285660}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1085,7 +1090,7 @@ GameObject:
   - component: {fileID: 1403684216}
   - component: {fileID: 1403684214}
   - component: {fileID: 1403684213}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ObjectIdInstanceSegmentation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1104,7 +1109,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4232321861901436}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1403684218
 Camera:
@@ -1133,7 +1138,7 @@ Camera:
   far clip plane: 20
   field of view: 28.2
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 20
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -1180,29 +1185,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 1403684216}
   _cameras:
-  - {fileID: 1403684216}
-  - {fileID: 1171208658948452137}
-  - {fileID: 1463669859483367840}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 790114237}
-  - {fileID: 1802749280476413633}
-  - {fileID: 1623028174}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1458531845}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114203839715900738}
-  - {fileID: 114594705335718820}
-  - {fileID: 114716082362535994}
-  - {fileID: 727610264}
-  - {fileID: 114608562479145288}
-  - {fileID: 114307586759802868}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
   _old_fov: 28.2
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
-  _old_orthographic_size: 5
+  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -1250,8 +1257,8 @@ MonoBehaviour:
   _editor_reregistering: 1
   _Use_Custom_Name: 0
   _normalise_observation: 0
-  _observation_value: '-2300: RGBA(0.086, 0.376, 0.286, 1.000), -2342: RGBA(0.580,
-    0.157, 0.031, 1.000), 14468: RGBA(0.078, 0.251, 0.565, 1.000)'
+  _observation_value: '-11082: RGBA(0.525, 0.161, 0.067, 1.000), -11136: RGBA(0.016,
+    0.412, 0.063, 1.000), 28538: RGBA(0.651, 0.035, 0.357, 1.000)'
   _segmenter: {fileID: 1403684217}
 --- !u!1 &1458531844
 GameObject:
@@ -1267,7 +1274,7 @@ GameObject:
   - component: {fileID: 1458531845}
   - component: {fileID: 1458531847}
   - component: {fileID: 1458531846}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Us
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1286,7 +1293,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4232321861901436}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1458531849
 Camera:
@@ -1315,7 +1322,7 @@ Camera:
   far clip plane: 100
   field of view: 28.2
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 20
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -1367,29 +1374,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 1458531845}
   _cameras:
-  - {fileID: 1403684216}
-  - {fileID: 1171208658948452137}
-  - {fileID: 1463669859483367840}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 790114237}
-  - {fileID: 1802749280476413633}
-  - {fileID: 1623028174}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1458531845}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114203839715900738}
-  - {fileID: 114594705335718820}
-  - {fileID: 114716082362535994}
-  - {fileID: 727610264}
-  - {fileID: 114608562479145288}
-  - {fileID: 114307586759802868}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
   _old_fov: 28.2
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
-  _old_orthographic_size: 5
+  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -1444,7 +1453,7 @@ GameObject:
   - component: {fileID: 1623028174}
   - component: {fileID: 1623028173}
   - component: {fileID: 1623028172}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WorldSpace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1463,7 +1472,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4232321861901436}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1623028176
 Camera:
@@ -1492,7 +1501,7 @@ Camera:
   far clip plane: 100
   field of view: 28.2
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 20
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -1544,29 +1553,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 1623028174}
   _cameras:
-  - {fileID: 1403684216}
-  - {fileID: 1171208658948452137}
-  - {fileID: 1463669859483367840}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 790114237}
-  - {fileID: 1802749280476413633}
-  - {fileID: 1623028174}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1458531845}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114203839715900738}
-  - {fileID: 114594705335718820}
-  - {fileID: 114716082362535994}
-  - {fileID: 727610264}
-  - {fileID: 114608562479145288}
-  - {fileID: 114307586759802868}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
   _old_fov: 28.2
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
-  _old_orthographic_size: 5
+  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -1616,7 +1627,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4232321861901436}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: DataCollectionCameras
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1637,6 +1648,7 @@ Transform:
   - {fileID: 4453025719616826}
   - {fileID: 4218908600063310}
   - {fileID: 4927334179696988}
+  - {fileID: 1931405973741409654}
   - {fileID: 4949770021763212}
   - {fileID: 4337138128144672}
   - {fileID: 4725180884745084}
@@ -1665,7 +1677,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4419360240986842}
   - component: {fileID: 108322580981299036}
-  m_Layer: 15
+  m_Layer: 2
   m_Name: OrthographicNaturalLightSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1679,13 +1691,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1037625987720610}
-  m_LocalRotation: {x: 0.30853766, y: 0.25750902, z: -0.08716187, w: 0.91153514}
-  m_LocalPosition: {x: -0.050000075, y: 0, z: -0.000000007450581}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4889865574120588}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 37.4, y: 31.55, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &108322580981299036
 Light:
   m_ObjectHideFlags: 0
@@ -1738,7 +1750,7 @@ GameObject:
   - component: {fileID: 114307586759802868}
   - component: {fileID: 114622768315461166}
   - component: {fileID: 114032525281749288}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Normal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1757,7 +1769,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4232321861901436}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &20367486579053346
 Camera:
@@ -1786,7 +1798,7 @@ Camera:
   far clip plane: 100
   field of view: 28.2
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 20
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -1817,29 +1829,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114307586759802868}
   _cameras:
-  - {fileID: 1403684216}
-  - {fileID: 1171208658948452137}
-  - {fileID: 1463669859483367840}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 790114237}
-  - {fileID: 1802749280476413633}
-  - {fileID: 1623028174}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1458531845}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114203839715900738}
-  - {fileID: 114594705335718820}
-  - {fileID: 114716082362535994}
-  - {fileID: 727610264}
-  - {fileID: 114608562479145288}
-  - {fileID: 114307586759802868}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
   _old_fov: 28.2
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
-  _old_orthographic_size: 5
+  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -1894,7 +1908,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4602590134894934}
   - component: {fileID: 108133865239658186}
-  m_Layer: 15
+  m_Layer: 2
   m_Name: PerspectiveNaturalLightSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1908,14 +1922,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1176750420014840}
-  m_LocalRotation: {x: -0.000000014901159, y: 0.008728116, z: -0.000000014901159,
-    w: 0.999962}
-  m_LocalPosition: {x: -0.050000075, y: 0, z: -0.000000007450581}
-  m_LocalScale: {x: 1, y: 1.0000001, z: 1.0000001}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4889865574120588}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &108133865239658186
 Light:
   m_ObjectHideFlags: 0
@@ -1928,7 +1941,7 @@ Light:
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
-  m_Range: 10
+  m_Range: 100
   m_SpotAngle: 90
   m_InnerSpotAngle: 71.41338
   m_CookieSize: 10
@@ -1968,7 +1981,7 @@ GameObject:
   - component: {fileID: 114203839715900738}
   - component: {fileID: 114789472510660598}
   - component: {fileID: 114877382518267686}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RGB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2016,7 +2029,7 @@ Camera:
   far clip plane: 100
   field of view: 28.2
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 20
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -2047,29 +2060,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114203839715900738}
   _cameras:
-  - {fileID: 1403684216}
-  - {fileID: 1171208658948452137}
-  - {fileID: 1463669859483367840}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 790114237}
-  - {fileID: 1802749280476413633}
-  - {fileID: 1623028174}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1458531845}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114203839715900738}
-  - {fileID: 114594705335718820}
-  - {fileID: 114716082362535994}
-  - {fileID: 727610264}
-  - {fileID: 114608562479145288}
-  - {fileID: 114307586759802868}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
   _old_fov: 28.2
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
-  _old_orthographic_size: 5
+  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -2128,7 +2143,7 @@ GameObject:
   - component: {fileID: 33198744561240566}
   - component: {fileID: 65428771364152348}
   - component: {fileID: 23598461857027390}
-  m_Layer: 13
+  m_Layer: 2
   m_Name: CameraBody
   m_TagString: CameraBody
   m_Icon: {fileID: 0}
@@ -2187,7 +2202,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: dfff33fb25bd64a6e8be693cfb8f83f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2218,7 +2233,7 @@ GameObject:
   - component: {fileID: 4762047315780166}
   - component: {fileID: 108906297679887750}
   - component: {fileID: 114704739639699848}
-  m_Layer: 10
+  m_Layer: 2
   m_Name: PerspectiveInfraredLightSource
   m_TagString: Infrared
   m_Icon: {fileID: 0}
@@ -2232,13 +2247,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1531565962497132}
-  m_LocalRotation: {x: -0.00000004470348, y: 0.008726536, z: -0.00000004470348, w: 0.999962}
-  m_LocalPosition: {x: -0.050000075, y: 0, z: -0.000000007450581}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4889865574120588}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 1, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &108906297679887750
 Light:
   m_ObjectHideFlags: 0
@@ -2306,7 +2321,7 @@ GameObject:
   - component: {fileID: 114931974240182444}
   - component: {fileID: 114764329013616076}
   - component: {fileID: 114907179650593844}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Satellite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2320,12 +2335,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1568745427337830}
-  m_LocalRotation: {x: -0.52998984, y: -0.00031638122, z: 0.0005061566, w: -0.8480038}
+  m_LocalRotation: {x: -0.5789396, y: 0.19597733, z: -0.25377542, w: -0.74967986}
   m_LocalPosition: {x: -0.19564515, y: 7.400394, z: -4.870925}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4232321861901436}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 55.000004, y: 0, z: 0}
 --- !u!20 &20793825365236440
 Camera:
@@ -2354,7 +2369,7 @@ Camera:
   far clip plane: 100
   field of view: 28.2
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 20
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -2385,35 +2400,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114594705335718820}
   _cameras:
-  - {fileID: 1403684216}
-  - {fileID: 1171208658948452137}
-  - {fileID: 1463669859483367840}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 790114237}
-  - {fileID: 1802749280476413633}
-  - {fileID: 1623028174}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1458531845}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114203839715900738}
-  - {fileID: 114594705335718820}
-  - {fileID: 114716082362535994}
-  - {fileID: 727610264}
-  - {fileID: 114608562479145288}
-  - {fileID: 114307586759802868}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
   _old_fov: 28.2
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 1
-  _old_orthographic_size: 5
+  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
-  _sync_far_clip_plane: 1
-  _sync_fov: 1
-  _sync_near_clip_plane: 1
+  _sync_far_clip_plane: 0
+  _sync_fov: 0
+  _sync_near_clip_plane: 0
   _sync_orthographic_projection: 0
   _sync_orthographic_size: 1
 --- !u!114 &114844159235485554
@@ -2496,7 +2513,7 @@ GameObject:
   - component: {fileID: 114203530777878686}
   - component: {fileID: 114155819769717986}
   - component: {fileID: 114633070162146770}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Depth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2544,7 +2561,7 @@ Camera:
   far clip plane: 100
   field of view: 28.2
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 20
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -2575,29 +2592,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114203530777878686}
   _cameras:
-  - {fileID: 1403684216}
-  - {fileID: 1171208658948452137}
-  - {fileID: 1463669859483367840}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 790114237}
-  - {fileID: 1802749280476413633}
-  - {fileID: 1623028174}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1458531845}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114203839715900738}
-  - {fileID: 114594705335718820}
-  - {fileID: 114716082362535994}
-  - {fileID: 727610264}
-  - {fileID: 114608562479145288}
-  - {fileID: 114307586759802868}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
   _old_fov: 28.2
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
-  _old_orthographic_size: 5
+  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -2651,7 +2670,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4889865574120588}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LightSources
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2666,7 +2685,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1714345857349140}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.050000075, y: 0, z: -0.000000007450581}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4419360240986842}
@@ -2690,7 +2709,7 @@ GameObject:
   - component: {fileID: 114831488807547016}
   - component: {fileID: 114442928199698278}
   - component: {fileID: 114889075139374148}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Flow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2709,7 +2728,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4232321861901436}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &20768847776266208
 Camera:
@@ -2738,7 +2757,7 @@ Camera:
   far clip plane: 100
   field of view: 28.2
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 20
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -2769,29 +2788,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114798311224295254}
   _cameras:
-  - {fileID: 1403684216}
-  - {fileID: 1171208658948452137}
-  - {fileID: 1463669859483367840}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 790114237}
-  - {fileID: 1802749280476413633}
-  - {fileID: 1623028174}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1458531845}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114203839715900738}
-  - {fileID: 114594705335718820}
-  - {fileID: 114716082362535994}
-  - {fileID: 727610264}
-  - {fileID: 114608562479145288}
-  - {fileID: 114307586759802868}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
   _old_fov: 28.2
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
-  _old_orthographic_size: 5
+  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -2887,7 +2908,8 @@ GameObject:
   - component: {fileID: 1625775002}
   - component: {fileID: 1625775003}
   - component: {fileID: 1780244598}
-  m_Layer: 0
+  - component: {fileID: 7246095508735290648}
+  m_Layer: 2
   m_Name: NeodroidCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2939,7 +2961,7 @@ Camera:
   far clip plane: 100
   field of view: 28.2
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 20
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -2970,29 +2992,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114716082362535994}
   _cameras:
-  - {fileID: 1403684216}
-  - {fileID: 1171208658948452137}
-  - {fileID: 1463669859483367840}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 790114237}
-  - {fileID: 1802749280476413633}
-  - {fileID: 1623028174}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1458531845}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114203839715900738}
-  - {fileID: 114594705335718820}
-  - {fileID: 114716082362535994}
-  - {fileID: 727610264}
-  - {fileID: 114608562479145288}
-  - {fileID: 114307586759802868}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _old_culling_mask: -1
   _old_far_clip_plane: 100
   _old_fov: 28.2
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
-  _old_orthographic_size: 5
+  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 0
@@ -3040,43 +3064,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 3337727558481276136}
-  - {fileID: 4614691972182028737}
-  - {fileID: 20598539646069560}
-  - {fileID: 20793825365236440}
-  - {fileID: 790114239}
-  - {fileID: 20940602749366906}
-  - {fileID: 1623028176}
-  - {fileID: 4204259003963777610}
-  - {fileID: 1458531849}
-  - {fileID: 20768847776266208}
-  - {fileID: 20145353716750142}
-  - {fileID: 5796786885426895393}
-  - {fileID: 20367486579053346}
-  - {fileID: 727610266}
-  - {fileID: 1403684218}
-  - {fileID: 4956758692426196692}
-  - {fileID: 20224209517257972}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _filter_mode: 1
   _size: {x: 256, y: 256}
   _texture_format: 3
   _textures:
-  - {fileID: 8400000, guid: 43f8b57e2bee2bd6eb1df24b6c88ba79, type: 2}
-  - {fileID: 8400000, guid: 7ce5d7425e7fa3af69f9bdd316de2208, type: 2}
-  - {fileID: 8400000, guid: b22ce111b5af44afe8b8f2f085799a5f, type: 2}
-  - {fileID: 8400000, guid: bc593ac7628a042ac93b20ca1c0101b6, type: 2}
-  - {fileID: 8400000, guid: e52a2f56c9ffa187abf5021f3338228e, type: 2}
-  - {fileID: 8400000, guid: 4c7dcaf7e8ef74c11bd8ad06365ea216, type: 2}
-  - {fileID: 8400000, guid: 0a204b96270826992a5c81c531ea5dcf, type: 2}
-  - {fileID: 8400000, guid: 7355ca23a1b57891dafa75b44c2c5cc8, type: 2}
-  - {fileID: 8400000, guid: a2ed3a19ee4cfe303b28c87fca44a286, type: 2}
-  - {fileID: 8400000, guid: afc5604d79d0849129803e463fc07bca, type: 2}
-  - {fileID: 8400000, guid: 5d9eca522a1944267b89beea11ffc58c, type: 2}
-  - {fileID: 8400000, guid: 29bfbe75d2faa72cdbf597b2763205ab, type: 2}
-  - {fileID: 8400000, guid: 63f7bf9c3a80b4d169b394696cbbd9ab, type: 2}
-  - {fileID: 8400000, guid: 142c9eceec4ee3060b3550e1b2a64cbf, type: 2}
-  - {fileID: 8400000, guid: 280476064a32df4848434f9b38c2d744, type: 2}
   - {fileID: 8400000, guid: 7ce5712ecfb6c0929a81d56be34c2333, type: 2}
+  - {fileID: 8400000, guid: 280476064a32df4848434f9b38c2d744, type: 2}
+  - {fileID: 8400000, guid: 142c9eceec4ee3060b3550e1b2a64cbf, type: 2}
+  - {fileID: 8400000, guid: 63f7bf9c3a80b4d169b394696cbbd9ab, type: 2}
+  - {fileID: 8400000, guid: 29bfbe75d2faa72cdbf597b2763205ab, type: 2}
+  - {fileID: 8400000, guid: 5d9eca522a1944267b89beea11ffc58c, type: 2}
+  - {fileID: 8400000, guid: afc5604d79d0849129803e463fc07bca, type: 2}
+  - {fileID: 8400000, guid: a2ed3a19ee4cfe303b28c87fca44a286, type: 2}
+  - {fileID: 8400000, guid: 7355ca23a1b57891dafa75b44c2c5cc8, type: 2}
+  - {fileID: 8400000, guid: 0a204b96270826992a5c81c531ea5dcf, type: 2}
+  - {fileID: 8400000, guid: 4c7dcaf7e8ef74c11bd8ad06365ea216, type: 2}
+  - {fileID: 8400000, guid: e52a2f56c9ffa187abf5021f3338228e, type: 2}
+  - {fileID: 8400000, guid: bc593ac7628a042ac93b20ca1c0101b6, type: 2}
+  - {fileID: 8400000, guid: b22ce111b5af44afe8b8f2f085799a5f, type: 2}
+  - {fileID: 8400000, guid: 7ce5d7425e7fa3af69f9bdd316de2208, type: 2}
+  - {fileID: 8400000, guid: 43f8b57e2bee2bd6eb1df24b6c88ba79, type: 2}
+  - {fileID: 8400000, guid: 65d4c1ba790a0b02b827d1bca779fd3d, type: 2}
+  - {fileID: 8400000, guid: cc4e727fd2f685deea5ec6e4b44b5cc3, type: 2}
   _wrap_mode: 1
 --- !u!114 &1625775002
 MonoBehaviour:
@@ -3108,7 +3136,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _draw_label: 1
+  bounding_boxes:
+  - {fileID: 0}
+  gui_style: {fileID: 11400000, guid: 0d9f0c05f749ff5ad83a6f760bb65021, type: 2}
+  _draw_coords: 0
 --- !u!114 &1780244598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866968490669790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 24436b5ac49af0dcaa5d2b405c48819d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Custom_Name: 
+  _disables_children: 0
+  _editor_reregistering: 1
+  _Use_Custom_Name: 0
+  _relative_to_existing_value: 0
+  SampleRandom: 1
+  _camera: {fileID: 20224209517257972}
+  _syncer: {fileID: 114716082362535994}
+  _random_fov_min: 30
+  _random_fov_max: 90
+--- !u!114 &7246095508735290648
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3146,7 +3201,7 @@ GameObject:
   - component: {fileID: 114910394560810596}
   - component: {fileID: 8461481452306333236}
   - component: {fileID: 4298909496223221006}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: InstanceSegmentation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3350,7 +3405,7 @@ GameObject:
   - component: {fileID: 114271565463949058}
   - component: {fileID: 114608562479145288}
   - component: {fileID: 114100763809553962}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: InfraredShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3398,7 +3453,7 @@ Camera:
   far clip plane: 100
   field of view: 28.2
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 20
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -3450,29 +3505,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114608562479145288}
   _cameras:
-  - {fileID: 1403684216}
-  - {fileID: 1171208658948452137}
-  - {fileID: 1463669859483367840}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 790114237}
-  - {fileID: 1802749280476413633}
-  - {fileID: 1623028174}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1458531845}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114203839715900738}
-  - {fileID: 114594705335718820}
-  - {fileID: 114716082362535994}
-  - {fileID: 727610264}
-  - {fileID: 114608562479145288}
-  - {fileID: 114307586759802868}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
   _old_fov: 28.2
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
-  _old_orthographic_size: 5
+  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -3501,6 +3558,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1975303641184726
 GameObject:
   m_ObjectHideFlags: 0
@@ -3516,7 +3576,7 @@ GameObject:
   - component: {fileID: 114319058318530508}
   - component: {fileID: 3127349130290774320}
   - component: {fileID: 1119566988214563515}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Segmentation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3724,7 +3784,7 @@ GameObject:
   - component: {fileID: 1388282906230925801}
   - component: {fileID: 2102038394316443802}
   - component: {fileID: 8934520332220601364}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LayerSegmentation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3743,7 +3803,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4232321861901436}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &5796786885426895393
 Camera:
@@ -3772,7 +3832,7 @@ Camera:
   far clip plane: 20
   field of view: 28.2
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 20
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -3803,29 +3863,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 1802749280476413633}
   _cameras:
-  - {fileID: 1403684216}
-  - {fileID: 1171208658948452137}
-  - {fileID: 1463669859483367840}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 790114237}
-  - {fileID: 1802749280476413633}
-  - {fileID: 1623028174}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1458531845}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114203839715900738}
-  - {fileID: 114594705335718820}
-  - {fileID: 114716082362535994}
-  - {fileID: 727610264}
-  - {fileID: 114608562479145288}
-  - {fileID: 114307586759802868}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
   _old_fov: 28.2
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
-  _old_orthographic_size: 5
+  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -3912,7 +3974,7 @@ GameObject:
   - component: {fileID: 4939762416714711659}
   - component: {fileID: 3446619221498633412}
   - component: {fileID: 7902985753637307439}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: UVs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3931,7 +3993,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4232321861901436}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &3337727558481276136
 Camera:
@@ -3960,7 +4022,7 @@ Camera:
   far clip plane: 100
   field of view: 28.2
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 20
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -4012,29 +4074,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 4939762416714711659}
   _cameras:
-  - {fileID: 1403684216}
-  - {fileID: 1171208658948452137}
-  - {fileID: 1463669859483367840}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 790114237}
-  - {fileID: 1802749280476413633}
-  - {fileID: 1623028174}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1458531845}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114203839715900738}
-  - {fileID: 114594705335718820}
-  - {fileID: 114716082362535994}
-  - {fileID: 727610264}
-  - {fileID: 114608562479145288}
-  - {fileID: 114307586759802868}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
   _old_fov: 28.2
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
-  _old_orthographic_size: 5
+  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -4084,7 +4148,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6152099521732440309}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Obsolete
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4105,8 +4169,171 @@ Transform:
   - {fileID: 4990519437420952}
   - {fileID: 4398325171140630}
   m_Father: {fileID: 4232321861901436}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6184846525513548927
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1931405973741409654}
+  - component: {fileID: 8584843010322102044}
+  - component: {fileID: 3844039368205312392}
+  - component: {fileID: 4060211227789312537}
+  - component: {fileID: 1855446813}
+  m_Layer: 2
+  m_Name: OffsetCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1931405973741409654
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6184846525513548927}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.05, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4232321861901436}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &8584843010322102044
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6184846525513548927}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.01
+  far clip plane: 100
+  field of view: 28.2
+  orthographic: 0
+  orthographic size: 20
+  m_Depth: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967263
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 8400000, guid: cc4e727fd2f685deea5ec6e4b44b5cc3, type: 2}
+  m_TargetDisplay: 1
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 0
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!114 &3844039368205312392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6184846525513548927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 3844039368205312392}
+  _cameras:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _old_culling_mask: -33
+  _old_far_clip_plane: 100
+  _old_fov: 28.2
+  _old_near_clip_plane: 0.01
+  _old_orthographic_projection: 0
+  _old_orthographic_size: 20
+  _run_only_in_edit_mode: 1
+  _only_run_on_awake: 0
+  _sync_culling_mask: 1
+  _sync_far_clip_plane: 1
+  _sync_fov: 1
+  _sync_near_clip_plane: 1
+  _sync_orthographic_projection: 1
+  _sync_orthographic_size: 1
+--- !u!114 &4060211227789312537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6184846525513548927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 96d2b2d8cb1664b2c9870ffd997b2f1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Custom_Name: "OffsetCamera\x13"
+  _disables_children: 0
+  _editor_reregistering: 1
+  _Use_Custom_Name: 1
+  _normalise_observation: 0
+  _Camera: {fileID: 8584843010322102044}
+  imageFormat: 1
+  jpegQuality: 75
+--- !u!114 &1855446813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6184846525513548927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 90d8486c2d1444fb8ac452a5a74cf74b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _automatically_add_lights_without_infrared_component: 0
+  _ignore_infrared_if_empty: 1
+  _lights_to_ignore:
+  - {fileID: 108906297679887750}
 --- !u!1 &7686063924545477276
 GameObject:
   m_ObjectHideFlags: 0
@@ -4121,7 +4348,7 @@ GameObject:
   - component: {fileID: 3246734891326987255}
   - component: {fileID: 1692132170337216524}
   - component: {fileID: 4291072798006448298}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ObjectSpace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4140,7 +4367,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4232321861901436}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &4614691972182028737
 Camera:
@@ -4169,7 +4396,7 @@ Camera:
   far clip plane: 100
   field of view: 28.2
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 20
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -4221,29 +4448,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 3246734891326987255}
   _cameras:
-  - {fileID: 1403684216}
-  - {fileID: 1171208658948452137}
-  - {fileID: 1463669859483367840}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 790114237}
-  - {fileID: 1802749280476413633}
-  - {fileID: 1623028174}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1458531845}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114203839715900738}
-  - {fileID: 114594705335718820}
-  - {fileID: 114716082362535994}
-  - {fileID: 727610264}
-  - {fileID: 114608562479145288}
-  - {fileID: 114307586759802868}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
   _old_fov: 28.2
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
-  _old_orthographic_size: 5
+  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -4298,7 +4527,7 @@ GameObject:
   - component: {fileID: 1470249221512581844}
   - component: {fileID: 295743084378785225}
   - component: {fileID: 3883913920282434489}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TagSegmentation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4317,7 +4546,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4232321861901436}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &4204259003963777610
 Camera:
@@ -4346,7 +4575,7 @@ Camera:
   far clip plane: 20
   field of view: 28.2
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 20
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -4377,29 +4606,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 1171208658948452137}
   _cameras:
-  - {fileID: 1403684216}
-  - {fileID: 1171208658948452137}
-  - {fileID: 1463669859483367840}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 790114237}
-  - {fileID: 1802749280476413633}
-  - {fileID: 1623028174}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1458531845}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114203839715900738}
-  - {fileID: 114594705335718820}
-  - {fileID: 114716082362535994}
-  - {fileID: 727610264}
-  - {fileID: 114608562479145288}
-  - {fileID: 114307586759802868}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
   _old_fov: 28.2
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
-  _old_orthographic_size: 5
+  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -4486,7 +4717,7 @@ GameObject:
   - component: {fileID: 1463669859483367840}
   - component: {fileID: 8720350399880736472}
   - component: {fileID: 1623607857239925622}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Tangents
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4505,7 +4736,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4232321861901436}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &4956758692426196692
 Camera:
@@ -4534,7 +4765,7 @@ Camera:
   far clip plane: 100
   field of view: 28.2
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 20
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -4586,29 +4817,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 1463669859483367840}
   _cameras:
-  - {fileID: 1403684216}
-  - {fileID: 1171208658948452137}
-  - {fileID: 1463669859483367840}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 790114237}
-  - {fileID: 1802749280476413633}
-  - {fileID: 1623028174}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1458531845}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114203839715900738}
-  - {fileID: 114594705335718820}
-  - {fileID: 114716082362535994}
-  - {fileID: 727610264}
-  - {fileID: 114608562479145288}
-  - {fileID: 114307586759802868}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
   _old_fov: 28.2
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
-  _old_orthographic_size: 5
+  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1

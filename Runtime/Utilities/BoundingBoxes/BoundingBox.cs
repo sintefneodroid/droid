@@ -1,10 +1,13 @@
+using System;
 using System.Collections.Generic;
 using droid.Runtime.Environments;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Utilities.BoundingBoxes.Experimental;
 using droid.Runtime.Utilities.Misc.SearchableEnum;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Object = System.Object;
 
 #if UNITY_EDITOR
 
@@ -80,7 +83,7 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
     /// <summary>
     /// </summary>
     [SerializeField]
-    bool setupOnAwake;
+    bool OnAwakeSetup = false;
 
     [SerializeField] IPrototypingEnvironment environment;
 
@@ -94,24 +97,42 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
     Vector3 _topFrontRightExtend;
 
     [SerializeField] bool cacheChildren = true;
+    [SerializeField] bool RunInEditModeSetup;
+    [SerializeField] float margin =0;
 
-    public Vector3[] BoundingBoxCoordinates =>
-        new[] {
-                  this._topFrontLeftExtend,
-                  this._topFrontRightExtend,
-                  this._topBackLeftExtend,
-                  this._topBackRightExtend,
-                  this._bottomFrontLeftExtend,
-                  this._bottomFrontRightExtend,
-                  this._bottomBackLeftExtend,
-                  this._bottomBackRightExtend
-              };
+    public Vector3[] BoundingBoxCoordinates {
+      get {
+        return new[] {
+                         this._topFrontLeftExtend,
+                         this._topFrontRightExtend,
+                         this._topBackLeftExtend,
+                         this._topBackRightExtend,
+                         this._bottomFrontLeftExtend,
+                         this._bottomFrontRightExtend,
+                         this._bottomBackLeftExtend,
+                         this._bottomBackRightExtend
+                     };
+      }
+    }
 
-    public Bounds Bounds => this._Bounds;
+    public Bounds Bounds { get { return this._Bounds; } }
 
-    public Vector3 Max => this._Bounds.max;
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="cam"></param>
+    /// <returns></returns>
+    public Rect ScreenSpaceBoundingRect(Camera cam) {
+      return this.GetBoundingBoxScreenRect(cam, this.margin);
+    }
 
-    public Vector3 Min => this._Bounds.min;
+  public Vector3 Max {
+      get { return this._Bounds.max; }
+    }
+
+    public Vector3 Min {
+      get { return this._Bounds.min; }
+    }
 
     /// <summary>
     /// </summary>
@@ -152,11 +173,17 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
 
     /// <summary>
     /// </summary>
-    public Vector3[,] Lines { get => this._lines; set => this._lines = value; }
+    public Vector3[,] Lines {
+      get { return this._lines; }
+      set { this._lines = value; }
+    }
 
     /// <summary>
     /// </summary>
-    public Vector3[] Points { get => this._points; set => this._points = value; }
+    public Vector3[] Points {
+      get { return this._points; }
+      set { this._points = value; }
+    }
 
     /// <summary>
     /// </summary>
@@ -174,9 +201,11 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
     /// <summary>
     /// </summary>
     void Start() {
-      if (!this.setupOnAwake) {
-        this.Setup();
-      }
+
+        if (!this.OnAwakeSetup) {
+          this.Setup();
+        }
+
     }
 
     /// <summary>
@@ -186,7 +215,7 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
         this.environment = FindObjectOfType<PrototypingEnvironment>();
       }
 
-      if (this.setupOnAwake) {
+      if (this.OnAwakeSetup) {
         this.Setup();
       }
     }
@@ -194,6 +223,10 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
     /// <summary>
     /// </summary>
     void Setup() {
+      if (!this.RunInEditModeSetup || !Application.isPlaying) {
+        return;
+      }
+
       var transform1 = this.transform;
       this._lastPosition = transform1.position;
       this._lastRotation = transform1.rotation;

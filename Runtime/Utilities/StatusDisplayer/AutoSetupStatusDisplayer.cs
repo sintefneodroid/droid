@@ -27,7 +27,7 @@ namespace droid.Runtime.Utilities.StatusDisplayer {
     [CanBeNull] [SerializeField] NeodroidManager _manager;
     [CanBeNull] [SerializeField] Button _reset_button;
     [CanBeNull] [SerializeField] TextUpdater _signal;
-    [CanBeNull] [SerializeField] TextUpdater _status_text  = null;
+    [CanBeNull] [SerializeField] TextUpdater _status_text = null;
     [CanBeNull] [SerializeField] ToggleUpdater _terminated;
     [CanBeNull] [SerializeField] Toggle _testing_toggle;
     [SerializeField] UnityEventCallState _unity_event_call_state = UnityEventCallState.RuntimeOnly;
@@ -110,19 +110,22 @@ namespace droid.Runtime.Utilities.StatusDisplayer {
         this._environment = FindObjectOfType<NeodroidEnvironment>();
       }
 
-      if (this._environment) {
-        this.TryRegister(this._environment_text, this._environment.IdentifierString);
-        this.TryRegister(this._environment_frame, this._environment.FrameString);
-        this.TryRegister(this._environment_obs, this._environment.ObservationsString);
-        this.TryRegister(this._terminated, this._environment.TerminatedBoolean);
+      var neodroid_environment = this._environment;
+
+      if (neodroid_environment != null) {
+        this.TryRegister(this._environment_text, neodroid_environment.IdentifierString);
+        this.TryRegister(this._environment_frame, neodroid_environment.FrameString);
+        this.TryRegister(this._environment_obs, neodroid_environment.ObservationsString);
+        this.TryRegister(this._terminated, neodroid_environment.TerminatedBoolean);
       }
 
       if (!this._evaluation_function) {
         this._evaluation_function = FindObjectOfType<ObjectiveFunction>();
       }
 
-      if (this._evaluation_function) {
-        this.TryRegister(this._signal, this._evaluation_function.SignalString);
+      var evaluation_function = this._evaluation_function;
+      if (evaluation_function != null) {
+        this.TryRegister(this._signal, evaluation_function.SignalString);
       }
 
       if (!this._manager) {
