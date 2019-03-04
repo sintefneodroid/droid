@@ -18,7 +18,7 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
     [SerializeField] bool _draw_label = true;
     List<Vector3> _screen_pos = new List<Vector3>();
     [SerializeField] BoundingBox[] bounding_boxes;
-    bool cache_bounding_boxes;
+    bool _cache_bounding_boxes;
     [SerializeField] GUISkin gui_style;
     [SerializeField] bool _draw_coords;
 
@@ -34,7 +34,7 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
     /// </summary>
     /// <param name="new_points"></param>
     /// <param name="game_object"></param>
-    public void AddBoundingBox(BoundingBox new_points, string name_) {
+    public void AddBoundingBox(BoundingBox new_points, string name) {
       if (new_points == null) {
         return;
       }
@@ -76,7 +76,7 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
       //scr_rect.y = Screen.height - scr_rect.y;
 
       this._rects.Add(new_points.ScreenSpaceBoundingRect(this._camera));
-      this._names.Add(name_);
+      this._names.Add(name);
     }
 
     void OnPreRender() {
@@ -87,7 +87,7 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
       this._rects.Clear();
       this._names.Clear();
 
-      if (!this.cache_bounding_boxes) {
+      if (!this._cache_bounding_boxes) {
         this.bounding_boxes = FindObjectsOfType<BoundingBox>();
       }
 

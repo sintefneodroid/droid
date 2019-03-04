@@ -253,7 +253,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 1986.2542, y: 128}
+  m_AnchoredPosition: {x: 2171, y: 128}
   m_SizeDelta: {x: 5200, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &968355717
@@ -2723,8 +2723,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114942717479311642}
   m_HandleRect: {fileID: 224110368661715722}
   m_Direction: 0
-  m_Value: 0.052746195
-  m_Size: 0.14596154
+  m_Value: 0
+  m_Size: 0.16499591
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3073,8 +3073,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114742776673127912}
   m_HandleRect: {fileID: 224582703667719680}
   m_Direction: 2
-  m_Value: 1.0000004
-  m_Size: 0.039130434
+  m_Value: 1
+  m_Size: 0.051136363
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3583,7 +3583,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 31.499569}
+  m_AnchoredPosition: {x: 0, y: 31.500015}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &222785475415721572
@@ -3633,18 +3633,18 @@ MonoBehaviour:
     FloatEnumerable\n\nInfraredShadowCameraObserver:\nEmpty FloatEnumerable\n\nLayerSegmentationCameraObserver:\nEmpty
     FloatEnumerable\n\nLayerSegmentationSegmentationObserver:\na: RGBA(1.000, 0.000,
     0.000, 1.000), b: RGBA(0.000, 1.000, 0.000, 1.000), c: RGBA(0.000, 0.001, 1.000,
-    1.000), Default: RGBA(1.000, 1.000, 1.000, 1.000), : RGBA(0.000, 1.000, 1.000,
-    1.000)\n\nMaterialIdSegmentationCameraObserver:\nEmpty FloatEnumerable\n\nMaterialIdSegmentationSegmentationObserver:\nDefault-Material:
-    RGBA(0.502, 0.255, 0.286, 1.000), BluePlastic (Instance): RGBA(0.714, 0.035, 0.075,
+    1.000), Ignore Raycast: RGBA(1.000, 1.000, 0.700, 1.000), Default: RGBA(1.000,
+    1.000, 1.000, 1.000)\n\nMaterialIdSegmentationCameraObserver:\nEmpty FloatEnumerable\n\nMaterialIdSegmentationSegmentationObserver:\nBluePlastic:
+    RGBA(0.188, 0.251, 0.820, 1.000), Default-Material: RGBA(0.502, 0.255, 0.286,
     1.000), material1: RGBA(0.204, 0.004, 0.063, 1.000)\n\nNormalCameraObserver:\nEmpty
-    FloatEnumerable\n\nObjectIdInstanceSegmentationCameraObserver:\nEmpty FloatEnumerable\n\nObjectIdInstanceSegmentationSegmentationObserver:\n-11082:
-    RGBA(0.525, 0.161, 0.067, 1.000), -11136: RGBA(0.016, 0.412, 0.063, 1.000), 28538:
-    RGBA(0.651, 0.035, 0.357, 1.000)\n\nObjectSpaceCameraObserver:\nEmpty FloatEnumerable\n\nOffsetCamera\x13:\nEmpty
+    FloatEnumerable\n\nObjectIdInstanceSegmentationCameraObserver:\nEmpty FloatEnumerable\n\nObjectIdInstanceSegmentationSegmentationObserver:\n-2386:
+    RGBA(0.518, 0.157, 0.255, 1.000), -2332: RGBA(0.086, 0.157, 0.251, 1.000), 14594:
+    RGBA(0.518, 0.031, 0.565, 1.000)\n\nObjectSpaceCameraObserver:\nEmpty FloatEnumerable\n\nOffsetCamera\x13:\nEmpty
     FloatEnumerable\n\nRGBCameraObserver:\nEmpty FloatEnumerable\n\nSatelliteCameraObserver:\nEmpty
     FloatEnumerable\n\nTagSegmentationCameraObserver:\nEmpty FloatEnumerable\n\nTagSegmentationSegmentationObserver:\na:
     RGBA(1.000, 0.000, 0.000, 1.000), b: RGBA(0.000, 1.000, 0.000, 1.000), c: RGBA(0.000,
-    0.001, 1.000, 1.000), Untagged: RGBA(0.333, 0.867, 0.576, 1.000), CameraBody:
-    RGBA(0.314, 0.322, 0.929, 1.000)\n\nTangentsCameraObserver:\nEmpty FloatEnumerable\n\nUsCameraObserver:\nEmpty
+    0.001, 1.000, 1.000), CameraBody: RGBA(0.314, 0.322, 0.929, 1.000), Untagged:
+    RGBA(0.333, 0.867, 0.576, 1.000)\n\nTangentsCameraObserver:\nEmpty FloatEnumerable\n\nUsCameraObserver:\nEmpty
     FloatEnumerable\n\nUVsCameraObserver:\nEmpty FloatEnumerable\n\nVsCameraObserver:\nEmpty
     FloatEnumerable\n\nWorldSpaceCameraObserver:\nEmpty FloatEnumerable"
 --- !u!114 &114002950248132940
@@ -5847,6 +5847,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8293669221873235120, guid: fb5eb92b9dcbbe8b6b4bbcb7bb7955e7,
         type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8293669221873235120, guid: fb5eb92b9dcbbe8b6b4bbcb7bb7955e7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8293669221873235120, guid: fb5eb92b9dcbbe8b6b4bbcb7bb7955e7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8293669221873235120, guid: fb5eb92b9dcbbe8b6b4bbcb7bb7955e7,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
@@ -5862,8 +5877,48 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8293669221873235120, guid: fb5eb92b9dcbbe8b6b4bbcb7bb7955e7,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8293669221873235120, guid: fb5eb92b9dcbbe8b6b4bbcb7bb7955e7,
+        type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8293669221873235120, guid: fb5eb92b9dcbbe8b6b4bbcb7bb7955e7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8293669221873235120, guid: fb5eb92b9dcbbe8b6b4bbcb7bb7955e7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8293669221873235120, guid: fb5eb92b9dcbbe8b6b4bbcb7bb7955e7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8293669221873235120, guid: fb5eb92b9dcbbe8b6b4bbcb7bb7955e7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8293669221873235120, guid: fb5eb92b9dcbbe8b6b4bbcb7bb7955e7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8293669221873235120, guid: fb5eb92b9dcbbe8b6b4bbcb7bb7955e7,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 8293669221873235120, guid: fb5eb92b9dcbbe8b6b4bbcb7bb7955e7,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 8293669221873235120, guid: fb5eb92b9dcbbe8b6b4bbcb7bb7955e7,
         type: 3}
@@ -5887,13 +5942,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8293669221873235120, guid: fb5eb92b9dcbbe8b6b4bbcb7bb7955e7,
         type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
+      propertyPath: m_Pivot.x
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8293669221873235120, guid: fb5eb92b9dcbbe8b6b4bbcb7bb7955e7,
         type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
+      propertyPath: m_Pivot.y
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8071369112533159026, guid: fb5eb92b9dcbbe8b6b4bbcb7bb7955e7,
         type: 3}

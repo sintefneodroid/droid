@@ -20,7 +20,7 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
 
     Camera _camera;
     [SerializeField] bool _draw_label = true;
-    BoundingBox[] bounding_boxes;
+    BoundingBox[] _bounding_boxes;
     [SerializeField] bool _cacheBoundingBoxes =true;
 
     void Awake() {
@@ -117,12 +117,12 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
       this._colors.Clear();
       this._names.Clear();
       //this._triangles.Clear();
-      if(!this._cacheBoundingBoxes || this.bounding_boxes == null || this.bounding_boxes.Length == 0)
+      if(!this._cacheBoundingBoxes || this._bounding_boxes == null || this._bounding_boxes.Length == 0)
       {
-        this.bounding_boxes = FindObjectsOfType<BoundingBox>();
+        this._bounding_boxes = FindObjectsOfType<BoundingBox>();
       }
 
-      foreach (var bb in this.bounding_boxes) {
+      foreach (var bb in this._bounding_boxes) {
         this.SetOutlines(bb.Lines, bb.editorPreviewLineColor, bb.gameObject);
       }
     }
