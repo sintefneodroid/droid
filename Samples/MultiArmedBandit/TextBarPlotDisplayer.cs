@@ -33,9 +33,11 @@ namespace droid.Samples.MultiArmedBandit {
     }
 
     void Update() {
+#if NEODROID_DEBUG
       if (this.Debugging) {
         //this.Display(this._values);
       }
+#endif
     }
 
     /// <summary>

@@ -190,9 +190,11 @@ namespace droid.Editor.Windows {
                       "Episode Length",
                       this._environments[i].EpisodeLength);
                   //EditorGUILayout.BeginHorizontal("Box");
+                  #if NEODROID_DEBUG
                   this._environments[i].Debugging = EditorGUILayout.Toggle(
                     "Debugging",
                     this._environments[i].Debugging);
+                  #endif
                   //EditorGUILayout.EndHorizontal();
 
                   EditorGUI.BeginDisabledGroup(true);
@@ -255,9 +257,11 @@ namespace droid.Editor.Windows {
           EditorGUILayout.ObjectField(resetable_value, typeof(Resetable), true);
           if(this._show_detailed_descriptions){
               //EditorGUILayout.BeginHorizontal("Box");
+#if NEODROID_DEBUG
             resetable_value.Debugging = EditorGUILayout.Toggle(
               "Debugging",
               resetable_value.Debugging);
+#endif
             //EditorGUILayout.EndHorizontal();
           }
           EditorGUILayout.EndToggleGroup();
@@ -275,9 +279,11 @@ namespace droid.Editor.Windows {
           EditorGUILayout.ObjectField(listener_value_value, typeof(EnvironmentListener), true);
           if(this._show_detailed_descriptions){
               //EditorGUILayout.BeginHorizontal("Box");
+#if NEODROID_DEBUG
             listener_value_value.Debugging = EditorGUILayout.Toggle(
               "Debugging",
               listener_value_value.Debugging);
+#endif
             //EditorGUILayout.EndHorizontal();
           }
           EditorGUILayout.EndToggleGroup();
@@ -304,9 +310,11 @@ namespace droid.Editor.Windows {
           EditorGUILayout.ObjectField(actor_value, typeof(Actor), true);
           if(this._show_detailed_descriptions){
               //EditorGUILayout.BeginHorizontal("Box");
+#if NEODROID_DEBUG
             actor_value.Debugging = EditorGUILayout.Toggle(
               "Debugging",
               actor_value.Debugging);
+#endif
             //EditorGUILayout.EndHorizontal();
           }
 
@@ -334,9 +342,11 @@ namespace droid.Editor.Windows {
           EditorGUILayout.ObjectField(observer_value, typeof(Observer), true);
           if(this._show_detailed_descriptions){
               //EditorGUILayout.BeginHorizontal("Box");
+#if NEODROID_DEBUG
             observer_value.Debugging = EditorGUILayout.Toggle(
               "Debugging",
               observer_value.Debugging);
+#endif
             //EditorGUILayout.EndHorizontal();
           }
           EditorGUILayout.EndToggleGroup();
@@ -360,9 +370,11 @@ namespace droid.Editor.Windows {
           EditorGUILayout.ObjectField(displayer_value, typeof(Displayer), true);
           if(this._show_detailed_descriptions){
               //EditorGUILayout.BeginHorizontal("Box");
+#if NEODROID_DEBUG
             displayer_value.Debugging = EditorGUILayout.Toggle(
               "Debugging",
               displayer_value.Debugging);
+#endif
             //EditorGUILayout.EndHorizontal();
           }
           EditorGUILayout.EndToggleGroup();
@@ -386,9 +398,11 @@ namespace droid.Editor.Windows {
           EditorGUILayout.ObjectField(configurable_value, typeof(Configurable), true);
           if(this._show_detailed_descriptions){
               //EditorGUILayout.BeginHorizontal("Box");
+#if NEODROID_DEBUG
             configurable_value.Debugging = EditorGUILayout.Toggle(
               "Debugging",
               configurable_value.Debugging);
+#endif
             //EditorGUILayout.EndHorizontal();
           }
 
@@ -415,9 +429,11 @@ namespace droid.Editor.Windows {
           if (this._show_detailed_descriptions) {
             EditorGUILayout.Vector3Field("Motion Space (min,gran,max)", motor_value.MotionValueSpace.ToVector3());
                         //EditorGUILayout.BeginHorizontal("Box");
+#if NEODROID_DEBUG
             motor_value.Debugging = EditorGUILayout.Toggle(
               "Debugging",
               motor_value.Debugging);
+#endif
             //EditorGUILayout.EndHorizontal();
           }
 

@@ -52,8 +52,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
             this,
             this._goal.transform,
             null,
-            this.OnTriggerEnterChild,
-            debug : this.Debugging);
+            this.OnTriggerEnterChild);
       }
 
       if (this._actor) {
@@ -61,8 +60,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
             this,
             this._actor.transform,
             null,
-            this.OnTriggerEnterChild,
-            debug : this.Debugging);
+            this.OnTriggerEnterChild);
       }
     }
 

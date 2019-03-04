@@ -253,7 +253,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 2171, y: 128}
+  m_AnchoredPosition: {x: 1860.4999, y: 128}
   m_SizeDelta: {x: 5200, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &968355717
@@ -1024,18 +1024,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _clean_empty_no_target_events: 1
-  _debugging: 0
   _environment: {fileID: 0}
-  _environment_frame: {fileID: 0}
-  _environment_obs: {fileID: 0}
-  _environment_text: {fileID: 0}
+  _environment_frame: {fileID: 114501781773825270}
+  _environment_obs: {fileID: 114002950248132940}
+  _environment_text: {fileID: 114988635351345222}
   _evaluation_function: {fileID: 0}
   _manager: {fileID: 0}
-  _reset_button: {fileID: 0}
-  _signal: {fileID: 0}
-  _status_text: {fileID: 0}
-  _terminated: {fileID: 0}
-  _testing_toggle: {fileID: 0}
+  _reset_button: {fileID: 114152215923272706}
+  _signal: {fileID: 114088500222901950}
+  _status_text: {fileID: 114790955924512488}
+  _terminated: {fileID: 114221796099513398}
+  _testing_toggle: {fileID: 114543584020609536}
   _unity_event_call_state: 2
 --- !u!1 &1251070856853632
 GameObject:
@@ -2724,7 +2723,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 224110368661715722}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.16499591
+  m_Size: 0.2844226
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3073,8 +3072,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114742776673127912}
   m_HandleRect: {fileID: 224582703667719680}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.051136363
+  m_Value: 1.0000004
+  m_Size: 0.04670126
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3583,7 +3582,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 31.500015}
+  m_AnchoredPosition: {x: 0, y: 31.499447}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &222785475415721572

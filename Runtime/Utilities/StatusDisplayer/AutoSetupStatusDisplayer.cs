@@ -17,7 +17,7 @@ namespace droid.Runtime.Utilities.StatusDisplayer {
   [ExecuteInEditMode]
   public class AutoSetupStatusDisplayer : MonoBehaviour {
     [SerializeField] bool _clean_empty_no_target_events = true;
-    [SerializeField] bool _debugging;
+
     [CanBeNull] [SerializeField] NeodroidEnvironment _environment;
     [CanBeNull] [SerializeField] TextUpdater _environment_frame;
     [CanBeNull] [SerializeField] TextUpdater _environment_obs;
@@ -32,7 +32,10 @@ namespace droid.Runtime.Utilities.StatusDisplayer {
     [CanBeNull] [SerializeField] Toggle _testing_toggle;
     [SerializeField] UnityEventCallState _unity_event_call_state = UnityEventCallState.RuntimeOnly;
 
+#if NEODROID_DEBUG
     bool Debugging { get { return this._debugging; } set { this._debugging = value; } }
+        [SerializeField] bool _debugging;
+#endif
 
     void TryRegister(DataPoller poller, UnityAction<DataPoller> f) {
       if (poller) {
@@ -52,9 +55,11 @@ namespace droid.Runtime.Utilities.StatusDisplayer {
           UnityEventTools.AddObjectPersistentListener(poller.PollEvent, f, poller);
           poller.PollEvent.SetPersistentListenerState(0, this._unity_event_call_state);
         } else if (count > 0 && poller.PollEvent.GetPersistentTarget(0) != poller) {
+#if NEODROID_DEBUG
           if (this.Debugging) {
             Debug.Log($"PollEvent on {poller} already has a listeners");
           }
+#endif
         }
       }
     }
@@ -75,9 +80,11 @@ namespace droid.Runtime.Utilities.StatusDisplayer {
         UnityEventTools.AddVoidPersistentListener(poller, f);
         poller.SetPersistentListenerState(0, this._unity_event_call_state);
       } else if (count > 0) {
+#if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log($"PollEvent on {poller} already has a listeners");
         }
+#endif
       }
     }
 

@@ -26,10 +26,12 @@ namespace droid.Runtime.InternalReactions {
     /// </summary>
     public static ScriptedReactions Instance { get; private set; }
 
+#if NEODROID_DEBUG
     /// <summary>
     /// </summary>
     public bool Debugging { get { return this._debugging; } set { this._debugging = value; } }
 
+#endif
     /// <summary>
     /// </summary>
     void Awake() {
