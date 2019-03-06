@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities.Misc.SearchableEnum;
 using droid.Runtime.Utilities.Structs;
@@ -74,6 +75,18 @@ namespace droid.Runtime.Prototyping.Observers.Transform {
       }
     }
 
+    public override IEnumerable<float> FloatEnumerable { get{return new[] {
+      this.Position.x,
+      this.Position.y,
+      this.Position.z,
+      this.Direction.x,
+      this.Direction.y,
+      this.Direction.z,
+      this.Rotation.x,
+      this.Rotation.y,
+      this.Rotation.z
+    };} }
+
     /// <summary>
     /// </summary>
     public override void UpdateObservation() {
@@ -91,31 +104,10 @@ namespace droid.Runtime.Prototyping.Observers.Transform {
         this.Rotation = this.transform.up;
       }
 
-      this.FloatEnumerable = new[] {
-          this.Position.x,
-          this.Position.y,
-          this.Position.z,
-          this.Direction.x,
-          this.Direction.y,
-          this.Direction.z,
-          this.Rotation.x,
-          this.Rotation.y,
-          this.Rotation.z
-      };
     }
 
     protected override void PreSetup() {
-      this.FloatEnumerable = new[] {
-          this.Position.x,
-          this.Position.y,
-          this.Position.z,
-          this.Direction.x,
-          this.Direction.y,
-          this.Direction.z,
-          this.Rotation.x,
-          this.Rotation.y,
-          this.Rotation.z
-      };
+
     }
   }
 }

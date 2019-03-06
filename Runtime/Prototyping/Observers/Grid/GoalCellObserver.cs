@@ -1,4 +1,5 @@
-﻿using droid.Runtime.Interfaces;
+﻿using System.Collections.Generic;
+using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities.Misc.Drawing;
 using droid.Runtime.Utilities.Misc.Grid;
 using droid.Runtime.Utilities.Structs;
@@ -52,16 +53,16 @@ namespace droid.Runtime.Prototyping.Observers.Grid {
     /// </summary>
     public Space3 TripleSpace { get; } = new Space3();
 
+    public override IEnumerable<float> FloatEnumerable { get{return new[] {
+      this._current_goal_position.x, this._current_goal_position.y, this._current_goal_position.z
+    };} }
+
     /// <summary>
     /// </summary>
     public override void UpdateObservation() {
       if (this._current_goal) {
         this._current_goal_position = this._current_goal.transform.position;
       }
-
-      this.FloatEnumerable = new[] {
-          this._current_goal_position.x, this._current_goal_position.y, this._current_goal_position.z
-      };
     }
 
     #if UNITY_EDITOR

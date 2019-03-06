@@ -110,9 +110,10 @@ namespace droid.Runtime.Prototyping.Configurables {
       }
       #endif
 
-      var pos = this.transform.position;
-      var dir = this.transform.forward;
-      var rot = this.transform.up;
+      var transform1 = this.transform;
+      var pos = transform1.position;
+      var dir = transform1.forward;
+      var rot = transform1.up;
       if (this._use_environments_space) {
         pos = this.ParentEnvironment.TransformPoint(pos);
         dir = this.ParentEnvironment.TransformDirection(dir);

@@ -21,9 +21,7 @@ namespace droid.Runtime.Environments
   ///   Environment to be used with the prototyping components.
   /// </summary>
   [AddComponentMenu("Neodroid/Environments/PrototypingEnvironment")]
-  public class PrototypingEnvironment : NeodroidEnvironment,
-    IPrototypingEnvironment
-  {
+  public class PrototypingEnvironment : NeodroidEnvironment, IPrototypingEnvironment{
     #region NeodroidCallbacks
 
     /// <inheritdoc />
@@ -54,6 +52,20 @@ namespace droid.Runtime.Environments
         this.SaveInitialAnimations();
         this.StartCoroutine(this.SaveInitialBodiesIe());
       }
+
+#if NEODROID_DEBUG
+      if (this.Debugging)
+      {
+        Debug.Log("Setup done");
+      }
+#endif
+
+      foreach (var configurable in this.Configurables.Values)
+      {
+        configurable?.PostEnvironmentSetup();
+      }
+
+
     }
 
     /// <inheritdoc />

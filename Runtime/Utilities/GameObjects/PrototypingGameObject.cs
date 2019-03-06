@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 
 namespace droid.Runtime.Utilities.GameObjects {
+  /// <inheritdoc />
   /// <summary>
   /// </summary>
   public abstract class PrototypingGameObject : MonoBehaviour,
@@ -63,7 +64,13 @@ namespace droid.Runtime.Utilities.GameObjects {
 
     /// <summary>
     /// </summary>
-    protected void Start() {
+    protected void Start()
+    {
+      ReRegister();
+    }
+
+    void ReRegister()
+    {
       try {
         if (this.enabled && this.isActiveAndEnabled) {
           this.Setup();
@@ -82,6 +89,8 @@ namespace droid.Runtime.Utilities.GameObjects {
       if (this.enabled && this.isActiveAndEnabled) {
         this.Clear();
       }
+
+      //this.ReRegister();
     }
 
     /// <summary>

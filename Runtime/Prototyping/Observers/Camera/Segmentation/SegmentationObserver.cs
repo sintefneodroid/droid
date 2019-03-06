@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using droid.Runtime.Utilities.NeodroidCamera.Segmentation;
 using droid.Runtime.Utilities.NeodroidCamera.Segmentation.Obsolete;
@@ -17,6 +18,8 @@ namespace droid.Runtime.Prototyping.Observers.Camera.Segmentation {
     /// </summary>
     [SerializeField]
     Segmenter _segmenter;
+
+    public override IEnumerable<float> FloatEnumerable { get {return new List<float>();} }
 
     /// <inheritdoc />
     /// <summary>

@@ -1,4 +1,5 @@
-﻿using droid.Runtime.Interfaces;
+﻿using System.Collections.Generic;
+using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
@@ -42,9 +43,9 @@ namespace droid.Runtime.Prototyping.Observers.Rays {
       } else {
         this.ObservationArray = new float[6];
       }
-
-      this.FloatEnumerable = this.ObservationArray;
     }
+
+    public override IEnumerable<float> FloatEnumerable { get{return this.ObservationArray;} }
 
     public override void UpdateObservation() {
       if (this._is_2_d) {
@@ -124,8 +125,6 @@ namespace droid.Runtime.Prototyping.Observers.Rays {
         vals[5] = this.observationValueSpace.ClipNormaliseRound(vals[5]);
         this.ObservationArray = vals;
       }
-
-      this.FloatEnumerable = this.ObservationArray;
     }
 
     #if UNITY_EDITOR

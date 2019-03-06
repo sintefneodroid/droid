@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
@@ -72,7 +73,9 @@ namespace droid.Runtime.Prototyping.Observers {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() { this.FloatEnumerable = new[] {this.Position.x, this.Position.z}; }
+    protected override void PreSetup() { }
+
+    public override IEnumerable<float> FloatEnumerable { get{return new[] {this.Position.x, this.Position.z};} }
 
     /// <inheritdoc />
     /// <summary>
@@ -81,7 +84,6 @@ namespace droid.Runtime.Prototyping.Observers {
       this.Position = this.transform.InverseTransformVector(this.transform.position - this._target.position)
           .normalized;
 
-      this.FloatEnumerable = new[] {this.Position.x, this.Position.z};
     }
   }
 }

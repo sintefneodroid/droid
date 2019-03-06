@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using droid.Runtime.Interfaces;
 using UnityEngine;
 
@@ -31,6 +32,16 @@ namespace droid.Runtime.Prototyping.Observers.Transform {
 
     public Quaternion Rotation { get { return this._rotation; } }
 
+    public override IEnumerable<float> FloatEnumerable { get{return new[] {
+      this._position.x,
+      this._position.y,
+      this._position.z,
+      this._rotation.x,
+      this._rotation.y,
+      this._rotation.z,
+      this._rotation.w
+    };} }
+
     public override void UpdateObservation() {
       if (this.ParentEnvironment != null && this._use_environments_coordinates) {
         this._position = this.ParentEnvironment.TransformPoint(this.transform.position);
@@ -40,27 +51,9 @@ namespace droid.Runtime.Prototyping.Observers.Transform {
         this._rotation = this.transform.rotation;
       }
 
-      this.FloatEnumerable = new[] {
-          this._position.x,
-          this._position.y,
-          this._position.z,
-          this._rotation.x,
-          this._rotation.y,
-          this._rotation.z,
-          this._rotation.w
-      };
     }
 
     protected override void PreSetup() {
-      this.FloatEnumerable = new[] {
-          this._position.x,
-          this._position.y,
-          this._position.z,
-          this._rotation.x,
-          this._rotation.y,
-          this._rotation.z,
-          this._rotation.w
-      };
     }
   }
 }

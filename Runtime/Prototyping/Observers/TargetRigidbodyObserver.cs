@@ -1,4 +1,5 @@
-﻿using droid.Runtime.Interfaces;
+﻿using System.Collections.Generic;
+using droid.Runtime.Interfaces;
 using droid.Runtime.Prototyping.Motors;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
@@ -32,11 +33,15 @@ namespace droid.Runtime.Prototyping.Observers {
       this._motor = this.GetComponent<TargetRigidbodyMotor>();
     }
 
+    public override IEnumerable<float> FloatEnumerable
+    {
+      get { return new[] {this.ObservationValue.x, this.ObservationValue.y}; }
+    }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void UpdateObservation() {
-      this.FloatEnumerable = new[] {this.ObservationValue.x, this.ObservationValue.y};
     }
   }
 }

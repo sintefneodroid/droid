@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities.Enums;
 using droid.Runtime.Utilities.Misc.SearchableEnum;
@@ -63,6 +64,8 @@ namespace droid.Runtime.Prototyping.Observers.Transform {
                                : vector2_pos;
     }
 
+    public override IEnumerable<float> FloatEnumerable { get {return new[] {this._2_d_position.x, this._2_d_position.y};} }
+
     public override void UpdateObservation() {
       if (this.ParentEnvironment != null && this._use_space == ObservationSpace.Environment_) {
         this.SetPosition(this.ParentEnvironment.TransformPoint(this.transform.position));
@@ -72,14 +75,13 @@ namespace droid.Runtime.Prototyping.Observers.Transform {
         this.SetPosition(this.transform.position);
       }
 
-      this.FloatEnumerable = new[] {this._2_d_position.x, this._2_d_position.y};
+
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     protected override void PreSetup() {
-      this.FloatEnumerable = new[] {this._2_d_position.x, this._2_d_position.y};
     }
 
     void OnDrawGizmos() {

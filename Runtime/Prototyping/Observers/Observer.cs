@@ -32,7 +32,7 @@ namespace droid.Runtime.Prototyping.Observers {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public virtual IEnumerable<float> FloatEnumerable { get; set; }
+    public abstract IEnumerable<float> FloatEnumerable { get; }
 
     /// <inheritdoc />
     /// <summary>
@@ -51,7 +51,6 @@ namespace droid.Runtime.Prototyping.Observers {
     /// </summary>
     protected sealed override void Setup() {
       this.PreSetup();
-      this.FloatEnumerable = new float[] { };
       this.UpdateObservation();
     }
 

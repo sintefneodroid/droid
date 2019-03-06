@@ -3,6 +3,7 @@ using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Utilities.Debugging;
 using droid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 using Random = System.Random;
 
@@ -22,6 +23,8 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     string _indirect_multiplier;
 
     Light _light;
+
+    [SerializeField] ValueSpace _space = new ValueSpace(){_Min_Value = 0.7f, _Max_Value = 1f};
 
     /// <inheritdoc />
     /// <summary>
@@ -122,15 +125,17 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
       var sample = random_generator.NextDouble();
 
+      var v = this._space.Sample();
+
       if (sample < .33f) {
-        return new Configuration(this._color_r, (float)((random_generator.NextDouble()*0.25)+0.75));
+        return new Configuration(this._color_r, v);
       }
 
       if (sample > .66f) {
-        return new Configuration(this._color_g, (float)((random_generator.NextDouble()*0.25)+0.75));
+        return new Configuration(this._color_g, v);
       }
 
-      return new Configuration(this._color_b, (float)((random_generator.NextDouble()*0.25)+0.75));
+      return new Configuration(this._color_b, v);
     }
   }
 }

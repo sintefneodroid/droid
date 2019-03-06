@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using droid.Runtime.Interfaces;
 using UnityEngine;
 
@@ -31,13 +32,13 @@ namespace droid.Runtime.Prototyping.Observers.BoundingBox {
       this._boundingBox = this.GetComponent<Utilities.BoundingBoxes.BoundingBox>();
     }
 
+    public override IEnumerable<float> FloatEnumerable { get{return new List<float>();} }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void UpdateObservation() {
       this.ObservationValue = this._boundingBox.BoundingBoxCoordinatesWorldSpaceAsJson;
-
-      this.FloatEnumerable = new float[] { };
     }
 
     /// <summary>

@@ -1,8 +1,10 @@
 ﻿using droid.Runtime.Environments;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
+using droid.Runtime.Prototyping.Observers.Transform;
 using droid.Runtime.Utilities.Debugging;
 using droid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 using Random = System.Random;
 
@@ -37,6 +39,10 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     Renderer _renderer;
+
+    [SerializeField] ValueSpace _space = new ValueSpace(){_Min_Value = 0.3f, _Max_Value = 1f};
+
+    [SerializeField] bool use_shared;
 
     /// <inheritdoc />
     /// <summary>
@@ -96,21 +102,44 @@ namespace droid.Runtime.Prototyping.Configurables {
       }
       #endif
 
-      foreach (var mat in this._renderer.materials) {
-        var c = mat.color;
+      if(this.use_shared)
+      {
+        foreach (var mat in this._renderer.sharedMaterials) {
+          var c = mat.color;
 
-        if (configuration.ConfigurableName == this._r) {
-          c.r = configuration.ConfigurableValue;
-        } else if (configuration.ConfigurableName == this._g) {
-          c.g = configuration.ConfigurableValue;
-        } else if (configuration.ConfigurableName == this._b) {
-          c.b = configuration.ConfigurableValue;
-        } else if (configuration.ConfigurableName == this._a) {
-          c.a = configuration.ConfigurableValue;
+          if (configuration.ConfigurableName == this._r) {
+            c.r = configuration.ConfigurableValue;
+          } else if (configuration.ConfigurableName == this._g) {
+            c.g = configuration.ConfigurableValue;
+          } else if (configuration.ConfigurableName == this._b) {
+            c.b = configuration.ConfigurableValue;
+          } else if (configuration.ConfigurableName == this._a) {
+            c.a = configuration.ConfigurableValue;
+          }
+
+          mat.color = c;
         }
-
-        mat.color = c;
       }
+      else
+      {
+        foreach (var mat in this._renderer.materials) {
+          var c = mat.color;
+
+          if (configuration.ConfigurableName == this._r) {
+            c.r = configuration.ConfigurableValue;
+          } else if (configuration.ConfigurableName == this._g) {
+            c.g = configuration.ConfigurableValue;
+          } else if (configuration.ConfigurableName == this._b) {
+            c.b = configuration.ConfigurableValue;
+          } else if (configuration.ConfigurableName == this._a) {
+            c.a = configuration.ConfigurableValue;
+          }
+
+          mat.color = c;
+        }
+      }
+
+
     }
 
     /// <inheritdoc />
@@ -121,15 +150,18 @@ namespace droid.Runtime.Prototyping.Configurables {
     public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
       var sample = random_generator.NextDouble();
 
+
+      var v = this._space.Sample();
+
       if (sample < .33f) {
-        return new Configuration(this._r, (float)random_generator.NextDouble());
+        return new Configuration(this._r, v);
       }
 
       if (sample > .66f) {
-        return new Configuration(this._g, (float)random_generator.NextDouble());
+        return new Configuration(this._g, v);
       }
 
-      return new Configuration(this._b, (float)random_generator.NextDouble());
+      return new Configuration(this._b, v);
     }
   }
 }

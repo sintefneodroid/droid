@@ -1,4 +1,5 @@
-﻿using droid.Runtime.Interfaces;
+﻿using System.Collections.Generic;
+using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
@@ -28,13 +29,13 @@ namespace droid.Runtime.Prototyping.Observers.Rigidbody {
 
     public Space3 TripleSpace { get { return this._velocity_space; } }
 
+    public override IEnumerable<float> FloatEnumerable { get{return
+      new[] {this.ObservationValue.x, this.ObservationValue.y, this.ObservationValue.z};} }
+
     /// <summary>
     /// </summary>
     public override void UpdateObservation() {
       this.ObservationValue = this._rigidbody.velocity;
-
-      this.FloatEnumerable =
-          new[] {this.ObservationValue.x, this.ObservationValue.y, this.ObservationValue.z};
     }
 
     /// <inheritdoc />
@@ -42,8 +43,6 @@ namespace droid.Runtime.Prototyping.Observers.Rigidbody {
     /// </summary>
     protected override void PreSetup() {
       this._rigidbody = this.GetComponent<UnityEngine.Rigidbody>();
-      this.FloatEnumerable =
-          new[] {this.ObservationValue.x, this.ObservationValue.y, this.ObservationValue.z};
     }
   }
 }

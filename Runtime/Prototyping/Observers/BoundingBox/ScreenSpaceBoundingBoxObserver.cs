@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities.BoundingBoxes.Experimental;
 using Microsoft.Win32.SafeHandles;
@@ -33,6 +34,8 @@ namespace droid.Runtime.Prototyping.Observers.BoundingBox {
       this._bounding_box = this.GetComponent<Utilities.BoundingBoxes.BoundingBox>();
     }
 
+    public override IEnumerable<float> FloatEnumerable { get{return new List<float>();} }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>
@@ -64,7 +67,6 @@ namespace droid.Runtime.Prototyping.Observers.BoundingBox {
           $"{{\"x\":{this._out_rect.x},\n\"y\":{this._out_rect.y},\n\"w\":{this._out_rect.width},\n\"h\":{this._out_rect.height}}}";
 
       this.ObservationValue = str_rep;
-      this.FloatEnumerable = new float[] { };
     }
 
     /// <summary>

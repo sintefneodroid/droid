@@ -60,7 +60,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 100
-  field of view: 28.2
+  field of view: 67.6
   orthographic: 0
   orthographic size: 20
   m_Depth: 1
@@ -114,28 +114,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 727610264}
   _cameras:
-  - {fileID: 1463669859483367840}
-  - {fileID: 1171208658948452137}
-  - {fileID: 3246734891326987255}
-  - {fileID: 3844039368205312392}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1802749280476413633}
-  - {fileID: 114608562479145288}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 114594705335718820}
-  - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 1623028174}
-  - {fileID: 1458531845}
-  - {fileID: 1403684216}
-  - {fileID: 870147247}
-  - {fileID: 790114237}
   - {fileID: 727610264}
+  - {fileID: 790114237}
+  - {fileID: 870147247}
+  - {fileID: 1403684216}
+  - {fileID: 1458531845}
+  - {fileID: 1623028174}
+  - {fileID: 114307586759802868}
+  - {fileID: 114203839715900738}
+  - {fileID: 114594705335718820}
+  - {fileID: 114203530777878686}
+  - {fileID: 114798311224295254}
+  - {fileID: 114608562479145288}
+  - {fileID: 1802749280476413633}
+  - {fileID: 4939762416714711659}
+  - {fileID: 3844039368205312392}
+  - {fileID: 3246734891326987255}
+  - {fileID: 1171208658948452137}
+  - {fileID: 1463669859483367840}
   - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
-  _old_fov: 28.2
+  _old_fov: 67.6
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
   _old_orthographic_size: 20
@@ -239,7 +239,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 20
-  field of view: 28.2
+  field of view: 67.6
   orthographic: 0
   orthographic size: 20
   m_Depth: 1
@@ -272,28 +272,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 790114237}
   _cameras:
-  - {fileID: 1463669859483367840}
-  - {fileID: 1171208658948452137}
-  - {fileID: 3246734891326987255}
-  - {fileID: 3844039368205312392}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1802749280476413633}
-  - {fileID: 114608562479145288}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 114594705335718820}
-  - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 1623028174}
-  - {fileID: 1458531845}
-  - {fileID: 1403684216}
-  - {fileID: 870147247}
-  - {fileID: 790114237}
   - {fileID: 727610264}
+  - {fileID: 790114237}
+  - {fileID: 870147247}
+  - {fileID: 1403684216}
+  - {fileID: 1458531845}
+  - {fileID: 1623028174}
+  - {fileID: 114307586759802868}
+  - {fileID: 114203839715900738}
+  - {fileID: 114594705335718820}
+  - {fileID: 114203530777878686}
+  - {fileID: 114798311224295254}
+  - {fileID: 114608562479145288}
+  - {fileID: 1802749280476413633}
+  - {fileID: 4939762416714711659}
+  - {fileID: 3844039368205312392}
+  - {fileID: 3246734891326987255}
+  - {fileID: 1171208658948452137}
+  - {fileID: 1463669859483367840}
   - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
-  _old_fov: 28.2
+  _old_fov: 67.6
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
   _old_orthographic_size: 20
@@ -344,8 +344,7 @@ MonoBehaviour:
   _editor_reregistering: 1
   _Use_Custom_Name: 0
   _normalise_observation: 0
-  _observation_value: 'BluePlastic: RGBA(0.188, 0.251, 0.820, 1.000), Default-Material:
-    RGBA(0.502, 0.255, 0.286, 1.000), material1: RGBA(0.204, 0.004, 0.063, 1.000)'
+  _observation_value: 
   _segmenter: {fileID: 790114238}
 --- !u!114 &790114238
 MonoBehaviour:
@@ -421,7 +420,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 100
-  field of view: 28.2
+  field of view: 67.6
   orthographic: 0
   orthographic size: 20
   m_Depth: 1
@@ -454,28 +453,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 870147247}
   _cameras:
-  - {fileID: 1463669859483367840}
-  - {fileID: 1171208658948452137}
-  - {fileID: 3246734891326987255}
-  - {fileID: 3844039368205312392}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1802749280476413633}
-  - {fileID: 114608562479145288}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 114594705335718820}
-  - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 1623028174}
-  - {fileID: 1458531845}
-  - {fileID: 1403684216}
-  - {fileID: 870147247}
-  - {fileID: 790114237}
   - {fileID: 727610264}
+  - {fileID: 790114237}
+  - {fileID: 870147247}
+  - {fileID: 1403684216}
+  - {fileID: 1458531845}
+  - {fileID: 1623028174}
+  - {fileID: 114307586759802868}
+  - {fileID: 114203839715900738}
+  - {fileID: 114594705335718820}
+  - {fileID: 114203530777878686}
+  - {fileID: 114798311224295254}
+  - {fileID: 114608562479145288}
+  - {fileID: 1802749280476413633}
+  - {fileID: 4939762416714711659}
+  - {fileID: 3844039368205312392}
+  - {fileID: 3246734891326987255}
+  - {fileID: 1171208658948452137}
+  - {fileID: 1463669859483367840}
   - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
-  _old_fov: 28.2
+  _old_fov: 67.6
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
   _old_orthographic_size: 20
@@ -1075,6 +1074,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: a3299d740e6506f768ae62a34cdaf5a6, type: 3}
   load_from_resources_if_empty: 1
   _texture: {fileID: 2800000, guid: 8068f6d4a7ef83339a8fe95ba3f3de7c, type: 3}
+  use_shared: 0
 --- !u!1 &1403684211
 GameObject:
   m_ObjectHideFlags: 0
@@ -1135,7 +1135,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 20
-  field of view: 28.2
+  field of view: 67.6
   orthographic: 0
   orthographic size: 20
   m_Depth: 1
@@ -1184,28 +1184,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 1403684216}
   _cameras:
-  - {fileID: 1463669859483367840}
-  - {fileID: 1171208658948452137}
-  - {fileID: 3246734891326987255}
-  - {fileID: 3844039368205312392}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1802749280476413633}
-  - {fileID: 114608562479145288}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 114594705335718820}
-  - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 1623028174}
-  - {fileID: 1458531845}
-  - {fileID: 1403684216}
-  - {fileID: 870147247}
-  - {fileID: 790114237}
   - {fileID: 727610264}
+  - {fileID: 790114237}
+  - {fileID: 870147247}
+  - {fileID: 1403684216}
+  - {fileID: 1458531845}
+  - {fileID: 1623028174}
+  - {fileID: 114307586759802868}
+  - {fileID: 114203839715900738}
+  - {fileID: 114594705335718820}
+  - {fileID: 114203530777878686}
+  - {fileID: 114798311224295254}
+  - {fileID: 114608562479145288}
+  - {fileID: 1802749280476413633}
+  - {fileID: 4939762416714711659}
+  - {fileID: 3844039368205312392}
+  - {fileID: 3246734891326987255}
+  - {fileID: 1171208658948452137}
+  - {fileID: 1463669859483367840}
   - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
-  _old_fov: 28.2
+  _old_fov: 67.6
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
   _old_orthographic_size: 20
@@ -1256,8 +1256,7 @@ MonoBehaviour:
   _editor_reregistering: 1
   _Use_Custom_Name: 0
   _normalise_observation: 0
-  _observation_value: '-2386: RGBA(0.518, 0.157, 0.255, 1.000), -2332: RGBA(0.086,
-    0.157, 0.251, 1.000), 14594: RGBA(0.518, 0.031, 0.565, 1.000)'
+  _observation_value: 
   _segmenter: {fileID: 1403684217}
 --- !u!1 &1458531844
 GameObject:
@@ -1319,7 +1318,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 100
-  field of view: 28.2
+  field of view: 67.6
   orthographic: 0
   orthographic size: 20
   m_Depth: 1
@@ -1373,28 +1372,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 1458531845}
   _cameras:
-  - {fileID: 1463669859483367840}
-  - {fileID: 1171208658948452137}
-  - {fileID: 3246734891326987255}
-  - {fileID: 3844039368205312392}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1802749280476413633}
-  - {fileID: 114608562479145288}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 114594705335718820}
-  - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 1623028174}
-  - {fileID: 1458531845}
-  - {fileID: 1403684216}
-  - {fileID: 870147247}
-  - {fileID: 790114237}
   - {fileID: 727610264}
+  - {fileID: 790114237}
+  - {fileID: 870147247}
+  - {fileID: 1403684216}
+  - {fileID: 1458531845}
+  - {fileID: 1623028174}
+  - {fileID: 114307586759802868}
+  - {fileID: 114203839715900738}
+  - {fileID: 114594705335718820}
+  - {fileID: 114203530777878686}
+  - {fileID: 114798311224295254}
+  - {fileID: 114608562479145288}
+  - {fileID: 1802749280476413633}
+  - {fileID: 4939762416714711659}
+  - {fileID: 3844039368205312392}
+  - {fileID: 3246734891326987255}
+  - {fileID: 1171208658948452137}
+  - {fileID: 1463669859483367840}
   - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
-  _old_fov: 28.2
+  _old_fov: 67.6
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
   _old_orthographic_size: 20
@@ -1498,7 +1497,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 100
-  field of view: 28.2
+  field of view: 67.6
   orthographic: 0
   orthographic size: 20
   m_Depth: 1
@@ -1552,28 +1551,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 1623028174}
   _cameras:
-  - {fileID: 1463669859483367840}
-  - {fileID: 1171208658948452137}
-  - {fileID: 3246734891326987255}
-  - {fileID: 3844039368205312392}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1802749280476413633}
-  - {fileID: 114608562479145288}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 114594705335718820}
-  - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 1623028174}
-  - {fileID: 1458531845}
-  - {fileID: 1403684216}
-  - {fileID: 870147247}
-  - {fileID: 790114237}
   - {fileID: 727610264}
+  - {fileID: 790114237}
+  - {fileID: 870147247}
+  - {fileID: 1403684216}
+  - {fileID: 1458531845}
+  - {fileID: 1623028174}
+  - {fileID: 114307586759802868}
+  - {fileID: 114203839715900738}
+  - {fileID: 114594705335718820}
+  - {fileID: 114203530777878686}
+  - {fileID: 114798311224295254}
+  - {fileID: 114608562479145288}
+  - {fileID: 1802749280476413633}
+  - {fileID: 4939762416714711659}
+  - {fileID: 3844039368205312392}
+  - {fileID: 3246734891326987255}
+  - {fileID: 1171208658948452137}
+  - {fileID: 1463669859483367840}
   - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
-  _old_fov: 28.2
+  _old_fov: 67.6
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
   _old_orthographic_size: 20
@@ -1795,7 +1794,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 100
-  field of view: 28.2
+  field of view: 67.6
   orthographic: 0
   orthographic size: 20
   m_Depth: 1
@@ -1828,28 +1827,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114307586759802868}
   _cameras:
-  - {fileID: 1463669859483367840}
-  - {fileID: 1171208658948452137}
-  - {fileID: 3246734891326987255}
-  - {fileID: 3844039368205312392}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1802749280476413633}
-  - {fileID: 114608562479145288}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 114594705335718820}
-  - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 1623028174}
-  - {fileID: 1458531845}
-  - {fileID: 1403684216}
-  - {fileID: 870147247}
-  - {fileID: 790114237}
   - {fileID: 727610264}
+  - {fileID: 790114237}
+  - {fileID: 870147247}
+  - {fileID: 1403684216}
+  - {fileID: 1458531845}
+  - {fileID: 1623028174}
+  - {fileID: 114307586759802868}
+  - {fileID: 114203839715900738}
+  - {fileID: 114594705335718820}
+  - {fileID: 114203530777878686}
+  - {fileID: 114798311224295254}
+  - {fileID: 114608562479145288}
+  - {fileID: 1802749280476413633}
+  - {fileID: 4939762416714711659}
+  - {fileID: 3844039368205312392}
+  - {fileID: 3246734891326987255}
+  - {fileID: 1171208658948452137}
+  - {fileID: 1463669859483367840}
   - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
-  _old_fov: 28.2
+  _old_fov: 67.6
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
   _old_orthographic_size: 20
@@ -2026,7 +2025,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 100
-  field of view: 28.2
+  field of view: 67.6
   orthographic: 0
   orthographic size: 20
   m_Depth: 1
@@ -2059,28 +2058,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114203839715900738}
   _cameras:
-  - {fileID: 1463669859483367840}
-  - {fileID: 1171208658948452137}
-  - {fileID: 3246734891326987255}
-  - {fileID: 3844039368205312392}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1802749280476413633}
-  - {fileID: 114608562479145288}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 114594705335718820}
-  - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 1623028174}
-  - {fileID: 1458531845}
-  - {fileID: 1403684216}
-  - {fileID: 870147247}
-  - {fileID: 790114237}
   - {fileID: 727610264}
+  - {fileID: 790114237}
+  - {fileID: 870147247}
+  - {fileID: 1403684216}
+  - {fileID: 1458531845}
+  - {fileID: 1623028174}
+  - {fileID: 114307586759802868}
+  - {fileID: 114203839715900738}
+  - {fileID: 114594705335718820}
+  - {fileID: 114203530777878686}
+  - {fileID: 114798311224295254}
+  - {fileID: 114608562479145288}
+  - {fileID: 1802749280476413633}
+  - {fileID: 4939762416714711659}
+  - {fileID: 3844039368205312392}
+  - {fileID: 3246734891326987255}
+  - {fileID: 1171208658948452137}
+  - {fileID: 1463669859483367840}
   - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
-  _old_fov: 28.2
+  _old_fov: 67.6
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
   _old_orthographic_size: 20
@@ -2334,7 +2333,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1568745427337830}
-  m_LocalRotation: {x: -0.5789396, y: 0.19597733, z: -0.25377542, w: -0.74967986}
+  m_LocalRotation: {x: -0.7005832, y: 0.23832694, z: -0.2166147, w: -0.6367587}
   m_LocalPosition: {x: -0.19564515, y: 7.400394, z: -4.870925}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2399,24 +2398,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114594705335718820}
   _cameras:
-  - {fileID: 1463669859483367840}
-  - {fileID: 1171208658948452137}
-  - {fileID: 3246734891326987255}
-  - {fileID: 3844039368205312392}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1802749280476413633}
-  - {fileID: 114608562479145288}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 114594705335718820}
-  - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 1623028174}
-  - {fileID: 1458531845}
-  - {fileID: 1403684216}
-  - {fileID: 870147247}
-  - {fileID: 790114237}
   - {fileID: 727610264}
+  - {fileID: 790114237}
+  - {fileID: 870147247}
+  - {fileID: 1403684216}
+  - {fileID: 1458531845}
+  - {fileID: 1623028174}
+  - {fileID: 114307586759802868}
+  - {fileID: 114203839715900738}
+  - {fileID: 114594705335718820}
+  - {fileID: 114203530777878686}
+  - {fileID: 114798311224295254}
+  - {fileID: 114608562479145288}
+  - {fileID: 1802749280476413633}
+  - {fileID: 4939762416714711659}
+  - {fileID: 3844039368205312392}
+  - {fileID: 3246734891326987255}
+  - {fileID: 1171208658948452137}
+  - {fileID: 1463669859483367840}
   - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
@@ -2558,7 +2557,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 100
-  field of view: 28.2
+  field of view: 67.6
   orthographic: 0
   orthographic size: 20
   m_Depth: 1
@@ -2591,28 +2590,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114203530777878686}
   _cameras:
-  - {fileID: 1463669859483367840}
-  - {fileID: 1171208658948452137}
-  - {fileID: 3246734891326987255}
-  - {fileID: 3844039368205312392}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1802749280476413633}
-  - {fileID: 114608562479145288}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 114594705335718820}
-  - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 1623028174}
-  - {fileID: 1458531845}
-  - {fileID: 1403684216}
-  - {fileID: 870147247}
-  - {fileID: 790114237}
   - {fileID: 727610264}
+  - {fileID: 790114237}
+  - {fileID: 870147247}
+  - {fileID: 1403684216}
+  - {fileID: 1458531845}
+  - {fileID: 1623028174}
+  - {fileID: 114307586759802868}
+  - {fileID: 114203839715900738}
+  - {fileID: 114594705335718820}
+  - {fileID: 114203530777878686}
+  - {fileID: 114798311224295254}
+  - {fileID: 114608562479145288}
+  - {fileID: 1802749280476413633}
+  - {fileID: 4939762416714711659}
+  - {fileID: 3844039368205312392}
+  - {fileID: 3246734891326987255}
+  - {fileID: 1171208658948452137}
+  - {fileID: 1463669859483367840}
   - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
-  _old_fov: 28.2
+  _old_fov: 67.6
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
   _old_orthographic_size: 20
@@ -2754,7 +2753,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 100
-  field of view: 28.2
+  field of view: 67.6
   orthographic: 0
   orthographic size: 20
   m_Depth: 1
@@ -2787,28 +2786,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114798311224295254}
   _cameras:
-  - {fileID: 1463669859483367840}
-  - {fileID: 1171208658948452137}
-  - {fileID: 3246734891326987255}
-  - {fileID: 3844039368205312392}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1802749280476413633}
-  - {fileID: 114608562479145288}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 114594705335718820}
-  - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 1623028174}
-  - {fileID: 1458531845}
-  - {fileID: 1403684216}
-  - {fileID: 870147247}
-  - {fileID: 790114237}
   - {fileID: 727610264}
+  - {fileID: 790114237}
+  - {fileID: 870147247}
+  - {fileID: 1403684216}
+  - {fileID: 1458531845}
+  - {fileID: 1623028174}
+  - {fileID: 114307586759802868}
+  - {fileID: 114203839715900738}
+  - {fileID: 114594705335718820}
+  - {fileID: 114203530777878686}
+  - {fileID: 114798311224295254}
+  - {fileID: 114608562479145288}
+  - {fileID: 1802749280476413633}
+  - {fileID: 4939762416714711659}
+  - {fileID: 3844039368205312392}
+  - {fileID: 3246734891326987255}
+  - {fileID: 1171208658948452137}
+  - {fileID: 1463669859483367840}
   - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
-  _old_fov: 28.2
+  _old_fov: 67.6
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
   _old_orthographic_size: 20
@@ -2948,7 +2947,7 @@ Camera:
   m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 47.774002
+  m_FocalLength: 17.925385
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -2957,7 +2956,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 100
-  field of view: 28.2
+  field of view: 67.6
   orthographic: 0
   orthographic size: 20
   m_Depth: 1
@@ -2990,28 +2989,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114716082362535994}
   _cameras:
-  - {fileID: 1463669859483367840}
-  - {fileID: 1171208658948452137}
-  - {fileID: 3246734891326987255}
-  - {fileID: 3844039368205312392}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1802749280476413633}
-  - {fileID: 114608562479145288}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 114594705335718820}
-  - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 1623028174}
-  - {fileID: 1458531845}
-  - {fileID: 1403684216}
-  - {fileID: 870147247}
-  - {fileID: 790114237}
   - {fileID: 727610264}
+  - {fileID: 790114237}
+  - {fileID: 870147247}
+  - {fileID: 1403684216}
+  - {fileID: 1458531845}
+  - {fileID: 1623028174}
+  - {fileID: 114307586759802868}
+  - {fileID: 114203839715900738}
+  - {fileID: 114594705335718820}
+  - {fileID: 114203530777878686}
+  - {fileID: 114798311224295254}
+  - {fileID: 114608562479145288}
+  - {fileID: 1802749280476413633}
+  - {fileID: 4939762416714711659}
+  - {fileID: 3844039368205312392}
+  - {fileID: 3246734891326987255}
+  - {fileID: 1171208658948452137}
+  - {fileID: 1463669859483367840}
   - {fileID: 114716082362535994}
   _old_culling_mask: -1
   _old_far_clip_plane: 100
-  _old_fov: 28.2
+  _old_fov: 67.6
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
   _old_orthographic_size: 20
@@ -3062,47 +3061,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 4956758692426196692}
-  - {fileID: 4204259003963777610}
-  - {fileID: 4614691972182028737}
-  - {fileID: 8584843010322102044}
-  - {fileID: 3337727558481276136}
-  - {fileID: 5796786885426895393}
-  - {fileID: 20598539646069560}
-  - {fileID: 20768847776266208}
-  - {fileID: 20145353716750142}
   - {fileID: 20793825365236440}
-  - {fileID: 20940602749366906}
-  - {fileID: 20367486579053346}
-  - {fileID: 1623028176}
-  - {fileID: 1458531849}
+  - {fileID: 4956758692426196692}
   - {fileID: 1403684218}
-  - {fileID: 870147248}
-  - {fileID: 790114239}
   - {fileID: 727610266}
+  - {fileID: 20367486579053346}
+  - {fileID: 5796786885426895393}
+  - {fileID: 20145353716750142}
+  - {fileID: 20768847776266208}
+  - {fileID: 1458531849}
+  - {fileID: 4204259003963777610}
+  - {fileID: 1623028176}
+  - {fileID: 20940602749366906}
+  - {fileID: 790114239}
+  - {fileID: 20598539646069560}
+  - {fileID: 4614691972182028737}
+  - {fileID: 3337727558481276136}
+  - {fileID: 870147248}
+  - {fileID: 8584843010322102044}
   - {fileID: 20224209517257972}
   _filter_mode: 1
   _size: {x: 256, y: 256}
   _texture_format: 3
   _textures:
-  - {fileID: 8400000, guid: 7ce5712ecfb6c0929a81d56be34c2333, type: 2}
-  - {fileID: 8400000, guid: 7355ca23a1b57891dafa75b44c2c5cc8, type: 2}
-  - {fileID: 8400000, guid: 7ce5d7425e7fa3af69f9bdd316de2208, type: 2}
-  - {fileID: 8400000, guid: cc4e727fd2f685deea5ec6e4b44b5cc3, type: 2}
-  - {fileID: 8400000, guid: 43f8b57e2bee2bd6eb1df24b6c88ba79, type: 2}
-  - {fileID: 8400000, guid: 29bfbe75d2faa72cdbf597b2763205ab, type: 2}
-  - {fileID: 8400000, guid: b22ce111b5af44afe8b8f2f085799a5f, type: 2}
-  - {fileID: 8400000, guid: afc5604d79d0849129803e463fc07bca, type: 2}
-  - {fileID: 8400000, guid: 5d9eca522a1944267b89beea11ffc58c, type: 2}
   - {fileID: 8400000, guid: bc593ac7628a042ac93b20ca1c0101b6, type: 2}
-  - {fileID: 8400000, guid: 4c7dcaf7e8ef74c11bd8ad06365ea216, type: 2}
-  - {fileID: 8400000, guid: 63f7bf9c3a80b4d169b394696cbbd9ab, type: 2}
-  - {fileID: 8400000, guid: 0a204b96270826992a5c81c531ea5dcf, type: 2}
-  - {fileID: 8400000, guid: a2ed3a19ee4cfe303b28c87fca44a286, type: 2}
+  - {fileID: 8400000, guid: 7ce5712ecfb6c0929a81d56be34c2333, type: 2}
   - {fileID: 8400000, guid: 280476064a32df4848434f9b38c2d744, type: 2}
-  - {fileID: 8400000, guid: 65d4c1ba790a0b02b827d1bca779fd3d, type: 2}
-  - {fileID: 8400000, guid: e52a2f56c9ffa187abf5021f3338228e, type: 2}
   - {fileID: 8400000, guid: 142c9eceec4ee3060b3550e1b2a64cbf, type: 2}
+  - {fileID: 8400000, guid: 63f7bf9c3a80b4d169b394696cbbd9ab, type: 2}
+  - {fileID: 8400000, guid: 29bfbe75d2faa72cdbf597b2763205ab, type: 2}
+  - {fileID: 8400000, guid: 5d9eca522a1944267b89beea11ffc58c, type: 2}
+  - {fileID: 8400000, guid: afc5604d79d0849129803e463fc07bca, type: 2}
+  - {fileID: 8400000, guid: a2ed3a19ee4cfe303b28c87fca44a286, type: 2}
+  - {fileID: 8400000, guid: 7355ca23a1b57891dafa75b44c2c5cc8, type: 2}
+  - {fileID: 8400000, guid: 0a204b96270826992a5c81c531ea5dcf, type: 2}
+  - {fileID: 8400000, guid: 4c7dcaf7e8ef74c11bd8ad06365ea216, type: 2}
+  - {fileID: 8400000, guid: e52a2f56c9ffa187abf5021f3338228e, type: 2}
+  - {fileID: 8400000, guid: b22ce111b5af44afe8b8f2f085799a5f, type: 2}
+  - {fileID: 8400000, guid: 7ce5d7425e7fa3af69f9bdd316de2208, type: 2}
+  - {fileID: 8400000, guid: 43f8b57e2bee2bd6eb1df24b6c88ba79, type: 2}
+  - {fileID: 8400000, guid: 65d4c1ba790a0b02b827d1bca779fd3d, type: 2}
+  - {fileID: 8400000, guid: cc4e727fd2f685deea5ec6e4b44b5cc3, type: 2}
   _wrap_mode: 1
 --- !u!114 &1625775002
 MonoBehaviour:
@@ -3136,6 +3135,9 @@ MonoBehaviour:
   _draw_label: 1
   bounding_boxes:
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   gui_style: {fileID: 11400000, guid: 45b8b02736ca4fc5b88b554edf8576ad, type: 2}
   _draw_coords: 0
 --- !u!114 &1780244598
@@ -3159,8 +3161,8 @@ MonoBehaviour:
   SampleRandom: 1
   _camera: {fileID: 20224209517257972}
   _syncer: {fileID: 114716082362535994}
-  _random_fov_min: 30
-  _random_fov_max: 90
+  _random_fov_min: 80
+  _random_fov_max: 100
 --- !u!1 &1870355748897446
 GameObject:
   m_ObjectHideFlags: 0
@@ -3426,7 +3428,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 100
-  field of view: 28.2
+  field of view: 67.6
   orthographic: 0
   orthographic size: 20
   m_Depth: 1
@@ -3480,28 +3482,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114608562479145288}
   _cameras:
-  - {fileID: 1463669859483367840}
-  - {fileID: 1171208658948452137}
-  - {fileID: 3246734891326987255}
-  - {fileID: 3844039368205312392}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1802749280476413633}
-  - {fileID: 114608562479145288}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 114594705335718820}
-  - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 1623028174}
-  - {fileID: 1458531845}
-  - {fileID: 1403684216}
-  - {fileID: 870147247}
-  - {fileID: 790114237}
   - {fileID: 727610264}
+  - {fileID: 790114237}
+  - {fileID: 870147247}
+  - {fileID: 1403684216}
+  - {fileID: 1458531845}
+  - {fileID: 1623028174}
+  - {fileID: 114307586759802868}
+  - {fileID: 114203839715900738}
+  - {fileID: 114594705335718820}
+  - {fileID: 114203530777878686}
+  - {fileID: 114798311224295254}
+  - {fileID: 114608562479145288}
+  - {fileID: 1802749280476413633}
+  - {fileID: 4939762416714711659}
+  - {fileID: 3844039368205312392}
+  - {fileID: 3246734891326987255}
+  - {fileID: 1171208658948452137}
+  - {fileID: 1463669859483367840}
   - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
-  _old_fov: 28.2
+  _old_fov: 67.6
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
   _old_orthographic_size: 20
@@ -3805,7 +3807,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 20
-  field of view: 28.2
+  field of view: 67.6
   orthographic: 0
   orthographic size: 20
   m_Depth: 1
@@ -3838,28 +3840,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 1802749280476413633}
   _cameras:
-  - {fileID: 1463669859483367840}
-  - {fileID: 1171208658948452137}
-  - {fileID: 3246734891326987255}
-  - {fileID: 3844039368205312392}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1802749280476413633}
-  - {fileID: 114608562479145288}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 114594705335718820}
-  - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 1623028174}
-  - {fileID: 1458531845}
-  - {fileID: 1403684216}
-  - {fileID: 870147247}
-  - {fileID: 790114237}
   - {fileID: 727610264}
+  - {fileID: 790114237}
+  - {fileID: 870147247}
+  - {fileID: 1403684216}
+  - {fileID: 1458531845}
+  - {fileID: 1623028174}
+  - {fileID: 114307586759802868}
+  - {fileID: 114203839715900738}
+  - {fileID: 114594705335718820}
+  - {fileID: 114203530777878686}
+  - {fileID: 114798311224295254}
+  - {fileID: 114608562479145288}
+  - {fileID: 1802749280476413633}
+  - {fileID: 4939762416714711659}
+  - {fileID: 3844039368205312392}
+  - {fileID: 3246734891326987255}
+  - {fileID: 1171208658948452137}
+  - {fileID: 1463669859483367840}
   - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
-  _old_fov: 28.2
+  _old_fov: 67.6
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
   _old_orthographic_size: 20
@@ -3910,9 +3912,7 @@ MonoBehaviour:
   _editor_reregistering: 1
   _Use_Custom_Name: 0
   _normalise_observation: 0
-  _observation_value: 'a: RGBA(1.000, 0.000, 0.000, 1.000), b: RGBA(0.000, 1.000,
-    0.000, 1.000), c: RGBA(0.000, 0.001, 1.000, 1.000), Ignore Raycast: RGBA(1.000,
-    1.000, 0.700, 1.000), Default: RGBA(1.000, 1.000, 1.000, 1.000)'
+  _observation_value: 
   _segmenter: {fileID: 8934520332220601364}
 --- !u!114 &8934520332220601364
 MonoBehaviour:
@@ -3995,7 +3995,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 100
-  field of view: 28.2
+  field of view: 67.6
   orthographic: 0
   orthographic size: 20
   m_Depth: 1
@@ -4049,28 +4049,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 4939762416714711659}
   _cameras:
-  - {fileID: 1463669859483367840}
-  - {fileID: 1171208658948452137}
-  - {fileID: 3246734891326987255}
-  - {fileID: 3844039368205312392}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1802749280476413633}
-  - {fileID: 114608562479145288}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 114594705335718820}
-  - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 1623028174}
-  - {fileID: 1458531845}
-  - {fileID: 1403684216}
-  - {fileID: 870147247}
-  - {fileID: 790114237}
   - {fileID: 727610264}
+  - {fileID: 790114237}
+  - {fileID: 870147247}
+  - {fileID: 1403684216}
+  - {fileID: 1458531845}
+  - {fileID: 1623028174}
+  - {fileID: 114307586759802868}
+  - {fileID: 114203839715900738}
+  - {fileID: 114594705335718820}
+  - {fileID: 114203530777878686}
+  - {fileID: 114798311224295254}
+  - {fileID: 114608562479145288}
+  - {fileID: 1802749280476413633}
+  - {fileID: 4939762416714711659}
+  - {fileID: 3844039368205312392}
+  - {fileID: 3246734891326987255}
+  - {fileID: 1171208658948452137}
+  - {fileID: 1463669859483367840}
   - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
-  _old_fov: 28.2
+  _old_fov: 67.6
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
   _old_orthographic_size: 20
@@ -4159,6 +4159,7 @@ GameObject:
   - component: {fileID: 3844039368205312392}
   - component: {fileID: 4060211227789312537}
   - component: {fileID: 1855446813}
+  - component: {fileID: 1641543403}
   m_Layer: 2
   m_Name: OffsetCamera
   m_TagString: Untagged
@@ -4205,7 +4206,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 100
-  field of view: 28.2
+  field of view: 67.6
   orthographic: 0
   orthographic size: 20
   m_Depth: 1
@@ -4238,28 +4239,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 3844039368205312392}
   _cameras:
-  - {fileID: 1463669859483367840}
-  - {fileID: 1171208658948452137}
-  - {fileID: 3246734891326987255}
-  - {fileID: 3844039368205312392}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1802749280476413633}
-  - {fileID: 114608562479145288}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 114594705335718820}
-  - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 1623028174}
-  - {fileID: 1458531845}
-  - {fileID: 1403684216}
-  - {fileID: 870147247}
-  - {fileID: 790114237}
   - {fileID: 727610264}
+  - {fileID: 790114237}
+  - {fileID: 870147247}
+  - {fileID: 1403684216}
+  - {fileID: 1458531845}
+  - {fileID: 1623028174}
+  - {fileID: 114307586759802868}
+  - {fileID: 114203839715900738}
+  - {fileID: 114594705335718820}
+  - {fileID: 114203530777878686}
+  - {fileID: 114798311224295254}
+  - {fileID: 114608562479145288}
+  - {fileID: 1802749280476413633}
+  - {fileID: 4939762416714711659}
+  - {fileID: 3844039368205312392}
+  - {fileID: 3246734891326987255}
+  - {fileID: 1171208658948452137}
+  - {fileID: 1463669859483367840}
   - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
-  _old_fov: 28.2
+  _old_fov: 67.6
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
   _old_orthographic_size: 20
@@ -4309,6 +4310,27 @@ MonoBehaviour:
   _ignore_infrared_if_empty: 1
   _lights_to_ignore:
   - {fileID: 108906297679887750}
+--- !u!114 &1641543403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6184846525513548927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: faa2e2e4fc5eed0978acef0530b2f930, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Custom_Name: 
+  _disables_children: 0
+  _editor_reregistering: 1
+  _Use_Custom_Name: 0
+  _normalise_observation: 0
+  t1: {fileID: 1931405973741409654}
+  t2: {fileID: 4927334179696988}
+  _observationValue: 0.05000016
 --- !u!1 &7686063924545477276
 GameObject:
   m_ObjectHideFlags: 0
@@ -4369,7 +4391,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 100
-  field of view: 28.2
+  field of view: 67.6
   orthographic: 0
   orthographic size: 20
   m_Depth: 1
@@ -4423,28 +4445,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 3246734891326987255}
   _cameras:
-  - {fileID: 1463669859483367840}
-  - {fileID: 1171208658948452137}
-  - {fileID: 3246734891326987255}
-  - {fileID: 3844039368205312392}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1802749280476413633}
-  - {fileID: 114608562479145288}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 114594705335718820}
-  - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 1623028174}
-  - {fileID: 1458531845}
-  - {fileID: 1403684216}
-  - {fileID: 870147247}
-  - {fileID: 790114237}
   - {fileID: 727610264}
+  - {fileID: 790114237}
+  - {fileID: 870147247}
+  - {fileID: 1403684216}
+  - {fileID: 1458531845}
+  - {fileID: 1623028174}
+  - {fileID: 114307586759802868}
+  - {fileID: 114203839715900738}
+  - {fileID: 114594705335718820}
+  - {fileID: 114203530777878686}
+  - {fileID: 114798311224295254}
+  - {fileID: 114608562479145288}
+  - {fileID: 1802749280476413633}
+  - {fileID: 4939762416714711659}
+  - {fileID: 3844039368205312392}
+  - {fileID: 3246734891326987255}
+  - {fileID: 1171208658948452137}
+  - {fileID: 1463669859483367840}
   - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
-  _old_fov: 28.2
+  _old_fov: 67.6
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
   _old_orthographic_size: 20
@@ -4548,7 +4570,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 20
-  field of view: 28.2
+  field of view: 67.6
   orthographic: 0
   orthographic size: 20
   m_Depth: 1
@@ -4581,28 +4603,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 1171208658948452137}
   _cameras:
-  - {fileID: 1463669859483367840}
-  - {fileID: 1171208658948452137}
-  - {fileID: 3246734891326987255}
-  - {fileID: 3844039368205312392}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1802749280476413633}
-  - {fileID: 114608562479145288}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 114594705335718820}
-  - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 1623028174}
-  - {fileID: 1458531845}
-  - {fileID: 1403684216}
-  - {fileID: 870147247}
-  - {fileID: 790114237}
   - {fileID: 727610264}
+  - {fileID: 790114237}
+  - {fileID: 870147247}
+  - {fileID: 1403684216}
+  - {fileID: 1458531845}
+  - {fileID: 1623028174}
+  - {fileID: 114307586759802868}
+  - {fileID: 114203839715900738}
+  - {fileID: 114594705335718820}
+  - {fileID: 114203530777878686}
+  - {fileID: 114798311224295254}
+  - {fileID: 114608562479145288}
+  - {fileID: 1802749280476413633}
+  - {fileID: 4939762416714711659}
+  - {fileID: 3844039368205312392}
+  - {fileID: 3246734891326987255}
+  - {fileID: 1171208658948452137}
+  - {fileID: 1463669859483367840}
   - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 20
-  _old_fov: 28.2
+  _old_fov: 67.6
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
   _old_orthographic_size: 20
@@ -4653,9 +4675,7 @@ MonoBehaviour:
   _editor_reregistering: 1
   _Use_Custom_Name: 0
   _normalise_observation: 0
-  _observation_value: 'a: RGBA(1.000, 0.000, 0.000, 1.000), b: RGBA(0.000, 1.000,
-    0.000, 1.000), c: RGBA(0.000, 0.001, 1.000, 1.000), CameraBody: RGBA(0.314, 0.322,
-    0.929, 1.000), Untagged: RGBA(0.333, 0.867, 0.576, 1.000)'
+  _observation_value: 
   _segmenter: {fileID: 3883913920282434489}
 --- !u!114 &3883913920282434489
 MonoBehaviour:
@@ -4738,7 +4758,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 100
-  field of view: 28.2
+  field of view: 67.6
   orthographic: 0
   orthographic size: 20
   m_Depth: 1
@@ -4792,28 +4812,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 1463669859483367840}
   _cameras:
-  - {fileID: 1463669859483367840}
-  - {fileID: 1171208658948452137}
-  - {fileID: 3246734891326987255}
-  - {fileID: 3844039368205312392}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1802749280476413633}
-  - {fileID: 114608562479145288}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 114594705335718820}
-  - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 1623028174}
-  - {fileID: 1458531845}
-  - {fileID: 1403684216}
-  - {fileID: 870147247}
-  - {fileID: 790114237}
   - {fileID: 727610264}
+  - {fileID: 790114237}
+  - {fileID: 870147247}
+  - {fileID: 1403684216}
+  - {fileID: 1458531845}
+  - {fileID: 1623028174}
+  - {fileID: 114307586759802868}
+  - {fileID: 114203839715900738}
+  - {fileID: 114594705335718820}
+  - {fileID: 114203530777878686}
+  - {fileID: 114798311224295254}
+  - {fileID: 114608562479145288}
+  - {fileID: 1802749280476413633}
+  - {fileID: 4939762416714711659}
+  - {fileID: 3844039368205312392}
+  - {fileID: 3246734891326987255}
+  - {fileID: 1171208658948452137}
+  - {fileID: 1463669859483367840}
   - {fileID: 114716082362535994}
   _old_culling_mask: -33
   _old_far_clip_plane: 100
-  _old_fov: 28.2
+  _old_fov: 67.6
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
   _old_orthographic_size: 20

@@ -1,4 +1,5 @@
-﻿using droid.Runtime.Interfaces;
+﻿using System.Collections.Generic;
+using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities.Enums;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
@@ -41,8 +42,6 @@ namespace droid.Runtime.Prototyping.Observers.Camera {
       } else {
         this.ObservationArray = new float[0];
       }
-
-      this.FloatEnumerable = this.ObservationArray;
     }
 
     protected virtual void OnPostRender() {
@@ -86,8 +85,9 @@ namespace droid.Runtime.Prototyping.Observers.Camera {
       }
 
       RenderTexture.active = current_render_texture;
-      this.FloatEnumerable = this.ObservationArray;
     }
+
+    public override IEnumerable<float> FloatEnumerable { get{return this.ObservationArray;} }
 
     public override void UpdateObservation() {
       if (this._manager?.SimulatorConfiguration != null) {

@@ -23,6 +23,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     [SerializeField] bool load_from_resources_if_empty = true;
     [SerializeField] Texture _texture;
     Renderer _renderer;
+    [SerializeField] bool use_shared;
 
     /// <inheritdoc />
     /// <summary>
@@ -68,7 +69,15 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       if (configuration.ConfigurableName == this._texture_str) {
 
           this._texture = this._textures[(int)configuration.ConfigurableValue];
-          this._renderer.material.mainTexture = this._texture;
+          if(this.use_shared)
+          {
+            this._renderer.sharedMaterial.mainTexture = this._texture;
+          }
+          else
+          {
+            this._renderer.material.mainTexture = this._texture;
+          }
+
 
       }
     }

@@ -1,4 +1,5 @@
-﻿using droid.Runtime.Interfaces;
+﻿using System.Collections.Generic;
+using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
@@ -50,6 +51,18 @@ namespace droid.Runtime.Prototyping.Observers.Rays {
       }
     }
 
+    public override IEnumerable<float> FloatEnumerable { get{ return new[] {
+      this.Position.x,
+      this.Position.y,
+      this.Position.z,
+      this.Direction.x,
+      this.Direction.y,
+      this.Direction.z,
+      this.Rotation.x,
+      this.Rotation.y,
+      this.Rotation.z
+    };} }
+
     public override void UpdateObservation() {
       this._nearest_object = this.FindNearest();
 
@@ -62,32 +75,9 @@ namespace droid.Runtime.Prototyping.Observers.Rays {
         this.Direction = this._nearest_object.transform.forward;
         this.Rotation = this._nearest_object.transform.up;
       }
-
-      this.FloatEnumerable = new[] {
-          this.Position.x,
-          this.Position.y,
-          this.Position.z,
-          this.Direction.x,
-          this.Direction.y,
-          this.Direction.z,
-          this.Rotation.x,
-          this.Rotation.y,
-          this.Rotation.z
-      };
     }
 
     protected override void PreSetup() {
-      this.FloatEnumerable = new[] {
-          this.Position.x,
-          this.Position.y,
-          this.Position.z,
-          this.Direction.x,
-          this.Direction.y,
-          this.Direction.z,
-          this.Rotation.x,
-          this.Rotation.y,
-          this.Rotation.z
-      };
     }
 
     GameObject FindNearest() {

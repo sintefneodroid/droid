@@ -1,4 +1,5 @@
-﻿using droid.Runtime.Interfaces;
+﻿using System.Collections.Generic;
+using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
@@ -50,16 +51,15 @@ namespace droid.Runtime.Prototyping.Observers.Grid {
         }
       }
 
-      this.FloatEnumerable = new[] {this.ObservationValue};
     }
+
+    public override IEnumerable<float> FloatEnumerable { get{return new[] {this.ObservationValue};} }
 
     public override void UpdateObservation() {
       var x = this.transform.position.x + this._width;
       var z = this.transform.position.z + this._height;
 
       this.ObservationValue = this._grid[(int)x, (int)z];
-
-      this.FloatEnumerable = new[] {this.ObservationValue};
     }
   }
 }

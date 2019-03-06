@@ -17,7 +17,7 @@ namespace droid.Runtime.Prototyping.Observers.Transform {
 
     /// <summary>
     /// </summary>
-    protected override void PreSetup() { this.FloatEnumerable = new[] {this.ObservationValue}; }
+    protected override void PreSetup() {  }
 
     public override void UpdateObservation() {
       switch (this._dim) {
@@ -51,7 +51,6 @@ namespace droid.Runtime.Prototyping.Observers.Transform {
         default: throw new ArgumentOutOfRangeException();
       }
 
-      this.FloatEnumerable = new[] {this.ObservationValue};
     }
 
     void OnDrawGizmos() {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Managers;
 using droid.Runtime.Utilities.Enums;
@@ -162,6 +163,11 @@ namespace droid.Runtime.Prototyping.Observers.Camera {
       } else {
         Debug.LogWarning($"No camera found on {this}");
       }
+    }
+
+    public override IEnumerable<float> FloatEnumerable
+    {
+      get { return new List<float>(); }
     }
 
     /// <inheritdoc />

@@ -1,4 +1,5 @@
-﻿using droid.Runtime.Interfaces;
+﻿using System.Collections.Generic;
+using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
@@ -72,6 +73,22 @@ namespace droid.Runtime.Prototyping.Observers.Rigidbody {
     /// </summary>
     public Space3 AngularSpace { get { return this._angular_space; } }
 
+    public override IEnumerable<float> FloatEnumerable
+    {
+      get
+      {
+        return new[]
+        {
+          this.Velocity.x,
+          this.Velocity.y,
+          this.Velocity.z,
+          this.AngularVelocity.x,
+          this.AngularVelocity.y,
+          this.AngularVelocity.z
+        };
+      }
+    }
+
     public override void UpdateObservation() {
       var update_time_difference = Time.time - this._last_update_time;
       if (this._differential && update_time_difference > 0) {
@@ -98,14 +115,7 @@ namespace droid.Runtime.Prototyping.Observers.Rigidbody {
 
       this._last_update_time = Time.time;
 
-      this.FloatEnumerable = new[] {
-          this.Velocity.x,
-          this.Velocity.y,
-          this.Velocity.z,
-          this.AngularVelocity.x,
-          this.AngularVelocity.y,
-          this.AngularVelocity.z
-      };
+
     }
 
     /// <inheritdoc />
@@ -113,14 +123,6 @@ namespace droid.Runtime.Prototyping.Observers.Rigidbody {
     /// </summary>
     protected override void PreSetup() {
       this._rigidbody = this.GetComponent<UnityEngine.Rigidbody>();
-      this.FloatEnumerable = new[] {
-          this.Velocity.x,
-          this.Velocity.y,
-          this.Velocity.z,
-          this.AngularVelocity.x,
-          this.AngularVelocity.y,
-          this.AngularVelocity.z
-      };
     }
   }
 }

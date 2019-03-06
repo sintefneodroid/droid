@@ -1,4 +1,5 @@
-﻿using droid.Runtime.Interfaces;
+﻿using System.Collections.Generic;
+using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
@@ -14,6 +15,11 @@ namespace droid.Runtime.Prototyping.Observers {
     [SerializeField] bool _use_viewport = true; // Already normalised between 0 and 1
 
     // Update is called once per frame
+    public override IEnumerable<float> FloatEnumerable
+    {
+      get { return new[] {this._observation_value.x,this.ObservationValue.y}; }
+    }
+
     public override void UpdateObservation() {
       if (this._reference_camera) {
         Vector3 point;

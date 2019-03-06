@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
@@ -33,7 +34,12 @@ namespace droid.Runtime.Prototyping.Observers.Rays {
     public ValueSpace SingleSpace { get { return this._observation_value_space; } }
 
     protected override void PreSetup() {
-      this.FloatEnumerable = new[] {this.ObservationValue};
+
+    }
+
+    public override IEnumerable<float> FloatEnumerable
+    {
+      get { return new[] {this.ObservationValue}; }
     }
 
     public override void UpdateObservation() {
@@ -57,8 +63,6 @@ namespace droid.Runtime.Prototyping.Observers.Rays {
       } else {
         this.ObservationValue = 1;
       }
-
-      this.FloatEnumerable = new[] {this.ObservationValue};
     }
   }
 }

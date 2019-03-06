@@ -1,4 +1,5 @@
-﻿using droid.Runtime.Interfaces;
+﻿using System.Collections.Generic;
+using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
@@ -19,15 +20,13 @@ namespace droid.Runtime.Prototyping.Observers.Rigidbody {
 
     protected override void PreSetup() {
       this._rigidbody = this.GetComponent<UnityEngine.Rigidbody>();
-      this.FloatEnumerable =
-          new[] {this.ObservationValue.x, this.ObservationValue.y, this.ObservationValue.z};
     }
+
+    public override IEnumerable<float> FloatEnumerable { get{return
+      new[] {this.ObservationValue.x, this.ObservationValue.y, this.ObservationValue.z};} }
 
     public override void UpdateObservation() {
       this.ObservationValue = this._rigidbody.angularVelocity;
-
-      this.FloatEnumerable =
-          new[] {this.ObservationValue.x, this.ObservationValue.y, this.ObservationValue.z};
     }
   }
 }

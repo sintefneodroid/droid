@@ -49,6 +49,8 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     public void EnvironmentReset() { }
 
+    public virtual void PostEnvironmentSetup(){}
+
     /// <summary>
     /// </summary>
     /// <param name="random_generator"></param>

@@ -1,4 +1,5 @@
-﻿using droid.Runtime.Interfaces;
+﻿using System.Collections.Generic;
+using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
@@ -38,7 +39,9 @@ namespace droid.Runtime.Prototyping.Observers.Rays {
       }
     }
 
-    protected override void PreSetup() { this.FloatEnumerable = new[] {this.ObservationValue}; }
+    protected override void PreSetup() { }
+
+    public override IEnumerable<float> FloatEnumerable { get{return new[] {this.ObservationValue};} }
 
     public override void UpdateObservation() {
       if (Physics.Raycast(this.transform.position, this._direction, out this._hit, this._range)) {
@@ -46,8 +49,6 @@ namespace droid.Runtime.Prototyping.Observers.Rays {
       } else {
         this.ObservationValue = this._range;
       }
-
-      this.FloatEnumerable = new[] {this.ObservationValue};
     }
 
     #if UNITY_EDITOR
