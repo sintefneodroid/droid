@@ -6,6 +6,9 @@ using Random = System.Random;
 
 namespace droid.Runtime.Prototyping.Configurables
 {
+  /// <summary>
+  ///
+  /// </summary>
   [AddComponentMenu(
     ConfigurableComponentMenuPath._ComponentMenuPath
     + "ChildSelector"
@@ -16,8 +19,15 @@ namespace droid.Runtime.Prototyping.Configurables
     [SerializeField] GameObject[] children;
     [SerializeField] int len;
 
+    /// <summary>
+    ///
+    /// </summary>
     public override void PostEnvironmentSetup()
     {
+      if (!Application.isPlaying) {
+        return;
+      }
+
       var la = new List<GameObject>();
       foreach (Transform child in this.transform)
       {
@@ -34,16 +44,24 @@ namespace droid.Runtime.Prototyping.Configurables
       this.active.SetActive(true);
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration configuration)
     {
+      if (!Application.isPlaying) {
+        return;
+      }
+
       if(this.active)
       {
         this.active.SetActive(false);
       }
       if(this.children!=null && (int)configuration.ConfigurableValue<this.len)
       {
-        CurrentCategoryValue = (int) configuration.ConfigurableValue;
-        this.active = this.children[CurrentCategoryValue];
+        this.CurrentCategoryValue = (int) configuration.ConfigurableValue;
+        this.active = this.children[this.CurrentCategoryValue];
       }
 
       this.active.SetActive(true);

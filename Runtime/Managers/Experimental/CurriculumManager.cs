@@ -1,4 +1,5 @@
-﻿using droid.Runtime.Utilities.Misc.Drawing;
+﻿using System;
+using droid.Runtime.Utilities.Misc.Drawing;
 using droid.Runtime.Utilities.ScriptableObjects;
 using UnityEngine;
 
@@ -8,6 +9,10 @@ namespace droid.Runtime.Managers.Experimental {
     [SerializeField] Curriculum _curriculum= null;
 
     [SerializeField] bool _draw_levels = false;
+
+    public Curriculum Curriculum1 { get { return this._curriculum; } set { this._curriculum = value; } }
+
+    public Boolean DrawLevels { get { return this._draw_levels; } set { this._draw_levels = value; } }
 
     #if UNITY_EDITOR
     void OnDrawGizmosSelected() {

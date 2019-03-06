@@ -64,7 +64,7 @@ namespace droid.Runtime.Utilities.GameObjects {
     /// </summary>
     protected void Start()
     {
-      ReRegister();
+      this.ReRegister();
     }
 
     void ReRegister()

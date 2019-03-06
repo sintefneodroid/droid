@@ -16,6 +16,10 @@ namespace droid.Runtime.Prototyping.Displayers.Cells {
     [SerializeField] bool _plot_random_series=false;
     [SerializeField] bool _retain_last_plot = true;
 
+    public Boolean PlotRandomSeries {
+      get { return this._plot_random_series; }
+      set { this._plot_random_series = value; }
+    }
 
     /// <summary>
     /// </summary>
