@@ -8,17 +8,18 @@ using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Utilities.Enums;
 using droid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Utilities.ScriptableObjects;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 using Object = System.Object;
-#if UNITY_EDITOR
-
-#endif
 
 namespace droid.Runtime.Managers {
+
   /// <inheritdoc cref="UnityEngine.MonoBehaviour" />
   /// <summary>
   /// </summary>
+  [DisallowMultipleComponent]
   [AddComponentMenu("Neodroid/Managers/VanillaManager")]
   public abstract class NeodroidManager : MonoBehaviour,
                                           IManager {

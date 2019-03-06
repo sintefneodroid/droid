@@ -94,8 +94,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
           this.OnCollisionExitChild,
           this.OnTriggerExitChild,
           this.OnCollisionStayChild,
-          this.OnTriggerStayChild,
-          this.Debugging);
+          this.OnTriggerStayChild);
 
       NeodroidUtilities.RegisterCollisionTriggerCallbacksOnChildren<Utilities.Sensors.ChildCollider3DSensor, Collider, Collision>(
           this,
@@ -105,8 +104,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
           this.OnCollisionExitChild,
           this.OnTriggerExitChild,
           this.OnCollisionStayChild,
-          this.OnTriggerStayChild,
-          this.Debugging);
+          this.OnTriggerStayChild);
     }
 
     void OnTriggerEnterChild(GameObject child_game_object, Collider other_game_object) {

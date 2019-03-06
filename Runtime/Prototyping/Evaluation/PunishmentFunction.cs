@@ -1,4 +1,5 @@
 ﻿using droid.Runtime.Utilities.Misc.Extensions;
+using droid.Runtime.Utilities.Sensors;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Evaluation {
@@ -28,14 +29,20 @@ namespace droid.Runtime.Prototyping.Evaluation {
       var tagged_gos = GameObject.FindGameObjectsWithTag(this._avoid_tag);
 
       foreach (var ball in tagged_gos) {
-        if (ball) {
-          var publisher = ball.AddComponent<ChildCollisionPublisher>();
-          publisher.CollisionDelegate = this.OnChildCollision;
+        if (ball)
+        {
+          var publisher = ball.GetComponent<ChildCollider3DSensor>();
+          if(!publisher || publisher.Caller != this)
+          {
+            publisher = ball.AddComponent<ChildCollider3DSensor>();
+          }
+          publisher.Caller = this;
+          publisher.OnCollisionEnterDelegate = this.OnChildCollision;
         }
       }
     }
 
-    void OnChildCollision(Collision collision) {
+    void OnChildCollision(GameObject childSensorGameObject, Collision collision) {
       if (collision.collider.name == this._player.name) {
         this._hits += 1;
       }

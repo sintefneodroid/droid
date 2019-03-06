@@ -39,8 +39,6 @@ namespace droid.Runtime.Utilities.GameObjects {
         /// <summary>
         /// </summary>
         public bool Debugging { get { return this._debugging; } set { this._debugging = value; } }
-#else
-        public bool Debugging { get { return false; } set { } }
 #endif
         ///
         public virtual string PrototypingTypeName { get { return this.GetType().Name; } }

@@ -107,7 +107,8 @@ namespace droid.Runtime.Utilities.Misc {
         ChildColliderSensor<TCollider, TCollision>.OnChildTriggerExitDelegate on_trigger_exit_child = null,
         ChildColliderSensor<TCollider, TCollision>.OnChildCollisionStayDelegate on_collision_stay_child = null,
         ChildColliderSensor<TCollider, TCollision>.OnChildTriggerStayDelegate on_trigger_stay_child = null,
-        bool debug = false ) where TChildColliderSensor : ChildColliderSensor<TCollider, TCollision> where TCollider : Component {
+        bool debug = true ) where TChildColliderSensor : ChildColliderSensor<TCollider, TCollision> where
+        TCollider : Component {
       var children_with_colliders = parent.GetComponentsInChildren<TCollider>();
 
             //TODO add check and warning for not all callbacks = null
@@ -157,16 +158,12 @@ namespace droid.Runtime.Utilities.Misc {
           collider_sensor.OnCollisionStayDelegate = on_collision_stay_child;
         }
 
+        #if NEODROID_DEBUG
         if (debug) {
           Debug.Log(
-              caller.name
-              + " has created "
-              + collider_sensor.name
-              + " on "
-              + child.name
-              + " under parent "
-              + parent.name);
+            $"{caller.name} has created {collider_sensor.name} on {child.name} under parent {parent.name}");
         }
+        #endif
       }
     }
 
@@ -208,7 +205,9 @@ namespace droid.Runtime.Utilities.Misc {
       if (component != null) {
         component.Register(c);
       } else {
+        #if NEODROID_DEBUG
         Debug.Log($"Could not find a {typeof(TRecipient)} recipient during registeration");
+        #endif
       }
 
       return component;

@@ -103,8 +103,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
           null,
           this.OnTriggerExitChild,
           null,
-          this.OnTriggerStayChild,
-          this.Debugging);
+          this.OnTriggerStayChild);
 
       NeodroidUtilities.RegisterCollisionTriggerCallbacksOnChildren<Utilities.Sensors.ChildCollider3DSensor, Collider, Collision>(
           this,
@@ -114,8 +113,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
           null,
           this.OnTriggerExitChild,
           null,
-          this.OnTriggerStayChild,
-          this.Debugging);
+          this.OnTriggerStayChild);
       this._wait_for_seconds = new WaitForSeconds(this._resting_time);
     }
 
