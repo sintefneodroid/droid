@@ -114,15 +114,15 @@ namespace droid.Runtime.Prototyping.Evaluation {
 
     [SerializeField] bool _sparse = true;
 
-    [SerializeField] Transform _goal;
+    [SerializeField] Transform _goal=null;
 
-    [SerializeField] Transform _actor_transform;
+    [SerializeField] Transform _actor_transform=null;
 
-    [SerializeField] BoundingBox _playable_area;
+    [SerializeField] BoundingBox _playable_area=null;
 
-    [SerializeField] Obstruction[] _obstructions;
+    [SerializeField] Obstruction[] _obstructions=null;
 
-    [SerializeField] bool _state_full;
+    [SerializeField] bool _state_full=false;
     [SerializeField] float _goal_reached_radius = 0.01f; // Equivalent to 1 cm.
 
     /// <summary>

@@ -17,13 +17,13 @@ namespace droid.Runtime.Prototyping.Observers {
     /// <summary>
     /// </summary>
     [SerializeField]
-    Vector2 _2_d_position;
+    Vector2 _2_d_position = Vector2.zero;
 
     /// <summary>
     /// </summary>
     [Header("Observation", order = 103)]
     [SerializeField]
-    Vector3 _position;
+    Vector3 _position = Vector3.zero;
 
     /// <summary>
     /// </summary>
@@ -36,7 +36,7 @@ namespace droid.Runtime.Prototyping.Observers {
     /// </summary>
     [Header("Specific", order = 102)]
     [SerializeField]
-    UnityEngine.Transform _target;
+    UnityEngine.Transform _target = null;
 
     /// <inheritdoc />
     /// <summary>

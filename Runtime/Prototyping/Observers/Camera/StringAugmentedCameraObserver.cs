@@ -17,7 +17,7 @@ namespace droid.Runtime.Prototyping.Observers.Camera {
   [RequireComponent(typeof(UnityEngine.Camera))]
   public class StringAugmentedCameraObserver : CameraObserver,
                                                IHasString {
-    const string _ColorIdentifier = "Colors";
+    const string _color_identifier = "Colors";
 
     string _colors;
 
@@ -34,7 +34,7 @@ namespace droid.Runtime.Prototyping.Observers.Camera {
     protected override void PreSetup()
     {
       base.PreSetup();
-      this._colors = this.Identifier + _ColorIdentifier;
+      this._colors = this.Identifier + _color_identifier;
     }
 
     /// <inheritdoc />

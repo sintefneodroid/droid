@@ -18,7 +18,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     string _texture_str;
 
-    [SerializeField] Texture _texture;
+    [SerializeField] Texture _texture= null;
 
     /// <inheritdoc />
     /// <summary>

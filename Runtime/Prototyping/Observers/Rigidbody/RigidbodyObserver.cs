@@ -4,6 +4,7 @@ using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Observers.Rigidbody {
+  /// <inheritdoc cref="Observer" />
   /// <summary>
   /// </summary>
   [AddComponentMenu(
@@ -16,17 +17,17 @@ namespace droid.Runtime.Prototyping.Observers.Rigidbody {
 
     [Header("Observation", order = 100)]
     [SerializeField]
-    Vector3 _angular_velocity;
+    Vector3 _angular_velocity=Vector3.zero;
 
-    [SerializeField] bool _differential;
+    [SerializeField] bool _differential=false;
 
-    [SerializeField] float _last_update_time;
+    [SerializeField] float _last_update_time=0;
 
     [Header("Configuration", order = 110)]
     [SerializeField]
-    UnityEngine.Rigidbody _rigidbody;
+    UnityEngine.Rigidbody _rigidbody=null;
 
-    [SerializeField] Vector3 _velocity;
+    [SerializeField] Vector3 _velocity= Vector3.zero;
     [SerializeField] Space3 _velocity_space = new Space3(10);
 
     /// <inheritdoc />

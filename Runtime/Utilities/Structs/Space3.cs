@@ -1,13 +1,18 @@
 ﻿using System;
 using UnityEngine;
+using Object = System.Object;
 using Random = UnityEngine.Random;
 
 namespace droid.Runtime.Utilities.Structs {
+  /// <summary>
+  ///
+  /// </summary>
   [Serializable]
   public struct Space3 {
     public int _Decimal_Granularity;
     public Vector3 _Min_Values;
     public Vector3 _Max_Values;
+
 
     public Space3(int decimal_granularity = 10) {
       this._Decimal_Granularity = decimal_granularity;
@@ -66,5 +71,15 @@ namespace droid.Runtime.Utilities.Structs {
     }
 
     public float Round(float v) { return (float)Math.Round(v, this._Decimal_Granularity); }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
+    public static Space3 ZeroOne {
+      get { return new Space3(1) {_Min_Values = Vector3.zero, _Max_Values =
+                                     Vector3.one}; }
+    }
+
   }
 }

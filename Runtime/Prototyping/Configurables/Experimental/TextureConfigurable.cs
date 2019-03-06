@@ -3,6 +3,7 @@ using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Utilities.Debugging;
 using droid.Runtime.Utilities.Misc;
+using JetBrains.Annotations;
 using UnityEngine;
 using Random = System.Random;
 
@@ -19,11 +20,11 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     string _texture_str;
 
-    [SerializeField] Texture[] _textures;
+    [SerializeField] Texture[] _textures=null;
     [SerializeField] bool load_from_resources_if_empty = true;
-    [SerializeField] Texture _texture;
-    Renderer _renderer;
-    [SerializeField] bool use_shared;
+    [SerializeField] Texture _texture=null;
+    [CanBeNull] Renderer _renderer=null;
+    [SerializeField] bool use_shared=false;
 
     /// <inheritdoc />
     /// <summary>

@@ -22,12 +22,12 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     [SerializeField]
-    float _velocity_space;
+    float _velocity_space=0;
 
 
     /// <summary>
     /// </summary>
-    ValueSpace _angular_velocity;
+    ValueSpace _angular_velocity =ValueSpace.ZeroOne;
 
     /// <summary>
     /// </summary>

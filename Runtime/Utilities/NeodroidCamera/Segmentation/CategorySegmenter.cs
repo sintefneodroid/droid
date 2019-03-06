@@ -10,6 +10,16 @@ using System.Linq;
 
 namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation
 {
+
+  /// <summary>
+  /// 
+  /// </summary>
+  enum SegmentationMode
+  {
+    Tag_,
+    Layer_
+  }
+
   /// <inheritdoc />
   /// <summary>
   /// </summary>
@@ -18,22 +28,23 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation
   {
     /// <summary>
     /// </summary>
-    Renderer[] _all_renders;
+    Renderer[] _all_renders= null;
 
     /// <summary>
     /// </summary>
-    MaterialPropertyBlock _block;
+    MaterialPropertyBlock _block= null;
 
-    [SerializeField] Shader segmentation_shader;
-    [SerializeField] Camera _camera;
+    [SerializeField] Shader segmentation_shader = null;
+    [SerializeField] Camera _camera= null;
 
-    enum SegmentationMode
-    {
-      Tag,
-      Layer
-    }
+    [SerializeField] protected ColorByCategory[] _colors_by_category=null;
 
-    [SerializeField] ScriptableObjects.Segmentation _segmentation_preset;
+    [SerializeField] SegmentationMode _segmentation_mode = SegmentationMode.Tag_;
+
+
+
+
+    [SerializeField] ScriptableObjects.Segmentation _segmentation_preset = null;
 
     /// <summary>
     /// </summary>
@@ -50,9 +61,6 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation
       get { return this._colors_by_category; }
     }
 
-    [SerializeField] protected ColorByCategory[] _colors_by_category;
-
-    [SerializeField] SegmentationMode _segmentation_mode;
 
     /// <summary>
     /// </summary>
@@ -97,7 +105,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation
       }
     }
 
-    SynthesisUtilities.CapturePass[] _capturePasses;
+    SynthesisUtilities.CapturePass[] _capture_passes;
 
     /// <summary>
     /// </summary>
@@ -142,8 +150,8 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation
 
       switch (this._segmentation_mode)
       {
-        case SegmentationMode.Tag:
-          this._capturePasses = new[]
+        case SegmentationMode.Tag_:
+          this._capture_passes = new[]
           {
             new SynthesisUtilities.CapturePass
             {
@@ -156,8 +164,8 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation
             }
           };
           break;
-        case SegmentationMode.Layer:
-          this._capturePasses = new[]
+        case SegmentationMode.Layer_:
+          this._capture_passes = new[]
           {
             new SynthesisUtilities.CapturePass
             {
@@ -175,7 +183,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation
 
 
       SynthesisUtilities.SetupCapturePassesReplacementShader(this._camera, this.segmentation_shader,
-        ref this._capturePasses);
+        ref this._capture_passes);
 
 
       this.CheckBlock();
@@ -187,11 +195,11 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation
         Color color;
         string shader_data_name;
         switch (this._segmentation_mode){
-          case SegmentationMode.Tag:
+          case SegmentationMode.Tag_:
             category_name = a_renderer.tag;
             shader_data_name = SynthesisUtilities._Shader_Tag_Color_Name;
             break;
-          case SegmentationMode.Layer:
+          case SegmentationMode.Layer_:
             category_int = a_renderer.gameObject.layer;
             category_name = LayerMask.LayerToName(category_int);
             shader_data_name = SynthesisUtilities._Shader_Layer_Color_Name;
@@ -201,12 +209,12 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation
 
         if (!this.ColorsDictGameObject.ContainsKey(category_name)){
           switch (this._segmentation_mode){
-            case SegmentationMode.Tag:
+            case SegmentationMode.Tag_:
               category_int = category_name.GetHashCode();
               color = ColorEncoding.EncodeTagHashCodeAsColor(category_int);
               //color = ColorEncoding.EncodeIdAsColor(category_int);
               break;
-            case SegmentationMode.Layer:
+            case SegmentationMode.Layer_:
               color = ColorEncoding.EncodeLayerAsColor(category_int);
               break;
             default:

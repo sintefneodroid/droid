@@ -16,15 +16,15 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
   public class MeshConfigurable : Configurable {
     string _mesh_str;
 
-    Mesh _deforming_mesh;
-    Vector3[] _original_vertices, _displaced_vertices;
-    Perlin _noise;
+    Mesh _deforming_mesh=null;
+    Vector3[] _original_vertices=null, _displaced_vertices=null;
+    Perlin _noise=null;
     float _scale = 1.0f;
     float _speed = 1.0f;
 
-    [SerializeField] Mesh[ ] _meshes;
-    [SerializeField] MeshFilter _mesh_filter;
-    [SerializeField] bool _displace_mesh;
+    [SerializeField] Mesh[ ] _meshes=null;
+    [SerializeField] MeshFilter _mesh_filter=null;
+    [SerializeField] bool _displace_mesh=false;
 
     /// <inheritdoc />
     /// <summary>

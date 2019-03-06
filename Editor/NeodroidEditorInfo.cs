@@ -11,11 +11,11 @@ namespace droid.Editor
         /// </summary>
         public const string _Version = "0.1.1";
 
-        public const string _debug_pref_key = "EnableNeodroidDebug";
-        public const string _github_extension_pref_key = "NeodroidGithubExtension";
-        public const string _imported_asset_pref_key = "NeodroidImportedAsset";
-        public const string _generate_previews_pref_key = "NeodroidGeneratePreviews";
-        public const string _generate_previews_loc_pref_key = "NeodroidPreviewsLocation";
+        public const string _Debug_Pref_Key = "EnableNeodroidDebug";
+        public const string _Github_Extension_Pref_Key = "NeodroidGithubExtension";
+        public const string _Imported_Asset_Pref_Key = "NeodroidImportedAsset";
+        public const string _Generate_Previews_Pref_Key = "NeodroidGeneratePreviews";
+        public const string _Generate_Previews_Loc_Pref_Key = "NeodroidPreviewsLocation";
 
         public static string ImportLocation{
             get { return _import_location; }
@@ -26,10 +26,10 @@ namespace droid.Editor
         }
 
         public static bool GenerateScenePreviews {
-            get { return EditorPrefs.GetBool(_generate_previews_pref_key, false); }
+            get { return EditorPrefs.GetBool(_Generate_Previews_Pref_Key, false); }
         }
 
-        static string _scene_previews_location = EditorPrefs.GetString(_generate_previews_loc_pref_key, "ScenePreviews/");
+        static string _scene_previews_location = EditorPrefs.GetString(_Generate_Previews_Loc_Pref_Key, "ScenePreviews/");
 
         public static string ScenePreviewsLocation{
             get { return _scene_previews_location; }
@@ -43,8 +43,8 @@ namespace droid.Editor
 
 
 #if NEODROID_IMPORTED_ASSET
-        public const string _import_location_pref_key = "NeodroidImportLocation";
-        static string _import_location = EditorPrefs.GetString(_import_location_pref_key, "Assets/droid/");
+        public const string _Import_Location_Pref_Key = "NeodroidImportLocation";
+        static string _import_location = EditorPrefs.GetString(_Import_Location_Pref_Key, "Assets/droid/");
 #else
         static string _import_location = "Packages/com.neodroid.droid/";
 #endif

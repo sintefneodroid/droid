@@ -6,8 +6,8 @@ namespace droid.Runtime.Prototyping.Evaluation {
       + "AngularVelocity"
       + EvaluationComponentMenuPath._Postfix)]
   public class AngularVelocityEvaluation : ObjectiveFunction {
-    [SerializeField] bool _penalty;
-    [SerializeField] Rigidbody _rigidbody;
+    [SerializeField] bool _penalty=false;
+    [SerializeField] Rigidbody _rigidbody=null;
 
     /// <summary>
     /// </summary>

@@ -91,8 +91,9 @@ namespace droid.Runtime.Utilities.Misc {
       var current_render_texture = RenderTexture.active;
       RenderTexture.active = camera.targetTexture;
       camera.Render();
-      var texture = new Texture2D(camera.targetTexture.width, camera.targetTexture.height);
-      texture.ReadPixels(new Rect(0, 0, camera.targetTexture.width, camera.targetTexture.height), 0, 0);
+      var target_texture = camera.targetTexture;
+      var texture = new Texture2D(target_texture.width, target_texture.height);
+      texture.ReadPixels(new Rect(0, 0, target_texture.width, target_texture.height), 0, 0);
       texture.Apply();
       RenderTexture.active = current_render_texture;
       return texture;

@@ -11,21 +11,27 @@ namespace droid.Runtime.Prototyping.Observers.Camera {
                                           IHasArray {
     [Header("Observation", order = 103)]
     //[SerializeField]
-    float[] _array = { };
+    float[] _array = null;
 
-    [SerializeField] bool _black_white;
+    [SerializeField] bool _black_white=false;
 
     [Header("Specific", order = 102)]
     [SerializeField]
-    UnityEngine.Camera _camera;
+    UnityEngine.Camera _camera=null;
 
     bool _grab = true;
 
-    IManager _manager;
+    IManager _manager=null;
 
-    [SerializeField] Texture2D _texture;
+    [SerializeField] Texture2D _texture=null;
 
+    /// <summary>
+    ///
+    /// </summary>
     public float[] ObservationArray { get { return this._array; } private set { this._array = value; } }
+    /// <summary>
+    ///
+    /// </summary>
     public ValueSpace[] ObservationSpace { get; }
 
     protected override void PreSetup() {
@@ -58,10 +64,11 @@ namespace droid.Runtime.Prototyping.Observers.Camera {
       this._grab = false;
 
       var current_render_texture = RenderTexture.active;
-      RenderTexture.active = this._camera.targetTexture;
+      var target_texture = this._camera.targetTexture;
+      RenderTexture.active = target_texture;
 
       this._texture.ReadPixels(
-          new Rect(0, 0, this._camera.targetTexture.width, this._camera.targetTexture.height),
+          new Rect(0, 0, target_texture.width, target_texture.height),
           0,
           0);
       this._texture.Apply();

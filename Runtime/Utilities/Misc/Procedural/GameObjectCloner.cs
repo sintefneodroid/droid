@@ -5,11 +5,11 @@ namespace droid.Runtime.Utilities.Misc.Procedural {
   /// <summary>
   /// </summary>
   public class GameObjectCloner : MonoBehaviour {
-    [SerializeField] GameObject[] _clones;
+    [SerializeField] GameObject[] _clones=null;
     [SerializeField] Vector3 _initial_offset = new Vector3(20, 0);
     [SerializeField] [Range(0, 99)] int _num_clones=0;
     [SerializeField] Vector3 _offset = new Vector3(20, 0, 20);
-    [SerializeField] GameObject _prefab;
+    [SerializeField] GameObject _prefab=null;
 
     void Start() { this.InstantiateClones(); }
 

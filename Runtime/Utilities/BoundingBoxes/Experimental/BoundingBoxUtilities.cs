@@ -5,7 +5,16 @@ using UnityEditor;
 using UnityEngine;
 
 namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
-  public static class BbUtilities {
+  /// <summary>
+  ///
+  /// </summary>
+  public static class BoundingBoxUtilities {
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="p"></param>
+    /// <param name="r"></param>
+    /// <param name="c"></param>
     public static void DrawBoxFromCenter(Vector3 p, float r, Color c) {
       // p is pos.yition of the center, r is "radius" and c is the color of the box
       //Bottom lines
@@ -27,6 +36,14 @@ namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
       Debug.DrawLine(new Vector3(r + p.x, -r + p.y, r + p.z), new Vector3(r + p.x, r + p.y, r + p.z), c);
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="x_size"></param>
+    /// <param name="y_size"></param>
+    /// <param name="z_size"></param>
+    /// <param name="pos"></param>
+    /// <param name="color"></param>
     public static void DrawRect(float x_size, float y_size, float z_size, Vector3 pos, Color color) {
       var x = x_size / 2;
       var y = y_size / 2;
@@ -75,6 +92,12 @@ namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
                      color);
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="old_transforms"></param>
+    /// <param name="newly_acquired_transforms"></param>
+    /// <returns></returns>
     public static bool DidTransformsChange(
         Transform[] old_transforms,
         Transform[] newly_acquired_transforms) {
@@ -95,6 +118,11 @@ namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
       return false;
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="object_transform"></param>
+    /// <returns></returns>
     public static Bounds GetTotalMeshFilterBounds(Transform object_transform) {
       var mesh_filter = object_transform.GetComponent<MeshFilter>();
 
@@ -165,10 +193,16 @@ namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
       return b;
     }
 
-
-
-    public static Rect
-        GetBoundsScreenRectEncapsulationSlow(this Bounds bounds, Camera cam, float margin = 0) {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="bounds"></param>
+    /// <param name="cam"></param>
+    /// <param name="margin"></param>
+    /// <returns></returns>
+    public static Rect GetBoundsScreenRectEncapsulationSlow(this Bounds bounds,
+                                                            Camera cam,
+                                                            float margin = 0) {
       var rect = new Rect();
 
       var points = new Vector3[8];
@@ -293,6 +327,13 @@ namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
       return r;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="rect"></param>
+    /// <param name="width"></param>
+    /// <param name="height"></param>
+    /// <returns></returns>
     public static Rect Normalise(this Rect rect, float width, float height) {
       if (width < float.Epsilon || Math.Abs(height) < float.Epsilon) {
         return new Rect();

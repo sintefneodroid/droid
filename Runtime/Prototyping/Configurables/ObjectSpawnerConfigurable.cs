@@ -12,13 +12,13 @@ namespace droid.Runtime.Prototyping.Configurables {
       + "ObjectSpawner"
       + ConfigurableComponentMenuPath._Postfix)]
   public class ObjectSpawnerConfigurable : Configurable {
-    [SerializeField] int _amount;
+    [SerializeField] int _amount = 0;
 
-    [SerializeField] Axis _axis;
+    [SerializeField] Axis _axis = Axis.X_;
 
-    [SerializeField] GameObject _object_to_spawn;
+    [SerializeField] GameObject _object_to_spawn=null;
 
-    List<GameObject> _spawned_objects;
+    List<GameObject> _spawned_objects=null;
 
     /// <inheritdoc />
     /// <summary>
@@ -51,14 +51,15 @@ namespace droid.Runtime.Prototyping.Configurables {
         } else if (this._axis == Axis.Z_) {
           dir = Vector3.forward;
         }
-
+        var transform1 = this.transform;
         for (var i = 0; i < this._amount; i++) {
+
           this._spawned_objects.Add(
               Instantiate(
                   this._object_to_spawn,
-                  this.transform.position + dir * i,
+                  transform1.position + dir * i,
                   Random.rotation,
-                  this.transform));
+                  transform1));
         }
       }
     }

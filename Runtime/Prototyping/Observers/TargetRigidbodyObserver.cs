@@ -10,8 +10,8 @@ namespace droid.Runtime.Prototyping.Observers {
   /// </summary>
   public class TargetRigidbodyObserver : Observer,
                                          IHasDouble {
-    TargetRigidbodyMotor _motor;
-    [SerializeField] Space2 _observation_space2_d;
+    [SerializeField] TargetRigidbodyMotor _motor=null;
+    [SerializeField] Space2 _observation_space2_d=Space2.ZeroOne;
 
     /// <inheritdoc />
     /// <summary>
@@ -30,7 +30,9 @@ namespace droid.Runtime.Prototyping.Observers {
     /// </summary>
     protected override void PreSetup() {
       base.PreSetup();
-      this._motor = this.GetComponent<TargetRigidbodyMotor>();
+      if(!this._motor) {
+        this._motor = this.GetComponent<TargetRigidbodyMotor>();
+      }
     }
 
     public override IEnumerable<float> FloatEnumerable

@@ -30,7 +30,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation.Obsolete {
     /// </summary>
     public bool _Replace_Untagged_Color = true;
 
-    [SerializeField] ScriptableObjects.Segmentation _segmentation;
+    [SerializeField] ScriptableObjects.Segmentation _segmentation = null;
 
     /// <summary>
     /// </summary>

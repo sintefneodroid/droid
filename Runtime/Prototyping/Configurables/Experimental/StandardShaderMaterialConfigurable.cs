@@ -46,8 +46,8 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental
     /// </summary>
     Renderer _renderer;
 
-    static readonly int Glossiness = Shader.PropertyToID("_Glossiness");
-    static readonly int GlossyReflections = Shader.PropertyToID("_GlossyReflections");
+    static readonly int _glossiness = Shader.PropertyToID("_Glossiness");
+    static readonly int _glossy_reflections = Shader.PropertyToID("_GlossyReflections");
 
     /// <inheritdoc />
     /// <summary>
@@ -152,10 +152,10 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental
           c.a = configuration.ConfigurableValue;
         }else if (configuration.ConfigurableName == this._smoothness)
         {
-          mat.SetFloat(Glossiness,configuration.ConfigurableValue);
+          mat.SetFloat(_glossiness,configuration.ConfigurableValue);
         }else if (configuration.ConfigurableName == this._reflection)
         {
-          mat.SetFloat(GlossyReflections,configuration.ConfigurableValue);
+          mat.SetFloat(_glossy_reflections,configuration.ConfigurableValue);
         }
 
         mat.color = c;

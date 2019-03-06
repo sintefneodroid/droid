@@ -8,7 +8,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
     /// <summary>
     /// </summary>
     [SerializeField]
-    Rigidbody _rigidbody;
+    Rigidbody _rigidbody = null;
 
     /// <summary>
     /// </summary>

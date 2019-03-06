@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Managers;
 using droid.Runtime.Utilities.Enums;
+using droid.Runtime.Utilities.Misc;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -58,18 +59,17 @@ namespace droid.Runtime.Prototyping.Observers.Camera
     /// </summary>
     [SerializeField] [Range(0, 100)] int jpegQuality = 75;
 
-    const Int32 _DefaultWidth = 256;
-    const Int32 _DefaultHeight = _DefaultWidth;
+
 
     /// <summary>
     /// </summary>
-    protected IManager _Manager;
+    protected IManager _Manager=null;
 
     /// <summary>
     /// </summary>
-    Texture2D _texture;
+    Texture2D _texture=null;
 
-    [SerializeField] bool disable_encoding;
+    [SerializeField] bool disable_encoding=false;
 
     /// <inheritdoc />
     /// <summary>
@@ -93,9 +93,9 @@ namespace droid.Runtime.Prototyping.Observers.Camera
         if (!target_texture)
         {
           Debug.LogWarning(
-            $"No targetTexture defaulting to a texture of size ({_DefaultWidth}, {_DefaultHeight})");
+            $"No targetTexture defaulting to a texture of size ({NeodroidConstants._Default_Width}, {NeodroidConstants._Default_Height})");
 
-          this._texture = new Texture2D(_DefaultWidth, _DefaultHeight);
+          this._texture = new Texture2D(NeodroidConstants._Default_Width, NeodroidConstants._Default_Height);
         }
         else
         {
@@ -166,7 +166,7 @@ namespace droid.Runtime.Prototyping.Observers.Camera
 #if NEODROID_DEBUG
           Debug.LogWarning("Texture not available!");
 #endif
-          this._texture = new Texture2D(_DefaultWidth, _DefaultHeight);
+          this._texture = new Texture2D(NeodroidConstants._Default_Width, NeodroidConstants._Default_Height);
         }
 
 

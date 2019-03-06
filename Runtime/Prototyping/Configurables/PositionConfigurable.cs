@@ -14,9 +14,9 @@ namespace droid.Runtime.Prototyping.Configurables {
                                       IHasTriple {
     [Header("Observation", order = 103)]
     [SerializeField]
-    Vector3 _position;
+    Vector3 _position = Vector3.zero;
 
-    [SerializeField] bool _use_environments_space;
+    [SerializeField] bool _use_environments_space=false;
 
     /// <summary>
     /// </summary>
@@ -30,22 +30,31 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     string _z;
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override string PrototypingTypeName { get { return "PositionConfigurable"; } }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public Vector3 ObservationValue { get { return this._position; } }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public Space3 TripleSpace { get; } = new Space3();
 
+    /// <summary>
+    /// 
+    /// </summary>
     protected override void PreSetup() {
       this._x = this.Identifier + "X_";
       this._y = this.Identifier + "Y_";
       this._z = this.Identifier + "Z_";
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
@@ -66,6 +75,9 @@ namespace droid.Runtime.Prototyping.Configurables {
           this._z);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     protected override void UnRegisterComponent() {
       if (this.ParentEnvironment == null) {
         return;
@@ -77,6 +89,9 @@ namespace droid.Runtime.Prototyping.Configurables {
       this.ParentEnvironment.UnRegister(this, this._z);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public override void UpdateCurrentConfiguration() {
       if (this._use_environments_space) {
         this._position = this.ParentEnvironment.TransformPoint(this.transform.position);

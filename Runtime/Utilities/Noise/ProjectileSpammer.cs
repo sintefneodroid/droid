@@ -10,7 +10,7 @@ namespace droid.Runtime.Utilities.Noise {
     [SerializeField] [Range(.0f, 1.0f)] float _scale_modifier = 0.2f;
     [SerializeField] float _spawn_radius = 20f;
     [SerializeField] float _spawn_rate = 0.5f;
-    [SerializeField] Transform _target;
+    [SerializeField] Transform _target = null;
 
     void Update() {
       if (this._last_spawn + 1 / this._spawn_rate < Time.time) {

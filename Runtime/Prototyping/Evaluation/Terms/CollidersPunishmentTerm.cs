@@ -11,12 +11,12 @@ namespace droid.Runtime.Prototyping.Evaluation.Terms {
     /// <summary>
     /// </summary>
     [SerializeField]
-    Collider[] _avoid_collders;
+    Collider[] _avoid_colliders= null;
 
     /// <summary>
     /// </summary>
     [SerializeField]
-    Collider _subject_collider;
+    Collider _subject_collider= null;
 
     /// <inheritdoc />
     /// <summary>
@@ -28,7 +28,7 @@ namespace droid.Runtime.Prototyping.Evaluation.Terms {
     /// </summary>
     /// <returns></returns>
     public override float Evaluate() {
-      if (this._avoid_collders.Any(a => a.bounds.Intersects(this._subject_collider.bounds))) {
+      if (this._avoid_colliders.Any(a => a.bounds.Intersects(this._subject_collider.bounds))) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log("Intersecting bounds");

@@ -13,11 +13,11 @@ namespace droid.Runtime.Prototyping.Evaluation {
   [RequireComponent(typeof(Rigidbody))]
   public class PunishmentFunction : ObjectiveFunction {
     [SerializeField] string _avoid_tag = "balls";
-    [SerializeField] int _hits;
+    [SerializeField] int _hits = 0;
 
     //[SerializeField] LayerMask _layer_mask;
 
-    [SerializeField] GameObject _player;
+    [SerializeField] GameObject _player = null;
 
     // Use this for initialization
     /// <inheritdoc />
@@ -42,7 +42,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
       }
     }
 
-    void OnChildCollision(GameObject childSensorGameObject, Collision collision) {
+    void OnChildCollision(GameObject child_sensor_game_object, Collision collision) {
       if (collision.collider.name == this._player.name) {
         this._hits += 1;
       }

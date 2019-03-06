@@ -13,7 +13,7 @@ namespace droid.Samples.MultiArmedBandit {
     [SerializeField] MultiArmedBanditMotor _arms;
     [SerializeField] float[] _normalised_values;
 
-    [SerializeField] TextBarPlotDisplayer _text_bar_plot_displayer;
+    [SerializeField] TextBarPlotDisplayer _text_bar_plot_displayer = null;
 
     /// <inheritdoc />
     /// <summary>

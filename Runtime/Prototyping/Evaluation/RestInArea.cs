@@ -13,20 +13,20 @@ namespace droid.Runtime.Prototyping.Evaluation {
   [AddComponentMenu(
       EvaluationComponentMenuPath._ComponentMenuPath + "RestInArea" + EvaluationComponentMenuPath._Postfix)]
   public class RestInArea : ObjectiveFunction {
-    [SerializeField] Actor _actor;
+    [SerializeField] Actor _actor=null;
 
-    [SerializeField] Collider _area;
-    [SerializeField] bool _is_resting;
+    [SerializeField] Collider _area=null;
+    [SerializeField] bool _is_resting=false;
 
-    [SerializeField] Obstruction[] _obstructions;
+    [SerializeField] Obstruction[] _obstructions=null;
 
     //Used for.. if outside playable area then reset
     [SerializeField] ActorOverlapping _overlapping = ActorOverlapping.Outside_area_;
 
-    [SerializeField] BoundingBox _playable_area;
+    [SerializeField] BoundingBox _playable_area=null;
     [SerializeField] float _resting_time = 3f;
-    [SerializeField] bool _sparse;
-    [SerializeField] Coroutine _wait_for_resting;
+    [SerializeField] bool _sparse=false;
+    [SerializeField] Coroutine _wait_for_resting=null;
     WaitForSeconds _wait_for_seconds = new WaitForSeconds(3f);
 
     /// <inheritdoc />

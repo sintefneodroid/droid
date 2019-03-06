@@ -14,8 +14,8 @@ namespace droid.Runtime.Prototyping.Observers {
   public class CategoricalObserver : Observer, IHasSingle
   {
 
-    [SerializeField] PrototypingGameObject _categoryProvider;
-    [SerializeField] float _observationValue;
+    [SerializeField] PrototypingGameObject _categoryProvider=null;
+    [SerializeField] float _observationValue=0;
 
     //void OneHotEncoding() { }
 

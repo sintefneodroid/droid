@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using droid.Runtime.Utilities.Misc;
 using UnityEngine;
 
 namespace droid.Runtime.Utilities.NeodroidCamera {
@@ -9,13 +10,13 @@ namespace droid.Runtime.Utilities.NeodroidCamera {
   [ExecuteInEditMode]
   [Serializable]
   public class CameraObservationTextureController : MonoBehaviour {
-    [SerializeField] Camera[] _cameras;
+    [SerializeField] Camera[] _cameras=null;
     [SerializeField] FilterMode _filter_mode = FilterMode.Bilinear;
 
-    [SerializeField] Vector2Int _size = new Vector2Int(84, 84);
-    [SerializeField] TextureFormat _texture_format = TextureFormat.ARGB32;
+    [SerializeField] Vector2Int _size = new Vector2Int(NeodroidConstants._Default_Observation_Texture_Xy_Size, NeodroidConstants._Default_Observation_Texture_Xy_Size);
+    //[SerializeField] TextureFormat _texture_format = TextureFormat.ARGB32;
 
-    [SerializeField] Texture[] _textures;
+    [SerializeField] Texture[] _textures=null;
     [SerializeField] TextureWrapMode _wrap_mode = TextureWrapMode.Clamp;
 
     void Awake() {

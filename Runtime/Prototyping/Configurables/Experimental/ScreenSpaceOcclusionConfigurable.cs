@@ -39,9 +39,9 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
 
     /// <summary>
     /// </summary>
-    Camera _camera;
+    Camera _camera=null;
 
-    GameObject[] _prefabs;
+    GameObject[] _prefabs=null;
     List<GameObject> _spawned = new List<GameObject>();
 
     /// <inheritdoc />

@@ -8,13 +8,13 @@ namespace droid.Runtime.Prototyping.Observers.Rays {
       ObserverComponentMenuPath._ComponentMenuPath + "FixedLidar" + ObserverComponentMenuPath._Postfix)]
   public class FixedLidarObserver : Observer,
                                     IHasArray {
-    [SerializeField] RaycastHit _hit;
+    [SerializeField] RaycastHit _hit=new RaycastHit();
 
-    [SerializeField] bool _is_2_d;
+    [SerializeField] bool _is_2_d=false;
 
     [Header("Observation", order = 103)]
     [SerializeField]
-    float[] _obs_array;
+    float[] _obs_array=null;
 
 
 

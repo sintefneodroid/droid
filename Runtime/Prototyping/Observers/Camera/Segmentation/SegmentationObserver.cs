@@ -17,7 +17,7 @@ namespace droid.Runtime.Prototyping.Observers.Camera.Segmentation {
     /// <summary>
     /// </summary>
     [SerializeField]
-    Segmenter _segmenter;
+    Segmenter _segmenter = null;
 
     public override IEnumerable<float> FloatEnumerable { get {return new List<float>();} }
 

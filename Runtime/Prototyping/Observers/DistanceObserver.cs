@@ -6,11 +6,14 @@ using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Observers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class DistanceObserver : Observer, IHasSingle
     {
-        [SerializeField] UnityEngine.Transform t1;
-        [SerializeField] UnityEngine.Transform t2;
-        [SerializeField] float _observationValue;
+        [SerializeField] UnityEngine.Transform t1= null;
+        [SerializeField] UnityEngine.Transform t2= null;
+        [SerializeField] float _observationValue = 0;
 
 
         public override IEnumerable<float> FloatEnumerable { get{return new[] {this.ObservationValue };} }

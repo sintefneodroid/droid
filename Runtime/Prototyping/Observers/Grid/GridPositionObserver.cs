@@ -4,25 +4,28 @@ using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Observers.Grid {
+  /// <inheritdoc cref="Observer" />
+  /// <summary>
+  /// </summary>
   [AddComponentMenu(
       ObserverComponentMenuPath._ComponentMenuPath + "GridPosition" + ObserverComponentMenuPath._Postfix)]
   public class GridPositionObserver : Observer,
                                       IHasSingle {
     /// <summary>
     /// </summary>
-    int[,] _grid;
+    int[,] _grid=null;
 
     /// <summary>
     /// </summary>
     [SerializeField]
-    int _height;
+    int _height=0;
 
     [Header("Observation", order = 103)]
     [SerializeField]
     float _observation_value;
 
     [SerializeField] ValueSpace _observation_value_space;
-    [SerializeField] int _width;
+    [SerializeField] int _width = 0;
 
     /// <summary>
     /// </summary>
@@ -56,8 +59,9 @@ namespace droid.Runtime.Prototyping.Observers.Grid {
     public override IEnumerable<float> FloatEnumerable { get{return new[] {this.ObservationValue};} }
 
     public override void UpdateObservation() {
-      var x = this.transform.position.x + this._width;
-      var z = this.transform.position.z + this._height;
+      var position = this.transform.position;
+      var x = position.x + this._width;
+      var z = position.z + this._height;
 
       this.ObservationValue = this._grid[(int)x, (int)z];
     }

@@ -22,9 +22,9 @@ namespace droid.Runtime.Prototyping.Observers.BoundingBox {
     /// </summary>
     public override string PrototypingTypeName { get { return "BoundingBox"; } }
 
-    Utilities.BoundingBoxes.BoundingBox _bounding_box;
-    [SerializeField] UnityEngine.Camera _camera;
-    [SerializeField] Rect _out_rect;
+    Utilities.BoundingBoxes.BoundingBox _bounding_box=null;
+    [SerializeField] UnityEngine.Camera _camera=null;
+    [SerializeField] Rect _out_rect=new Rect();
     [SerializeField] bool normalise = true;
 
     /// <inheritdoc />

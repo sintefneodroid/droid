@@ -40,8 +40,8 @@ namespace droid.Runtime.Utilities.StatusDisplayer {
         foreach (CameraObservation animal in this._camera_observations) {
           var r = Instantiate(this.ListItemPrefab, this.ContentPanel.transform, true);
           var controller = r.GetComponent<RenderTextureListItem>();
-          controller.Icon.sprite = animal.Icon;
-          controller.Name.text = animal.Name;
+          controller.Icon.sprite = animal._Icon;
+          controller.Name.text = animal._Name;
           r.transform.localScale = Vector3.one;
         }
       }
@@ -67,12 +67,12 @@ namespace droid.Runtime.Utilities.StatusDisplayer {
   ///
   /// </summary>
   public class CameraObservation {
-    public Sprite Icon;
-    public string Name;
+    public Sprite _Icon;
+    public string _Name;
 
     public CameraObservation(Sprite icon, string name) {
-      this.Icon = icon;
-      this.Name = name;
+      this._Icon = icon;
+      this._Name = name;
     }
   }
 }

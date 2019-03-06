@@ -15,14 +15,14 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
   public class MaterialIdSegmenter : Segmenter {
     /// <summary>
     /// </summary>
-    Renderer[] _all_renders;
+    Renderer[] _all_renders=null;
 
     /// <summary>
     /// </summary>
-    MaterialPropertyBlock _block;
+    MaterialPropertyBlock _block=null;
 
-    [SerializeField] Shader segmentation_shader;
-    [SerializeField] Camera _camera;
+    [SerializeField] Shader segmentation_shader=null;
+    [SerializeField] Camera _camera=null;
 
     /// <summary>
     /// </summary>

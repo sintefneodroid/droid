@@ -10,7 +10,7 @@ namespace droid.Runtime.Prototyping.Observers.Rays {
                                  IHasSingle {
     [SerializeField] Vector3 _direction = Vector3.forward;
 
-    [SerializeField] RaycastHit _hit;
+    [SerializeField] RaycastHit _hit = new RaycastHit();
 
     [SerializeField]
     ValueSpace _observation_space =
@@ -18,9 +18,9 @@ namespace droid.Runtime.Prototyping.Observers.Rays {
 
     [Header("Observation", order = 103)]
     [SerializeField]
-    float _observation_value;
+    float _observation_value = 0;
 
-    [SerializeField] ValueSpace _observation_value_space;
+    [SerializeField] ValueSpace _observation_value_space = ValueSpace.ZeroOne;
 
     [SerializeField] float _range = 100.0f;
 
@@ -56,9 +56,10 @@ namespace droid.Runtime.Prototyping.Observers.Rays {
 
     void OnDrawGizmosSelected() {
       if (this.enabled) {
+        var position = this.transform.position;
         Debug.DrawLine(
-            this.transform.position,
-            this.transform.position - this._direction * this._range,
+            position,
+            position - this._direction * this._range,
             this._color);
       }
     }

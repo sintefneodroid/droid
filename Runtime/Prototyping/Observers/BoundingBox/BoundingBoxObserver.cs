@@ -22,14 +22,14 @@ namespace droid.Runtime.Prototyping.Observers.BoundingBox {
       get { return "BoundingBox"; }
     }
 
-    Utilities.BoundingBoxes.BoundingBox _boundingBox;
+    Utilities.BoundingBoxes.BoundingBox _bounding_box;
     [SerializeField] string _observationValue;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     protected override void PreSetup() {
-      this._boundingBox = this.GetComponent<Utilities.BoundingBoxes.BoundingBox>();
+      this._bounding_box = this.GetComponent<Utilities.BoundingBoxes.BoundingBox>();
     }
 
     public override IEnumerable<float> FloatEnumerable { get{return new List<float>();} }
@@ -38,7 +38,7 @@ namespace droid.Runtime.Prototyping.Observers.BoundingBox {
     /// <summary>
     /// </summary>
     public override void UpdateObservation() {
-      this.ObservationValue = this._boundingBox.BoundingBoxCoordinatesWorldSpaceAsJson;
+      this.ObservationValue = this._bounding_box.BoundingBoxCoordinatesWorldSpaceAsJson;
     }
 
     /// <summary>

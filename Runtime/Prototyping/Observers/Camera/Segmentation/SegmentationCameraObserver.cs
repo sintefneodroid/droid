@@ -18,7 +18,7 @@ namespace droid.Runtime.Prototyping.Observers.Camera.Segmentation {
     /// <summary>
     /// </summary>
     [SerializeField]
-    Segmenter _segmenter;
+    Segmenter _segmenter=null;
 
     /// <inheritdoc />
     /// <summary>

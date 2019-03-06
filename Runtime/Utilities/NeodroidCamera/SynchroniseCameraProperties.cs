@@ -16,40 +16,40 @@ namespace droid.Runtime.Utilities.NeodroidCamera {
     /// <summary>
     /// </summary>
     [SerializeField]
-    SynchroniseCameraProperties _camera;
+    SynchroniseCameraProperties _camera=null;
 
     /// <summary>
     /// </summary>
     [SerializeField]
-    SynchroniseCameraProperties[] _cameras;
+    SynchroniseCameraProperties[] _cameras=null;
 
     /// <summary>
     /// </summary>
     [SerializeField]
-    int _old_culling_mask;
+    int _old_culling_mask=0;
 
     /// <summary>
     /// </summary>
     [SerializeField]
-    float _old_far_clip_plane;
+    float _old_far_clip_plane=0;
 
-    [SerializeField] float _old_fov;
-
-    /// <summary>
-    /// </summary>
-    [SerializeField]
-    float _old_near_clip_plane;
-
-    [SerializeField] bool _old_orthographic_projection;
+    [SerializeField] float _old_fov=0;
 
     /// <summary>
     /// </summary>
     [SerializeField]
-    float _old_orthographic_size;
+    float _old_near_clip_plane = 0;
+
+    [SerializeField] bool _old_orthographic_projection = false;
+
+    /// <summary>
+    /// </summary>
+    [SerializeField]
+    float _old_orthographic_size = 0;
 
     [SerializeField] bool _run_only_in_edit_mode = true;
 
-    [SerializeField] bool _only_run_on_awake;
+    [SerializeField] bool _only_run_on_awake = false;
 
     [SerializeField] bool _sync_culling_mask = true;
     [SerializeField] bool _sync_far_clip_plane = true;

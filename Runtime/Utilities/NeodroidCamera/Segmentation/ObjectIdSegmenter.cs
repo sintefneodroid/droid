@@ -21,8 +21,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
     /// </summary>
     MaterialPropertyBlock _block;
 
-    [SerializeField] ColorByInstance[] instanceColorArray;
-    [SerializeField] Shader segmentation_shader;
+    [SerializeField] Shader segmentation_shader = null;
     [SerializeField] Camera _camera;
 
     /// <summary>

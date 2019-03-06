@@ -6,11 +6,10 @@ using UnityEngine;
 namespace droid.Runtime.Prototyping.Observers {
   public class TwoDimensionalScreenSpaceObserver : Observer,
                                                    IHasDouble {
-    [SerializeField] Vector2 _observation_value;
-    [SerializeField] Vector3 _observation_value3;
-    [SerializeField] Space2 _observation_space2_d;
+    [SerializeField] Vector2 _observation_value=Vector2.zero;
+    [SerializeField] Space2 _observation_space2_d=Space2.ZeroOne;
 
-    [SerializeField] UnityEngine.Camera _reference_camera;
+    [SerializeField] UnityEngine.Camera _reference_camera=null;
 
     [SerializeField] bool _use_viewport = true; // Already normalised between 0 and 1
 
@@ -30,7 +29,6 @@ namespace droid.Runtime.Prototyping.Observers {
         }
 
         this._observation_value = point;
-        this._observation_value3 = point;
       }
     }
 

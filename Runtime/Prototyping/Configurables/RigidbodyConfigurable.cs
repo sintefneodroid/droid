@@ -33,16 +33,16 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     [SerializeField]
-    Vector3 _angular_velocity;
+    Vector3 _angular_velocity =  Vector3.zero;
 
     /// <summary>
     /// </summary>
     [SerializeField]
-    Space3 _angular_velocity_space;
+    Space3 _angular_velocity_space = Space3.ZeroOne;
 
     /// <summary>
     /// </summary>
-    Rigidbody _rigidbody;
+    Rigidbody _rigidbody=null;
 
     /// <summary>
     /// </summary>
@@ -60,12 +60,12 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     [Header("Observation", order = 110)]
     [SerializeField]
-    Vector3 _velocity;
+    Vector3 _velocity = Vector3.zero;
 
     /// <summary>
     /// </summary>
     [SerializeField]
-    Space3 _velocity_space;
+    Space3 _velocity_space = Space3.ZeroOne;
 
     /// <summary>
     /// </summary>

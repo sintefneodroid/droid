@@ -18,18 +18,18 @@ namespace droid.Runtime.Utilities.StatusDisplayer {
   public class AutoSetupStatusDisplayer : MonoBehaviour {
     [SerializeField] bool _clean_empty_no_target_events = true;
 
-    [CanBeNull] [SerializeField] NeodroidEnvironment _environment;
-    [CanBeNull] [SerializeField] TextUpdater _environment_frame;
-    [CanBeNull] [SerializeField] TextUpdater _environment_obs;
+    [CanBeNull] [SerializeField] NeodroidEnvironment _environment= null;
+    [CanBeNull] [SerializeField] TextUpdater _environment_frame= null;
+    [CanBeNull] [SerializeField] TextUpdater _environment_obs= null;
 
-    [CanBeNull] [SerializeField] TextUpdater _environment_text;
-    [CanBeNull] [SerializeField] ObjectiveFunction _evaluation_function;
-    [CanBeNull] [SerializeField] NeodroidManager _manager;
-    [CanBeNull] [SerializeField] Button _reset_button;
-    [CanBeNull] [SerializeField] TextUpdater _signal;
+    [CanBeNull] [SerializeField] TextUpdater _environment_text= null;
+    [CanBeNull] [SerializeField] ObjectiveFunction _evaluation_function= null;
+    [CanBeNull] [SerializeField] NeodroidManager _manager= null;
+    [CanBeNull] [SerializeField] Button _reset_button = null;
+    [CanBeNull] [SerializeField] TextUpdater _signal= null;
     [CanBeNull] [SerializeField] TextUpdater _status_text = null;
-    [CanBeNull] [SerializeField] ToggleUpdater _terminated;
-    [CanBeNull] [SerializeField] Toggle _testing_toggle;
+    [CanBeNull] [SerializeField] ToggleUpdater _terminated= null;
+    [CanBeNull] [SerializeField] Toggle _testing_toggle= null;
     [SerializeField] UnityEventCallState _unity_event_call_state = UnityEventCallState.RuntimeOnly;
 
 #if NEODROID_DEBUG

@@ -15,14 +15,19 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
       + "IndexedScatterPlot"
       + DisplayerComponentMenuPath._Postfix)]
   public class IndexedScatterPlotDisplayer : Displayer {
-    [SerializeField] GameObject[] _designs;
-    [SerializeField] List<GameObject> _instances;
+    [SerializeField] GameObject[] _designs = null;
+    [SerializeField] List<GameObject> _instances=null;
 
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     protected override void Setup() { }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="value"></param>
     public override void Display(Double value) { }
 
     public override void Display(float[] values) { }

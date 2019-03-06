@@ -14,18 +14,18 @@ namespace droid.Runtime.Prototyping.Observers.Rays {
   [Serializable]
   public class LineOfSightObserver : Observer,
                                      IHasSingle {
-    RaycastHit _hit;
+    RaycastHit _hit=new RaycastHit();
 
-    [SerializeField] float _obs_value;
+    [SerializeField] float _obs_value=0;
 
     /// <summary>
     /// </summary>
     [SerializeField]
-    ValueSpace _observation_value_space;
+    ValueSpace _observation_value_space=ValueSpace.ZeroOne;
 
     [Header("Specific", order = 102)]
     [SerializeField]
-    UnityEngine.Transform _target;
+    UnityEngine.Transform _target = null;
 
     public override string PrototypingTypeName { get { return "LineOfSight"; } }
 

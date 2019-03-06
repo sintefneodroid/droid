@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Object = System.Object;
 using Random = UnityEngine.Random;
 
 namespace droid.Runtime.Utilities.Structs {
@@ -8,6 +9,7 @@ namespace droid.Runtime.Utilities.Structs {
     public int _Decimal_Granularity;
     public float _Min_Value;
     public float _Max_Value;
+
 
     public ValueSpace(int decimal_granularity = 2) {
       this._Decimal_Granularity = decimal_granularity;
@@ -44,5 +46,11 @@ namespace droid.Runtime.Utilities.Structs {
     }
 
     public float Round(float v) { return (float)Math.Round(v, this._Decimal_Granularity); }
+
+    public static ValueSpace ZeroOne {
+      get {
+        return new ValueSpace(1){_Min_Value = 0,_Max_Value = 1};
+      }
+    }
   }
 }

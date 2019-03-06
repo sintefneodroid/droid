@@ -21,7 +21,7 @@ namespace droid.Runtime.Utilities.GameObjects {
         /// </summary>
         [Header("Development", order = 90)]
     [SerializeField]
-    bool _disables_children;
+    bool _disables_children = false;
 
     #if UNITY_EDITOR
     /// <summary>
@@ -33,7 +33,7 @@ namespace droid.Runtime.Utilities.GameObjects {
     /// <summary>
     /// </summary>
     [SerializeField]
-    protected bool _Use_Custom_Name;
+    protected bool _Use_Custom_Name = false;
 
 #if NEODROID_DEBUG
         /// <summary>

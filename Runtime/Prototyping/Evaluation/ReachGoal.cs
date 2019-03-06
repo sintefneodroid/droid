@@ -7,11 +7,11 @@ namespace droid.Runtime.Prototyping.Evaluation {
   [AddComponentMenu(
       EvaluationComponentMenuPath._ComponentMenuPath + "ReachGoal" + EvaluationComponentMenuPath._Postfix)]
   public class ReachGoal : ObjectiveFunction {
-    [SerializeField] Actor _actor;
+    [SerializeField] Actor _actor=null;
 
-    [SerializeField] bool _based_on_tags;
+    [SerializeField] bool _based_on_tags=false;
 
-    [SerializeField] EmptyCell _goal;
+    [SerializeField] EmptyCell _goal=null;
 
     //Used for.. if outside playable area then reset
     [SerializeField] ActorOverlapping _overlapping = ActorOverlapping.Outside_area_;

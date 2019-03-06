@@ -6,11 +6,17 @@ using droid.Runtime.Utilities.Misc.Extensions;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Evaluation {
+  /// <summary>
+  /// 
+  /// </summary>
   enum ActorOverlapping {
     Inside_area_,
     Outside_area_
   }
 
+  /// <summary>
+  /// 
+  /// </summary>
   enum ActorColliding {
     Not_colliding_,
     Colliding_
@@ -21,11 +27,11 @@ namespace droid.Runtime.Prototyping.Evaluation {
   [AddComponentMenu(
       EvaluationComponentMenuPath._ComponentMenuPath + "ReachArea" + EvaluationComponentMenuPath._Postfix)]
   public class ReachArea : ObjectiveFunction {
-    [SerializeField] Collider _actor;
+    [SerializeField] Collider _actor=null;
 
-    [SerializeField] Collider _area;
+    [SerializeField] Collider _area=null;
 
-    [SerializeField] bool _based_on_tags;
+    [SerializeField] bool _based_on_tags=false;
     [SerializeField] ActorColliding _colliding = ActorColliding.Not_colliding_;
 
     [SerializeField] Obstruction[] _obstructions;

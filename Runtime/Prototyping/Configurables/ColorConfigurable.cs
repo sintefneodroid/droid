@@ -42,7 +42,7 @@ namespace droid.Runtime.Prototyping.Configurables {
 
     [SerializeField] ValueSpace _space = new ValueSpace(){_Min_Value = 0.3f, _Max_Value = 1f};
 
-    [SerializeField] bool use_shared;
+    [SerializeField] bool use_shared = false;
 
     /// <inheritdoc />
     /// <summary>

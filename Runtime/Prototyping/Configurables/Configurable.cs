@@ -99,15 +99,15 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     [Header("References", order = 20)]
     [SerializeField]
-    IPrototypingEnvironment _environment;
+    IPrototypingEnvironment _environment=null;
 
     /// <summary>
     /// </summary>
     [Header("Configurable", order = 30)]
     [SerializeField]
-    bool _relative_to_existing_value;
+    bool _relative_to_existing_value = false;
 
-    [SerializeField] bool SampleRandom;
+    [SerializeField] bool SampleRandom=false;
 
     #endregion
   }

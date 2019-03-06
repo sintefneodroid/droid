@@ -26,19 +26,19 @@ namespace droid.Editor.Windows {
     [PreferenceItem("Neodroid")]
     public static void PreferencesGui() {
       if (!_preferences_loaded) {
-        _enable_neodroid_debug = EditorPrefs.GetBool(NeodroidEditorInfo._debug_pref_key, false);
-        _use_github_extension = EditorPrefs.GetBool(NeodroidEditorInfo._github_extension_pref_key, false);
-        _imported_asset = EditorPrefs.GetBool(NeodroidEditorInfo._imported_asset_pref_key, false);
-        _generate_scene_previews = EditorPrefs.GetBool(NeodroidEditorInfo._generate_previews_pref_key, false);
+        _enable_neodroid_debug = EditorPrefs.GetBool(NeodroidEditorInfo._Debug_Pref_Key, false);
+        _use_github_extension = EditorPrefs.GetBool(NeodroidEditorInfo._Github_Extension_Pref_Key, false);
+        _imported_asset = EditorPrefs.GetBool(NeodroidEditorInfo._Imported_Asset_Pref_Key, false);
+        _generate_scene_previews = EditorPrefs.GetBool(NeodroidEditorInfo._Generate_Previews_Pref_Key, false);
         if (_generate_scene_previews) {
           _scene_previews_location = EditorPrefs.GetString(
-              NeodroidEditorInfo._generate_previews_loc_pref_key,
+              NeodroidEditorInfo._Generate_Previews_Loc_Pref_Key,
               NeodroidEditorInfo.ScenePreviewsLocation);
         }
 
         #if NEODROID_IMPORTED_ASSET
         _import_location = EditorPrefs.GetString(
-            NeodroidEditorInfo._import_location_pref_key,
+            NeodroidEditorInfo._Import_Location_Pref_Key,
             NeodroidEditorInfo.ImportLocation);
         #endif
 
@@ -48,7 +48,7 @@ namespace droid.Editor.Windows {
       EditorGUILayout.HelpBox($"Version {NeodroidEditorInfo._Version}", MessageType.Info);
 
       var imported_asset_new = EditorGUILayout.Toggle(
-          NeodroidEditorInfo._imported_asset_pref_key,
+          NeodroidEditorInfo._Imported_Asset_Pref_Key,
           _imported_asset);
 
       #if NEODROID_IMPORTED_ASSET
@@ -59,13 +59,13 @@ namespace droid.Editor.Windows {
       EditorGUILayout.HelpBox("Functionality", MessageType.Info);
 
       var enable_neodroid_debug_new = EditorGUILayout.Toggle(
-          NeodroidEditorInfo._debug_pref_key,
+          NeodroidEditorInfo._Debug_Pref_Key,
           _enable_neodroid_debug);
       var use_github_extension_new = EditorGUILayout.Toggle(
-          NeodroidEditorInfo._github_extension_pref_key,
+          NeodroidEditorInfo._Github_Extension_Pref_Key,
           _use_github_extension);
       var generate_scene_previews_new = EditorGUILayout.Toggle(
-          NeodroidEditorInfo._generate_previews_pref_key,
+          NeodroidEditorInfo._Generate_Previews_Pref_Key,
           _generate_scene_previews);
       if (_generate_scene_previews) {
         EditorGUILayout.HelpBox("Enter path for scene preview storage", MessageType.Info);
@@ -75,7 +75,7 @@ namespace droid.Editor.Windows {
       if (GUI.changed) {
         if (enable_neodroid_debug_new != _enable_neodroid_debug) {
           _enable_neodroid_debug = enable_neodroid_debug_new;
-          EditorPrefs.SetBool(NeodroidEditorInfo._debug_pref_key, _enable_neodroid_debug);
+          EditorPrefs.SetBool(NeodroidEditorInfo._Debug_Pref_Key, _enable_neodroid_debug);
           Debug.Log($"Neodroid Debugging {_enable_neodroid_debug}");
           if (_enable_neodroid_debug) {
             DefineSymbolsFunctionality.AddDebugDefineSymbol();
@@ -86,7 +86,7 @@ namespace droid.Editor.Windows {
 
         if (use_github_extension_new != _use_github_extension) {
           _use_github_extension = use_github_extension_new;
-          EditorPrefs.SetBool(NeodroidEditorInfo._github_extension_pref_key, _use_github_extension);
+          EditorPrefs.SetBool(NeodroidEditorInfo._Github_Extension_Pref_Key, _use_github_extension);
           Debug.Log($"Neodroid GitHub Extension{_use_github_extension}");
           if (_use_github_extension) {
             DefineSymbolsFunctionality.AddGithubDefineSymbols();
@@ -97,7 +97,7 @@ namespace droid.Editor.Windows {
 
         if (imported_asset_new != _imported_asset) {
           _imported_asset = imported_asset_new;
-          EditorPrefs.SetBool(NeodroidEditorInfo._imported_asset_pref_key, _imported_asset);
+          EditorPrefs.SetBool(NeodroidEditorInfo._Imported_Asset_Pref_Key, _imported_asset);
           Debug.Log($"Neodroid is set as an imported asset {_imported_asset}");
           if (_imported_asset) {
             DefineSymbolsFunctionality.AddImportedAssetDefineSymbols();
@@ -109,21 +109,21 @@ namespace droid.Editor.Windows {
         #if NEODROID_IMPORTED_ASSET
         if (NeodroidEditorInfo.ImportLocation != _import_location) {
           NeodroidEditorInfo.ImportLocation = _import_location;
-          EditorPrefs.SetString(NeodroidEditorInfo._import_location_pref_key, _import_location);
+          EditorPrefs.SetString(NeodroidEditorInfo._Import_Location_Pref_Key, _import_location);
         }
         #endif
 
         if (generate_scene_previews_new != _generate_scene_previews) {
           _generate_scene_previews = generate_scene_previews_new;
           Debug.Log($"Setting Neodroid Generate ScenePreview: {_generate_scene_previews}");
-          EditorPrefs.SetBool(NeodroidEditorInfo._generate_previews_pref_key, _generate_scene_previews);
+          EditorPrefs.SetBool(NeodroidEditorInfo._Generate_Previews_Pref_Key, _generate_scene_previews);
         }
 
         if (_generate_scene_previews) {
           if (NeodroidEditorInfo.ScenePreviewsLocation != _scene_previews_location) {
             NeodroidEditorInfo.ScenePreviewsLocation = _scene_previews_location;
             EditorPrefs.SetString(
-                NeodroidEditorInfo._generate_previews_loc_pref_key,
+                NeodroidEditorInfo._Generate_Previews_Loc_Pref_Key,
                 _scene_previews_location);
 
           }

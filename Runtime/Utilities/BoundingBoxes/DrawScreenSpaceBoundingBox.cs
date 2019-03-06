@@ -12,15 +12,14 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
   [ExecuteInEditMode]
   public class DrawScreenSpaceBoundingBox : MonoBehaviour {
     List<string> _names = new List<string>();
-
     List<Rect> _rects = new List<Rect>();
-    Camera _camera;
+    Camera _camera=null;
+
     [SerializeField] bool _draw_label = true;
-    List<Vector3> _screen_pos = new List<Vector3>();
-    [SerializeField] BoundingBox[] bounding_boxes;
-    bool _cache_bounding_boxes;
-    [SerializeField] GUISkin gui_style;
-    [SerializeField] bool _draw_coords;
+    [SerializeField] BoundingBox[] bounding_boxes=null;
+    [SerializeField] bool _cache_bounding_boxes = false;
+    [SerializeField] GUISkin gui_style = null;
+    [SerializeField] bool _draw_coords=false;
 
     void Awake() {
       if (!this._camera) {
@@ -33,8 +32,8 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
     /// <summary>
     /// </summary>
     /// <param name="new_points"></param>
-    /// <param name="game_object"></param>
-    public void AddBoundingBox(BoundingBox new_points, string name) {
+    /// <param name="a_name"></param>
+    public void AddBoundingBox(BoundingBox new_points, string a_name) {
       if (new_points == null) {
         return;
       }
@@ -76,11 +75,7 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
       //scr_rect.y = Screen.height - scr_rect.y;
 
       this._rects.Add(new_points.ScreenSpaceBoundingRect(this._camera));
-      this._names.Add(name);
-    }
-
-    void OnPreRender() {
-      //      this.Compute();
+      this._names.Add(a_name);
     }
 
     void Compute() {

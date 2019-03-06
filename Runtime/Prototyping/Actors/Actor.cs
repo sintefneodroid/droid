@@ -26,7 +26,7 @@ namespace droid.Runtime.Prototyping.Actors {
     /// <summary>
     /// </summary>
     [SerializeField]
-    bool _draw_bounds;
+    bool _draw_bounds = false;
 
     /// <summary>
     /// </summary>

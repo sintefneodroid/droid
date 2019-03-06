@@ -18,7 +18,7 @@ namespace droid.Runtime.Managers {
         "Warning! Will block editor requiring a restart, if not terminated while receiving.",
         order = 120)]
     [SerializeField]
-    bool _allow_in_editor_blockage;
+    bool _allow_in_editor_blockage=false;
     #endif
 
     #endregion
