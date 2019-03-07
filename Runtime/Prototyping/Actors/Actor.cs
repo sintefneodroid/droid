@@ -116,11 +116,9 @@ namespace droid.Runtime.Prototyping.Actors {
       if (!Application.isPlaying) {
         var manager_script = MonoScript.FromMonoBehaviour(this);
         if (MonoImporter.GetExecutionOrder(manager_script) != _script_execution_order) {
-          MonoImporter.SetExecutionOrder(
-              manager_script,
-              _script_execution_order); // Ensures that PreStep is called first, before all other scripts.
-          Debug.LogWarning(
-              "Execution Order changed, you will need to press play again to make everything function correctly!");
+          MonoImporter.SetExecutionOrder(manager_script,
+                                         _script_execution_order); // Ensures that PreStep is called first, before all other scripts.
+          Debug.LogWarning("Execution Order changed, you will need to press play again to make everything function correctly!");
           EditorApplication.isPlaying = false;
           //TODO: UnityEngine.Experimental.LowLevel.PlayerLoop.SetPlayerLoop(new UnityEngine.Experimental.LowLevel.PlayerLoopSystem());
         }
@@ -137,9 +135,8 @@ namespace droid.Runtime.Prototyping.Actors {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          this);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment, this);
     }
 
     /// <inheritdoc />
@@ -151,21 +148,18 @@ namespace droid.Runtime.Prototyping.Actors {
     /// </summary>
     void Update() {
       if (this._draw_bounds) {
-        var corners = Corners.ExtractCorners(
-            this.ActorBounds.center,
-            this.ActorBounds.extents,
-            this.transform);
+        var corners =
+            Corners.ExtractCorners(this.ActorBounds.center, this.ActorBounds.extents, this.transform);
 
-        Corners.DrawBox(
-            corners[0],
-            corners[1],
-            corners[2],
-            corners[3],
-            corners[4],
-            corners[5],
-            corners[6],
-            corners[7],
-            Color.gray);
+        Corners.DrawBox(corners[0],
+                        corners[1],
+                        corners[2],
+                        corners[3],
+                        corners[4],
+                        corners[5],
+                        corners[6],
+                        corners[7],
+                        Color.gray);
       }
     }
 

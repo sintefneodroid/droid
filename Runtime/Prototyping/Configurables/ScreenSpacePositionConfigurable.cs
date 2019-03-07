@@ -1,19 +1,20 @@
-﻿using droid.Runtime.Environments;
+﻿using System;
+using droid.Runtime.Environments;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Utilities.Debugging;
 using droid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities.Structs;
 using UnityEngine;
-using Random = System.Random;
+
 
 namespace droid.Runtime.Prototyping.Configurables {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      ConfigurableComponentMenuPath._ComponentMenuPath
-      + "ScreenSpacePosition"
-      + ConfigurableComponentMenuPath._Postfix)]
+  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
+                    + "ScreenSpacePosition"
+                    + ConfigurableComponentMenuPath._Postfix)]
   [RequireComponent(typeof(Renderer))]
   public class ScreenSpacePositionConfigurable : Configurable {
     /// <summary>
@@ -64,34 +65,34 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._x);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._y);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._z);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._rx);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._ry);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._rz);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._rw);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._x);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._y);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._z);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._rx);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._ry);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._rz);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._rw);
     }
 
     /// <inheritdoc />
@@ -147,28 +148,27 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    /// <param name="random_generator"></param>
+
     /// <returns></returns>
-    public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
-      var x = random_generator.NextDouble();
-      var y = random_generator.NextDouble();
+    public override IConfigurableConfiguration SampleConfiguration() {
+      var x = Space1.ZeroOne.Sample();
+      var y = Space1.ZeroOne.Sample();
 
       var a = new Vector2((float)x, (float)y);
       var bounded = Vector2.Min(Vector2.Max(a, new Vector2(0.2f, 0.2f)), new Vector2(0.8f, 0.8f));
 
-      //var z = random_generator.NextDouble() * this._camera.farClipPlane;
+      //var z = Space1.ZeroOne.Sample() * this._camera.farClipPlane;
       var z = this._camera.nearClipPlane + 2;
       var bounded3 = new Vector3(bounded.x, bounded.y, z);
 
       var c = this._camera.ViewportToWorldPoint(bounded3);
 
-      var b = new Quaternion(
-          (float)random_generator.NextDouble(),
-          (float)random_generator.NextDouble(),
-          (float)random_generator.NextDouble(),
-          (float)random_generator.NextDouble());
-      var sample1 = random_generator.NextDouble();
-      var sample = random_generator.NextDouble();
+      var b = new Quaternion((float)Space1.ZeroOne.Sample(),
+                             (float)Space1.ZeroOne.Sample(),
+                             (float)Space1.ZeroOne.Sample(),
+                             (float)Space1.ZeroOne.Sample());
+      var sample1 = Space1.ZeroOne.Sample();
+      var sample = Space1.ZeroOne.Sample();
 
       if (sample1 > 0.5f) {
         if (sample < .33f) {

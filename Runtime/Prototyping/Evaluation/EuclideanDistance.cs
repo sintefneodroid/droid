@@ -2,10 +2,9 @@
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Evaluation {
-  [AddComponentMenu(
-      EvaluationComponentMenuPath._ComponentMenuPath
-      + "EuclideanDistance"
-      + EvaluationComponentMenuPath._Postfix)]
+  [AddComponentMenu(EvaluationComponentMenuPath._ComponentMenuPath
+                    + "EuclideanDistance"
+                    + EvaluationComponentMenuPath._Postfix)]
   class EuclideanDistance : ObjectiveFunction {
     [SerializeField] Transform _g1;
     [SerializeField] Transform _g2;

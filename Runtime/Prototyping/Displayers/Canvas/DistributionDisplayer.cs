@@ -8,10 +8,9 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
   /// <summary>
   /// </summary>
   [ExecuteInEditMode]
-  [AddComponentMenu(
-      DisplayerComponentMenuPath._ComponentMenuPath
-      + "Canvas/CanvasBar"
-      + DisplayerComponentMenuPath._Postfix)]
+  [AddComponentMenu(DisplayerComponentMenuPath._ComponentMenuPath
+                    + "Canvas/CanvasBar"
+                    + DisplayerComponentMenuPath._Postfix)]
   public class DistributionDisplayer : Displayer {
     [SerializeField] Image[] _images;
     [SerializeField] [Range(0.0f, 1.0f)] float _value;

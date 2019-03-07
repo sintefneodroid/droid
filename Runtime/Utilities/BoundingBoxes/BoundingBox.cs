@@ -19,6 +19,7 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
     /// Base the bounding box on geometries
     /// </summary>
     Geometry_,
+
     /// <summary>
     /// Base the bounding box on colliders
     /// </summary>
@@ -32,7 +33,7 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
   public class BoundingBox : MonoBehaviour {
     /// <summary>
     /// </summary>
-    protected Bounds _Bounds=new Bounds();
+    protected Bounds _Bounds = new Bounds();
 
     /// <summary>
     /// </summary>
@@ -40,11 +41,11 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
 
     /// <summary>
     /// </summary>
-    Collider[] _children_colliders=null;
+    Collider[] _children_colliders = null;
 
     /// <summary>
     /// </summary>
-    MeshFilter[] _children_meshes=null;
+    MeshFilter[] _children_meshes = null;
 
     /// <summary>
     /// </summary>
@@ -53,7 +54,7 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
 
     /// <summary>
     /// </summary>
-    Vector3[] _points=null;
+    Vector3[] _points = null;
 
     /// <summary>
     /// </summary>
@@ -78,7 +79,7 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
 
     /// <summary>
     /// </summary>
-    Vector3[,] _lines=null;
+    Vector3[,] _lines = null;
 
     List<Vector3[]> _lines_list = new List<Vector3[]>();
 
@@ -91,7 +92,7 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
     [SerializeField]
     bool OnAwakeSetup = false;
 
-    [SerializeField] IPrototypingEnvironment environment=null;
+    [SerializeField] IPrototypingEnvironment environment = null;
 
     Vector3 _bottom_back_left_extend;
     Vector3 _bottom_back_right_extend;
@@ -103,8 +104,8 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
     Vector3 _top_front_right_extend;
 
     [SerializeField] bool cacheChildren = true;
-    [SerializeField] bool RunInEditModeSetup=false;
-    [SerializeField] float margin =0;
+    [SerializeField] bool RunInEditModeSetup = false;
+    [SerializeField] float margin = 0;
 
     public Vector3[] BoundingBoxCoordinates {
       get {
@@ -132,13 +133,9 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
       return this.GetBoundingBoxScreenRect(cam, this.margin);
     }
 
-  public Vector3 Max {
-      get { return this._Bounds.max; }
-    }
+    public Vector3 Max { get { return this._Bounds.max; } }
 
-    public Vector3 Min {
-      get { return this._Bounds.min; }
-    }
+    public Vector3 Min { get { return this._Bounds.min; } }
 
     /// <summary>
     /// </summary>
@@ -179,17 +176,11 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
 
     /// <summary>
     /// </summary>
-    public Vector3[,] Lines {
-      get { return this._lines; }
-      set { this._lines = value; }
-    }
+    public Vector3[,] Lines { get { return this._lines; } set { this._lines = value; } }
 
     /// <summary>
     /// </summary>
-    public Vector3[] Points {
-      get { return this._points; }
-      set { this._points = value; }
-    }
+    public Vector3[] Points { get { return this._points; } set { this._points = value; } }
 
     /// <summary>
     /// </summary>
@@ -207,11 +198,9 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
     /// <summary>
     /// </summary>
     void Start() {
-
-        if (!this.OnAwakeSetup) {
-          this.Setup();
-        }
-
+      if (!this.OnAwakeSetup) {
+        this.Setup();
+      }
     }
 
     /// <summary>

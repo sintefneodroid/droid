@@ -10,8 +10,9 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
   /// <summary>
   /// </summary>
   [ExecuteInEditMode]
-  [AddComponentMenu(
-      DisplayerComponentMenuPath._ComponentMenuPath + "ScatterPlot" + DisplayerComponentMenuPath._Postfix)]
+  [AddComponentMenu(DisplayerComponentMenuPath._ComponentMenuPath
+                    + "ScatterPlot"
+                    + DisplayerComponentMenuPath._Postfix)]
   [RequireComponent(typeof(ParticleSystem))]
   public class TextScatterPlotDisplayer : Displayer {
     [SerializeField] Gradient _gradient;
@@ -49,10 +50,11 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
 
       if (this._gradient == null) {
         this._gradient = new Gradient {
-            colorKeys = new[] {
-                new GradientColorKey(new Color(1, 0, 0), 0f), new GradientColorKey(new Color(0, 1, 0), 1f)
-            }
-        };
+                                          colorKeys = new[] {
+                                                                new GradientColorKey(new Color(1, 0, 0), 0f),
+                                                                new GradientColorKey(new Color(0, 1, 0), 1f)
+                                                            }
+                                      };
       }
     }
 

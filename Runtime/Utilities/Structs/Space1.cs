@@ -5,13 +5,12 @@ using Random = UnityEngine.Random;
 
 namespace droid.Runtime.Utilities.Structs {
   [Serializable]
-  public struct ValueSpace {
+  public struct Space1 {
     public int _Decimal_Granularity;
     public float _Min_Value;
     public float _Max_Value;
 
-
-    public ValueSpace(int decimal_granularity = 2) {
+    public Space1(int decimal_granularity = 2) {
       this._Decimal_Granularity = decimal_granularity;
       this._Min_Value = -1f; //float.NegativeInfinity;
       this._Max_Value = 1f; //float.PositiveInfinity;
@@ -37,20 +36,14 @@ namespace droid.Runtime.Utilities.Structs {
       return this.Round((v - this._Min_Value) / this.Span);
     }
 
-    public Vector2 ToVector2(){
-      return new Vector2(this._Min_Value,this._Max_Value);
-    }
-    
-    public Vector3 ToVector3(){
-      return new Vector3(this._Min_Value,this._Decimal_Granularity,this._Max_Value);
+    public Vector2 ToVector2() { return new Vector2(this._Min_Value, this._Max_Value); }
+
+    public Vector3 ToVector3() {
+      return new Vector3(this._Min_Value, this._Decimal_Granularity, this._Max_Value);
     }
 
     public float Round(float v) { return (float)Math.Round(v, this._Decimal_Granularity); }
 
-    public static ValueSpace ZeroOne {
-      get {
-        return new ValueSpace(1){_Min_Value = 0,_Max_Value = 1};
-      }
-    }
+    public static Space1 ZeroOne { get { return new Space1(1) {_Min_Value = 0, _Max_Value = 1}; } }
   }
 }

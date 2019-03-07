@@ -7,11 +7,20 @@ namespace droid.Editor.Utilities {
   /// </summary>
   public static class NeodroidEditorUtilities {
     static GUIStyle _default_link_style = new GUIStyle(EditorStyles.label) {
-        fontSize = 14,
-        wordWrap = false,
-        normal = {textColor = new Color(0x00 / 255f, 0x78 / 255f, 0xDA / 255f, 1f)},
-        stretchWidth = false
-    };
+                                                                               fontSize = 14,
+                                                                               wordWrap = false,
+                                                                               normal = {
+                                                                                            textColor =
+                                                                                                new Color(0x00
+                                                                                                          / 255f,
+                                                                                                          0x78
+                                                                                                          / 255f,
+                                                                                                          0xDA
+                                                                                                          / 255f,
+                                                                                                          1f)
+                                                                                        },
+                                                                               stretchWidth = false
+                                                                           };
 
     /// <summary>
     /// </summary>
@@ -19,10 +28,9 @@ namespace droid.Editor.Utilities {
     /// <param name="link_style"></param>
     /// <param name="options"></param>
     /// <returns></returns>
-    public static bool LinkLabel(
-        GUIContent label,
-        GUIStyle link_style = null,
-        params GUILayoutOption[] options) {
+    public static bool LinkLabel(GUIContent label,
+                                 GUIStyle link_style = null,
+                                 params GUILayoutOption[] options) {
       if (link_style == null) {
         link_style = _default_link_style;
       }

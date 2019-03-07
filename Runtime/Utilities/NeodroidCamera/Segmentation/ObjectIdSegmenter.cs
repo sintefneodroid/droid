@@ -54,25 +54,25 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
     }
 
     SynthesisUtilities.CapturePass[] _capture_passes = {
-                                                       new SynthesisUtilities.CapturePass {
-                                                                                          _Name =
-                                                                                              "_object_id",
-                                                                                          _ReplacementMode =
-                                                                                              SynthesisUtilities
-                                                                                                  .ReplacementModes
-                                                                                                  .Object_id_,
-                                                                                          _SupportsAntialiasing
-                                                                                              = false
-                                                                                      }
-                                                   };
+                                                           new SynthesisUtilities.CapturePass {
+                                                                                                  _Name =
+                                                                                                      "_object_id",
+                                                                                                  _ReplacementMode
+                                                                                                      = SynthesisUtilities
+                                                                                                        .ReplacementModes
+                                                                                                        .Object_id_,
+                                                                                                  _SupportsAntialiasing
+                                                                                                      = false
+                                                                                              }
+                                                       };
 
     /// <summary>
     /// </summary>
     void Setup() {
       this._camera = this.GetComponent<Camera>();
       SynthesisUtilities.SetupCapturePassesReplacementShader(this._camera,
-                                                         this.segmentation_shader,
-                                                         ref this._capture_passes);
+                                                             this.segmentation_shader,
+                                                             ref this._capture_passes);
       this.ColorsDictGameObject = new Dictionary<GameObject, Color>();
       this._all_renders = FindObjectsOfType<Renderer>();
       this.CheckBlock();
@@ -93,7 +93,8 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
           #endif
         }
 
-        this._block.SetColor(SynthesisUtilities._Shader_ObjectId_Color_Name, ColorEncoding.EncodeIdAsColor(id));
+        this._block.SetColor(SynthesisUtilities._Shader_ObjectId_Color_Name,
+                             ColorEncoding.EncodeIdAsColor(id));
 /*
 this._block?.SetInt(SynthesisUtils._Shader_OutputMode_Name,(int) SynthesisUtils.ReplacementModes
                                                                           .Object_id_);

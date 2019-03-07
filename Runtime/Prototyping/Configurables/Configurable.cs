@@ -3,15 +3,18 @@ using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Utilities.GameObjects;
 using droid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities.Structs;
 using UnityEngine;
-using Random = System.Random;
+using Object = System.Object;
+
 
 namespace droid.Runtime.Prototyping.Configurables {
   /// <inheritdoc cref="PrototypingGameObject" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      ConfigurableComponentMenuPath._ComponentMenuPath + "Vanilla" + ConfigurableComponentMenuPath._Postfix)]
+  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
+                    + "Vanilla"
+                    + ConfigurableComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   public abstract class Configurable : PrototypingGameObject,
                                        IConfigurable {
@@ -37,10 +40,6 @@ namespace droid.Runtime.Prototyping.Configurables {
 
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName { get { return "Configurable"; } }
-
-    /// <summary>
-    /// </summary>
     public virtual void UpdateCurrentConfiguration() { }
 
     public abstract void ApplyConfiguration(IConfigurableConfiguration configuration);
@@ -49,15 +48,15 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     public void EnvironmentReset() { }
 
-    public virtual void PostEnvironmentSetup(){}
+    public virtual void PostEnvironmentSetup() { }
 
     /// <summary>
     /// </summary>
-    /// <param name="random_generator"></param>
+
     /// <returns></returns>
     /// <exception cref="System.NotImplementedException"></exception>
-    public virtual IConfigurableConfiguration SampleConfiguration(Random random_generator) {
-      return new Configuration(this.Identifier, random_generator.Next());
+    public virtual IConfigurableConfiguration SampleConfiguration() {
+      return new Configuration(this.Identifier, Space1.ZeroOne.Sample());
     }
 
     /// <inheritdoc />
@@ -76,15 +75,16 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          this);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment, this);
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     protected virtual void Update() {
       if (this.SampleRandom && Application.isPlaying) {
-        var random_generator = new Random();
-        this.ApplyConfiguration(this.SampleConfiguration(random_generator));
+        this.ApplyConfiguration(this.SampleConfiguration());
       }
     }
 
@@ -99,7 +99,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     [Header("References", order = 20)]
     [SerializeField]
-    IPrototypingEnvironment _environment=null;
+    IPrototypingEnvironment _environment = null;
 
     /// <summary>
     /// </summary>
@@ -107,7 +107,8 @@ namespace droid.Runtime.Prototyping.Configurables {
     [SerializeField]
     bool _relative_to_existing_value = false;
 
-    [SerializeField] bool SampleRandom=false;
+    [SerializeField] bool SampleRandom = false;
+    [SerializeField] UnityEngine.Random random_generator;
 
     #endregion
   }

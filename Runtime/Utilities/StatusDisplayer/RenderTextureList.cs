@@ -12,10 +12,12 @@ namespace droid.Runtime.Utilities.StatusDisplayer {
     ///
     /// </summary>
     public Sprite[] AnimalImages;
+
     /// <summary>
     ///
     /// </summary>
     public GameObject ContentPanel;
+
     /// <summary>
     ///
     /// </summary>
@@ -26,17 +28,13 @@ namespace droid.Runtime.Utilities.StatusDisplayer {
     void Start() {
       // 1. Get the data to be displayed
       this._camera_observations = new ArrayList {
-                                          new CameraObservation(this.AnimalImages[0],
-                                                     "A"),
-                                          new CameraObservation(this.AnimalImages[1],
-                                                     "B"),
-                                          new CameraObservation(this.AnimalImages[2],
-                                                     "C"),
-                                          new CameraObservation(this.AnimalImages[3],
-                                                     "D")
-                                      };
+                                                    new CameraObservation(this.AnimalImages[0], "A"),
+                                                    new CameraObservation(this.AnimalImages[1], "B"),
+                                                    new CameraObservation(this.AnimalImages[2], "C"),
+                                                    new CameraObservation(this.AnimalImages[3], "D")
+                                                };
 
-      if(this.ListItemPrefab) {
+      if (this.ListItemPrefab) {
         foreach (CameraObservation animal in this._camera_observations) {
           var r = Instantiate(this.ListItemPrefab, this.ContentPanel.transform, true);
           var controller = r.GetComponent<RenderTextureListItem>();

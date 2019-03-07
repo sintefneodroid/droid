@@ -7,8 +7,9 @@ namespace droid.Runtime.Prototyping.Motors {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      MotorComponentMenuPath._ComponentMenuPath + "RigidbodyMotor3Dof" + MotorComponentMenuPath._Postfix)]
+  [AddComponentMenu(MotorComponentMenuPath._ComponentMenuPath
+                    + "RigidbodyMotor3Dof"
+                    + MotorComponentMenuPath._Postfix)]
   [RequireComponent(typeof(Rigidbody))]
   public class RigidbodyMotor3Dof : Motor {
     /// <summary>

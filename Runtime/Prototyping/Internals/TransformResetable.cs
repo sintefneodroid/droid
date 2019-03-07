@@ -4,8 +4,9 @@ namespace droid.Runtime.Prototyping.Internals {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      ResetableComponentMenuPath._ComponentMenuPath + "Transform" + ResetableComponentMenuPath._Postfix)]
+  [AddComponentMenu(ResetableComponentMenuPath._ComponentMenuPath
+                    + "Transform"
+                    + ResetableComponentMenuPath._Postfix)]
   public class TransformResetable : Resetable {
     /// <summary>
     /// </summary>

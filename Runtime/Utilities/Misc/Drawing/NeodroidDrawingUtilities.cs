@@ -11,12 +11,11 @@ namespace droid.Runtime.Utilities.Misc.Drawing {
     /// <param name="color"></param>
     /// <param name="arrow_head_length"></param>
     /// <param name="arrow_head_angle"></param>
-    public static void ForGizmo(
-        Vector3 pos,
-        Vector3 direction,
-        Color color,
-        float arrow_head_length = 0.25f,
-        float arrow_head_angle = 20.0f) {
+    public static void ForGizmo(Vector3 pos,
+                                Vector3 direction,
+                                Color color,
+                                float arrow_head_length = 0.25f,
+                                float arrow_head_angle = 20.0f) {
       Gizmos.DrawRay(pos, direction);
       NeodroidDrawingUtilitiesEnd(true, pos, direction, color, arrow_head_length, arrow_head_angle);
     }
@@ -29,37 +28,34 @@ namespace droid.Runtime.Utilities.Misc.Drawing {
     /// <param name="arrow_head_length"></param>
     /// <param name="arrow_head_angle"></param>
     /// <param name="ray_duration"></param>
-    public static void ForDebug(
-        Vector3 pos,
-        Vector3 direction,
-        Color color,
-        float arrow_head_length = 0.25f,
-        float arrow_head_angle = 20.0f,
-        float ray_duration = 0f) {
+    public static void ForDebug(Vector3 pos,
+                                Vector3 direction,
+                                Color color,
+                                float arrow_head_length = 0.25f,
+                                float arrow_head_angle = 20.0f,
+                                float ray_duration = 0f) {
       if (ray_duration > 0) {
         Debug.DrawRay(pos, direction, color, ray_duration);
       } else {
         Debug.DrawRay(pos, direction, color);
       }
 
-      NeodroidDrawingUtilitiesEnd(
-          false,
-          pos,
-          direction,
-          color,
-          arrow_head_length,
-          arrow_head_angle,
-          ray_duration);
+      NeodroidDrawingUtilitiesEnd(false,
+                                  pos,
+                                  direction,
+                                  color,
+                                  arrow_head_length,
+                                  arrow_head_angle,
+                                  ray_duration);
     }
 
-    static void NeodroidDrawingUtilitiesEnd(
-        bool gizmos,
-        Vector3 pos,
-        Vector3 direction,
-        Color color,
-        float arrow_head_length = 0.25f,
-        float arrow_head_angle = 20.0f,
-        float ray_duration = 0f) {
+    static void NeodroidDrawingUtilitiesEnd(bool gizmos,
+                                            Vector3 pos,
+                                            Vector3 direction,
+                                            Color color,
+                                            float arrow_head_length = 0.25f,
+                                            float arrow_head_angle = 20.0f,
+                                            float ray_duration = 0f) {
       var right = Quaternion.LookRotation(direction)
                   * Quaternion.Euler(arrow_head_angle, 0, 0)
                   * Vector3.back;

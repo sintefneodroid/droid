@@ -9,8 +9,9 @@ namespace droid.Runtime.Prototyping.Observers.Camera.Segmentation {
   /// <inheritdoc cref="Observer" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      ObserverComponentMenuPath._ComponentMenuPath + "Segmentation" + ObserverComponentMenuPath._Postfix)]
+  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+                    + "Segmentation"
+                    + ObserverComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [RequireComponent(typeof(Segmenter))]
   public class SegmentationObserver : StringObserver {
@@ -19,7 +20,7 @@ namespace droid.Runtime.Prototyping.Observers.Camera.Segmentation {
     [SerializeField]
     Segmenter _segmenter = null;
 
-    public override IEnumerable<float> FloatEnumerable { get {return new List<float>();} }
+    public override IEnumerable<float> FloatEnumerable { get { return new List<float>(); } }
 
     /// <inheritdoc />
     /// <summary>
@@ -27,9 +28,9 @@ namespace droid.Runtime.Prototyping.Observers.Camera.Segmentation {
     public override void UpdateObservation() {
       this.ObservationValue = this._segmenter != null
                                   ? this._segmenter.ColorsDict.Select(c => $"{c.Key}: {c.Value.ToString()}")
-                                      .Aggregate(
-                                          "",
-                                          (current, next) => current != "" ? $"{current}, {next}" : $"{next}")
+                                        .Aggregate("",
+                                                   (current, next) =>
+                                                       current != "" ? $"{current}, {next}" : $"{next}")
                                   : "Nothing";
       //TODO:ADD this Type(COLOR) and ColorDict as serialisation option instead of a string
 /*      if (this._segmenter != null) {

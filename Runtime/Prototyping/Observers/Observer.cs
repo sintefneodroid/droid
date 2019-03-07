@@ -62,9 +62,8 @@ namespace droid.Runtime.Prototyping.Observers {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          this);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment, this);
     }
 
     /// <inheritdoc />

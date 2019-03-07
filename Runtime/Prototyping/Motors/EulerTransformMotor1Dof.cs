@@ -5,10 +5,9 @@ using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Motors {
   /// <inheritdoc />
-  [AddComponentMenu(
-      MotorComponentMenuPath._ComponentMenuPath
-      + "EulerTransformMotor1Dof"
-      + MotorComponentMenuPath._Postfix)]
+  [AddComponentMenu(MotorComponentMenuPath._ComponentMenuPath
+                    + "EulerTransformMotor1Dof"
+                    + MotorComponentMenuPath._Postfix)]
   public class EulerTransformMotor1Dof : Motor {
     /// <summary>
     /// </summary>

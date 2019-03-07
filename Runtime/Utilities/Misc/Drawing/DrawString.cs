@@ -11,12 +11,11 @@ namespace droid.Runtime.Utilities.Misc.Drawing {
     /// <param name="color"></param>
     /// <param name="o_x"></param>
     /// <param name="o_y"></param>
-    public static void DrawString(
-        string text,
-        Vector3 world_pos,
-        Color? color = null,
-        float o_x = 0,
-        float o_y = 0) {
+    public static void DrawString(string text,
+                                  Vector3 world_pos,
+                                  Color? color = null,
+                                  float o_x = 0,
+                                  float o_y = 0) {
       Handles.BeginGUI();
 
       var restore_color = GUI.color;

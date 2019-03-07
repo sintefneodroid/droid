@@ -7,8 +7,9 @@ namespace droid.Runtime.Prototyping.Motors.Particles {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      MotorComponentMenuPath._ComponentMenuPath + "Particles/Rocket" + MotorComponentMenuPath._Postfix)]
+  [AddComponentMenu(MotorComponentMenuPath._ComponentMenuPath
+                    + "Particles/Rocket"
+                    + MotorComponentMenuPath._Postfix)]
   [RequireComponent(typeof(ParticleSystem))]
   [RequireComponent(typeof(Rigidbody))]
   public class RocketMotor : RigidbodyMotor1Dof {
@@ -33,9 +34,9 @@ namespace droid.Runtime.Prototyping.Motors.Particles {
     protected override void Setup() {
       this._Rigidbody = this.GetComponent<Rigidbody>();
       this._Particle_System = this.GetComponent<ParticleSystem>();
-      var valid_input = this.MotionValueSpace;
+      var valid_input = this.MotionSpace1;
       valid_input._Min_Value = 0;
-      this.MotionValueSpace = valid_input;
+      this.MotionSpace1 = valid_input;
       this.RegisterComponent();
     }
 
@@ -58,10 +59,8 @@ namespace droid.Runtime.Prototyping.Motors.Particles {
     /// </summary>
     /// <param name="motion"></param>
     protected override void InnerApplyMotion(IMotorMotion motion) {
-      if (motion.Strength < this.MotionValueSpace._Min_Value
-          || motion.Strength > this.MotionValueSpace._Max_Value) {
-        Debug.Log(
-            $"It does not accept input {motion.Strength}, outside allowed range {this.MotionValueSpace._Min_Value} to {this.MotionValueSpace._Max_Value}");
+      if (motion.Strength < this.MotionSpace1._Min_Value || motion.Strength > this.MotionSpace1._Max_Value) {
+        Debug.Log($"It does not accept input {motion.Strength}, outside allowed range {this.MotionSpace1._Min_Value} to {this.MotionSpace1._Max_Value}");
         return; // Do nothing
       }
 

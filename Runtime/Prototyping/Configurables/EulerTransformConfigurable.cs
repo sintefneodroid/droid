@@ -5,7 +5,7 @@ using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
-using Random = System.Random;
+
 
 namespace droid.Runtime.Prototyping.Configurables {
   /// <inheritdoc cref="Configurable" />
@@ -31,6 +31,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     [Header("Observation", order = 103)]
     [SerializeField]
     Vector3 _position;
+
     [SerializeField] Vector3 _direction;
     [SerializeField] Vector3 _rotation;
     [SerializeField] bool _use_environments_space = false;
@@ -238,10 +239,10 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    /// <param name="random_generator"></param>
+
     /// <returns></returns>
-    public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
-      return new Configuration(this._rot_x, random_generator.Next());
+    public override IConfigurableConfiguration SampleConfiguration() {
+      return new Configuration(this._rot_x, Space1.ZeroOne.Sample());
     }
   }
 }

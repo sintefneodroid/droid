@@ -15,7 +15,6 @@ using UnityEngine;
 using Object = System.Object;
 
 namespace droid.Runtime.Managers {
-
   /// <inheritdoc cref="UnityEngine.MonoBehaviour" />
   /// <summary>
   /// </summary>
@@ -103,11 +102,10 @@ namespace droid.Runtime.Managers {
     void CreateMessagingServer() {
       try {
         if (this.Configuration.IpAddress != "" || this.Configuration.Port != 0) {
-          this._Message_Server = new MessageServer(
-              this.Configuration.IpAddress,
-              this.Configuration.Port,
-              false,
-              this.Debugging);
+          this._Message_Server = new MessageServer(this.Configuration.IpAddress,
+                                                   this.Configuration.Port,
+                                                   false,
+                                                   this.Debugging);
         } else {
           this._Message_Server = new MessageServer(this.Debugging);
         }
@@ -246,7 +244,7 @@ namespace droid.Runtime.Managers {
     public bool Debugging {
       get { return this._debugging; }
       set {
-        if(this._Message_Server!=null) {
+        if (this._Message_Server != null) {
           this._Message_Server.Debugging = value;
         }
 
@@ -320,19 +318,17 @@ namespace droid.Runtime.Managers {
         }
         #endif
       } else {
-        Debug.LogWarning(
-            "WARNING! There are multiple SimulationManagers in the scene! Only using " + Instance);
+        Debug.LogWarning("WARNING! There are multiple SimulationManagers in the scene! Only using "
+                         + Instance);
       }
 
       #if UNITY_EDITOR
       if (!Application.isPlaying) {
         var manager_script = MonoScript.FromMonoBehaviour(this);
         if (MonoImporter.GetExecutionOrder(manager_script) != _script_execution_order) {
-          MonoImporter.SetExecutionOrder(
-              manager_script,
-              _script_execution_order); // Ensures that PreStep is called first, before all other scripts.
-          Debug.LogWarning(
-              "Execution Order changed, you will need to press play again to make everything function correctly!");
+          MonoImporter.SetExecutionOrder(manager_script,
+                                         _script_execution_order); // Ensures that PreStep is called first, before all other scripts.
+          Debug.LogWarning("Execution Order changed, you will need to press play again to make everything function correctly!");
           EditorApplication.isPlaying = false;
           //TODO: UnityEngine.Experimental.LowLevel.PlayerLoop.SetPlayerLoop(new UnityEngine.Experimental.LowLevel.PlayerLoopSystem());
         }
@@ -390,14 +386,13 @@ namespace droid.Runtime.Managers {
     /// <summary>
     /// </summary>
     public void ApplyConfigurationToUnity(ISimulatorConfiguration configuration) {
-      if (configuration.ApplyQualitySettings){
+      if (configuration.ApplyQualitySettings) {
         QualitySettings.SetQualityLevel(configuration.QualityLevel, true);
         QualitySettings.vSyncCount = 0;
       }
 
       this.SimulationTimeScale = configuration.TimeScale;
       Application.targetFrameRate = configuration.TargetFrameRate;
-
 
       #if !UNITY_EDITOR
       if( configuration.ApplyResolutionSettings){
@@ -624,11 +619,13 @@ namespace droid.Runtime.Managers {
     void Reply(EnvironmentState[] states) {
       lock (this._send_lock) {
         var configuration_message = new SimulatorConfigurationMessage(this.Configuration);
-        this._Message_Server.SendStates(
-            states,
-            simulator_configuration_message : configuration_message,
-            do_serialise_unobservables : this.Configuration.AlwaysSerialiseUnobservables,
-            serialise_individual_observables : this.Configuration.AlwaysSerialiseIndividualObservables);
+        this._Message_Server.SendStates(states,
+                                        simulator_configuration_message : configuration_message,
+                                        do_serialise_unobservables :
+                                        this.Configuration.AlwaysSerialiseUnobservables,
+                                        serialise_individual_observables : this
+                                                                           .Configuration
+                                                                           .AlwaysSerialiseIndividualObservables);
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log("Replying");
@@ -723,7 +720,7 @@ namespace droid.Runtime.Managers {
       foreach (var reaction in reactions) {
         if (this._Environments.ContainsKey(reaction.RecipientEnvironment)) {
           this._Environments[reaction.RecipientEnvironment].React(reaction);
-        } else if(reaction.RecipientEnvironment =="all") {
+        } else if (reaction.RecipientEnvironment == "all") {
           #if NEODROID_DEBUG
           if (this.Debugging) {
             Debug.Log("Applying to all environments");
@@ -733,13 +730,13 @@ namespace droid.Runtime.Managers {
           foreach (var environment in this._Environments.Values) {
             environment.React(reaction);
           }
-        }else{
+        } else {
           #if NEODROID_DEBUG
           if (this.Debugging) {
             Debug.Log($"Could not find an environment with the identifier: {reaction.RecipientEnvironment}");
           }
           #endif
-		}
+        }
       }
     }
 
@@ -831,14 +828,12 @@ namespace droid.Runtime.Managers {
     /// <summary>
     /// </summary>
     public void ResetAllEnvironments() {
-      this.React(
-          new Reaction(
-              new ReactionParameters(true, false, true, episode_count : true),
-              null,
-              null,
-              null,
-              null,
-              ""));
+      this.React(new Reaction(new ReactionParameters(true, false, true, episode_count : true),
+                              null,
+                              null,
+                              null,
+                              null,
+                              ""));
     }
 
     /// <summary>
@@ -873,9 +868,8 @@ namespace droid.Runtime.Managers {
 
         this._Environments.Add(identifier, environment);
       } else {
-        Debug.LogWarning(
-            $"WARNING! Please check for duplicates, SimulationManager {this.name} already has envi"
-            + $"ronment {identifier} registered");
+        Debug.LogWarning($"WARNING! Please check for duplicates, SimulationManager {this.name} already has envi"
+                         + $"ronment {identifier} registered");
       }
     }
 
@@ -983,10 +977,9 @@ namespace droid.Runtime.Managers {
       }
       #endif
 
-      this._Message_Server.StartReceiving(
-          this.OnReceiveCallback,
-          this.OnDisconnectCallback,
-          this.OnDebugCallback);
+      this._Message_Server.StartReceiving(this.OnReceiveCallback,
+                                          this.OnDisconnectCallback,
+                                          this.OnDebugCallback);
     }
 
     #endregion

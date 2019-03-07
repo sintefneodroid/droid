@@ -25,8 +25,9 @@ namespace droid.Runtime.Prototyping.Observers.Transform {
   /// <inheritdoc cref="Observer" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      ObserverComponentMenuPath._ComponentMenuPath + "EulerTransform" + ObserverComponentMenuPath._Postfix)]
+  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+                    + "EulerTransform"
+                    + ObserverComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [Serializable]
   public class EulerTransformObserver : Observer,
@@ -75,17 +76,21 @@ namespace droid.Runtime.Prototyping.Observers.Transform {
       }
     }
 
-    public override IEnumerable<float> FloatEnumerable { get{return new[] {
-      this.Position.x,
-      this.Position.y,
-      this.Position.z,
-      this.Direction.x,
-      this.Direction.y,
-      this.Direction.z,
-      this.Rotation.x,
-      this.Rotation.y,
-      this.Rotation.z
-    };} }
+    public override IEnumerable<float> FloatEnumerable {
+      get {
+        return new[] {
+                         this.Position.x,
+                         this.Position.y,
+                         this.Position.z,
+                         this.Direction.x,
+                         this.Direction.y,
+                         this.Direction.z,
+                         this.Rotation.x,
+                         this.Rotation.y,
+                         this.Rotation.z
+                     };
+      }
+    }
 
     /// <summary>
     /// </summary>
@@ -103,11 +108,8 @@ namespace droid.Runtime.Prototyping.Observers.Transform {
         this.Direction = this.transform.forward;
         this.Rotation = this.transform.up;
       }
-
     }
 
-    protected override void PreSetup() {
-
-    }
+    protected override void PreSetup() { }
   }
 }

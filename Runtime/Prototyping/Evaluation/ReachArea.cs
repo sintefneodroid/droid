@@ -24,14 +24,15 @@ namespace droid.Runtime.Prototyping.Evaluation {
 
   //[RequireComponent (typeof(BoundingBox))]
   //[RequireComponent (typeof(BoxCollider))]
-  [AddComponentMenu(
-      EvaluationComponentMenuPath._ComponentMenuPath + "ReachArea" + EvaluationComponentMenuPath._Postfix)]
+  [AddComponentMenu(EvaluationComponentMenuPath._ComponentMenuPath
+                    + "ReachArea"
+                    + EvaluationComponentMenuPath._Postfix)]
   public class ReachArea : ObjectiveFunction {
-    [SerializeField] Collider _actor=null;
+    [SerializeField] Collider _actor = null;
 
-    [SerializeField] Collider _area=null;
+    [SerializeField] Collider _area = null;
 
-    [SerializeField] bool _based_on_tags=false;
+    [SerializeField] bool _based_on_tags = false;
     [SerializeField] ActorColliding _colliding = ActorColliding.Not_colliding_;
 
     [SerializeField] Obstruction[] _obstructions;
@@ -92,25 +93,27 @@ namespace droid.Runtime.Prototyping.Evaluation {
         this._playable_area = FindObjectOfType<BoundingBox>();
       }
 
-      NeodroidUtilities.RegisterCollisionTriggerCallbacksOnChildren<Utilities.Sensors.ChildCollider3DSensor, Collider, Collision>(
-          this,
-          this._area.transform,
-          this.OnCollisionEnterChild,
-          this.OnTriggerEnterChild,
-          this.OnCollisionExitChild,
-          this.OnTriggerExitChild,
-          this.OnCollisionStayChild,
-          this.OnTriggerStayChild);
+      NeodroidUtilities
+          .RegisterCollisionTriggerCallbacksOnChildren<Utilities.Sensors.ChildCollider3DSensor, Collider,
+              Collision>(this,
+                         this._area.transform,
+                         this.OnCollisionEnterChild,
+                         this.OnTriggerEnterChild,
+                         this.OnCollisionExitChild,
+                         this.OnTriggerExitChild,
+                         this.OnCollisionStayChild,
+                         this.OnTriggerStayChild);
 
-      NeodroidUtilities.RegisterCollisionTriggerCallbacksOnChildren<Utilities.Sensors.ChildCollider3DSensor, Collider, Collision>(
-          this,
-          this._actor.transform,
-          this.OnCollisionEnterChild,
-          this.OnTriggerEnterChild,
-          this.OnCollisionExitChild,
-          this.OnTriggerExitChild,
-          this.OnCollisionStayChild,
-          this.OnTriggerStayChild);
+      NeodroidUtilities
+          .RegisterCollisionTriggerCallbacksOnChildren<Utilities.Sensors.ChildCollider3DSensor, Collider,
+              Collision>(this,
+                         this._actor.transform,
+                         this.OnCollisionEnterChild,
+                         this.OnTriggerEnterChild,
+                         this.OnCollisionExitChild,
+                         this.OnTriggerExitChild,
+                         this.OnCollisionStayChild,
+                         this.OnTriggerStayChild);
     }
 
     void OnTriggerEnterChild(GameObject child_game_object, Collider other_game_object) {

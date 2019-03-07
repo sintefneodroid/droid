@@ -8,17 +8,16 @@ namespace droid.Runtime.Prototyping.Observers.Camera.Segmentation {
   /// <inheritdoc cref="Observer" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      ObserverComponentMenuPath._ComponentMenuPath
-      + "SegmentationCamera"
-      + ObserverComponentMenuPath._Postfix)]
+  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+                    + "SegmentationCamera"
+                    + ObserverComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [RequireComponent(typeof(UnityEngine.Camera), typeof(Segmenter))]
   public class SegmentationCameraObserver : StringAugmentedCameraObserver {
     /// <summary>
     /// </summary>
     [SerializeField]
-    Segmenter _segmenter=null;
+    Segmenter _segmenter = null;
 
     /// <inheritdoc />
     /// <summary>
@@ -26,12 +25,11 @@ namespace droid.Runtime.Prototyping.Observers.Camera.Segmentation {
     public override void UpdateObservation() {
       base.UpdateObservation();
 
-
       Debug.LogWarning(JsonUtility.ToJson(this._segmenter.ColorsDict));
       this.serialisedString = this._segmenter != null
-                                    ? this._segmenter.ColorsDict.Select(c => $"{c.Key}: {c.Value.ToString()}")
+                                  ? this._segmenter.ColorsDict.Select(c => $"{c.Key}: {c.Value.ToString()}")
                                         .Aggregate("", (current, next) => $"{current}, {next}")
-                                    : "Nothing";
+                                  : "Nothing";
     }
   }
 }

@@ -6,7 +6,7 @@ namespace droid.Runtime.Utilities.Plotting {
   [ExecuteInEditMode]
   public class ValueRangePlotter : MonoBehaviour {
     Material _material;
-    [SerializeField] Shader _shader= null;
+    [SerializeField] Shader _shader = null;
     [SerializeField] Bounds _value_range = new Bounds(Vector3.zero, Vector3.one * 2);
     static readonly Int32 _range = Shader.PropertyToID("_Range");
 
@@ -26,13 +26,11 @@ namespace droid.Runtime.Utilities.Plotting {
         this._material.hideFlags = HideFlags.DontSave;
       }
 
-      this._material.SetVector(
-          _range,
-          new Vector4(
-              this._value_range.min.x,
-              this._value_range.max.x,
-              this._value_range.center.y,
-              this._value_range.extents.y + this._value_range.center.y));
+      this._material.SetVector(_range,
+                               new Vector4(this._value_range.min.x,
+                                           this._value_range.max.x,
+                                           this._value_range.center.y,
+                                           this._value_range.extents.y + this._value_range.center.y));
 
       this._material.SetPass(0);
       Graphics.DrawProceduralNow(MeshTopology.LineStrip, 512, 1);

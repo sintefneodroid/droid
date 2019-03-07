@@ -5,34 +5,36 @@ using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Observers.Camera {
-  [AddComponentMenu(
-      ObserverComponentMenuPath._ComponentMenuPath + "FloatArrayCamera" + ObserverComponentMenuPath._Postfix)]
+  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+                    + "FloatArrayCamera"
+                    + ObserverComponentMenuPath._Postfix)]
   public class FloatArrayCameraObserver : Observer,
                                           IHasArray {
     [Header("Observation", order = 103)]
     //[SerializeField]
     float[] _array = null;
 
-    [SerializeField] bool _black_white=false;
+    [SerializeField] bool _black_white = false;
 
     [Header("Specific", order = 102)]
     [SerializeField]
-    UnityEngine.Camera _camera=null;
+    UnityEngine.Camera _camera = null;
 
     bool _grab = true;
 
-    IManager _manager=null;
+    IManager _manager = null;
 
-    [SerializeField] Texture2D _texture=null;
+    [SerializeField] Texture2D _texture = null;
 
     /// <summary>
     ///
     /// </summary>
     public float[] ObservationArray { get { return this._array; } private set { this._array = value; } }
+
     /// <summary>
     ///
     /// </summary>
-    public ValueSpace[] ObservationSpace { get; }
+    public Space1[] ObservationSpace { get; }
 
     protected override void PreSetup() {
       //this._manager = FindObjectOfType<NeodroidManager>();
@@ -67,10 +69,7 @@ namespace droid.Runtime.Prototyping.Observers.Camera {
       var target_texture = this._camera.targetTexture;
       RenderTexture.active = target_texture;
 
-      this._texture.ReadPixels(
-          new Rect(0, 0, target_texture.width, target_texture.height),
-          0,
-          0);
+      this._texture.ReadPixels(new Rect(0, 0, target_texture.width, target_texture.height), 0, 0);
       this._texture.Apply();
 
       if (!this._black_white) {
@@ -94,7 +93,7 @@ namespace droid.Runtime.Prototyping.Observers.Camera {
       RenderTexture.active = current_render_texture;
     }
 
-    public override IEnumerable<float> FloatEnumerable { get{return this.ObservationArray;} }
+    public override IEnumerable<float> FloatEnumerable { get { return this.ObservationArray; } }
 
     public override void UpdateObservation() {
       if (this._manager?.SimulatorConfiguration != null) {

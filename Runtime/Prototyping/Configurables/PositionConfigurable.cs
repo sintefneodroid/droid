@@ -5,18 +5,19 @@ using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
-using Random = System.Random;
+
 
 namespace droid.Runtime.Prototyping.Configurables {
-  [AddComponentMenu(
-      ConfigurableComponentMenuPath._ComponentMenuPath + "Position" + ConfigurableComponentMenuPath._Postfix)]
+  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
+                    + "Position"
+                    + ConfigurableComponentMenuPath._Postfix)]
   public class PositionConfigurable : Configurable,
                                       IHasTriple {
     [Header("Observation", order = 103)]
     [SerializeField]
     Vector3 _position = Vector3.zero;
 
-    [SerializeField] bool _use_environments_space=false;
+    [SerializeField] bool _use_environments_space = false;
 
     /// <summary>
     /// </summary>
@@ -58,21 +59,21 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._x);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._y);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._z);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._x);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._y);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._z);
     }
 
     /// <summary>
@@ -114,8 +115,7 @@ namespace droid.Runtime.Prototyping.Configurables {
       if (this.TripleSpace._Min_Values[0].CompareTo(this.TripleSpace._Max_Values[0]) != 0) {
         //TODO NOT IMPLEMENTED CORRECTLY VelocitySpace should not be index but should check all pairwise values, TripleSpace._Min_Values == TripleSpace._Max_Values
         if (v < this.TripleSpace._Min_Values[0] || v > this.TripleSpace._Max_Values[0]) {
-          Debug.Log(
-              $"Configurable does not accept input{v}, outside allowed range {this.TripleSpace._Min_Values[0]} to {this.TripleSpace._Max_Values[0]}");
+          Debug.Log($"Configurable does not accept input{v}, outside allowed range {this.TripleSpace._Min_Values[0]} to {this.TripleSpace._Max_Values[0]}");
           return; // Do nothing
         }
       }
@@ -152,8 +152,8 @@ namespace droid.Runtime.Prototyping.Configurables {
       this.transform.position = inv_pos;
     }
 
-    public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
-      var random_vector3 = this.TripleSpace.RandomVector3();
+    public override IConfigurableConfiguration SampleConfiguration() {
+      var random_vector3 = this.TripleSpace.Sample();
 
       return new Configuration(this._x, random_vector3.x);
     }

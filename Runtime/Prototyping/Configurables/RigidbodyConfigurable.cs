@@ -5,16 +5,15 @@ using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
-using Random = System.Random;
+
 
 namespace droid.Runtime.Prototyping.Configurables {
   /// <inheritdoc cref="Configurable" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      ConfigurableComponentMenuPath._ComponentMenuPath
-      + "Rigidbody"
-      + ConfigurableComponentMenuPath._Postfix)]
+  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
+                    + "Rigidbody"
+                    + ConfigurableComponentMenuPath._Postfix)]
   [RequireComponent(typeof(Rigidbody))]
   public class RigidbodyConfigurable : Configurable,
                                        IHasRigidbody {
@@ -33,7 +32,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     [SerializeField]
-    Vector3 _angular_velocity =  Vector3.zero;
+    Vector3 _angular_velocity = Vector3.zero;
 
     /// <summary>
     /// </summary>
@@ -42,7 +41,7 @@ namespace droid.Runtime.Prototyping.Configurables {
 
     /// <summary>
     /// </summary>
-    Rigidbody _rigidbody=null;
+    Rigidbody _rigidbody = null;
 
     /// <summary>
     /// </summary>
@@ -113,30 +112,30 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._vel_x);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._vel_y);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._vel_z);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._ang_x);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._ang_y);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._ang_z);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._vel_x);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._vel_y);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._vel_z);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._ang_x);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._ang_y);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._ang_z);
     }
 
     /// <summary>
@@ -169,12 +168,10 @@ namespace droid.Runtime.Prototyping.Configurables {
       if (this.VelocitySpace._Min_Values[0].CompareTo(this.VelocitySpace._Max_Values[0]) != 0) {
         //TODO NOT IMPLEMENTED CORRECTLY VelocitySpace should not be index but should check all pairwise values, VelocitySpace._Min_Values == VelocitySpace._Max_Values
         if (v < this.VelocitySpace._Min_Values[0] || v > this.VelocitySpace._Max_Values[0]) {
-          Debug.Log(
-              string.Format(
-                  "Configurable does not accept input{2}, outside allowed range {0} to {1}",
-                  this.VelocitySpace._Min_Values[0],
-                  this.VelocitySpace._Max_Values[0],
-                  v));
+          Debug.Log(string.Format("Configurable does not accept input{2}, outside allowed range {0} to {1}",
+                                  this.VelocitySpace._Min_Values[0],
+                                  this.VelocitySpace._Max_Values[0],
+                                  v));
           return; // Do nothing
         }
       }
@@ -222,11 +219,11 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    /// <param name="random_generator"></param>
+
     /// <returns></returns>
     /// <exception cref="T:System.NotImplementedException"></exception>
-    public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
-      return new Configuration(this._ang_x, random_generator.Next());
+    public override IConfigurableConfiguration SampleConfiguration() {
+      return new Configuration(this._ang_x, Space1.ZeroOne.Sample());
     }
   }
 }

@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Evaluation {
-  [AddComponentMenu(
-      EvaluationComponentMenuPath._ComponentMenuPath
-      + "AngularVelocity"
-      + EvaluationComponentMenuPath._Postfix)]
+  [AddComponentMenu(EvaluationComponentMenuPath._ComponentMenuPath
+                    + "AngularVelocity"
+                    + EvaluationComponentMenuPath._Postfix)]
   public class AngularVelocityEvaluation : ObjectiveFunction {
-    [SerializeField] bool _penalty=false;
-    [SerializeField] Rigidbody _rigidbody=null;
+    [SerializeField] bool _penalty = false;
+    [SerializeField] Rigidbody _rigidbody = null;
 
     /// <summary>
     /// </summary>

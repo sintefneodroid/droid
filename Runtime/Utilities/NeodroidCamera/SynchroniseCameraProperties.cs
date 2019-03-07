@@ -16,24 +16,24 @@ namespace droid.Runtime.Utilities.NeodroidCamera {
     /// <summary>
     /// </summary>
     [SerializeField]
-    SynchroniseCameraProperties _camera=null;
+    SynchroniseCameraProperties _camera = null;
 
     /// <summary>
     /// </summary>
     [SerializeField]
-    SynchroniseCameraProperties[] _cameras=null;
+    SynchroniseCameraProperties[] _cameras = null;
 
     /// <summary>
     /// </summary>
     [SerializeField]
-    int _old_culling_mask=0;
+    int _old_culling_mask = 0;
 
     /// <summary>
     /// </summary>
     [SerializeField]
-    float _old_far_clip_plane=0;
+    float _old_far_clip_plane = 0;
 
-    [SerializeField] float _old_fov=0;
+    [SerializeField] float _old_fov = 0;
 
     /// <summary>
     /// </summary>

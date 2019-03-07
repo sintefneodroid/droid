@@ -10,13 +10,10 @@ namespace droid.Runtime.Prototyping.Displayers.GridWorld {
   /// <summary>
   /// </summary>
   [ExecuteInEditMode]
-  [AddComponentMenu(
-      DisplayerComponentMenuPath._ComponentMenuPath
-      + "GridWorldVectorField"
-      + DisplayerComponentMenuPath._Postfix)]
+  [AddComponentMenu(DisplayerComponentMenuPath._ComponentMenuPath
+                    + "GridWorldVectorField"
+                    + DisplayerComponentMenuPath._Postfix)]
   public class GridWorldVectorFieldDisplayer : Displayer {
-
-
     /// <summary>
     /// </summary>
     protected override void Setup() { }

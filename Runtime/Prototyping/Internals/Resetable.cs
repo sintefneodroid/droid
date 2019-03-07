@@ -28,16 +28,13 @@ namespace droid.Runtime.Prototyping.Internals {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this._Parent_Environment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this._Parent_Environment,
-          this);
+      this._Parent_Environment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this._Parent_Environment, this);
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void UnRegisterComponent() {
-      this._Parent_Environment?.UnRegister(this);
-    }
+    protected override void UnRegisterComponent() { this._Parent_Environment?.UnRegister(this); }
   }
 }

@@ -10,11 +10,10 @@ namespace droid.Runtime.Prototyping.Displayers.Cells {
   /// <summary>
   /// </summary>
   [ExecuteInEditMode]
-  [AddComponentMenu(
-      DisplayerComponentMenuPath._ComponentMenuPath + "VectorField" + DisplayerComponentMenuPath._Postfix)]
+  [AddComponentMenu(DisplayerComponentMenuPath._ComponentMenuPath
+                    + "VectorField"
+                    + DisplayerComponentMenuPath._Postfix)]
   public class QuadCellDisplayer : Displayer {
-
-
     /// <summary>
     /// </summary>
     protected override void Setup() { }

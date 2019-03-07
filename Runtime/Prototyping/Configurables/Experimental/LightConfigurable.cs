@@ -5,14 +5,15 @@ using droid.Runtime.Utilities.Debugging;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
-using Random = System.Random;
+
 
 namespace droid.Runtime.Prototyping.Configurables.Experimental {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      ConfigurableComponentMenuPath._ComponentMenuPath + "Light" + ConfigurableComponentMenuPath._Postfix)]
+  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
+                    + "Light"
+                    + ConfigurableComponentMenuPath._Postfix)]
   [RequireComponent(typeof(Light))]
   public class LightConfigurable : Configurable {
     string _shadow_strength;
@@ -24,7 +25,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
 
     Light _light;
 
-    [SerializeField] ValueSpace _space = new ValueSpace(){_Min_Value = 0.7f, _Max_Value = 1f};
+    [SerializeField] Space1 _space = new Space1() {_Min_Value = 0.7f, _Max_Value = 1f};
 
     /// <inheritdoc />
     /// <summary>
@@ -44,30 +45,30 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._shadow_strength);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._color_r);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._color_b);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._color_g);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._intensity);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._indirect_multiplier);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._shadow_strength);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._color_r);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._color_b);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._color_g);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._intensity);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._indirect_multiplier);
     }
 
     /// <inheritdoc />
@@ -120,10 +121,10 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    /// <param name="random_generator"></param>
+
     /// <returns></returns>
-    public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
-      var sample = random_generator.NextDouble();
+    public override IConfigurableConfiguration SampleConfiguration() {
+      var sample = Space1.ZeroOne.Sample();
 
       var v = this._space.Sample();
 

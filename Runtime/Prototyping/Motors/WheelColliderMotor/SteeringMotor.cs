@@ -4,8 +4,9 @@ using UnityEngine;
 namespace droid.Runtime.Prototyping.Motors.WheelColliderMotor {
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      MotorComponentMenuPath._ComponentMenuPath + "WheelCollider/Steering" + MotorComponentMenuPath._Postfix)]
+  [AddComponentMenu(MotorComponentMenuPath._ComponentMenuPath
+                    + "WheelCollider/Steering"
+                    + MotorComponentMenuPath._Postfix)]
   [RequireComponent(typeof(WheelCollider))]
   public class SteeringMotor : Motor {
     /// <summary>

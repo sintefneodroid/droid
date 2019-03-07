@@ -3,22 +3,24 @@ using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Utilities.Debugging;
 using droid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities.Structs;
 using UnityEngine;
-using Random = System.Random;
+
 
 namespace droid.Runtime.Prototyping.Configurables.Experimental {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      ConfigurableComponentMenuPath._ComponentMenuPath + "ExternalMesh" + ConfigurableComponentMenuPath._Postfix)]
+  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
+                    + "ExternalMesh"
+                    + ConfigurableComponentMenuPath._Postfix)]
   public class ExternalMeshConfigurable : Configurable {
     /// <summary>
     ///   Red
     /// </summary>
     string _texture_str;
 
-    [SerializeField] Texture _texture=null;
+    [SerializeField] Texture _texture = null;
 
     /// <inheritdoc />
     /// <summary>
@@ -29,10 +31,10 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._texture_str);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._texture_str);
     }
 
     /// <inheritdoc />
@@ -62,10 +64,10 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    /// <param name="random_generator"></param>
+
     /// <returns></returns>
-    public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
-      return new Configuration(this._texture_str, (float)random_generator.NextDouble());
+    public override IConfigurableConfiguration SampleConfiguration() {
+      return new Configuration(this._texture_str, (float)Space1.ZeroOne.Sample());
     }
   }
 }

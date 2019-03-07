@@ -15,14 +15,14 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
   public class MaterialIdSegmenter : Segmenter {
     /// <summary>
     /// </summary>
-    Renderer[] _all_renders=null;
+    Renderer[] _all_renders = null;
 
     /// <summary>
     /// </summary>
-    MaterialPropertyBlock _block=null;
+    MaterialPropertyBlock _block = null;
 
-    [SerializeField] Shader segmentation_shader=null;
-    [SerializeField] Camera _camera=null;
+    [SerializeField] Shader segmentation_shader = null;
+    [SerializeField] Camera _camera = null;
 
     /// <summary>
     /// </summary>
@@ -33,10 +33,8 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
     public override Dictionary<String, Color> ColorsDict {
       get {
         var colors = new Dictionary<String, Color>();
-        foreach (var key_val in this.ColorsDictGameObject)
-        {
-          if(!colors.ContainsKey(key_val.Key.name))
-          {
+        foreach (var key_val in this.ColorsDictGameObject) {
+          if (!colors.ContainsKey(key_val.Key.name)) {
             colors.Add(key_val.Key.name, key_val.Value);
           }
         }
@@ -48,10 +46,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
     // Use this for initialization
     /// <summary>
     /// </summary>
-    void Start() {
-      this.Setup();
-    }
-
+    void Start() { this.Setup(); }
 
     void CheckBlock() {
       if (this._block == null) {
@@ -60,15 +55,17 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
     }
 
     SynthesisUtilities.CapturePass[] _capture_passes = {
-                                           new SynthesisUtilities.CapturePass {
-                                                                              _Name = "_material_id",
-                                                                              _ReplacementMode =
-                                                                                  SynthesisUtilities
-                                                                                      .ReplacementModes
-                                                                                      .Material_id_,
-                                                                              _SupportsAntialiasing = false
-                                                                          }
-                                       };
+                                                           new SynthesisUtilities.CapturePass {
+                                                                                                  _Name =
+                                                                                                      "_material_id",
+                                                                                                  _ReplacementMode
+                                                                                                      = SynthesisUtilities
+                                                                                                        .ReplacementModes
+                                                                                                        .Material_id_,
+                                                                                                  _SupportsAntialiasing
+                                                                                                      = false
+                                                                                              }
+                                                       };
 
     /// <summary>
     /// </summary>
@@ -77,8 +74,8 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
 
       this._camera = this.GetComponent<Camera>();
       SynthesisUtilities.SetupCapturePassesReplacementShader(this._camera,
-                                                         this.segmentation_shader,
-                                                         ref this._capture_passes);
+                                                             this.segmentation_shader,
+                                                             ref this._capture_passes);
 
       this.ColorsDictGameObject = new Dictionary<Material, Color>();
       this.CheckBlock();
@@ -88,7 +85,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
         if (sm) {
           var id = sm.GetInstanceID();
           var color = ColorEncoding.EncodeIdAsColor(id);
-          if(!this.ColorsDictGameObject.ContainsKey(sm)) {
+          if (!this.ColorsDictGameObject.ContainsKey(sm)) {
             this.ColorsDictGameObject.Add(sm, color);
           }
 

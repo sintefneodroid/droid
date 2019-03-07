@@ -18,13 +18,12 @@
   /// <summary>
   /// </summary>
   public class ReactionParameters {
-    public ReactionParameters(
-        bool terminable = false,
-        bool step = false,
-        bool reset = false,
-        bool configure = false,
-        bool describe = false,
-        bool episode_count = false) {
+    public ReactionParameters(bool terminable = false,
+                              bool step = false,
+                              bool reset = false,
+                              bool configure = false,
+                              bool describe = false,
+                              bool episode_count = false) {
       this.IsExternal = false;
       this.Terminable = terminable;
       this.Reset = reset;

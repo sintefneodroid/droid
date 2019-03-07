@@ -7,8 +7,7 @@ namespace droid.Runtime.Utilities.ScriptableObjects {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [CreateAssetMenu(
-      fileName = "PlayerMotions",
+  [CreateAssetMenu(fileName = "PlayerMotions",
       menuName = "Neodroid/ScriptableObjects/PlayerMotions",
       order = 1)]
   public class PlayerMotions : ScriptableObject {
@@ -31,9 +30,10 @@ namespace droid.Runtime.Utilities.ScriptableObjects {
         var actor = copy[i]._Actor;
         copy[i]._Actor = Regex.Replace(actor, "[^\\w\\._]", "");
 
-        var motor= copy[i]._Motor;
+        var motor = copy[i]._Motor;
         copy[i]._Motor = Regex.Replace(motor, "[^\\w\\._]", "");
       }
+
       this._Motions = copy;
     }
   }

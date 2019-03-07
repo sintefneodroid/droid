@@ -31,15 +31,13 @@ namespace droid.Editor.Windows {
         _imported_asset = EditorPrefs.GetBool(NeodroidEditorInfo._Imported_Asset_Pref_Key, false);
         _generate_scene_previews = EditorPrefs.GetBool(NeodroidEditorInfo._Generate_Previews_Pref_Key, false);
         if (_generate_scene_previews) {
-          _scene_previews_location = EditorPrefs.GetString(
-              NeodroidEditorInfo._Generate_Previews_Loc_Pref_Key,
-              NeodroidEditorInfo.ScenePreviewsLocation);
+          _scene_previews_location = EditorPrefs.GetString(NeodroidEditorInfo._Generate_Previews_Loc_Pref_Key,
+                                                           NeodroidEditorInfo.ScenePreviewsLocation);
         }
 
         #if NEODROID_IMPORTED_ASSET
-        _import_location = EditorPrefs.GetString(
-            NeodroidEditorInfo._Import_Location_Pref_Key,
-            NeodroidEditorInfo.ImportLocation);
+        _import_location = EditorPrefs.GetString(NeodroidEditorInfo._Import_Location_Pref_Key,
+                                                 NeodroidEditorInfo.ImportLocation);
         #endif
 
         _preferences_loaded = true;
@@ -47,9 +45,8 @@ namespace droid.Editor.Windows {
 
       EditorGUILayout.HelpBox($"Version {NeodroidEditorInfo._Version}", MessageType.Info);
 
-      var imported_asset_new = EditorGUILayout.Toggle(
-          NeodroidEditorInfo._Imported_Asset_Pref_Key,
-          _imported_asset);
+      var imported_asset_new =
+          EditorGUILayout.Toggle(NeodroidEditorInfo._Imported_Asset_Pref_Key, _imported_asset);
 
       #if NEODROID_IMPORTED_ASSET
       EditorGUILayout.HelpBox("Enter import path of Neodroid", MessageType.Info);
@@ -58,15 +55,12 @@ namespace droid.Editor.Windows {
 
       EditorGUILayout.HelpBox("Functionality", MessageType.Info);
 
-      var enable_neodroid_debug_new = EditorGUILayout.Toggle(
-          NeodroidEditorInfo._Debug_Pref_Key,
-          _enable_neodroid_debug);
-      var use_github_extension_new = EditorGUILayout.Toggle(
-          NeodroidEditorInfo._Github_Extension_Pref_Key,
-          _use_github_extension);
-      var generate_scene_previews_new = EditorGUILayout.Toggle(
-          NeodroidEditorInfo._Generate_Previews_Pref_Key,
-          _generate_scene_previews);
+      var enable_neodroid_debug_new =
+          EditorGUILayout.Toggle(NeodroidEditorInfo._Debug_Pref_Key, _enable_neodroid_debug);
+      var use_github_extension_new =
+          EditorGUILayout.Toggle(NeodroidEditorInfo._Github_Extension_Pref_Key, _use_github_extension);
+      var generate_scene_previews_new =
+          EditorGUILayout.Toggle(NeodroidEditorInfo._Generate_Previews_Pref_Key, _generate_scene_previews);
       if (_generate_scene_previews) {
         EditorGUILayout.HelpBox("Enter path for scene preview storage", MessageType.Info);
         _scene_previews_location = EditorGUILayout.TextField(_scene_previews_location);
@@ -122,10 +116,8 @@ namespace droid.Editor.Windows {
         if (_generate_scene_previews) {
           if (NeodroidEditorInfo.ScenePreviewsLocation != _scene_previews_location) {
             NeodroidEditorInfo.ScenePreviewsLocation = _scene_previews_location;
-            EditorPrefs.SetString(
-                NeodroidEditorInfo._Generate_Previews_Loc_Pref_Key,
-                _scene_previews_location);
-
+            EditorPrefs.SetString(NeodroidEditorInfo._Generate_Previews_Loc_Pref_Key,
+                                  _scene_previews_location);
           }
         }
 
@@ -196,9 +188,8 @@ namespace droid.Editor.Windows {
           PlayerSettings.GetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup);
       var all_defines = defines_string.Split(';').ToList();
       all_defines.AddRange(_Symbols.Except(all_defines));
-      PlayerSettings.SetScriptingDefineSymbolsForGroup(
-          EditorUserBuildSettings.selectedBuildTargetGroup,
-          string.Join(";", all_defines.ToArray()));
+      PlayerSettings.SetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup,
+                                                       string.Join(";", all_defines.ToArray()));
     }
 
     /// <summary>
@@ -245,9 +236,8 @@ namespace droid.Editor.Windows {
       var all_defines = defines_string.Split(';').ToList();
       all_defines.AddRange(symbols.Except(all_defines));
 
-      PlayerSettings.SetScriptingDefineSymbolsForGroup(
-          EditorUserBuildSettings.selectedBuildTargetGroup,
-          string.Join(";", all_defines.ToArray()));
+      PlayerSettings.SetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup,
+                                                       string.Join(";", all_defines.ToArray()));
     }
 
     /// <summary>
@@ -258,13 +248,11 @@ namespace droid.Editor.Windows {
       var all_defines = defines_string.Split(';').ToList();
       foreach (var b in symbols) {
         var res = all_defines.RemoveAll(c => c == b);
-        Debug.LogWarning(
-            $"Removed define symbols {symbols.Aggregate((aa, bb) => aa + "," + bb)} : number of entries removed {res}");
+        Debug.LogWarning($"Removed define symbols {symbols.Aggregate((aa, bb) => aa + "," + bb)} : number of entries removed {res}");
       }
 
-      PlayerSettings.SetScriptingDefineSymbolsForGroup(
-          EditorUserBuildSettings.selectedBuildTargetGroup,
-          string.Join(";", all_defines.ToArray()));
+      PlayerSettings.SetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup,
+                                                       string.Join(";", all_defines.ToArray()));
     }
   }
 }

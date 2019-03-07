@@ -43,58 +43,46 @@ namespace droid.Runtime.Utilities.Misc.Grasping {
       var z = z_size / 2;
 
       //Vertical lines
-      Debug.DrawLine(
-          new Vector3(-x + pos.x, -y + pos.y, -z + pos.z),
-          new Vector3(-x + pos.x, y + pos.y, -z + pos.z),
-          color);
-      Debug.DrawLine(
-          new Vector3(x + pos.x, -y + pos.y, -z + pos.z),
-          new Vector3(x + pos.x, y + pos.y, -z + pos.z),
-          color);
-      Debug.DrawLine(
-          new Vector3(-x + pos.x, -y + pos.y, z + pos.z),
-          new Vector3(-x + pos.x, y + pos.y, z + pos.z),
-          color);
-      Debug.DrawLine(
-          new Vector3(x + pos.x, -y + pos.y, z + pos.z),
-          new Vector3(x + pos.x, y + pos.y, z + pos.z),
-          color);
+      Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, -z + pos.z),
+                     new Vector3(-x + pos.x, y + pos.y, -z + pos.z),
+                     color);
+      Debug.DrawLine(new Vector3(x + pos.x, -y + pos.y, -z + pos.z),
+                     new Vector3(x + pos.x, y + pos.y, -z + pos.z),
+                     color);
+      Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, z + pos.z),
+                     new Vector3(-x + pos.x, y + pos.y, z + pos.z),
+                     color);
+      Debug.DrawLine(new Vector3(x + pos.x, -y + pos.y, z + pos.z),
+                     new Vector3(x + pos.x, y + pos.y, z + pos.z),
+                     color);
 
       //Horizontal top
-      Debug.DrawLine(
-          new Vector3(-x + pos.x, y + pos.y, -z + pos.z),
-          new Vector3(x + pos.x, y + pos.y, -z + pos.z),
-          color);
-      Debug.DrawLine(
-          new Vector3(-x + pos.x, y + pos.y, z + pos.z),
-          new Vector3(x + pos.x, y + pos.y, z + pos.z),
-          color);
-      Debug.DrawLine(
-          new Vector3(-x + pos.x, y + pos.y, -z + pos.z),
-          new Vector3(-x + pos.x, y + pos.y, z + pos.z),
-          color);
-      Debug.DrawLine(
-          new Vector3(x + pos.x, y + pos.y, -z + pos.z),
-          new Vector3(x + pos.x, y + pos.y, z + pos.z),
-          color);
+      Debug.DrawLine(new Vector3(-x + pos.x, y + pos.y, -z + pos.z),
+                     new Vector3(x + pos.x, y + pos.y, -z + pos.z),
+                     color);
+      Debug.DrawLine(new Vector3(-x + pos.x, y + pos.y, z + pos.z),
+                     new Vector3(x + pos.x, y + pos.y, z + pos.z),
+                     color);
+      Debug.DrawLine(new Vector3(-x + pos.x, y + pos.y, -z + pos.z),
+                     new Vector3(-x + pos.x, y + pos.y, z + pos.z),
+                     color);
+      Debug.DrawLine(new Vector3(x + pos.x, y + pos.y, -z + pos.z),
+                     new Vector3(x + pos.x, y + pos.y, z + pos.z),
+                     color);
 
       //Horizontal bottom
-      Debug.DrawLine(
-          new Vector3(-x + pos.x, -y + pos.y, -z + pos.z),
-          new Vector3(x + pos.x, -y + pos.y, -z + pos.z),
-          color);
-      Debug.DrawLine(
-          new Vector3(-x + pos.x, -y + pos.y, z + pos.z),
-          new Vector3(x + pos.x, -y + pos.y, z + pos.z),
-          color);
-      Debug.DrawLine(
-          new Vector3(-x + pos.x, -y + pos.y, -z + pos.z),
-          new Vector3(-x + pos.x, -y + pos.y, z + pos.z),
-          color);
-      Debug.DrawLine(
-          new Vector3(x + pos.x, -y + pos.y, -z + pos.z),
-          new Vector3(x + pos.x, -y + pos.y, z + pos.z),
-          color);
+      Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, -z + pos.z),
+                     new Vector3(x + pos.x, -y + pos.y, -z + pos.z),
+                     color);
+      Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, z + pos.z),
+                     new Vector3(x + pos.x, -y + pos.y, z + pos.z),
+                     color);
+      Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, -z + pos.z),
+                     new Vector3(-x + pos.x, -y + pos.y, z + pos.z),
+                     color);
+      Debug.DrawLine(new Vector3(x + pos.x, -y + pos.y, -z + pos.z),
+                     new Vector3(x + pos.x, -y + pos.y, z + pos.z),
+                     color);
     }
 
     /// <summary>

@@ -6,8 +6,9 @@ using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Observers.Grid {
-  [AddComponentMenu(
-      ObserverComponentMenuPath._ComponentMenuPath + "GoalCell" + ObserverComponentMenuPath._Postfix)]
+  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+                    + "GoalCell"
+                    + ObserverComponentMenuPath._Postfix)]
   public class GoalCellObserver : Observer,
                                   IHasTriple {
     [SerializeField] EmptyCell _current_goal;
@@ -53,9 +54,15 @@ namespace droid.Runtime.Prototyping.Observers.Grid {
     /// </summary>
     public Space3 TripleSpace { get; } = new Space3();
 
-    public override IEnumerable<float> FloatEnumerable { get{return new[] {
-      this._current_goal_position.x, this._current_goal_position.y, this._current_goal_position.z
-    };} }
+    public override IEnumerable<float> FloatEnumerable {
+      get {
+        return new[] {
+                         this._current_goal_position.x,
+                         this._current_goal_position.y,
+                         this._current_goal_position.z
+                     };
+      }
+    }
 
     /// <summary>
     /// </summary>
@@ -69,10 +76,9 @@ namespace droid.Runtime.Prototyping.Observers.Grid {
     void OnDrawGizmosSelected() {
       if (this.DrawNames) {
         if (this._current_goal) {
-          NeodroidDrawingUtilities.DrawString(
-              this._current_goal.name,
-              this._current_goal.transform.position,
-              Color.green);
+          NeodroidDrawingUtilities.DrawString(this._current_goal.name,
+                                              this._current_goal.transform.position,
+                                              Color.green);
         }
       }
     }

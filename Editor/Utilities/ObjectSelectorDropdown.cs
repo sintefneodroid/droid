@@ -73,9 +73,9 @@ namespace droid.Editor.Utilities {
               if (e.type == EventType.DragPerform) {
                 var gm = new GenericMenu();
                 GenericMenu.MenuFunction2 func = o => {
-                  property.objectReferenceValue = (Object)o;
-                  property.serializedObject.ApplyModifiedProperties();
-                };
+                                                   property.objectReferenceValue = (Object)o;
+                                                   property.serializedObject.ApplyModifiedProperties();
+                                                 };
                 foreach (var item in this._m_list) {
                   gm.AddItem(new GUIContent(item.name + "(" + item.GetType().Name + ")"), false, func, item);
                 }
@@ -110,9 +110,8 @@ namespace droid.Editor.Utilities {
       FieldInfo fi = null;
       var parts = a_property.propertyPath.Split('.');
       foreach (var field_name in parts) {
-        fi = current_type.GetField(
-            field_name,
-            BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+        fi = current_type.GetField(field_name,
+                                   BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
         if (fi == null) {
           return null;
         }

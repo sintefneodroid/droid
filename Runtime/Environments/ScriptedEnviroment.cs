@@ -17,48 +17,48 @@ namespace droid.Runtime.Environments {
     /// <summary>
     /// </summary>
     [SerializeField]
-    Renderer _actor_renderer=null;
+    Renderer _actor_renderer = null;
 
     /// <summary>
     /// </summary>
     [SerializeField]
-    int _actor_x=0;
+    int _actor_x = 0;
 
     /// <summary>
     /// </summary>
     [SerializeField]
-    int _actor_y=0;
+    int _actor_y = 0;
 
     /// <summary>
     /// </summary>
     [SerializeField]
-    Renderer _goal_renderer=null;
+    Renderer _goal_renderer = null;
 
     /// <summary>
     /// </summary>
     [SerializeField]
-    int _goal_x=0;
+    int _goal_x = 0;
 
     /// <summary>
     /// </summary>
     [SerializeField]
-    int _goal_y=0;
+    int _goal_y = 0;
 
     /// <summary>
     /// </summary>
-    int[,] _grid=null;
+    int[,] _grid = null;
 
     /// <summary>
     /// </summary>
     [SerializeField]
-    int _height=0;
+    int _height = 0;
 
     List<IMotorMotion> _motions = new List<IMotorMotion>();
 
     /// <summary>
     /// </summary>
     [SerializeField]
-    IManager _time_simulation_manager=null;
+    IManager _time_simulation_manager = null;
 
     /// <summary>
     /// </summary>
@@ -111,9 +111,8 @@ namespace droid.Runtime.Environments {
         }
       }
 
-      this._time_simulation_manager = NeodroidUtilities.RegisterComponent(
-          (NeodroidManager)this._time_simulation_manager,
-          this);
+      this._time_simulation_manager =
+          NeodroidUtilities.RegisterComponent((NeodroidManager)this._time_simulation_manager, this);
     }
 
     /// <inheritdoc />

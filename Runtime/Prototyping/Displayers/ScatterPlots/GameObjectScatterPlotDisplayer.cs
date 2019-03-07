@@ -7,10 +7,9 @@ using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
   [ExecuteInEditMode]
-  [AddComponentMenu(
-      DisplayerComponentMenuPath._ComponentMenuPath
-      + "GameObjectScatterPlotDisplayer"
-      + DisplayerComponentMenuPath._Postfix)]
+  [AddComponentMenu(DisplayerComponentMenuPath._ComponentMenuPath
+                    + "GameObjectScatterPlotDisplayer"
+                    + DisplayerComponentMenuPath._Postfix)]
   public class GameObjectScatterPlotDisplayer : Displayer {
     [SerializeField] Gradient _gradient;
     ParticleSystem _particle_system;
@@ -47,10 +46,11 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
 
       if (this._gradient == null) {
         this._gradient = new Gradient {
-            colorKeys = new[] {
-                new GradientColorKey(new Color(1, 0, 0), 0f), new GradientColorKey(new Color(0, 1, 0), 1f)
-            }
-        };
+                                          colorKeys = new[] {
+                                                                new GradientColorKey(new Color(1, 0, 0), 0f),
+                                                                new GradientColorKey(new Color(0, 1, 0), 1f)
+                                                            }
+                                      };
       }
     }
 

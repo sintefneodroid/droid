@@ -5,29 +5,26 @@ using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
-using Random = System.Random;
+
 
 namespace droid.Runtime.Prototyping.Configurables {
   /// <inheritdoc cref="Configurable" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      ConfigurableComponentMenuPath._ComponentMenuPath
-      + "Friction"
-      + ConfigurableComponentMenuPath._Postfix)]
+  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
+                    + "Friction"
+                    + ConfigurableComponentMenuPath._Postfix)]
   [RequireComponent(typeof(Rigidbody))]
   public class FrictionConfigurable : Configurable,
-                                       IHasSingle {
-
+                                      IHasSingle {
     /// <summary>
     /// </summary>
     [SerializeField]
-    float _velocity_space=0;
-
+    float _velocity_space = 0;
 
     /// <summary>
     /// </summary>
-    ValueSpace _angular_velocity =ValueSpace.ZeroOne;
+    Space1 _angular_velocity = Space1.ZeroOne;
 
     /// <summary>
     /// </summary>
@@ -35,15 +32,13 @@ namespace droid.Runtime.Prototyping.Configurables {
 
     Rigidbody _rigidbody;
 
-
     /// <summary>
     /// </summary>
     public override string PrototypingTypeName { get { return "RigidbodyConfigurable"; } }
 
-
     /// <summary>
     /// </summary>
-    public ValueSpace SingleSpace {
+    public Space1 SingleSpace {
       get { return this._angular_velocity; }
       private set { this._angular_velocity = value; }
     }
@@ -56,7 +51,6 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     public override void UpdateCurrentConfiguration() {
       //this.Velocity = this._rigidbody.velocity;
-
     }
 
     /// <summary>
@@ -70,11 +64,10 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._vel_x);
-
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._vel_x);
     }
 
     /// <summary>
@@ -85,7 +78,6 @@ namespace droid.Runtime.Prototyping.Configurables {
       }
 
       this.ParentEnvironment.UnRegister(this, this._vel_x);
-
     }
 
     /// <summary>
@@ -102,12 +94,10 @@ namespace droid.Runtime.Prototyping.Configurables {
       if (this.SingleSpace._Min_Value.CompareTo(this.SingleSpace._Max_Value) != 0) {
         //TODO NOT IMPLEMENTED CORRECTLY VelocitySpace should not be index but should check all pairwise values, VelocitySpace._Min_Values == VelocitySpace._Max_Values
         if (v < this.SingleSpace._Min_Value || v > this.SingleSpace._Max_Value) {
-          Debug.Log(
-              string.Format(
-                  "Configurable does not accept input{2}, outside allowed range {0} to {1}",
-                  this.SingleSpace._Min_Value,
-                  this.SingleSpace._Max_Value,
-                  v));
+          Debug.Log(string.Format("Configurable does not accept input{2}, outside allowed range {0} to {1}",
+                                  this.SingleSpace._Min_Value,
+                                  this.SingleSpace._Max_Value,
+                                  v));
           return; // Do nothing
         }
       }
@@ -128,18 +118,17 @@ namespace droid.Runtime.Prototyping.Configurables {
         }
       }
 
-
       //this._rigidbody.angularVelocity = ang;
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    /// <param name="random_generator"></param>
+
     /// <returns></returns>
     /// <exception cref="T:System.NotImplementedException"></exception>
-    public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
-      return new Configuration(this._vel_x, random_generator.Next());
+    public override IConfigurableConfiguration SampleConfiguration() {
+      return new Configuration(this._vel_x, _angular_velocity.Sample());
     }
   }
 }

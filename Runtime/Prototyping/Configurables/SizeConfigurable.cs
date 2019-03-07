@@ -5,14 +5,15 @@ using droid.Runtime.Utilities.Debugging;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
-using Random = System.Random;
+
 
 namespace droid.Runtime.Prototyping.Configurables {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      ConfigurableComponentMenuPath._ComponentMenuPath + "Size" + ConfigurableComponentMenuPath._Postfix)]
+  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
+                    + "Size"
+                    + ConfigurableComponentMenuPath._Postfix)]
   public class SizeConfigurable : Configurable {
     /// <summary>
     ///   Alpha
@@ -29,7 +30,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     string _z;
 
-    [SerializeField] ValueSpace _space = new ValueSpace(){_Min_Value = 0.3f, _Max_Value = 1f};
+    [SerializeField] Space3 _space = Space3.ZeroOne;
 
     /// <inheritdoc />
     /// <summary>
@@ -44,18 +45,18 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._x);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._y);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._z);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._x);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._y);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._z);
     }
 
     /// <inheritdoc />
@@ -95,22 +96,22 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    /// <param name="random_generator"></param>
+
     /// <returns></returns>
-    public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
-      var sample = random_generator.NextDouble();
+    public override IConfigurableConfiguration SampleConfiguration() {
+      var sample = Space1.ZeroOne.Sample();
 
       var v = this._space.Sample();
 
       if (sample < .33f) {
-        return new Configuration(this._x, v);
+        return new Configuration(this._x, v.x);
       }
 
       if (sample > .66f) {
-        return new Configuration(this._y, v);
+        return new Configuration(this._y, v.y);
       }
 
-      return new Configuration(this._z, v);
+      return new Configuration(this._z, v.z);
     }
   }
 }

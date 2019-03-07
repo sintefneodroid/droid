@@ -14,11 +14,10 @@ namespace droid.Runtime.Managers {
     #if UNITY_EDITOR
     /// <summary>
     /// </summary>
-    [Header(
-        "Warning! Will block editor requiring a restart, if not terminated while receiving.",
+    [Header("Warning! Will block editor requiring a restart, if not terminated while receiving.",
         order = 120)]
     [SerializeField]
-    bool _allow_in_editor_blockage=false;
+    bool _allow_in_editor_blockage = false;
     #endif
 
     #endregion
@@ -38,8 +37,7 @@ namespace droid.Runtime.Managers {
           this.EarlyFixedUpdateEvent +=
               this.Receive; // Receive blocks the main thread and therefore also the unity editor.
         } else {
-          Debug.LogWarning(
-              "Physics dependent blocking in editor is not enabled and is therefore not receiving or sending anything.");
+          Debug.LogWarning("Physics dependent blocking in editor is not enabled and is therefore not receiving or sending anything.");
         }
         #else
         this.EarlyFixedUpdateEvent += this.Receive;

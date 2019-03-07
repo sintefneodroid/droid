@@ -9,10 +9,9 @@ namespace droid.Runtime.Prototyping.Observers.Camera {
   /// <inheritdoc cref="Observer" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      ObserverComponentMenuPath._ComponentMenuPath
-      + "StringAugmentedCamera"
-      + ObserverComponentMenuPath._Postfix)]
+  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+                    + "StringAugmentedCamera"
+                    + ObserverComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [RequireComponent(typeof(UnityEngine.Camera))]
   public class StringAugmentedCameraObserver : CameraObserver,
@@ -31,8 +30,7 @@ namespace droid.Runtime.Prototyping.Observers.Camera {
     /// </summary>
     public String ObservationValue { get { return this.serialisedString; } }
 
-    protected override void PreSetup()
-    {
+    protected override void PreSetup() {
       base.PreSetup();
       this._colors = this.Identifier + _color_identifier;
     }
@@ -41,15 +39,15 @@ namespace droid.Runtime.Prototyping.Observers.Camera {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          this,
-          this.Identifier);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              this,
+                                              this.Identifier);
 
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          this,
-          this._colors);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              this,
+                                              this._colors);
     }
 
     /// <inheritdoc />

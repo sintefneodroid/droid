@@ -6,14 +6,15 @@ using droid.Runtime.Utilities.Debugging;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
-using Random = System.Random;
+
 
 namespace droid.Runtime.Prototyping.Configurables {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      ConfigurableComponentMenuPath._ComponentMenuPath + "Color" + ConfigurableComponentMenuPath._Postfix)]
+  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
+                    + "Color"
+                    + ConfigurableComponentMenuPath._Postfix)]
   [RequireComponent(typeof(Renderer))]
   public class ColorConfigurable : Configurable {
     /// <summary>
@@ -40,7 +41,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     Renderer _renderer;
 
-    [SerializeField] ValueSpace _space = new ValueSpace(){_Min_Value = 0.3f, _Max_Value = 1f};
+    [SerializeField] Space1 _space = new Space1() {_Min_Value = 0.3f, _Max_Value = 1f};
 
     [SerializeField] bool use_shared = false;
 
@@ -60,22 +61,22 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._r);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._g);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._b);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._a);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._r);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._g);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._b);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._a);
     }
 
     /// <inheritdoc />
@@ -102,8 +103,7 @@ namespace droid.Runtime.Prototyping.Configurables {
       }
       #endif
 
-      if(this.use_shared)
-      {
+      if (this.use_shared) {
         foreach (var mat in this._renderer.sharedMaterials) {
           var c = mat.color;
 
@@ -119,9 +119,7 @@ namespace droid.Runtime.Prototyping.Configurables {
 
           mat.color = c;
         }
-      }
-      else
-      {
+      } else {
         foreach (var mat in this._renderer.materials) {
           var c = mat.color;
 
@@ -138,18 +136,15 @@ namespace droid.Runtime.Prototyping.Configurables {
           mat.color = c;
         }
       }
-
-
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    /// <param name="random_generator"></param>
-    /// <returns></returns>
-    public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
-      var sample = random_generator.NextDouble();
 
+    /// <returns></returns>
+    public override IConfigurableConfiguration SampleConfiguration() {
+      var sample = Space1.ZeroOne.Sample();
 
       var v = this._space.Sample();
 

@@ -7,8 +7,9 @@ namespace droid.Runtime.Prototyping.Observers {
   /// <inheritdoc cref="Observer" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      ObserverComponentMenuPath._ComponentMenuPath + "Value" + ObserverComponentMenuPath._Postfix)]
+  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+                    + "Value"
+                    + ObserverComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   public class ValueObserver : Observer,
                                IHasSingle {
@@ -16,12 +17,12 @@ namespace droid.Runtime.Prototyping.Observers {
     [SerializeField]
     float _observation_value;
 
-    [SerializeField] ValueSpace _observation_value_space;
+    [SerializeField] Space1 _observation_value_space;
 
     /// <summary>
     ///
     /// </summary>
-    public ValueSpace SingleSpace { get { return this._observation_value_space; } }
+    public Space1 SingleSpace { get { return this._observation_value_space; } }
 
     /// <summary>
     ///
@@ -37,10 +38,7 @@ namespace droid.Runtime.Prototyping.Observers {
 
     protected override void PreSetup() { }
 
-    public override IEnumerable<float> FloatEnumerable
-    {
-      get { return new []{this.ObservationValue}; }
-    }
+    public override IEnumerable<float> FloatEnumerable { get { return new[] {this.ObservationValue}; } }
     public override void UpdateObservation() { ; }
   }
 }

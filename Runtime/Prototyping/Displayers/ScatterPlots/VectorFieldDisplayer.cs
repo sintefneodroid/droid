@@ -10,10 +10,10 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
   /// <summary>
   /// </summary>
   [ExecuteInEditMode]
-  [AddComponentMenu(
-      DisplayerComponentMenuPath._ComponentMenuPath + "VectorField" + DisplayerComponentMenuPath._Postfix)]
+  [AddComponentMenu(DisplayerComponentMenuPath._ComponentMenuPath
+                    + "VectorField"
+                    + DisplayerComponentMenuPath._Postfix)]
   public class VectorFieldDisplayer : Displayer {
-
     /// <inheritdoc />
     /// <summary>
     /// </summary>

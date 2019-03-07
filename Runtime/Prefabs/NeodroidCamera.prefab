@@ -59,7 +59,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 100
+  far clip plane: 30
   field of view: 61.600002
   orthographic: 0
   orthographic size: 20
@@ -99,7 +99,7 @@ MonoBehaviour:
   _Camera: {fileID: 727610266}
   imageFormat: 1
   jpegQuality: 75
-  disable_encoding: 1
+  disable_encoding: 0
 --- !u!114 &727610264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,7 +239,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 20
+  far clip plane: 30
   field of view: 61.600002
   orthographic: 0
   orthographic size: 20
@@ -273,27 +273,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 790114237}
   _cameras:
-  - {fileID: 1463669859483367840}
-  - {fileID: 1171208658948452137}
-  - {fileID: 3246734891326987255}
-  - {fileID: 3844039368205312392}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1802749280476413633}
-  - {fileID: 114608562479145288}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 114594705335718820}
   - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 1623028174}
-  - {fileID: 1458531845}
-  - {fileID: 1403684216}
-  - {fileID: 870147247}
   - {fileID: 790114237}
-  - {fileID: 727610264}
   - {fileID: 114716082362535994}
   _old_culling_mask: -33
-  _old_far_clip_plane: 20
+  _old_far_clip_plane: 30
   _old_fov: 61.600002
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
@@ -327,7 +311,7 @@ MonoBehaviour:
   _Camera: {fileID: 790114239}
   imageFormat: 1
   jpegQuality: 75
-  disable_encoding: 1
+  disable_encoding: 0
 --- !u!114 &790114235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,7 +406,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 100
+  far clip plane: 30
   field of view: 61.600002
   orthographic: 0
   orthographic size: 20
@@ -510,7 +494,7 @@ MonoBehaviour:
   _Camera: {fileID: 870147248}
   imageFormat: 1
   jpegQuality: 75
-  disable_encoding: 1
+  disable_encoding: 0
 --- !u!114 &870147245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -585,7 +569,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 20
+  far clip plane: 30
   field of view: 61.600002
   orthographic: 0
   orthographic size: 20
@@ -617,7 +601,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08d8186d4ab68d634912ff814b6d0f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instanceColorArray: []
   segmentation_shader: {fileID: 4800000, guid: 8fd7ede99a3748d686ce9bf8cd8dd2d7, type: 3}
   _camera: {fileID: 1403684218}
 --- !u!114 &1403684216
@@ -689,7 +672,7 @@ MonoBehaviour:
   _Camera: {fileID: 1403684218}
   imageFormat: 1
   jpegQuality: 75
-  disable_encoding: 1
+  disable_encoding: 0
 --- !u!114 &1403684213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -770,7 +753,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 100
+  far clip plane: 30
   field of view: 61.600002
   orthographic: 0
   orthographic size: 20
@@ -810,7 +793,7 @@ MonoBehaviour:
   _Camera: {fileID: 1458531849}
   imageFormat: 1
   jpegQuality: 75
-  disable_encoding: 1
+  disable_encoding: 0
 --- !u!114 &1458531845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -950,7 +933,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 100
+  far clip plane: 30
   field of view: 61.600002
   orthographic: 0
   orthographic size: 20
@@ -990,7 +973,7 @@ MonoBehaviour:
   _Camera: {fileID: 1623028176}
   imageFormat: 1
   jpegQuality: 75
-  disable_encoding: 1
+  disable_encoding: 0
 --- !u!114 &1623028174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1248,7 +1231,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 100
+  far clip plane: 30
   field of view: 61.600002
   orthographic: 0
   orthographic size: 20
@@ -1336,7 +1319,7 @@ MonoBehaviour:
   _Camera: {fileID: 20367486579053346}
   imageFormat: 1
   jpegQuality: 75
-  disable_encoding: 1
+  disable_encoding: 0
 --- !u!114 &114032525281749288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1480,7 +1463,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 100
+  far clip plane: 30
   field of view: 61.600002
   orthographic: 0
   orthographic size: 20
@@ -1514,27 +1497,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114203839715900738}
   _cameras:
-  - {fileID: 1463669859483367840}
-  - {fileID: 1171208658948452137}
-  - {fileID: 3246734891326987255}
-  - {fileID: 3844039368205312392}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1802749280476413633}
-  - {fileID: 114608562479145288}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 114594705335718820}
   - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 1623028174}
-  - {fileID: 1458531845}
-  - {fileID: 1403684216}
-  - {fileID: 870147247}
   - {fileID: 790114237}
-  - {fileID: 727610264}
   - {fileID: 114716082362535994}
   _old_culling_mask: -33
-  _old_far_clip_plane: 100
+  _old_far_clip_plane: 30
   _old_fov: 61.600002
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
@@ -1568,7 +1535,7 @@ MonoBehaviour:
   _Camera: {fileID: 20940602749366906}
   imageFormat: 1
   jpegQuality: 75
-  disable_encoding: 1
+  disable_encoding: 0
 --- !u!114 &114877382518267686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1821,7 +1788,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 100
+  far clip plane: 30
   field of view: 28.2
   orthographic: 1
   orthographic size: 20
@@ -1909,7 +1876,7 @@ MonoBehaviour:
   _Camera: {fileID: 20793825365236440}
   imageFormat: 1
   jpegQuality: 75
-  disable_encoding: 1
+  disable_encoding: 0
 --- !u!114 &114931974240182444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2014,7 +1981,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 100
+  far clip plane: 30
   field of view: 61.600002
   orthographic: 0
   orthographic size: 20
@@ -2102,7 +2069,7 @@ MonoBehaviour:
   _Camera: {fileID: 20145353716750142}
   imageFormat: 1
   jpegQuality: 75
-  disable_encoding: 1
+  disable_encoding: 0
 --- !u!114 &114633070162146770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2211,7 +2178,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 100
+  far clip plane: 30
   field of view: 61.600002
   orthographic: 0
   orthographic size: 20
@@ -2299,7 +2266,7 @@ MonoBehaviour:
   _Camera: {fileID: 20768847776266208}
   imageFormat: 1
   jpegQuality: 75
-  disable_encoding: 1
+  disable_encoding: 0
 --- !u!114 &114831488807547016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2414,7 +2381,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 100
+  far clip plane: 30
   field of view: 61.600002
   orthographic: 0
   orthographic size: 20
@@ -2448,27 +2415,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114716082362535994}
   _cameras:
-  - {fileID: 1463669859483367840}
-  - {fileID: 1171208658948452137}
-  - {fileID: 3246734891326987255}
-  - {fileID: 3844039368205312392}
-  - {fileID: 4939762416714711659}
-  - {fileID: 1802749280476413633}
-  - {fileID: 114608562479145288}
-  - {fileID: 114798311224295254}
-  - {fileID: 114203530777878686}
-  - {fileID: 114594705335718820}
   - {fileID: 114203839715900738}
-  - {fileID: 114307586759802868}
-  - {fileID: 1623028174}
-  - {fileID: 1458531845}
-  - {fileID: 1403684216}
-  - {fileID: 870147247}
   - {fileID: 790114237}
-  - {fileID: 727610264}
   - {fileID: 114716082362535994}
   _old_culling_mask: -1
-  _old_far_clip_plane: 100
+  _old_far_clip_plane: 30
   _old_fov: 61.600002
   _old_near_clip_plane: 0.01
   _old_orthographic_projection: 0
@@ -2520,47 +2471,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 8584843010322102044}
-  - {fileID: 870147248}
-  - {fileID: 3337727558481276136}
-  - {fileID: 4614691972182028737}
-  - {fileID: 20598539646069560}
-  - {fileID: 790114239}
-  - {fileID: 20940602749366906}
-  - {fileID: 1623028176}
-  - {fileID: 4204259003963777610}
-  - {fileID: 1458531849}
-  - {fileID: 20768847776266208}
-  - {fileID: 20145353716750142}
-  - {fileID: 5796786885426895393}
-  - {fileID: 20367486579053346}
-  - {fileID: 727610266}
-  - {fileID: 1403684218}
-  - {fileID: 4956758692426196692}
-  - {fileID: 20793825365236440}
   - {fileID: 20224209517257972}
+  - {fileID: 20940602749366906}
+  - {fileID: 790114239}
   _filter_mode: 1
-  _size: {x: 256, y: 256}
-  _texture_format: 3
+  _size: {x: 224, y: 224}
   _textures:
-  - {fileID: 8400000, guid: cc4e727fd2f685deea5ec6e4b44b5cc3, type: 2}
-  - {fileID: 8400000, guid: 65d4c1ba790a0b02b827d1bca779fd3d, type: 2}
-  - {fileID: 8400000, guid: 43f8b57e2bee2bd6eb1df24b6c88ba79, type: 2}
-  - {fileID: 8400000, guid: 7ce5d7425e7fa3af69f9bdd316de2208, type: 2}
-  - {fileID: 8400000, guid: b22ce111b5af44afe8b8f2f085799a5f, type: 2}
-  - {fileID: 8400000, guid: e52a2f56c9ffa187abf5021f3338228e, type: 2}
   - {fileID: 8400000, guid: 4c7dcaf7e8ef74c11bd8ad06365ea216, type: 2}
-  - {fileID: 8400000, guid: 0a204b96270826992a5c81c531ea5dcf, type: 2}
-  - {fileID: 8400000, guid: 7355ca23a1b57891dafa75b44c2c5cc8, type: 2}
-  - {fileID: 8400000, guid: a2ed3a19ee4cfe303b28c87fca44a286, type: 2}
-  - {fileID: 8400000, guid: afc5604d79d0849129803e463fc07bca, type: 2}
-  - {fileID: 8400000, guid: 5d9eca522a1944267b89beea11ffc58c, type: 2}
-  - {fileID: 8400000, guid: 29bfbe75d2faa72cdbf597b2763205ab, type: 2}
-  - {fileID: 8400000, guid: 63f7bf9c3a80b4d169b394696cbbd9ab, type: 2}
-  - {fileID: 8400000, guid: 142c9eceec4ee3060b3550e1b2a64cbf, type: 2}
-  - {fileID: 8400000, guid: 280476064a32df4848434f9b38c2d744, type: 2}
-  - {fileID: 8400000, guid: 7ce5712ecfb6c0929a81d56be34c2333, type: 2}
-  - {fileID: 8400000, guid: bc593ac7628a042ac93b20ca1c0101b6, type: 2}
+  - {fileID: 8400000, guid: e52a2f56c9ffa187abf5021f3338228e, type: 2}
   _wrap_mode: 1
 --- !u!114 &1625775002
 MonoBehaviour:
@@ -2594,6 +2512,7 @@ MonoBehaviour:
   _draw_label: 1
   bounding_boxes:
   - {fileID: 0}
+  _cache_bounding_boxes: 0
   gui_style: {fileID: 11400000, guid: 45b8b02736ca4fc5b88b554edf8576ad, type: 2}
   _draw_coords: 0
 --- !u!114 &1780244598
@@ -2617,7 +2536,7 @@ MonoBehaviour:
   SampleRandom: 1
   _camera: {fileID: 20224209517257972}
   _syncer: {fileID: 114716082362535994}
-  _random_fov_min: 60
+  _random_fov_min: 70
   _random_fov_max: 90
 --- !u!1 &1870355748897446
 GameObject:
@@ -2884,7 +2803,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 100
+  far clip plane: 30
   field of view: 61.600002
   orthographic: 0
   orthographic size: 20
@@ -2924,7 +2843,7 @@ MonoBehaviour:
   _Camera: {fileID: 20598539646069560}
   imageFormat: 1
   jpegQuality: 75
-  disable_encoding: 1
+  disable_encoding: 0
 --- !u!114 &114608562479145288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3267,7 +3186,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 20
+  far clip plane: 30
   field of view: 61.600002
   orthographic: 0
   orthographic size: 20
@@ -3355,7 +3274,7 @@ MonoBehaviour:
   _Camera: {fileID: 5796786885426895393}
   imageFormat: 1
   jpegQuality: 75
-  disable_encoding: 1
+  disable_encoding: 0
 --- !u!114 &2102038394316443802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3393,12 +3312,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   segmentation_shader: {fileID: 4800000, guid: d700b8effb9a06de89e30a220972fe80, type: 3}
   _camera: {fileID: 5796786885426895393}
+  _colors_by_category: []
+  _segmentation_mode: 1
   _segmentation_preset: {fileID: 11400000, guid: 1387513cbea10420eaa5a7ac8f932b80,
     type: 2}
   _Replace_Untagged_Color: 1
   _Untagged_Color: {r: 0, g: 0, b: 0, a: 1}
-  _colors_by_category: []
-  _segmentation_mode: 1
 --- !u!1 &3025541464077872456
 GameObject:
   m_ObjectHideFlags: 0
@@ -3458,7 +3377,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 100
+  far clip plane: 30
   field of view: 61.600002
   orthographic: 0
   orthographic size: 20
@@ -3498,7 +3417,7 @@ MonoBehaviour:
   _Camera: {fileID: 3337727558481276136}
   imageFormat: 1
   jpegQuality: 75
-  disable_encoding: 1
+  disable_encoding: 0
 --- !u!114 &4939762416714711659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3669,7 +3588,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 100
+  far clip plane: 30
   field of view: 61.600002
   orthographic: 0
   orthographic size: 20
@@ -3757,7 +3676,7 @@ MonoBehaviour:
   _Camera: {fileID: 8584843010322102044}
   imageFormat: 1
   jpegQuality: 75
-  disable_encoding: 1
+  disable_encoding: 0
 --- !u!114 &1855446813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3834,7 +3753,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 100
+  far clip plane: 30
   field of view: 61.600002
   orthographic: 0
   orthographic size: 20
@@ -3874,7 +3793,7 @@ MonoBehaviour:
   _Camera: {fileID: 4614691972182028737}
   imageFormat: 1
   jpegQuality: 75
-  disable_encoding: 1
+  disable_encoding: 0
 --- !u!114 &3246734891326987255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4014,7 +3933,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 20
+  far clip plane: 30
   field of view: 61.600002
   orthographic: 0
   orthographic size: 20
@@ -4102,7 +4021,7 @@ MonoBehaviour:
   _Camera: {fileID: 4204259003963777610}
   imageFormat: 1
   jpegQuality: 75
-  disable_encoding: 1
+  disable_encoding: 0
 --- !u!114 &295743084378785225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4140,12 +4059,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   segmentation_shader: {fileID: 4800000, guid: d34875293dcb4a329bbbacec570f78f6, type: 3}
   _camera: {fileID: 4204259003963777610}
+  _colors_by_category: []
+  _segmentation_mode: 0
   _segmentation_preset: {fileID: 11400000, guid: 1387513cbea10420eaa5a7ac8f932b80,
     type: 2}
   _Replace_Untagged_Color: 1
   _Untagged_Color: {r: 0, g: 0, b: 0, a: 1}
-  _colors_by_category: []
-  _segmentation_mode: 0
 --- !u!1 &8900663163298106724
 GameObject:
   m_ObjectHideFlags: 0
@@ -4205,7 +4124,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 100
+  far clip plane: 30
   field of view: 61.600002
   orthographic: 0
   orthographic size: 20
@@ -4245,7 +4164,7 @@ MonoBehaviour:
   _Camera: {fileID: 4956758692426196692}
   imageFormat: 1
   jpegQuality: 75
-  disable_encoding: 1
+  disable_encoding: 0
 --- !u!114 &1463669859483367840
 MonoBehaviour:
   m_ObjectHideFlags: 0

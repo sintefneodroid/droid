@@ -20,8 +20,7 @@ namespace droid.Editor.Windows {
     [MenuItem(EditorWindowMenuPath._WindowMenuPath + "CameraSynchronisationWindow")]
     [MenuItem(EditorWindowMenuPath._ToolMenuPath + "CameraSynchronisationWindow")]
     public static void ShowWindow() {
-      GetWindow(
-          typeof(CameraSynchronisationWindow)); //Show existing window instance. If one doesn't exist, make one.
+      GetWindow(typeof(CameraSynchronisationWindow)); //Show existing window instance. If one doesn't exist, make one.
     }
 
     /// <summary>
@@ -29,13 +28,12 @@ namespace droid.Editor.Windows {
     void OnEnable() {
       this._cameras = FindObjectsOfType<SynchroniseCameraProperties>();
       this.Setup();
-      this._icon = (Texture2D)AssetDatabase.LoadAssetAtPath(
-          NeodroidEditorInfo.ImportLocation + "Gizmos/Icons/arrow_refresh.png",
-          typeof(Texture2D));
-      this.titleContent = new GUIContent(
-          "Neo:Sync",
-          this._icon,
-          "Window for controlling syncronisation of cameras");
+      this._icon =
+          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidEditorInfo.ImportLocation
+                                                   + "Gizmos/Icons/arrow_refresh.png",
+                                                   typeof(Texture2D));
+      this.titleContent =
+          new GUIContent("Neo:Sync", this._icon, "Window for controlling syncronisation of cameras");
     }
 
     /// <summary>
@@ -56,23 +54,19 @@ namespace droid.Editor.Windows {
         this._scroll_position = EditorGUILayout.BeginScrollView(this._scroll_position);
         if (this._show_camera_properties != null) {
           for (var i = 0; i < this._show_camera_properties.Length; i++) {
-            this._show_camera_properties[i] = EditorGUILayout.Foldout(
-                this._show_camera_properties[i],
-                this._cameras[i].name);
+            this._show_camera_properties[i] =
+                EditorGUILayout.Foldout(this._show_camera_properties[i], this._cameras[i].name);
             if (this._show_camera_properties[i]) {
               EditorGUILayout.BeginVertical("Box");
-              this._cameras[i].SyncOrthographicSize = EditorGUILayout.Toggle(
-                  "Synchronise Orthographic Size",
-                  this._cameras[i].SyncOrthographicSize);
-              this._cameras[i].SyncNearClipPlane = EditorGUILayout.Toggle(
-                  "Synchronise Near Clip Plane",
-                  this._cameras[i].SyncNearClipPlane);
-              this._cameras[i].SyncFarClipPlane = EditorGUILayout.Toggle(
-                  "Synchronise Far Clip Plane",
-                  this._cameras[i].SyncFarClipPlane);
-              this._cameras[i].SyncCullingMask = EditorGUILayout.Toggle(
-                  "Synchronise Culling Mask",
-                  this._cameras[i].SyncCullingMask);
+              this._cameras[i].SyncOrthographicSize =
+                  EditorGUILayout.Toggle("Synchronise Orthographic Size",
+                                         this._cameras[i].SyncOrthographicSize);
+              this._cameras[i].SyncNearClipPlane =
+                  EditorGUILayout.Toggle("Synchronise Near Clip Plane", this._cameras[i].SyncNearClipPlane);
+              this._cameras[i].SyncFarClipPlane =
+                  EditorGUILayout.Toggle("Synchronise Far Clip Plane", this._cameras[i].SyncFarClipPlane);
+              this._cameras[i].SyncCullingMask =
+                  EditorGUILayout.Toggle("Synchronise Culling Mask", this._cameras[i].SyncCullingMask);
               EditorGUILayout.EndVertical();
             }
           }

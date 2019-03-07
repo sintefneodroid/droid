@@ -9,11 +9,12 @@ namespace droid.Samples.MultiArmedBandit {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      DisplayerComponentMenuPath._ComponentMenuPath + "TextBarPlot" + DisplayerComponentMenuPath._Postfix)]
+  [AddComponentMenu(DisplayerComponentMenuPath._ComponentMenuPath
+                    + "TextBarPlot"
+                    + DisplayerComponentMenuPath._Postfix)]
   public class TextBarPlotDisplayer : Resetable {
     [CanBeNull] [SerializeField] CanvasBarDisplayer[] _canvas_bars = { };
-    [CanBeNull] [SerializeField] CanvasTextDisplayer[] _canvas_text= { };
+    [CanBeNull] [SerializeField] CanvasTextDisplayer[] _canvas_text = { };
 
     /// <inheritdoc />
     /// <summary>
@@ -33,11 +34,11 @@ namespace droid.Samples.MultiArmedBandit {
     }
 
     void Update() {
-#if NEODROID_DEBUG
+      #if NEODROID_DEBUG
       if (this.Debugging) {
         //this.Display(this._values);
       }
-#endif
+      #endif
     }
 
     /// <summary>
@@ -58,7 +59,6 @@ namespace droid.Samples.MultiArmedBandit {
           if (i < values.Length) {
             var bar = canvas_bar_displayers[i];
             bar?.Display(values[i]);
-
 
             if (canvas_text_displayers != null) {
               var text = canvas_text_displayers[i];

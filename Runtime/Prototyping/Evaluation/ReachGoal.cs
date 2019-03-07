@@ -4,21 +4,22 @@ using droid.Runtime.Utilities.Misc.Grid;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Evaluation {
-  [AddComponentMenu(
-      EvaluationComponentMenuPath._ComponentMenuPath + "ReachGoal" + EvaluationComponentMenuPath._Postfix)]
+  [AddComponentMenu(EvaluationComponentMenuPath._ComponentMenuPath
+                    + "ReachGoal"
+                    + EvaluationComponentMenuPath._Postfix)]
   public class ReachGoal : ObjectiveFunction {
-    [SerializeField] Actor _actor=null;
+    [SerializeField] Actor _actor = null;
 
-    [SerializeField] bool _based_on_tags=false;
+    [SerializeField] bool _based_on_tags = false;
 
-    [SerializeField] EmptyCell _goal=null;
+    [SerializeField] EmptyCell _goal = null;
 
     //Used for.. if outside playable area then reset
     [SerializeField] ActorOverlapping _overlapping = ActorOverlapping.Outside_area_;
 
     public override float InternalEvaluate() {
-      var distance = Mathf.Abs(
-          Vector3.Distance(this._goal.transform.position, this._actor.transform.position));
+      var distance =
+          Mathf.Abs(Vector3.Distance(this._goal.transform.position, this._actor.transform.position));
 
       if (this._overlapping == ActorOverlapping.Inside_area_ || distance < 0.5f) {
         this.ParentEnvironment.Terminate("Inside goal area");
@@ -48,19 +49,15 @@ namespace droid.Runtime.Prototyping.Evaluation {
       }
 
       if (this._goal) {
-        NeodroidUtilities.RegisterCollisionTriggerCallbacksOnChildren<Utilities.Sensors.ChildCollider3DSensor, Collider, Collision>(
-            this,
-            this._goal.transform,
-            null,
-            this.OnTriggerEnterChild);
+        NeodroidUtilities
+            .RegisterCollisionTriggerCallbacksOnChildren<Utilities.Sensors.ChildCollider3DSensor, Collider,
+                Collision>(this, this._goal.transform, null, this.OnTriggerEnterChild);
       }
 
       if (this._actor) {
-        NeodroidUtilities.RegisterCollisionTriggerCallbacksOnChildren<Utilities.Sensors.ChildCollider3DSensor, Collider, Collision>(
-            this,
-            this._actor.transform,
-            null,
-            this.OnTriggerEnterChild);
+        NeodroidUtilities
+            .RegisterCollisionTriggerCallbacksOnChildren<Utilities.Sensors.ChildCollider3DSensor, Collider,
+                Collision>(this, this._actor.transform, null, this.OnTriggerEnterChild);
       }
     }
 

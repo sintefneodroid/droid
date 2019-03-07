@@ -1,23 +1,23 @@
-﻿using droid.Runtime.Environments;
+﻿using System;
+using droid.Runtime.Environments;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Utilities.Debugging;
 using droid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities.Structs;
 using UnityEngine;
-using Random = System.Random;
 
-namespace droid.Runtime.Prototyping.Configurables.Experimental
-{
+
+namespace droid.Runtime.Prototyping.Configurables.Experimental {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-    ConfigurableComponentMenuPath._ComponentMenuPath
-    + "StandardShaderMaterial"
-    + ConfigurableComponentMenuPath._Postfix)]
+  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
+                    + "StandardShaderMaterial"
+                    + ConfigurableComponentMenuPath._Postfix)]
   [RequireComponent(typeof(Renderer))]
-  public class StandardShaderMaterialConfigurable : Configurable
-  {
+  public class StandardShaderMaterialConfigurable : Configurable,
+                                                    IHasArray {
     /// <summary>
     ///   Alpha
     /// </summary>
@@ -42,9 +42,15 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental
     string _b;
     string _a;
 
+    [SerializeField] Space4 _color_space = Space4.ZeroOne;
+    [SerializeField] Space1 _smoothness_space = Space1.ZeroOne;
+    [SerializeField] Space1 _reflection_space = Space1.ZeroOne;
+
     /// <summary>
     /// </summary>
     Renderer _renderer;
+
+    [SerializeField] bool _use_shared = false;
 
     static readonly int _glossiness = Shader.PropertyToID("_Glossiness");
     static readonly int _glossy_reflections = Shader.PropertyToID("_GlossyReflections");
@@ -52,8 +58,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup()
-    {
+    protected override void PreSetup() {
       this._r = this.Identifier + "R";
       this._g = this.Identifier + "G";
       this._b = this.Identifier + "B";
@@ -68,45 +73,42 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void RegisterComponent()
-    {
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-        (PrototypingEnvironment) this.ParentEnvironment,
-        (Configurable) this,
-        this._r);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-        (PrototypingEnvironment) this.ParentEnvironment,
-        (Configurable) this,
-        this._g);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-        (PrototypingEnvironment) this.ParentEnvironment,
-        (Configurable) this,
-        this._b);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-        (PrototypingEnvironment) this.ParentEnvironment,
-        (Configurable) this,
-        this._a);
+    protected override void RegisterComponent() {
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._r);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._g);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._b);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._a);
       /*this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
         (PrototypingEnvironment) this.ParentEnvironment,
         (Configurable) this,
         this._texture);*/
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-        (PrototypingEnvironment) this.ParentEnvironment,
-        (Configurable) this,
-        this._reflection);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-        (PrototypingEnvironment) this.ParentEnvironment,
-        (Configurable) this,
-        this._smoothness);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._reflection);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._smoothness);
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void UnRegisterComponent()
-    {
-      if (this.ParentEnvironment == null)
-      {
+    protected override void UnRegisterComponent() {
+      if (this.ParentEnvironment == null) {
         return;
       }
 
@@ -122,74 +124,91 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental
     /// <summary>
     /// </summary>
     /// <param name="configuration"></param>
-    public override void ApplyConfiguration(IConfigurableConfiguration configuration)
-    {
-#if NEODROID_DEBUG
+    public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
+      #if NEODROID_DEBUG
       if (this.Debugging)
       {
         DebugPrinting.ApplyPrint(this.Debugging, configuration, this.Identifier);
       }
-#endif
+      #endif
 
-      foreach (var mat in this._renderer.materials)
-      {
-        var c = mat.color;
+      if (!this._use_shared) {
+        foreach (var mat in this._renderer.materials) {
+          var c = mat.color;
 
-        if (configuration.ConfigurableName == this._r)
-        {
-          c.r = configuration.ConfigurableValue;
-        }
-        else if (configuration.ConfigurableName == this._g)
-        {
-          c.g = configuration.ConfigurableValue;
-        }
-        else if (configuration.ConfigurableName == this._b)
-        {
-          c.b = configuration.ConfigurableValue;
-        }
-        else if (configuration.ConfigurableName == this._a)
-        {
-          c.a = configuration.ConfigurableValue;
-        }else if (configuration.ConfigurableName == this._smoothness)
-        {
-          mat.SetFloat(_glossiness,configuration.ConfigurableValue);
-        }else if (configuration.ConfigurableName == this._reflection)
-        {
-          mat.SetFloat(_glossy_reflections,configuration.ConfigurableValue);
-        }
+          if (configuration.ConfigurableName == this._r) {
+            c.r = configuration.ConfigurableValue;
+          } else if (configuration.ConfigurableName == this._g) {
+            c.g = configuration.ConfigurableValue;
+          } else if (configuration.ConfigurableName == this._b) {
+            c.b = configuration.ConfigurableValue;
+          } else if (configuration.ConfigurableName == this._a) {
+            c.a = configuration.ConfigurableValue;
+          } else if (configuration.ConfigurableName == this._smoothness) {
+            mat.SetFloat(_glossiness, configuration.ConfigurableValue);
+          } else if (configuration.ConfigurableName == this._reflection) {
+            mat.SetFloat(_glossy_reflections, configuration.ConfigurableValue);
+          }
 
-        mat.color = c;
+          mat.color = c;
+        }
+      } else {
+        foreach (var mat in this._renderer.sharedMaterials) {
+          var c = mat.color;
+
+          if (configuration.ConfigurableName == this._r) {
+            c.r = configuration.ConfigurableValue;
+          } else if (configuration.ConfigurableName == this._g) {
+            c.g = configuration.ConfigurableValue;
+          } else if (configuration.ConfigurableName == this._b) {
+            c.b = configuration.ConfigurableValue;
+          } else if (configuration.ConfigurableName == this._a) {
+            c.a = configuration.ConfigurableValue;
+          } else if (configuration.ConfigurableName == this._smoothness) {
+            mat.SetFloat(_glossiness, configuration.ConfigurableValue);
+          } else if (configuration.ConfigurableName == this._reflection) {
+            mat.SetFloat(_glossy_reflections, configuration.ConfigurableValue);
+          }
+
+          mat.color = c;
+        }
       }
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    /// <param name="random_generator"></param>
-    /// <returns></returns>
-    public override IConfigurableConfiguration SampleConfiguration(Random random_generator)
-    {
-      var sample = random_generator.Next(0, 5);
 
-      switch (sample)
-      {
+    /// <returns></returns>
+    public override IConfigurableConfiguration SampleConfiguration() {
+      var sample = int.Parse(UnityEngine.Random.Range(0, 5).ToString());
+
+      switch (sample) {
         case 0:
-          return new Configuration(this._r, (float) random_generator.NextDouble());
+          var cs1 = this._color_space.Sample();
+          return new Configuration(this._r, cs1.x);
         case 1:
-          return new Configuration(this._g, (float) random_generator.NextDouble());
+          var cs2 = this._color_space.Sample();
+          return new Configuration(this._g, cs2.y);
         case 2:
-          return new Configuration(this._b, (float) random_generator.NextDouble());
+          var cs3 = this._color_space.Sample();
+          return new Configuration(this._b, cs3.z);
         case 3:
-          return new Configuration(this._a, (float) random_generator.NextDouble());
-        //case 4:
-          //return new Configuration(this._texture, (float) random_generator.NextDouble());
+          var cs4 = this._color_space.Sample();
+          return new Configuration(this._a, cs4.w);
         case 4:
-          return new Configuration(this._reflection, (float) random_generator.NextDouble());
+          return new Configuration(this._reflection, this._reflection_space.Sample());
         case 5:
-          return new Configuration(this._smoothness, (float) random_generator.NextDouble());
+          return new Configuration(this._smoothness, this._smoothness_space.Sample());
+        //case 6:
+        //return new Configuration(this._texture, (float) Space1.ZeroOne.Sample());
       }
 
-      return new Configuration(this._r, (float) random_generator.NextDouble());
+      var cs6 = this._color_space.Sample();
+      return new Configuration(this._r, cs6.x);
     }
+
+    public Single[] ObservationArray { get; }
+    public Space1[] ObservationSpace { get; }
   }
 }

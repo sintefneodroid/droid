@@ -16,9 +16,8 @@ namespace droid.Runtime.Utilities.Misc {
       return
           0.5f
           * rb.mass
-          * Mathf.Pow(
-              rb.velocity.magnitude,
-              2); // mass in kg, velocity in meters per second, result is joules
+          * Mathf.Pow(rb.velocity.magnitude,
+                      2); // mass in kg, velocity in meters per second, result is joules
     }
 
     /// <summary>
@@ -70,18 +69,20 @@ namespace droid.Runtime.Utilities.Misc {
     /// <returns></returns>
     public static Gradient DefaultGradient() {
       var gradient = new Gradient {
-          // The number of keys must be specified in this array initialiser
-          colorKeys = new[] {
-              // Add your colour and specify the stop point
-              new GradientColorKey(new Color(1, 1, 1), 0),
-              new GradientColorKey(new Color(1, 1, 1), 1f),
-              new GradientColorKey(new Color(1, 1, 1), 0)
-          },
-          // This sets the alpha to 1 at both ends of the gradient
-          alphaKeys = new[] {
-              new GradientAlphaKey(1, 0), new GradientAlphaKey(1, 1), new GradientAlphaKey(1, 0)
-          }
-      };
+                                      // The number of keys must be specified in this array initialiser
+                                      colorKeys = new[] {
+                                                            // Add your colour and specify the stop point
+                                                            new GradientColorKey(new Color(1, 1, 1), 0),
+                                                            new GradientColorKey(new Color(1, 1, 1), 1f),
+                                                            new GradientColorKey(new Color(1, 1, 1), 0)
+                                                        },
+                                      // This sets the alpha to 1 at both ends of the gradient
+                                      alphaKeys = new[] {
+                                                            new GradientAlphaKey(1, 0),
+                                                            new GradientAlphaKey(1, 1),
+                                                            new GradientAlphaKey(1, 0)
+                                                        }
+                                  };
 
       return gradient;
     }
@@ -99,24 +100,31 @@ namespace droid.Runtime.Utilities.Misc {
       return texture;
     }
 
-    public static void RegisterCollisionTriggerCallbacksOnChildren<TChildColliderSensor,TCollider,TCollision>(
-        Component caller,
-        Transform parent,
-        ChildColliderSensor<TCollider, TCollision>.OnChildCollisionEnterDelegate on_collision_enter_child=null,
-        ChildColliderSensor<TCollider, TCollision>.OnChildTriggerEnterDelegate on_trigger_enter_child = null,
-        ChildColliderSensor<TCollider, TCollision>.OnChildCollisionExitDelegate on_collision_exit_child = null,
-        ChildColliderSensor<TCollider, TCollision>.OnChildTriggerExitDelegate on_trigger_exit_child = null,
-        ChildColliderSensor<TCollider, TCollision>.OnChildCollisionStayDelegate on_collision_stay_child = null,
-        ChildColliderSensor<TCollider, TCollision>.OnChildTriggerStayDelegate on_trigger_stay_child = null,
-        bool debug = true ) where TChildColliderSensor : ChildColliderSensor<TCollider, TCollision> where
-        TCollider : Component {
+    public static void
+        RegisterCollisionTriggerCallbacksOnChildren<TChildColliderSensor, TCollider, TCollision>(
+            Component caller,
+            Transform parent,
+            ChildColliderSensor<TCollider, TCollision>.OnChildCollisionEnterDelegate on_collision_enter_child
+                = null,
+            ChildColliderSensor<TCollider, TCollision>.OnChildTriggerEnterDelegate on_trigger_enter_child =
+                null,
+            ChildColliderSensor<TCollider, TCollision>.OnChildCollisionExitDelegate on_collision_exit_child =
+                null,
+            ChildColliderSensor<TCollider, TCollision>.OnChildTriggerExitDelegate on_trigger_exit_child =
+                null,
+            ChildColliderSensor<TCollider, TCollision>.OnChildCollisionStayDelegate on_collision_stay_child =
+                null,
+            ChildColliderSensor<TCollider, TCollision>.OnChildTriggerStayDelegate on_trigger_stay_child =
+                null,
+            bool debug = true)
+        where TChildColliderSensor : ChildColliderSensor<TCollider, TCollision> where TCollider : Component {
       var children_with_colliders = parent.GetComponentsInChildren<TCollider>();
 
-            //TODO add check and warning for not all callbacks = null
+      //TODO add check and warning for not all callbacks = null
 
       foreach (var child in children_with_colliders) {
         var child_sensors = child.GetComponents<TChildColliderSensor>();
-        ChildColliderSensor<TCollider,TCollision> collider_sensor = null;
+        ChildColliderSensor<TCollider, TCollision> collider_sensor = null;
         foreach (var child_sensor in child_sensors) {
           if (child_sensor.Caller != null && child_sensor.Caller == caller) {
             collider_sensor = child_sensor;

@@ -20,14 +20,14 @@ namespace droid.Editor.Windows {
     [MenuItem(EditorWindowMenuPath._WindowMenuPath + "RenderTextureConfiguratorWindow")]
     [MenuItem(EditorWindowMenuPath._ToolMenuPath + "RenderTextureConfiguratorWindow")]
     public static void ShowWindow() {
-      GetWindow(
-          typeof(RenderTextureConfiguratorWindow)); //Show existing window instance. If one doesn't exist, make one.
+      GetWindow(typeof(RenderTextureConfiguratorWindow)); //Show existing window instance. If one doesn't exist, make one.
     }
 
     void OnEnable() {
-      this._icon = (Texture2D)AssetDatabase.LoadAssetAtPath(
-          NeodroidEditorInfo.ImportLocation + "Gizmos/Icons/images.png",
-          typeof(Texture2D));
+      this._icon =
+          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidEditorInfo.ImportLocation
+                                                   + "Gizmos/Icons/images.png",
+                                                   typeof(Texture2D));
       this.titleContent = new GUIContent("Neo:Tex", this._icon, "Window for RenderTexture configuration");
     }
 

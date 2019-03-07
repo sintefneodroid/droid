@@ -143,17 +143,12 @@ namespace droid.Runtime.Messaging {
             this._socket.TryReceiveFrameBytes(wait_time, out msg);
             #endif
           } else {
-            try
-            {
-              msg = this._socket
-                .ReceiveFrameBytes();
-            }
-            catch (ArgumentNullException e)
-            {
+            try {
+              msg = this._socket.ReceiveFrameBytes();
+            } catch (ArgumentNullException e) {
               msg = null;
               Debug.Log(e);
             }
-
           }
 
           if (msg != null) { //&& msg.Length >= 4) {
@@ -181,10 +176,9 @@ namespace droid.Runtime.Messaging {
     /// <param name="receive_callback"></param>
     /// <param name="disconnect_callback"></param>
     /// <param name="debug_callback"></param>
-    void PollingThread(
-        Action<Reaction[]> receive_callback,
-        Action disconnect_callback,
-        Action<string> debug_callback) {
+    void PollingThread(Action<Reaction[]> receive_callback,
+                       Action disconnect_callback,
+                       Action<string> debug_callback) {
       while (this._stop_thread == false) {
         lock (this._thread_lock) {
           if (!this._waiting_for_main_loop_to_send) {
@@ -231,12 +225,11 @@ namespace droid.Runtime.Messaging {
     /// <param name="serialise_individual_observables"></param>
     /// <param name="simulator_configuration_message"></param>
     /// <param name="api_vesion"></param>
-    public void SendStates(
-        EnvironmentState[] environment_states,
-        bool do_serialise_unobservables = false,
-        bool serialise_individual_observables = false,
-        SimulatorConfigurationMessage simulator_configuration_message = null,
-        string api_vesion = _api_version) {
+    public void SendStates(EnvironmentState[] environment_states,
+                           bool do_serialise_unobservables = false,
+                           bool serialise_individual_observables = false,
+                           SimulatorConfigurationMessage simulator_configuration_message = null,
+                           string api_vesion = _api_version) {
       lock (this._thread_lock) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
@@ -272,12 +265,14 @@ namespace droid.Runtime.Messaging {
         }
         #endif
 
-        this._byte_buffer = FbsStateUtilities.Serialise(
-            environment_states,
-            do_serialise_unobservables : do_serialise_unobservables,
-            serialise_individual_observables : serialise_individual_observables,
-            simulator_configuration : simulator_configuration_message,
-            api_version : api_vesion);
+        this._byte_buffer = FbsStateUtilities.Serialise(environment_states,
+                                                        do_serialise_unobservables :
+                                                        do_serialise_unobservables,
+                                                        serialise_individual_observables :
+                                                        serialise_individual_observables,
+                                                        simulator_configuration :
+                                                        simulator_configuration_message,
+                                                        api_version : api_vesion);
         this._socket.SendFrame(this._byte_buffer);
         this._waiting_for_main_loop_to_send = false;
       }
@@ -306,26 +301,25 @@ namespace droid.Runtime.Messaging {
     /// <param name="cmd_callback"></param>
     /// <param name="disconnect_callback"></param>
     /// <param name="debug_callback"></param>
-    public void StartReceiving(
-        Action<Reaction[]> cmd_callback,
-        Action disconnect_callback,
-        Action<string> debug_callback) {
+    public void StartReceiving(Action<Reaction[]> cmd_callback,
+                               Action disconnect_callback,
+                               Action<string> debug_callback) {
       this._polling_thread =
           new Thread(unused_param => this.PollingThread(cmd_callback, disconnect_callback, debug_callback)) {
-              IsBackground = true
-          };
+                                                                                                                IsBackground
+                                                                                                                    = true
+                                                                                                            };
       // Is terminated with foreground threads, when they terminate
       this._polling_thread.Start();
     }
 
     #region Contstruction
 
-    public MessageServer(
-        string ip_address = "127.0.0.1",
-        int port = 6969,
-        bool use_inter_process_communication = false,
-        bool debug = false,
-        Double wait_time_seconds = 2) {
+    public MessageServer(string ip_address = "127.0.0.1",
+                         int port = 6969,
+                         bool use_inter_process_communication = false,
+                         bool debug = false,
+                         Double wait_time_seconds = 2) {
       this._wait_time_seconds = wait_time_seconds;
       this.Debugging = debug;
       this._ip_address = ip_address;

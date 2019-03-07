@@ -21,7 +21,7 @@ namespace droid.Editor.Utilities {
     /// </summary>
     [RuntimeInitializeOnLoadMethod]
     public static void CaptureScreenShot() {
-      if (NeodroidEditorInfo.GenerateScenePreviews){
+      if (NeodroidEditorInfo.GenerateScenePreviews) {
         var preview_path = GetPreviewPath(SceneManager.GetActiveScene().name);
         Debug.Log($"Saving scene preview at {preview_path}");
         TakeScreenshot(preview_path);
@@ -29,7 +29,6 @@ namespace droid.Editor.Utilities {
     }
 
     public static void TakeScreenshot(string name) {
-
       // Take the screenshot
       ScreenCapture.CaptureScreenshot(name); // TODO: VERY broken, unitys fault
 
@@ -68,24 +67,22 @@ namespace droid.Editor.Utilities {
     System.IO.File.WriteAllBytes(path, imageBytes);
 
 */
-
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override void OnInspectorGUI()
-    {
-      if (NeodroidEditorInfo.GenerateScenePreviews){
+    public override void OnInspectorGUI() {
+      if (NeodroidEditorInfo.GenerateScenePreviews) {
         //AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
-        var scene_names = this.targets.Select(t => ((SceneAsset) t).name).OrderBy(n => n).ToArray();
+        var scene_names = this.targets.Select(t => ((SceneAsset)t).name).OrderBy(n => n).ToArray();
 
         var previews_count = scene_names.Length;
         var preview_width = Screen.width;
         var preview_height = (Screen.height - _editor_margin * 2 - _preview_margin * previews_count)
                              / previews_count;
 
-        for (var i = 0; i < scene_names.Length; i++){
+        for (var i = 0; i < scene_names.Length; i++) {
           this.DrawPreview(i, scene_names[i], preview_width, preview_height);
         }
       }
@@ -98,17 +95,15 @@ namespace droid.Editor.Utilities {
       var preview = LoadPng(preview_path);
 
       if (preview == null) {
-        EditorGUILayout.HelpBox(
-            $"There is no image preview for scene {scene_name} at {preview_path}. Please play the scene on editor and image preview will be captured automatically or create the missing path: {NeodroidEditorInfo.ScenePreviewsLocation}.",
-            MessageType.Info);
+        EditorGUILayout
+            .HelpBox($"There is no image preview for scene {scene_name} at {preview_path}. Please play the scene on editor and image preview will be captured automatically or create the missing path: {NeodroidEditorInfo.ScenePreviewsLocation}.",
+                     MessageType.Info);
       } else {
-        GUI.DrawTexture(
-            new Rect(index, _editor_margin + index * (height + _preview_margin), width, height),
-            preview,
-            ScaleMode.ScaleToFit);
+        GUI.DrawTexture(new Rect(index, _editor_margin + index * (height + _preview_margin), width, height),
+                        preview,
+                        ScaleMode.ScaleToFit);
       }
     }
-
 
     static string GetPreviewPath(string scene_name) {
       //return $"{NeodroidEditorInfo.ScenePreviewsLocation}{scene_name}.png";

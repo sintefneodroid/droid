@@ -7,10 +7,9 @@ using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Observers.Transform {
-  [AddComponentMenu(
-      ObserverComponentMenuPath._ComponentMenuPath
-      + "PositionObserver2D"
-      + ObserverComponentMenuPath._Postfix)]
+  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+                    + "PositionObserver2D"
+                    + ObserverComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [Serializable]
   public class PositionObserver2D : Observer,
@@ -34,9 +33,17 @@ namespace droid.Runtime.Prototyping.Observers.Transform {
     public Space2 ObservationSpace2D {
       get {
         return new Space2(this._position_space._Decimal_Granularity) {
-            _Max_Values = new Vector2(this._position_space._Max_Values.x, this._position_space._Max_Values.y),
-            _Min_Values = new Vector2(this._position_space._Min_Values.x, this._position_space._Min_Values.y)
-        };
+                                                                         _Max_Values =
+                                                                             new Vector2(this._position_space
+                                                                                             ._Max_Values.x,
+                                                                                         this._position_space
+                                                                                             ._Max_Values.y),
+                                                                         _Min_Values =
+                                                                             new Vector2(this._position_space
+                                                                                             ._Min_Values.x,
+                                                                                         this._position_space
+                                                                                             ._Min_Values.y)
+                                                                     };
       }
     }
 
@@ -64,7 +71,9 @@ namespace droid.Runtime.Prototyping.Observers.Transform {
                                : vector2_pos;
     }
 
-    public override IEnumerable<float> FloatEnumerable { get {return new[] {this._2_d_position.x, this._2_d_position.y};} }
+    public override IEnumerable<float> FloatEnumerable {
+      get { return new[] {this._2_d_position.x, this._2_d_position.y}; }
+    }
 
     public override void UpdateObservation() {
       if (this.ParentEnvironment != null && this._use_space == ObservationSpace.Environment_) {
@@ -74,15 +83,12 @@ namespace droid.Runtime.Prototyping.Observers.Transform {
       } else {
         this.SetPosition(this.transform.position);
       }
-
-
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
-    }
+    protected override void PreSetup() { }
 
     void OnDrawGizmos() {
       if (this.enabled) {

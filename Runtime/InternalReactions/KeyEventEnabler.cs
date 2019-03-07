@@ -7,7 +7,7 @@ namespace droid.Runtime.InternalReactions {
   /// <summary>
   /// </summary>
   public class KeyEventEnabler : MonoBehaviour {
-    [CanBeNull] [SerializeField] GameObject _game_object=null;
+    [CanBeNull] [SerializeField] GameObject _game_object = null;
 
     [SerializeField] [SearchableEnum] KeyCode _key = KeyCode.None;
 

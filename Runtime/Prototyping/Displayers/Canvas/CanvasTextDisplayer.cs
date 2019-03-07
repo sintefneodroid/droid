@@ -11,10 +11,9 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
   /// </summary>
   [ExecuteInEditMode]
   [RequireComponent(typeof(Text))]
-  [AddComponentMenu(
-      DisplayerComponentMenuPath._ComponentMenuPath
-      + "Canvas/CanvasText"
-      + DisplayerComponentMenuPath._Postfix)]
+  [AddComponentMenu(DisplayerComponentMenuPath._ComponentMenuPath
+                    + "Canvas/CanvasText"
+                    + DisplayerComponentMenuPath._Postfix)]
   public class CanvasTextDisplayer : Displayer {
     Text _text_component;
 
@@ -56,7 +55,6 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
       #endif
 
       this.SetText(values.ToString());
-
     }
 
     /// <inheritdoc />
@@ -90,7 +88,6 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
       #endif
 
       this.SetText(value.ToString());
-
     }
 
     /// <inheritdoc />
@@ -124,7 +121,6 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
       #endif
 
       this.SetText(point.ToString());
-
     }
 
     /// <inheritdoc />
@@ -144,7 +140,6 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
       #endif
 
       this.SetText(points.ToString());
-
     }
 
     /// <summary>

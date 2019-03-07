@@ -1,20 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using droid.Runtime.Environments;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Utilities.Debugging;
 using droid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities.Structs;
 using UnityEngine;
-using Random = System.Random;
+using Object = System.Object;
 
 namespace droid.Runtime.Prototyping.Configurables.Experimental {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      ConfigurableComponentMenuPath._ComponentMenuPath
-      + "ScreenSpaceOcclusion"
-      + ConfigurableComponentMenuPath._Postfix)]
+  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
+                    + "ScreenSpaceOcclusion"
+                    + ConfigurableComponentMenuPath._Postfix)]
   [RequireComponent(typeof(Renderer))]
   public class ScreenSpaceOcclusionConfigurable : Configurable {
     /// <summary>
@@ -39,10 +40,11 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
 
     /// <summary>
     /// </summary>
-    Camera _camera=null;
+    [SerializeField] Camera _camera = null;
 
-    GameObject[] _prefabs=null;
+    [SerializeField] GameObject[] _prefabs = null;
     List<GameObject> _spawned = new List<GameObject>();
+    [SerializeField] int num_obstructions = 10;
 
     /// <inheritdoc />
     /// <summary>
@@ -53,29 +55,28 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       this._b = this.Identifier + "B";
       this._a = this.Identifier + "A";
 
-      var rand = new Random();
+      if(Application.isPlaying) {
+        if (this._prefabs != null && this._prefabs.Length > 0 && this._camera) {
+          for (var i = 0; i < this.num_obstructions; i++) {
+            var prefab = this._prefabs[(int)(Space1.ZeroOne.Sample() * this._prefabs.Length)];
 
-      if (this._prefabs != null && this._prefabs.Length > 0) {
-        for (var i = 0; i < 10; i++) {
-          var banana = this._prefabs[(int)(rand.Next() * this._prefabs.Length)];
+            var x = Space1.ZeroOne.Sample();
+            var y = Space1.ZeroOne.Sample();
+            var z = Space1.ZeroOne.Sample() * this._camera.farClipPlane;
+            var a = new Vector2(x, y);
 
-          var x = rand.NextDouble();
-          var y = rand.NextDouble();
-          var z = rand.NextDouble() * this._camera.farClipPlane;
-          var a = new Vector2((float)x, (float)y);
+            var c = this._camera.ViewportToWorldPoint(a);
+            c.z = z;
 
-          var c = this._camera.ViewportToWorldPoint(a);
-          c.z = (float)z;
+            var b = new Quaternion(Space1.ZeroOne.Sample(),
+                                   Space1.ZeroOne.Sample(),
+                                   Space1.ZeroOne.Sample(),
+                                   Space1.ZeroOne.Sample());
 
-          var b = new Quaternion(
-              (float)rand.NextDouble(),
-              (float)rand.NextDouble(),
-              (float)rand.NextDouble(),
-              (float)rand.NextDouble());
+            var d = Instantiate(prefab, c, b,this.transform);
 
-          var d = Instantiate(banana, c, b);
-
-          this._spawned.Add(d);
+            this._spawned.Add(d);
+          }
         }
       }
     }
@@ -84,22 +85,22 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._r);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._g);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._b);
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          (Configurable)this,
-          this._a);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._r);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._g);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._b);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._a);
     }
 
     /// <inheritdoc />
@@ -125,25 +126,28 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
         DebugPrinting.ApplyPrint(this.Debugging, configuration, this.Identifier);
       }
       #endif
+
+
+
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    /// <param name="random_generator"></param>
+
     /// <returns></returns>
-    public override IConfigurableConfiguration SampleConfiguration(Random random_generator) {
-      var sample = random_generator.NextDouble();
+    public override IConfigurableConfiguration SampleConfiguration() {
+      var sample = Space1.ZeroOne.Sample();
 
       if (sample < .33f) {
-        return new Configuration(this._r, (float)random_generator.NextDouble());
+        return new Configuration(this._r, Space1.ZeroOne.Sample());
       }
 
       if (sample > .66f) {
-        return new Configuration(this._g, (float)random_generator.NextDouble());
+        return new Configuration(this._g, Space1.ZeroOne.Sample());
       }
 
-      return new Configuration(this._b, (float)random_generator.NextDouble());
+      return new Configuration(this._b, Space1.ZeroOne.Sample());
     }
   }
 }

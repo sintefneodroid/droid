@@ -10,23 +10,24 @@ namespace droid.Runtime.Prototyping.Evaluation {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      EvaluationComponentMenuPath._ComponentMenuPath + "RestInArea" + EvaluationComponentMenuPath._Postfix)]
+  [AddComponentMenu(EvaluationComponentMenuPath._ComponentMenuPath
+                    + "RestInArea"
+                    + EvaluationComponentMenuPath._Postfix)]
   public class RestInArea : ObjectiveFunction {
-    [SerializeField] Actor _actor=null;
+    [SerializeField] Actor _actor = null;
 
-    [SerializeField] Collider _area=null;
-    [SerializeField] bool _is_resting=false;
+    [SerializeField] Collider _area = null;
+    [SerializeField] bool _is_resting = false;
 
-    [SerializeField] Obstruction[] _obstructions=null;
+    [SerializeField] Obstruction[] _obstructions = null;
 
     //Used for.. if outside playable area then reset
     [SerializeField] ActorOverlapping _overlapping = ActorOverlapping.Outside_area_;
 
-    [SerializeField] BoundingBox _playable_area=null;
+    [SerializeField] BoundingBox _playable_area = null;
     [SerializeField] float _resting_time = 3f;
-    [SerializeField] bool _sparse=false;
-    [SerializeField] Coroutine _wait_for_resting=null;
+    [SerializeField] bool _sparse = false;
+    [SerializeField] Coroutine _wait_for_resting = null;
     WaitForSeconds _wait_for_seconds = new WaitForSeconds(3f);
 
     /// <inheritdoc />
@@ -95,25 +96,27 @@ namespace droid.Runtime.Prototyping.Evaluation {
         this._playable_area = FindObjectOfType<BoundingBox>();
       }
 
-      NeodroidUtilities.RegisterCollisionTriggerCallbacksOnChildren<Utilities.Sensors.ChildCollider3DSensor, Collider, Collision>(
-          this,
-          this._area.transform,
-          null,
-          this.OnTriggerEnterChild,
-          null,
-          this.OnTriggerExitChild,
-          null,
-          this.OnTriggerStayChild);
+      NeodroidUtilities
+          .RegisterCollisionTriggerCallbacksOnChildren<Utilities.Sensors.ChildCollider3DSensor, Collider,
+              Collision>(this,
+                         this._area.transform,
+                         null,
+                         this.OnTriggerEnterChild,
+                         null,
+                         this.OnTriggerExitChild,
+                         null,
+                         this.OnTriggerStayChild);
 
-      NeodroidUtilities.RegisterCollisionTriggerCallbacksOnChildren<Utilities.Sensors.ChildCollider3DSensor, Collider, Collision>(
-          this,
-          this._actor.transform,
-          null,
-          this.OnTriggerEnterChild,
-          null,
-          this.OnTriggerExitChild,
-          null,
-          this.OnTriggerStayChild);
+      NeodroidUtilities
+          .RegisterCollisionTriggerCallbacksOnChildren<Utilities.Sensors.ChildCollider3DSensor, Collider,
+              Collision>(this,
+                         this._actor.transform,
+                         null,
+                         this.OnTriggerEnterChild,
+                         null,
+                         this.OnTriggerExitChild,
+                         null,
+                         this.OnTriggerStayChild);
       this._wait_for_seconds = new WaitForSeconds(this._resting_time);
     }
 

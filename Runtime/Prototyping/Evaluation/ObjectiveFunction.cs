@@ -56,12 +56,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
         this._Extra_Terms_Dict.Add(identifier, term);
         this._Extra_Term_Weights.Add(term, 1);
       } else {
-        #if NEODROID_DEBUG
-        if (this.Debugging) {
-          Debug.Log(
-              $"WARNING! Please check for duplicates, ObjectiveFunction {this.name} already has term {identifier} registered");
-        }
-        #endif
+        Debug.LogWarning($"WARNING! Please check for duplicates, ObjectiveFunction {this.name} already has term {identifier} registered");
       }
     }
 
@@ -157,8 +152,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
     /// </summary>
     /// <returns></returns>
     public void SignalString(DataPoller recipient) {
-      recipient.PollData(
-          $"{this._last_signal.ToString(CultureInfo.InvariantCulture)}, {this._Episode_Return}");
+      recipient.PollData($"{this._last_signal.ToString(CultureInfo.InvariantCulture)}, {this._Episode_Return}");
     }
 
     /// <inheritdoc />

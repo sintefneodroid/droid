@@ -7,24 +7,25 @@ namespace droid.Runtime.Prototyping.Observers.Grid {
   /// <inheritdoc cref="Observer" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      ObserverComponentMenuPath._ComponentMenuPath + "GridPosition" + ObserverComponentMenuPath._Postfix)]
+  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+                    + "GridPosition"
+                    + ObserverComponentMenuPath._Postfix)]
   public class GridPositionObserver : Observer,
                                       IHasSingle {
     /// <summary>
     /// </summary>
-    int[,] _grid=null;
+    int[,] _grid = null;
 
     /// <summary>
     /// </summary>
     [SerializeField]
-    int _height=0;
+    int _height = 0;
 
     [Header("Observation", order = 103)]
     [SerializeField]
     float _observation_value;
 
-    [SerializeField] ValueSpace _observation_value_space;
+    [SerializeField] Space1 _observation_value_space;
     [SerializeField] int _width = 0;
 
     /// <summary>
@@ -42,7 +43,7 @@ namespace droid.Runtime.Prototyping.Observers.Grid {
       }
     }
 
-    public ValueSpace SingleSpace { get { return this._observation_value_space; } }
+    public Space1 SingleSpace { get { return this._observation_value_space; } }
 
     protected override void PreSetup() {
       this._grid = new int[this._width, this._height];
@@ -53,10 +54,9 @@ namespace droid.Runtime.Prototyping.Observers.Grid {
           this._grid[i, j] = k++;
         }
       }
-
     }
 
-    public override IEnumerable<float> FloatEnumerable { get{return new[] {this.ObservationValue};} }
+    public override IEnumerable<float> FloatEnumerable { get { return new[] {this.ObservationValue}; } }
 
     public override void UpdateObservation() {
       var position = this.transform.position;

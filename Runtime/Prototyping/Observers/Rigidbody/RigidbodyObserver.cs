@@ -7,8 +7,9 @@ namespace droid.Runtime.Prototyping.Observers.Rigidbody {
   /// <inheritdoc cref="Observer" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      ObserverComponentMenuPath._ComponentMenuPath + "Rigidbody" + ObserverComponentMenuPath._Postfix)]
+  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+                    + "Rigidbody"
+                    + ObserverComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [RequireComponent(typeof(UnityEngine.Rigidbody))]
   public class RigidbodyObserver : Observer,
@@ -17,17 +18,17 @@ namespace droid.Runtime.Prototyping.Observers.Rigidbody {
 
     [Header("Observation", order = 100)]
     [SerializeField]
-    Vector3 _angular_velocity=Vector3.zero;
+    Vector3 _angular_velocity = Vector3.zero;
 
-    [SerializeField] bool _differential=false;
+    [SerializeField] bool _differential = false;
 
-    [SerializeField] float _last_update_time=0;
+    [SerializeField] float _last_update_time = 0;
 
     [Header("Configuration", order = 110)]
     [SerializeField]
-    UnityEngine.Rigidbody _rigidbody=null;
+    UnityEngine.Rigidbody _rigidbody = null;
 
-    [SerializeField] Vector3 _velocity= Vector3.zero;
+    [SerializeField] Vector3 _velocity = Vector3.zero;
     [SerializeField] Space3 _velocity_space = new Space3(10);
 
     /// <inheritdoc />
@@ -74,19 +75,16 @@ namespace droid.Runtime.Prototyping.Observers.Rigidbody {
     /// </summary>
     public Space3 AngularSpace { get { return this._angular_space; } }
 
-    public override IEnumerable<float> FloatEnumerable
-    {
-      get
-      {
-        return new[]
-        {
-          this.Velocity.x,
-          this.Velocity.y,
-          this.Velocity.z,
-          this.AngularVelocity.x,
-          this.AngularVelocity.y,
-          this.AngularVelocity.z
-        };
+    public override IEnumerable<float> FloatEnumerable {
+      get {
+        return new[] {
+                         this.Velocity.x,
+                         this.Velocity.y,
+                         this.Velocity.z,
+                         this.AngularVelocity.x,
+                         this.AngularVelocity.y,
+                         this.AngularVelocity.z
+                     };
       }
     }
 
@@ -115,15 +113,11 @@ namespace droid.Runtime.Prototyping.Observers.Rigidbody {
       }
 
       this._last_update_time = Time.time;
-
-
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
-      this._rigidbody = this.GetComponent<UnityEngine.Rigidbody>();
-    }
+    protected override void PreSetup() { this._rigidbody = this.GetComponent<UnityEngine.Rigidbody>(); }
   }
 }

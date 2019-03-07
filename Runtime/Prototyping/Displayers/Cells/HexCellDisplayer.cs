@@ -10,10 +10,11 @@ namespace droid.Runtime.Prototyping.Displayers.Cells {
   /// <summary>
   /// </summary>
   [ExecuteInEditMode]
-  [AddComponentMenu(
-      DisplayerComponentMenuPath._ComponentMenuPath + "VectorField" + DisplayerComponentMenuPath._Postfix)]
+  [AddComponentMenu(DisplayerComponentMenuPath._ComponentMenuPath
+                    + "VectorField"
+                    + DisplayerComponentMenuPath._Postfix)]
   public class HexCellDisplayer : QuadCellDisplayer {
-    [SerializeField] bool _plot_random_series=false;
+    [SerializeField] bool _plot_random_series = false;
     [SerializeField] bool _retain_last_plot = true;
 
     public Boolean PlotRandomSeries {

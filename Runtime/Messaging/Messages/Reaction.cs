@@ -19,16 +19,16 @@ namespace droid.Runtime.Messaging.Messages {
 
       var configurations_str = "";
       if (this.Configurations != null) {
-        configurations_str = this.Configurations.Aggregate(
-            configurations_str,
-            (current, configuration) => current + (configuration + "\n"));
+        configurations_str =
+            this.Configurations.Aggregate(configurations_str,
+                                          (current, configuration) => current + (configuration + "\n"));
       }
 
       var displayables_str = "";
       if (this.Displayables != null) {
-        displayables_str = this.Displayables.Aggregate(
-            displayables_str,
-            (current, displayable) => current + (displayable + "\n"));
+        displayables_str =
+            this.Displayables.Aggregate(displayables_str,
+                                        (current, displayable) => current + (displayable + "\n"));
       }
 
       return "<Reaction>\n "
@@ -38,14 +38,13 @@ namespace droid.Runtime.Messaging.Messages {
 
     #region Constructors
 
-    public Reaction(
-        ReactionParameters parameters,
-        IMotorMotion[] motions,
-        Configuration[] configurations,
-        Unobservables unobservables,
-        Displayable[] displayables,
-        String serialised_message,
-        string recipient_environment = "all") {
+    public Reaction(ReactionParameters parameters,
+                    IMotorMotion[] motions,
+                    Configuration[] configurations,
+                    Unobservables unobservables,
+                    Displayable[] displayables,
+                    String serialised_message,
+                    string recipient_environment = "all") {
       this.Parameters = parameters;
       this.Motions = motions;
       this.Configurations = configurations;

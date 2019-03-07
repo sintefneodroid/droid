@@ -49,11 +49,10 @@ namespace droid.Runtime.Messaging.FBS {
         Debug.LogWarning("Empty reactions received");
       }
 
-      return new Tuple<Reaction[], bool, String, SimulatorConfigurationMessage>(
-          _out_reactions.ToArray(),
-          close,
-          api_version,
-          simulator_configuration);
+      return new Tuple<Reaction[], bool, String, SimulatorConfigurationMessage>(_out_reactions.ToArray(),
+                                                                                close,
+                                                                                api_version,
+                                                                                simulator_configuration);
     }
 
     /// <summary>
@@ -70,14 +69,13 @@ namespace droid.Runtime.Messaging.FBS {
         var parameters = deserialise_parameters(r);
         var serialised_message = deserialise_serialised_message(r);
 
-        return new Reaction(
-            parameters,
-            motions,
-            configurations,
-            unobservables,
-            displayables,
-            serialised_message,
-            r.EnvironmentName);
+        return new Reaction(parameters,
+                            motions,
+                            configurations,
+                            unobservables,
+                            displayables,
+                            serialised_message,
+                            r.EnvironmentName);
       }
 
       Debug.LogWarning("Empty reaction received");
@@ -110,13 +108,12 @@ namespace droid.Runtime.Messaging.FBS {
 
     static ReactionParameters deserialise_parameters(FReaction reaction) {
       if (reaction.Parameters.HasValue) {
-        return new ReactionParameters(
-            reaction.Parameters.Value.Terminable,
-            reaction.Parameters.Value.Step,
-            reaction.Parameters.Value.Reset,
-            reaction.Parameters.Value.Configure,
-            reaction.Parameters.Value.Describe,
-            reaction.Parameters.Value.EpisodeCount);
+        return new ReactionParameters(reaction.Parameters.Value.Terminable,
+                                      reaction.Parameters.Value.Step,
+                                      reaction.Parameters.Value.Reset,
+                                      reaction.Parameters.Value.Configure,
+                                      reaction.Parameters.Value.Describe,
+                                      reaction.Parameters.Value.EpisodeCount);
       }
 
       return _null_reaction_parameters;
@@ -248,11 +245,10 @@ namespace droid.Runtime.Messaging.FBS {
         var position = trans.Value.Position;
         var rotation = trans.Value.Rotation;
         var vec3_pos = new Vector3((float)position.X, (float)position.Y, (float)position.Z);
-        var quat_rot = new Quaternion(
-            (float)rotation.X,
-            (float)rotation.Y,
-            (float)rotation.Z,
-            (float)rotation.W);
+        var quat_rot = new Quaternion((float)rotation.X,
+                                      (float)rotation.Y,
+                                      (float)rotation.Z,
+                                      (float)rotation.W);
         return new Pose(vec3_pos, quat_rot);
       }
 

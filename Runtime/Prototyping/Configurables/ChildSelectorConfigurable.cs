@@ -2,19 +2,17 @@
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using UnityEngine;
-using Random = System.Random;
 
-namespace droid.Runtime.Prototyping.Configurables
-{
+
+namespace droid.Runtime.Prototyping.Configurables {
   /// <summary>
   ///
   /// </summary>
-  [AddComponentMenu(
-    ConfigurableComponentMenuPath._ComponentMenuPath
-    + "ChildSelector"
-    + ConfigurableComponentMenuPath._Postfix)]
-  public class ChildSelectorConfigurable : Configurable, ICategoryProvider
-  {
+  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
+                    + "ChildSelector"
+                    + ConfigurableComponentMenuPath._Postfix)]
+  public class ChildSelectorConfigurable : Configurable,
+                                           ICategoryProvider {
     [SerializeField] GameObject active;
     [SerializeField] GameObject[] children;
     [SerializeField] int len;
@@ -22,15 +20,13 @@ namespace droid.Runtime.Prototyping.Configurables
     /// <summary>
     ///
     /// </summary>
-    public override void PostEnvironmentSetup()
-    {
+    public override void PostEnvironmentSetup() {
       if (!Application.isPlaying) {
         return;
       }
 
       var la = new List<GameObject>();
-      foreach (Transform child in this.transform)
-      {
+      foreach (Transform child in this.transform) {
         var o = child.gameObject;
         o.SetActive(false);
         this.active = o;
@@ -48,29 +44,25 @@ namespace droid.Runtime.Prototyping.Configurables
     ///
     /// </summary>
     /// <param name="configuration"></param>
-    public override void ApplyConfiguration(IConfigurableConfiguration configuration)
-    {
+    public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
       if (!Application.isPlaying) {
         return;
       }
 
-      if(this.active)
-      {
+      if (this.active) {
         this.active.SetActive(false);
       }
-      if(this.children!=null && (int)configuration.ConfigurableValue<this.len)
-      {
-        this.CurrentCategoryValue = (int) configuration.ConfigurableValue;
+
+      if (this.children != null && (int)configuration.ConfigurableValue < this.len) {
+        this.CurrentCategoryValue = (int)configuration.ConfigurableValue;
         this.active = this.children[this.CurrentCategoryValue];
       }
 
       this.active.SetActive(true);
     }
 
-    public override IConfigurableConfiguration SampleConfiguration(Random random_generator)
-    {
-
-      return new Configuration(this.Identifier, random_generator.Next(0,this.len));
+    public override IConfigurableConfiguration SampleConfiguration() {
+      return new Configuration(this.Identifier, int.Parse(UnityEngine.Random.Range(0, this.len).ToString()));
     }
 
     public int CurrentCategoryValue { get; set; }

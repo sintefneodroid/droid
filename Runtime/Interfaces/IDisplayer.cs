@@ -6,55 +6,54 @@ namespace droid.Runtime.Interfaces {
     //void Display(dynamic o);
     //void Display(object o);
 
-
-     void Display(float value);
+    void Display(float value);
 
     /// <summary>
     /// </summary>
     /// <param name="value"></param>
-     void Display(double value);
+    void Display(double value);
 
     /// <summary>
     /// </summary>
     /// <param name="values"></param>
-     void Display(float[] values);
+    void Display(float[] values);
 
     /// <summary>
     /// </summary>
     /// <param name="value"></param>
-     void Display(string value);
+    void Display(string value);
 
     /// <summary>
     /// </summary>
     /// <param name="value"></param>
-      void Display(Vector3 value);
+    void Display(Vector3 value);
 
     /// <summary>
     /// </summary>
     /// <param name="value"></param>
-      void Display(Vector3[] value);
+    void Display(Vector3[] value);
 
     /// <summary>
     /// </summary>
     /// <param name="point"></param>
-      void Display(Points.ValuePoint point);
+    void Display(Points.ValuePoint point);
 
     /// <summary>
     /// </summary>
     /// <param name="points"></param>
-      void Display(Points.ValuePoint[] points);
+    void Display(Points.ValuePoint[] points);
 
     /// <summary>
     /// </summary>
     /// <param name="point"></param>
-      void Display(Points.StringPoint point);
+    void Display(Points.StringPoint point);
 
     /// <summary>
     /// </summary>
     /// <param name="points"></param>
-      void Display(Points.StringPoint[] points);
+    void Display(Points.StringPoint[] points);
 
     // void PlotSeries(dynamic points);
-      void PlotSeries(Points.ValuePoint[] points);
+    void PlotSeries(Points.ValuePoint[] points);
   }
 }

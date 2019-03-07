@@ -9,13 +9,13 @@ namespace droid.Runtime.Prototyping.Observers {
   /// <inheritdoc cref="Observer" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      ObserverComponentMenuPath._ComponentMenuPath + "Categorical" + ObserverComponentMenuPath._Postfix)]
-  public class CategoricalObserver : Observer, IHasSingle
-  {
-
-    [SerializeField] PrototypingGameObject _categoryProvider=null;
-    [SerializeField] float _observationValue=0;
+  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+                    + "Categorical"
+                    + ObserverComponentMenuPath._Postfix)]
+  public class CategoricalObserver : Observer,
+                                     IHasSingle {
+    [SerializeField] PrototypingGameObject _categoryProvider = null;
+    [SerializeField] float _observationValue = 0;
 
     //void OneHotEncoding() { }
 
@@ -23,26 +23,22 @@ namespace droid.Runtime.Prototyping.Observers {
       get { return "CategoricalObserver"; }
     }*/
 
-    public override IEnumerable<float> FloatEnumerable { get {return new[] {this.ObservationValue};} }
+    public override IEnumerable<float> FloatEnumerable { get { return new[] {this.ObservationValue}; } }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override void UpdateObservation()
-    {
-      if(this._categoryProvider is ICategoryProvider provider)
-      {
-        this.ObservationValue =  provider.CurrentCategoryValue;
+    public override void UpdateObservation() {
+      if (this._categoryProvider is ICategoryProvider provider) {
+        this.ObservationValue = provider.CurrentCategoryValue;
       }
-
     }
 
-    public float ObservationValue
-    {
+    public float ObservationValue {
       get => this._observationValue;
       private set => this._observationValue = value;
     }
 
-    public ValueSpace SingleSpace { get; }
+    public Space1 SingleSpace { get; }
   }
 }

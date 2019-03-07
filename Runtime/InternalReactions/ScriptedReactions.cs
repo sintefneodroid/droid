@@ -26,12 +26,12 @@ namespace droid.Runtime.InternalReactions {
     /// </summary>
     public static ScriptedReactions Instance { get; private set; }
 
-#if NEODROID_DEBUG
+    #if NEODROID_DEBUG
     /// <summary>
     /// </summary>
     public bool Debugging { get { return this._debugging; } set { this._debugging = value; } }
 
-#endif
+    #endif
     /// <summary>
     /// </summary>
     void Awake() {
@@ -45,11 +45,9 @@ namespace droid.Runtime.InternalReactions {
       if (!Application.isPlaying) {
         var manager_script = MonoScript.FromMonoBehaviour(this);
         if (MonoImporter.GetExecutionOrder(manager_script) != _script_execution_order) {
-          MonoImporter.SetExecutionOrder(
-              manager_script,
-              _script_execution_order); // Ensures that PreStep is called first, before all other scripts.
-          Debug.LogWarning(
-              "Execution Order changed, you will need to press play again to make everything function correctly!");
+          MonoImporter.SetExecutionOrder(manager_script,
+                                         _script_execution_order); // Ensures that PreStep is called first, before all other scripts.
+          Debug.LogWarning("Execution Order changed, you will need to press play again to make everything function correctly!");
           EditorApplication.isPlaying = false;
           //TODO: UnityEngine.Experimental.LowLevel.PlayerLoop.SetPlayerLoop(new UnityEngine.Experimental.LowLevel.PlayerLoopSystem());
         }

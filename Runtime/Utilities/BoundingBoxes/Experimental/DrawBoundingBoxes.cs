@@ -54,16 +54,15 @@ namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
           liner.GetComponent<LineRenderer>().SetPosition(0, corners[4]);
           liner.GetComponent<LineRenderer>().SetPosition(1, corners[5]);
 
-          Corners.DrawBox(
-              corners[0],
-              corners[1],
-              corners[2],
-              corners[3],
-              corners[4],
-              corners[5],
-              corners[6],
-              corners[7],
-              this._Color);
+          Corners.DrawBox(corners[0],
+                          corners[1],
+                          corners[2],
+                          corners[3],
+                          corners[4],
+                          corners[5],
+                          corners[6],
+                          corners[7],
+                          this._Color);
         }
       }
     }

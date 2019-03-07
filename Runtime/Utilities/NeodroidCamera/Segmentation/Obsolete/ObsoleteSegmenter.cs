@@ -5,11 +5,9 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation.Obsolete {
   /// <summary>
   /// </summary>
   public abstract class ObsoleteSegmenter : Segmenter {
-
     /// <summary>
     ///
     /// </summary>
-
     protected int _Default_Color_Tag = Shader.PropertyToID("_Color");
 
     protected int _Segmentation_Color_Tag = Shader.PropertyToID("_SegmentationColor");

@@ -3,10 +3,9 @@ using droid.Runtime.Interfaces;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Configurables {
-  [AddComponentMenu(
-      ConfigurableComponentMenuPath._ComponentMenuPath
-      + "Difficulty"
-      + ConfigurableComponentMenuPath._Postfix)]
+  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
+                    + "Difficulty"
+                    + ConfigurableComponentMenuPath._Postfix)]
   public class DifficultyConfigurable : Configurable {
     /// <inheritdoc />
     /// <summary>

@@ -38,15 +38,12 @@ namespace droid.Runtime.Prototyping.Displayers {
     /// </summary>
     public override string PrototypingTypeName { get { return "Displayer"; } }
 
-
-
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this.ParentEnvironment,
-          this);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment, this);
     }
 
     /// <inheritdoc />
@@ -57,8 +54,6 @@ namespace droid.Runtime.Prototyping.Displayers {
     /// <summary>
     /// </summary>
     /// <param name="value"></param>
-
-
     void Update() {
       if (this._RetainLastPlot) {
         if (this._Values != null) {

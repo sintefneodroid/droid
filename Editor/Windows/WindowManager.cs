@@ -5,17 +5,17 @@ using UnityEditor;
 namespace droid.Editor.Windows {
   public class WindowManager : EditorWindow {
     static Type[] _desired_dock_next_toos = {
-        typeof(RenderTextureConfiguratorWindow),
-        typeof(CameraSynchronisationWindow),
-        #if NEODROID_DEBUG
+                                                typeof(RenderTextureConfiguratorWindow),
+                                                typeof(CameraSynchronisationWindow),
+                                                #if NEODROID_DEBUG
         typeof(DebugWindow),
-        #endif
-        typeof(SegmentationWindow),
-        typeof(EnvironmentsWindow),
-        typeof(TaskWindow),
-        typeof(DemonstrationWindow),
-        typeof(SimulationWindow)
-    };
+                                                #endif
+                                                typeof(SegmentationWindow),
+                                                typeof(EnvironmentsWindow),
+                                                typeof(TaskWindow),
+                                                typeof(DemonstrationWindow),
+                                                typeof(SimulationWindow)
+                                            };
 
     [MenuItem(EditorWindowMenuPath._WindowMenuPath + "ShowAllWindows")]
     [MenuItem(EditorWindowMenuPath._ToolMenuPath + "ShowAllWindows")]

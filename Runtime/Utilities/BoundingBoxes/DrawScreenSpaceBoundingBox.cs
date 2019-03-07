@@ -13,13 +13,13 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
   public class DrawScreenSpaceBoundingBox : MonoBehaviour {
     List<string> _names = new List<string>();
     List<Rect> _rects = new List<Rect>();
-    Camera _camera=null;
+    Camera _camera = null;
 
     [SerializeField] bool _draw_label = true;
-    [SerializeField] BoundingBox[] bounding_boxes=null;
+    [SerializeField] BoundingBox[] bounding_boxes = null;
     [SerializeField] bool _cache_bounding_boxes = false;
     [SerializeField] GUISkin gui_style = null;
-    [SerializeField] bool _draw_coords=false;
+    [SerializeField] bool _draw_coords = false;
 
     void Awake() {
       if (!this._camera) {
@@ -123,7 +123,7 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
         }
 
         var a = rect;
-        a.y = Screen.height - (a.y+a.height);
+        a.y = Screen.height - (a.y + a.height);
 
         GUI.Box(a, text);
 

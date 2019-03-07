@@ -131,7 +131,7 @@ namespace droid.Runtime.Utilities.Misc {
       z = z / s;
     }
 
-    public Perlin() { this.SetSeed(0); }
+    public Perlin() { this.SetSeed(42); }
 
     public void SetSeed(int seed) {
       int i, j, k;

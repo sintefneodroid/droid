@@ -7,17 +7,16 @@ namespace droid.Runtime.Prototyping.Observers.Transform {
   /// <inheritdoc cref="Observer" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      ObserverComponentMenuPath._ComponentMenuPath
-      + "SingleAxisTransform"
-      + ObserverComponentMenuPath._Postfix)]
+  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+                    + "SingleAxisTransform"
+                    + ObserverComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   public class SingleAxisTransformObserver : ValueObserver {
     [SerializeField] [SearchableEnum] Axis _dim = Axis.X_;
 
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {  }
+    protected override void PreSetup() { }
 
     public override void UpdateObservation() {
       switch (this._dim) {
@@ -50,7 +49,6 @@ namespace droid.Runtime.Prototyping.Observers.Transform {
           break;
         default: throw new ArgumentOutOfRangeException();
       }
-
     }
 
     void OnDrawGizmos() {
@@ -66,7 +64,9 @@ namespace droid.Runtime.Prototyping.Observers.Transform {
             break;
           case Axis.Rot_z_:
           case Axis.Z_:
-            Debug.DrawLine(this.transform.position, this.transform.position + Vector3.forward * 2, Color.green);
+            Debug.DrawLine(this.transform.position,
+                           this.transform.position + Vector3.forward * 2,
+                           Color.green);
             break;
           default: //TODO add the Direction cases
             Gizmos.DrawIcon(this.transform.position, "console.warnicon", true);

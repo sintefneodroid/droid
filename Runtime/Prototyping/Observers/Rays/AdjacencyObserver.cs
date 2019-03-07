@@ -39,17 +39,17 @@ namespace droid.Runtime.Prototyping.Observers.Rays {
       private set { this._obs_array = value; }
     }
 
-    public ValueSpace[] ObservationSpace { get; set; }
+    public Space1[] ObservationSpace { get; set; }
 
     /// <summary>
     /// </summary>
     protected override void PreSetup() {
       if (this._is_2_d) {
         this.ObservationArray = new float[8];
-        this.ObservationSpace = new ValueSpace[8];
+        this.ObservationSpace = new Space1[8];
       } else {
         this.ObservationArray = new float[27];
-        this.ObservationSpace = new ValueSpace[27];
+        this.ObservationSpace = new Space1[27];
       }
     }
 

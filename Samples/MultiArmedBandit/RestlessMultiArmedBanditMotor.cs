@@ -8,18 +8,18 @@ namespace droid.Samples.MultiArmedBandit {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      MotorComponentMenuPath._ComponentMenuPath + "RestlessMultiArmedBandit" + MotorComponentMenuPath._Postfix)]
+  [AddComponentMenu(MotorComponentMenuPath._ComponentMenuPath
+                    + "RestlessMultiArmedBandit"
+                    + MotorComponentMenuPath._Postfix)]
   public class RestlessMultiArmedBanditMotor : MultiArmedBanditMotor {
-
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     protected override void Setup() {
-      var mvs = this.MotionValueSpace;
+      var mvs = this.MotionSpace1;
       mvs._Min_Value = 0;
       mvs._Max_Value = this._Indicators.Length - 1;
-      this.MotionValueSpace = mvs;
+      this.MotionSpace1 = mvs;
 
       this.ReAssignValues();
       this.StartCoroutine(this.ExecuteAfterTime(2));
@@ -27,8 +27,8 @@ namespace droid.Samples.MultiArmedBandit {
 
     protected void ReAssignValues() {
       for (var index = 0; index < this._Win_Likelihoods.Length; index++) {
-        this._Win_Likelihoods[index] = Random.Range(0.1f,0.9f);
-        this._Win_Amounts[index] = Random.Range(0.1f,0.9f);
+        this._Win_Likelihoods[index] = Random.Range(0.1f, 0.9f);
+        this._Win_Amounts[index] = Random.Range(0.1f, 0.9f);
       }
 
       if (this._Win_Likelihoods == null || this._Win_Likelihoods.Length == 0) {
@@ -46,7 +46,7 @@ namespace droid.Samples.MultiArmedBandit {
       }
     }
 
-    IEnumerator ExecuteAfterTime(float time){
+    IEnumerator ExecuteAfterTime(float time) {
       while (true) {
         yield return new WaitForSeconds(time);
 

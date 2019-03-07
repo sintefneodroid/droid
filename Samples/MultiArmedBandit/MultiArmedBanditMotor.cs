@@ -11,16 +11,29 @@ namespace droid.Samples.MultiArmedBandit {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      MotorComponentMenuPath._ComponentMenuPath + "MultiArmedBandit" + MotorComponentMenuPath._Postfix)]
+  [AddComponentMenu(MotorComponentMenuPath._ComponentMenuPath
+                    + "MultiArmedBandit"
+                    + MotorComponentMenuPath._Postfix)]
   public class MultiArmedBanditMotor : Motor {
     [SerializeField] Color _inactive_color = Color.yellow;
-    [FormerlySerializedAs("_indicators")] [SerializeField] protected Material[] _Indicators;
+
+    [FormerlySerializedAs("_indicators")]
+    [SerializeField]
+    protected Material[] _Indicators;
+
     [SerializeField] int _last_index;
     [SerializeField] Color _lose_color = Color.red;
-    [FormerlySerializedAs("_win_amounts")] [SerializeField] protected float[] _Win_Amounts;
+
+    [FormerlySerializedAs("_win_amounts")]
+    [SerializeField]
+    protected float[] _Win_Amounts;
+
     [SerializeField] Color _win_color = Color.green;
-    [FormerlySerializedAs("_win_likelihoods")] [SerializeField] protected float[] _Win_Likelihoods;
+
+    [FormerlySerializedAs("_win_likelihoods")]
+    [SerializeField]
+    protected float[] _Win_Likelihoods;
+
     [SerializeField] bool _won;
 
     /// <summary>
@@ -46,11 +59,11 @@ namespace droid.Samples.MultiArmedBandit {
     /// <summary>
     /// </summary>
     protected override void Setup() {
-      var mvs = this.MotionValueSpace;
+      var mvs = this.MotionSpace1;
       mvs._Min_Value = -1;
       mvs._Max_Value = 1;
       mvs._Decimal_Granularity = 0;
-      this.MotionValueSpace = mvs;
+      this.MotionSpace1 = mvs;
       if (this._Win_Likelihoods == null || this._Win_Likelihoods.Length == 0) {
         this._Win_Likelihoods = new Single[this._Indicators.Length];
         for (var index = 0; index < this._Indicators.Length; index++) {
@@ -66,62 +79,29 @@ namespace droid.Samples.MultiArmedBandit {
       }
     }
 
-	public void UpdatePayoutArm1(Text amount){
-		this.UpdatePayoutArm(0,float.Parse(amount.text));
-	}
-	public void UpdatePayoutArm2(Text amount){
-		this.UpdatePayoutArm(1,float.Parse(amount.text));
-	}
-	public void UpdatePayoutArm3(Text amount){
-		this.UpdatePayoutArm(2,float.Parse(amount.text));
-	}
+    public void UpdatePayoutArm1(Text amount) { this.UpdatePayoutArm(0, float.Parse(amount.text)); }
+    public void UpdatePayoutArm2(Text amount) { this.UpdatePayoutArm(1, float.Parse(amount.text)); }
+    public void UpdatePayoutArm3(Text amount) { this.UpdatePayoutArm(2, float.Parse(amount.text)); }
 
-	public void GetPayoutArm1( DataPoller recipient ){
-		recipient.PollData(this.GetPayoutArm(0));
-	}
-	public void GetPayoutArm2( DataPoller recipient ){
-		recipient.PollData(this.GetPayoutArm(1));
-	}
-	public void GetPayoutArm3( DataPoller recipient ){
-		recipient.PollData(this.GetPayoutArm(2));
-	}
+    public void GetPayoutArm1(DataPoller recipient) { recipient.PollData(this.GetPayoutArm(0)); }
+    public void GetPayoutArm2(DataPoller recipient) { recipient.PollData(this.GetPayoutArm(1)); }
+    public void GetPayoutArm3(DataPoller recipient) { recipient.PollData(this.GetPayoutArm(2)); }
 
-	public void GetPctArm1( DataPoller recipient ){
-		recipient.PollData( this.GetPctArm(0));
-	}
-	public void GetPctArm2( DataPoller recipient ){
-		recipient.PollData( this.GetPctArm(1));
-	}
-	public void GetPctArm3( DataPoller recipient ){
-		recipient.PollData( this.GetPctArm(2));
-	}
+    public void GetPctArm1(DataPoller recipient) { recipient.PollData(this.GetPctArm(0)); }
+    public void GetPctArm2(DataPoller recipient) { recipient.PollData(this.GetPctArm(1)); }
+    public void GetPctArm3(DataPoller recipient) { recipient.PollData(this.GetPctArm(2)); }
 
-	public void UpdatePercentageArm1(Text amount){
-		this.UpdatePercentageArm(0,float.Parse(amount.text));
-	}
-	public void UpdatePercentageArm2(Text amount){
-		this.UpdatePercentageArm(1,float.Parse(amount.text));
-	}
-	public void UpdatePercentageArm3(Text amount){
-		this.UpdatePercentageArm(2,float.Parse(amount.text));
-	}
+    public void UpdatePercentageArm1(Text amount) { this.UpdatePercentageArm(0, float.Parse(amount.text)); }
+    public void UpdatePercentageArm2(Text amount) { this.UpdatePercentageArm(1, float.Parse(amount.text)); }
+    public void UpdatePercentageArm3(Text amount) { this.UpdatePercentageArm(2, float.Parse(amount.text)); }
 
-	void UpdatePayoutArm(int index, float amount){
-		this._Win_Amounts[index] = amount;
-	}
+    void UpdatePayoutArm(int index, float amount) { this._Win_Amounts[index] = amount; }
 
-	string GetPayoutArm(int index)
-	{
-		return this._Win_Amounts[index].ToString("F");
-	}
+    string GetPayoutArm(int index) { return this._Win_Amounts[index].ToString("F"); }
 
-	string GetPctArm(int index){
-		return this._Win_Likelihoods[index].ToString("F");
-	}
+    string GetPctArm(int index) { return this._Win_Likelihoods[index].ToString("F"); }
 
-	void UpdatePercentageArm(int index, float amount){
-		this._Win_Likelihoods[index] = amount;
-	}
+    void UpdatePercentageArm(int index, float amount) { this._Win_Likelihoods[index] = amount; }
 
     /// <inheritdoc />
     /// <summary>
@@ -132,7 +112,7 @@ namespace droid.Samples.MultiArmedBandit {
         indicator.color = this._inactive_color;
       }
 
-      var index = (int)motion.Strength+1;
+      var index = (int)motion.Strength + 1;
 
       #if NEODROID_DEBUG
       if (this.Debugging) {

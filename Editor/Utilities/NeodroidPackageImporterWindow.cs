@@ -47,9 +47,8 @@ namespace droid.Editor.Utilities {
         GUILayout.BeginVertical(EditorStyles.helpBox);
         {
           GUILayout.Label("Neodroid Essentials", EditorStyles.boldLabel);
-          GUILayout.Label(
-              "This appears to be the first time you access TextMesh Pro, as such we need to add resources to your project that are essential for using TextMesh Pro. These new resources will be placed at the root of your project in the \"TextMesh Pro\" folder.",
-              new GUIStyle(EditorStyles.label) {wordWrap = true});
+          GUILayout.Label("This appears to be the first time you access TextMesh Pro, as such we need to add resources to your project that are essential for using TextMesh Pro. These new resources will be placed at the root of your project in the \"TextMesh Pro\" folder.",
+                          new GUIStyle(EditorStyles.label) {wordWrap = true});
           GUILayout.Space(5f);
 
           GUI.enabled = !this.kEssentialResourcesImported;
@@ -66,13 +65,11 @@ namespace droid.Editor.Utilities {
         GUILayout.BeginVertical(EditorStyles.helpBox);
         {
           GUILayout.Label("TMP Examples & Extras", EditorStyles.boldLabel);
-          GUILayout.Label(
-              "The Examples & Extras package contains addition resources and examples that will make discovering and learning about TextMesh Pro's powerful features easier. These additional resources will be placed in the same folder as the TMP essential resources.",
-              new GUIStyle(EditorStyles.label) {wordWrap = true});
+          GUILayout.Label("The Examples & Extras package contains addition resources and examples that will make discovering and learning about TextMesh Pro's powerful features easier. These additional resources will be placed in the same folder as the TMP essential resources.",
+                          new GUIStyle(EditorStyles.label) {wordWrap = true});
           GUILayout.Space(5f);
 
-          GUI.enabled = this.kEssentialResourcesImported
-                        && !this.kExamplesAndExtrasResourcesImported;
+          GUI.enabled = this.kEssentialResourcesImported && !this.kExamplesAndExtrasResourcesImported;
           if (GUILayout.Button("Import TMP Examples & Extras")) {
             import_examples_package = true;
           }
@@ -90,9 +87,9 @@ namespace droid.Editor.Utilities {
         AssetDatabase.importPackageCompleted += this.ImportCallback;
 
         var package_full_path = this.GetPackageFullPath();
-        AssetDatabase.ImportPackage(
-            package_full_path + "/Package Resources/TMP Essential Resources.unitypackage",
-            false);
+        AssetDatabase.ImportPackage(package_full_path
+                                    + "/Package Resources/TMP Essential Resources.unitypackage",
+                                    false);
       }
 
       // Import Examples & Extras
@@ -101,9 +98,9 @@ namespace droid.Editor.Utilities {
         this.kIsImportingExamples = true;
 
         var package_full_path = this.GetPackageFullPath();
-        AssetDatabase.ImportPackage(
-            package_full_path + "/Package Resources/TMP Examples & Extras.unitypackage",
-            false);
+        AssetDatabase.ImportPackage(package_full_path
+                                    + "/Package Resources/TMP Examples & Extras.unitypackage",
+                                    false);
       }
     }
 
@@ -161,10 +158,8 @@ namespace droid.Editor.Utilities {
         }
 
         // Search for potential alternative locations in the user project
-        var matching_paths = Directory.GetDirectories(
-            package_path,
-            "TextMesh Pro",
-            SearchOption.AllDirectories);
+        var matching_paths =
+            Directory.GetDirectories(package_path, "TextMesh Pro", SearchOption.AllDirectories);
         var path = this.ValidateLocation(matching_paths, package_path);
         if (path != null) {
           return package_path + path;

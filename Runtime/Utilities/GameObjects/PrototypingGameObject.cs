@@ -14,12 +14,12 @@ namespace droid.Runtime.Utilities.GameObjects {
     [SerializeField]
     [Header("Naming", order = 10)]
     protected string _Custom_Name = "";
-#if NEODROID_DEBUG
+    #if NEODROID_DEBUG
         [SerializeField] bool _debugging;
-#endif
-        /// <summary>
-        /// </summary>
-        [Header("Development", order = 90)]
+    #endif
+    /// <summary>
+    /// </summary>
+    [Header("Development", order = 90)]
     [SerializeField]
     bool _disables_children = false;
 
@@ -35,13 +35,13 @@ namespace droid.Runtime.Utilities.GameObjects {
     [SerializeField]
     protected bool _Use_Custom_Name = false;
 
-#if NEODROID_DEBUG
+    #if NEODROID_DEBUG
         /// <summary>
         /// </summary>
         public bool Debugging { get { return this._debugging; } set { this._debugging = value; } }
-#endif
-        ///
-        public virtual string PrototypingTypeName { get { return this.GetType().Name; } }
+    #endif
+    ///
+    public virtual string PrototypingTypeName { get { return this.GetType().Name; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -62,13 +62,9 @@ namespace droid.Runtime.Utilities.GameObjects {
 
     /// <summary>
     /// </summary>
-    protected void Start()
-    {
-      this.ReRegister();
-    }
+    protected void Start() { this.ReRegister(); }
 
-    void ReRegister()
-    {
+    void ReRegister() {
       try {
         if (this.enabled && this.isActiveAndEnabled) {
           this.Setup();
@@ -149,7 +145,7 @@ namespace droid.Runtime.Utilities.GameObjects {
     /// </summary>
     protected virtual void Clear() { }
 
-#if UNITY_EDITOR
+    #if UNITY_EDITOR
     /// <summary>
     /// </summary>
     void OnValidate() { // Only called in the editor
@@ -165,11 +161,10 @@ namespace droid.Runtime.Utilities.GameObjects {
         }
       } catch (NotImplementedException e) {
         Debug.Log(e);
-        Debug.Log(
-            $"You must override Register and UnRegisterComponent for component {this.GetType()} for gameobject {this.Identifier} in order to Re-register component on every 'OnValidate' while in edit-mode");
+        Debug.Log($"You must override Register and UnRegisterComponent for component {this.GetType()} for gameobject {this.Identifier} in order to Re-register component on every 'OnValidate' while in edit-mode");
       }
     }
-#endif
+    #endif
 
     /// <summary>
     /// </summary>

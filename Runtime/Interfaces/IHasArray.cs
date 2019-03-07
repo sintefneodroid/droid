@@ -9,6 +9,6 @@ namespace droid.Runtime.Interfaces {
     /// </summary>
     float[] ObservationArray { get; }
 
-    ValueSpace[] ObservationSpace { get; }
+    Space1[] ObservationSpace { get; }
   }
 }

@@ -12,8 +12,8 @@ namespace droid.Editor.ScriptableObjects {
   public class NeodroidSettings : ScriptableObject {
     static NeodroidSettings _instance;
 
-    static string _setting_file_name="neodroid_settings";
-    static string _version ="1.3.0";
+    static string _setting_file_name = "neodroid_settings";
+    static string _version = "1.3.0";
 
     /// <summary>
     ///   Returns the release version of the product.

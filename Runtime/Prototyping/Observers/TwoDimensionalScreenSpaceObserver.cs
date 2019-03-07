@@ -6,17 +6,16 @@ using UnityEngine;
 namespace droid.Runtime.Prototyping.Observers {
   public class TwoDimensionalScreenSpaceObserver : Observer,
                                                    IHasDouble {
-    [SerializeField] Vector2 _observation_value=Vector2.zero;
-    [SerializeField] Space2 _observation_space2_d=Space2.ZeroOne;
+    [SerializeField] Vector2 _observation_value = Vector2.zero;
+    [SerializeField] Space2 _observation_space2_d = Space2.ZeroOne;
 
-    [SerializeField] UnityEngine.Camera _reference_camera=null;
+    [SerializeField] UnityEngine.Camera _reference_camera = null;
 
     [SerializeField] bool _use_viewport = true; // Already normalised between 0 and 1
 
     // Update is called once per frame
-    public override IEnumerable<float> FloatEnumerable
-    {
-      get { return new[] {this._observation_value.x,this.ObservationValue.y}; }
+    public override IEnumerable<float> FloatEnumerable {
+      get { return new[] {this._observation_value.x, this.ObservationValue.y}; }
     }
 
     public override void UpdateObservation() {

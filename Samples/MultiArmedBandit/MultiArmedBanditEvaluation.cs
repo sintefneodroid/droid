@@ -7,8 +7,9 @@ namespace droid.Samples.MultiArmedBandit {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      EvaluationComponentMenuPath._ComponentMenuPath + "PoseDeviance" + EvaluationComponentMenuPath._Postfix)]
+  [AddComponentMenu(EvaluationComponentMenuPath._ComponentMenuPath
+                    + "PoseDeviance"
+                    + EvaluationComponentMenuPath._Postfix)]
   public class MultiArmedBanditEvaluation : ObjectiveFunction {
     [SerializeField] MultiArmedBanditMotor _arms;
     [SerializeField] float[] _normalised_values;
@@ -42,7 +43,6 @@ for (var i = 0; i < this._arms.WinAmounts.Length; i++) {
       }
 
       this._text_bar_plot_displayer.Display(this._normalised_values);
-
     }
 
     /// <inheritdoc />
@@ -50,9 +50,7 @@ for (var i = 0; i < this._arms.WinAmounts.Length; i++) {
     /// </summary>
     public override void InternalReset() { this.ComputeNormalisedValues(); }
 
-    void Update() {
-      this.ComputeNormalisedValues();
-    }
+    void Update() { this.ComputeNormalisedValues(); }
 
     /// <inheritdoc />
     /// <summary>

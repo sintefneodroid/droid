@@ -6,10 +6,9 @@ namespace droid.Runtime.Prototyping.Evaluation {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      EvaluationComponentMenuPath._ComponentMenuPath
-      + "PunishmentFunction"
-      + EvaluationComponentMenuPath._Postfix)]
+  [AddComponentMenu(EvaluationComponentMenuPath._ComponentMenuPath
+                    + "PunishmentFunction"
+                    + EvaluationComponentMenuPath._Postfix)]
   [RequireComponent(typeof(Rigidbody))]
   public class PunishmentFunction : ObjectiveFunction {
     [SerializeField] string _avoid_tag = "balls";
@@ -29,13 +28,12 @@ namespace droid.Runtime.Prototyping.Evaluation {
       var tagged_gos = GameObject.FindGameObjectsWithTag(this._avoid_tag);
 
       foreach (var ball in tagged_gos) {
-        if (ball)
-        {
+        if (ball) {
           var publisher = ball.GetComponent<ChildCollider3DSensor>();
-          if(!publisher || publisher.Caller != this)
-          {
+          if (!publisher || publisher.Caller != this) {
             publisher = ball.AddComponent<ChildCollider3DSensor>();
           }
+
           publisher.Caller = this;
           publisher.OnCollisionEnterDelegate = this.OnChildCollision;
         }

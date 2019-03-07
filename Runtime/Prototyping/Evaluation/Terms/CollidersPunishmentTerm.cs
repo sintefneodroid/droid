@@ -5,18 +5,19 @@ namespace droid.Runtime.Prototyping.Evaluation.Terms {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      TermComponentMenuPath._ComponentMenuPath + "CollidersPunishment" + TermComponentMenuPath._Postfix)]
+  [AddComponentMenu(TermComponentMenuPath._ComponentMenuPath
+                    + "CollidersPunishment"
+                    + TermComponentMenuPath._Postfix)]
   public class CollidersPunishmentTerm : Term {
     /// <summary>
     /// </summary>
     [SerializeField]
-    Collider[] _avoid_colliders= null;
+    Collider[] _avoid_colliders = null;
 
     /// <summary>
     /// </summary>
     [SerializeField]
-    Collider _subject_collider= null;
+    Collider _subject_collider = null;
 
     /// <inheritdoc />
     /// <summary>

@@ -18,24 +18,24 @@ namespace droid.Runtime.Utilities.StatusDisplayer {
   public class AutoSetupStatusDisplayer : MonoBehaviour {
     [SerializeField] bool _clean_empty_no_target_events = true;
 
-    [CanBeNull] [SerializeField] NeodroidEnvironment _environment= null;
-    [CanBeNull] [SerializeField] TextUpdater _environment_frame= null;
-    [CanBeNull] [SerializeField] TextUpdater _environment_obs= null;
+    [CanBeNull] [SerializeField] NeodroidEnvironment _environment = null;
+    [CanBeNull] [SerializeField] TextUpdater _environment_frame = null;
+    [CanBeNull] [SerializeField] TextUpdater _environment_obs = null;
 
-    [CanBeNull] [SerializeField] TextUpdater _environment_text= null;
-    [CanBeNull] [SerializeField] ObjectiveFunction _evaluation_function= null;
-    [CanBeNull] [SerializeField] NeodroidManager _manager= null;
+    [CanBeNull] [SerializeField] TextUpdater _environment_text = null;
+    [CanBeNull] [SerializeField] ObjectiveFunction _evaluation_function = null;
+    [CanBeNull] [SerializeField] NeodroidManager _manager = null;
     [CanBeNull] [SerializeField] Button _reset_button = null;
-    [CanBeNull] [SerializeField] TextUpdater _signal= null;
+    [CanBeNull] [SerializeField] TextUpdater _signal = null;
     [CanBeNull] [SerializeField] TextUpdater _status_text = null;
-    [CanBeNull] [SerializeField] ToggleUpdater _terminated= null;
-    [CanBeNull] [SerializeField] Toggle _testing_toggle= null;
+    [CanBeNull] [SerializeField] ToggleUpdater _terminated = null;
+    [CanBeNull] [SerializeField] Toggle _testing_toggle = null;
     [SerializeField] UnityEventCallState _unity_event_call_state = UnityEventCallState.RuntimeOnly;
 
-#if NEODROID_DEBUG
+    #if NEODROID_DEBUG
     bool Debugging { get { return this._debugging; } set { this._debugging = value; } }
         [SerializeField] bool _debugging;
-#endif
+    #endif
 
     void TryRegister(DataPoller poller, UnityAction<DataPoller> f) {
       if (poller) {
@@ -55,11 +55,11 @@ namespace droid.Runtime.Utilities.StatusDisplayer {
           UnityEventTools.AddObjectPersistentListener(poller.PollEvent, f, poller);
           poller.PollEvent.SetPersistentListenerState(0, this._unity_event_call_state);
         } else if (count > 0 && poller.PollEvent.GetPersistentTarget(0) != poller) {
-#if NEODROID_DEBUG
+          #if NEODROID_DEBUG
           if (this.Debugging) {
             Debug.Log($"PollEvent on {poller} already has a listeners");
           }
-#endif
+          #endif
         }
       }
     }
@@ -80,11 +80,11 @@ namespace droid.Runtime.Utilities.StatusDisplayer {
         UnityEventTools.AddVoidPersistentListener(poller, f);
         poller.SetPersistentListenerState(0, this._unity_event_call_state);
       } else if (count > 0) {
-#if NEODROID_DEBUG
+        #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log($"PollEvent on {poller} already has a listeners");
         }
-#endif
+        #endif
       }
     }
 

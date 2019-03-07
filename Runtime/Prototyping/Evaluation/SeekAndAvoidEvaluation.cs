@@ -9,11 +9,11 @@ namespace droid.Runtime.Prototyping.Evaluation {
   /// <summary>
   /// </summary>
   public class SeekAndAvoidEvaluation : ObjectiveFunction {
-    [SerializeField] Transform _actor= null;
-    [SerializeField] GameObject _avoidable= null;
-    List<GameObject> _avoidables= null;
-    [SerializeField] GameObject _collectible= null;
-    List<GameObject> _collectibles= null;
+    [SerializeField] Transform _actor = null;
+    [SerializeField] GameObject _avoidable = null;
+    List<GameObject> _avoidables = null;
+    [SerializeField] GameObject _collectible = null;
+    List<GameObject> _collectibles = null;
     [SerializeField] int _end_game_radius = 10;
     Vector3 _initial_actor_position = Vector3.zero;
     [SerializeField] int _num_avoidables = 50;
@@ -22,7 +22,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
     [SerializeField] int _reward = 1;
     float _score;
     [SerializeField] int _spawn_radius = 10;
-    List<Vector3> _spawned_locations= null;
+    List<Vector3> _spawned_locations = null;
 
     /// <inheritdoc />
     /// <summary>

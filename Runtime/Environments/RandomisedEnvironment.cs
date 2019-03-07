@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Random = System.Random;
+
 
 namespace droid.Runtime.Environments {
   /// <inheritdoc />
@@ -7,15 +7,13 @@ namespace droid.Runtime.Environments {
   /// </summary>
   [AddComponentMenu("Neodroid/Environments/RandomisedEnvironment")]
   public class RandomisedEnvironment : PrototypingEnvironment {
-    /// <summary>
-    /// </summary>
-    Random _random_generator = new Random();
+
 
     /// <summary>
     /// </summary>
     void RandomiseEnvironment() {
       foreach (var configurable in this.Configurables) {
-        var value = configurable.Value.SampleConfiguration(this._random_generator);
+        var value = configurable.Value.SampleConfiguration();
         configurable.Value.ApplyConfiguration(value);
       }
     }

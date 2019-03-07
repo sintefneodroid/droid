@@ -80,7 +80,7 @@ namespace droid.Runtime.Prototyping.Internals.StateValidation {
 
         if (obstruction != null
             && obstruction.GetComponent<Collider>().bounds
-                .Intersects(this._goal.GetComponent<Collider>().bounds)) {
+                          .Intersects(this._goal.GetComponent<Collider>().bounds)) {
           this._environment.Terminate("Goal overlapping obstruction");
         }
       }

@@ -7,8 +7,9 @@ namespace droid.Runtime.Prototyping.Motors {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      MotorComponentMenuPath._ComponentMenuPath + "Rigidbody" + MotorComponentMenuPath._Postfix)]
+  [AddComponentMenu(MotorComponentMenuPath._ComponentMenuPath
+                    + "Rigidbody"
+                    + MotorComponentMenuPath._Postfix)]
   [RequireComponent(typeof(Rigidbody))]
   public class RigidbodyMotor : Motor {
     /// <summary>
@@ -58,18 +59,12 @@ namespace droid.Runtime.Prototyping.Motors {
       this.ParentActor = NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Motor)this, this._x);
       this.ParentActor = NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Motor)this, this._y);
       this.ParentActor = NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Motor)this, this._z);
-      this.ParentActor = NeodroidUtilities.RegisterComponent(
-          (Actor)this.ParentActor,
-          (Motor)this,
-          this._rot_x);
-      this.ParentActor = NeodroidUtilities.RegisterComponent(
-          (Actor)this.ParentActor,
-          (Motor)this,
-          this._rot_y);
-      this.ParentActor = NeodroidUtilities.RegisterComponent(
-          (Actor)this.ParentActor,
-          (Motor)this,
-          this._rot_z);
+      this.ParentActor =
+          NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Motor)this, this._rot_x);
+      this.ParentActor =
+          NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Motor)this, this._rot_y);
+      this.ParentActor =
+          NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Motor)this, this._rot_z);
     }
 
     /// <summary>

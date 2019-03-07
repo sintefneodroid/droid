@@ -5,42 +5,33 @@ namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
   /// <summary>
   /// </summary>
   public static class Corners {
-    public static Vector3[] ExtractCorners(
-        Vector3 v3_center,
-        Vector3 v3_extents,
-        Transform reference_transform = null) {
-      var v3_front_top_left = new Vector3(
-          v3_center.x - v3_extents.x,
-          v3_center.y + v3_extents.y,
-          v3_center.z - v3_extents.z); // Front top left corner
-      var v3_front_top_right = new Vector3(
-          v3_center.x + v3_extents.x,
-          v3_center.y + v3_extents.y,
-          v3_center.z - v3_extents.z); // Front top right corner
-      var v3_front_bottom_left = new Vector3(
-          v3_center.x - v3_extents.x,
-          v3_center.y - v3_extents.y,
-          v3_center.z - v3_extents.z); // Front bottom left corner
-      var v3_front_bottom_right = new Vector3(
-          v3_center.x + v3_extents.x,
-          v3_center.y - v3_extents.y,
-          v3_center.z - v3_extents.z); // Front bottom right corner
-      var v3_back_top_left = new Vector3(
-          v3_center.x - v3_extents.x,
-          v3_center.y + v3_extents.y,
-          v3_center.z + v3_extents.z); // Back top left corner
-      var v3_back_top_right = new Vector3(
-          v3_center.x + v3_extents.x,
-          v3_center.y + v3_extents.y,
-          v3_center.z + v3_extents.z); // Back top right corner
-      var v3_back_bottom_left = new Vector3(
-          v3_center.x - v3_extents.x,
-          v3_center.y - v3_extents.y,
-          v3_center.z + v3_extents.z); // Back bottom left corner
-      var v3_back_bottom_right = new Vector3(
-          v3_center.x + v3_extents.x,
-          v3_center.y - v3_extents.y,
-          v3_center.z + v3_extents.z); // Back bottom right corner
+    public static Vector3[] ExtractCorners(Vector3 v3_center,
+                                           Vector3 v3_extents,
+                                           Transform reference_transform = null) {
+      var v3_front_top_left = new Vector3(v3_center.x - v3_extents.x,
+                                          v3_center.y + v3_extents.y,
+                                          v3_center.z - v3_extents.z); // Front top left corner
+      var v3_front_top_right = new Vector3(v3_center.x + v3_extents.x,
+                                           v3_center.y + v3_extents.y,
+                                           v3_center.z - v3_extents.z); // Front top right corner
+      var v3_front_bottom_left = new Vector3(v3_center.x - v3_extents.x,
+                                             v3_center.y - v3_extents.y,
+                                             v3_center.z - v3_extents.z); // Front bottom left corner
+      var v3_front_bottom_right = new Vector3(v3_center.x + v3_extents.x,
+                                              v3_center.y - v3_extents.y,
+                                              v3_center.z - v3_extents.z); // Front bottom right corner
+      var v3_back_top_left = new Vector3(v3_center.x - v3_extents.x,
+                                         v3_center.y + v3_extents.y,
+                                         v3_center.z + v3_extents.z); // Back top left corner
+      var v3_back_top_right = new Vector3(v3_center.x + v3_extents.x,
+                                          v3_center.y + v3_extents.y,
+                                          v3_center.z + v3_extents.z); // Back top right corner
+      var v3_back_bottom_left = new Vector3(v3_center.x - v3_extents.x,
+                                            v3_center.y - v3_extents.y,
+                                            v3_center.z + v3_extents.z); // Back bottom left corner
+      var v3_back_bottom_right = new Vector3(v3_center.x + v3_extents.x,
+                                             v3_center.y - v3_extents.y,
+                                             v3_center.z + v3_extents.z); // Back bottom right corner
       if (reference_transform) {
         v3_front_top_left = reference_transform.TransformPoint(v3_front_top_left);
         v3_front_top_right = reference_transform.TransformPoint(v3_front_top_right);
@@ -53,15 +44,15 @@ namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
       }
 
       return new[] {
-          v3_front_top_left,
-          v3_front_top_right,
-          v3_front_bottom_left,
-          v3_front_bottom_right,
-          v3_back_top_left,
-          v3_back_top_right,
-          v3_back_bottom_left,
-          v3_back_bottom_right
-      };
+                       v3_front_top_left,
+                       v3_front_top_right,
+                       v3_front_bottom_left,
+                       v3_front_bottom_right,
+                       v3_back_top_left,
+                       v3_back_top_right,
+                       v3_back_bottom_left,
+                       v3_back_bottom_right
+                   };
     }
 
     /// <summary>
@@ -75,16 +66,15 @@ namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
     /// <param name="v3_back_bottom_left"></param>
     /// <param name="v3_back_bottom_right"></param>
     /// <param name="color"></param>
-    public static void DrawBox(
-        Vector3 v3_front_top_left,
-        Vector3 v3_front_top_right,
-        Vector3 v3_front_bottom_left,
-        Vector3 v3_front_bottom_right,
-        Vector3 v3_back_top_left,
-        Vector3 v3_back_top_right,
-        Vector3 v3_back_bottom_left,
-        Vector3 v3_back_bottom_right,
-        Color color) {
+    public static void DrawBox(Vector3 v3_front_top_left,
+                               Vector3 v3_front_top_right,
+                               Vector3 v3_front_bottom_left,
+                               Vector3 v3_front_bottom_right,
+                               Vector3 v3_back_top_left,
+                               Vector3 v3_back_top_right,
+                               Vector3 v3_back_bottom_left,
+                               Vector3 v3_back_bottom_right,
+                               Color color) {
       Debug.DrawLine(v3_front_top_left, v3_front_top_right, color);
       Debug.DrawLine(v3_front_top_right, v3_front_bottom_right, color);
       Debug.DrawLine(v3_front_bottom_right, v3_front_bottom_left, color);
@@ -109,12 +99,11 @@ namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
     /// <param name="color">Color for Debug.Draw.</param>
     /// <param name="num_segments">Number of segments for the circle, used for precision of the draw.</param>
     /// <param name="duration">Duration to show the circle.</param>
-    public static void DrawCircle(
-        Vector2 center,
-        float radius,
-        Color color,
-        float num_segments = 40,
-        float duration = 0.01f) {
+    public static void DrawCircle(Vector2 center,
+                                  float radius,
+                                  Color color,
+                                  float num_segments = 40,
+                                  float duration = 0.01f) {
       var rot_quaternion = Quaternion.AngleAxis(360.0f / num_segments, Vector3.forward);
       var vertex_start = new Vector2(radius, 0.0f);
       for (var i = 0; i < num_segments; i++) {
@@ -134,11 +123,10 @@ namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
     /// <param name="world_bottom_right">World bottom right corner.</param>
     /// <param name="color">Color for Debug.Draw.</param>
     /// <param name="duration">Duration to show the box.</param>
-    public static void DrawBox(
-        Vector2 world_top_left,
-        Vector2 world_bottom_right,
-        Color color,
-        float duration = 0.01f) {
+    public static void DrawBox(Vector2 world_top_left,
+                               Vector2 world_bottom_right,
+                               Color color,
+                               float duration = 0.01f) {
       var world_top_right = new Vector2(world_bottom_right.x, world_top_left.y);
       var world_bottom_left = new Vector2(world_top_left.x, world_bottom_right.y);
 
@@ -191,12 +179,11 @@ namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
 
       // Draw arrowhead so we can see direction
       var arrow_direction = endpoint - origin;
-      DebugDrawArrowhead(
-          endpoint,
-          arrow_direction.normalized,
-          GetArrowSizeForLine(arrow_direction),
-          color,
-          duration);
+      DebugDrawArrowhead(endpoint,
+                         arrow_direction.normalized,
+                         GetArrowSizeForLine(arrow_direction),
+                         color,
+                         duration);
     }
 
     static float GetArrowSizeForLine(Vector2 line) {
@@ -204,13 +191,12 @@ namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
       return (line * default_arrow_percentage).magnitude;
     }
 
-    static void DebugDrawArrowhead(
-        Vector2 origin,
-        Vector2 direction,
-        float size,
-        Color color,
-        float duration = 0.01f,
-        float theta = 30.0f) {
+    static void DebugDrawArrowhead(Vector2 origin,
+                                   Vector2 direction,
+                                   float size,
+                                   Color color,
+                                   float duration = 0.01f,
+                                   float theta = 30.0f) {
       // Theta angle is the acute angle of the arrow, so flip direction or else arrow will be pointing "backwards"
       var arrowhead_handle = -direction * size;
 

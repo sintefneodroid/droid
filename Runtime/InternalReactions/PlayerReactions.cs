@@ -60,10 +60,9 @@ namespace droid.Runtime.InternalReactions {
                   break;
                 }
 
-                var motion = new MotorMotion(
-                    player_motion._Actor,
-                    player_motion._Motor,
-                    player_motion._Strength);
+                var motion = new MotorMotion(player_motion._Actor,
+                                             player_motion._Motor,
+                                             player_motion._Strength);
                 this._motions.Add(motion);
               }
             }

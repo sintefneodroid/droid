@@ -9,14 +9,11 @@ namespace droid.Runtime.Prototyping.Configurables {
   /// <inheritdoc cref="Configurable" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      ConfigurableComponentMenuPath._ComponentMenuPath
-      + "TransformConfigurable1Dof"
-      + ConfigurableComponentMenuPath._Postfix)]
+  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
+                    + "TransformConfigurable1Dof"
+                    + ConfigurableComponentMenuPath._Postfix)]
   public class TransformConfigurable1Dof : Configurable,
                                            IHasSingle {
-
-
     /// <inheritdoc />
     /// <summary>
     /// </summary>
@@ -32,7 +29,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public ValueSpace SingleSpace {
+    public Space1 SingleSpace {
       get { return this._single_value_space; }
       set { this._single_value_space = value; }
     }
@@ -86,11 +83,12 @@ namespace droid.Runtime.Prototyping.Configurables {
     protected override void PreSetup() {
       if (this._use_bounding_box_for_range) {
         if (this._bounding_box != null) {
-          var valid_input = new ValueSpace {
-              _Max_Value = Math.Min(
-                  this._bounding_box.Bounds.size.x,
-                  Math.Min(this._bounding_box.Bounds.size.y, this._bounding_box.Bounds.size.z))
-          };
+          var valid_input = new Space1 {
+                                           _Max_Value =
+                                               Math.Min(this._bounding_box.Bounds.size.x,
+                                                        Math.Min(this._bounding_box.Bounds.size.y,
+                                                                 this._bounding_box.Bounds.size.z))
+                                       };
           valid_input._Min_Value = -valid_input._Max_Value;
           this.SingleSpace = valid_input;
         }
@@ -100,8 +98,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration) {
       if (simulator_configuration.ConfigurableValue < this.SingleSpace._Min_Value
           || simulator_configuration.ConfigurableValue > this.SingleSpace._Max_Value) {
-        Debug.Log(
-            $"It does not accept input, outside allowed range {this.SingleSpace._Min_Value} to {this.SingleSpace._Max_Value}");
+        Debug.Log($"It does not accept input, outside allowed range {this.SingleSpace._Min_Value} to {this.SingleSpace._Max_Value}");
         return; // Do nothing
       }
 
@@ -216,10 +213,10 @@ namespace droid.Runtime.Prototyping.Configurables {
 
     [SerializeField] Axis _axis_of_configuration = Axis.X_;
     [SerializeField] BoundingBox _bounding_box = null;
-    [SerializeField] bool _use_bounding_box_for_range=false;
-    [SerializeField] float _observation_value=0;
-    [SerializeField] bool _use_environments_space=false;
-    [SerializeField] ValueSpace _single_value_space = ValueSpace.ZeroOne;
+    [SerializeField] bool _use_bounding_box_for_range = false;
+    [SerializeField] float _observation_value = 0;
+    [SerializeField] bool _use_environments_space = false;
+    [SerializeField] Space1 _single_value_space = Space1.ZeroOne;
 
     #endregion
   }

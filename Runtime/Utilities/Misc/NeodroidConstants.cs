@@ -11,11 +11,11 @@ namespace droid.Runtime.Utilities.Misc {
     /// <summary>
     ///
     /// </summary>
-    public const int _Default_Width = 256;
+    public const int _Default_Width = 224; // ImageNet size
+
     /// <summary>
     ///
     /// </summary>
     public const int _Default_Height = _Default_Width;
-
   }
 }

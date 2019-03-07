@@ -4,8 +4,9 @@ using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Observers.Rays {
-  [AddComponentMenu(
-      ObserverComponentMenuPath._ComponentMenuPath + "NearestByTag" + ObserverComponentMenuPath._Postfix)]
+  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+                    + "NearestByTag"
+                    + ObserverComponentMenuPath._Postfix)]
   public class NearestByTagObserver : Observer,
                                       IHasEulerTransform {
     [SerializeField] Vector3 _direction;
@@ -51,17 +52,21 @@ namespace droid.Runtime.Prototyping.Observers.Rays {
       }
     }
 
-    public override IEnumerable<float> FloatEnumerable { get{ return new[] {
-      this.Position.x,
-      this.Position.y,
-      this.Position.z,
-      this.Direction.x,
-      this.Direction.y,
-      this.Direction.z,
-      this.Rotation.x,
-      this.Rotation.y,
-      this.Rotation.z
-    };} }
+    public override IEnumerable<float> FloatEnumerable {
+      get {
+        return new[] {
+                         this.Position.x,
+                         this.Position.y,
+                         this.Position.z,
+                         this.Direction.x,
+                         this.Direction.y,
+                         this.Direction.z,
+                         this.Rotation.x,
+                         this.Rotation.y,
+                         this.Rotation.z
+                     };
+      }
+    }
 
     public override void UpdateObservation() {
       this._nearest_object = this.FindNearest();
@@ -77,8 +82,7 @@ namespace droid.Runtime.Prototyping.Observers.Rays {
       }
     }
 
-    protected override void PreSetup() {
-    }
+    protected override void PreSetup() { }
 
     GameObject FindNearest() {
       var candidates = FindObjectsOfType<GameObject>();

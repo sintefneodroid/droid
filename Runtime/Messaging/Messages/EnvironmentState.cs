@@ -4,17 +4,16 @@ using droid.Runtime.Interfaces;
 namespace droid.Runtime.Messaging.Messages {
   [Serializable]
   public class EnvironmentState {
-    public EnvironmentState(
-        string environment_name,
-        float total_energy_spent_since_reset,
-        int frame_number,
-        float time,
-        float signal,
-        bool terminated,
-        ref float[] observables,
-        string termination_reason = "",
-        EnvironmentDescription description = null,
-        string debug_message = "") {
+    public EnvironmentState(string environment_name,
+                            float total_energy_spent_since_reset,
+                            int frame_number,
+                            float time,
+                            float signal,
+                            bool terminated,
+                            ref float[] observables,
+                            string termination_reason = "",
+                            EnvironmentDescription description = null,
+                            string debug_message = "") {
       this.Observables = observables;
       this.DebugMessage = debug_message;
       this.TerminationReason = termination_reason;

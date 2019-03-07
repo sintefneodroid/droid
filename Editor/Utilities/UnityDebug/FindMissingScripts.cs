@@ -17,8 +17,10 @@ namespace droid.Editor.Utilities.UnityDebug {
     public static void ShowWindow() { GetWindow(typeof(FindMissingScripts)); }
 
     void OnEnable() {
-      this.icon = (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidEditorInfo.ImportLocation + "Gizmos/Icons/information.png",
-          typeof(Texture2D));
+      this.icon =
+          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidEditorInfo.ImportLocation
+                                                   + "Gizmos/Icons/information.png",
+                                                   typeof(Texture2D));
       this.titleContent = new GUIContent("Unity:Debug", this.icon, "Window for debugging Unity");
     }
 
@@ -39,8 +41,7 @@ namespace droid.Editor.Utilities.UnityDebug {
         SearchInGameObject(g);
       }
 
-      Debug.Log(
-          $"Searched {_game_object_count} GameObjects, {_components_count} components, found {_missing_count} missing");
+      Debug.Log($"Searched {_game_object_count} GameObjects, {_components_count} components, found {_missing_count} missing");
     }
 
     static void SearchInGameObject(GameObject game_object) {

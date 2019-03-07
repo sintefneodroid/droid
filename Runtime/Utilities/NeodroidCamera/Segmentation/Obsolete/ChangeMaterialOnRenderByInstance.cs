@@ -45,7 +45,6 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation.Obsolete {
     /// </summary>
     public ColorByInstance[] InstanceColors {
       get {
-
         if (this.ColorsDictGameObject != null) {
           this.instanceColorArray = new ColorByInstance[this.ColorsDictGameObject.Keys.Count];
           var i = 0;
@@ -168,6 +167,5 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation.Obsolete {
         }
       }
     }
-
   }
 }

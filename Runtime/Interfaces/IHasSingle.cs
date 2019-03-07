@@ -10,6 +10,6 @@ namespace droid.Runtime.Interfaces {
 
     /// <summary>
     /// </summary>
-    ValueSpace SingleSpace { get; }
+    Space1 SingleSpace { get; }
   }
 }

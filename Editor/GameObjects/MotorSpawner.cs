@@ -9,10 +9,10 @@ namespace droid.Editor.GameObjects {
     static void CreateTransformMotorGameObject(MenuCommand menu_command) {
       var go = new GameObject("TransformMotor");
       go.AddComponent<EulerTransformMotor1Dof>();
-      GameObjectUtility.SetParentAndAlign(
-          go,
-          menu_command
-              .context as GameObject); // Ensure it gets reparented if this was a context click (otherwise does nothing)
+      GameObjectUtility.SetParentAndAlign(go,
+                                          menu_command
+                                                  .context as
+                                              GameObject); // Ensure it gets reparented if this was a context click (otherwise does nothing)
       Undo.RegisterCreatedObjectUndo(go, "Create " + go.name); // Register the creation in the undo system
       Selection.activeObject = go;
     }
@@ -21,10 +21,10 @@ namespace droid.Editor.GameObjects {
     static void CreateRigidbodyMotorGameObject(MenuCommand menu_command) {
       var go = new GameObject("RigidbodyMotor");
       go.AddComponent<RigidbodyMotor1Dof>();
-      GameObjectUtility.SetParentAndAlign(
-          go,
-          menu_command
-              .context as GameObject); // Ensure it gets reparented if this was a context click (otherwise does nothing)
+      GameObjectUtility.SetParentAndAlign(go,
+                                          menu_command
+                                                  .context as
+                                              GameObject); // Ensure it gets reparented if this was a context click (otherwise does nothing)
       Undo.RegisterCreatedObjectUndo(go, "Create " + go.name); // Register the creation in the undo system
       Selection.activeObject = go;
     }

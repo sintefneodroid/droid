@@ -81,12 +81,10 @@ namespace droid.Runtime.Utilities.SerialisableDictionary {
           for (var i = 0; i < num_lines; i++)
               // Try to replace existing value
           {
-            if (SerializedPropertyExtension.EqualBasics(
-                this.GetIndexedItemProp(keys_prop, i),
-                this.GetTemplateKeyProp(property))) {
-              SerializedPropertyExtension.CopyBasics(
-                  this.GetTemplateValueProp(property),
-                  this.GetIndexedItemProp(values_prop, i));
+            if (SerializedPropertyExtension.EqualBasics(this.GetIndexedItemProp(keys_prop, i),
+                                                        this.GetTemplateKeyProp(property))) {
+              SerializedPropertyExtension.CopyBasics(this.GetTemplateValueProp(property),
+                                                     this.GetIndexedItemProp(values_prop, i));
               assignment = true;
               break;
             }
@@ -96,12 +94,10 @@ namespace droid.Runtime.Utilities.SerialisableDictionary {
             // Create a new value
             keys_prop.arraySize += 1;
             values_prop.arraySize += 1;
-            SerializedPropertyExtension.CopyBasics(
-                this.GetTemplateKeyProp(property),
-                this.GetIndexedItemProp(keys_prop, num_lines));
-            SerializedPropertyExtension.CopyBasics(
-                this.GetTemplateValueProp(property),
-                this.GetIndexedItemProp(values_prop, num_lines));
+            SerializedPropertyExtension.CopyBasics(this.GetTemplateKeyProp(property),
+                                                   this.GetIndexedItemProp(keys_prop, num_lines));
+            SerializedPropertyExtension.CopyBasics(this.GetTemplateValueProp(property),
+                                                   this.GetIndexedItemProp(values_prop, num_lines));
           }
         }
 
@@ -161,9 +157,8 @@ namespace droid.Runtime.Utilities.SerialisableDictionary {
       return this.GetTemplateProp(this._template_value_prop, main_prop);
     }
 
-    SerializedProperty GetTemplateProp(
-        Dictionary<int, SerializedProperty> source,
-        SerializedProperty main_prop) {
+    SerializedProperty GetTemplateProp(Dictionary<int, SerializedProperty> source,
+                                       SerializedProperty main_prop) {
       SerializedProperty p;
       if (!source.TryGetValue(main_prop.GetObjectCode(), out p)) {
         var template_object = this.GetTemplate();
@@ -186,10 +181,9 @@ namespace droid.Runtime.Utilities.SerialisableDictionary {
       return this.GetCachedProp(main_prop, "values", this._values_props);
     }
 
-    SerializedProperty GetCachedProp(
-        SerializedProperty main_prop,
-        string relative_property_name,
-        Dictionary<int, SerializedProperty> source) {
+    SerializedProperty GetCachedProp(SerializedProperty main_prop,
+                                     string relative_property_name,
+                                     Dictionary<int, SerializedProperty> source) {
       SerializedProperty p;
       var object_code = main_prop.GetObjectCode();
       if (!source.TryGetValue(object_code, out p)) {

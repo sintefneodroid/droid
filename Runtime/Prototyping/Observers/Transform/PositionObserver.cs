@@ -8,8 +8,9 @@ namespace droid.Runtime.Prototyping.Observers.Transform {
   /// <inheritdoc cref="Observer" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      ObserverComponentMenuPath._ComponentMenuPath + "Position" + ObserverComponentMenuPath._Postfix)]
+  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+                    + "Position"
+                    + ObserverComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [Serializable]
   public class PositionObserver : Observer,
@@ -43,12 +44,11 @@ namespace droid.Runtime.Prototyping.Observers.Transform {
 
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
+    protected override void PreSetup() { }
 
+    public override IEnumerable<float> FloatEnumerable {
+      get { return new[] {this.ObservationValue.x, this.ObservationValue.y, this.ObservationValue.z}; }
     }
-
-    public override IEnumerable<float> FloatEnumerable { get{return
-      new[] {this.ObservationValue.x, this.ObservationValue.y, this.ObservationValue.z};} }
 
     /// <summary>
     /// </summary>
@@ -60,7 +60,6 @@ namespace droid.Runtime.Prototyping.Observers.Transform {
       } else {
         this.ObservationValue = this.transform.position;
       }
-
     }
   }
 }

@@ -46,12 +46,13 @@ namespace droid.Editor.Utilities.ScriptableObjects.Editor {
     static void LoadLayout() {
       var assembly = typeof(EditorApplication).Assembly;
       var window_layout_type = assembly.GetType("UnityEditor.WindowLayout", true);
-      var method = window_layout_type.GetMethod(
-          "LoadWindowLayout",
-          BindingFlags.Public | BindingFlags.Static);
-      method?.Invoke(
-          null,
-          new object[] {Path.Combine(Application.dataPath, "Excluded/Common/ReadMe/Layout.wlt"), false});
+      var method =
+          window_layout_type.GetMethod("LoadWindowLayout", BindingFlags.Public | BindingFlags.Static);
+      method?.Invoke(null,
+                     new object[] {
+                                      Path.Combine(Application.dataPath, "Excluded/Common/ReadMe/Layout.wlt"),
+                                      false
+                                  });
     }
 
     [MenuItem(_scriptable_object_menu_path + "Show ReadMe")]
@@ -137,10 +138,16 @@ namespace droid.Editor.Utilities.ScriptableObjects.Editor {
       this.headingStyle = new GUIStyle(this.bodyStyle) {fontSize = 18};
 
       this.linkStyle = new GUIStyle(this.bodyStyle) {
-          wordWrap = false,
-          normal = {textColor = new Color(0x00 / 255f, 0x78 / 255f, 0xDA / 255f, 1f)},
-          stretchWidth = false
-      };
+                                                        wordWrap = false,
+                                                        normal = {
+                                                                     textColor =
+                                                                         new Color(0x00 / 255f,
+                                                                                   0x78 / 255f,
+                                                                                   0xDA / 255f,
+                                                                                   1f)
+                                                                 },
+                                                        stretchWidth = false
+                                                    };
       // Match selection color which works nicely for both light and dark skins
 
       this._m_initialized = true;

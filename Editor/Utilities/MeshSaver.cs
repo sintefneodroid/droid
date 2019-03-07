@@ -7,7 +7,7 @@ namespace droid.Editor.Utilities {
     const string _menu_path = "CONTEXT" + "/MeshFilter" + "/SaveMesh";
 
     [MenuItem(_menu_path)]
-    public static void SaveMeshInPlace (MenuCommand menu_command) {
+    public static void SaveMeshInPlace(MenuCommand menu_command) {
       var mf = menu_command.context as MeshFilter;
 
       if (mf != null) {
@@ -16,8 +16,8 @@ namespace droid.Editor.Utilities {
       }
     }
 
-    [MenuItem(_menu_path+"AsANewInstance")]
-    public static void SaveMeshNewInstanceItem (MenuCommand menu_command) {
+    [MenuItem(_menu_path + "AsANewInstance")]
+    public static void SaveMeshNewInstanceItem(MenuCommand menu_command) {
       var mf = menu_command.context as MeshFilter;
 
       if (mf != null) {
@@ -26,8 +26,11 @@ namespace droid.Editor.Utilities {
       }
     }
 
-    public static void SaveMesh (Mesh mesh, string name, bool make_new_instance, bool optimize_mesh) {
-      var path = EditorUtility.SaveFilePanel("Save Separate Mesh Asset", "Neodroid/Runtime/Meshes", name, "asset");
+    public static void SaveMesh(Mesh mesh, string name, bool make_new_instance, bool optimize_mesh) {
+      var path = EditorUtility.SaveFilePanel("Save Separate Mesh Asset",
+                                             "Neodroid/Runtime/Meshes",
+                                             name,
+                                             "asset");
       Debug.Log($"Trying to save mesh to {path}");
       if (string.IsNullOrEmpty(path)) {
         return;

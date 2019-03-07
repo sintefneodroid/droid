@@ -179,11 +179,9 @@ namespace droid.Runtime.Environments {
       if (!Application.isPlaying) {
         var manager_script = MonoScript.FromMonoBehaviour(this);
         if (MonoImporter.GetExecutionOrder(manager_script) != _script_execution_order) {
-          MonoImporter.SetExecutionOrder(
-              manager_script,
-              _script_execution_order); // Ensures that PreStep is called first, before all other scripts.
-          Debug.LogWarning(
-              "Execution Order changed, you will need to press play again to make everything function correctly!");
+          MonoImporter.SetExecutionOrder(manager_script,
+                                         _script_execution_order); // Ensures that PreStep is called first, before all other scripts.
+          Debug.LogWarning("Execution Order changed, you will need to press play again to make everything function correctly!");
           EditorApplication.isPlaying = false;
           //TODO: UnityEngine.Experimental.LowLevel.PlayerLoop.SetPlayerLoop(new UnityEngine.Experimental.LowLevel.PlayerLoopSystem());
         }
@@ -196,9 +194,8 @@ namespace droid.Runtime.Environments {
     /// </summary>
     protected override void RegisterComponent() {
       if (this._Simulation_Manager != null) {
-        this._Simulation_Manager = NeodroidUtilities.RegisterComponent(
-            (PausableManager)this._Simulation_Manager,
-            this);
+        this._Simulation_Manager =
+            NeodroidUtilities.RegisterComponent((PausableManager)this._Simulation_Manager, this);
       }
     }
 

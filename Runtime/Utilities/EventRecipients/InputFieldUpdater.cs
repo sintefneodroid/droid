@@ -14,16 +14,9 @@ namespace droid.Runtime.Utilities.EventRecipients {
     [SerializeField]
     InputField _input_field;
 
-
-
-
     /// <summary>
     /// </summary>
-    void Start(){
-      this._input_field = this.GetComponent<InputField>();
-
-
-    }
+    void Start() { this._input_field = this.GetComponent<InputField>(); }
 
     /// <inheritdoc />
     /// <summary>

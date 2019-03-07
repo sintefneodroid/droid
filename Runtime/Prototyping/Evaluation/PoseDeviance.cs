@@ -6,8 +6,9 @@ namespace droid.Runtime.Prototyping.Evaluation {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      EvaluationComponentMenuPath._ComponentMenuPath + "PoseDeviance" + EvaluationComponentMenuPath._Postfix)]
+  [AddComponentMenu(EvaluationComponentMenuPath._ComponentMenuPath
+                    + "PoseDeviance"
+                    + EvaluationComponentMenuPath._Postfix)]
   public class PoseDeviance : ObjectiveFunction {
     /// <inheritdoc />
     /// <summary>
@@ -25,8 +26,9 @@ namespace droid.Runtime.Prototyping.Evaluation {
         this.ParentEnvironment.Terminate("Outside playable area");
       }*/
 
-      var distance = Mathf.Abs(
-          Vector3.Distance(this._goal.transform.position, this._actor_transform.transform.position));
+      var distance =
+          Mathf.Abs(Vector3.Distance(this._goal.transform.position,
+                                     this._actor_transform.transform.position));
       var angle = Quaternion.Angle(this._goal.transform.rotation, this._actor_transform.transform.rotation);
       #if NEODROID_DEBUG
       if (this.Debugging) {
@@ -114,15 +116,15 @@ namespace droid.Runtime.Prototyping.Evaluation {
 
     [SerializeField] bool _sparse = true;
 
-    [SerializeField] Transform _goal=null;
+    [SerializeField] Transform _goal = null;
 
-    [SerializeField] Transform _actor_transform=null;
+    [SerializeField] Transform _actor_transform = null;
 
-    [SerializeField] BoundingBox _playable_area=null;
+    [SerializeField] BoundingBox _playable_area = null;
 
-    [SerializeField] Obstruction[] _obstructions=null;
+    [SerializeField] Obstruction[] _obstructions = null;
 
-    [SerializeField] bool _state_full=false;
+    [SerializeField] bool _state_full = false;
     [SerializeField] float _goal_reached_radius = 0.01f; // Equivalent to 1 cm.
 
     /// <summary>

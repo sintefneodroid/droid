@@ -10,14 +10,12 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
   /// <summary>
   /// </summary>
   [ExecuteInEditMode]
-  [AddComponentMenu(
-      DisplayerComponentMenuPath._ComponentMenuPath
-      + "IndexedScatterPlot"
-      + DisplayerComponentMenuPath._Postfix)]
+  [AddComponentMenu(DisplayerComponentMenuPath._ComponentMenuPath
+                    + "IndexedScatterPlot"
+                    + DisplayerComponentMenuPath._Postfix)]
   public class IndexedScatterPlotDisplayer : Displayer {
     [SerializeField] GameObject[] _designs = null;
-    [SerializeField] List<GameObject> _instances=null;
-
+    [SerializeField] List<GameObject> _instances = null;
 
     /// <inheritdoc />
     /// <summary>
@@ -113,7 +111,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
           continue;
         }
 
-        this.SpawnDesign(this._designs[(int)point._Val], point._Pos,Quaternion.identity);
+        this.SpawnDesign(this._designs[(int)point._Val], point._Pos, Quaternion.identity);
       }
     }
 

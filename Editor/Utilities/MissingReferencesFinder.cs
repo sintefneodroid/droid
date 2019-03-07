@@ -41,7 +41,7 @@ namespace droid.Editor.Utilities {
     public static void MissingSpritesInAssets() {
       var all_assets = AssetDatabase.GetAllAssetPaths().Where(path => path.StartsWith("Assets/")).ToArray();
       var objs = all_assets.Select(a => AssetDatabase.LoadAssetAtPath(a, typeof(GameObject)) as GameObject)
-          .Where(a => a != null).ToArray();
+                           .Where(a => a != null).ToArray();
 
       FindMissingReferences("Project", objs);
     }
@@ -74,17 +74,16 @@ namespace droid.Editor.Utilities {
 
     static GameObject[] GetSceneObjects() {
       // Use this method since GameObject.FindObjectsOfType will not return disabled objects.
-      return Resources.FindObjectsOfTypeAll<GameObject>().Where(
-              go => string.IsNullOrEmpty(AssetDatabase.GetAssetPath(go)) && go.hideFlags == HideFlags.None)
-          .ToArray();
+      return Resources.FindObjectsOfTypeAll<GameObject>()
+                      .Where(go => string.IsNullOrEmpty(AssetDatabase.GetAssetPath(go))
+                                   && go.hideFlags == HideFlags.None).ToArray();
     }
 
     static void ShowError(string context, GameObject go, string component_name, string property_name) {
       var error_template = "Missing Ref in: [{3}]{0}. Component: {1}, Property: {2}";
 
-      Debug.LogError(
-          string.Format(error_template, GetFullPath(go), component_name, property_name, context),
-          go);
+      Debug.LogError(string.Format(error_template, GetFullPath(go), component_name, property_name, context),
+                     go);
     }
 
     static string GetFullPath(GameObject go) {

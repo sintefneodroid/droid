@@ -19,9 +19,10 @@ namespace droid.Editor.Windows {
     /// <summary>
     /// </summary>
     void OnEnable() {
-      this._icon = (Texture2D)AssetDatabase.LoadAssetAtPath(
-          NeodroidEditorInfo.ImportLocation + "Gizmos/Icons/clock.png",
-          typeof(Texture2D));
+      this._icon =
+          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidEditorInfo.ImportLocation
+                                                   + "Gizmos/Icons/clock.png",
+                                                   typeof(Texture2D));
       this.titleContent = new GUIContent("Neo:Sim", this._icon, "Window for controlling simulation");
       this.Setup();
     }
@@ -37,25 +38,28 @@ namespace droid.Editor.Windows {
       EditorGUI.BeginDisabledGroup(!Application.isPlaying);
 
       if (GUILayout.Button("Step")) {
-        this._simulation_manager.ReactAndCollectStates(
-            new Reaction(
-                new ReactionParameters(true, true, episode_count : true),
-                null,
-                null,
-                null,
-                null,
-                ""));
+        this._simulation_manager.ReactAndCollectStates(new Reaction(new ReactionParameters(true,
+                                                                                           true,
+                                                                                           episode_count :
+                                                                                           true),
+                                                                    null,
+                                                                    null,
+                                                                    null,
+                                                                    null,
+                                                                    ""));
       }
 
       if (GUILayout.Button("Reset")) {
-        this._simulation_manager.ReactAndCollectStates(
-            new Reaction(
-                new ReactionParameters(true, false, true, episode_count : true),
-                null,
-                null,
-                null,
-                null,
-                ""));
+        this._simulation_manager.ReactAndCollectStates(new Reaction(new ReactionParameters(true,
+                                                                                           false,
+                                                                                           true,
+                                                                                           episode_count :
+                                                                                           true),
+                                                                    null,
+                                                                    null,
+                                                                    null,
+                                                                    null,
+                                                                    ""));
       }
 
       EditorGUI.EndDisabledGroup();

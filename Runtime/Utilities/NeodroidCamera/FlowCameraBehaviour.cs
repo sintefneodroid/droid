@@ -23,7 +23,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera {
     /// <summary>
     /// </summary>
     [SerializeField]
-    Shader _shader= null;
+    Shader _shader = null;
 
     /// <summary>
     /// </summary>

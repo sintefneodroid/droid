@@ -8,20 +8,21 @@ namespace droid.Runtime.Prototyping.Observers.Rays {
   /// <inheritdoc cref="Observer" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      ObserverComponentMenuPath._ComponentMenuPath + "LineOfSight" + ObserverComponentMenuPath._Postfix)]
+  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+                    + "LineOfSight"
+                    + ObserverComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [Serializable]
   public class LineOfSightObserver : Observer,
                                      IHasSingle {
-    RaycastHit _hit=new RaycastHit();
+    RaycastHit _hit = new RaycastHit();
 
-    [SerializeField] float _obs_value=0;
+    [SerializeField] float _obs_value = 0;
 
     /// <summary>
     /// </summary>
     [SerializeField]
-    ValueSpace _observation_value_space=ValueSpace.ZeroOne;
+    Space1 _observation_value_space = Space1.ZeroOne;
 
     [Header("Specific", order = 102)]
     [SerializeField]
@@ -31,24 +32,18 @@ namespace droid.Runtime.Prototyping.Observers.Rays {
 
     public float ObservationValue { get { return this._obs_value; } private set { this._obs_value = value; } }
 
-    public ValueSpace SingleSpace { get { return this._observation_value_space; } }
+    public Space1 SingleSpace { get { return this._observation_value_space; } }
 
-    protected override void PreSetup() {
+    protected override void PreSetup() { }
 
-    }
-
-    public override IEnumerable<float> FloatEnumerable
-    {
-      get { return new[] {this.ObservationValue}; }
-    }
+    public override IEnumerable<float> FloatEnumerable { get { return new[] {this.ObservationValue}; } }
 
     public override void UpdateObservation() {
       var distance = Vector3.Distance(this.transform.position, this._target.position);
-      if (Physics.Raycast(
-          this.transform.position,
-          this._target.position - this.transform.position,
-          out this._hit,
-          distance)) {
+      if (Physics.Raycast(this.transform.position,
+                          this._target.position - this.transform.position,
+                          out this._hit,
+                          distance)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log(this._hit.distance);

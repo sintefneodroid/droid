@@ -5,8 +5,9 @@ namespace droid.Runtime.Prototyping.Motors.WheelColliderMotor {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      MotorComponentMenuPath._ComponentMenuPath + "WheelCollider/Torque" + MotorComponentMenuPath._Postfix)]
+  [AddComponentMenu(MotorComponentMenuPath._ComponentMenuPath
+                    + "WheelCollider/Torque"
+                    + MotorComponentMenuPath._Postfix)]
   [RequireComponent(typeof(WheelCollider))]
   public class TorqueMotor : Motor {
     [SerializeField] WheelCollider _wheel_collider;

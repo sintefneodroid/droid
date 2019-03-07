@@ -10,10 +10,9 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
   /// </summary>
   [ExecuteInEditMode]
   [RequireComponent(typeof(Image))]
-  [AddComponentMenu(
-      DisplayerComponentMenuPath._ComponentMenuPath
-      + "Canvas/CanvasBar"
-      + DisplayerComponentMenuPath._Postfix)]
+  [AddComponentMenu(DisplayerComponentMenuPath._ComponentMenuPath
+                    + "Canvas/CanvasBar"
+                    + DisplayerComponentMenuPath._Postfix)]
   public class CanvasBarDisplayer : Displayer {
     Image _image;
     [SerializeField] [Range(0.0f, 1.0f)] float _value;

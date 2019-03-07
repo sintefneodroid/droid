@@ -4,8 +4,9 @@ using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Observers.Rays {
-  [AddComponentMenu(
-      ObserverComponentMenuPath._ComponentMenuPath + "Raycast" + ObserverComponentMenuPath._Postfix)]
+  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+                    + "Raycast"
+                    + ObserverComponentMenuPath._Postfix)]
   public class RaycastObserver : Observer,
                                  IHasSingle {
     [SerializeField] Vector3 _direction = Vector3.forward;
@@ -13,14 +14,13 @@ namespace droid.Runtime.Prototyping.Observers.Rays {
     [SerializeField] RaycastHit _hit = new RaycastHit();
 
     [SerializeField]
-    ValueSpace _observation_space =
-        new ValueSpace {_Decimal_Granularity = 3, _Min_Value = 0, _Max_Value = 100.0f};
+    Space1 _observation_space = new Space1 {_Decimal_Granularity = 3, _Min_Value = 0, _Max_Value = 100.0f};
 
     [Header("Observation", order = 103)]
     [SerializeField]
     float _observation_value = 0;
 
-    [SerializeField] ValueSpace _observation_value_space = ValueSpace.ZeroOne;
+    [SerializeField] Space1 _observation_value_space = Space1.ZeroOne;
 
     [SerializeField] float _range = 100.0f;
 
@@ -28,7 +28,7 @@ namespace droid.Runtime.Prototyping.Observers.Rays {
       get { return "Raycast" + $"{this._direction.x}{this._direction.y}{this._direction.z}"; }
     }
 
-    public ValueSpace SingleSpace { get { return this._observation_value_space; } }
+    public Space1 SingleSpace { get { return this._observation_value_space; } }
 
     public float ObservationValue {
       get { return this._observation_value; }
@@ -41,7 +41,7 @@ namespace droid.Runtime.Prototyping.Observers.Rays {
 
     protected override void PreSetup() { }
 
-    public override IEnumerable<float> FloatEnumerable { get{return new[] {this.ObservationValue};} }
+    public override IEnumerable<float> FloatEnumerable { get { return new[] {this.ObservationValue}; } }
 
     public override void UpdateObservation() {
       if (Physics.Raycast(this.transform.position, this._direction, out this._hit, this._range)) {
@@ -57,10 +57,7 @@ namespace droid.Runtime.Prototyping.Observers.Rays {
     void OnDrawGizmosSelected() {
       if (this.enabled) {
         var position = this.transform.position;
-        Debug.DrawLine(
-            position,
-            position - this._direction * this._range,
-            this._color);
+        Debug.DrawLine(position, position - this._direction * this._range, this._color);
       }
     }
     #endif

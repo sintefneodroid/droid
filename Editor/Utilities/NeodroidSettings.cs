@@ -20,7 +20,8 @@ namespace droid.Editor.Utilities {
     public Int32 MNumber { get { return this.m_Number; } set { this.m_Number = value; } }
 
     internal static NeodroidSettings GetOrCreateSettings() {
-      var settings = AssetDatabase.LoadAssetAtPath<NeodroidSettings>(NeodroidEditorConstants._MyCustomSettingsPath);
+      var settings =
+          AssetDatabase.LoadAssetAtPath<NeodroidSettings>(NeodroidEditorConstants._MyCustomSettingsPath);
       if (settings == null) {
         settings = CreateInstance<NeodroidSettings>();
         settings.m_Number = 42;

@@ -4,10 +4,9 @@ using droid.Runtime.Interfaces;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Observers.Transform {
-  [AddComponentMenu(
-      ObserverComponentMenuPath._ComponentMenuPath
-      + "QuaternionTransform"
-      + ObserverComponentMenuPath._Postfix)]
+  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+                    + "QuaternionTransform"
+                    + ObserverComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [Serializable]
   public class QuaternionTransformObserver : Observer,
@@ -32,15 +31,19 @@ namespace droid.Runtime.Prototyping.Observers.Transform {
 
     public Quaternion Rotation { get { return this._rotation; } }
 
-    public override IEnumerable<float> FloatEnumerable { get{return new[] {
-      this._position.x,
-      this._position.y,
-      this._position.z,
-      this._rotation.x,
-      this._rotation.y,
-      this._rotation.z,
-      this._rotation.w
-    };} }
+    public override IEnumerable<float> FloatEnumerable {
+      get {
+        return new[] {
+                         this._position.x,
+                         this._position.y,
+                         this._position.z,
+                         this._rotation.x,
+                         this._rotation.y,
+                         this._rotation.z,
+                         this._rotation.w
+                     };
+      }
+    }
 
     public override void UpdateObservation() {
       if (this.ParentEnvironment != null && this._use_environments_coordinates) {
@@ -50,10 +53,8 @@ namespace droid.Runtime.Prototyping.Observers.Transform {
         this._position = this.transform.position;
         this._rotation = this.transform.rotation;
       }
-
     }
 
-    protected override void PreSetup() {
-    }
+    protected override void PreSetup() { }
   }
 }

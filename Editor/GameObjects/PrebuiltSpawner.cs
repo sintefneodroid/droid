@@ -39,10 +39,10 @@ namespace droid.Editor.GameObjects {
 
       bounding_box.Initialise();
 
-      GameObjectUtility.SetParentAndAlign(
-          go,
-          menu_command
-              .context as GameObject); // Ensure it gets reparented if this was a context click (otherwise does nothing)
+      GameObjectUtility.SetParentAndAlign(go,
+                                          menu_command
+                                                  .context as
+                                              GameObject); // Ensure it gets reparented if this was a context click (otherwise does nothing)
       Undo.RegisterCreatedObjectUndo(go, "Create " + go.name); // Register the creation in the undo system
       Selection.activeObject = go;
     }

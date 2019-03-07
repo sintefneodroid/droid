@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Evaluation.Terms {
-  [AddComponentMenu(
-      TermComponentMenuPath._ComponentMenuPath + "CollisionPunishment" + TermComponentMenuPath._Postfix)]
+  [AddComponentMenu(TermComponentMenuPath._ComponentMenuPath
+                    + "CollisionPunishment"
+                    + TermComponentMenuPath._Postfix)]
   public class CollisionsPunishmentTerm : Term {
-    [SerializeField] Collider _a= null;
+    [SerializeField] Collider _a = null;
 
-    [SerializeField] Collider _b=null;
+    [SerializeField] Collider _b = null;
 
     public override string PrototypingTypeName { get { return "CollisionPunishment"; } }
 

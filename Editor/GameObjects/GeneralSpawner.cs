@@ -11,10 +11,10 @@ namespace droid.Editor.GameObjects {
     static void CreateSimulationManagerGameObject(MenuCommand menu_command) {
       var go = new GameObject("SimulationManager");
       go.AddComponent<PausableManager>();
-      GameObjectUtility.SetParentAndAlign(
-          go,
-          menu_command
-              .context as GameObject); // Ensure it gets reparented if this was a context click (otherwise does nothing)
+      GameObjectUtility.SetParentAndAlign(go,
+                                          menu_command
+                                                  .context as
+                                              GameObject); // Ensure it gets reparented if this was a context click (otherwise does nothing)
       Undo.RegisterCreatedObjectUndo(go, "Create " + go.name); // Register the creation in the undo system
       Selection.activeObject = go;
     }
@@ -25,10 +25,10 @@ namespace droid.Editor.GameObjects {
       var plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
       plane.transform.parent = go.transform;
       go.AddComponent<PrototypingEnvironment>();
-      GameObjectUtility.SetParentAndAlign(
-          go,
-          menu_command
-              .context as GameObject); // Ensure it gets reparented if this was a context click (otherwise does nothing)
+      GameObjectUtility.SetParentAndAlign(go,
+                                          menu_command
+                                                  .context as
+                                              GameObject); // Ensure it gets reparented if this was a context click (otherwise does nothing)
       Undo.RegisterCreatedObjectUndo(go, "Create " + go.name); // Register the creation in the undo system
       Selection.activeObject = go;
     }
@@ -39,10 +39,10 @@ namespace droid.Editor.GameObjects {
       var capsule = GameObject.CreatePrimitive(PrimitiveType.Capsule);
       capsule.transform.parent = go.transform;
       go.AddComponent<Actor>();
-      GameObjectUtility.SetParentAndAlign(
-          go,
-          menu_command
-              .context as GameObject); // Ensure it gets reparented if this was a context click (otherwise does nothing)
+      GameObjectUtility.SetParentAndAlign(go,
+                                          menu_command
+                                                  .context as
+                                              GameObject); // Ensure it gets reparented if this was a context click (otherwise does nothing)
       Undo.RegisterCreatedObjectUndo(go, "Create " + go.name); // Register the creation in the undo system
       Selection.activeObject = go;
     }

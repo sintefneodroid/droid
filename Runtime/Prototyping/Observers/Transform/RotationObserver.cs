@@ -40,12 +40,11 @@ namespace droid.Runtime.Prototyping.Observers.Transform {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
+    protected override void PreSetup() { }
 
+    public override IEnumerable<float> FloatEnumerable {
+      get { return new[] {this.ObservationValue.x, this.ObservationValue.y, this.ObservationValue.z}; }
     }
-
-    public override IEnumerable<float> FloatEnumerable { get{return
-      new[] {this.ObservationValue.x, this.ObservationValue.y, this.ObservationValue.z};} }
 
     /// <inheritdoc />
     /// <summary>
@@ -58,7 +57,6 @@ namespace droid.Runtime.Prototyping.Observers.Transform {
       } else {
         this.ObservationValue = this.transform.rotation;
       }
-
     }
   }
 }

@@ -7,10 +7,9 @@ namespace droid.Runtime.Prototyping.Observers.BoundingBox {
   /// <inheritdoc cref="Observer" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      ObserverComponentMenuPath._ComponentMenuPath
-      + "Experimental/BoundingBox"
-      + ObserverComponentMenuPath._Postfix)]
+  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+                    + "Experimental/BoundingBox"
+                    + ObserverComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [RequireComponent(typeof(Utilities.BoundingBoxes.BoundingBox))]
   public class BoundingBoxObserver : Observer,
@@ -18,9 +17,7 @@ namespace droid.Runtime.Prototyping.Observers.BoundingBox {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName {
-      get { return "BoundingBox"; }
-    }
+    public override string PrototypingTypeName { get { return "BoundingBox"; } }
 
     Utilities.BoundingBoxes.BoundingBox _bounding_box;
     [SerializeField] string _observationValue;
@@ -32,7 +29,7 @@ namespace droid.Runtime.Prototyping.Observers.BoundingBox {
       this._bounding_box = this.GetComponent<Utilities.BoundingBoxes.BoundingBox>();
     }
 
-    public override IEnumerable<float> FloatEnumerable { get{return new List<float>();} }
+    public override IEnumerable<float> FloatEnumerable { get { return new List<float>(); } }
 
     /// <inheritdoc />
     /// <summary>
@@ -49,9 +46,6 @@ namespace droid.Runtime.Prototyping.Observers.BoundingBox {
       set { this._observationValue = value; }
     }
 
-    public override string ToString()
-    {
-      return this.ObservationValue;
-    }
+    public override string ToString() { return this.ObservationValue; }
   }
 }

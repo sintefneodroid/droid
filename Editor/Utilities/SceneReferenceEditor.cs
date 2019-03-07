@@ -101,12 +101,12 @@ namespace droid.Editor.Utilities {
     void DisplaySceneErrorPrompt(string message) {
       var scenes = EditorBuildSettings.scenes;
 
-      var choice = EditorUtility.DisplayDialogComplex(
-          "Scene Not In Build",
-          message,
-          "Yes",
-          "No",
-          "Open Build Settings");
+      var choice =
+          EditorUtility.DisplayDialogComplex("Scene Not In Build",
+                                             message,
+                                             "Yes",
+                                             "No",
+                                             "Open Build Settings");
 
       if (choice == 0) {
         var new_count = this._scene_index.intValue < 0 ? scenes.Length + 1 : scenes.Length;

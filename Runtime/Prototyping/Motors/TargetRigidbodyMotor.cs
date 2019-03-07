@@ -9,8 +9,9 @@ namespace droid.Runtime.Prototyping.Motors {
   /// <inheritdoc cref="Motor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      MotorComponentMenuPath._ComponentMenuPath + "TargetRigidbody" + MotorComponentMenuPath._Postfix)]
+  [AddComponentMenu(MotorComponentMenuPath._ComponentMenuPath
+                    + "TargetRigidbody"
+                    + MotorComponentMenuPath._Postfix)]
   [RequireComponent(typeof(Rigidbody))]
   public class TargetRigidbodyMotor : Motor,
                                       IEnvironmentListener {
@@ -53,18 +54,13 @@ namespace droid.Runtime.Prototyping.Motors {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentActor = NeodroidUtilities.RegisterComponent(
-          (Actor)this.ParentActor,
-          (Motor)this,
-          this._movement);
-      this.ParentActor = NeodroidUtilities.RegisterComponent(
-          (Actor)this.ParentActor,
-          (Motor)this,
-          this._turn);
+      this.ParentActor =
+          NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Motor)this, this._movement);
+      this.ParentActor =
+          NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Motor)this, this._turn);
 
-      this._parent_environment = NeodroidUtilities.RegisterComponent(
-          (PrototypingEnvironment)this._parent_environment,
-          this);
+      this._parent_environment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this._parent_environment, this);
 
       if (this._parent_environment != null) {
         this._parent_environment.PreStepEvent += this.PreStep;

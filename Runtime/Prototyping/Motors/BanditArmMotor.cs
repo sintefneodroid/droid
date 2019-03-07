@@ -6,8 +6,9 @@ namespace droid.Runtime.Prototyping.Motors {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      MotorComponentMenuPath._ComponentMenuPath + "BanditArm" + MotorComponentMenuPath._Postfix)]
+  [AddComponentMenu(MotorComponentMenuPath._ComponentMenuPath
+                    + "BanditArm"
+                    + MotorComponentMenuPath._Postfix)]
   public class BanditArmMotor : Motor {
     [SerializeField] Material _material;
 

@@ -5,8 +5,9 @@ using UnityEngine;
 namespace droid.Runtime.Prototyping.Motors {
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      MotorComponentMenuPath._ComponentMenuPath + "IndexedMotion" + MotorComponentMenuPath._Postfix)]
+  [AddComponentMenu(MotorComponentMenuPath._ComponentMenuPath
+                    + "IndexedMotion"
+                    + MotorComponentMenuPath._Postfix)]
   public class IndexedMotionMotor : Motor {
     /// <summary>
     /// </summary>

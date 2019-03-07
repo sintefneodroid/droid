@@ -122,11 +122,10 @@ namespace droid.Editor.Utilities.SearchableEnum {
     /// <param name="on_selection_made">
     ///   Callback to trigger when a choice is made.
     /// </param>
-    public static void Show(
-        Rect activator_rect,
-        string[] options,
-        int current,
-        Action<int> on_selection_made) {
+    public static void Show(Rect activator_rect,
+                            string[] options,
+                            int current,
+                            Action<int> on_selection_made) {
       var win = new SearchablePopup(options, current, on_selection_made);
       PopupWindow.Show(activator_rect, win);
     }
@@ -137,7 +136,7 @@ namespace droid.Editor.Utilities.SearchableEnum {
     /// </summary>
     static void Repaint() {
       var window = EditorWindow.focusedWindow;
-      if(window){
+      if (window) {
         window.Repaint();
       }
     }
@@ -229,9 +228,9 @@ namespace droid.Editor.Utilities.SearchableEnum {
     /// </summary>
     /// <returns></returns>
     public override Vector2 GetWindowSize() {
-      return new Vector2(
-          base.GetWindowSize().x,
-          Mathf.Min(600, this._list.MaxLength * _row_height + EditorStyles.toolbar.fixedHeight));
+      return new Vector2(base.GetWindowSize().x,
+                         Mathf.Min(600,
+                                   this._list.MaxLength * _row_height + EditorStyles.toolbar.fixedHeight));
     }
 
     /// <inheritdoc />
@@ -283,11 +282,10 @@ namespace droid.Editor.Utilities.SearchableEnum {
     }
 
     void DrawSelectionArea(Rect scroll_rect) {
-      var content_rect = new Rect(
-          0,
-          0,
-          scroll_rect.width - GUI.skin.verticalScrollbar.fixedWidth,
-          this._list.Entries.Count * _row_height);
+      var content_rect = new Rect(0,
+                                  0,
+                                  scroll_rect.width - GUI.skin.verticalScrollbar.fixedWidth,
+                                  this._list.Entries.Count * _row_height);
 
       this._scroll = GUI.BeginScrollView(scroll_rect, this._scroll, content_rect);
 

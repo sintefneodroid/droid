@@ -7,10 +7,9 @@ namespace droid.Runtime.Prototyping.Motors {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      MotorComponentMenuPath._ComponentMenuPath
-      + "EulerTransformMotor3Dof"
-      + MotorComponentMenuPath._Postfix)]
+  [AddComponentMenu(MotorComponentMenuPath._ComponentMenuPath
+                    + "EulerTransformMotor3Dof"
+                    + MotorComponentMenuPath._Postfix)]
   public class EulerTransformMotor3Dof : Motor {
     /// <summary>
     /// </summary>

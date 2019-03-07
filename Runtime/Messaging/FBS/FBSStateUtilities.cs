@@ -22,21 +22,17 @@ namespace droid.Runtime.Messaging.FBS {
     /// <param name="do_serialise_unobservables"></param>
     /// <param name="api_version"></param>
     /// <returns></returns>
-    public static byte[] Serialise(
-        EnvironmentState[] states,
-        SimulatorConfigurationMessage simulator_configuration = null,
-        bool serialise_individual_observables = false,
-        bool do_serialise_unobservables = false,
-        string api_version = "") {
+    public static byte[] Serialise(EnvironmentState[] states,
+                                   SimulatorConfigurationMessage simulator_configuration = null,
+                                   bool serialise_individual_observables = false,
+                                   bool do_serialise_unobservables = false,
+                                   string api_version = "") {
       var b = new FlatBufferBuilder(1);
       var state_offsets = new Offset<FState>[states.Length];
       var i = 0;
       foreach (var state in states) {
-        state_offsets[i++] = serialise_state(
-            b,
-            state,
-            serialise_individual_observables,
-            do_serialise_unobservables);
+        state_offsets[i++] =
+            serialise_state(b, state, serialise_individual_observables, do_serialise_unobservables);
       }
 
       var states_vector_offset = FStates.CreateStatesVector(b, state_offsets);
@@ -61,20 +57,20 @@ namespace droid.Runtime.Messaging.FBS {
     /// <returns></returns>
     public static Offset<FSimulatorConfiguration>
         Serialise(FlatBufferBuilder b, SimulatorConfigurationMessage configuration) {
-      return FSimulatorConfiguration.CreateFSimulatorConfiguration(
-          b,
-          configuration.Width,
-          configuration.Height,
-          configuration.FullScreen,
-          configuration.QualityLevel,
-          configuration.TimeScale,
-          configuration.TargetFrameRate,
-          configuration.SimulationType,
-          configuration.FrameSkips,
-          configuration.ResetIterations,
-          configuration.NumOfEnvironments,
-          configuration.DoSerialiseIndividualObservables,
-          configuration.DoSerialiseUnobservables);
+      return FSimulatorConfiguration.CreateFSimulatorConfiguration(b,
+                                                                   configuration.Width,
+                                                                   configuration.Height,
+                                                                   configuration.FullScreen,
+                                                                   configuration.QualityLevel,
+                                                                   configuration.TimeScale,
+                                                                   configuration.TargetFrameRate,
+                                                                   configuration.SimulationType,
+                                                                   configuration.FrameSkips,
+                                                                   configuration.ResetIterations,
+                                                                   configuration.NumOfEnvironments,
+                                                                   configuration
+                                                                       .DoSerialiseIndividualObservables,
+                                                                   configuration.DoSerialiseUnobservables);
     }
 
     /// <summary>
@@ -84,11 +80,10 @@ namespace droid.Runtime.Messaging.FBS {
     /// <param name="serialise_individual_observables"></param>
     /// <param name="do_serialise_unobservables"></param>
     /// <returns></returns>
-    public static Offset<FState> serialise_state(
-        FlatBufferBuilder b,
-        EnvironmentState state,
-        bool serialise_individual_observables = false,
-        bool do_serialise_unobservables = false) {
+    public static Offset<FState> serialise_state(FlatBufferBuilder b,
+                                                 EnvironmentState state,
+                                                 bool serialise_individual_observables = false,
+                                                 bool do_serialise_unobservables = false) {
       var n = b.CreateString(state.EnvironmentName);
 
       var observables_vector = FState.CreateObservablesVector(b, state.Observables);
@@ -188,13 +183,11 @@ namespace droid.Runtime.Messaging.FBS {
       var n = b.CreateString(identifier);
       FMotor.StartFMotor(b);
       FMotor.AddMotorName(b, n);
-      FMotor.AddValidInput(
-          b,
-          FRange.CreateFRange(
-              b,
-              motor.MotionValueSpace._Decimal_Granularity,
-              motor.MotionValueSpace._Max_Value,
-              motor.MotionValueSpace._Min_Value));
+      FMotor.AddValidInput(b,
+                           FRange.CreateFRange(b,
+                                               motor.MotionSpace1._Decimal_Granularity,
+                                               motor.MotionSpace1._Max_Value,
+                                               motor.MotionSpace1._Min_Value));
       FMotor.AddEnergySpentSinceReset(b, motor.GetEnergySpend());
       return FMotor.EndFMotor(b);
     }
@@ -206,17 +199,16 @@ namespace droid.Runtime.Messaging.FBS {
     /// <returns></returns>
     static Offset<FEulerTransform> Serialise(FlatBufferBuilder b, IHasEulerTransform observer) {
       Vector3 pos = observer.Position, rot = observer.Rotation, dir = observer.Direction;
-      return FEulerTransform.CreateFEulerTransform(
-          b,
-          pos.x,
-          pos.y,
-          pos.z,
-          rot.x,
-          rot.y,
-          rot.z,
-          dir.x,
-          dir.y,
-          dir.z);
+      return FEulerTransform.CreateFEulerTransform(b,
+                                                   pos.x,
+                                                   pos.y,
+                                                   pos.z,
+                                                   rot.x,
+                                                   rot.y,
+                                                   rot.z,
+                                                   dir.x,
+                                                   dir.y,
+                                                   dir.z);
     }
 
     /// <summary>
@@ -228,17 +220,15 @@ namespace droid.Runtime.Messaging.FBS {
       var pos = observer.Position;
       var rot = observer.Rotation;
       FQT.StartFQT(b);
-      FQT.AddTransform(
-          b,
-          FQuaternionTransform.CreateFQuaternionTransform(
-              b,
-              pos.x,
-              pos.y,
-              pos.z,
-              rot.x,
-              rot.y,
-              rot.z,
-              rot.w));
+      FQT.AddTransform(b,
+                       FQuaternionTransform.CreateFQuaternionTransform(b,
+                                                                       pos.x,
+                                                                       pos.y,
+                                                                       pos.z,
+                                                                       rot.x,
+                                                                       rot.y,
+                                                                       rot.z,
+                                                                       rot.w));
       return FQT.EndFQT(b);
     }
 
@@ -280,11 +270,10 @@ namespace droid.Runtime.Messaging.FBS {
       FSingle.StartFSingle(b);
       FSingle.AddValue(b, numeral.ObservationValue);
 
-      var range_offset = FRange.CreateFRange(
-          b,
-          numeral.SingleSpace._Decimal_Granularity,
-          numeral.SingleSpace._Max_Value,
-          numeral.SingleSpace._Min_Value);
+      var range_offset = FRange.CreateFRange(b,
+                                             numeral.SingleSpace._Decimal_Granularity,
+                                             numeral.SingleSpace._Max_Value,
+                                             numeral.SingleSpace._Min_Value);
       FSingle.AddRange(b, range_offset);
       return FSingle.EndFSingle(b);
     }
@@ -321,11 +310,10 @@ namespace droid.Runtime.Messaging.FBS {
       return FString.EndFString(b);
     }
 
-    static Offset<FActor> Serialise(
-        FlatBufferBuilder b,
-        Offset<FMotor>[] motors,
-        IActor actor,
-        string identifier) {
+    static Offset<FActor> Serialise(FlatBufferBuilder b,
+                                    Offset<FMotor>[] motors,
+                                    IActor actor,
+                                    string identifier) {
       var n = b.CreateString(identifier);
       var motor_vector = FActor.CreateMotorsVector(b, motors);
       FActor.StartFActor(b);
@@ -370,10 +358,9 @@ namespace droid.Runtime.Messaging.FBS {
         observation_offset = Serialise(b, (IHasQuaternionTransform)observer).Value;
         observation_type = FObservation.FQT;
       } else if (observer is IHasRigidbody) {
-        observation_offset = Serialise(
-            b,
-            ((IHasRigidbody)observer).Velocity,
-            ((IHasRigidbody)observer).AngularVelocity).Value;
+        observation_offset = Serialise(b,
+                                       ((IHasRigidbody)observer).Velocity,
+                                       ((IHasRigidbody)observer).AngularVelocity).Value;
         observation_type = FObservation.FRB;
       } else if (observer is IHasByteArray) {
         observation_offset = Serialise(b, (IHasByteArray)observer).Value;

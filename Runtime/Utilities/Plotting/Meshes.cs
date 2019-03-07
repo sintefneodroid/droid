@@ -241,9 +241,8 @@ namespace droid.Runtime.Utilities.Plotting {
       uvs[uvs.Length - 1] = Vector2.zero;
       for (var lat = 0; lat < nb_lat; lat++) {
         for (var lon = 0; lon <= nb_long; lon++) {
-          uvs[lon + lat * (nb_long + 1) + 1] = new Vector2(
-              (float)lon / nb_long,
-              1f - (float)(lat + 1) / (nb_lat + 1));
+          uvs[lon + lat * (nb_long + 1) + 1] =
+              new Vector2((float)lon / nb_long, 1f - (float)(lat + 1) / (nb_lat + 1));
         }
       }
 

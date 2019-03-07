@@ -10,10 +10,10 @@ namespace droid.Editor.GameObjects {
     static void CreateObserverGameObject(MenuCommand menu_command) {
       var go = new GameObject("Observer");
       go.AddComponent<Observer>();
-      GameObjectUtility.SetParentAndAlign(
-          go,
-          menu_command
-              .context as GameObject); // Ensure it gets reparented if this was a context click (otherwise does nothing)
+      GameObjectUtility.SetParentAndAlign(go,
+                                          menu_command
+                                                  .context as
+                                              GameObject); // Ensure it gets reparented if this was a context click (otherwise does nothing)
       Undo.RegisterCreatedObjectUndo(go, "Create " + go.name); // Register the creation in the undo system
       Selection.activeObject = go;
     }
@@ -22,10 +22,10 @@ namespace droid.Editor.GameObjects {
     static void CreateEulerTransformObserverGameObject(MenuCommand menu_command) {
       var go = new GameObject("EulerTransformObserver");
       go.AddComponent<EulerTransformObserver>();
-      GameObjectUtility.SetParentAndAlign(
-          go,
-          menu_command
-              .context as GameObject); // Ensure it gets reparented if this was a context click (otherwise does nothing)
+      GameObjectUtility.SetParentAndAlign(go,
+                                          menu_command
+                                                  .context as
+                                              GameObject); // Ensure it gets reparented if this was a context click (otherwise does nothing)
       Undo.RegisterCreatedObjectUndo(go, "Create " + go.name); // Register the creation in the undo system
       Selection.activeObject = go;
     }

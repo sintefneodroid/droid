@@ -6,13 +6,11 @@ using droid.Runtime.Utilities.Misc.SearchableEnum;
 using UnityEngine;
 
 namespace droid.Runtime.Utilities.ScriptableObjects {
-
   /// <inheritdoc />
   /// <summary>
   ///   Contains everything relevant to configuring simulation environments engine specific settings
   /// </summary>
-  [CreateAssetMenu(
-      fileName = "SimulatorConfiguration",
+  [CreateAssetMenu(fileName = "SimulatorConfiguration",
       menuName = "Neodroid/ScriptableObjects/SimulatorConfiguration",
       order = 1)]
   [Serializable]
@@ -22,7 +20,7 @@ namespace droid.Runtime.Utilities.ScriptableObjects {
     [SerializeField]
     bool _always_serialise_unobservables;
 
-    [SerializeField] bool _always_serialise_individual_observables =true;
+    [SerializeField] bool _always_serialise_individual_observables = true;
 
     /// <summary>
     /// </summary>
@@ -67,8 +65,6 @@ namespace droid.Runtime.Utilities.ScriptableObjects {
 
     [SerializeField] bool _full_screen;
 
-
-
     /// <summary>
     /// </summary>
     [Header("Connection")]
@@ -91,8 +87,6 @@ namespace droid.Runtime.Utilities.ScriptableObjects {
     /// </summary>
     [SerializeField]
     int _port = 6969;
-
-
 
     [SerializeField] bool _replay_reaction_in_skips;
 
@@ -137,8 +131,6 @@ namespace droid.Runtime.Utilities.ScriptableObjects {
     [Header("Experimental (Warning, it is important to read docs before use!)")]
     [SerializeField]
     bool _update_fixed_time_scale;
-
-
 
     /// <summary>
     /// </summary>
@@ -194,7 +186,7 @@ namespace droid.Runtime.Utilities.ScriptableObjects {
       set { this._apply_resolution_settings = value; }
     }
 
-    public bool ApplyQualitySettings{
+    public bool ApplyQualitySettings {
       get { return this._apply_quality_settings; }
       set { this._apply_quality_settings = value; }
     }

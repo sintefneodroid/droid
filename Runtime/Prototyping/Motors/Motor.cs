@@ -36,7 +36,7 @@ namespace droid.Runtime.Prototyping.Motors {
 
     /// <summary>
     /// </summary>
-    public ValueSpace MotionValueSpace {
+    public Space1 MotionSpace1 {
       get { return this._motion_value_space; }
       set { this._motion_value_space = value; }
     }
@@ -51,10 +51,8 @@ namespace droid.Runtime.Prototyping.Motors {
       }
       #endif
 
-      if (motion.Strength < this.MotionValueSpace._Min_Value
-          || motion.Strength > this.MotionValueSpace._Max_Value) {
-        Debug.LogWarning(
-            $"It does not accept input {motion.Strength}, outside the allowed range from {this.MotionValueSpace._Min_Value} to {this.MotionValueSpace._Max_Value}");
+      if (motion.Strength < this.MotionSpace1._Min_Value || motion.Strength > this.MotionSpace1._Max_Value) {
+        Debug.LogWarning($"It does not accept input {motion.Strength}, outside the allowed range from {this.MotionSpace1._Min_Value} to {this.MotionSpace1._Max_Value}");
         return; // Do nothing
       }
 
@@ -73,7 +71,7 @@ namespace droid.Runtime.Prototyping.Motors {
     /// </summary>
     public void EnvironmentReset() { this._energy_spend_since_reset = 0; }
 
-    public virtual float Sample() { return this.MotionValueSpace.Sample(); }
+    public virtual float Sample() { return this.MotionSpace1.Sample(); }
 
     /// <inheritdoc />
     /// <summary>
@@ -85,9 +83,7 @@ namespace droid.Runtime.Prototyping.Motors {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void UnRegisterComponent() {
-      this.ParentActor?.UnRegister(this);
-    }
+    protected override void UnRegisterComponent() { this.ParentActor?.UnRegister(this); }
 
     /// <summary>
     /// </summary>
@@ -108,8 +104,7 @@ namespace droid.Runtime.Prototyping.Motors {
 
     [Header("General", order = 101)]
     [SerializeField]
-    ValueSpace _motion_value_space =
-        new ValueSpace {_Decimal_Granularity = 0, _Min_Value = -1, _Max_Value = 1};
+    Space1 _motion_value_space = new Space1 {_Decimal_Granularity = 0, _Min_Value = -1, _Max_Value = 1};
 
     [SerializeField] float _energy_spend_since_reset;
 

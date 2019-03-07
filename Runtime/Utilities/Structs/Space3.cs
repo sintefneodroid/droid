@@ -13,7 +13,6 @@ namespace droid.Runtime.Utilities.Structs {
     public Vector3 _Min_Values;
     public Vector3 _Max_Values;
 
-
     public Space3(int decimal_granularity = 10) {
       this._Decimal_Granularity = decimal_granularity;
       this._Min_Values = Vector3.one * -100f;
@@ -22,7 +21,7 @@ namespace droid.Runtime.Utilities.Structs {
 
     public Vector3 Span { get { return this._Max_Values - this._Min_Values; } }
 
-    public Vector3 RandomVector3() {
+    public Vector3 Sample() {
       var x = Random.Range(this._Min_Values.x, this._Max_Values.x);
       var y = Random.Range(this._Min_Values.y, this._Max_Values.y);
       var z = Random.Range(this._Min_Values.z, this._Max_Values.z);
@@ -77,9 +76,7 @@ namespace droid.Runtime.Utilities.Structs {
     /// </summary>
     /// <returns></returns>
     public static Space3 ZeroOne {
-      get { return new Space3(1) {_Min_Values = Vector3.zero, _Max_Values =
-                                     Vector3.one}; }
+      get { return new Space3(1) {_Min_Values = Vector3.zero, _Max_Values = Vector3.one}; }
     }
-
   }
 }
