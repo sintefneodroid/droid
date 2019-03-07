@@ -11,21 +11,21 @@ namespace droid.Editor.Utilities {
   /// <summary>
   /// </summary>
   class NeodroidSettings : ScriptableObject {
-    [SerializeField] int m_Number = 0;
+    [SerializeField] int _number = 0;
 
-    [SerializeField] string m_SomeString = "Has no effect yet";
+    [SerializeField] string _some_string = "Has no effect yet";
 
-    public String MSomeString { get { return this.m_SomeString; } set { this.m_SomeString = value; } }
+    public String SomeString { get { return this._some_string; } set { this._some_string = value; } }
 
-    public Int32 MNumber { get { return this.m_Number; } set { this.m_Number = value; } }
+    public int Number { get { return this._number; } set { this._number = value; } }
 
     internal static NeodroidSettings GetOrCreateSettings() {
       var settings =
           AssetDatabase.LoadAssetAtPath<NeodroidSettings>(NeodroidEditorConstants._MyCustomSettingsPath);
       if (settings == null) {
         settings = CreateInstance<NeodroidSettings>();
-        settings.m_Number = 42;
-        settings.m_SomeString = "The answer to the universe";
+        settings.Number = 42;
+        settings.SomeString = "The answer to the universe";
         AssetDatabase.CreateAsset(settings, NeodroidEditorConstants._MyCustomSettingsPath);
         AssetDatabase.SaveAssets();
       }
@@ -57,14 +57,14 @@ namespace droid.Editor.Utilities {
                                                                                                                           .GetSerializedSettings();
                                                                                                               EditorGUILayout
                                                                                                                   .PropertyField(settings
-                                                                                                                                     .FindProperty("m_Number"),
+                                                                                                                                     .FindProperty("_number"),
                                                                                                                                  new
-                                                                                                                                     GUIContent("My Number"));
+                                                                                                                                     GUIContent("Number"));
                                                                                                               EditorGUILayout
                                                                                                                   .PropertyField(settings
-                                                                                                                                     .FindProperty("m_SomeString"),
+                                                                                                                                     .FindProperty("_some_string"),
                                                                                                                                  new
-                                                                                                                                     GUIContent("My String"));
+                                                                                                                                     GUIContent("String"));
                                                                                                             },
 
                                                                                                       // Populate the search keywords to enable smart search filtering and label highlighting:
@@ -90,9 +90,9 @@ namespace droid.Editor.Utilities {
     public static SettingsProvider CreateMyCustomSettingsProvider() {
       // First parameter is the path in the Settings window.
       // Second parameter is the scope of this setting: it only appears in the Settings window for the Project scope.
-      var provider = new SettingsProvider("Project/MyCustomUIElementsSettings", SettingsScope.Project) {
+      var provider = new SettingsProvider("Project/NeodroidSettingsUIElementsSettings", SettingsScope.Project) {
                                                                                                            label
-                                                                                                               = "Custom UI Elements",
+                                                                                                               = "Neodroid",
                                                                                                            // activateHandler is called when the user clicks on the Settings item in the Settings window.
                                                                                                            activateHandler
                                                                                                                = (searchContext,
@@ -164,7 +164,7 @@ namespace droid.Editor.Utilities {
       return provider;
     }
   }
-  */
+  
 
 // Create MyCustomSettingsProvider by deriving from SettingsProvider:
   class NeodroidSettingsProvider : SettingsProvider {
@@ -212,5 +212,5 @@ namespace droid.Editor.Utilities {
       public static GUIContent _Number = new GUIContent("My Number");
       public static GUIContent _SomeString = new GUIContent("Some string");
     }
-  }
+  }*/
 }
