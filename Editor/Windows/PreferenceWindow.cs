@@ -21,6 +21,9 @@ namespace droid.Editor.Windows {
     static bool _generate_scene_previews;
     static string _scene_previews_location;
 
+    static bool _generate_scene_descriptions;
+    static string _scene_descriptions_location;
+
     /// <summary>
     /// </summary>
     [PreferenceItem("Neodroid")]
@@ -33,6 +36,12 @@ namespace droid.Editor.Windows {
         if (_generate_scene_previews) {
           _scene_previews_location = EditorPrefs.GetString(NeodroidEditorInfo._Generate_Previews_Loc_Pref_Key,
                                                            NeodroidEditorInfo.ScenePreviewsLocation);
+        }
+
+        _generate_scene_descriptions = EditorPrefs.GetBool(NeodroidEditorInfo._Generate_Descriptions_Pref_Key, false);
+        if (_generate_scene_descriptions) {
+          _scene_descriptions_location = EditorPrefs.GetString(NeodroidEditorInfo._Generate_Descriptions_Loc_Pref_Key,
+            NeodroidEditorInfo.SceneDescriptionLocation);
         }
 
         #if NEODROID_IMPORTED_ASSET
@@ -64,6 +73,13 @@ namespace droid.Editor.Windows {
       if (_generate_scene_previews) {
         EditorGUILayout.HelpBox("Enter path for scene preview storage", MessageType.Info);
         _scene_previews_location = EditorGUILayout.TextField(_scene_previews_location);
+      }
+
+      var generate_scene_descriptions_new =
+        EditorGUILayout.Toggle(NeodroidEditorInfo._Generate_Descriptions_Pref_Key, _generate_scene_descriptions);
+      if (_generate_scene_descriptions) {
+        EditorGUILayout.HelpBox("Enter path for scene description storage", MessageType.Info);
+        _scene_descriptions_location = EditorGUILayout.TextField(_scene_descriptions_location);
       }
 
       if (GUI.changed) {
@@ -118,6 +134,20 @@ namespace droid.Editor.Windows {
             NeodroidEditorInfo.ScenePreviewsLocation = _scene_previews_location;
             EditorPrefs.SetString(NeodroidEditorInfo._Generate_Previews_Loc_Pref_Key,
                                   _scene_previews_location);
+          }
+        }
+
+        if (generate_scene_descriptions_new != _generate_scene_descriptions) {
+          _generate_scene_descriptions = generate_scene_descriptions_new;
+          Debug.Log($"Setting Neodroid Generate SceneDescription: {_generate_scene_descriptions}");
+          EditorPrefs.SetBool(NeodroidEditorInfo._Generate_Descriptions_Pref_Key, _generate_scene_descriptions);
+        }
+
+        if (_generate_scene_descriptions) {
+          if (NeodroidEditorInfo.SceneDescriptionLocation != _scene_descriptions_location) {
+            NeodroidEditorInfo.SceneDescriptionLocation = _scene_descriptions_location;
+            EditorPrefs.SetString(NeodroidEditorInfo._Generate_Descriptions_Loc_Pref_Key,
+              _scene_descriptions_location);
           }
         }
 
@@ -178,8 +208,6 @@ namespace droid.Editor.Windows {
     public static readonly string[] _Github_Symbols = {"NEODROID_USE_GITHUB_EXTENSION"};
 
     public static readonly string[] _ImportedAsset_Symbols = {"NEODROID_IMPORTED_ASSET"};
-
-    public static readonly string[] _IsImportedAsset_Symbols = {"NEODROID_ASSET_IMPORT"};
 
     /// <summary>
     /// </summary>

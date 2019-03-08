@@ -14,6 +14,14 @@ namespace droid.Editor {
     public const string _Imported_Asset_Pref_Key = "NeodroidImportedAsset";
     public const string _Generate_Previews_Pref_Key = "NeodroidGeneratePreviews";
     public const string _Generate_Previews_Loc_Pref_Key = "NeodroidPreviewsLocation";
+    public const string _Generate_Descriptions_Pref_Key = "NeodroidGenerateDescriptions";
+    public const string _Generate_Descriptions_Loc_Pref_Key = "NeodroidDescriptionLocation";
+
+    static string _scene_previews_location =
+      EditorPrefs.GetString(_Generate_Previews_Loc_Pref_Key, "ScenePreviews/");
+
+    static string _scene_description_location =
+      EditorPrefs.GetString(_Generate_Descriptions_Loc_Pref_Key, "SceneDescriptions/");
 
     public static string ImportLocation {
       get { return _import_location; }
@@ -28,8 +36,9 @@ namespace droid.Editor {
       get { return EditorPrefs.GetBool(_Generate_Previews_Pref_Key, false); }
     }
 
-    static string _scene_previews_location =
-        EditorPrefs.GetString(_Generate_Previews_Loc_Pref_Key, "ScenePreviews/");
+    public static bool GenerateSceneDescriptions {
+      get { return EditorPrefs.GetBool(_Generate_Descriptions_Pref_Key, false); }
+    }
 
     public static string ScenePreviewsLocation {
       get { return _scene_previews_location; }
@@ -37,6 +46,15 @@ namespace droid.Editor {
         var new_path = value.TrimEnd('/') + "/";
         Debug.Log($"Setting Neodroid ScenePreview location to: {new_path}");
         _scene_previews_location = new_path;
+      }
+    }
+
+    public static string SceneDescriptionLocation {
+      get { return _scene_description_location; }
+      set {
+        var new_path = value.TrimEnd('/') + "/";
+        Debug.Log($"Setting Neodroid SceneDescription location to: {new_path}");
+        _scene_description_location = new_path;
       }
     }
 

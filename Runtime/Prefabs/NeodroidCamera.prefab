@@ -273,9 +273,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 790114237}
   _cameras:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114716082362535994}
+  - {fileID: 114203839715900738}
+  - {fileID: 790114237}
   _old_culling_mask: -33
   _old_far_clip_plane: 30
   _old_fov: 61.600002
@@ -1496,9 +1496,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114203839715900738}
   _cameras:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114716082362535994}
+  - {fileID: 114203839715900738}
+  - {fileID: 790114237}
   _old_culling_mask: -33
   _old_far_clip_plane: 30
   _old_fov: 61.600002
@@ -2414,9 +2414,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 114716082362535994}
   _cameras:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114716082362535994}
+  - {fileID: 114203839715900738}
+  - {fileID: 790114237}
   _old_culling_mask: -1
   _old_far_clip_plane: 30
   _old_fov: 61.600002
@@ -2470,14 +2470,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 20224209517257972}
+  - {fileID: 20940602749366906}
+  - {fileID: 790114239}
   _filter_mode: 1
   _size: {x: 224, y: 224}
   _textures:
-  - {fileID: 8400000, guid: e52a2f56c9ffa187abf5021f3338228e, type: 2}
   - {fileID: 8400000, guid: 4c7dcaf7e8ef74c11bd8ad06365ea216, type: 2}
+  - {fileID: 8400000, guid: e52a2f56c9ffa187abf5021f3338228e, type: 2}
   _wrap_mode: 1
 --- !u!114 &1625775002
 MonoBehaviour:
@@ -2535,8 +2535,8 @@ MonoBehaviour:
   SampleRandom: 1
   _camera: {fileID: 20224209517257972}
   _syncer: {fileID: 114716082362535994}
-  _random_fov_min: 70
-  _random_fov_max: 90
+  _random_fov_min: 60
+  _random_fov_max: 70
 --- !u!1 &1975208461797724
 GameObject:
   m_ObjectHideFlags: 0

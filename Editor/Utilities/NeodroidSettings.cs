@@ -1,204 +1,175 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Cryptography.X509Certificates;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Experimental.UIElements;
 
-namespace droid.Editor.Utilities {
+namespace droid.Editor.Utilities
+{
 // Create a new type of Settings Asset.
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  class NeodroidSettings : ScriptableObject {
+  class NeodroidSettings : ScriptableObject
+  {
+    #region Fields
+
     [SerializeField] int _number = 0;
 
-    [SerializeField] string _some_string = "Has no effect yet";
+    [SerializeField] string _string = "Has no effect yet";
 
-    public String SomeString { get { return this._some_string; } set { this._some_string = value; } }
+    [SerializeField] bool _bool = true;
 
-    public int Number { get { return this._number; } set { this._number = value; } }
+    #endregion
 
-    internal static NeodroidSettings GetOrCreateSettings() {
+    #region Properties
+
+    public String SomeString
+    {
+      get { return this._string; }
+      set { this._string = value; }
+    }
+
+    public int Number
+    {
+      get { return this._number; }
+      set { this._number = value; }
+    }
+
+    public bool SomeBool
+    {
+      get { return this._bool; }
+      set { this._bool = value; }
+    }
+
+    #endregion
+
+    internal static NeodroidSettings Defaults()
+    {
+      var settings = CreateInstance<NeodroidSettings>();
+      settings.Number = 42;
+      settings.SomeString = "The answer to the universe";
+      settings.SomeBool = true;
+
+      return settings;
+    }
+
+
+    internal static NeodroidSettings GetOrCreateSettings()
+    {
       var settings =
-          AssetDatabase.LoadAssetAtPath<NeodroidSettings>(NeodroidEditorConstants._MyCustomSettingsPath);
-      if (settings == null) {
-        settings = CreateInstance<NeodroidSettings>();
-        settings.Number = 42;
-        settings.SomeString = "The answer to the universe";
-        AssetDatabase.CreateAsset(settings, NeodroidEditorConstants._MyCustomSettingsPath);
+        AssetDatabase.LoadAssetAtPath<NeodroidSettings>(NeodroidEditorConstants._NeodroidSettingsPath);
+      if (settings == null)
+      {
+        settings = Defaults();
+
+        AssetDatabase.CreateAsset(settings, NeodroidEditorConstants._NeodroidSettingsPath);
         AssetDatabase.SaveAssets();
       }
 
       return settings;
     }
 
-    internal static SerializedObject GetSerializedSettings() {
+    internal static SerializedObject GetSerializedSettings()
+    {
       return new SerializedObject(GetOrCreateSettings());
+    }
+
+    public class Properties
+    {
+      public const string _Number = "_number";
+      public const string _SomeString = "_string";
+      public const string _SomeBool = "_bool";
+    }
+
+    public class Styles
+    {
+      public static GUIContent _Number = new GUIContent("Number");
+      public static GUIContent _SomeString = new GUIContent("String");
+      public static GUIContent _SomeBool = new GUIContent("Bool");
     }
   }
 
 // Register a SettingsProvider using IMGUI for the drawing framework:
-  static class NeodroidSettingsImguiRegister {
+  static class NeodroidSettingsImguiRegister
+  {
     [SettingsProvider]
-    public static SettingsProvider CreateMyCustomSettingsProvider() {
-      // First parameter is the path in the Settings window.
-      // Second parameter is the scope of this setting: it only appears in the Project Settings window.
-      var provider = new SettingsProvider("Project/NeodroidSettingsIMGUI", SettingsScope.Project) {
-                                                                                                      // By default the last token of the path is used as display name if no label is provided.
-                                                                                                      label =
-                                                                                                          "Neodroid",
-                                                                                                      // Create the SettingsProvider and initialize its drawing (IMGUI) function in place:
-                                                                                                      guiHandler
-                                                                                                          = search_context => {
-                                                                                                              var
-                                                                                                                  settings
-                                                                                                                      = NeodroidSettings
-                                                                                                                          .GetSerializedSettings();
-                                                                                                              EditorGUILayout
-                                                                                                                  .PropertyField(settings
-                                                                                                                                     .FindProperty("_number"),
-                                                                                                                                 new
-                                                                                                                                     GUIContent("Number"));
-                                                                                                              EditorGUILayout
-                                                                                                                  .PropertyField(settings
-                                                                                                                                     .FindProperty("_some_string"),
-                                                                                                                                 new
-                                                                                                                                     GUIContent("String"));
-                                                                                                            },
+    public static SettingsProvider CreateMyCustomSettingsProvider()
+    {
+      var provider = new SettingsProvider(NeodroidEditorConstants.neodroid_project_settings_menu_path,
+        SettingsScope.Project)
+      {
+        //Second parameter is the scope of this setting: it only appears in the Project Settings window.
 
-                                                                                                      // Populate the search keywords to enable smart search filtering and label highlighting:
-                                                                                                      keywords
-                                                                                                          = new
-                                                                                                              HashSet
-                                                                                                              <string
-                                                                                                              >(new
-                                                                                                                [] {
-                                                                                                                       "Number",
-                                                                                                                       "Some String"
-                                                                                                                   })
-                                                                                                  };
+        label = "Neodroid", // By default the last token of the path is used as display name if no label is provided.
+
+        guiHandler = search_context =>
+        {
+          var settings = NeodroidSettings.GetSerializedSettings();
+          EditorGUILayout.PropertyField(settings.FindProperty(NeodroidSettings.Properties._Number),
+          NeodroidSettings.Styles._Number);
+          EditorGUILayout.PropertyField(settings.FindProperty(NeodroidSettings.Properties._SomeString),
+          NeodroidSettings.Styles._SomeString);
+          EditorGUILayout.PropertyField(settings.FindProperty(NeodroidSettings.Properties._SomeBool), NeodroidSettings.Styles._SomeBool);
+        }, // Create the SettingsProvider and initialize its drawing (IMGUI) function in place:
+
+
+        keywords = new HashSet<string>(new[]
+        {
+          "Number", "Some String"
+        }) // Populate the search keywords to enable smart search filtering and label highlighting:
+      };
 
       return provider;
     }
   }
 
-  /*
-// Register a SettingsProvider using UIElements for the drawing framework:
-  static class MyCustomSettingsUIElementsRegister {
-    [SettingsProvider]
-    public static SettingsProvider CreateMyCustomSettingsProvider() {
-      // First parameter is the path in the Settings window.
-      // Second parameter is the scope of this setting: it only appears in the Settings window for the Project scope.
-      var provider = new SettingsProvider("Project/NeodroidSettingsUIElementsSettings", SettingsScope.Project) {
-                                                                                                           label
-                                                                                                               = "Neodroid",
-                                                                                                           // activateHandler is called when the user clicks on the Settings item in the Settings window.
-                                                                                                           activateHandler
-                                                                                                               = (searchContext,
-                                                                                                                  rootElement) => {
-                                                                                                                   var
-                                                                                                                       settings
-                                                                                                                           = NeodroidSettings
-                                                                                                                               .GetSerializedSettings();
+/*
 
-                                                                                                                   // rootElement is a VisualElement. If you add any children to it, the OnGUI function
-                                                                                                                   // isn't called because the SettingsProvider uses the UIElements drawing framework.
-                                                                                                                   rootElement
-                                                                                                                       .AddStyleSheetPath("Assets/Editor/settings_ui.uss");
-                                                                                                                   var
-                                                                                                                       title
-                                                                                                                           = new
-                                                                                                                             Label() {
-                                                                                                                                         text
-                                                                                                                                             = "Custom UI Elements"
-                                                                                                                                     };
-                                                                                                                   title
-                                                                                                                       .AddToClassList("title");
-                                                                                                                   rootElement
-                                                                                                                       .Add(title);
-
-                                                                                                                   var
-                                                                                                                       properties
-                                                                                                                           = new
-                                                                                                                             VisualElement() {
-                                                                                                                                                 style
-                                                                                                                                                     = {
-                                                                                                                                                           flexDirection
-                                                                                                                                                               = FlexDirection
-                                                                                                                                                                   .Column
-                                                                                                                                                       }
-                                                                                                                                             };
-                                                                                                                   properties
-                                                                                                                       .AddToClassList("property-list");
-                                                                                                                   rootElement
-                                                                                                                       .Add(properties);
-
-                                                                                                                   var
-                                                                                                                       tf
-                                                                                                                           = new
-                                                                                                                             TextField() {
-                                                                                                                                             value
-                                                                                                                                                 = settings
-                                                                                                                                                   .FindProperty("m_SomeString")
-                                                                                                                                                   .stringValue
-                                                                                                                                         };
-                                                                                                                   tf
-                                                                                                                       .AddToClassList("property-value");
-                                                                                                                   properties
-                                                                                                                       .Add(tf);
-                                                                                                                 },
-
-                                                                                                           // Populate the search keywords to enable smart search filtering and label highlighting:
-                                                                                                           keywords
-                                                                                                               = new
-                                                                                                                   HashSet
-                                                                                                                   <string
-                                                                                                                   >(new
-                                                                                                                     [] {
-                                                                                                                            "Number",
-                                                                                                                            "Some String"
-                                                                                                                        })
-                                                                                                       };
-
-      return provider;
-    }
-  }
-  
-
-// Create MyCustomSettingsProvider by deriving from SettingsProvider:
-  class NeodroidSettingsProvider : SettingsProvider {
+  class NeodroidSettingsProvider : SettingsProvider // Create MyCustomSettingsProvider by deriving from SettingsProvider:
+  {
     SerializedObject _m_custom_settings;
 
     public NeodroidSettingsProvider(string path, SettingsScope scope = SettingsScope.User) :
-        base(path, scope) { }
-
-    public static bool IsSettingsAvailable() {
-      return File.Exists(NeodroidEditorConstants._MyCustomSettingsPath);
+      base(path, scope)
+    {
     }
 
-    public void OnActivate(string search_context, VisualElement root_element) {
+    public static bool IsSettingsAvailable()
+    {
+      return File.Exists(NeodroidEditorConstants._NeodroidSettingsPath);
+    }
+
+    public void OnActivate(string search_context, VisualElement root_element)
+    {
       // This function is called when the user clicks on the MyCustom element in the Settings window.
       this._m_custom_settings = NeodroidSettings.GetSerializedSettings();
     }
 
-    public override void OnGUI(string search_context) {
-      // Use IMGUI to display UI:
-      EditorGUILayout.PropertyField(this._m_custom_settings.FindProperty("m_Number"), Styles._Number);
-      EditorGUILayout.PropertyField(this._m_custom_settings.FindProperty("m_SomeString"), Styles._SomeString);
+    public override void OnGUI(string search_context)
+    {
+      EditorGUILayout.PropertyField(this._m_custom_settings.FindProperty(NeodroidSettings.Properties._Number),
+        NeodroidSettings.Styles._Number);
+      EditorGUILayout.PropertyField(this._m_custom_settings.FindProperty(NeodroidSettings.Properties._SomeString),
+        NeodroidSettings.Styles._SomeString);
+      EditorGUILayout.PropertyField(this._m_custom_settings.FindProperty(NeodroidSettings.Properties._SomeBool),
+        NeodroidSettings.Styles._SomeBool);
     }
 
     // Register the SettingsProvider
     [SettingsProvider]
-    public static SettingsProvider CreateMyCustomSettingsProvider() {
-      if (IsSettingsAvailable()) {
-        var provider =
-            new NeodroidSettingsProvider("Project/NeodroidSettingsProvider", SettingsScope.Project) {
-                                                                                                        keywords
-                                                                                                            = GetSearchKeywordsFromGUIContentProperties
-                                                                                                            <Styles
-                                                                                                            >()
-                                                                                                    };
+    public static SettingsProvider CreateMyCustomSettingsProvider()
+    {
+      if (IsSettingsAvailable())
+      {
+        var provider = new NeodroidSettingsProvider(
+          NeodroidEditorConstants.neodroid_project_settings_menu_path,
+          SettingsScope.Project)
+        {
+          keywords = GetSearchKeywordsFromGUIContentProperties<NeodroidSettings.Styles>()
+        };
 
         // Automatically extract all keywords from the Styles.
         return provider;
@@ -207,10 +178,6 @@ namespace droid.Editor.Utilities {
       // Settings Asset doesn't exist yet; no need to display anything in the Settings window.
       return null;
     }
-
-    class Styles {
-      public static GUIContent _Number = new GUIContent("My Number");
-      public static GUIContent _SomeString = new GUIContent("Some string");
-    }
-  }*/
+  }
+  */
 }
