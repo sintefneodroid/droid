@@ -65,6 +65,8 @@ namespace droid.Runtime.Prototyping.Observers.Camera {
     /// </summary>
     protected IManager _Manager = null;
 
+    public override String PrototypingTypeName { get { return ""; } }
+
     /// <summary>
     /// </summary>
     Texture2D _texture = null;
