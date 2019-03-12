@@ -40,7 +40,8 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
 
     /// <summary>
     /// </summary>
-    [SerializeField] Camera _camera = null;
+    [SerializeField]
+    Camera _camera = null;
 
     [SerializeField] GameObject[] _prefabs = null;
     List<GameObject> _spawned = new List<GameObject>();
@@ -55,7 +56,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       this._b = this.Identifier + "B";
       this._a = this.Identifier + "A";
 
-      if(Application.isPlaying) {
+      if (Application.isPlaying) {
         if (this._prefabs != null && this._prefabs.Length > 0 && this._camera) {
           for (var i = 0; i < this.num_obstructions; i++) {
             var prefab = this._prefabs[(int)(Space1.ZeroOne.Sample() * this._prefabs.Length)];
@@ -73,7 +74,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
                                    Space1.ZeroOne.Sample(),
                                    Space1.ZeroOne.Sample());
 
-            var d = Instantiate(prefab, c, b,this.transform);
+            var d = Instantiate(prefab, c, b, this.transform);
 
             this._spawned.Add(d);
           }
@@ -126,15 +127,11 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
         DebugPrinting.ApplyPrint(this.Debugging, configuration, this.Identifier);
       }
       #endif
-
-
-
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-
     /// <returns></returns>
     public override IConfigurableConfiguration SampleConfiguration() {
       var sample = Space1.ZeroOne.Sample();

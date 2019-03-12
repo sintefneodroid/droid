@@ -12,7 +12,7 @@ namespace droid.Runtime.Prototyping.Actors {
     public override string PrototypingTypeName { get { return "KillableActor"; } }
     public void Kill() { this._is_alive = false; }
 
-    public override void ApplyMotion(IMotorMotion motion) {
+    public override void ApplyMotion(IMotion motion) {
       if (this._is_alive) {
         base.ApplyMotion(motion);
       } else {

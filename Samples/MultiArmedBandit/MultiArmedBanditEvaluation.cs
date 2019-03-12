@@ -11,7 +11,7 @@ namespace droid.Samples.MultiArmedBandit {
                     + "PoseDeviance"
                     + EvaluationComponentMenuPath._Postfix)]
   public class MultiArmedBanditEvaluation : ObjectiveFunction {
-    [SerializeField] MultiArmedBanditMotor _arms;
+    [SerializeField] MultiArmedBanditActuator _arms;
     [SerializeField] float[] _normalised_values;
 
     [SerializeField] TextBarPlotDisplayer _text_bar_plot_displayer = null;
@@ -21,7 +21,7 @@ namespace droid.Samples.MultiArmedBandit {
     /// </summary>
     protected override void PostSetup() {
       if (this._arms == null) {
-        this._arms = FindObjectOfType<MultiArmedBanditMotor>();
+        this._arms = FindObjectOfType<MultiArmedBanditActuator>();
       }
 
       this.ComputeNormalisedValues();

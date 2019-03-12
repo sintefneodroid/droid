@@ -39,7 +39,7 @@ namespace droid.Runtime.Messaging.Messages {
     #region Constructors
 
     public Reaction(ReactionParameters parameters,
-                    IMotorMotion[] motions,
+                    IMotion[] motions,
                     Configuration[] configurations,
                     Unobservables unobservables,
                     Displayable[] displayables,
@@ -79,7 +79,7 @@ namespace droid.Runtime.Messaging.Messages {
 
     /// <summary>
     /// </summary>
-    public IMotorMotion[] Motions { get; }
+    public IMotion[] Motions { get; }
 
     /// <summary>
     /// </summary>

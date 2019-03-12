@@ -2,6 +2,7 @@
 using droid.Runtime.Interfaces;
 using UnityEditor;
 using UnityEngine;
+using Object = System.Object;
 
 namespace droid.Runtime.Utilities.GameObjects {
   /// <inheritdoc />
@@ -34,6 +35,8 @@ namespace droid.Runtime.Utilities.GameObjects {
     /// </summary>
     [SerializeField]
     protected bool _Use_Custom_Name = false;
+
+    [SerializeField] bool _unregister_at_disable = false;
 
     #if NEODROID_DEBUG
         /// <summary>
@@ -73,7 +76,7 @@ namespace droid.Runtime.Utilities.GameObjects {
         }
       } catch (ArgumentNullException e) {
         Debug.LogWarning(e);
-        Debug.Log($"Exception happened on {this.GetType()}-{this}");
+        Debug.Log($"You must override Register and UnRegisterComponent for component {this.GetType()} for gameobject {this.Identifier} in order to Re-register component on every 'OnValidate' while in edit-mode");
       }
     }
 
@@ -83,8 +86,6 @@ namespace droid.Runtime.Utilities.GameObjects {
       if (this.enabled && this.isActiveAndEnabled) {
         this.Clear();
       }
-
-      //this.ReRegister();
     }
 
     /// <summary>
@@ -105,6 +106,10 @@ namespace droid.Runtime.Utilities.GameObjects {
             child.gameObject.SetActive(false);
           }
         }
+      }
+
+      if (this._unregister_at_disable) {
+        this.UnRegisterComponent();
       }
     }
 
@@ -135,6 +140,8 @@ namespace droid.Runtime.Utilities.GameObjects {
           }
         }
       }
+
+      this.ReRegister();
     }
 
     /// <summary>
@@ -153,16 +160,7 @@ namespace droid.Runtime.Utilities.GameObjects {
         return;
       }
 
-      try {
-        if (this.enabled && this.isActiveAndEnabled) {
-          this.Setup();
-          this.UnRegisterComponent();
-          this.RegisterComponent();
-        }
-      } catch (NotImplementedException e) {
-        Debug.Log(e);
-        Debug.Log($"You must override Register and UnRegisterComponent for component {this.GetType()} for gameobject {this.Identifier} in order to Re-register component on every 'OnValidate' while in edit-mode");
-      }
+      this.ReRegister();
     }
     #endif
 

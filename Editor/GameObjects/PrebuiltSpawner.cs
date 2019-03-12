@@ -3,8 +3,8 @@ using droid.Runtime.Environments;
 using droid.Runtime.Managers;
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Prototyping.Configurables;
-using droid.Runtime.Prototyping.Motors;
-using droid.Runtime.Prototyping.Observers.Transform;
+using droid.Runtime.Prototyping.Actuators;
+using droid.Runtime.Prototyping.Sensors.Transform;
 using droid.Runtime.Utilities.BoundingBoxes;
 using UnityEditor;
 using UnityEngine;
@@ -28,16 +28,14 @@ namespace droid.Editor.GameObjects {
 
       var actor = new GameObject("Actor");
       actor.AddComponent<Actor>();
-      actor.AddComponent<EulerTransformMotor3Dof>();
-      actor.AddComponent<EulerTransformObserver>();
+      actor.AddComponent<EulerTransformActuator3Dof>();
+      actor.AddComponent<EulerTransformSensor>();
       actor.AddComponent<PositionConfigurable>();
       actor.transform.parent = go.transform;
 
       var capsule = GameObject.CreatePrimitive(PrimitiveType.Capsule);
       capsule.transform.parent = actor.transform;
       capsule.transform.localPosition = Vector3.up;
-
-      bounding_box.Initialise();
 
       GameObjectUtility.SetParentAndAlign(go,
                                           menu_command

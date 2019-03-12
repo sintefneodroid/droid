@@ -6,7 +6,6 @@ using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
-
 namespace droid.Runtime.Prototyping.Configurables {
   [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
                     + "Position"

@@ -1,12 +1,10 @@
 ﻿using droid.Runtime.Environments;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
-using droid.Runtime.Prototyping.Observers.Transform;
 using droid.Runtime.Utilities.Debugging;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
-
 
 namespace droid.Runtime.Prototyping.Configurables {
   /// <inheritdoc />
@@ -141,7 +139,6 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-
     /// <returns></returns>
     public override IConfigurableConfiguration SampleConfiguration() {
       var sample = Space1.ZeroOne.Sample();

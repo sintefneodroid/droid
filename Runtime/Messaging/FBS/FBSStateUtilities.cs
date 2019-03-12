@@ -179,17 +179,17 @@ namespace droid.Runtime.Messaging.FBS {
 
     #region PrivateMethods
 
-    static Offset<FMotor> Serialise(FlatBufferBuilder b, IMotor motor, string identifier) {
+    static Offset<FActuator> Serialise(FlatBufferBuilder b, IActuator Actuator, string identifier) {
       var n = b.CreateString(identifier);
-      FMotor.StartFMotor(b);
-      FMotor.AddMotorName(b, n);
-      FMotor.AddValidInput(b,
-                           FRange.CreateFRange(b,
-                                               motor.MotionSpace1._Decimal_Granularity,
-                                               motor.MotionSpace1._Max_Value,
-                                               motor.MotionSpace1._Min_Value));
-      FMotor.AddEnergySpentSinceReset(b, motor.GetEnergySpend());
-      return FMotor.EndFMotor(b);
+      FActuator.StartFActuator(b);
+      FActuator.AddActuatorName(b, n);
+      FActuator.AddValidInput(b,
+                              FRange.CreateFRange(b,
+                                                  Actuator.MotionSpace1._Decimal_Granularity,
+                                                  Actuator.MotionSpace1._Max_Value,
+                                                  Actuator.MotionSpace1._Min_Value));
+      FActuator.AddEnergySpentSinceReset(b, Actuator.GetEnergySpend());
+      return FActuator.EndFActuator(b);
     }
 
     /// <summary>
@@ -311,11 +311,11 @@ namespace droid.Runtime.Messaging.FBS {
     }
 
     static Offset<FActor> Serialise(FlatBufferBuilder b,
-                                    Offset<FMotor>[] motors,
+                                    Offset<FActuator>[] Actuators,
                                     IActor actor,
                                     string identifier) {
       var n = b.CreateString(identifier);
-      var motor_vector = FActor.CreateMotorsVector(b, motors);
+      var Actuator_vector = FActor.CreateActuatorsVector(b, Actuators);
       FActor.StartFActor(b);
       if (actor is KillableActor) {
         FActor.AddAlive(b, ((KillableActor)actor).IsAlive);
@@ -324,7 +324,7 @@ namespace droid.Runtime.Messaging.FBS {
       }
 
       FActor.AddActorName(b, n);
-      FActor.AddMotors(b, motor_vector);
+      FActor.AddActuators(b, Actuator_vector);
       return FActor.EndFActor(b);
     }
 
@@ -380,13 +380,13 @@ namespace droid.Runtime.Messaging.FBS {
       var actors_offsets = new Offset<FActor>[state.Description.Actors.Values.Count];
       var j = 0;
       foreach (var actor in state.Description.Actors) {
-        var motors_offsets = new Offset<FMotor>[actor.Value.Motors.Values.Count];
+        var Actuators_offsets = new Offset<FActuator>[actor.Value.Actuators.Values.Count];
         var i = 0;
-        foreach (var motor in actor.Value.Motors) {
-          motors_offsets[i++] = Serialise(b, motor.Value, motor.Key);
+        foreach (var Actuator in actor.Value.Actuators) {
+          Actuators_offsets[i++] = Serialise(b, Actuator.Value, Actuator.Key);
         }
 
-        actors_offsets[j++] = Serialise(b, motors_offsets, actor.Value, actor.Key);
+        actors_offsets[j++] = Serialise(b, Actuators_offsets, actor.Value, actor.Key);
       }
 
       var actors_vector_offset = FEnvironmentDescription.CreateActorsVector(b, actors_offsets);

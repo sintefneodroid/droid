@@ -7,7 +7,6 @@ using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
-
 namespace droid.Runtime.Prototyping.Configurables {
   /// <inheritdoc />
   /// <summary>
@@ -148,7 +147,6 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-
     /// <returns></returns>
     public override IConfigurableConfiguration SampleConfiguration() {
       var x = Space1.ZeroOne.Sample();

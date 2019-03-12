@@ -7,7 +7,6 @@ using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 using Object = System.Object;
 
-
 namespace droid.Runtime.Prototyping.Configurables {
   /// <inheritdoc cref="PrototypingGameObject" />
   /// <summary>
@@ -52,7 +51,6 @@ namespace droid.Runtime.Prototyping.Configurables {
 
     /// <summary>
     /// </summary>
-
     /// <returns></returns>
     /// <exception cref="System.NotImplementedException"></exception>
     public virtual IConfigurableConfiguration SampleConfiguration() {

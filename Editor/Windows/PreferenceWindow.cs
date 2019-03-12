@@ -38,10 +38,12 @@ namespace droid.Editor.Windows {
                                                            NeodroidEditorInfo.ScenePreviewsLocation);
         }
 
-        _generate_scene_descriptions = EditorPrefs.GetBool(NeodroidEditorInfo._Generate_Descriptions_Pref_Key, false);
+        _generate_scene_descriptions =
+            EditorPrefs.GetBool(NeodroidEditorInfo._Generate_Descriptions_Pref_Key, false);
         if (_generate_scene_descriptions) {
-          _scene_descriptions_location = EditorPrefs.GetString(NeodroidEditorInfo._Generate_Descriptions_Loc_Pref_Key,
-            NeodroidEditorInfo.SceneDescriptionLocation);
+          _scene_descriptions_location =
+              EditorPrefs.GetString(NeodroidEditorInfo._Generate_Descriptions_Loc_Pref_Key,
+                                    NeodroidEditorInfo.SceneDescriptionLocation);
         }
 
         #if NEODROID_IMPORTED_ASSET
@@ -76,7 +78,8 @@ namespace droid.Editor.Windows {
       }
 
       var generate_scene_descriptions_new =
-        EditorGUILayout.Toggle(NeodroidEditorInfo._Generate_Descriptions_Pref_Key, _generate_scene_descriptions);
+          EditorGUILayout.Toggle(NeodroidEditorInfo._Generate_Descriptions_Pref_Key,
+                                 _generate_scene_descriptions);
       if (_generate_scene_descriptions) {
         EditorGUILayout.HelpBox("Enter path for scene description storage", MessageType.Info);
         _scene_descriptions_location = EditorGUILayout.TextField(_scene_descriptions_location);
@@ -140,14 +143,15 @@ namespace droid.Editor.Windows {
         if (generate_scene_descriptions_new != _generate_scene_descriptions) {
           _generate_scene_descriptions = generate_scene_descriptions_new;
           Debug.Log($"Setting Neodroid Generate SceneDescription: {_generate_scene_descriptions}");
-          EditorPrefs.SetBool(NeodroidEditorInfo._Generate_Descriptions_Pref_Key, _generate_scene_descriptions);
+          EditorPrefs.SetBool(NeodroidEditorInfo._Generate_Descriptions_Pref_Key,
+                              _generate_scene_descriptions);
         }
 
         if (_generate_scene_descriptions) {
           if (NeodroidEditorInfo.SceneDescriptionLocation != _scene_descriptions_location) {
             NeodroidEditorInfo.SceneDescriptionLocation = _scene_descriptions_location;
             EditorPrefs.SetString(NeodroidEditorInfo._Generate_Descriptions_Loc_Pref_Key,
-              _scene_descriptions_location);
+                                  _scene_descriptions_location);
           }
         }
 

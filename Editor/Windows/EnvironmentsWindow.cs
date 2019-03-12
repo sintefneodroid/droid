@@ -12,8 +12,8 @@ using droid.Runtime.Prototyping.Configurables;
 using droid.Runtime.Prototyping.Displayers;
 using droid.Runtime.Prototyping.Evaluation;
 using droid.Runtime.Prototyping.Internals;
-using droid.Runtime.Prototyping.Motors;
-using droid.Runtime.Prototyping.Observers;
+using droid.Runtime.Prototyping.Actuators;
+using droid.Runtime.Prototyping.Sensors;
 using droid.Runtime.Utilities.Enums;
 using droid.Runtime.Utilities.GameObjects;
 using droid.Runtime.Utilities.Misc;
@@ -116,8 +116,8 @@ namespace droid.Editor.Windows {
         this._simulation_manager.Configuration.SimulationType =
             (SimulationType)EditorGUILayout.EnumPopup("Simulation Type",
                                                       this._simulation_manager.Configuration.SimulationType);
-        this._simulation_manager.TestMotors =
-            EditorGUILayout.Toggle("Test Motors", this._simulation_manager.TestMotors);
+        this._simulation_manager.TestActuators =
+            EditorGUILayout.Toggle("Test Actuators", this._simulation_manager.TestActuators);
 
         this._player_reactions = FindObjectOfType<PlayerReactions>();
         EditorGUILayout.ObjectField(this._player_reactions, typeof(PlayerReactions), true);
@@ -301,7 +301,7 @@ namespace droid.Editor.Windows {
       foreach (var actor in actors) {
         var actor_value = (Actor)actor.Value;
         if (actor_value != null) {
-          var motors = actor_value.Motors;
+          var Actuators = actor_value.Actuators;
 
           EditorGUILayout.BeginVertical("Box");
 
@@ -319,7 +319,7 @@ namespace droid.Editor.Windows {
             //EditorGUILayout.EndHorizontal();
           }
 
-          this.DrawMotors(motors);
+          this.DrawActuators(Actuators);
 
           EditorGUILayout.EndToggleGroup();
 
@@ -334,14 +334,14 @@ namespace droid.Editor.Windows {
       EditorGUILayout.BeginVertical("Box");
       GUILayout.Label("Observers");
       foreach (var observer in observers) {
-        var observer_value = (Observer)observer.Value;
+        var observer_value = (Sensor)observer.Value;
         if (observer_value != null) {
           EditorGUILayout.BeginVertical("Box");
           observer_value.enabled =
               EditorGUILayout.BeginToggleGroup(observer.Key,
                                                observer_value.enabled
                                                && observer_value.gameObject.activeSelf);
-          EditorGUILayout.ObjectField(observer_value, typeof(Observer), true);
+          EditorGUILayout.ObjectField(observer_value, typeof(Sensor), true);
           if (this._show_detailed_descriptions) {
             //EditorGUILayout.BeginHorizontal("Box");
             #if NEODROID_DEBUG
@@ -420,25 +420,27 @@ namespace droid.Editor.Windows {
       EditorGUILayout.EndVertical();
     }
 
-    void DrawMotors(Dictionary<string, IMotor> motors) {
+    void DrawActuators(Dictionary<string, IActuator> Actuators) {
       EditorGUILayout.BeginVertical("Box");
-      GUILayout.Label("Motors");
-      foreach (var motor in motors) {
-        var motor_value = (Motor)motor.Value;
-        if (motor_value != null) {
+      GUILayout.Label("Actuators");
+      foreach (var Actuator in Actuators) {
+        var Actuator_value = (Actuator)Actuator.Value;
+        if (Actuator_value != null) {
           EditorGUILayout.BeginVertical("Box");
-          motor_value.enabled =
-              EditorGUILayout.BeginToggleGroup(motor.Key,
-                                               motor_value.enabled && motor_value.gameObject.activeSelf);
-          EditorGUILayout.ObjectField(motor_value, typeof(Motor), true);
+          Actuator_value.enabled =
+              EditorGUILayout.BeginToggleGroup(Actuator.Key,
+                                               Actuator_value.enabled
+                                               && Actuator_value.gameObject.activeSelf);
+          EditorGUILayout.ObjectField(Actuator_value, typeof(Actuator), true);
 
           if (this._show_detailed_descriptions) {
-            EditorGUILayout.Vector3Field("Motion Space (min,gran,max)", motor_value.MotionSpace1.ToVector3());
+            EditorGUILayout.Vector3Field("Motion Space (min,gran,max)",
+                                         Actuator_value.MotionSpace1.ToVector3());
             //EditorGUILayout.BeginHorizontal("Box");
             #if NEODROID_DEBUG
-            motor_value.Debugging = EditorGUILayout.Toggle(
+            Actuator_value.Debugging = EditorGUILayout.Toggle(
               "Debugging",
-              motor_value.Debugging);
+              Actuator_value.Debugging);
             #endif
             //EditorGUILayout.EndHorizontal();
           }

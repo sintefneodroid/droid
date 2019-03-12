@@ -76,7 +76,6 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-
     /// <returns></returns>
     public override IConfigurableConfiguration SampleConfiguration() {
       return new Configuration(this._fov_str,

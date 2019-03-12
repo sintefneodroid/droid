@@ -131,29 +131,29 @@ public struct FMotion : IFlatbufferObject
 
   public string ActorName { get { int o = this.__p.__offset(4); return o != 0 ? this.__p.__string(o + this.__p.bb_pos) : null; } }
   public ArraySegment<byte>? GetActorNameBytes() { return this.__p.__vector_as_arraysegment(4); }
-  public string MotorName { get { int o = this.__p.__offset(6); return o != 0 ? this.__p.__string(o + this.__p.bb_pos) : null; } }
-  public ArraySegment<byte>? GetMotorNameBytes() { return this.__p.__vector_as_arraysegment(6); }
+  public string ActuatorName { get { int o = this.__p.__offset(6); return o != 0 ? this.__p.__string(o + this.__p.bb_pos) : null; } }
+  public ArraySegment<byte>? GetActuatorNameBytes() { return this.__p.__vector_as_arraysegment(6); }
   public double Strength { get { int o = this.__p.__offset(8); return o != 0 ? this.__p.bb.GetDouble(o + this.__p.bb_pos) : (double)0.0; } }
 
   public static Offset<FMotion> CreateFMotion(FlatBufferBuilder builder,
       StringOffset actor_nameOffset = default(StringOffset),
-      StringOffset motor_nameOffset = default(StringOffset),
+      StringOffset Actuator_nameOffset = default(StringOffset),
       double strength = 0.0) {
     builder.StartObject(3);
     AddStrength(builder, strength);
-    AddMotorName(builder, motor_nameOffset);
+    AddActuatorName(builder, Actuator_nameOffset);
     AddActorName(builder, actor_nameOffset);
     return EndFMotion(builder);
   }
 
   public static void StartFMotion(FlatBufferBuilder builder) { builder.StartObject(3); }
   public static void AddActorName(FlatBufferBuilder builder, StringOffset actorNameOffset) { builder.AddOffset(0, actorNameOffset.Value, 0); }
-  public static void AddMotorName(FlatBufferBuilder builder, StringOffset motorNameOffset) { builder.AddOffset(1, motorNameOffset.Value, 0); }
+  public static void AddActuatorName(FlatBufferBuilder builder, StringOffset ActuatorNameOffset) { builder.AddOffset(1, ActuatorNameOffset.Value, 0); }
   public static void AddStrength(FlatBufferBuilder builder, double strength) { builder.AddDouble(2, strength, 0.0); }
   public static Offset<FMotion> EndFMotion(FlatBufferBuilder builder) {
     int o = builder.EndObject();
     builder.Required(o, 4);  // actor_name
-    builder.Required(o, 6);  // motor_name
+    builder.Required(o, 6);  // Actuator_name
     return new Offset<FMotion>(o);
   }
 

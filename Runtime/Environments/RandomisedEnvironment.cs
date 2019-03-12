@@ -1,14 +1,11 @@
 ﻿using UnityEngine;
 
-
 namespace droid.Runtime.Environments {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
   [AddComponentMenu("Neodroid/Environments/RandomisedEnvironment")]
   public class RandomisedEnvironment : PrototypingEnvironment {
-
-
     /// <summary>
     /// </summary>
     void RandomiseEnvironment() {

@@ -1,14 +1,17 @@
 ﻿#if UNITY_EDITOR
-using droid.Runtime.Prototyping.Motors;
+using droid.Runtime.Prototyping.Actuators;
 using UnityEditor;
 using UnityEngine;
 
 namespace droid.Editor.GameObjects {
-  public class MotorSpawner : MonoBehaviour {
-    [MenuItem(EditorGameObjectMenuPath._GameObjectMenuPath + "Motors/TransformMotor", false, 10)]
-    static void CreateTransformMotorGameObject(MenuCommand menu_command) {
-      var go = new GameObject("TransformMotor");
-      go.AddComponent<EulerTransformMotor1Dof>();
+  /// <summary>
+  /// 
+  /// </summary>
+  public class ActuatorSpawner : MonoBehaviour {
+    [MenuItem(EditorGameObjectMenuPath._GameObjectMenuPath + "Actuators/TransformActuator", false, 10)]
+    static void CreateTransformActuatorGameObject(MenuCommand menu_command) {
+      var go = new GameObject("TransformActuator");
+      go.AddComponent<EulerTransform1DofActuator>();
       GameObjectUtility.SetParentAndAlign(go,
                                           menu_command
                                                   .context as
@@ -17,10 +20,10 @@ namespace droid.Editor.GameObjects {
       Selection.activeObject = go;
     }
 
-    [MenuItem(EditorGameObjectMenuPath._GameObjectMenuPath + "Motors/RigidbodyMotor", false, 10)]
-    static void CreateRigidbodyMotorGameObject(MenuCommand menu_command) {
-      var go = new GameObject("RigidbodyMotor");
-      go.AddComponent<RigidbodyMotor1Dof>();
+    [MenuItem(EditorGameObjectMenuPath._GameObjectMenuPath + "Actuators/RigidbodyActuator", false, 10)]
+    static void CreateRigidbodyActuatorGameObject(MenuCommand menu_command) {
+      var go = new GameObject("RigidbodyActuator");
+      go.AddComponent<RigidbodyActuator1Dof>();
       GameObjectUtility.SetParentAndAlign(go,
                                           menu_command
                                                   .context as

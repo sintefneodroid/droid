@@ -18,10 +18,10 @@ namespace droid.Editor {
     public const string _Generate_Descriptions_Loc_Pref_Key = "NeodroidDescriptionLocation";
 
     static string _scene_previews_location =
-      EditorPrefs.GetString(_Generate_Previews_Loc_Pref_Key, "ScenePreviews/");
+        EditorPrefs.GetString(_Generate_Previews_Loc_Pref_Key, "ScenePreviews/");
 
     static string _scene_description_location =
-      EditorPrefs.GetString(_Generate_Descriptions_Loc_Pref_Key, "SceneDescriptions/");
+        EditorPrefs.GetString(_Generate_Descriptions_Loc_Pref_Key, "SceneDescriptions/");
 
     public static string ImportLocation {
       get { return _import_location; }

@@ -15,7 +15,7 @@ namespace droid.Runtime.InternalReactions {
     [SerializeField]
     bool _auto_reset = true;
 
-    List<MotorMotion> _motions = new List<MotorMotion>();
+    List<ActuatorMotion> _motions = new List<ActuatorMotion>();
 
     /// <summary>
     /// </summary>
@@ -51,18 +51,18 @@ namespace droid.Runtime.InternalReactions {
               if (Input.GetKey(player_motion._Key)) {
                 #if NEODROID_DEBUG
                 if (this.Debugging) {
-                  Debug.Log($"{player_motion._Actor} {player_motion._Motor} {player_motion._Strength}");
+                  Debug.Log($"{player_motion._Actor} {player_motion._Actuator} {player_motion._Strength}");
                 }
                 #endif
 
-                if (player_motion._Motor == "Reset") {
+                if (player_motion._Actuator == "Reset") {
                   reset = true;
                   break;
                 }
 
-                var motion = new MotorMotion(player_motion._Actor,
-                                             player_motion._Motor,
-                                             player_motion._Strength);
+                var motion = new ActuatorMotion(player_motion._Actor,
+                                                player_motion._Actuator,
+                                                player_motion._Strength);
                 this._motions.Add(motion);
               }
             }

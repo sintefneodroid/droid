@@ -121,7 +121,9 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
       }
 
       foreach (var bb in this._bounding_boxes) {
-        this.SetOutlines(bb.Lines, bb.editorPreviewLineColor, bb.gameObject);
+        if (bb) {
+          this.SetOutlines(bb.Lines, bb.editorPreviewLineColor, bb.gameObject);
+        }
       }
     }
 

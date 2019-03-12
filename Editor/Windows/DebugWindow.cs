@@ -7,7 +7,7 @@ using droid.Runtime.Prototyping.Configurables;
 using droid.Runtime.Prototyping.Displayers;
 using droid.Runtime.Prototyping.Evaluation;
 using droid.Runtime.Prototyping.Internals;
-using droid.Runtime.Prototyping.Motors;
+using droid.Runtime.Prototyping.Actuators;
 using droid.Runtime.Prototyping.Observers;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -31,11 +31,11 @@ namespace droid.Editor.Windows {
 
     NeodroidManager _manager;
 
-    Motor[] _motors;
+    Actuator[] _Actuators;
 
     ObjectiveFunction[] _objective_functions;
 
-    Observer[] _observers;
+    Sensor[] _observers;
 
     PlayerReactions _player_reactions;
 
@@ -46,7 +46,7 @@ namespace droid.Editor.Windows {
     bool _show_displayers_debug;
     bool _show_environments_debug;
     bool _show_listeners_debug;
-    bool _show_motors_debug;
+    bool _show_Actuators_debug;
     bool _show_objective_functions_debug;
     bool _show_observers_debug;
     bool _show_player_reactions_debug;
@@ -71,8 +71,8 @@ namespace droid.Editor.Windows {
       this._manager = FindObjectOfType<PausableManager>();
       this._environments = FindObjectsOfType<NeodroidEnvironment>();
       this._actors = FindObjectsOfType<Actor>();
-      this._motors = FindObjectsOfType<Motor>();
-      this._observers = FindObjectsOfType<Observer>();
+      this._Actuators = FindObjectsOfType<Actuator>();
+      this._observers = FindObjectsOfType<Sensor>();
       this._configurables = FindObjectsOfType<Configurable>();
       this._objective_functions = FindObjectsOfType<ObjectiveFunction>();
       this._displayers = FindObjectsOfType<Displayer>();
@@ -86,7 +86,7 @@ namespace droid.Editor.Windows {
       this._show_player_reactions_debug = true;
       this._show_environments_debug = true;
       this._show_actors_debug = true;
-      this._show_motors_debug = true;
+      this._show_Actuators_debug = true;
       this._show_observers_debug = true;
       this._show_configurables_debug = true;
       this._show_objective_functions_debug = true;
@@ -100,7 +100,7 @@ namespace droid.Editor.Windows {
       this._show_player_reactions_debug = false;
       this._show_environments_debug = false;
       this._show_actors_debug = false;
-      this._show_motors_debug = false;
+      this._show_Actuators_debug = false;
       this._show_observers_debug = false;
       this._show_configurables_debug = false;
       this._show_objective_functions_debug = false;
@@ -114,7 +114,7 @@ namespace droid.Editor.Windows {
           && this._show_player_reactions_debug
           && this._show_environments_debug
           && this._show_actors_debug
-          && this._show_motors_debug
+          && this._show_Actuators_debug
           && this._show_observers_debug
           && this._show_configurables_debug
           && this._show_objective_functions_debug
@@ -152,7 +152,7 @@ namespace droid.Editor.Windows {
           "Debug all environments",
           this._show_environments_debug);
       this._show_actors_debug = EditorGUILayout.Toggle("Debug all actors", this._show_actors_debug);
-      this._show_motors_debug = EditorGUILayout.Toggle("Debug all motors", this._show_motors_debug);
+      this._show_Actuators_debug = EditorGUILayout.Toggle("Debug all Actuators", this._show_Actuators_debug);
       this._show_observers_debug = EditorGUILayout.Toggle("Debug all observers", this._show_observers_debug);
       this._show_configurables_debug = EditorGUILayout.Toggle(
           "Debug all configurables",
@@ -188,8 +188,8 @@ namespace droid.Editor.Windows {
           actor.Debugging = this._show_actors_debug;
         }
 
-        foreach (var motor in this._motors) {
-          motor.Debugging = this._show_motors_debug;
+        foreach (var Actuator in this._Actuators) {
+          Actuator.Debugging = this._show_Actuators_debug;
         }
 
         foreach (var observer in this._observers) {

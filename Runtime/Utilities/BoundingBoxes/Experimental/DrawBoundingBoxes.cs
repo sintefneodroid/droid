@@ -2,6 +2,9 @@
 using UnityEngine;
 
 namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
+  /// <inheritdoc />
+  /// <summary>
+  /// </summary>
   [ExecuteInEditMode]
   public class ShowBoundingBoxes : MonoBehaviour {
     public Color _Color = Color.green;

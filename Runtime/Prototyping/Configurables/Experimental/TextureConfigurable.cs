@@ -8,7 +8,6 @@ using JetBrains.Annotations;
 using UnityEngine;
 using Object = System.Object;
 
-
 namespace droid.Runtime.Prototyping.Configurables.Experimental {
   /// <inheritdoc />
   /// <summary>
@@ -32,11 +31,10 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     protected override void PreSetup() {
       this._renderer = this.GetComponent<Renderer>();
-      if(Application.isPlaying) {
+      if (Application.isPlaying) {
         if (this.use_shared) {
           this._mat = this._renderer?.sharedMaterial;
-        } else
-        {
+        } else {
           this._mat = this._renderer?.material;
         }
       }
@@ -60,17 +58,15 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
 
       this._texture = this._textures[(int)configuration.ConfigurableValue];
 
-        this._mat.SetTexture(_main_tex,this._texture);
+      this._mat.SetTexture(_main_tex, this._texture);
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-
     /// <returns></returns>
     public override IConfigurableConfiguration SampleConfiguration() {
-
-        this._last_sample = int.Parse(UnityEngine.Random.Range(0,this._textures.Length).ToString());
+      this._last_sample = int.Parse(UnityEngine.Random.Range(0, this._textures.Length).ToString());
 
       return new Configuration(this.Identifier, this._last_sample);
     }

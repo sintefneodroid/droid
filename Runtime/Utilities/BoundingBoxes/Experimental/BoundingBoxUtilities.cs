@@ -242,20 +242,27 @@ namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
     /// <summary>
     ///
     /// </summary>
-    /// <param name="bounds"></param>
+    /// <param name="bb"></param>
     /// <param name="cam"></param>
     /// <param name="margin"></param>
     /// <returns></returns>
-    public static Rect GetBoundingBoxScreenRect(this BoundingBox bounds, Camera cam, float margin = 0) {
-      Vector2 min = cam.WorldToScreenPoint(bounds.transform.TransformPoint(bounds.Points[0]));
+    public static Rect GetBoundingBoxScreenRect(this BoundingBox bb, Camera cam, Single margin = 0) {
+      var min = Vector2.zero;
+
+      if (bb != null && bb.Points?.Length > 0) {
+        min = cam.WorldToScreenPoint(bb._bb_transform.TransformPoint(bb.Points[0]));
+      }
+
       var max = min;
 
       var point = min;
       get_min_max(point, ref min, ref max);
 
-      for (var i = 1; i < bounds.Points.Length; i++) {
-        point = cam.WorldToScreenPoint(bounds.transform.TransformPoint(bounds.Points[i]));
-        get_min_max(point, ref min, ref max);
+      if (bb != null) {
+        for (var i = 1; i < bb.Points?.Length; i++) {
+          point = cam.WorldToScreenPoint(bb._bb_transform.TransformPoint(bb.Points[i]));
+          get_min_max(point, ref min, ref max);
+        }
       }
 
       var r = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
@@ -265,6 +272,59 @@ namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
       r.yMax += margin;
 
       return r;
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="a_cam"></param>
+    /// <param name="a_area"></param>
+    /// <param name="a_limits"></param>
+    /// <param name="a_max_height"></param>
+    public static void CalculateLimits(Camera a_cam,
+                                       Bounds a_area,
+                                       out Rect a_limits,
+                                       out float a_max_height) {
+      // Half the FOV angle in radians
+      var angle = a_cam.fieldOfView * Mathf.Deg2Rad * 0.5f;
+
+      // half the size of the viewing frustum at a distance of "1" from the camera
+      var tan = Vector2.one * Mathf.Tan(angle);
+      tan.x *= a_cam.aspect;
+
+      // the center point of the area and it's extents
+      // the center point is taken from the bottom center of the bounding box
+      var dim = a_area.extents;
+      var center = a_area.center - new Vector3(0, a_area.extents.y, 0);
+
+      // the maximum distance the camera can be above the area plane for each direction
+      var max_dist = new Vector2(dim.x / tan.x, dim.z / tan.y);
+
+      // actual distance of the camera above our plane
+      var dist = a_cam.transform.position.y - center.y;
+
+      // the max movement range around the center of the plane
+      dim.x *= 1f - dist / max_dist.x;
+      dim.z *= 1f - dist / max_dist.y;
+
+      // maximum world space y coordinate the camera can be moved to
+      a_max_height = center.y + Mathf.Min(max_dist.x, max_dist.y);
+
+      // the min and max x and z coordinates the camera can be at the current distance.
+      a_limits = new Rect(center.x - dim.x, center.z - dim.z, dim.x * 2, dim.z * 2);
+    }
+
+    public static bool CullToFrustum(Mesh mesh, Camera cam, Transform trans, bool update_position) {
+      var fov = cam.fieldOfView;
+      cam.fieldOfView = fov * 0.97f;
+      var planes = GeometryUtility.CalculateFrustumPlanes(cam);
+      cam.fieldOfView = fov;
+      if (GeometryUtility.TestPlanesAABB(planes, mesh.bounds)) {
+        return true;
+      } else {
+        Debug.Log("Culling :" + trans.name);
+        return false;
+      }
     }
 
     /// <summary>

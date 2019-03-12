@@ -110,11 +110,11 @@ namespace droid.Runtime.Environments {
 
       foreach (var actor in this.Actors) {
         var actor_value = actor.Value;
-        if (actor_value != null && actor_value.Motors != null) {
-          foreach (var motor in actor_value.Motors) {
-            var motor_value = motor.Value;
-            if (motor_value != null) {
-              this._sample_motions.Add(new MotorMotion(actor.Key, motor.Key, motor_value.Sample()));
+        if (actor_value != null && actor_value.Actuators != null) {
+          foreach (var Actuator in actor_value.Actuators) {
+            var Actuator_value = Actuator.Value;
+            if (Actuator_value != null) {
+              this._sample_motions.Add(new ActuatorMotion(actor.Key, Actuator.Key, Actuator_value.Sample()));
             }
           }
         }
@@ -193,7 +193,7 @@ namespace droid.Runtime.Environments {
 
     WaitForFixedUpdate _wait_for_fixed_update = new WaitForFixedUpdate();
     List<float> _observables = new List<float>();
-    List<MotorMotion> _sample_motions = new List<MotorMotion>();
+    List<ActuatorMotion> _sample_motions = new List<ActuatorMotion>();
 
     #endregion
 
@@ -904,8 +904,8 @@ namespace droid.Runtime.Environments {
       lock (this._reaction_lock) {
         if (this.Actors != null) {
           foreach (var a in this.Actors.Values) {
-            if (a.Motors != null) {
-              foreach (var m in a.Motors.Values) {
+            if (a.Actuators != null) {
+              foreach (var m in a.Actuators.Values) {
                 this._Energy_Spent += m.GetEnergySpend();
               }
             }
@@ -944,7 +944,7 @@ namespace droid.Runtime.Environments {
               #if NEODROID_DEBUG
               if (this.Debugging)
               {
-                Debug.Log($"Observer with key {item.Key} has a null FloatEnumerable value");
+                Debug.Log($"Sensor with key {item.Key} has a null FloatEnumerable value");
               }
               #endif
             }
@@ -952,7 +952,7 @@ namespace droid.Runtime.Environments {
             #if NEODROID_DEBUG
             if (this.Debugging)
             {
-              Debug.Log($"Observer with key {item.Key} has a null value");
+              Debug.Log($"Sensor with key {item.Key} has a null value");
             }
             #endif
           }
@@ -1120,7 +1120,7 @@ namespace droid.Runtime.Environments {
     /// <summary>
     /// </summary>
     /// <param name="reaction"></param>
-    void SendToMotors(Reaction reaction) {
+    void SendToActuators(Reaction reaction) {
       if (reaction.Motions != null && reaction.Motions.Length > 0) {
         foreach (var motion in reaction.Motions) {
           #if NEODROID_DEBUG
@@ -1174,7 +1174,7 @@ namespace droid.Runtime.Environments {
           #endif
         }
 
-        this.SendToMotors(reaction);
+        this.SendToActuators(reaction);
 
         this.StepEvent?.Invoke();
 

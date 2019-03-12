@@ -7,7 +7,6 @@ using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
-
 namespace droid.Runtime.Prototyping.Configurables.Experimental {
   /// <inheritdoc />
   /// <summary>
@@ -178,7 +177,6 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-
     /// <returns></returns>
     public override IConfigurableConfiguration SampleConfiguration() {
       var sample = int.Parse(UnityEngine.Random.Range(0, 5).ToString());

@@ -53,7 +53,7 @@ namespace droid.Runtime.Environments {
     [SerializeField]
     int _height = 0;
 
-    List<IMotorMotion> _motions = new List<IMotorMotion>();
+    List<IMotion> _motions = new List<IMotion>();
 
     /// <summary>
     /// </summary>
@@ -136,7 +136,7 @@ namespace droid.Runtime.Environments {
       this._motions.Clear();
 
       var strength = Random.Range(0, 4);
-      this._motions.Add(new MotorMotion("", "", strength));
+      this._motions.Add(new ActuatorMotion("", "", strength));
 
       var rp = new ReactionParameters(true, true, episode_count : true) {IsExternal = false};
       return new Reaction(rp, this._motions.ToArray(), null, null, null, "");

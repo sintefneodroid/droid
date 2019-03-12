@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using droid.Runtime.Prototyping.Observers.Grid;
+using droid.Runtime.Prototyping.Sensors.Grid;
 using droid.Runtime.Utilities.ScriptableObjects;
 using UnityEngine;
 
@@ -9,31 +9,31 @@ namespace droid.Runtime.Prototyping.Evaluation.Tasks {
   /// <summary>
   /// </summary>
   public class TaskSequence : NeodroidTask {
-    [SerializeField] GoalCellObserver _current_goal_cell;
+    [SerializeField] GoalCellSensor _current_goal_cell;
 
-    [SerializeField] Stack<GoalCellObserver> _goal_stack;
+    [SerializeField] Stack<GoalCellSensor> _goal_stack;
 
-    [SerializeField] GoalCellObserver[] _sequence;
+    [SerializeField] GoalCellSensor[] _sequence;
 
-    public GoalCellObserver CurrentGoalCell {
+    public GoalCellSensor CurrentGoalCell {
       get { return this._current_goal_cell; }
       private set { this._current_goal_cell = value; }
     }
 
     void Start() {
       if (this._sequence == null || this._sequence.Length == 0) {
-        this._sequence = FindObjectsOfType<GoalCellObserver>();
+        this._sequence = FindObjectsOfType<GoalCellSensor>();
         Array.Sort(this._sequence, (g1, g2) => g1.OrderIndex.CompareTo(g2.OrderIndex));
       }
 
       Array.Reverse(this._sequence);
-      this._goal_stack = new Stack<GoalCellObserver>(this._sequence);
+      this._goal_stack = new Stack<GoalCellSensor>(this._sequence);
       this.CurrentGoalCell = this.PopGoal();
     }
 
-    public GoalCellObserver[] GetSequence() { return this._sequence; }
+    public GoalCellSensor[] GetSequence() { return this._sequence; }
 
-    public GoalCellObserver PopGoal() {
+    public GoalCellSensor PopGoal() {
       this.CurrentGoalCell = this._goal_stack.Pop();
       return this.CurrentGoalCell;
     }

@@ -38,8 +38,8 @@ namespace droid.Runtime.Utilities.NeodroidCamera {
 
       foreach (var texture in this._textures) {
         if (texture) {
-          texture.height = this._size.y;
-          texture.width = this._size.x;
+          //texture.height = this._size.y;
+          //texture.width = this._size.x;
           texture.filterMode = this._filter_mode;
           texture.wrapMode = this._wrap_mode;
           //texture.graphicsFormat = this._texture_format;

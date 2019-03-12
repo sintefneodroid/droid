@@ -162,7 +162,7 @@ namespace droid.Runtime.Managers {
     /// <summary>
     /// </summary>
     [SerializeField]
-    bool _testing_motors;
+    bool _testing_Actuators;
 
     #if UNITY_EDITOR
     /// <summary>
@@ -237,7 +237,10 @@ namespace droid.Runtime.Managers {
 
     /// <summary>
     /// </summary>
-    public bool TestMotors { get { return this._testing_motors; } set { this._testing_motors = value; } }
+    public bool TestActuators {
+      get { return this._testing_Actuators; }
+      set { this._testing_Actuators = value; }
+    }
 
     /// <summary>
     /// </summary>
@@ -543,7 +546,7 @@ namespace droid.Runtime.Managers {
     /// <summary>
     /// </summary>
     protected void Tick() {
-      if (this.TestMotors) {
+      if (this.TestActuators) {
         this.React(this.SampleRandomReactions());
         this.CollectStates();
       }
@@ -787,7 +790,7 @@ namespace droid.Runtime.Managers {
       }
     }
 
-    public void SetTesting(bool arg0) { this.TestMotors = arg0; }
+    public void SetTesting(bool arg0) { this.TestActuators = arg0; }
 
 /*
     /// <summary>

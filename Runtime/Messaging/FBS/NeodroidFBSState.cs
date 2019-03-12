@@ -272,16 +272,16 @@ public struct FActor : IFlatbufferObject
   public string ActorName { get { int o = this.__p.__offset(4); return o != 0 ? this.__p.__string(o + this.__p.bb_pos) : null; } }
   public ArraySegment<byte>? GetActorNameBytes() { return this.__p.__vector_as_arraysegment(4); }
   public bool Alive { get { int o = this.__p.__offset(6); return o != 0 ? 0!=this.__p.bb.Get(o + this.__p.bb_pos) : (bool)false; } }
-  public FMotor? Motors(int j) { int o = this.__p.__offset(8); return o != 0 ? (FMotor?)(new FMotor()).__assign(this.__p.__indirect(this.__p.__vector(o) + j * 4), this.__p.bb) : null; }
-  public int MotorsLength { get { int o = this.__p.__offset(8); return o != 0 ? this.__p.__vector_len(o) : 0; } }
-  public FMotor? MotorsByKey(string key) { int o = this.__p.__offset(8); return o != 0 ? FMotor.__lookup_by_key(this.__p.__vector(o), key, this.__p.bb) : null; }
+  public FActuator? Actuators(int j) { int o = this.__p.__offset(8); return o != 0 ? (FActuator?)(new FActuator()).__assign(this.__p.__indirect(this.__p.__vector(o) + j * 4), this.__p.bb) : null; }
+  public int ActuatorsLength { get { int o = this.__p.__offset(8); return o != 0 ? this.__p.__vector_len(o) : 0; } }
+  public FActuator? ActuatorsByKey(string key) { int o = this.__p.__offset(8); return o != 0 ? FActuator.__lookup_by_key(this.__p.__vector(o), key, this.__p.bb) : null; }
 
   public static Offset<FActor> CreateFActor(FlatBufferBuilder builder,
       StringOffset actor_nameOffset = default(StringOffset),
       bool alive = false,
-      VectorOffset motorsOffset = default(VectorOffset)) {
+      VectorOffset ActuatorsOffset = default(VectorOffset)) {
     builder.StartObject(3);
-    AddMotors(builder, motorsOffset);
+    AddActuators(builder, ActuatorsOffset);
     AddActorName(builder, actor_nameOffset);
     AddAlive(builder, alive);
     return EndFActor(builder);
@@ -290,9 +290,9 @@ public struct FActor : IFlatbufferObject
   public static void StartFActor(FlatBufferBuilder builder) { builder.StartObject(3); }
   public static void AddActorName(FlatBufferBuilder builder, StringOffset actorNameOffset) { builder.AddOffset(0, actorNameOffset.Value, 0); }
   public static void AddAlive(FlatBufferBuilder builder, bool alive) { builder.AddBool(1, alive, false); }
-  public static void AddMotors(FlatBufferBuilder builder, VectorOffset motorsOffset) { builder.AddOffset(2, motorsOffset.Value, 0); }
-  public static VectorOffset CreateMotorsVector(FlatBufferBuilder builder, Offset<FMotor>[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
-  public static void StartMotorsVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
+  public static void AddActuators(FlatBufferBuilder builder, VectorOffset ActuatorsOffset) { builder.AddOffset(2, ActuatorsOffset.Value, 0); }
+  public static VectorOffset CreateActuatorsVector(FlatBufferBuilder builder, Offset<FActuator>[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
+  public static void StartActuatorsVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
   public static Offset<FActor> EndFActor(FlatBufferBuilder builder) {
     int o = builder.EndObject();
     builder.Required(o, 4);  // actor_name
@@ -326,37 +326,37 @@ public struct FActor : IFlatbufferObject
   }
 };
 
-public struct FMotor : IFlatbufferObject
+public struct FActuator : IFlatbufferObject
 {
   private Table __p;
   public ByteBuffer ByteBuffer { get { return this.__p.bb; } }
-  public static FMotor GetRootAsFMotor(ByteBuffer _bb) { return GetRootAsFMotor(_bb, new FMotor()); }
-  public static FMotor GetRootAsFMotor(ByteBuffer _bb, FMotor obj) { return (obj.__assign(_bb.GetInt(_bb.Position) + _bb.Position, _bb)); }
+  public static FActuator GetRootAsFActuator(ByteBuffer _bb) { return GetRootAsFActuator(_bb, new FActuator()); }
+  public static FActuator GetRootAsFActuator(ByteBuffer _bb, FActuator obj) { return (obj.__assign(_bb.GetInt(_bb.Position) + _bb.Position, _bb)); }
   public void __init(int _i, ByteBuffer _bb) { this.__p.bb_pos = _i; this.__p.bb = _bb; }
-  public FMotor __assign(int _i, ByteBuffer _bb) { this.__init(_i, _bb); return this; }
+  public FActuator __assign(int _i, ByteBuffer _bb) { this.__init(_i, _bb); return this; }
 
-  public string MotorName { get { int o = this.__p.__offset(4); return o != 0 ? this.__p.__string(o + this.__p.bb_pos) : null; } }
-  public ArraySegment<byte>? GetMotorNameBytes() { return this.__p.__vector_as_arraysegment(4); }
+  public string ActuatorName { get { int o = this.__p.__offset(4); return o != 0 ? this.__p.__string(o + this.__p.bb_pos) : null; } }
+  public ArraySegment<byte>? GetActuatorNameBytes() { return this.__p.__vector_as_arraysegment(4); }
   public FRange? ValidInput { get { int o = this.__p.__offset(6); return o != 0 ? (FRange?)(new FRange()).__assign(o + this.__p.bb_pos, this.__p.bb) : null; } }
   public float EnergySpentSinceReset { get { int o = this.__p.__offset(8); return o != 0 ? this.__p.bb.GetFloat(o + this.__p.bb_pos) : (float)0.0f; } }
 
-  public static void StartFMotor(FlatBufferBuilder builder) { builder.StartObject(3); }
-  public static void AddMotorName(FlatBufferBuilder builder, StringOffset motorNameOffset) { builder.AddOffset(0, motorNameOffset.Value, 0); }
+  public static void StartFActuator(FlatBufferBuilder builder) { builder.StartObject(3); }
+  public static void AddActuatorName(FlatBufferBuilder builder, StringOffset ActuatorNameOffset) { builder.AddOffset(0, ActuatorNameOffset.Value, 0); }
   public static void AddValidInput(FlatBufferBuilder builder, Offset<FRange> validInputOffset) { builder.AddStruct(1, validInputOffset.Value, 0); }
   public static void AddEnergySpentSinceReset(FlatBufferBuilder builder, float energySpentSinceReset) { builder.AddFloat(2, energySpentSinceReset, 0.0f); }
-  public static Offset<FMotor> EndFMotor(FlatBufferBuilder builder) {
+  public static Offset<FActuator> EndFActuator(FlatBufferBuilder builder) {
     int o = builder.EndObject();
-    builder.Required(o, 4);  // motor_name
+    builder.Required(o, 4);  // Actuator_name
     builder.Required(o, 6);  // valid_input
-    return new Offset<FMotor>(o);
+    return new Offset<FActuator>(o);
   }
 
-  public static VectorOffset CreateSortedVectorOfFMotor(FlatBufferBuilder builder, Offset<FMotor>[] offsets) {
-    Array.Sort(offsets, (Offset<FMotor> o1, Offset<FMotor> o2) => Table.CompareStrings(Table.__offset(4, o1.Value, builder.DataBuffer), Table.__offset(4, o2.Value, builder.DataBuffer), builder.DataBuffer));
+  public static VectorOffset CreateSortedVectorOfFActuator(FlatBufferBuilder builder, Offset<FActuator>[] offsets) {
+    Array.Sort(offsets, (Offset<FActuator> o1, Offset<FActuator> o2) => Table.CompareStrings(Table.__offset(4, o1.Value, builder.DataBuffer), Table.__offset(4, o2.Value, builder.DataBuffer), builder.DataBuffer));
     return builder.CreateVectorOfTables(offsets);
   }
 
-  public static FMotor? __lookup_by_key(int vectorLocation, string key, ByteBuffer bb) {
+  public static FActuator? __lookup_by_key(int vectorLocation, string key, ByteBuffer bb) {
     byte[] byteKey = Encoding.UTF8.GetBytes(key);
     int span = bb.GetInt(vectorLocation - 4);
     int start = 0;
@@ -371,7 +371,7 @@ public struct FMotor : IFlatbufferObject
         start += middle;
         span -= middle;
       } else {
-        return new FMotor().__assign(tableOffset, bb);
+        return new FActuator().__assign(tableOffset, bb);
       }
     }
     return null;

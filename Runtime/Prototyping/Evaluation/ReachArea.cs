@@ -1,5 +1,5 @@
 ﻿using droid.Runtime.Prototyping.Actors;
-using droid.Runtime.Prototyping.Observers;
+using droid.Runtime.Prototyping.Sensors;
 using droid.Runtime.Utilities.BoundingBoxes;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Misc.Extensions;
@@ -78,7 +78,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
 
     protected override void PostSetup() {
       if (!this._area) {
-        this._area = FindObjectOfType<Observer>().gameObject.GetComponent<Collider>();
+        this._area = FindObjectOfType<Sensor>().gameObject.GetComponent<Collider>();
       }
 
       if (!this._actor) {

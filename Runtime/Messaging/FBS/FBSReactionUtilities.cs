@@ -193,9 +193,9 @@ namespace droid.Runtime.Messaging.FBS {
       return null;
     }
 
-    static IMotorMotion[] deserialise_motions(FReaction reaction) {
+    static IMotion[] deserialise_motions(FReaction reaction) {
       var l = reaction.MotionsLength;
-      var motions = new IMotorMotion[l];
+      var motions = new IMotion[l];
       for (var i = 0; i < l; i++) {
         motions[i] = deserialise_motion(reaction.Motions(i));
       }
@@ -212,9 +212,11 @@ namespace droid.Runtime.Messaging.FBS {
       return null;
     }
 
-    static MotorMotion deserialise_motion(FMotion? motion) {
+    static ActuatorMotion deserialise_motion(FMotion? motion) {
       if (motion.HasValue) {
-        return new MotorMotion(motion.Value.ActorName, motion.Value.MotorName, (float)motion.Value.Strength);
+        return new ActuatorMotion(motion.Value.ActorName,
+                                  motion.Value.ActuatorName,
+                                  (float)motion.Value.Strength);
       }
 
       return null;

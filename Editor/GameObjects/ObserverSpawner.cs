@@ -1,6 +1,6 @@
 ﻿#if UNITY_EDITOR
-using droid.Runtime.Prototyping.Observers;
-using droid.Runtime.Prototyping.Observers.Transform;
+using droid.Runtime.Prototyping.Sensors;
+using droid.Runtime.Prototyping.Sensors.Transform;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,8 +8,8 @@ namespace droid.Editor.GameObjects {
   public class ObserverSpawner : MonoBehaviour {
     [MenuItem(EditorGameObjectMenuPath._GameObjectMenuPath + "Observers/Base", false, 10)]
     static void CreateObserverGameObject(MenuCommand menu_command) {
-      var go = new GameObject("Observer");
-      go.AddComponent<Observer>();
+      var go = new GameObject("Sensor");
+      go.AddComponent<Sensor>();
       GameObjectUtility.SetParentAndAlign(go,
                                           menu_command
                                                   .context as
@@ -20,8 +20,8 @@ namespace droid.Editor.GameObjects {
 
     [MenuItem("GameObject/Neodroid/Observers/EulerTransform", false, 10)]
     static void CreateEulerTransformObserverGameObject(MenuCommand menu_command) {
-      var go = new GameObject("EulerTransformObserver");
-      go.AddComponent<EulerTransformObserver>();
+      var go = new GameObject("EulerTransformSensor");
+      go.AddComponent<EulerTransformSensor>();
       GameObjectUtility.SetParentAndAlign(go,
                                           menu_command
                                                   .context as

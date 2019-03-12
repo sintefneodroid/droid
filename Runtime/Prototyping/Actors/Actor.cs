@@ -14,7 +14,7 @@ namespace droid.Runtime.Prototyping.Actors {
   [AddComponentMenu(ActorComponentMenuPath._ComponentMenuPath + "Vanilla" + ActorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   public class Actor : PrototypingGameObject,
-                       IHasRegister<IMotor>,
+                       IHasRegister<IActuator>,
                        IActor
       //IResetable
   {
@@ -49,27 +49,28 @@ namespace droid.Runtime.Prototyping.Actors {
       }
     }
 
-    Dictionary<string, IMotor> IActor.Motors { get { return this._Motors; } }
+    Dictionary<string, IActuator> IActor.Actuators { get { return this._Actuators; } }
 
     public Transform Transform { get { return this.transform; } }
 
     /// <summary>
     /// </summary>
     /// <param name="motion"></param>
-    public virtual void ApplyMotion(IMotorMotion motion) {
+    public virtual void ApplyMotion(IMotion motion) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log($"Applying {motion} To {this.name}'s motors");
+        Debug.Log($"Applying {motion} To {this.name}'s Actuators");
       }
       #endif
 
-      var motion_motor_name = motion.MotorName;
-      if (this._Motors.ContainsKey(motion_motor_name) && this._Motors[motion_motor_name] != null) {
-        this._Motors[motion_motor_name].ApplyMotion(motion);
+      var motion_Actuator_name = motion.ActuatorName;
+      if (this._Actuators.ContainsKey(motion_Actuator_name)
+          && this._Actuators[motion_Actuator_name] != null) {
+        this._Actuators[motion_Actuator_name].ApplyMotion(motion);
       } else {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Could find not motor with the specified name: {motion_motor_name} on actor {this.name}");
+          Debug.Log($"Could find not Actuator with the specified name: {motion_Actuator_name} on actor {this.name}");
         }
         #endif
       }
@@ -79,9 +80,9 @@ namespace droid.Runtime.Prototyping.Actors {
     /// <summary>
     /// </summary>
     public virtual void EnvironmentReset() {
-      if (this._Motors != null) {
-        foreach (var motor in this._Motors.Values) {
-          motor?.EnvironmentReset();
+      if (this._Actuators != null) {
+        foreach (var Actuator in this._Actuators.Values) {
+          Actuator?.EnvironmentReset();
         }
       }
     }
@@ -89,24 +90,24 @@ namespace droid.Runtime.Prototyping.Actors {
     /// <summary>
     /// </summary>
     /// <param name="identifier"></param>
-    public void UnRegister(IMotor motor, string identifier) {
-      if (this._Motors != null) {
-        if (this._Motors.ContainsKey(identifier)) {
+    public void UnRegister(IActuator Actuator, string identifier) {
+      if (this._Actuators != null) {
+        if (this._Actuators.ContainsKey(identifier)) {
           #if NEODROID_DEBUG
           if (this.Debugging) {
-            Debug.Log($"Actor {this.name} unregistered motor {identifier}");
+            Debug.Log($"Actor {this.name} unregistered Actuator {identifier}");
           }
           #endif
 
-          this._Motors.Remove(identifier);
+          this._Actuators.Remove(identifier);
         }
       }
     }
 
     /// <summary>
     /// </summary>
-    /// <param name="motor"></param>
-    public void UnRegister(IMotor motor) { this.UnRegister(motor, motor.Identifier); }
+    /// <param name="Actuator"></param>
+    public void UnRegister(IActuator Actuator) { this.UnRegister(Actuator, Actuator.Identifier); }
 
     /// <inheritdoc />
     /// <summary>
@@ -129,7 +130,7 @@ namespace droid.Runtime.Prototyping.Actors {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void Clear() { this._Motors.Clear(); }
+    protected override void Clear() { this._Actuators.Clear(); }
 
     /// <inheritdoc />
     /// <summary>
@@ -165,21 +166,21 @@ namespace droid.Runtime.Prototyping.Actors {
 
     /// <summary>
     /// </summary>
-    /// <param name="motor"></param>
+    /// <param name="Actuator"></param>
     /// <param name="identifier"></param>
-    public void RegisterMotor(IMotor motor, string identifier) {
+    public void RegisterActuator(IActuator Actuator, string identifier) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log("Actor " + this.name + " has motor " + identifier);
+        Debug.Log("Actor " + this.name + " has Actuator " + identifier);
       }
       #endif
 
-      if (!this._Motors.ContainsKey(identifier)) {
-        this._Motors.Add(identifier, motor);
+      if (!this._Actuators.ContainsKey(identifier)) {
+        this._Actuators.Add(identifier, Actuator);
       } else {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"A motor with the identifier {identifier} is already registered");
+          Debug.Log($"A Actuator with the identifier {identifier} is already registered");
         }
         #endif
       }
@@ -197,7 +198,7 @@ namespace droid.Runtime.Prototyping.Actors {
     /// </summary>
     [Header("General", order = 101)]
     [SerializeField]
-    protected Dictionary<string, IMotor> _Motors = new Dictionary<string, IMotor>();
+    protected Dictionary<string, IActuator> _Actuators = new Dictionary<string, IActuator>();
 
     #if UNITY_EDITOR
     const int _script_execution_order = -10;
@@ -215,19 +216,21 @@ namespace droid.Runtime.Prototyping.Actors {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    /// <param name="motor"></param>
-    public void Register(IMotor motor) { this.RegisterMotor(motor, motor.Identifier); }
+    /// <param name="Actuator"></param>
+    public void Register(IActuator Actuator) { this.RegisterActuator(Actuator, Actuator.Identifier); }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    /// <param name="motor"></param>
+    /// <param name="Actuator"></param>
     /// <param name="identifier"></param>
-    public void Register(IMotor motor, string identifier) { this.RegisterMotor(motor, identifier); }
+    public void Register(IActuator Actuator, string identifier) {
+      this.RegisterActuator(Actuator, identifier);
+    }
 
     /// <summary>
     /// </summary>
-    public Dictionary<string, IMotor> Motors { get { return this._Motors; } }
+    public Dictionary<string, IActuator> Actuators { get { return this._Actuators; } }
 
     /// <summary>
     /// </summary>

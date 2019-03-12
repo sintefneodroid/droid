@@ -3,7 +3,6 @@ using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using UnityEngine;
 
-
 namespace droid.Runtime.Prototyping.Configurables {
   /// <summary>
   ///
