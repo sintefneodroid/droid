@@ -50,8 +50,8 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     public Space4 QuadSpace { get { return this._quad_space; } }
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
     protected override void PreSetup() {
       this._x = this.Identifier + "X_";
@@ -174,7 +174,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     ///  <returns></returns>
     public override IConfigurableConfiguration SampleConfiguration() {
       var sample = this.QuadSpace.Sample();
-      var r = (int)Random.Range(0, 3);
+      var r = (int)Random.Range(0, 4);
       switch (r) {
         case 0:
           return new Configuration(this._x, sample.x);

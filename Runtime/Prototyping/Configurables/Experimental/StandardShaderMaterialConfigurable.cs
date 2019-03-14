@@ -32,6 +32,11 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     string _smoothness;
 
+    string _tiling_x;
+    string _tiling_y;
+    string _offset_x;
+    string _offset_y;
+
     /// <summary>
     ///   Red
     /// </summary>
@@ -40,6 +45,9 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     string _g;
     string _b;
     string _a;
+
+    [SerializeField] Space2 _tiling_space = Space2.ZeroOne;
+    [SerializeField] Space2 _offset_space = Space2.ZeroOne;
 
     [SerializeField] Space4 _color_space = Space4.ZeroOne;
     [SerializeField] Space1 _smoothness_space = Space1.ZeroOne;
@@ -53,6 +61,8 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
 
     static readonly int _glossiness = Shader.PropertyToID("_Glossiness");
     static readonly int _glossy_reflections = Shader.PropertyToID("_GlossyReflections");
+    static readonly Int32 _offset = Shader.PropertyToID("_MainTex");
+    static readonly Int32 _tiling = Shader.PropertyToID("_MainTex");
 
     /// <inheritdoc />
     /// <summary>
@@ -65,6 +75,10 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       //this._texture = this.Identifier + "Texture";
       this._reflection = this.Identifier + "Reflection";
       this._smoothness = this.Identifier + "Smoothness";
+      this._tiling_x = this.Identifier + "TilingX";
+      this._tiling_y = this.Identifier + "TilingY";
+      this._offset_x = this.Identifier + "OffsetX";
+      this._offset_y = this.Identifier + "OffsetY";
 
       this._renderer = this.GetComponent<Renderer>();
     }
@@ -101,6 +115,22 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
           NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
                                               (Configurable)this,
                                               this._smoothness);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._offset_x);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._offset_y);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._tiling_x);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._tiling_y);
     }
 
     /// <inheritdoc />
@@ -118,6 +148,10 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       //this.ParentEnvironment.UnRegister(this, this._texture);
       this.ParentEnvironment.UnRegister(this, this._reflection);
       this.ParentEnvironment.UnRegister(this, this._smoothness);
+      this.ParentEnvironment.UnRegister(this, this._offset_x);
+      this.ParentEnvironment.UnRegister(this, this._offset_y);
+      this.ParentEnvironment.UnRegister(this, this._tiling_x);
+      this.ParentEnvironment.UnRegister(this, this._tiling_y);
     }
 
     /// <summary>
@@ -146,6 +180,22 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
             mat.SetFloat(_glossiness, configuration.ConfigurableValue);
           } else if (configuration.ConfigurableName == this._reflection) {
             mat.SetFloat(_glossy_reflections, configuration.ConfigurableValue);
+          } else if (configuration.ConfigurableName == this._offset_x) {
+            var a = mat.GetTextureOffset(_offset);
+            a.x = configuration.ConfigurableValue;
+            mat.SetTextureOffset(_offset, a);
+          } else if (configuration.ConfigurableName == this._offset_y) {
+            var a = mat.GetTextureOffset(_offset);
+            a.y = configuration.ConfigurableValue;
+            mat.SetTextureOffset(_offset, a);
+          } else if (configuration.ConfigurableName == this._tiling_x) {
+            var a = mat.GetTextureScale(_tiling);
+            a.x = configuration.ConfigurableValue;
+            mat.SetTextureScale(_tiling, a);
+          } else if (configuration.ConfigurableName == this._tiling_y) {
+            var a = mat.GetTextureScale(_tiling);
+            a.y = configuration.ConfigurableValue;
+            mat.SetTextureScale(_tiling, a);
           }
 
           mat.color = c;
@@ -166,6 +216,22 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
             mat.SetFloat(_glossiness, configuration.ConfigurableValue);
           } else if (configuration.ConfigurableName == this._reflection) {
             mat.SetFloat(_glossy_reflections, configuration.ConfigurableValue);
+          } else if (configuration.ConfigurableName == this._offset_x) {
+            var a = mat.GetTextureOffset(_offset);
+            a.x = configuration.ConfigurableValue;
+            mat.SetTextureOffset(_offset, a);
+          } else if (configuration.ConfigurableName == this._offset_y) {
+            var a = mat.GetTextureOffset(_offset);
+            a.y = configuration.ConfigurableValue;
+            mat.SetTextureOffset(_offset, a);
+          } else if (configuration.ConfigurableName == this._tiling_x) {
+            var a = mat.GetTextureScale(_tiling);
+            a.x = configuration.ConfigurableValue;
+            mat.SetTextureScale(_tiling, a);
+          } else if (configuration.ConfigurableName == this._tiling_y) {
+            var a = mat.GetTextureScale(_tiling);
+            a.y = configuration.ConfigurableValue;
+            mat.SetTextureScale(_tiling, a);
           }
 
           mat.color = c;
@@ -178,7 +244,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     /// <returns></returns>
     public override IConfigurableConfiguration SampleConfiguration() {
-      var sample = int.Parse(UnityEngine.Random.Range(0, 5).ToString());
+      var sample = (int)(UnityEngine.Random.Range(0, 9 + 1));
 
       switch (sample) {
         case 0:
@@ -197,8 +263,18 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
           return new Configuration(this._reflection, this._reflection_space.Sample());
         case 5:
           return new Configuration(this._smoothness, this._smoothness_space.Sample());
+        case 6:
+          return new Configuration(this._tiling_x, this._tiling_space.Sample().x);
+        case 7:
+          return new Configuration(this._tiling_y, this._tiling_space.Sample().y);
+        case 8:
+          return new Configuration(this._offset_x, this._offset_space.Sample().x);
+        case 9:
+          return new Configuration(this._offset_y, this._offset_space.Sample().y);
         //case 6:
         //return new Configuration(this._texture, (float) Space1.ZeroOne.Sample());
+        default:
+          throw new IndexOutOfRangeException();
       }
 
       var cs6 = this._color_space.Sample();

@@ -5,6 +5,7 @@ using droid.Runtime.Utilities.Debugging;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
+using Object = System.Object;
 
 namespace droid.Runtime.Prototyping.Configurables.Experimental {
   /// <inheritdoc cref="Configurable" />
@@ -20,12 +21,12 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     Mesh _deforming_mesh = null;
     Vector3[] _original_vertices = null, _displaced_vertices = null;
     Perlin _noise = null;
-    float _scale = 1.0f;
     float _speed = 1.0f;
 
     [SerializeField] Mesh[] _meshes = null;
     [SerializeField] MeshFilter _mesh_filter = null;
     [SerializeField] bool _displace_mesh = false;
+    [SerializeField] Space1 _deformation_space = new Space1 {_Min_Value = 1f,_Max_Value = 5f};
 
     /// <inheritdoc />
     /// <summary>
@@ -62,6 +63,8 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       this.ParentEnvironment?.UnRegister(this, this._mesh_str);
     }
 
+
+
     /// <summary>
     /// </summary>
     /// <param name="configuration"></param>
@@ -82,9 +85,12 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
               //orig.y = orig.y * (1+(float)Math.Cos(Time.deltaTime))*(configuration.ConfigurableValue);
               //orig.x = orig.x * (1+(float)Math.Sin(Time.deltaTime))*(configuration.ConfigurableValue);
 
-              orig.x += this._noise.Noise(time_x + orig.x, time_x + orig.y, time_x + orig.z) * this._scale;
-              orig.y += this._noise.Noise(time_y + orig.x, time_y + orig.y, time_y + orig.z) * this._scale;
-              orig.z += this._noise.Noise(time_z + orig.x, time_z + orig.y, time_z + orig.z) * this._scale;
+              orig.x += this._noise.Noise(time_x + orig.x, time_x + orig.y, time_x + orig.z) * configuration
+              .ConfigurableValue;
+              orig.y += this._noise.Noise(time_y + orig.x, time_y + orig.y, time_y + orig.z) * configuration
+                            .ConfigurableValue;
+              orig.z += this._noise.Noise(time_z + orig.x, time_z + orig.y, time_z + orig.z) * configuration
+                            .ConfigurableValue;
 
               this._displaced_vertices[i] = orig;
             }
@@ -105,7 +111,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     /// <returns></returns>
     public override IConfigurableConfiguration SampleConfiguration() {
-      return new Configuration(this._mesh_str, (float)Space1.ZeroOne.Sample());
+      return new Configuration(this._mesh_str, _deformation_space.Sample());
     }
   }
 }

@@ -154,7 +154,7 @@ namespace droid.Runtime.Prototyping.Configurables {
 
     public override IConfigurableConfiguration SampleConfiguration() {
       var sample = this.TripleSpace.Sample();
-      var r = (int)Random.Range(0, 2);
+      var r = (int)Random.Range(0, 3);
       switch (r) {
         case 0:
           return new Configuration(this._x, sample.x);

@@ -19,7 +19,7 @@ MonoBehaviour:
   _apply_quality_settings: 1
   _height: 600
   _width: 900
-  _quality_level: 1
+  _quality_level: 4
   _frame_finishes: 1
   _frame_skips: 0
   _full_screen: 0
