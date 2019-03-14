@@ -14,8 +14,8 @@ namespace droid.Editor.Utilities.Git {
   /// <summary>
   /// </summary>
   [InitializeOnLoad]
-  class GithubExtensionUserInterface : VisualElement{
-                                       //IPackageManagerExtension {
+  class GithubExtensionUserInterface : VisualElement {
+    //IPackageManagerExtension {
     //################################
     // Constant or Static Members.
     //################################
@@ -44,17 +44,13 @@ namespace droid.Editor.Utilities.Git {
     /// Called by the Package Manager UI when a package is added or updated.
     /// </summary>
     /// <param name="package_info">The package information</param>
-    public void OnPackageAddedOrUpdated(PackageInfo package_info) {
-      this._detail_controls?.SetEnabled(true);
-    }
+    public void OnPackageAddedOrUpdated(PackageInfo package_info) { this._detail_controls?.SetEnabled(true); }
 
     /// <summary>
     /// Called by the Package Manager UI when a package is removed.
     /// </summary>
     /// <param name="package_info">The package information</param>
-    public void OnPackageRemoved(PackageInfo package_info) {
-      this._detail_controls?.SetEnabled(true);
-    }
+    public void OnPackageRemoved(PackageInfo package_info) { this._detail_controls?.SetEnabled(true); }
 
     /// <summary>
     /// Called by the Package Manager UI when the package selection changed.
@@ -85,15 +81,15 @@ namespace droid.Editor.Utilities.Git {
         var combo_element = this._detail_controls.Q("updateCombo");
         var remove_element = this._detail_controls.Q("remove");
         EditorApplication.delayCall += () => {
-          if (combo_element!=null) {
-            GithubExtension.SetElementDisplay(combo_element, true);
-          }
+                                         if (combo_element != null) {
+                                           GithubExtension.SetElementDisplay(combo_element, true);
+                                         }
 
-          if(remove_element != null){
-            GithubExtension.SetElementDisplay(remove_element, true);
-            remove_element.SetEnabled(true);
-          }
-        };
+                                         if (remove_element != null) {
+                                           GithubExtension.SetElementDisplay(remove_element, true);
+                                           remove_element.SetEnabled(true);
+                                         }
+                                       };
       }
 
       GithubExtension.SetElementClass(this.HostingIcon, "github", true);
@@ -127,13 +123,14 @@ namespace droid.Editor.Utilities.Git {
       }
 
       var package_manager_element = this.parent?.parent;
-      if(package_manager_element == null) {
+      if (package_manager_element == null) {
         return;
       }
 
-      this._detail_controls = package_manager_element.parent?.parent?.parent?.Q("packageToolBar")?.Q
-          ("toolbarContainer")?.Q("rightItems");
-      if(this._detail_controls == null) {
+      this._detail_controls = package_manager_element
+                              .parent?.parent?.parent?.Q("packageToolBar")?.Q("toolbarContainer")
+                              ?.Q("rightItems");
+      if (this._detail_controls == null) {
         return;
       }
 
@@ -147,42 +144,40 @@ namespace droid.Editor.Utilities.Git {
       this._git_detail_actoins.styleSheets.Add(EditorGUIUtility.Load(_style_path) as StyleSheet);
 
       // Add callbacks
-      this.HostingIcon.clickable.clicked += () =>
-          Application.OpenURL(GithubExtension.GetRepoUrl(this._package_info));
-      this.ViewDocumentation.clickable.clicked += () =>
-          Application.OpenURL(GithubExtension.GetFileUrl(this._package_info, "README.md"));
-      this.ViewChangelog.clickable.clicked += () =>
-          Application.OpenURL(GithubExtension.GetFileUrl(this._package_info, "CHANGELOG.md"));
-      this.ViewLicense.clickable.clicked += () =>
-          Application.OpenURL(GithubExtension.GetFileUrl(this._package_info, "LICENSE.md"));
-
-
+      this.HostingIcon.clickable.clicked +=
+          () => Application.OpenURL(GithubExtension.GetRepoUrl(this._package_info));
+      this.ViewDocumentation.clickable.clicked +=
+          () => Application.OpenURL(GithubExtension.GetFileUrl(this._package_info, "README.md"));
+      this.ViewChangelog.clickable.clicked +=
+          () => Application.OpenURL(GithubExtension.GetFileUrl(this._package_info, "CHANGELOG.md"));
+      this.ViewLicense.clickable.clicked +=
+          () => Application.OpenURL(GithubExtension.GetFileUrl(this._package_info, "LICENSE.md"));
 
       this._documentation_container = package_manager_element.Q("documentationContainer");
       this._original_detail_actions = this._documentation_container.Q("detailActions");
       this._documentation_container.Add(this._git_detail_actoins);
 
-      this._update_button = new Button(this.AddOrUpdatePackage) {
-          name = "update",
-          text = "Up to date"
-      };
+      this._update_button = new Button(this.AddOrUpdatePackage) {name = "update", text = "Up to date"};
       this._update_button.AddToClassList("action");
       this._version_popup = new Button(this.PopupVersions) {
-          text = "hoge",
-          style = {
-              marginLeft = -4, marginRight = -3, marginTop = -3, marginBottom = -3,
-          },
-      };
+                                                               text = "hoge",
+                                                               style = {
+                                                                           marginLeft = -4,
+                                                                           marginRight = -3,
+                                                                           marginTop = -3,
+                                                                           marginBottom = -3,
+                                                                       },
+                                                           };
       this._version_popup.AddToClassList("popup");
       this._version_popup.AddToClassList("popupField");
       this._version_popup.AddToClassList("versions");
 
       //this._detail_controls.Q("updateCombo").Add(this._update_button);
-      this._detail_controls.Insert(0,this._update_button);
+      this._detail_controls.Insert(0, this._update_button);
 //this._detail_controls.Q("updateCombo").Insert(1, this._update_button);
       //this._detail_controls.Insert(1, this._update_button);
       //this._detail_controls.Q("updateDropdownContainer").Add(this._version_popup);
-      this._detail_controls.Insert(0,this._version_popup);
+      this._detail_controls.Insert(0, this._version_popup);
 
       this._initialized = true;
     }
@@ -195,11 +190,10 @@ namespace droid.Editor.Utilities.Git {
       var menu = new GenericMenu();
       var current = this._package_info.version;
 
-      menu.AddItem(
-          new GUIContent(current + " - current"),
-          this._version_popup.text == current,
-          this.SetVersion,
-          current);
+      menu.AddItem(new GUIContent(current + " - current"),
+                   this._version_popup.text == current,
+                   this.SetVersion,
+                   current);
 
       foreach (var t in this._tags.OrderByDescending(x => x)) {
         var tag = t;
@@ -225,6 +219,7 @@ namespace droid.Editor.Utilities.Git {
       if (!same_ver) {
         this._update_button.text = "Update";
       }
+
       //this._update_button.SetEnabled(true);
     }
 

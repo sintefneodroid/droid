@@ -19,7 +19,7 @@ namespace droid.Editor.GameObjects {
       Selection.activeObject = go;
     }
 
-    [MenuItem("GameObject/Neodroid/Environment", false, 10)]
+    [MenuItem(EditorGameObjectMenuPath._GameObjectMenuPath + "Environment", false, 10)]
     static void CreateEnvironmentGameObject(MenuCommand menu_command) {
       var go = new GameObject("Environment");
       var plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
@@ -33,7 +33,7 @@ namespace droid.Editor.GameObjects {
       Selection.activeObject = go;
     }
 
-    [MenuItem("GameObject/Neodroid/Actor", false, 10)]
+    [MenuItem(EditorGameObjectMenuPath._GameObjectMenuPath + "Actor", false, 10)]
     static void CreateActorGameObject(MenuCommand menu_command) {
       var go = new GameObject("Actor");
       var capsule = GameObject.CreatePrimitive(PrimitiveType.Capsule);

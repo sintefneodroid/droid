@@ -7,13 +7,13 @@ using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Transform {
-  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
                     + "PositionObserver2D"
-                    + ObserverComponentMenuPath._Postfix)]
+                    + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [Serializable]
-  public class PositionObserver2D : Sensor,
-                                    IHasDouble {
+  public class Position2DSensor : Sensor,
+                                  IHasDouble {
     [Header("Observation", order = 103)]
     [SerializeField]
     Vector2 _2_d_position;

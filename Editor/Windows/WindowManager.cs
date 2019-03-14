@@ -8,7 +8,7 @@ namespace droid.Editor.Windows {
                                                 typeof(RenderTextureConfiguratorWindow),
                                                 typeof(CameraSynchronisationWindow),
                                                 #if NEODROID_DEBUG
-        typeof(DebugWindow),
+                                                typeof(DebugWindow),
                                                 #endif
                                                 typeof(SegmentationWindow),
                                                 typeof(EnvironmentsWindow),

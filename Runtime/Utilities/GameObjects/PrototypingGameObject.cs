@@ -16,7 +16,7 @@ namespace droid.Runtime.Utilities.GameObjects {
     [Header("Naming", order = 10)]
     protected string _Custom_Name = "";
     #if NEODROID_DEBUG
-        [SerializeField] bool _debugging;
+    [SerializeField] bool _debugging;
     #endif
     /// <summary>
     /// </summary>
@@ -39,9 +39,9 @@ namespace droid.Runtime.Utilities.GameObjects {
     [SerializeField] bool _unregister_at_disable = false;
 
     #if NEODROID_DEBUG
-        /// <summary>
-        /// </summary>
-        public bool Debugging { get { return this._debugging; } set { this._debugging = value; } }
+    /// <summary>
+    /// </summary>
+    public bool Debugging { get { return this._debugging; } set { this._debugging = value; } }
     #endif
     ///
     public virtual string PrototypingTypeName { get { return this.GetType().Name; } }

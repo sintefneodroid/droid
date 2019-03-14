@@ -169,8 +169,7 @@ namespace droid.Runtime.Utilities.Misc {
 
         #if NEODROID_DEBUG
         if (debug) {
-          Debug.Log(
-            $"{caller.name} has created {collider_sensor.name} on {child.name} under parent {parent.name}");
+          Debug.Log($"{caller.name} has created {collider_sensor.name} on {child.name} under parent {parent.name}");
         }
         #endif
       }

@@ -8,9 +8,9 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
                     + "StringAugmentedCamera"
-                    + ObserverComponentMenuPath._Postfix)]
+                    + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [RequireComponent(typeof(UnityEngine.Camera))]
   public class StringAugmentedCameraSensor : CameraSensor,

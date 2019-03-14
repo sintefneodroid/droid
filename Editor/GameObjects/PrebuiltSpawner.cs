@@ -28,7 +28,7 @@ namespace droid.Editor.GameObjects {
 
       var actor = new GameObject("Actor");
       actor.AddComponent<Actor>();
-      actor.AddComponent<EulerTransformActuator3Dof>();
+      actor.AddComponent<EulerTransform3DofActuator>();
       actor.AddComponent<EulerTransformSensor>();
       actor.AddComponent<PositionConfigurable>();
       actor.transform.parent = go.transform;

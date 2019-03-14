@@ -8,9 +8,9 @@ namespace droid.Runtime.Prototyping.Sensors {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
                     + "Compass"
-                    + ObserverComponentMenuPath._Postfix)]
+                    + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [Serializable]
   public class CompassSensor : Sensor,

@@ -21,8 +21,7 @@ namespace droid.Tests.Editor {
     [TestCase(_package_name + "@https://github.com/" + _user_repo + ".git", ExpectedResult = _repo_url)]
     [TestCase(_package_name + "@https://github.com/" + _user_repo + ".git#0.3.0", ExpectedResult = _repo_url)]
     [TestCase(_package_name + "@ssh://git@github.com/" + _user_repo + ".git", ExpectedResult = _repo_url)]
-    [TestCase(
-        _package_name + "@ssh://git@github.com/" + _user_repo + ".git#0.3.0",
+    [TestCase(_package_name + "@ssh://git@github.com/" + _user_repo + ".git#0.3.0",
         ExpectedResult = _repo_url)]
     [TestCase(_package_name + "@git@github.com:" + _user_repo + ".git", ExpectedResult = _repo_url)]
     [TestCase(_package_name + "@git@github.com:" + _user_repo + ".git#0.3.0", ExpectedResult = _repo_url)]
@@ -32,18 +31,15 @@ namespace droid.Tests.Editor {
 
     [TestCase("", ExpectedResult = "")]
     [TestCase(_package_name + "@https://github.com/" + _user_repo + ".git", ExpectedResult = _user_repo)]
-    [TestCase(
-        _package_name + "@https://github.com/" + _user_repo + ".git#0.3.0",
+    [TestCase(_package_name + "@https://github.com/" + _user_repo + ".git#0.3.0",
         ExpectedResult = _user_repo)]
     [TestCase(_package_name + "@ssh://git@github.com/" + _user_repo + ".git", ExpectedResult = _user_repo)]
-    [TestCase(
-        _package_name + "@ssh://git@github.com/" + _user_repo + ".git#0.3.0",
+    [TestCase(_package_name + "@ssh://git@github.com/" + _user_repo + ".git#0.3.0",
         ExpectedResult = _user_repo)]
     [TestCase(_package_name + "@git@github.com:" + _user_repo + ".git", ExpectedResult = _user_repo)]
     [TestCase(_package_name + "@git@github.com:" + _user_repo + ".git#0.3.0", ExpectedResult = _user_repo)]
     [TestCase(_package_name + "@git:git@github.com:" + _user_repo + ".git", ExpectedResult = _user_repo)]
-    [TestCase(
-        _package_name + "@git:git@github.com:" + _user_repo + ".git#0.3.0",
+    [TestCase(_package_name + "@git:git@github.com:" + _user_repo + ".git#0.3.0",
         ExpectedResult = _user_repo)]
     public string GetRepoIdTest(string package_id) { return GithubExtension.GetRepoUrl(package_id); }
 
@@ -79,18 +75,15 @@ namespace droid.Tests.Editor {
       return GithubExtension.HasElementClass(element, "test");
     }
 
-    [TestCase(
-        LogType.Log,
+    [TestCase(LogType.Log,
         "Success",
         "https://api.github.com/repos/" + _user_repo + "/tags",
         ExpectedResult = null)]
-    [TestCase(
-        LogType.Error,
+    [TestCase(LogType.Error,
         "HTTP/1.1 404 Not Found",
         "https://api.github.com/repos/" + _user_repo + "/tags2",
         ExpectedResult = null)]
-    [TestCase(
-        LogType.Error,
+    [TestCase(LogType.Error,
         "Cannot resolve destination host",
         "https://api.githuberror.com/repos/" + _user_repo + "/tags",
         ExpectedResult = null)]
@@ -107,8 +100,7 @@ namespace droid.Tests.Editor {
       yield return GithubExtension.Request(url, x => Debug.Log("Success"));
     }
 
-    [TestCase(
-        LogType.Log,
+    [TestCase(LogType.Log,
         "Success",
         "https://api.github.com/repos/" + _user_repo + "/tags",
         ExpectedResult = null)]

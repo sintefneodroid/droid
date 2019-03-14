@@ -30,8 +30,8 @@ namespace droid.Runtime.Utilities.ScriptableObjects {
         var actor = copy[i]._Actor;
         copy[i]._Actor = Regex.Replace(actor, "[^\\w\\._]", "");
 
-        var Actuator = copy[i]._Actuator;
-        copy[i]._Actuator = Regex.Replace(Actuator, "[^\\w\\._]", "");
+        var actuator = copy[i]._Actuator;
+        copy[i]._Actuator = Regex.Replace(actuator, "[^\\w\\._]", "");
       }
 
       this._Motions = copy;

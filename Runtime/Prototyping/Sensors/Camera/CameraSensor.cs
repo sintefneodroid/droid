@@ -26,9 +26,9 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
                     + "Camera"
-                    + ObserverComponentMenuPath._Postfix)]
+                    + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [RequireComponent(typeof(UnityEngine.Camera))]
   public class CameraSensor : Sensor,
@@ -99,8 +99,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
                                           !target_texture.sRGB);
           } else {
             #if NEODROID_DEBUG
-            Debug.LogWarning(
-                $"Texture format {texture_format_str} is not a valid TextureFormat for Texture2D for observer {this.Identifier}");
+            Debug.LogWarning($"Texture format {texture_format_str} is not a valid TextureFormat for Texture2D for observer {this.Identifier}");
             #endif
           }
         }
@@ -109,10 +108,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
       if (this._Manager?.SimulatorConfiguration != null) {
         if (this._Manager.SimulatorConfiguration.SimulationType != SimulationType.Frame_dependent_
             && Application.isEditor) {
-
-          Debug.Log(
-              "Notice that camera observations may be out of sync with other observation data, because simulation configuration is not frame dependent");
-
+          //Debug.Log("Notice that camera observations may be out of sync with other observation data, because simulation configuration is not frame dependent");
         }
       }
       #endif

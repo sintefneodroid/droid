@@ -7,7 +7,7 @@ namespace droid.Runtime.Interfaces {
     Transform Transform { get; }
     void ApplyMotion(IMotion motion);
     void EnvironmentReset();
-    void UnRegister(IActuator Actuator);
-    void Register(IActuator Actuator);
+    void UnRegister(IActuator actuator);
+    void Register(IActuator actuator);
   }
 }

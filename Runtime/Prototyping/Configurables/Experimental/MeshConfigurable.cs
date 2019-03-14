@@ -67,7 +67,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// <param name="configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
       #if NEODROID_DEBUG
-        DebugPrinting.ApplyPrint(this.Debugging, configuration, this.Identifier);
+      DebugPrinting.ApplyPrint(this.Debugging, configuration, this.Identifier);
       #endif
 
       if (configuration.ConfigurableName == this._mesh_str) {

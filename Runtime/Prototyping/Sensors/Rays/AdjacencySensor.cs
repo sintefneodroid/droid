@@ -7,9 +7,9 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
                     + "Adjacency"
-                    + ObserverComponentMenuPath._Postfix)]
+                    + SensorComponentMenuPath._Postfix)]
   public class AdjacencySensor : Sensor,
                                  IHasArray {
     [SerializeField] RaycastHit _hit;

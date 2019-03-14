@@ -4,9 +4,9 @@ using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Rays {
-  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
                     + "FixedLidar"
-                    + ObserverComponentMenuPath._Postfix)]
+                    + SensorComponentMenuPath._Postfix)]
   public class FixedLidarSensor : Sensor,
                                   IHasArray {
     [SerializeField] RaycastHit _hit = new RaycastHit();

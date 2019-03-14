@@ -7,9 +7,9 @@ namespace droid.Runtime.Messaging.Messages {
   /// </summary>
   [Serializable]
   public class ActuatorMotion : IMotion {
-    public ActuatorMotion(string actor_name, string Actuator_name, float strength) {
+    public ActuatorMotion(string actor_name, string actuator_name, float strength) {
       this.ActorName = actor_name;
-      this.ActuatorName = Actuator_name;
+      this.ActuatorName = actuator_name;
       this.Strength = strength;
     }
 

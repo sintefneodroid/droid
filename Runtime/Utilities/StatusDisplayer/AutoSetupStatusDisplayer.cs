@@ -34,7 +34,7 @@ namespace droid.Runtime.Utilities.StatusDisplayer {
 
     #if NEODROID_DEBUG
     bool Debugging { get { return this._debugging; } set { this._debugging = value; } }
-        [SerializeField] bool _debugging;
+    [SerializeField] bool _debugging;
     #endif
 
     void TryRegister(DataPoller poller, UnityAction<DataPoller> f) {

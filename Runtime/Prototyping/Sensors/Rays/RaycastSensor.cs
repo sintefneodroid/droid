@@ -4,9 +4,9 @@ using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Rays {
-  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
                     + "Raycast"
-                    + ObserverComponentMenuPath._Postfix)]
+                    + SensorComponentMenuPath._Postfix)]
   public class RaycastSensor : Sensor,
                                IHasSingle {
     [SerializeField] Vector3 _direction = Vector3.forward;

@@ -149,8 +149,8 @@ namespace droid.Editor.Utilities.Git {
 
     public static void FillRefNamesFromResponse(string res, List<string> result) {
       result.Clear();
-      result.AddRange(
-          Regex.Matches(res, "\\s*\"name\": \"(.+)\",").Cast<Match>().Select(x => x.Groups[1].Value));
+      result.AddRange(Regex.Matches(res, "\\s*\"name\": \"(.+)\",").Cast<Match>()
+                           .Select(x => x.Groups[1].Value));
     }
 
     public static string GetRevisionHash(PackageInfo package_info) {
@@ -223,17 +223,17 @@ namespace droid.Editor.Utilities.Git {
       var www = UnityWebRequest.Get(url);
       var op = www.SendWebRequest();
       op.completed += _ => {
-        if (www.isHttpError || www.isHttpError || !string.IsNullOrEmpty(www.error)) {
-          Debug.LogError(www.error);
-          www.Dispose();
-          return;
-        }
+                        if (www.isHttpError || www.isHttpError || !string.IsNullOrEmpty(www.error)) {
+                          Debug.LogError(www.error);
+                          www.Dispose();
+                          return;
+                        }
 
-        var path = GetRequestCachePath(url);
-        File.WriteAllText(path, www.downloadHandler.text);
-        on_success(www.downloadHandler.text);
-        www.Dispose();
-      };
+                        var path = GetRequestCachePath(url);
+                        File.WriteAllText(path, www.downloadHandler.text);
+                        on_success(www.downloadHandler.text);
+                        www.Dispose();
+                      };
       return op;
     }
   }

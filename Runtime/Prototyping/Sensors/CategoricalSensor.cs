@@ -8,9 +8,9 @@ namespace droid.Runtime.Prototyping.Sensors {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
                     + "Categorical"
-                    + ObserverComponentMenuPath._Postfix)]
+                    + SensorComponentMenuPath._Postfix)]
   public class CategoricalSensor : Sensor,
                                    IHasSingle {
     [SerializeField] PrototypingGameObject _categoryProvider = null;

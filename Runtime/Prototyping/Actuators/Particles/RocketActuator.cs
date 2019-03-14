@@ -12,7 +12,7 @@ namespace droid.Runtime.Prototyping.Actuators.Particles {
                     + ActuatorComponentMenuPath._Postfix)]
   [RequireComponent(typeof(ParticleSystem))]
   [RequireComponent(typeof(Rigidbody))]
-  public class RocketActuator : RigidbodyActuator1Dof {
+  public class RocketActuator : Rigidbody1DofActuator {
     /// <summary>
     /// </summary>
     [SerializeField]

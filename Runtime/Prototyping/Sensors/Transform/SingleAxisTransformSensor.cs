@@ -7,9 +7,9 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
                     + "SingleAxisTransform"
-                    + ObserverComponentMenuPath._Postfix)]
+                    + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   public class SingleAxisTransformSensor : ValueSensor {
     [SerializeField] [SearchableEnum] Axis _dim = Axis.X_;

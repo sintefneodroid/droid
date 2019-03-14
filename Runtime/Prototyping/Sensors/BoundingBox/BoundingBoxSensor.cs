@@ -6,9 +6,9 @@ namespace droid.Runtime.Prototyping.Sensors.BoundingBox {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
                     + "Experimental/BoundingBox"
-                    + ObserverComponentMenuPath._Postfix)]
+                    + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [RequireComponent(typeof(Utilities.BoundingBoxes.BoundingBox))]
   public class BoundingBoxSensor : Sensor,
@@ -28,6 +28,9 @@ namespace droid.Runtime.Prototyping.Sensors.BoundingBox {
       this._bounding_box = this.GetComponent<Utilities.BoundingBoxes.BoundingBox>();
     }
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
     public override IEnumerable<float> FloatEnumerable { get { return new List<float>(); } }
 
     /// <inheritdoc />

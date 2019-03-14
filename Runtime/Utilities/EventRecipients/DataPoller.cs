@@ -26,7 +26,7 @@ namespace droid.Runtime.Utilities.EventRecipients {
         }
       }
 
-      private void OnEnable() { this._poll_event?.Invoke(); }
+      void OnEnable() { this._poll_event?.Invoke(); }
 
       // Update is called once per frame
       /// <summary>

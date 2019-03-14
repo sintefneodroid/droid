@@ -910,8 +910,7 @@ namespace droid.Runtime.Managers {
       lock (this._send_lock) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log(
-              $"Received: {reactions.Select(r => r.ToString()).Aggregate((current, next) => $"{current}, {next}")}");
+          Debug.Log($"Received: {reactions.Select(r => r.ToString()).Aggregate((current, next) => $"{current}, {next}")}");
         }
         #endif
 
@@ -930,8 +929,7 @@ namespace droid.Runtime.Managers {
           if (this.AwaitingReply || !this.HasStepped) {
             #if NEODROID_DEBUG
             if (this.Debugging) {
-              Debug.Log(
-                  $"Got new reaction while not having stepped({!this.HasStepped}) or replied({this.AwaitingReply})");
+              Debug.Log($"Got new reaction while not having stepped({!this.HasStepped}) or replied({this.AwaitingReply})");
             }
             #endif
           }

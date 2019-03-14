@@ -8,9 +8,9 @@ namespace droid.Runtime.Prototyping.Actuators {
   /// <summary>
   /// </summary>
   [AddComponentMenu(ActuatorComponentMenuPath._ComponentMenuPath
-                    + "EulerTransformActuator3Dof"
+                    + "EulerTransform3DofActuator"
                     + ActuatorComponentMenuPath._Postfix)]
-  public class EulerTransformActuator3Dof : Actuator {
+  public class EulerTransform3DofActuator : Actuator {
     /// <summary>
     /// </summary>
     [SerializeField]

@@ -63,14 +63,14 @@ namespace droid.Runtime.Prototyping.Actors {
       }
       #endif
 
-      var motion_Actuator_name = motion.ActuatorName;
-      if (this._Actuators.ContainsKey(motion_Actuator_name)
-          && this._Actuators[motion_Actuator_name] != null) {
-        this._Actuators[motion_Actuator_name].ApplyMotion(motion);
+      var motion_actuator_name = motion.ActuatorName;
+      if (this._Actuators.ContainsKey(motion_actuator_name)
+          && this._Actuators[motion_actuator_name] != null) {
+        this._Actuators[motion_actuator_name].ApplyMotion(motion);
       } else {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Could find not Actuator with the specified name: {motion_Actuator_name} on actor {this.name}");
+          Debug.Log($"Could find not Actuator with the specified name: {motion_actuator_name} on actor {this.name}");
         }
         #endif
       }
@@ -81,8 +81,8 @@ namespace droid.Runtime.Prototyping.Actors {
     /// </summary>
     public virtual void EnvironmentReset() {
       if (this._Actuators != null) {
-        foreach (var Actuator in this._Actuators.Values) {
-          Actuator?.EnvironmentReset();
+        foreach (var actuator in this._Actuators.Values) {
+          actuator?.EnvironmentReset();
         }
       }
     }
@@ -90,7 +90,7 @@ namespace droid.Runtime.Prototyping.Actors {
     /// <summary>
     /// </summary>
     /// <param name="identifier"></param>
-    public void UnRegister(IActuator Actuator, string identifier) {
+    public void UnRegister(IActuator actuator, string identifier) {
       if (this._Actuators != null) {
         if (this._Actuators.ContainsKey(identifier)) {
           #if NEODROID_DEBUG
@@ -106,8 +106,8 @@ namespace droid.Runtime.Prototyping.Actors {
 
     /// <summary>
     /// </summary>
-    /// <param name="Actuator"></param>
-    public void UnRegister(IActuator Actuator) { this.UnRegister(Actuator, Actuator.Identifier); }
+    /// <param name="actuator"></param>
+    public void UnRegister(IActuator actuator) { this.UnRegister(actuator, actuator.Identifier); }
 
     /// <inheritdoc />
     /// <summary>
@@ -166,9 +166,9 @@ namespace droid.Runtime.Prototyping.Actors {
 
     /// <summary>
     /// </summary>
-    /// <param name="Actuator"></param>
+    /// <param name="actuator"></param>
     /// <param name="identifier"></param>
-    public void RegisterActuator(IActuator Actuator, string identifier) {
+    public void RegisterActuator(IActuator actuator, string identifier) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
         Debug.Log("Actor " + this.name + " has Actuator " + identifier);
@@ -176,7 +176,7 @@ namespace droid.Runtime.Prototyping.Actors {
       #endif
 
       if (!this._Actuators.ContainsKey(identifier)) {
-        this._Actuators.Add(identifier, Actuator);
+        this._Actuators.Add(identifier, actuator);
       } else {
         #if NEODROID_DEBUG
         if (this.Debugging) {
@@ -216,16 +216,16 @@ namespace droid.Runtime.Prototyping.Actors {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    /// <param name="Actuator"></param>
-    public void Register(IActuator Actuator) { this.RegisterActuator(Actuator, Actuator.Identifier); }
+    /// <param name="actuator"></param>
+    public void Register(IActuator actuator) { this.RegisterActuator(actuator, actuator.Identifier); }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    /// <param name="Actuator"></param>
+    /// <param name="actuator"></param>
     /// <param name="identifier"></param>
-    public void Register(IActuator Actuator, string identifier) {
-      this.RegisterActuator(Actuator, identifier);
+    public void Register(IActuator actuator, string identifier) {
+      this.RegisterActuator(actuator, identifier);
     }
 
     /// <summary>

@@ -7,9 +7,9 @@ namespace droid.Runtime.Prototyping.Sensors.Rigidbody {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
                     + "Rigidbody"
-                    + ObserverComponentMenuPath._Postfix)]
+                    + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [RequireComponent(typeof(UnityEngine.Rigidbody))]
   public class RigidbodySensor : Sensor,

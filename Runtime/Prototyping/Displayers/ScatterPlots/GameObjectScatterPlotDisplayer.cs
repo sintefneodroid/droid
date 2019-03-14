@@ -108,9 +108,11 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        var points_str = points.Aggregate(
-            "",
-            (current, point) => current + $"({point._Pos.ToString()}, {point._Val},{point._Size})" + ", ");
+        var points_str = points.Aggregate("",
+                                          (current, point) =>
+                                              current
+                                              + $"({point._Pos.ToString()}, {point._Val},{point._Size})"
+                                              + ", ");
         Debug.Log("Applying the points " + points_str + " to " + this.name);
       }
       #endif

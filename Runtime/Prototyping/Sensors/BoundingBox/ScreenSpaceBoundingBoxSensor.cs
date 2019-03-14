@@ -7,9 +7,9 @@ namespace droid.Runtime.Prototyping.Sensors.BoundingBox {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
                     + "Experimental/ScreenSpaceBoundingBox"
-                    + ObserverComponentMenuPath._Postfix)]
+                    + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   //[ExecuteAlways]
   [RequireComponent(typeof(Utilities.BoundingBoxes.BoundingBox))]

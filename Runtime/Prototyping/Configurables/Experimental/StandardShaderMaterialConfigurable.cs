@@ -125,8 +125,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// <param name="configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
       #if NEODROID_DEBUG
-      if (this.Debugging)
-      {
+      if (this.Debugging) {
         DebugPrinting.ApplyPrint(this.Debugging, configuration, this.Identifier);
       }
       #endif

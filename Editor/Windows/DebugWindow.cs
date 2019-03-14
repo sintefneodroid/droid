@@ -8,7 +8,7 @@ using droid.Runtime.Prototyping.Displayers;
 using droid.Runtime.Prototyping.Evaluation;
 using droid.Runtime.Prototyping.Internals;
 using droid.Runtime.Prototyping.Actuators;
-using droid.Runtime.Prototyping.Observers;
+using droid.Runtime.Prototyping.Sensors;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -31,7 +31,7 @@ namespace droid.Editor.Windows {
 
     NeodroidManager _manager;
 
-    Actuator[] _Actuators;
+    Actuator[] _actuators;
 
     ObjectiveFunction[] _objective_functions;
 
@@ -46,7 +46,7 @@ namespace droid.Editor.Windows {
     bool _show_displayers_debug;
     bool _show_environments_debug;
     bool _show_listeners_debug;
-    bool _show_Actuators_debug;
+    bool _show_actuators_debug;
     bool _show_objective_functions_debug;
     bool _show_observers_debug;
     bool _show_player_reactions_debug;
@@ -61,9 +61,10 @@ namespace droid.Editor.Windows {
 
     void OnEnable() {
       this.FindObjects();
-      this._icon = (Texture2D)AssetDatabase.LoadAssetAtPath(
-          NeodroidEditorInfo.ImportLocation + "Gizmos/Icons/information.png",
-          typeof(Texture2D));
+      this._icon =
+          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidEditorInfo.ImportLocation
+                                                   + "Gizmos/Icons/information.png",
+                                                   typeof(Texture2D));
       this.titleContent = new GUIContent("Neo:Debug", this._icon, "Window for controlling debug messages");
     }
 
@@ -71,7 +72,7 @@ namespace droid.Editor.Windows {
       this._manager = FindObjectOfType<PausableManager>();
       this._environments = FindObjectsOfType<NeodroidEnvironment>();
       this._actors = FindObjectsOfType<Actor>();
-      this._Actuators = FindObjectsOfType<Actuator>();
+      this._actuators = FindObjectsOfType<Actuator>();
       this._observers = FindObjectsOfType<Sensor>();
       this._configurables = FindObjectsOfType<Configurable>();
       this._objective_functions = FindObjectsOfType<ObjectiveFunction>();
@@ -86,7 +87,7 @@ namespace droid.Editor.Windows {
       this._show_player_reactions_debug = true;
       this._show_environments_debug = true;
       this._show_actors_debug = true;
-      this._show_Actuators_debug = true;
+      this._show_actuators_debug = true;
       this._show_observers_debug = true;
       this._show_configurables_debug = true;
       this._show_objective_functions_debug = true;
@@ -100,7 +101,7 @@ namespace droid.Editor.Windows {
       this._show_player_reactions_debug = false;
       this._show_environments_debug = false;
       this._show_actors_debug = false;
-      this._show_Actuators_debug = false;
+      this._show_actuators_debug = false;
       this._show_observers_debug = false;
       this._show_configurables_debug = false;
       this._show_objective_functions_debug = false;
@@ -114,7 +115,7 @@ namespace droid.Editor.Windows {
           && this._show_player_reactions_debug
           && this._show_environments_debug
           && this._show_actors_debug
-          && this._show_Actuators_debug
+          && this._show_actuators_debug
           && this._show_observers_debug
           && this._show_configurables_debug
           && this._show_objective_functions_debug
@@ -142,31 +143,24 @@ namespace droid.Editor.Windows {
 
       EditorGUILayout.Separator();
 
-      this._show_simulation_manager_debug = EditorGUILayout.Toggle(
-          "Debug simulation manager",
-          this._show_simulation_manager_debug);
-      this._show_player_reactions_debug = EditorGUILayout.Toggle(
-          "Debug player reactions",
-          this._show_player_reactions_debug);
-      this._show_environments_debug = EditorGUILayout.Toggle(
-          "Debug all environments",
-          this._show_environments_debug);
+      this._show_simulation_manager_debug =
+          EditorGUILayout.Toggle("Debug simulation manager", this._show_simulation_manager_debug);
+      this._show_player_reactions_debug =
+          EditorGUILayout.Toggle("Debug player reactions", this._show_player_reactions_debug);
+      this._show_environments_debug =
+          EditorGUILayout.Toggle("Debug all environments", this._show_environments_debug);
       this._show_actors_debug = EditorGUILayout.Toggle("Debug all actors", this._show_actors_debug);
-      this._show_Actuators_debug = EditorGUILayout.Toggle("Debug all Actuators", this._show_Actuators_debug);
+      this._show_actuators_debug = EditorGUILayout.Toggle("Debug all Actuators", this._show_actuators_debug);
       this._show_observers_debug = EditorGUILayout.Toggle("Debug all observers", this._show_observers_debug);
-      this._show_configurables_debug = EditorGUILayout.Toggle(
-          "Debug all configurables",
-          this._show_configurables_debug);
-      this._show_objective_functions_debug = EditorGUILayout.Toggle(
-          "Debug all objective functions",
-          this._show_objective_functions_debug);
-      this._show_displayers_debug = EditorGUILayout.Toggle(
-          "Debug all displayers",
-          this._show_displayers_debug);
+      this._show_configurables_debug =
+          EditorGUILayout.Toggle("Debug all configurables", this._show_configurables_debug);
+      this._show_objective_functions_debug =
+          EditorGUILayout.Toggle("Debug all objective functions", this._show_objective_functions_debug);
+      this._show_displayers_debug =
+          EditorGUILayout.Toggle("Debug all displayers", this._show_displayers_debug);
 
-      this._show_resetables_debug = EditorGUILayout.Toggle(
-          "Debug all resetables",
-          this._show_resetables_debug);
+      this._show_resetables_debug =
+          EditorGUILayout.Toggle("Debug all resetables", this._show_resetables_debug);
       this._show_listeners_debug = EditorGUILayout.Toggle("Debug all listeners", this._show_listeners_debug);
 
       this._debug_all = this.AreAllChecked();
@@ -188,8 +182,8 @@ namespace droid.Editor.Windows {
           actor.Debugging = this._show_actors_debug;
         }
 
-        foreach (var Actuator in this._Actuators) {
-          Actuator.Debugging = this._show_Actuators_debug;
+        foreach (var actuator in this._actuators) {
+          actuator.Debugging = this._show_actuators_debug;
         }
 
         foreach (var observer in this._observers) {

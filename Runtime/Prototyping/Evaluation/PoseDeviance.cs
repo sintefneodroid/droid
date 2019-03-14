@@ -65,12 +65,11 @@ namespace droid.Runtime.Prototyping.Evaluation {
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log(
-            $"Frame Number: {this.ParentEnvironment?.CurrentFrameNumber}, "
-            + $"Terminated: {this.ParentEnvironment?.Terminated}, "
-            + $"Last Reason: {this.ParentEnvironment?.LastTerminationReason}, "
-            + $"Internal Feedback Signal: {reward}, "
-            + $"Distance: {distance}");
+        Debug.Log($"Frame Number: {this.ParentEnvironment?.CurrentFrameNumber}, "
+                  + $"Terminated: {this.ParentEnvironment?.Terminated}, "
+                  + $"Last Reason: {this.ParentEnvironment?.LastTerminationReason}, "
+                  + $"Internal Feedback Signal: {reward}, "
+                  + $"Distance: {distance}");
       }
       #endif
 

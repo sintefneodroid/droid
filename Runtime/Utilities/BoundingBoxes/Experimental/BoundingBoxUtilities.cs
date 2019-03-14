@@ -250,7 +250,11 @@ namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
       var min = Vector2.zero;
 
       if (bb != null && bb.Points?.Length > 0) {
-        min = cam.WorldToScreenPoint(bb._bb_transform.TransformPoint(bb.Points[0]));
+        if (bb._use_bb_transform && bb._bb_transform) {
+          min = cam.WorldToScreenPoint(bb._bb_transform.TransformPoint(bb.Points[0]));
+        } else {
+          min = cam.WorldToScreenPoint(bb.Points[0]);
+        }
       }
 
       var max = min;
@@ -260,7 +264,12 @@ namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
 
       if (bb != null) {
         for (var i = 1; i < bb.Points?.Length; i++) {
-          point = cam.WorldToScreenPoint(bb._bb_transform.TransformPoint(bb.Points[i]));
+          if (bb._use_bb_transform && bb._bb_transform) {
+            point = cam.WorldToScreenPoint(bb._bb_transform.TransformPoint(bb.Points[i]));
+          } else {
+            point = cam.WorldToScreenPoint(bb.Points[i]);
+          }
+
           get_min_max(point, ref min, ref max);
         }
       }
@@ -385,6 +394,67 @@ namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
       r.yMax += margin;
 
       return r;
+    }
+
+    public static Vector3[] GetMinMaxPointsCollider(this MeshCollider mesh, Camera cam, float margin = 0) {
+      return null;
+
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="bounds"></param>
+    /// <param name="cam"></param>
+    /// <param name="margin"></param>
+    /// <returns></returns>
+    public static Vector3[] GetMinMaxPointsMesh(this Mesh mesh, Camera cam, float margin = 0) {
+      /*var cen = bounds.center;
+      var ext = bounds.extents;
+
+      var x_min = cen.x - ext.x;
+      var y_min = cen.y - ext.y;
+      var z_min = cen.z - ext.z;
+      var x_max = cen.x + ext.x;
+      var y_max = cen.y + ext.y;
+      var z_max = cen.z + ext.z;
+
+      Vector2 min = cam.WorldToScreenPoint(new Vector3(x_min, y_min, z_min));
+      var max = min;
+
+      var point = min;
+      get_min_max(point, ref min, ref max);
+
+      point = cam.WorldToScreenPoint(new Vector3(x_max, y_max, z_max));
+      get_min_max(point, ref min, ref max);
+
+      point = cam.WorldToScreenPoint(new Vector3(x_max, y_min, z_min));
+      get_min_max(point, ref min, ref max);
+
+      point = cam.WorldToScreenPoint(new Vector3(x_min, y_max, z_min));
+      get_min_max(point, ref min, ref max);
+
+      point = cam.WorldToScreenPoint(new Vector3(x_min, y_min, z_max));
+      get_min_max(point, ref min, ref max);
+
+      point = cam.WorldToScreenPoint(new Vector3(x_max, y_min, z_max));
+      get_min_max(point, ref min, ref max);
+
+      point = cam.WorldToScreenPoint(new Vector3(x_max, y_max, z_min));
+      get_min_max(point, ref min, ref max);
+
+      point = cam.WorldToScreenPoint(new Vector3(x_min, y_max, z_max));
+      get_min_max(point, ref min, ref max);
+
+
+      var r = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
+      r.xMin -= margin;
+      r.xMax += margin;
+      r.yMin -= margin;
+      r.yMax += margin;
+
+      return r;*/
+      return null;
     }
 
     /// <summary>

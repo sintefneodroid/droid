@@ -244,8 +244,7 @@ namespace droid.Runtime.Messaging {
               }
 
               if (frame_number <= this._last_send_frame_number) {
-                Debug.LogWarning(
-                    $"The current frame number {frame_number} is less or equal the last {this._last_send_frame_number}, SINCE AWAKE ({Time.frameCount})");
+                Debug.LogWarning($"The current frame number {frame_number} is less or equal the last {this._last_send_frame_number}, SINCE AWAKE ({Time.frameCount})");
               }
 
               if (time <= this._last_send_time) {

@@ -191,9 +191,8 @@ namespace droid.Editor.Windows {
                       EditorGUILayout.IntField("Episode Length", this._environments[i].EpisodeLength);
                   //EditorGUILayout.BeginHorizontal("Box");
                   #if NEODROID_DEBUG
-                  this._environments[i].Debugging = EditorGUILayout.Toggle(
-                    "Debugging",
-                    this._environments[i].Debugging);
+                  this._environments[i].Debugging =
+                      EditorGUILayout.Toggle("Debugging", this._environments[i].Debugging);
                   #endif
                   //EditorGUILayout.EndHorizontal();
 
@@ -256,9 +255,7 @@ namespace droid.Editor.Windows {
           if (this._show_detailed_descriptions) {
             //EditorGUILayout.BeginHorizontal("Box");
             #if NEODROID_DEBUG
-            resetable_value.Debugging = EditorGUILayout.Toggle(
-              "Debugging",
-              resetable_value.Debugging);
+            resetable_value.Debugging = EditorGUILayout.Toggle("Debugging", resetable_value.Debugging);
             #endif
             //EditorGUILayout.EndHorizontal();
           }
@@ -280,9 +277,8 @@ namespace droid.Editor.Windows {
           if (this._show_detailed_descriptions) {
             //EditorGUILayout.BeginHorizontal("Box");
             #if NEODROID_DEBUG
-            listener_value_value.Debugging = EditorGUILayout.Toggle(
-              "Debugging",
-              listener_value_value.Debugging);
+            listener_value_value.Debugging =
+                EditorGUILayout.Toggle("Debugging", listener_value_value.Debugging);
             #endif
             //EditorGUILayout.EndHorizontal();
           }
@@ -312,9 +308,7 @@ namespace droid.Editor.Windows {
           if (this._show_detailed_descriptions) {
             //EditorGUILayout.BeginHorizontal("Box");
             #if NEODROID_DEBUG
-            actor_value.Debugging = EditorGUILayout.Toggle(
-              "Debugging",
-              actor_value.Debugging);
+            actor_value.Debugging = EditorGUILayout.Toggle("Debugging", actor_value.Debugging);
             #endif
             //EditorGUILayout.EndHorizontal();
           }
@@ -345,9 +339,7 @@ namespace droid.Editor.Windows {
           if (this._show_detailed_descriptions) {
             //EditorGUILayout.BeginHorizontal("Box");
             #if NEODROID_DEBUG
-            observer_value.Debugging = EditorGUILayout.Toggle(
-              "Debugging",
-              observer_value.Debugging);
+            observer_value.Debugging = EditorGUILayout.Toggle("Debugging", observer_value.Debugging);
             #endif
             //EditorGUILayout.EndHorizontal();
           }
@@ -375,9 +367,7 @@ namespace droid.Editor.Windows {
           if (this._show_detailed_descriptions) {
             //EditorGUILayout.BeginHorizontal("Box");
             #if NEODROID_DEBUG
-            displayer_value.Debugging = EditorGUILayout.Toggle(
-              "Debugging",
-              displayer_value.Debugging);
+            displayer_value.Debugging = EditorGUILayout.Toggle("Debugging", displayer_value.Debugging);
             #endif
             //EditorGUILayout.EndHorizontal();
           }
@@ -405,9 +395,7 @@ namespace droid.Editor.Windows {
           if (this._show_detailed_descriptions) {
             //EditorGUILayout.BeginHorizontal("Box");
             #if NEODROID_DEBUG
-            configurable_value.Debugging = EditorGUILayout.Toggle(
-              "Debugging",
-              configurable_value.Debugging);
+            configurable_value.Debugging = EditorGUILayout.Toggle("Debugging", configurable_value.Debugging);
             #endif
             //EditorGUILayout.EndHorizontal();
           }
@@ -438,9 +426,7 @@ namespace droid.Editor.Windows {
                                          Actuator_value.MotionSpace1.ToVector3());
             //EditorGUILayout.BeginHorizontal("Box");
             #if NEODROID_DEBUG
-            Actuator_value.Debugging = EditorGUILayout.Toggle(
-              "Debugging",
-              Actuator_value.Debugging);
+            Actuator_value.Debugging = EditorGUILayout.Toggle("Debugging", Actuator_value.Debugging);
             #endif
             //EditorGUILayout.EndHorizontal();
           }

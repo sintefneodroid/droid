@@ -78,8 +78,7 @@ namespace droid.Runtime.Prototyping.Sensors {
         if (this.FloatEnumerable == null || !this.FloatEnumerable.Any()) {
           #if NEODROID_DEBUG
           if (this.Debugging) {
-            Debug.LogWarning(
-                $"FloatEnumerable of {this.Identifier} is empty! Maybe you forget an assignment to it when updating observations");
+            Debug.LogWarning($"FloatEnumerable of {this.Identifier} is empty! Maybe you forget an assignment to it when updating observations");
           }
           #endif
         }

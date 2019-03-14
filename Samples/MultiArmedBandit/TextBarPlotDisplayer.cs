@@ -46,9 +46,9 @@ namespace droid.Samples.MultiArmedBandit {
     /// <param name="values"></param>
     public void Display(float[] values) {
       #if NEODROID_DEBUG
-        if(this.Debugging) {
-          Debug.Log($"Displaying {values} at {this.Identifier}");
-        }
+      if (this.Debugging) {
+        Debug.Log($"Displaying {values} at {this.Identifier}");
+      }
       #endif
 
       var canvas_bar_displayers = this._canvas_bars;

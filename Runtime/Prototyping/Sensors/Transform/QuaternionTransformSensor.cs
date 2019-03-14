@@ -4,9 +4,9 @@ using droid.Runtime.Interfaces;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Transform {
-  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
                     + "QuaternionTransform"
-                    + ObserverComponentMenuPath._Postfix)]
+                    + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [Serializable]
   public class QuaternionTransformSensor : Sensor,

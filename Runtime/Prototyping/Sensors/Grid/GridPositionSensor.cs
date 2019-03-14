@@ -7,9 +7,9 @@ namespace droid.Runtime.Prototyping.Sensors.Grid {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
                     + "GridPosition"
-                    + ObserverComponentMenuPath._Postfix)]
+                    + SensorComponentMenuPath._Postfix)]
   public class GridPositionSensor : Sensor,
                                     IHasSingle {
     /// <summary>

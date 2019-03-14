@@ -1,15 +1,17 @@
 ﻿#if UNITY_EDITOR
-using droid.Runtime.Prototyping.Sensors;
-using droid.Runtime.Prototyping.Sensors.Transform;
+using droid.Runtime.Prototyping.Actuators;
 using UnityEditor;
 using UnityEngine;
 
 namespace droid.Editor.GameObjects {
-  public class ObserverSpawner : MonoBehaviour {
-    [MenuItem(EditorGameObjectMenuPath._GameObjectMenuPath + "Observers/Base", false, 10)]
-    static void CreateObserverGameObject(MenuCommand menu_command) {
-      var go = new GameObject("Sensor");
-      go.AddComponent<Sensor>();
+  /// <inheritdoc />
+  /// <summary>
+  /// </summary>
+  public class ActuatorSpawner : MonoBehaviour {
+    [MenuItem(EditorGameObjectMenuPath._GameObjectMenuPath + "Actuators/TransformActuator", false, 10)]
+    static void CreateTransformActuatorGameObject(MenuCommand menu_command) {
+      var go = new GameObject("TransformActuator");
+      go.AddComponent<EulerTransform1DofActuator>();
       GameObjectUtility.SetParentAndAlign(go,
                                           menu_command
                                                   .context as
@@ -18,10 +20,10 @@ namespace droid.Editor.GameObjects {
       Selection.activeObject = go;
     }
 
-    [MenuItem("GameObject/Neodroid/Observers/EulerTransform", false, 10)]
-    static void CreateEulerTransformObserverGameObject(MenuCommand menu_command) {
-      var go = new GameObject("EulerTransformSensor");
-      go.AddComponent<EulerTransformSensor>();
+    [MenuItem(EditorGameObjectMenuPath._GameObjectMenuPath + "Actuators/RigidbodyActuator", false, 10)]
+    static void CreateRigidbodyActuatorGameObject(MenuCommand menu_command) {
+      var go = new GameObject("RigidbodyActuator");
+      go.AddComponent<Rigidbody1DofActuator>();
       GameObjectUtility.SetParentAndAlign(go,
                                           menu_command
                                                   .context as

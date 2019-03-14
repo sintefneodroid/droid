@@ -6,9 +6,9 @@ namespace droid.Runtime.Prototyping.Sensors.Camera.Segmentation {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ObserverComponentMenuPath._ComponentMenuPath
+  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
                     + "SegmentationCamera"
-                    + ObserverComponentMenuPath._Postfix)]
+                    + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [RequireComponent(typeof(UnityEngine.Camera), typeof(Segmenter))]
   public class SegmentationCameraSensor : StringAugmentedCameraSensor {

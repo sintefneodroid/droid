@@ -71,6 +71,10 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// </summary>
     public void EnvironmentReset() { this._energy_spend_since_reset = 0; }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     public virtual float Sample() { return this.MotionSpace1.Sample(); }
 
     /// <inheritdoc />
