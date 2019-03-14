@@ -12,13 +12,13 @@ namespace droid.Runtime.Prototyping.Configurables {
   /// <summary>
   /// </summary>
   [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
-                    + "Position"
+                    + "Rotation"
                     + ConfigurableComponentMenuPath._Postfix)]
-  public class PositionConfigurable : Configurable,
-                                      IHasTriple {
+  public class RotationConfigurable : Configurable,
+                                      IHasQuadruple {
     [Header("Observation", order = 103)]
     [SerializeField]
-    Vector3 _position = Vector3.zero;
+    Quaternion _rotation = Quaternion.identity;
 
     [SerializeField] bool _use_environments_space = false;
 
@@ -34,17 +34,21 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     string _z;
 
-    [SerializeField] Space3 _triple_space = Space3.ZeroOne;
+    /// <summary>
+    /// </summary>
+    string _w;
+
+    [SerializeField] Space4 _quad_space = Space4.ZeroOne;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public Vector3 ObservationValue { get { return this._position; } }
+    public Quaternion ObservationValue { get { return this._rotation; } }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public Space3 TripleSpace { get { return this._triple_space; } }
+    public Space4 QuadSpace { get { return this._quad_space; } }
 
     /// <summary>
     /// 
@@ -53,6 +57,7 @@ namespace droid.Runtime.Prototyping.Configurables {
       this._x = this.Identifier + "X_";
       this._y = this.Identifier + "Y_";
       this._z = this.Identifier + "Z_";
+      this._w = this.Identifier + "W_";
     }
 
     /// <inheritdoc />
@@ -74,10 +79,14 @@ namespace droid.Runtime.Prototyping.Configurables {
           NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
                                               (Configurable)this,
                                               this._z);
+      this.ParentEnvironment =
+          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+                                              (Configurable)this,
+                                              this._w);
     }
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
     protected override void UnRegisterComponent() {
       if (this.ParentEnvironment == null) {
@@ -88,34 +97,35 @@ namespace droid.Runtime.Prototyping.Configurables {
       this.ParentEnvironment.UnRegister(this, this._x);
       this.ParentEnvironment.UnRegister(this, this._y);
       this.ParentEnvironment.UnRegister(this, this._z);
+      this.ParentEnvironment.UnRegister(this, this._w);
     }
 
     /// <summary>
     /// 
     /// </summary>
     public override void UpdateCurrentConfiguration() {
-      if (this._use_environments_space) {
-        this._position = this.ParentEnvironment.TransformPoint(this.transform.position);
+      if (this._use_environments_space && this.ParentEnvironment!=null) {
+        this._rotation = this.ParentEnvironment.TransformRotation(this.transform.rotation);
       } else {
-        this._position = this.transform.position;
+        this._rotation = this.transform.rotation;
       }
     }
 
     public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration) {
-      var pos = this.transform.position;
+      var rot = this.transform.rotation;
       if (this._use_environments_space) {
-        pos = this.ParentEnvironment.TransformPoint(this.transform.position);
+        rot = this.ParentEnvironment.TransformRotation(this.transform.rotation);
       }
 
       var v = simulator_configuration.ConfigurableValue;
-      if (this.TripleSpace._Decimal_Granularity >= 0) {
-        v = (int)Math.Round(v, this.TripleSpace._Decimal_Granularity);
+      if (this.QuadSpace._Decimal_Granularity >= 0) {
+        v = (int)Math.Round(v, this.QuadSpace._Decimal_Granularity);
       }
 
-      if (this.TripleSpace._Min_Values[0].CompareTo(this.TripleSpace._Max_Values[0]) != 0) {
+      if (this.QuadSpace._Min_Values[0].CompareTo(this.QuadSpace._Max_Values[0]) != 0) {
         //TODO NOT IMPLEMENTED CORRECTLY VelocitySpace should not be index but should check all pairwise values, TripleSpace._Min_Values == TripleSpace._Max_Values
-        if (v < this.TripleSpace._Min_Values[0] || v > this.TripleSpace._Max_Values[0]) {
-          Debug.Log($"Configurable does not accept input{v}, outside allowed range {this.TripleSpace._Min_Values[0]} to {this.TripleSpace._Max_Values[0]}");
+        if (v < this.QuadSpace._Min_Values[0] || v > this.QuadSpace._Max_Values[0]) {
+          Debug.Log($"Configurable does not accept input{v}, outside allowed range {this.QuadSpace._Min_Values[0]} to {this.QuadSpace._Max_Values[0]}");
           return; // Do nothing
         }
       }
@@ -128,33 +138,43 @@ namespace droid.Runtime.Prototyping.Configurables {
 
       if (this.RelativeToExistingValue) {
         if (simulator_configuration.ConfigurableName == this._x) {
-          pos.Set(v - pos.x, pos.y, pos.z);
+          rot.Set(v - rot.x, rot.y, rot.z, rot.w);
         } else if (simulator_configuration.ConfigurableName == this._y) {
-          pos.Set(pos.x, v - pos.y, pos.z);
+          rot.Set(rot.x, v - rot.y, rot.z, rot.w);
         } else if (simulator_configuration.ConfigurableName == this._z) {
-          pos.Set(pos.x, pos.y, v - pos.z);
+          rot.Set(rot.x, rot.y, v - rot.z, rot.w);
+        }
+        else if (simulator_configuration.ConfigurableName == this._w) {
+          rot.Set(rot.x, rot.y, rot.z, v - rot.w);
         }
       } else {
         if (simulator_configuration.ConfigurableName == this._x) {
-          pos.Set(v, pos.y, pos.z);
+          rot.Set(v, rot.y, rot.z,rot.w);
         } else if (simulator_configuration.ConfigurableName == this._y) {
-          pos.Set(pos.x, v, pos.z);
+          rot.Set(rot.x, v, rot.z,rot.w);
         } else if (simulator_configuration.ConfigurableName == this._z) {
-          pos.Set(pos.x, pos.y, v);
+          rot.Set(rot.x, rot.y, v,rot.w);
+        }
+        else if (simulator_configuration.ConfigurableName == this._w) {
+          rot.Set(rot.x, rot.y, rot.z,v);
         }
       }
 
-      var inv_pos = pos;
+      var inv_pos = rot;
       if (this._use_environments_space) {
-        inv_pos = this.ParentEnvironment.InverseTransformPoint(inv_pos);
+        inv_pos = this.ParentEnvironment.InverseTransformRotation(inv_pos);
       }
 
-      this.transform.position = inv_pos;
+      this.transform.rotation = inv_pos;
     }
 
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <returns></returns>
     public override IConfigurableConfiguration SampleConfiguration() {
-      var sample = this.TripleSpace.Sample();
-      var r = (int)Random.Range(0, 2);
+      var sample = this.QuadSpace.Sample();
+      var r = (int)Random.Range(0, 3);
       switch (r) {
         case 0:
           return new Configuration(this._x, sample.x);
@@ -164,6 +184,9 @@ namespace droid.Runtime.Prototyping.Configurables {
           break;
         case 2:
           return new Configuration(this._z, sample.z);
+          break;
+        case 3:
+          return new Configuration(this._w, sample.w);
           break;
         default:
           throw new IndexOutOfRangeException();

@@ -51,6 +51,8 @@ namespace droid.Runtime.Interfaces {
     /// <returns></returns>
     Quaternion TransformRotation(Quaternion transform_rotation);
 
+    Quaternion InverseTransformRotation(Quaternion transform_rotation);
+
     /// <summary>
     /// </summary>
     event Action PreStepEvent;

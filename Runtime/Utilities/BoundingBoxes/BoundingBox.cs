@@ -418,9 +418,10 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
     /// </summary>
     void FitRenderersAabb() {
       var transform1 = this.transform;
-      this._bb_transform.position = transform1.position;
-      this._bb_transform.rotation = transform1.rotation;
       var position = transform1.position;
+      this._bb_transform.position = position;
+      this._bb_transform.rotation = transform1.rotation;
+
       var bounds = new Bounds(position, Vector3.zero);
 
       if (this.includeSelf && this._local_mesh) {
@@ -438,9 +439,9 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
               if (t.gameObject.activeInHierarchy && t.gameObject.activeSelf) {
                 if (bounds.size == Vector3.zero) {
                   var transform2 = t.transform;
-                  this._bb_transform.position = transform2.position;
-                  this._bb_transform.rotation = transform2.rotation;
                   position = transform2.position;
+                  this._bb_transform.position = position;
+                  this._bb_transform.rotation = transform2.rotation;
                   bounds = new Bounds(position, Vector3.zero);
                 }
 
@@ -476,13 +477,8 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
     /// <summary>
     /// </summary>
     void CalculateBoundingBox() {
-      if (!this.RunInEditModeSetup && !Application.isPlaying) {
+      if (!this.RunInEditModeSetup && !Application.isPlaying || this._bb_transform == null) {
         return;
-      }
-
-      if (!this._bb_transform) {
-        this._empty_go = new GameObject {hideFlags = HideFlags.HideAndDontSave};
-        this._bb_transform = this._empty_go.transform;
       }
 
       if (this.basedOn == BasedOn.Collider_) {
@@ -516,9 +512,10 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
 
     void FitRenderersObb() {
       var transform1 = this.transform;
-      this._bb_transform.position = transform1.position;
-      this._bb_transform.rotation = transform1.rotation;
       var position = transform1.position;
+      this._bb_transform.position = position;
+      this._bb_transform.rotation = transform1.rotation;
+
       var min = Vector3.zero;
       var max = min;
 
@@ -537,9 +534,9 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
               if (t.gameObject.activeInHierarchy && t.gameObject.activeSelf) {
                 if (min == Vector3.zero) {
                   var transform2 = t.transform;
-                  this._bb_transform.position = transform2.position;
-                  this._bb_transform.rotation = transform2.rotation;
                   position = transform2.position;
+                  this._bb_transform.position = position;
+                  this._bb_transform.rotation = transform2.rotation;
                   min = max = this._camera.WorldToViewportPoint(position);
                 }
 

@@ -20,7 +20,10 @@ namespace droid.Runtime.Utilities.Misc.Orientation {
         var rot = this.transform.rotation;
         var normalised_proj = projection_on_plane.normalized;
         var view = Quaternion.Euler(0, -90, 0) * normalised_proj;
-        rot.SetLookRotation(view, Vector3.down);
+        if(view != Vector3.zero) {
+          rot.SetLookRotation(view, Vector3.down);
+        }
+
         this.transform.rotation = rot;
       }
     }

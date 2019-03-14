@@ -8,18 +8,22 @@ namespace droid.Runtime.Utilities.Structs {
   /// </summary>
   [Serializable]
   public struct Space4 {
-    public int _DecimalGranularity;
+    public int _Decimal_Granularity;
     public Vector4 _Min_Values;
     public Vector4 _Max_Values;
 
     public Space4(int decimal_granularity = 2) {
-      this._DecimalGranularity = decimal_granularity;
+      this._Decimal_Granularity = decimal_granularity;
       this._Min_Values = Vector4.negativeInfinity;
       this._Max_Values = Vector4.positiveInfinity;
     }
 
     public Vector4 Span { get { return this._Max_Values - this._Min_Values; } }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     public Vector4 Sample() {
       var x = Random.Range(this._Min_Values.x, this._Max_Values.x);
       var y = Random.Range(this._Min_Values.y, this._Max_Values.y);
@@ -91,7 +95,7 @@ namespace droid.Runtime.Utilities.Structs {
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-    public float Round(float v) { return (float)Math.Round(v, this._DecimalGranularity); }
+    public float Round(float v) { return (float)Math.Round(v, this._Decimal_Granularity); }
 
     /// <summary>
     ///
