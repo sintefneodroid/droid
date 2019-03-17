@@ -1,8 +1,6 @@
-﻿using System;
-using droid.Runtime.Environments;
+﻿using droid.Runtime.Environments;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
-using droid.Runtime.Utilities.Debugging;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
@@ -57,7 +55,9 @@ namespace droid.Runtime.Prototyping.Configurables {
       this._rz = this.Identifier + "RZ";
       this._rw = this.Identifier + "RW";
 
-      if (!this._camera) this._camera = FindObjectOfType<Camera>();
+      if (!this._camera) {
+        this._camera = FindObjectOfType<Camera>();
+      }
     }
 
     /// <inheritdoc />
@@ -152,7 +152,7 @@ namespace droid.Runtime.Prototyping.Configurables {
       var x = Space1.ZeroOne.Sample();
       var y = Space1.ZeroOne.Sample();
 
-      var a = new Vector2((float)x, (float)y);
+      var a = new Vector2(x, y);
       var bounded = Vector2.Min(Vector2.Max(a, new Vector2(0.2f, 0.2f)), new Vector2(0.8f, 0.8f));
 
       //var z = Space1.ZeroOne.Sample() * this._camera.farClipPlane;
@@ -161,10 +161,10 @@ namespace droid.Runtime.Prototyping.Configurables {
 
       var c = this._camera.ViewportToWorldPoint(bounded3);
 
-      var b = new Quaternion((float)Space1.ZeroOne.Sample(),
-                             (float)Space1.ZeroOne.Sample(),
-                             (float)Space1.ZeroOne.Sample(),
-                             (float)Space1.ZeroOne.Sample());
+      var b = new Quaternion(Space1.ZeroOne.Sample(),
+                             Space1.ZeroOne.Sample(),
+                             Space1.ZeroOne.Sample(),
+                             Space1.ZeroOne.Sample());
       var sample1 = Space1.ZeroOne.Sample();
       var sample = Space1.ZeroOne.Sample();
 
@@ -178,17 +178,17 @@ namespace droid.Runtime.Prototyping.Configurables {
         }
 
         return new Configuration(this._z, c.z);
-      } else {
-        if (sample < .33f) {
-          return new Configuration(this._rx, b.x);
-        }
-
-        if (sample > .66f) {
-          return new Configuration(this._ry, b.y);
-        }
-
-        return new Configuration(this._rz, b.z);
       }
+
+      if (sample < .33f) {
+        return new Configuration(this._rx, b.x);
+      }
+
+      if (sample > .66f) {
+        return new Configuration(this._ry, b.y);
+      }
+
+      return new Configuration(this._rz, b.z);
     }
   }
 }

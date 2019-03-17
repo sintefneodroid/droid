@@ -36,7 +36,7 @@ namespace droid.Runtime.Prototyping.Actuators {
 
     /// <summary>
     /// </summary>
-    public Space1 MotionSpace1 {
+    public Space1 MotionSpace {
       get { return this._motion_value_space; }
       set { this._motion_value_space = value; }
     }
@@ -51,8 +51,8 @@ namespace droid.Runtime.Prototyping.Actuators {
       }
       #endif
 
-      if (motion.Strength < this.MotionSpace1._Min_Value || motion.Strength > this.MotionSpace1._Max_Value) {
-        Debug.LogWarning($"It does not accept input {motion.Strength}, outside the allowed range from {this.MotionSpace1._Min_Value} to {this.MotionSpace1._Max_Value}");
+      if (motion.Strength < this.MotionSpace._Min_Value || motion.Strength > this.MotionSpace._Max_Value) {
+        Debug.LogWarning($"It does not accept input {motion.Strength}, outside the allowed range from {this.MotionSpace._Min_Value} to {this.MotionSpace._Max_Value}");
         return; // Do nothing
       }
 
@@ -75,7 +75,7 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// 
     /// </summary>
     /// <returns></returns>
-    public virtual float Sample() { return this.MotionSpace1.Sample(); }
+    public virtual float Sample() { return this.MotionSpace.Sample(); }
 
     /// <inheritdoc />
     /// <summary>
@@ -108,7 +108,7 @@ namespace droid.Runtime.Prototyping.Actuators {
 
     [Header("General", order = 101)]
     [SerializeField]
-    Space1 _motion_value_space = new Space1 {_Decimal_Granularity = 0, _Min_Value = -1, _Max_Value = 1};
+    Space1 _motion_value_space = Space1.MinusOneOne;
 
     [SerializeField] float _energy_spend_since_reset;
 

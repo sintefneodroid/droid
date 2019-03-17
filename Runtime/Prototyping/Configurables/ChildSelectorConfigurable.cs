@@ -61,7 +61,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     }
 
     public override IConfigurableConfiguration SampleConfiguration() {
-      return new Configuration(this.Identifier, int.Parse(UnityEngine.Random.Range(0, this.len).ToString()));
+      return new Configuration(this.Identifier, int.Parse(Random.Range(0, this.len).ToString()));
     }
 
     public int CurrentCategoryValue { get; set; }

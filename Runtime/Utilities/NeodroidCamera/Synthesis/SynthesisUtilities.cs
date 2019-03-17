@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Rendering;
 using Object = System.Object;
@@ -79,6 +80,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Synthesis {
     /// <summary>
     ///
     /// </summary>
+    [Serializable]
     public struct CapturePass {
       // configuration
       public string _Name;
@@ -87,6 +89,8 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Synthesis {
       public Camera _Camera;
       public ReplacementModes _ReplacementMode;
     }
+
+
 
     /// <summary>
     ///
@@ -196,6 +200,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Synthesis {
                                                   capture_pass._ReplacementMode);
       }
     }
+
 
     static void CleanRefreshPassCameras(Camera camera, ref CapturePass[] capture_passes) {
       var target_display = 1;

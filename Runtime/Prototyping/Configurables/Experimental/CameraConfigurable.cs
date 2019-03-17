@@ -2,12 +2,10 @@
 using droid.Runtime.Environments;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
-using droid.Runtime.Utilities.Debugging;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.NeodroidCamera;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
-using Object = System.Object;
 using Random = UnityEngine.Random;
 
 namespace droid.Runtime.Prototyping.Configurables.Experimental {
@@ -167,7 +165,8 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
         a.y = configuration.ConfigurableValue;
         this._camera.lensShift = a;
       } else if (configuration.ConfigurableName == this._gate_fit_str) {
-        Camera.GateFitMode.TryParse(((int)configuration.ConfigurableValue).ToString(), out Camera.GateFitMode gate_fit_mode);
+        Enum.TryParse(((int)configuration.ConfigurableValue).ToString(),
+                                    out Camera.GateFitMode gate_fit_mode);
         this._camera.gateFit = gate_fit_mode;
       }
 
@@ -186,26 +185,24 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
         return new Configuration(this._fov_str, this._fov_space.Sample());
       }
 
-      var r = (int)Random.Range(0, 6);
+      var r = Random.Range(0, 6);
       switch (r) {
         case 0:
           return new Configuration(this._focal_str, this._focal_space.Sample());
-          break;
         case 1:
           return new Configuration(this._sensor_width_str, this._sensor_size_space.Sample().x);
-          break;
+
         case 2:
           return new Configuration(this._sensor_height_str, this._sensor_size_space.Sample().y);
-          break;
+
         case 3:
           return new Configuration(this._lens_shift_x_str, this._lens_shift_space.Sample().x);
-          break;
+
         case 4:
           return new Configuration(this._lens_shift_y_str, this._lens_shift_space.Sample().y);
-          break;
+
         case 5:
           return new Configuration(this._gate_fit_str, this._gate_fit_space.Sample());
-          break;
         default:
           throw new IndexOutOfRangeException();
       }

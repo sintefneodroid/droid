@@ -34,9 +34,9 @@ namespace droid.Runtime.Prototyping.Actuators.Particles {
     protected override void Setup() {
       this._Rigidbody = this.GetComponent<Rigidbody>();
       this._Particle_System = this.GetComponent<ParticleSystem>();
-      var valid_input = this.MotionSpace1;
+      var valid_input = this.MotionSpace;
       valid_input._Min_Value = 0;
-      this.MotionSpace1 = valid_input;
+      this.MotionSpace = valid_input;
       this.RegisterComponent();
     }
 
@@ -59,8 +59,8 @@ namespace droid.Runtime.Prototyping.Actuators.Particles {
     /// </summary>
     /// <param name="motion"></param>
     protected override void InnerApplyMotion(IMotion motion) {
-      if (motion.Strength < this.MotionSpace1._Min_Value || motion.Strength > this.MotionSpace1._Max_Value) {
-        Debug.Log($"It does not accept input {motion.Strength}, outside allowed range {this.MotionSpace1._Min_Value} to {this.MotionSpace1._Max_Value}");
+      if (motion.Strength < this.MotionSpace._Min_Value || motion.Strength > this.MotionSpace._Max_Value) {
+        Debug.Log($"It does not accept input {motion.Strength}, outside allowed range {this.MotionSpace._Min_Value} to {this.MotionSpace._Max_Value}");
         return; // Do nothing
       }
 

@@ -1,11 +1,10 @@
 ﻿using droid.Runtime.Environments;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
-using droid.Runtime.Utilities.Debugging;
 using droid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities.Noise;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
-using Object = System.Object;
 
 namespace droid.Runtime.Prototyping.Configurables.Experimental {
   /// <inheritdoc cref="Configurable" />
@@ -111,7 +110,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     /// <returns></returns>
     public override IConfigurableConfiguration SampleConfiguration() {
-      return new Configuration(this._mesh_str, _deformation_space.Sample());
+      return new Configuration(this._mesh_str, this._deformation_space.Sample());
     }
   }
 }

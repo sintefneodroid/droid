@@ -297,7 +297,7 @@ namespace droid.Editor.Windows {
       foreach (var actor in actors) {
         var actor_value = (Actor)actor.Value;
         if (actor_value != null) {
-          var Actuators = actor_value.Actuators;
+          var actuators = actor_value.Actuators;
 
           EditorGUILayout.BeginVertical("Box");
 
@@ -313,7 +313,7 @@ namespace droid.Editor.Windows {
             //EditorGUILayout.EndHorizontal();
           }
 
-          this.DrawActuators(Actuators);
+          this.DrawActuators(actuators);
 
           EditorGUILayout.EndToggleGroup();
 
@@ -408,22 +408,22 @@ namespace droid.Editor.Windows {
       EditorGUILayout.EndVertical();
     }
 
-    void DrawActuators(Dictionary<string, IActuator> Actuators) {
+    void DrawActuators(Dictionary<string, IActuator> actuators) {
       EditorGUILayout.BeginVertical("Box");
       GUILayout.Label("Actuators");
-      foreach (var Actuator in Actuators) {
-        var Actuator_value = (Actuator)Actuator.Value;
-        if (Actuator_value != null) {
+      foreach (var actuator in actuators) {
+        var actuator_value = (Actuator)actuator.Value;
+        if (actuator_value != null) {
           EditorGUILayout.BeginVertical("Box");
-          Actuator_value.enabled =
-              EditorGUILayout.BeginToggleGroup(Actuator.Key,
-                                               Actuator_value.enabled
-                                               && Actuator_value.gameObject.activeSelf);
-          EditorGUILayout.ObjectField(Actuator_value, typeof(Actuator), true);
+          actuator_value.enabled =
+              EditorGUILayout.BeginToggleGroup(actuator.Key,
+                                               actuator_value.enabled
+                                               && actuator_value.gameObject.activeSelf);
+          EditorGUILayout.ObjectField(actuator_value, typeof(Actuator), true);
 
           if (this._show_detailed_descriptions) {
-            EditorGUILayout.Vector3Field("Motion Space (min,gran,max)",
-                                         Actuator_value.MotionSpace1.ToVector3());
+            EditorGUILayout.Vector3Field(actuator_value.MotionSpace.Vector3Description(),
+                                         actuator_value.MotionSpace.ToVector3());
             //EditorGUILayout.BeginHorizontal("Box");
             #if NEODROID_DEBUG
             Actuator_value.Debugging = EditorGUILayout.Toggle("Debugging", Actuator_value.Debugging);

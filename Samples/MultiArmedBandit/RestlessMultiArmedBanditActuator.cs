@@ -16,10 +16,10 @@ namespace droid.Samples.MultiArmedBandit {
     /// <summary>
     /// </summary>
     protected override void Setup() {
-      var mvs = this.MotionSpace1;
+      var mvs = this.MotionSpace;
       mvs._Min_Value = 0;
       mvs._Max_Value = this._Indicators.Length - 1;
-      this.MotionSpace1 = mvs;
+      this.MotionSpace = mvs;
 
       this.ReAssignValues();
       this.StartCoroutine(this.ExecuteAfterTime(2));

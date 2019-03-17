@@ -126,7 +126,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <returns></returns>
     /// <exception cref="T:System.NotImplementedException"></exception>
     public override IConfigurableConfiguration SampleConfiguration() {
-      return new Configuration(this._vel_x, _angular_velocity.Sample());
+      return new Configuration(this._vel_x, this._angular_velocity.Sample());
     }
   }
 }

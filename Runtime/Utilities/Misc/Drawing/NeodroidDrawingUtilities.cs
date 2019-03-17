@@ -49,6 +49,8 @@ namespace droid.Runtime.Utilities.Misc.Drawing {
                                   ray_duration);
     }
 
+
+
     static void NeodroidDrawingUtilitiesEnd(bool gizmos,
                                             Vector3 pos,
                                             Vector3 direction,

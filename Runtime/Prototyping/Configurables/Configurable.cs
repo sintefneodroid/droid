@@ -5,7 +5,6 @@ using droid.Runtime.Utilities.GameObjects;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
-using Object = System.Object;
 
 namespace droid.Runtime.Prototyping.Configurables {
   /// <inheritdoc cref="PrototypingGameObject" />
@@ -106,7 +105,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     bool _relative_to_existing_value = false;
 
     [SerializeField] bool SampleRandom = false;
-    [SerializeField] UnityEngine.Random random_generator;
+    [SerializeField] Random random_generator;
 
     #endregion
   }

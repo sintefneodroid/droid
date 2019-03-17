@@ -35,10 +35,11 @@ namespace droid.Editor.Utilities {
       var serializer = new JsonSerializer {NullValueHandling = NullValueHandling.Ignore};
       var simulationManager = FindObjectOfType<PausableManager>();
 
-      using (var sw = new StreamWriter(name))
+      using (var sw = new StreamWriter(name)) {
         using (JsonWriter writer = new JsonTextWriter(sw)) {
           serializer.Serialize(writer, simulationManager.ToString());
         }
+      }
     }
 
     /// <inheritdoc />

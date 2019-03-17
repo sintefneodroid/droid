@@ -29,7 +29,7 @@ MonoBehaviour:
   _port: 6969
   _replay_reaction_in_skips: 0
   _reset_iterations: 1
-  _simulation_type: 3
+  _simulation_type: 0
   _step_execution_phase: 1
   _target_frame_rate: -1
   _time_scale: 1

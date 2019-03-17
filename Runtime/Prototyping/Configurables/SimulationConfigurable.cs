@@ -115,7 +115,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
     public override IConfigurableConfiguration SampleConfiguration() {
-      return new Configuration(this._time_scale, (float)Space1.ZeroOne.Sample());
+      return new Configuration(this._time_scale, Space1.ZeroOne.Sample());
     }
   }
 }

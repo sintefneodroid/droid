@@ -9,15 +9,17 @@ namespace droid.Runtime.Utilities.Structs {
   ///
   /// </summary>
   [Serializable]
-  public struct Space1:ISpace {
+  public struct Space1 : ISpace {
     /// <summary>
     ///
     /// </summary>
     public int _Decimal_Granularity;
+
     /// <summary>
     ///
     /// </summary>
     public float _Min_Value;
+
     /// <summary>
     ///
     /// </summary>
@@ -63,14 +65,16 @@ namespace droid.Runtime.Utilities.Structs {
     public Vector2 ToVector2() { return new Vector2(this._Min_Value, this._Max_Value); }
 
     public Vector3 ToVector3() {
-      return new Vector3(this._Min_Value, this._Decimal_Granularity, this._Max_Value);
+      return new Vector3(this._Min_Value, this._Max_Value,this._Decimal_Granularity);
     }
+
+    public string Vector3Description() { return "Motion Space (min,max,granularity)"; }
+
 
     public float Round(float v) { return (float)Math.Round(v, this._Decimal_Granularity); }
 
     public static Space1 ZeroOne { get { return new Space1(1) {_Min_Value = 0, _Max_Value = 1}; } }
-    public Int32 DecimalGranularity { get { return this._Decimal_Granularity; } }
+    public int DecimalGranularity { get { return this._Decimal_Granularity; } }
+    public static Space1 MinusOneOne { get { return new Space1(1) {_Min_Value = -1, _Max_Value = 1}; } }
   }
-
-
 }

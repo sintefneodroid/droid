@@ -11,7 +11,7 @@ namespace droid.Runtime.Utilities.ScriptableObjects {
   ///   Contains everything relevant to configuring simulation environments engine specific settings
   /// </summary>
   [CreateAssetMenu(fileName = "SimulatorConfiguration",
-      menuName = "Neodroid/ScriptableObjects/SimulatorConfiguration",
+      menuName = ScriptableObjectMenuPath._ScriptableObjectMenuPath+"SimulatorConfiguration",
       order = 1)]
   [Serializable]
   public class SimulatorConfiguration : ScriptableObject,

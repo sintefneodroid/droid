@@ -1,6 +1,7 @@
 ﻿using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Prototyping.Sensors;
 using droid.Runtime.Utilities.BoundingBoxes;
+using droid.Runtime.Utilities.GameObjects.Sensors;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Misc.Extensions;
 using UnityEngine;
@@ -94,7 +95,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
       }
 
       NeodroidUtilities
-          .RegisterCollisionTriggerCallbacksOnChildren<Utilities.Sensors.ChildCollider3DSensor, Collider,
+          .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider,
               Collision>(this,
                          this._area.transform,
                          this.OnCollisionEnterChild,
@@ -105,7 +106,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
                          this.OnTriggerStayChild);
 
       NeodroidUtilities
-          .RegisterCollisionTriggerCallbacksOnChildren<Utilities.Sensors.ChildCollider3DSensor, Collider,
+          .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider,
               Collision>(this,
                          this._actor.transform,
                          this.OnCollisionEnterChild,

@@ -1,7 +1,6 @@
 ﻿using droid.Runtime.Environments;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
-using droid.Runtime.Utilities.Debugging;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
@@ -65,7 +64,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     /// <returns></returns>
     public override IConfigurableConfiguration SampleConfiguration() {
-      return new Configuration(this._texture_str, (float)Space1.ZeroOne.Sample());
+      return new Configuration(this._texture_str, Space1.ZeroOne.Sample());
     }
   }
 }

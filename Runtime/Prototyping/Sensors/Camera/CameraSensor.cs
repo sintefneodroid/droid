@@ -20,7 +20,10 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
 
     /// <summary>
     /// </summary>
-    Exr_
+    Exr_,
+    Tga_,
+    Bmp_,
+    Raw_
   }
 
   /// <inheritdoc cref="Sensor" />
@@ -76,6 +79,8 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
     /// <summary>
     /// </summary>
     public byte[] Bytes { get { return this._bytes; } private set { this._bytes = value; } }
+
+    public String DataType { get { return this.imageFormat.ToString(); } }
 
     /// <inheritdoc />
     /// <summary>
@@ -137,7 +142,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
           this._texture.Apply();
         } else {
           #if NEODROID_DEBUG
-          Debug.LogWarning("Texture not available!");
+            Debug.LogWarning("Texture not available!");
           #endif
           this._texture = new Texture2D(NeodroidConstants._Default_Width, NeodroidConstants._Default_Height);
         }
@@ -153,6 +158,28 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
             case ImageFormat.Exr_:
               this.Bytes = this._texture.EncodeToEXR();
               break;
+            case ImageFormat.Tga_:
+              this.Bytes = this._texture.EncodeToTGA();
+              break;
+            case ImageFormat.Raw_:
+              this.Bytes = this._texture.GetRawTextureData();
+              break;
+            /*case ImageFormat.Ppm_:
+              // create a file header for ppm formatted file
+              string headerStr = string.Format("P6\n{0} {1}\n255\n", rect.width, rect.height);
+              fileHeader = System.Text.Encoding.ASCII.GetBytes(headerStr);
+              this.Bytes = _texture.GetRawTextureData();
+
+                      new System.Threading.Thread(() =>
+        {
+            // create file and write optional header with image bytes
+            var f = System.IO.File.Create(filename);
+            if (fileHeader != null) f.Write(fileHeader, 0, fileHeader.Length);
+            f.Write(fileData, 0, fileData.Length);
+            f.Close();
+            Debug.Log(string.Format("Wrote screenshot {0} of size {1}", filename, fileData.Length));
+        }).Start();
+            */
             default: throw new ArgumentOutOfRangeException();
           }
         }
@@ -180,5 +207,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
         this.UpdateBytes();
       }
     }
+
+    public override string ToString() { return $"Rendered {this.imageFormat} image"; }
   }
 }

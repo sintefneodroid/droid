@@ -74,6 +74,7 @@ namespace droid.Runtime.Prototyping.Actuators {
           NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Actuator)this, this._z);
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <param name="motion"></param>

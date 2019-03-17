@@ -174,24 +174,23 @@ namespace droid.Runtime.Prototyping.Configurables {
     ///  <returns></returns>
     public override IConfigurableConfiguration SampleConfiguration() {
       var sample = this.QuadSpace.Sample();
-      var r = (int)Random.Range(0, 4);
+      var r = Random.Range(0, 4);
       switch (r) {
         case 0:
           return new Configuration(this._x, sample.x);
-          break;
+
         case 1:
           return new Configuration(this._y, sample.y);
-          break;
+
         case 2:
           return new Configuration(this._z, sample.z);
-          break;
+
         case 3:
           return new Configuration(this._w, sample.w);
-          break;
+
         default:
           throw new IndexOutOfRangeException();
       }
-      return new Configuration(this._x, sample.x);
     }
   }
 }

@@ -32,7 +32,9 @@ namespace droid.Runtime.Utilities.EventRecipients {
       /// <summary>
       /// </summary>
       void Update() {
-        if (!this._invoke_on_validate) this._poll_event?.Invoke();
+        if (!this._invoke_on_validate) {
+          this._poll_event?.Invoke();
+        }
       }
     }
   }

@@ -1,7 +1,6 @@
 ﻿using droid.Runtime.Environments;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
-using droid.Runtime.Utilities.Debugging;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
@@ -24,7 +23,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
 
     Light _light;
 
-    [SerializeField] Space1 _space = new Space1() {_Min_Value = 0.7f, _Max_Value = 1f};
+    [SerializeField] Space1 _space = new Space1 {_Min_Value = 0.7f, _Max_Value = 1f};
 
     /// <inheritdoc />
     /// <summary>

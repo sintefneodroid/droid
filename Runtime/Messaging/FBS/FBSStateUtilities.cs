@@ -185,9 +185,9 @@ namespace droid.Runtime.Messaging.FBS {
       FActuator.AddActuatorName(b, n);
       FActuator.AddValidInput(b,
                               FRange.CreateFRange(b,
-                                                  actuator.MotionSpace1._Decimal_Granularity,
-                                                  actuator.MotionSpace1._Max_Value,
-                                                  actuator.MotionSpace1._Min_Value));
+                                                  actuator.MotionSpace._Decimal_Granularity,
+                                                  actuator.MotionSpace._Max_Value,
+                                                  actuator.MotionSpace._Min_Value));
       FActuator.AddEnergySpentSinceReset(b, actuator.GetEnergySpend());
       return FActuator.EndFActuator(b);
     }

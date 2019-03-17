@@ -1,11 +1,17 @@
 ﻿#if UNITY_EDITOR
 using droid.Editor.Windows;
-using droid.Runtime.Utilities.ScriptableObjects;
+using droid.Runtime.Utilities.ScriptableObjects.Unused;
 using UnityEditor;
 using UnityEngine;
 
 namespace droid.Editor.ScriptableObjects {
+  /// <summary>
+  /// 
+  /// </summary>
   public static class CreateCurriculum {
+    /// <summary>
+    /// 
+    /// </summary>
     [MenuItem(EditorScriptableObjectMenuPath._ScriptableObjectMenuPath + "Curriculum")]
     public static void CreateCurriculumAsset() {
       var asset = ScriptableObject.CreateInstance<Curriculum>();

@@ -1,7 +1,6 @@
 ﻿using droid.Runtime.Environments;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
-using droid.Runtime.Utilities.Debugging;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
@@ -39,7 +38,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     Renderer _renderer;
 
-    [SerializeField] Space1 _space = new Space1() {_Min_Value = 0.3f, _Max_Value = 1f};
+    [SerializeField] Space1 _space = new Space1 {_Min_Value = 0.3f, _Max_Value = 1f};
 
     [SerializeField] bool use_shared = false;
 

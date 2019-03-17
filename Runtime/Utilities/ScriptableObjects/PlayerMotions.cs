@@ -8,7 +8,7 @@ namespace droid.Runtime.Utilities.ScriptableObjects {
   /// <summary>
   /// </summary>
   [CreateAssetMenu(fileName = "PlayerMotions",
-      menuName = "Neodroid/ScriptableObjects/PlayerMotions",
+      menuName = ScriptableObjectMenuPath._ScriptableObjectMenuPath+"PlayerMotions",
       order = 1)]
   public class PlayerMotions : ScriptableObject {
     /// <summary>

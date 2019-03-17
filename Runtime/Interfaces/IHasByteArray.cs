@@ -5,5 +5,10 @@
     /// <summary>
     /// </summary>
     byte[] Bytes { get; }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    string DataType { get; }
   }
 }

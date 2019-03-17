@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using droid.Runtime.Utilities.BoundingBoxes.Experimental;
 using UnityEngine;
 using Object = System.Object;
@@ -25,9 +26,15 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
       if (!this._camera) {
         this._camera = this.GetComponent<Camera>();
       }
+
+      if(!this.gui_style) {
+        this.gui_style = Resources.FindObjectsOfTypeAll<GUISkin>().First(a => a.name =="BoundingBox");
+      }
+
+      this.bounding_boxes = FindObjectsOfType<BoundingBox>();
     }
 
-    void Start() { this.bounding_boxes = FindObjectsOfType<BoundingBox>(); }
+    void Start() {  }
 
     /// <summary>
     /// </summary>
