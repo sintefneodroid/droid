@@ -89,6 +89,7 @@ namespace droid.Runtime.Prototyping.Actors {
 
     /// <summary>
     /// </summary>
+    /// <param name="actuator"></param>
     /// <param name="identifier"></param>
     public void UnRegister(IActuator actuator, string identifier) {
       if (this._Actuators != null) {
@@ -213,7 +214,6 @@ namespace droid.Runtime.Prototyping.Actors {
     /// </summary>
     public override string PrototypingTypeName { get { return "Actor"; } }
 
-    /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <param name="actuator"></param>

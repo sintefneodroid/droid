@@ -22,6 +22,11 @@ namespace droid.Runtime.Prototyping.Actuators {
 
     public override string PrototypingTypeName { get { return "Transform" + this._Axis_Of_Motion; } }
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    /// <param name="motion"></param>
+    /// <exception cref="T:System.ArgumentOutOfRangeException"></exception>
     protected override void InnerApplyMotion(IMotion motion) {
       var layer_mask = 1 << LayerMask.NameToLayer(this._Layer_Mask);
       var vec = Vector3.zero;
