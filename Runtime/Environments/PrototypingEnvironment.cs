@@ -106,7 +106,7 @@ namespace droid.Runtime.Environments {
 
       foreach (var actor in this.Actors) {
         var actor_value = actor.Value;
-        if (actor_value != null && actor_value.Actuators != null) {
+        if (actor_value?.Actuators != null) {
           foreach (var actuator in actor_value.Actuators) {
             var actuator_value = actuator.Value;
             if (actuator_value != null) {

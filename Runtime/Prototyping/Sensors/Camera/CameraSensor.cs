@@ -21,17 +21,20 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
     /// <summary>
     /// </summary>
     Exr_,
+
+    /// <summary>
+    /// </summary>
     Tga_,
-    Bmp_,
+
+    /// <summary>
+    /// </summary>
     Raw_
   }
 
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
-                    + "Camera"
-                    + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath + "Camera" + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [RequireComponent(typeof(UnityEngine.Camera))]
   public class CameraSensor : Sensor,
@@ -142,7 +145,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
           this._texture.Apply();
         } else {
           #if NEODROID_DEBUG
-            Debug.LogWarning("Texture not available!");
+          Debug.LogWarning("Texture not available!");
           #endif
           this._texture = new Texture2D(NeodroidConstants._Default_Width, NeodroidConstants._Default_Height);
         }

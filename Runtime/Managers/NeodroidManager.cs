@@ -8,6 +8,7 @@ using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Utilities.Enums;
 using droid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Utilities.ScriptableObjects;
+using droid.Runtime.Utilities.Structs;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -843,7 +844,11 @@ namespace droid.Runtime.Managers {
     /// </summary>
     /// <returns></returns>
     public string GetStatus() {
-      return this._Message_Server._Listening_For_Clients ? "Connected" : "Not Connected";
+      if(this._Message_Server!=null) {
+        return this._Message_Server._Listening_For_Clients ? "Connected" : "Not Connected";
+      }
+
+      return "No server";
     }
 
     #endregion

@@ -6,7 +6,7 @@ namespace droid.Runtime.Utilities.Misc.Procedural {
   /// </summary>
   public class GameObjectCloner : MonoBehaviour {
     [SerializeField] GameObject[] _clones = null;
-    [SerializeField] Vector3 _initial_offset = new Vector3(20, 0);
+    [SerializeField] Vector3 _initial_offset = new Vector3(0, 0, 0);
     [SerializeField] [Range(0, 99)] int _num_clones = 0;
     [SerializeField] Vector3 _offset = new Vector3(20, 0, 20);
     [SerializeField] GameObject _prefab = null;
@@ -18,18 +18,19 @@ namespace droid.Runtime.Utilities.Misc.Procedural {
         this.ClearClones();
       }
 
-      var eid = 0;
+      var clone_id = 0;
       this._clones = new GameObject[this._num_clones];
       if (this._prefab) {
+
         var clone_coords = NeodroidUtilities.SnakeSpaceFillingGenerator(this._num_clones);
-        foreach (var clone_coord in clone_coords) {
+        foreach (var c in clone_coords) {
           var go = Instantiate(this._prefab,
-                               this._initial_offset + Vector3.Scale(this._offset, clone_coord),
+                               this._initial_offset + Vector3.Scale(this._offset, c),
                                Quaternion.identity,
                                this.transform);
-          go.name = $"{go.name}{eid}";
-          this._clones[eid] = go;
-          eid++;
+          go.name = $"{go.name}{clone_id}";
+          this._clones[clone_id] = go;
+          clone_id++;
         }
       }
     }

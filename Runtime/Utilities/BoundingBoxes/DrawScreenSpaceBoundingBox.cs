@@ -34,57 +34,6 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
       this.bounding_boxes = FindObjectsOfType<BoundingBox>();
     }
 
-    void Start() {  }
-
-    /// <summary>
-    /// </summary>
-    /// <param name="new_points"></param>
-    /// <param name="a_name"></param>
-    public void AddBoundingBox(BoundingBox new_points, string a_name) {
-      if (new_points == null) {
-        return;
-      }
-
-      if (this._camera.WorldToScreenPoint(new_points.Bounds.center).z < 0) {
-        return;
-      }
-
-      /*
-      new_points.EncapsulatePoints(this._camera);
-
-                  var le = new_points.Length;
-                  var screen_pos = new Vector3[le];
-
-                  var screen_bounds = new Bounds();
-                  for (var i = 0; i < le; i++) {
-                    screen_pos[i] = this._camera.WorldToScreenPoint(new_points[i]);
-
-                    if (i == 0) {
-                      screen_bounds = new Bounds(screen_pos[0], Vector3.zero);
-                    } else {
-                      screen_bounds.Encapsulate(screen_pos[i]);
-                    }
-                  }
-
-
-                  var a = this._camera.WorldToScreenPoint(game_object.transform.position);
-
-                  scr_rect.xMin = screen_bounds.min.x;
-                  scr_rect.yMin = screen_bounds.min.y;
-
-                  scr_rect.xMax = screen_bounds.max.x;
-                  scr_rect.yMax = screen_bounds.max.y;
-                  this._screen_pos.Add(a);
-      */
-
-      //var scr_rect = new_points.GetBoundsScreenRect(this._camera);
-      //scr_rect.center = this._camera.WorldToScreenPoint(go.transform.TransformPoint(new_points.center));
-      //scr_rect.y = Screen.height - scr_rect.y;
-
-      this._rects.Add(new_points.ScreenSpaceBoundingRect(this._camera));
-      this._names.Add(a_name);
-    }
-
     void Compute() {
       this._rects.Clear();
       this._names.Clear();
@@ -99,6 +48,7 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
         }
 
         var a = bb.ScreenSpaceBoundingRect(this._camera);
+
         this._rects.Add(a);
         this._names.Add(bb.name);
       }
@@ -110,10 +60,6 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
       }
 
       this.Draw();
-    }
-
-    void LateUpdate() {
-      //this.Draw();
     }
 
     void Draw() {

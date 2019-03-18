@@ -13,8 +13,8 @@ namespace droid.Samples.MultiArmedBandit {
                     + "TextBarPlot"
                     + DisplayerComponentMenuPath._Postfix)]
   public class TextBarPlotDisplayer : Resetable {
-    [CanBeNull] [SerializeField] CanvasBarDisplayer[] _canvas_bars = { };
-    [CanBeNull] [SerializeField] CanvasTextDisplayer[] _canvas_text = { };
+     [SerializeField] CanvasBarDisplayer[] _canvas_bars = { };
+    [SerializeField] CanvasTextDisplayer[] _canvas_text = { };
 
     /// <inheritdoc />
     /// <summary>

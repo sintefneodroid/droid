@@ -23,7 +23,6 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Experimental {
     [SerializeField] RenderTexture objectIdRenderTexture;
     [SerializeField] RenderTexture tagIdRenderTexture;
     [SerializeField] RenderTexture flowRenderTexture;
-    [SerializeField] Material uberMaterial;
 
     /// <summary>
     /// </summary>
@@ -109,7 +108,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Experimental {
                                                                                                                 = this
                                                                                                                     .objectIdRenderTexture
 
-                                                                                                            ,_Material = this.uberMaterial,
+                                                                                                            ,
                                                                                                             _TextureId  = Shader.PropertyToID("_TmpFrameBuffer")
                                                                                                         },
                                          new CapturePassMaterial(CameraEvent
@@ -121,7 +120,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Experimental {
                                              = this
                                                  .tagIdRenderTexture
 
-                                         ,_Material = this.uberMaterial,
+                                         ,
                                          _TextureId  = Shader.PropertyToID("_CameraDepthTexture")
                                          }
                                      };
@@ -134,14 +133,6 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Experimental {
 
       this._camera = this.GetComponent<Camera>();
       //this._camera.SetReplacementShader(this.uberMaterial.shader,"");
-
-      if(this.uberMaterial !=null) {
-        if (this._camera.targetTexture != null) {
-          this.uberMaterial.EnableKeyword("OFFSCREEN");
-        } else {
-          this.uberMaterial.DisableKeyword("OFFSCREEN");
-        }
-      }
 
       this._camera.RemoveAllCommandBuffers(); // cleanup capturing camera
 

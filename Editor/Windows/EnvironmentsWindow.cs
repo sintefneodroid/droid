@@ -18,6 +18,7 @@ using droid.Runtime.Utilities.Enums;
 using droid.Runtime.Utilities.GameObjects;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.ScriptableObjects;
+using droid.Runtime.Utilities.Structs;
 using UnityEditor;
 using UnityEngine;
 
@@ -426,7 +427,7 @@ namespace droid.Editor.Windows {
                                          actuator_value.MotionSpace.ToVector3());
             //EditorGUILayout.BeginHorizontal("Box");
             #if NEODROID_DEBUG
-            Actuator_value.Debugging = EditorGUILayout.Toggle("Debugging", Actuator_value.Debugging);
+            actuator_value.Debugging = EditorGUILayout.Toggle("Debugging", actuator_value.Debugging);
             #endif
             //EditorGUILayout.EndHorizontal();
           }
