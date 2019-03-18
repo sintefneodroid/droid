@@ -58,6 +58,7 @@ namespace droid.Editor.Windows {
                 EditorGUILayout.Foldout(this._show_camera_properties[i], this._cameras[i].name);
             if (this._show_camera_properties[i]) {
               EditorGUILayout.BeginVertical("Box");
+              /*
               this._cameras[i].SyncOrthographicSize =
                   EditorGUILayout.Toggle("Synchronise Orthographic Size",
                                          this._cameras[i].SyncOrthographicSize);
@@ -67,6 +68,7 @@ namespace droid.Editor.Windows {
                   EditorGUILayout.Toggle("Synchronise Far Clip Plane", this._cameras[i].SyncFarClipPlane);
               this._cameras[i].SyncCullingMask =
                   EditorGUILayout.Toggle("Synchronise Culling Mask", this._cameras[i].SyncCullingMask);
+              */
               EditorGUILayout.EndVertical();
             }
           }

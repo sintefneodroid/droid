@@ -6,7 +6,7 @@ namespace droid.Runtime.Utilities.Misc {
     /// <summary>
     ///
     /// </summary>
-    public const int _Default_Observation_Texture_Xy_Size = 84;
+    public const int _Default_Observation_Texture_Xy_Size = 224;
 
     /// <summary>
     ///
@@ -17,5 +17,9 @@ namespace droid.Runtime.Utilities.Misc {
     ///
     /// </summary>
     public const int _Default_Height = _Default_Width;
+
+    /// <summary>
+    /// </summary>
+    public const double _Double_Tolerance = double.Epsilon;
   }
 }

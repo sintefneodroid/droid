@@ -1,4 +1,5 @@
 ﻿#if UNITY_EDITOR
+using System;
 using System.Linq;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -80,7 +81,7 @@ namespace droid.Editor.Utilities {
     }
 
     static void ShowError(string context, GameObject go, string component_name, string property_name) {
-      var error_template = "Missing Ref in: [{3}]{0}. Component: {1}, Property: {2}";
+      const String error_template = "Missing Ref in: [{3}]{0}. Component: {1}, Property: {2}";
 
       Debug.LogError(string.Format(error_template, GetFullPath(go), component_name, property_name, context),
                      go);

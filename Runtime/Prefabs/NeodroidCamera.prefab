@@ -1,5 +1,159 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &165064346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 165064347}
+  - component: {fileID: 165064351}
+  - component: {fileID: 165064350}
+  - component: {fileID: 165064349}
+  - component: {fileID: 165064348}
+  m_Layer: 2
+  m_Name: 180
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &165064347
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165064346}
+  m_LocalRotation: {x: -0, y: -0.81915206, z: 0.57357633, w: 0.000000029802319}
+  m_LocalPosition: {x: 0, y: 1.1471528, z: 1.6383044}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4232321861901436}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 35, y: -90, z: 0}
+--- !u!20 &165064351
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165064346}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
+  m_projectionMatrixMode: 2
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 15.442462
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.01
+  far clip plane: 30
+  field of view: 75.7
+  orthographic: 0
+  orthographic size: 20
+  m_Depth: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967263
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 8400000, guid: 58bcb9cbeccb20f4a987d9790194cdb3, type: 2}
+  m_TargetDisplay: 1
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 0
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!114 &165064350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165064346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameras:
+  - {fileID: 165064350}
+  - {fileID: 2031637001}
+  - {fileID: 790114237}
+  - {fileID: 114203839715900738}
+  - {fileID: 114716082362535994}
+  _run_only_in_edit_mode: 1
+  _only_run_on_awake: 0
+  _sync_culling_mask: 1
+  _sync_far_clip_plane: 1
+  _sync_fov: 1
+  _sync_near_clip_plane: 1
+  _sync_orthographic_projection: 1
+  _sync_orthographic_size: 1
+  _sync_physicality: 1
+  _sync_sensor_size: 1
+  _sync_lens_shift: 1
+  _sync_gate_fit: 1
+  _sync_focal_length: 1
+  _camera: {fileID: 165064351}
+  _old_physicality: 1
+  _old_gate_fit: 2
+  _old_sensor_size: {x: 36, y: 24}
+  _old_lens_shift: {x: 0, y: 0}
+--- !u!114 &165064349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165064346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 96d2b2d8cb1664b2c9870ffd997b2f1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Custom_Name: RGB
+  _disables_children: 0
+  _editor_reregistering: 1
+  _Use_Custom_Name: 0
+  _unregister_at_disable: 0
+  _normalise_observation: 0
+  _Camera: {fileID: 165064351}
+  imageFormat: 1
+  jpegQuality: 75
+  disable_encoding: 0
+--- !u!114 &165064348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165064346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 90d8486c2d1444fb8ac452a5a74cf74b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _automatically_add_lights_without_infrared_component: 0
+  _ignore_infrared_if_empty: 1
+  _lights_to_ignore:
+  - {fileID: 108906297679887750}
 --- !u!1 &727610260
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,7 +246,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -115,7 +268,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 727610264}
   _cameras:
   - {fileID: 1463669859483367840}
   - {fileID: 1171208658948452137}
@@ -136,12 +288,6 @@ MonoBehaviour:
   - {fileID: 790114237}
   - {fileID: 727610264}
   - {fileID: 114716082362535994}
-  _old_culling_mask: -33
-  _old_far_clip_plane: 100
-  _old_fov: 61.600002
-  _old_near_clip_plane: 0.01
-  _old_orthographic_projection: 0
-  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -150,6 +296,16 @@ MonoBehaviour:
   _sync_near_clip_plane: 1
   _sync_orthographic_projection: 1
   _sync_orthographic_size: 1
+  _sync_physicality: 1
+  _sync_sensor_size: 1
+  _sync_lens_shift: 1
+  _sync_gate_fit: 1
+  _sync_focal_length: 1
+  _camera: {fileID: 0}
+  _old_physicality: 0
+  _old_gate_fit: 3
+  _old_sensor_size: {x: 1, y: 1}
+  _old_lens_shift: {x: 0, y: 0}
 --- !u!114 &727610263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,12 +384,12 @@ Camera:
   serializedVersion: 2
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
-  m_projectionMatrixMode: 1
+  m_projectionMatrixMode: 2
   m_GateFitMode: 2
   m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
+  m_FocalLength: 15.442462
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -242,7 +398,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 30
-  field of view: 61.600002
+  field of view: 75.7
   orthographic: 0
   orthographic size: 20
   m_Depth: 1
@@ -273,17 +429,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 790114237}
   _cameras:
-  - {fileID: 114203839715900738}
+  - {fileID: 165064350}
+  - {fileID: 2031637001}
   - {fileID: 790114237}
+  - {fileID: 114203839715900738}
   - {fileID: 114716082362535994}
-  _old_culling_mask: -33
-  _old_far_clip_plane: 30
-  _old_fov: 61.600002
-  _old_near_clip_plane: 0.01
-  _old_orthographic_projection: 0
-  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -292,6 +443,16 @@ MonoBehaviour:
   _sync_near_clip_plane: 1
   _sync_orthographic_projection: 1
   _sync_orthographic_size: 1
+  _sync_physicality: 1
+  _sync_sensor_size: 1
+  _sync_lens_shift: 1
+  _sync_gate_fit: 1
+  _sync_focal_length: 1
+  _camera: {fileID: 790114239}
+  _old_physicality: 1
+  _old_gate_fit: 2
+  _old_sensor_size: {x: 36, y: 24}
+  _old_lens_shift: {x: 0, y: 0}
 --- !u!114 &790114236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,7 +467,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -330,7 +490,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -444,7 +603,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 870147247}
   _cameras:
   - {fileID: 1463669859483367840}
   - {fileID: 1171208658948452137}
@@ -465,12 +623,6 @@ MonoBehaviour:
   - {fileID: 790114237}
   - {fileID: 727610264}
   - {fileID: 114716082362535994}
-  _old_culling_mask: -33
-  _old_far_clip_plane: 100
-  _old_fov: 61.600002
-  _old_near_clip_plane: 0.01
-  _old_orthographic_projection: 0
-  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -479,6 +631,16 @@ MonoBehaviour:
   _sync_near_clip_plane: 1
   _sync_orthographic_projection: 1
   _sync_orthographic_size: 1
+  _sync_physicality: 1
+  _sync_sensor_size: 1
+  _sync_lens_shift: 1
+  _sync_gate_fit: 1
+  _sync_focal_length: 1
+  _camera: {fileID: 0}
+  _old_physicality: 0
+  _old_gate_fit: 3
+  _old_sensor_size: {x: 1, y: 1}
+  _old_lens_shift: {x: 0, y: 0}
 --- !u!114 &870147246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,7 +655,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -624,7 +785,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 1403684216}
   _cameras:
   - {fileID: 1463669859483367840}
   - {fileID: 1171208658948452137}
@@ -645,12 +805,6 @@ MonoBehaviour:
   - {fileID: 790114237}
   - {fileID: 727610264}
   - {fileID: 114716082362535994}
-  _old_culling_mask: -33
-  _old_far_clip_plane: 20
-  _old_fov: 61.600002
-  _old_near_clip_plane: 0.01
-  _old_orthographic_projection: 0
-  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -659,6 +813,16 @@ MonoBehaviour:
   _sync_near_clip_plane: 1
   _sync_orthographic_projection: 1
   _sync_orthographic_size: 1
+  _sync_physicality: 1
+  _sync_sensor_size: 1
+  _sync_lens_shift: 1
+  _sync_gate_fit: 1
+  _sync_focal_length: 1
+  _camera: {fileID: 0}
+  _old_physicality: 0
+  _old_gate_fit: 3
+  _old_sensor_size: {x: 1, y: 1}
+  _old_lens_shift: {x: 0, y: 0}
 --- !u!114 &1403684214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -673,7 +837,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -697,7 +860,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -798,7 +960,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -821,7 +982,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 1458531845}
   _cameras:
   - {fileID: 1463669859483367840}
   - {fileID: 1171208658948452137}
@@ -842,12 +1002,6 @@ MonoBehaviour:
   - {fileID: 790114237}
   - {fileID: 727610264}
   - {fileID: 114716082362535994}
-  _old_culling_mask: -33
-  _old_far_clip_plane: 100
-  _old_fov: 61.600002
-  _old_near_clip_plane: 0.01
-  _old_orthographic_projection: 0
-  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -856,6 +1010,16 @@ MonoBehaviour:
   _sync_near_clip_plane: 1
   _sync_orthographic_projection: 1
   _sync_orthographic_size: 1
+  _sync_physicality: 1
+  _sync_sensor_size: 1
+  _sync_lens_shift: 1
+  _sync_gate_fit: 1
+  _sync_focal_length: 1
+  _camera: {fileID: 0}
+  _old_physicality: 0
+  _old_gate_fit: 3
+  _old_sensor_size: {x: 1, y: 1}
+  _old_lens_shift: {x: 0, y: 0}
 --- !u!114 &1458531847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -980,7 +1144,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -1003,7 +1166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 1623028174}
   _cameras:
   - {fileID: 1463669859483367840}
   - {fileID: 1171208658948452137}
@@ -1024,12 +1186,6 @@ MonoBehaviour:
   - {fileID: 790114237}
   - {fileID: 727610264}
   - {fileID: 114716082362535994}
-  _old_culling_mask: -33
-  _old_far_clip_plane: 100
-  _old_fov: 61.600002
-  _old_near_clip_plane: 0.01
-  _old_orthographic_projection: 0
-  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -1038,6 +1194,16 @@ MonoBehaviour:
   _sync_near_clip_plane: 1
   _sync_orthographic_projection: 1
   _sync_orthographic_size: 1
+  _sync_physicality: 1
+  _sync_sensor_size: 1
+  _sync_lens_shift: 1
+  _sync_gate_fit: 1
+  _sync_focal_length: 1
+  _camera: {fileID: 0}
+  _old_physicality: 0
+  _old_gate_fit: 3
+  _old_sensor_size: {x: 1, y: 1}
+  _old_lens_shift: {x: 0, y: 0}
 --- !u!114 &1623028173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1070,6 +1236,160 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _replace_render_type: 
   _replacement_shader: {fileID: 4800000, guid: a1fe4d82f3c0be1aa917ece055794af2, type: 3}
+--- !u!1 &2031637000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2031637005}
+  - component: {fileID: 2031637004}
+  - component: {fileID: 2031637001}
+  - component: {fileID: 2031637003}
+  - component: {fileID: 2031637002}
+  m_Layer: 2
+  m_Name: 90
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2031637005
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031637000}
+  m_LocalRotation: {x: 0.000000014901161, y: 0.57922804, z: -0.40557975, w: 0.7071068}
+  m_LocalPosition: {x: -1, y: 0.5735764, z: 0.819152}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4232321861901436}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 35, y: 180, z: 0}
+--- !u!20 &2031637004
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031637000}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
+  m_projectionMatrixMode: 2
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 15.442462
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.01
+  far clip plane: 30
+  field of view: 75.7
+  orthographic: 0
+  orthographic size: 20
+  m_Depth: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967263
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 8400000, guid: 8eff871290da4fd0e8a9ac76009bec92, type: 2}
+  m_TargetDisplay: 1
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 0
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!114 &2031637001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031637000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cameras:
+  - {fileID: 165064350}
+  - {fileID: 2031637001}
+  - {fileID: 790114237}
+  - {fileID: 114203839715900738}
+  - {fileID: 114716082362535994}
+  _run_only_in_edit_mode: 1
+  _only_run_on_awake: 0
+  _sync_culling_mask: 1
+  _sync_far_clip_plane: 1
+  _sync_fov: 1
+  _sync_near_clip_plane: 1
+  _sync_orthographic_projection: 1
+  _sync_orthographic_size: 1
+  _sync_physicality: 1
+  _sync_sensor_size: 1
+  _sync_lens_shift: 1
+  _sync_gate_fit: 1
+  _sync_focal_length: 1
+  _camera: {fileID: 2031637004}
+  _old_physicality: 1
+  _old_gate_fit: 2
+  _old_sensor_size: {x: 36, y: 24}
+  _old_lens_shift: {x: 0, y: 0}
+--- !u!114 &2031637003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031637000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 96d2b2d8cb1664b2c9870ffd997b2f1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Custom_Name: RGB
+  _disables_children: 0
+  _editor_reregistering: 1
+  _Use_Custom_Name: 0
+  _unregister_at_disable: 0
+  _normalise_observation: 0
+  _Camera: {fileID: 2031637004}
+  imageFormat: 1
+  jpegQuality: 75
+  disable_encoding: 0
+--- !u!114 &2031637002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031637000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_GeneratorAsset: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 90d8486c2d1444fb8ac452a5a74cf74b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _automatically_add_lights_without_infrared_component: 0
+  _ignore_infrared_if_empty: 1
+  _lights_to_ignore:
+  - {fileID: 108906297679887750}
 --- !u!1 &1006723805586038
 GameObject:
   m_ObjectHideFlags: 0
@@ -1115,6 +1435,8 @@ Transform:
   - {fileID: 1458531850}
   - {fileID: 727610261}
   - {fileID: 870147244}
+  - {fileID: 2031637005}
+  - {fileID: 165064347}
   m_Father: {fileID: 4129864042203872}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1278,7 +1600,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 114307586759802868}
   _cameras:
   - {fileID: 1463669859483367840}
   - {fileID: 1171208658948452137}
@@ -1299,12 +1620,6 @@ MonoBehaviour:
   - {fileID: 790114237}
   - {fileID: 727610264}
   - {fileID: 114716082362535994}
-  _old_culling_mask: -33
-  _old_far_clip_plane: 100
-  _old_fov: 61.600002
-  _old_near_clip_plane: 0.01
-  _old_orthographic_projection: 0
-  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -1313,6 +1628,16 @@ MonoBehaviour:
   _sync_near_clip_plane: 1
   _sync_orthographic_projection: 1
   _sync_orthographic_size: 1
+  _sync_physicality: 1
+  _sync_sensor_size: 1
+  _sync_lens_shift: 1
+  _sync_gate_fit: 1
+  _sync_focal_length: 1
+  _camera: {fileID: 0}
+  _old_physicality: 0
+  _old_gate_fit: 3
+  _old_sensor_size: {x: 1, y: 1}
+  _old_lens_shift: {x: 0, y: 0}
 --- !u!114 &114622768315461166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1327,7 +1652,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: Normal
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -1467,12 +1791,12 @@ Camera:
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
-  m_projectionMatrixMode: 1
+  m_projectionMatrixMode: 2
   m_GateFitMode: 2
   m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
+  m_FocalLength: 15.442462
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -1481,7 +1805,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 30
-  field of view: 61.600002
+  field of view: 75.7
   orthographic: 0
   orthographic size: 20
   m_Depth: 1
@@ -1512,17 +1836,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 114203839715900738}
   _cameras:
-  - {fileID: 114203839715900738}
+  - {fileID: 165064350}
+  - {fileID: 2031637001}
   - {fileID: 790114237}
+  - {fileID: 114203839715900738}
   - {fileID: 114716082362535994}
-  _old_culling_mask: -33
-  _old_far_clip_plane: 30
-  _old_fov: 61.600002
-  _old_near_clip_plane: 0.01
-  _old_orthographic_projection: 0
-  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -1531,6 +1850,16 @@ MonoBehaviour:
   _sync_near_clip_plane: 1
   _sync_orthographic_projection: 1
   _sync_orthographic_size: 1
+  _sync_physicality: 1
+  _sync_sensor_size: 1
+  _sync_lens_shift: 1
+  _sync_gate_fit: 1
+  _sync_focal_length: 1
+  _camera: {fileID: 20940602749366906}
+  _old_physicality: 1
+  _old_gate_fit: 2
+  _old_sensor_size: {x: 36, y: 24}
+  _old_lens_shift: {x: 0, y: 0}
 --- !u!114 &114789472510660598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1545,7 +1874,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: RGB
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -1839,7 +2167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 114594705335718820}
   _cameras:
   - {fileID: 1463669859483367840}
   - {fileID: 1171208658948452137}
@@ -1860,12 +2187,6 @@ MonoBehaviour:
   - {fileID: 790114237}
   - {fileID: 727610264}
   - {fileID: 114716082362535994}
-  _old_culling_mask: -33
-  _old_far_clip_plane: 100
-  _old_fov: 28.2
-  _old_near_clip_plane: 0.01
-  _old_orthographic_projection: 1
-  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -1874,6 +2195,16 @@ MonoBehaviour:
   _sync_near_clip_plane: 0
   _sync_orthographic_projection: 0
   _sync_orthographic_size: 1
+  _sync_physicality: 1
+  _sync_sensor_size: 1
+  _sync_lens_shift: 1
+  _sync_gate_fit: 1
+  _sync_focal_length: 1
+  _camera: {fileID: 0}
+  _old_physicality: 0
+  _old_gate_fit: 3
+  _old_sensor_size: {x: 1, y: 1}
+  _old_lens_shift: {x: 0, y: 0}
 --- !u!114 &114844159235485554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1888,7 +2219,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -2034,7 +2364,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 114203530777878686}
   _cameras:
   - {fileID: 1463669859483367840}
   - {fileID: 1171208658948452137}
@@ -2055,12 +2384,6 @@ MonoBehaviour:
   - {fileID: 790114237}
   - {fileID: 727610264}
   - {fileID: 114716082362535994}
-  _old_culling_mask: -33
-  _old_far_clip_plane: 100
-  _old_fov: 61.600002
-  _old_near_clip_plane: 0.01
-  _old_orthographic_projection: 0
-  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -2069,6 +2392,16 @@ MonoBehaviour:
   _sync_near_clip_plane: 1
   _sync_orthographic_projection: 1
   _sync_orthographic_size: 1
+  _sync_physicality: 1
+  _sync_sensor_size: 1
+  _sync_lens_shift: 1
+  _sync_gate_fit: 1
+  _sync_focal_length: 1
+  _camera: {fileID: 0}
+  _old_physicality: 0
+  _old_gate_fit: 3
+  _old_sensor_size: {x: 1, y: 1}
+  _old_lens_shift: {x: 0, y: 0}
 --- !u!114 &114155819769717986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2083,7 +2416,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: MultiChannelDepth
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -2233,7 +2565,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 114798311224295254}
   _cameras:
   - {fileID: 1463669859483367840}
   - {fileID: 1171208658948452137}
@@ -2254,12 +2585,6 @@ MonoBehaviour:
   - {fileID: 790114237}
   - {fileID: 727610264}
   - {fileID: 114716082362535994}
-  _old_culling_mask: -33
-  _old_far_clip_plane: 100
-  _old_fov: 61.600002
-  _old_near_clip_plane: 0.01
-  _old_orthographic_projection: 0
-  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -2268,6 +2593,16 @@ MonoBehaviour:
   _sync_near_clip_plane: 1
   _sync_orthographic_projection: 1
   _sync_orthographic_size: 1
+  _sync_physicality: 1
+  _sync_sensor_size: 1
+  _sync_lens_shift: 1
+  _sync_gate_fit: 1
+  _sync_focal_length: 1
+  _camera: {fileID: 0}
+  _old_physicality: 0
+  _old_gate_fit: 3
+  _old_sensor_size: {x: 1, y: 1}
+  _old_lens_shift: {x: 0, y: 0}
 --- !u!114 &114216501179093510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2282,7 +2617,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: Flow
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -2398,7 +2732,7 @@ Camera:
   m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 20.130188
+  m_FocalLength: 15.442462
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -2407,7 +2741,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 30
-  field of view: 61.600002
+  field of view: 75.7
   orthographic: 0
   orthographic size: 20
   m_Depth: 1
@@ -2438,17 +2772,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 114716082362535994}
   _cameras:
-  - {fileID: 114203839715900738}
+  - {fileID: 165064350}
+  - {fileID: 2031637001}
   - {fileID: 790114237}
+  - {fileID: 114203839715900738}
   - {fileID: 114716082362535994}
-  _old_culling_mask: -1
-  _old_far_clip_plane: 30
-  _old_fov: 61.600002
-  _old_near_clip_plane: 0.01
-  _old_orthographic_projection: 0
-  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 0
@@ -2457,6 +2786,16 @@ MonoBehaviour:
   _sync_near_clip_plane: 1
   _sync_orthographic_projection: 1
   _sync_orthographic_size: 1
+  _sync_physicality: 1
+  _sync_sensor_size: 1
+  _sync_lens_shift: 1
+  _sync_gate_fit: 1
+  _sync_focal_length: 1
+  _camera: {fileID: 20224209517257972}
+  _old_physicality: 1
+  _old_gate_fit: 2
+  _old_sensor_size: {x: 36, y: 24}
+  _old_lens_shift: {x: 0, y: 0}
 --- !u!114 &114376289421041340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2496,14 +2835,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 20224209517257972}
-  - {fileID: 20940602749366906}
+  - {fileID: 165064351}
+  - {fileID: 2031637004}
   - {fileID: 790114239}
+  - {fileID: 20940602749366906}
+  - {fileID: 20224209517257972}
   _filter_mode: 1
   _size: {x: 224, y: 224}
   _textures:
-  - {fileID: 8400000, guid: 4c7dcaf7e8ef74c11bd8ad06365ea216, type: 2}
+  - {fileID: 8400000, guid: 58bcb9cbeccb20f4a987d9790194cdb3, type: 2}
+  - {fileID: 8400000, guid: 8eff871290da4fd0e8a9ac76009bec92, type: 2}
   - {fileID: 8400000, guid: e52a2f56c9ffa187abf5021f3338228e, type: 2}
+  - {fileID: 8400000, guid: 4c7dcaf7e8ef74c11bd8ad06365ea216, type: 2}
   _wrap_mode: 1
 --- !u!114 &1625775002
 MonoBehaviour:
@@ -2553,7 +2896,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -2673,7 +3015,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: Infrared
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -2696,7 +3037,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 114608562479145288}
   _cameras:
   - {fileID: 1463669859483367840}
   - {fileID: 1171208658948452137}
@@ -2717,12 +3057,6 @@ MonoBehaviour:
   - {fileID: 790114237}
   - {fileID: 727610264}
   - {fileID: 114716082362535994}
-  _old_culling_mask: -33
-  _old_far_clip_plane: 100
-  _old_fov: 61.600002
-  _old_near_clip_plane: 0.01
-  _old_orthographic_projection: 0
-  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -2731,6 +3065,16 @@ MonoBehaviour:
   _sync_near_clip_plane: 1
   _sync_orthographic_projection: 1
   _sync_orthographic_size: 1
+  _sync_physicality: 1
+  _sync_sensor_size: 1
+  _sync_lens_shift: 1
+  _sync_gate_fit: 1
+  _sync_focal_length: 1
+  _camera: {fileID: 0}
+  _old_physicality: 0
+  _old_gate_fit: 3
+  _old_sensor_size: {x: 1, y: 1}
+  _old_lens_shift: {x: 0, y: 0}
 --- !u!114 &114100763809553962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2847,7 +3191,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 1802749280476413633}
   _cameras:
   - {fileID: 1463669859483367840}
   - {fileID: 1171208658948452137}
@@ -2868,12 +3211,6 @@ MonoBehaviour:
   - {fileID: 790114237}
   - {fileID: 727610264}
   - {fileID: 114716082362535994}
-  _old_culling_mask: -33
-  _old_far_clip_plane: 20
-  _old_fov: 61.600002
-  _old_near_clip_plane: 0.01
-  _old_orthographic_projection: 0
-  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -2882,6 +3219,16 @@ MonoBehaviour:
   _sync_near_clip_plane: 1
   _sync_orthographic_projection: 1
   _sync_orthographic_size: 1
+  _sync_physicality: 1
+  _sync_sensor_size: 1
+  _sync_lens_shift: 1
+  _sync_gate_fit: 1
+  _sync_focal_length: 1
+  _camera: {fileID: 0}
+  _old_physicality: 0
+  _old_gate_fit: 3
+  _old_sensor_size: {x: 1, y: 1}
+  _old_lens_shift: {x: 0, y: 0}
 --- !u!114 &1388282906230925801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2896,7 +3243,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -2920,7 +3266,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -3043,7 +3388,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -3066,7 +3410,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 4939762416714711659}
   _cameras:
   - {fileID: 1463669859483367840}
   - {fileID: 1171208658948452137}
@@ -3087,12 +3430,6 @@ MonoBehaviour:
   - {fileID: 790114237}
   - {fileID: 727610264}
   - {fileID: 114716082362535994}
-  _old_culling_mask: -33
-  _old_far_clip_plane: 100
-  _old_fov: 61.600002
-  _old_near_clip_plane: 0.01
-  _old_orthographic_projection: 0
-  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -3101,6 +3438,16 @@ MonoBehaviour:
   _sync_near_clip_plane: 1
   _sync_orthographic_projection: 1
   _sync_orthographic_size: 1
+  _sync_physicality: 1
+  _sync_sensor_size: 1
+  _sync_lens_shift: 1
+  _sync_gate_fit: 1
+  _sync_focal_length: 1
+  _camera: {fileID: 0}
+  _old_physicality: 0
+  _old_gate_fit: 3
+  _old_sensor_size: {x: 1, y: 1}
+  _old_lens_shift: {x: 0, y: 0}
 --- !u!114 &3446619221498633412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3223,7 +3570,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 3844039368205312392}
   _cameras:
   - {fileID: 1463669859483367840}
   - {fileID: 1171208658948452137}
@@ -3244,12 +3590,6 @@ MonoBehaviour:
   - {fileID: 790114237}
   - {fileID: 727610264}
   - {fileID: 114716082362535994}
-  _old_culling_mask: -33
-  _old_far_clip_plane: 100
-  _old_fov: 61.600002
-  _old_near_clip_plane: 0.01
-  _old_orthographic_projection: 0
-  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -3258,6 +3598,16 @@ MonoBehaviour:
   _sync_near_clip_plane: 1
   _sync_orthographic_projection: 1
   _sync_orthographic_size: 1
+  _sync_physicality: 1
+  _sync_sensor_size: 1
+  _sync_lens_shift: 1
+  _sync_gate_fit: 1
+  _sync_focal_length: 1
+  _camera: {fileID: 0}
+  _old_physicality: 0
+  _old_gate_fit: 3
+  _old_sensor_size: {x: 1, y: 1}
+  _old_lens_shift: {x: 0, y: 0}
 --- !u!114 &4060211227789312537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3272,7 +3622,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: Offset
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -3391,7 +3740,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -3414,7 +3762,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 3246734891326987255}
   _cameras:
   - {fileID: 1463669859483367840}
   - {fileID: 1171208658948452137}
@@ -3435,12 +3782,6 @@ MonoBehaviour:
   - {fileID: 790114237}
   - {fileID: 727610264}
   - {fileID: 114716082362535994}
-  _old_culling_mask: -33
-  _old_far_clip_plane: 100
-  _old_fov: 61.600002
-  _old_near_clip_plane: 0.01
-  _old_orthographic_projection: 0
-  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -3449,6 +3790,16 @@ MonoBehaviour:
   _sync_near_clip_plane: 1
   _sync_orthographic_projection: 1
   _sync_orthographic_size: 1
+  _sync_physicality: 1
+  _sync_sensor_size: 1
+  _sync_lens_shift: 1
+  _sync_gate_fit: 1
+  _sync_focal_length: 1
+  _camera: {fileID: 0}
+  _old_physicality: 0
+  _old_gate_fit: 3
+  _old_sensor_size: {x: 1, y: 1}
+  _old_lens_shift: {x: 0, y: 0}
 --- !u!114 &1692132170337216524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3572,7 +3923,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 1171208658948452137}
   _cameras:
   - {fileID: 1463669859483367840}
   - {fileID: 1171208658948452137}
@@ -3593,12 +3943,6 @@ MonoBehaviour:
   - {fileID: 790114237}
   - {fileID: 727610264}
   - {fileID: 114716082362535994}
-  _old_culling_mask: -33
-  _old_far_clip_plane: 20
-  _old_fov: 61.600002
-  _old_near_clip_plane: 0.01
-  _old_orthographic_projection: 0
-  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -3607,6 +3951,16 @@ MonoBehaviour:
   _sync_near_clip_plane: 1
   _sync_orthographic_projection: 1
   _sync_orthographic_size: 1
+  _sync_physicality: 1
+  _sync_sensor_size: 1
+  _sync_lens_shift: 1
+  _sync_gate_fit: 1
+  _sync_focal_length: 1
+  _camera: {fileID: 0}
+  _old_physicality: 0
+  _old_gate_fit: 3
+  _old_sensor_size: {x: 1, y: 1}
+  _old_lens_shift: {x: 0, y: 0}
 --- !u!114 &1470249221512581844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3621,7 +3975,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -3645,7 +3998,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -3768,7 +4120,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -3791,7 +4142,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c744374d5f2e04a94a851a941320bce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 1463669859483367840}
   _cameras:
   - {fileID: 1463669859483367840}
   - {fileID: 1171208658948452137}
@@ -3812,12 +4162,6 @@ MonoBehaviour:
   - {fileID: 790114237}
   - {fileID: 727610264}
   - {fileID: 114716082362535994}
-  _old_culling_mask: -33
-  _old_far_clip_plane: 100
-  _old_fov: 61.600002
-  _old_near_clip_plane: 0.01
-  _old_orthographic_projection: 0
-  _old_orthographic_size: 20
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -3826,6 +4170,16 @@ MonoBehaviour:
   _sync_near_clip_plane: 1
   _sync_orthographic_projection: 1
   _sync_orthographic_size: 1
+  _sync_physicality: 1
+  _sync_sensor_size: 1
+  _sync_lens_shift: 1
+  _sync_gate_fit: 1
+  _sync_focal_length: 1
+  _camera: {fileID: 0}
+  _old_physicality: 0
+  _old_gate_fit: 3
+  _old_sensor_size: {x: 1, y: 1}
+  _old_lens_shift: {x: 0, y: 0}
 --- !u!114 &8720350399880736472
 MonoBehaviour:
   m_ObjectHideFlags: 0
