@@ -76,5 +76,6 @@ namespace droid.Runtime.Utilities.Structs {
     public static Space1 ZeroOne { get { return new Space1(1) {_Min_Value = 0, _Max_Value = 1}; } }
     public int DecimalGranularity { get { return this._Decimal_Granularity; } }
     public static Space1 MinusOneOne { get { return new Space1(1) {_Min_Value = -1, _Max_Value = 1}; } }
+    public static Space1 DiscreteZeroOne { get{ return new Space1(0) {_Min_Value = 0, _Max_Value = 1}; } }
   }
 }
