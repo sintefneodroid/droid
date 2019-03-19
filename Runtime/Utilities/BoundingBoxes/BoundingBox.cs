@@ -69,6 +69,8 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
     [SerializeField]
     public bool _use_bb_transform = false;
 
+    [SerializeField] bool _use_shared_mesh = true;
+
     /// <summary>
     /// </summary>
     [SearchableEnum]
@@ -372,10 +374,21 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
       var bounds = new Bounds(position, Vector3.zero);
 
       if (this.includeSelf && this._local_mesh) {
-        var a_mesh = this._local_mesh.sharedMesh;
+        Mesh a_mesh;
+
+        if(this._use_shared_mesh) {
+          a_mesh = this._local_mesh.sharedMesh;
+        } else {
+          a_mesh = this._local_mesh.mesh;
+        }
+        if(a_mesh.isReadable){
         var vc = a_mesh.vertexCount;
         for (var i = 0; i < vc; i++) {
           bounds.Encapsulate(this._local_mesh.transform.TransformPoint(a_mesh.vertices[i]));
+        }
+
+        } else {
+          Debug.LogWarning("Make sure mesh is marked as readable when imported!");
         }
       }
 
@@ -391,12 +404,21 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
                   this._bb_transform.rotation = transform2.rotation;
                   bounds = new Bounds(position, Vector3.zero);
                 }
+                Mesh a_mesh;
 
-                var a_mesh = t.sharedMesh;
+                if(this._use_shared_mesh) {
+                  a_mesh = t.sharedMesh;
+                } else {
+                  a_mesh = t.mesh;
+                }
                 if (a_mesh) {
-                  var vc = a_mesh.vertexCount;
-                  for (var j = 0; j < vc; j++) {
-                    bounds.Encapsulate(t.transform.TransformPoint(a_mesh.vertices[j]));
+                  if (a_mesh.isReadable) {
+                    var vc = a_mesh.vertexCount;
+                    for (var j = 0; j < vc; j++) {
+                      bounds.Encapsulate(t.transform.TransformPoint(a_mesh.vertices[j]));
+                    }
+                  } else {
+                    Debug.LogWarning("Make sure mesh is marked as readable when imported!");
                   }
                 }
               }
@@ -405,7 +427,13 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
                 bounds = new Bounds(t.transform.position, Vector3.zero);
               }
 
-              var a_mesh = t.sharedMesh;
+              Mesh a_mesh;
+
+              if(this._use_shared_mesh) {
+                a_mesh = t.sharedMesh;
+              } else {
+                a_mesh = t.mesh;
+              }
               if (a_mesh) {
                 var vc = a_mesh.vertexCount;
                 for (var j = 0; j < vc; j++) {
