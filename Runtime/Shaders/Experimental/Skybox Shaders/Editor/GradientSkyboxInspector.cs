@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
 
 namespace droid.Runtime.Shaders.Experimental.Skybox_Shaders.Editor {
@@ -49,3 +50,4 @@ namespace droid.Runtime.Shaders.Experimental.Skybox_Shaders.Editor {
         }
     }
 }
+#endif

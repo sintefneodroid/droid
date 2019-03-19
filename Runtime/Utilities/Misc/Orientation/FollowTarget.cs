@@ -12,11 +12,11 @@ namespace droid.Runtime.Utilities.Misc.Orientation {
 
     /// <summary>
     /// </summary>
-    public Transform _Target;
+    public Transform target;
 
     void LateUpdate() {
-      if (this._Target) {
-        this.transform.position = this._Target.position + this._Offset;
+      if (this.target) {
+        this.transform.position = this.target.position + this._Offset;
       }
     }
   }

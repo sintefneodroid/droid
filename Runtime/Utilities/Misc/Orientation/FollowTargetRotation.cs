@@ -5,17 +5,17 @@ namespace droid.Runtime.Utilities.Misc.Orientation {
   public class FollowTargetRotation : MonoBehaviour {
     [SerializeField] Vector3 _forward;
 
-    public Quaternion _Rot;
+    public Quaternion rot;
 
     /// <summary>
     /// </summary>
-    public Transform _TargetPose;
+    public Transform targetPose;
 
     void LateUpdate() {
-      if (this._TargetPose) {
-        this._Rot = this._TargetPose.rotation;
+      if (this.targetPose) {
+        this.rot = this.targetPose.rotation;
 
-        var projection_on_plane = Vector3.ProjectOnPlane(this._TargetPose.up, Vector3.up);
+        var projection_on_plane = Vector3.ProjectOnPlane(this.targetPose.up, Vector3.up);
 
         var rot = this.transform.rotation;
         var normalised_proj = projection_on_plane.normalized;

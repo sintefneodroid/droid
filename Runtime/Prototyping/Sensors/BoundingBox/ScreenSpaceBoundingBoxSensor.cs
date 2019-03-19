@@ -23,7 +23,6 @@ namespace droid.Runtime.Prototyping.Sensors.BoundingBox {
     Utilities.BoundingBoxes.BoundingBox _bounding_box = null;
     [SerializeField] UnityEngine.Camera _camera = null;
     [SerializeField] Rect _out_rect = new Rect();
-    [SerializeField] bool normalise = true;
 
     /// <inheritdoc />
     /// <summary>
@@ -41,7 +40,7 @@ namespace droid.Runtime.Prototyping.Sensors.BoundingBox {
       if (this._camera) {
         var rect = this._bounding_box.ScreenSpaceBoundingRect(this._camera);
 
-        if (this.normalise) {
+        if (this.NormaliseObservation) {
           float w;
           float h;
           var target = this._camera.targetTexture;

@@ -7,6 +7,8 @@ namespace droid.Runtime.Interfaces {
     void EnvironmentReset();
     IConfigurableConfiguration SampleConfiguration();
 
+    bool SampleRandom { get; set; }
+
     void PostEnvironmentSetup();
   }
 }
