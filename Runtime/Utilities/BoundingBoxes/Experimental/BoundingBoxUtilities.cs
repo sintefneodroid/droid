@@ -23,6 +23,42 @@ namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
     public static Vector3 _Top_Back_Right = new Vector3(1, 1, -1);
     public static Vector3 _Top_Back_Left = new Vector3(-1, 1, -1);
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="mesh"></param>
+    /// <param name="t"></param>
+    /// <param name="cam"></param>
+    /// <param name="max"></param>
+    /// <param name="use_view_port"></param>
+    /// <param name="min"></param>
+    /// <returns></returns>
+    public static Vector3[] GetCameraMinMaxPoints(this Mesh mesh,
+                                                  Transform t,
+                                                  Camera cam,
+                                                  Vector3 min,
+                                                  Vector3 max,
+                                                  bool use_view_port = false) {
+      var a = mesh.vertices;
+
+      Vector3 point;
+
+      foreach (var t1 in a) {
+        if (use_view_port) {
+          point = cam.WorldToViewportPoint(t.TransformPoint(t1));
+        } else {
+          point = cam.WorldToScreenPoint(t.TransformPoint(t1));
+        }
+
+        point.GetMinMax(ref min, ref max);
+      }
+
+      var size = max - min;
+
+      return new[] {min, max, size};
+    }
+
+
 
     /// <summary>
     ///
@@ -69,6 +105,17 @@ namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
       var cen = mesh.GetCameraMinMaxPoints(t, cam);
       var min = cen[0];
       var max = cen[1];
+
+      var r = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
+      r.xMin -= margin;
+      r.xMax += margin;
+      r.yMin -= margin;
+      r.yMax += margin;
+
+      return r;
+    }
+
+    public static Rect GetMinMaxRect(Vector3 min, Vector3 max, float margin = 0) {
 
       var r = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
       r.xMin -= margin;

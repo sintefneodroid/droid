@@ -69,6 +69,8 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
     [SerializeField]
     public bool _use_bb_transform = false;
 
+    [SerializeField] bool _use_shared_mesh = false;
+
     /// <summary>
     /// </summary>
     [SearchableEnum]
@@ -222,11 +224,66 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
       if (this.basedOn == BasedOn.Collider_) {
         var a = this._local_collider as MeshCollider;
         if (a) {
-          return a.sharedMesh.GetCameraMinMaxRect(this.transform, a_camera);
+
+          return a.sharedMesh.GetCameraMinMaxRect(this.transform, a_camera,this.bb_margin);
         }
       }
-      if(this._local_mesh) {
-        return this._local_mesh.sharedMesh.GetCameraMinMaxRect(this.transform, a_camera, this.bb_margin);
+
+      if (this._local_mesh) {
+        if (this._use_shared_mesh) {
+          var a = this._local_mesh.sharedMesh.GetCameraMinMaxPoints(this.transform, a_camera);
+          if (this.includeChildren) {
+            foreach (var children_mesh in this._children_meshes) {
+              a = children_mesh.sharedMesh.GetCameraMinMaxPoints(children_mesh.transform,
+                                                                 a_camera,
+                                                                 a[0],
+                                                                 a[1]);
+            }
+
+            return BoundingBoxUtilities.GetMinMaxRect(a[0], a[1], this.bb_margin);
+          }
+        } else {
+          var a = this._local_mesh.mesh.GetCameraMinMaxPoints(this.transform, a_camera);
+          if (this.includeChildren) {
+            foreach (var children_mesh in this._children_meshes) {
+              a = children_mesh.mesh.GetCameraMinMaxPoints(children_mesh.transform, a_camera, a[0], a[1]);
+            }
+
+            return BoundingBoxUtilities.GetMinMaxRect(a[0], a[1], this.bb_margin);
+          }
+        }
+      } else{
+          if(this._use_shared_mesh) {
+            if (this._children_meshes != null && this._children_meshes.Length > 0) {
+              var a = this._children_meshes[0].sharedMesh
+                          .GetCameraMinMaxPoints(this._children_meshes[0].transform, a_camera);
+              if (this.includeChildren) {
+                for (var index = 1; index < this._children_meshes.Length; index++) {
+                  var children_mesh = this._children_meshes[index];
+                  a = children_mesh.sharedMesh.GetCameraMinMaxPoints(children_mesh.transform,
+                                                                     a_camera,
+                                                                     a[0],
+                                                                     a[1]);
+                }
+
+                return BoundingBoxUtilities.GetMinMaxRect(a[0], a[1], this.bb_margin);
+              }
+            }
+          } else {
+            if(this._children_meshes!=null && this._children_meshes.Length>0){
+            var a = this._children_meshes[0].mesh.GetCameraMinMaxPoints(this._children_meshes[0].transform, a_camera);
+            if (this.includeChildren) {
+              for (var index = 1; index < this._children_meshes.Length; index++) {
+                var children_mesh = this._children_meshes[index];
+                a = children_mesh.mesh.GetCameraMinMaxPoints(children_mesh.transform,
+                                                                   a_camera,
+                                                                   a[0],
+                                                                   a[1]);
+              }
+
+              return BoundingBoxUtilities.GetMinMaxRect(a[0],a[1],this.bb_margin);
+            }}
+          }
       }
 
       return new Rect();
@@ -372,10 +429,21 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
       var bounds = new Bounds(position, Vector3.zero);
 
       if (this.includeSelf && this._local_mesh) {
-        var a_mesh = this._local_mesh.sharedMesh;
+        Mesh a_mesh;
+
+        if(this._use_shared_mesh) {
+          a_mesh = this._local_mesh.sharedMesh;
+        } else {
+          a_mesh = this._local_mesh.mesh;
+        }
+        if(a_mesh.isReadable){
         var vc = a_mesh.vertexCount;
         for (var i = 0; i < vc; i++) {
           bounds.Encapsulate(this._local_mesh.transform.TransformPoint(a_mesh.vertices[i]));
+        }
+
+        } else {
+          Debug.LogWarning("Make sure mesh is marked as readable when imported!");
         }
       }
 
@@ -391,12 +459,21 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
                   this._bb_transform.rotation = transform2.rotation;
                   bounds = new Bounds(position, Vector3.zero);
                 }
+                Mesh a_mesh;
 
-                var a_mesh = t.sharedMesh;
+                if(this._use_shared_mesh) {
+                  a_mesh = t.sharedMesh;
+                } else {
+                  a_mesh = t.mesh;
+                }
                 if (a_mesh) {
-                  var vc = a_mesh.vertexCount;
-                  for (var j = 0; j < vc; j++) {
-                    bounds.Encapsulate(t.transform.TransformPoint(a_mesh.vertices[j]));
+                  if (a_mesh.isReadable) {
+                    var vc = a_mesh.vertexCount;
+                    for (var j = 0; j < vc; j++) {
+                      bounds.Encapsulate(t.transform.TransformPoint(a_mesh.vertices[j]));
+                    }
+                  } else {
+                    Debug.LogWarning("Make sure mesh is marked as readable when imported!");
                   }
                 }
               }
@@ -405,7 +482,13 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
                 bounds = new Bounds(t.transform.position, Vector3.zero);
               }
 
-              var a_mesh = t.sharedMesh;
+              Mesh a_mesh;
+
+              if(this._use_shared_mesh) {
+                a_mesh = t.sharedMesh;
+              } else {
+                a_mesh = t.mesh;
+              }
               if (a_mesh) {
                 var vc = a_mesh.vertexCount;
                 for (var j = 0; j < vc; j++) {
