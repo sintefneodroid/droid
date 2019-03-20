@@ -107,6 +107,10 @@ environments and ease of integration with existing projects)
 ![lunarlander](.github/images/lunarlander.png)
 -->
 ![manipulator](.github/images/animated.gif)
+[![Manipulator](https://img.youtube.com/vi/niYacuKt8cs/0.jpg)](https://www.youtube.com/watch?v=niYacuKt8cs)
+[![Drone](https://img.youtube.com/vi/PVc5T_YIHdk/0.jpg)](https://www.youtube.com/watch?v=PVc5T_YIHdk)
+[![Drone2](https://img.youtube.com/vi/c6IDgzMhGNk/0.jpg)](https://www.youtube.com/watch?v=c6IDgzMhGNk)
+[![Domain Randomization](https://img.youtube.com/vi/d13xndC4BAk/0.jpg)](https://www.youtube.com/watch?v=d13xndC4BAk)
 
 ## Repository Structure
 ---
