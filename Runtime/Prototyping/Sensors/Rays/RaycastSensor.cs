@@ -33,7 +33,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
     public float ObservationValue {
       get { return this._observation_value; }
       private set {
-        this._observation_value = this.NormaliseObservation
+        this._observation_value = this.SingleSpace.IsNormalised
                                       ? this._observation_space.ClipNormaliseRound(value)
                                       : value;
       }

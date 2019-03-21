@@ -199,15 +199,6 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
       this._particle_system.SetParticles(this._particles, points.Length);
     }
 
-    #if UNITY_EDITOR
-    void OnDrawGizmos() {
-      if (this.enabled) {
-        if (this._PlotRandomSeries) {
-          this.PlotSeries(PlotFunctions.SampleRandomSeries(1));
-        }
-      }
-    }
-    #endif
 
     /// <summary>
     /// </summary>

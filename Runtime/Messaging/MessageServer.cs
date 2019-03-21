@@ -223,13 +223,15 @@ namespace droid.Runtime.Messaging {
     /// <param name="environment_states"></param>
     /// <param name="do_serialise_unobservables"></param>
     /// <param name="serialise_individual_observables"></param>
+    /// <param name="serialise_aggregated_float_array"></param>
     /// <param name="simulator_configuration_message"></param>
-    /// <param name="api_vesion"></param>
+    /// <param name="api_version"></param>
     public void SendStates(EnvironmentState[] environment_states,
                            bool do_serialise_unobservables = false,
                            bool serialise_individual_observables = false,
+                           bool serialise_aggregated_float_array= false,
                            SimulatorConfigurationMessage simulator_configuration_message = null,
-                           string api_vesion = _api_version) {
+                           string api_version = _api_version) {
       lock (this._thread_lock) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
@@ -271,7 +273,8 @@ namespace droid.Runtime.Messaging {
                                                         serialise_individual_observables,
                                                         simulator_configuration :
                                                         simulator_configuration_message,
-                                                        api_version : api_vesion);
+                                                        do_serialise_aggregated_float_array:serialise_aggregated_float_array,
+                                                        api_version : api_version);
         this._socket.SendFrame(this._byte_buffer);
         this._waiting_for_main_loop_to_send = false;
       }

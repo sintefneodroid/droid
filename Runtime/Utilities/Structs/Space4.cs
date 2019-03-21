@@ -1,4 +1,5 @@
 ﻿using System;
+using droid.Runtime.Interfaces;
 using UnityEngine;
 using Object = System.Object;
 using Random = UnityEngine.Random;
@@ -7,18 +8,68 @@ namespace droid.Runtime.Utilities.Structs {
   /// <summary>
   /// </summary>
   [Serializable]
-  public struct Space4 {
-    public int _Decimal_Granularity;
+  public struct Space4:ISpace {
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public int DecimalGranularity {
+      get { return this._decimal_granularity; }
+      set { this._decimal_granularity = value; }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public bool IsNormalised { get { return this.normalised; } set { this.normalised = value; } }
+
     public Vector4 _Min_Values;
     public Vector4 _Max_Values;
+    public int  _decimal_granularity;
+    [SerializeField]  bool normalised;
 
-    public Space4(int decimal_granularity = 2) {
-      this._Decimal_Granularity = decimal_granularity;
+    public Space4(int decimal_granularity = 2):this() {
+      this._decimal_granularity = decimal_granularity;
       this._Min_Values = Vector4.negativeInfinity;
       this._Max_Values = Vector4.positiveInfinity;
     }
 
     public Vector4 Span { get { return this._Max_Values - this._Min_Values; } }
+
+    public Space1 Xspace {
+      get {
+        return new Space1(this.DecimalGranularity) {
+                                                         _Min_Value = this._Min_Values.x,
+                                                         _Max_Value = this._Max_Values.x
+                                                     };
+      }
+    }
+
+    public Space1 Yspace {
+      get {
+        return new Space1(this.DecimalGranularity) {
+                                                         _Min_Value = this._Min_Values.y,
+                                                         _Max_Value = this._Max_Values.y
+                                                     };
+      }
+    }
+
+    public Space1 Zspace {
+      get {
+        return new Space1(this.DecimalGranularity) {
+                                                         _Min_Value = this._Min_Values.z,
+                                                         _Max_Value = this._Max_Values.z
+                                                     };
+      }
+    }
+
+    public Space1 Wspace {
+      get {
+        return new Space1(this.DecimalGranularity) {
+                                                         _Min_Value = this._Min_Values.w,
+                                                         _Max_Value = this._Max_Values.w
+                                                     };
+      }
+    }
 
     /// <summary>
     /// 
@@ -95,7 +146,7 @@ namespace droid.Runtime.Utilities.Structs {
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-    public float Round(float v) { return (float)Math.Round(v, this._Decimal_Granularity); }
+    public float Round(float v) { return (float)Math.Round(v, this.DecimalGranularity); }
 
     /// <summary>
     ///

@@ -39,6 +39,6 @@ namespace droid.Runtime.Prototyping.Sensors {
     /// <summary>
     ///
     /// </summary>
-    public Space2 ObservationSpace2D { get { return this._observation_space2_d; } }
+    public Space2 DoubleSpace { get { return this._observation_space2_d; } }
   }
 }

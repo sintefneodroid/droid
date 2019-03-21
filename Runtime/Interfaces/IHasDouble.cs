@@ -11,6 +11,6 @@ namespace droid.Runtime.Interfaces {
 
     /// <summary>
     /// </summary>
-    Space2 ObservationSpace2D { get; }
+    Space2 DoubleSpace { get; }
   }
 }

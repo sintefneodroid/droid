@@ -160,8 +160,8 @@ namespace droid.Runtime.Prototyping.Configurables {
       var ang = this._rigidbody.velocity;
 
       var v = simulator_configuration.ConfigurableValue;
-      if (this.VelocitySpace._Decimal_Granularity >= 0) {
-        v = (int)Math.Round(v, this.VelocitySpace._Decimal_Granularity);
+      if (this.VelocitySpace.DecimalGranularity >= 0) {
+        v = (int)Math.Round(v, this.VelocitySpace.DecimalGranularity);
       }
 
       if (this.VelocitySpace._Min_Values[0].CompareTo(this.VelocitySpace._Max_Values[0]) != 0) {

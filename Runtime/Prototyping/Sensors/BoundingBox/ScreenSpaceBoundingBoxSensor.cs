@@ -31,6 +31,7 @@ namespace droid.Runtime.Prototyping.Sensors.BoundingBox {
       this._bounding_box = this.GetComponent<Utilities.BoundingBoxes.BoundingBox>();
     }
 
+    [SerializeField] bool NormaliseObservation = true;
     public override IEnumerable<float> FloatEnumerable { get { return new List<float>(); } }
 
     /// <inheritdoc />

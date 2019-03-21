@@ -115,8 +115,8 @@ namespace droid.Runtime.Prototyping.Configurables {
       }
 
       var v = simulator_configuration.ConfigurableValue;
-      if (this.TripleSpace._Decimal_Granularity >= 0) {
-        v = (int)Math.Round(v, this.TripleSpace._Decimal_Granularity);
+      if (this.TripleSpace.DecimalGranularity >= 0) {
+        v = (int)Math.Round(v, this.TripleSpace.DecimalGranularity);
       }
 
       if (this.TripleSpace._Min_Values[0].CompareTo(this.TripleSpace._Max_Values[0]) != 0) {

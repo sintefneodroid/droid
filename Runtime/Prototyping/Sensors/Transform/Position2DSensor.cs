@@ -7,6 +7,9 @@ using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Transform {
+  /// <inheritdoc cref="Sensor" />
+  /// <summary>
+  /// </summary>
   [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
                     + "PositionObserver2D"
                     + SensorComponentMenuPath._Postfix)]
@@ -20,31 +23,27 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
 
     [SerializeField] [SearchableEnum] Dimension2DCombination _dim_combination = Dimension2DCombination.Xz_;
 
-    [SerializeField] Space2 _position_space;
+    [SerializeField] Space2 _position_space = Space2.ZeroOne;
 
     [Header("Specific", order = 102)]
     [SerializeField]
-    ObservationSpace _use_space = ObservationSpace.Environment_;
+    ObservationSpace observation_space = ObservationSpace.Environment_;
 
-    public ObservationSpace UseSpace { get { return this._use_space; } }
+    /// <summary>
+    ///
+    /// </summary>
+    public ObservationSpace ObservationSpace { get { return this.observation_space; } }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Vector2 ObservationValue { get { return this._2_d_position; } set { this._2_d_position = value; } }
 
-    public Space2 ObservationSpace2D {
-      get {
-        return new Space2(this._position_space._Decimal_Granularity) {
-                                                                         _Max_Values =
-                                                                             new Vector2(this._position_space
-                                                                                             ._Max_Values.x,
-                                                                                         this._position_space
-                                                                                             ._Max_Values.y),
-                                                                         _Min_Values =
-                                                                             new Vector2(this._position_space
-                                                                                             ._Min_Values.x,
-                                                                                         this._position_space
-                                                                                             ._Min_Values.y)
-                                                                     };
-      }
+    /// <summary>
+    ///
+    /// </summary>
+    public Space2 DoubleSpace {
+      get { return this._position_space; }
     }
 
     /// <summary>
@@ -66,7 +65,7 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
         default: throw new ArgumentOutOfRangeException();
       }
 
-      this._2_d_position = this.NormaliseObservation
+      this._2_d_position = this.DoubleSpace.IsNormalised
                                ? this._position_space.ClipNormaliseRound(vector2_pos)
                                : vector2_pos;
     }
@@ -76,9 +75,9 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     }
 
     public override void UpdateObservation() {
-      if (this.ParentEnvironment != null && this._use_space == ObservationSpace.Environment_) {
+      if (this.ParentEnvironment != null && this.observation_space == ObservationSpace.Environment_) {
         this.SetPosition(this.ParentEnvironment.TransformPoint(this.transform.position));
-      } else if (this._use_space == ObservationSpace.Local_) {
+      } else if (this.observation_space == ObservationSpace.Local_) {
         this.SetPosition(this.transform.localPosition);
       } else {
         this.SetPosition(this.transform.position);

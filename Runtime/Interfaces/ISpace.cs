@@ -7,5 +7,7 @@ namespace droid.Runtime.Interfaces {
     /// 
     /// </summary>
     int DecimalGranularity { get; }
+
+    bool IsNormalised { get; }
   }
 }

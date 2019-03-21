@@ -20,19 +20,21 @@ namespace droid.Runtime.Messaging.FBS {
     /// <param name="simulator_configuration"></param>
     /// <param name="serialise_individual_observables"></param>
     /// <param name="do_serialise_unobservables"></param>
+    /// <param name="do_serialise_aggregated_float_array"></param>
     /// <param name="api_version"></param>
     /// <returns></returns>
     public static byte[] Serialise(EnvironmentState[] states,
                                    SimulatorConfigurationMessage simulator_configuration = null,
                                    bool serialise_individual_observables = false,
                                    bool do_serialise_unobservables = false,
-                                   string api_version = "") {
+                                   bool do_serialise_aggregated_float_array=false,
+                                   string api_version = "N/A") {
       var b = new FlatBufferBuilder(1);
       var state_offsets = new Offset<FState>[states.Length];
       var i = 0;
       foreach (var state in states) {
         state_offsets[i++] =
-            serialise_state(b, state, serialise_individual_observables, do_serialise_unobservables);
+            serialise_state(b, state, serialise_individual_observables, do_serialise_unobservables, do_serialise_aggregated_float_array);
       }
 
       var states_vector_offset = FStates.CreateStatesVector(b, state_offsets);
@@ -50,12 +52,18 @@ namespace droid.Runtime.Messaging.FBS {
       return b.SizedByteArray();
     }
 
-    /// <summary>
+
+
+    #endregion
+
+    #region PrivateMethods
+
+        /// <summary>
     /// </summary>
     /// <param name="b"></param>
     /// <param name="configuration"></param>
     /// <returns></returns>
-    public static Offset<FSimulatorConfiguration>
+    static Offset<FSimulatorConfiguration>
         Serialise(FlatBufferBuilder b, SimulatorConfigurationMessage configuration) {
       return FSimulatorConfiguration.CreateFSimulatorConfiguration(b,
                                                                    configuration.Width,
@@ -70,7 +78,9 @@ namespace droid.Runtime.Messaging.FBS {
                                                                    configuration.NumOfEnvironments,
                                                                    configuration
                                                                        .DoSerialiseIndividualObservables,
-                                                                   configuration.DoSerialiseUnobservables);
+                                                                   configuration.DoSerialiseUnobservables
+                                                                   //TODO: ,configuration.DoSerialiseAggregatedFloatArray
+                                                                   );
     }
 
     /// <summary>
@@ -79,16 +89,21 @@ namespace droid.Runtime.Messaging.FBS {
     /// <param name="state"></param>
     /// <param name="serialise_individual_observables"></param>
     /// <param name="do_serialise_unobservables"></param>
+    /// <param name="do_serialise_aggregated_float_array"></param>
     /// <returns></returns>
-    public static Offset<FState> serialise_state(FlatBufferBuilder b,
+    static Offset<FState> serialise_state(FlatBufferBuilder b,
                                                  EnvironmentState state,
                                                  bool serialise_individual_observables = false,
-                                                 bool do_serialise_unobservables = false) {
+                                                 bool do_serialise_unobservables = false,
+                                                 bool do_serialise_aggregated_float_array = false) {
       var n = b.CreateString(state.EnvironmentName);
 
-      var observables_vector = FState.CreateObservablesVector(b, state.Observables);
+      var observables_vector = _null_vector_offset;
+      if (do_serialise_aggregated_float_array){
+        observables_vector = FState.CreateObservablesVector(b, state.Observables);
+    }
 
-      var observers_vector = _null_vector_offset;
+    var observers_vector = _null_vector_offset;
       if (serialise_individual_observables) {
         var observations = state.Observers;
 
@@ -148,7 +163,9 @@ namespace droid.Runtime.Messaging.FBS {
       FState.AddEnvironmentName(b, n);
 
       FState.AddFrameNumber(b, state.FrameNumber);
-      FState.AddObservables(b, observables_vector);
+      if(do_serialise_aggregated_float_array){
+        FState.AddObservables(b, observables_vector);
+      }
 
       if (do_serialise_unobservables) {
         FState.AddUnobservables(b, unobservables);
@@ -174,10 +191,6 @@ namespace droid.Runtime.Messaging.FBS {
 
       return FState.EndFState(b);
     }
-
-    #endregion
-
-    #region PrivateMethods
 
     static Offset<FActuator> Serialise(FlatBufferBuilder b, IActuator actuator, string identifier) {
       var n = b.CreateString(identifier);
@@ -241,16 +254,26 @@ namespace droid.Runtime.Messaging.FBS {
       return FByteArray.EndFByteArray(b);
     }
 
-    static Offset<FArray> Serialise(FlatBufferBuilder b, IHasArray float_a) {
+    static Offset<FArray> Serialise(FlatBufferBuilder b, IHasArray float_a, bool serialise_ranges = false) {
       //var v_offset = FArray.CreateArrayVector(b, camera.ObservationArray);
       var v_offset = CustomFlatBufferImplementation.CreateFloatVector(b, float_a.ObservationArray);
 
-      //  TODO:     var space_offset = CustomFlatBufferImplementation.CreateSpaceVector(b, float_a.ObservationSpace);
-      //FArray.StartRangesVector(b,);
+      var ranges_vector = new VectorOffset();
+      if (serialise_ranges) {
+        FArray.StartRangesVector(b, float_a.ObservationSpace.Length);
+        foreach (var tra in float_a.ObservationSpace) {
+          FRange.CreateFRange(b, tra._Decimal_Granularity, tra._Max_Value, tra._Min_Value);
+        }
+
+        ranges_vector = b.EndVector();
+      }
+
       FArray.StartFArray(b);
       FArray.AddArray(b, v_offset);
-      // TODO:       FArray.AddSpace(b, space_offset);
-      //FArray.AddRanges(b,);
+      if (serialise_ranges) {
+        FArray.AddRanges(b, ranges_vector);
+      }
+
       return FArray.EndFArray(b);
     }
 
@@ -281,16 +304,30 @@ namespace droid.Runtime.Messaging.FBS {
     static Offset<FDouble> Serialise(FlatBufferBuilder b, IHasDouble numeral) {
       FDouble.StartFDouble(b);
       var vec2 = numeral.ObservationValue;
+
+      var granularity = numeral.DoubleSpace.DecimalGranularity;
+      var xs = numeral.DoubleSpace.Xspace;
+      var ys = numeral.DoubleSpace.Yspace;
+
+      FDouble.AddXRange(b, FRange.CreateFRange(b, granularity, xs._Max_Value, xs._Min_Value));
+      FDouble.AddYRange(b, FRange.CreateFRange(b, granularity, ys._Max_Value, ys._Min_Value));
       FDouble.AddVec2(b, FVector2.CreateFVector2(b, vec2.x, vec2.y));
-      //FSingle.AddRange(b, numeral.ObservationValue);
+
       return FDouble.EndFDouble(b);
     }
 
     static Offset<FTriple> Serialise(FlatBufferBuilder b, IHasTriple numeral) {
       FTriple.StartFTriple(b);
       var vec3 = numeral.ObservationValue;
+
       FTriple.AddVec3(b, FVector3.CreateFVector3(b, vec3.x, vec3.y, vec3.z));
-      //FSingle.AddRange(b, numeral.ObservationValue);
+      var granularity = numeral.TripleSpace.DecimalGranularity;
+      var xs = numeral.TripleSpace.Xspace;
+      var ys = numeral.TripleSpace.Yspace;
+      var zs = numeral.TripleSpace.Zspace;
+      FTriple.AddXRange(b, FRange.CreateFRange(b, granularity, xs._Max_Value, xs._Min_Value));
+      FTriple.AddYRange(b, FRange.CreateFRange(b, granularity, ys._Max_Value, ys._Min_Value));
+      FTriple.AddZRange(b, FRange.CreateFRange(b, granularity, zs._Max_Value, zs._Min_Value));
       return FTriple.EndFTriple(b);
     }
 
@@ -298,7 +335,15 @@ namespace droid.Runtime.Messaging.FBS {
       FQuadruple.StartFQuadruple(b);
       var quad = numeral.ObservationValue;
       FQuadruple.AddQuat(b, FQuaternion.CreateFQuaternion(b, quad.x, quad.y, quad.z, quad.z));
-      //FSingle.AddRange(b, numeral.ObservationValue);
+      var granularity = numeral.QuadSpace.DecimalGranularity;
+      var xs = numeral.QuadSpace.Xspace;
+      var ys = numeral.QuadSpace.Yspace;
+      var zs = numeral.QuadSpace.Zspace;
+      var ws = numeral.QuadSpace.Wspace;
+      FQuadruple.AddXRange(b, FRange.CreateFRange(b, granularity, xs._Max_Value, xs._Min_Value));
+      FQuadruple.AddYRange(b, FRange.CreateFRange(b, granularity, ys._Max_Value, ys._Min_Value));
+      FQuadruple.AddZRange(b, FRange.CreateFRange(b, granularity, zs._Max_Value, zs._Min_Value));
+      FQuadruple.AddWRange(b, FRange.CreateFRange(b, granularity, ws._Max_Value, ws._Min_Value));
       return FQuadruple.EndFQuadruple(b);
     }
 

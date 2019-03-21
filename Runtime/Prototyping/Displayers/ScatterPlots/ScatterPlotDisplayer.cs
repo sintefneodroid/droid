@@ -200,20 +200,29 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
       this._particle_system.SetParticles(this._particles, points.Length);
     }
 
-    #if UNITY_EDITOR
-    void OnDrawGizmos() {
-      if (this.enabled) {
-        if (this._PlotRandomSeries) {
-          this.PlotSeries(PlotFunctions.SampleRandomSeries(1));
-        }
+    /// <summary>
+    ///
+    /// </summary>
+    protected override void Clean() {
+      if(!this._RetainLastPlot) {
+        this._particle_system.Clear(true);
       }
+
+      base.Clean();
     }
-    #endif
 
     /// <summary>
     /// </summary>
     /// <param name="points"></param>
     public override void PlotSeries(Points.ValuePoint[] points) {
+      if(!this._particle_system) {
+        return;
+      }
+      if (this._particles == null || this._particles.Length != points.Length) {
+        this._particles = new ParticleSystem.Particle[points.Length];
+      }
+
+
       var alive = this._particle_system.GetParticles(this._particles);
       if (alive < points.Length) {
         this._particles = new ParticleSystem.Particle[points.Length];

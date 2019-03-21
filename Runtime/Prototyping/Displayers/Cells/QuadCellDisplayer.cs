@@ -46,20 +46,6 @@ namespace droid.Runtime.Prototyping.Displayers.Cells {
 
     }*/
 
-    #if UNITY_EDITOR
-    void OnDrawGizmos() {
-      if (this.enabled) {
-        if (this._Values == null || this._Values.Length == 0) {
-          if (this._PlotRandomSeries) {
-            var vs = PlotFunctions.SampleRandomSeries(9);
-            this._Values = vs.Select(v => v._Val).ToArray();
-            this.PlotSeries(vs);
-          }
-        }
-      }
-    }
-    #endif
-
     /// <summary>
     /// </summary>
     /// <param name="points"></param>

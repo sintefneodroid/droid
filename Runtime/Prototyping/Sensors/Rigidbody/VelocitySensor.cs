@@ -23,7 +23,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rigidbody {
     public Vector3 ObservationValue {
       get { return this._velocity; }
       set {
-        this._velocity = this.NormaliseObservation ? this._velocity_space.ClipNormaliseRound(value) : value;
+        this._velocity = this._velocity_space.IsNormalised ? this._velocity_space.ClipNormaliseRound(value) : value;
       }
     }
 

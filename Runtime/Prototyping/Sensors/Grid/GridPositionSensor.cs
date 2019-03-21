@@ -37,7 +37,7 @@ namespace droid.Runtime.Prototyping.Sensors.Grid {
     public float ObservationValue {
       get { return this._observation_value; }
       set {
-        this._observation_value = this.NormaliseObservation
+        this._observation_value = this.SingleSpace.IsNormalised
                                       ? this._observation_value_space.ClipNormaliseRound(value)
                                       : value;
       }

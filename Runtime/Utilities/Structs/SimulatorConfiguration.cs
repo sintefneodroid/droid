@@ -12,7 +12,7 @@ namespace droid.Runtime.Utilities.Structs {
   ///   Contains everything relevant to configuring simulation environments engine specific settings
   /// </summary>
   [CreateAssetMenu(fileName = "SimulatorConfiguration",
-      menuName = ScriptableObjectMenuPath._ScriptableObjectMenuPath+"SimulatorConfiguration",
+      menuName = ScriptableObjectMenuPath._ScriptableObjectMenuPath + "SimulatorConfiguration",
       order = 1)]
   [Serializable]
   public class SimulatorConfiguration : ScriptableObject,
@@ -22,6 +22,9 @@ namespace droid.Runtime.Utilities.Structs {
     bool _always_serialise_unobservables;
 
     [SerializeField] bool _always_serialise_individual_observables = true;
+
+    [SerializeField] bool _always_serialise_aggregated_float_array = true;
+
 
     /// <summary>
     /// </summary>
@@ -131,7 +134,10 @@ namespace droid.Runtime.Utilities.Structs {
     /// </summary>
     [Header("Experimental (Warning, it is important to read docs before use!)")]
     [SerializeField]
-    bool _update_fixed_time_scale;
+    bool _update_fixed_time_scale=false;
+
+    [SerializeField] Boolean _resizable_window=true;
+    [SerializeField] ColorSpace _color_space=ColorSpace.Linear;
 
     /// <summary>
     /// </summary>
@@ -148,6 +154,8 @@ namespace droid.Runtime.Utilities.Structs {
       this.ResetIterations = 1;
       this.MaxReplyInterval = 0;
       this.NumOfEnvironments = 1;
+      this.ResizableWindow = true;
+      this.ColorSpace = ColorSpace.Linear;
     }
 
     #region Getter Setters
@@ -191,6 +199,13 @@ namespace droid.Runtime.Utilities.Structs {
       get { return this._apply_quality_settings; }
       set { this._apply_quality_settings = value; }
     }
+
+    public Boolean ResizableWindow {
+      get { return this._resizable_window; }
+      set { this._resizable_window = value; }
+    }
+
+    public ColorSpace ColorSpace { get { return this._color_space; } set { this._color_space = value; } }
 
     /// <summary>
     /// </summary>
@@ -286,6 +301,11 @@ namespace droid.Runtime.Utilities.Structs {
       get { return this._update_fixed_time_scale; }
       set { this._update_fixed_time_scale = value; }
     }
+
+    public Boolean AlwaysSerialiseAggregatedFloatArray {
+      get { return this._always_serialise_aggregated_float_array;} set {
+        this._always_serialise_aggregated_float_array = value;
+      } }
 
     /// <summary>
     ///

@@ -34,7 +34,7 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     public Vector3 ObservationValue {
       get { return this._position; }
       set {
-        this._position = this.NormaliseObservation ? this._position_space.ClipNormaliseRound(value) : value;
+        this._position = this.TripleSpace.IsNormalised ? this._position_space.ClipNormaliseRound(value) : value;
       }
     }
 

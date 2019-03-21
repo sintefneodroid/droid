@@ -5,9 +5,9 @@ using Object = System.Object;
 using Random = UnityEngine.Random;
 
 namespace droid.Runtime.Utilities.Structs {
-  /// <summary>
-  ///
-  /// </summary>
+  /// <inheritdoc cref="ISpace" />
+  ///  <summary>
+  ///  </summary>
   [Serializable]
   public struct Space1 : ISpace {
     /// <summary>
@@ -25,7 +25,9 @@ namespace droid.Runtime.Utilities.Structs {
     /// </summary>
     public float _Max_Value;
 
-    public Space1(int decimal_granularity = 2) {
+    [SerializeField] bool normalised;
+
+    public Space1(int decimal_granularity = 2):this() {
       this._Decimal_Granularity = decimal_granularity;
       this._Min_Value = -1f; //float.NegativeInfinity;
       this._Max_Value = 1f; //float.PositiveInfinity;
@@ -65,17 +67,22 @@ namespace droid.Runtime.Utilities.Structs {
     public Vector2 ToVector2() { return new Vector2(this._Min_Value, this._Max_Value); }
 
     public Vector3 ToVector3() {
-      return new Vector3(this._Min_Value, this._Max_Value,this._Decimal_Granularity);
+      return new Vector3(this._Min_Value, this._Max_Value, this._Decimal_Granularity);
     }
 
-    public string Vector3Description() { return "Motion Space (min,max,granularity)"; }
-
+    public string Vector3Description() { return "Motion Space (min, max, granularity)"; }
 
     public float Round(float v) { return (float)Math.Round(v, this._Decimal_Granularity); }
 
     public static Space1 ZeroOne { get { return new Space1(1) {_Min_Value = 0, _Max_Value = 1}; } }
     public int DecimalGranularity { get { return this._Decimal_Granularity; } }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public Boolean IsNormalised { get { return this.normalised; } set { this.normalised = value; } }
+
     public static Space1 MinusOneOne { get { return new Space1(1) {_Min_Value = -1, _Max_Value = 1}; } }
-    public static Space1 DiscreteZeroOne { get{ return new Space1(0) {_Min_Value = 0, _Max_Value = 1}; } }
+    public static Space1 DiscreteZeroOne { get { return new Space1(0) {_Min_Value = 0, _Max_Value = 1}; } }
   }
 }

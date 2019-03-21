@@ -30,7 +30,7 @@ namespace droid.Runtime.Prototyping.Sensors {
     /// </summary>
     [SerializeField]
     Space3 _position_space = new Space3 {
-                                            _Decimal_Granularity = 1,
+                                            DecimalGranularity = 1,
                                             _Max_Values = Vector3.one,
                                             _Min_Values = -Vector3.one
                                         };
@@ -51,7 +51,7 @@ namespace droid.Runtime.Prototyping.Sensors {
     public Vector3 Position {
       get { return this._position; }
       set {
-        this._position = this.NormaliseObservation ? this._position_space.ClipNormaliseRound(value) : value;
+        this._position = this._position_space.IsNormalised ? this._position_space.ClipNormaliseRound(value) : value;
         this._2_d_position = new Vector2(this._position.x, this._position.z);
       }
     }
@@ -59,9 +59,9 @@ namespace droid.Runtime.Prototyping.Sensors {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public Space2 ObservationSpace2D {
+    public Space2 DoubleSpace {
       get {
-        return new Space2(this._position_space._Decimal_Granularity) {
+        return new Space2(this._position_space.DecimalGranularity) {
                                                                          _Max_Values =
                                                                              new Vector2(this._position_space
                                                                                              ._Max_Values.x,

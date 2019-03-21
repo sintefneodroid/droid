@@ -22,13 +22,6 @@ namespace droid.Runtime.Prototyping.Sensors {
       set { this._environment = value; }
     }
 
-    /// <summary>
-    /// </summary>
-    public bool NormaliseObservation {
-      get { return this._normalise_observation; }
-      set { this._normalise_observation = value; }
-    }
-
     /// <inheritdoc />
     /// <summary>
     /// </summary>

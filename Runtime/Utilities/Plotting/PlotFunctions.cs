@@ -19,7 +19,7 @@ namespace droid.Runtime.Utilities.Plotting {
                                                          float particle_size = 1) {
       _points.Clear();
       for (var j = 0; j < size; j++) {
-        var point = new Vector3(j, Random.Range(min_val, max_val), 0);
+        var point = Space3.MinusOneOne.Sample()*max_val;
         var vp = new Points.ValuePoint(point, Random.Range(min_val, max_val), particle_size);
         _points.Add(vp);
       }

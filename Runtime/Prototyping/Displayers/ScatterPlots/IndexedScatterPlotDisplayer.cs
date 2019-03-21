@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using droid.Runtime.Utilities.Plotting;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
@@ -59,14 +57,20 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
       this._instances.Add(go);
     }
 
-    void DestroyInstances(bool immediately = false) {
-      if (!immediately) {
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <param name="immediately"></param>
+    protected override void Clean() {
+      if (Application.isPlaying) {
         this._instances.ForEach(Destroy);
       } else {
         this._instances.ForEach(DestroyImmediate);
       }
 
       this._instances.Clear();
+
+      base.Clean();
     }
 
     /// <summary>
@@ -77,20 +81,6 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
     /*public override void PlotSeries(float[] points) {
 
     }*/
-
-    #if UNITY_EDITOR
-    void OnDrawGizmos() {
-      if (this.enabled) {
-        if (this._Values == null || this._Values.Length == 0) {
-          if (this._PlotRandomSeries) {
-            var vs = PlotFunctions.SampleRandomSeries(9);
-            this._Values = vs.Select(v => v._Val).ToArray();
-            this.PlotSeries(vs);
-          }
-        }
-      }
-    }
-    #endif
 
     /// <summary>
     /// </summary>
@@ -103,7 +93,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
       #endif
 
       this._Values = points;
-      this.DestroyInstances(true);
+      this.Clean();
 
       foreach (var point in points) {
         var game_objects = this._designs;
@@ -114,13 +104,5 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
         this.SpawnDesign(this._designs[(int)point._Val], point._Pos, Quaternion.identity);
       }
     }
-
-    void OnDestroy() { this.DestroyInstances(true); }
-
-    void OnDisable() { this.DestroyInstances(true); }
-
-    void OnEnable() { this.DestroyInstances(true); }
-
-    void OnValidate() { this.DestroyInstances(); }
   }
 }

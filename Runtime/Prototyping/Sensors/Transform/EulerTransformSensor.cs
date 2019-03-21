@@ -54,14 +54,14 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     public Vector3 Position {
       get { return this._position; }
       set {
-        this._position = this.NormaliseObservation ? this._position_space.ClipNormaliseRound(value) : value;
+        this._position = this._position_space.IsNormalised ? this._position_space.ClipNormaliseRound(value) : value;
       }
     }
 
     public Vector3 Rotation {
       get { return this._rotation; }
       set {
-        this._rotation = this.NormaliseObservation ? this._rotation_space.ClipNormaliseRound(value) : value;
+        this._rotation = this._rotation_space.IsNormalised ? this._rotation_space.ClipNormaliseRound(value) : value;
       }
     }
 
@@ -72,7 +72,7 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     public Vector3 Direction {
       get { return this._direction; }
       set {
-        this._direction = this.NormaliseObservation ? this._direction_space.ClipNormaliseRound(value) : value;
+        this._direction = this._direction_space.IsNormalised ? this._direction_space.ClipNormaliseRound(value) : value;
       }
     }
 

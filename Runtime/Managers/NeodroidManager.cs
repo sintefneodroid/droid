@@ -222,8 +222,14 @@ namespace droid.Runtime.Managers {
     public float SimulationTimeScale {
       get { return Time.timeScale; }
       set {
+        #if UNITY_EDITOR
+        Time.timeScale = Math.Min(value, 99);
+        this._last_simulation_time = Math.Min(value, 99);
+        #else
         Time.timeScale = value;
         this._last_simulation_time = value;
+        #endif
+
         if (this.Configuration.UpdateFixedTimeScale) {
           Time.fixedDeltaTime = 0.02F * Time.timeScale;
         }
@@ -398,6 +404,8 @@ namespace droid.Runtime.Managers {
       this.SimulationTimeScale = configuration.TimeScale;
       Application.targetFrameRate = configuration.TargetFrameRate;
 
+
+
       #if !UNITY_EDITOR
       if( configuration.ApplyResolutionSettings){
       Screen.SetResolution(
@@ -405,6 +413,11 @@ namespace droid.Runtime.Managers {
           height : configuration.Height,
           fullscreen : configuration.FullScreen);
         }
+      #else
+      PlayerSettings.resizableWindow = configuration.ResizableWindow;
+      PlayerSettings.colorSpace = configuration.ColorSpace;
+      PlayerSettings.displayResolutionDialog = ResolutionDialogSetting.Disabled;
+      //PlayerSettings.use32BitDisplayBuffer
       #endif
     }
 
@@ -616,20 +629,31 @@ namespace droid.Runtime.Managers {
       return this._sample_reactions.ToArray();
     }
 
-    //TODO: EnvironmentState[][] states for aggregation of states
+    //TODO: Maybe add EnvironmentState[][] states for aggregation of states in unity side buffer, when using skips?
     /// <summary>
     /// </summary>
     /// <param name="states"></param>
     void Reply(EnvironmentState[] states) {
       lock (this._send_lock) {
         var configuration_message = new SimulatorConfigurationMessage(this.Configuration);
+        var describe = false;
+        if(CurrentReactions!=null) {
+          foreach (var reaction in this.CurrentReactions) {
+            if (reaction.Parameters.Describe) {
+              describe = true;
+            }
+          }
+        }
+
         this._Message_Server.SendStates(states,
                                         simulator_configuration_message : configuration_message,
                                         do_serialise_unobservables :
-                                        this.Configuration.AlwaysSerialiseUnobservables,
-                                        serialise_individual_observables : this
-                                                                           .Configuration
-                                                                           .AlwaysSerialiseIndividualObservables);
+                                        describe || this.Configuration
+                                        .AlwaysSerialiseUnobservables,
+                                        serialise_individual_observables :
+                                        describe || this.Configuration.AlwaysSerialiseIndividualObservables,
+                                        serialise_aggregated_float_array :
+                                        describe || this._configuration.AlwaysSerialiseAggregatedFloatArray);
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log("Replying");
@@ -844,7 +868,7 @@ namespace droid.Runtime.Managers {
     /// </summary>
     /// <returns></returns>
     public string GetStatus() {
-      if(this._Message_Server!=null) {
+      if (this._Message_Server != null) {
         return this._Message_Server._Listening_For_Clients ? "Connected" : "Not Connected";
       }
 
