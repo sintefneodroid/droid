@@ -1,4 +1,4 @@
-Shader "Neodroid/Us" {
+Shader "Neodroid/Spaces/Model/UVs" {
 Properties {
         _MainTex ("Base (RGB)", 2D) = "white" {}
     }
@@ -16,8 +16,8 @@ Properties {
         };
 
         void surf (Input IN, inout SurfaceOutput o) {
-            o.Emission = float3(IN.uv_MainTex.r,0,1);
-            o.Alpha = 0;
+            o.Emission = float3(IN.uv_MainTex.rg,1);
+            //o.Alpha = 0;
         }
         ENDCG
     }

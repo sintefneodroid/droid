@@ -1,4 +1,4 @@
-Shader "Neodroid/Tangents" {
+Shader "Neodroid/Spaces/Model/Tangents" {
     SubShader {
         Lighting Off
     	Cull Off

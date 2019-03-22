@@ -1,4 +1,4 @@
-﻿Shader "Neodroid/MutliChannelDepth"{
+﻿Shader "Neodroid/Spaces/MutliChannelDepth"{
 	Properties{
 		_Color("Color", Color) = (1,1,1,1)
 	}

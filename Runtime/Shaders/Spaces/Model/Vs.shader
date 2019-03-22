@@ -1,4 +1,4 @@
-Shader "Neodroid/Us" {
+Shader "Neodroid/Spaces/Model/Vs" {
 Properties {
         _MainTex ("Base (RGB)", 2D) = "white" {}
     }

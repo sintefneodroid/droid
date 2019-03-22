@@ -313,6 +313,11 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
     /// <summary>
     /// </summary>
     void Awake() {
+      if(!this.enabled)
+      {
+        return;
+      }
+
       if (this.environment == null) {
         this.environment = FindObjectOfType<PrototypingEnvironment>();
       }
@@ -714,6 +719,12 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
     /// <summary>
     /// </summary>
     void OnValidate() {
+      if(!this.enabled)
+      {
+        return;
+      }
+
+
       if (EditorApplication.isPlaying) {
         return;
       }
