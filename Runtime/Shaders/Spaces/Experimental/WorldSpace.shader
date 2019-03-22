@@ -1,7 +1,4 @@
-// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
-
-Shader "Neodroid/WorldSpace" {
+Shader "Neodroid/Spaces/WorldSpace" {
 
 	Properties {
 		//_XColor ("_XColor", Color) = (1,0,0,1.)
@@ -40,9 +37,10 @@ Shader "Neodroid/WorldSpace" {
          }
 
          float4 frag(vertexOutput input) : COLOR          {
-                float4 p = (.5 * (input.position_in_world_space + 1.0));// / _from_center_span_div_2;
-                //float4 p = input.position_in_world_space/ _from_center_span_div_2;
-                p.w = 1.0;
+                //float4 p = (.5 * (input.position_in_world_space + 1.0));
+                //p.w = 1.0;
+                float4 p = float4(input.position_in_world_space.xyz, 1.0);
+
                 return p;
 
          /*

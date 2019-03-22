@@ -1,4 +1,4 @@
-﻿Shader "Neodroid/CompressedDepth"{
+﻿Shader "Neodroid/Spaces/CompressedDepth"{
 	Properties{
 		_Color("Color", Color) = (1,1,1,1)
 		_Compression_Factor("Compression Factor", float) = 0.25
