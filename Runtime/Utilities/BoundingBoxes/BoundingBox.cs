@@ -220,12 +220,12 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
     /// </summary>
     /// <param name="a_camera"></param>
     /// <returns></returns>
-    public Rect ScreenSpaceBoundingRect(Camera a_camera) {
+    public Rect ScreenSpaceBoundingRect(Camera a_camera, float margin=0f) {
       if (this.basedOn == BasedOn.Collider_) {
         var a = this._local_collider as MeshCollider;
         if (a) {
 
-          return a.sharedMesh.GetCameraMinMaxRect(this.transform, a_camera,this.bb_margin);
+          return a.sharedMesh.GetCameraMinMaxRect(this.transform, a_camera,this.bb_margin-margin);
         }
       }
 
@@ -240,7 +240,7 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
                                                                  a[1]);
             }
 
-            return BoundingBoxUtilities.GetMinMaxRect(a[0], a[1], this.bb_margin);
+            return BoundingBoxUtilities.GetMinMaxRect(a[0], a[1], this.bb_margin-margin);
           }
         } else {
           var a = this._local_mesh.mesh.GetCameraMinMaxPoints(this.transform, a_camera);
@@ -249,7 +249,7 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
               a = children_mesh.mesh.GetCameraMinMaxPoints(children_mesh.transform, a_camera, a[0], a[1]);
             }
 
-            return BoundingBoxUtilities.GetMinMaxRect(a[0], a[1], this.bb_margin);
+            return BoundingBoxUtilities.GetMinMaxRect(a[0], a[1], this.bb_margin-margin);
           }
         }
       } else{
@@ -266,7 +266,7 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
                                                                      a[1]);
                 }
 
-                return BoundingBoxUtilities.GetMinMaxRect(a[0], a[1], this.bb_margin);
+                return BoundingBoxUtilities.GetMinMaxRect(a[0], a[1], this.bb_margin-margin);
               }
             }
           } else {
@@ -281,7 +281,7 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
                                                                    a[1]);
               }
 
-              return BoundingBoxUtilities.GetMinMaxRect(a[0],a[1],this.bb_margin);
+              return BoundingBoxUtilities.GetMinMaxRect(a[0],a[1],this.bb_margin-margin);
             }}
           }
       }
