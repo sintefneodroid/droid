@@ -101,8 +101,17 @@ namespace droid.Runtime.Utilities.BoundingBoxes.Experimental {
       return new[] {min, max, size};
     }
 
-    public static Rect GetCameraMinMaxRect(this Mesh mesh, Transform t, Camera cam, float margin = 0) {
-      var cen = mesh.GetCameraMinMaxPoints(t, cam);
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="mesh"></param>
+    /// <param name="t"></param>
+    /// <param name="cam"></param>
+    /// <param name="margin"></param>
+    /// <returns></returns>
+    public static Rect GetCameraMinMaxRect(this Mesh mesh, Transform t, Camera cam, float margin = 0, bool
+    use_viewport=false) {
+      var cen = mesh.GetCameraMinMaxPoints(t, cam,use_viewport);
       var min = cen[0];
       var max = cen[1];
 

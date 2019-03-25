@@ -387,6 +387,8 @@ namespace droid.Runtime.Utilities.BoundingBoxes.Experimental.Unused {
       return r;
     }
 
+    public static float MaxDim(this Vector3 vec) { return Mathf.Max(vec.x, vec.y, vec.z); }
+
     /// <summary>
     ///
     /// </summary>

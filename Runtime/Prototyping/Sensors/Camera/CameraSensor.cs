@@ -202,9 +202,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
       this._Grab = true;
       if (this._Manager?.SimulatorConfiguration?.SimulationType != SimulationType.Frame_dependent_) {
         if (Application.isPlaying) {
-          if (UnityEngine.Camera.current) {
-            this._Camera.Render();
-          }
+          this._Camera.Render();
         }
 
         this.UpdateBytes();

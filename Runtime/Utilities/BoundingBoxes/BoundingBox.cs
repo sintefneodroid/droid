@@ -219,6 +219,7 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
     /// <summary>
     /// </summary>
     /// <param name="a_camera"></param>
+    /// <param name="margin"></param>
     /// <returns></returns>
     public Rect ScreenSpaceBoundingRect(Camera a_camera, float margin=0f) {
       if (this.basedOn == BasedOn.Collider_) {
@@ -230,7 +231,7 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
       }
 
       if (this._local_mesh) {
-        if (this._use_shared_mesh) {
+        if (this._use_shared_mesh|| !Application.isPlaying) {
           var a = this._local_mesh.sharedMesh.GetCameraMinMaxPoints(this.transform, a_camera);
           if (this.includeChildren) {
             foreach (var children_mesh in this._children_meshes) {
@@ -253,7 +254,7 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
           }
         }
       } else{
-          if(this._use_shared_mesh) {
+          if(this._use_shared_mesh || !Application.isPlaying) {
             if (this._children_meshes != null && this._children_meshes.Length > 0) {
               var a = this._children_meshes[0].sharedMesh
                           .GetCameraMinMaxPoints(this._children_meshes[0].transform, a_camera);
