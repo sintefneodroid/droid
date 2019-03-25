@@ -12,7 +12,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera {
   [RequireComponent(typeof(Camera))]
   public class CameraFitter : MonoBehaviour {
     [SerializeField] BoundingBox bb;
-    [SerializeField] float margin = 2f;
+    [SerializeField] float margin = 0f;
     Camera _camera;
 
     void Start() {
@@ -25,7 +25,8 @@ namespace droid.Runtime.Utilities.NeodroidCamera {
       }
     }
 
-    void LateUpdate() {
+    void OnPreRender()
+    {
       if (this.bb) {
         this._camera.transform.LookAt(this.bb.transform);
         var radius = this.bb.Bounds.extents.MaxDim();

@@ -5,10 +5,11 @@ namespace droid.Runtime.Interfaces {
     void UpdateCurrentConfiguration();
     void ApplyConfiguration(IConfigurableConfiguration configuration);
     void EnvironmentReset();
-    IConfigurableConfiguration SampleConfiguration();
+    IConfigurableConfiguration[] SampleConfigurations();
 
     bool SampleRandom { get; set; }
 
     void PostEnvironmentSetup();
+    void Tick();
   }
 }

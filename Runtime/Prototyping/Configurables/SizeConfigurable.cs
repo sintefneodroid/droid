@@ -95,20 +95,20 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public override IConfigurableConfiguration SampleConfiguration() {
+    public override IConfigurableConfiguration[] SampleConfigurations() {
       var sample = Space1.ZeroOne.Sample();
 
       var v = this._space.Sample();
 
       if (sample < .33f) {
-        return new Configuration(this._x, v.x);
+        return new[] {new Configuration(this._x, v.x)};
       }
 
       if (sample > .66f) {
-        return new Configuration(this._y, v.y);
+        return new[] {new Configuration(this._y, v.y)};
       }
 
-      return new Configuration(this._z, v.z);
+      return new[] {new Configuration(this._z, v.z)};
     }
   }
 }

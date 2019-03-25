@@ -27,8 +27,8 @@ namespace droid.Runtime.Utilities.NeodroidCamera {
 
       var textures = new List<Texture>();
 
-      foreach (var camera1 in this._cameras) {
-        var target = camera1.targetTexture;
+      foreach (var a_camera in this._cameras) {
+        var target = a_camera.targetTexture;
         if (target) {
           textures.Add(target);
         }

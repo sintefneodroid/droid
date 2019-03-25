@@ -22,6 +22,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     [SerializeField] bool use_shared = false;
     [SerializeField] Material _mat;
     [SerializeField] int _last_sample;
+    [SerializeField] string load_path = "Textures";
     static readonly Int32 _main_tex = Shader.PropertyToID("_MainTex");
 
     /// <inheritdoc />
@@ -39,7 +40,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
 
       if (this.load_from_resources_if_empty) {
         if (this._textures == null || this._textures.Length == 0) {
-          this._textures = Resources.LoadAll<Texture>("Textures");
+          this._textures = Resources.LoadAll<Texture>(load_path);
         }
       }
     }
@@ -63,10 +64,10 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public override IConfigurableConfiguration SampleConfiguration() {
+    public override IConfigurableConfiguration[] SampleConfigurations() {
       this._last_sample = int.Parse(Random.Range(0, this._textures.Length).ToString());
 
-      return new Configuration(this.Identifier, this._last_sample);
+      return new[] {new Configuration(this.Identifier, this._last_sample)};
     }
   }
 }

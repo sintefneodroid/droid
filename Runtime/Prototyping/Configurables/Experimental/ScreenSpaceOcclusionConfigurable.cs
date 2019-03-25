@@ -130,18 +130,18 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public override IConfigurableConfiguration SampleConfiguration() {
+    public override IConfigurableConfiguration[] SampleConfigurations() {
       var sample = Space1.ZeroOne.Sample();
 
       if (sample < .33f) {
-        return new Configuration(this._r, Space1.ZeroOne.Sample());
+        return new[] {new Configuration(this._r, Space1.ZeroOne.Sample())};
       }
 
       if (sample > .66f) {
-        return new Configuration(this._g, Space1.ZeroOne.Sample());
+        return new[] {new Configuration(this._g, Space1.ZeroOne.Sample())};
       }
 
-      return new Configuration(this._b, Space1.ZeroOne.Sample());
+      return new[] {new Configuration(this._b, Space1.ZeroOne.Sample())};
     }
   }
 }

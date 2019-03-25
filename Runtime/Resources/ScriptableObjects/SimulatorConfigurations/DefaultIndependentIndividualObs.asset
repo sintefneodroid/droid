@@ -15,6 +15,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _always_serialise_unobservables: 0
   _always_serialise_individual_observables: 1
+  _always_serialise_aggregated_float_array: 1
   _apply_resolution_settings: 0
   _apply_quality_settings: 0
   _height: 600
@@ -32,5 +33,7 @@ MonoBehaviour:
   _simulation_type: 3
   _step_execution_phase: 1
   _target_frame_rate: -1
-  _time_scale: 1
+  _time_scale: 0
   _update_fixed_time_scale: 0
+  _resizable_window: 1
+  _color_space: 1

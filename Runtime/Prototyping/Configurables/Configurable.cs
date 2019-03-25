@@ -52,8 +52,8 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     /// <returns></returns>
     /// <exception cref="System.NotImplementedException"></exception>
-    public virtual IConfigurableConfiguration SampleConfiguration() {
-      return new Configuration(this.Identifier, Space1.ZeroOne.Sample());
+    public virtual IConfigurableConfiguration[] SampleConfigurations() {
+      return new []{ new Configuration(this.Identifier, Space1.ZeroOne.Sample())};
     }
 
     /// <inheritdoc />
@@ -79,9 +79,23 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     ///
     /// </summary>
-    protected virtual void Update() {
-      if (this.SampleRandom && Application.isPlaying) {
-        this.ApplyConfiguration(this.SampleConfiguration());
+    public virtual void Tick() {
+      if (this.SampleRandom && Application.isPlaying && this.on_tick) {
+        foreach (var v in this.SampleConfigurations())
+        {
+          this.ApplyConfiguration(v);
+        }
+
+      }
+    }
+
+    void Update()
+    {
+      if (this.SampleRandom && Application.isPlaying && !this.on_tick) {
+        foreach (var v in this.SampleConfigurations())
+        {
+          this.ApplyConfiguration(v);
+        }
       }
     }
 
@@ -110,8 +124,9 @@ namespace droid.Runtime.Prototyping.Configurables {
       set => this._sampleRandom = value;
     }
 
-    [SerializeField] Random random_generator;
+
     [SerializeField] bool _sampleRandom = false;
+    [SerializeField] bool on_tick=false;
 
     #endregion
   }

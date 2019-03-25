@@ -109,8 +109,8 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public override IConfigurableConfiguration SampleConfiguration() {
-      return new Configuration(this._mesh_str, this._deformation_space.Sample());
+    public override IConfigurableConfiguration[] SampleConfigurations() {
+      return new[] {new Configuration(this._mesh_str, this._deformation_space.Sample())};
     }
   }
 }

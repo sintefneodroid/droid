@@ -239,8 +239,8 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public override IConfigurableConfiguration SampleConfiguration() {
-      return new Configuration(this._rot_x, Space1.ZeroOne.Sample());
+    public override IConfigurableConfiguration[] SampleConfigurations() {
+      return new[] {new Configuration(this._rot_x, Space1.ZeroOne.Sample())};
     }
   }
 }

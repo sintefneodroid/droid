@@ -7,7 +7,8 @@ using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace droid.Runtime.Prototyping.Configurables.Experimental {
+namespace droid.Runtime.Prototyping.Configurables.Experimental
+{
   /// <inheritdoc />
   /// <summary>
   /// </summary>
@@ -16,7 +17,8 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
                     + ConfigurableComponentMenuPath._Postfix)]
   [RequireComponent(typeof(Renderer))]
   public class StandardShaderMaterialConfigurable : Configurable,
-                                                    IHasArray {
+    IHasArray
+  {
     /// <summary>
     ///   Alpha
     /// </summary>
@@ -66,7 +68,8 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
+    protected override void PreSetup()
+    {
       this._r = this.Identifier + "R";
       this._g = this.Identifier + "G";
       this._b = this.Identifier + "B";
@@ -85,58 +88,61 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void RegisterComponent() {
+    protected override void RegisterComponent()
+    {
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._r);
+        NeodroidUtilities.RegisterComponent((PrototypingEnvironment) this.ParentEnvironment,
+          (Configurable) this,
+          this._r);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._g);
+        NeodroidUtilities.RegisterComponent((PrototypingEnvironment) this.ParentEnvironment,
+          (Configurable) this,
+          this._g);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._b);
+        NeodroidUtilities.RegisterComponent((PrototypingEnvironment) this.ParentEnvironment,
+          (Configurable) this,
+          this._b);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._a);
+        NeodroidUtilities.RegisterComponent((PrototypingEnvironment) this.ParentEnvironment,
+          (Configurable) this,
+          this._a);
       /*this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
         (PrototypingEnvironment) this.ParentEnvironment,
         (Configurable) this,
         this._texture);*/
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._reflection);
+        NeodroidUtilities.RegisterComponent((PrototypingEnvironment) this.ParentEnvironment,
+          (Configurable) this,
+          this._reflection);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._smoothness);
+        NeodroidUtilities.RegisterComponent((PrototypingEnvironment) this.ParentEnvironment,
+          (Configurable) this,
+          this._smoothness);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._offset_x);
+        NeodroidUtilities.RegisterComponent((PrototypingEnvironment) this.ParentEnvironment,
+          (Configurable) this,
+          this._offset_x);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._offset_y);
+        NeodroidUtilities.RegisterComponent((PrototypingEnvironment) this.ParentEnvironment,
+          (Configurable) this,
+          this._offset_y);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._tiling_x);
+        NeodroidUtilities.RegisterComponent((PrototypingEnvironment) this.ParentEnvironment,
+          (Configurable) this,
+          this._tiling_x);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._tiling_y);
+        NeodroidUtilities.RegisterComponent((PrototypingEnvironment) this.ParentEnvironment,
+          (Configurable) this,
+          this._tiling_y);
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void UnRegisterComponent() {
-      if (this.ParentEnvironment == null) {
+    protected override void UnRegisterComponent()
+    {
+      if (this.ParentEnvironment == null)
+      {
         return;
       }
 
@@ -156,42 +162,64 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// <summary>
     /// </summary>
     /// <param name="configuration"></param>
-    public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
-      #if NEODROID_DEBUG
+    public override void ApplyConfiguration(IConfigurableConfiguration configuration)
+    {
+#if NEODROID_DEBUG
       if (this.Debugging) {
         DebugPrinting.ApplyPrint(this.Debugging, configuration, this.Identifier);
       }
-      #endif
+#endif
 
-      if (!this._use_shared) {
-        foreach (var mat in this._renderer.materials) {
+      if (!this._use_shared)
+      {
+        foreach (var mat in this._renderer.materials)
+        {
           var c = mat.color;
 
-          if (configuration.ConfigurableName == this._r) {
+          if (configuration.ConfigurableName == this._r)
+          {
             c.r = configuration.ConfigurableValue;
-          } else if (configuration.ConfigurableName == this._g) {
+          }
+          else if (configuration.ConfigurableName == this._g)
+          {
             c.g = configuration.ConfigurableValue;
-          } else if (configuration.ConfigurableName == this._b) {
+          }
+          else if (configuration.ConfigurableName == this._b)
+          {
             c.b = configuration.ConfigurableValue;
-          } else if (configuration.ConfigurableName == this._a) {
+          }
+          else if (configuration.ConfigurableName == this._a)
+          {
             c.a = configuration.ConfigurableValue;
-          } else if (configuration.ConfigurableName == this._smoothness) {
+          }
+          else if (configuration.ConfigurableName == this._smoothness)
+          {
             mat.SetFloat(_glossiness, configuration.ConfigurableValue);
-          } else if (configuration.ConfigurableName == this._reflection) {
+          }
+          else if (configuration.ConfigurableName == this._reflection)
+          {
             mat.SetFloat(_glossy_reflections, configuration.ConfigurableValue);
-          } else if (configuration.ConfigurableName == this._offset_x) {
+          }
+          else if (configuration.ConfigurableName == this._offset_x)
+          {
             var a = mat.GetTextureOffset(_main_tex);
             a.x = configuration.ConfigurableValue;
             mat.SetTextureOffset(_main_tex, a);
-          } else if (configuration.ConfigurableName == this._offset_y) {
+          }
+          else if (configuration.ConfigurableName == this._offset_y)
+          {
             var a = mat.GetTextureOffset(_main_tex);
             a.y = configuration.ConfigurableValue;
             mat.SetTextureOffset(_main_tex, a);
-          } else if (configuration.ConfigurableName == this._tiling_x) {
+          }
+          else if (configuration.ConfigurableName == this._tiling_x)
+          {
             var a = mat.GetTextureScale(_main_tex);
             a.x = configuration.ConfigurableValue;
             mat.SetTextureScale(_main_tex, a);
-          } else if (configuration.ConfigurableName == this._tiling_y) {
+          }
+          else if (configuration.ConfigurableName == this._tiling_y)
+          {
             var a = mat.GetTextureScale(_main_tex);
             a.y = configuration.ConfigurableValue;
             mat.SetTextureScale(_main_tex, a);
@@ -199,35 +227,57 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
 
           mat.color = c;
         }
-      } else {
-        foreach (var mat in this._renderer.sharedMaterials) {
+      }
+      else
+      {
+        foreach (var mat in this._renderer.sharedMaterials)
+        {
           var c = mat.color;
 
-          if (configuration.ConfigurableName == this._r) {
+          if (configuration.ConfigurableName == this._r)
+          {
             c.r = configuration.ConfigurableValue;
-          } else if (configuration.ConfigurableName == this._g) {
+          }
+          else if (configuration.ConfigurableName == this._g)
+          {
             c.g = configuration.ConfigurableValue;
-          } else if (configuration.ConfigurableName == this._b) {
+          }
+          else if (configuration.ConfigurableName == this._b)
+          {
             c.b = configuration.ConfigurableValue;
-          } else if (configuration.ConfigurableName == this._a) {
+          }
+          else if (configuration.ConfigurableName == this._a)
+          {
             c.a = configuration.ConfigurableValue;
-          } else if (configuration.ConfigurableName == this._smoothness) {
+          }
+          else if (configuration.ConfigurableName == this._smoothness)
+          {
             mat.SetFloat(_glossiness, configuration.ConfigurableValue);
-          } else if (configuration.ConfigurableName == this._reflection) {
+          }
+          else if (configuration.ConfigurableName == this._reflection)
+          {
             mat.SetFloat(_glossy_reflections, configuration.ConfigurableValue);
-          } else if (configuration.ConfigurableName == this._offset_x) {
+          }
+          else if (configuration.ConfigurableName == this._offset_x)
+          {
             var a = mat.GetTextureOffset(_main_tex);
             a.x = configuration.ConfigurableValue;
             mat.SetTextureOffset(_main_tex, a);
-          } else if (configuration.ConfigurableName == this._offset_y) {
+          }
+          else if (configuration.ConfigurableName == this._offset_y)
+          {
             var a = mat.GetTextureOffset(_main_tex);
             a.y = configuration.ConfigurableValue;
             mat.SetTextureOffset(_main_tex, a);
-          } else if (configuration.ConfigurableName == this._tiling_x) {
+          }
+          else if (configuration.ConfigurableName == this._tiling_x)
+          {
             var a = mat.GetTextureScale(_main_tex);
             a.x = configuration.ConfigurableValue;
             mat.SetTextureScale(_main_tex, a);
-          } else if (configuration.ConfigurableName == this._tiling_y) {
+          }
+          else if (configuration.ConfigurableName == this._tiling_y)
+          {
             var a = mat.GetTextureScale(_main_tex);
             a.y = configuration.ConfigurableValue;
             mat.SetTextureScale(_main_tex, a);
@@ -242,46 +292,39 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public override IConfigurableConfiguration SampleConfiguration() {
-      var sample = Random.Range(0, 9 + 1);
-
-      switch (sample) {
-        case 0:
-          var cs1 = this._color_space.Sample();
-          return new Configuration(this._r, cs1.x);
-        case 1:
-          var cs2 = this._color_space.Sample();
-          return new Configuration(this._g, cs2.y);
-        case 2:
-          var cs3 = this._color_space.Sample();
-          return new Configuration(this._b, cs3.z);
-        case 3:
-          var cs4 = this._color_space.Sample();
-          return new Configuration(this._a, cs4.w);
-        case 4:
-          return new Configuration(this._reflection, this._reflection_space.Sample());
-        case 5:
-          return new Configuration(this._smoothness, this._smoothness_space.Sample());
-        case 6:
-          return new Configuration(this._tiling_x, this._tiling_space.Sample().x);
-        case 7:
-          return new Configuration(this._tiling_y, this._tiling_space.Sample().y);
-        case 8:
-          return new Configuration(this._offset_x, this._offset_space.Sample().x);
-        case 9:
-          return new Configuration(this._offset_y, this._offset_space.Sample().y);
-        default:
-          throw new IndexOutOfRangeException();
-      }
+    public override IConfigurableConfiguration[] SampleConfigurations()
+    {
+      var cs1 = this._color_space.Sample();
+      var tl1 = this._tiling_space.Sample();
+      var os1 = this._offset_space.Sample();
+      return new[]
+      {
+        new Configuration(this._r, cs1.x),
+        new Configuration(this._g, cs1.y),
+        new Configuration(this._b, cs1.z),
+        new Configuration(this._a, cs1.w),
+        new Configuration(this._reflection, this._reflection_space.Sample()),
+        new Configuration(this._smoothness, this._smoothness_space.Sample()),
+        new Configuration(this._tiling_x, tl1.x),
+        new Configuration(this._tiling_y, tl1.y),
+        new Configuration(this._offset_x, os1.x), new Configuration(this._offset_y, os1.y)
+      };
     }
 
     /// <summary>
     ///
     /// </summary>
-    public Single[] ObservationArray { get { return new float[] { }; } }
+    public Single[] ObservationArray
+    {
+      get { return new float[] { }; }
+    }
+
     /// <summary>
     ///
     /// </summary>
-    public Space1[] ObservationSpace { get { return new[] {this._smoothness_space}; } }
+    public Space1[] ObservationSpace
+    {
+      get { return new[] {this._smoothness_space}; }
+    }
   }
 }

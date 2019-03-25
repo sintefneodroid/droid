@@ -143,7 +143,9 @@ namespace droid.Runtime.Environments {
     /// <summary>
     /// </summary>
     protected void UpdateConfigurableValues() {
-      foreach (var con in this.Configurables.Values) {
+      foreach (var con in this.Configurables.Values)
+      {
+        con?.Tick();
         con?.UpdateCurrentConfiguration();
       }
     }
@@ -396,6 +398,7 @@ namespace droid.Runtime.Environments {
           this._reset_i = 0;
           this.UpdateConfigurableValues();
           this.UpdateObserversData();
+
         } else {
           this.EnvironmentReset();
           this._reset_i += 1;

@@ -148,7 +148,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public override IConfigurableConfiguration SampleConfiguration() {
+    public override IConfigurableConfiguration[] SampleConfigurations() {
       var x = Space1.ZeroOne.Sample();
       var y = Space1.ZeroOne.Sample();
 
@@ -170,25 +170,25 @@ namespace droid.Runtime.Prototyping.Configurables {
 
       if (sample1 > 0.5f) {
         if (sample < .33f) {
-          return new Configuration(this._x, c.x);
+          return new[] {new Configuration(this._x, c.x)};
         }
 
         if (sample > .66f) {
-          return new Configuration(this._y, c.y);
+          return new[] {new Configuration(this._y, c.y)};
         }
 
-        return new Configuration(this._z, c.z);
+        return new[] {new Configuration(this._z, c.z)};
       }
 
       if (sample < .33f) {
-        return new Configuration(this._rx, b.x);
+        return new[] {new Configuration(this._rx, b.x)};
       }
 
       if (sample > .66f) {
-        return new Configuration(this._ry, b.y);
+        return new[] {new Configuration(this._ry, b.y)};
       }
 
-      return new Configuration(this._rz, b.z);
+      return new[] {new Configuration(this._rz, b.z)};
     }
   }
 }

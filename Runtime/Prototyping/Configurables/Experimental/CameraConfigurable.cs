@@ -180,29 +180,29 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     /// <returns></returns>
     /// <exception cref="IndexOutOfRangeException"></exception>
-    public override IConfigurableConfiguration SampleConfiguration() {
+    public override IConfigurableConfiguration[] SampleConfigurations() {
       if (!this._camera.usePhysicalProperties) {
-        return new Configuration(this._fov_str, this._fov_space.Sample());
+        return new[] {new Configuration(this._fov_str, this._fov_space.Sample())};
       }
 
       var r = Random.Range(0, 6);
       switch (r) {
         case 0:
-          return new Configuration(this._focal_str, this._focal_space.Sample());
+          return new[] {new Configuration(this._focal_str, this._focal_space.Sample())};
         case 1:
-          return new Configuration(this._sensor_width_str, this._sensor_size_space.Sample().x);
+          return new[] {new Configuration(this._sensor_width_str, this._sensor_size_space.Sample().x)};
 
         case 2:
-          return new Configuration(this._sensor_height_str, this._sensor_size_space.Sample().y);
+          return new[] {new Configuration(this._sensor_height_str, this._sensor_size_space.Sample().y)};
 
         case 3:
-          return new Configuration(this._lens_shift_x_str, this._lens_shift_space.Sample().x);
+          return new[] {new Configuration(this._lens_shift_x_str, this._lens_shift_space.Sample().x)};
 
         case 4:
-          return new Configuration(this._lens_shift_y_str, this._lens_shift_space.Sample().y);
+          return new[] {new Configuration(this._lens_shift_y_str, this._lens_shift_space.Sample().y)};
 
         case 5:
-          return new Configuration(this._gate_fit_str, this._gate_fit_space.Sample());
+          return new[] {new Configuration(this._gate_fit_str, this._gate_fit_space.Sample())};
         default:
           throw new IndexOutOfRangeException();
       }
