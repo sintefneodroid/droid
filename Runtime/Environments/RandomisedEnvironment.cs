@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace droid.Runtime.Environments {
   /// <inheritdoc />
@@ -39,7 +39,7 @@ namespace droid.Runtime.Environments {
 
       if (this._Configure) {
         this._Configure = false;
-        this.Configure();
+        this.Reconfigure();
       }
 
       this.UpdateConfigurableValues();

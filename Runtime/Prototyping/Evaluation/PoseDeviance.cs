@@ -136,7 +136,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
     [SerializeField]
     float _default_reward = -0.01f;
 
-    [SerializeField] bool _terminate_on_obstruction_collision; //TODO: implement
+    [SerializeField] bool _terminate_on_obstruction_collision=true; //TODO: implement
     [SerializeField] bool _terminate_on_goal_reached = true;
 
     #endregion

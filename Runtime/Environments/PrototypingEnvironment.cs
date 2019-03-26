@@ -83,7 +83,7 @@ namespace droid.Runtime.Environments {
         }
         #endif
         this._Configure = false;
-        this.Configure();
+        this.Reconfigure();
       }
 
       if (!this._Simulation_Manager.IsSyncingEnvironments) {
@@ -143,8 +143,7 @@ namespace droid.Runtime.Environments {
     /// <summary>
     /// </summary>
     protected void UpdateConfigurableValues() {
-      foreach (var con in this.Configurables.Values)
-      {
+      foreach (var con in this.Configurables.Values) {
         con?.Tick();
         con?.UpdateCurrentConfiguration();
       }
@@ -244,7 +243,7 @@ namespace droid.Runtime.Environments {
     /// </summary>
     float[] _reset_animation_times;
 
-    [SerializeField] bool _initials_saved_flag;
+    [SerializeField] bool _initials_saved_flag = false;
     [SerializeField] bool updateObservationsWithEveryTick = true;
 
     #endregion
@@ -398,7 +397,6 @@ namespace droid.Runtime.Environments {
           this._reset_i = 0;
           this.UpdateConfigurableValues();
           this.UpdateObserversData();
-
         } else {
           this.EnvironmentReset();
           this._reset_i += 1;
@@ -975,11 +973,16 @@ namespace droid.Runtime.Environments {
       this.CurrentFrameNumber = 0;
       this._objective_function?.EnvironmentReset();
 
-      this.SetEnvironmentPoses(this._tracked_game_objects, this._reset_positions, this._reset_rotations);
-      this.SetEnvironmentBodies(this._tracked_rigid_bodies, this._reset_velocities, this._reset_angulars);
+      ResetEnvironmentPoses(ref this._tracked_game_objects,
+                            ref this._reset_positions,
+                            ref this._reset_rotations,
+                            this._Simulation_Manager.SimulatorConfiguration.ResetIterations);
+      ResetEnvironmentBodies(ref this._tracked_rigid_bodies,
+                             ref this._reset_velocities,
+                             ref this._reset_angulars);
 
       this.ResetRegisteredObjects();
-      this.Configure();
+      this.Reconfigure();
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
@@ -992,13 +995,7 @@ namespace droid.Runtime.Environments {
 
     /// <summary>
     /// </summary>
-    protected void Configure() {
-      #if NEODROID_DEBUG
-      if (this.Debugging) {
-        Debug.Log("Configure was called");
-      }
-      #endif
-
+    protected void Reconfigure() {
       if (this._received_poses != null) {
         var positions = new Vector3[this._received_poses.Length];
         var rotations = new Quaternion[this._received_poses.Length];
@@ -1007,7 +1004,10 @@ namespace droid.Runtime.Environments {
           rotations[i] = this._received_poses[i].rotation;
         }
 
-        this.SetEnvironmentPoses(this._tracked_game_objects, positions, rotations);
+        ResetEnvironmentPoses(ref this._tracked_game_objects,
+                              ref positions,
+                              ref rotations,
+                              this._Simulation_Manager.SimulatorConfiguration.ResetIterations);
       }
 
       if (this._received_bodies != null) {
@@ -1018,7 +1018,7 @@ namespace droid.Runtime.Environments {
           angulars[i] = this._received_bodies[i].AngularVelocity;
         }
 
-        this.SetEnvironmentBodies(this._tracked_rigid_bodies, velocities, angulars);
+        ResetEnvironmentBodies(ref this._tracked_rigid_bodies, ref velocities, ref angulars);
       }
 
       if (this._received_configurations != null) {
@@ -1110,10 +1110,12 @@ namespace droid.Runtime.Environments {
     /// </summary>
     public event Action PreStepEvent;
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public event Action StepEvent;
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public event Action PostStepEvent;
@@ -1190,36 +1192,36 @@ namespace droid.Runtime.Environments {
     /// <param name="child_game_objects"></param>
     /// <param name="positions"></param>
     /// <param name="rotations"></param>
-    void SetEnvironmentPoses(GameObject[] child_game_objects, Vector3[] positions, Quaternion[] rotations) {
-      if (this._Simulation_Manager != null) {
-        for (var iterations = 1;
-             iterations <= this._Simulation_Manager.SimulatorConfiguration.ResetIterations;
-             iterations++) {
-          for (var i = 0; i < child_game_objects.Length; i++) {
-            if (child_game_objects[i] != null && i < positions.Length && i < rotations.Length) {
-              var rigid_body = child_game_objects[i].GetComponent<Rigidbody>();
-              if (rigid_body) {
-                rigid_body.Sleep();
-              }
+    /// <param name="iterations"></param>
+    static void ResetEnvironmentPoses(ref GameObject[] child_game_objects,
+                                      ref Vector3[] positions,
+                                      ref Quaternion[] rotations,
+                                      int iterations = 1) {
+      for (var it = 1; it <= iterations; iterations++) {
+        for (var i = 0; i < child_game_objects.Length; i++) {
+          if (child_game_objects[i] != null && i < positions.Length && i < rotations.Length) {
+            var rigid_body = child_game_objects[i].GetComponent<Rigidbody>();
+            if (rigid_body) {
+              rigid_body.Sleep();
+            }
 
-              child_game_objects[i].transform.position = positions[i];
-              child_game_objects[i].transform.rotation = rotations[i];
-              if (rigid_body) {
-                rigid_body.WakeUp();
-              }
+            child_game_objects[i].transform.position = positions[i];
+            child_game_objects[i].transform.rotation = rotations[i];
+            if (rigid_body) {
+              rigid_body.WakeUp();
+            }
 
-              var joint_fix = child_game_objects[i].GetComponent<JointFix>();
-              if (joint_fix) {
-                joint_fix.Reset();
-              }
+            var joint_fix = child_game_objects[i].GetComponent<JointFix>();
+            if (joint_fix) {
+              joint_fix.Reset();
+            }
 
-              var anim = child_game_objects[i].GetComponent<Animation>();
-              if (anim) {
-                anim.Rewind();
-                anim.Play();
-                anim.Sample();
-                anim.Stop();
-              }
+            var anim = child_game_objects[i].GetComponent<Animation>();
+            if (anim) {
+              anim.Rewind();
+              anim.Play();
+              anim.Sample();
+              anim.Stop();
             }
           }
         }
@@ -1231,7 +1233,9 @@ namespace droid.Runtime.Environments {
     /// <param name="bodies"></param>
     /// <param name="velocities"></param>
     /// <param name="angulars"></param>
-    void SetEnvironmentBodies(Rigidbody[] bodies, Vector3[] velocities, Vector3[] angulars) {
+    static void ResetEnvironmentBodies(ref Rigidbody[] bodies,
+                                       ref Vector3[] velocities,
+                                       ref Vector3[] angulars) {
       if (bodies != null && bodies.Length > 0) {
         for (var i = 0; i < bodies.Length; i++) {
           if (i < bodies.Length && bodies[i] != null && i < velocities.Length && i < angulars.Length) {
