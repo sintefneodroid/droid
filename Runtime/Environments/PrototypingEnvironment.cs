@@ -1197,7 +1197,7 @@ namespace droid.Runtime.Environments {
                                       ref Vector3[] positions,
                                       ref Quaternion[] rotations,
                                       int iterations = 1) {
-      for (var it = 1; it <= iterations; iterations++) {
+      for (var it = 1; it <= iterations; it++) {
         for (var i = 0; i < child_game_objects.Length; i++) {
           if (child_game_objects[i] != null && i < positions.Length && i < rotations.Length) {
             var rigid_body = child_game_objects[i].GetComponent<Rigidbody>();
