@@ -1050,10 +1050,17 @@ namespace droid.Runtime.Environments {
                             ref this._reset_positions,
                             ref this._reset_rotations,
                             this._Simulation_Manager.SimulatorConfiguration.ResetIterations);
+      #if NEODROID_DEBUG
       ResetEnvironmentBodies(ref this._tracked_rigid_bodies,
                              ref this._reset_velocities,
                              ref this._reset_angulars,
                              this.Debugging);
+#else
+      ResetEnvironmentBodies(ref this._tracked_rigid_bodies,
+      ref this._reset_velocities,
+        ref this._reset_angulars,
+      false);
+#endif
 
       this.ResetRegisteredObjects();
       this.Reconfigure();

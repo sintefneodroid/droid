@@ -17,13 +17,16 @@ MonoBehaviour:
   _always_serialise_individual_observables: 1
   _always_serialise_aggregated_float_array: 1
   _apply_resolution_settings: 0
+  _optimise_for_speed: 0
   _apply_quality_settings: 0
   _height: 600
   _width: 900
   _quality_level: 4
+  _full_screen: 0
+  _resizable_window: 1
+  _color_space: 1
   _frame_finishes: 3
   _frame_skips: 0
-  _full_screen: 0
   _ip_address: localhost
   _max_reply_interval: 0
   _num_of_environments: 0
@@ -33,7 +36,5 @@ MonoBehaviour:
   _simulation_type: 3
   _step_execution_phase: 1
   _target_frame_rate: -1
-  _time_scale: 0
+  _time_scale: 1
   _update_fixed_time_scale: 0
-  _resizable_window: 1
-  _color_space: 1
