@@ -408,13 +408,14 @@ namespace droid.Runtime.Managers {
         Screen.SetResolution(0,0,false);
       }
       #if !UNITY_EDITOR
-      elseif( configuration.ApplyResolutionSettings){
+      else if( configuration.ApplyResolutionSettings ){
       Screen.SetResolution(
           width : configuration.Width,
           height : configuration.Height,
           fullscreen : configuration.FullScreen);
         }
       #else
+
       PlayerSettings.resizableWindow = configuration.ResizableWindow;
       PlayerSettings.colorSpace = configuration.ColorSpace;
       PlayerSettings.displayResolutionDialog = ResolutionDialogSetting.Disabled;
