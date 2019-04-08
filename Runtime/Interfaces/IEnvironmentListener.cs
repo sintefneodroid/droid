@@ -2,7 +2,11 @@
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  public interface IEnvironmentListener : IResetable {
+  public interface IEnvironmentListener : IRegisterable {
+    /// <summary>
+    /// </summary>
+    void EnvironmentReset();
+
     /// <summary>
     /// </summary>
     void PreStep();

@@ -40,38 +40,42 @@ namespace droid.Runtime.Prototyping.Configurables {
       var dir = transform1.forward;
       var rot = transform1.up;
       if (this._use_environments_space) {
-        pos = this.ParentEnvironment.TransformPoint(pos);
-        dir = this.ParentEnvironment.TransformDirection(dir);
-        rot = this.ParentEnvironment.TransformDirection(rot);
+        if (this.ParentEnvironment != null) {
+          pos = this.ParentEnvironment.TransformPoint(pos);
+          dir = this.ParentEnvironment.TransformDirection(dir);
+          rot = this.ParentEnvironment.TransformDirection(rot);
+        } else {
+          Debug.LogWarning($"ParentEnvironment not found!");
+        }
       }
 
       switch (this._axis_of_configuration) {
         case Axis.X_:
-          this.ObservationValue = pos.x;
+          this._observation_value = pos.x;
           break;
         case Axis.Y_:
-          this.ObservationValue = pos.y;
+          this._observation_value = pos.y;
           break;
         case Axis.Z_:
-          this.ObservationValue = pos.z;
+          this._observation_value = pos.z;
           break;
         case Axis.Dir_x_:
-          this.ObservationValue = dir.x;
+          this._observation_value = dir.x;
           break;
         case Axis.Dir_y_:
-          this.ObservationValue = dir.y;
+          this._observation_value = dir.y;
           break;
         case Axis.Dir_z_:
-          this.ObservationValue = dir.z;
+          this._observation_value = dir.z;
           break;
         case Axis.Rot_x_:
-          this.ObservationValue = rot.x;
+          this._observation_value = rot.x;
           break;
         case Axis.Rot_y_:
-          this.ObservationValue = rot.y;
+          this._observation_value = rot.y;
           break;
         case Axis.Rot_z_:
-          this.ObservationValue = rot.z;
+          this._observation_value = rot.z;
           break;
         default:
           throw new ArgumentOutOfRangeException();
@@ -95,6 +99,11 @@ namespace droid.Runtime.Prototyping.Configurables {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="simulator_configuration"></param>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration) {
       if (simulator_configuration.ConfigurableValue < this.SingleSpace._Min_Value
           || simulator_configuration.ConfigurableValue > this.SingleSpace._Max_Value) {
@@ -113,9 +122,13 @@ namespace droid.Runtime.Prototyping.Configurables {
       var dir = transform1.forward;
       var rot = transform1.up;
       if (this._use_environments_space) {
-        pos = this.ParentEnvironment.TransformPoint(pos);
-        dir = this.ParentEnvironment.TransformDirection(dir);
-        rot = this.ParentEnvironment.TransformDirection(rot);
+        if(this.ParentEnvironment!=null){
+        this.ParentEnvironment.TransformPoint(ref pos);
+        this.ParentEnvironment.TransformDirection(ref dir);
+        this.ParentEnvironment.TransformDirection(ref rot);
+        } else {
+          Debug.LogWarning($"ParentEnvironment not found!");
+        }
       }
 
       switch (this._axis_of_configuration) {
@@ -199,9 +212,13 @@ namespace droid.Runtime.Prototyping.Configurables {
       var inv_dir = dir;
       var inv_rot = rot;
       if (this._use_environments_space) {
-        inv_pos = this.ParentEnvironment.InverseTransformPoint(inv_pos);
-        inv_dir = this.ParentEnvironment.InverseTransformDirection(inv_dir);
-        inv_rot = this.ParentEnvironment.InverseTransformDirection(inv_rot);
+        if( this.ParentEnvironment!=null){
+        this.ParentEnvironment.InverseTransformPoint(ref inv_pos);
+        this.ParentEnvironment.InverseTransformDirection(ref inv_dir);
+        this.ParentEnvironment.InverseTransformDirection(ref inv_rot);
+      } else {
+        Debug.LogWarning($"ParentEnvironment not found!");
+      }
       }
 
       this.transform.position = inv_pos;

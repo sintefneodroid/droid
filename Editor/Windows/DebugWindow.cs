@@ -39,8 +39,6 @@ namespace droid.Editor.Windows {
 
     PlayerReactions _player_reactions;
 
-    Resetable[] _resetables;
-
     bool _show_actors_debug;
     bool _show_configurables_debug;
     bool _show_displayers_debug;
@@ -50,7 +48,6 @@ namespace droid.Editor.Windows {
     bool _show_objective_functions_debug;
     bool _show_observers_debug;
     bool _show_player_reactions_debug;
-    bool _show_resetables_debug;
     bool _show_simulation_manager_debug;
 
     [MenuItem(EditorWindowMenuPath._WindowMenuPath + "DebugWindow")]
@@ -78,7 +75,6 @@ namespace droid.Editor.Windows {
       this._objective_functions = FindObjectsOfType<ObjectiveFunction>();
       this._displayers = FindObjectsOfType<Displayer>();
       this._listeners = FindObjectsOfType<EnvironmentListener>();
-      this._resetables = FindObjectsOfType<Resetable>();
       this._player_reactions = FindObjectOfType<PlayerReactions>();
     }
 
@@ -92,7 +88,6 @@ namespace droid.Editor.Windows {
       this._show_configurables_debug = true;
       this._show_objective_functions_debug = true;
       this._show_displayers_debug = true;
-      this._show_resetables_debug = true;
       this._show_listeners_debug = true;
     }
 
@@ -106,7 +101,6 @@ namespace droid.Editor.Windows {
       this._show_configurables_debug = false;
       this._show_objective_functions_debug = false;
       this._show_displayers_debug = false;
-      this._show_resetables_debug = false;
       this._show_listeners_debug = false;
     }
 
@@ -120,7 +114,6 @@ namespace droid.Editor.Windows {
           && this._show_configurables_debug
           && this._show_objective_functions_debug
           && this._show_displayers_debug
-          && this._show_resetables_debug
           && this._show_listeners_debug) {
         return true;
       }
@@ -159,8 +152,6 @@ namespace droid.Editor.Windows {
       this._show_displayers_debug =
           EditorGUILayout.Toggle("Debug all displayers", this._show_displayers_debug);
 
-      this._show_resetables_debug =
-          EditorGUILayout.Toggle("Debug all resetables", this._show_resetables_debug);
       this._show_listeners_debug = EditorGUILayout.Toggle("Debug all listeners", this._show_listeners_debug);
 
       this._debug_all = this.AreAllChecked();
@@ -202,10 +193,6 @@ namespace droid.Editor.Windows {
           displayer.Debugging = this._show_displayers_debug;
         }
 
-        foreach (var resetable in this._resetables) {
-          resetable.Debugging = this._show_resetables_debug;
-        }
-
         foreach (var listener in this._listeners) {
           listener.Debugging = this._show_listeners_debug;
         }
@@ -213,7 +200,7 @@ namespace droid.Editor.Windows {
 
       if (GUI.changed && !Application.isPlaying) {
         EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
-        // Unity not tracking changes to properties of gameobject made through this window automatically and
+        // Unity not tracking changes to properties of a GameObject made through this window automatically and
         // are not saved unless other changes are made from a working inpector window
       }
     }

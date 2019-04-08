@@ -91,19 +91,19 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental
     protected override void RegisterComponent()
     {
       this.ParentEnvironment =
-        NeodroidUtilities.RegisterComponent((PrototypingEnvironment) this.ParentEnvironment,
+        NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
           (Configurable) this,
           this._r);
       this.ParentEnvironment =
-        NeodroidUtilities.RegisterComponent((PrototypingEnvironment) this.ParentEnvironment,
+        NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
           (Configurable) this,
           this._g);
       this.ParentEnvironment =
-        NeodroidUtilities.RegisterComponent((PrototypingEnvironment) this.ParentEnvironment,
+        NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
           (Configurable) this,
           this._b);
       this.ParentEnvironment =
-        NeodroidUtilities.RegisterComponent((PrototypingEnvironment) this.ParentEnvironment,
+        NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
           (Configurable) this,
           this._a);
       /*this.ParentEnvironment = NeodroidUtilities.RegisterComponent(
@@ -111,27 +111,27 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental
         (Configurable) this,
         this._texture);*/
       this.ParentEnvironment =
-        NeodroidUtilities.RegisterComponent((PrototypingEnvironment) this.ParentEnvironment,
+        NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
           (Configurable) this,
           this._reflection);
       this.ParentEnvironment =
-        NeodroidUtilities.RegisterComponent((PrototypingEnvironment) this.ParentEnvironment,
+        NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
           (Configurable) this,
           this._smoothness);
       this.ParentEnvironment =
-        NeodroidUtilities.RegisterComponent((PrototypingEnvironment) this.ParentEnvironment,
+        NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
           (Configurable) this,
           this._offset_x);
       this.ParentEnvironment =
-        NeodroidUtilities.RegisterComponent((PrototypingEnvironment) this.ParentEnvironment,
+        NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
           (Configurable) this,
           this._offset_y);
       this.ParentEnvironment =
-        NeodroidUtilities.RegisterComponent((PrototypingEnvironment) this.ParentEnvironment,
+        NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
           (Configurable) this,
           this._tiling_x);
       this.ParentEnvironment =
-        NeodroidUtilities.RegisterComponent((PrototypingEnvironment) this.ParentEnvironment,
+        NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
           (Configurable) this,
           this._tiling_y);
     }
@@ -292,7 +292,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public override IConfigurableConfiguration[] SampleConfigurations()
+    public override Configuration[] SampleConfigurations()
     {
       var cs1 = this._color_space.Sample();
       var tl1 = this._tiling_space.Sample();

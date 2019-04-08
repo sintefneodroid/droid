@@ -6,7 +6,6 @@ namespace droid.Runtime.Interfaces {
     int CurrentFrameNumber { get; }
     bool Terminated { get; }
     string LastTerminationReason { get; }
-    int EpisodeLength { get; }
     bool IsResetting { get; }
 
     EnvironmentState CollectState();

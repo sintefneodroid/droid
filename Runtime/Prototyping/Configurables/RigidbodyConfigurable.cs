@@ -99,7 +99,6 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     protected override void PreSetup() {
       this._rigidbody = this.GetComponent<Rigidbody>();
-      this.UpdateCurrentConfiguration();
       this._vel_x = this.Identifier + "VelX";
       this._vel_y = this.Identifier + "VelY";
       this._vel_z = this.Identifier + "VelZ";
@@ -112,27 +111,27 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
                                               (Configurable)this,
                                               this._vel_x);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
                                               (Configurable)this,
                                               this._vel_y);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
                                               (Configurable)this,
                                               this._vel_z);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
                                               (Configurable)this,
                                               this._ang_x);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
                                               (Configurable)this,
                                               this._ang_y);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
                                               (Configurable)this,
                                               this._ang_z);
     }
@@ -220,7 +219,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     /// <returns></returns>
     /// <exception cref="T:System.NotImplementedException"></exception>
-    public override IConfigurableConfiguration[] SampleConfigurations() {
+    public override Configuration[] SampleConfigurations() {
       return new[] {new Configuration(this._ang_x, Space1.ZeroOne.Sample())};
     }
   }

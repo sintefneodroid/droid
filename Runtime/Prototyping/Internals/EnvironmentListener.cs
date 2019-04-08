@@ -9,14 +9,12 @@ namespace droid.Runtime.Prototyping.Internals {
   /// <inheritdoc cref="PrototypingGameObject" />
   /// <summary>
   /// </summary>
-  [ExecuteInEditMode]
   public abstract class EnvironmentListener : PrototypingGameObject,
-                                              IEnvironmentListener {
+                                    IEnvironmentListener {
     /// <summary>
     /// </summary>
     public IPrototypingEnvironment _Parent_Environment;
 
-    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public abstract override String PrototypingTypeName { get; }
@@ -24,21 +22,11 @@ namespace droid.Runtime.Prototyping.Internals {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public virtual void PreStep() { }
+    public abstract void EnvironmentReset();
 
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
+    public virtual void PreStep() {  }
     public virtual void Step() { }
-
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
     public virtual void PostStep() { }
-
-    /// <summary>
-    /// </summary>
-    public virtual void EnvironmentReset() { }
 
     /// <inheritdoc />
     /// <summary>

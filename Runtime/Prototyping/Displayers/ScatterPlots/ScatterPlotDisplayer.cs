@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Plotting;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
+  /// <inheritdoc />
+  /// <summary>
+  /// </summary>
   [ExecuteInEditMode]
   [AddComponentMenu(DisplayerComponentMenuPath._ComponentMenuPath
                     + "ScatterPlot"
@@ -22,10 +26,13 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
     ParticleSystemSimulationSpace _particle_system_simulation_space = ParticleSystemSimulationSpace.World;
 
     ParticleSystem.Particle[] _particles;
-    [SerializeField] float _size = 0.6f;
+    [SerializeField] float _default_start_size = 0.6f;
 
     List<float> _vs = new List<float>();
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
     protected override void Setup() {
       this._particle_system = this.GetComponent<ParticleSystem>();
       var em = this._particle_system.emission;
@@ -39,7 +46,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
       this._particle_system_main_module.playOnAwake = false;
       this._particle_system_main_module.simulationSpace = this._particle_system_simulation_space;
       this._particle_system_main_module.simulationSpeed = 0;
-      this._particle_system_main_module.startSize = this._size;
+      this._particle_system_main_module.startSize = this._default_start_size;
 
       this._particle_system_renderer = this.GetComponent<ParticleSystemRenderer>();
       //this._particle_system_renderer.renderMode = ParticleSystemRenderMode.Mesh;
@@ -125,6 +132,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
         var clamped = Math.Min(Math.Max(0.0f, point._Val), 1.0f);
         this._particles[i].startColor = this._gradient.Evaluate(clamped);
         this._particles[i].startSize = point._Size;
+        this._particles[i].startSize3D = this._default_start_size.BroadcastVector3();
         i++;
       }
 
@@ -136,6 +144,10 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
 
     //public override void Display(Object o) { throw new NotImplementedException(); }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="values"></param>
     public override void Display(float values) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
@@ -169,7 +181,8 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
         this._particles[i].position = point;
         var clamped = Math.Min(Math.Max(0.0f, i / l), 1.0f);
         this._particles[i].startColor = this._gradient.Evaluate(clamped);
-        this._particles[i].startSize = 1f;
+        this._particles[i].startSize = this._default_start_size;
+        this._particles[i].startSize3D = this._default_start_size.BroadcastVector3();
         i++;
       }
 
@@ -177,6 +190,9 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
     }
 
     public void PlotSeries(float[] points) {
+      if(!this._particle_system) {
+        return;
+      }
       if (this._particles == null || this._particles.Length != points.Length) {
         this._particles = new ParticleSystem.Particle[points.Length];
       }
@@ -193,19 +209,25 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
         this._particles[i].position = Vector3.one * i;
         var clamped = Math.Min(Math.Max(0.0f, point), 1.0f);
         this._particles[i].startColor = this._gradient.Evaluate(clamped);
-        this._particles[i].startSize = 1f;
+        this._particles[i].startSize = this._default_start_size;
+        this._particles[i].startSize3D = this._default_start_size.BroadcastVector3();
         i++;
       }
 
       this._particle_system.SetParticles(this._particles, points.Length);
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     protected override void Clean() {
       if(!this._RetainLastPlot) {
+        if (_particle_system) {
+          
+
         this._particle_system.Clear(true);
+      }
+
       }
 
       base.Clean();
@@ -221,6 +243,11 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
       if (this._particles == null || this._particles.Length != points.Length) {
         this._particles = new ParticleSystem.Particle[points.Length];
       }
+      #if NEODROID_DEBUG
+      if (this.Debugging) {
+        Debug.Log("Applying the series " + points + " To " + this.name);
+      }
+      #endif
 
 
       var alive = this._particle_system.GetParticles(this._particles);
@@ -234,6 +261,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
         this._particles[i].position = point._Pos;
         this._particles[i].startColor = this._gradient.Evaluate(point._Val);
         this._particles[i].startSize = point._Size;
+        this._particles[i].startSize3D = point._Size.BroadcastVector3();
         i++;
       }
 

@@ -62,7 +62,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
   /// <summary>
   /// </summary>
   /// <returns></returns>
-  public override IConfigurableConfiguration[] SampleConfigurations() {
+  public override Configuration[] SampleConfigurations() {
     this._last_sample = int.Parse(Random.Range(0, this._textures.Length).ToString());
 
     return new[] {new Configuration(this.Identifier, this._last_sample)};

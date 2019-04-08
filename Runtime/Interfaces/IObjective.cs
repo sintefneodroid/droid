@@ -15,5 +15,7 @@ namespace droid.Runtime.Interfaces {
     /// <summary>
     /// </summary>
     void EnvironmentReset();
+
+    int EpisodeLength { get; set; }
   }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 using Object = System.Object;
 
 namespace droid.Runtime.Utilities.GameObjects {
-  /// <inheritdoc />
+  /// <inheritdoc cref="IRegisterable" />
   /// <summary>
   /// </summary>
   public abstract class PrototypingGameObject : MonoBehaviour,
@@ -86,6 +86,7 @@ namespace droid.Runtime.Utilities.GameObjects {
       if (this.enabled && this.isActiveAndEnabled) {
         this.Clear();
       }
+
     }
 
     /// <summary>

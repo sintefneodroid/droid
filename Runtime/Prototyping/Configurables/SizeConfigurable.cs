@@ -44,15 +44,15 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
                                               (Configurable)this,
                                               this._x);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
                                               (Configurable)this,
                                               this._y);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
                                               (Configurable)this,
                                               this._z);
     }
@@ -95,7 +95,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public override IConfigurableConfiguration[] SampleConfigurations() {
+    public override Configuration[] SampleConfigurations() {
       var sample = Space1.ZeroOne.Sample();
 
       var v = this._space.Sample();

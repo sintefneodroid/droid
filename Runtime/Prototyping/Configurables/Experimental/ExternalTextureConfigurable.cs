@@ -30,7 +30,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
                                               (Configurable)this,
                                               this._texture_str);
     }
@@ -63,7 +63,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public override IConfigurableConfiguration[] SampleConfigurations() {
+    public override Configuration[] SampleConfigurations() {
       return new[] {new Configuration(this._texture_str, Space1.ZeroOne.Sample())};
     }
   }

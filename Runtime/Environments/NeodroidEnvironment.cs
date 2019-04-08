@@ -31,10 +31,7 @@ namespace droid.Runtime.Environments {
     [SerializeField]
     protected float _Energy_Spent;
 
-    /// <summary>
-    /// </summary>
-    [SerializeField]
-    int _episode_length = 1000;
+
 
     [SerializeField] Reaction _last_reaction;
 
@@ -91,9 +88,6 @@ namespace droid.Runtime.Environments {
       set { this._current_frame_number = value; }
     }
 
-    /// <summary>
-    /// </summary>
-    public int EpisodeLength { get { return this._episode_length; } set { this._episode_length = value; } }
 
     /// <summary>
     /// </summary>
@@ -152,7 +146,7 @@ namespace droid.Runtime.Environments {
     /// </summary>
     /// <returns></returns>
     public void FrameString(DataPoller recipient) {
-      recipient.PollData($"{this.CurrentFrameNumber}/{this.EpisodeLength}");
+      recipient.PollData($"{this.CurrentFrameNumber}");
     }
 
     /// <summary>

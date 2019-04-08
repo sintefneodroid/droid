@@ -7,7 +7,7 @@ namespace droid.Runtime.Prototyping.Internals {
   [AddComponentMenu(ResetableComponentMenuPath._ComponentMenuPath
                     + "Transform"
                     + ResetableComponentMenuPath._Postfix)]
-  public class TransformResetable : Resetable {
+  public class TransformEnvironmentListener : EnvironmentListener {
     /// <summary>
     /// </summary>
     Vector3 _original_position;

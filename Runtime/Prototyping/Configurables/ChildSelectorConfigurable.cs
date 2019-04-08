@@ -60,7 +60,7 @@ namespace droid.Runtime.Prototyping.Configurables {
       this.active.SetActive(true);
     }
 
-    public override IConfigurableConfiguration[] SampleConfigurations() {
+    public override Configuration[] SampleConfigurations() {
       return new[] {new Configuration(this.Identifier, int.Parse(Random.Range(0, this.len).ToString()))};
     }
 

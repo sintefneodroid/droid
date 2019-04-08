@@ -6,13 +6,13 @@ namespace droid.Runtime.Interfaces {
   /// <inheritdoc cref="IEnvironment" />
   /// <summary>
   /// </summary>
+
   public interface IPrototypingEnvironment : IEnvironment,
                                              IHasRegister<IActor>,
                                              IHasRegister<IObserver>,
                                              IHasRegister<IConfigurable>,
-                                             IHasRegister<IResetable>,
-                                             IHasRegister<IDisplayer>,
-                                             IHasRegister<IEnvironmentListener> {
+                                             IHasRegister<IEnvironmentListener>,
+                                             IHasRegister<IDisplayer> {
     /// <summary>
     /// </summary>
     Transform Transform { get; }
@@ -64,6 +64,8 @@ namespace droid.Runtime.Interfaces {
     /// <summary>
     /// </summary>
     event Action PostStepEvent;
+
+    IObjective ObjectiveFunction { get; }
 
     void Terminate(string reason);
   }

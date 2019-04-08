@@ -7,7 +7,7 @@ using droid.Runtime.Utilities.ScriptableObjects;
 using UnityEngine;
 
 namespace droid.Runtime.Utilities.Structs {
-  /// <inheritdoc />
+  /// <inheritdoc cref="ScriptableObject" />
   /// <summary>
   ///   Contains everything relevant to configuring simulation environments engine specific settings
   /// </summary>
@@ -19,38 +19,27 @@ namespace droid.Runtime.Utilities.Structs {
                                         ISimulatorConfiguration {
     [Header("Performance (Disable for faster serialisation, but with loss of functionality)")]
     [SerializeField]
-    bool _always_serialise_unobservables;
+    bool _always_serialise_unobservables=true;
 
     [SerializeField] bool _always_serialise_individual_observables = true;
 
     [SerializeField] bool _always_serialise_aggregated_float_array = true;
 
+    [Header("Graphics")] [SerializeField] bool _apply_resolution_settings=false;
 
-    /// <summary>
-    /// </summary>
-    [Header("Graphics")]
-    [SerializeField]
-    bool _apply_resolution_settings;
 
-    [SerializeField] bool _apply_quality_settings;
+    [SerializeField] bool _optimise_for_speed=false;
 
-    /// <summary>
-    /// </summary>
-    [SerializeField]
-    [Range(0, 9999)]
-    int _height = 500;
+    [SerializeField] bool _apply_quality_settings=false;
 
-    /// <summary>
-    /// </summary>
-    [SerializeField]
-    [Range(0, 9999)]
-    int _width = 500;
+    [SerializeField] [Range(0, 9999)] int _height = 500;
 
-    /// <summary>
-    /// </summary>
-    [SerializeField]
-    [Range(1, 4)]
-    int _quality_level = 1;
+    [SerializeField] [Range(0, 9999)] int _width = 500;
+
+    [SerializeField] [Range(1, 4)] int _quality_level = 1;
+    [SerializeField] bool _full_screen=false;
+    [SerializeField] bool _resizable_window = true;
+    [SerializeField] ColorSpace _color_space = ColorSpace.Linear;
 
     //TODO: VSYNC option
 
@@ -65,9 +54,9 @@ namespace droid.Runtime.Utilities.Structs {
     /// </summary>
     [SerializeField]
     [Range(0, 99)]
-    int _frame_skips;
+    int _frame_skips=0;
 
-    [SerializeField] bool _full_screen;
+
 
     /// <summary>
     /// </summary>
@@ -79,13 +68,13 @@ namespace droid.Runtime.Utilities.Structs {
     /// </summary>
     [SerializeField]
     [Range(0, 9999)]
-    float _max_reply_interval;
+    float _max_reply_interval=0;
 
     /// <summary>
     /// </summary>
     [SerializeField]
     [Range(0, 999)]
-    int _num_of_environments;
+    int _num_of_environments=0;
 
     /// <summary>
     /// </summary>
@@ -134,10 +123,7 @@ namespace droid.Runtime.Utilities.Structs {
     /// </summary>
     [Header("Experimental (Warning, it is important to read docs before use!)")]
     [SerializeField]
-    bool _update_fixed_time_scale=false;
-
-    [SerializeField] Boolean _resizable_window=true;
-    [SerializeField] ColorSpace _color_space=ColorSpace.Linear;
+    bool _update_fixed_time_scale = false;
 
     /// <summary>
     /// </summary>
@@ -190,11 +176,17 @@ namespace droid.Runtime.Utilities.Structs {
       set { this._simulation_type = value; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public bool ApplyResolutionSettings {
       get { return this._apply_resolution_settings; }
       set { this._apply_resolution_settings = value; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public bool ApplyQualitySettings {
       get { return this._apply_quality_settings; }
       set { this._apply_quality_settings = value; }
@@ -303,9 +295,9 @@ namespace droid.Runtime.Utilities.Structs {
     }
 
     public Boolean AlwaysSerialiseAggregatedFloatArray {
-      get { return this._always_serialise_aggregated_float_array;} set {
-        this._always_serialise_aggregated_float_array = value;
-      } }
+      get { return this._always_serialise_aggregated_float_array; }
+      set { this._always_serialise_aggregated_float_array = value; }
+    }
 
     /// <summary>
     ///
@@ -323,11 +315,15 @@ namespace droid.Runtime.Utilities.Structs {
       set { this._always_serialise_individual_observables = value; }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public bool ReplayReactionInSkips {
       get { return this._replay_reaction_in_skips; }
       set { this._replay_reaction_in_skips = value; }
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public Int32 Port { get { return this._port; } set { this._port = value; } }
@@ -335,6 +331,11 @@ namespace droid.Runtime.Utilities.Structs {
     /// <summary>
     /// </summary>
     public String IpAddress { get { return this._ip_address; } set { this._ip_address = value; } }
+
+    public Boolean OptimiseForSpeed {
+      get { return this._optimise_for_speed; }
+      set { this._optimise_for_speed = value; }
+    }
 
     #endregion
   }

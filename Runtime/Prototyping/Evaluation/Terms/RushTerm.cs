@@ -25,7 +25,7 @@ namespace droid.Runtime.Prototyping.Evaluation.Terms {
     /// <returns></returns>
     public override float Evaluate() {
       if (this._env != null) {
-        return -(1f / this._env.EpisodeLength);
+        return -(1f / this._env.ObjectiveFunction.EpisodeLength);
       }
 
       return -this._penalty_size;

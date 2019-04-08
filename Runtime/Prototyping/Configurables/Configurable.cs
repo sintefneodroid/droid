@@ -31,7 +31,7 @@ namespace droid.Runtime.Prototyping.Configurables {
 
     /// <summary>
     /// </summary>
-    public IPrototypingEnvironment ParentEnvironment {
+    public PrototypingEnvironment ParentEnvironment {
       get { return this._environment; }
       set { this._environment = value; }
     }
@@ -46,14 +46,14 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     public void EnvironmentReset() { }
 
-    public virtual void PostEnvironmentSetup() { }
+    public virtual void PostEnvironmentSetup() {       this.UpdateCurrentConfiguration(); }
 
     /// <summary>
     /// </summary>
     /// <returns></returns>
     /// <exception cref="System.NotImplementedException"></exception>
-    public virtual IConfigurableConfiguration[] SampleConfigurations() {
-      return new []{ new Configuration(this.Identifier, Space1.ZeroOne.Sample())};
+    public virtual Configuration[] SampleConfigurations() {
+      return new [] { new Configuration(this.Identifier, Space1.ZeroOne.Sample())};
     }
 
     /// <inheritdoc />
@@ -61,7 +61,6 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     protected sealed override void Setup() {
       this.PreSetup();
-      this.UpdateCurrentConfiguration();
     }
 
     /// <summary>
@@ -73,7 +72,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment, this);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, this);
     }
 
     /// <summary>
@@ -85,7 +84,6 @@ namespace droid.Runtime.Prototyping.Configurables {
         {
           this.ApplyConfiguration(v);
         }
-
       }
     }
 
@@ -110,7 +108,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     [Header("References", order = 20)]
     [SerializeField]
-    IPrototypingEnvironment _environment = null;
+    PrototypingEnvironment _environment = null;
 
     /// <summary>
     /// </summary>

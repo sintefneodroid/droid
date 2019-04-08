@@ -10,7 +10,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera
         [SerializeField] Vector3 _direction = Vector3.down;
         [SerializeField] float _length = 30f;
 
-        Vector3 old_pos;
+        Vector3 old_pos=Vector3.zero;
         void Awake()
         {
             this._lineRenderer = this.GetComponent<LineRenderer>();

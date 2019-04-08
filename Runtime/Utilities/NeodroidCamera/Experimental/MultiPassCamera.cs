@@ -19,10 +19,10 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Experimental {
     /// </summary>
     MaterialPropertyBlock _block = null;
 
-    [SerializeField] RenderTexture depthRenderTexture;
-    [SerializeField] RenderTexture objectIdRenderTexture;
-    [SerializeField] RenderTexture tagIdRenderTexture;
-    [SerializeField] RenderTexture flowRenderTexture;
+    [SerializeField] RenderTexture depthRenderTexture=null;
+    [SerializeField] RenderTexture objectIdRenderTexture=null;
+    [SerializeField] RenderTexture tagIdRenderTexture=null;
+    [SerializeField] RenderTexture flowRenderTexture=null;
 
     /// <summary>
     /// </summary>

@@ -49,27 +49,27 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental
     protected override void RegisterComponent()
     {
       this.ParentEnvironment =
-        NeodroidUtilities.RegisterComponent((PrototypingEnvironment) this.ParentEnvironment,
+        NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
           (Configurable) this,
           this._shadow_strength);
       this.ParentEnvironment =
-        NeodroidUtilities.RegisterComponent((PrototypingEnvironment) this.ParentEnvironment,
+        NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
           (Configurable) this,
           this._color_r);
       this.ParentEnvironment =
-        NeodroidUtilities.RegisterComponent((PrototypingEnvironment) this.ParentEnvironment,
+        NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
           (Configurable) this,
           this._color_b);
       this.ParentEnvironment =
-        NeodroidUtilities.RegisterComponent((PrototypingEnvironment) this.ParentEnvironment,
+        NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
           (Configurable) this,
           this._color_g);
       this.ParentEnvironment =
-        NeodroidUtilities.RegisterComponent((PrototypingEnvironment) this.ParentEnvironment,
+        NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
           (Configurable) this,
           this._intensity);
       this.ParentEnvironment =
-        NeodroidUtilities.RegisterComponent((PrototypingEnvironment) this.ParentEnvironment,
+        NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
           (Configurable) this,
           this._indirect_multiplier);
     }
@@ -139,7 +139,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public override IConfigurableConfiguration[] SampleConfigurations()
+    public override Configuration[] SampleConfigurations()
     {
       var v = this._space.Sample();
 

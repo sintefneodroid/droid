@@ -12,24 +12,24 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Experimental {
   public class UberCamera : MonoBehaviour {
     #region fields
 
-    [SerializeField] Shader copy_shader;
-    [SerializeField] Material _copy_material;
-    [SerializeField] Material _off_screen_mat;
-    [SerializeField] Camera _camera;
+    [SerializeField] Shader copy_shader=null;
+    [SerializeField] Material _copy_material=null;
+    [SerializeField] Material _off_screen_mat=null;
+    [SerializeField] Camera _camera=null;
     [SerializeField] Boolean _debugging = true;
     [SerializeField] GUISkin gui_style = null;
 
-    CommandBuffer[] _copy_cbs;
-    CommandBuffer _copy_fb_cb;
-    CommandBuffer _copy_gb_cb;
-    CommandBuffer _clear_gb_cb;
-    CommandBuffer _copy_velocity_cb;
-    RenderTexture[] _fb_rts;
-    RenderTexture[] _gb_rts;
-    Mesh _quad_mesh;
+    CommandBuffer[] _copy_cbs=null;
+    CommandBuffer _copy_fb_cb=null;
+    CommandBuffer _copy_gb_cb=null;
+    CommandBuffer _clear_gb_cb=null;
+    CommandBuffer _copy_velocity_cb=null;
+    RenderTexture[] _fb_rts=null;
+    RenderTexture[] _gb_rts=null;
+    Mesh _quad_mesh=null;
 
-    RenderTargetIdentifier[] _m_rt_fb_ids;
-    RenderTargetIdentifier[] _m_rt_gb_ids;
+    RenderTargetIdentifier[] _m_rt_fb_ids=null;
+    RenderTargetIdentifier[] _m_rt_gb_ids=null;
     int _tmp_texture_id = Shader.PropertyToID("_TmpFrameBuffer");
     static readonly int _clear_color = Shader.PropertyToID("_ClearColor");
 

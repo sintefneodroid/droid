@@ -157,7 +157,6 @@ namespace droid.Editor.Windows {
                 var actors = this._environments[i].Actors;
                 var observers = this._environments[i].Observers;
                 var configurables = this._environments[i].Configurables;
-                var resetables = this._environments[i].Resetables;
                 var listeners = this._environments[i].Listeners;
                 var displayers = this._environments[i].Displayers;
 
@@ -188,8 +187,8 @@ namespace droid.Editor.Windows {
                                                                                         .ObjectiveFunction,
                                                                      typeof(ObjectiveFunction),
                                                                      true);
-                  this._environments[i].EpisodeLength =
-                      EditorGUILayout.IntField("Episode Length", this._environments[i].EpisodeLength);
+                  this._environments[i].ObjectiveFunction.EpisodeLength =
+                      EditorGUILayout.IntField("Episode Length", this._environments[i].ObjectiveFunction.EpisodeLength);
                   //EditorGUILayout.BeginHorizontal("Box");
                   #if NEODROID_DEBUG
                   this._environments[i].Debugging =
@@ -211,7 +210,7 @@ namespace droid.Editor.Windows {
 
                 this.DrawDisplayers(displayers);
 
-                //this.DrawInternals(resetables, listeners);
+                this.DrawListeners(listeners);
 
                 EditorGUILayout.EndToggleGroup();
                 EditorGUILayout.EndVertical();
@@ -239,20 +238,19 @@ namespace droid.Editor.Windows {
 
     #region GUIDRAWS
 
-    void DrawInternals(Dictionary<String, IResetable> resetables,
-                       Dictionary<String, IEnvironmentListener> listeners) {
+    void DrawListeners(Dictionary<String, IEnvironmentListener> listeners) {
       EditorGUILayout.BeginVertical("Box");
 
-      GUILayout.Label("Internals");
-      foreach (var resetable in resetables) {
-        var resetable_value = (Resetable)resetable.Value;
+      GUILayout.Label("Listeners");
+      foreach (var resetable in listeners) {
+        var resetable_value = (EnvironmentListener)resetable.Value;
         if (resetable_value != null) {
           EditorGUILayout.BeginVertical("Box");
           resetable_value.enabled =
               EditorGUILayout.BeginToggleGroup(resetable.Key,
                                                resetable_value.enabled
                                                && resetable_value.gameObject.activeSelf);
-          EditorGUILayout.ObjectField(resetable_value, typeof(Resetable), true);
+          EditorGUILayout.ObjectField(resetable_value, typeof(EnvironmentListener), true);
           if (this._show_detailed_descriptions) {
             //EditorGUILayout.BeginHorizontal("Box");
             #if NEODROID_DEBUG
@@ -265,30 +263,6 @@ namespace droid.Editor.Windows {
           EditorGUILayout.EndVertical();
         }
       }
-
-      foreach (var listener in listeners) {
-        var listener_value_value = (EnvironmentListener)listener.Value;
-        if (listener_value_value != null) {
-          EditorGUILayout.BeginVertical("Box");
-          listener_value_value.enabled =
-              EditorGUILayout.BeginToggleGroup(listener.Key,
-                                               listener_value_value.enabled
-                                               && listener_value_value.gameObject.activeSelf);
-          EditorGUILayout.ObjectField(listener_value_value, typeof(EnvironmentListener), true);
-          if (this._show_detailed_descriptions) {
-            //EditorGUILayout.BeginHorizontal("Box");
-            #if NEODROID_DEBUG
-            listener_value_value.Debugging =
-                EditorGUILayout.Toggle("Debugging", listener_value_value.Debugging);
-            #endif
-            //EditorGUILayout.EndHorizontal();
-          }
-
-          EditorGUILayout.EndToggleGroup();
-          EditorGUILayout.EndVertical();
-        }
-      }
-
       EditorGUILayout.EndVertical();
     }
 

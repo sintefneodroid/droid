@@ -37,7 +37,6 @@ namespace droid.Runtime.Prototyping.Actuators.Particles {
       var valid_input = this.MotionSpace;
       valid_input._Min_Value = 0;
       this.MotionSpace = valid_input;
-      this.RegisterComponent();
     }
 
     /// <summary>

@@ -19,13 +19,6 @@ namespace droid.Runtime.Prototyping.Internals.StateValidation {
 
     [SerializeField] BoundingBox _playable_area;
 
-    /// <summary>
-    /// </summary>
-    public PrototypingEnvironment ParentEnvironment {
-      get { return this._environment; }
-      set { this._environment = value; }
-    }
-
     /// <inheritdoc />
     /// <summary>
     /// </summary>
@@ -85,6 +78,8 @@ namespace droid.Runtime.Prototyping.Internals.StateValidation {
         }
       }
     }
+
+    public override void EnvironmentReset() {  }
 
     /// <inheritdoc />
     /// <summary>

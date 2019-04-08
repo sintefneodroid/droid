@@ -11,16 +11,18 @@ namespace droid.Runtime.Utilities.Plotting {
     /// <param name="size"></param>
     /// <param name="min_val"></param>
     /// <param name="max_val"></param>
-    /// <param name="particle_size"></param>
+    /// <param name="particle_size_min"></param>
+    /// <param name="particle_size_max"></param>
     /// <returns></returns>
     public static Points.ValuePoint[] SampleRandomSeries(int size,
                                                          float min_val = 0,
                                                          float max_val = 5,
-                                                         float particle_size = 1) {
+                                                         float particle_size_min = 0.2f,
+                                                         float particle_size_max = 1.8f) {
       _points.Clear();
       for (var j = 0; j < size; j++) {
         var point = Space3.MinusOneOne.Sample()*max_val;
-        var vp = new Points.ValuePoint(point, Random.Range(min_val, max_val), particle_size);
+        var vp = new Points.ValuePoint(point, Random.Range(min_val, max_val), Random.Range(particle_size_min, particle_size_max));
         _points.Add(vp);
       }
 

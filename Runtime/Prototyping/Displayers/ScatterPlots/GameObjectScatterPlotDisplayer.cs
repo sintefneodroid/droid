@@ -168,7 +168,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
         this._particles[i].position = point;
         var clamped = Math.Min(Math.Max(0.0f, i / l), 1.0f);
         this._particles[i].startColor = this._gradient.Evaluate(clamped);
-        this._particles[i].startSize = 1f;
+        this._particles[i].startSize = this._size;
         i++;
       }
 
@@ -192,7 +192,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
         this._particles[i].position = Vector3.one * i;
         var clamped = Math.Min(Math.Max(0.0f, point), 1.0f);
         this._particles[i].startColor = this._gradient.Evaluate(clamped);
-        this._particles[i].startSize = 1f;
+        this._particles[i].startSize = this._size;
         i++;
       }
 

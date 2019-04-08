@@ -56,7 +56,6 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     protected override void PreSetup() {
       this._rigidbody = this.GetComponent<Rigidbody>();
-      this.UpdateCurrentConfiguration();
       this._vel_x = this.Identifier + "VelX";
     }
 
@@ -64,7 +63,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
                                               (Configurable)this,
                                               this._vel_x);
     }
@@ -125,7 +124,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     /// <returns></returns>
     /// <exception cref="T:System.NotImplementedException"></exception>
-    public override IConfigurableConfiguration[] SampleConfigurations() {
+    public override Configuration[] SampleConfigurations() {
       return new[] {new Configuration(this._vel_x, this._angular_velocity.Sample())};
     }
   }

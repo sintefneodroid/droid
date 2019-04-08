@@ -17,6 +17,23 @@ namespace droid.Runtime.Prototyping.Evaluation {
                                             IHasRegister<Term>,
                                             //IResetable,
                                             IObjective {
+
+    /// <summary>
+    /// </summary>
+    [SerializeField]
+    protected float _solved_reward = 1.0f;
+
+    /// <summary>
+    /// </summary>
+    [SerializeField]
+    float _failed_reward = -1.0f;
+
+    /// <summary>
+    /// </summary>
+    [SerializeField]
+    protected float _default_reward = -0.001f;
+
+
     /// <summary>
     /// </summary>
     [SerializeField]
@@ -99,6 +116,19 @@ namespace droid.Runtime.Prototyping.Evaluation {
       signal += this.EvaluateExtraTerms();
 
       //signal = signal * Mathf.Pow(this._internal_discount_factor, this._environment.CurrentFrameNumber);
+
+      if (this.EpisodeLength > 0 && this._environment.CurrentFrameNumber >= this.EpisodeLength) {
+        #if NEODROID_DEBUG
+        if (this.Debugging) {
+          Debug.Log($"Maximum episode length reached, Length {this._environment.CurrentFrameNumber}");
+        }
+        #endif
+
+        signal = this._failed_reward;
+
+        this._environment.Terminate("Maximum episode length reached");
+      }
+
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
@@ -225,6 +255,16 @@ namespace droid.Runtime.Prototyping.Evaluation {
     float _solved_threshold;
 
     [SerializeField] float _last_signal;
+
+
+    /// <summary>
+    /// </summary>
+    [SerializeField]
+    int _episode_length = 1000;
+
+    /// <summary>
+    /// </summary>
+    public int EpisodeLength { get { return this._episode_length; } set { this._episode_length = value; } }
 
     #endregion
   }

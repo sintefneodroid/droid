@@ -1,4 +1,5 @@
 ﻿using droid.Runtime.Utilities.BoundingBoxes;
+using droid.Runtime.Utilities.GameObjects.Sensors;
 using droid.Runtime.Utilities.Misc.Extensions;
 using UnityEngine;
 
@@ -63,6 +64,10 @@ namespace droid.Runtime.Prototyping.Evaluation {
         }
       }
 
+      if (this._has_collided) {
+        this.ParentEnvironment?.Terminate("Actor has collided");
+      }
+
       #if NEODROID_DEBUG
       if (this.Debugging) {
         Debug.Log($"Frame Number: {this.ParentEnvironment?.CurrentFrameNumber}, "
@@ -79,7 +84,10 @@ namespace droid.Runtime.Prototyping.Evaluation {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override void InternalReset() { this._peak_reward = 0.0f; }
+    public override void InternalReset() {
+      this._peak_reward = 0.0f;
+      this._has_collided = false;
+    }
 
     /// <inheritdoc />
     /// <summary>
@@ -91,15 +99,40 @@ namespace droid.Runtime.Prototyping.Evaluation {
 
       if (!this._actor_transform) {
         this._actor_transform = FindObjectOfType<Transform>();
+
+        var remote_sensor = this._actor_transform.GetComponentInChildren<ChildColliderSensor<Collider, Collision>>();
+        if (!remote_sensor) {
+          var col = this._actor_transform.GetComponentInChildren<Collider>();
+          if (col) {
+            remote_sensor = col.gameObject.AddComponent<ChildColliderSensor<Collider, Collision>>();
+          }
+        }
+
+        if (remote_sensor) {
+          remote_sensor.Caller = this;
+          remote_sensor.OnTriggerEnterDelegate = this.OnChildTriggerEnter;
+          remote_sensor.OnCollisionEnterDelegate = this.OnChildTriggerEnter;
+        }
       }
 
       if (this._obstructions == null || this._obstructions.Length <= 0) {
         this._obstructions = FindObjectsOfType<Obstruction>();
+
+
+
       }
 
       if (!this._playable_area) {
         this._playable_area = FindObjectOfType<BoundingBox>();
       }
+    }
+
+    void OnChildTriggerEnter(GameObject child_sensor_game_object, Collision collision) {
+      this._has_collided = true;
+    }
+
+    void OnChildTriggerEnter(GameObject child_sensor_game_object, Collider collider1) {
+      this._has_collided = true;
     }
 
     #region Fields
@@ -126,17 +159,9 @@ namespace droid.Runtime.Prototyping.Evaluation {
     [SerializeField] bool _state_full = false;
     [SerializeField] float _goal_reached_radius = 0.01f; // Equivalent to 1 cm.
 
-    /// <summary>
-    /// </summary>
-    [SerializeField]
-    float _solved_reward = 1000.0f;
-
-    /// <summary>
-    /// </summary>
-    [SerializeField]
-    float _default_reward = -0.01f;
 
     [SerializeField] bool _terminate_on_obstruction_collision=true; //TODO: implement
+    [SerializeField] bool _has_collided = false;
     [SerializeField] bool _terminate_on_goal_reached = true;
 
     #endregion
