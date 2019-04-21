@@ -6,6 +6,7 @@ using droid.Runtime.Interfaces;
 using droid.Runtime.Prototyping.Evaluation.Terms;
 using droid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Utilities.GameObjects;
+using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Evaluation {
@@ -242,7 +243,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
     [Header("References", order = 100)]
     [SerializeField]
     //[SerializeField]float _internal_discount_factor = 1.0f;
-    PrototypingEnvironment _environment;
+    PrototypingEnvironment _environment=null;
 
     //[SerializeField] Term[] _extra_terms_external;
 
@@ -252,9 +253,9 @@ namespace droid.Runtime.Prototyping.Evaluation {
 
     [Header("General", order = 101)]
     [SerializeField]
-    float _solved_threshold;
+    float _solved_threshold=0f;
 
-    [SerializeField] float _last_signal;
+    [SerializeField] float _last_signal=0f;
 
 
     /// <summary>
@@ -262,9 +263,15 @@ namespace droid.Runtime.Prototyping.Evaluation {
     [SerializeField]
     int _episode_length = 1000;
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public int EpisodeLength { get { return this._episode_length; } set { this._episode_length = value; } }
+
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public Space1 SignalSpace { get; set; }
 
     #endregion
   }

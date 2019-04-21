@@ -328,6 +328,12 @@ namespace droid.Runtime.Messaging {
       this._port = port;
       this._use_inter_process_communication = use_inter_process_communication;
 
+      #if NEODROID_DEBUG
+      if (this.Debugging) {
+        Debug.Log($"Starting a message server at address:port {ip_address}:{port }");
+      }
+      #endif
+
       if (!this._use_inter_process_communication) {
         ForceDotNet.Force();
       }

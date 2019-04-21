@@ -135,7 +135,7 @@ namespace droid.Runtime.Managers {
       this._Message_Server.ListenForClientToConnect(this.OnDebugCallback);
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log("Started Messaging Server");
+        Debug.Log(" Messaging Server is listening for clients");
       }
       #endif
 
@@ -995,7 +995,7 @@ namespace droid.Runtime.Managers {
     void OnDebugCallback(string error) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        //Debug.Log("DebugCallback: " + error);
+        Debug.Log("DebugCallback: " + error);
       }
       #endif
     }

@@ -977,8 +977,13 @@ namespace droid.Runtime.Environments {
             threshold = this._objective_function.SolvedThreshold;
           }
 
+          var episode_length = 0;
+          if (this._objective_function) {
+            episode_length = this._objective_function.EpisodeLength;
+          }
+
           description =
-              new EnvironmentDescription(this._objective_function.EpisodeLength, this.Actors, this.Configurables, threshold);
+              new EnvironmentDescription(episode_length, this.Actors, this.Configurables, threshold);
         }
 
         this._observables.Clear();
