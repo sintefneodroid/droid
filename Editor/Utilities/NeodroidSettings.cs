@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Security.Cryptography.X509Certificates;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Experimental.UIElements;
 
 namespace droid.Editor.Utilities {
 // Create a new type of Settings Asset.
@@ -72,6 +69,9 @@ namespace droid.Editor.Utilities {
   }
 
 // Register a SettingsProvider using IMGUI for the drawing framework:
+  /// <summary>
+  /// 
+  /// </summary>
   static class NeodroidSettingsImguiRegister {
     [SettingsProvider]
     public static SettingsProvider CreateMyCustomSettingsProvider() {
