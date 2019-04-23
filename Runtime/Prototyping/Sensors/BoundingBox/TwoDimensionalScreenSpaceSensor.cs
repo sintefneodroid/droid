@@ -3,7 +3,7 @@ using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
-namespace droid.Runtime.Prototyping.Sensors {
+namespace droid.Runtime.Prototyping.Sensors.BoundingBox {
   public class TwoDimensionalScreenSpaceSensor : Sensor,
                                                  IHasDouble {
     [SerializeField] Vector2 _observation_value = Vector2.zero;

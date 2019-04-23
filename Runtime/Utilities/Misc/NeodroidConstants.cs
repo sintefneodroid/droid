@@ -21,5 +21,9 @@ namespace droid.Runtime.Utilities.Misc {
     /// <summary>
     /// </summary>
     public const double _Double_Tolerance = double.Epsilon;
+
+    /// <summary>
+    /// </summary>
+    public const float _Float_Tolerance = float.Epsilon;
   }
 }

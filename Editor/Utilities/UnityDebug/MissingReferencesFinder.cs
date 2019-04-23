@@ -6,7 +6,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace droid.Editor.Utilities {
+namespace droid.Editor.Utilities.UnityDebug {
   /// <inheritdoc />
   /// <summary>
   ///   A helper editor script for finding missing references to objects.
