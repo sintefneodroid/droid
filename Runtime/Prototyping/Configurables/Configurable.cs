@@ -116,12 +116,10 @@ namespace droid.Runtime.Prototyping.Configurables {
     [SerializeField]
     bool _relative_to_existing_value = false;
 
-    public bool SampleRandom
-    {
-      get => this._sampleRandom;
-      set => this._sampleRandom = value;
+    public bool SampleRandom {
+      get { return this._sampleRandom; }
+      set { this._sampleRandom = value; }
     }
-
 
     [SerializeField] bool _sampleRandom = false;
     [SerializeField] bool on_tick=false;

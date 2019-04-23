@@ -20,8 +20,8 @@ namespace droid.Runtime.Prototyping.Sensors {
     }
 
     public float ObservationValue {
-      get => this._observationValue;
-      private set => this._observationValue = value;
+      get { return this._observationValue; }
+      private set { this._observationValue = value; }
     }
 
     public Space1 SingleSpace { get; }

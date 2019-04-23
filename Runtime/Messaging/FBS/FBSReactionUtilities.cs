@@ -206,7 +206,8 @@ namespace droid.Runtime.Messaging.FBS {
     static Configuration deserialise_configuration(FConfiguration? configuration) {
       if (configuration.HasValue) {
         var c = configuration.Value;
-        return new Configuration(c.ConfigurableName, (float)c.ConfigurableValue);
+        var sample_random = false; //TODO: c.SampleRandom;
+        return new Configuration(c.ConfigurableName, (float)c.ConfigurableValue, sample_random );
       }
 
       return null;
