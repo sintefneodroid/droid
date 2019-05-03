@@ -60,6 +60,10 @@ namespace droid.Runtime.Utilities.Misc {
       }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     public static AnimationCurve DefaultAnimationCurve() {
       return new AnimationCurve(new Keyframe(1, 1), new Keyframe(0, 0));
     }
@@ -87,6 +91,11 @@ namespace droid.Runtime.Utilities.Misc {
       return gradient;
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="camera"></param>
+    /// <returns></returns>
     public static Texture2D RenderTextureImage(Camera camera) {
       // From unity documentation, https://docs.unity3d.com/ScriptReference/Camera.Render.html
       var current_render_texture = RenderTexture.active;
@@ -100,6 +109,21 @@ namespace droid.Runtime.Utilities.Misc {
       return texture;
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="caller"></param>
+    /// <param name="parent"></param>
+    /// <param name="on_collision_enter_child"></param>
+    /// <param name="on_trigger_enter_child"></param>
+    /// <param name="on_collision_exit_child"></param>
+    /// <param name="on_trigger_exit_child"></param>
+    /// <param name="on_collision_stay_child"></param>
+    /// <param name="on_trigger_stay_child"></param>
+    /// <param name="debug"></param>
+    /// <typeparam name="TChildColliderSensor"></typeparam>
+    /// <typeparam name="TCollider"></typeparam>
+    /// <typeparam name="TCollision"></typeparam>
     public static void
         RegisterCollisionTriggerCallbacksOnChildren<TChildColliderSensor, TCollider, TCollision>(
             Component caller,
@@ -116,7 +140,7 @@ namespace droid.Runtime.Utilities.Misc {
                 null,
             ChildColliderSensor<TCollider, TCollision>.OnChildTriggerStayDelegate on_trigger_stay_child =
                 null,
-            bool debug = true)
+            bool debug = false)
         where TChildColliderSensor : ChildColliderSensor<TCollider, TCollision> where TCollider : Component {
       var children_with_colliders = parent.GetComponentsInChildren<TCollider>();
 
@@ -193,13 +217,15 @@ namespace droid.Runtime.Utilities.Misc {
     /// <param name="r"></param>
     /// <param name="c"></param>
     /// <param name="only_parents"></param>
+    /// <param name="debug"></param>
     /// <typeparam name="TRecipient"></typeparam>
     /// <typeparam name="TCaller"></typeparam>
     /// <returns></returns>
     public static TRecipient RegisterComponent<TRecipient, TCaller>(
         TRecipient r,
         TCaller c,
-        bool only_parents = false)
+        bool only_parents = false,
+        bool debug = false)
         where TRecipient : Object, IHasRegister<TCaller> where TCaller : Component, IRegisterable {
       TRecipient component = null;
       if (r != null) {
@@ -214,7 +240,9 @@ namespace droid.Runtime.Utilities.Misc {
         component.Register(c);
       } else {
         #if NEODROID_DEBUG
-        Debug.Log($"Could not find a {typeof(TRecipient)} recipient during registeration");
+        if (debug) {
+          Debug.Log($"Could not find a {typeof(TRecipient)} recipient during registeration");
+        }
         #endif
       }
 
@@ -227,6 +255,7 @@ namespace droid.Runtime.Utilities.Misc {
     /// <param name="c"></param>
     /// <param name="identifier"></param>
     /// <param name="only_parents"></param>
+    /// <param name="debug"></param>
     /// <typeparam name="TRecipient"></typeparam>
     /// <typeparam name="TCaller"></typeparam>
     /// <returns></returns>
@@ -234,7 +263,8 @@ namespace droid.Runtime.Utilities.Misc {
         TRecipient r,
         TCaller c,
         string identifier,
-        bool only_parents = false)
+        bool only_parents = false,
+        bool debug = false)
         where TRecipient : Object, IHasRegister<TCaller> where TCaller : Component, IRegisterable {
       TRecipient component = null;
       if (r != null) {
@@ -249,7 +279,10 @@ namespace droid.Runtime.Utilities.Misc {
         component.Register(c, identifier);
       } else {
         #if NEODROID_DEBUG
-        Debug.Log($"Could not find a {typeof(TRecipient)} recipient during registeration");
+        if (debug) {
+          Debug.Log($"Could not find a {typeof(TRecipient)} recipient during registeration");
+        }
+
         #endif
       }
 
@@ -297,29 +330,21 @@ namespace droid.Runtime.Utilities.Misc {
     /// </summary>
     /// <param name="a"></param>
     /// <returns></returns>
-    public static Vector3 BroadcastVector3(this float a)  {
-      return new Vector3 {x = a,y = a,z = a};
-    }
+    public static Vector3 BroadcastVector3(this float a) { return new Vector3 {x = a, y = a, z = a}; }
 
     /// <summary>
     ///
     /// </summary>
     /// <param name="a"></param>
     /// <returns></returns>
-    public static Vector2 BroadcastVector2(this float a)  {
-      return new Vector2 {x = a,y = a};
-    }
+    public static Vector2 BroadcastVector2(this float a) { return new Vector2 {x = a, y = a}; }
 
     /// <summary>
     ///
     /// </summary>
     /// <param name="a"></param>
     /// <returns></returns>
-    public static Vector4 BroadcastVector4(this float a)  {
-      return new Vector4 {x = a,y = a,z = a};
-    }
-
-
+    public static Vector4 BroadcastVector4(this float a) { return new Vector4 {x = a, y = a, z = a}; }
 
     /// <summary>
     /// </summary>
