@@ -193,7 +193,10 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
       }
     }
 
-    public override IEnumerable<float> FloatEnumerable { get { return new List<float>(); } }
+    public override IEnumerable<float> FloatEnumerable
+    {
+      get { return null; }
+    }
 
     /// <inheritdoc />
     /// <summary>

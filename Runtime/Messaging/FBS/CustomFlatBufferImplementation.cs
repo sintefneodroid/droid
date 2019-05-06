@@ -28,15 +28,17 @@ namespace droid.Runtime.Messaging.FBS {
     /// <param name="data"></param>
     /// <returns></returns>
     public static VectorOffset CreateFloatVector(FlatBufferBuilder builder, float[] data) {
-      //builder.StartVector(1, data.Length, 1);
-      //var additional_bytes = data.Length - 2;
-      //builder.Prep(sizeof(byte), additional_bytes * sizeof(byte));
 
-      // for (var i = data.Length - 1; i >= 0; i--)
-      //  builder.PutByte(data[i]);
-      //return builder.EndVector();
+       builder.StartVector(4, data.Length, 4);
+      for (var i = data.Length - 1; i >= 0; i--)
+      {
+        builder.AddFloat(data[i]);
+      }
 
-      return builder.CreateFloatVector(data);
+      return builder.EndVector();
+
+
+      //return builder.CreateFloatVector(data); //TODO: Calculate proper lenght of vector! lenght*4
     }
   }
 }

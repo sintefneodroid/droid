@@ -37,7 +37,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
     public Space1[] ObservationSpace { get; }
 
     protected override void PreSetup() {
-      //this._manager = FindObjectOfType<NeodroidManager>();
+
       this._camera = this.GetComponent<UnityEngine.Camera>();
       var target_texture = this._camera.targetTexture;
       if (target_texture) {

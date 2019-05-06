@@ -255,7 +255,7 @@ namespace droid.Runtime.Messaging.FBS {
     }
 
     static Offset<FArray> Serialise(FlatBufferBuilder b, IHasArray float_a, bool serialise_ranges = false) {
-      //var v_offset = FArray.CreateArrayVector(b, camera.ObservationArray);
+      //var v_offset = FArray.CreateArrayVector(b, float_a.ObservationArray);
       var v_offset = CustomFlatBufferImplementation.CreateFloatVector(b, float_a.ObservationArray);
 
       var ranges_vector = new VectorOffset();
@@ -378,40 +378,52 @@ namespace droid.Runtime.Messaging.FBS {
 
       int observation_offset;
       FObservation observation_type;
-      if (observer is IHasString) {
-        observation_offset = Serialise(b, (IHasString)observer).Value;
-        observation_type = FObservation.FString;
-      } else if (observer is IHasArray) {
-        observation_offset = Serialise(b, (IHasArray)observer).Value;
-        observation_type = FObservation.FArray;
-      } else if (observer is IHasSingle) {
-        observation_offset = Serialise(b, (IHasSingle)observer).Value;
-        observation_type = FObservation.FSingle;
-      } else if (observer is IHasDouble) {
-        observation_offset = Serialise(b, (IHasDouble)observer).Value;
-        observation_type = FObservation.FDouble;
-      } else if (observer is IHasTriple) {
-        observation_offset = Serialise(b, (IHasTriple)observer).Value;
-        observation_type = FObservation.FTriple;
-      } else if (observer is IHasQuadruple) {
-        observation_offset = Serialise(b, (IHasQuadruple)observer).Value;
-        observation_type = FObservation.FQuadruple;
-      } else if (observer is IHasEulerTransform) {
-        observation_offset = Serialise(b, (IHasEulerTransform)observer).Value;
-        observation_type = FObservation.FET;
-      } else if (observer is IHasQuaternionTransform) {
-        observation_offset = Serialise(b, (IHasQuaternionTransform)observer).Value;
-        observation_type = FObservation.FQT;
-      } else if (observer is IHasRigidbody) {
-        observation_offset = Serialise(b,
-                                       ((IHasRigidbody)observer).Velocity,
-                                       ((IHasRigidbody)observer).AngularVelocity).Value;
-        observation_type = FObservation.FRB;
-      } else if (observer is IHasByteArray) {
-        observation_offset = Serialise(b, (IHasByteArray)observer).Value;
-        observation_type = FObservation.FByteArray;
-      } else {
-        return FOBS.CreateFOBS(b, n);
+      switch (observer)
+      {
+        case IHasString numeral:
+          observation_offset = Serialise(b, numeral).Value;
+          observation_type = FObservation.FString;
+          break;
+        case IHasArray a:
+          observation_offset = Serialise(b, a,true).Value;
+          observation_type = FObservation.FArray;
+          break;
+        case IHasSingle single:
+          observation_offset = Serialise(b, single).Value;
+          observation_type = FObservation.FSingle;
+          break;
+        case IHasDouble hasDouble:
+          observation_offset = Serialise(b, hasDouble).Value;
+          observation_type = FObservation.FDouble;
+          break;
+        case IHasTriple triple:
+          observation_offset = Serialise(b, triple).Value;
+          observation_type = FObservation.FTriple;
+          break;
+        case IHasQuadruple quadruple:
+          observation_offset = Serialise(b, quadruple).Value;
+          observation_type = FObservation.FQuadruple;
+          break;
+        case IHasEulerTransform transform:
+          observation_offset = Serialise(b, transform).Value;
+          observation_type = FObservation.FET;
+          break;
+        case IHasQuaternionTransform quaternionTransform:
+          observation_offset = Serialise(b, quaternionTransform).Value;
+          observation_type = FObservation.FQT;
+          break;
+        case IHasRigidbody rigidbody:
+          observation_offset = Serialise(b,
+            rigidbody.Velocity,
+            rigidbody.AngularVelocity).Value;
+          observation_type = FObservation.FRB;
+          break;
+        case IHasByteArray array:
+          observation_offset = Serialise(b, array).Value;
+          observation_type = FObservation.FByteArray;
+          break;
+        default:
+          return FOBS.CreateFOBS(b, n);
       }
 
       FOBS.StartFOBS(b);

@@ -13,7 +13,7 @@ namespace droid.Runtime.Shaders.Experimental.Skybox_Shaders.Editor {
             {
                 var material = this.target as Material;
 
-                bool useLinear = false;
+                var useLinear = false;
                 foreach (var keyword in material.shaderKeywords)
                 {
                     if (keyword == "USE_LINEAR")

@@ -138,7 +138,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: RGB
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -255,7 +254,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -480,7 +478,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -503,7 +500,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -663,7 +659,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -839,7 +834,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -862,7 +856,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -962,7 +955,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -1094,7 +1086,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1140,7 +1132,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -1365,7 +1356,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: RGB
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -1671,7 +1661,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: Normal
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -1837,7 +1826,7 @@ Camera:
   m_FOVAxisMode: 0
   m_SensorSize: {x: 4.8, y: 3.5}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 6.9413986
+  m_FocalLength: 8.654184
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -1845,8 +1834,8 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 206
-  field of view: 28.300001
+  far clip plane: 60
+  field of view: 22.863745
   orthographic: 0
   orthographic size: 4
   m_Depth: 1
@@ -1878,6 +1867,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cameras:
   - {fileID: 114203839715900738}
+  - {fileID: 3844039368205312392}
+  - {fileID: 3246734891326987255}
   - {fileID: 114716082362535994}
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
@@ -1906,7 +1897,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: RGB
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -2063,8 +2053,8 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: -0.0409577, y: 2.028679, z: 0}
-  - {x: -0.040957697, y: -5.8225754e-25, z: 0.000002622255}
+  - {x: -32, y: 5, z: -7.05}
+  - {x: -32, y: -6.622984, z: -7.0500007}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -2267,7 +2257,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1568745427337830}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 8.027861, z: -4.400393}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2377,7 +2367,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -2567,7 +2556,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: MultiChannelDepth
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -2763,7 +2751,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: Flow
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -2877,7 +2864,7 @@ Camera:
   m_FOVAxisMode: 0
   m_SensorSize: {x: 4.8, y: 3.5}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 6.9413986
+  m_FocalLength: 8.654184
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -2885,8 +2872,8 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 206
-  field of view: 28.300001
+  far clip plane: 60
+  field of view: 22.863745
   orthographic: 1
   orthographic size: 4
   m_Depth: 1
@@ -2917,7 +2904,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 940222050696164076}
+  - {fileID: 114203839715900738}
+  - {fileID: 3844039368205312392}
+  - {fileID: 3246734891326987255}
   - {fileID: 114716082362535994}
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
@@ -2970,11 +2959,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 4925164658461857582}
+  - {fileID: 4614691972182028737}
+  - {fileID: 8584843010322102044}
+  - {fileID: 20940602749366906}
   - {fileID: 20224209517257972}
   _filter_mode: 1
   _size: {x: 25, y: 15}
-  _textures: []
+  _textures:
+  - {fileID: 8400000, guid: 7ce5d7425e7fa3af69f9bdd316de2208, type: 2}
+  - {fileID: 8400000, guid: cc4e727fd2f685deea5ec6e4b44b5cc3, type: 2}
+  - {fileID: 8400000, guid: 4c7dcaf7e8ef74c11bd8ad06365ea216, type: 2}
   _wrap_mode: 1
 --- !u!114 &1625775002
 MonoBehaviour:
@@ -3004,8 +2998,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _draw_label: 1
-  bounding_boxes: []
-  _cache_bounding_boxes: 0
+  bounding_boxes:
+  - {fileID: 0}
+  _cache_bounding_boxes: 1
   gui_style: {fileID: 11400000, guid: 45b8b02736ca4fc5b88b554edf8576ad, type: 2}
   _draw_coords: 1
 --- !u!114 &1780244598
@@ -3020,27 +3015,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24436b5ac49af0dcaa5d2b405c48819d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Custom_Name: 
-  _debugging: 0
+  _Custom_Name: CameraRandom
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
+  _Use_Custom_Name: 1
   _unregister_at_disable: 0
   _environment: {fileID: 0}
   _relative_to_existing_value: 0
-  _sampleRandom: 1
+  _sampleRandom: 0
   on_tick: 0
   _camera: {fileID: 20224209517257972}
   _syncer: {fileID: 114716082362535994}
   _fov_space:
     _Decimal_Granularity: 0
-    _Min_Value: 28.3
+    _Min_Value: 80
     _Max_Value: 28.3
     normalised: 0
   _focal_space:
     _Decimal_Granularity: 3
-    _Min_Value: 6.931399
-    _Max_Value: 6.951399
+    _Min_Value: 7
+    _Max_Value: 8
     normalised: 0
   _sensor_size_space:
     _Min_Values: {x: 4.79, y: 3.49}
@@ -3078,7 +3072,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866968490669790}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83679d70048bdfce4a7d7f6f8d583a5f, type: 3}
   m_Name: 
@@ -3175,7 +3169,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: Infrared
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -3396,7 +3389,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -3419,7 +3411,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -3540,7 +3531,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -3747,7 +3737,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: RGB
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -3785,11 +3774,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219450474d12d1835a0a1701a632e99d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubemapLeftEye: {fileID: 8400000, guid: 67aa471f162ab816faeddbd2cbcece5e, type: 2}
-  cubemapRightEye: {fileID: 8400000, guid: 70fac702bed800d78b9a5fa493133d18, type: 2}
-  cubemapEquirect: {fileID: 8400000, guid: 7f1ff79c4090ca3a6aa20f249b6277f9, type: 2}
+  cubemapLeftEye: {fileID: 0}
+  cubemapRightEye: {fileID: 0}
+  cubemapEquirect: {fileID: 0}
   _texture: {fileID: 0}
-  renderStereo: 0
+  renderStereo: 1
   stereoSeparation: 0.064
 --- !u!1 &6184846525513548927
 GameObject:
@@ -3810,7 +3799,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1931405973741409654
 Transform:
   m_ObjectHideFlags: 0
@@ -3836,12 +3825,12 @@ Camera:
   serializedVersion: 2
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
-  m_projectionMatrixMode: 1
+  m_projectionMatrixMode: 2
   m_GateFitMode: 2
   m_FOVAxisMode: 0
   m_SensorSize: {x: 4.8, y: 3.5}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 3.4419906
+  m_FocalLength: 8.654184
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -3849,8 +3838,8 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 206
-  field of view: 53.9
+  far clip plane: 60
+  field of view: 22.863745
   orthographic: 0
   orthographic size: 2
   m_Depth: 1
@@ -3881,26 +3870,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114203839715900738}
+  - {fileID: 3844039368205312392}
+  - {fileID: 3246734891326987255}
+  - {fileID: 114716082362535994}
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -3928,7 +3901,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: Offset
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -4496,7 +4468,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: RGB
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -4542,7 +4513,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5404288203761531295
 Transform:
   m_ObjectHideFlags: 0
@@ -4567,13 +4538,13 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
-  m_projectionMatrixMode: 1
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_projectionMatrixMode: 2
   m_GateFitMode: 2
   m_FOVAxisMode: 0
   m_SensorSize: {x: 4.8, y: 3.5}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 3.4419906
+  m_FocalLength: 8.654184
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -4581,14 +4552,14 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 206
-  field of view: 53.9
+  far clip plane: 60
+  field of view: 22.863745
   orthographic: 0
   orthographic size: 2
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967263
+    m_Bits: 512
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 7ce5d7425e7fa3af69f9bdd316de2208, type: 2}
   m_TargetDisplay: 1
@@ -4613,7 +4584,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -4636,29 +4606,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114203839715900738}
+  - {fileID: 3844039368205312392}
+  - {fileID: 3246734891326987255}
+  - {fileID: 114716082362535994}
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
-  _sync_culling_mask: 1
+  _sync_culling_mask: 0
   _sync_far_clip_plane: 1
   _sync_fov: 1
   _sync_near_clip_plane: 1
@@ -5072,7 +5026,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -5095,7 +5048,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -5216,7 +5168,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -5424,7 +5375,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: RGB
-  _debugging: 0
   _disables_children: 0
   _editor_reregistering: 1
   _Use_Custom_Name: 0
@@ -5462,11 +5412,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 219450474d12d1835a0a1701a632e99d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubemapLeftEye: {fileID: 8400000, guid: 67aa471f162ab816faeddbd2cbcece5e, type: 2}
-  cubemapRightEye: {fileID: 8400000, guid: 70fac702bed800d78b9a5fa493133d18, type: 2}
-  cubemapEquirect: {fileID: 8400000, guid: 7f1ff79c4090ca3a6aa20f249b6277f9, type: 2}
+  cubemapLeftEye: {fileID: 0}
+  cubemapRightEye: {fileID: 0}
+  cubemapEquirect: {fileID: 0}
   _texture: {fileID: 0}
-  renderStereo: 0
+  renderStereo: 1
   stereoSeparation: 0.064
 --- !u!114 &1256391074988278956
 MonoBehaviour:
