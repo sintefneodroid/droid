@@ -155,6 +155,11 @@ namespace droid.Runtime.Utilities.Structs {
       get { return new Space4(1) {_Min_Values = Vector4.zero, _Max_Values = Vector4.one}; }
     }
 
+    public static Space4 TwentyEighty {
+      get { return new Space4(1) {_Min_Values = Vector4.one*0.2f, _Max_Values = Vector4.one*0.8f}; }
+    }
+
+
     public static Space4 MinusOneOne {
       get { return new Space4(2) {_Min_Values = -Vector4.one, _Max_Values = Vector4.one}; }
     }

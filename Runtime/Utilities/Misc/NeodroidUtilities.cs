@@ -9,6 +9,11 @@ namespace droid.Runtime.Utilities.Misc {
   /// </summary>
   public static class NeodroidUtilities {
     /// <summary>
+    ///
+    /// </summary>
+    public static Vector4 Zero { get { return new Vector4(0, 0, 0, 0); } }
+
+    /// <summary>
     /// </summary>
     /// <param name="rb"></param>
     /// <returns></returns>

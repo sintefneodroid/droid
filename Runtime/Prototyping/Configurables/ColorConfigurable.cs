@@ -38,7 +38,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     Renderer _renderer;
 
-    [SerializeField] Space1 _space = new Space1 {_Min_Value = 0.3f, _Max_Value = 1f};
+    [SerializeField] Space3 _space = Space3.TwentyEighty;
 
     [SerializeField] bool use_shared = false;
 
@@ -59,21 +59,13 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._r);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._r);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._g);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._g);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._b);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._b);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._a);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._a);
     }
 
     /// <inheritdoc />
@@ -140,19 +132,13 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     /// <returns></returns>
     public override Configuration[] SampleConfigurations() {
-      var sample = Space1.ZeroOne.Sample();
-
       var v = this._space.Sample();
 
-      if (sample < .33f) {
-        return new[] {new Configuration(this._r, v)};
-      }
-
-      if (sample > .66f) {
-        return new[] {new Configuration(this._g, v)};
-      }
-
-      return new[] {new Configuration(this._b, v)};
+      return new[] {
+                       new Configuration(this._r, v.x),
+                       new Configuration(this._g, v.y),
+                       new Configuration(this._b, v.z)
+                   };
     }
   }
 }
