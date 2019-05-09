@@ -88,32 +88,36 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
                                         this._camera.targetTexture.height,
                                         NeodroidConstants._Default_TextureFormat,
                                         false);
-          this.ObservationArray = new float[this._texture.width * this._texture.height * 4];
+          this.flat_float_array = new float[this._texture.width * this._texture.height * 4];
         }
 
-        if (this._integer_255_values) {
-          var a = this
-                  ._texture
-                  .GetRawTextureData<Color32>(); //TODO: Do not use yet! Unity has some issues, off by one errors i think.
-          var i = 0;
-          foreach (var b in a) {
-            this.flat_float_array[i] = b.r;
-            this.flat_float_array[i + 1] = b.g;
-            this.flat_float_array[i + 2] = b.b;
-            this.flat_float_array[i + 3] = b.a;
-            i += 4;
+        if (this.flat_float_array != null) {
+          if (this._integer_255_values) {
+            var a = this
+                    ._texture
+                    .GetRawTextureData<Color32>(); //TODO: Do not use yet! Unity has some issues, off by one errors i think.
+            var i = 0;
+            foreach (var b in a) {
+              this.flat_float_array[i] = b.r;
+              this.flat_float_array[i + 1] = b.g;
+              this.flat_float_array[i + 2] = b.b;
+              this.flat_float_array[i + 3] = b.a;
+              i += 4;
+            }
+          } else {
+            var a = this._texture.GetRawTextureData<Color>();
+
+            var i = 0;
+            foreach (var b in a) {
+              this.flat_float_array[i] = b.r;
+              this.flat_float_array[i + 1] = b.g;
+              this.flat_float_array[i + 2] = b.b;
+              this.flat_float_array[i + 3] = b.a;
+              i += 4;
+            }
           }
         } else {
-          var a = this._texture.GetRawTextureData<Color>();
-
-          var i = 0;
-          foreach (var b in a) {
-            this.flat_float_array[i] = b.r;
-            this.flat_float_array[i + 1] = b.g;
-            this.flat_float_array[i + 2] = b.b;
-            this.flat_float_array[i + 3] = b.a;
-            i += 4;
-          }
+          this.flat_float_array = new float[this._texture.width * this._texture.height * 4];
         }
 
         RenderTexture.active = current_render_texture;

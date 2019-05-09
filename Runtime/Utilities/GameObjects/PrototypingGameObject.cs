@@ -67,7 +67,7 @@ namespace droid.Runtime.Utilities.GameObjects {
         }
       } catch (ArgumentNullException e) {
         Debug.LogWarning(e);
-        Debug.Log($"You must override Register and UnRegisterComponent for component {this.GetType()} for gameobject {this.Identifier} in order to Re-register component on every 'OnValidate' while in edit-mode");
+        Debug.Log($"You must override RegisterComponent and UnRegisterComponent for component {this.GetType()} for gameobject {this.Identifier} in order to Re-register component on every 'OnValidate' while in edit-mode");
       }
     }
 
