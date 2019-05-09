@@ -91,5 +91,5 @@ Shader "Neodroid/Segmentation/OutlinedSegmentation" {
 		}
 	}
 
-	Fallback "Unlit"
+	fallback "Unlit/Color"
 }

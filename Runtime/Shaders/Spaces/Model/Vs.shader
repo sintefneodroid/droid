@@ -62,5 +62,5 @@ Properties {
         }
     }
 */
-	Fallback "Unlit"
+	fallback "Unlit/Color"
 }

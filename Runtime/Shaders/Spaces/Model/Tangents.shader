@@ -37,5 +37,5 @@ Shader "Neodroid/Spaces/Model/Tangents" {
             ENDCG
         }
     }
-	Fallback "Unlit"
+	fallback "Unlit/Color"
 }
