@@ -58,7 +58,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
     /// <summary>
     /// </summary>
     [SerializeField]
-    ImageFormat imageFormat = ImageFormat.Jpg_;
+    ImageFormat imageFormat = ImageFormat.Png_;
 
     /// <summary>
     /// </summary>

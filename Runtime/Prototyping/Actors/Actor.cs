@@ -14,7 +14,7 @@ namespace droid.Runtime.Prototyping.Actors {
   [AddComponentMenu(ActorComponentMenuPath._ComponentMenuPath + "Vanilla" + ActorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   public class Actor : PrototypingGameObject,
-                       IHasRegister<IActuator>,
+
                        IActor
       //IResetable
   {

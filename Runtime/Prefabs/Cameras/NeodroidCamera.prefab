@@ -140,7 +140,6 @@ MonoBehaviour:
   _Custom_Name: RGB
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
   _unregister_at_disable: 0
   _normalise_observation: 0
   _Camera: {fileID: 165064351}
@@ -256,7 +255,6 @@ MonoBehaviour:
   _Custom_Name: 
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
   _unregister_at_disable: 0
   _normalise_observation: 0
   _Camera: {fileID: 727610266}
@@ -480,7 +478,6 @@ MonoBehaviour:
   _Custom_Name: 
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
   _unregister_at_disable: 0
   _normalise_observation: 0
   _Camera: {fileID: 790114239}
@@ -502,7 +499,6 @@ MonoBehaviour:
   _Custom_Name: 
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
   _unregister_at_disable: 0
   _normalise_observation: 0
   _observation_value: 'BluePlastic: RGBA(0.188, 0.251, 0.820, 1.000), Default-Material:
@@ -661,7 +657,6 @@ MonoBehaviour:
   _Custom_Name: 
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
   _unregister_at_disable: 0
   _normalise_observation: 0
   _Camera: {fileID: 870147248}
@@ -836,7 +831,6 @@ MonoBehaviour:
   _Custom_Name: 
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
   _unregister_at_disable: 0
   _normalise_observation: 0
   _Camera: {fileID: 1403684218}
@@ -858,7 +852,6 @@ MonoBehaviour:
   _Custom_Name: 
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
   _unregister_at_disable: 0
   _normalise_observation: 0
   _observation_value: '-2386: RGBA(0.518, 0.157, 0.255, 1.000), -2332: RGBA(0.086,
@@ -957,7 +950,6 @@ MonoBehaviour:
   _Custom_Name: 
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
   _unregister_at_disable: 0
   _normalise_observation: 0
   _Camera: {fileID: 1458531849}
@@ -1134,7 +1126,6 @@ MonoBehaviour:
   _Custom_Name: 
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
   _unregister_at_disable: 0
   _normalise_observation: 0
   _Camera: {fileID: 1623028176}
@@ -1358,7 +1349,6 @@ MonoBehaviour:
   _Custom_Name: RGB
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
   _unregister_at_disable: 0
   _normalise_observation: 0
   _Camera: {fileID: 2031637004}
@@ -1663,7 +1653,6 @@ MonoBehaviour:
   _Custom_Name: Normal
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
   _unregister_at_disable: 0
   _normalise_observation: 0
   _Camera: {fileID: 20367486579053346}
@@ -1826,7 +1815,7 @@ Camera:
   m_FOVAxisMode: 0
   m_SensorSize: {x: 4.8, y: 3.5}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 8.654184
+  m_FocalLength: 3.0310886
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -1834,14 +1823,14 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 60
-  field of view: 22.863745
+  far clip plane: 52.34
+  field of view: 60.000004
   orthographic: 0
-  orthographic size: 4
+  orthographic size: 2
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967263
+    m_Bits: 512
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 4c7dcaf7e8ef74c11bd8ad06365ea216, type: 2}
   m_TargetDisplay: 1
@@ -1866,10 +1855,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 114203839715900738}
-  - {fileID: 3844039368205312392}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114716082362535994}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -1899,7 +1887,6 @@ MonoBehaviour:
   _Custom_Name: RGB
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
   _unregister_at_disable: 0
   _normalise_observation: 0
   _Camera: {fileID: 20940602749366906}
@@ -2053,8 +2040,8 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: -32, y: 5, z: -7.05}
-  - {x: -32, y: -6.622984, z: -7.0500007}
+  - {x: -32, y: 5, z: -4.05}
+  - {x: -32, y: -6.622984, z: -4.05}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -2369,7 +2356,6 @@ MonoBehaviour:
   _Custom_Name: 
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
   _unregister_at_disable: 0
   _normalise_observation: 0
   _Camera: {fileID: 20793825365236440}
@@ -2558,7 +2544,6 @@ MonoBehaviour:
   _Custom_Name: MultiChannelDepth
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
   _unregister_at_disable: 0
   _normalise_observation: 0
   _Camera: {fileID: 20145353716750142}
@@ -2753,7 +2738,6 @@ MonoBehaviour:
   _Custom_Name: Flow
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
   _unregister_at_disable: 0
   _normalise_observation: 0
   _Camera: {fileID: 20768847776266208}
@@ -2864,7 +2848,7 @@ Camera:
   m_FOVAxisMode: 0
   m_SensorSize: {x: 4.8, y: 3.5}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 8.654184
+  m_FocalLength: 3.0310886
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -2873,9 +2857,9 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 60
-  field of view: 22.863745
-  orthographic: 1
-  orthographic size: 4
+  field of view: 60.000004
+  orthographic: 0
+  orthographic size: 2
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -2904,10 +2888,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 114203839715900738}
-  - {fileID: 3844039368205312392}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114716082362535994}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 0
@@ -2959,16 +2942,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 4614691972182028737}
-  - {fileID: 8584843010322102044}
-  - {fileID: 20940602749366906}
-  - {fileID: 20224209517257972}
-  _filter_mode: 1
-  _size: {x: 25, y: 15}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _filter_mode: 0
+  _size: {x: 512, y: 512}
   _textures:
-  - {fileID: 8400000, guid: 7ce5d7425e7fa3af69f9bdd316de2208, type: 2}
-  - {fileID: 8400000, guid: cc4e727fd2f685deea5ec6e4b44b5cc3, type: 2}
   - {fileID: 8400000, guid: 4c7dcaf7e8ef74c11bd8ad06365ea216, type: 2}
+  - {fileID: 8400000, guid: 7ce5d7425e7fa3af69f9bdd316de2208, type: 2}
   _wrap_mode: 1
 --- !u!114 &1625775002
 MonoBehaviour:
@@ -3018,7 +2999,6 @@ MonoBehaviour:
   _Custom_Name: CameraRandom
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 1
   _unregister_at_disable: 0
   _environment: {fileID: 0}
   _relative_to_existing_value: 0
@@ -3171,7 +3151,6 @@ MonoBehaviour:
   _Custom_Name: Infrared
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
   _unregister_at_disable: 0
   _normalise_observation: 0
   _Camera: {fileID: 20598539646069560}
@@ -3391,7 +3370,6 @@ MonoBehaviour:
   _Custom_Name: 
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
   _unregister_at_disable: 0
   _normalise_observation: 0
   _Camera: {fileID: 5796786885426895393}
@@ -3413,7 +3391,6 @@ MonoBehaviour:
   _Custom_Name: 
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
   _unregister_at_disable: 0
   _normalise_observation: 0
   _observation_value: 'a: RGBA(1.000, 0.000, 0.000, 1.000), b: RGBA(0.000, 1.000,
@@ -3533,7 +3510,6 @@ MonoBehaviour:
   _Custom_Name: 
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
   _unregister_at_disable: 0
   _normalise_observation: 0
   _Camera: {fileID: 3337727558481276136}
@@ -3739,7 +3715,6 @@ MonoBehaviour:
   _Custom_Name: RGB
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
   _unregister_at_disable: 0
   _normalise_observation: 0
   _Camera: {fileID: 7696301038599088328}
@@ -3799,7 +3774,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1931405973741409654
 Transform:
   m_ObjectHideFlags: 0
@@ -3838,7 +3813,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 60
+  far clip plane: 52.34
   field of view: 22.863745
   orthographic: 0
   orthographic size: 2
@@ -3903,7 +3878,6 @@ MonoBehaviour:
   _Custom_Name: Offset
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
   _unregister_at_disable: 0
   _normalise_observation: 0
   _Camera: {fileID: 8584843010322102044}
@@ -4470,7 +4444,6 @@ MonoBehaviour:
   _Custom_Name: RGB
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
   _unregister_at_disable: 0
   _normalise_observation: 0
   _Camera: {fileID: 2792121728196577027}
@@ -4544,7 +4517,7 @@ Camera:
   m_FOVAxisMode: 0
   m_SensorSize: {x: 4.8, y: 3.5}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 8.654184
+  m_FocalLength: 3.0310886
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -4552,8 +4525,8 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 60
-  field of view: 22.863745
+  far clip plane: 52.34
+  field of view: 60.000004
   orthographic: 0
   orthographic size: 2
   m_Depth: 1
@@ -4586,7 +4559,6 @@ MonoBehaviour:
   _Custom_Name: 
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
   _unregister_at_disable: 0
   _normalise_observation: 0
   _Camera: {fileID: 4614691972182028737}
@@ -4606,10 +4578,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 114203839715900738}
-  - {fileID: 3844039368205312392}
-  - {fileID: 3246734891326987255}
-  - {fileID: 114716082362535994}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 0
@@ -5028,7 +4999,6 @@ MonoBehaviour:
   _Custom_Name: 
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
   _unregister_at_disable: 0
   _normalise_observation: 0
   _Camera: {fileID: 4204259003963777610}
@@ -5050,7 +5020,6 @@ MonoBehaviour:
   _Custom_Name: 
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
   _unregister_at_disable: 0
   _normalise_observation: 0
   _observation_value: 'a: RGBA(1.000, 0.000, 0.000, 1.000), b: RGBA(0.000, 1.000,
@@ -5170,7 +5139,6 @@ MonoBehaviour:
   _Custom_Name: 
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
   _unregister_at_disable: 0
   _normalise_observation: 0
   _Camera: {fileID: 4956758692426196692}
@@ -5314,10 +5282,10 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 206
+  far clip plane: 60
   field of view: 179
   orthographic: 0
-  orthographic size: 2
+  orthographic size: 1.9
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -5377,7 +5345,6 @@ MonoBehaviour:
   _Custom_Name: RGB
   _disables_children: 0
   _editor_reregistering: 1
-  _Use_Custom_Name: 0
   _unregister_at_disable: 0
   _normalise_observation: 0
   _Camera: {fileID: 4925164658461857582}

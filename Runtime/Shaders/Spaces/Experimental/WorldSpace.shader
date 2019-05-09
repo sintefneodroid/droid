@@ -65,5 +65,5 @@ Shader "Neodroid/Spaces/WorldSpace" {
     }
 
 
-	Fallback "Unlit"
+	Fallback "Unlit/Color"
 }

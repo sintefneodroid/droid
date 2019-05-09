@@ -74,6 +74,11 @@ namespace droid.Runtime.Utilities.Structs {
 
     public float Round(float v) { return (float)Math.Round(v, this._Decimal_Granularity); }
 
+    public static Space1 TwentyEighty {
+      get { return new Space1(1) {_Min_Value = 0.2f, _Max_Value = 0.8f}; }
+    }
+
+
     public static Space1 ZeroOne { get { return new Space1(1) {_Min_Value = 0, _Max_Value = 1}; } }
     public int DecimalGranularity { get { return this._Decimal_Granularity; } }
 

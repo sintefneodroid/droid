@@ -1,4 +1,3 @@
-// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
 Shader "Neodroid/Spaces/ObjectSpace" {
 /*
@@ -47,14 +46,9 @@ Shader "Neodroid/Spaces/ObjectSpace" {
             ENDCG
         }
     }
-
-
-	Fallback "Unlit"
-}
-
-
-
 */
+
+
    SubShader {
       Pass {
          CGPROGRAM
@@ -79,5 +73,33 @@ Shader "Neodroid/Spaces/ObjectSpace" {
       }
    }
 
-   Fallback "Unlit"
+
+
+
+/*
+    SubShader {
+        Tags { "RenderType"="Opaque" }
+        LOD 200
+
+        CGPROGRAM
+        #pragma surface surf Lambert vertex:vert
+
+        struct Input {
+            float3 objPos;
+        };
+
+        void vert (inout appdata_full v, out Input o) {
+            UNITY_INITIALIZE_OUTPUT(Input,o);
+            o.objPos = v.vertex;
+        }
+
+        void surf (Input IN, inout SurfaceOutput o) {
+            o.Albedo = IN.objPos;
+            o.Alpha = 1;
+        }
+        ENDCG
+    }
+*/
+
+      Fallback "Unlit/Color"
 }

@@ -22,7 +22,7 @@ namespace droid.Runtime.Utilities.Structs {
     public int _decimal_granularity;
     [SerializeField]  bool normalised;
 
-    public Space3(int decimal_granularity = 10) :this(){
+    public Space3(int decimal_granularity = 1) :this(){
       this._decimal_granularity = decimal_granularity;
       this._Min_Values = Vector3.one * -100f;
       this._Max_Values = Vector3.one * 100f; //Vector3.positiveInfinity;
@@ -119,6 +119,11 @@ namespace droid.Runtime.Utilities.Structs {
     public static Space3 ZeroOne {
       get { return new Space3(1) {_Min_Values = Vector3.zero, _Max_Values = Vector3.one}; }
     }
+
+    public static Space3 TwentyEighty {
+      get { return new Space3(1) {_Min_Values = Vector3.one*0.2f, _Max_Values = Vector3.one*0.8f}; }
+    }
+
 
     public static Space3 MinusOneOne {
       get { return new Space3(1) {_Min_Values = -Vector3.one, _Max_Values = Vector3.one}; }

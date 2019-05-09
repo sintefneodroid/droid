@@ -31,11 +31,6 @@ namespace droid.Runtime.Utilities.GameObjects {
     bool _editor_reregistering = true;
     #endif
 
-    /// <summary>
-    /// </summary>
-    [SerializeField]
-    protected bool _Use_Custom_Name = false;
-
     [SerializeField] bool _unregister_at_disable = false;
 
     #if NEODROID_DEBUG
@@ -51,15 +46,11 @@ namespace droid.Runtime.Utilities.GameObjects {
     /// </summary>
     public string Identifier {
       get {
-        if (this._Use_Custom_Name) {
-          return this._Custom_Name;
+        if (!string.IsNullOrWhiteSpace(this._Custom_Name)) {
+          return this._Custom_Name.Trim();
         }
 
-        if (this.PrototypingTypeName != null) {
-          return this.name + this.PrototypingTypeName;
-        }
-
-        return "CriticalFailure";
+        return this.name + this.PrototypingTypeName;
       }
     }
 
@@ -76,7 +67,7 @@ namespace droid.Runtime.Utilities.GameObjects {
         }
       } catch (ArgumentNullException e) {
         Debug.LogWarning(e);
-        Debug.Log($"You must override Register and UnRegisterComponent for component {this.GetType()} for gameobject {this.Identifier} in order to Re-register component on every 'OnValidate' while in edit-mode");
+        Debug.Log($"You must override RegisterComponent and UnRegisterComponent for component {this.GetType()} for gameobject {this.Identifier} in order to Re-register component on every 'OnValidate' while in edit-mode");
       }
     }
 
@@ -86,7 +77,6 @@ namespace droid.Runtime.Utilities.GameObjects {
       if (this.enabled && this.isActiveAndEnabled) {
         this.Clear();
       }
-
     }
 
     /// <summary>

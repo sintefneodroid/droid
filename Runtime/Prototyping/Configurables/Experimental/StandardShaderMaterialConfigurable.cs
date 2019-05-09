@@ -48,12 +48,12 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental
     string _b;
     string _a;
 
-    [SerializeField] Space2 _tiling_space = Space2.ZeroOne;
-    [SerializeField] Space2 _offset_space = Space2.ZeroOne;
+    [SerializeField] Space2 _tiling_space = Space2.TwentyEighty;
+    [SerializeField] Space2 _offset_space = Space2.TwentyEighty;
 
-    [SerializeField] Space4 _color_space = Space4.ZeroOne;
-    [SerializeField] Space1 _smoothness_space = Space1.ZeroOne;
-    [SerializeField] Space1 _reflection_space = Space1.ZeroOne;
+    [SerializeField] Space4 _color_space = Space4.TwentyEighty;
+    [SerializeField] Space1 _smoothness_space = Space1.TwentyEighty;
+    [SerializeField] Space1 _reflection_space = Space1.TwentyEighty;
 
     /// <summary>
     /// </summary>

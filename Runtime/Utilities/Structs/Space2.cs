@@ -117,6 +117,11 @@ namespace droid.Runtime.Utilities.Structs {
       get { return new Space2(1) {_Min_Values = Vector2.zero, _Max_Values = Vector2.one}; }
     }
 
+    public static Space2 TwentyEighty {
+      get { return new Space2(1) {_Min_Values = Vector2.one*0.2f, _Max_Values = Vector2.one*0.8f}; }
+    }
+
+
     public bool IsNormalised { get { return this.normalised; } set { this.normalised = value; } }
   }
 }
