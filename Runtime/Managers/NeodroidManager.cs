@@ -639,7 +639,7 @@ namespace droid.Runtime.Managers {
       lock (this._send_lock) {
         var configuration_message = new SimulatorConfigurationMessage(this.Configuration);
         var describe = false;
-        if(CurrentReactions!=null) {
+        if(this.CurrentReactions!=null) {
           foreach (var reaction in this.CurrentReactions) {
             if (reaction.Parameters.Describe) {
               describe = true;

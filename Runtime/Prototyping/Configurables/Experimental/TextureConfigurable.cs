@@ -40,7 +40,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
 
       if (this.load_from_resources_if_empty) {
         if (this._textures == null || this._textures.Length == 0) {
-          this._textures = Resources.LoadAll<Texture>(load_path);
+          this._textures = Resources.LoadAll<Texture>(this.load_path);
         }
       }
     }

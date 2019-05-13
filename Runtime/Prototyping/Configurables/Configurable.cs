@@ -46,22 +46,20 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     public void EnvironmentReset() { }
 
-    public virtual void PostEnvironmentSetup() {       this.UpdateCurrentConfiguration(); }
+    public virtual void PostEnvironmentSetup() { this.UpdateCurrentConfiguration(); }
 
     /// <summary>
     /// </summary>
     /// <returns></returns>
     /// <exception cref="System.NotImplementedException"></exception>
     public virtual Configuration[] SampleConfigurations() {
-      return new [] { new Configuration(this.Identifier, Space1.ZeroOne.Sample())};
+      return new[] {new Configuration(this.Identifier, Space1.ZeroOne.Sample())};
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected sealed override void Setup() {
-      this.PreSetup();
-    }
+    protected sealed override void Setup() { this.PreSetup(); }
 
     /// <summary>
     /// </summary>
@@ -71,8 +69,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, this);
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(this.ParentEnvironment, this);
     }
 
     /// <summary>
@@ -80,18 +77,15 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     public virtual void Tick() {
       if (this.SampleRandom && Application.isPlaying && this.on_tick) {
-        foreach (var v in this.SampleConfigurations())
-        {
+        foreach (var v in this.SampleConfigurations()) {
           this.ApplyConfiguration(v);
         }
       }
     }
 
-    void Update()
-    {
+    void Update() {
       if (this.SampleRandom && Application.isPlaying && !this.on_tick) {
-        foreach (var v in this.SampleConfigurations())
-        {
+        foreach (var v in this.SampleConfigurations()) {
           this.ApplyConfiguration(v);
         }
       }
@@ -116,13 +110,10 @@ namespace droid.Runtime.Prototyping.Configurables {
     [SerializeField]
     bool _relative_to_existing_value = false;
 
-    public bool SampleRandom {
-      get { return this._sampleRandom; }
-      set { this._sampleRandom = value; }
-    }
+    public bool SampleRandom { get { return this._sampleRandom; } set { this._sampleRandom = value; } }
 
     [SerializeField] bool _sampleRandom = false;
-    [SerializeField] bool on_tick=false;
+    [SerializeField] bool on_tick = false;
 
     #endregion
   }

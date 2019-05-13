@@ -43,7 +43,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
 
     public Space3 PositionSpace {
       get {
-        return _position_space;
+        return this._position_space;
       }
     }
     public Space3 DirectionSpace { get { return this._direction_space; } }

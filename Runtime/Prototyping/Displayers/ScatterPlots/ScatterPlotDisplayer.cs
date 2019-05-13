@@ -222,7 +222,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
     ///  </summary>
     protected override void Clean() {
       if(!this._RetainLastPlot) {
-        if (_particle_system) {
+        if (this._particle_system) {
           
 
         this._particle_system.Clear(true);

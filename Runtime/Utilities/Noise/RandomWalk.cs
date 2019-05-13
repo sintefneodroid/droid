@@ -25,7 +25,7 @@ namespace droid.Runtime.Utilities.Noise
     {
       if (Input.GetKeyDown(KeyCode.Return))
       {
-        this._randomWalkPositions = GenerateSelfAvoidingRandomWalk();
+        this._randomWalkPositions = this.GenerateSelfAvoidingRandomWalk();
 
         //Debug.Log(randomWalkPositions.Count);
       }
@@ -57,7 +57,7 @@ namespace droid.Runtime.Utilities.Noise
       while (true)
       {
         //Check if we have walked enough steps
-        if (stepsSoFar == stepsToTake)
+        if (stepsSoFar == this.stepsToTake)
         {
           //Debug.Log("Found path");
 
@@ -87,7 +87,7 @@ namespace droid.Runtime.Utilities.Noise
         var nextNodePos = currentNode.Pos + randomDir;
 
         //Have we visited this position before?
-        if (!HasVisitedNode(nextNodePos, visitedNodes))
+        if (!this.HasVisitedNode(nextNodePos, visitedNodes))
         {
           //Walk to this node
           currentNode = new WalkNode(nextNodePos, currentNode, new List<Vector3>(this._allPossibleDirections));

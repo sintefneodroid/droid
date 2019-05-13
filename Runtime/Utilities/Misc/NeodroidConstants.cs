@@ -8,12 +8,12 @@ namespace droid.Runtime.Utilities.Misc {
     /// <summary>
     ///
     /// </summary>
-    public const int _Default_Observation_Texture_Xy_Size = 512;
+    public const int _Default_Observation_Texture_Xy_Size = 128;
 
     /// <summary>
     ///
     /// </summary>
-    public const int _Default_Width = 512; // ImageNet size 224
+    public const int _Default_Width = 128; // ImageNet size 224
 
     /// <summary>
     ///

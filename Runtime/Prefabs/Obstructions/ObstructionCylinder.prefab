@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 2302102554894629331}
   - component: {fileID: 2302102554894629330}
   - component: {fileID: 2302102554894629329}
-  - component: {fileID: 2302102554894629328}
   - component: {fileID: 2302102554894629343}
   - component: {fileID: 2302102554894629342}
   - component: {fileID: 2302102554894629332}
+  - component: {fileID: 3674649710580244811}
   m_Layer: 0
-  m_Name: ObstructionCube
+  m_Name: ObstructionCylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2302102554894629341}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &2302102554894629329
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -81,19 +81,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &2302102554894629328
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2302102554894629341}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2302102554894629343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -630,3 +617,17 @@ MonoBehaviour:
   _mat: {fileID: 0}
   _last_sample: 0
   load_path: Textures
+--- !u!136 &3674649710580244811
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2302102554894629341}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}

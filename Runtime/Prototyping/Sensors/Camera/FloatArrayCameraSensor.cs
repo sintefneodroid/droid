@@ -34,7 +34,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
     /// <summary>
     ///
     /// </summary>
-    public Space1[] ObservationSpace { get; }
+    public Space1[] ObservationSpace { get { return new[] {Space1.ZeroOne}; } }
 
     protected override void PreSetup() {
 

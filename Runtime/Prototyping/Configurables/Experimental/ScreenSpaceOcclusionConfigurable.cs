@@ -35,6 +35,13 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     string _r;
 
+    [SerializeField] Space4 rot_space = Space4.ZeroOne;
+
+    [SerializeField] Space2 xy_space2 = Space2.ZeroOne;
+
+    [SerializeField] Space1 depth_space1 = Space1.ZeroOne;
+    [SerializeField] Space3 size_space = Space3.ZeroOne;
+
     /// <summary>
     /// </summary>
     [SerializeField]
@@ -42,6 +49,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
 
     [SerializeField] GameObject[] _prefabs = null;
     List<GameObject> _spawned = new List<GameObject>();
+    bool fsafas = true;
     [SerializeField] int num_obstructions = 10;
 
     /// <inheritdoc />
@@ -53,29 +61,29 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       this._b = this.Identifier + "B";
       this._a = this.Identifier + "A";
 
-      if (Application.isPlaying) {
+      if (Application.isPlaying && this.fsafas) {
         if (this._prefabs != null && this._prefabs.Length > 0 && this._camera) {
           for (var i = 0; i < this.num_obstructions; i++) {
             var prefab = this._prefabs[(int)(Space1.ZeroOne.Sample() * this._prefabs.Length)];
 
-            var x = Space1.ZeroOne.Sample();
-            var y = Space1.ZeroOne.Sample();
-            var z = Space1.ZeroOne.Sample() * this._camera.farClipPlane;
-            var a = new Vector2(x, y);
+            var xy = this.xy_space2.Sample();
+            var z = this._camera.nearClipPlane + this.depth_space1.Sample() * this._camera.farClipPlane;
+
+            var a = new Vector3(xy.x, xy.y, z);
 
             var c = this._camera.ViewportToWorldPoint(a);
-            c.z = z;
 
-            var b = new Quaternion(Space1.ZeroOne.Sample(),
-                                   Space1.ZeroOne.Sample(),
-                                   Space1.ZeroOne.Sample(),
-                                   Space1.ZeroOne.Sample());
+            var rot = this.rot_space.Sample();
+            var b = new Quaternion(rot.x, rot.y, rot.z, rot.w);
 
             var d = Instantiate(prefab, c, b, this.transform);
+            d.transform.localScale = this.size_space.Sample();
 
             this._spawned.Add(d);
           }
         }
+
+        this.fsafas = false;
       }
     }
 
@@ -84,21 +92,13 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._r);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._r);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._g);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._g);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._b);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._b);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._a);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._a);
     }
 
     /// <inheritdoc />
@@ -119,6 +119,25 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     /// <param name="configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
+      var aa = Random.Range(0, this._spawned.Count);
+      var bb = this._spawned[aa];
+
+      var xy = this.xy_space2.Sample();
+      var z = this._camera.nearClipPlane + this.depth_space1.Sample() * this._camera.farClipPlane;
+
+      var a = new Vector3(xy.x, xy.y, z);
+
+      var c = this._camera.ViewportToWorldPoint(a);
+
+      var rot = this.rot_space.Sample();
+      var b = new Quaternion(rot.x, rot.y, rot.z, rot.w);
+
+      bb.transform.localScale = this.size_space.Sample();
+
+      bb.transform.position = c;
+
+      bb.transform.rotation = b;
+
       #if NEODROID_DEBUG
       if (this.Debugging) {
         DebugPrinting.ApplyPrint(this.Debugging, configuration, this.Identifier);
@@ -131,17 +150,15 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     /// <returns></returns>
     public override Configuration[] SampleConfigurations() {
-      var sample = Space1.ZeroOne.Sample();
+      var s = this.depth_space1.Sample();
 
-      if (sample < .33f) {
-        return new[] {new Configuration(this._r, Space1.ZeroOne.Sample())};
-      }
+      var sample = Space3.ZeroOne.Sample();
 
-      if (sample > .66f) {
-        return new[] {new Configuration(this._g, Space1.ZeroOne.Sample())};
-      }
-
-      return new[] {new Configuration(this._b, Space1.ZeroOne.Sample())};
+      return new[] {
+                       new Configuration(this._r, sample.x),
+                       new Configuration(this._b, sample.y),
+                       new Configuration(this._g, sample.z)
+                   };
     }
   }
 }

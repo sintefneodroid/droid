@@ -147,7 +147,11 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
           #if NEODROID_DEBUG
           Debug.LogWarning("Texture not available!");
           #endif
-          this._texture = new Texture2D(NeodroidConstants._Default_Width, NeodroidConstants._Default_Height);
+          var target_texture = this._Camera.targetTexture;
+          this._texture = new Texture2D(target_texture.width,
+                                        target_texture.height,
+                                        NeodroidConstants._Default_TextureFormat,
+                                        false);
         }
 
         if (!this.disable_encoding) {
@@ -193,10 +197,10 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
       }
     }
 
-    public override IEnumerable<float> FloatEnumerable
-    {
-      get { return null; }
-    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public override IEnumerable<float> FloatEnumerable { get { return null; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -212,6 +216,10 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
     public override string ToString() { return $"Rendered {this.imageFormat} image"; }
   }
 }
