@@ -40,9 +40,6 @@ namespace droid.Runtime.Utilities.Structs {
     [SerializeField] bool _resizable_window = true;
     [SerializeField] ColorSpace _color_space = ColorSpace.Linear;
 
-
-
-
     /// <summary>
     /// </summary>
     [Header("Simulation")]
@@ -122,7 +119,6 @@ namespace droid.Runtime.Utilities.Structs {
     [Header("Experimental (Warning, it is important to read docs before use!)")]
     [SerializeField]
     bool _update_fixed_time_scale = false;
-
 
     /// <summary>
     /// </summary>
