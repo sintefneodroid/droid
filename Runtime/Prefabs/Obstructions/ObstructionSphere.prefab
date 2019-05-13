@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 2302102554894629342}
   - component: {fileID: 2302102554894629332}
   - component: {fileID: 7992057885548089325}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ObstructionSphere
-  m_TagString: Untagged
+  m_TagString: b
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
