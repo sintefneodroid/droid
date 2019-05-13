@@ -2,6 +2,7 @@ using System;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Utilities.Enums;
 using UnityEngine;
+using Object = System.Object;
 
 namespace droid.Runtime.Interfaces {
   /// <summary>
@@ -96,5 +97,6 @@ namespace droid.Runtime.Interfaces {
 
     bool ResizableWindow { get; set; }
     ColorSpace ColorSpace { get; set; }
+    int vSyncCount { get; set; }
   }
 }

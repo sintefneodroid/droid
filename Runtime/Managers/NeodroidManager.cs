@@ -398,7 +398,7 @@ namespace droid.Runtime.Managers {
     public void ApplyConfigurationToUnity(ISimulatorConfiguration configuration) {
       if (configuration.ApplyQualitySettings) {
         QualitySettings.SetQualityLevel(configuration.QualityLevel, true);
-        QualitySettings.vSyncCount = 0;
+        QualitySettings.vSyncCount = configuration.vSyncCount;
       }
 
       this.SimulationTimeScale = configuration.TimeScale;

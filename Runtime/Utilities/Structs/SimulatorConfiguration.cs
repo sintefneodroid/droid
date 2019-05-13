@@ -19,29 +19,29 @@ namespace droid.Runtime.Utilities.Structs {
                                         ISimulatorConfiguration {
     [Header("Performance (Disable for faster serialisation, but with loss of functionality)")]
     [SerializeField]
-    bool _always_serialise_unobservables=true;
+    bool _always_serialise_unobservables = true;
 
     [SerializeField] bool _always_serialise_individual_observables = true;
 
     [SerializeField] bool _always_serialise_aggregated_float_array = true;
 
-    [Header("Graphics")] [SerializeField] bool _apply_resolution_settings=false;
+    [Header("Graphics")] [SerializeField] bool _apply_resolution_settings = false;
 
+    [SerializeField] bool _optimise_for_speed = false;
 
-    [SerializeField] bool _optimise_for_speed=false;
-
-    [SerializeField] bool _apply_quality_settings=false;
+    [SerializeField] bool _apply_quality_settings = false;
 
     [SerializeField] [Range(0, 9999)] int _height = 500;
 
     [SerializeField] [Range(0, 9999)] int _width = 500;
-
     [SerializeField] [Range(1, 4)] int _quality_level = 1;
-    [SerializeField] bool _full_screen=false;
+    [SerializeField] [Range(0, 4)] int _v_sync_count = 0;
+    [SerializeField] bool _full_screen = false;
     [SerializeField] bool _resizable_window = true;
     [SerializeField] ColorSpace _color_space = ColorSpace.Linear;
 
-    //TODO: VSYNC option
+
+
 
     /// <summary>
     /// </summary>
@@ -54,9 +54,7 @@ namespace droid.Runtime.Utilities.Structs {
     /// </summary>
     [SerializeField]
     [Range(0, 99)]
-    int _frame_skips=0;
-
-
+    int _frame_skips = 0;
 
     /// <summary>
     /// </summary>
@@ -68,13 +66,13 @@ namespace droid.Runtime.Utilities.Structs {
     /// </summary>
     [SerializeField]
     [Range(0, 9999)]
-    float _max_reply_interval=0;
+    float _max_reply_interval = 0;
 
     /// <summary>
     /// </summary>
     [SerializeField]
     [Range(0, 999)]
-    int _num_of_environments=0;
+    int _num_of_environments = 0;
 
     /// <summary>
     /// </summary>
@@ -125,6 +123,7 @@ namespace droid.Runtime.Utilities.Structs {
     [SerializeField]
     bool _update_fixed_time_scale = false;
 
+
     /// <summary>
     /// </summary>
     public void SetToDefault() {
@@ -142,6 +141,7 @@ namespace droid.Runtime.Utilities.Structs {
       this.NumOfEnvironments = 1;
       this.ResizableWindow = true;
       this.ColorSpace = ColorSpace.Linear;
+      this.vSyncCount = 0;
     }
 
     #region Getter Setters
@@ -177,7 +177,7 @@ namespace droid.Runtime.Utilities.Structs {
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public bool ApplyResolutionSettings {
       get { return this._apply_resolution_settings; }
@@ -185,7 +185,7 @@ namespace droid.Runtime.Utilities.Structs {
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public bool ApplyQualitySettings {
       get { return this._apply_quality_settings; }
@@ -198,6 +198,11 @@ namespace droid.Runtime.Utilities.Structs {
     }
 
     public ColorSpace ColorSpace { get { return this._color_space; } set { this._color_space = value; } }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public int vSyncCount { get { return this._v_sync_count = 0; } set { this._v_sync_count = value; } }
 
     /// <summary>
     /// </summary>
