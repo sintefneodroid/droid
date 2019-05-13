@@ -26,12 +26,18 @@ namespace droid.Runtime.Utilities.ScriptableObjects {
       }
   */
       var copy = this._Motions;
-      for (var i = 0; i < copy.Length; i++) {
-        var actor = copy[i]._Actor;
-        copy[i]._Actor = Regex.Replace(actor, "[^\\w\\._]", "");
+      if(copy!=null) {
+        for (var i = 0; i < copy.Length; i++) {
+          var actor = copy[i]._Actor;
+          if(actor!=null) {
+            copy[i]._Actor = Regex.Replace(actor, "[^\\w\\._]", "");
+          }
 
-        var actuator = copy[i]._Actuator;
-        copy[i]._Actuator = Regex.Replace(actuator, "[^\\w\\._]", "");
+          var actuator = copy[i]._Actuator;
+          if(actuator!=null) {
+            copy[i]._Actuator = Regex.Replace(actuator, "[^\\w\\._]", "");
+          }
+        }
       }
 
       this._Motions = copy;
