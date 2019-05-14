@@ -120,7 +120,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// <param name="configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
       var aa = Random.Range(0, this._spawned.Count);
-      var bb = this._spawned[aa];
+      foreach (var bb in this._spawned){
 
       var xy = this.xy_space2.Sample();
       var z = this._camera.nearClipPlane + this.depth_space1.Sample() * this._camera.farClipPlane;
@@ -137,8 +137,8 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       bb.transform.position = c;
 
       bb.transform.rotation = b;
-
-      #if NEODROID_DEBUG
+    }
+    #if NEODROID_DEBUG
       if (this.Debugging) {
         DebugPrinting.ApplyPrint(this.Debugging, configuration, this.Identifier);
       }
