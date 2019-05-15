@@ -1,12 +1,10 @@
-﻿using System;
-using droid.Runtime.Interfaces;
+﻿using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
-using droid.Runtime.Utilities.Misc;
-using JetBrains.Annotations;
+using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace droid.Runtime.Prototyping.Configurables.Experimental {
+namespace droid.Runtime.Prototyping.Configurables {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
@@ -60,12 +58,18 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       this._mat.SetTexture(_main_tex, this._texture);
     }
 
+    protected override void Randomise() {
+      this._texture = this._textures[Random.Range(0,this._textures.Length)];
+
+      this._mat.SetTexture(_main_tex, this._texture);
+    }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <returns></returns>
     public override Configuration[] SampleConfigurations() {
-      this._last_sample = int.Parse(Random.Range(0, this._textures.Length).ToString());
+      this._last_sample = Random.Range(0, this._textures.Length);
 
       return new[] {new Configuration(this.Identifier, this._last_sample)};
     }

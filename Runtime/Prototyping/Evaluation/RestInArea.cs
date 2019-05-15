@@ -2,7 +2,7 @@
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Prototyping.Sensors;
 using droid.Runtime.Utilities.BoundingBoxes;
-using droid.Runtime.Utilities.GameObjects.Sensors;
+using droid.Runtime.Utilities.GameObjects.ChildSensors;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Misc.Extensions;
 using UnityEngine;

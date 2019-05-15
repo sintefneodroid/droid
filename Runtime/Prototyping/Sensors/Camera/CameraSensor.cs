@@ -89,8 +89,14 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
     /// <summary>
     /// </summary>
     protected override void PreSetup() {
-      this._Manager = FindObjectOfType<NeodroidManager>();
-      this._Camera = this.GetComponent<UnityEngine.Camera>();
+      if (this._Manager == null) {
+        this._Manager = FindObjectOfType<NeodroidManager>();
+      }
+
+      if (this._Camera == null) {
+        this._Camera = this.GetComponent<UnityEngine.Camera>();
+      }
+
       if (this._Camera) {
         var target_texture = this._Camera.targetTexture;
         if (!target_texture) {

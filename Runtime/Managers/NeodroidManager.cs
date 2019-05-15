@@ -404,8 +404,8 @@ namespace droid.Runtime.Managers {
       this.SimulationTimeScale = configuration.TimeScale;
       Application.targetFrameRate = configuration.TargetFrameRate;
 
-      if (this._configuration.OptimiseForSpeed) {
-        Screen.SetResolution(0,0,false);
+      if (this._configuration.OptimiseWindowForSpeed) {
+        Screen.SetResolution(1,1,false);
       }
       #if !UNITY_EDITOR
       else if( configuration.ApplyResolutionSettings ){

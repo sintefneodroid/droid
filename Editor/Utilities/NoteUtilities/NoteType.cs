@@ -1,3 +1,5 @@
+
+#if UNITY_EDITOR
 namespace droid.Editor.Utilities.NoteUtilities {
   /// <summary>
   /// </summary>
@@ -12,3 +14,4 @@ namespace droid.Editor.Utilities.NoteUtilities {
     Box_error_
   }
 }
+#endif

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Managers;
 using droid.Runtime.Utilities.Enums;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
@@ -37,8 +38,14 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
     public Space1[] ObservationSpace { get { return new[] {Space1.ZeroOne}; } }
 
     protected override void PreSetup() {
+      if(this._manager==null) {
+        this._manager = FindObjectOfType<NeodroidManager>();
+      }
 
-      this._camera = this.GetComponent<UnityEngine.Camera>();
+      if (this._camera == null) {
+        this._camera = this.GetComponent<UnityEngine.Camera>();
+      }
+
       var target_texture = this._camera.targetTexture;
       if (target_texture) {
         this._texture = new Texture2D(target_texture.width, target_texture.height);

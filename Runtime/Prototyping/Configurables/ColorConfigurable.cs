@@ -17,28 +17,33 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     ///   Alpha
     /// </summary>
-    string _a;
+    const char _a = 'A';
 
     /// <summary>
     ///   Blue
     /// </summary>
-    string _b;
+    const char _b = 'B';
 
     /// <summary>
     ///   Green
     /// </summary>
-    string _g;
+    const char _g = 'G';
 
     /// <summary>
     ///   Red
     /// </summary>
-    string _r;
+    const char _r = 'R';
+
+    string r_id;
+    string b_id;
+    string g_id;
+    string a_id;
 
     /// <summary>
     /// </summary>
     Renderer _renderer;
 
-    [SerializeField] Space3 _space = Space3.TwentyEighty;
+    [SerializeField] Space4 _space = Space4.TwentyEighty;
 
     [SerializeField] bool use_shared = false;
 
@@ -46,10 +51,12 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     protected override void PreSetup() {
-      this._r = this.Identifier + "R";
-      this._g = this.Identifier + "G";
-      this._b = this.Identifier + "B";
-      this._a = this.Identifier + "A";
+
+      this.r_id = this.Identifier + _r;
+      this.b_id = this.Identifier + _b;
+      this.g_id = this.Identifier + _g;
+      this.a_id = this.Identifier + _a;
+
 
       this._renderer = this.GetComponent<Renderer>();
     }
@@ -59,13 +66,13 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._r);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, r_id);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._g);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, g_id);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._b);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, b_id);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._a);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, a_id);
     }
 
     /// <inheritdoc />
@@ -76,10 +83,10 @@ namespace droid.Runtime.Prototyping.Configurables {
         return;
       }
 
-      this.ParentEnvironment.UnRegister(this, this._r);
-      this.ParentEnvironment.UnRegister(this, this._g);
-      this.ParentEnvironment.UnRegister(this, this._b);
-      this.ParentEnvironment.UnRegister(this, this._a);
+      this.ParentEnvironment.UnRegister(this, r_id);
+      this.ParentEnvironment.UnRegister(this, this.b_id);
+      this.ParentEnvironment.UnRegister(this, g_id);
+      this.ParentEnvironment.UnRegister(this, a_id);
     }
 
     /// <summary>
@@ -96,14 +103,19 @@ namespace droid.Runtime.Prototyping.Configurables {
         foreach (var mat in this._renderer.sharedMaterials) {
           var c = mat.color;
 
-          if (configuration.ConfigurableName == this._r) {
-            c.r = configuration.ConfigurableValue;
-          } else if (configuration.ConfigurableName == this._g) {
-            c.g = configuration.ConfigurableValue;
-          } else if (configuration.ConfigurableName == this._b) {
-            c.b = configuration.ConfigurableValue;
-          } else if (configuration.ConfigurableName == this._a) {
-            c.a = configuration.ConfigurableValue;
+          switch (configuration.ConfigurableName[configuration.ConfigurableName.Length-1]) {
+            case _r:
+              c.r = configuration.ConfigurableValue;
+              break;
+            case _g:
+              c.g = configuration.ConfigurableValue;
+              break;
+            case _b:
+              c.b = configuration.ConfigurableValue;
+              break;
+            case _a:
+              c.a = configuration.ConfigurableValue;
+              break;
           }
 
           mat.color = c;
@@ -112,17 +124,34 @@ namespace droid.Runtime.Prototyping.Configurables {
         foreach (var mat in this._renderer.materials) {
           var c = mat.color;
 
-          if (configuration.ConfigurableName == this._r) {
-            c.r = configuration.ConfigurableValue;
-          } else if (configuration.ConfigurableName == this._g) {
-            c.g = configuration.ConfigurableValue;
-          } else if (configuration.ConfigurableName == this._b) {
-            c.b = configuration.ConfigurableValue;
-          } else if (configuration.ConfigurableName == this._a) {
-            c.a = configuration.ConfigurableValue;
+          switch (configuration.ConfigurableName[configuration.ConfigurableName.Length-1]) {
+            case _r:
+              c.r = configuration.ConfigurableValue;
+              break;
+            case _g:
+              c.g = configuration.ConfigurableValue;
+              break;
+            case _b:
+              c.b = configuration.ConfigurableValue;
+              break;
+            case _a:
+              c.a = configuration.ConfigurableValue;
+              break;
           }
 
           mat.color = c;
+        }
+      }
+    }
+
+    protected override void Randomise() {
+      if (this.use_shared) {
+        foreach (var mat in this._renderer.sharedMaterials) {
+          mat.color = this._space.Sample();
+        }
+      } else {
+        foreach (var mat in this._renderer.materials) {
+          mat.color = this._space.Sample();
         }
       }
     }
@@ -135,9 +164,10 @@ namespace droid.Runtime.Prototyping.Configurables {
       var v = this._space.Sample();
 
       return new[] {
-                       new Configuration(this._r, v.x),
-                       new Configuration(this._g, v.y),
-                       new Configuration(this._b, v.z)
+                       new Configuration(this.r_id, v.x),
+                       new Configuration(this.g_id, v.y),
+                       new Configuration(this.b_id, v.z),
+                       new Configuration(this.a_id,v.w),
                    };
     }
   }

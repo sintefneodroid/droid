@@ -19,7 +19,9 @@ namespace droid.Runtime.Messaging.FBS {
       //  builder.PutByte(data[i]);
       //return builder.EndVector();
 
-      return builder.CreateByteVector(data);
+      //TODO: return builder.CreateByteVector(data);
+
+      return new VectorOffset();
     }
 
     /// <summary>
@@ -28,7 +30,7 @@ namespace droid.Runtime.Messaging.FBS {
     /// <param name="data"></param>
     /// <returns></returns>
     public static VectorOffset CreateFloatVector(FlatBufferBuilder builder, float[] data) {
-
+/*
        builder.StartVector(4, data.Length, 4);
       for (var i = data.Length - 1; i >= 0; i--)
       {
@@ -36,9 +38,10 @@ namespace droid.Runtime.Messaging.FBS {
       }
 
       return builder.EndVector();
+*/
 
-
-      //return builder.CreateFloatVector(data); //TODO: Calculate proper lenght of vector! lenght*4
+      //TODO: return builder.CreateFloatVector(data); //TODO: Calculate proper lenght of vector! lenght*4
+      return new VectorOffset();
     }
   }
 }

@@ -1,4 +1,4 @@
-﻿using droid.Runtime.Utilities.GameObjects.Sensors;
+﻿using droid.Runtime.Utilities.GameObjects.ChildSensors;
 using droid.Runtime.Utilities.Misc.Extensions;
 using UnityEngine;
 

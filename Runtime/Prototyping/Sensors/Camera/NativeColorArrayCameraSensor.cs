@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Managers;
 using droid.Runtime.Utilities.Enums;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
@@ -26,7 +27,6 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
     IManager _manager = null;
 
     [SerializeField] Texture2D _texture = null;
-    [SerializeField] bool _integer_255_values = false;
 
     /// <summary>
     ///
@@ -42,7 +42,13 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
     public Space1[] ObservationSpace { get { return new[] {Space1.ZeroOne}; } }
 
     protected override void PreSetup() {
-      this._camera = this.GetComponent<UnityEngine.Camera>();
+      if(this._manager==null) {
+        this._manager = FindObjectOfType<NeodroidManager>();
+      }
+
+      if (this._camera == null) {
+        this._camera = this.GetComponent<UnityEngine.Camera>();
+      }
       var target_texture = this._camera.targetTexture;
       if (target_texture) {
         this.ObservationArray = new float[target_texture.width * target_texture.height * 4];
@@ -91,34 +97,34 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
           this.flat_float_array = new float[this._texture.width * this._texture.height * 4];
         }
 
-        if (this.flat_float_array != null) {
-          if (this._integer_255_values) {
-            var a = this
-                    ._texture
-                    .GetRawTextureData<Color32>(); //TODO: Do not use yet! Unity has some issues, off by one errors i think.
-            var i = 0;
-            foreach (var b in a) {
-              this.flat_float_array[i] = b.r;
-              this.flat_float_array[i + 1] = b.g;
-              this.flat_float_array[i + 2] = b.b;
-              this.flat_float_array[i + 3] = b.a;
-              i += 4;
-            }
-          } else {
-            var a = this._texture.GetRawTextureData<Color>();
+        var a = this._texture.GetRawTextureData<Color>();
 
-            var i = 0;
-            foreach (var b in a) {
-              this.flat_float_array[i] = b.r;
-              this.flat_float_array[i + 1] = b.g;
-              this.flat_float_array[i + 2] = b.b;
-              this.flat_float_array[i + 3] = b.a;
-              i += 4;
-            }
-          }
-        } else {
-          this.flat_float_array = new float[this._texture.width * this._texture.height * 4];
+        //var min = a[0];
+        //var max = a[0];
+
+        var i = 0;
+/*
+        foreach (var b in a) {
+          this.flat_float_array[i] = b.r;
+          this.flat_float_array[i + 1] = b.g;
+          this.flat_float_array[i + 2] = b.b;
+          this.flat_float_array[i + 3] = b.a;
+          i += 4;
         }
+*/
+        for (var index = 0; index < a.Length; index++) {
+          var b = a[index];
+          //i = index*4;
+          this.flat_float_array[i] = b.r;
+          this.flat_float_array[i + 1] = b.g;
+          this.flat_float_array[i + 2] = b.b;
+          this.flat_float_array[i + 3] = b.a;
+          i += 4;
+        }
+
+        //Debug.Log($"min:{min}, max:{max}");
+
+
 
         RenderTexture.active = current_render_texture;
       } else {
@@ -135,6 +141,10 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
     public override void UpdateObservation() {
       this._grab = true;
       if (this._manager?.SimulatorConfiguration?.SimulationType != SimulationType.Frame_dependent_) {
+        #if NEODROID_DEBUG
+
+        #endif
+        Debug.Log($"{this._manager?.SimulatorConfiguration?.SimulationType}");
         if (Application.isPlaying) {
           this._camera.Render();
         }

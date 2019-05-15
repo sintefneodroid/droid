@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using droid.Runtime.Interfaces;
-using droid.Runtime.Utilities.GameObjects.Sensors;
+using droid.Runtime.Utilities.GameObjects.ChildSensors;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

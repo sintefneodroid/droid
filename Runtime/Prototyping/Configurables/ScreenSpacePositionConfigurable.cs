@@ -14,26 +14,14 @@ namespace droid.Runtime.Prototyping.Configurables {
                     + ConfigurableComponentMenuPath._Postfix)]
   [RequireComponent(typeof(Renderer))]
   public class ScreenSpacePositionConfigurable : Configurable {
-    /// <summary>
-    ///   Alpha
-    /// </summary>
+
+
+
+
     string _x;
-
-    /// <summary>
-    ///   Blue
-    /// </summary>
     string _y;
-
-    /// <summary>
-    ///   Green
-    /// </summary>
     string _z;
-
-    /// <summary>
-    ///   Red
-    /// </summary>
     string _rx;
-
     string _ry;
     string _rw;
     string _rz;

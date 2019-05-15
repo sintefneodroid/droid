@@ -27,13 +27,13 @@ namespace droid.Runtime.Utilities.Structs {
 
     [Header("Graphics")] [SerializeField] bool _apply_resolution_settings = false;
 
-    [SerializeField] bool _optimise_for_speed = false;
+    [SerializeField] bool _optimiseWindow_for_speed = false;
 
     [SerializeField] bool _apply_quality_settings = false;
 
-    [SerializeField] [Range(0, 9999)] int _height = 500;
+    [SerializeField] [Range(1, 9999)] int _height = 500;
 
-    [SerializeField] [Range(0, 9999)] int _width = 500;
+    [SerializeField] [Range(1, 9999)] int _width = 500;
     [SerializeField] [Range(1, 4)] int _quality_level = 1;
     [SerializeField] [Range(0, 4)] int _v_sync_count = 0;
     [SerializeField] bool _full_screen = false;
@@ -333,9 +333,9 @@ namespace droid.Runtime.Utilities.Structs {
     /// </summary>
     public String IpAddress { get { return this._ip_address; } set { this._ip_address = value; } }
 
-    public Boolean OptimiseForSpeed {
-      get { return this._optimise_for_speed; }
-      set { this._optimise_for_speed = value; }
+    public Boolean OptimiseWindowForSpeed {
+      get { return this._optimiseWindow_for_speed; }
+      set { this._optimiseWindow_for_speed = value; }
     }
 
     #endregion

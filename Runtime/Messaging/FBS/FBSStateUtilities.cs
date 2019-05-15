@@ -3,6 +3,8 @@ using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Prototyping.Configurables;
 using FlatBuffers;
+using Neodroid.FBS;
+using Neodroid.FBS.State;
 using UnityEngine;
 
 namespace droid.Runtime.Messaging.FBS {
@@ -77,7 +79,7 @@ namespace droid.Runtime.Messaging.FBS {
                                                                    configuration.ResetIterations,
                                                                    configuration.NumOfEnvironments,
                                                                    configuration
-                                                                       .DoSerialiseIndividualObservables,
+                                                                       .DoSerialiseIndividualSensors,
                                                                    configuration.DoSerialiseUnobservables
                                                                    //TODO: ,configuration.DoSerialiseAggregatedFloatArray
                                                                    );
@@ -246,33 +248,34 @@ namespace droid.Runtime.Messaging.FBS {
     }
 
     static Offset<FByteArray> Serialise(FlatBufferBuilder b, IHasByteArray camera) {
-      //var v_offset = FByteArray.CreateBytesVector(b, camera.Bytes);
-      var v_offset = CustomFlatBufferImplementation.CreateByteVector(b, camera.Bytes);
+      var v_offset = FByteArray.CreateBytesVectorBlock(b, camera.Bytes);
+      //var v_offset = CustomFlatBufferImplementation.CreateByteVector(b, camera.Bytes);
       FByteArray.StartFByteArray(b);
       FByteArray.AddType(b, FByteDataType.PNG);
       FByteArray.AddBytes(b, v_offset);
       return FByteArray.EndFByteArray(b);
     }
 
-    static Offset<FArray> Serialise(FlatBufferBuilder b, IHasArray float_a, bool serialise_ranges = false) {
-      //var v_offset = FArray.CreateArrayVector(b, float_a.ObservationArray);
-      var v_offset = CustomFlatBufferImplementation.CreateFloatVector(b, float_a.ObservationArray);
+    static Offset<FArray> Serialise(FlatBufferBuilder b, IHasArray float_a) {
+      var v_offset = FArray.CreateArrayVectorBlock(b, float_a.ObservationArray);
+      //var v_offset = CustomFlatBufferImplementation.CreateFloatVector(b, float_a.ObservationArray);
 
       var ranges_vector = new VectorOffset();
-      if (serialise_ranges) {
+
         FArray.StartRangesVector(b, float_a.ObservationSpace.Length);
         foreach (var tra in float_a.ObservationSpace) {
           FRange.CreateFRange(b, tra._Decimal_Granularity, tra._Max_Value, tra._Min_Value);
         }
 
         ranges_vector = b.EndVector();
-      }
+
 
       FArray.StartFArray(b);
       FArray.AddArray(b, v_offset);
-      if (serialise_ranges) {
-        FArray.AddRanges(b, ranges_vector);
-      }
+
+      FArray.AddRanges(b, ranges_vector);
+
+
 
       return FArray.EndFArray(b);
     }
@@ -385,7 +388,7 @@ namespace droid.Runtime.Messaging.FBS {
           observation_type = FObservation.FString;
           break;
         case IHasArray a:
-          observation_offset = Serialise(b, a,true).Value;
+          observation_offset = Serialise(b, a).Value;
           observation_type = FObservation.FArray;
           break;
         case IHasSingle single:

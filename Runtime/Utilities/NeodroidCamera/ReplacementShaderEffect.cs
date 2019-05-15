@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace droid.Runtime.Utilities.NeodroidCamera {
   /// <inheritdoc />
@@ -13,6 +14,8 @@ namespace droid.Runtime.Utilities.NeodroidCamera {
 
     [SerializeField] Shader _replacement_shader = null;
     //[SerializeField, Range(0, 1)] int _use_right;
+    [SerializeField, Range(0.001f, 1000f)] float _scalar = 0.01f;
+    static readonly Int32 _scalar1 = Shader.PropertyToID("_Scalar");
 
     void OnValidate() { this.Setup(); }
 
@@ -27,6 +30,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera {
       //Shader.SetGlobalColor ("_OutlineColor", this._outline_color);
       //Shader.SetGlobalFloat("_OutlineWidthFactor", this._outline_width_factor);
       //Shader.SetGlobalFloat("_UseRight", this._use_right);
+      Shader.SetGlobalFloat(_scalar1, this._scalar);
     }
 
     void OnDisable() { this.GetComponent<Camera>().ResetReplacementShader(); }

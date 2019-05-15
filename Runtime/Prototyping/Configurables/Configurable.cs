@@ -85,9 +85,16 @@ namespace droid.Runtime.Prototyping.Configurables {
 
     void Update() {
       if (this.SampleRandom && Application.isPlaying && !this.on_tick) {
-        foreach (var v in this.SampleConfigurations()) {
-          this.ApplyConfiguration(v);
-        }
+        this.Randomise();
+      }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    protected virtual void Randomise() {
+      foreach (var v in this.SampleConfigurations()) {
+        this.ApplyConfiguration(v);
       }
     }
 

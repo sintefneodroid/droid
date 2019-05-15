@@ -1,5 +1,6 @@
 ﻿using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.FBS;
+using Neodroid.FBS;
 
 namespace droid.Runtime.Messaging.Messages {
   /// <summary>
@@ -55,7 +56,7 @@ namespace droid.Runtime.Messaging.Messages {
 
     /// <summary>
     /// </summary>
-    public bool DoSerialiseIndividualObservables { get; set; }
+    public bool DoSerialiseIndividualSensors { get; set; }
   }
 
   /// <summary>
@@ -77,7 +78,7 @@ namespace droid.Runtime.Messaging.Messages {
       this.TargetFrameRate = simulator_configuration.TargetFrameRate;
       this.SimulationType = (int)simulator_configuration.SimulationType;
       this.Finishes = (int)simulator_configuration.FrameFinishes;
-      this.DoSerialiseIndividualObservables = simulator_configuration.AlwaysSerialiseIndividualObservables;
+      this.DoSerialiseIndividualSensors = simulator_configuration.AlwaysSerialiseIndividualObservables;
       this.DoSerialiseUnobservables = simulator_configuration.AlwaysSerialiseUnobservables;
       //TODO: CANT BE CHANGE while running
       //TODO: Exhaust list!
@@ -99,7 +100,7 @@ namespace droid.Runtime.Messaging.Messages {
       this.ResetIterations = flat_simulator_configuration.ResetIterations;
       this.QualityLevel = flat_simulator_configuration.QualityLevel;
       this.TargetFrameRate = flat_simulator_configuration.TargetFrameRate;
-      this.DoSerialiseIndividualObservables = flat_simulator_configuration.DoSerialiseIndidualObservables;
+      this.DoSerialiseIndividualSensors = flat_simulator_configuration.DoSerialiseIndidualSensors;
       this.DoSerialiseUnobservables = flat_simulator_configuration.DoSerialiseUnobservables;
       //TODO: Exhaust list!
     }
