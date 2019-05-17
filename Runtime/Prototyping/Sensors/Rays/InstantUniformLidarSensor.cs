@@ -11,7 +11,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
                     + "InstantUniformLidar"
                     + SensorComponentMenuPath._Postfix)]
   public class InstantUniformLidarSensor : Sensor,
-                             IHasArray {
+                             IHasFloatArray {
     [SerializeField] RaycastHit _hit;
 
     [SerializeField] bool _is_2_d = false;

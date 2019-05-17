@@ -16,11 +16,11 @@ MonoBehaviour:
   _always_serialise_individual_observables: 1
   _always_serialise_aggregated_float_array: 0
   _apply_resolution_settings: 1
-  _optimise_for_speed: 1
+  _optimiseWindow_for_speed: 1
   _apply_quality_settings: 1
-  _height: 1
-  _width: 1
-  _quality_level: 2
+  _height: 128
+  _width: 128
+  _quality_level: 4
   _v_sync_count: 0
   _full_screen: 0
   _resizable_window: 0

@@ -14,7 +14,7 @@ namespace droid.Runtime.Prototyping.Configurables {
                     + ConfigurableComponentMenuPath._Postfix)]
   [RequireComponent(typeof(Renderer))]
   public class StandardShaderMaterialConfigurable : Configurable,
-                                                    IHasArray {
+                                                    IHasFloatArray {
     string _reflection;
     string _smoothness;
     string _tiling_x;

@@ -5,6 +5,7 @@ using droid.Runtime.Managers;
 using droid.Runtime.Utilities.Enums;
 using droid.Runtime.Utilities.Misc;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering;
 
 namespace droid.Runtime.Prototyping.Sensors.Camera {
   /// <summary>
@@ -83,7 +84,11 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
     /// </summary>
     public byte[] Bytes { get { return this._bytes; } private set { this._bytes = value; } }
 
-    public String DataType { get { return this.imageFormat.ToString(); } }
+    public GraphicsFormat DataType {
+      get {
+        return GraphicsFormat.None; //this.imageFormat;
+      }
+    }
 
     /// <inheritdoc />
     /// <summary>

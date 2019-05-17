@@ -4,7 +4,7 @@ using UnityEngine;
 namespace droid.Runtime.Interfaces {
   /// <summary>
   /// </summary>
-  public interface IHasArray {
+  public interface IHasFloatArray {
     /// <summary>
     /// </summary>
     float[] ObservationArray { get; }

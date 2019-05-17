@@ -6,6 +6,7 @@ using FlatBuffers;
 using Neodroid.FBS;
 using Neodroid.FBS.State;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering;
 
 namespace droid.Runtime.Messaging.FBS {
   /// <summary>
@@ -250,13 +251,26 @@ namespace droid.Runtime.Messaging.FBS {
     static Offset<FByteArray> Serialise(FlatBufferBuilder b, IHasByteArray camera) {
       var v_offset = FByteArray.CreateBytesVectorBlock(b, camera.Bytes);
       //var v_offset = CustomFlatBufferImplementation.CreateByteVector(b, camera.Bytes);
+      FByteDataType a;
+      switch (camera.DataType) {
+        case GraphicsFormat.R8G8B8A8_UNorm:
+          a = FByteDataType.JPEG;
+          break;
+        case GraphicsFormat.R8_UInt:
+          a = FByteDataType.PNG;
+          break;
+        default:
+          a = FByteDataType.Other;
+          break;
+      }
+
       FByteArray.StartFByteArray(b);
-      FByteArray.AddType(b, FByteDataType.PNG);
+      FByteArray.AddType(b, a);
       FByteArray.AddBytes(b, v_offset);
       return FByteArray.EndFByteArray(b);
     }
 
-    static Offset<FArray> Serialise(FlatBufferBuilder b, IHasArray float_a) {
+    static Offset<FArray> Serialise(FlatBufferBuilder b, IHasFloatArray float_a) {
       var v_offset = FArray.CreateArrayVectorBlock(b, float_a.ObservationArray);
       //var v_offset = CustomFlatBufferImplementation.CreateFloatVector(b, float_a.ObservationArray);
 
@@ -387,7 +401,7 @@ namespace droid.Runtime.Messaging.FBS {
           observation_offset = Serialise(b, numeral).Value;
           observation_type = FObservation.FString;
           break;
-        case IHasArray a:
+        case IHasFloatArray a:
           observation_offset = Serialise(b, a).Value;
           observation_type = FObservation.FArray;
           break;

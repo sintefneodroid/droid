@@ -1,4 +1,6 @@
-﻿namespace droid.Runtime.Interfaces {
+﻿using UnityEngine.Experimental.Rendering;
+
+namespace droid.Runtime.Interfaces {
   /// <summary>
   /// </summary>
   public interface IHasByteArray {
@@ -9,6 +11,6 @@
     /// <summary>
     /// 
     /// </summary>
-    string DataType { get; }
+    GraphicsFormat DataType { get; }
   }
 }

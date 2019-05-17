@@ -9,8 +9,8 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
   [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
                     + "FloatArrayCamera"
                     + SensorComponentMenuPath._Postfix)]
-  public class FloatArrayCameraSensor : Sensor,
-                                        IHasArray {
+  public class FloatFloatArrayCameraSensor : Sensor,
+                                        IHasFloatArray {
     [Header("Observation", order = 103)]
     //[SerializeField]
     float[] _array = null;

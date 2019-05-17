@@ -3,7 +3,7 @@ Shader "Neodroid/Spaces/ObjectSpace" {
 
 	Properties {
 
-        _Scalar("Scaling Factor", float) = 0.01
+        _Scalar("Scaling Factor", float) = 1
 		//_XColor ("_XColor", Color) = (1,0,0,1.)
 		//_YColor ("_YColor", Color) = (0,1,0,1.)
 		//_ZColor ("_ZColor", Color) = (0,0,1,1.)
@@ -62,7 +62,7 @@ Shader "Neodroid/Spaces/ObjectSpace" {
                      out float4 pos : SV_POSITION,
                      out float4 col : TEXCOORD0){
             pos =  UnityObjectToClipPos(vertexPos);
-            col = vertexPos;//+ float4(0.5, 0.5, 0.5, 0.0);
+            col = vertexPos; //+ float4(0.5, 0.5, 0.5, 0.0);
             return;
          }
 
@@ -70,7 +70,8 @@ Shader "Neodroid/Spaces/ObjectSpace" {
 
          float4 frag(float4 pos : SV_POSITION,
                      float4 col : TEXCOORD0) : COLOR {
-            return col*_Scalar;
+            //return float4(col.xyz*_Scalar,col.w);
+            return col;
          }
 
          ENDCG

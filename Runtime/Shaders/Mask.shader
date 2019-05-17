@@ -1,4 +1,4 @@
-Shader "Neodroid/Segmentation/AlphaMask" {
+Shader "Neodroid/Mask" {
     SubShader{
         Tags{
           "Queue" = "Transparent"
@@ -21,7 +21,7 @@ Shader "Neodroid/Segmentation/AlphaMask" {
             }
 
             fixed4 frag() : SV_Target{
-                return (1,1,1,1);
+                return 1;
             }
 
             ENDCG
