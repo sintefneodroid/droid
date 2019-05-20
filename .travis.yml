@@ -1,7 +1,15 @@
-language: csharp
+dist:     xenial
+language: generic
+
+sudo: required
+
+script:
+  - cd .
+
+#language: csharp
 #solution: {{project}}.sln
-mono:
-  - latest
+#mono:
+#  - latest
 #install:
 #  - ./build.sh
 #script:
