@@ -9,6 +9,7 @@ using droid.Runtime.Utilities.Structs;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
+using UnityEngine.Rendering;
 
 namespace droid.Runtime.Prototyping.Sensors.Camera {
   [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
@@ -45,7 +46,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
       var target_texture = this._camera.targetTexture;
       if (!target_texture) {
         #if NEODROID_DEBUG
-          Debug.LogWarning("Texture not available!");
+        Debug.LogWarning("Texture not available!");
         #endif
         this._texture = new Texture2D(NeodroidConstants._Default_Width,
                                       NeodroidConstants._Default_Height,
@@ -64,21 +65,22 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
     /// </summary>
     protected virtual void OnPostRender() {
       #if NEODROID_DEBUG
-      if(this.Debugging){
-            this._grab = true;
+      if (this.Debugging) {
+        this._grab = true;
       }
       #endif
       if (this._camera.targetTexture) {
         this.UpdateArray();
       }
       #if NEODROID_DEBUG
-      if(this.Debugging){
-      Graphics.DrawTexture(new Rect(new Vector2(0,0),new Vector2(128,128)), this._texture);
+      if (this.Debugging) {
+        Graphics.DrawTexture(new Rect(new Vector2(0, 0), new Vector2(128, 128)), this._texture);
       }
       #endif
     }
 
     TextureCreationFlags flags;
+
     /// <summary>
     ///
     /// </summary>
@@ -99,7 +101,6 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
 
         //this._texture.Apply();
 
-
         this.Bytes = this._texture.GetRawTextureData();
         //Debug.Log($"{this.Identifier}:{this.Bytes.Length}");
 
@@ -119,7 +120,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
       this._grab = true;
       if (this._manager?.SimulatorConfiguration?.SimulationType != SimulationType.Frame_dependent_) {
         #if NEODROID_DEBUG
-                Debug.Log($"{this._manager?.SimulatorConfiguration?.SimulationType}");
+        Debug.Log($"{this._manager?.SimulatorConfiguration?.SimulationType}");
         #endif
         if (Application.isPlaying) {
           this._camera.Render();
@@ -146,9 +147,55 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
     /// </summary>
     public Byte[] Bytes { get; set; }
 
+    public Int32[] Shape {
+      get {
+        int channels;
+        switch (this._texture.graphicsFormat) {
+          case GraphicsFormat.R8_UNorm:
+          case GraphicsFormat.R16_SFloat:
+          case GraphicsFormat.R32_SFloat:
+            channels = 1;
+            break;
+          //case GraphicsFormat.R32G32B32A32_SFloat:
+          //case GraphicsFormat.B8G8R8A8_UNorm:
+          //case GraphicsFormat.R16G16B16A16_SFloat:
+          default:
+
+            channels = 4;
+
+            break;
+        }
+
+        return new[] {this._texture.width, this._texture.height, channels};
+      }
+    }
+
     /// <summary>
     ///
     /// </summary>
-    public GraphicsFormat DataType { get { return this._texture.graphicsFormat; } }
+    public String ArrayEncoding {
+      get {
+        string s;
+        switch (this._texture.graphicsFormat) {
+          case GraphicsFormat.R8G8B8A8_UNorm:
+          case GraphicsFormat.R8_UInt:
+            s = "UINT8";
+            break;
+          case GraphicsFormat.R16_SFloat:
+          case GraphicsFormat.R16G16B16A16_SFloat:
+            s = "FLOAT16";
+            break;
+          case GraphicsFormat.R32_SFloat:
+          case GraphicsFormat.R32G32B32A32_SFloat:
+            s = "FLOAT32";
+            break;
+          default:
+            s = "Unknown";
+            break;
+        }
+
+        return s;
+      }
+    }
   }
 }

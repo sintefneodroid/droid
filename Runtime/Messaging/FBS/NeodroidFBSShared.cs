@@ -8,6 +8,14 @@ namespace Neodroid.FBS
 using global::System;
 using global::FlatBuffers;
 
+public enum FSimulationType : byte
+{
+ Independent = 0,
+ FrameDependent = 1,
+ PhysicsDependent = 2,
+ EventDependent = 3,
+};
+
 public struct FUnobservables : IFlatbufferObject
 {
   private Table __p;
@@ -213,22 +221,23 @@ public struct FSimulatorConfiguration : IFlatbufferObject
   public int QualityLevel { get { return __p.bb.GetInt(__p.bb_pos + 12); } }
   public float TimeScale { get { return __p.bb.GetFloat(__p.bb_pos + 16); } }
   public float TargetFrameRate { get { return __p.bb.GetFloat(__p.bb_pos + 20); } }
-  public int WaitEvery { get { return __p.bb.GetInt(__p.bb_pos + 24); } }
+  public FSimulationType SimulationType { get { return (FSimulationType)__p.bb.Get(__p.bb_pos + 24); } }
   public int FrameSkips { get { return __p.bb.GetInt(__p.bb_pos + 28); } }
   public int ResetIterations { get { return __p.bb.GetInt(__p.bb_pos + 32); } }
   public int NumOfEnvironments { get { return __p.bb.GetInt(__p.bb_pos + 36); } }
-  public bool DoSerialiseIndidualSensors { get { return 0!=__p.bb.Get(__p.bb_pos + 40); } }
+  public bool DoSerialiseIndividualSensors { get { return 0!=__p.bb.Get(__p.bb_pos + 40); } }
   public bool DoSerialiseUnobservables { get { return 0!=__p.bb.Get(__p.bb_pos + 41); } }
 
-  public static Offset<FSimulatorConfiguration> CreateFSimulatorConfiguration(FlatBufferBuilder builder, int Width, int Height, bool FullScreen, int QualityLevel, float TimeScale, float TargetFrameRate, int WaitEvery, int FrameSkips, int ResetIterations, int NumOfEnvironments, bool DoSerialiseIndidualSensors, bool DoSerialiseUnobservables) {
+  public static Offset<FSimulatorConfiguration> CreateFSimulatorConfiguration(FlatBufferBuilder builder, int Width, int Height, bool FullScreen, int QualityLevel, float TimeScale, float TargetFrameRate, FSimulationType SimulationType, int FrameSkips, int ResetIterations, int NumOfEnvironments, bool DoSerialiseIndividualSensors, bool DoSerialiseUnobservables) {
     builder.Prep(4, 44);
     builder.Pad(2);
     builder.PutBool(DoSerialiseUnobservables);
-    builder.PutBool(DoSerialiseIndidualSensors);
+    builder.PutBool(DoSerialiseIndividualSensors);
     builder.PutInt(NumOfEnvironments);
     builder.PutInt(ResetIterations);
     builder.PutInt(FrameSkips);
-    builder.PutInt(WaitEvery);
+    builder.Pad(3);
+    builder.PutByte((byte)SimulationType);
     builder.PutFloat(TargetFrameRate);
     builder.PutFloat(TimeScale);
     builder.PutInt(QualityLevel);

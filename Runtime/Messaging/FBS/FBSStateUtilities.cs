@@ -75,7 +75,7 @@ namespace droid.Runtime.Messaging.FBS {
                                                                    configuration.QualityLevel,
                                                                    configuration.TimeScale,
                                                                    configuration.TargetFrameRate,
-                                                                   configuration.SimulationType,
+                                                                   (FSimulationType)configuration.SimulationType,
                                                                    configuration.FrameSkips,
                                                                    configuration.ResetIterations,
                                                                    configuration.NumOfEnvironments,
@@ -248,24 +248,36 @@ namespace droid.Runtime.Messaging.FBS {
       return FQT.EndFQT(b);
     }
 
-    static Offset<FByteArray> Serialise(FlatBufferBuilder b, IHasByteArray camera) {
-      var v_offset = FByteArray.CreateBytesVectorBlock(b, camera.Bytes);
+    static Offset<FByteArray> Serialise(FlatBufferBuilder b, IHasByteArray observer) {
+      var v_offset = FByteArray.CreateBytesVectorBlock(b, observer.Bytes);
       //var v_offset = CustomFlatBufferImplementation.CreateByteVector(b, camera.Bytes);
       FByteDataType a;
-      switch (camera.DataType) {
-        case GraphicsFormat.R8G8B8A8_UNorm:
-          a = FByteDataType.JPEG;
-          break;
-        case GraphicsFormat.R8_UInt:
-          a = FByteDataType.PNG;
-          break;
-        default:
-          a = FByteDataType.Other;
-          break;
-      }
+      switch (observer.ArrayEncoding) {
+            case "UINT8":
+              a = FByteDataType.UINT8;
+              break;
+            case "FLOAT16":
+              a = FByteDataType.FLOAT16;
+              break;
+            case "FLOAT32":
+              a = FByteDataType.FLOAT32;
+              break;
+            case "JPEG":
+              a = FByteDataType.JPEG;
+              break;
+            case "PNG":
+            a = FByteDataType.PNG;
+              break;
+            default:
+              a = FByteDataType.Other;
+              break;
+          }
+
+      var c = FByteArray.CreateShapeVector(b,observer.Shape);
 
       FByteArray.StartFByteArray(b);
       FByteArray.AddType(b, a);
+      FByteArray.AddShape(b, c);
       FByteArray.AddBytes(b, v_offset);
       return FByteArray.EndFByteArray(b);
     }

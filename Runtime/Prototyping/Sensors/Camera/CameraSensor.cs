@@ -90,6 +90,35 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
       }
     }
 
+    public int[] Shape {
+      get {
+        int channels = 4;
+        if (this.imageFormat == ImageFormat.Jpg_) {
+          channels = 3;
+        }
+
+        return new[] {this._texture.width, this._texture.height, channels};
+      }
+    }
+
+    public string ArrayEncoding {
+      get {
+        switch (this.imageFormat) {
+          case ImageFormat.Jpg_:
+            return "JPEG";
+          case ImageFormat.Png_:
+            return "PNG";
+          case ImageFormat.Exr_:
+            return "EXR";
+          case ImageFormat.Tga_:
+            return "TGA";
+          case ImageFormat.Raw_:
+            return "RAW";
+          default: throw new ArgumentOutOfRangeException();
+        }
+      }
+    }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>

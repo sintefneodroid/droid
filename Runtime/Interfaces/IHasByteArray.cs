@@ -7,10 +7,15 @@ namespace droid.Runtime.Interfaces {
     /// <summary>
     /// </summary>
     byte[] Bytes { get; }
-    
+
     /// <summary>
-    /// 
+    ///
     /// </summary>
-    GraphicsFormat DataType { get; }
+    int[] Shape { get; }
+
+    /// <summary>
+    ///
+    /// </summary>
+    string ArrayEncoding { get; }
   }
 }

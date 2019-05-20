@@ -10,9 +10,12 @@ using global::FlatBuffers;
 
 public enum FByteDataType : byte
 {
- PNG = 0,
- JPEG = 1,
- Other = 2,
+ UINT8 = 0,
+ FLOAT16 = 1,
+ FLOAT32 = 2,
+ PNG = 3,
+ JPEG = 4,
+ Other = 5,
 };
 
 public struct FSingle : IFlatbufferObject
@@ -266,23 +269,37 @@ public struct FByteArray : IFlatbufferObject
   public ArraySegment<byte>? GetBytesBytes() { return __p.__vector_as_arraysegment(4); }
 #endif
   public byte[] GetBytesArray() { return __p.__vector_as_array<byte>(4); }
-  public FByteDataType Type { get { int o = __p.__offset(6); return o != 0 ? (FByteDataType)__p.bb.Get(o + __p.bb_pos) : FByteDataType.PNG; } }
+  public FByteDataType Type { get { int o = __p.__offset(6); return o != 0 ? (FByteDataType)__p.bb.Get(o + __p.bb_pos) : FByteDataType.UINT8; } }
+  public int Shape(int j) { int o = __p.__offset(8); return o != 0 ? __p.bb.GetInt(__p.__vector(o) + j * 4) : (int)0; }
+  public int ShapeLength { get { int o = __p.__offset(8); return o != 0 ? __p.__vector_len(o) : 0; } }
+#if ENABLE_SPAN_T
+  public Span<byte> GetShapeBytes() { return __p.__vector_as_span(8); }
+#else
+  public ArraySegment<byte>? GetShapeBytes() { return __p.__vector_as_arraysegment(8); }
+#endif
+  public int[] GetShapeArray() { return __p.__vector_as_array<int>(8); }
 
   public static Offset<FByteArray> CreateFByteArray(FlatBufferBuilder builder,
       VectorOffset bytesOffset = default(VectorOffset),
-      FByteDataType type = FByteDataType.PNG) {
-    builder.StartObject(2);
+      FByteDataType type = FByteDataType.UINT8,
+      VectorOffset shapeOffset = default(VectorOffset)) {
+    builder.StartObject(3);
+    FByteArray.AddShape(builder, shapeOffset);
     FByteArray.AddBytes(builder, bytesOffset);
     FByteArray.AddType(builder, type);
     return FByteArray.EndFByteArray(builder);
   }
 
-  public static void StartFByteArray(FlatBufferBuilder builder) { builder.StartObject(2); }
+  public static void StartFByteArray(FlatBufferBuilder builder) { builder.StartObject(3); }
   public static void AddBytes(FlatBufferBuilder builder, VectorOffset bytesOffset) { builder.AddOffset(0, bytesOffset.Value, 0); }
   public static VectorOffset CreateBytesVector(FlatBufferBuilder builder, byte[] data) { builder.StartVector(1, data.Length, 1); for (int i = data.Length - 1; i >= 0; i--) builder.AddByte(data[i]); return builder.EndVector(); }
   public static VectorOffset CreateBytesVectorBlock(FlatBufferBuilder builder, byte[] data) { builder.StartVector(1, data.Length, 1); builder.Add(data); return builder.EndVector(); }
   public static void StartBytesVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(1, numElems, 1); }
   public static void AddType(FlatBufferBuilder builder, FByteDataType type) { builder.AddByte(1, (byte)type, 0); }
+  public static void AddShape(FlatBufferBuilder builder, VectorOffset shapeOffset) { builder.AddOffset(2, shapeOffset.Value, 0); }
+  public static VectorOffset CreateShapeVector(FlatBufferBuilder builder, int[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddInt(data[i]); return builder.EndVector(); }
+  public static VectorOffset CreateShapeVectorBlock(FlatBufferBuilder builder, int[] data) { builder.StartVector(4, data.Length, 4); builder.Add(data); return builder.EndVector(); }
+  public static void StartShapeVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
   public static Offset<FByteArray> EndFByteArray(FlatBufferBuilder builder) {
     int o = builder.EndObject();
     builder.Required(o, 4);  // bytes

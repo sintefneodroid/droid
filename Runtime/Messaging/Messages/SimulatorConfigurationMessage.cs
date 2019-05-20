@@ -1,5 +1,4 @@
 ﻿using droid.Runtime.Interfaces;
-using droid.Runtime.Messaging.FBS;
 using Neodroid.FBS;
 
 namespace droid.Runtime.Messaging.Messages {
@@ -80,7 +79,7 @@ namespace droid.Runtime.Messaging.Messages {
       this.Finishes = (int)simulator_configuration.FrameFinishes;
       this.DoSerialiseIndividualSensors = simulator_configuration.AlwaysSerialiseIndividualObservables;
       this.DoSerialiseUnobservables = simulator_configuration.AlwaysSerialiseUnobservables;
-      //TODO: CANT BE CHANGE while running
+      //TODO: CANNOT BE CHANGE while running
       //TODO: Exhaust list!
     }
 
@@ -94,13 +93,13 @@ namespace droid.Runtime.Messaging.Messages {
       this.FullScreen = flat_simulator_configuration.FullScreen;
       this.Height = flat_simulator_configuration.Height;
       this.Width = flat_simulator_configuration.Width;
-      this.Finishes = flat_simulator_configuration.WaitEvery;
+      this.Finishes = (int)flat_simulator_configuration.SimulationType;
       this.NumOfEnvironments = flat_simulator_configuration.NumOfEnvironments;
       this.TimeScale = flat_simulator_configuration.TimeScale;
       this.ResetIterations = flat_simulator_configuration.ResetIterations;
       this.QualityLevel = flat_simulator_configuration.QualityLevel;
       this.TargetFrameRate = flat_simulator_configuration.TargetFrameRate;
-      this.DoSerialiseIndividualSensors = flat_simulator_configuration.DoSerialiseIndidualSensors;
+      this.DoSerialiseIndividualSensors = flat_simulator_configuration.DoSerialiseIndividualSensors;
       this.DoSerialiseUnobservables = flat_simulator_configuration.DoSerialiseUnobservables;
       //TODO: Exhaust list!
     }
