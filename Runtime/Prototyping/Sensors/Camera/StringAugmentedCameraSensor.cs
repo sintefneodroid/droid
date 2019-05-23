@@ -39,12 +39,12 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+          NeodroidUtilities.RegisterComponent((ActorisedPrototypingEnvironment)this.ParentEnvironment,
                                               this,
                                               this.Identifier);
 
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment,
+          NeodroidUtilities.RegisterComponent((ActorisedPrototypingEnvironment)this.ParentEnvironment,
                                               this,
                                               this._colors);
     }

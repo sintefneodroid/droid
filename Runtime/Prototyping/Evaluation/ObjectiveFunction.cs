@@ -47,9 +47,9 @@ namespace droid.Runtime.Prototyping.Evaluation {
 
     /// <summary>
     /// </summary>
-    public IPrototypingEnvironment ParentEnvironment {
+    public ActorisedPrototypingEnvironment ParentEnvironment {
       get { return this._environment; }
-      set { this._environment = (PrototypingEnvironment)value; }
+      set { this._environment = (ActorisedPrototypingEnvironment)value; }
     }
 
     /// <inheritdoc />
@@ -169,7 +169,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
       //  this.Register(go);
 
       if (this.ParentEnvironment == null) {
-        this.ParentEnvironment = FindObjectOfType<PrototypingEnvironment>();
+        this.ParentEnvironment = FindObjectOfType<ActorisedPrototypingEnvironment>();
       }
 
       this.PostSetup();
@@ -243,7 +243,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
     [Header("References", order = 100)]
     [SerializeField]
     //[SerializeField]float _internal_discount_factor = 1.0f;
-    PrototypingEnvironment _environment=null;
+    ActorisedPrototypingEnvironment _environment=null;
 
     //[SerializeField] Term[] _extra_terms_external;
 

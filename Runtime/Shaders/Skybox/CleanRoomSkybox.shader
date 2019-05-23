@@ -1,7 +1,7 @@
 Shader "Neodroid/CleanRoomSkybox"{
     Properties {
         _SkyColor("Sky Color", Color) = (1.0, 1.0, 1.0, 0.0)
-        _HorizonColor("Horizon Color", Color) = (0.66, 0.66, 0.66, 0.0)
+        _HorizonColor("Horizon Color", Color) = (0.8, 0.8, 0.8, 0.0)
         _GroundColor("Ground Color", Color) = (0.98, 0.98, 0.98, 0.0)
         _Exponent1("Sky Exponent", Float) = 4.35
         _Exponent2("Ground Exponent", Float) = 3.58

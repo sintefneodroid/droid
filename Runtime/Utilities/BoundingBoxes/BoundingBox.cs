@@ -99,7 +99,7 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
     /// <summary>
     /// </summary>
     [SerializeField]
-    IPrototypingEnvironment environment = null;
+    IActorisedPrototypingEnvironment environment = null;
 
     /// <summary>
     /// </summary>
@@ -320,7 +320,7 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
       }
 
       if (this.environment == null) {
-        this.environment = FindObjectOfType<PrototypingEnvironment>();
+        this.environment = FindObjectOfType<ActorisedPrototypingEnvironment>();
       }
 
       if (!this._bb_transform) {

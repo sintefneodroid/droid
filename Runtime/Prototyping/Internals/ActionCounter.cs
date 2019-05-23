@@ -6,11 +6,11 @@ namespace droid.Runtime.Prototyping.Internals {
   /// <summary>
   /// </summary>
   public class ActionCounter : EnvironmentListener {
-    [SerializeField] IPrototypingEnvironment _environment;
+    [SerializeField] IActorisedPrototypingEnvironment _environment;
 
     /// <summary>
     /// </summary>
-    public IPrototypingEnvironment ParentEnvironment {
+    public IActorisedPrototypingEnvironment ParentEnvironment {
       get { return this._environment; }
       set { this._environment = value; }
     }

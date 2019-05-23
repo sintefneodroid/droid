@@ -1,5 +1,5 @@
-﻿
-
+﻿#if UNITY_EDITOR
+using droid.Runtime.Environments.Experimental;
 using droid.Runtime.Managers;
 using droid.Runtime.Prototyping.Evaluation;
 using droid.Runtime.Utilities.EventRecipients;
@@ -9,9 +9,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-using droid.Runtime.Environments;
 
-namespace droid.Editor.Utilities.StatusDisplayer {
+namespace droid.Runtime.Utilities.GameObjects.StatusDisplayer {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
@@ -156,3 +155,4 @@ namespace droid.Editor.Utilities.StatusDisplayer {
     }
   }
 }
+#endif

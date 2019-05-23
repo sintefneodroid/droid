@@ -7,8 +7,8 @@ namespace droid.Runtime.Interfaces {
   /// <summary>
   /// </summary>
 
-  public interface IPrototypingEnvironment : IEnvironment,
-                                             IHasRegister<IActuator>,
+  public interface IActorisedPrototypingEnvironment : IEnvironment,
+                                             IHasRegister<IActor>,
                                              IHasRegister<IObserver>,
                                              IHasRegister<IConfigurable>,
                                              IHasRegister<IEnvironmentListener>,

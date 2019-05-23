@@ -12,7 +12,7 @@ namespace droid.Runtime.Prototyping.Internals {
                                     IEnvironmentListener {
     /// <summary>
     /// </summary>
-    public IPrototypingEnvironment _Parent_Environment;
+    public IActorisedPrototypingEnvironment _Parent_Environment;
 
     /// <summary>
     /// </summary>
@@ -32,7 +32,7 @@ namespace droid.Runtime.Prototyping.Internals {
     /// </summary>
     protected override void RegisterComponent() {
       this._Parent_Environment =
-          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this._Parent_Environment, this);
+          NeodroidUtilities.RegisterComponent((ActorisedPrototypingEnvironment)this._Parent_Environment, this);
 
       if (this._Parent_Environment != null) {
         this._Parent_Environment.PreStepEvent += this.PreStep;

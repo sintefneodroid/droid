@@ -5,7 +5,7 @@ using UnityEngine;
 namespace droid.Runtime.Prototyping.Evaluation.Terms {
   [AddComponentMenu(TermComponentMenuPath._ComponentMenuPath + "Rush" + TermComponentMenuPath._Postfix)]
   public class RushTerm : Term {
-    [SerializeField] IPrototypingEnvironment _env;
+    [SerializeField] IActorisedPrototypingEnvironment _env;
     [SerializeField] float _penalty_size = 0.01f;
 
     /// <summary>
@@ -16,7 +16,7 @@ namespace droid.Runtime.Prototyping.Evaluation.Terms {
     /// </summary>
     protected override void Setup() {
       if (this._env == null) {
-        this._env = FindObjectOfType<PrototypingEnvironment>();
+        this._env = FindObjectOfType<ActorisedPrototypingEnvironment>();
       }
     }
 

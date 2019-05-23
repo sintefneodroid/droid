@@ -33,5 +33,4 @@ namespace droid.Runtime.Messaging.Messages {
     public float SolvedThreshold { get; }
   }
 
-  public interface IActors { }
 }

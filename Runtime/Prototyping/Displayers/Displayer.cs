@@ -17,7 +17,7 @@ namespace droid.Runtime.Prototyping.Displayers {
                                     IDisplayer {
     /// <summary>
     /// </summary>
-    IPrototypingEnvironment _environment=null;
+    IActorisedPrototypingEnvironment _environment=null;
 
 
 
@@ -44,7 +44,7 @@ namespace droid.Runtime.Prototyping.Displayers {
 
     /// <summary>
     /// </summary>
-    public IPrototypingEnvironment ParentEnvironment {
+    public IActorisedPrototypingEnvironment ParentEnvironment {
       get { return this._environment; }
       set { this._environment = value; }
     }
@@ -59,7 +59,7 @@ namespace droid.Runtime.Prototyping.Displayers {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment, this);
+          NeodroidUtilities.RegisterComponent((ActorisedPrototypingEnvironment)this.ParentEnvironment, this);
     }
 
     /// <inheritdoc />

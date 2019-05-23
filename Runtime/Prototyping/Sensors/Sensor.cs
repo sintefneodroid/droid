@@ -17,7 +17,7 @@ namespace droid.Runtime.Prototyping.Sensors {
                                  IObserver {
     /// <summary>
     /// </summary>
-    public IPrototypingEnvironment ParentEnvironment {
+    public IActorisedPrototypingEnvironment ParentEnvironment {
       get { return this._environment; }
       set { this._environment = value; }
     }
@@ -56,7 +56,7 @@ namespace droid.Runtime.Prototyping.Sensors {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment, this);
+          NeodroidUtilities.RegisterComponent((ActorisedPrototypingEnvironment)this.ParentEnvironment, this);
     }
 
     /// <inheritdoc />
@@ -90,7 +90,7 @@ namespace droid.Runtime.Prototyping.Sensors {
 
     [Header("References", order = 99)]
     [SerializeField]
-    IPrototypingEnvironment _environment;
+    IActorisedPrototypingEnvironment _environment;
 
     [Header("Normalisation", order = 100)]
     [SerializeField]

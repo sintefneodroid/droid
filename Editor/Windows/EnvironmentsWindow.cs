@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using droid.Editor.Utilities;
 using droid.Runtime.Environments;
+using droid.Runtime.Environments.Experimental;
 using droid.Runtime.Interfaces;
 using droid.Runtime.InternalReactions;
 using droid.Runtime.Managers;
@@ -35,7 +36,7 @@ namespace droid.Editor.Windows {
     /// </summary>
     const bool _refresh_enabled = false;
 
-    PrototypingEnvironment[] _environments;
+    ActorisedPrototypingEnvironment[] _environments;
     Texture _icon;
     Texture _neodroid_icon;
 
@@ -129,7 +130,7 @@ namespace droid.Editor.Windows {
 
         EditorGUILayout.EndHorizontal();
 
-        this._environments = NeodroidUtilities.FindAllObjectsOfTypeInScene<PrototypingEnvironment>();
+        this._environments = NeodroidUtilities.FindAllObjectsOfTypeInScene<ActorisedPrototypingEnvironment>();
         if (this._show_environment_properties.Length != this._environments.Length) {
           this.Setup();
         }

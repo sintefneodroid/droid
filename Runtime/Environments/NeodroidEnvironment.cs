@@ -9,7 +9,7 @@ using droid.Runtime.Utilities.Misc;
 using UnityEditor;
 using UnityEngine;
 
-namespace droid.Runtime.Environments {
+namespace droid.Runtime.Environments.Experimental {
   /// <inheritdoc cref="PrototypingGameObject" />
   /// <summary>
   /// </summary>

@@ -37,6 +37,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
   /// </summary>
   [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath + "Camera" + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
+  [DisallowMultipleComponent]
   [RequireComponent(typeof(UnityEngine.Camera))]
   public class CameraSensor : Sensor,
                               IHasByteArray {

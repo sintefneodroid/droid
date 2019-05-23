@@ -138,7 +138,7 @@ namespace droid.Runtime.Prototyping.Actors {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent((PrototypingEnvironment)this.ParentEnvironment, this);
+          NeodroidUtilities.RegisterComponent((ActorisedPrototypingEnvironment)this.ParentEnvironment, this);
     }
 
     /// <inheritdoc />
@@ -193,7 +193,7 @@ namespace droid.Runtime.Prototyping.Actors {
     /// </summary>
     [Header("References", order = 99)]
     [SerializeField]
-    IPrototypingEnvironment _environment;
+    IActorisedPrototypingEnvironment _environment;
 
     /// <summary>
     /// </summary>
@@ -234,7 +234,7 @@ namespace droid.Runtime.Prototyping.Actors {
 
     /// <summary>
     /// </summary>
-    public IPrototypingEnvironment ParentEnvironment {
+    public IActorisedPrototypingEnvironment ParentEnvironment {
       get { return this._environment; }
       set { this._environment = value; }
     }
