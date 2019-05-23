@@ -1,5 +1,4 @@
 ﻿using droid.Runtime.Utilities.Misc.SearchableEnum;
-using JetBrains.Annotations;
 using UnityEngine;
 
 namespace droid.Runtime.InternalReactions {

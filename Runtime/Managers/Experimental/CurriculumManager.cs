@@ -1,6 +1,5 @@
 ﻿using System;
 using droid.Runtime.Utilities.Misc.Drawing;
-using droid.Runtime.Utilities.ScriptableObjects;
 using droid.Runtime.Utilities.ScriptableObjects.Unused;
 using UnityEngine;
 

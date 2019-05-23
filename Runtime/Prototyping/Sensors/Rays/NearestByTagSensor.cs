@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Utilities.Sampling;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
   public class NearestByTagSensor : Sensor,
                                     IHasEulerTransform {
     [SerializeField] Vector3 _direction;
-    [SerializeField] Space3 _direction_space = new Space3(10);
+    [SerializeField] Space3 _direction_space = new Space3(new DistributionSampler(),10);
 
     [Header("Specific", order = 102)]
     [SerializeField]
@@ -20,9 +21,9 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
     [SerializeField]
     Vector3 _position;
 
-    [SerializeField] Space3 _position_space = new Space3(10);
+    [SerializeField] Space3 _position_space = new Space3(new DistributionSampler(),10);
     [SerializeField] Vector3 _rotation;
-    [SerializeField] Space3 _rotation_space = new Space3(10);
+    [SerializeField] Space3 _rotation_space = new Space3(new DistributionSampler(),10);
     [SerializeField] string _tag = "";
 
     public override string PrototypingTypeName { get { return "Nearest" + this._tag; } }

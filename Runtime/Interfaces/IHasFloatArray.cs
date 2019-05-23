@@ -1,5 +1,4 @@
 ﻿using droid.Runtime.Utilities.Structs;
-using UnityEngine;
 
 namespace droid.Runtime.Interfaces {
   /// <summary>

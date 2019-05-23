@@ -6,7 +6,7 @@
 
 using UnityEngine;
 
-namespace Common.Tools {
+namespace droid.Runtime.Utilities.Misc.Procedural {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

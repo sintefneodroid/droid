@@ -1,7 +1,9 @@
-﻿namespace droid.Runtime.Prototyping.Evaluation {
-  public class AvoidCollisionEvaluation : ObjectiveFunction {
-    public override float InternalEvaluate() { throw new System.NotImplementedException(); }
+﻿using System;
 
-    public override void InternalReset() { throw new System.NotImplementedException(); }
+namespace droid.Runtime.Prototyping.Evaluation {
+  public class AvoidCollisionEvaluation : ObjectiveFunction {
+    public override float InternalEvaluate() { throw new NotImplementedException(); }
+
+    public override void InternalReset() { throw new NotImplementedException(); }
   }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace droid.Runtime.Utilities.BoundingBoxes.Experimental.Unused {
-  public  static partial class BoundingBoxUtilities {
+  public  static class BoundingBoxUtilities {
 
     /// <summary>
     ///
@@ -326,10 +326,10 @@ namespace droid.Runtime.Utilities.BoundingBoxes.Experimental.Unused {
       cam.fieldOfView = fov;
       if (GeometryUtility.TestPlanesAABB(planes, mesh.bounds)) {
         return true;
-      } else {
-        Debug.Log("Culling :" + trans.name);
-        return false;
       }
+
+      Debug.Log("Culling :" + trans.name);
+      return false;
     }
 
     /// <summary>

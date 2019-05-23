@@ -1,7 +1,8 @@
-#if UNITY_EDITOR
+
 using droid.Runtime.Utilities.Misc;
-using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
 
 namespace droid.Editor.Utilities.NoteUtilities {
   /// <inheritdoc />

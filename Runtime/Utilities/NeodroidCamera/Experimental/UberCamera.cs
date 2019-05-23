@@ -163,7 +163,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Experimental {
                                                 new Vector3(1.0f, 1.0f, 0.0f),
                                                 new Vector3(-1.0f, 1.0f, 0.0f),
                                                 new Vector3(-1.0f, -1.0f, 0.0f),
-                                                new Vector3(1.0f, -1.0f, 0.0f),
+                                                new Vector3(1.0f, -1.0f, 0.0f)
                                             },
                            triangles = new[] {0, 1, 2, 2, 3, 0}
                        };

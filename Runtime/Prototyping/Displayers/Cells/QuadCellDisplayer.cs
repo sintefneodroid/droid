@@ -1,7 +1,5 @@
 using System;
-using System.Linq;
 using droid.Runtime.Utilities.Misc.Drawing;
-using droid.Runtime.Utilities.Plotting;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 

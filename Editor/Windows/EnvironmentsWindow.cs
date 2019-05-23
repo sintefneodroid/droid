@@ -1,26 +1,25 @@
-﻿#if UNITY_EDITOR
+﻿
 using System;
 using System.Collections.Generic;
 using droid.Editor.Utilities;
-using droid.Runtime;
 using droid.Runtime.Environments;
 using droid.Runtime.Interfaces;
 using droid.Runtime.InternalReactions;
 using droid.Runtime.Managers;
 using droid.Runtime.Prototyping.Actors;
+using droid.Runtime.Prototyping.Actuators;
 using droid.Runtime.Prototyping.Configurables;
 using droid.Runtime.Prototyping.Displayers;
 using droid.Runtime.Prototyping.Evaluation;
 using droid.Runtime.Prototyping.Internals;
-using droid.Runtime.Prototyping.Actuators;
 using droid.Runtime.Prototyping.Sensors;
 using droid.Runtime.Utilities.Enums;
 using droid.Runtime.Utilities.GameObjects;
 using droid.Runtime.Utilities.Misc;
-using droid.Runtime.Utilities.ScriptableObjects;
 using droid.Runtime.Utilities.Structs;
-using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
 
 namespace droid.Editor.Windows {
   /// <inheritdoc />

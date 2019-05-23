@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Utilities.Sampling;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rigidbody {
   [RequireComponent(typeof(UnityEngine.Rigidbody))]
   public class RigidbodySensor : Sensor,
                                  IHasRigidbody {
-    [SerializeField] Space3 _angular_space = new Space3(10);
+    [SerializeField] Space3 _angular_space = new Space3(new DistributionSampler(),10);
 
     [Header("Observation", order = 100)]
     [SerializeField]
@@ -29,7 +30,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rigidbody {
     UnityEngine.Rigidbody _rigidbody = null;
 
     [SerializeField] Vector3 _velocity = Vector3.zero;
-    [SerializeField] Space3 _velocity_space = new Space3(10);
+    [SerializeField] Space3 _velocity_space = new Space3(new DistributionSampler(),10);
 
     /// <inheritdoc />
     /// <summary>

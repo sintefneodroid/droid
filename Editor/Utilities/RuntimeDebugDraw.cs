@@ -1,12 +1,11 @@
-﻿#if UNITY_EDITOR
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using Conditional = System.Diagnostics.ConditionalAttribute;
 using Object = UnityEngine.Object;
 
-namespace Common.Drawing {
+namespace droid.Editor.Utilities {
 /*
 
 Important Notes:
@@ -274,7 +273,7 @@ Important Notes:
             //	relying on a builtin shader, but it shouldn't change that much.
             this._Mat = new Material(Shader.Find("Hidden/Internal-Colored"));
             this._Mat.SetInt(
-                "_ZTest",
+                _z_test,
                 depth_test
                     ? 4 // LEqual
                     : 0 // Always
@@ -459,6 +458,7 @@ Important Notes:
         List<DrawTextEntry> _draw_text_entries;
         List<AttachTextEntry> _attach_text_entries;
         GUIStyle _text_style;
+        static readonly Int32 _z_test = Shader.PropertyToID("_ZTest");
 
         public void RegisterDrawText(
             Vector3 anchor,
@@ -668,4 +668,3 @@ Important Notes:
     }
   }
 }
-#endif

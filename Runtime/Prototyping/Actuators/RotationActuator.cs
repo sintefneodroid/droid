@@ -1,7 +1,6 @@
 ﻿using droid.Runtime.Interfaces;
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Utilities.Misc;
-using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Actuators {
@@ -37,7 +36,7 @@ namespace droid.Runtime.Prototyping.Actuators {
       this._rot_x = this.Identifier + "RotX";
       this._rot_y = this.Identifier + "RotY";
       this._rot_z = this.Identifier + "RotZ";
-      this._rot_z = this.Identifier + "RotW";
+      this._rot_w = this.Identifier + "RotW";
     }
 
     /// <inheritdoc />

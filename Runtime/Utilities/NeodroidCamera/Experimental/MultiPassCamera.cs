@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using droid.Runtime.Utilities.NeodroidCamera.Synthesis;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using Object = UnityEngine.Object;
@@ -57,7 +58,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Experimental {
                                                          new Vector3(1.0f, 1.0f, 0.0f),
                                                          new Vector3(-1.0f, 1.0f, 0.0f),
                                                          new Vector3(-1.0f, -1.0f, 0.0f),
-                                                         new Vector3(1.0f, -1.0f, 0.0f),
+                                                         new Vector3(1.0f, -1.0f, 0.0f)
                                                      },
                            triangles = new[] {0, 1, 2, 2, 3, 0}
                        };
@@ -85,7 +86,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Experimental {
                                                                                                                 = false,
                                                                                                             _RenderTexture
                                                                                                                 = this
-                                                                                                                    .depthRenderTexture,
+                                                                                                                    .depthRenderTexture
 
                                                                                                         },
                                          new CapturePassMaterial(CameraEvent
@@ -279,7 +280,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Experimental {
           return;
         }
         #if UNITY_EDITOR
-        if (UnityEditor.EditorApplication.isPlaying) {
+        if (EditorApplication.isPlaying) {
           Object.Destroy(obj);
         } else {
           Object.DestroyImmediate(obj, allowDestroyingAssets);
@@ -293,7 +294,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Experimental {
       public static bool IsPlaying()
       {
         #if UNITY_EDITOR
-        return UnityEditor.EditorApplication.isPlaying;
+        return EditorApplication.isPlaying;
         #else
             return true;
         #endif

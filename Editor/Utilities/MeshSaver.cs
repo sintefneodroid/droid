@@ -1,11 +1,19 @@
+
+using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
-using UnityEngine;
 
 namespace droid.Editor.Utilities {
+  /// <summary>
+  ///
+  /// </summary>
   public static class MeshSaverEditor {
     const string _menu_path = "CONTEXT" + "/MeshFilter" + "/SaveMesh";
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="menu_command"></param>
     [MenuItem(_menu_path)]
     public static void SaveMeshInPlace(MenuCommand menu_command) {
       var mf = menu_command.context as MeshFilter;
@@ -16,6 +24,10 @@ namespace droid.Editor.Utilities {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="menu_command"></param>
     [MenuItem(_menu_path + "AsANewInstance")]
     public static void SaveMeshNewInstanceItem(MenuCommand menu_command) {
       var mf = menu_command.context as MeshFilter;

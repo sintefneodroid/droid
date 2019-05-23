@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Managers;
 using droid.Runtime.Utilities.Enums;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
-using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
-using UnityEngine.Rendering;
 
 namespace droid.Runtime.Prototyping.Sensors.Camera {
   [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
@@ -160,9 +157,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
           //case GraphicsFormat.B8G8R8A8_UNorm:
           //case GraphicsFormat.R16G16B16A16_SFloat:
           default:
-
             channels = 4;
-
             break;
         }
 

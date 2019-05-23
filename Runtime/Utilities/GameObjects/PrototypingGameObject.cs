@@ -2,7 +2,6 @@
 using droid.Runtime.Interfaces;
 using UnityEditor;
 using UnityEngine;
-using Object = System.Object;
 
 namespace droid.Runtime.Utilities.GameObjects {
   /// <inheritdoc cref="IRegisterable" />

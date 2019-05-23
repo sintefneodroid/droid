@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Utilities.Sampling;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rigidbody {
   public class AngularVelocitySensor : Sensor,
                                        IHasTriple {
     [SerializeField] Vector3 _angular_velocity;
-    [SerializeField] Space3 _angular_velocity_space = new Space3(10);
+    [SerializeField] Space3 _angular_velocity_space = new Space3(new DistributionSampler(),10);
 
     [SerializeField] UnityEngine.Rigidbody _rigidbody;
 

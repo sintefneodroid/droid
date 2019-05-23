@@ -59,7 +59,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Experimental.Camera360 {
           this.cubemapLeftEye.ConvertToEquirect(this.cubemapEquirect, Camera.MonoOrStereoscopicEye.Left);
           this.cubemapRightEye.ConvertToEquirect(this.cubemapEquirect, Camera.MonoOrStereoscopicEye.Right);
         } else {
-          this.cubemapLeftEye.ConvertToEquirect(this.cubemapEquirect, Camera.MonoOrStereoscopicEye.Mono);
+          this.cubemapLeftEye.ConvertToEquirect(this.cubemapEquirect);
         }
       }
     }

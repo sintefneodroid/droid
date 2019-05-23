@@ -3,7 +3,6 @@ using droid.Runtime.Environments;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities.GameObjects;
 using droid.Runtime.Utilities.Misc;
-using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Internals {
   /// <inheritdoc cref="PrototypingGameObject" />

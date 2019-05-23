@@ -1,13 +1,12 @@
-﻿#if UNITY_EDITOR
+﻿
 using System.IO;
-using System.Linq;
 using droid.Runtime.Managers;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using File = UnityEngine.Windows.File;
+#if UNITY_EDITOR
+using System.Linq;
 
 namespace droid.Editor.Utilities {
   /// <inheritdoc />

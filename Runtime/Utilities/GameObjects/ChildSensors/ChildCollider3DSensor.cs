@@ -20,5 +20,5 @@ namespace droid.Runtime.Utilities.GameObjects.ChildSensors {
     void OnCollisionExit(Collision collision) {
       this._on_collision_exit_delegate?.Invoke(this.gameObject, collision);
     }
-  };
+  }
 }

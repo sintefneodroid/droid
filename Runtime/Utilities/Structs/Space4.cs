@@ -1,8 +1,7 @@
 ﻿using System;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Utilities.Sampling;
 using UnityEngine;
-using Object = System.Object;
-using Random = UnityEngine.Random;
 
 namespace droid.Runtime.Utilities.Structs {
   /// <summary>
@@ -20,6 +19,21 @@ namespace droid.Runtime.Utilities.Structs {
     /// <summary>
     ///
     /// </summary>
+    [SerializeField] DistributionSampler _distribution_sampler;
+
+    public DistributionSampler DistributionSampler {
+      get {
+
+        return this._distribution_sampler;
+      }
+      set {
+        this._distribution_sampler = value;
+      }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
     public bool IsNormalised { get { return this.normalised; } set { this.normalised = value; } }
 
     public Vector4 _Min_Values;
@@ -31,6 +45,7 @@ namespace droid.Runtime.Utilities.Structs {
       this._decimal_granularity = decimal_granularity;
       this._Min_Values = Vector4.negativeInfinity;
       this._Max_Values = Vector4.positiveInfinity;
+      this._distribution_sampler = new DistributionSampler();
     }
 
     public Vector4 Span { get { return this._Max_Values - this._Min_Values; } }
@@ -76,10 +91,10 @@ namespace droid.Runtime.Utilities.Structs {
     /// </summary>
     /// <returns></returns>
     public Vector4 Sample() {
-      var x = Random.Range(this._Min_Values.x, this._Max_Values.x);
-      var y = Random.Range(this._Min_Values.y, this._Max_Values.y);
-      var z = Random.Range(this._Min_Values.z, this._Max_Values.z);
-      var w = Random.Range(this._Min_Values.w, this._Max_Values.w);
+      var x = this.DistributionSampler.Range(this._Min_Values.x, this._Max_Values.x);
+      var y = this.DistributionSampler.Range(this._Min_Values.y, this._Max_Values.y);
+      var z = this.DistributionSampler.Range(this._Min_Values.z, this._Max_Values.z);
+      var w = this.DistributionSampler.Range(this._Min_Values.w, this._Max_Values.w);
 
       return new Vector4(x, y, z, w);
     }

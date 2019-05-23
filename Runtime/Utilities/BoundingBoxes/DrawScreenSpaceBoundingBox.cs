@@ -1,9 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using droid.Runtime.Utilities.BoundingBoxes.Experimental;
 using UnityEngine;
-using Object = System.Object;
 
 namespace droid.Runtime.Utilities.BoundingBoxes {
   /// <inheritdoc />
@@ -66,7 +63,7 @@ namespace droid.Runtime.Utilities.BoundingBoxes {
       this.Compute();
       var i = 0;
       foreach (var rect in this._rects) {
-        var text = $"";
+        var text = "";
         if (this._draw_label) {
           text += $"{this._names[i]}";
         }

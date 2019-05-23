@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 using UnityEngine.UI;

@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Rendering;
-using Object = System.Object;
 
 namespace droid.Runtime.Utilities.NeodroidCamera.Synthesis {
   /// <summary>
@@ -74,7 +71,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Synthesis {
                                                                                   _NeedsRescale = true,
                                                                                   _ReplacementMode =
                                                                                       ReplacementModes.Flow_
-                                                                              },
+                                                                              }
                                                           };
 
     /// <summary>

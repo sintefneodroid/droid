@@ -1,7 +1,6 @@
 ﻿using System;
 using droid.Runtime.Utilities.Misc;
 using UnityEngine;
-using Object = System.Object;
 
 namespace droid.Runtime.Utilities.NeodroidCamera
 {

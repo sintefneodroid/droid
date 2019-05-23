@@ -1,5 +1,4 @@
-﻿using droid.Runtime.Environments;
-using droid.Runtime.Interfaces;
+﻿using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
@@ -66,13 +65,13 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, r_id);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this.r_id);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, g_id);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this.g_id);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, b_id);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this.b_id);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, a_id);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this.a_id);
     }
 
     /// <inheritdoc />
@@ -83,10 +82,10 @@ namespace droid.Runtime.Prototyping.Configurables {
         return;
       }
 
-      this.ParentEnvironment.UnRegister(this, r_id);
+      this.ParentEnvironment.UnRegister(this, this.r_id);
       this.ParentEnvironment.UnRegister(this, this.b_id);
-      this.ParentEnvironment.UnRegister(this, g_id);
-      this.ParentEnvironment.UnRegister(this, a_id);
+      this.ParentEnvironment.UnRegister(this, this.g_id);
+      this.ParentEnvironment.UnRegister(this, this.a_id);
     }
 
     /// <summary>
@@ -167,7 +166,7 @@ namespace droid.Runtime.Prototyping.Configurables {
                        new Configuration(this.r_id, v.x),
                        new Configuration(this.g_id, v.y),
                        new Configuration(this.b_id, v.z),
-                       new Configuration(this.a_id,v.w),
+                       new Configuration(this.a_id,v.w)
                    };
     }
   }

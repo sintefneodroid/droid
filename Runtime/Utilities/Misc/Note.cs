@@ -1,5 +1,6 @@
-﻿#if UNITY_EDITOR
+﻿
 using System;
+#if UNITY_EDITOR
 using UnityEngine;
 
 namespace droid.Runtime.Utilities.Misc {

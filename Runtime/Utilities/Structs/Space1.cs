@@ -1,8 +1,7 @@
 ﻿using System;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Utilities.Sampling;
 using UnityEngine;
-using Object = System.Object;
-using Random = UnityEngine.Random;
 
 namespace droid.Runtime.Utilities.Structs {
   /// <inheritdoc cref="ISpace" />
@@ -27,27 +26,42 @@ namespace droid.Runtime.Utilities.Structs {
 
     [SerializeField] bool normalised;
 
+    /// <summary>
+    ///
+    /// </summary>
+    [SerializeField] DistributionSampler _distribution_sampler;
+
+    public DistributionSampler DistributionSampler {
+      get {
+
+
+        return this._distribution_sampler;
+      }
+      set {
+        this._distribution_sampler = value;
+      }
+    }
+
     public Space1(int decimal_granularity = 2):this() {
       this._Decimal_Granularity = decimal_granularity;
       this._Min_Value = -1f; //float.NegativeInfinity;
       this._Max_Value = 1f; //float.PositiveInfinity;
+
+        this._distribution_sampler = new DistributionSampler();
     }
 
     /// <summary>
     ///
     /// </summary>
     /// <returns></returns>
-    public float RandomValue() {
-      var x = Random.Range(this._Min_Value, this._Max_Value);
+    public float Sample() {
+
+
+      var x = this.DistributionSampler.Range(this._Min_Value, this._Max_Value);
 
       return x;
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <returns></returns>
-    public float Sample() { return this.RandomValue(); }
 
     /// <summary>
     ///
@@ -75,7 +89,7 @@ namespace droid.Runtime.Utilities.Structs {
     public float Round(float v) { return (float)Math.Round(v, this._Decimal_Granularity); }
 
     public static Space1 TwentyEighty {
-      get { return new Space1(1) {_Min_Value = 0.2f, _Max_Value = 0.8f}; }
+      get { return new Space1( 1) {_Min_Value = 0.2f, _Max_Value = 0.8f}; }
     }
 
 

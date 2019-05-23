@@ -1,5 +1,6 @@
-﻿#if UNITY_2019_1_OR_NEWER
+﻿
 using System;
+#if UNITY_2019_1_OR_NEWER
 using UnityEngine;
 
 namespace droid.Runtime.Utilities.Plotting {
@@ -33,7 +34,7 @@ namespace droid.Runtime.Utilities.Plotting {
                                            this._value_range.extents.y + this._value_range.center.y));
 
       this._material.SetPass(0);
-      Graphics.DrawProceduralNow(MeshTopology.LineStrip, 512, 1);
+      Graphics.DrawProceduralNow(MeshTopology.LineStrip, 512);
     }
   }
 }

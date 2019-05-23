@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace droid.Runtime.Utilities.Noise {
+namespace droid.Runtime.Utilities.Sampling {
   public class SelfDestruct : MonoBehaviour {
     float _spawn_time;
     public float LifeTime { get; set; } = 10f;

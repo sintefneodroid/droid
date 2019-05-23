@@ -1,10 +1,9 @@
-﻿#if UNITY_EDITOR
-using droid.Runtime;
-using droid.Runtime.Utilities.NeodroidCamera.Segmentation;
+﻿
 using droid.Runtime.Utilities.NeodroidCamera.Segmentation.Obsolete;
 using droid.Runtime.Utilities.Structs;
-using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
 
 namespace droid.Editor.Windows {
   public class SegmentationWindow : EditorWindow {

@@ -4,8 +4,6 @@ using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Messaging.Messages.Displayables;
 using droid.Runtime.Utilities.Structs;
-using Neodroid.FBS;
-using Neodroid.FBS.Reaction;
 using UnityEngine;
 
 namespace droid.Runtime.Messaging.FBS {

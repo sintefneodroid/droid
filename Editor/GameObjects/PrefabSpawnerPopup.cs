@@ -1,6 +1,7 @@
+
+using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
-using UnityEngine;
 
 namespace droid.Editor.GameObjects {
   /// <inheritdoc />

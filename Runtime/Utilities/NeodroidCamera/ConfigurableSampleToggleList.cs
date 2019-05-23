@@ -20,7 +20,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera {
         {
           var button = Instantiate(this._sample_toggle_button_prefab, this.transform);
           button.isOn = configurable.SampleRandom;
-          button.onValueChanged.AddListener((value) => this.Set(configurable, value));
+          button.onValueChanged.AddListener(value => this.Set(configurable, value));
           var text = button.GetComponentInChildren<Text>();
           button.name = configurable.Identifier;
           text.text = configurable.Identifier;

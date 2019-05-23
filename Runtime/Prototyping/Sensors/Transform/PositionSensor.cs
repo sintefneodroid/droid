@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Utilities.Sampling;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
@@ -19,7 +20,7 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     [SerializeField]
     Vector3 _position;
 
-    [SerializeField] Space3 _position_space = new Space3(10);
+    [SerializeField] Space3 _position_space = new Space3(new DistributionSampler(),10);
 
     [Header("Specific", order = 102)]
     [SerializeField]

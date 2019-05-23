@@ -1,8 +1,9 @@
-﻿#if UNITY_EDITOR
+﻿
 using droid.Runtime.Environments;
 using droid.Runtime.Managers;
 using droid.Runtime.Prototyping.Actors;
 using UnityEditor;
+#if UNITY_EDITOR
 using UnityEngine;
 
 namespace droid.Editor.GameObjects {

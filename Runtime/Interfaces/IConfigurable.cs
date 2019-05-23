@@ -1,4 +1,3 @@
-using System;
 using droid.Runtime.Messaging.Messages;
 
 namespace droid.Runtime.Interfaces {

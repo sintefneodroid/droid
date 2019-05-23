@@ -1,8 +1,7 @@
 ﻿using System;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Utilities.Sampling;
 using UnityEngine;
-using Object = System.Object;
-using Random = UnityEngine.Random;
 
 namespace droid.Runtime.Utilities.Structs {
   /// <summary>
@@ -18,6 +17,7 @@ namespace droid.Runtime.Utilities.Structs {
       set { this._decimal_granularity = value; }
     }
 
+
     /// <summary>
     ///
     /// </summary>
@@ -31,10 +31,27 @@ namespace droid.Runtime.Utilities.Structs {
     public int _decimal_granularity;
     [SerializeField] bool normalised;
 
+    /// <summary>
+    ///
+    /// </summary>
+    [SerializeField] DistributionSampler _distribution_sampler;
+
+    public DistributionSampler DistributionSampler {
+      get {
+
+        return this._distribution_sampler;
+      }
+      set {
+        this._distribution_sampler = value;
+      }
+    }
+
+
     public Space2(int decimal_granularity = 2) : this() {
       this._Min_Values = Vector2.one * -100f; //Vector2.negativeInfinity;
       this._Max_Values = Vector2.one * 100f; //Vector2.positiveInfinity;
       this._decimal_granularity = decimal_granularity;
+      this._distribution_sampler = new DistributionSampler();
     }
 
     /// <summary>
@@ -65,8 +82,8 @@ namespace droid.Runtime.Utilities.Structs {
     /// </summary>
     /// <returns></returns>
     public Vector2 Sample() {
-      var x = Random.Range(this._Min_Values.x, this._Max_Values.x);
-      var y = Random.Range(this._Min_Values.y, this._Max_Values.y);
+      var x = this.DistributionSampler.Range(this._Min_Values.x, this._Max_Values.x);
+      var y = this.DistributionSampler.Range(this._Min_Values.y, this._Max_Values.y);
 
       return new Vector3(x, y);
     }

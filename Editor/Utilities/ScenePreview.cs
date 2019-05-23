@@ -1,9 +1,10 @@
-﻿#if UNITY_EDITOR
-using System.Linq;
+﻿
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Windows;
+#if UNITY_EDITOR
+using System.Linq;
 
 namespace droid.Editor.Utilities {
   /// <inheritdoc />

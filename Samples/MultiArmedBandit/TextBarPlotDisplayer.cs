@@ -2,7 +2,6 @@
 using droid.Runtime.Prototyping.Displayers;
 using droid.Runtime.Prototyping.Displayers.Canvas;
 using droid.Runtime.Prototyping.Internals;
-using JetBrains.Annotations;
 using UnityEngine;
 
 namespace droid.Samples.MultiArmedBandit {

@@ -1,17 +1,17 @@
 ﻿
-using droid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
-#if UNITY_EDITOR
-using droid.Runtime.Environments;
+
 using droid.Runtime.Managers;
 using droid.Runtime.Prototyping.Evaluation;
 using droid.Runtime.Utilities.EventRecipients;
-using JetBrains.Annotations;
+using droid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using UnityEditor.Events;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace droid.Runtime.Utilities.GameObjects.StatusDisplayer {
+using droid.Runtime.Environments;
+
+namespace droid.Editor.Utilities.StatusDisplayer {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
@@ -156,4 +156,3 @@ namespace droid.Runtime.Utilities.GameObjects.StatusDisplayer {
     }
   }
 }
-#endif

@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using droid.Runtime.Utilities.NeodroidCamera.Synthesis;
-using droid.Runtime.Utilities.Structs;
 using UnityEngine;
-using UnityEngine.Serialization;
-using Object = System.Object;
-using Random = UnityEngine.Random;
 
 namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
   /// <inheritdoc />
@@ -59,8 +55,7 @@ namespace droid.Runtime.Utilities.NeodroidCamera.Segmentation {
                                                                                                   _Name =
                                                                                                       "_material_id",
                                                                                                   _ReplacementMode
-                                                                                                      = SynthesisUtilities
-                                                                                                        .ReplacementModes
+                                                                                                      = SynthesisUtilities.ReplacementModes
                                                                                                         .Material_id_,
                                                                                                   _SupportsAntialiasing
                                                                                                       = false

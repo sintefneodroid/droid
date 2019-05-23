@@ -1,11 +1,10 @@
 ﻿using System;
-using droid.Runtime.Environments;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities.Sampling;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace droid.Runtime.Prototyping.Configurables
 {
@@ -39,7 +38,7 @@ namespace droid.Runtime.Prototyping.Configurables
     /// </summary>
     string _w;
 
-    [SerializeField] Space3 _euler_space = new Space3(2)
+    [SerializeField] Space3 _euler_space = new Space3(new DistributionSampler(),2)
     {
       _Min_Values = Vector3.zero,
       _Max_Values = new Vector3(360f, 360f, 360f)

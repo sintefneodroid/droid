@@ -1,5 +1,6 @@
-﻿#if UNITY_EDITOR
+﻿
 using System;
+#if UNITY_EDITOR
 using UnityEditor;
 
 namespace droid.Editor.Windows {

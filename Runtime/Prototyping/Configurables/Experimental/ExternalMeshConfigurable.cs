@@ -1,5 +1,4 @@
-﻿using droid.Runtime.Environments;
-using droid.Runtime.Interfaces;
+﻿using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
@@ -30,9 +29,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._texture_str);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._texture_str);
     }
 
     /// <inheritdoc />

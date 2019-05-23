@@ -20,7 +20,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
     [SerializeField]
     float[] _obs_array;
 
-    [SerializeField] Space1 _space = new Space1() {_Min_Value = 0, _Max_Value = 5f};
+    [SerializeField] Space1 _space = new Space1 {_Min_Value = 0, _Max_Value = 5f};
 
     /// <summary>
     /// </summary>

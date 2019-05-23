@@ -11,7 +11,6 @@ using droid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Misc.Extensions;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Object = System.Object;
 
 namespace droid.Runtime.Environments {
@@ -1063,8 +1062,7 @@ namespace droid.Runtime.Environments {
 #else
       ResetEnvironmentBodies(ref this._tracked_rigid_bodies,
       ref this._reset_velocities,
-        ref this._reset_angulars,
-      false);
+        ref this._reset_angulars);
 #endif
 
       this.ResetRegisteredObjects();

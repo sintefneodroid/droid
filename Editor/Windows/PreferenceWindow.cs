@@ -1,8 +1,8 @@
-﻿#if UNITY_EDITOR
-using System.Linq;
-using droid.Runtime;
+﻿
 using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR
+using System.Linq;
 
 namespace droid.Editor.Windows {
   /// <inheritdoc />
@@ -229,37 +229,37 @@ namespace droid.Editor.Windows {
     public static void AddDebugDefineSymbol() {
       AddDefineSymbols(_Debug_Symbols);
 
-      Debug.LogWarning($"Neodroid Debugging enabled");
+      Debug.LogWarning("Neodroid Debugging enabled");
     }
 
     public static void RemoveDebugDefineSymbols() {
       RemoveDefineSymbols(_Debug_Symbols);
 
-      Debug.LogWarning($"Neodroid Debugging disabled");
+      Debug.LogWarning("Neodroid Debugging disabled");
     }
 
     public static void AddGithubDefineSymbols() {
       AddDefineSymbols(_Github_Symbols);
 
-      Debug.LogWarning($"Github Extension enabled");
+      Debug.LogWarning("Github Extension enabled");
     }
 
     public static void RemoveGithubDefineSymbols() {
       RemoveDefineSymbols(_Github_Symbols);
 
-      Debug.LogWarning($"Github Extension disabled");
+      Debug.LogWarning("Github Extension disabled");
     }
 
     public static void AddImportedAssetDefineSymbols() {
       AddDefineSymbols(_ImportedAsset_Symbols);
 
-      Debug.LogWarning($"Neodroid is assumed to be an imported asset");
+      Debug.LogWarning("Neodroid is assumed to be an imported asset");
     }
 
     public static void RemoveImportedAssetDefineSymbols() {
       RemoveDefineSymbols(_ImportedAsset_Symbols);
 
-      Debug.LogWarning($"Neodroid is assumed to be an installed package");
+      Debug.LogWarning("Neodroid is assumed to be an installed package");
     }
 
     public static void AddDefineSymbols(string[] symbols) {
