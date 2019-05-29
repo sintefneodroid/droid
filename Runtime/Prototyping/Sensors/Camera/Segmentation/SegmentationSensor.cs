@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using droid.Runtime.Utilities.NeodroidCamera.Segmentation;
+using droid.Runtime.Utilities.GameObjects.NeodroidCamera.Segmentation;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Camera.Segmentation {

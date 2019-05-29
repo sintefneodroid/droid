@@ -1,7 +1,7 @@
 ﻿using System;
 using droid.Runtime.Interfaces;
-using droid.Runtime.Utilities.BoundingBoxes;
 using droid.Runtime.Utilities.Enums;
+using droid.Runtime.Utilities.GameObjects.BoundingBoxes;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 

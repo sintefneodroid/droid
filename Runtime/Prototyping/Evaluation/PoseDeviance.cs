@@ -1,4 +1,4 @@
-﻿using droid.Runtime.Utilities.BoundingBoxes;
+﻿using droid.Runtime.Utilities.GameObjects.BoundingBoxes;
 using droid.Runtime.Utilities.GameObjects.ChildSensors;
 using droid.Runtime.Utilities.Misc.Extensions;
 using UnityEngine;
@@ -16,7 +16,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
     /// </summary>
     /// <returns></returns>
     public override float InternalEvaluate() {
-      var reward = this._default_reward;
+      var signal = this._default_reward;
 
       /*if (this._playable_area != null && !this._playable_area.Bounds.Intersects(this._actor_transform.ActorBounds)) {
         #if NEODROID_DEBUG
@@ -39,14 +39,19 @@ namespace droid.Runtime.Prototyping.Evaluation {
       #endif
 
       if (!this._sparse) {
-        reward += this._distance_nominator / (Mathf.Pow(this._distance_base, distance) + float.Epsilon);
-        reward += this._angle_nominator / (Mathf.Pow(this._angle_base, angle) + float.Epsilon);
+        if (this._inverse) {
+          signal -= Mathf.Pow(this._distance_base, distance);
+          signal -= Mathf.Pow(this._angle_base, angle);
+        } else {
+          signal += this._distance_nominator / (Mathf.Pow(this._distance_base, distance) + float.Epsilon);
+          signal += this._angle_nominator / (Mathf.Pow(this._angle_base, angle) + float.Epsilon);
 
-        if (this._state_full) {
-          if (reward <= this._peak_reward) {
-            reward = 0.0f;
-          } else {
-            this._peak_reward = reward;
+          if (this._state_full) {
+            if (signal <= this._peak_reward) {
+              signal = 0.0f;
+            } else {
+              this._peak_reward = signal;
+            }
           }
         }
       }
@@ -58,7 +63,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
         }
         #endif
 
-        reward += this._solved_reward;
+        signal += this._solved_reward;
         if (this._terminate_on_goal_reached) {
           this.ParentEnvironment?.Terminate("Within range of goal");
         }
@@ -73,12 +78,12 @@ namespace droid.Runtime.Prototyping.Evaluation {
         Debug.Log($"Frame Number: {this.ParentEnvironment?.CurrentFrameNumber}, "
                   + $"Terminated: {this.ParentEnvironment?.Terminated}, "
                   + $"Last Reason: {this.ParentEnvironment?.LastTerminationReason}, "
-                  + $"Internal Feedback Signal: {reward}, "
+                  + $"Internal Feedback Signal: {signal}, "
                   + $"Distance: {distance}");
       }
       #endif
 
-      return reward;
+      return signal;
     }
 
     /// <inheritdoc />
@@ -100,7 +105,8 @@ namespace droid.Runtime.Prototyping.Evaluation {
       if (!this._actor_transform) {
         this._actor_transform = FindObjectOfType<Transform>();
 
-        var remote_sensor = this._actor_transform.GetComponentInChildren<ChildColliderSensor<Collider, Collision>>();
+        var remote_sensor =
+            this._actor_transform.GetComponentInChildren<ChildColliderSensor<Collider, Collision>>();
         if (!remote_sensor) {
           var col = this._actor_transform.GetComponentInChildren<Collider>();
           if (col) {
@@ -117,9 +123,6 @@ namespace droid.Runtime.Prototyping.Evaluation {
 
       if (this._obstructions == null || this._obstructions.Length <= 0) {
         this._obstructions = FindObjectsOfType<Obstruction>();
-
-
-
       }
 
       if (!this._playable_area) {
@@ -147,7 +150,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
     [SerializeField] [Range(0.1f, 10f)] float _angle_nominator = 3f;
 
     [SerializeField] bool _sparse = true;
-
+    [SerializeField] bool _inverse = false;
     [SerializeField] Transform _goal = null;
 
     [SerializeField] Transform _actor_transform = null;
@@ -159,8 +162,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
     [SerializeField] bool _state_full = false;
     [SerializeField] float _goal_reached_radius = 0.01f; // Equivalent to 1 cm.
 
-
-    [SerializeField] bool _terminate_on_obstruction_collision=true; //TODO: implement
+    [SerializeField] bool _terminate_on_obstruction_collision = true; //TODO: implement
     [SerializeField] bool _has_collided = false;
     [SerializeField] bool _terminate_on_goal_reached = true;
 

@@ -5,7 +5,7 @@ using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Prototyping.Actuators;
 using droid.Runtime.Prototyping.Configurables;
 using droid.Runtime.Prototyping.Sensors.Transform;
-using droid.Runtime.Utilities.BoundingBoxes;
+using droid.Runtime.Utilities.GameObjects.BoundingBoxes;
 using UnityEditor;
 #if UNITY_EDITOR
 using UnityEngine;

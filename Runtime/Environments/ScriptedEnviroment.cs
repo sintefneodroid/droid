@@ -4,7 +4,7 @@ using droid.Runtime.Environments.Experimental;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Managers;
 using droid.Runtime.Messaging.Messages;
-using droid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
+using droid.Runtime.Utilities.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Utilities.Misc;
 using UnityEngine;
 using Random = UnityEngine.Random;

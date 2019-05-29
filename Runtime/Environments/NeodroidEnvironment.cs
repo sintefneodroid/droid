@@ -3,13 +3,13 @@ using System.Globalization;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Managers;
 using droid.Runtime.Messaging.Messages;
-using droid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Utilities.GameObjects;
+using droid.Runtime.Utilities.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Utilities.Misc;
 using UnityEditor;
 using UnityEngine;
 
-namespace droid.Runtime.Environments.Experimental {
+namespace droid.Runtime.Environments {
   /// <inheritdoc cref="PrototypingGameObject" />
   /// <summary>
   /// </summary>

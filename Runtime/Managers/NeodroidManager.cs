@@ -6,7 +6,7 @@ using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Utilities.Enums;
-using droid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
+using droid.Runtime.Utilities.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 using Object = System.Object;

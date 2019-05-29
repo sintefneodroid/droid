@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
+using System;
 using System.Globalization;
 using droid.Runtime.Environments;
 using droid.Runtime.Interfaces;
-using droid.Runtime.Prototyping.Evaluation.Terms;
-using droid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Utilities.GameObjects;
+using droid.Runtime.Utilities.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
@@ -15,7 +14,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
   /// </summary>
   [Serializable]
   public abstract class ObjectiveFunction : PrototypingGameObject,
-                                            IHasRegister<Term>,
+                                            //IHasRegister<Term>,
                                             //IResetable,
                                             IObjective {
 
@@ -52,11 +51,13 @@ namespace droid.Runtime.Prototyping.Evaluation {
       set { this._environment = (ActorisedPrototypingEnvironment)value; }
     }
 
+    /*
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <param name="term"></param>
     public virtual void Register(Term term) { this.Register(term, term.Identifier); }
+
 
     /// <inheritdoc />
     /// <summary>
@@ -99,7 +100,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
     /// </summary>
     /// <param name="term"></param>
     public void UnRegister(Term term) { this.UnRegister(term, term.Identifier); }
-
+*/
     /// <summary>
     /// </summary>
     public float SolvedThreshold {
@@ -114,7 +115,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
     public float Evaluate() {
       var signal = 0.0f;
       signal += this.InternalEvaluate();
-      signal += this.EvaluateExtraTerms();
+      //signal += this.EvaluateExtraTerms();
 
       //signal = signal * Mathf.Pow(this._internal_discount_factor, this._environment.CurrentFrameNumber);
 
@@ -157,8 +158,11 @@ namespace droid.Runtime.Prototyping.Evaluation {
     /// <summary>
     /// </summary>
     protected override void Clear() {
+
+      /*
       this._Extra_Term_Weights.Clear();
       this._Extra_Terms_Dict.Clear();
+      */
     }
 
     /// <inheritdoc />
@@ -205,6 +209,8 @@ namespace droid.Runtime.Prototyping.Evaluation {
     /// </summary>
     public abstract void InternalReset();
 
+
+    /*
     /// <summary>
     /// </summary>
     /// <param name="term"></param>
@@ -237,7 +243,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
       #endif
       return extra_terms_output;
     }
-
+*/
     #region Fields
 
     [Header("References", order = 100)]
@@ -247,9 +253,9 @@ namespace droid.Runtime.Prototyping.Evaluation {
 
     //[SerializeField] Term[] _extra_terms_external;
 
-    [SerializeField] protected Dictionary<string, Term> _Extra_Terms_Dict = new Dictionary<string, Term>();
+    //[SerializeField] protected Dictionary<string, Term> _Extra_Terms_Dict = new Dictionary<string, Term>();
 
-    [SerializeField] protected Dictionary<Term, float> _Extra_Term_Weights = new Dictionary<Term, float>();
+    //[SerializeField] protected Dictionary<Term, float> _Extra_Term_Weights = new Dictionary<Term, float>();
 
     [Header("General", order = 101)]
     [SerializeField]

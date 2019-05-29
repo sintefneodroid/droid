@@ -1,5 +1,5 @@
 using System;
-using droid.Runtime.Utilities.BoundingBoxes;
+using droid.Runtime.Utilities.GameObjects.BoundingBoxes;
 using UnityEngine;
 
 namespace droid.Runtime.Interfaces {
