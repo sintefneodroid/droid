@@ -4,12 +4,8 @@ using droid.Runtime.Interfaces;
 using droid.Runtime.Managers;
 using droid.Runtime.Utilities.Enums;
 using droid.Runtime.Utilities.Misc;
-using droid.Runtime.Utilities.Structs;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
-using UnityEngine.Rendering;
-using UnityEngine.SceneManagement;
 
 namespace droid.Runtime.Prototyping.Sensors.Camera {
   [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
@@ -31,10 +27,8 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
 
     [SerializeField] Texture2D _texture = null;
 
-    [SerializeField]ComputeShader _TransformationComputeShader;
-    [SerializeField]CommandBuffer _TransformationCommandBuffer;
-    Material _post_material;
-    float gamma = 2.2f;
+
+    TextureCreationFlags _flags;
 
 
     protected override void PreSetup() {
@@ -61,53 +55,9 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
         this._texture = new Texture2D(target_texture.width,
                                       target_texture.height,
                                       target_texture.graphicsFormat,
-                                      this.flags);
+                                      this._flags);
       }
 
-        /*
-      if(this._TransformationComputeShader){
-
-        this._TransformationCommandBuffer = new CommandBuffer();
-        this._TransformationCommandBuffer.DispatchCompute(this._TransformationComputeShader);
-        this._camera.AddCommandBuffer(CameraEvent.AfterEverything,this._TransformationCommandBuffer);
-
-        int[] minMaxHeight = { floatToIntMultiplier * numOctaves, 0 };
-        ComputeBuffer minMaxBuffer = new ComputeBuffer (minMaxHeight.Length, sizeof (int));
-        minMaxBuffer.SetData (minMaxHeight);
-        heightMapComputeShader.SetBuffer (0, "minMax", minMaxBuffer);
-
-        heightMapComputeShader.SetInt ("mapSize", mapSize);
-        heightMapComputeShader.SetInt ("octaves", numOctaves);
-        heightMapComputeShader.SetFloat ("lacunarity", lacunarity);
-        heightMapComputeShader.SetFloat ("persistence", persistence);
-        heightMapComputeShader.SetFloat ("scaleFactor", initialScale);
-        heightMapComputeShader.SetInt ("floatToIntMultiplier", floatToIntMultiplier);
-
-        heightMapComputeShader.Dispatch (0, map.Length, 1, 1);
-
-        mapBuffer.GetData (map);
-        minMaxBuffer.GetData (minMaxHeight);
-      }
-      */
-
-        _post_material = new Material( Shader.Find("Neodroid/Gamma") );
-
-  }
-
-  // Postprocess the image
-  void OnRenderImage(RenderTexture source, RenderTexture destination) {
-
-    this._post_material.SetFloat("_gamma", gamma);
-    Graphics.Blit(source, destination, _post_material);
-
-  }
-
-  void OnDestroy() {
-
-      /*if (this._TransformationCommandBuffer!=null) {
-        this._camera.RemoveCommandBuffer(CameraEvent.AfterEverything,this._TransformationCommandBuffer);
-      }*/
-      //DestroyImmediate(this._GammaCommandBuffer);
     }
 
     /// <summary>
@@ -128,8 +78,6 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
       }
       #endif
     }
-
-    TextureCreationFlags flags;
 
     /// <summary>
     ///

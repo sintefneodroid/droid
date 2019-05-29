@@ -93,7 +93,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
 
     public int[] Shape {
       get {
-        int channels = 4;
+        var channels = 4;
         if (this.imageFormat == ImageFormat.Jpg_) {
           channels = 3;
         }

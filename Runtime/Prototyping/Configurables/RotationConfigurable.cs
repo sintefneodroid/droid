@@ -126,7 +126,7 @@ namespace droid.Runtime.Prototyping.Configurables
     public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration)
     {
       var rot = this.transform.rotation;
-      if (this._use_environments_space)
+      if (this.ParentEnvironment && this._use_environments_space)
       {
         rot = this.ParentEnvironment.TransformRotation(this.transform.rotation);
       }
@@ -137,16 +137,7 @@ namespace droid.Runtime.Prototyping.Configurables
         v = (int) Math.Round(v, this.QuadSpace.DecimalGranularity);
       }
 
-      if (this.QuadSpace._Min_Values[0].CompareTo(this.QuadSpace._Max_Values[0]) != 0)
-      {
-        //TODO NOT IMPLEMENTED CORRECTLY VelocitySpace should not be index but should check all pairwise values, TripleSpace._Min_Values == TripleSpace._Max_Values
-        if (v < this.QuadSpace._Min_Values[0] || v > this.QuadSpace._Max_Values[0])
-        {
-          Debug.Log(
-            $"Configurable does not accept input{v}, outside allowed range {this.QuadSpace._Min_Values[0]} to {this.QuadSpace._Max_Values[0]}");
-          return; // Do nothing
-        }
-      }
+
 
 #if NEODROID_DEBUG
       if (this.Debugging) {
@@ -158,18 +149,58 @@ namespace droid.Runtime.Prototyping.Configurables
       {
         if (simulator_configuration.ConfigurableName == this._x)
         {
+          if (this.QuadSpace._Min_Values.x.CompareTo(this.QuadSpace._Max_Values.x) != 0)
+          {
+            if (v < this.QuadSpace._Min_Values.x || v > this.QuadSpace._Max_Values.x)
+            {
+              Debug.Log(
+                        $"ConfigurableX does not accept input {v}, outside allowed range "
+                        + $"{this.QuadSpace._Min_Values.x} to {this.QuadSpace._Max_Values.x}");
+              return; // Do nothing
+            }
+          }
           rot.Set(rot.x - v, rot.y, rot.z, rot.w);
         }
         else if (simulator_configuration.ConfigurableName == this._y)
         {
+          if (this.QuadSpace._Min_Values.y.CompareTo(this.QuadSpace._Max_Values.y) != 0)
+          {
+            if (v < this.QuadSpace._Min_Values.y || v > this.QuadSpace._Max_Values.y)
+            {
+              Debug.Log(
+                        $"ConfigurableY does not accept input {v}, outside allowed range "
+                        + $"{this.QuadSpace._Min_Values.y} to {this.QuadSpace._Max_Values.y}");
+              return; // Do nothing
+            }
+          }
           rot.Set(rot.x, rot.y - v, rot.z, rot.w);
         }
         else if (simulator_configuration.ConfigurableName == this._z)
         {
+          if (this.QuadSpace._Min_Values.z.CompareTo(this.QuadSpace._Max_Values.z) != 0)
+          {
+            if (v < this.QuadSpace._Min_Values.z || v > this.QuadSpace._Max_Values.z)
+            {
+              Debug.Log(
+                        $"ConfigurableZ does not accept input {v}, outside allowed range "
+                        + $"{this.QuadSpace._Min_Values.z} to {this.QuadSpace._Max_Values.z}");
+              return; // Do nothing
+            }
+          }
           rot.Set(rot.x, rot.y, rot.z - v, rot.w);
         }
         else if (simulator_configuration.ConfigurableName == this._w)
         {
+          if (this.QuadSpace._Min_Values.w.CompareTo(this.QuadSpace._Max_Values.w) != 0)
+          {
+            if (v < this.QuadSpace._Min_Values.w || v > this.QuadSpace._Max_Values.w)
+            {
+              Debug.Log(
+                        $"ConfigurableW does not accept input {v}, outside allowed range "
+                        + $"{this.QuadSpace._Min_Values.w} to {this.QuadSpace._Max_Values.w}");
+              return; // Do nothing
+            }
+          }
           rot.Set(rot.x, rot.y, rot.z, rot.w - v);
         }
       }
@@ -177,27 +208,67 @@ namespace droid.Runtime.Prototyping.Configurables
       {
         if (simulator_configuration.ConfigurableName == this._x)
         {
+          if (this.QuadSpace._Min_Values.x.CompareTo(this.QuadSpace._Max_Values.x) != 0)
+          {
+            if (v < this.QuadSpace._Min_Values.x || v > this.QuadSpace._Max_Values.x)
+            {
+              Debug.Log(
+                        $"ConfigurableX does not accept input {v}, outside allowed range "
+                        + $"{this.QuadSpace._Min_Values.x} to {this.QuadSpace._Max_Values.x}");
+              return; // Do nothing
+            }
+          }
           rot.Set(v, rot.y, rot.z, rot.w);
           //rot.x = v;
         }
         else if (simulator_configuration.ConfigurableName == this._y)
         {
+          if (this.QuadSpace._Min_Values.y.CompareTo(this.QuadSpace._Max_Values.y) != 0)
+          {
+            if (v < this.QuadSpace._Min_Values.y || v > this.QuadSpace._Max_Values.y)
+            {
+              Debug.Log(
+                        $"ConfigurableY does not accept input {v}, outside allowed range "
+                        + $"{this.QuadSpace._Min_Values.y} to {this.QuadSpace._Max_Values.y}");
+              return; // Do nothing
+            }
+          }
           rot.Set(rot.x, v, rot.z, rot.w);
           //rot.y = v;
         }
         else if (simulator_configuration.ConfigurableName == this._z)
         {
+          if (this.QuadSpace._Min_Values.z.CompareTo(this.QuadSpace._Max_Values.z) != 0)
+          {
+            if (v < this.QuadSpace._Min_Values.z || v > this.QuadSpace._Max_Values.z)
+            {
+              Debug.Log(
+                        $"ConfigurableZ does not accept input {v}, outside allowed range "
+                        + $"{this.QuadSpace._Min_Values.z} to {this.QuadSpace._Max_Values.z}");
+              return; // Do nothing
+            }
+          }
           rot.Set(rot.x, rot.y, v, rot.w);
           //rot.z = v;
         }
         else if (simulator_configuration.ConfigurableName == this._w)
         {
+          if (this.QuadSpace._Min_Values.w.CompareTo(this.QuadSpace._Max_Values.w) != 0)
+          {
+            if (v < this.QuadSpace._Min_Values.w || v > this.QuadSpace._Max_Values.w)
+            {
+              Debug.Log(
+                        $"ConfigurableW does not accept input {v}, outside allowed range "
+                        + $"{this.QuadSpace._Min_Values.w} to {this.QuadSpace._Max_Values.w}");
+              return; // Do nothing
+            }
+          }
           rot.Set(rot.x, rot.y, rot.z, v);
           //rot.w = v;
         }
       }
 
-      if (this._use_environments_space)
+      if (this.ParentEnvironment && this._use_environments_space)
       {
         rot = this.ParentEnvironment.InverseTransformRotation(rot);
       }
