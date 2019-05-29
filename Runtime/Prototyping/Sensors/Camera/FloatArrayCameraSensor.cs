@@ -6,10 +6,13 @@ using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Camera {
+  /// <summary>
+  ///
+  /// </summary>
   [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
                     + "FloatArrayCamera"
                     + SensorComponentMenuPath._Postfix)]
-  public class FloatFloatArrayCameraSensor : Sensor,
+  public class FloatArrayCameraSensor : Sensor,
                                         IHasFloatArray {
     [Header("Observation", order = 103)]
     //[SerializeField]

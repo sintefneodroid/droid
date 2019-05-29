@@ -5,8 +5,11 @@ using droid.Runtime.Managers;
 using droid.Runtime.Utilities.Enums;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
+using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 namespace droid.Runtime.Prototyping.Sensors.Camera {
   [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
@@ -14,7 +17,8 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
                     + SensorComponentMenuPath._Postfix)]
   public class ByteArrayCameraSensor : Sensor,
                                        IHasByteArray {
-    [Header("Observation", order = 103)] byte[] byte_array;
+    //[Header("Observation", order = 103)]
+    byte[] byte_array;
 
     [Header("Specific", order = 102)]
     [SerializeField]
@@ -22,14 +26,16 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
 
     bool _grab = true;
 
+    //[SerializeField] bool linear_space;
     IManager _manager = null;
 
     [SerializeField] Texture2D _texture = null;
 
-    /// <summary>
-    ///
-    /// </summary>
-    public Space1[] ObservationSpace { get { return new[] {Space1.ZeroOne}; } }
+    [SerializeField]ComputeShader _TransformationComputeShader;
+    [SerializeField]CommandBuffer _TransformationCommandBuffer;
+    Material _post_material;
+    float gamma = 2.2f;
+
 
     protected override void PreSetup() {
       if (this._manager == null) {
@@ -48,13 +54,60 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
         this._texture = new Texture2D(NeodroidConstants._Default_Width,
                                       NeodroidConstants._Default_Height,
                                       NeodroidConstants._Default_TextureFormat,
-                                      false);
+                                      false
+                                      //,this.linear_space
+                                     );
       } else {
         this._texture = new Texture2D(target_texture.width,
                                       target_texture.height,
                                       target_texture.graphicsFormat,
                                       this.flags);
       }
+
+        /*
+      if(this._TransformationComputeShader){
+
+        this._TransformationCommandBuffer = new CommandBuffer();
+        this._TransformationCommandBuffer.DispatchCompute(this._TransformationComputeShader);
+        this._camera.AddCommandBuffer(CameraEvent.AfterEverything,this._TransformationCommandBuffer);
+
+        int[] minMaxHeight = { floatToIntMultiplier * numOctaves, 0 };
+        ComputeBuffer minMaxBuffer = new ComputeBuffer (minMaxHeight.Length, sizeof (int));
+        minMaxBuffer.SetData (minMaxHeight);
+        heightMapComputeShader.SetBuffer (0, "minMax", minMaxBuffer);
+
+        heightMapComputeShader.SetInt ("mapSize", mapSize);
+        heightMapComputeShader.SetInt ("octaves", numOctaves);
+        heightMapComputeShader.SetFloat ("lacunarity", lacunarity);
+        heightMapComputeShader.SetFloat ("persistence", persistence);
+        heightMapComputeShader.SetFloat ("scaleFactor", initialScale);
+        heightMapComputeShader.SetInt ("floatToIntMultiplier", floatToIntMultiplier);
+
+        heightMapComputeShader.Dispatch (0, map.Length, 1, 1);
+
+        mapBuffer.GetData (map);
+        minMaxBuffer.GetData (minMaxHeight);
+      }
+      */
+
+        _post_material = new Material( Shader.Find("Neodroid/Gamma") );
+
+  }
+
+  // Postprocess the image
+  void OnRenderImage(RenderTexture source, RenderTexture destination) {
+
+    this._post_material.SetFloat("_gamma", gamma);
+    Graphics.Blit(source, destination, _post_material);
+
+  }
+
+  void OnDestroy() {
+
+      /*if (this._TransformationCommandBuffer!=null) {
+        this._camera.RemoveCommandBuffer(CameraEvent.AfterEverything,this._TransformationCommandBuffer);
+      }*/
+      //DestroyImmediate(this._GammaCommandBuffer);
     }
 
     /// <summary>
@@ -71,7 +124,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
       }
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Graphics.DrawTexture(new Rect(new Vector2(0, 0), new Vector2(128, 128)), this._texture);
+        Graphics.DrawTexture(new Rect(new Vector2(0, 0), new Vector2(0, 0)), this._texture);
       }
       #endif
     }
@@ -94,7 +147,10 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
         //texture.GetNativeTexturePtr()
         RenderTexture.active = texture;
 
-        this._texture.ReadPixels(new Rect(0, 0, this._texture.width, this._texture.height), 0, 0);
+        this._texture.ReadPixels(new Rect(0, 0, this._texture.width, this._texture.height),
+                                 0,
+                                 0,
+                                 recalculateMipMaps : false);
 
         //this._texture.Apply();
 
