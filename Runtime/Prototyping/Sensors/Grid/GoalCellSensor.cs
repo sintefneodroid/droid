@@ -6,9 +6,8 @@ using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Grid {
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
-                    + "GoalCell"
-                    + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(
+      SensorComponentMenuPath._ComponentMenuPath + "GoalCell" + SensorComponentMenuPath._Postfix)]
   public class GoalCellSensor : Sensor,
                                 IHasTriple {
     [SerializeField] EmptyCell _current_goal;

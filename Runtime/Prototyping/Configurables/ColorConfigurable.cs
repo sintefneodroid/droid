@@ -50,12 +50,10 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     protected override void PreSetup() {
-
       this.r_id = this.Identifier + _r;
       this.b_id = this.Identifier + _b;
       this.g_id = this.Identifier + _g;
       this.a_id = this.Identifier + _a;
-
 
       this._renderer = this.GetComponent<Renderer>();
     }
@@ -102,7 +100,7 @@ namespace droid.Runtime.Prototyping.Configurables {
         foreach (var mat in this._renderer.sharedMaterials) {
           var c = mat.color;
 
-          switch (configuration.ConfigurableName[configuration.ConfigurableName.Length-1]) {
+          switch (configuration.ConfigurableName[configuration.ConfigurableName.Length - 1]) {
             case _r:
               c.r = configuration.ConfigurableValue;
               break;
@@ -123,7 +121,7 @@ namespace droid.Runtime.Prototyping.Configurables {
         foreach (var mat in this._renderer.materials) {
           var c = mat.color;
 
-          switch (configuration.ConfigurableName[configuration.ConfigurableName.Length-1]) {
+          switch (configuration.ConfigurableName[configuration.ConfigurableName.Length - 1]) {
             case _r:
               c.r = configuration.ConfigurableValue;
               break;
@@ -166,7 +164,7 @@ namespace droid.Runtime.Prototyping.Configurables {
                        new Configuration(this.r_id, v.x),
                        new Configuration(this.g_id, v.y),
                        new Configuration(this.b_id, v.z),
-                       new Configuration(this.a_id,v.w)
+                       new Configuration(this.a_id, v.w)
                    };
     }
   }

@@ -1,6 +1,4 @@
-﻿
-
-using System;
+﻿using System;
 using UnityEditor;
 using UnityEngine.SceneManagement;
 #if UNITY_EDITOR

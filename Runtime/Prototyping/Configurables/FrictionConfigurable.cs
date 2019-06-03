@@ -62,9 +62,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._vel_x);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._vel_x);
     }
 
     /// <summary>

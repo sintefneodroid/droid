@@ -1,8 +1,7 @@
 using UnityEngine;
 
 namespace droid.Runtime.Utilities.GameObjects.BoundingBoxes.Experimental.Unused {
-  public  static class BoundingBoxUtilities {
-
+  public static class BoundingBoxUtilities {
     /// <summary>
     ///
     /// </summary>
@@ -393,6 +392,7 @@ namespace droid.Runtime.Utilities.GameObjects.BoundingBoxes.Experimental.Unused 
     /// <param name="vec"></param>
     /// <returns></returns>
     public static float MaxDim(this Vector3 vec) { return Mathf.Max(vec.x, vec.y, vec.z); }
+
     /// <summary>
     /// 
     /// </summary>

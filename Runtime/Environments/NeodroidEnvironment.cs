@@ -31,8 +31,6 @@ namespace droid.Runtime.Environments {
     [SerializeField]
     protected float _Energy_Spent;
 
-
-
     [SerializeField] Reaction _last_reaction;
 
     /// <summary>
@@ -87,7 +85,6 @@ namespace droid.Runtime.Environments {
       get { return this._current_frame_number; }
       set { this._current_frame_number = value; }
     }
-
 
     /// <summary>
     /// </summary>
@@ -145,9 +142,7 @@ namespace droid.Runtime.Environments {
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public void FrameString(DataPoller recipient) {
-      recipient.PollData($"{this.CurrentFrameNumber}");
-    }
+    public void FrameString(DataPoller recipient) { recipient.PollData($"{this.CurrentFrameNumber}"); }
 
     /// <summary>
     /// </summary>

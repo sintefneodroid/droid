@@ -20,10 +20,10 @@ namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera.Experimental {
     /// </summary>
     MaterialPropertyBlock _block = null;
 
-    [SerializeField] RenderTexture depthRenderTexture=null;
-    [SerializeField] RenderTexture objectIdRenderTexture=null;
-    [SerializeField] RenderTexture tagIdRenderTexture=null;
-    [SerializeField] RenderTexture flowRenderTexture=null;
+    [SerializeField] RenderTexture depthRenderTexture = null;
+    [SerializeField] RenderTexture objectIdRenderTexture = null;
+    [SerializeField] RenderTexture tagIdRenderTexture = null;
+    [SerializeField] RenderTexture flowRenderTexture = null;
 
     /// <summary>
     /// </summary>
@@ -51,82 +51,70 @@ namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera.Experimental {
     /// 
     /// </summary>
     /// <returns></returns>
-    public static Mesh CreateFullscreenQuad()
-    {
+    public static Mesh CreateFullscreenQuad() {
       var r = new Mesh {
                            vertices = new[] {
-                                                         new Vector3(1.0f, 1.0f, 0.0f),
-                                                         new Vector3(-1.0f, 1.0f, 0.0f),
-                                                         new Vector3(-1.0f, -1.0f, 0.0f),
-                                                         new Vector3(1.0f, -1.0f, 0.0f)
-                                                     },
+                                                new Vector3(1.0f, 1.0f, 0.0f),
+                                                new Vector3(-1.0f, 1.0f, 0.0f),
+                                                new Vector3(-1.0f, -1.0f, 0.0f),
+                                                new Vector3(1.0f, -1.0f, 0.0f)
+                                            },
                            triangles = new[] {0, 1, 2, 2, 3, 0}
                        };
       r.UploadMeshData(true);
       return r;
     }
 
-
     /// <summary>
     /// </summary>
     void Setup() {
-      if(!this.gui_style) {
-        this.gui_style = Resources.FindObjectsOfTypeAll<GUISkin>().First(a => a.name =="BoundingBox");
+      if (!this.gui_style) {
+        this.gui_style = Resources.FindObjectsOfTypeAll<GUISkin>().First(a => a.name == "BoundingBox");
       }
 
       this._all_renders = FindObjectsOfType<Renderer>();
       if (this._capture_passes == null || this._capture_passes.Length == 0 || this.always_re) {
         this._capture_passes = new[] {
-                                         new CapturePassMaterial(CameraEvent
-                                                                                        .AfterDepthTexture,
-                                                                                    BuiltinRenderTextureType
-                                                                                        .Depth) {
-
-                                                                                                            _SupportsAntialiasing
-                                                                                                                = false,
-                                                                                                            _RenderTexture
-                                                                                                                = this
-                                                                                                                    .depthRenderTexture
-
-                                                                                                        },
-                                         new CapturePassMaterial(CameraEvent
-                                                                                        .AfterForwardAlpha,
-                                                                                    BuiltinRenderTextureType
-                                                                                        .MotionVectors) {
-
-                                                                                                            _SupportsAntialiasing
-                                                                                                                = false,
-                                                                                                            _RenderTexture
-                                                                                                                = this
-                                                                                                                    .flowRenderTexture
-                                                                                                        },
-                                         new CapturePassMaterial(CameraEvent
-                                                                     .AfterForwardAlpha,
-                                                                                    BuiltinRenderTextureType.None  ) {
-                                                                                                            _SupportsAntialiasing
-                                                                                                                = false,
-                                                                                                            _RenderTexture
-                                                                                                                = this
-                                                                                                                    .objectIdRenderTexture
-
-                                                                                                            ,
-                                                                                                            _TextureId  = Shader.PropertyToID("_TmpFrameBuffer")
-                                                                                                        },
-                                         new CapturePassMaterial(CameraEvent
-                                         .AfterDepthTexture,
-                                         BuiltinRenderTextureType.None  ) {
-                                         _SupportsAntialiasing
-                                         = false,
-                                         _RenderTexture
-                                             = this
-                                                 .tagIdRenderTexture
-
-                                         ,
-                                         _TextureId  = Shader.PropertyToID("_CameraDepthTexture")
-                                         }
+                                         new CapturePassMaterial(CameraEvent.AfterDepthTexture,
+                                                                 BuiltinRenderTextureType.Depth) {
+                                                                                                     _SupportsAntialiasing
+                                                                                                         = false,
+                                                                                                     _RenderTexture
+                                                                                                         = this
+                                                                                                             .depthRenderTexture
+                                                                                                 },
+                                         new CapturePassMaterial(CameraEvent.AfterForwardAlpha,
+                                                                 BuiltinRenderTextureType.MotionVectors) {
+                                                                                                             _SupportsAntialiasing
+                                                                                                                 = false,
+                                                                                                             _RenderTexture
+                                                                                                                 = this
+                                                                                                                     .flowRenderTexture
+                                                                                                         },
+                                         new CapturePassMaterial(CameraEvent.AfterForwardAlpha,
+                                                                 BuiltinRenderTextureType.None) {
+                                                                                                    _SupportsAntialiasing
+                                                                                                        = false,
+                                                                                                    _RenderTexture
+                                                                                                        = this
+                                                                                                            .objectIdRenderTexture,
+                                                                                                    _TextureId
+                                                                                                        = Shader
+                                                                                                            .PropertyToID("_TmpFrameBuffer")
+                                                                                                },
+                                         new CapturePassMaterial(CameraEvent.AfterDepthTexture,
+                                                                 BuiltinRenderTextureType.None) {
+                                                                                                    _SupportsAntialiasing
+                                                                                                        = false,
+                                                                                                    _RenderTexture
+                                                                                                        = this
+                                                                                                            .tagIdRenderTexture,
+                                                                                                    _TextureId
+                                                                                                        = Shader
+                                                                                                            .PropertyToID("_CameraDepthTexture")
+                                                                                                }
                                      };
       }
-
 
       if (this.m_quad == null) {
         this.m_quad = CreateFullscreenQuad();
@@ -154,14 +142,10 @@ namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera.Experimental {
           cb.ReleaseTemporaryRT(capture_pass._TextureId);
         } else {
           cb.Blit(capture_pass.Source, capture_pass._RenderTexture);
-
         }
-
 
         this._camera.AddCommandBuffer(capture_pass.When, cb);
       }
-
-
 
       this.CheckBlock();
       foreach (var r in this._all_renders) {
@@ -180,7 +164,6 @@ namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera.Experimental {
     const int _size = 100;
     const int _margin = 20;
 
-
     void OnGUI() {
       if (this.debug) {
         var index = 0;
@@ -193,14 +176,13 @@ namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera.Experimental {
           //this._asf?.Flip(pass._RenderTexture);
 
           GUI.DrawTexture(r, pass._RenderTexture, ScaleMode.ScaleToFit);
-          GUI.TextField(r, pass.Source.ToString(),this.gui_style.box);
+          GUI.TextField(r, pass.Source.ToString(), this.gui_style.box);
         }
       }
     }
 
     TextureFlipper _asf;
   }
-
 
   /// <summary>
   ///
@@ -227,78 +209,74 @@ namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera.Experimental {
     }
   }
 
+  public class TextureFlipper : IDisposable {
+    Shader _m_sh_v_flip;
+    Material _m_vf_lip_material;
+    RenderTexture _m_work_texture;
 
-    public class TextureFlipper : IDisposable
-    {
-      Shader          m_shVFlip;
-      Material        m_VFLipMaterial;
-      RenderTexture   m_WorkTexture;
-
-      public TextureFlipper()
-      {
-        this.m_shVFlip = Shader.Find("Neodroid/Experimental/VerticalFlipper");
-        if(this.m_shVFlip) {
-          this.m_VFLipMaterial = new Material(this.m_shVFlip);
-        }
+    public TextureFlipper() {
+      this._m_sh_v_flip = Shader.Find("Neodroid/Experimental/VerticalFlipper");
+      if (this._m_sh_v_flip) {
+        this._m_vf_lip_material = new Material(this._m_sh_v_flip);
       }
-
-      public void Flip(RenderTexture target)
-      {
-        if (this.m_WorkTexture == null || this.m_WorkTexture.width != target.width || this.m_WorkTexture.height != target.height)
-        {
-          UnityHelpers.Destroy(this.m_WorkTexture);
-          this.m_WorkTexture = new RenderTexture(target.width, target.height, target.depth, target.format, RenderTextureReadWrite.Linear);
-        }
-        if(this.m_VFLipMaterial){
-        Graphics.Blit( target, this.m_WorkTexture, this.m_VFLipMaterial );
-        Graphics.Blit(this.m_WorkTexture, target );
-        }
-      }
-
-      public void Dispose() {
-        UnityHelpers.Destroy(this.m_WorkTexture);
-        this.m_WorkTexture = null;
-        if (this.m_VFLipMaterial) {
-          UnityHelpers.Destroy(this.m_VFLipMaterial);
-          this.m_VFLipMaterial = null;
-        }
-      }
-
     }
 
-
-    /// <summary>
-    /// What is this:
-    /// Motivation  :
-    /// Notes:
-    /// </summary>
-    public static class UnityHelpers
-    {
-      public static void Destroy(Object obj, bool allowDestroyingAssets = false)
-      {
-        if (obj == null) {
-          return;
-        }
-        #if UNITY_EDITOR
-        if (EditorApplication.isPlaying) {
-          Object.Destroy(obj);
-        } else {
-          Object.DestroyImmediate(obj, allowDestroyingAssets);
-        }
-        #else
-            Object.Destroy(obj);
-        #endif
-        obj = null;
+    public void Flip(RenderTexture target) {
+      if (this._m_work_texture == null
+          || this._m_work_texture.width != target.width
+          || this._m_work_texture.height != target.height) {
+        UnityHelpers.Destroy(this._m_work_texture);
+        this._m_work_texture = new RenderTexture(target.width,
+                                                 target.height,
+                                                 target.depth,
+                                                 target.format,
+                                                 RenderTextureReadWrite.Linear);
       }
 
-      public static bool IsPlaying()
-      {
-        #if UNITY_EDITOR
-        return EditorApplication.isPlaying;
-        #else
-            return true;
-        #endif
+      if (this._m_vf_lip_material) {
+        Graphics.Blit(target, this._m_work_texture, this._m_vf_lip_material);
+        Graphics.Blit(this._m_work_texture, target);
+      }
+    }
+
+    public void Dispose() {
+      UnityHelpers.Destroy(this._m_work_texture);
+      this._m_work_texture = null;
+      if (this._m_vf_lip_material) {
+        UnityHelpers.Destroy(this._m_vf_lip_material);
+        this._m_vf_lip_material = null;
       }
     }
   }
 
+  /// <summary>
+  /// What is this:
+  /// Motivation  :
+  /// Notes:
+  /// </summary>
+  public static class UnityHelpers {
+    public static void Destroy(Object obj, bool allow_destroying_assets = false) {
+      if (obj == null) {
+        return;
+      }
+      #if UNITY_EDITOR
+      if (EditorApplication.isPlaying) {
+        Object.Destroy(obj);
+      } else {
+        Object.DestroyImmediate(obj, allow_destroying_assets);
+      }
+      #else
+            Object.Destroy(obj);
+      #endif
+      obj = null;
+    }
+
+    public static bool IsPlaying() {
+      #if UNITY_EDITOR
+      return EditorApplication.isPlaying;
+      #else
+            return true;
+      #endif
+    }
+  }
+}

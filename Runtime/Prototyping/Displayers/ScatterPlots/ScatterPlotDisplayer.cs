@@ -188,9 +188,10 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
     }
 
     public void PlotSeries(float[] points) {
-      if(!this._particle_system) {
+      if (!this._particle_system) {
         return;
       }
+
       if (this._particles == null || this._particles.Length != points.Length) {
         this._particles = new ParticleSystem.Particle[points.Length];
       }
@@ -219,13 +220,10 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
     ///  <summary>
     ///  </summary>
     protected override void Clean() {
-      if(!this._RetainLastPlot) {
+      if (!this._RetainLastPlot) {
         if (this._particle_system) {
-          
-
-        this._particle_system.Clear(true);
-      }
-
+          this._particle_system.Clear(true);
+        }
       }
 
       base.Clean();
@@ -235,9 +233,10 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
     /// </summary>
     /// <param name="points"></param>
     public override void PlotSeries(Points.ValuePoint[] points) {
-      if(!this._particle_system) {
+      if (!this._particle_system) {
         return;
       }
+
       if (this._particles == null || this._particles.Length != points.Length) {
         this._particles = new ParticleSystem.Particle[points.Length];
       }
@@ -246,7 +245,6 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
         Debug.Log("Applying the series " + points + " To " + this.name);
       }
       #endif
-
 
       var alive = this._particle_system.GetParticles(this._particles);
       if (alive < points.Length) {

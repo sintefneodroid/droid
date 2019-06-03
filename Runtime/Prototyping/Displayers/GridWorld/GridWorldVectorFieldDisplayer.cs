@@ -52,7 +52,6 @@ namespace droid.Runtime.Prototyping.Displayers.GridWorld {
 
     }*/
 
-
     /// <summary>
     /// </summary>
     /// <param name="points"></param>

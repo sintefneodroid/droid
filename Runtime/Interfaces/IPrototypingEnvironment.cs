@@ -6,7 +6,6 @@ namespace droid.Runtime.Interfaces {
   /// <inheritdoc cref="IEnvironment" />
   /// <summary>
   /// </summary>
-
   public interface IPrototypingEnvironment : IEnvironment,
                                              IHasRegister<IActuator>,
                                              IHasRegister<IObserver>,

@@ -88,21 +88,27 @@ namespace droid.Editor.Utilities {
                                                                                             .GetSerializedSettings();
                                                                                     EditorGUILayout
                                                                                         .PropertyField(settings
-                                                                                                           .FindProperty(NeodroidSettings.Properties
+                                                                                                           .FindProperty(NeodroidSettings
+                                                                                                                         .Properties
                                                                                                                          ._Number),
-                                                                                                       NeodroidSettings.Styles
+                                                                                                       NeodroidSettings
+                                                                                                           .Styles
                                                                                                            ._Number);
                                                                                     EditorGUILayout
                                                                                         .PropertyField(settings
-                                                                                                           .FindProperty(NeodroidSettings.Properties
+                                                                                                           .FindProperty(NeodroidSettings
+                                                                                                                         .Properties
                                                                                                                          ._SomeString),
-                                                                                                       NeodroidSettings.Styles
+                                                                                                       NeodroidSettings
+                                                                                                           .Styles
                                                                                                            ._SomeString);
                                                                                     EditorGUILayout
                                                                                         .PropertyField(settings
-                                                                                                           .FindProperty(NeodroidSettings.Properties
+                                                                                                           .FindProperty(NeodroidSettings
+                                                                                                                         .Properties
                                                                                                                          ._SomeBool),
-                                                                                                       NeodroidSettings.Styles
+                                                                                                       NeodroidSettings
+                                                                                                           .Styles
                                                                                                            ._SomeBool);
                                                                                   }, // Create the SettingsProvider and initialize its drawing (IMGUI) function in place:
 

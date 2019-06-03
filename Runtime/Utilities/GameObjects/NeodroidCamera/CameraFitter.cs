@@ -23,8 +23,7 @@ namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera {
       }
     }
 
-    void OnPreRender()
-    {
+    void OnPreRender() {
       if (this.bb) {
         this._camera.transform.LookAt(this.bb.transform);
         var radius = this.bb.Bounds.extents.MaxDim();

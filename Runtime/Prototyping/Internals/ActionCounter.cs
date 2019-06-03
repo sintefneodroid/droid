@@ -36,7 +36,7 @@ namespace droid.Runtime.Prototyping.Internals {
       var motions = reaction.Motions;
     }
 
-    public override void EnvironmentReset() {  }
+    public override void EnvironmentReset() { }
 
     /// <inheritdoc />
     /// <summary>

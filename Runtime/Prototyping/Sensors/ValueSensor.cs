@@ -7,9 +7,7 @@ namespace droid.Runtime.Prototyping.Sensors {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
-                    + "Value"
-                    + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath + "Value" + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   public class ValueSensor : Sensor,
                              IHasSingle {

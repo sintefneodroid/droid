@@ -20,7 +20,7 @@ namespace droid.Runtime.Environments {
   /// </summary>
   [AddComponentMenu("Neodroid/Environments/ActorisedPrototypingEnvironment")]
   public class ActorisedPrototypingEnvironment : NeodroidEnvironment,
-                                        IActorisedPrototypingEnvironment {
+                                                 IActorisedPrototypingEnvironment {
     #region NeodroidCallbacks
 
     /// <inheritdoc />
@@ -267,8 +267,8 @@ namespace droid.Runtime.Environments {
 
     /// <summary>
     /// </summary>
-    public Dictionary<string, IEnvironmentListener> Listeners { get; } = new Dictionary<string, IEnvironmentListener>();
-
+    public Dictionary<string, IEnvironmentListener> Listeners { get; } =
+      new Dictionary<string, IEnvironmentListener>();
 
     /// <inheritdoc />
     /// <summary>
@@ -536,8 +536,9 @@ namespace droid.Runtime.Environments {
     /// <summary>
     /// </summary>
     /// <param name="environment_listener"></param>
-    public void Register(IEnvironmentListener environment_listener) { this.Register(environment_listener, environment_listener.Identifier); }
-
+    public void Register(IEnvironmentListener environment_listener) {
+      this.Register(environment_listener, environment_listener.Identifier);
+    }
 
     /// <summary>
     /// </summary>
@@ -608,7 +609,9 @@ namespace droid.Runtime.Environments {
     /// <summary>
     /// </summary>
     /// <param name="environment_listener"></param>
-    public void UnRegister(IEnvironmentListener environment_listener) { this.UnRegister(environment_listener, environment_listener.Identifier); }
+    public void UnRegister(IEnvironmentListener environment_listener) {
+      this.UnRegister(environment_listener, environment_listener.Identifier);
+    }
 
     public void UnRegister(IEnvironmentListener t, string identifier) {
       if (this.Listeners.ContainsKey(identifier)) {
@@ -620,7 +623,6 @@ namespace droid.Runtime.Environments {
         this.Listeners.Remove(identifier);
       }
     }
-
 
     #endregion
 
@@ -636,7 +638,7 @@ namespace droid.Runtime.Environments {
           return this._coordinate_reference_point.transform.InverseTransformPoint(point);
         case CoordinateSystem.Local_coordinates_:
           return this.transform.InverseTransformPoint(point);
-          //return point - this.transform.position;
+        //return point - this.transform.position;
         default:
           #if NEODROID_DEBUG
           if (this.Debugging) {
@@ -1059,12 +1061,12 @@ namespace droid.Runtime.Environments {
                              ref this._reset_velocities,
                              ref this._reset_angulars,
                              this.Debugging);
-#else
+      #else
       ResetEnvironmentBodies(ref this._tracked_rigid_bodies,
-      ref this._reset_velocities,
-        ref this._reset_angulars,
-      false);
-#endif
+                             ref this._reset_velocities,
+                             ref this._reset_angulars,
+                             false);
+      #endif
 
       this.ResetRegisteredObjects();
       this.Reconfigure();
@@ -1226,8 +1228,6 @@ namespace droid.Runtime.Environments {
 
         this.StepEvent?.Invoke();
 
-
-
         this.UpdateObserversData();
       }
     }
@@ -1308,7 +1308,8 @@ namespace droid.Runtime.Environments {
     /// <param name="angulars"></param>
     static void ResetEnvironmentBodies(ref Rigidbody[] bodies,
                                        ref Vector3[] velocities,
-                                       ref Vector3[] angulars, bool debugging=false) {
+                                       ref Vector3[] angulars,
+                                       bool debugging = false) {
       if (bodies != null && bodies.Length > 0) {
         for (var i = 0; i < bodies.Length; i++) {
           if (i < bodies.Length && bodies[i] != null && i < velocities.Length && i < angulars.Length) {

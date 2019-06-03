@@ -207,7 +207,7 @@ namespace droid.Runtime.Messaging.FBS {
       if (configuration.HasValue) {
         var c = configuration.Value;
         var sample_random = false; //TODO: c.SampleRandom;
-        return new Configuration(c.ConfigurableName, (float)c.ConfigurableValue, sample_random );
+        return new Configuration(c.ConfigurableName, (float)c.ConfigurableValue, sample_random);
       }
 
       return null;

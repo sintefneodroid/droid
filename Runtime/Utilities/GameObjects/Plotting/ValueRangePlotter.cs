@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+
 #if UNITY_2019_1_OR_NEWER
 
 namespace droid.Runtime.Utilities.GameObjects.Plotting {

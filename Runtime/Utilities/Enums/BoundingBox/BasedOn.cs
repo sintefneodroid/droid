@@ -3,12 +3,11 @@ namespace droid.Runtime.Utilities.Enums.BoundingBox {
     /// <summary>
     /// Base the bounding box on colliders
     /// </summary>
-    Collider_=0,
+    Collider_ = 0,
+
     /// <summary>
     /// Base the bounding box on geometries
     /// </summary>
-    Geometry_=1
-
-
+    Geometry_ = 1
   }
 }

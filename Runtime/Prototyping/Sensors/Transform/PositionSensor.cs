@@ -9,9 +9,8 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
-                    + "Position"
-                    + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(
+      SensorComponentMenuPath._ComponentMenuPath + "Position" + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [Serializable]
   public class PositionSensor : Sensor,
@@ -20,7 +19,7 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     [SerializeField]
     Vector3 _position;
 
-    [SerializeField] Space3 _position_space = new Space3(new DistributionSampler(),10);
+    [SerializeField] Space3 _position_space = new Space3(new DistributionSampler(), 10);
 
     [Header("Specific", order = 102)]
     [SerializeField]
@@ -35,7 +34,9 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     public Vector3 ObservationValue {
       get { return this._position; }
       set {
-        this._position = this.TripleSpace.IsNormalised ? this._position_space.ClipNormaliseRound(value) : value;
+        this._position = this.TripleSpace.IsNormalised
+                             ? this._position_space.ClipNormaliseRound(value)
+                             : value;
       }
     }
 

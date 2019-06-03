@@ -29,25 +29,20 @@ namespace droid.Runtime.Utilities.Structs {
     /// <summary>
     ///
     /// </summary>
-    [SerializeField] DistributionSampler _distribution_sampler;
+    [SerializeField]
+    DistributionSampler _distribution_sampler;
 
     public DistributionSampler DistributionSampler {
-      get {
-
-
-        return this._distribution_sampler;
-      }
-      set {
-        this._distribution_sampler = value;
-      }
+      get { return this._distribution_sampler; }
+      set { this._distribution_sampler = value; }
     }
 
-    public Space1(int decimal_granularity = 2):this() {
+    public Space1(int decimal_granularity = 2) : this() {
       this._Decimal_Granularity = decimal_granularity;
       this._Min_Value = -1f; //float.NegativeInfinity;
       this._Max_Value = 1f; //float.PositiveInfinity;
 
-        this._distribution_sampler = new DistributionSampler();
+      this._distribution_sampler = new DistributionSampler();
     }
 
     /// <summary>
@@ -55,13 +50,10 @@ namespace droid.Runtime.Utilities.Structs {
     /// </summary>
     /// <returns></returns>
     public float Sample() {
-
-
       var x = this.DistributionSampler.Range(this._Min_Value, this._Max_Value);
 
       return x;
     }
-
 
     /// <summary>
     ///
@@ -88,10 +80,7 @@ namespace droid.Runtime.Utilities.Structs {
 
     public float Round(float v) { return (float)Math.Round(v, this._Decimal_Granularity); }
 
-    public static Space1 TwentyEighty {
-      get { return new Space1( 1) {_Min_Value = 0.2f, _Max_Value = 0.8f}; }
-    }
-
+    public static Space1 TwentyEighty { get { return new Space1(1) {_Min_Value = 0.2f, _Max_Value = 0.8f}; } }
 
     public static Space1 ZeroOne { get { return new Space1(1) {_Min_Value = 0, _Max_Value = 1}; } }
     public int DecimalGranularity { get { return this._Decimal_Granularity; } }

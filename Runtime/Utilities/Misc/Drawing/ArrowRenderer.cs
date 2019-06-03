@@ -17,21 +17,21 @@ namespace droid.Runtime.Utilities.Misc.Drawing {
     /// <summary>
     /// </summary>
     [SerializeField]
-    Material _line_mat=null;
+    Material _line_mat = null;
 
     /// <summary>
     /// </summary>
     [SerializeField]
-    GameObject _main_point=null;
+    GameObject _main_point = null;
 
     [SerializeField] float _offset = 0.3f;
 
     /// <summary>
     /// </summary>
     [SerializeField]
-    GameObject[] _points=null;
+    GameObject[] _points = null;
 
-    [SerializeField] Vector3[] _vec3_points=null;
+    [SerializeField] Vector3[] _vec3_points = null;
 
     // Connect all of the `points` to the `main_point_pos`
     void DrawConnectingLines(IReadOnlyCollection<Tuple<Vector3, Vector3>> vec_pairs) {
@@ -43,12 +43,10 @@ namespace droid.Runtime.Utilities.Misc.Drawing {
 
           GL.Begin(GL.LINES);
           this._line_mat.SetPass(0);
-          GL.Color(
-              new Color(
-                  this._line_mat.color.r,
-                  this._line_mat.color.g,
-                  this._line_mat.color.b,
-                  this._line_mat.color.a));
+          GL.Color(new Color(this._line_mat.color.r,
+                             this._line_mat.color.g,
+                             this._line_mat.color.b,
+                             this._line_mat.color.a));
           GL.Vertex3(main_point_pos.x, main_point_pos.y, main_point_pos.z);
           GL.Vertex3(point_pos.x, point_pos.y, point_pos.z);
           //
@@ -68,7 +66,7 @@ namespace droid.Runtime.Utilities.Misc.Drawing {
     void OnPostRender() {
       this._vec3_points = this._points.Select(v => v.transform.position).ToArray();
       var s = this._vec3_points
-          .Select(v => new Tuple<Vector3, Vector3>(this._main_point.transform.position, v)).ToArray();
+                  .Select(v => new Tuple<Vector3, Vector3>(this._main_point.transform.position, v)).ToArray();
       this.DrawConnectingLines(s);
     }
 
@@ -76,7 +74,7 @@ namespace droid.Runtime.Utilities.Misc.Drawing {
     void OnDrawGizmos() {
       this._vec3_points = this._points.Select(v => v.transform.position).ToArray();
       var s = this._vec3_points
-          .Select(v => new Tuple<Vector3, Vector3>(this._main_point.transform.position, v)).ToArray();
+                  .Select(v => new Tuple<Vector3, Vector3>(this._main_point.transform.position, v)).ToArray();
       this.DrawConnectingLines(s);
     }
   }

@@ -1,4 +1,3 @@
-
 #if UNITY_EDITOR
 namespace droid.Editor.Utilities.NoteUtilities {
   /// <summary>

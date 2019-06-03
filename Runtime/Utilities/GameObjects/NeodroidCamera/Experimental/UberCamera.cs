@@ -12,28 +12,28 @@ namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera.Experimental {
   public class UberCamera : MonoBehaviour {
     #region fields
 
-    [SerializeField] Shader copy_shader=null;
-    [SerializeField] Material _copy_material=null;
-    [SerializeField] Material _off_screen_mat=null;
-    [SerializeField] Camera _camera=null;
+    [SerializeField] Shader copy_shader = null;
+    [SerializeField] Material _copy_material = null;
+    [SerializeField] Material _off_screen_mat = null;
+    [SerializeField] Camera _camera = null;
     [SerializeField] Boolean _debugging = true;
     [SerializeField] GUISkin gui_style = null;
 
-    CommandBuffer[] _copy_cbs=null;
-    CommandBuffer _copy_fb_cb=null;
-    CommandBuffer _copy_gb_cb=null;
-    CommandBuffer _clear_gb_cb=null;
-    CommandBuffer _copy_velocity_cb=null;
-    RenderTexture[] _fb_rts=null;
-    RenderTexture[] _gb_rts=null;
-    Mesh _quad_mesh=null;
+    CommandBuffer[] _copy_cbs = null;
+    CommandBuffer _copy_fb_cb = null;
+    CommandBuffer _copy_gb_cb = null;
+    CommandBuffer _clear_gb_cb = null;
+    CommandBuffer _copy_velocity_cb = null;
+    RenderTexture[] _fb_rts = null;
+    RenderTexture[] _gb_rts = null;
+    Mesh _quad_mesh = null;
 
-    RenderTargetIdentifier[] _m_rt_fb_ids=null;
-    RenderTargetIdentifier[] _m_rt_gb_ids=null;
+    RenderTargetIdentifier[] _m_rt_fb_ids = null;
+    RenderTargetIdentifier[] _m_rt_gb_ids = null;
     int _tmp_texture_id = Shader.PropertyToID("_TmpFrameBuffer");
     static readonly int _clear_color = Shader.PropertyToID("_ClearColor");
 
-    static readonly Tuple<Int32, Int32> _texture_wh= new Tuple<int, int>(256,256);
+    static readonly Tuple<Int32, Int32> _texture_wh = new Tuple<int, int>(256, 256);
 
     const int _preview_size = 100;
     const int _preview_margin = 20;
@@ -62,11 +62,10 @@ namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera.Experimental {
       var xw = _texture_wh.Item1;
       var yh = _texture_wh.Item2;
 
-      var x = Screen.width / 2 - xw/2;
-      var y = Screen.height / 2 - yh/2;
+      var x = Screen.width / 2 - xw / 2;
+      var y = Screen.height / 2 - yh / 2;
 
-
-      this._camera.pixelRect = new Rect(x,y,xw,yh);
+      this._camera.pixelRect = new Rect(x, y, xw, yh);
     }
 
     void Awake() {
@@ -88,18 +87,17 @@ namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera.Experimental {
 
       this.Dispose();
 
-
       if (this._fb_rts == null || this._fb_rts.Length != 2) {
         this._fb_rts = new RenderTexture[2];
         for (var i = 0; i < this._fb_rts.Length; ++i) {
           this._fb_rts[i] =
               new RenderTexture(_texture_wh.Item1, _texture_wh.Item2, 0, RenderTextureFormat.ARGBHalf) {
-                                                                                                  filterMode =
-                                                                                                      FilterMode
-                                                                                                          .Point,
-                                                                                                  name =
-                                                                                                      $"rt_fb{i}"
-                                                                                              };
+                                                                                                           filterMode
+                                                                                                               = FilterMode
+                                                                                                                   .Point,
+                                                                                                           name
+                                                                                                               = $"rt_fb{i}"
+                                                                                                       };
           this._fb_rts[i].Create();
         }
       }
@@ -130,12 +128,12 @@ namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera.Experimental {
         for (var i = 0; i < this._gb_rts.Length; ++i) {
           this._gb_rts[i] =
               new RenderTexture(_texture_wh.Item1, _texture_wh.Item2, 0, RenderTextureFormat.ARGBHalf) {
-                                                                                                      filterMode
-                                                                                                          = FilterMode
-                                                                                                              .Point,
-                                                                                                      name =
-                                                                                                          $"{names[i]}"
-                                                                                                  };
+                                                                                                           filterMode
+                                                                                                               = FilterMode
+                                                                                                                   .Point,
+                                                                                                           name
+                                                                                                               = $"{names[i]}"
+                                                                                                       };
           this._gb_rts[i].Create();
         }
       }

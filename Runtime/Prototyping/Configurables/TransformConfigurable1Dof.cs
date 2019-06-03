@@ -122,10 +122,10 @@ namespace droid.Runtime.Prototyping.Configurables {
       var dir = transform1.forward;
       var rot = transform1.up;
       if (this._use_environments_space) {
-        if(this.ParentEnvironment!=null){
-        this.ParentEnvironment.TransformPoint(ref pos);
-        this.ParentEnvironment.TransformDirection(ref dir);
-        this.ParentEnvironment.TransformDirection(ref rot);
+        if (this.ParentEnvironment != null) {
+          this.ParentEnvironment.TransformPoint(ref pos);
+          this.ParentEnvironment.TransformDirection(ref dir);
+          this.ParentEnvironment.TransformDirection(ref rot);
         } else {
           Debug.LogWarning("ParentEnvironment not found!");
         }
@@ -212,13 +212,13 @@ namespace droid.Runtime.Prototyping.Configurables {
       var inv_dir = dir;
       var inv_rot = rot;
       if (this._use_environments_space) {
-        if( this.ParentEnvironment!=null){
-        this.ParentEnvironment.InverseTransformPoint(ref inv_pos);
-        this.ParentEnvironment.InverseTransformDirection(ref inv_dir);
-        this.ParentEnvironment.InverseTransformDirection(ref inv_rot);
-      } else {
-        Debug.LogWarning("ParentEnvironment not found!");
-      }
+        if (this.ParentEnvironment != null) {
+          this.ParentEnvironment.InverseTransformPoint(ref inv_pos);
+          this.ParentEnvironment.InverseTransformDirection(ref inv_dir);
+          this.ParentEnvironment.InverseTransformDirection(ref inv_rot);
+        } else {
+          Debug.LogWarning("ParentEnvironment not found!");
+        }
       }
 
       this.transform.position = inv_pos;

@@ -11,18 +11,17 @@ namespace droid.Runtime.Prototyping.Actuators {
                     + "Rotation"
                     + ActuatorComponentMenuPath._Postfix)]
   public class RotationActuator : Actuator {
-
     /// <summary>
     /// </summary>
     [SerializeField]
     protected Space _Relative_To = Space.Self;
 
-    string _rot_x="RotX";
-    string _rot_y="RotY";
-    string _rot_z="RotZ";
-    string _rot_w="RotW";
-    //new Space1 MotionSpace = Space1.ZeroOne;
+    string _rot_x = "RotX";
+    string _rot_y = "RotY";
+    string _rot_z = "RotZ";
 
+    string _rot_w = "RotW";
+    //new Space1 MotionSpace = Space1.ZeroOne;
 
     /// <inheritdoc />
     /// <summary>
@@ -67,9 +66,7 @@ namespace droid.Runtime.Prototyping.Actuators {
     protected override void InnerApplyMotion(IMotion motion) {
       var transformRotation = this.transform.rotation;
       if (motion.ActuatorName == this._rot_x) {
-
         transformRotation.x = motion.Strength;
-
       } else if (motion.ActuatorName == this._rot_y) {
         transformRotation.y = motion.Strength;
       } else if (motion.ActuatorName == this._rot_z) {
@@ -77,8 +74,8 @@ namespace droid.Runtime.Prototyping.Actuators {
       } else if (motion.ActuatorName == this._rot_w) {
         transformRotation.z = motion.Strength;
       }
+
       this.transform.rotation = transformRotation;
     }
-    }
   }
-
+}

@@ -5,8 +5,7 @@ using droid.Runtime.Utilities.Sampling;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
-namespace droid.Runtime.Prototyping.Configurables
-{
+namespace droid.Runtime.Prototyping.Configurables {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
@@ -14,31 +13,32 @@ namespace droid.Runtime.Prototyping.Configurables
                     + "EnvironmentalLight"
                     + ConfigurableComponentMenuPath._Postfix)]
   [DisallowMultipleComponent]
-  public class EnvironmentalLightConfigurable : Configurable
-  {
+  public class EnvironmentalLightConfigurable : Configurable {
     string _color_r;
     string _color_g;
     string _color_b;
     string _intensity;
     string _reflection_intensity;
 
+    [SerializeField]
+    Space2 _intensity_space = new Space2 {
+                                             _decimal_granularity = 2,
+                                             _Min_Values = Vector3.one * 0.0f,
+                                             _Max_Values = Vector3.one * 1f,
+                                             DistributionSampler =
+                                                 new DistributionSampler(DistributionEnum.Linear_) {
+                                                                                                       _factor
+                                                                                                           = -1
+                                                                                                   }
+                                         };
 
-    [SerializeField] Space2 _intensity_space = new Space2 {_decimal_granularity = 2,
-                                                                  _Min_Values = Vector3.one * 0.0f,
-                                                                  _Max_Values = Vector3.one * 1f,
-                                                                  DistributionSampler = new
-                                                                                        DistributionSampler(DistributionEnum.Linear_){_factor = -1}
-                                                              };
-
-
-    [SerializeField] Space3 _color_space = new Space3
-      {_Min_Values = Vector3.one * 0.6f, _Max_Values = Vector3.one * 1f};
+    [SerializeField]
+    Space3 _color_space = new Space3 {_Min_Values = Vector3.one * 0.6f, _Max_Values = Vector3.one * 1f};
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup()
-    {
+    protected override void PreSetup() {
       this._color_r = this.Identifier + "ColorR";
       this._color_g = this.Identifier + "ColorG";
       this._color_b = this.Identifier + "ColorB";
@@ -49,39 +49,26 @@ namespace droid.Runtime.Prototyping.Configurables
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void RegisterComponent()
-    {
-
+    protected override void RegisterComponent() {
       this.ParentEnvironment =
-        NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-          (Configurable) this,
-          this._color_r);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._color_r);
       this.ParentEnvironment =
-        NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-          (Configurable) this,
-          this._color_b);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._color_b);
       this.ParentEnvironment =
-        NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-          (Configurable) this,
-          this._color_g);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._color_g);
       this.ParentEnvironment =
-        NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-          (Configurable) this,
-          this._intensity);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._intensity);
       this.ParentEnvironment =
           NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable) this,
+                                              (Configurable)this,
                                               this._reflection_intensity);
-
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void UnRegisterComponent()
-    {
-      if (this.ParentEnvironment == null)
-      {
+    protected override void UnRegisterComponent() {
+      if (this.ParentEnvironment == null) {
         return;
       }
 
@@ -90,46 +77,35 @@ namespace droid.Runtime.Prototyping.Configurables
       this.ParentEnvironment.UnRegister(this, this._color_b);
       this.ParentEnvironment.UnRegister(this, this._intensity);
       this.ParentEnvironment.UnRegister(this, this._reflection_intensity);
-
     }
 
     /// <summary>
     /// </summary>
     /// <param name="configuration"></param>
-    public override void ApplyConfiguration(IConfigurableConfiguration configuration)
-    {
-#if NEODROID_DEBUG
+    public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
+      #if NEODROID_DEBUG
       if (this.Debugging) {
         DebugPrinting.ApplyPrint(this.Debugging, configuration, this.Identifier);
       }
-#endif
+      #endif
       var c = RenderSettings.ambientLight;
-      if (configuration.ConfigurableName == this._color_r)
-      {
-
+      if (configuration.ConfigurableName == this._color_r) {
         c.r = configuration.ConfigurableValue;
-
-      }
-      else if (configuration.ConfigurableName == this._color_g)
-      {
+      } else if (configuration.ConfigurableName == this._color_g) {
         c.g = configuration.ConfigurableValue;
-      }
-      else if (configuration.ConfigurableName == this._color_b)
-      {
+      } else if (configuration.ConfigurableName == this._color_b) {
         c.b = configuration.ConfigurableValue;
-      }
-      else if (configuration.ConfigurableName == this._intensity)
-      {
+      } else if (configuration.ConfigurableName == this._intensity) {
         //c.a = configuration.ConfigurableValue;
         RenderSettings.ambientIntensity = configuration.ConfigurableValue;
         RenderSettings.reflectionIntensity = Mathf.Clamp01(configuration.ConfigurableValue);
         //RenderSettings.skybox.SetFloat("_Exposure", configuration.ConfigurableValue);
-      }      else if (configuration.ConfigurableName == this._reflection_intensity)
-      {
+      } else if (configuration.ConfigurableName == this._reflection_intensity) {
         //c.a = configuration.ConfigurableValue;
 //        RenderSettings.reflectionIntensity = configuration.ConfigurableValue;
         //RenderSettings.skybox.SetFloat("_Exposure", configuration.ConfigurableValue);
       }
+
       RenderSettings.ambientLight = c;
       DynamicGI.UpdateEnvironment();
     }
@@ -138,19 +114,17 @@ namespace droid.Runtime.Prototyping.Configurables
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public override Configuration[] SampleConfigurations()
-    {
+    public override Configuration[] SampleConfigurations() {
       var o = this._intensity_space.Sample();
       var v = this._color_space.Sample();
 
-      return new[]
-      {
-        new Configuration(this._color_r, v.x),
-        new Configuration(this._color_g, v.y),
-        new Configuration(this._color_b, v.z),
-        new Configuration(this._intensity, o.x),
-        new Configuration(this._reflection_intensity, o.y)
-      };
+      return new[] {
+                       new Configuration(this._color_r, v.x),
+                       new Configuration(this._color_g, v.y),
+                       new Configuration(this._color_b, v.z),
+                       new Configuration(this._intensity, o.x),
+                       new Configuration(this._reflection_intensity, o.y)
+                   };
     }
   }
 }

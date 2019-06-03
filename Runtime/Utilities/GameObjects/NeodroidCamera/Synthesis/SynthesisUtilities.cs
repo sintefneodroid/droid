@@ -87,8 +87,6 @@ namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera.Synthesis {
       public ReplacementModes _ReplacementMode;
     }
 
-
-
     /// <summary>
     ///
     /// </summary>
@@ -197,7 +195,6 @@ namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera.Synthesis {
                                                   capture_pass._ReplacementMode);
       }
     }
-
 
     static void CleanRefreshPassCameras(Camera camera, ref CapturePass[] capture_passes) {
       var target_display = 1;

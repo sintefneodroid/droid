@@ -13,10 +13,6 @@ namespace droid.Runtime.Prototyping.Configurables {
                     + ConfigurableComponentMenuPath._Postfix)]
   [RequireComponent(typeof(Renderer))]
   public class ScreenSpacePositionConfigurable : Configurable {
-
-
-
-
     string _x;
     string _y;
     string _z;
@@ -52,33 +48,19 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._x);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._x);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._y);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._y);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._z);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._z);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._rx);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._rx);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._ry);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._ry);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._rz);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._rz);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._rw);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._rw);
     }
 
     /// <inheritdoc />

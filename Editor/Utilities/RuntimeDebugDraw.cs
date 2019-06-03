@@ -121,13 +121,12 @@ Important Notes:
       ///   visible.
       /// </param>
       [Conditional(_conditional_flag)]
-      public static void DrawText(
-          Vector3 pos,
-          string text,
-          Color color,
-          int size,
-          float duration,
-          bool pop_up = false) {
+      public static void DrawText(Vector3 pos,
+                                  string text,
+                                  Color color,
+                                  int size,
+                                  float duration,
+                                  bool pop_up = false) {
         CheckAndBuildHiddenRtDrawObject();
         _rt_draw.RegisterDrawText(pos, text, color, size, duration, pop_up);
       }
@@ -141,12 +140,11 @@ Important Notes:
       /// <param name="color">Color for the text.</param>
       /// <param name="size">Font size for the text.</param>
       [Conditional(_conditional_flag)]
-      public static void AttachText(
-          Transform transform,
-          Func<string> str_func,
-          Vector3 offset,
-          Color color,
-          int size) {
+      public static void AttachText(Transform transform,
+                                    Func<string> str_func,
+                                    Vector3 offset,
+                                    Color color,
+                                    int size) {
         CheckAndBuildHiddenRtDrawObject();
         _rt_draw.RegisterAttachText(transform, str_func, offset, color, size);
       }
@@ -272,12 +270,11 @@ Important Notes:
 
             //	relying on a builtin shader, but it shouldn't change that much.
             this._Mat = new Material(Shader.Find("Hidden/Internal-Colored"));
-            this._Mat.SetInt(
-                _z_test,
-                depth_test
-                    ? 4 // LEqual
-                    : 0 // Always
-            );
+            this._Mat.SetInt(_z_test,
+                             depth_test
+                                 ? 4 // LEqual
+                                 : 0 // Always
+                            );
 
             this._vertices = new List<Vector3>();
             this._colors = new List<Color>();
@@ -309,10 +306,9 @@ Important Notes:
           public void BuildBatch() {
             this._Mesh.SetVertices(this._vertices);
             this._Mesh.SetColors(this._colors);
-            this._Mesh.SetIndices(
-                this._indices.ToArray(),
-                MeshTopology.Lines,
-                0); // cant get rid of this alloc for now
+            this._Mesh.SetIndices(this._indices.ToArray(),
+                                  MeshTopology.Lines,
+                                  0); // cant get rid of this alloc for now
           }
         }
 
@@ -372,28 +368,26 @@ Important Notes:
           }
 
           //	draw on UI layer which should bypass most postFX setups
-          Graphics.DrawMesh(
-              this._always_batch._Mesh,
-              Vector3.zero,
-              Quaternion.identity,
-              this._always_batch._Mat,
-              Draw._DrawLineLayer,
-              null,
-              0,
-              null,
-              false,
-              false);
-          Graphics.DrawMesh(
-              this._z_test_batch._Mesh,
-              Vector3.zero,
-              Quaternion.identity,
-              this._z_test_batch._Mat,
-              Draw._DrawLineLayer,
-              null,
-              0,
-              null,
-              false,
-              false);
+          Graphics.DrawMesh(this._always_batch._Mesh,
+                            Vector3.zero,
+                            Quaternion.identity,
+                            this._always_batch._Mat,
+                            Draw._DrawLineLayer,
+                            null,
+                            0,
+                            null,
+                            false,
+                            false);
+          Graphics.DrawMesh(this._z_test_batch._Mesh,
+                            Vector3.zero,
+                            Quaternion.identity,
+                            this._z_test_batch._Mat,
+                            Draw._DrawLineLayer,
+                            null,
+                            0,
+                            null,
+                            false,
+                            false);
 
           //	update timer late so every added entry can be drawed for at least one frame
           foreach (var entry in this._line_entries) {
@@ -460,13 +454,12 @@ Important Notes:
         GUIStyle _text_style;
         static readonly Int32 _z_test = Shader.PropertyToID("_ZTest");
 
-        public void RegisterDrawText(
-            Vector3 anchor,
-            string text,
-            Color color,
-            int size,
-            float timer,
-            bool pop_up) {
+        public void RegisterDrawText(Vector3 anchor,
+                                     string text,
+                                     Color color,
+                                     int size,
+                                     float timer,
+                                     bool pop_up) {
           this.CheckInitialized();
 
           DrawTextEntry entry = null;
@@ -494,15 +487,14 @@ Important Notes:
           #else
           //	in builds consider gizmo is already drawn
 			entry.flag = DrawFlag.DrawnGizmo;
-#endif
+          #endif
         }
 
-        public void RegisterAttachText(
-            Transform target,
-            Func<string> str_func,
-            Vector3 offset,
-            Color color,
-            int size) {
+        public void RegisterAttachText(Transform target,
+                                       Func<string> str_func,
+                                       Vector3 offset,
+                                       Color color,
+                                       int size) {
           this.CheckInitialized();
 
           AttachTextEntry entry = null;
@@ -531,7 +523,7 @@ Important Notes:
           #else
           //	in builds consider gizmo is already drawn
 			entry.flag = DrawFlag.DrawnGizmo;
-#endif
+          #endif
         }
 
         void TickTexts() {
@@ -567,7 +559,7 @@ Important Notes:
               #else
               //	in builds consider gizmo is already drawn
 					entry.flag = DrawFlag.DrawnGizmo;
-#endif
+              #endif
             }
           }
         }

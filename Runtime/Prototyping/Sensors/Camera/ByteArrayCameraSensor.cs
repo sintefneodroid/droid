@@ -27,9 +27,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
 
     [SerializeField] Texture2D _texture = null;
 
-
     TextureCreationFlags _flags;
-
 
     protected override void PreSetup() {
       if (this._manager == null) {
@@ -57,7 +55,6 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
                                       target_texture.graphicsFormat,
                                       this._flags);
       }
-
     }
 
     /// <summary>

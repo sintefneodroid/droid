@@ -11,7 +11,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
   public class NearestByTagSensor : Sensor,
                                     IHasEulerTransform {
     [SerializeField] Vector3 _direction;
-    [SerializeField] Space3 _direction_space = new Space3(new DistributionSampler(),10);
+    [SerializeField] Space3 _direction_space = new Space3(new DistributionSampler(), 10);
 
     [Header("Specific", order = 102)]
     [SerializeField]
@@ -21,9 +21,9 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
     [SerializeField]
     Vector3 _position;
 
-    [SerializeField] Space3 _position_space = new Space3(new DistributionSampler(),10);
+    [SerializeField] Space3 _position_space = new Space3(new DistributionSampler(), 10);
     [SerializeField] Vector3 _rotation;
-    [SerializeField] Space3 _rotation_space = new Space3(new DistributionSampler(),10);
+    [SerializeField] Space3 _rotation_space = new Space3(new DistributionSampler(), 10);
     [SerializeField] string _tag = "";
 
     public override string PrototypingTypeName { get { return "Nearest" + this._tag; } }
@@ -31,29 +31,31 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
     public Vector3 Position {
       get { return this._position; }
       set {
-        this._position = this._position_space.IsNormalised ? this._position_space.ClipNormaliseRound(value) : value;
+        this._position = this._position_space.IsNormalised
+                             ? this._position_space.ClipNormaliseRound(value)
+                             : value;
       }
     }
 
     public Vector3 Rotation {
       get { return this._rotation; }
       set {
-        this._rotation = this._rotation_space.IsNormalised ? this._rotation_space.ClipNormaliseRound(value) : value;
+        this._rotation = this._rotation_space.IsNormalised
+                             ? this._rotation_space.ClipNormaliseRound(value)
+                             : value;
       }
     }
 
-    public Space3 PositionSpace {
-      get {
-        return this._position_space;
-      }
-    }
+    public Space3 PositionSpace { get { return this._position_space; } }
     public Space3 DirectionSpace { get { return this._direction_space; } }
     public Space3 RotationSpace { get { return this._rotation_space; } }
 
     public Vector3 Direction {
       get { return this._direction; }
       set {
-        this._direction = this._direction_space.IsNormalised ? this._direction_space.ClipNormaliseRound(value) : value;
+        this._direction = this._direction_space.IsNormalised
+                              ? this._direction_space.ClipNormaliseRound(value)
+                              : value;
       }
     }
 

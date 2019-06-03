@@ -56,10 +56,10 @@ namespace droid.Runtime.Utilities.Misc.Drawing {
         // Match the scale to the distance
         var cylinder_distance =
             0.5f * Vector3.Distance(this._Points[i].transform.position, this._MainPoint.transform.position);
-        this._ring_game_objects[i].transform.localScale = new Vector3(
-            this._ring_game_objects[i].transform.localScale.x,
-            cylinder_distance,
-            this._ring_game_objects[i].transform.localScale.z);
+        this._ring_game_objects[i].transform.localScale =
+            new Vector3(this._ring_game_objects[i].transform.localScale.x,
+                        cylinder_distance,
+                        this._ring_game_objects[i].transform.localScale.z);
 
         // Make the cylinder look at the main point.
         // Since the cylinder is pointing up(y) and the forward is z, we need to offset by 90 degrees.
@@ -129,13 +129,12 @@ namespace droid.Runtime.Utilities.Misc.Drawing {
         this._ring_game_objects[i].transform.position += delta;
 
         // Match the scale to the distance
-        var cube_distance = Vector3.Distance(
-            this._Points[i].transform.position,
-            this._MainPoint.transform.position);
-        this._ring_game_objects[i].transform.localScale = new Vector3(
-            this._ring_game_objects[i].transform.localScale.x,
-            cube_distance,
-            this._ring_game_objects[i].transform.localScale.z);
+        var cube_distance =
+            Vector3.Distance(this._Points[i].transform.position, this._MainPoint.transform.position);
+        this._ring_game_objects[i].transform.localScale =
+            new Vector3(this._ring_game_objects[i].transform.localScale.x,
+                        cube_distance,
+                        this._ring_game_objects[i].transform.localScale.z);
 
         // Make the cube look at the main point.
         // Since the cube is pointing up(y) and the forward is z, we need to offset by 90 degrees.

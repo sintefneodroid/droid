@@ -12,7 +12,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
                     + "NativeColorArrayCamera"
                     + SensorComponentMenuPath._Postfix)]
   public class NativeColorFloatArrayCameraSensor : Sensor,
-                                              IHasFloatArray {
+                                                   IHasFloatArray {
     [Header("Observation", order = 103)] float[] flat_float_array;
 
     [Header("Specific", order = 102)]
@@ -79,7 +79,6 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
       Graphics.DrawTexture(new Rect(new Vector2(0,0),new Vector2(128,128)), this._texture);
       }
       #endif
-
     }
 
     /// <summary>
@@ -95,7 +94,6 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
       if (this._camera) {
         var current_render_texture = RenderTexture.active;
         RenderTexture.active = this._camera.targetTexture;
-
 
         if (this._texture
             && this._camera.targetTexture.width == this._texture.width
@@ -118,7 +116,6 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
         //texCopy.Apply();
         //var a = texCopy.GetRawTextureData<Color>();
         var a = this._texture.GetRawTextureData<Color>();
-
 
         #if NEODROID_DEBUG
         var min = a[0];

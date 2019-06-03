@@ -1,5 +1,4 @@
 ﻿#if ECS_EXISTS
-
 using System;
 using Unity.Entities;
 

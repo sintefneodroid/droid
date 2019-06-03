@@ -21,8 +21,10 @@ namespace droid.Runtime.Utilities.GameObjects.Plotting {
                                                          float particle_size_max = 1.8f) {
       _points.Clear();
       for (var j = 0; j < size; j++) {
-        var point = Space3.MinusOneOne.Sample()*max_val;
-        var vp = new Points.ValuePoint(point, Random.Range(min_val, max_val), Random.Range(particle_size_min, particle_size_max));
+        var point = Space3.MinusOneOne.Sample() * max_val;
+        var vp = new Points.ValuePoint(point,
+                                       Random.Range(min_val, max_val),
+                                       Random.Range(particle_size_min, particle_size_max));
         _points.Add(vp);
       }
 

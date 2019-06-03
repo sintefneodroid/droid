@@ -119,25 +119,24 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// <param name="configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
       var aa = Random.Range(0, this._spawned.Count);
-      foreach (var bb in this._spawned){
+      foreach (var bb in this._spawned) {
+        var xy = this.xy_space2.Sample();
+        var z = this._camera.nearClipPlane + this.depth_space1.Sample() * this._camera.farClipPlane;
 
-      var xy = this.xy_space2.Sample();
-      var z = this._camera.nearClipPlane + this.depth_space1.Sample() * this._camera.farClipPlane;
+        var a = new Vector3(xy.x, xy.y, z);
 
-      var a = new Vector3(xy.x, xy.y, z);
+        var c = this._camera.ViewportToWorldPoint(a);
 
-      var c = this._camera.ViewportToWorldPoint(a);
+        var rot = this.rot_space.Sample();
+        var b = new Quaternion(rot.x, rot.y, rot.z, rot.w);
 
-      var rot = this.rot_space.Sample();
-      var b = new Quaternion(rot.x, rot.y, rot.z, rot.w);
+        bb.transform.localScale = this.size_space.Sample();
 
-      bb.transform.localScale = this.size_space.Sample();
+        bb.transform.position = c;
 
-      bb.transform.position = c;
-
-      bb.transform.rotation = b;
-    }
-    #if NEODROID_DEBUG
+        bb.transform.rotation = b;
+      }
+      #if NEODROID_DEBUG
       if (this.Debugging) {
         DebugPrinting.ApplyPrint(this.Debugging, configuration, this.Identifier);
       }

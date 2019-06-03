@@ -24,8 +24,8 @@ namespace droid.Runtime.Utilities.GameObjects.BoundingBoxes {
         this._camera = this.GetComponent<Camera>();
       }
 
-      if(!this.gui_style) {
-        this.gui_style = Resources.FindObjectsOfTypeAll<GUISkin>().First(a => a.name =="BoundingBox");
+      if (!this.gui_style) {
+        this.gui_style = Resources.FindObjectsOfTypeAll<GUISkin>().First(a => a.name == "BoundingBox");
       }
 
       this.bounding_boxes = FindObjectsOfType<BoundingBox>();

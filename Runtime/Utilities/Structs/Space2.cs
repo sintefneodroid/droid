@@ -8,7 +8,7 @@ namespace droid.Runtime.Utilities.Structs {
   /// 
   /// </summary>
   [Serializable]
-  public struct Space2:ISpace {
+  public struct Space2 : ISpace {
     /// <summary>
     /// 
     /// </summary>
@@ -16,7 +16,6 @@ namespace droid.Runtime.Utilities.Structs {
       get { return this._decimal_granularity; }
       set { this._decimal_granularity = value; }
     }
-
 
     /// <summary>
     ///
@@ -34,18 +33,13 @@ namespace droid.Runtime.Utilities.Structs {
     /// <summary>
     ///
     /// </summary>
-    [SerializeField] DistributionSampler _distribution_sampler;
+    [SerializeField]
+    DistributionSampler _distribution_sampler;
 
     public DistributionSampler DistributionSampler {
-      get {
-
-        return this._distribution_sampler;
-      }
-      set {
-        this._distribution_sampler = value;
-      }
+      get { return this._distribution_sampler; }
+      set { this._distribution_sampler = value; }
     }
-
 
     public Space2(int decimal_granularity = 2) : this() {
       this._Min_Values = Vector2.one * -100f; //Vector2.negativeInfinity;
@@ -62,18 +56,18 @@ namespace droid.Runtime.Utilities.Structs {
     public Space1 Xspace {
       get {
         return new Space1(this.DecimalGranularity) {
-                                                         _Min_Value = this._Min_Values.x,
-                                                         _Max_Value = this._Max_Values.x
-                                                     };
+                                                       _Min_Value = this._Min_Values.x,
+                                                       _Max_Value = this._Max_Values.x
+                                                   };
       }
     }
 
     public Space1 Yspace {
       get {
         return new Space1(this.DecimalGranularity) {
-                                                         _Min_Value = this._Min_Values.y,
-                                                         _Max_Value = this._Max_Values.y
-                                                     };
+                                                       _Min_Value = this._Min_Values.y,
+                                                       _Max_Value = this._Max_Values.y
+                                                   };
       }
     }
 
@@ -135,9 +129,8 @@ namespace droid.Runtime.Utilities.Structs {
     }
 
     public static Space2 TwentyEighty {
-      get { return new Space2(1) {_Min_Values = Vector2.one*0.2f, _Max_Values = Vector2.one*0.8f}; }
+      get { return new Space2(1) {_Min_Values = Vector2.one * 0.2f, _Max_Values = Vector2.one * 0.8f}; }
     }
-
 
     public bool IsNormalised { get { return this.normalised; } set { this.normalised = value; } }
   }

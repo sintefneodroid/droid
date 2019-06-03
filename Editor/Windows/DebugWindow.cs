@@ -1,5 +1,4 @@
-﻿
-#if UNITY_EDITOR && NEODROID_DEBUG
+﻿#if UNITY_EDITOR && NEODROID_DEBUG
 using droid.Runtime.Environments;
 using droid.Runtime.InternalReactions;
 using droid.Runtime.Managers;

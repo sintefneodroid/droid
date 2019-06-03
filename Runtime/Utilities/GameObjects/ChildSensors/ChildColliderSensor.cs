@@ -48,37 +48,44 @@ namespace droid.Runtime.Utilities.GameObjects.ChildSensors {
     /// <summary>
     /// 
     /// </summary>
-    [SerializeField] protected Component _caller;
+    [SerializeField]
+    protected Component _caller;
 
     /// <summary>
     /// 
     /// </summary>
-    [SerializeField] protected OnChildCollisionEnterDelegate _on_collision_enter_delegate;
+    [SerializeField]
+    protected OnChildCollisionEnterDelegate _on_collision_enter_delegate;
 
     /// <summary>
     /// 
     /// </summary>
-    [SerializeField] protected OnChildCollisionExitDelegate _on_collision_exit_delegate;
+    [SerializeField]
+    protected OnChildCollisionExitDelegate _on_collision_exit_delegate;
 
     /// <summary>
     /// 
     /// </summary>
-    [SerializeField] protected OnChildCollisionStayDelegate _on_collision_stay_delegate;
+    [SerializeField]
+    protected OnChildCollisionStayDelegate _on_collision_stay_delegate;
 
     /// <summary>
     /// 
     /// </summary>
-    [SerializeField] protected OnChildTriggerEnterDelegate _on_trigger_enter_delegate;
+    [SerializeField]
+    protected OnChildTriggerEnterDelegate _on_trigger_enter_delegate;
 
     /// <summary>
     /// 
     /// </summary>
-    [SerializeField] protected OnChildTriggerExitDelegate _on_trigger_exit_delegate;
+    [SerializeField]
+    protected OnChildTriggerExitDelegate _on_trigger_exit_delegate;
 
     /// <summary>
     /// 
     /// </summary>
-    [SerializeField] protected OnChildTriggerStayDelegate _on_trigger_stay_delegate;
+    [SerializeField]
+    protected OnChildTriggerStayDelegate _on_trigger_stay_delegate;
 
     /// <summary>
     /// </summary>

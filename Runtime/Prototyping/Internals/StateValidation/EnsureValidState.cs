@@ -79,7 +79,7 @@ namespace droid.Runtime.Prototyping.Internals.StateValidation {
       }
     }
 
-    public override void EnvironmentReset() {  }
+    public override void EnvironmentReset() { }
 
     /// <inheritdoc />
     /// <summary>

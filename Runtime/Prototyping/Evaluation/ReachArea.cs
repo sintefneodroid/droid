@@ -95,26 +95,40 @@ namespace droid.Runtime.Prototyping.Evaluation {
       }
 
       NeodroidUtilities
-          .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider,
-              Collision>(this,
-                         this._area.transform,
-                         this.OnCollisionEnterChild,
-                         this.OnTriggerEnterChild,
-                         this.OnCollisionExitChild,
-                         this.OnTriggerExitChild,
-                         this.OnCollisionStayChild,
-                         this.OnTriggerStayChild);
+          .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider, Collision>(this,
+                                                                                                   this
+                                                                                                       ._area
+                                                                                                       .transform,
+                                                                                                   this
+                                                                                                       .OnCollisionEnterChild,
+                                                                                                   this
+                                                                                                       .OnTriggerEnterChild,
+                                                                                                   this
+                                                                                                       .OnCollisionExitChild,
+                                                                                                   this
+                                                                                                       .OnTriggerExitChild,
+                                                                                                   this
+                                                                                                       .OnCollisionStayChild,
+                                                                                                   this
+                                                                                                       .OnTriggerStayChild);
 
       NeodroidUtilities
-          .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider,
-              Collision>(this,
-                         this._actor.transform,
-                         this.OnCollisionEnterChild,
-                         this.OnTriggerEnterChild,
-                         this.OnCollisionExitChild,
-                         this.OnTriggerExitChild,
-                         this.OnCollisionStayChild,
-                         this.OnTriggerStayChild);
+          .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider, Collision>(this,
+                                                                                                   this
+                                                                                                       ._actor
+                                                                                                       .transform,
+                                                                                                   this
+                                                                                                       .OnCollisionEnterChild,
+                                                                                                   this
+                                                                                                       .OnTriggerEnterChild,
+                                                                                                   this
+                                                                                                       .OnCollisionExitChild,
+                                                                                                   this
+                                                                                                       .OnTriggerExitChild,
+                                                                                                   this
+                                                                                                       .OnCollisionStayChild,
+                                                                                                   this
+                                                                                                       .OnTriggerStayChild);
     }
 
     void OnTriggerEnterChild(GameObject child_game_object, Collider other_game_object) {

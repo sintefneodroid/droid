@@ -1,85 +1,76 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 
 namespace droid.Runtime.Shaders.Experimental.Skybox_Shaders.Editor {
-    public class HorizonWithSunSkyboxInspector : MaterialEditor
-    {
-        public override void OnInspectorGUI ()
-        {
-            this.serializedObject.Update ();
+  public class HorizonWithSunSkyboxInspector : MaterialEditor {
+    public override void OnInspectorGUI() {
+      this.serializedObject.Update();
 
-            if (this.isVisible)
-            {
-                EditorGUI.BeginChangeCheck ();
+      if (this.isVisible) {
+        EditorGUI.BeginChangeCheck();
 
-                GUILayout.Label ("Background Parameters");
+        GUILayout.Label("Background Parameters");
 
-                EditorGUILayout.Space ();
+        EditorGUILayout.Space();
 
-                this.ColorProperty (GetMaterialProperty (this.targets, "_SkyColor1"), "Top Color");
-                this.FloatProperty (GetMaterialProperty (this.targets, "_SkyExponent1"), "Exponential Factor");
+        this.ColorProperty(GetMaterialProperty(this.targets, "_SkyColor1"), "Top Color");
+        this.FloatProperty(GetMaterialProperty(this.targets, "_SkyExponent1"), "Exponential Factor");
 
-                EditorGUILayout.Space ();
+        EditorGUILayout.Space();
 
-                this.ColorProperty (GetMaterialProperty (this.targets, "_SkyColor2"), "Horizon Color");
+        this.ColorProperty(GetMaterialProperty(this.targets, "_SkyColor2"), "Horizon Color");
 
-                EditorGUILayout.Space ();
+        EditorGUILayout.Space();
 
-                this.ColorProperty (GetMaterialProperty (this.targets, "_SkyColor3"), "Bottom Color");
-                this.FloatProperty (GetMaterialProperty (this.targets, "_SkyExponent2"), "Exponential Factor");
+        this.ColorProperty(GetMaterialProperty(this.targets, "_SkyColor3"), "Bottom Color");
+        this.FloatProperty(GetMaterialProperty(this.targets, "_SkyExponent2"), "Exponential Factor");
 
-                EditorGUILayout.Space ();
+        EditorGUILayout.Space();
 
-                this.FloatProperty (GetMaterialProperty (this.targets, "_SkyIntensity"), "Intensity");
+        this.FloatProperty(GetMaterialProperty(this.targets, "_SkyIntensity"), "Intensity");
 
-                EditorGUILayout.Space ();
+        EditorGUILayout.Space();
 
-                GUILayout.Label ("Sun Parameters");
+        GUILayout.Label("Sun Parameters");
 
-                EditorGUILayout.Space ();
+        EditorGUILayout.Space();
 
-                this.ColorProperty (GetMaterialProperty (this.targets, "_SunColor"), "Color");
-                this.FloatProperty (GetMaterialProperty (this.targets, "_SunIntensity"), "Intensity");
+        this.ColorProperty(GetMaterialProperty(this.targets, "_SunColor"), "Color");
+        this.FloatProperty(GetMaterialProperty(this.targets, "_SunIntensity"), "Intensity");
 
-                EditorGUILayout.Space ();
+        EditorGUILayout.Space();
 
-                this.FloatProperty (GetMaterialProperty (this.targets, "_SunAlpha"), "Alpha");
-                this.FloatProperty (GetMaterialProperty (this.targets, "_SunBeta"), "Beta");
+        this.FloatProperty(GetMaterialProperty(this.targets, "_SunAlpha"), "Alpha");
+        this.FloatProperty(GetMaterialProperty(this.targets, "_SunBeta"), "Beta");
 
-                EditorGUILayout.Space ();
+        EditorGUILayout.Space();
 
-                var az = GetMaterialProperty (this.targets, "_SunAzimuth");
-                var al = GetMaterialProperty (this.targets, "_SunAltitude");
+        var az = GetMaterialProperty(this.targets, "_SunAzimuth");
+        var al = GetMaterialProperty(this.targets, "_SunAltitude");
 
-                if (az.hasMixedValue || al.hasMixedValue )
-                {
-                    EditorGUILayout.HelpBox ("Editing angles is disabled because they have mixed values.", MessageType.Warning);
-                }
-                else
-                {
-                    this.FloatProperty (az, "Azimuth");
-                    this.FloatProperty (al, "Altitude");
-                }
-
-                if (EditorGUI.EndChangeCheck ())
-                {
-                    var raz = az.floatValue * Mathf.Deg2Rad;
-                    var ral = al.floatValue * Mathf.Deg2Rad;
-                
-                    var upVector = new Vector4 (
-                                                Mathf.Cos (ral) * Mathf.Sin (raz),
-                                                Mathf.Sin (ral),
-                                                Mathf.Cos (ral) * Mathf.Cos (raz),
-                                                0.0f
-                                               );
-                    GetMaterialProperty (this.targets, "_SunVector").vectorValue = upVector;
-
-                    this.PropertiesChanged ();
-                }
-            }
+        if (az.hasMixedValue || al.hasMixedValue) {
+          EditorGUILayout.HelpBox("Editing angles is disabled because they have mixed values.",
+                                  MessageType.Warning);
+        } else {
+          this.FloatProperty(az, "Azimuth");
+          this.FloatProperty(al, "Altitude");
         }
+
+        if (EditorGUI.EndChangeCheck()) {
+          var raz = az.floatValue * Mathf.Deg2Rad;
+          var ral = al.floatValue * Mathf.Deg2Rad;
+
+          var upVector = new Vector4(Mathf.Cos(ral) * Mathf.Sin(raz),
+                                     Mathf.Sin(ral),
+                                     Mathf.Cos(ral) * Mathf.Cos(raz),
+                                     0.0f);
+          GetMaterialProperty(this.targets, "_SunVector").vectorValue = upVector;
+
+          this.PropertiesChanged();
+        }
+      }
     }
+  }
 }
 #endif

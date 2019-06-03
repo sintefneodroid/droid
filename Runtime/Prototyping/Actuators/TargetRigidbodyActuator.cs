@@ -60,7 +60,8 @@ namespace droid.Runtime.Prototyping.Actuators {
           NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Actuator)this, this._turn);
 
       this._parent_environment =
-          NeodroidUtilities.RegisterComponent((ActorisedPrototypingEnvironment)this._parent_environment, this);
+          NeodroidUtilities.RegisterComponent((ActorisedPrototypingEnvironment)this._parent_environment,
+                                              this);
 
       if (this._parent_environment != null) {
         this._parent_environment.PreStepEvent += this.PreStep;

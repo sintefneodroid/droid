@@ -1,5 +1,4 @@
-﻿
-using droid.Runtime.Environments;
+﻿using droid.Runtime.Environments;
 using droid.Runtime.Managers;
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Prototyping.Actuators;

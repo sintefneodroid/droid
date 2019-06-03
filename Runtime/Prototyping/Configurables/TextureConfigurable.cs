@@ -16,7 +16,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     [SerializeField] Texture _texture = null;
     [SerializeField] Renderer _renderer = null;
     [SerializeField] bool use_shared = false;
-     Material _mat;
+    Material _mat;
     [SerializeField] int _last_sample;
     [SerializeField] string load_path = "Textures";
     static readonly int _main_tex = Shader.PropertyToID("_MainTex");
@@ -57,7 +57,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     }
 
     protected override void Randomise() {
-      this._texture = this._textures[Random.Range(0,this._textures.Length)];
+      this._texture = this._textures[Random.Range(0, this._textures.Length)];
 
       this._mat.SetTexture(_main_tex, this._texture);
     }

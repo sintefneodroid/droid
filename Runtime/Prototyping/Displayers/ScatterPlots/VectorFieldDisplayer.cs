@@ -53,8 +53,6 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
 
     }*/
 
-
-
     /// <summary>
     /// </summary>
     /// <param name="points"></param>

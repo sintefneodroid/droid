@@ -4,20 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera {
-  public class ConfigurableSampleToggleList : MonoBehaviour
-  {
-    Configurable[] _all_configurables=null;
-    [SerializeField] Toggle _sample_toggle_button_prefab=null;
+  /// <summary>
+  ///
+  /// </summary>
+  public class ConfigurableSampleToggleList : MonoBehaviour {
+    Configurable[] _all_configurables = null;
+    [SerializeField] Toggle _sample_toggle_button_prefab = null;
 
-    void Awake()
-    {
+    void Awake() {
       this._all_configurables = FindObjectsOfType<Configurable>();
       //this._all_configurables = FindObjectOfType<PrototypingEnvironment>().Configurables;
 
-      foreach (var configurable in this._all_configurables)
-      {
-        if (configurable.enabled)
-        {
+      foreach (var configurable in this._all_configurables) {
+        if (configurable.enabled) {
           var button = Instantiate(this._sample_toggle_button_prefab, this.transform);
           button.isOn = configurable.SampleRandom;
           button.onValueChanged.AddListener(value => this.Set(configurable, value));
@@ -28,14 +27,8 @@ namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera {
       }
     }
 
-    void Toggle(IConfigurable configurable)
-    {
-      configurable.SampleRandom = !configurable.SampleRandom;
-    }
+    void Toggle(IConfigurable configurable) { configurable.SampleRandom = !configurable.SampleRandom; }
 
-    void Set(IConfigurable configurable, bool value)
-    {
-      configurable.SampleRandom = value;
-    }
+    void Set(IConfigurable configurable, bool value) { configurable.SampleRandom = value; }
   }
 }

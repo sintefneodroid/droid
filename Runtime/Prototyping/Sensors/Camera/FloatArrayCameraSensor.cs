@@ -41,7 +41,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
     public Space1[] ObservationSpace { get { return new[] {Space1.ZeroOne}; } }
 
     protected override void PreSetup() {
-      if(this._manager==null) {
+      if (this._manager == null) {
         this._manager = FindObjectOfType<NeodroidManager>();
       }
 

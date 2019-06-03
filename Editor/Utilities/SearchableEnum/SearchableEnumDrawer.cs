@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using droid.Runtime.Utilities.Misc.SearchableEnum;
 using UnityEngine;
 #if UNITY_EDITOR

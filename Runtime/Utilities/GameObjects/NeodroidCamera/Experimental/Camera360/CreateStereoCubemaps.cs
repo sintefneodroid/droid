@@ -11,17 +11,17 @@ namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera.Experimental.Camera
     public bool renderStereo = true;
     public float stereoSeparation = 0.064f;
 
-    Camera cam;
+    Camera _cam;
 
     void Start() {
-      this.cam = this.GetComponent<Camera>();
+      this._cam = this.GetComponent<Camera>();
 
-      if (this.cam == null) {
-        this.cam = this.GetComponentInParent<Camera>();
+      if (this._cam == null) {
+        this._cam = this.GetComponentInParent<Camera>();
       }
 
-      if (this.cam) {
-        var target_texture = this.cam.targetTexture;
+      if (this._cam) {
+        var target_texture = this._cam.targetTexture;
         if (!target_texture) {
           Debug.LogWarning($"No targetTexture defaulting to a texture of size ({NeodroidConstants._Default_Width}, {NeodroidConstants._Default_Height})");
 
@@ -37,20 +37,19 @@ namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera.Experimental.Camera
           }
         }
       }
-
     }
 
     void LateUpdate() {
-      if (this.cam == null) {
+      if (this._cam == null) {
         Debug.Log("stereo 360 capture node has no camera or parent camera");
       }
 
       if (this.renderStereo) {
-        this.cam.stereoSeparation = this.stereoSeparation;
-        this.cam.RenderToCubemap(this.cubemapLeftEye, 63, Camera.MonoOrStereoscopicEye.Left);
-        this.cam.RenderToCubemap(this.cubemapRightEye, 63, Camera.MonoOrStereoscopicEye.Right);
+        this._cam.stereoSeparation = this.stereoSeparation;
+        this._cam.RenderToCubemap(this.cubemapLeftEye, 63, Camera.MonoOrStereoscopicEye.Left);
+        this._cam.RenderToCubemap(this.cubemapRightEye, 63, Camera.MonoOrStereoscopicEye.Right);
       } else {
-        this.cam.RenderToCubemap(this.cubemapLeftEye, 63, Camera.MonoOrStereoscopicEye.Mono);
+        this._cam.RenderToCubemap(this.cubemapLeftEye, 63, Camera.MonoOrStereoscopicEye.Mono);
       }
 
       //optional: convert cubemaps to equirect

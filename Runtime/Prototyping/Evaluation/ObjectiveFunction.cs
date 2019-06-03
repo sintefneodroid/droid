@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Globalization;
 using droid.Runtime.Environments;
 using droid.Runtime.Interfaces;
@@ -17,7 +16,6 @@ namespace droid.Runtime.Prototyping.Evaluation {
                                             //IHasRegister<Term>,
                                             //IResetable,
                                             IObjective {
-
     /// <summary>
     /// </summary>
     [SerializeField]
@@ -32,7 +30,6 @@ namespace droid.Runtime.Prototyping.Evaluation {
     /// </summary>
     [SerializeField]
     protected float _default_reward = -0.001f;
-
 
     /// <summary>
     /// </summary>
@@ -131,7 +128,6 @@ namespace droid.Runtime.Prototyping.Evaluation {
         this._environment.Terminate("Maximum episode length reached");
       }
 
-
       #if NEODROID_DEBUG
       if (this.Debugging) {
         Debug.Log(signal);
@@ -158,7 +154,6 @@ namespace droid.Runtime.Prototyping.Evaluation {
     /// <summary>
     /// </summary>
     protected override void Clear() {
-
       /*
       this._Extra_Term_Weights.Clear();
       this._Extra_Terms_Dict.Clear();
@@ -209,7 +204,6 @@ namespace droid.Runtime.Prototyping.Evaluation {
     /// </summary>
     public abstract void InternalReset();
 
-
     /*
     /// <summary>
     /// </summary>
@@ -244,12 +238,13 @@ namespace droid.Runtime.Prototyping.Evaluation {
       return extra_terms_output;
     }
 */
+
     #region Fields
 
     [Header("References", order = 100)]
     [SerializeField]
     //[SerializeField]float _internal_discount_factor = 1.0f;
-    ActorisedPrototypingEnvironment _environment=null;
+    ActorisedPrototypingEnvironment _environment = null;
 
     //[SerializeField] Term[] _extra_terms_external;
 
@@ -259,10 +254,9 @@ namespace droid.Runtime.Prototyping.Evaluation {
 
     [Header("General", order = 101)]
     [SerializeField]
-    float _solved_threshold=0f;
+    float _solved_threshold = 0f;
 
-    [SerializeField] float _last_signal=0f;
-
+    [SerializeField] float _last_signal = 0f;
 
     /// <summary>
     /// </summary>

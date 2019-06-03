@@ -11,8 +11,7 @@ namespace droid.Runtime.Environments {
     void RandomiseEnvironment() {
       foreach (var configurable in this.Configurables) {
         var value = configurable.Value.SampleConfigurations();
-        foreach (var v in value)
-        {
+        foreach (var v in value) {
           configurable.Value.ApplyConfiguration(v);
         }
       }

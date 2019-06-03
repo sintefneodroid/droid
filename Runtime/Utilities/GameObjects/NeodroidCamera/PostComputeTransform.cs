@@ -1,43 +1,41 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Rendering;
-using Object = System.Object;
 
-[RequireComponent(typeof(Camera))]
-[ExecuteInEditMode]
-public class PostComputeTransform : MonoBehaviour {
+namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera {
   /// <summary>
   ///
   /// </summary>
-  public ComputeShader _TransformationComputeShader;
+  [RequireComponent(typeof(Camera))]
+  [ExecuteInEditMode]
+  public class PostComputeTransform : MonoBehaviour {
+    /// <summary>
+    ///
+    /// </summary>
+    public ComputeShader _TransformationComputeShader;
 
+    //[SerializeField] Material _post_material;
 
-  //[SerializeField] Material _post_material;
+    [Header("Specific", order = 102)]
+    [SerializeField]
+    Camera _camera = null;
 
-  [Header("Specific", order = 102)]
-  [SerializeField]
-  Camera _camera = null;
+    ComputeBuffer _transformation_compute_buffer;
+    CommandBuffer _transformation_command_buffer;
 
-   ComputeBuffer _transformation_compute_buffer;
-   CommandBuffer _transformation_command_buffer;
+    void Awake() {
+      if (this._camera == null) {
+        this._camera = this.GetComponent<Camera>();
+      }
 
+      this.MyRenderTexture = new RenderTexture(256, 256, 0) {enableRandomWrite = true};
+      this.MyRenderTexture.Create();
 
-  void Awake() {
-    if (this._camera == null) {
-      this._camera = this.GetComponent<Camera>();
-    }
+      if (this._TransformationComputeShader) {
+        var kernel_id = this._TransformationComputeShader.FindKernel("CSMain");
 
-    this.renderTexture = new RenderTexture(256, 256, 0);
-    this.renderTexture.enableRandomWrite = true;
-    this.renderTexture.Create();
+        this._transformation_command_buffer = new CommandBuffer();
 
-
-    if (this._TransformationComputeShader) {
-      var kernel_id = this._TransformationComputeShader.FindKernel("CSMain");
-
-      this._transformation_command_buffer = new CommandBuffer();
-
-      /*
+        /*
       var target_texture = this._camera.targetTexture;
       this._TransformationComputeShader.SetTexture(kernel_id,
                                                    "Result",
@@ -48,42 +46,44 @@ public class PostComputeTransform : MonoBehaviour {
 
 */
 
+        //Graphics.SetRandomWriteTarget(1, my_buffer);
 
-      //Graphics.SetRandomWriteTarget(1, my_buffer);
+        //myBuffer.SetData(minMaxHeight);
+        //this.my_buffer.targetTexture.GetNativeDepthBufferPtr().GetBuffer(0, "minMax", minMaxBuffer);
 
-      //myBuffer.SetData(minMaxHeight);
-      //this.my_buffer.targetTexture.GetNativeDepthBufferPtr().GetBuffer(0, "minMax", minMaxBuffer);
+        //_TransformationComputeShader.SetFloat("gamma", 2.2);
+        //_TransformationComputeShader.Dispatch(0, map.Length, 1, 1);
 
-      //_TransformationComputeShader.SetFloat("gamma", 2.2);
-      //_TransformationComputeShader.Dispatch(0, map.Length, 1, 1);
-
-      //my_buffer.SetData(*target_texture.GetNativeTexturePtr());
+        //my_buffer.SetData(*target_texture.GetNativeTexturePtr());
 
 //      this._TransformationComputeShader.SetTexture(kernelHandle, "Result", target_texture);
 
-      this._transformation_command_buffer.SetComputeTextureParam(this._TransformationComputeShader,
-                                                                 kernel_id,
-                                                                 "Result",
-                                                                 this.renderTexture);
-      //this._transformation_command_buffer.SetComputeBufferParam(this._TransformationComputeShader, kernel_id,"Result",this._transformation_compute_buffer);
-      this._transformation_command_buffer.DispatchCompute(this._TransformationComputeShader,
-                                                          kernel_id,
-                                                          256/32,
-                                                          256/32,
-                                                          1);
-      //this._camera.AddCommandBuffer(CameraEvent.AfterEverything, this._transformation_command_buffer);
+        this._transformation_command_buffer.SetComputeTextureParam(this._TransformationComputeShader,
+                                                                   kernel_id,
+                                                                   "Result",
+                                                                   this.MyRenderTexture);
+        //this._transformation_command_buffer.SetComputeBufferParam(this._TransformationComputeShader, kernel_id,"Result",this._transformation_compute_buffer);
+        this._transformation_command_buffer.DispatchCompute(this._TransformationComputeShader,
+                                                            kernel_id,
+                                                            256 / 32,
+                                                            256 / 32,
+                                                            1);
+        //this._camera.AddCommandBuffer(CameraEvent.AfterEverything, this._transformation_command_buffer);
+      }
     }
-  }
 
-  void Update() {
-    if (this._TransformationComputeShader) {
-      this._TransformationComputeShader.SetTexture(0, "Result", this.renderTexture);
-      //this._TransformationComputeShader.SetBuffer(0,"",this._transformation_compute_buffer);
-      this._TransformationComputeShader.Dispatch(0, 256 / 32, 256 / 32, 1);
+    void Update() {
+      if (this._TransformationComputeShader) {
+        this._TransformationComputeShader.SetTexture(0, "Result", this.MyRenderTexture);
+        //this._TransformationComputeShader.SetBuffer(0,"",this._transformation_compute_buffer);
+        this._TransformationComputeShader.Dispatch(0, 256 / 32, 256 / 32, 1);
+      }
     }
-   }
 
-  public RenderTexture renderTexture { get; set; }
+    /// <summary>
+    ///
+    /// </summary>
+    public RenderTexture MyRenderTexture { get; set; }
 
 // Postprocess the image
 /*
@@ -95,17 +95,21 @@ public class PostComputeTransform : MonoBehaviour {
   }
 */
 
-  public void OnDisable() { this.Cleanup(); }
+    /// <summary>
+    ///
+    /// </summary>
+    public void OnDisable() { this.Cleanup(); }
 
-  void Cleanup() {
-    if (this._transformation_command_buffer != null) {
-      this._camera.RemoveCommandBuffer(CameraEvent.AfterEverything, this._transformation_command_buffer);
+    void Cleanup() {
+      if (this._transformation_command_buffer != null) {
+        this._camera.RemoveCommandBuffer(CameraEvent.AfterEverything, this._transformation_command_buffer);
+      }
     }
-  }
 
-  void OnDestroy() {
-    this.Cleanup();
+    void OnDestroy() {
+      this.Cleanup();
 
 //DestroyImmediate(this._GammaCommandBuffer);
+    }
   }
 }

@@ -51,14 +51,24 @@ namespace droid.Runtime.Prototyping.Evaluation {
 
       if (this._goal) {
         NeodroidUtilities
-            .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider,
-                Collision>(this, this._goal.transform, null, this.OnTriggerEnterChild);
+            .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider, Collision>(this,
+                                                                                                     this
+                                                                                                         ._goal
+                                                                                                         .transform,
+                                                                                                     null,
+                                                                                                     this
+                                                                                                         .OnTriggerEnterChild);
       }
 
       if (this._actor) {
         NeodroidUtilities
-            .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider,
-                Collision>(this, this._actor.transform, null, this.OnTriggerEnterChild);
+            .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider, Collision>(this,
+                                                                                                     this
+                                                                                                         ._actor
+                                                                                                         .transform,
+                                                                                                     null,
+                                                                                                     this
+                                                                                                         .OnTriggerEnterChild);
       }
     }
 

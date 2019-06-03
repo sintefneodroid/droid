@@ -1,5 +1,4 @@
-﻿
-using droid.Runtime.Prototyping.Sensors;
+﻿using droid.Runtime.Prototyping.Sensors;
 using droid.Runtime.Prototyping.Sensors.Transform;
 using UnityEditor;
 #if UNITY_EDITOR

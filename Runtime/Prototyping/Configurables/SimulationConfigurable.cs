@@ -50,21 +50,13 @@ namespace droid.Runtime.Prototyping.Configurables {
                                               (Configurable)this,
                                               this._target_frame_rate);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._width);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._width);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._height);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._height);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._fullscreen);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._fullscreen);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._time_scale);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._time_scale);
     }
 
     /// <summary>

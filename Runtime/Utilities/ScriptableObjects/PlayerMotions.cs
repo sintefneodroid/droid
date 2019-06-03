@@ -8,7 +8,7 @@ namespace droid.Runtime.Utilities.ScriptableObjects {
   /// <summary>
   /// </summary>
   [CreateAssetMenu(fileName = "PlayerMotions",
-      menuName = ScriptableObjectMenuPath._ScriptableObjectMenuPath+"PlayerMotions",
+      menuName = ScriptableObjectMenuPath._ScriptableObjectMenuPath + "PlayerMotions",
       order = 1)]
   public class PlayerMotions : ScriptableObject {
     /// <summary>
@@ -26,15 +26,15 @@ namespace droid.Runtime.Utilities.ScriptableObjects {
       }
   */
       var copy = this._Motions;
-      if(copy!=null) {
+      if (copy != null) {
         for (var i = 0; i < copy.Length; i++) {
           var actor = copy[i]._Actor;
-          if(actor!=null) {
+          if (actor != null) {
             copy[i]._Actor = Regex.Replace(actor, "[^\\w\\._]", "");
           }
 
           var actuator = copy[i]._Actuator;
-          if(actuator!=null) {
+          if (actuator != null) {
             copy[i]._Actuator = Regex.Replace(actuator, "[^\\w\\._]", "");
           }
         }
