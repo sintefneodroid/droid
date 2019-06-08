@@ -34,6 +34,10 @@ namespace droid.Runtime.Prototyping.Configurables {
       set { this._single_value_space = value; }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     public override void UpdateCurrentConfiguration() {
       var transform1 = this.transform;
       var pos = transform1.position;
@@ -99,6 +103,8 @@ namespace droid.Runtime.Prototyping.Configurables {
       }
     }
 
+    public override ISpace ConfigurableValueSpace { get { return this.SingleSpace; } }
+
     /// <summary>
     ///
     /// </summary>
@@ -110,6 +116,8 @@ namespace droid.Runtime.Prototyping.Configurables {
         Debug.Log($"It does not accept input, outside allowed range {this.SingleSpace._Min_Value} to {this.SingleSpace._Max_Value}");
         return; // Do nothing
       }
+
+      var cv = this.SingleSpace.Round(simulator_configuration.ConfigurableValue);
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
@@ -134,73 +142,73 @@ namespace droid.Runtime.Prototyping.Configurables {
       switch (this._axis_of_configuration) {
         case Axis.X_:
           if (this.RelativeToExistingValue) {
-            pos.Set(simulator_configuration.ConfigurableValue - pos.x, pos.y, pos.z);
+            pos.Set(cv - pos.x, pos.y, pos.z);
           } else {
-            pos.Set(simulator_configuration.ConfigurableValue, pos.y, pos.z);
+            pos.Set(cv, pos.y, pos.z);
           }
 
           break;
         case Axis.Y_:
           if (this.RelativeToExistingValue) {
-            pos.Set(pos.x, simulator_configuration.ConfigurableValue - pos.y, pos.z);
+            pos.Set(pos.x, cv - pos.y, pos.z);
           } else {
-            pos.Set(pos.x, simulator_configuration.ConfigurableValue, pos.z);
+            pos.Set(pos.x, cv, pos.z);
           }
 
           break;
         case Axis.Z_:
           if (this.RelativeToExistingValue) {
-            pos.Set(pos.x, pos.y, simulator_configuration.ConfigurableValue - pos.z);
+            pos.Set(pos.x, pos.y, cv - pos.z);
           } else {
-            pos.Set(pos.x, pos.y, simulator_configuration.ConfigurableValue);
+            pos.Set(pos.x, pos.y, cv);
           }
 
           break;
         case Axis.Dir_x_:
           if (this.RelativeToExistingValue) {
-            dir.Set(simulator_configuration.ConfigurableValue - dir.x, dir.y, dir.z);
+            dir.Set(cv - dir.x, dir.y, dir.z);
           } else {
-            dir.Set(simulator_configuration.ConfigurableValue, dir.y, dir.z);
+            dir.Set(cv, dir.y, dir.z);
           }
 
           break;
         case Axis.Dir_y_:
           if (this.RelativeToExistingValue) {
-            dir.Set(dir.x, simulator_configuration.ConfigurableValue - dir.y, dir.z);
+            dir.Set(dir.x, cv - dir.y, dir.z);
           } else {
-            dir.Set(dir.x, simulator_configuration.ConfigurableValue, dir.z);
+            dir.Set(dir.x, cv, dir.z);
           }
 
           break;
         case Axis.Dir_z_:
           if (this.RelativeToExistingValue) {
-            dir.Set(dir.x, dir.y, simulator_configuration.ConfigurableValue - dir.z);
+            dir.Set(dir.x, dir.y, cv - dir.z);
           } else {
-            dir.Set(dir.x, dir.y, simulator_configuration.ConfigurableValue);
+            dir.Set(dir.x, dir.y, cv);
           }
 
           break;
         case Axis.Rot_x_:
           if (this.RelativeToExistingValue) {
-            rot.Set(simulator_configuration.ConfigurableValue - rot.x, rot.y, rot.z);
+            rot.Set(cv - rot.x, rot.y, rot.z);
           } else {
-            rot.Set(simulator_configuration.ConfigurableValue, rot.y, rot.z);
+            rot.Set(cv, rot.y, rot.z);
           }
 
           break;
         case Axis.Rot_y_:
           if (this.RelativeToExistingValue) {
-            rot.Set(rot.x, simulator_configuration.ConfigurableValue - rot.y, rot.z);
+            rot.Set(rot.x, cv - rot.y, rot.z);
           } else {
-            rot.Set(rot.x, simulator_configuration.ConfigurableValue, rot.z);
+            rot.Set(rot.x, cv, rot.z);
           }
 
           break;
         case Axis.Rot_z_:
           if (this.RelativeToExistingValue) {
-            rot.Set(rot.x, rot.y, simulator_configuration.ConfigurableValue - rot.z);
+            rot.Set(rot.x, rot.y, cv - rot.z);
           } else {
-            rot.Set(rot.x, rot.y, simulator_configuration.ConfigurableValue);
+            rot.Set(rot.x, rot.y, cv);
           }
 
           break;

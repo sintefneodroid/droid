@@ -53,23 +53,29 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
 
     void OnDrawGizmos() {
       if (this.enabled) {
+        var position = this.transform.position;
         switch (this._dim) {
           case Axis.Rot_x_:
           case Axis.X_:
-            Debug.DrawLine(this.transform.position, this.transform.position + Vector3.right * 2, Color.green);
+
+            Debug.DrawLine(position, position + Vector3.right * 2, Color.green);
             break;
           case Axis.Rot_y_:
           case Axis.Y_:
-            Debug.DrawLine(this.transform.position, this.transform.position + Vector3.up * 2, Color.green);
+
+            Debug.DrawLine(position, position + Vector3.up * 2, Color.green);
             break;
           case Axis.Rot_z_:
           case Axis.Z_:
-            Debug.DrawLine(this.transform.position,
-                           this.transform.position + Vector3.forward * 2,
+            Debug.DrawLine(position,
+                           position + Vector3.forward * 2,
                            Color.green);
             break;
+          case Axis.Dir_x_: break;
+          case Axis.Dir_y_: break;
+          case Axis.Dir_z_: break;
           default: //TODO add the Direction cases
-            Gizmos.DrawIcon(this.transform.position, "console.warnicon", true);
+            Gizmos.DrawIcon(position, "console.warnicon", true);
             break;
         }
       }

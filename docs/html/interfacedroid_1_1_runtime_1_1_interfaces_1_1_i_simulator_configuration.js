@@ -1,0 +1,27 @@
+var interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration =
+[
+    [ "AlwaysSerialiseAggregatedFloatArray", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#a3d28a88f7b0fef221932dfa5e158a422", null ],
+    [ "AlwaysSerialiseIndividualObservables", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#a28006ac8f669ca3a9b488c2f0e3a2314", null ],
+    [ "AlwaysSerialiseUnobservables", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#aff1b6731a76874cc4cb2d0685cd5cf03", null ],
+    [ "ApplyQualitySettings", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#a3d07df64b9155fcb32f6077c74da6aeb", null ],
+    [ "ApplyResolutionSettings", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#ac4dd975f127651208badda7bdce571be", null ],
+    [ "ColorSpace", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#a2aff8c7120fda775dd884a8e708c4fac", null ],
+    [ "FrameFinishes", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#a288d13a18e63a63de094ba3e79dbb803", null ],
+    [ "FrameSkips", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#a6e2f6ae658e2b55d469e70c7ffe153c9", null ],
+    [ "FullScreen", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#ae8ed4254e179032047e882f0cacd270a", null ],
+    [ "Height", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#a3455d6d086b28156b7b00e4a6950b382", null ],
+    [ "IpAddress", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#aed1a367fab157f9dfda773d83e1bbfbb", null ],
+    [ "NumOfEnvironments", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#aaceab5751ad8addf52c60c27d4875b98", null ],
+    [ "Port", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#a3f39233b8092df70e0aceb82d2a9e177", null ],
+    [ "QualityLevel", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#abab7cb564058a51c6895b9443e2019b6", null ],
+    [ "ReplayReactionInSkips", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#a1125fc9548212590960e17a3ba8babf2", null ],
+    [ "ResetIterations", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#a13fb176ac6adfd1ccf657b00db12bc8a", null ],
+    [ "ResizableWindow", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#a39461e6274c31fb9c3a900b32db406db", null ],
+    [ "SimulationType", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#a38d17a2eab10497758add93f9d477660", null ],
+    [ "StepExecutionPhase", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#aa4e40efc0d7062aaa157261aa523a3d5", null ],
+    [ "TargetFrameRate", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#a9977602e08cad84dd6a4b1928ea4673f", null ],
+    [ "TimeScale", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#ac0d7bdcb36287a097da457cf82ea730e", null ],
+    [ "UpdateFixedTimeScale", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#a2e07d9b0f9b57f2dc81fd94249c046b6", null ],
+    [ "vSyncCount", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#a754f67d5542e12afb4ad33e98dee21d3", null ],
+    [ "Width", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#a5ba1e1ddabb6d9bd6fba30a76c3a5ebc", null ]
+];

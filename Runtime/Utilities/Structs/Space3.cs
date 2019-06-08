@@ -44,7 +44,7 @@ namespace droid.Runtime.Utilities.Structs {
 
     public Vector3 Span { get { return this._Max_Values - this._Min_Values; } }
 
-    public Vector3 Sample() {
+    public dynamic Sample() {
       var x = this.DistributionSampler.Range(this._Min_Values.x, this._Max_Values.x);
       var y = this.DistributionSampler.Range(this._Min_Values.y, this._Max_Values.y);
       var z = this.DistributionSampler.Range(this._Min_Values.z, this._Max_Values.z);

@@ -1,0 +1,5 @@
+<map id="droid.Runtime.Prototyping.Actors.VirtualActor" name="droid.Runtime.Prototyping.Actors.VirtualActor">
+<area shape="rect" id="node2" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_actor.html" title="IActor" alt="" coords="106,80,163,107"/>
+<area shape="rect" id="node3" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_registerable.html" title="IRegisterable" alt="" coords="5,5,104,32"/>
+<area shape="rect" id="node4" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html" title="IHasRegister\&lt; IActuator \&gt;" alt="" coords="128,5,304,32"/>
+</map>

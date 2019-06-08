@@ -13,9 +13,6 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
                     + SensorComponentMenuPath._Postfix)]
   public class ByteArrayCameraSensor : Sensor,
                                        IHasByteArray {
-    //[Header("Observation", order = 103)]
-    byte[] byte_array;
-
     [Header("Specific", order = 102)]
     [SerializeField]
     UnityEngine.Camera _camera = null;
@@ -27,8 +24,11 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
 
     [SerializeField] Texture2D _texture = null;
 
-    TextureCreationFlags _flags;
+    const TextureCreationFlags _flags = TextureCreationFlags.None;
 
+    /// <summary>
+    /// 
+    /// </summary>
     protected override void PreSetup() {
       if (this._manager == null) {
         this._manager = FindObjectOfType<NeodroidManager>();
@@ -53,8 +53,12 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
         this._texture = new Texture2D(target_texture.width,
                                       target_texture.height,
                                       target_texture.graphicsFormat,
-                                      this._flags);
+                                      _flags);
       }
+
+      /*this._post_material = new Material( Shader.Find("Neodroid/Gamma") );
+    this._post_material.SetFloat("_gamma", this.gamma);
+    Graphics.Blit(source, destination, this._post_material);*/
     }
 
     /// <summary>
@@ -133,9 +137,9 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
     /// </summary>
     /// <returns></returns>
     public override string ToString() {
-      var rep = $"Very Large Float Array (Length: {this.Bytes.Length}), "
-                + $"Sample [{Mathf.Clamp01(this.byte_array[0])}.."
-                + $"{Mathf.Clamp01(this.byte_array[this.byte_array.Length - 1])}]";
+      var rep = $"Byte Array (Length: {this.Bytes.Length}), "
+                + $"Sample [{this.Bytes[0]}.."
+                + $"{this.Bytes[this.Bytes.Length - 1]}]";
 
       return rep;
     }
@@ -143,8 +147,11 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
     /// <summary>
     ///
     /// </summary>
-    public Byte[] Bytes { get; set; }
+    public Byte[] Bytes { get; private set; }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Int32[] Shape {
       get {
         int channels;

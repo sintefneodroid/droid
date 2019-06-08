@@ -1,3 +1,5 @@
+using UnityEngine.Profiling;
+
 namespace droid.Runtime.Interfaces {
   /// <summary>
   /// 
@@ -9,5 +11,7 @@ namespace droid.Runtime.Interfaces {
     int DecimalGranularity { get; }
 
     bool IsNormalised { get; }
+
+    dynamic Sample();
   }
 }

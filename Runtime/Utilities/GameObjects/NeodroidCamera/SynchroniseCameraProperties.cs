@@ -396,12 +396,14 @@ namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera {
           }
         } else {
           #if NEODROID_DEBUG
-          Debug.Log("No Camera component found on GameObject");
+          Debug.Log($"No Camera component found on {this.name} GameObject");
           #endif
         }
       } else {
         #if NEODROID_DEBUG
-        Debug.Log("No SyncCameraProperties component found on GameObject");
+
+          //Debug.Log($"No SyncCameraProperties component found on {this.name} GameObject");
+
         #endif
       }
     }

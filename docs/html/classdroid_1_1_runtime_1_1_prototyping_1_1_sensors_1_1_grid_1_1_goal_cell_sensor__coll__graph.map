@@ -1,0 +1,7 @@
+<map id="droid.Runtime.Prototyping.Sensors.Grid.GoalCellSensor" name="droid.Runtime.Prototyping.Sensors.Grid.GoalCellSensor">
+<area shape="rect" id="node2" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_sensor.html" title="Sensor" alt="" coords="127,155,189,181"/>
+<area shape="rect" id="node3" href="$classdroid_1_1_runtime_1_1_utilities_1_1_game_objects_1_1_prototyping_game_object.html" title="PrototypingGameObject" alt="" coords="5,80,167,107"/>
+<area shape="rect" id="node5" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_registerable.html" title="IRegisterable" alt="" coords="173,5,271,32"/>
+<area shape="rect" id="node6" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_observer.html" title="IObserver" alt="" coords="191,80,269,107"/>
+<area shape="rect" id="node7" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_triple.html" title="IHasTriple" alt="" coords="214,155,297,181"/>
+</map>

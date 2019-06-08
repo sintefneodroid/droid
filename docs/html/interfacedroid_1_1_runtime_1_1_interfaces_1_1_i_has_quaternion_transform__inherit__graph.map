@@ -1,0 +1,4 @@
+<map id="droid.Runtime.Interfaces.IHasQuaternionTransform" name="droid.Runtime.Interfaces.IHasQuaternionTransform">
+<area shape="rect" id="node2" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_quaternion_transform_configurable.html" title="droid.Runtime.Prototyping.\lConfigurables.QuaternionTransform\lConfigurable" alt="" coords="241,5,469,61"/>
+<area shape="rect" id="node3" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_transform_1_1_quaternion_transform_sensor.html" title="droid.Runtime.Prototyping.\lSensors.Transform.QuaternionTransform\lSensor" alt="" coords="225,85,484,141"/>
+</map>

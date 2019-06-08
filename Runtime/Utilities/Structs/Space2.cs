@@ -75,7 +75,7 @@ namespace droid.Runtime.Utilities.Structs {
     ///
     /// </summary>
     /// <returns></returns>
-    public Vector2 Sample() {
+    public dynamic Sample() {
       var x = this.DistributionSampler.Range(this._Min_Values.x, this._Max_Values.x);
       var y = this.DistributionSampler.Range(this._Min_Values.y, this._Max_Values.y);
 

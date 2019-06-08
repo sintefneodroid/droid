@@ -5,6 +5,9 @@ using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Rays {
+  /// <summary>
+  /// 
+  /// </summary>
   [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
                     + "NearestByTag"
                     + SensorComponentMenuPath._Postfix)]
@@ -26,8 +29,14 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
     [SerializeField] Space3 _rotation_space = new Space3(new DistributionSampler(), 10);
     [SerializeField] string _tag = "";
 
+    /// <summary>
+    ///
+    /// </summary>
     public override string PrototypingTypeName { get { return "Nearest" + this._tag; } }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Vector3 Position {
       get { return this._position; }
       set {

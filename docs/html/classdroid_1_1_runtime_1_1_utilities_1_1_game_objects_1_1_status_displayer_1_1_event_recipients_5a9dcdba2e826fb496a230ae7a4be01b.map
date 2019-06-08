@@ -1,0 +1,5 @@
+<map id="droid.Runtime.Utilities.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted.DataPoller" name="droid.Runtime.Utilities.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted.DataPoller">
+<area shape="rect" id="node3" href="$classdroid_1_1_runtime_1_1_utilities_1_1_game_objects_1_1_status_displayer_1_1_event_recipients_1_1_input_field_updater.html" title="droid.Runtime.Utilities.\lGameObjects.StatusDisplayer.\lEventRecipients.InputFieldUpdater" alt="" coords="472,5,697,61"/>
+<area shape="rect" id="node4" href="$classdroid_1_1_runtime_1_1_utilities_1_1_game_objects_1_1_status_displayer_1_1_event_recipients_1_1_text_updater.html" title="droid.Runtime.Utilities.\lGameObjects.StatusDisplayer.\lEventRecipients.TextUpdater" alt="" coords="483,85,686,141"/>
+<area shape="rect" id="node5" href="$classdroid_1_1_runtime_1_1_utilities_1_1_game_objects_1_1_status_displayer_1_1_event_recipients_1_1_toggle_updater.html" title="droid.Runtime.Utilities.\lGameObjects.StatusDisplayer.\lEventRecipients.ToggleUpdater" alt="" coords="481,165,688,221"/>
+</map>

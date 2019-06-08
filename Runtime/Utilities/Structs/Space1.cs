@@ -49,7 +49,7 @@ namespace droid.Runtime.Utilities.Structs {
     ///
     /// </summary>
     /// <returns></returns>
-    public float Sample() {
+    public dynamic Sample() {
       var x = this.DistributionSampler.Range(this._Min_Value, this._Max_Value);
 
       return x;

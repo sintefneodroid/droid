@@ -1,0 +1,15 @@
+<map id="droid.Runtime.Environments.Experimental.ImitationEnvironment" name="droid.Runtime.Environments.Experimental.ImitationEnvironment">
+<area shape="rect" id="node2" href="$classdroid_1_1_runtime_1_1_environments_1_1_prototyping_environment.html" title="Environment to be used with the prototyping components. " alt="" coords="847,203,1008,229"/>
+<area shape="rect" id="node3" href="$classdroid_1_1_runtime_1_1_environments_1_1_neodroid_environment.html" title="NeodroidEnvironment" alt="" coords="641,123,788,149"/>
+<area shape="rect" id="node4" href="$classdroid_1_1_runtime_1_1_utilities_1_1_game_objects_1_1_prototyping_game_object.html" title="PrototypingGameObject" alt="" coords="274,41,435,68"/>
+<area shape="rect" id="node6" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_registerable.html" title="IRegisterable" alt="" coords="56,56,155,83"/>
+<area shape="rect" id="node7" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_environment.html" title="IEnvironment" alt="" coords="305,159,404,185"/>
+<area shape="rect" id="node10" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_prototyping_environment.html" title="IPrototypingEnvironment" alt="" coords="632,260,797,287"/>
+<area shape="rect" id="node8" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_manager.html" title="droid.Runtime.Interfaces.\lIManager" alt="" coords="270,93,439,134"/>
+<area shape="rect" id="node9" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html" title="IHasRegister\&lt; IEnvironment \&gt;" alt="" coords="5,107,205,133"/>
+<area shape="rect" id="node11" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html" title="IHasRegister\&lt; IActuator \&gt;" alt="" coords="267,428,443,455"/>
+<area shape="rect" id="node12" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html" title="IHasRegister\&lt; IObserver \&gt;" alt="" coords="265,209,445,236"/>
+<area shape="rect" id="node13" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html" title="IHasRegister\&lt; IConfigurable \&gt;" alt="" coords="255,260,455,287"/>
+<area shape="rect" id="node14" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html" title="IHasRegister\&lt; IEnvironment\lListener \&gt;" alt="" coords="261,311,449,353"/>
+<area shape="rect" id="node15" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html" title="IHasRegister\&lt; IDisplayer \&gt;" alt="" coords="263,377,446,404"/>
+</map>

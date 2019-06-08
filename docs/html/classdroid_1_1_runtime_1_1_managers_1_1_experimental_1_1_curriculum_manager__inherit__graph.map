@@ -1,0 +1,5 @@
+<map id="droid.Runtime.Managers.Experimental.CurriculumManager" name="droid.Runtime.Managers.Experimental.CurriculumManager">
+<area shape="rect" id="node2" href="$classdroid_1_1_runtime_1_1_managers_1_1_neodroid_manager.html" title="NeodroidManager" alt="" coords="67,155,191,181"/>
+<area shape="rect" id="node4" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_manager.html" title="IManager" alt="" coords="151,80,227,107"/>
+<area shape="rect" id="node5" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html" title="IHasRegister\&lt; IEnvironment \&gt;" alt="" coords="89,5,289,32"/>
+</map>

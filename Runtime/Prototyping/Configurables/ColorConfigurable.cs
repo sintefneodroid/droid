@@ -86,6 +86,8 @@ namespace droid.Runtime.Prototyping.Configurables {
       this.ParentEnvironment.UnRegister(this, this.a_id);
     }
 
+    public override ISpace ConfigurableValueSpace { get { return this._space; } }
+
     /// <summary>
     /// </summary>
     /// <param name="configuration"></param>

@@ -1,0 +1,11 @@
+<map id="droid.Runtime.Interfaces.IEnvironment" name="droid.Runtime.Interfaces.IEnvironment">
+<area shape="rect" id="node3" href="$classdroid_1_1_runtime_1_1_environments_1_1_neodroid_environment.html" title="droid.Runtime.Environments.\lNeodroidEnvironment" alt="" coords="384,71,575,112"/>
+<area shape="rect" id="node9" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_actorised_prototyping_environment.html" title="droid.Runtime.Interfaces.\lIActorisedPrototypingEnvironment" alt="" coords="369,5,589,47"/>
+<area shape="rect" id="node10" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_prototyping_environment.html" title="droid.Runtime.Interfaces.\lIPrototypingEnvironment" alt="" coords="395,136,564,177"/>
+<area shape="rect" id="node2" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_registerable.html" title="IRegisterable" alt="" coords="5,78,104,105"/>
+<area shape="rect" id="node4" href="$classdroid_1_1_runtime_1_1_environments_1_1_actorised_prototyping_environment.html" title="Environment to be used with the prototyping components. " alt="" coords="637,5,853,47"/>
+<area shape="rect" id="node5" href="$classdroid_1_1_runtime_1_1_environments_1_1_prototyping_environment.html" title="Environment to be used with the prototyping components. " alt="" coords="650,136,841,177"/>
+<area shape="rect" id="node8" href="$classdroid_1_1_runtime_1_1_environments_1_1_scripted_environment.html" title="droid.Runtime.Environments.\lScriptedEnvironment" alt="" coords="650,71,841,112"/>
+<area shape="rect" id="node6" href="$classdroid_1_1_runtime_1_1_environments_1_1_experimental_1_1_imitation_environment.html" title="droid.Runtime.Environments.\lExperimental.ImitationEnvironment" alt="" coords="901,103,1127,144"/>
+<area shape="rect" id="node7" href="$classdroid_1_1_runtime_1_1_environments_1_1_randomised_environment.html" title="droid.Runtime.Environments.\lRandomisedEnvironment" alt="" coords="919,168,1109,209"/>
+</map>

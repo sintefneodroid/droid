@@ -20,14 +20,11 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     public bool RelativeToExistingValue { get { return this._relative_to_existing_value; } }
 
-    /*
+
     /// <summary>
     ///
     /// </summary>
-    public ValueSpace ConfigurableValueSpace {
-      get { return this._configurable_value_space; }
-      set { this._configurable_value_space = value; }
-    }*/
+    public virtual ISpace ConfigurableValueSpace { get; }
 
     /// <summary>
     /// </summary>
@@ -53,7 +50,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <returns></returns>
     /// <exception cref="System.NotImplementedException"></exception>
     public virtual Configuration[] SampleConfigurations() {
-      return new[] {new Configuration(this.Identifier, Space1.ZeroOne.Sample())};
+      return new[] {new Configuration(this.Identifier, this.ConfigurableValueSpace.Sample())};
     }
 
     /// <inheritdoc />

@@ -1,0 +1,6 @@
+<map id="droid.Runtime.Interfaces.IHasByteArray" name="droid.Runtime.Interfaces.IHasByteArray">
+<area shape="rect" id="node2" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_byte_array_camera_sensor.html" title="droid.Runtime.Prototyping.\lSensors.Camera.ByteArrayCamera\lSensor" alt="" coords="223,5,451,61"/>
+<area shape="rect" id="node3" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_camera_sensor.html" title="droid.Runtime.Prototyping.\lSensors.Camera.CameraSensor" alt="" coords="231,86,442,127"/>
+<area shape="rect" id="node4" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_string_augmented_camera_sensor.html" title="droid.Runtime.Prototyping.\lSensors.Camera.StringAugmented\lCameraSensor" alt="" coords="499,79,723,135"/>
+<area shape="rect" id="node5" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_segmentation_1_1_segmentation_camera_sensor.html" title="droid.Runtime.Prototyping.\lSensors.Camera.Segmentation.Segmentation\lCameraSensor" alt="" coords="771,79,1059,135"/>
+</map>
