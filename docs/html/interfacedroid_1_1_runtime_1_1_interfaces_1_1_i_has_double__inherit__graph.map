@@ -1,0 +1,6 @@
+<map id="droid.Runtime.Interfaces.IHasDouble" name="droid.Runtime.Interfaces.IHasDouble">
+<area shape="rect" id="node2" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_bounding_box_1_1_two_dimensional_screen_space_sensor.html" title="droid.Runtime.Prototyping.\lSensors.BoundingBox.TwoDimensional\lScreenSpaceSensor" alt="" coords="223,5,475,61"/>
+<area shape="rect" id="node3" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_compass_sensor.html" title="droid.Runtime.Prototyping.\lSensors.CompassSensor" alt="" coords="260,86,437,127"/>
+<area shape="rect" id="node4" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_target_rigidbody_sensor.html" title="droid.Runtime.Prototyping.\lSensors.TargetRigidbodySensor" alt="" coords="243,151,454,193"/>
+<area shape="rect" id="node5" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_transform_1_1_position2_d_sensor.html" title="droid.Runtime.Prototyping.\lSensors.Transform.Position2DSensor" alt="" coords="227,217,470,258"/>
+</map>

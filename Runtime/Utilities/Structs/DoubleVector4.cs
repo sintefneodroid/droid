@@ -24,7 +24,7 @@ namespace droid.Runtime.Utilities.Structs {
       return a;
     }
 
-    public DoubleVector4(double x, double y, double z,double w) {
+    public DoubleVector4(double x, double y, double z, double w) {
       this._X = x;
       this._Y = y;
       this._Z = z;
@@ -33,9 +33,9 @@ namespace droid.Runtime.Utilities.Structs {
 
     public Double x { get { return this._X; } set { this._X = value; } }
 
-    public Double y{ get { return this._Y; } set { this._Y = value; } }
+    public Double y { get { return this._Y; } set { this._Y = value; } }
 
-    public Double z{ get { return this._Z; } set { this._Z = value; } }
+    public Double z { get { return this._Z; } set { this._Z = value; } }
 
     public Double w { get { return this._W; } set { this._W = value; } }
 
@@ -43,8 +43,5 @@ namespace droid.Runtime.Utilities.Structs {
     ///
     /// </summary>
     public static DoubleVector4 Zero { get { return new DoubleVector4(0, 0, 0, 0); } }
-
-
-
   }
 }

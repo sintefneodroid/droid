@@ -1,7 +1,7 @@
 ﻿using System;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Prototyping.Actuators;
-using droid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
+using droid.Runtime.Utilities.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;

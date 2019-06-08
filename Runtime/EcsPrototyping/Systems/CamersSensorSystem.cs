@@ -24,7 +24,8 @@ namespace droid.Runtime.EcsPrototyping.Systems
             public void Execute(ref Rotation rotation, [ReadOnly] ref HelloRotationSpeed rotSpeed)
             {
                 // Rotate something about its up vector at the speed given by HelloRotationSpeed.
-                rotation.Value = math.mul(math.normalize(rotation.Value), quaternion.AxisAngle(math.up(), rotSpeed.rotationalMultiplier * this.DeltaT));
+                rotation.Value =
+ math.mul(math.normalize(rotation.Value), quaternion.AxisAngle(math.up(), rotSpeed.rotationalMultiplier * this.DeltaT));
             }
         }
 

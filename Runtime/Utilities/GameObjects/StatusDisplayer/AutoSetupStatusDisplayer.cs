@@ -1,14 +1,13 @@
-﻿#if UNITY_EDITOR
-using droid.Runtime.Environments.Experimental;
+﻿using droid.Runtime.Environments;
+using droid.Runtime.Utilities.GameObjects.StatusDisplayer.EventRecipients;
+using droid.Runtime.Utilities.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
+#if UNITY_EDITOR
 using droid.Runtime.Managers;
 using droid.Runtime.Prototyping.Evaluation;
-using droid.Runtime.Utilities.EventRecipients;
-using droid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using UnityEditor.Events;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-
 
 namespace droid.Runtime.Utilities.GameObjects.StatusDisplayer {
   /// <inheritdoc />
@@ -18,7 +17,7 @@ namespace droid.Runtime.Utilities.GameObjects.StatusDisplayer {
   public class AutoSetupStatusDisplayer : MonoBehaviour {
     [SerializeField] bool _clean_empty_no_target_events = true;
 
-     [SerializeField] NeodroidEnvironment _environment = null;
+    [SerializeField] NeodroidEnvironment _environment = null;
     [SerializeField] TextUpdater _environment_frame = null;
     [SerializeField] TextUpdater _environment_obs = null;
 

@@ -224,7 +224,6 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
       this._particle_system.SetParticles(this._particles, points.Length);
     }
 
-
     /// <summary>
     /// </summary>
     /// <param name="points"></param>

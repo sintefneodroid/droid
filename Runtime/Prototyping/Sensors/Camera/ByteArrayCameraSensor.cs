@@ -4,7 +4,6 @@ using droid.Runtime.Interfaces;
 using droid.Runtime.Managers;
 using droid.Runtime.Utilities.Enums;
 using droid.Runtime.Utilities.Misc;
-using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 
@@ -14,23 +13,22 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
                     + SensorComponentMenuPath._Postfix)]
   public class ByteArrayCameraSensor : Sensor,
                                        IHasByteArray {
-    [Header("Observation", order = 103)] byte[] byte_array;
-
     [Header("Specific", order = 102)]
     [SerializeField]
     UnityEngine.Camera _camera = null;
 
     bool _grab = true;
 
+    //[SerializeField] bool linear_space;
     IManager _manager = null;
 
     [SerializeField] Texture2D _texture = null;
 
-    /// <summary>
-    ///
-    /// </summary>
-    public Space1[] ObservationSpace { get { return new[] {Space1.ZeroOne}; } }
+    const TextureCreationFlags _flags = TextureCreationFlags.None;
 
+    /// <summary>
+    /// 
+    /// </summary>
     protected override void PreSetup() {
       if (this._manager == null) {
         this._manager = FindObjectOfType<NeodroidManager>();
@@ -48,13 +46,19 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
         this._texture = new Texture2D(NeodroidConstants._Default_Width,
                                       NeodroidConstants._Default_Height,
                                       NeodroidConstants._Default_TextureFormat,
-                                      false);
+                                      false
+                                      //,this.linear_space
+                                     );
       } else {
         this._texture = new Texture2D(target_texture.width,
                                       target_texture.height,
                                       target_texture.graphicsFormat,
-                                      this.flags);
+                                      _flags);
       }
+
+      /*this._post_material = new Material( Shader.Find("Neodroid/Gamma") );
+    this._post_material.SetFloat("_gamma", this.gamma);
+    Graphics.Blit(source, destination, this._post_material);*/
     }
 
     /// <summary>
@@ -71,12 +75,10 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
       }
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Graphics.DrawTexture(new Rect(new Vector2(0, 0), new Vector2(128, 128)), this._texture);
+        Graphics.DrawTexture(new Rect(new Vector2(0, 0), new Vector2(0, 0)), this._texture);
       }
       #endif
     }
-
-    TextureCreationFlags flags;
 
     /// <summary>
     ///
@@ -94,7 +96,10 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
         //texture.GetNativeTexturePtr()
         RenderTexture.active = texture;
 
-        this._texture.ReadPixels(new Rect(0, 0, this._texture.width, this._texture.height), 0, 0);
+        this._texture.ReadPixels(new Rect(0, 0, this._texture.width, this._texture.height),
+                                 0,
+                                 0,
+                                 recalculateMipMaps : false);
 
         //this._texture.Apply();
 
@@ -132,9 +137,9 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
     /// </summary>
     /// <returns></returns>
     public override string ToString() {
-      var rep = $"Very Large Float Array (Length: {this.Bytes.Length}), "
-                + $"Sample [{Mathf.Clamp01(this.byte_array[0])}.."
-                + $"{Mathf.Clamp01(this.byte_array[this.byte_array.Length - 1])}]";
+      var rep = $"Byte Array (Length: {this.Bytes.Length}), "
+                + $"Sample [{this.Bytes[0]}.."
+                + $"{this.Bytes[this.Bytes.Length - 1]}]";
 
       return rep;
     }
@@ -142,8 +147,11 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
     /// <summary>
     ///
     /// </summary>
-    public Byte[] Bytes { get; set; }
+    public Byte[] Bytes { get; private set; }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Int32[] Shape {
       get {
         int channels;

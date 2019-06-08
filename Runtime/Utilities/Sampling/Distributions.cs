@@ -10,18 +10,22 @@ namespace droid.Runtime.Utilities.Sampling {
     ///
     /// </summary>
     Uniform_,
+
     /// <summary>
     ///
     /// </summary>
     Normal_,
+
     /// <summary>
     ///
     /// </summary>
     Sloped_,
+
     /// <summary>
     ///
     /// </summary>
     Exponential_,
+
     /// <summary>
     ///
     /// </summary>
@@ -32,7 +36,6 @@ namespace droid.Runtime.Utilities.Sampling {
   /// </summary>
   [Serializable]
   public struct DistributionSampler {
-
     Distributions.ConfidenceLevel _conf_level;
     public Distributions.DirectionE _Direction;
 
@@ -40,7 +43,8 @@ namespace droid.Runtime.Utilities.Sampling {
 
     [SerializeField] DistributionEnum _de;
 
-    public DistributionSampler(DistributionEnum distribution_enum = DistributionEnum.Uniform_, Distributions.DirectionE d = Distributions.DirectionE.Left_) {
+    public DistributionSampler(DistributionEnum distribution_enum = DistributionEnum.Uniform_,
+                               Distributions.DirectionE d = Distributions.DirectionE.Left_) {
       this._de = distribution_enum;
       _conf_level = Distributions.ConfidenceLevel._95;
       _Direction = d;

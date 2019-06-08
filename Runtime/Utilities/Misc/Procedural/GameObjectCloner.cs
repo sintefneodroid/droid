@@ -21,7 +21,6 @@ namespace droid.Runtime.Utilities.Misc.Procedural {
       var clone_id = 0;
       this._clones = new GameObject[this._num_clones];
       if (this._prefab) {
-
         var clone_coords = NeodroidUtilities.SnakeSpaceFillingGenerator(this._num_clones);
         foreach (var c in clone_coords) {
           var go = Instantiate(this._prefab,

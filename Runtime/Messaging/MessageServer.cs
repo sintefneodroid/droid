@@ -229,7 +229,7 @@ namespace droid.Runtime.Messaging {
     public void SendStates(EnvironmentState[] environment_states,
                            bool do_serialise_unobservables = false,
                            bool serialise_individual_observables = false,
-                           bool serialise_aggregated_float_array= false,
+                           bool serialise_aggregated_float_array = false,
                            SimulatorConfigurationMessage simulator_configuration_message = null,
                            string api_version = _api_version) {
       lock (this._thread_lock) {
@@ -273,7 +273,8 @@ namespace droid.Runtime.Messaging {
                                                         serialise_individual_observables,
                                                         simulator_configuration :
                                                         simulator_configuration_message,
-                                                        do_serialise_aggregated_float_array:serialise_aggregated_float_array,
+                                                        do_serialise_aggregated_float_array :
+                                                        serialise_aggregated_float_array,
                                                         api_version : api_version);
         this._socket.SendFrame(this._byte_buffer);
         this._waiting_for_main_loop_to_send = false;

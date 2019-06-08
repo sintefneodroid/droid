@@ -1,4 +1,3 @@
-
 using droid.Runtime.Utilities.Misc;
 using UnityEngine;
 #if UNITY_EDITOR

@@ -3,13 +3,13 @@ using System.Globalization;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Managers;
 using droid.Runtime.Messaging.Messages;
-using droid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Utilities.GameObjects;
+using droid.Runtime.Utilities.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Utilities.Misc;
 using UnityEditor;
 using UnityEngine;
 
-namespace droid.Runtime.Environments.Experimental {
+namespace droid.Runtime.Environments {
   /// <inheritdoc cref="PrototypingGameObject" />
   /// <summary>
   /// </summary>
@@ -30,8 +30,6 @@ namespace droid.Runtime.Environments.Experimental {
     /// </summary>
     [SerializeField]
     protected float _Energy_Spent;
-
-
 
     [SerializeField] Reaction _last_reaction;
 
@@ -87,7 +85,6 @@ namespace droid.Runtime.Environments.Experimental {
       get { return this._current_frame_number; }
       set { this._current_frame_number = value; }
     }
-
 
     /// <summary>
     /// </summary>
@@ -145,9 +142,7 @@ namespace droid.Runtime.Environments.Experimental {
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public void FrameString(DataPoller recipient) {
-      recipient.PollData($"{this.CurrentFrameNumber}");
-    }
+    public void FrameString(DataPoller recipient) { recipient.PollData($"{this.CurrentFrameNumber}"); }
 
     /// <summary>
     /// </summary>

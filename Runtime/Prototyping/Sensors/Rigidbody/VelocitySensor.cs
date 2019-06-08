@@ -12,7 +12,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rigidbody {
                                 IHasTriple {
     [SerializeField] UnityEngine.Rigidbody _rigidbody;
     [SerializeField] Vector3 _velocity;
-    [SerializeField] Space3 _velocity_space = new Space3(new DistributionSampler(),10);
+    [SerializeField] Space3 _velocity_space = new Space3(new DistributionSampler(), 10);
 
     /// <inheritdoc />
     /// <summary>
@@ -24,7 +24,9 @@ namespace droid.Runtime.Prototyping.Sensors.Rigidbody {
     public Vector3 ObservationValue {
       get { return this._velocity; }
       set {
-        this._velocity = this._velocity_space.IsNormalised ? this._velocity_space.ClipNormaliseRound(value) : value;
+        this._velocity = this._velocity_space.IsNormalised
+                             ? this._velocity_space.ClipNormaliseRound(value)
+                             : value;
       }
     }
 

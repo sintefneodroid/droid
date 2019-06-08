@@ -7,7 +7,7 @@ namespace droid.Runtime.Utilities.Structs {
   /// <summary>
   /// </summary>
   [Serializable]
-  public struct Space4:ISpace {
+  public struct Space4 : ISpace {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
@@ -19,16 +19,14 @@ namespace droid.Runtime.Utilities.Structs {
     /// <summary>
     ///
     /// </summary>
-    [SerializeField] DistributionSampler _distribution_sampler;
+    [SerializeField]
+    DistributionSampler _distribution_sampler;
+
+    [SerializeField] bool normalised;
 
     public DistributionSampler DistributionSampler {
-      get {
-
-        return this._distribution_sampler;
-      }
-      set {
-        this._distribution_sampler = value;
-      }
+      get { return this._distribution_sampler; }
+      set { this._distribution_sampler = value; }
     }
 
     /// <summary>
@@ -36,53 +34,78 @@ namespace droid.Runtime.Utilities.Structs {
     /// </summary>
     public bool IsNormalised { get { return this.normalised; } set { this.normalised = value; } }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Vector4 _Min_Values;
-    public Vector4 _Max_Values;
-    public int  _decimal_granularity;
-    [SerializeField]  bool normalised;
 
-    public Space4(int decimal_granularity = 2):this() {
+    /// <summary>
+    ///
+    /// </summary>
+    public Vector4 _Max_Values;
+
+    /// <summary>
+    ///
+    /// </summary>
+    public int _decimal_granularity;
+
+    public Space4(int decimal_granularity = 2) : this() {
       this._decimal_granularity = decimal_granularity;
       this._Min_Values = Vector4.negativeInfinity;
       this._Max_Values = Vector4.positiveInfinity;
       this._distribution_sampler = new DistributionSampler();
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Vector4 Span { get { return this._Max_Values - this._Min_Values; } }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Space1 Xspace {
       get {
         return new Space1(this.DecimalGranularity) {
-                                                         _Min_Value = this._Min_Values.x,
-                                                         _Max_Value = this._Max_Values.x
-                                                     };
+                                                       _Min_Value = this._Min_Values.x,
+                                                       _Max_Value = this._Max_Values.x
+                                                   };
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Space1 Yspace {
       get {
         return new Space1(this.DecimalGranularity) {
-                                                         _Min_Value = this._Min_Values.y,
-                                                         _Max_Value = this._Max_Values.y
-                                                     };
+                                                       _Min_Value = this._Min_Values.y,
+                                                       _Max_Value = this._Max_Values.y
+                                                   };
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Space1 Zspace {
       get {
         return new Space1(this.DecimalGranularity) {
-                                                         _Min_Value = this._Min_Values.z,
-                                                         _Max_Value = this._Max_Values.z
-                                                     };
+                                                       _Min_Value = this._Min_Values.z,
+                                                       _Max_Value = this._Max_Values.z
+                                                   };
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Space1 Wspace {
       get {
         return new Space1(this.DecimalGranularity) {
-                                                         _Min_Value = this._Min_Values.w,
-                                                         _Max_Value = this._Max_Values.w
-                                                     };
+                                                       _Min_Value = this._Min_Values.w,
+                                                       _Max_Value = this._Max_Values.w
+                                                   };
       }
     }
 
@@ -90,7 +113,7 @@ namespace droid.Runtime.Utilities.Structs {
     /// 
     /// </summary>
     /// <returns></returns>
-    public Vector4 Sample() {
+    public dynamic Sample() {
       var x = this.DistributionSampler.Range(this._Min_Values.x, this._Max_Values.x);
       var y = this.DistributionSampler.Range(this._Min_Values.y, this._Max_Values.y);
       var z = this.DistributionSampler.Range(this._Min_Values.z, this._Max_Values.z);
@@ -99,11 +122,20 @@ namespace droid.Runtime.Utilities.Structs {
       return new Vector4(x, y, z, w);
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
     public Quaternion RandomQuaternion() {
       var vector = this.Sample();
       return new Quaternion(vector.x, vector.y, vector.z, vector.w);
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
     public Vector4 ClipNormaliseRound(Vector4 v) {
       if (v.x > this._Max_Values.x) {
         v.x = this._Max_Values.x;
@@ -170,11 +202,16 @@ namespace droid.Runtime.Utilities.Structs {
       get { return new Space4(1) {_Min_Values = Vector4.zero, _Max_Values = Vector4.one}; }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public static Space4 TwentyEighty {
-      get { return new Space4(1) {_Min_Values = Vector4.one*0.2f, _Max_Values = Vector4.one*0.8f}; }
+      get { return new Space4(1) {_Min_Values = Vector4.one * 0.2f, _Max_Values = Vector4.one * 0.8f}; }
     }
 
-
+    /// <summary>
+    ///
+    /// </summary>
     public static Space4 MinusOneOne {
       get { return new Space4(2) {_Min_Values = -Vector4.one, _Max_Values = Vector4.one}; }
     }

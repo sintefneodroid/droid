@@ -1,0 +1,4 @@
+<map id="droid.Runtime.Interfaces.IHasRigidbody" name="droid.Runtime.Interfaces.IHasRigidbody">
+<area shape="rect" id="node2" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_rigidbody_configurable.html" title="droid.Runtime.Prototyping.\lConfigurables.RigidbodyConfigurable" alt="" coords="223,5,460,47"/>
+<area shape="rect" id="node3" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_rigidbody_1_1_rigidbody_sensor.html" title="droid.Runtime.Prototyping.\lSensors.Rigidbody.RigidbodySensor" alt="" coords="224,71,459,112"/>
+</map>

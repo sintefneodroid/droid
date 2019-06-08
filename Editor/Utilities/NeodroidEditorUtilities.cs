@@ -1,6 +1,4 @@
-﻿
-using UnityEditor;
-
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace droid.Editor.Utilities {
@@ -51,4 +49,3 @@ namespace droid.Editor.Utilities {
     }
   }
 }
-

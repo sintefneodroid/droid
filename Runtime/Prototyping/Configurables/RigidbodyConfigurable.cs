@@ -110,29 +110,17 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._vel_x);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._vel_x);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._vel_y);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._vel_y);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._vel_z);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._vel_z);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._ang_x);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._ang_x);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._ang_y);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._ang_y);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._ang_z);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._ang_z);
     }
 
     /// <summary>

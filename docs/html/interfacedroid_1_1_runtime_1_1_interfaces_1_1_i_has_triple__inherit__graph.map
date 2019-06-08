@@ -1,0 +1,8 @@
+<map id="droid.Runtime.Interfaces.IHasTriple" name="droid.Runtime.Interfaces.IHasTriple">
+<area shape="rect" id="node2" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_euler_rotation_configurable.html" title="droid.Runtime.Prototyping.\lConfigurables.EulerRotationConfigurable" alt="" coords="223,5,481,47"/>
+<area shape="rect" id="node3" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_position_configurable.html" title="droid.Runtime.Prototyping.\lConfigurables.PositionConfigurable" alt="" coords="239,71,465,112"/>
+<area shape="rect" id="node4" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_grid_1_1_goal_cell_sensor.html" title="droid.Runtime.Prototyping.\lSensors.Grid.GoalCellSensor" alt="" coords="255,136,449,177"/>
+<area shape="rect" id="node5" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_rigidbody_1_1_angular_velocity_sensor.html" title="droid.Runtime.Prototyping.\lSensors.Rigidbody.AngularVelocity\lSensor" alt="" coords="239,202,465,258"/>
+<area shape="rect" id="node6" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_rigidbody_1_1_velocity_sensor.html" title="droid.Runtime.Prototyping.\lSensors.Rigidbody.VelocitySensor" alt="" coords="240,283,464,324"/>
+<area shape="rect" id="node7" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_transform_1_1_position_sensor.html" title="droid.Runtime.Prototyping.\lSensors.Transform.PositionSensor" alt="" coords="239,348,465,389"/>
+</map>

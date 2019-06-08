@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Prototyping.Sensors;
-using droid.Runtime.Utilities.BoundingBoxes;
+using droid.Runtime.Utilities.GameObjects.BoundingBoxes;
 using droid.Runtime.Utilities.GameObjects.ChildSensors;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Misc.Extensions;
@@ -98,26 +98,34 @@ namespace droid.Runtime.Prototyping.Evaluation {
       }
 
       NeodroidUtilities
-          .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider,
-              Collision>(this,
-                         this._area.transform,
-                         null,
-                         this.OnTriggerEnterChild,
-                         null,
-                         this.OnTriggerExitChild,
-                         null,
-                         this.OnTriggerStayChild);
+          .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider, Collision>(this,
+                                                                                                   this
+                                                                                                       ._area
+                                                                                                       .transform,
+                                                                                                   null,
+                                                                                                   this
+                                                                                                       .OnTriggerEnterChild,
+                                                                                                   null,
+                                                                                                   this
+                                                                                                       .OnTriggerExitChild,
+                                                                                                   null,
+                                                                                                   this
+                                                                                                       .OnTriggerStayChild);
 
       NeodroidUtilities
-          .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider,
-              Collision>(this,
-                         this._actor.transform,
-                         null,
-                         this.OnTriggerEnterChild,
-                         null,
-                         this.OnTriggerExitChild,
-                         null,
-                         this.OnTriggerStayChild);
+          .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider, Collision>(this,
+                                                                                                   this
+                                                                                                       ._actor
+                                                                                                       .transform,
+                                                                                                   null,
+                                                                                                   this
+                                                                                                       .OnTriggerEnterChild,
+                                                                                                   null,
+                                                                                                   this
+                                                                                                       .OnTriggerExitChild,
+                                                                                                   null,
+                                                                                                   this
+                                                                                                       .OnTriggerStayChild);
       this._wait_for_seconds = new WaitForSeconds(this._resting_time);
     }
 

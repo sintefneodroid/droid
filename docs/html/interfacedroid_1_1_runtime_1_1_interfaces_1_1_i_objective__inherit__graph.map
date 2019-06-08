@@ -1,0 +1,14 @@
+<map id="droid.Runtime.Interfaces.IObjective" name="droid.Runtime.Interfaces.IObjective">
+<area shape="rect" id="node3" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_evaluation_1_1_objective_function.html" title="droid.Runtime.Prototyping.\lEvaluation.ObjectiveFunction" alt="" coords="369,300,561,341"/>
+<area shape="rect" id="node2" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_registerable.html" title="IRegisterable" alt="" coords="5,307,104,334"/>
+<area shape="rect" id="node4" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_evaluation_1_1_angular_velocity_evaluation.html" title="droid.Runtime.Prototyping.\lEvaluation.AngularVelocityEvaluation" alt="" coords="609,5,848,47"/>
+<area shape="rect" id="node5" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_evaluation_1_1_avoid_collision_evaluation.html" title="droid.Runtime.Prototyping.\lEvaluation.AvoidCollisionEvaluation" alt="" coords="613,71,844,112"/>
+<area shape="rect" id="node6" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_evaluation_1_1_euclidean_distance.html" title="droid.Runtime.Prototyping.\lEvaluation.EuclideanDistance" alt="" coords="631,136,827,177"/>
+<area shape="rect" id="node7" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_evaluation_1_1_pose_deviance.html" title="droid.Runtime.Prototyping.\lEvaluation.PoseDeviance" alt="" coords="640,201,817,243"/>
+<area shape="rect" id="node8" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_evaluation_1_1_punishment_function.html" title="droid.Runtime.Prototyping.\lEvaluation.PunishmentFunction" alt="" coords="625,267,832,308"/>
+<area shape="rect" id="node9" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_evaluation_1_1_reach_area.html" title="droid.Runtime.Prototyping.\lEvaluation.ReachArea" alt="" coords="640,332,817,373"/>
+<area shape="rect" id="node10" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_evaluation_1_1_reach_goal.html" title="droid.Runtime.Prototyping.\lEvaluation.ReachGoal" alt="" coords="640,397,817,439"/>
+<area shape="rect" id="node11" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_evaluation_1_1_rest_in_area.html" title="droid.Runtime.Prototyping.\lEvaluation.RestInArea" alt="" coords="640,463,817,504"/>
+<area shape="rect" id="node12" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_evaluation_1_1_seek_and_avoid_evaluation.html" title="droid.Runtime.Prototyping.\lEvaluation.SeekAndAvoidEvaluation" alt="" coords="611,528,846,569"/>
+<area shape="rect" id="node13" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_evaluation_1_1_velocity_evaluation.html" title="droid.Runtime.Prototyping.\lEvaluation.VelocityEvaluation" alt="" coords="631,593,826,635"/>
+</map>

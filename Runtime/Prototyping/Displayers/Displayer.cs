@@ -3,8 +3,8 @@ using System.Linq;
 using droid.Runtime.Environments;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities.GameObjects;
+using droid.Runtime.Utilities.GameObjects.Plotting;
 using droid.Runtime.Utilities.Misc;
-using droid.Runtime.Utilities.Plotting;
 using droid.Runtime.Utilities.Structs;
 using UnityEditor;
 using UnityEngine;
@@ -17,30 +17,31 @@ namespace droid.Runtime.Prototyping.Displayers {
                                     IDisplayer {
     /// <summary>
     /// </summary>
-    IActorisedPrototypingEnvironment _environment=null;
-
-
+    IActorisedPrototypingEnvironment _environment = null;
 
     /// <summary>
     ///
     /// </summary>
-    [SerializeField] protected bool _RetainLastPlot = true;
+    [SerializeField]
+    protected bool _RetainLastPlot = true;
 
     /// <summary>
     ///
     /// </summary>
     protected dynamic _Values = null;
+
     [SerializeField] bool clean_all_children = true;
-    [SerializeField] bool clean_before_every_plot=true;
+    [SerializeField] bool clean_before_every_plot = true;
 
     #if UNITY_EDITOR
     /// <summary>
     /// </summary>
     [Header("OnGizmo")]
-    [SerializeField] bool _PlotRandomSeries=false;
-    [SerializeField] bool always_random_sample_new=true;
-    #endif
+    [SerializeField]
+    bool _PlotRandomSeries = false;
 
+    [SerializeField] bool always_random_sample_new = true;
+    #endif
 
     /// <summary>
     /// </summary>
@@ -71,9 +72,10 @@ namespace droid.Runtime.Prototyping.Displayers {
     /// </summary>
     void Update() {
       if (this._RetainLastPlot) {
-        if(this.clean_before_every_plot) {
+        if (this.clean_before_every_plot) {
           this.Clean();
         }
+
         if (this._Values != null) {
           PlotSeries(this._Values);
         }
@@ -84,10 +86,8 @@ namespace droid.Runtime.Prototyping.Displayers {
     void OnDrawGizmosSelected() {
       if (this.enabled && Selection.activeGameObject == this.gameObject) {
         if (!this._PlotRandomSeries && !this._RetainLastPlot) {
-            this.Clean();
-
+          this.Clean();
         }
-
 
         if (this._Values == null || this._Values.Length == 0 || this.always_random_sample_new) {
           if (this._PlotRandomSeries) {
@@ -102,7 +102,6 @@ namespace droid.Runtime.Prototyping.Displayers {
       }
     }
 
-
     #endif
 
     /// <summary>
@@ -111,9 +110,9 @@ namespace droid.Runtime.Prototyping.Displayers {
     protected virtual void Clean() {
       if (this.clean_all_children) {
         foreach (Transform child in this.transform) {
-          if(Application.isPlaying) {
+          if (Application.isPlaying) {
             Destroy(child.gameObject);
-          }else {
+          } else {
             DestroyImmediate(child.gameObject);
           }
         }
@@ -131,7 +130,6 @@ namespace droid.Runtime.Prototyping.Displayers {
     void OnEnable() { this.Clean(); }
 
     //void OnValidate() { this.Clean(); }
-
 
     public abstract void Display(Single value);
     public abstract void Display(Double value);

@@ -6,12 +6,13 @@ using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Utilities.Enums;
-using droid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
+using droid.Runtime.Utilities.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 using Object = System.Object;
 #if UNITY_EDITOR
 using UnityEditor;
+
 #endif
 
 namespace droid.Runtime.Managers {
@@ -404,7 +405,7 @@ namespace droid.Runtime.Managers {
       Application.targetFrameRate = configuration.TargetFrameRate;
 
       if (this._configuration.OptimiseWindowForSpeed) {
-        Screen.SetResolution(1,1,false);
+        Screen.SetResolution(1, 1, false);
       }
       #if !UNITY_EDITOR
       else if( configuration.ApplyResolutionSettings ){
@@ -638,7 +639,7 @@ namespace droid.Runtime.Managers {
       lock (this._send_lock) {
         var configuration_message = new SimulatorConfigurationMessage(this.Configuration);
         var describe = false;
-        if(this.CurrentReactions!=null) {
+        if (this.CurrentReactions != null) {
           foreach (var reaction in this.CurrentReactions) {
             if (reaction.Parameters.Describe) {
               describe = true;
@@ -649,12 +650,12 @@ namespace droid.Runtime.Managers {
         this._Message_Server.SendStates(states,
                                         simulator_configuration_message : configuration_message,
                                         do_serialise_unobservables :
-                                        describe || this.Configuration
-                                        .AlwaysSerialiseUnobservables,
+                                        describe || this.Configuration.AlwaysSerialiseUnobservables,
                                         serialise_individual_observables :
                                         describe || this.Configuration.AlwaysSerialiseIndividualObservables,
-                                        serialise_aggregated_float_array :
-                                        describe || this._configuration.AlwaysSerialiseAggregatedFloatArray);
+                                        serialise_aggregated_float_array : describe
+                                                                           || this._configuration
+                                                                                  .AlwaysSerialiseAggregatedFloatArray);
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log("Replying");

@@ -6,16 +6,16 @@ namespace droid.Runtime.Utilities.Enums.BoundingBox {
     /// <summary>
     ///
     /// </summary>
-    Axis_aligned_=0,
+    Axis_aligned_ = 0,
 
     /// <summary>
     ///
     /// </summary>
-    Object_oriented_=1,
+    Object_oriented_ = 1,
 
     /// <summary>
     ///
     /// </summary>
-    Camera_oriented_=2
+    Camera_oriented_ = 2
   }
 }

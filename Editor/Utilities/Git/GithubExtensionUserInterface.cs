@@ -1,4 +1,6 @@
-﻿#if UNITY_2019_1_OR_NEWER && UNITY_EDITOR && USE_GITHUB_EXTENSION
+﻿
+using UnityEditor.PackageManager.UI;
+#if UNITY_2019_1_OR_NEWER && UNITY_EDITOR && USE_GITHUB_EXTENSION
 using System.Collections.Generic;
 using System.Linq;
 using droid.Runtime;

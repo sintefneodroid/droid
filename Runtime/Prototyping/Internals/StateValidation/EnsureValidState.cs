@@ -1,6 +1,6 @@
 ﻿using droid.Runtime.Environments;
 using droid.Runtime.Prototyping.Actors;
-using droid.Runtime.Utilities.BoundingBoxes;
+using droid.Runtime.Utilities.GameObjects.BoundingBoxes;
 using droid.Runtime.Utilities.Misc.Extensions;
 using UnityEngine;
 
@@ -79,7 +79,7 @@ namespace droid.Runtime.Prototyping.Internals.StateValidation {
       }
     }
 
-    public override void EnvironmentReset() {  }
+    public override void EnvironmentReset() { }
 
     /// <inheritdoc />
     /// <summary>

@@ -1,0 +1,11 @@
+<map id="droid.Runtime.Interfaces.IHasSingle" name="droid.Runtime.Interfaces.IHasSingle">
+<area shape="rect" id="node2" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_friction_configurable.html" title="droid.Runtime.Prototyping.\lConfigurables.FrictionConfigurable" alt="" coords="245,5,467,47"/>
+<area shape="rect" id="node3" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_transform_configurable1_dof.html" title="droid.Runtime.Prototyping.\lConfigurables.TransformConfigurable1Dof" alt="" coords="223,71,489,112"/>
+<area shape="rect" id="node4" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_categorical_sensor.html" title="droid.Runtime.Prototyping.\lSensors.CategoricalSensor" alt="" coords="265,136,447,177"/>
+<area shape="rect" id="node5" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_distance_sensor.html" title="droid.Runtime.Prototyping.\lSensors.DistanceSensor" alt="" coords="267,201,445,243"/>
+<area shape="rect" id="node6" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_grid_1_1_grid_position_sensor.html" title="droid.Runtime.Prototyping.\lSensors.Grid.GridPositionSensor" alt="" coords="249,267,463,308"/>
+<area shape="rect" id="node7" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_rays_1_1_line_of_sight_sensor.html" title="droid.Runtime.Prototyping.\lSensors.Rays.LineOfSightSensor" alt="" coords="247,332,465,373"/>
+<area shape="rect" id="node8" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_rays_1_1_raycast_sensor.html" title="droid.Runtime.Prototyping.\lSensors.Rays.RaycastSensor" alt="" coords="257,397,455,439"/>
+<area shape="rect" id="node9" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_value_sensor.html" title="droid.Runtime.Prototyping.\lSensors.ValueSensor" alt="" coords="267,463,445,504"/>
+<area shape="rect" id="node10" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_transform_1_1_single_axis_transform_sensor.html" title="droid.Runtime.Prototyping.\lSensors.Transform.SingleAxisTransform\lSensor" alt="" coords="537,455,796,511"/>
+</map>

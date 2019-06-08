@@ -1,8 +1,8 @@
 ﻿using System;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
+using droid.Runtime.Utilities.GameObjects.NeodroidCamera;
 using droid.Runtime.Utilities.Misc;
-using droid.Runtime.Utilities.NeodroidCamera;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -86,14 +86,10 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     protected override void RegisterComponent() {
       if (!this._camera.usePhysicalProperties) {
         this.ParentEnvironment =
-            NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                                (Configurable)this,
-                                                this._fov_str);
+            NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._fov_str);
       } else {
         this.ParentEnvironment =
-            NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                                (Configurable)this,
-                                                this._focal_str);
+            NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._focal_str);
         this.ParentEnvironment =
             NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
                                                 (Configurable)this,
@@ -165,7 +161,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
         this._camera.lensShift = a;
       } else if (configuration.ConfigurableName == this._gate_fit_str) {
         Enum.TryParse(((int)configuration.ConfigurableValue).ToString(),
-                                    out Camera.GateFitMode gate_fit_mode);
+                      out Camera.GateFitMode gate_fit_mode);
         this._camera.gateFit = gate_fit_mode;
       }
 

@@ -51,7 +51,9 @@ namespace droid.Runtime.Prototyping.Sensors {
     public Vector3 Position {
       get { return this._position; }
       set {
-        this._position = this._position_space.IsNormalised ? this._position_space.ClipNormaliseRound(value) : value;
+        this._position = this._position_space.IsNormalised
+                             ? this._position_space.ClipNormaliseRound(value)
+                             : value;
         this._2_d_position = new Vector2(this._position.x, this._position.z);
       }
     }
@@ -62,17 +64,17 @@ namespace droid.Runtime.Prototyping.Sensors {
     public Space2 DoubleSpace {
       get {
         return new Space2(this._position_space.DecimalGranularity) {
-                                                                         _Max_Values =
-                                                                             new Vector2(this._position_space
-                                                                                             ._Max_Values.x,
-                                                                                         this._position_space
-                                                                                             ._Max_Values.y),
-                                                                         _Min_Values =
-                                                                             new Vector2(this._position_space
-                                                                                             ._Min_Values.x,
-                                                                                         this._position_space
-                                                                                             ._Min_Values.y)
-                                                                     };
+                                                                       _Max_Values =
+                                                                           new Vector2(this._position_space
+                                                                                           ._Max_Values.x,
+                                                                                       this._position_space
+                                                                                           ._Max_Values.y),
+                                                                       _Min_Values =
+                                                                           new Vector2(this._position_space
+                                                                                           ._Min_Values.x,
+                                                                                       this._position_space
+                                                                                           ._Min_Values.y)
+                                                                   };
       }
     }
 

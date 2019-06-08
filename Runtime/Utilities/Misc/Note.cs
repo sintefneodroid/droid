@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 #if UNITY_EDITOR
 using UnityEngine;
 

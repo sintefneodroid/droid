@@ -1,9 +1,7 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using droid.Editor.Utilities;
 using droid.Runtime.Environments;
-using droid.Runtime.Environments.Experimental;
 using droid.Runtime.Interfaces;
 using droid.Runtime.InternalReactions;
 using droid.Runtime.Managers;
@@ -188,7 +186,8 @@ namespace droid.Editor.Windows {
                                                                      typeof(ObjectiveFunction),
                                                                      true);
                   this._environments[i].ObjectiveFunction.EpisodeLength =
-                      EditorGUILayout.IntField("Episode Length", this._environments[i].ObjectiveFunction.EpisodeLength);
+                      EditorGUILayout.IntField("Episode Length",
+                                               this._environments[i].ObjectiveFunction.EpisodeLength);
                   //EditorGUILayout.BeginHorizontal("Box");
                   #if NEODROID_DEBUG
                   this._environments[i].Debugging =
@@ -263,6 +262,7 @@ namespace droid.Editor.Windows {
           EditorGUILayout.EndVertical();
         }
       }
+
       EditorGUILayout.EndVertical();
     }
 

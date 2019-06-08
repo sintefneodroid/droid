@@ -1,0 +1,5 @@
+<map id="droid.Runtime.Utilities.GameObjects.NeodroidCamera.Segmentation.Obsolete.ChangeMaterialOnRenderByInstance" name="droid.Runtime.Utilities.GameObjects.NeodroidCamera.Segmentation.Obsolete.ChangeMaterialOnRenderByInstance">
+<area shape="rect" id="node2" href="$classdroid_1_1_runtime_1_1_utilities_1_1_game_objects_1_1_neodroid_camera_1_1_segmentation_1_1_obsolete_1_1_obsolete_segmenter.html" title="ObsoleteSegmenter" alt="" coords="84,155,221,181"/>
+<area shape="rect" id="node3" href="$classdroid_1_1_runtime_1_1_utilities_1_1_game_objects_1_1_neodroid_camera_1_1_segmentation_1_1_segmenter.html" title="Segmenter" alt="" coords="110,80,195,107"/>
+<area shape="rect" id="node5" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_color_provider.html" title="IColorProvider" alt="" coords="167,5,272,32"/>
+</map>

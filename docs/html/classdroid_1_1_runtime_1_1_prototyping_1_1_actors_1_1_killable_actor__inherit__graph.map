@@ -1,0 +1,7 @@
+<map id="droid.Runtime.Prototyping.Actors.KillableActor" name="droid.Runtime.Prototyping.Actors.KillableActor">
+<area shape="rect" id="node2" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_actors_1_1_actor.html" title="Actor" alt="" coords="165,155,219,181"/>
+<area shape="rect" id="node3" href="$classdroid_1_1_runtime_1_1_utilities_1_1_game_objects_1_1_prototyping_game_object.html" title="PrototypingGameObject" alt="" coords="45,80,206,107"/>
+<area shape="rect" id="node5" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_registerable.html" title="IRegisterable" alt="" coords="141,5,240,32"/>
+<area shape="rect" id="node6" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_actor.html" title="IActor" alt="" coords="230,80,287,107"/>
+<area shape="rect" id="node7" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html" title="IHasRegister\&lt; IActuator \&gt;" alt="" coords="264,5,440,32"/>
+</map>

@@ -12,7 +12,7 @@ namespace droid.Samples.MultiArmedBandit {
                     + "TextBarPlot"
                     + DisplayerComponentMenuPath._Postfix)]
   public class TextBarPlotDisplayer : EnvironmentListener {
-     [SerializeField] CanvasBarDisplayer[] _canvas_bars = { };
+    [SerializeField] CanvasBarDisplayer[] _canvas_bars = { };
     [SerializeField] CanvasTextDisplayer[] _canvas_text = { };
 
     /// <inheritdoc />

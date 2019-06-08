@@ -1,18 +1,17 @@
 using System;
-using droid.Runtime.Utilities.BoundingBoxes;
+using droid.Runtime.Utilities.GameObjects.BoundingBoxes;
 using UnityEngine;
 
 namespace droid.Runtime.Interfaces {
   /// <inheritdoc cref="IEnvironment" />
   /// <summary>
   /// </summary>
-
   public interface IActorisedPrototypingEnvironment : IEnvironment,
-                                             IHasRegister<IActor>,
-                                             IHasRegister<IObserver>,
-                                             IHasRegister<IConfigurable>,
-                                             IHasRegister<IEnvironmentListener>,
-                                             IHasRegister<IDisplayer> {
+                                                      IHasRegister<IActor>,
+                                                      IHasRegister<IObserver>,
+                                                      IHasRegister<IConfigurable>,
+                                                      IHasRegister<IEnvironmentListener>,
+                                                      IHasRegister<IDisplayer> {
     /// <summary>
     /// </summary>
     Transform Transform { get; }

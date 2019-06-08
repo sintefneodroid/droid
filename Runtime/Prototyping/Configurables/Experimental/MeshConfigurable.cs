@@ -24,7 +24,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     [SerializeField] Mesh[] _meshes = null;
     [SerializeField] MeshFilter _mesh_filter = null;
     [SerializeField] bool _displace_mesh = false;
-    [SerializeField] Space1 _deformation_space = new Space1 {_Min_Value = 1f,_Max_Value = 5f};
+    [SerializeField] Space1 _deformation_space = new Space1 {_Min_Value = 1f, _Max_Value = 5f};
 
     /// <inheritdoc />
     /// <summary>
@@ -49,9 +49,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._mesh_str);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._mesh_str);
     }
 
     /// <inheritdoc />
@@ -60,8 +58,6 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     protected override void UnRegisterComponent() {
       this.ParentEnvironment?.UnRegister(this, this._mesh_str);
     }
-
-
 
     /// <summary>
     /// </summary>
@@ -83,12 +79,12 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
               //orig.y = orig.y * (1+(float)Math.Cos(Time.deltaTime))*(configuration.ConfigurableValue);
               //orig.x = orig.x * (1+(float)Math.Sin(Time.deltaTime))*(configuration.ConfigurableValue);
 
-              orig.x += this._noise.Noise(time_x + orig.x, time_x + orig.y, time_x + orig.z) * configuration
-              .ConfigurableValue;
-              orig.y += this._noise.Noise(time_y + orig.x, time_y + orig.y, time_y + orig.z) * configuration
-                            .ConfigurableValue;
-              orig.z += this._noise.Noise(time_z + orig.x, time_z + orig.y, time_z + orig.z) * configuration
-                            .ConfigurableValue;
+              orig.x += this._noise.Noise(time_x + orig.x, time_x + orig.y, time_x + orig.z)
+                        * configuration.ConfigurableValue;
+              orig.y += this._noise.Noise(time_y + orig.x, time_y + orig.y, time_y + orig.z)
+                        * configuration.ConfigurableValue;
+              orig.z += this._noise.Noise(time_z + orig.x, time_z + orig.y, time_z + orig.z)
+                        * configuration.ConfigurableValue;
 
               this._displaced_vertices[i] = orig;
             }

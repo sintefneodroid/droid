@@ -42,9 +42,7 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     /// <summary>
     ///
     /// </summary>
-    public Space2 DoubleSpace {
-      get { return this._position_space; }
-    }
+    public Space2 DoubleSpace { get { return this._position_space; } }
 
     /// <summary>
     /// </summary>

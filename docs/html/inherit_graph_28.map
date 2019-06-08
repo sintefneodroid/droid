@@ -1,0 +1,10 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html" title="droid.Runtime.Interfaces.\lISimulatorConfiguration" alt="" coords="5,5,175,47"/>
+<area shape="rect" id="node2" href="$classdroid_1_1_runtime_1_1_utilities_1_1_structs_1_1_simulator_configuration.html" title="Contains everything relevant to configuring simulation environments engine specific settings ..." alt="" coords="252,5,452,47"/>
+<area shape="rect" id="node4" href="$classdroid_1_1_runtime_1_1_utilities_1_1_scriptable_objects_1_1_player_motions.html" title="droid.Runtime.Utilities.\lScriptableObjects.PlayerMotions" alt="" coords="246,71,458,112"/>
+<area shape="rect" id="node5" href="$classdroid_1_1_runtime_1_1_utilities_1_1_scriptable_objects_1_1_segmentation.html" title="droid.Runtime.Utilities.\lScriptableObjects.Segmentation" alt="" coords="247,136,457,177"/>
+<area shape="rect" id="node6" href="$classdroid_1_1_runtime_1_1_utilities_1_1_scriptable_objects_1_1_serialisable_dictionary_1_1_example.html" title="droid.Runtime.Utilities.\lScriptableObjects.Serialisable\lDictionary.Example" alt="" coords="254,202,450,258"/>
+<area shape="rect" id="node7" href="$classdroid_1_1_runtime_1_1_utilities_1_1_scriptable_objects_1_1_unused_1_1_curriculum.html" title="droid.Runtime.Utilities.\lScriptableObjects.Unused.Curriculum" alt="" coords="231,283,473,324"/>
+<area shape="rect" id="node8" href="$classdroid_1_1_runtime_1_1_utilities_1_1_scriptable_objects_1_1_unused_1_1_neodroid_task.html" title="droid.Runtime.Utilities.\lScriptableObjects.Unused.NeodroidTask" alt="" coords="223,348,481,389"/>
+<area shape="rect" id="node9" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_evaluation_1_1_tasks_1_1_task_sequence.html" title="droid.Runtime.Prototyping.\lEvaluation.Tasks.TaskSequence" alt="" coords="529,348,744,389"/>
+</map>

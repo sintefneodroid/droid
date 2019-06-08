@@ -2,14 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using droid.Runtime.Environments.Experimental;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Prototyping.Evaluation;
-using droid.Runtime.Utilities.BoundingBoxes;
 using droid.Runtime.Utilities.Enums;
-using droid.Runtime.Utilities.EventRecipients.droid.Neodroid.Utilities.Unsorted;
+using droid.Runtime.Utilities.GameObjects.BoundingBoxes;
+using droid.Runtime.Utilities.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Misc.Extensions;
 using UnityEngine;
@@ -107,12 +106,10 @@ namespace droid.Runtime.Environments {
       foreach (var actuator in this.Actuators) {
         var actor_value = actuator.Value;
 
-          var actuator_value = actuator.Value;
-          if (actuator_value != null) {
-            this._sample_motions.Add(new ActuatorMotion(actuator.Key, actuator.Key, actuator_value.Sample()));
-          }
-
-
+        var actuator_value = actuator.Value;
+        if (actuator_value != null) {
+          this._sample_motions.Add(new ActuatorMotion(actuator.Key, actuator.Key, actuator_value.Sample()));
+        }
       }
 
       if (this._Terminated) {
@@ -268,8 +265,8 @@ namespace droid.Runtime.Environments {
 
     /// <summary>
     /// </summary>
-    public Dictionary<string, IEnvironmentListener> Listeners { get; } = new Dictionary<string, IEnvironmentListener>();
-
+    public Dictionary<string, IEnvironmentListener> Listeners { get; } =
+      new Dictionary<string, IEnvironmentListener>();
 
     /// <inheritdoc />
     /// <summary>
@@ -440,18 +437,19 @@ namespace droid.Runtime.Environments {
     }
 
     public void Register(IActuator obj) { this.Register(obj, obj.Identifier); }
-    public void Register(IActuator obj, String identifier) {       if (!this.Actuators.ContainsKey(identifier)) {
-      #if NEODROID_DEBUG
+
+    public void Register(IActuator obj, String identifier) {
+      if (!this.Actuators.ContainsKey(identifier)) {
+        #if NEODROID_DEBUG
       if (this.Debugging) {
         Debug.Log($"Environment {this.name} has registered actuator {identifier}");
       }
-      #endif
+        #endif
 
-      this.Actuators.Add(identifier, obj);
-    } else {
-      Debug.LogWarning($"WARNING! Please check for duplicates, Environment {this.name} already has actuator {identifier} registered");
-    }
-
+        this.Actuators.Add(identifier, obj);
+      } else {
+        Debug.LogWarning($"WARNING! Please check for duplicates, Environment {this.name} already has actuator {identifier} registered");
+      }
     }
 
     /// <inheritdoc />
@@ -527,18 +525,22 @@ namespace droid.Runtime.Environments {
     /// <summary>
     /// </summary>
     /// <param name="environment_listener"></param>
-    public void Register(IEnvironmentListener environment_listener) { this.Register(environment_listener, environment_listener.Identifier); }
-
+    public void Register(IEnvironmentListener environment_listener) {
+      this.Register(environment_listener, environment_listener.Identifier);
+    }
 
     public void UnRegister(IActuator obj) { this.UnRegister(obj, obj.Identifier); }
-    public void UnRegister(IActuator t, String obj) {       if (this.Actuators.ContainsKey(obj)) {
-      #if NEODROID_DEBUG
+
+    public void UnRegister(IActuator t, String obj) {
+      if (this.Actuators.ContainsKey(obj)) {
+        #if NEODROID_DEBUG
       if (this.Debugging) {
         Debug.Log($"Environment {this.name} unregistered observer {obj}");
       }
-      #endif
-      this.Actuators.Remove(obj);
-    }}
+        #endif
+        this.Actuators.Remove(obj);
+      }
+    }
 
     /// <summary>
     /// </summary>
@@ -593,7 +595,9 @@ namespace droid.Runtime.Environments {
     /// <summary>
     /// </summary>
     /// <param name="environment_listener"></param>
-    public void UnRegister(IEnvironmentListener environment_listener) { this.UnRegister(environment_listener, environment_listener.Identifier); }
+    public void UnRegister(IEnvironmentListener environment_listener) {
+      this.UnRegister(environment_listener, environment_listener.Identifier);
+    }
 
     public void UnRegister(IEnvironmentListener t, string identifier) {
       if (this.Listeners.ContainsKey(identifier)) {
@@ -605,7 +609,6 @@ namespace droid.Runtime.Environments {
         this.Listeners.Remove(identifier);
       }
     }
-
 
     #endregion
 
@@ -621,7 +624,7 @@ namespace droid.Runtime.Environments {
           return this._coordinate_reference_point.transform.InverseTransformPoint(point);
         case CoordinateSystem.Local_coordinates_:
           return this.transform.InverseTransformPoint(point);
-          //return point - this.transform.position;
+        //return point - this.transform.position;
         default:
           #if NEODROID_DEBUG
           if (this.Debugging) {
@@ -935,10 +938,7 @@ namespace droid.Runtime.Environments {
       lock (this._reaction_lock) {
         if (this.Actuators != null) {
           foreach (var m in this.Actuators.Values) {
-
-                this._Energy_Spent += m.GetEnergySpend();
-
-
+            this._Energy_Spent += m.GetEnergySpend();
           }
         }
 
@@ -966,7 +966,7 @@ namespace droid.Runtime.Environments {
           }
 
           var virtual_actors = new Dictionary<String, IActor>();
-          virtual_actors.Add("All",new VirtualActor(this.Actuators));
+          virtual_actors.Add("All", new VirtualActor(this.Actuators));
 
           description =
               new EnvironmentDescription(episode_length, virtual_actors, this.Configurables, threshold);
@@ -1021,9 +1021,7 @@ namespace droid.Runtime.Environments {
       }
     }
 
-
-
-  /// <inheritdoc />
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <param name="recipient"></param>
@@ -1048,11 +1046,11 @@ namespace droid.Runtime.Environments {
                              ref this._reset_velocities,
                              ref this._reset_angulars,
                              this.Debugging);
-#else
+      #else
       ResetEnvironmentBodies(ref this._tracked_rigid_bodies,
-      ref this._reset_velocities,
-        ref this._reset_angulars);
-#endif
+                             ref this._reset_velocities,
+                             ref this._reset_angulars);
+      #endif
 
       this.ResetRegisteredObjects();
       this.Reconfigure();
@@ -1166,7 +1164,8 @@ namespace droid.Runtime.Environments {
           }
           #endif
           var motion_actuator_name = motion.ActuatorName;
-          if (this.Actuators.ContainsKey(motion_actuator_name) && this.Actuators[motion_actuator_name] != null) {
+          if (this.Actuators.ContainsKey(motion_actuator_name)
+              && this.Actuators[motion_actuator_name] != null) {
             this.Actuators[motion_actuator_name].ApplyMotion(motion);
           } else {
             #if NEODROID_DEBUG
@@ -1213,8 +1212,6 @@ namespace droid.Runtime.Environments {
         this.SendToActuators(reaction);
 
         this.StepEvent?.Invoke();
-
-
 
         this.UpdateObserversData();
       }
@@ -1296,7 +1293,8 @@ namespace droid.Runtime.Environments {
     /// <param name="angulars"></param>
     static void ResetEnvironmentBodies(ref Rigidbody[] bodies,
                                        ref Vector3[] velocities,
-                                       ref Vector3[] angulars, bool debugging=false) {
+                                       ref Vector3[] angulars,
+                                       bool debugging = false) {
       if (bodies != null && bodies.Length > 0) {
         for (var i = 0; i < bodies.Length; i++) {
           if (i < bodies.Length && bodies[i] != null && i < velocities.Length && i < angulars.Length) {
@@ -1319,7 +1317,5 @@ namespace droid.Runtime.Environments {
     #endregion
 
     #endregion
-
-
   }
 }

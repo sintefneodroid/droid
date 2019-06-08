@@ -10,7 +10,7 @@ namespace droid.Runtime.Prototyping.Sensors.BoundingBox {
                     + "Experimental/BoundingBox"
                     + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
-  [RequireComponent(typeof(Utilities.BoundingBoxes.BoundingBox))]
+  [RequireComponent(typeof(Utilities.GameObjects.BoundingBoxes.BoundingBox))]
   public class BoundingBoxSensor : Sensor,
                                    IHasString {
     /// <inheritdoc />
@@ -18,14 +18,14 @@ namespace droid.Runtime.Prototyping.Sensors.BoundingBox {
     /// </summary>
     public override string PrototypingTypeName { get { return "BoundingBox"; } }
 
-    Utilities.BoundingBoxes.BoundingBox _bounding_box;
+    Utilities.GameObjects.BoundingBoxes.BoundingBox _bounding_box;
     [SerializeField] string _observationValue;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     protected override void PreSetup() {
-      this._bounding_box = this.GetComponent<Utilities.BoundingBoxes.BoundingBox>();
+      this._bounding_box = this.GetComponent<Utilities.GameObjects.BoundingBoxes.BoundingBox>();
     }
 
     /// <inheritdoc />

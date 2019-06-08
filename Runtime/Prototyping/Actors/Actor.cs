@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using droid.Runtime.Environments;
 using droid.Runtime.Interfaces;
-using droid.Runtime.Utilities.BoundingBoxes.Experimental;
 using droid.Runtime.Utilities.GameObjects;
+using droid.Runtime.Utilities.GameObjects.BoundingBoxes.Experimental;
 using droid.Runtime.Utilities.Misc;
 using UnityEditor;
 using UnityEngine;
@@ -14,7 +14,6 @@ namespace droid.Runtime.Prototyping.Actors {
   [AddComponentMenu(ActorComponentMenuPath._ComponentMenuPath + "Vanilla" + ActorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   public class Actor : PrototypingGameObject,
-
                        IActor
       //IResetable
   {

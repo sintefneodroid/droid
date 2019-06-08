@@ -27,14 +27,17 @@ namespace droid.Runtime.Messaging.FBS {
                                    SimulatorConfigurationMessage simulator_configuration = null,
                                    bool serialise_individual_observables = false,
                                    bool do_serialise_unobservables = false,
-                                   bool do_serialise_aggregated_float_array=false,
+                                   bool do_serialise_aggregated_float_array = false,
                                    string api_version = "N/A") {
       var b = new FlatBufferBuilder(1);
       var state_offsets = new Offset<FState>[states.Length];
       var i = 0;
       foreach (var state in states) {
-        state_offsets[i++] =
-            serialise_state(b, state, serialise_individual_observables, do_serialise_unobservables, do_serialise_aggregated_float_array);
+        state_offsets[i++] = serialise_state(b,
+                                             state,
+                                             serialise_individual_observables,
+                                             do_serialise_unobservables,
+                                             do_serialise_aggregated_float_array);
       }
 
       var states_vector_offset = FStates.CreateStatesVector(b, state_offsets);
@@ -52,13 +55,11 @@ namespace droid.Runtime.Messaging.FBS {
       return b.SizedByteArray();
     }
 
-
-
     #endregion
 
     #region PrivateMethods
 
-        /// <summary>
+    /// <summary>
     /// </summary>
     /// <param name="b"></param>
     /// <param name="configuration"></param>
@@ -72,15 +73,15 @@ namespace droid.Runtime.Messaging.FBS {
                                                                    configuration.QualityLevel,
                                                                    configuration.TimeScale,
                                                                    configuration.TargetFrameRate,
-                                                                   (FSimulationType)configuration.SimulationType,
+                                                                   (FSimulationType)configuration
+                                                                       .SimulationType,
                                                                    configuration.FrameSkips,
                                                                    configuration.ResetIterations,
                                                                    configuration.NumOfEnvironments,
-                                                                   configuration
-                                                                       .DoSerialiseIndividualSensors,
+                                                                   configuration.DoSerialiseIndividualSensors,
                                                                    configuration.DoSerialiseUnobservables
                                                                    //TODO: ,configuration.DoSerialiseAggregatedFloatArray
-                                                                   );
+                                                                  );
     }
 
     /// <summary>
@@ -92,18 +93,18 @@ namespace droid.Runtime.Messaging.FBS {
     /// <param name="do_serialise_aggregated_float_array"></param>
     /// <returns></returns>
     static Offset<FState> serialise_state(FlatBufferBuilder b,
-                                                 EnvironmentState state,
-                                                 bool serialise_individual_observables = false,
-                                                 bool do_serialise_unobservables = false,
-                                                 bool do_serialise_aggregated_float_array = false) {
+                                          EnvironmentState state,
+                                          bool serialise_individual_observables = false,
+                                          bool do_serialise_unobservables = false,
+                                          bool do_serialise_aggregated_float_array = false) {
       var n = b.CreateString(state.EnvironmentName);
 
       var observables_vector = _null_vector_offset;
-      if (do_serialise_aggregated_float_array){
+      if (do_serialise_aggregated_float_array) {
         observables_vector = FState.CreateObservablesVector(b, state.Observables);
-    }
+      }
 
-    var observers_vector = _null_vector_offset;
+      var observers_vector = _null_vector_offset;
       if (serialise_individual_observables) {
         var observations = state.Observers;
 
@@ -163,7 +164,7 @@ namespace droid.Runtime.Messaging.FBS {
       FState.AddEnvironmentName(b, n);
 
       FState.AddFrameNumber(b, state.FrameNumber);
-      if(do_serialise_aggregated_float_array){
+      if (do_serialise_aggregated_float_array) {
         FState.AddObservables(b, observables_vector);
       }
 
@@ -250,27 +251,27 @@ namespace droid.Runtime.Messaging.FBS {
       //var v_offset = CustomFlatBufferImplementation.CreateByteVector(b, camera.Bytes);
       FByteDataType a;
       switch (observer.ArrayEncoding) {
-            case "UINT8":
-              a = FByteDataType.UINT8;
-              break;
-            case "FLOAT16":
-              a = FByteDataType.FLOAT16;
-              break;
-            case "FLOAT32":
-              a = FByteDataType.FLOAT32;
-              break;
-            case "JPEG":
-              a = FByteDataType.JPEG;
-              break;
-            case "PNG":
-            a = FByteDataType.PNG;
-              break;
-            default:
-              a = FByteDataType.Other;
-              break;
-          }
+        case "UINT8":
+          a = FByteDataType.UINT8;
+          break;
+        case "FLOAT16":
+          a = FByteDataType.FLOAT16;
+          break;
+        case "FLOAT32":
+          a = FByteDataType.FLOAT32;
+          break;
+        case "JPEG":
+          a = FByteDataType.JPEG;
+          break;
+        case "PNG":
+          a = FByteDataType.PNG;
+          break;
+        default:
+          a = FByteDataType.Other;
+          break;
+      }
 
-      var c = FByteArray.CreateShapeVector(b,observer.Shape);
+      var c = FByteArray.CreateShapeVector(b, observer.Shape);
 
       FByteArray.StartFByteArray(b);
       FByteArray.AddType(b, a);
@@ -285,20 +286,17 @@ namespace droid.Runtime.Messaging.FBS {
 
       var ranges_vector = new VectorOffset();
 
-        FArray.StartRangesVector(b, float_a.ObservationSpace.Length);
-        foreach (var tra in float_a.ObservationSpace) {
-          FRange.CreateFRange(b, tra._Decimal_Granularity, tra._Max_Value, tra._Min_Value);
-        }
+      FArray.StartRangesVector(b, float_a.ObservationSpace.Length);
+      foreach (var tra in float_a.ObservationSpace) {
+        FRange.CreateFRange(b, tra._Decimal_Granularity, tra._Max_Value, tra._Min_Value);
+      }
 
-        ranges_vector = b.EndVector();
-
+      ranges_vector = b.EndVector();
 
       FArray.StartFArray(b);
       FArray.AddArray(b, v_offset);
 
       FArray.AddRanges(b, ranges_vector);
-
-
 
       return FArray.EndFArray(b);
     }
@@ -404,8 +402,7 @@ namespace droid.Runtime.Messaging.FBS {
 
       int observation_offset;
       FObservation observation_type;
-      switch (observer)
-      {
+      switch (observer) {
         case IHasString numeral:
           observation_offset = Serialise(b, numeral).Value;
           observation_type = FObservation.FString;
@@ -439,9 +436,7 @@ namespace droid.Runtime.Messaging.FBS {
           observation_type = FObservation.FQT;
           break;
         case IHasRigidbody rigidbody:
-          observation_offset = Serialise(b,
-            rigidbody.Velocity,
-            rigidbody.AngularVelocity).Value;
+          observation_offset = Serialise(b, rigidbody.Velocity, rigidbody.AngularVelocity).Value;
           observation_type = FObservation.FRB;
           break;
         case IHasByteArray array:

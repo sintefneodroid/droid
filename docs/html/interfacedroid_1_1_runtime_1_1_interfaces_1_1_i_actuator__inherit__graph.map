@@ -1,0 +1,18 @@
+<map id="droid.Runtime.Interfaces.IActuator" name="droid.Runtime.Interfaces.IActuator">
+<area shape="rect" id="node3" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_actuators_1_1_actuator.html" title="droid.Runtime.Prototyping.\lActuators.Actuator" alt="" coords="369,397,547,439"/>
+<area shape="rect" id="node2" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_registerable.html" title="IRegisterable" alt="" coords="5,405,104,431"/>
+<area shape="rect" id="node4" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_actuators_1_1_bandit_arm_actuator.html" title="droid.Runtime.Prototyping.\lActuators.BanditArmActuator" alt="" coords="625,5,817,47"/>
+<area shape="rect" id="node5" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_actuators_1_1_euler_transform1_dof_actuator.html" title="droid.Runtime.Prototyping.\lActuators.EulerTransform1DofActuator" alt="" coords="597,71,845,112"/>
+<area shape="rect" id="node6" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_actuators_1_1_euler_transform3_dof_actuator.html" title="droid.Runtime.Prototyping.\lActuators.EulerTransform3DofActuator" alt="" coords="597,136,845,177"/>
+<area shape="rect" id="node7" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_actuators_1_1_euler_transform_actuator.html" title="droid.Runtime.Prototyping.\lActuators.EulerTransformActuator" alt="" coords="611,201,831,243"/>
+<area shape="rect" id="node8" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_actuators_1_1_indexed_motion_actuator.html" title="droid.Runtime.Prototyping.\lActuators.IndexedMotionActuator" alt="" coords="613,267,829,308"/>
+<area shape="rect" id="node9" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_actuators_1_1_quaternion_transform_actuator.html" title="droid.Runtime.Prototyping.\lActuators.QuaternionTransformActuator" alt="" coords="595,332,848,373"/>
+<area shape="rect" id="node10" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_actuators_1_1_rigidbody1_dof_actuator.html" title="droid.Runtime.Prototyping.\lActuators.Rigidbody1DofActuator" alt="" coords="613,397,830,439"/>
+<area shape="rect" id="node12" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_actuators_1_1_rigidbody3_dof_actuator.html" title="droid.Runtime.Prototyping.\lActuators.Rigidbody3DofActuator" alt="" coords="613,463,830,504"/>
+<area shape="rect" id="node13" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_actuators_1_1_rigidbody_actuator.html" title="droid.Runtime.Prototyping.\lActuators.RigidbodyActuator" alt="" coords="627,528,816,569"/>
+<area shape="rect" id="node14" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_actuators_1_1_rotation_actuator.html" title="droid.Runtime.Prototyping.\lActuators.RotationActuator" alt="" coords="631,593,811,635"/>
+<area shape="rect" id="node15" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_actuators_1_1_target_rigidbody_actuator.html" title="droid.Runtime.Prototyping.\lActuators.TargetRigidbodyActuator" alt="" coords="608,659,835,700"/>
+<area shape="rect" id="node16" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_actuators_1_1_wheel_collider_actuator_1_1_steering_actuator.html" title="droid.Runtime.Prototyping.\lActuators.WheelColliderActuator.\lSteeringActuator" alt="" coords="613,725,829,781"/>
+<area shape="rect" id="node17" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_actuators_1_1_wheel_collider_actuator_1_1_torque_actuator.html" title="droid.Runtime.Prototyping.\lActuators.WheelColliderActuator.\lTorqueActuator" alt="" coords="613,805,829,861"/>
+<area shape="rect" id="node11" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_actuators_1_1_particles_1_1_rocket_actuator.html" title="droid.Runtime.Prototyping.\lActuators.Particles.RocketActuator" alt="" coords="896,397,1124,439"/>
+</map>
