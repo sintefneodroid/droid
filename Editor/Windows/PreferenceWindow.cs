@@ -2,6 +2,7 @@
 using UnityEngine;
 #if UNITY_EDITOR
 using System.Linq;
+using droid.Runtime;
 
 namespace droid.Editor.Windows {
   /// <inheritdoc />
@@ -53,7 +54,7 @@ namespace droid.Editor.Windows {
         _preferences_loaded = true;
       }
 
-      EditorGUILayout.HelpBox($"Version {NeodroidEditorInfo._Version}", MessageType.Info);
+      EditorGUILayout.HelpBox($"Version {NeodroidRuntimeInfo._Version}", MessageType.Info);
 
       var imported_asset_new =
           EditorGUILayout.Toggle(NeodroidEditorInfo._Imported_Asset_Pref_Key, _imported_asset);
@@ -208,8 +209,14 @@ namespace droid.Editor.Windows {
     /// </summary>
     public static readonly string[] _Debug_Symbols = {"NEODROID_DEBUG"};
 
+    /// <summary>
+    /// 
+    /// </summary>
     public static readonly string[] _Github_Symbols = {"NEODROID_USE_GITHUB_EXTENSION"};
 
+    /// <summary>
+    ///
+    /// </summary>
     public static readonly string[] _ImportedAsset_Symbols = {"NEODROID_IMPORTED_ASSET"};
 
     /// <summary>
@@ -231,36 +238,55 @@ namespace droid.Editor.Windows {
       Debug.LogWarning("Neodroid Debugging enabled");
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public static void RemoveDebugDefineSymbols() {
       RemoveDefineSymbols(_Debug_Symbols);
 
       Debug.LogWarning("Neodroid Debugging disabled");
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public static void AddGithubDefineSymbols() {
       AddDefineSymbols(_Github_Symbols);
 
       Debug.LogWarning("Github Extension enabled");
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public static void RemoveGithubDefineSymbols() {
       RemoveDefineSymbols(_Github_Symbols);
 
       Debug.LogWarning("Github Extension disabled");
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public static void AddImportedAssetDefineSymbols() {
       AddDefineSymbols(_ImportedAsset_Symbols);
 
       Debug.LogWarning("Neodroid is assumed to be an imported asset");
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public static void RemoveImportedAssetDefineSymbols() {
       RemoveDefineSymbols(_ImportedAsset_Symbols);
 
       Debug.LogWarning("Neodroid is assumed to be an installed package");
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="symbols"></param>
     public static void AddDefineSymbols(string[] symbols) {
       var defines_string =
           PlayerSettings.GetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup);

@@ -16,23 +16,66 @@ namespace droid.Runtime.Prototyping.Displayers.GridWorld {
     /// </summary>
     protected override void Setup() { }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="value"></param>
     public override void Display(Double value) { }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="values"></param>
     public override void Display(float[] values) { }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="values"></param>
     public override void Display(String values) { }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="value"></param>
+    /// <exception cref="NotImplementedException"></exception>
     public override void Display(Vector3 value) { throw new NotImplementedException(); }
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="value"></param>
     public override void Display(Vector3[] value) { this.ScatterPlot(value); }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="points"></param>
     public override void Display(Points.ValuePoint points) { this.PlotSeries(new[] {points}); }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="points"></param>
     public override void Display(Points.ValuePoint[] points) { }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="point"></param>
+    /// <exception cref="NotImplementedException"></exception>
     public override void Display(Points.StringPoint point) { throw new NotImplementedException(); }
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="points"></param>
+    /// <exception cref="NotImplementedException"></exception>
     public override void Display(Points.StringPoint[] points) { throw new NotImplementedException(); }
 
     //public override void Display(Object o) { throw new NotImplementedException(); }
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="values"></param>
     public override void Display(float values) { }
 
     void Update() {

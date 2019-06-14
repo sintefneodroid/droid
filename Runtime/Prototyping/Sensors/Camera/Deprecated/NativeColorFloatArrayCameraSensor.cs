@@ -7,7 +7,7 @@ using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
-namespace droid.Runtime.Prototyping.Sensors.Camera {
+namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
   [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
                     + "NativeColorArrayCamera"
                     + SensorComponentMenuPath._Postfix)]
@@ -36,7 +36,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
 
     protected override void PreSetup() {
       if (this._manager == null) {
-        this._manager = FindObjectOfType<NeodroidManager>();
+        this._manager = FindObjectOfType<AbstractNeodroidManager>();
       }
 
       if (this._camera == null) {

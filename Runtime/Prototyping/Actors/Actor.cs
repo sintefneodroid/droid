@@ -11,7 +11,7 @@ namespace droid.Runtime.Prototyping.Actors {
   /// <inheritdoc cref="PrototypingGameObject" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ActorComponentMenuPath._ComponentMenuPath + "Vanilla" + ActorComponentMenuPath._Postfix)]
+  [AddComponentMenu(ActorComponentMenuPath._ComponentMenuPath + "Base" + ActorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   public class Actor : PrototypingGameObject,
                        IActor
@@ -137,7 +137,7 @@ namespace droid.Runtime.Prototyping.Actors {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent((ActorisedPrototypingEnvironment)this.ParentEnvironment, this);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, this);
     }
 
     /// <inheritdoc />
@@ -192,7 +192,7 @@ namespace droid.Runtime.Prototyping.Actors {
     /// </summary>
     [Header("References", order = 99)]
     [SerializeField]
-    IActorisedPrototypingEnvironment _environment;
+    ActorisedPrototypingEnvironment _environment;
 
     /// <summary>
     /// </summary>
@@ -233,7 +233,7 @@ namespace droid.Runtime.Prototyping.Actors {
 
     /// <summary>
     /// </summary>
-    public IActorisedPrototypingEnvironment ParentEnvironment {
+    public ActorisedPrototypingEnvironment ParentEnvironment {
       get { return this._environment; }
       set { this._environment = value; }
     }

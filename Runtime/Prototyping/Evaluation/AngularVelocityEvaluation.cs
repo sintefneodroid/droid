@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Evaluation {
+  /// <summary>
+  ///
+  /// </summary>
   [AddComponentMenu(EvaluationComponentMenuPath._ComponentMenuPath
                     + "AngularVelocity"
                     + EvaluationComponentMenuPath._Postfix)]
@@ -29,6 +32,9 @@ namespace droid.Runtime.Prototyping.Evaluation {
     /// </summary>
     public override void InternalReset() { }
 
+    /// <summary>
+    ///
+    /// </summary>
     protected override void PostSetup() {
       if (this._rigidbody == null) {
         this._rigidbody = FindObjectOfType<Rigidbody>();

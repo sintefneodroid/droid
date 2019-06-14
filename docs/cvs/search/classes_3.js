@@ -10,7 +10,7 @@ var searchData=
   ['displayablevalues',['DisplayableValues',['../classdroid_1_1_runtime_1_1_messaging_1_1_messages_1_1_displayables_1_1_displayable_values.html',1,'droid::Runtime::Messaging::Messages::Displayables']]],
   ['displayablevector3s',['DisplayableVector3S',['../classdroid_1_1_runtime_1_1_messaging_1_1_messages_1_1_displayables_1_1_displayable_vector3_s.html',1,'droid::Runtime::Messaging::Messages::Displayables']]],
   ['displayer',['Displayer',['../classdroid_1_1_runtime_1_1_prototyping_1_1_displayers_1_1_displayer.html',1,'droid::Runtime::Prototyping::Displayers']]],
-  ['distancesensor',['DistanceSensor',['../classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_distance_sensor.html',1,'droid::Runtime::Prototyping::Sensors']]],
+  ['distancesensor',['DistanceSensor',['../classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_experimental_1_1_distance_sensor.html',1,'droid::Runtime::Prototyping::Sensors::Experimental']]],
   ['distributiondisplayer',['DistributionDisplayer',['../classdroid_1_1_runtime_1_1_prototyping_1_1_displayers_1_1_canvas_1_1_distribution_displayer.html',1,'droid::Runtime::Prototyping::Displayers::Canvas']]],
   ['distributionsampler',['DistributionSampler',['../structdroid_1_1_runtime_1_1_utilities_1_1_sampling_1_1_distribution_sampler.html',1,'droid::Runtime::Utilities::Sampling']]],
   ['doublevector3',['DoubleVector3',['../structdroid_1_1_runtime_1_1_utilities_1_1_structs_1_1_double_vector3.html',1,'droid::Runtime::Utilities::Structs']]],

@@ -42,21 +42,24 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentActor =
-          NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Actuator)this, this._rot_x);
-      this.ParentActor =
-          NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Actuator)this, this._rot_y);
-      this.ParentActor =
-          NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Actuator)this, this._rot_z);
-      this.ParentActor =
-          NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Actuator)this, this._rot_w);
+      this.Parent =
+          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._rot_x);
+      this.Parent =
+          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._rot_y);
+      this.Parent =
+          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._rot_z);
+      this.Parent =
+          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._rot_w);
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     protected override void UnRegisterComponent() {
-      this.ParentActor?.UnRegister(this, this._rot_x);
-      this.ParentActor?.UnRegister(this, this._rot_y);
-      this.ParentActor?.UnRegister(this, this._rot_z);
-      this.ParentActor?.UnRegister(this, this._rot_w);
+      this.Parent?.UnRegister(this, this._rot_x);
+      this.Parent?.UnRegister(this, this._rot_y);
+      this.Parent?.UnRegister(this, this._rot_z);
+      this.Parent?.UnRegister(this, this._rot_w);
     }
 
     /// <inheritdoc />
@@ -64,18 +67,18 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// </summary>
     /// <param name="motion"></param>
     protected override void InnerApplyMotion(IMotion motion) {
-      var transformRotation = this.transform.rotation;
+      var transform_rotation = this.transform.rotation;
       if (motion.ActuatorName == this._rot_x) {
-        transformRotation.x = motion.Strength;
+        transform_rotation.x = motion.Strength;
       } else if (motion.ActuatorName == this._rot_y) {
-        transformRotation.y = motion.Strength;
+        transform_rotation.y = motion.Strength;
       } else if (motion.ActuatorName == this._rot_z) {
-        transformRotation.z = motion.Strength;
+        transform_rotation.z = motion.Strength;
       } else if (motion.ActuatorName == this._rot_w) {
-        transformRotation.z = motion.Strength;
+        transform_rotation.z = motion.Strength;
       }
 
-      this.transform.rotation = transformRotation;
+      this.transform.rotation = transform_rotation;
     }
   }
 }

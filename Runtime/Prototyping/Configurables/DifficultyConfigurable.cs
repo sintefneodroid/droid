@@ -12,6 +12,8 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     public override string PrototypingTypeName { get { return "DifficultyConfigurable"; } }
 
+    public override ISpace ConfigurableValueSpace { get; }
+
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
       if (Math.Abs(configuration.ConfigurableValue - 1) < double.Epsilon) {
         //print ("Increased Difficulty");

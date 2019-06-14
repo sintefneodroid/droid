@@ -6,7 +6,7 @@ using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Configurables {
-  /// <inheritdoc />
+  /// <inheritdoc cref="Configurable" />
   /// <summary>
   /// </summary>
   [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
@@ -14,7 +14,7 @@ namespace droid.Runtime.Prototyping.Configurables {
                     + ConfigurableComponentMenuPath._Postfix)]
   [RequireComponent(typeof(Renderer))]
   public class StandardShaderMaterialConfigurable : Configurable,
-                                                    IHasFloatArray {
+                                                    IHasTArray {
     string _reflection;
     string _smoothness;
     string _tiling_x;
@@ -38,6 +38,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     Renderer _renderer;
 
     [SerializeField] bool _use_shared = false;
+    [SerializeField] Space4 _configurable_value_space;
 
     static readonly int _glossiness = Shader.PropertyToID("_Glossiness");
     static readonly int _glossy_reflections = Shader.PropertyToID("_GlossyReflections");
@@ -106,6 +107,11 @@ namespace droid.Runtime.Prototyping.Configurables {
       this.ParentEnvironment.UnRegister(this, this._tiling_x);
       this.ParentEnvironment.UnRegister(this, this._tiling_y);
     }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public override ISpace ConfigurableValueSpace { get { return this._configurable_value_space; } }
 
     /// <summary>
     /// </summary>
@@ -238,6 +244,9 @@ namespace droid.Runtime.Prototyping.Configurables {
                    };
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     protected override void Randomise() {
       Material[] materials;
       if (this._use_shared) {
@@ -258,11 +267,11 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     ///
     /// </summary>
-    public Single[] ObservationArray { get { return new float[] { }; } }
+    public dynamic[] ObservationArray { get { return new dynamic[] { }; } }
 
     /// <summary>
     ///
     /// </summary>
-    public Space1[] ObservationSpace { get { return new[] {this._smoothness_space}; } }
+    public ISpace[] ObservationSpace { get { return new ISpace[] {this._configurable_value_space}; } }
   }
 }

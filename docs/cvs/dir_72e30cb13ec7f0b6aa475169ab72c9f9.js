@@ -1,10 +1,13 @@
 var dir_72e30cb13ec7f0b6aa475169ab72c9f9 =
 [
+    [ "IAbstractPrototypingEnvironment.cs", "_i_abstract_prototyping_environment_8cs.html", [
+      [ "IAbstractPrototypingEnvironment", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_abstract_prototyping_environment.html", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_abstract_prototyping_environment" ]
+    ] ],
     [ "IActor.cs", "_i_actor_8cs.html", [
       [ "IActor", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_actor.html", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_actor" ]
     ] ],
     [ "IActorisedPrototypingEnvironment.cs", "_i_actorised_prototyping_environment_8cs.html", [
-      [ "IActorisedPrototypingEnvironment", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_actorised_prototyping_environment.html", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_actorised_prototyping_environment" ]
+      [ "IActorisedPrototypingEnvironment", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_actorised_prototyping_environment.html", null ]
     ] ],
     [ "IActuator.cs", "_i_actuator_8cs.html", [
       [ "IActuator", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_actuator.html", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_actuator" ]
@@ -36,6 +39,9 @@ var dir_72e30cb13ec7f0b6aa475169ab72c9f9 =
     [ "IHasDouble.cs", "_i_has_double_8cs.html", [
       [ "IHasDouble", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_double.html", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_double" ]
     ] ],
+    [ "IHasDoubleArray.cs", "_i_has_double_array_8cs.html", [
+      [ "IHasDoubleArray", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_double_array.html", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_double_array" ]
+    ] ],
     [ "IHasEulerTransform.cs", "_i_has_euler_transform_8cs.html", [
       [ "IHasEulerTransform", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_euler_transform.html", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_euler_transform" ]
     ] ],
@@ -44,6 +50,9 @@ var dir_72e30cb13ec7f0b6aa475169ab72c9f9 =
     ] ],
     [ "IHasFloatEnumerable.cs", "_i_has_float_enumerable_8cs.html", [
       [ "IHasFloatEnumerable", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_float_enumerable.html", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_float_enumerable" ]
+    ] ],
+    [ "IHasQuadArray.cs", "_i_has_quad_array_8cs.html", [
+      [ "IHasQuadArray", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_quad_array.html", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_quad_array" ]
     ] ],
     [ "IHasQuadruple.cs", "_i_has_quadruple_8cs.html", [
       [ "IHasQuadruple", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_quadruple.html", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_quadruple" ]
@@ -64,8 +73,14 @@ var dir_72e30cb13ec7f0b6aa475169ab72c9f9 =
     [ "IHasString.cs", "_i_has_string_8cs.html", [
       [ "IHasString", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_string.html", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_string" ]
     ] ],
+    [ "IHasTArray.cs", "_i_has_t_array_8cs.html", [
+      [ "IHasTArray", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_t_array.html", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_t_array" ]
+    ] ],
     [ "IHasTriple.cs", "_i_has_triple_8cs.html", [
       [ "IHasTriple", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_triple.html", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_triple" ]
+    ] ],
+    [ "IHasTripleArray.cs", "_i_has_triple_array_8cs.html", [
+      [ "IHasTripleArray", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_triple_array.html", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_triple_array" ]
     ] ],
     [ "IManager.cs", "_i_manager_8cs.html", [
       [ "IManager", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_manager.html", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_manager" ]
@@ -80,7 +95,7 @@ var dir_72e30cb13ec7f0b6aa475169ab72c9f9 =
       [ "IObserver", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_observer.html", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_observer" ]
     ] ],
     [ "IPrototypingEnvironment.cs", "_i_prototyping_environment_8cs.html", [
-      [ "IPrototypingEnvironment", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_prototyping_environment.html", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_prototyping_environment" ]
+      [ "IPrototypingEnvironment", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_prototyping_environment.html", null ]
     ] ],
     [ "ISimulatorConfiguration.cs", "_i_simulator_configuration_8cs.html", [
       [ "ISimulatorConfiguration", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration" ]

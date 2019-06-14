@@ -5,7 +5,7 @@ using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Rigidbody {
-  /// <inheritdoc />
+  /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
   public class VelocitySensor : Sensor,
@@ -32,6 +32,9 @@ namespace droid.Runtime.Prototyping.Sensors.Rigidbody {
 
     public Space3 TripleSpace { get { return this._velocity_space; } }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override IEnumerable<float> FloatEnumerable {
       get { return new[] {this.ObservationValue.x, this.ObservationValue.y, this.ObservationValue.z}; }
     }

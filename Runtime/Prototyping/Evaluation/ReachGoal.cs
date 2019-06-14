@@ -5,6 +5,9 @@ using droid.Runtime.Utilities.Misc.Grid;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Evaluation {
+  /// <summary>
+  ///
+  /// </summary>
   [AddComponentMenu(EvaluationComponentMenuPath._ComponentMenuPath
                     + "ReachGoal"
                     + EvaluationComponentMenuPath._Postfix)]
@@ -18,6 +21,10 @@ namespace droid.Runtime.Prototyping.Evaluation {
     //Used for.. if outside playable area then reset
     [SerializeField] ActorOverlapping _overlapping = ActorOverlapping.Outside_area_;
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
     public override float InternalEvaluate() {
       var distance =
           Mathf.Abs(Vector3.Distance(this._goal.transform.position, this._actor.transform.position));
@@ -30,16 +37,26 @@ namespace droid.Runtime.Prototyping.Evaluation {
       return 0f;
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override void InternalReset() {
       this.Setup();
       this._overlapping = ActorOverlapping.Outside_area_;
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="goal"></param>
     public void SetGoal(EmptyCell goal) {
       this._goal = goal;
       this.InternalReset();
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     protected override void PostSetup() {
       if (!this._goal) {
         this._goal = FindObjectOfType<EmptyCell>();

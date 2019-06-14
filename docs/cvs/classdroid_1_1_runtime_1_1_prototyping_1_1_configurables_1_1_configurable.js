@@ -11,8 +11,8 @@ var classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_configurable =
     [ "Tick", "classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_configurable.html#af9b866a2f735872f69437481745224b4", null ],
     [ "UnRegisterComponent", "classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_configurable.html#ada54760ab2b422c8261716f70d639383", null ],
     [ "UpdateCurrentConfiguration", "classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_configurable.html#a8a1f903429cb95d61beaab08769f10e5", null ],
-    [ "ConfigurableValueSpace", "classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_configurable.html#ae92fd807cf2a2c990f5fd10f0e0ac2a1", null ],
-    [ "ParentEnvironment", "classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_configurable.html#afa1966ed5eb4db66686b8288d3abccdd", null ],
+    [ "ConfigurableValueSpace", "classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_configurable.html#ac061fe54c82876160336eb2632f19aa5", null ],
+    [ "ParentEnvironment", "classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_configurable.html#a30919e2a92932c54af7f2301c1be87d1", null ],
     [ "RelativeToExistingValue", "classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_configurable.html#a892727bb3ab20908ddd868c66beea8a5", null ],
     [ "SampleRandom", "classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_configurable.html#a0428675ff0397f24d552f9a14c7d5377", null ]
 ];

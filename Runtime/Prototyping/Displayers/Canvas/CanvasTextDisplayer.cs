@@ -51,10 +51,10 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
     /// </summary>
     public override void Display(float[] values) {
       #if NEODROID_DEBUG
-      DebugPrinting.DisplayPrint(values, this.Identifier, this.Debugging);
+      DebugPrinting.DisplayPrint(values[0], this.Identifier, this.Debugging);
       #endif
 
-      this.SetText(values.ToString());
+      this.SetText(values[0].ToString());
     }
 
     /// <inheritdoc />

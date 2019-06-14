@@ -7,9 +7,18 @@ namespace droid.Runtime.Prototyping.Actors {
   [AddComponentMenu(ActorComponentMenuPath._ComponentMenuPath + "Killable" + ActorComponentMenuPath._Postfix)]
   public class KillableActor : Actor {
     [SerializeField] bool _is_alive = true;
+    /// <summary>
+    ///
+    /// </summary>
     public bool IsAlive { get { return this._is_alive; } }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override string PrototypingTypeName { get { return "KillableActor"; } }
+    /// <summary>
+    ///
+    /// </summary>
     public void Kill() { this._is_alive = false; }
 
     public override void ApplyMotion(IMotion motion) {

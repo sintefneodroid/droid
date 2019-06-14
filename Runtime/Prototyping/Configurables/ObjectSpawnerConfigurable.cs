@@ -63,6 +63,8 @@ namespace droid.Runtime.Prototyping.Configurables {
 
     void OnApplicationQuit() { this.DestroyObjects(); }
 
+    public override ISpace ConfigurableValueSpace { get; }
+
     public override void ApplyConfiguration(IConfigurableConfiguration obj) {
       if (this._spawned_objects.Count < obj.ConfigurableValue) {
         var go = Instantiate(this._object_to_spawn, this.transform);

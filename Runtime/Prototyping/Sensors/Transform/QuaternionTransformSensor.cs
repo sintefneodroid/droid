@@ -4,6 +4,9 @@ using droid.Runtime.Interfaces;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Transform {
+  /// <summary>
+  ///
+  /// </summary>
   [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
                     + "QuaternionTransform"
                     + SensorComponentMenuPath._Postfix)]
@@ -23,14 +26,24 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
 
     [SerializeField] bool _use_environments_coordinates = true;
 
-    public ObservationSpace Space { get { return this._space; } }
-
+    /// <summary>
+    ///
+    /// </summary>
     public override string PrototypingTypeName { get { return "QuaternionTransform"; } }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Vector3 Position { get { return this._position; } }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Quaternion Rotation { get { return this._rotation; } }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override IEnumerable<float> FloatEnumerable {
       get {
         return new[] {
@@ -45,16 +58,23 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override void UpdateObservation() {
+      var transform1 = this.transform;
       if (this.ParentEnvironment != null && this._use_environments_coordinates) {
-        this._position = this.ParentEnvironment.TransformPoint(this.transform.position);
-        this._rotation = Quaternion.Euler(this.ParentEnvironment.TransformDirection(this.transform.forward));
+        this._position = this.ParentEnvironment.TransformPoint(transform1.position);
+        this._rotation = Quaternion.Euler(this.ParentEnvironment.TransformDirection(transform1.forward));
       } else {
-        this._position = this.transform.position;
-        this._rotation = this.transform.rotation;
+        this._position = transform1.position;
+        this._rotation = transform1.rotation;
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     protected override void PreSetup() { }
   }
 }

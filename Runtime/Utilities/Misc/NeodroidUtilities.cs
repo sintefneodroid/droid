@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using droid.Runtime.Environments;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Utilities.GameObjects.ChildSensors;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -217,6 +219,105 @@ namespace droid.Runtime.Utilities.Misc {
       return s;
     }
 
+    public static IHasRegister<IActuator> RegisterComponent< TCaller>(
+        IHasRegister<IActuator> r,
+        TCaller c,
+        bool only_parents = false,
+        bool debug = false)
+        where TCaller : Component, IRegisterable {
+
+
+      IHasRegister<IActuator> component = null;
+      if (r != null) {
+        component = r; //.GetComponent<Recipient>();
+                       }
+      else{
+
+        if (c.GetComponentInParent<Actor>() != null) {
+          component = c.GetComponentInParent<Actor>();
+        } else if (!only_parents) {
+          component = Object.FindObjectOfType<Actor>();
+        }
+      }
+
+      if (component == null){
+        if (c.GetComponentInParent<PrototypingEnvironment>() != null) {
+          component = c.GetComponentInParent<PrototypingEnvironment>();
+        } else if (!only_parents) {
+          component = Object.FindObjectOfType<PrototypingEnvironment>();
+        }
+
+      }
+
+      if (component != null) {
+        component.Register((IActuator)c);
+      } else {
+        #if NEODROID_DEBUG
+        if (debug) {
+          Debug.Log($"Could not find a IHasRegister<IActuator> recipient during registration");
+        }
+        #endif
+      }
+
+      return component;
+    }
+
+    /// <summary>
+    /// </summary>
+    /// <param name="r"></param>
+    /// <param name="c"></param>
+    /// <param name="identifier"></param>
+    /// <param name="only_parents"></param>
+    /// <param name="debug"></param>
+    /// <typeparam name="TRecipient"></typeparam>
+    /// <typeparam name="TCaller"></typeparam>
+    /// <returns></returns>
+    public static IHasRegister<IActuator> RegisterComponent< TCaller>(
+        IHasRegister<IActuator> r,
+        TCaller c,
+        string identifier,
+        bool only_parents = false,
+        bool debug = false)
+        where TCaller : Component, IRegisterable {
+
+
+      IHasRegister<IActuator> component = null;
+      if (r != null) {
+        component = r; //.GetComponent<Recipient>();
+      }
+      else{
+
+        if (c.GetComponentInParent<Actor>() != null) {
+          component = c.GetComponentInParent<Actor>();
+        } else if (!only_parents) {
+          component = Object.FindObjectOfType<Actor>();
+        }
+      }
+
+      if (component == null){
+        if (c.GetComponentInParent<PrototypingEnvironment>() != null) {
+          component = c.GetComponentInParent<PrototypingEnvironment>();
+        } else if (!only_parents) {
+          component = Object.FindObjectOfType<PrototypingEnvironment>();
+        }
+
+      }
+
+      if (component != null) {
+        component.Register((IActuator)c, identifier);
+      } else {
+        #if NEODROID_DEBUG
+        if (debug) {
+          Debug.Log($"Could not find a IHasRegister<IActuator> recipient during registration");
+        }
+        #endif
+      }
+
+
+      return component;
+    }
+
+
     /// <summary>
     /// </summary>
     /// <param name="r"></param>
@@ -232,6 +333,8 @@ namespace droid.Runtime.Utilities.Misc {
         bool only_parents = false,
         bool debug = false)
         where TRecipient : Object, IHasRegister<TCaller> where TCaller : Component, IRegisterable {
+
+
       TRecipient component = null;
       if (r != null) {
         component = r; //.GetComponent<Recipient>();
@@ -246,7 +349,7 @@ namespace droid.Runtime.Utilities.Misc {
       } else {
         #if NEODROID_DEBUG
         if (debug) {
-          Debug.Log($"Could not find a {typeof(TRecipient)} recipient during registeration");
+          Debug.Log($"Could not find a {typeof(TRecipient)} recipient during registration");
         }
         #endif
       }

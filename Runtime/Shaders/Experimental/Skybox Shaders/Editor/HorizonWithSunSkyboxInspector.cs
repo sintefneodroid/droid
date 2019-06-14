@@ -61,11 +61,11 @@ namespace droid.Runtime.Shaders.Experimental.Skybox_Shaders.Editor {
           var raz = az.floatValue * Mathf.Deg2Rad;
           var ral = al.floatValue * Mathf.Deg2Rad;
 
-          var upVector = new Vector4(Mathf.Cos(ral) * Mathf.Sin(raz),
+          var up_vector = new Vector4(Mathf.Cos(ral) * Mathf.Sin(raz),
                                      Mathf.Sin(ral),
                                      Mathf.Cos(ral) * Mathf.Cos(raz),
                                      0.0f);
-          GetMaterialProperty(this.targets, "_SunVector").vectorValue = upVector;
+          GetMaterialProperty(this.targets, "_SunVector").vectorValue = up_vector;
 
           this.PropertiesChanged();
         }

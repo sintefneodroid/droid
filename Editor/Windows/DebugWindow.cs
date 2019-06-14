@@ -29,7 +29,7 @@ namespace droid.Editor.Windows {
 
     EnvironmentListener[] _listeners;
 
-    NeodroidManager _manager;
+    AbstractNeodroidManager _manager;
 
     Actuator[] _actuators;
 

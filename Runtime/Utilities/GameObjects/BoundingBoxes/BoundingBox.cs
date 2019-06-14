@@ -100,7 +100,7 @@ namespace droid.Runtime.Utilities.GameObjects.BoundingBoxes {
     /// <summary>
     /// </summary>
     [SerializeField]
-    IActorisedPrototypingEnvironment environment = null;
+    IAbstractPrototypingEnvironment environment = null;
 
     /// <summary>
     /// </summary>

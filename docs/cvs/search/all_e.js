@@ -1,7 +1,7 @@
 var searchData=
 [
   ['name',['Name',['../classdroid_1_1_runtime_1_1_utilities_1_1_game_objects_1_1_status_displayer_1_1_render_texture_list_item.html#a1faf8a1e2573e0b192af95704cc930fa',1,'droid::Runtime::Utilities::GameObjects::StatusDisplayer::RenderTextureListItem']]],
-  ['nativecolorfloatarraycamerasensor',['NativeColorFloatArrayCameraSensor',['../classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_native_color_float_array_camera_sensor.html',1,'droid::Runtime::Prototyping::Sensors::Camera']]],
+  ['nativecolorfloatarraycamerasensor',['NativeColorFloatArrayCameraSensor',['../classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_deprecated_1_1_native_color_float_array_camera_sensor.html',1,'droid::Runtime::Prototyping::Sensors::Camera::Deprecated']]],
   ['nativecolorfloatarraycamerasensor_2ecs',['NativeColorFloatArrayCameraSensor.cs',['../_native_color_float_array_camera_sensor_8cs.html',1,'']]],
   ['near',['Near',['../classdroid_1_1_runtime_1_1_utilities_1_1_game_objects_1_1_neodroid_camera_1_1_synchronise_camera_properties.html#a75c0f46f1fa747127d3c2c91e02cc44e',1,'droid::Runtime::Utilities::GameObjects::NeodroidCamera::SynchroniseCameraProperties']]],
   ['nearestbytagsensor',['NearestByTagSensor',['../classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_rays_1_1_nearest_by_tag_sensor.html',1,'droid::Runtime::Prototyping::Sensors::Rays']]],
@@ -17,8 +17,8 @@ var searchData=
   ['neodroidfbsstate_2ecs',['NeodroidFBSState.cs',['../_neodroid_f_b_s_state_8cs.html',1,'']]],
   ['neodroidfbsstates_2ecs',['NeodroidFBSStates.cs',['../_neodroid_f_b_s_states_8cs.html',1,'']]],
   ['neodroidfbstypes_2ecs',['NeodroidFBSTypes.cs',['../_neodroid_f_b_s_types_8cs.html',1,'']]],
-  ['neodroidmanager',['NeodroidManager',['../classdroid_1_1_runtime_1_1_managers_1_1_neodroid_manager.html',1,'droid::Runtime::Managers']]],
-  ['neodroidmanager_2ecs',['NeodroidManager.cs',['../_neodroid_manager_8cs.html',1,'']]],
+  ['neodroidruntimeinfo',['NeodroidRuntimeInfo',['../classdroid_1_1_runtime_1_1_neodroid_runtime_info.html',1,'droid::Runtime']]],
+  ['neodroidruntimeinfo_2ecs',['NeodroidRuntimeInfo.cs',['../_neodroid_runtime_info_8cs.html',1,'']]],
   ['neodroidtask',['NeodroidTask',['../classdroid_1_1_runtime_1_1_utilities_1_1_scriptable_objects_1_1_unused_1_1_neodroid_task.html',1,'droid::Runtime::Utilities::ScriptableObjects::Unused']]],
   ['neodroidtask_2ecs',['NeodroidTask.cs',['../_neodroid_task_8cs.html',1,'']]],
   ['neodroidutilities_2ecs',['NeodroidUtilities.cs',['../_neodroid_utilities_8cs.html',1,'']]],

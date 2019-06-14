@@ -29,20 +29,18 @@ namespace droid.Runtime.Prototyping.Actuators.WheelColliderActuator {
       this._wheel_collider.motorTorque = motion.Strength;
     }
 
-    void FixedUpdate() { this.ApplyLocalPositionToVisuals(this._wheel_collider); }
+    void FixedUpdate() { ApplyLocalPositionToVisuals(this._wheel_collider); }
 
     /// <summary>
     /// </summary>
-    void ApplyLocalPositionToVisuals(WheelCollider col) {
+    static void ApplyLocalPositionToVisuals(WheelCollider col) {
       if (col.transform.childCount == 0) {
         return;
       }
 
       var visual_wheel = col.transform.GetChild(0);
 
-      Vector3 position;
-      Quaternion rotation;
-      col.GetWorldPose(out position, out rotation);
+      col.GetWorldPose(out var position, out var rotation);
 
       var transform1 = visual_wheel.transform;
       transform1.position = position;

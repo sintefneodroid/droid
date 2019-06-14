@@ -55,6 +55,8 @@ namespace droid.Runtime.Prototyping.Configurables {
       transform1.rotation = this._rotation;
     }
 
+    public override ISpace ConfigurableValueSpace { get; }
+
     public override void ApplyConfiguration(IConfigurableConfiguration obj) {
       if (obj.ConfigurableName == this._pos_x) {
         this._position.x = obj.ConfigurableValue;

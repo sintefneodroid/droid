@@ -17,6 +17,7 @@ var classdroid_1_1_runtime_1_1_environments_1_1_neodroid_environment =
     [ "Tick", "classdroid_1_1_runtime_1_1_environments_1_1_neodroid_environment.html#a2998cae6bd392006a84d429653d16ae7", null ],
     [ "UnRegisterComponent", "classdroid_1_1_runtime_1_1_environments_1_1_neodroid_environment.html#a4dd5cad9c4e3fe1ca362f01abbc76a49", null ],
     [ "_Configure", "classdroid_1_1_runtime_1_1_environments_1_1_neodroid_environment.html#ab32f0cf8e858abbc13c187a49efae46f", null ],
+    [ "_current_frame_number", "classdroid_1_1_runtime_1_1_environments_1_1_neodroid_environment.html#a11fb3efbfacea2ce62adbdd2c0605c92", null ],
     [ "_Energy_Spent", "classdroid_1_1_runtime_1_1_environments_1_1_neodroid_environment.html#a452093a29f9ffb9fc6efc05f6f91f5c6", null ],
     [ "_Lastest_Reset_Time", "classdroid_1_1_runtime_1_1_environments_1_1_neodroid_environment.html#a9727eba1a762394ca09766ddda1f5d1e", null ],
     [ "_LastTermination_Reason", "classdroid_1_1_runtime_1_1_environments_1_1_neodroid_environment.html#a7babb3df6d84aabc3465bda95de78321", null ],

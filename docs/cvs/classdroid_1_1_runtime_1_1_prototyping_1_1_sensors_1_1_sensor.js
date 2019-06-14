@@ -9,5 +9,5 @@ var classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_sensor =
     [ "Update", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_sensor.html#a062c2b7dd454f261ad4c073a46131094", null ],
     [ "UpdateObservation", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_sensor.html#a71183f101c4e65e1b04b54c67529ce13", null ],
     [ "FloatEnumerable", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_sensor.html#ac3cedd53e38446a14a9a005aeb63b414", null ],
-    [ "ParentEnvironment", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_sensor.html#a87444bebefdee947c5be5c6f627e0784", null ]
+    [ "ParentEnvironment", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_sensor.html#a93b0d6725fc97e28831e0420f4b19610", null ]
 ];

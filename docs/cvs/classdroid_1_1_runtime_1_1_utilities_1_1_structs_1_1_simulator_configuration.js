@@ -25,6 +25,6 @@ var classdroid_1_1_runtime_1_1_utilities_1_1_structs_1_1_simulator_configuration
     [ "TargetFrameRate", "classdroid_1_1_runtime_1_1_utilities_1_1_structs_1_1_simulator_configuration.html#a33629d7b8ee876c7f50e1678fc2f6fad", null ],
     [ "TimeScale", "classdroid_1_1_runtime_1_1_utilities_1_1_structs_1_1_simulator_configuration.html#a55e59fb671831e611f5eb6721e3451c0", null ],
     [ "UpdateFixedTimeScale", "classdroid_1_1_runtime_1_1_utilities_1_1_structs_1_1_simulator_configuration.html#a16a8fdf8d829e76b728d27e06f1a0f92", null ],
-    [ "vSyncCount", "classdroid_1_1_runtime_1_1_utilities_1_1_structs_1_1_simulator_configuration.html#ab8fec91aeb9407a628643fc9d3e990b8", null ],
+    [ "VSyncCount", "classdroid_1_1_runtime_1_1_utilities_1_1_structs_1_1_simulator_configuration.html#a4dc9e9ea6d968bff64c925aa889cd914", null ],
     [ "Width", "classdroid_1_1_runtime_1_1_utilities_1_1_structs_1_1_simulator_configuration.html#ac6c2f5e536e15d2c8c372df47041fc54", null ]
 ];

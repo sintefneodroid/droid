@@ -42,6 +42,8 @@ namespace droid.Runtime.Prototyping.Configurables {
       }
     }
 
+    public override ISpace ConfigurableValueSpace { get; }
+
     /// <summary>
     /// </summary>
     /// <param name="configuration"></param>
@@ -57,6 +59,9 @@ namespace droid.Runtime.Prototyping.Configurables {
       this._mat.SetTexture(_main_tex, this._texture);
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     protected override void Randomise() {
       this._texture = this._textures[Random.Range(0, this._textures.Length)];
 

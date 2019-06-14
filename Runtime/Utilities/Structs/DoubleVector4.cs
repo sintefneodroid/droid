@@ -31,13 +31,13 @@ namespace droid.Runtime.Utilities.Structs {
       this._W = w;
     }
 
-    public Double x { get { return this._X; } set { this._X = value; } }
+    public Double X { get { return this._X; } set { this._X = value; } }
 
-    public Double y { get { return this._Y; } set { this._Y = value; } }
+    public Double Y { get { return this._Y; } set { this._Y = value; } }
 
-    public Double z { get { return this._Z; } set { this._Z = value; } }
+    public Double Z { get { return this._Z; } set { this._Z = value; } }
 
-    public Double w { get { return this._W; } set { this._W = value; } }
+    public Double W { get { return this._W; } set { this._W = value; } }
 
     /// <summary>
     ///

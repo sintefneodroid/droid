@@ -33,10 +33,10 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     const char _r = 'R';
 
-    string r_id;
-    string b_id;
-    string g_id;
-    string a_id;
+    string _r_id;
+    string _b_id;
+    string _g_id;
+    string _a_id;
 
     /// <summary>
     /// </summary>
@@ -50,10 +50,10 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     protected override void PreSetup() {
-      this.r_id = this.Identifier + _r;
-      this.b_id = this.Identifier + _b;
-      this.g_id = this.Identifier + _g;
-      this.a_id = this.Identifier + _a;
+      this._r_id = this.Identifier + _r;
+      this._b_id = this.Identifier + _b;
+      this._g_id = this.Identifier + _g;
+      this._a_id = this.Identifier + _a;
 
       this._renderer = this.GetComponent<Renderer>();
     }
@@ -63,13 +63,13 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this.r_id);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._r_id);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this.g_id);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._g_id);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this.b_id);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._b_id);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this.a_id);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._a_id);
     }
 
     /// <inheritdoc />
@@ -80,10 +80,10 @@ namespace droid.Runtime.Prototyping.Configurables {
         return;
       }
 
-      this.ParentEnvironment.UnRegister(this, this.r_id);
-      this.ParentEnvironment.UnRegister(this, this.b_id);
-      this.ParentEnvironment.UnRegister(this, this.g_id);
-      this.ParentEnvironment.UnRegister(this, this.a_id);
+      this.ParentEnvironment.UnRegister(this, this._r_id);
+      this.ParentEnvironment.UnRegister(this, this._b_id);
+      this.ParentEnvironment.UnRegister(this, this._g_id);
+      this.ParentEnvironment.UnRegister(this, this._a_id);
     }
 
     public override ISpace ConfigurableValueSpace { get { return this._space; } }
@@ -163,10 +163,10 @@ namespace droid.Runtime.Prototyping.Configurables {
       var v = this._space.Sample();
 
       return new[] {
-                       new Configuration(this.r_id, v.x),
-                       new Configuration(this.g_id, v.y),
-                       new Configuration(this.b_id, v.z),
-                       new Configuration(this.a_id, v.w)
+                       new Configuration(this._r_id, v.x),
+                       new Configuration(this._g_id, v.y),
+                       new Configuration(this._b_id, v.z),
+                       new Configuration(this._a_id, v.w)
                    };
     }
   }

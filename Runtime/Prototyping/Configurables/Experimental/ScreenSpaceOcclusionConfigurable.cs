@@ -48,7 +48,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
 
     [SerializeField] GameObject[] _prefabs = null;
     List<GameObject> _spawned = new List<GameObject>();
-    bool fsafas = true;
+    bool _fsafas = true;
     [SerializeField] int num_obstructions = 10;
 
     /// <inheritdoc />
@@ -60,7 +60,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       this._b = this.Identifier + "B";
       this._a = this.Identifier + "A";
 
-      if (Application.isPlaying && this.fsafas) {
+      if (Application.isPlaying && this._fsafas) {
         if (this._prefabs != null && this._prefabs.Length > 0 && this._camera) {
           for (var i = 0; i < this.num_obstructions; i++) {
             var prefab = this._prefabs[(int)(Space1.ZeroOne.Sample() * this._prefabs.Length)];
@@ -82,7 +82,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
           }
         }
 
-        this.fsafas = false;
+        this._fsafas = false;
       }
     }
 
@@ -113,6 +113,8 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       this.ParentEnvironment.UnRegister(this, this._b);
       this.ParentEnvironment.UnRegister(this, this._a);
     }
+
+    public override ISpace ConfigurableValueSpace { get; }
 
     /// <summary>
     /// </summary>

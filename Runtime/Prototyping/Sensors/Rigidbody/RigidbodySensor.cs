@@ -79,6 +79,9 @@ namespace droid.Runtime.Prototyping.Sensors.Rigidbody {
     /// </summary>
     public Space3 AngularSpace { get { return this._angular_space; } }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override IEnumerable<float> FloatEnumerable {
       get {
         return new[] {
@@ -92,6 +95,9 @@ namespace droid.Runtime.Prototyping.Sensors.Rigidbody {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override void UpdateObservation() {
       var update_time_difference = Time.time - this._last_update_time;
       if (this._differential && update_time_difference > 0) {

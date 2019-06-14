@@ -37,7 +37,7 @@ namespace droid.Editor.Utilities.Git {
     /// Creates the extension UI visual element.
     /// </summary>
     /// <returns>A visual element that represents the UI or null if none</returns>
-    public VisualElement CreateExtensionUI() {
+    public VisualElement CreateExtensionUi() {
       this._initialized = false;
       return this;
     }

@@ -3,6 +3,9 @@
 using UnityEditor;
 
 namespace droid.Editor.Windows {
+  /// <summary>
+  ///
+  /// </summary>
   public class DemonstrationWindow : EditorWindow {
     int _captured_frame;
 
@@ -14,6 +17,9 @@ namespace droid.Editor.Windows {
 
     string _status = "Idle";
 
+    /// <summary>
+    ///
+    /// </summary>
     [MenuItem(EditorWindowMenuPath._WindowMenuPath + "DemonstrationWindow")]
     [MenuItem(EditorWindowMenuPath._ToolMenuPath + "DemonstrationWindow")]
     public static void ShowWindow() {
@@ -28,6 +34,9 @@ namespace droid.Editor.Windows {
       this.titleContent = new GUIContent("Neo:Rec", this._icon, "Window for recording demonstrations");
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public void OnInspectorUpdate() { this.Repaint(); }
 
     void OnGUI() {

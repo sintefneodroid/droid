@@ -110,7 +110,7 @@ namespace droid.Runtime.Utilities.Structs {
     /// </summary>
     [Header("Time")]
     [SerializeField]
-    [Range(0f, float.MaxValue)]
+    [Range(0f, 100f)]
     float _time_scale = 1;
 
     /// <summary>
@@ -137,7 +137,7 @@ namespace droid.Runtime.Utilities.Structs {
       this.NumOfEnvironments = 1;
       this.ResizableWindow = true;
       this.ColorSpace = ColorSpace.Linear;
-      this.vSyncCount = 0;
+      this.VSyncCount = 0;
     }
 
     #region Getter Setters
@@ -198,7 +198,7 @@ namespace droid.Runtime.Utilities.Structs {
     /// <summary>
     ///
     /// </summary>
-    public int vSyncCount { get { return this._v_sync_count = 0; } set { this._v_sync_count = value; } }
+    public int VSyncCount { get { return this._v_sync_count = 0; } set { this._v_sync_count = value; } }
 
     /// <summary>
     /// </summary>

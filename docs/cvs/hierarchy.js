@@ -87,30 +87,31 @@ var hierarchy =
     ] ],
     [ "droid.Runtime.Interfaces.IHasByteArray", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_byte_array.html", [
       [ "droid.Runtime.Prototyping.Sensors.Camera.ByteArrayCameraSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_byte_array_camera_sensor.html", null ],
-      [ "droid.Runtime.Prototyping.Sensors.Camera.CameraSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_camera_sensor.html", [
-        [ "droid.Runtime.Prototyping.Sensors.Camera.StringAugmentedCameraSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_string_augmented_camera_sensor.html", [
-          [ "droid.Runtime.Prototyping.Sensors.Camera.Segmentation.SegmentationCameraSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_segmentation_1_1_segmentation_camera_sensor.html", null ]
+      [ "droid.Runtime.Prototyping.Sensors.Camera.Deprecated.CameraSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_deprecated_1_1_camera_sensor.html", [
+        [ "droid.Runtime.Prototyping.Sensors.Camera.Deprecated.StringAugmentedCameraSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_deprecated_1_1_string_augmented_camera_sensor.html", [
+          [ "droid.Runtime.Prototyping.Sensors.Camera.Deprecated.Segmentation.SegmentationCameraSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_deprecated_1_1_segmentation_1_1_segmentation_camera_sensor.html", null ]
         ] ]
       ] ]
     ] ],
     [ "droid.Runtime.Interfaces.IHasDouble", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_double.html", [
       [ "droid.Runtime.Prototyping.Sensors.BoundingBox.TwoDimensionalScreenSpaceSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_bounding_box_1_1_two_dimensional_screen_space_sensor.html", null ],
-      [ "droid.Runtime.Prototyping.Sensors.CompassSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_compass_sensor.html", null ],
-      [ "droid.Runtime.Prototyping.Sensors.TargetRigidbodySensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_target_rigidbody_sensor.html", null ],
+      [ "droid.Runtime.Prototyping.Sensors.Experimental.CompassSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_experimental_1_1_compass_sensor.html", null ],
+      [ "droid.Runtime.Prototyping.Sensors.Experimental.TargetRigidbodySensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_experimental_1_1_target_rigidbody_sensor.html", null ],
       [ "droid.Runtime.Prototyping.Sensors.Transform.Position2DSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_transform_1_1_position2_d_sensor.html", null ]
     ] ],
+    [ "droid.Runtime.Interfaces.IHasDoubleArray", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_double_array.html", null ],
     [ "droid.Runtime.Interfaces.IHasEulerTransform", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_euler_transform.html", [
       [ "droid.Runtime.Prototyping.Configurables.EulerTransformConfigurable", "classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_euler_transform_configurable.html", null ],
       [ "droid.Runtime.Prototyping.Sensors.Rays.NearestByTagSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_rays_1_1_nearest_by_tag_sensor.html", null ],
       [ "droid.Runtime.Prototyping.Sensors.Transform.EulerTransformSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_transform_1_1_euler_transform_sensor.html", null ]
     ] ],
     [ "droid.Runtime.Interfaces.IHasFloatArray", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_float_array.html", [
-      [ "droid.Runtime.Prototyping.Configurables.StandardShaderMaterialConfigurable", "classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_standard_shader_material_configurable.html", null ],
-      [ "droid.Runtime.Prototyping.Sensors.Camera.FloatArrayCameraSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_float_array_camera_sensor.html", null ],
-      [ "droid.Runtime.Prototyping.Sensors.Camera.NativeColorFloatArrayCameraSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_native_color_float_array_camera_sensor.html", null ],
+      [ "droid.Runtime.Prototyping.Sensors.Camera.Deprecated.FloatArrayCameraSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_deprecated_1_1_float_array_camera_sensor.html", null ],
+      [ "droid.Runtime.Prototyping.Sensors.Camera.Deprecated.NativeColorFloatArrayCameraSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_deprecated_1_1_native_color_float_array_camera_sensor.html", null ],
       [ "droid.Runtime.Prototyping.Sensors.Rays.InstantUniformLidarSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_rays_1_1_instant_uniform_lidar_sensor.html", null ]
     ] ],
     [ "droid.Runtime.Interfaces.IHasFloatEnumerable", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_float_enumerable.html", null ],
+    [ "droid.Runtime.Interfaces.IHasQuadArray", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_quad_array.html", null ],
     [ "droid.Runtime.Interfaces.IHasQuadruple", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_quadruple.html", [
       [ "droid.Runtime.Prototyping.Configurables.RotationConfigurable", "classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_rotation_configurable.html", null ],
       [ "droid.Runtime.Prototyping.Sensors.Transform.RotationSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_transform_1_1_rotation_sensor.html", null ]
@@ -120,6 +121,7 @@ var hierarchy =
       [ "droid.Runtime.Prototyping.Sensors.Transform.QuaternionTransformSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_transform_1_1_quaternion_transform_sensor.html", null ]
     ] ],
     [ "droid.Runtime.Interfaces.IHasRegister< in in T >", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html", null ],
+    [ "droid.Runtime.Interfaces.IHasRegister< droid.Runtime.Prototyping.Actuators.Actuator >", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html", null ],
     [ "droid.Runtime.Interfaces.IHasRegister< IActor >", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html", [
       [ "droid.Runtime.Interfaces.IActorisedPrototypingEnvironment", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_actorised_prototyping_environment.html", [
         [ "droid.Runtime.Environments.ActorisedPrototypingEnvironment", "classdroid_1_1_runtime_1_1_environments_1_1_actorised_prototyping_environment.html", null ]
@@ -140,16 +142,19 @@ var hierarchy =
       ] ]
     ] ],
     [ "droid.Runtime.Interfaces.IHasRegister< IConfigurable >", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html", [
-      [ "droid.Runtime.Interfaces.IActorisedPrototypingEnvironment", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_actorised_prototyping_environment.html", null ],
-      [ "droid.Runtime.Interfaces.IPrototypingEnvironment", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_prototyping_environment.html", null ]
+      [ "droid.Runtime.Interfaces.IAbstractPrototypingEnvironment", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_abstract_prototyping_environment.html", [
+        [ "droid.Runtime.Environments.AbstractPrototypingEnvironment", "classdroid_1_1_runtime_1_1_environments_1_1_abstract_prototyping_environment.html", [
+          [ "droid.Runtime.Environments.ActorisedPrototypingEnvironment", "classdroid_1_1_runtime_1_1_environments_1_1_actorised_prototyping_environment.html", null ],
+          [ "droid.Runtime.Environments.PrototypingEnvironment", "classdroid_1_1_runtime_1_1_environments_1_1_prototyping_environment.html", null ]
+        ] ]
+      ] ]
     ] ],
     [ "droid.Runtime.Interfaces.IHasRegister< IDisplayer >", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html", [
-      [ "droid.Runtime.Interfaces.IActorisedPrototypingEnvironment", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_actorised_prototyping_environment.html", null ],
-      [ "droid.Runtime.Interfaces.IPrototypingEnvironment", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_prototyping_environment.html", null ]
+      [ "droid.Runtime.Interfaces.IAbstractPrototypingEnvironment", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_abstract_prototyping_environment.html", null ]
     ] ],
     [ "droid.Runtime.Interfaces.IHasRegister< IEnvironment >", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html", [
       [ "droid.Runtime.Interfaces.IManager", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_manager.html", [
-        [ "droid.Runtime.Managers.NeodroidManager", "classdroid_1_1_runtime_1_1_managers_1_1_neodroid_manager.html", [
+        [ "droid.Runtime.Managers.AbstractNeodroidManager", "classdroid_1_1_runtime_1_1_managers_1_1_abstract_neodroid_manager.html", [
           [ "droid.Runtime.Managers.Experimental.CurriculumManager", "classdroid_1_1_runtime_1_1_managers_1_1_experimental_1_1_curriculum_manager.html", null ],
           [ "droid.Runtime.Managers.Experimental.ThinManager", "classdroid_1_1_runtime_1_1_managers_1_1_experimental_1_1_thin_manager.html", null ],
           [ "droid.Runtime.Managers.PausableManager", "classdroid_1_1_runtime_1_1_managers_1_1_pausable_manager.html", null ]
@@ -157,12 +162,10 @@ var hierarchy =
       ] ]
     ] ],
     [ "droid.Runtime.Interfaces.IHasRegister< IEnvironmentListener >", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html", [
-      [ "droid.Runtime.Interfaces.IActorisedPrototypingEnvironment", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_actorised_prototyping_environment.html", null ],
-      [ "droid.Runtime.Interfaces.IPrototypingEnvironment", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_prototyping_environment.html", null ]
+      [ "droid.Runtime.Interfaces.IAbstractPrototypingEnvironment", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_abstract_prototyping_environment.html", null ]
     ] ],
     [ "droid.Runtime.Interfaces.IHasRegister< IObserver >", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html", [
-      [ "droid.Runtime.Interfaces.IActorisedPrototypingEnvironment", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_actorised_prototyping_environment.html", null ],
-      [ "droid.Runtime.Interfaces.IPrototypingEnvironment", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_prototyping_environment.html", null ]
+      [ "droid.Runtime.Interfaces.IAbstractPrototypingEnvironment", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_abstract_prototyping_environment.html", null ]
     ] ],
     [ "droid.Runtime.Interfaces.IHasRigidbody", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_rigidbody.html", [
       [ "droid.Runtime.Prototyping.Configurables.RigidbodyConfigurable", "classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_rigidbody_configurable.html", null ],
@@ -171,22 +174,25 @@ var hierarchy =
     [ "droid.Runtime.Interfaces.IHasSingle", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_single.html", [
       [ "droid.Runtime.Prototyping.Configurables.FrictionConfigurable", "classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_friction_configurable.html", null ],
       [ "droid.Runtime.Prototyping.Configurables.TransformConfigurable1Dof", "classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_transform_configurable1_dof.html", null ],
-      [ "droid.Runtime.Prototyping.Sensors.CategoricalSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_categorical_sensor.html", null ],
-      [ "droid.Runtime.Prototyping.Sensors.DistanceSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_distance_sensor.html", null ],
+      [ "droid.Runtime.Prototyping.Sensors.Experimental.CategoricalSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_experimental_1_1_categorical_sensor.html", null ],
+      [ "droid.Runtime.Prototyping.Sensors.Experimental.DistanceSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_experimental_1_1_distance_sensor.html", null ],
+      [ "droid.Runtime.Prototyping.Sensors.Experimental.ValueSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_experimental_1_1_value_sensor.html", [
+        [ "droid.Runtime.Prototyping.Sensors.Transform.SingleAxisTransformSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_transform_1_1_single_axis_transform_sensor.html", null ]
+      ] ],
       [ "droid.Runtime.Prototyping.Sensors.Grid.GridPositionSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_grid_1_1_grid_position_sensor.html", null ],
       [ "droid.Runtime.Prototyping.Sensors.Rays.LineOfSightSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_rays_1_1_line_of_sight_sensor.html", null ],
-      [ "droid.Runtime.Prototyping.Sensors.Rays.RaycastSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_rays_1_1_raycast_sensor.html", null ],
-      [ "droid.Runtime.Prototyping.Sensors.ValueSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_value_sensor.html", [
-        [ "droid.Runtime.Prototyping.Sensors.Transform.SingleAxisTransformSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_transform_1_1_single_axis_transform_sensor.html", null ]
-      ] ]
+      [ "droid.Runtime.Prototyping.Sensors.Rays.RaycastSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_rays_1_1_raycast_sensor.html", null ]
     ] ],
     [ "droid.Runtime.Interfaces.IHasString", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_string.html", [
       [ "droid.Runtime.Prototyping.Sensors.BoundingBox.BoundingBoxSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_bounding_box_1_1_bounding_box_sensor.html", null ],
       [ "droid.Runtime.Prototyping.Sensors.BoundingBox.ScreenSpaceBoundingBoxSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_bounding_box_1_1_screen_space_bounding_box_sensor.html", null ],
-      [ "droid.Runtime.Prototyping.Sensors.Camera.StringAugmentedCameraSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_string_augmented_camera_sensor.html", null ],
-      [ "droid.Runtime.Prototyping.Sensors.StringSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_string_sensor.html", [
-        [ "droid.Runtime.Prototyping.Sensors.Camera.Segmentation.SegmentationSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_segmentation_1_1_segmentation_sensor.html", null ]
+      [ "droid.Runtime.Prototyping.Sensors.Camera.Deprecated.StringAugmentedCameraSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_deprecated_1_1_string_augmented_camera_sensor.html", null ],
+      [ "droid.Runtime.Prototyping.Sensors.Experimental.StringSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_experimental_1_1_string_sensor.html", [
+        [ "droid.Runtime.Prototyping.Sensors.Camera.Deprecated.Segmentation.SegmentationSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_deprecated_1_1_segmentation_1_1_segmentation_sensor.html", null ]
       ] ]
+    ] ],
+    [ "droid.Runtime.Interfaces.IHasTArray", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_t_array.html", [
+      [ "droid.Runtime.Prototyping.Configurables.StandardShaderMaterialConfigurable", "classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_standard_shader_material_configurable.html", null ]
     ] ],
     [ "droid.Runtime.Interfaces.IHasTriple", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_triple.html", [
       [ "droid.Runtime.Prototyping.Configurables.EulerRotationConfigurable", "classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_euler_rotation_configurable.html", null ],
@@ -195,6 +201,9 @@ var hierarchy =
       [ "droid.Runtime.Prototyping.Sensors.Rigidbody.AngularVelocitySensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_rigidbody_1_1_angular_velocity_sensor.html", null ],
       [ "droid.Runtime.Prototyping.Sensors.Rigidbody.VelocitySensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_rigidbody_1_1_velocity_sensor.html", null ],
       [ "droid.Runtime.Prototyping.Sensors.Transform.PositionSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_transform_1_1_position_sensor.html", null ]
+    ] ],
+    [ "droid.Runtime.Interfaces.IHasTripleArray", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_triple_array.html", [
+      [ "droid.Runtime.Prototyping.Sensors.Occupancy.Occupancy3dSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_occupancy_1_1_occupancy3d_sensor.html", null ]
     ] ],
     [ "droid.Runtime.Interfaces.IMotion", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_motion.html", [
       [ "droid.Runtime.Messaging.Messages.ActuatorMotion", "classdroid_1_1_runtime_1_1_messaging_1_1_messages_1_1_actuator_motion.html", null ]
@@ -273,12 +282,10 @@ var hierarchy =
       ] ],
       [ "droid.Runtime.Interfaces.IEnvironment", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_environment.html", [
         [ "droid.Runtime.Environments.NeodroidEnvironment", "classdroid_1_1_runtime_1_1_environments_1_1_neodroid_environment.html", [
-          [ "droid.Runtime.Environments.ActorisedPrototypingEnvironment", "classdroid_1_1_runtime_1_1_environments_1_1_actorised_prototyping_environment.html", null ],
-          [ "droid.Runtime.Environments.PrototypingEnvironment", "classdroid_1_1_runtime_1_1_environments_1_1_prototyping_environment.html", null ],
+          [ "droid.Runtime.Environments.AbstractPrototypingEnvironment", "classdroid_1_1_runtime_1_1_environments_1_1_abstract_prototyping_environment.html", null ],
           [ "droid.Runtime.Environments.ScriptedEnvironment", "classdroid_1_1_runtime_1_1_environments_1_1_scripted_environment.html", null ]
         ] ],
-        [ "droid.Runtime.Interfaces.IActorisedPrototypingEnvironment", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_actorised_prototyping_environment.html", null ],
-        [ "droid.Runtime.Interfaces.IPrototypingEnvironment", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_prototyping_environment.html", null ]
+        [ "droid.Runtime.Interfaces.IAbstractPrototypingEnvironment", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_abstract_prototyping_environment.html", null ]
       ] ],
       [ "droid.Runtime.Interfaces.IEnvironmentListener", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_environment_listener.html", [
         [ "droid.Runtime.Prototyping.Actuators.TargetRigidbodyActuator", "classdroid_1_1_runtime_1_1_prototyping_1_1_actuators_1_1_target_rigidbody_actuator.html", null ],
@@ -308,14 +315,18 @@ var hierarchy =
           [ "droid.Runtime.Prototyping.Sensors.BoundingBox.ScreenSpaceBoundingBoxSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_bounding_box_1_1_screen_space_bounding_box_sensor.html", null ],
           [ "droid.Runtime.Prototyping.Sensors.BoundingBox.TwoDimensionalScreenSpaceSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_bounding_box_1_1_two_dimensional_screen_space_sensor.html", null ],
           [ "droid.Runtime.Prototyping.Sensors.Camera.ByteArrayCameraSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_byte_array_camera_sensor.html", null ],
-          [ "droid.Runtime.Prototyping.Sensors.Camera.CameraSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_camera_sensor.html", null ],
-          [ "droid.Runtime.Prototyping.Sensors.Camera.FloatArrayCameraSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_float_array_camera_sensor.html", null ],
-          [ "droid.Runtime.Prototyping.Sensors.Camera.NativeColorFloatArrayCameraSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_native_color_float_array_camera_sensor.html", null ],
-          [ "droid.Runtime.Prototyping.Sensors.CategoricalSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_categorical_sensor.html", null ],
-          [ "droid.Runtime.Prototyping.Sensors.CompassSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_compass_sensor.html", null ],
-          [ "droid.Runtime.Prototyping.Sensors.DistanceSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_distance_sensor.html", null ],
+          [ "droid.Runtime.Prototyping.Sensors.Camera.Deprecated.CameraSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_deprecated_1_1_camera_sensor.html", null ],
+          [ "droid.Runtime.Prototyping.Sensors.Camera.Deprecated.FloatArrayCameraSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_deprecated_1_1_float_array_camera_sensor.html", null ],
+          [ "droid.Runtime.Prototyping.Sensors.Camera.Deprecated.NativeColorFloatArrayCameraSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_deprecated_1_1_native_color_float_array_camera_sensor.html", null ],
+          [ "droid.Runtime.Prototyping.Sensors.Experimental.CategoricalSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_experimental_1_1_categorical_sensor.html", null ],
+          [ "droid.Runtime.Prototyping.Sensors.Experimental.CompassSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_experimental_1_1_compass_sensor.html", null ],
+          [ "droid.Runtime.Prototyping.Sensors.Experimental.DistanceSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_experimental_1_1_distance_sensor.html", null ],
+          [ "droid.Runtime.Prototyping.Sensors.Experimental.StringSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_experimental_1_1_string_sensor.html", null ],
+          [ "droid.Runtime.Prototyping.Sensors.Experimental.TargetRigidbodySensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_experimental_1_1_target_rigidbody_sensor.html", null ],
+          [ "droid.Runtime.Prototyping.Sensors.Experimental.ValueSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_experimental_1_1_value_sensor.html", null ],
           [ "droid.Runtime.Prototyping.Sensors.Grid.GoalCellSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_grid_1_1_goal_cell_sensor.html", null ],
           [ "droid.Runtime.Prototyping.Sensors.Grid.GridPositionSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_grid_1_1_grid_position_sensor.html", null ],
+          [ "droid.Runtime.Prototyping.Sensors.Occupancy.Occupancy3dSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_occupancy_1_1_occupancy3d_sensor.html", null ],
           [ "droid.Runtime.Prototyping.Sensors.Rays.InstantUniformLidarSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_rays_1_1_instant_uniform_lidar_sensor.html", null ],
           [ "droid.Runtime.Prototyping.Sensors.Rays.LineOfSightSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_rays_1_1_line_of_sight_sensor.html", null ],
           [ "droid.Runtime.Prototyping.Sensors.Rays.NearestByTagSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_rays_1_1_nearest_by_tag_sensor.html", null ],
@@ -323,14 +334,11 @@ var hierarchy =
           [ "droid.Runtime.Prototyping.Sensors.Rigidbody.AngularVelocitySensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_rigidbody_1_1_angular_velocity_sensor.html", null ],
           [ "droid.Runtime.Prototyping.Sensors.Rigidbody.RigidbodySensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_rigidbody_1_1_rigidbody_sensor.html", null ],
           [ "droid.Runtime.Prototyping.Sensors.Rigidbody.VelocitySensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_rigidbody_1_1_velocity_sensor.html", null ],
-          [ "droid.Runtime.Prototyping.Sensors.StringSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_string_sensor.html", null ],
-          [ "droid.Runtime.Prototyping.Sensors.TargetRigidbodySensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_target_rigidbody_sensor.html", null ],
           [ "droid.Runtime.Prototyping.Sensors.Transform.EulerTransformSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_transform_1_1_euler_transform_sensor.html", null ],
           [ "droid.Runtime.Prototyping.Sensors.Transform.Position2DSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_transform_1_1_position2_d_sensor.html", null ],
           [ "droid.Runtime.Prototyping.Sensors.Transform.PositionSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_transform_1_1_position_sensor.html", null ],
           [ "droid.Runtime.Prototyping.Sensors.Transform.QuaternionTransformSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_transform_1_1_quaternion_transform_sensor.html", null ],
-          [ "droid.Runtime.Prototyping.Sensors.Transform.RotationSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_transform_1_1_rotation_sensor.html", null ],
-          [ "droid.Runtime.Prototyping.Sensors.ValueSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_value_sensor.html", null ]
+          [ "droid.Runtime.Prototyping.Sensors.Transform.RotationSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_transform_1_1_rotation_sensor.html", null ]
         ] ]
       ] ],
       [ "droid.Runtime.Utilities.GameObjects.PrototypingGameObject", "classdroid_1_1_runtime_1_1_utilities_1_1_game_objects_1_1_prototyping_game_object.html", [
@@ -364,9 +372,9 @@ var hierarchy =
       [ "droid.Runtime.InternalReactions.ScriptedReactions", "classdroid_1_1_runtime_1_1_internal_reactions_1_1_scripted_reactions.html", [
         [ "droid.Runtime.InternalReactions.PlayerReactions", "classdroid_1_1_runtime_1_1_internal_reactions_1_1_player_reactions.html", null ]
       ] ],
-      [ "droid.Runtime.Managers.NeodroidManager", "classdroid_1_1_runtime_1_1_managers_1_1_neodroid_manager.html", null ],
+      [ "droid.Runtime.Managers.AbstractNeodroidManager", "classdroid_1_1_runtime_1_1_managers_1_1_abstract_neodroid_manager.html", null ],
+      [ "droid.Runtime.Prototyping.Sensors.Camera.UberCameraSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_uber_camera_sensor.html", null ],
       [ "droid.Runtime.Prototyping.Sensors.Rays.Experimental.Ray", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_rays_1_1_experimental_1_1_ray.html", null ],
-      [ "droid.Runtime.Prototyping.Sensors.UberCameraSensor", "classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_uber_camera_sensor.html", null ],
       [ "droid.Runtime.Utilities.GameObjects.BoundingBoxes.BoundingBox", "classdroid_1_1_runtime_1_1_utilities_1_1_game_objects_1_1_bounding_boxes_1_1_bounding_box.html", null ],
       [ "droid.Runtime.Utilities.GameObjects.BoundingBoxes.Draw3DBoundingBox", "classdroid_1_1_runtime_1_1_utilities_1_1_game_objects_1_1_bounding_boxes_1_1_draw3_d_bounding_box.html", null ],
       [ "droid.Runtime.Utilities.GameObjects.BoundingBoxes.DrawScreenSpaceBoundingBox", "classdroid_1_1_runtime_1_1_utilities_1_1_game_objects_1_1_bounding_boxes_1_1_draw_screen_space_bounding_box.html", null ],
@@ -418,9 +426,11 @@ var hierarchy =
       [ "droid.Runtime.Utilities.Sampling.SelfDestruct", "classdroid_1_1_runtime_1_1_utilities_1_1_sampling_1_1_self_destruct.html", null ],
       [ "droid.Runtime.Utilities.Structs.Points", "classdroid_1_1_runtime_1_1_utilities_1_1_structs_1_1_points.html", null ]
     ] ],
+    [ "droid.Runtime.NeodroidRuntimeInfo", "classdroid_1_1_runtime_1_1_neodroid_runtime_info.html", null ],
     [ "droid.Runtime.Utilities.Structs.OutPose", "classdroid_1_1_runtime_1_1_utilities_1_1_structs_1_1_out_pose.html", [
       [ "droid.Runtime.Utilities.Structs.MutableOutPose", "classdroid_1_1_runtime_1_1_utilities_1_1_structs_1_1_mutable_out_pose.html", null ]
     ] ],
+    [ "droid.Runtime.Messaging.Experimental.PB.PbStateUtilities", "classdroid_1_1_runtime_1_1_messaging_1_1_experimental_1_1_p_b_1_1_pb_state_utilities.html", null ],
     [ "droid.Runtime.Utilities.Sampling.Perlin", "classdroid_1_1_runtime_1_1_utilities_1_1_sampling_1_1_perlin.html", null ],
     [ "droid.Runtime.Utilities.ScriptableObjects.PlayerMotion", "structdroid_1_1_runtime_1_1_utilities_1_1_scriptable_objects_1_1_player_motion.html", null ],
     [ "PropertyAttribute", null, [

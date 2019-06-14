@@ -14,8 +14,9 @@ namespace droid.Runtime.Environments {
   /// <summary>
   /// </summary>
   public abstract class NeodroidEnvironment : PrototypingGameObject,
-                                              //IResetable,
                                               IEnvironment {
+    #region Fields
+
     #if UNITY_EDITOR
     const int _script_execution_order = -20;
     #endif
@@ -24,7 +25,6 @@ namespace droid.Runtime.Environments {
     /// </summary>
     protected bool _Configure;
 
-    [SerializeField] int _current_frame_number;
 
     /// <summary>
     /// </summary>
@@ -68,6 +68,10 @@ namespace droid.Runtime.Environments {
     [SerializeField]
     protected bool _Terminated;
 
+    [SerializeField] protected int _current_frame_number;
+
+    #endregion
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>
@@ -77,14 +81,12 @@ namespace droid.Runtime.Environments {
     /// </summary>
     public bool Terminated { get { return this._Terminated; } set { this._Terminated = value; } }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Reaction LastReaction { get { return this._last_reaction; } set { this._last_reaction = value; } }
 
-    /// <summary>
-    /// </summary>
-    public int CurrentFrameNumber {
-      get { return this._current_frame_number; }
-      set { this._current_frame_number = value; }
-    }
+
 
     /// <summary>
     /// </summary>
@@ -139,10 +141,6 @@ namespace droid.Runtime.Environments {
       recipient.PollData(this._Energy_Spent.ToString(CultureInfo.InvariantCulture));
     }
 
-    /// <summary>
-    /// </summary>
-    /// <returns></returns>
-    public void FrameString(DataPoller recipient) { recipient.PollData($"{this.CurrentFrameNumber}"); }
 
     /// <summary>
     /// </summary>
@@ -161,7 +159,7 @@ namespace droid.Runtime.Environments {
     protected override void Setup() {
       this.PreSetup();
       if (this._Simulation_Manager == null) {
-        this._Simulation_Manager = FindObjectOfType<NeodroidManager>();
+        this._Simulation_Manager = FindObjectOfType<AbstractNeodroidManager>();
       }
 
       #if UNITY_EDITOR
@@ -203,5 +201,28 @@ namespace droid.Runtime.Environments {
     public abstract void ObservationsString(DataPoller recipient);
 
     public abstract void EnvironmentReset();
+
+
+    #region Public Methods
+
+    /// <summary>
+    /// </summary>
+    /// <returns></returns>
+    public void FrameString(DataPoller recipient) { recipient.PollData($"{this.CurrentFrameNumber}"); }
+
+
+    #endregion
+
+    #region Properties
+
+    /// <summary>
+    /// </summary>
+    public int CurrentFrameNumber {
+      get { return this._current_frame_number; }
+      set { this._current_frame_number = value; }
+    }
+
+
+    #endregion
   }
 }

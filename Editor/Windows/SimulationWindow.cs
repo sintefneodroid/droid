@@ -4,7 +4,13 @@ using UnityEditor;
 using UnityEngine;
 
 namespace droid.Editor.Windows {
+  /// <summary>
+  ///
+  /// </summary>
   public class SimulationWindow : EditorWindow {
+    /// <summary>
+    ///
+    /// </summary>
     [MenuItem(EditorWindowMenuPath._WindowMenuPath + "SimulationWindow")]
     [MenuItem(EditorWindowMenuPath._ToolMenuPath + "SimulationWindow")]
     public static void ShowWindow() {

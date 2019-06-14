@@ -20,7 +20,7 @@ namespace droid.Runtime.InternalReactions {
     /// <summary>
     /// </summary>
     [SerializeField]
-    protected NeodroidManager _Manager;
+    protected AbstractNeodroidManager _Manager;
 
     /// <summary>
     /// </summary>

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 #if UNITY_EDITOR
@@ -159,8 +160,7 @@ namespace droid.Runtime.Utilities.ScriptableObjects.SerialisableDictionary {
 
     SerializedProperty GetTemplateProp(Dictionary<int, SerializedProperty> source,
                                        SerializedProperty main_prop) {
-      SerializedProperty p;
-      if (!source.TryGetValue(main_prop.GetObjectCode(), out p)) {
+      if (!source.TryGetValue(main_prop.GetObjectCode(), out var p)) {
         var template_object = this.GetTemplate();
         var template_serialized_object = new SerializedObject(template_object);
         var k_prop = template_serialized_object.FindProperty("key");
@@ -184,9 +184,8 @@ namespace droid.Runtime.Utilities.ScriptableObjects.SerialisableDictionary {
     SerializedProperty GetCachedProp(SerializedProperty main_prop,
                                      string relative_property_name,
                                      Dictionary<int, SerializedProperty> source) {
-      SerializedProperty p;
       var object_code = main_prop.GetObjectCode();
-      if (!source.TryGetValue(object_code, out p)) {
+      if (!source.TryGetValue(object_code, out var p)) {
         source[object_code] = p = main_prop.FindPropertyRelative(relative_property_name);
       }
 
@@ -194,14 +193,12 @@ namespace droid.Runtime.Utilities.ScriptableObjects.SerialisableDictionary {
     }
 
     SerializedProperty GetIndexedItemProp(SerializedProperty array_prop, int index) {
-      Dictionary<int, SerializedProperty> d;
-      if (!this._indexed_property_dicts.TryGetValue(array_prop.GetObjectCode(), out d)) {
+      if (!this._indexed_property_dicts.TryGetValue(array_prop.GetObjectCode(), out var d)) {
         this._indexed_property_dicts[array_prop.GetObjectCode()] =
             d = new Dictionary<int, SerializedProperty>();
       }
 
-      SerializedProperty result;
-      if (!d.TryGetValue(index, out result)) {
+      if (!d.TryGetValue(index, out var result)) {
         d[index] = result = array_prop.FindPropertyRelative($"Array.data[{index}]");
       }
 

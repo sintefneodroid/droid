@@ -17,7 +17,7 @@ namespace droid.Runtime.Prototyping.Displayers {
                                     IDisplayer {
     /// <summary>
     /// </summary>
-    IActorisedPrototypingEnvironment _environment = null;
+    AbstractPrototypingEnvironment _environment = null;
 
     /// <summary>
     ///
@@ -45,7 +45,7 @@ namespace droid.Runtime.Prototyping.Displayers {
 
     /// <summary>
     /// </summary>
-    public IActorisedPrototypingEnvironment ParentEnvironment {
+    public AbstractPrototypingEnvironment ParentEnvironment {
       get { return this._environment; }
       set { this._environment = value; }
     }
@@ -60,7 +60,7 @@ namespace droid.Runtime.Prototyping.Displayers {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent((ActorisedPrototypingEnvironment)this.ParentEnvironment, this);
+          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, this);
     }
 
     /// <inheritdoc />
@@ -131,16 +131,60 @@ namespace droid.Runtime.Prototyping.Displayers {
 
     //void OnValidate() { this.Clean(); }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="value"></param>
     public abstract void Display(Single value);
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="value"></param>
     public abstract void Display(Double value);
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="values"></param>
     public abstract void Display(Single[] values);
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="value"></param>
     public abstract void Display(String value);
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="value"></param>
     public abstract void Display(Vector3 value);
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="value"></param>
     public abstract void Display(Vector3[] value);
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="point"></param>
     public abstract void Display(Points.ValuePoint point);
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="points"></param>
     public abstract void Display(Points.ValuePoint[] points);
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="point"></param>
     public abstract void Display(Points.StringPoint point);
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="points"></param>
     public abstract void Display(Points.StringPoint[] points);
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="points"></param>
     public abstract void PlotSeries(Points.ValuePoint[] points);
   }
 }

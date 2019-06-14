@@ -415,8 +415,8 @@ namespace droid.Runtime.Messaging.FBS {
           observation_offset = Serialise(b, single).Value;
           observation_type = FObservation.FSingle;
           break;
-        case IHasDouble hasDouble:
-          observation_offset = Serialise(b, hasDouble).Value;
+        case IHasDouble has_double:
+          observation_offset = Serialise(b, has_double).Value;
           observation_type = FObservation.FDouble;
           break;
         case IHasTriple triple:
@@ -431,8 +431,8 @@ namespace droid.Runtime.Messaging.FBS {
           observation_offset = Serialise(b, transform).Value;
           observation_type = FObservation.FET;
           break;
-        case IHasQuaternionTransform quaternionTransform:
-          observation_offset = Serialise(b, quaternionTransform).Value;
+        case IHasQuaternionTransform quaternion_transform:
+          observation_offset = Serialise(b, quaternion_transform).Value;
           observation_type = FObservation.FQT;
           break;
         case IHasRigidbody rigidbody:

@@ -68,7 +68,13 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override void Display(float[] values) { throw new NotImplementedException(); }
+    public override void Display(float[] values) {
+      #if NEODROID_DEBUG
+      DebugPrinting.DisplayPrint(values[0], this.Identifier, this.Debugging);
+      #endif
+
+      this.SetFillAmount(values[0]);
+    }
 
     /// <inheritdoc />
     /// <summary>

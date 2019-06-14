@@ -11,6 +11,6 @@ var classdroid_1_1_runtime_1_1_prototyping_1_1_actuators_1_1_actuator =
     [ "EnergyCost", "classdroid_1_1_runtime_1_1_prototyping_1_1_actuators_1_1_actuator.html#af67855f16c74ea4de861ffe157c9749f", null ],
     [ "EnergySpendSinceReset", "classdroid_1_1_runtime_1_1_prototyping_1_1_actuators_1_1_actuator.html#a0b11aa54067984db65b82840deb0aadb", null ],
     [ "MotionSpace", "classdroid_1_1_runtime_1_1_prototyping_1_1_actuators_1_1_actuator.html#a7f54189669205aba281ce5ea78a6ac0d", null ],
-    [ "ParentActor", "classdroid_1_1_runtime_1_1_prototyping_1_1_actuators_1_1_actuator.html#aca07f95a2af9d0e4426f55609cd405c4", null ],
+    [ "Parent", "classdroid_1_1_runtime_1_1_prototyping_1_1_actuators_1_1_actuator.html#aa8d0111ce7398c07141d633725c4a943", null ],
     [ "PrototypingTypeName", "classdroid_1_1_runtime_1_1_prototyping_1_1_actuators_1_1_actuator.html#a786e5ff84ba5042d4ed4b655b0a2a4d9", null ]
 ];

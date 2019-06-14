@@ -51,6 +51,8 @@ namespace droid.Runtime.Prototyping.Configurables {
     public Space3 DirectionSpace { get; } = new Space3();
     public Space3 RotationSpace { get; } = new Space3();
 
+    public override ISpace ConfigurableValueSpace { get; }
+
     /// <summary>
     /// </summary>
     public override void UpdateCurrentConfiguration() {
@@ -59,9 +61,10 @@ namespace droid.Runtime.Prototyping.Configurables {
         this.Direction = this.ParentEnvironment.TransformDirection(this.transform.forward);
         this.Rotation = this.ParentEnvironment.TransformDirection(this.transform.up);
       } else {
-        this.Position = this.transform.position;
-        this.Direction = this.transform.forward;
-        this.Rotation = this.transform.up;
+        var transform1 = this.transform;
+        this.Position = transform1.position;
+        this.Direction = transform1.forward;
+        this.Rotation = transform1.up;
       }
     }
 
@@ -129,9 +132,10 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     /// <param name="configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
-      var pos = this.transform.position;
-      var dir = this.transform.forward;
-      var rot = this.transform.up;
+      var transform1 = this.transform;
+      var pos = transform1.position;
+      var dir = transform1.forward;
+      var rot = transform1.up;
       if (this._use_environments_space) {
         pos = this.ParentEnvironment.TransformPoint(pos);
         dir = this.ParentEnvironment.TransformDirection(dir);

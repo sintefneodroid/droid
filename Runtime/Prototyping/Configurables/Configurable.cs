@@ -24,11 +24,11 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     ///
     /// </summary>
-    public virtual ISpace ConfigurableValueSpace { get; }
+    public abstract ISpace ConfigurableValueSpace { get; }
 
     /// <summary>
     /// </summary>
-    public PrototypingEnvironment ParentEnvironment {
+    public AbstractPrototypingEnvironment ParentEnvironment {
       get { return this._environment; }
       set { this._environment = value; }
     }
@@ -37,12 +37,19 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     public virtual void UpdateCurrentConfiguration() { }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="configuration"></param>
     public abstract void ApplyConfiguration(IConfigurableConfiguration configuration);
 
     /// <summary>
     /// </summary>
     public void EnvironmentReset() { }
 
+    /// <summary>
+    ///
+    /// </summary>
     public virtual void PostEnvironmentSetup() { this.UpdateCurrentConfiguration(); }
 
     /// <summary>
@@ -106,7 +113,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     [Header("References", order = 20)]
     [SerializeField]
-    PrototypingEnvironment _environment = null;
+    AbstractPrototypingEnvironment _environment = null;
 
     /// <summary>
     /// </summary>

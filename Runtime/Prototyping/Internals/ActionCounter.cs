@@ -6,11 +6,11 @@ namespace droid.Runtime.Prototyping.Internals {
   /// <summary>
   /// </summary>
   public class ActionCounter : EnvironmentListener {
-    [SerializeField] IActorisedPrototypingEnvironment _environment;
+    [SerializeField] IAbstractPrototypingEnvironment _environment;
 
     /// <summary>
     /// </summary>
-    public IActorisedPrototypingEnvironment ParentEnvironment {
+    public IAbstractPrototypingEnvironment ParentEnvironment {
       get { return this._environment; }
       set { this._environment = value; }
     }
@@ -36,6 +36,9 @@ namespace droid.Runtime.Prototyping.Internals {
       var motions = reaction.Motions;
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override void EnvironmentReset() { }
 
     /// <inheritdoc />

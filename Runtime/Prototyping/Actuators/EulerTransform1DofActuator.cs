@@ -14,12 +14,24 @@ namespace droid.Runtime.Prototyping.Actuators {
     [SerializeField]
     protected Axis _Axis_Of_Motion;
 
+    /// <summary>
+    ///
+    /// </summary>
     [SerializeField] protected string _Layer_Mask = "Obstructions";
 
+    /// <summary>
+    ///
+    /// </summary>
     [SerializeField] protected bool _No_Collisions = true;
 
+    /// <summary>
+    ///
+    /// </summary>
     [SerializeField] protected Space _Relative_To = Space.Self;
 
+    /// <summary>
+    ///
+    /// </summary>
     public override string PrototypingTypeName { get { return "Transform" + this._Axis_Of_Motion; } }
 
     /// <inheritdoc />

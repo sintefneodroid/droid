@@ -1,4 +1,5 @@
 ﻿using System;
+using droid.Runtime.Prototyping.Sensors.Experimental;
 using droid.Runtime.Utilities.Enums;
 using droid.Runtime.Utilities.Misc.SearchableEnum;
 using UnityEngine;
@@ -18,6 +19,10 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     /// </summary>
     protected override void PreSetup() { }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     public override void UpdateObservation() {
       switch (this._dim) {
         case Axis.X_:

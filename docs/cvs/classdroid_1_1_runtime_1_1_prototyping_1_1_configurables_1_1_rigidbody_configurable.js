@@ -8,6 +8,7 @@ var classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_rigidbody_confi
     [ "UpdateCurrentConfiguration", "classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_rigidbody_configurable.html#a96c31a4897ed56fc60e1f29dcd698274", null ],
     [ "AngularSpace", "classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_rigidbody_configurable.html#ae8a6111fddb0bd1b6dce583f0be386f0", null ],
     [ "AngularVelocity", "classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_rigidbody_configurable.html#ae29f2d5b6bc8e5ee80d080cf4728e019", null ],
+    [ "ConfigurableValueSpace", "classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_rigidbody_configurable.html#a69f104abc770f1b7b7d1b54f1a494596", null ],
     [ "PrototypingTypeName", "classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_rigidbody_configurable.html#af9b02f3a6d62524d66b072e778b32168", null ],
     [ "Velocity", "classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_rigidbody_configurable.html#a7c7f68c28b9ad0847b1c74d20aa016bd", null ],
     [ "VelocitySpace", "classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_rigidbody_configurable.html#ac41bb000be9fa7557f94e8227094cbd3", null ]

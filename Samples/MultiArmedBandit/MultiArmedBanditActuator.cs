@@ -17,20 +17,23 @@ namespace droid.Samples.MultiArmedBandit {
   public class MultiArmedBanditActuator : Actuator {
     [SerializeField] Color _inactive_color = Color.yellow;
 
-    [FormerlySerializedAs("_indicators")]
+
+    /// <summary>
+    ///
+    /// </summary>
     [SerializeField]
     protected Material[] _Indicators;
 
     [SerializeField] int _last_index;
     [SerializeField] Color _lose_color = Color.red;
 
-    [FormerlySerializedAs("_win_amounts")]
+
     [SerializeField]
     protected float[] _Win_Amounts;
 
     [SerializeField] Color _win_color = Color.green;
 
-    [FormerlySerializedAs("_win_likelihoods")]
+
     [SerializeField]
     protected float[] _Win_Likelihoods;
 
@@ -60,8 +63,8 @@ namespace droid.Samples.MultiArmedBandit {
     /// </summary>
     protected override void Setup() {
       var mvs = this.MotionSpace;
-      mvs._Min_Value = -1;
-      mvs._Max_Value = 1;
+      mvs._Min_Value = 0;
+      mvs._Max_Value = 2;
       mvs._Decimal_Granularity = 0;
       this.MotionSpace = mvs;
       if (this._Win_Likelihoods == null || this._Win_Likelihoods.Length == 0) {
@@ -112,7 +115,7 @@ namespace droid.Samples.MultiArmedBandit {
         indicator.color = this._inactive_color;
       }
 
-      var index = (int)motion.Strength + 1;
+      var index = (int)motion.Strength;
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
@@ -122,8 +125,8 @@ namespace droid.Samples.MultiArmedBandit {
 
       this._last_index = index;
 
-      var random_value = Random.Range(-1f, 1f);
-      if (random_value <= this._Win_Likelihoods[this._last_index]) {
+      var random_value = Random.Range(0f, 1f);
+      if (random_value < this._Win_Likelihoods[this._last_index]) {
         this._Indicators[this._last_index].color = this._win_color;
         this._won = true;
       } else {

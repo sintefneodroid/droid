@@ -5,5 +5,6 @@ var classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_simulation_conf
     [ "RegisterComponent", "classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_simulation_configurable.html#a2352897545690a98a59d8dcd1ccff319", null ],
     [ "SampleConfigurations", "classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_simulation_configurable.html#a7b3d7d5cb47096cc366931340842bcbf", null ],
     [ "UnRegisterComponent", "classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_simulation_configurable.html#a842a21421cb336f25319c5e69b23c412", null ],
+    [ "ConfigurableValueSpace", "classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_simulation_configurable.html#a54b51f8099fcd547a8298167654a29f4", null ],
     [ "PrototypingTypeName", "classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_simulation_configurable.html#a125c34fbeb9007a2e0cec87e6ddb5d2d", null ]
 ];

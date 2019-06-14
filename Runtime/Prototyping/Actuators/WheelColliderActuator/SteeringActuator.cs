@@ -43,9 +43,7 @@ namespace droid.Runtime.Prototyping.Actuators.WheelColliderActuator {
 
       var visual_wheel = col.transform.GetChild(0);
 
-      Vector3 position;
-      Quaternion rotation;
-      col.GetWorldPose(out position, out rotation);
+      col.GetWorldPose(out var position, out var rotation);
 
       visual_wheel.transform.position = position;
       visual_wheel.transform.rotation = rotation;

@@ -50,8 +50,14 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     [SearchableEnum]
     ObservationSpace _space = ObservationSpace.Environment_;
 
+    /// <summary>
+    ///
+    /// </summary>
     public override string PrototypingTypeName { get { return "EulerTransform"; } }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Vector3 Position {
       get { return this._position; }
       set {
@@ -61,6 +67,9 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Vector3 Rotation {
       get { return this._rotation; }
       set {
@@ -70,10 +79,24 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Space3 PositionSpace { get; } = new Space3();
+
+    /// <summary>
+    ///
+    /// </summary>
     public Space3 DirectionSpace { get; } = new Space3();
+
+    /// <summary>
+    ///
+    /// </summary>
     public Space3 RotationSpace { get; } = new Space3();
 
+    /// <summary>
+    ///
+    /// </summary>
     public Vector3 Direction {
       get { return this._direction; }
       set {
@@ -83,6 +106,9 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override IEnumerable<float> FloatEnumerable {
       get {
         return new[] {
@@ -102,21 +128,25 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     /// <summary>
     /// </summary>
     public override void UpdateObservation() {
+      var transform1 = this.transform;
       if (this.ParentEnvironment != null && this._space == ObservationSpace.Environment_) {
-        this.Position = this.ParentEnvironment.TransformPoint(this.transform.position);
-        this.Direction = this.ParentEnvironment.TransformDirection(this.transform.forward);
-        this.Rotation = this.ParentEnvironment.TransformDirection(this.transform.up);
+        this.Position = this.ParentEnvironment.TransformPoint(transform1.position);
+        this.Direction = this.ParentEnvironment.TransformDirection(transform1.forward);
+        this.Rotation = this.ParentEnvironment.TransformDirection(transform1.up);
       } else if (this._space == ObservationSpace.Local_) {
-        this.Position = this.transform.localPosition;
-        this.Direction = this.transform.forward;
-        this.Rotation = this.transform.up;
+        this.Position = transform1.localPosition;
+        this.Direction = transform1.forward;
+        this.Rotation = transform1.up;
       } else {
-        this.Position = this.transform.position;
-        this.Direction = this.transform.forward;
-        this.Rotation = this.transform.up;
+        this.Position = transform1.position;
+        this.Direction = transform1.forward;
+        this.Rotation = transform1.up;
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     protected override void PreSetup() { }
   }
 }

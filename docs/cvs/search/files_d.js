@@ -12,7 +12,7 @@ var searchData=
   ['neodroidfbsstate_2ecs',['NeodroidFBSState.cs',['../_neodroid_f_b_s_state_8cs.html',1,'']]],
   ['neodroidfbsstates_2ecs',['NeodroidFBSStates.cs',['../_neodroid_f_b_s_states_8cs.html',1,'']]],
   ['neodroidfbstypes_2ecs',['NeodroidFBSTypes.cs',['../_neodroid_f_b_s_types_8cs.html',1,'']]],
-  ['neodroidmanager_2ecs',['NeodroidManager.cs',['../_neodroid_manager_8cs.html',1,'']]],
+  ['neodroidruntimeinfo_2ecs',['NeodroidRuntimeInfo.cs',['../_neodroid_runtime_info_8cs.html',1,'']]],
   ['neodroidtask_2ecs',['NeodroidTask.cs',['../_neodroid_task_8cs.html',1,'']]],
   ['neodroidutilities_2ecs',['NeodroidUtilities.cs',['../_neodroid_utilities_8cs.html',1,'']]],
   ['normalmapconfigurable_2ecs',['NormalMapConfigurable.cs',['../_normal_map_configurable_8cs.html',1,'']]],

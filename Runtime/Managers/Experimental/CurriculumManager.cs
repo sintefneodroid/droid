@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace droid.Runtime.Managers.Experimental {
   [AddComponentMenu("Neodroid/Managers/NotUsed/Curriculum")]
-  public class CurriculumManager : NeodroidManager {
+  public class CurriculumManager : AbstractNeodroidManager {
     [SerializeField] Curriculum _curriculum = null;
 
     [SerializeField] bool _draw_levels = false;
