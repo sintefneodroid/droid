@@ -1,6 +1,5 @@
 <map id="droid.Runtime.Interfaces.IHasFloatArray" name="droid.Runtime.Interfaces.IHasFloatArray">
-<area shape="rect" id="node2" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_standard_shader_material_configurable.html" title="droid.Runtime.Prototyping.\lConfigurables.StandardShaderMaterial\lConfigurable" alt="" coords="223,5,468,61"/>
-<area shape="rect" id="node3" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_float_array_camera_sensor.html" title="droid.Runtime.Prototyping.\lSensors.Camera.FloatArrayCamera\lSensor" alt="" coords="230,85,461,141"/>
-<area shape="rect" id="node4" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_native_color_float_array_camera_sensor.html" title="droid.Runtime.Prototyping.\lSensors.Camera.NativeColorFloat\lArrayCameraSensor" alt="" coords="234,165,457,221"/>
-<area shape="rect" id="node5" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_rays_1_1_instant_uniform_lidar_sensor.html" title="droid.Runtime.Prototyping.\lSensors.Rays.InstantUniformLidar\lSensor" alt="" coords="234,245,457,301"/>
+<area shape="rect" id="node2" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_deprecated_1_1_float_array_camera_sensor.html" title="droid.Runtime.Prototyping.\lSensors.Camera.Deprecated.Float\lArrayCameraSensor" alt="" coords="227,5,451,61"/>
+<area shape="rect" id="node3" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_deprecated_1_1_native_color_float_array_camera_sensor.html" title="droid.Runtime.Prototyping.\lSensors.Camera.Deprecated.Native\lColorFloatArrayCameraSensor" alt="" coords="223,85,456,141"/>
+<area shape="rect" id="node4" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_rays_1_1_instant_uniform_lidar_sensor.html" title="droid.Runtime.Prototyping.\lSensors.Rays.InstantUniformLidar\lSensor" alt="" coords="228,165,451,221"/>
 </map>

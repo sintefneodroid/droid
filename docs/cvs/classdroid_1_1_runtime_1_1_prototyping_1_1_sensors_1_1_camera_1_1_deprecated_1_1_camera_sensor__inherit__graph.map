@@ -1,0 +1,9 @@
+<map id="droid.Runtime.Prototyping.Sensors.Camera.Deprecated.CameraSensor" name="droid.Runtime.Prototyping.Sensors.Camera.Deprecated.CameraSensor">
+<area shape="rect" id="node8" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_deprecated_1_1_string_augmented_camera_sensor.html" title="droid.Runtime.Prototyping.\lSensors.Camera.Deprecated.String\lAugmentedCameraSensor" alt="" coords="820,41,1049,97"/>
+<area shape="rect" id="node2" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_sensor.html" title="Sensor" alt="" coords="397,31,460,57"/>
+<area shape="rect" id="node3" href="$classdroid_1_1_runtime_1_1_utilities_1_1_game_objects_1_1_prototyping_game_object.html" title="PrototypingGameObject" alt="" coords="165,5,327,32"/>
+<area shape="rect" id="node5" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_registerable.html" title="IRegisterable" alt="" coords="12,56,111,83"/>
+<area shape="rect" id="node6" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_observer.html" title="IObserver" alt="" coords="207,56,285,83"/>
+<area shape="rect" id="node7" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_byte_array.html" title="IHasByteArray" alt="" coords="375,81,483,108"/>
+<area shape="rect" id="node9" href="$classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_deprecated_1_1_segmentation_1_1_segmentation_camera_sensor.html" title="droid.Runtime.Prototyping.\lSensors.Camera.Deprecated.Segmentation.\lSegmentationCameraSensor" alt="" coords="1097,41,1376,97"/>
+</map>

@@ -31,11 +31,11 @@ namespace droid.Editor.Utilities {
 
     public static void MakeDescription(string name) {
       var serializer = new JsonSerializer {NullValueHandling = NullValueHandling.Ignore};
-      var simulationManager = FindObjectOfType<PausableManager>();
+      var simulation_manager = FindObjectOfType<PausableManager>();
 
       using (var sw = new StreamWriter(name)) {
         using (JsonWriter writer = new JsonTextWriter(sw)) {
-          serializer.Serialize(writer, simulationManager.ToString());
+          serializer.Serialize(writer, simulation_manager.ToString());
         }
       }
     }
@@ -48,12 +48,12 @@ namespace droid.Editor.Utilities {
         var scene_names = this.targets.Select(t => ((SceneAsset)t).name).OrderBy(n => n).ToArray();
 
         for (var i = 0; i < scene_names.Length; i++) {
-          this.DrawDescriptionPreview(i, scene_names[i]);
+          DrawDescriptionPreview(i, scene_names[i]);
         }
       }
     }
 
-    void DrawDescriptionPreview(int index, string scene_name) {
+    static void DrawDescriptionPreview(int index, string scene_name) {
       var preview_path = GetDescriptionPath(scene_name);
       var preview = LoadDescription(preview_path);
 

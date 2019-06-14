@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEditor;
 
 namespace droid.Editor.Windows {
+  /// <summary>
+  ///
+  /// </summary>
   public class SegmentationWindow : EditorWindow {
     [SerializeField] ColorByInstance[] colorsByInstance;
 
@@ -13,6 +16,9 @@ namespace droid.Editor.Windows {
 
     Vector2 _scroll_position;
 
+    /// <summary>
+    ///
+    /// </summary>
     [MenuItem(EditorWindowMenuPath._WindowMenuPath + "SegmentationWindow")]
     [MenuItem(EditorWindowMenuPath._ToolMenuPath + "SegmentationWindow")]
     public static void ShowWindow() {

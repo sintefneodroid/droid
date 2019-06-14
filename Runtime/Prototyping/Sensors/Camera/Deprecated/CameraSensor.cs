@@ -7,7 +7,7 @@ using droid.Runtime.Utilities.Misc;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 
-namespace droid.Runtime.Prototyping.Sensors.Camera {
+namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
   /// <summary>
   /// </summary>
   enum ImageFormat {
@@ -120,7 +120,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
     /// </summary>
     protected override void PreSetup() {
       if (this._Manager == null) {
-        this._Manager = FindObjectOfType<NeodroidManager>();
+        this._Manager = FindObjectOfType<AbstractNeodroidManager>();
       }
 
       if (this._Camera == null) {

@@ -30,7 +30,7 @@
   <td id="projectlogo"><img alt="Logo" src="neodroidcropped124.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Neodroid
-   &#160;<span id="projectnumber">0.2.1</span>
+   &#160;<span id="projectnumber">0.2.0</span>
    </div>
    <div id="projectbrief">Machine Learning Environment Prototyping Tool</div>
   </td>
@@ -132,7 +132,7 @@ $(document).ready(function(){initNavTree('functions_func_p.html','');});
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_configurable.html#ab5b319e64c27dea6abde4c2a93a9772c">droid.Runtime.Prototyping.Configurables.Configurable</a>
 </li>
 <li>PostReact()
-: <a class="el" href="classdroid_1_1_runtime_1_1_managers_1_1_neodroid_manager.html#af6795dae443da124df01548397c4de57">droid.Runtime.Managers.NeodroidManager</a>
+: <a class="el" href="classdroid_1_1_runtime_1_1_managers_1_1_abstract_neodroid_manager.html#a075dcf0d831d75842e7ac6223b1febf2">droid.Runtime.Managers.AbstractNeodroidManager</a>
 </li>
 <li>PostSetup()
 : <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_evaluation_1_1_angular_velocity_evaluation.html#a20d466fae2cc9c203e2e68aa25887b5d">droid.Runtime.Prototyping.Evaluation.AngularVelocityEvaluation</a>
@@ -145,9 +145,8 @@ $(document).ready(function(){initNavTree('functions_func_p.html','');});
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_evaluation_1_1_rest_in_area.html#a1789878869db13ddf8c2667c27b0dcb4">droid.Runtime.Prototyping.Evaluation.RestInArea</a>
 </li>
 <li>PostStep()
-: <a class="el" href="classdroid_1_1_runtime_1_1_environments_1_1_actorised_prototyping_environment.html#ac88d259e123e4243bd9a7cc0051f1deb">droid.Runtime.Environments.ActorisedPrototypingEnvironment</a>
+: <a class="el" href="classdroid_1_1_runtime_1_1_environments_1_1_abstract_prototyping_environment.html#a54b435dd39108a9beec73f46e1e2e988">droid.Runtime.Environments.AbstractPrototypingEnvironment</a>
 , <a class="el" href="classdroid_1_1_runtime_1_1_environments_1_1_neodroid_environment.html#a32e3d5e087e8c966f474715478b85c52">droid.Runtime.Environments.NeodroidEnvironment</a>
-, <a class="el" href="classdroid_1_1_runtime_1_1_environments_1_1_prototyping_environment.html#ada75fd65bd66f3a27e13feb3e5a13ec6">droid.Runtime.Environments.PrototypingEnvironment</a>
 , <a class="el" href="classdroid_1_1_runtime_1_1_environments_1_1_randomised_environment.html#a468e3b7a38f7a99b53d8e64c90b9fed3">droid.Runtime.Environments.RandomisedEnvironment</a>
 , <a class="el" href="classdroid_1_1_runtime_1_1_environments_1_1_scripted_environment.html#a65198db8e7507644af8f18200b03780e">droid.Runtime.Environments.ScriptedEnvironment</a>
 , <a class="el" href="interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_environment.html#abcb359421bd75055dd7c480a92bf4c50">droid.Runtime.Interfaces.IEnvironment</a>
@@ -158,9 +157,8 @@ $(document).ready(function(){initNavTree('functions_func_p.html','');});
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_internals_1_1_state_validation_1_1_ensure_valid_state.html#aba046b64862f87a89ba3313ade98c034">droid.Runtime.Prototyping.Internals.StateValidation.EnsureValidState</a>
 </li>
 <li>PreSetup()
-: <a class="el" href="classdroid_1_1_runtime_1_1_environments_1_1_actorised_prototyping_environment.html#a9ed861a6808b09f3ca3b7a11a46b20dd">droid.Runtime.Environments.ActorisedPrototypingEnvironment</a>
+: <a class="el" href="classdroid_1_1_runtime_1_1_environments_1_1_abstract_prototyping_environment.html#a22e50b64c9a5e4d36d128123407f4cdb">droid.Runtime.Environments.AbstractPrototypingEnvironment</a>
 , <a class="el" href="classdroid_1_1_runtime_1_1_environments_1_1_neodroid_environment.html#a9ceb393fedcd23b207f9eabfe40505e6">droid.Runtime.Environments.NeodroidEnvironment</a>
-, <a class="el" href="classdroid_1_1_runtime_1_1_environments_1_1_prototyping_environment.html#a49973ca56bf33964fef40257d1839cf0">droid.Runtime.Environments.PrototypingEnvironment</a>
 , <a class="el" href="classdroid_1_1_runtime_1_1_environments_1_1_randomised_environment.html#a8f95e756609997ccc204b5e8bc0b8ace">droid.Runtime.Environments.RandomisedEnvironment</a>
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_color_configurable.html#af116153dfba5589eff035b766120c315">droid.Runtime.Prototyping.Configurables.ColorConfigurable</a>
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_configurable.html#ab8ffb81769f3847cbb4672a3533bd70d">droid.Runtime.Prototyping.Configurables.Configurable</a>
@@ -190,12 +188,15 @@ $(document).ready(function(){initNavTree('functions_func_p.html','');});
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_bounding_box_1_1_bounding_box_sensor.html#a28eb807ce771624a3be38dda824f4497">droid.Runtime.Prototyping.Sensors.BoundingBox.BoundingBoxSensor</a>
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_bounding_box_1_1_screen_space_bounding_box_sensor.html#a43279b3481a95098051bdddae2e9d8a0">droid.Runtime.Prototyping.Sensors.BoundingBox.ScreenSpaceBoundingBoxSensor</a>
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_byte_array_camera_sensor.html#a0ca826d04f378619f8b62edeec84e242">droid.Runtime.Prototyping.Sensors.Camera.ByteArrayCameraSensor</a>
-, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_camera_sensor.html#affeb5c0df5c6aefd95f6bf1e592d356d">droid.Runtime.Prototyping.Sensors.Camera.CameraSensor</a>
-, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_float_array_camera_sensor.html#a90f4f696e103fde26ab7777c77ee3f24">droid.Runtime.Prototyping.Sensors.Camera.FloatArrayCameraSensor</a>
-, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_native_color_float_array_camera_sensor.html#a67afa469e4b196e3d7328196aa548462">droid.Runtime.Prototyping.Sensors.Camera.NativeColorFloatArrayCameraSensor</a>
-, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_string_augmented_camera_sensor.html#a3e1bb4bd00f09e0f79212a76d2b27cb5">droid.Runtime.Prototyping.Sensors.Camera.StringAugmentedCameraSensor</a>
-, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_compass_sensor.html#a86e8de71758ca252c5bb3dec0bd66e27">droid.Runtime.Prototyping.Sensors.CompassSensor</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_deprecated_1_1_camera_sensor.html#a9c12eff8e60f845b4a8ce93e008ff139">droid.Runtime.Prototyping.Sensors.Camera.Deprecated.CameraSensor</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_deprecated_1_1_float_array_camera_sensor.html#a87eccfc1a73d37ab17576ab76a5f6f19">droid.Runtime.Prototyping.Sensors.Camera.Deprecated.FloatArrayCameraSensor</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_deprecated_1_1_native_color_float_array_camera_sensor.html#ac392bcbc0b987f158952fc510e96362e">droid.Runtime.Prototyping.Sensors.Camera.Deprecated.NativeColorFloatArrayCameraSensor</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_deprecated_1_1_string_augmented_camera_sensor.html#a78253267910b16435fd5bb7281115bf8">droid.Runtime.Prototyping.Sensors.Camera.Deprecated.StringAugmentedCameraSensor</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_experimental_1_1_compass_sensor.html#a37e46db7b50761bedcec1b3aaee9bfc3">droid.Runtime.Prototyping.Sensors.Experimental.CompassSensor</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_experimental_1_1_target_rigidbody_sensor.html#a161a1fb57edfcab7be151435133d7e4e">droid.Runtime.Prototyping.Sensors.Experimental.TargetRigidbodySensor</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_experimental_1_1_value_sensor.html#ac982c6e3dfaea7e28beff7cde7ebdcb2">droid.Runtime.Prototyping.Sensors.Experimental.ValueSensor</a>
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_grid_1_1_grid_position_sensor.html#ad142c22bdb610e34ee9726ab39d962a4">droid.Runtime.Prototyping.Sensors.Grid.GridPositionSensor</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_occupancy_1_1_occupancy3d_sensor.html#a84da456d136ee457e74e32bf5bdae76b">droid.Runtime.Prototyping.Sensors.Occupancy.Occupancy3dSensor</a>
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_rays_1_1_instant_uniform_lidar_sensor.html#a27588639a240e4912a084e73c71d0c8f">droid.Runtime.Prototyping.Sensors.Rays.InstantUniformLidarSensor</a>
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_rays_1_1_line_of_sight_sensor.html#a56f20b64d418467206d14435233dc4ee">droid.Runtime.Prototyping.Sensors.Rays.LineOfSightSensor</a>
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_rays_1_1_nearest_by_tag_sensor.html#affe421506de8741a30ba1876e99a770a">droid.Runtime.Prototyping.Sensors.Rays.NearestByTagSensor</a>
@@ -204,14 +205,12 @@ $(document).ready(function(){initNavTree('functions_func_p.html','');});
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_rigidbody_1_1_rigidbody_sensor.html#afa265ce2bc6684390566bdd4daa68534">droid.Runtime.Prototyping.Sensors.Rigidbody.RigidbodySensor</a>
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_rigidbody_1_1_velocity_sensor.html#abc7ee4def6ab41daa511406dc3ac78e0">droid.Runtime.Prototyping.Sensors.Rigidbody.VelocitySensor</a>
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_sensor.html#af662fa68cf037b4520702f4d5cad638e">droid.Runtime.Prototyping.Sensors.Sensor</a>
-, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_target_rigidbody_sensor.html#aade7b1f735f4eea632ff073fed760314">droid.Runtime.Prototyping.Sensors.TargetRigidbodySensor</a>
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_transform_1_1_euler_transform_sensor.html#a9acb7a4d0ba6676f0dc4d783147e99bd">droid.Runtime.Prototyping.Sensors.Transform.EulerTransformSensor</a>
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_transform_1_1_position2_d_sensor.html#a1fcdeff64ced514b83b4facb06e16058">droid.Runtime.Prototyping.Sensors.Transform.Position2DSensor</a>
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_transform_1_1_position_sensor.html#ae4aff8837177fd8fab234d56b1f74e1b">droid.Runtime.Prototyping.Sensors.Transform.PositionSensor</a>
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_transform_1_1_quaternion_transform_sensor.html#a99f006f793250558958f18879fe61557">droid.Runtime.Prototyping.Sensors.Transform.QuaternionTransformSensor</a>
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_transform_1_1_rotation_sensor.html#a641434ca154a3e843e784328c2976fa2">droid.Runtime.Prototyping.Sensors.Transform.RotationSensor</a>
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_transform_1_1_single_axis_transform_sensor.html#a95ae7905c3f303516bee16a74a2b9232">droid.Runtime.Prototyping.Sensors.Transform.SingleAxisTransformSensor</a>
-, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_value_sensor.html#a799949fc37b53a60675f900363252d76">droid.Runtime.Prototyping.Sensors.ValueSensor</a>
 </li>
 <li>PreStep()
 : <a class="el" href="interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_environment_listener.html#acd0b42064436c20e5e300d1f97e6b434">droid.Runtime.Interfaces.IEnvironmentListener</a>

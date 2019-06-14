@@ -75,7 +75,7 @@ namespace droid.Editor.Utilities {
   static class NeodroidSettingsImguiRegister {
     [SettingsProvider]
     public static SettingsProvider CreateMyCustomSettingsProvider() {
-      var provider = new SettingsProvider(NeodroidEditorConstants.neodroid_project_settings_menu_path,
+      var provider = new SettingsProvider(NeodroidEditorConstants._Neodroid_Project_Settings_Menu_Path,
                                           SettingsScope.Project) {
                                                                      //Second parameter is the scope of this setting: it only appears in the Project Settings window.
 

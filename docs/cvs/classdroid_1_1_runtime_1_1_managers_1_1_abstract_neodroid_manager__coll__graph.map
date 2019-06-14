@@ -1,0 +1,6 @@
+<map id="droid.Runtime.Managers.AbstractNeodroidManager" name="droid.Runtime.Managers.AbstractNeodroidManager">
+<area shape="rect" id="node3" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_manager.html" title="IManager" alt="" coords="304,56,380,83"/>
+<area shape="rect" id="node4" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html" title="IHasRegister\&lt; IEnvironment \&gt;" alt="" coords="5,56,205,83"/>
+<area shape="rect" id="node5" href="$classdroid_1_1_runtime_1_1_messaging_1_1_messages_1_1_reaction.html" title="droid.Runtime.Messaging.\lMessages.Reaction" alt="" coords="255,107,429,149"/>
+<area shape="rect" id="node6" href="$classdroid_1_1_runtime_1_1_messaging_1_1_message_server.html" title="droid.Runtime.Messaging.\lMessageServer" alt="" coords="255,173,429,214"/>
+</map>

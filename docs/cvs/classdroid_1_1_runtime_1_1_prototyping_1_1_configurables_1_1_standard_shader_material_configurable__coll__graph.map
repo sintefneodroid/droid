@@ -3,5 +3,5 @@
 <area shape="rect" id="node3" href="$classdroid_1_1_runtime_1_1_utilities_1_1_game_objects_1_1_prototyping_game_object.html" title="PrototypingGameObject" alt="" coords="5,80,167,107"/>
 <area shape="rect" id="node5" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_registerable.html" title="IRegisterable" alt="" coords="178,5,277,32"/>
 <area shape="rect" id="node6" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_configurable.html" title="IConfigurable" alt="" coords="191,80,290,107"/>
-<area shape="rect" id="node7" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_float_array.html" title="IHasFloatArray" alt="" coords="235,155,345,181"/>
+<area shape="rect" id="node7" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_t_array.html" title="IHasTArray" alt="" coords="235,155,324,181"/>
 </map>

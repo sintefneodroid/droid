@@ -30,9 +30,8 @@ namespace droid.Runtime.Utilities.Sampling {
     float At3(float rx, float ry, float rz, float x, float y, float z) { return rx * x + ry * y + rz * z; }
 
     public float Noise(float arg) {
-      int bx0, bx1;
-      float rx0, rx1, sx, u, v;
-      this.Setup(arg, out bx0, out bx1, out rx0, out rx1);
+      float sx, u, v;
+      this.Setup(arg, out var bx0, out var bx1, out var rx0, out var rx1);
 
       sx = this.s_curve(rx0);
       u = rx0 * this._g1[this._p[bx0]];
@@ -42,12 +41,12 @@ namespace droid.Runtime.Utilities.Sampling {
     }
 
     public float Noise(float x, float y) {
-      int bx0, bx1, by0, by1, b00, b10, b01, b11;
-      float rx0, rx1, ry0, ry1, sx, sy, a, b, u, v;
+      int b00, b10, b01, b11;
+      float sx, sy, a, b, u, v;
       int i, j;
 
-      this.Setup(x, out bx0, out bx1, out rx0, out rx1);
-      this.Setup(y, out by0, out by1, out ry0, out ry1);
+      this.Setup(x, out var bx0, out var bx1, out var rx0, out var rx1);
+      this.Setup(y, out var by0, out var by1, out var ry0, out var ry1);
 
       i = this._p[bx0];
       j = this._p[bx1];
@@ -72,13 +71,13 @@ namespace droid.Runtime.Utilities.Sampling {
     }
 
     public float Noise(float x, float y, float z) {
-      int bx0, bx1, by0, by1, bz0, bz1, b00, b10, b01, b11;
-      float rx0, rx1, ry0, ry1, rz0, rz1, sy, sz, a, b, c, d, t, u, v;
+      int b00, b10, b01, b11;
+      float sy, sz, a, b, c, d, t, u, v;
       int i, j;
 
-      this.Setup(x, out bx0, out bx1, out rx0, out rx1);
-      this.Setup(y, out by0, out by1, out ry0, out ry1);
-      this.Setup(z, out bz0, out bz1, out rz0, out rz1);
+      this.Setup(x, out var bx0, out var bx1, out var rx0, out var rx1);
+      this.Setup(y, out var by0, out var by1, out var ry0, out var ry1);
+      this.Setup(z, out var bz0, out var bz1, out var rz0, out var rz1);
 
       i = this._p[bx0];
       j = this._p[bx1];

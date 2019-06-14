@@ -6,8 +6,8 @@ namespace droid.Runtime.Managers {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu("Neodroid/Managers/PausableManager")]
-  public class PausableManager : NeodroidManager {
+  [AddComponentMenu("Neodroid/Managers/NeodroidManager")]
+  public class PausableManager : AbstractNeodroidManager {
     #region Fields
 
     #if UNITY_EDITOR

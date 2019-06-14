@@ -30,7 +30,7 @@
   <td id="projectlogo"><img alt="Logo" src="neodroidcropped124.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Neodroid
-   &#160;<span id="projectnumber">0.2.1</span>
+   &#160;<span id="projectnumber">0.2.0</span>
    </div>
    <div id="projectbrief">Machine Learning Environment Prototyping Tool</div>
   </td>
@@ -121,8 +121,7 @@ $(document).ready(function(){initNavTree('functions_prop_c.html','');});
 , <a class="el" href="classdroid_1_1_runtime_1_1_messaging_1_1_messages_1_1_configuration.html#aa4d01002b7d154db69e9e26376cd260a">droid.Runtime.Messaging.Messages.Configuration</a>
 </li>
 <li>Configurables
-: <a class="el" href="classdroid_1_1_runtime_1_1_environments_1_1_actorised_prototyping_environment.html#ab77a6121d3f30b36a9f176c942d1793a">droid.Runtime.Environments.ActorisedPrototypingEnvironment</a>
-, <a class="el" href="classdroid_1_1_runtime_1_1_environments_1_1_prototyping_environment.html#a19365738ff1a35dbd5147d1855c64657">droid.Runtime.Environments.PrototypingEnvironment</a>
+: <a class="el" href="classdroid_1_1_runtime_1_1_environments_1_1_abstract_prototyping_environment.html#a08f93209918986cfadce356b3eec5270">droid.Runtime.Environments.AbstractPrototypingEnvironment</a>
 , <a class="el" href="classdroid_1_1_runtime_1_1_messaging_1_1_messages_1_1_environment_description.html#a9857875ca0c43acecdb8458e85183ce6">droid.Runtime.Messaging.Messages.EnvironmentDescription</a>
 </li>
 <li>ConfigurablesLength
@@ -134,12 +133,36 @@ $(document).ready(function(){initNavTree('functions_prop_c.html','');});
 , <a class="el" href="classdroid_1_1_runtime_1_1_messaging_1_1_messages_1_1_configuration.html#a873040b77dc2066f38e67686796be4ca">droid.Runtime.Messaging.Messages.Configuration</a>
 </li>
 <li>ConfigurableValueSpace
-: <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_color_configurable.html#a2df986b0b7e3d88a3f29a1d8712933d3">droid.Runtime.Prototyping.Configurables.ColorConfigurable</a>
-, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_configurable.html#ae92fd807cf2a2c990f5fd10f0e0ac2a1">droid.Runtime.Prototyping.Configurables.Configurable</a>
+: <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_child_selector_configurable.html#a49c4fea338889419888ba1894c04d00a">droid.Runtime.Prototyping.Configurables.ChildSelectorConfigurable</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_color_configurable.html#a2df986b0b7e3d88a3f29a1d8712933d3">droid.Runtime.Prototyping.Configurables.ColorConfigurable</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_configurable.html#ac061fe54c82876160336eb2632f19aa5">droid.Runtime.Prototyping.Configurables.Configurable</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_difficulty_configurable.html#a9b3981a0ddcef19a0e726d5e52b9fd65">droid.Runtime.Prototyping.Configurables.DifficultyConfigurable</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_environmental_light_configurable.html#afc1299ffdaabf177be8fd6f9a5d63648">droid.Runtime.Prototyping.Configurables.EnvironmentalLightConfigurable</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_euler_rotation_configurable.html#a8905c6b3801967df5900926d0ad73a53">droid.Runtime.Prototyping.Configurables.EulerRotationConfigurable</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_euler_transform_configurable.html#aeb84ca98ecb7f6e1fd7f1772517e8e32">droid.Runtime.Prototyping.Configurables.EulerTransformConfigurable</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_experimental_1_1_camera_configurable.html#a6b3d62ab84abcd071073abefee5c032b">droid.Runtime.Prototyping.Configurables.Experimental.CameraConfigurable</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_experimental_1_1_external_mesh_configurable.html#ab2313f279d6ed1809a6013f2418b0166">droid.Runtime.Prototyping.Configurables.Experimental.ExternalMeshConfigurable</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_experimental_1_1_external_texture_configurable.html#a69e362c78e8d313e3159eafb8081521c">droid.Runtime.Prototyping.Configurables.Experimental.ExternalTextureConfigurable</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_experimental_1_1_flare_configurable.html#ac6bd8cfa96fef9784ecf813c4ddc6a71">droid.Runtime.Prototyping.Configurables.Experimental.FlareConfigurable</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_experimental_1_1_mesh_configurable.html#a75d4d8f7dc06bd6514b42be8e9366cb3">droid.Runtime.Prototyping.Configurables.Experimental.MeshConfigurable</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_experimental_1_1_normal_map_configurable.html#a46345391a275a86dd118d630bceaa9bb">droid.Runtime.Prototyping.Configurables.Experimental.NormalMapConfigurable</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_experimental_1_1_screen_space_occlusion_configurable.html#acb739403d0807d52470fa6acbefe7878">droid.Runtime.Prototyping.Configurables.Experimental.ScreenSpaceOcclusionConfigurable</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_friction_configurable.html#ae6d659fac443be97a8bd8d38f1fb019e">droid.Runtime.Prototyping.Configurables.FrictionConfigurable</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_light_configurable.html#adfe5392edeaf729e1ca845cd205ef5d6">droid.Runtime.Prototyping.Configurables.LightConfigurable</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_object_spawner_configurable.html#af237efd056856bb697dad4da4b513e1a">droid.Runtime.Prototyping.Configurables.ObjectSpawnerConfigurable</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_position_configurable.html#ac69d755a850c5c855a36ae51936a9331">droid.Runtime.Prototyping.Configurables.PositionConfigurable</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_quaternion_transform_configurable.html#af6dcd8b6789bd20a1e994aae5936e510">droid.Runtime.Prototyping.Configurables.QuaternionTransformConfigurable</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_rigidbody_configurable.html#a69f104abc770f1b7b7d1b54f1a494596">droid.Runtime.Prototyping.Configurables.RigidbodyConfigurable</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_rotation_configurable.html#a7a7ad84848d379480b2fdcc02fda481b">droid.Runtime.Prototyping.Configurables.RotationConfigurable</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_screen_space_position_configurable.html#a4fdc7bc4aeb64b17aef286cc13e0b975">droid.Runtime.Prototyping.Configurables.ScreenSpacePositionConfigurable</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_simulation_configurable.html#a54b51f8099fcd547a8298167654a29f4">droid.Runtime.Prototyping.Configurables.SimulationConfigurable</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_size_configurable.html#a4c0f50251959517b146ebc4c9ab6d9ee">droid.Runtime.Prototyping.Configurables.SizeConfigurable</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_standard_shader_material_configurable.html#ab85e6669cfb5ff23b3215fa46a2801b1">droid.Runtime.Prototyping.Configurables.StandardShaderMaterialConfigurable</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_texture_configurable.html#a10d02539a0d1caaea9bfaff6765331b4">droid.Runtime.Prototyping.Configurables.TextureConfigurable</a>
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_transform_configurable1_dof.html#a2c99d7d96f05012289d70a33a424e80e">droid.Runtime.Prototyping.Configurables.TransformConfigurable1Dof</a>
 </li>
 <li>Configuration
-: <a class="el" href="classdroid_1_1_runtime_1_1_managers_1_1_neodroid_manager.html#aeb700ed73a86f00fb55fa5a786659c69">droid.Runtime.Managers.NeodroidManager</a>
+: <a class="el" href="classdroid_1_1_runtime_1_1_managers_1_1_abstract_neodroid_manager.html#aeb4acefa3bc81b3c18349ee75ca03f58">droid.Runtime.Managers.AbstractNeodroidManager</a>
 </li>
 <li>Configurations
 : <a class="el" href="classdroid_1_1_runtime_1_1_messaging_1_1_messages_1_1_reaction.html#af99bf2885d5bc8510847b2cf95de015f">droid.Runtime.Messaging.Messages.Reaction</a>
@@ -152,12 +175,10 @@ $(document).ready(function(){initNavTree('functions_prop_c.html','');});
 , <a class="el" href="classdroid_1_1_runtime_1_1_messaging_1_1_messages_1_1_reaction_parameters.html#ade3d7320055b53bfc8629c0ff1ea3532">droid.Runtime.Messaging.Messages.ReactionParameters</a>
 </li>
 <li>CoordinateReferencePoint
-: <a class="el" href="classdroid_1_1_runtime_1_1_environments_1_1_actorised_prototyping_environment.html#a350159b5efafd0bb10772ef1ff17ba8d">droid.Runtime.Environments.ActorisedPrototypingEnvironment</a>
-, <a class="el" href="classdroid_1_1_runtime_1_1_environments_1_1_prototyping_environment.html#aa8776ebaf97c7910cf7033741f7bca4d">droid.Runtime.Environments.PrototypingEnvironment</a>
+: <a class="el" href="classdroid_1_1_runtime_1_1_environments_1_1_abstract_prototyping_environment.html#ac85b222959358088b6487e89a93c16b0">droid.Runtime.Environments.AbstractPrototypingEnvironment</a>
 </li>
 <li>CoordinateSystem
-: <a class="el" href="classdroid_1_1_runtime_1_1_environments_1_1_actorised_prototyping_environment.html#a3056dc1994e76258b27e566a832b1777">droid.Runtime.Environments.ActorisedPrototypingEnvironment</a>
-, <a class="el" href="classdroid_1_1_runtime_1_1_environments_1_1_prototyping_environment.html#a2e132cc3ceb98db6caa0e0f078ef7c10">droid.Runtime.Environments.PrototypingEnvironment</a>
+: <a class="el" href="classdroid_1_1_runtime_1_1_environments_1_1_abstract_prototyping_environment.html#a5fd6cb316e626f828f493fa97a911de6">droid.Runtime.Environments.AbstractPrototypingEnvironment</a>
 </li>
 <li>CurrentCategoryValue
 : <a class="el" href="interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_category_provider.html#a45132fa3d419e5d48b6b7de479af01a6">droid.Runtime.Interfaces.ICategoryProvider</a>
@@ -174,7 +195,7 @@ $(document).ready(function(){initNavTree('functions_prop_c.html','');});
 : <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_evaluation_1_1_tasks_1_1_task_sequence.html#ac4912d08240bd359d99849d8b2a88266">droid.Runtime.Prototyping.Evaluation.Tasks.TaskSequence</a>
 </li>
 <li>CurrentReactions
-: <a class="el" href="classdroid_1_1_runtime_1_1_managers_1_1_neodroid_manager.html#a80ccf6650d5c581a405838518d8cf659">droid.Runtime.Managers.NeodroidManager</a>
+: <a class="el" href="classdroid_1_1_runtime_1_1_managers_1_1_abstract_neodroid_manager.html#add7e15686b6958c5e9b70c118d1a920d">droid.Runtime.Managers.AbstractNeodroidManager</a>
 </li>
 <li>Curriculum1
 : <a class="el" href="classdroid_1_1_runtime_1_1_managers_1_1_experimental_1_1_curriculum_manager.html#a0bc1ca2e2766d873a7db74ebe3748997">droid.Runtime.Managers.Experimental.CurriculumManager</a>

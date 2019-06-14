@@ -29,7 +29,7 @@ namespace droid.Runtime.InternalReactions {
     /// <summary>
     /// </summary>
     void Start() {
-      this._Manager = FindObjectOfType<NeodroidManager>();
+      this._Manager = FindObjectOfType<AbstractNeodroidManager>();
       if (Application.isPlaying) {
         var reset_reaction = new ReactionParameters(reset : true);
         this._states = this._Manager.ReactAndCollectStates(new Reaction(reset_reaction, "all"));

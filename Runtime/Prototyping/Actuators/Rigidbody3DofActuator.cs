@@ -66,12 +66,12 @@ namespace droid.Runtime.Prototyping.Actuators {
         this._z = this.Identifier + "RotZ_";
       }
 
-      this.ParentActor =
-          NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Actuator)this, this._x);
-      this.ParentActor =
-          NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Actuator)this, this._y);
-      this.ParentActor =
-          NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Actuator)this, this._z);
+      this.Parent =
+          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, this._x);
+      this.Parent =
+          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, this._y);
+      this.Parent =
+          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, this._z);
     }
 
     /// <inheritdoc />

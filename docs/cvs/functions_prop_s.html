@@ -30,7 +30,7 @@
   <td id="projectlogo"><img alt="Logo" src="neodroidcropped124.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Neodroid
-   &#160;<span id="projectnumber">0.2.1</span>
+   &#160;<span id="projectnumber">0.2.0</span>
    </div>
    <div id="projectbrief">Machine Learning Environment Prototyping Tool</div>
   </td>
@@ -102,7 +102,7 @@ $(document).ready(function(){initNavTree('functions_prop_s.html','');});
 <li>Shape
 : <a class="el" href="interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_byte_array.html#a9f97d405791e3dcbbc289775815e2382">droid.Runtime.Interfaces.IHasByteArray</a>
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_byte_array_camera_sensor.html#aa0d65021cd8a07004e945ee243f01122">droid.Runtime.Prototyping.Sensors.Camera.ByteArrayCameraSensor</a>
-, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_camera_sensor.html#ab659a3fece12bd2fba5517ca29400a55">droid.Runtime.Prototyping.Sensors.Camera.CameraSensor</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_deprecated_1_1_camera_sensor.html#a414b1013da84e9d5397b06a0760eba78">droid.Runtime.Prototyping.Sensors.Camera.Deprecated.CameraSensor</a>
 </li>
 <li>ShapeLength
 : <a class="el" href="structdroid_1_1_runtime_1_1_messaging_1_1_f_b_s_1_1_f_byte_array.html#a26ad0b8863c7931aae4c165e83e9cc6d">droid.Runtime.Messaging.FBS.FByteArray</a>
@@ -119,7 +119,7 @@ $(document).ready(function(){initNavTree('functions_prop_s.html','');});
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_evaluation_1_1_objective_function.html#a15736f0cacea29cbb0ce942fa6540b4a">droid.Runtime.Prototyping.Evaluation.ObjectiveFunction</a>
 </li>
 <li>SimulationTimeScale
-: <a class="el" href="classdroid_1_1_runtime_1_1_managers_1_1_neodroid_manager.html#a6af793c6f3956820d901e5d66938b9f3">droid.Runtime.Managers.NeodroidManager</a>
+: <a class="el" href="classdroid_1_1_runtime_1_1_managers_1_1_abstract_neodroid_manager.html#a5b6295afa5e554c5542db83289c4bc47">droid.Runtime.Managers.AbstractNeodroidManager</a>
 </li>
 <li>SimulationType
 : <a class="el" href="interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#a38d17a2eab10497758add93f9d477660">droid.Runtime.Interfaces.ISimulatorConfiguration</a>
@@ -129,7 +129,7 @@ $(document).ready(function(){initNavTree('functions_prop_s.html','');});
 </li>
 <li>SimulatorConfiguration
 : <a class="el" href="interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_manager.html#a1e4e8303e05e1a9ddd94107bd7f770df">droid.Runtime.Interfaces.IManager</a>
-, <a class="el" href="classdroid_1_1_runtime_1_1_managers_1_1_neodroid_manager.html#a2a37a1d8c87e222395e7422bcaf29478">droid.Runtime.Managers.NeodroidManager</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_managers_1_1_abstract_neodroid_manager.html#a87fdba86f3670590b541250463cc8d99">droid.Runtime.Managers.AbstractNeodroidManager</a>
 , <a class="el" href="structdroid_1_1_runtime_1_1_messaging_1_1_f_b_s_1_1_f_reactions.html#aafaf614a78dbf7a418cff1e509114cc6">droid.Runtime.Messaging.FBS.FReactions</a>
 , <a class="el" href="structdroid_1_1_runtime_1_1_messaging_1_1_f_b_s_1_1_f_states.html#a99fab5d66e0f0d607bacfb7aaf91d7f3">droid.Runtime.Messaging.FBS.FStates</a>
 </li>
@@ -137,12 +137,13 @@ $(document).ready(function(){initNavTree('functions_prop_s.html','');});
 : <a class="el" href="interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_single.html#a0ed5ce346fac06f32efd1ef9fc428058">droid.Runtime.Interfaces.IHasSingle</a>
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_friction_configurable.html#afc1c0425148ebc37dd9011dd92f2778e">droid.Runtime.Prototyping.Configurables.FrictionConfigurable</a>
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_transform_configurable1_dof.html#a443d02ed7fc22d7a4fab6d036737d2e3">droid.Runtime.Prototyping.Configurables.TransformConfigurable1Dof</a>
-, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_categorical_sensor.html#a2e78ebc99201c094b2f2e9a39a0748b3">droid.Runtime.Prototyping.Sensors.CategoricalSensor</a>
-, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_distance_sensor.html#ae4e8b8a9e99d53a105f74a9eb34de564">droid.Runtime.Prototyping.Sensors.DistanceSensor</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_experimental_1_1_categorical_sensor.html#a418703c22f0b5da35ef117254d4343cd">droid.Runtime.Prototyping.Sensors.Experimental.CategoricalSensor</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_experimental_1_1_distance_sensor.html#af32aeb814ad8757dc1e81e768e8c58db">droid.Runtime.Prototyping.Sensors.Experimental.DistanceSensor</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_experimental_1_1_value_sensor.html#a3394c7fa8f8202c5c600f73cfbd27e81">droid.Runtime.Prototyping.Sensors.Experimental.ValueSensor</a>
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_grid_1_1_grid_position_sensor.html#a739b167a0e2732ae56976ffa46cd92ad">droid.Runtime.Prototyping.Sensors.Grid.GridPositionSensor</a>
+, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_occupancy_1_1_occupancy3d_sensor.html#a540c189dbe14950351e94a93e506287d">droid.Runtime.Prototyping.Sensors.Occupancy.Occupancy3dSensor</a>
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_rays_1_1_line_of_sight_sensor.html#a35cb94ec906eb962168e56de0a9bb04f">droid.Runtime.Prototyping.Sensors.Rays.LineOfSightSensor</a>
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_rays_1_1_raycast_sensor.html#aa785eb54b44d10d8efbeda58422fd15f">droid.Runtime.Prototyping.Sensors.Rays.RaycastSensor</a>
-, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_value_sensor.html#a7d4602fc4d989fd9c21231ce32e467bd">droid.Runtime.Prototyping.Sensors.ValueSensor</a>
 </li>
 <li>SolvedThreshold
 : <a class="el" href="interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_objective.html#afc7e0323614052eca0f11f02637405f6">droid.Runtime.Interfaces.IObjective</a>
@@ -151,8 +152,7 @@ $(document).ready(function(){initNavTree('functions_prop_s.html','');});
 , <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_evaluation_1_1_objective_function.html#a7b14ee64d182a53cf2d6916586b18b58">droid.Runtime.Prototyping.Evaluation.ObjectiveFunction</a>
 </li>
 <li>Space
-: <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_transform_1_1_quaternion_transform_sensor.html#a796e209f30d865e00d2168d31b5747d1">droid.Runtime.Prototyping.Sensors.Transform.QuaternionTransformSensor</a>
-, <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_transform_1_1_rotation_sensor.html#a4bb64e6f27be407e8a2ed1b6e8e2428a">droid.Runtime.Prototyping.Sensors.Transform.RotationSensor</a>
+: <a class="el" href="classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_transform_1_1_rotation_sensor.html#a4bb64e6f27be407e8a2ed1b6e8e2428a">droid.Runtime.Prototyping.Sensors.Transform.RotationSensor</a>
 </li>
 <li>Span
 : <a class="el" href="structdroid_1_1_runtime_1_1_utilities_1_1_structs_1_1_space1.html#a19c9ee52d2b1f1fd7519346959994acb">droid.Runtime.Utilities.Structs.Space1</a>
@@ -172,7 +172,7 @@ $(document).ready(function(){initNavTree('functions_prop_s.html','');});
 , <a class="el" href="classdroid_1_1_runtime_1_1_utilities_1_1_structs_1_1_simulator_configuration.html#af8aa9ccf3d1dd11373919b6227a70263">droid.Runtime.Utilities.Structs.SimulatorConfiguration</a>
 </li>
 <li>Stepping
-: <a class="el" href="classdroid_1_1_runtime_1_1_managers_1_1_neodroid_manager.html#aa2879d3c9718eea4f6a02184e2e5c3d3">droid.Runtime.Managers.NeodroidManager</a>
+: <a class="el" href="classdroid_1_1_runtime_1_1_managers_1_1_abstract_neodroid_manager.html#ab24a30b98110aad0e584684c54acb252">droid.Runtime.Managers.AbstractNeodroidManager</a>
 </li>
 <li>Str
 : <a class="el" href="structdroid_1_1_runtime_1_1_messaging_1_1_f_b_s_1_1_f_string.html#a479c33a01d54e2d2d34043bd5d983e19">droid.Runtime.Messaging.FBS.FString</a>

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['target',['target',['../classdroid_1_1_runtime_1_1_utilities_1_1_misc_1_1_orientation_1_1_follow_target.html#a5c75dfe97d097075d9b32bd48a488e46',1,'droid::Runtime::Utilities::Misc::Orientation::FollowTarget']]],
-  ['targetpose',['targetPose',['../classdroid_1_1_runtime_1_1_utilities_1_1_misc_1_1_orientation_1_1_follow_target_rotation.html#a11f9d9b30abe834bfb82e4f69c81feb8',1,'droid::Runtime::Utilities::Misc::Orientation::FollowTargetRotation']]]
+  ['update_5fobservations_5fwith_5fevery_5ftick',['update_observations_with_every_tick',['../classdroid_1_1_runtime_1_1_environments_1_1_abstract_prototyping_environment.html#afbbb8590a15c25d5b7ece762ac6f8fc5',1,'droid::Runtime::Environments::AbstractPrototypingEnvironment']]]
 ];

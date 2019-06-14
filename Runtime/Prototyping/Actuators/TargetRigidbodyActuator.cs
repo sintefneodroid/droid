@@ -16,7 +16,7 @@ namespace droid.Runtime.Prototyping.Actuators {
   public class TargetRigidbodyActuator : Actuator,
                                          IEnvironmentListener {
     string _movement;
-    IActorisedPrototypingEnvironment _parent_environment;
+    AbstractPrototypingEnvironment _parent_environment;
 
     /// <summary>
     /// </summary>
@@ -30,14 +30,29 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// </summary>
     public override string PrototypingTypeName { get { return "TargetRigidbody"; } }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Single MovementSpeed { get; set; }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Single RotationSpeed { get; set; }
 
+    /// <summary>
+    ///
+    /// </summary>
     public void PreStep() { }
 
+    /// <summary>
+    ///
+    /// </summary>
     public void Step() { this.OnStep(); }
 
+    /// <summary>
+    ///
+    /// </summary>
     public void PostStep() { }
 
     /// <inheritdoc />
@@ -54,13 +69,13 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentActor =
-          NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Actuator)this, this._movement);
-      this.ParentActor =
-          NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Actuator)this, this._turn);
+      this.Parent =
+          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._movement);
+      this.Parent =
+          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._turn);
 
       this._parent_environment =
-          NeodroidUtilities.RegisterComponent((ActorisedPrototypingEnvironment)this._parent_environment,
+          NeodroidUtilities.RegisterComponent(this._parent_environment,
                                               this);
 
       if (this._parent_environment != null) {
@@ -91,7 +106,7 @@ namespace droid.Runtime.Prototyping.Actuators {
       this._Rigidbody.angularVelocity = Vector3.zero;
 
       // Move
-      var movement = this.transform.forward * this.MovementSpeed * Time.deltaTime;
+      var movement = this.MovementSpeed * Time.deltaTime * this.transform.forward;
       this._Rigidbody.MovePosition(this._Rigidbody.position + movement);
 
       // Turn

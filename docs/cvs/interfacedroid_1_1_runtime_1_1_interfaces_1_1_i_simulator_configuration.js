@@ -22,6 +22,6 @@ var interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration =
     [ "TargetFrameRate", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#a9977602e08cad84dd6a4b1928ea4673f", null ],
     [ "TimeScale", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#ac0d7bdcb36287a097da457cf82ea730e", null ],
     [ "UpdateFixedTimeScale", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#a2e07d9b0f9b57f2dc81fd94249c046b6", null ],
-    [ "vSyncCount", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#a754f67d5542e12afb4ad33e98dee21d3", null ],
+    [ "VSyncCount", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#a1b6dc81f540a8ae0cf1b0e9c19842676", null ],
     [ "Width", "interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_simulator_configuration.html#a5ba1e1ddabb6d9bd6fba30a76c3a5ebc", null ]
 ];

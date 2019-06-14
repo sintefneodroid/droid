@@ -1,12 +1,14 @@
 <map id="droid.Runtime.Environments.ActorisedPrototypingEnvironment" name="droid.Runtime.Environments.ActorisedPrototypingEnvironment">
-<area shape="rect" id="node2" href="$classdroid_1_1_runtime_1_1_environments_1_1_neodroid_environment.html" title="NeodroidEnvironment" alt="" coords="450,56,597,83"/>
-<area shape="rect" id="node3" href="$classdroid_1_1_runtime_1_1_utilities_1_1_game_objects_1_1_prototyping_game_object.html" title="PrototypingGameObject" alt="" coords="185,5,346,32"/>
-<area shape="rect" id="node5" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_registerable.html" title="IRegisterable" alt="" coords="12,56,111,83"/>
-<area shape="rect" id="node6" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_environment.html" title="IEnvironment" alt="" coords="216,56,315,83"/>
-<area shape="rect" id="node7" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_actorised_prototyping_environment.html" title="IActorisedPrototypingEnvironment" alt="" coords="413,157,633,184"/>
-<area shape="rect" id="node8" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html" title="IHasRegister\&lt; IActor \&gt;" alt="" coords="186,107,345,133"/>
-<area shape="rect" id="node9" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html" title="IHasRegister\&lt; IObserver \&gt;" alt="" coords="175,157,355,184"/>
-<area shape="rect" id="node10" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html" title="IHasRegister\&lt; IConfigurable \&gt;" alt="" coords="165,208,365,235"/>
-<area shape="rect" id="node11" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html" title="IHasRegister\&lt; IEnvironment\lListener \&gt;" alt="" coords="171,259,359,301"/>
-<area shape="rect" id="node12" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html" title="IHasRegister\&lt; IDisplayer \&gt;" alt="" coords="174,325,357,352"/>
+<area shape="rect" id="node2" href="$classdroid_1_1_runtime_1_1_environments_1_1_abstract_prototyping_environment.html" title="AbstractPrototypingEnvironment" alt="" coords="681,132,891,159"/>
+<area shape="rect" id="node3" href="$classdroid_1_1_runtime_1_1_environments_1_1_neodroid_environment.html" title="NeodroidEnvironment" alt="" coords="447,56,594,83"/>
+<area shape="rect" id="node4" href="$classdroid_1_1_runtime_1_1_utilities_1_1_game_objects_1_1_prototyping_game_object.html" title="PrototypingGameObject" alt="" coords="185,5,346,32"/>
+<area shape="rect" id="node6" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_registerable.html" title="IRegisterable" alt="" coords="12,56,111,83"/>
+<area shape="rect" id="node7" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_environment.html" title="IEnvironment" alt="" coords="216,56,315,83"/>
+<area shape="rect" id="node8" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_abstract_prototyping_environment.html" title="IAbstractPrototypingEnvironment" alt="" coords="413,132,628,159"/>
+<area shape="rect" id="node9" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html" title="IHasRegister\&lt; IObserver \&gt;" alt="" coords="175,107,355,133"/>
+<area shape="rect" id="node10" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html" title="IHasRegister\&lt; IConfigurable \&gt;" alt="" coords="165,157,365,184"/>
+<area shape="rect" id="node11" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html" title="IHasRegister\&lt; IEnvironment\lListener \&gt;" alt="" coords="171,209,359,250"/>
+<area shape="rect" id="node12" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html" title="IHasRegister\&lt; IDisplayer \&gt;" alt="" coords="174,275,357,301"/>
+<area shape="rect" id="node13" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_actorised_prototyping_environment.html" title="IActorisedPrototypingEnvironment" alt="" coords="676,183,896,209"/>
+<area shape="rect" id="node14" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html" title="IHasRegister\&lt; IActor \&gt;" alt="" coords="441,183,600,209"/>
 </map>

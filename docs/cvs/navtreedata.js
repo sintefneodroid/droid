@@ -18,7 +18,7 @@ var NAVTREE =
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
-        [ "Variables", "functions_vars.html", null ],
+        [ "Variables", "functions_vars.html", "functions_vars" ],
         [ "Properties", "functions_prop.html", "functions_prop" ],
         [ "Events", "functions_evnt.html", null ]
       ] ]
@@ -35,19 +35,19 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_action_counter_8cs.html",
-"_follow_target_rotation_8cs_source.html",
-"_prototyping_environment_8cs.html",
-"classdroid_1_1_runtime_1_1_environments_1_1_actorised_prototyping_environment.html#aa29a8956a833d3636657bbd6b0bfc483",
-"classdroid_1_1_runtime_1_1_messaging_1_1_messages_1_1_environment_state.html",
-"classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_euler_rotation_configurable.html",
-"classdroid_1_1_runtime_1_1_prototyping_1_1_displayers_1_1_displayer.html#ad58ba6775ba6bcc0e4490e0f7a5bab14",
-"classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_native_color_float_array_camera_sensor.html#a0a0bd293cbf013916060c50307d2d4f6",
-"classdroid_1_1_runtime_1_1_utilities_1_1_game_objects_1_1_neodroid_camera_1_1_line_project.html",
-"dir_677d9e4741015c1bbd312b7c32e0660e.html",
-"interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_observer.html#ae6b9906182edda461964506e9f763d17",
-"structdroid_1_1_runtime_1_1_messaging_1_1_f_b_s_1_1_f_configurable.html#ab0c256ff993cff2ef247abfd3302809f",
-"structdroid_1_1_runtime_1_1_messaging_1_1_f_b_s_1_1_f_value.html#a94f88369cf3ace6248068c1e231c92ca"
+"_abstract_neodroid_manager_8cs.html",
+"_flow_camera_behaviour_8cs.html",
+"_points_8cs_source.html",
+"classdroid_1_1_runtime_1_1_environments_1_1_abstract_prototyping_environment.html#a45a8159efcddf5f2409090d715ac74fc",
+"classdroid_1_1_runtime_1_1_messaging_1_1_messages_1_1_environment_state.html#a9b1940d9155cf1d55db0cac661ceb096",
+"classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_euler_rotation_configurable.html#a2f95fa1f9538f311838f7d68f47f3178",
+"classdroid_1_1_runtime_1_1_prototyping_1_1_displayers_1_1_displayer.html#a0b90fd724cda0be864e11180a4acc978",
+"classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_deprecated_1_1_camera_sensor.html#a89de4e45eebd01f9ba26c77e07601c3e",
+"classdroid_1_1_runtime_1_1_utilities_1_1_game_objects_1_1_neodroid_camera_1_1_camera_observation_texture_controller.html",
+"dir_261e4925013eef98fcad776398f07228.html",
+"interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_float_enumerable.html",
+"structdroid_1_1_runtime_1_1_messaging_1_1_f_b_s_1_1_f_actor.html#a4a2cb55d51aec11f820f7023ad55f6a0",
+"structdroid_1_1_runtime_1_1_messaging_1_1_f_b_s_1_1_f_state.html#a9ab94ac3adfb7d4c6190897d666daa71"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

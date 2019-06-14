@@ -3,6 +3,9 @@
 using UnityEditor;
 
 namespace droid.Editor.Windows {
+  /// <summary>
+  ///
+  /// </summary>
   public class WindowManager : EditorWindow {
     static Type[] _desired_dock_next_toos = {
                                                 typeof(RenderTextureConfiguratorWindow),
@@ -11,12 +14,15 @@ namespace droid.Editor.Windows {
                                                 typeof(DebugWindow),
                                                 #endif
                                                 typeof(SegmentationWindow),
-                                                typeof(EnvironmentsWindow),
+                                                typeof(PrototypingWindow),
                                                 typeof(TaskWindow),
                                                 typeof(DemonstrationWindow),
                                                 typeof(SimulationWindow)
                                             };
 
+    /// <summary>
+    ///
+    /// </summary>
     [MenuItem(EditorWindowMenuPath._WindowMenuPath + "ShowAllWindows")]
     [MenuItem(EditorWindowMenuPath._ToolMenuPath + "ShowAllWindows")]
     public static void ShowWindow() {
@@ -27,7 +33,7 @@ namespace droid.Editor.Windows {
       GetWindow<DebugWindow>(_desired_dock_next_toos);
       #endif
       GetWindow<SegmentationWindow>(_desired_dock_next_toos);
-      GetWindow<EnvironmentsWindow>(_desired_dock_next_toos);
+      GetWindow<PrototypingWindow>(_desired_dock_next_toos);
       GetWindow<TaskWindow>(_desired_dock_next_toos);
       GetWindow<DemonstrationWindow>(_desired_dock_next_toos);
       GetWindow<SimulationWindow>(_desired_dock_next_toos);

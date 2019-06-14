@@ -8,6 +8,9 @@ namespace droid.Runtime.Interfaces {
     /// </summary>
     float[] ObservationArray { get; }
 
+    /// <summary>
+    ///
+    /// </summary>
     Space1[] ObservationSpace { get; }
   }
 }

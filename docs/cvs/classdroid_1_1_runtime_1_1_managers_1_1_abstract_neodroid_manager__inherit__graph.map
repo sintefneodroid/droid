@@ -1,0 +1,7 @@
+<map id="droid.Runtime.Managers.AbstractNeodroidManager" name="droid.Runtime.Managers.AbstractNeodroidManager">
+<area shape="rect" id="node5" href="$classdroid_1_1_runtime_1_1_managers_1_1_experimental_1_1_curriculum_manager.html" title="droid.Runtime.Managers.Experimental.\lCurriculumManager" alt="" coords="679,5,927,47"/>
+<area shape="rect" id="node6" href="$classdroid_1_1_runtime_1_1_managers_1_1_experimental_1_1_thin_manager.html" title="droid.Runtime.Managers.Experimental.\lThinManager" alt="" coords="679,71,927,112"/>
+<area shape="rect" id="node7" href="$classdroid_1_1_runtime_1_1_managers_1_1_pausable_manager.html" title="droid.Runtime.Managers.Pausable\lManager" alt="" coords="691,136,914,177"/>
+<area shape="rect" id="node3" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_manager.html" title="IManager" alt="" coords="271,103,347,130"/>
+<area shape="rect" id="node4" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html" title="IHasRegister\&lt; IEnvironment \&gt;" alt="" coords="5,103,205,130"/>
+</map>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['updateevent',['UpdateEvent',['../classdroid_1_1_runtime_1_1_managers_1_1_neodroid_manager.html#a95604fc32599350a55c20e73bf89559d',1,'droid::Runtime::Managers::NeodroidManager']]]
+  ['updateevent',['UpdateEvent',['../classdroid_1_1_runtime_1_1_managers_1_1_abstract_neodroid_manager.html#aec47089082b1d3f843ae92784c94cc3b',1,'droid::Runtime::Managers::AbstractNeodroidManager']]]
 ];

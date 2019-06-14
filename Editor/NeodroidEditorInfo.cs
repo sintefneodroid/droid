@@ -5,16 +5,35 @@ namespace droid.Editor {
   /// <summary>
   /// </summary>
   public static class NeodroidEditorInfo {
-    /// <summary>
-    /// </summary>
-    public const string _Version = "0.1.1";
 
+
+    /// <summary>
+    ///
+    /// </summary>
     public const string _Debug_Pref_Key = "EnableNeodroidDebug";
+    /// <summary>
+    ///
+    /// </summary>
     public const string _Github_Extension_Pref_Key = "NeodroidGithubExtension";
+    /// <summary>
+    ///
+    /// </summary>
     public const string _Imported_Asset_Pref_Key = "NeodroidImportedAsset";
+    /// <summary>
+    ///
+    /// </summary>
     public const string _Generate_Previews_Pref_Key = "NeodroidGeneratePreviews";
+    /// <summary>
+    ///
+    /// </summary>
     public const string _Generate_Previews_Loc_Pref_Key = "NeodroidPreviewsLocation";
+    /// <summary>
+    ///
+    /// </summary>
     public const string _Generate_Descriptions_Pref_Key = "NeodroidGenerateDescriptions";
+    /// <summary>
+    ///
+    /// </summary>
     public const string _Generate_Descriptions_Loc_Pref_Key = "NeodroidDescriptionLocation";
 
     static string _scene_previews_location =
@@ -23,6 +42,9 @@ namespace droid.Editor {
     static string _scene_description_location =
         EditorPrefs.GetString(_Generate_Descriptions_Loc_Pref_Key, "SceneDescriptions/");
 
+    /// <summary>
+    ///
+    /// </summary>
     public static string ImportLocation {
       get { return _import_location; }
       set {
@@ -32,14 +54,23 @@ namespace droid.Editor {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public static bool GenerateScenePreviews {
       get { return EditorPrefs.GetBool(_Generate_Previews_Pref_Key, false); }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public static bool GenerateSceneDescriptions {
       get { return EditorPrefs.GetBool(_Generate_Descriptions_Pref_Key, false); }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public static string ScenePreviewsLocation {
       get { return _scene_previews_location; }
       set {
@@ -49,6 +80,9 @@ namespace droid.Editor {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public static string SceneDescriptionLocation {
       get { return _scene_description_location; }
       set {
@@ -59,6 +93,9 @@ namespace droid.Editor {
     }
 
     #if NEODROID_IMPORTED_ASSET
+    /// <summary>
+    ///
+    /// </summary>
     public const string _Import_Location_Pref_Key = "NeodroidImportLocation";
     static string _import_location = EditorPrefs.GetString(_Import_Location_Pref_Key, "Assets/droid/");
     #else

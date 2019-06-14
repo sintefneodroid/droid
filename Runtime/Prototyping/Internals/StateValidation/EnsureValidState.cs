@@ -11,7 +11,7 @@ namespace droid.Runtime.Prototyping.Internals.StateValidation {
   public class EnsureValidState : EnvironmentListener {
     [SerializeField] Actor _actor;
 
-    [SerializeField] ActorisedPrototypingEnvironment _environment;
+    [SerializeField] AbstractPrototypingEnvironment _environment;
     [SerializeField] Transform _goal;
 
     [SerializeField] Obstruction[] _obstructions;
@@ -37,7 +37,7 @@ namespace droid.Runtime.Prototyping.Internals.StateValidation {
       }
 
       if (!this._environment) {
-        this._environment = FindObjectOfType<ActorisedPrototypingEnvironment>();
+        this._environment = FindObjectOfType<AbstractPrototypingEnvironment>();
       }
 
       if (this._obstructions.Length <= 0) {

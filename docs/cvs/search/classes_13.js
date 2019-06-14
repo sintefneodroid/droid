@@ -1,7 +1,7 @@
 var searchData=
 [
   ['targetrigidbodyactuator',['TargetRigidbodyActuator',['../classdroid_1_1_runtime_1_1_prototyping_1_1_actuators_1_1_target_rigidbody_actuator.html',1,'droid::Runtime::Prototyping::Actuators']]],
-  ['targetrigidbodysensor',['TargetRigidbodySensor',['../classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_target_rigidbody_sensor.html',1,'droid::Runtime::Prototyping::Sensors']]],
+  ['targetrigidbodysensor',['TargetRigidbodySensor',['../classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_experimental_1_1_target_rigidbody_sensor.html',1,'droid::Runtime::Prototyping::Sensors::Experimental']]],
   ['tasksequence',['TaskSequence',['../classdroid_1_1_runtime_1_1_prototyping_1_1_evaluation_1_1_tasks_1_1_task_sequence.html',1,'droid::Runtime::Prototyping::Evaluation::Tasks']]],
   ['textmeshdisplayer',['TextMeshDisplayer',['../classdroid_1_1_runtime_1_1_prototyping_1_1_displayers_1_1_text_mesh_displayer.html',1,'droid::Runtime::Prototyping::Displayers']]],
   ['textscatterplotdisplayer',['TextScatterPlotDisplayer',['../classdroid_1_1_runtime_1_1_prototyping_1_1_displayers_1_1_scatter_plots_1_1_text_scatter_plot_displayer.html',1,'droid::Runtime::Prototyping::Displayers::ScatterPlots']]],

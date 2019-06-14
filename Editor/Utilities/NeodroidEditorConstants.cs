@@ -5,6 +5,6 @@ namespace droid.Editor.Utilities {
     public static readonly String _NeodroidSettingsPath =
         NeodroidEditorInfo.ImportLocation + "Editor/NeodroidSettings.asset";
 
-    public const string neodroid_project_settings_menu_path = "Project/NeodroidSettings";
+    public const string _Neodroid_Project_Settings_Menu_Path = "Project/NeodroidSettings";
   }
 }

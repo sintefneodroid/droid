@@ -114,6 +114,6 @@ namespace droid.Runtime.Interfaces {
 
     bool ResizableWindow { get; set; }
     ColorSpace ColorSpace { get; set; }
-    int vSyncCount { get; set; }
+    int VSyncCount { get; set; }
   }
 }

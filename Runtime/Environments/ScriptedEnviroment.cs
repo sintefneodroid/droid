@@ -112,7 +112,7 @@ namespace droid.Runtime.Environments {
       }
 
       this._time_simulation_manager =
-          NeodroidUtilities.RegisterComponent((NeodroidManager)this._time_simulation_manager, this);
+          NeodroidUtilities.RegisterComponent((AbstractNeodroidManager)this._time_simulation_manager, this);
     }
 
     /// <inheritdoc />

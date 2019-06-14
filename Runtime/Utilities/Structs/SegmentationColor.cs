@@ -9,12 +9,12 @@ namespace droid.Runtime.Utilities.Structs {
   public struct ColorByCategory {
     /// <summary>
     /// </summary>
-    [FormerlySerializedAs("_Tag")]
+
     public string _Category_Name;
 
     /// <summary>
     /// </summary>
-    [FormerlySerializedAs("_Col")]
+
     public Color _Color;
   }
 
@@ -24,12 +24,12 @@ namespace droid.Runtime.Utilities.Structs {
   public struct ColorByInstance {
     /// <summary>
     /// </summary>
-    [FormerlySerializedAs("_Obj")]
+
     public GameObject _Game_Object;
 
     /// <summary>
     /// </summary>
-    [FormerlySerializedAs("_Col")]
+
     public Color _Color;
   }
 }

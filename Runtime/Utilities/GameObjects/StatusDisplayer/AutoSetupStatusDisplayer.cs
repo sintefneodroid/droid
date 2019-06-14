@@ -23,7 +23,7 @@ namespace droid.Runtime.Utilities.GameObjects.StatusDisplayer {
 
     [SerializeField] TextUpdater _environment_text = null;
     [SerializeField] ObjectiveFunction _evaluation_function = null;
-    [SerializeField] NeodroidManager _manager = null;
+    [SerializeField] AbstractNeodroidManager _manager = null;
     [SerializeField] Button _reset_button = null;
     [SerializeField] TextUpdater _signal = null;
     [SerializeField] TextUpdater _status_text = null;
@@ -135,7 +135,7 @@ namespace droid.Runtime.Utilities.GameObjects.StatusDisplayer {
       }
 
       if (!this._manager) {
-        this._manager = FindObjectOfType<NeodroidManager>();
+        this._manager = FindObjectOfType<AbstractNeodroidManager>();
       }
 
       if (this._manager) {

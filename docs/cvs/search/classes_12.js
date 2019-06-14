@@ -9,8 +9,8 @@ var searchData=
   ['searchableenumattribute',['SearchableEnumAttribute',['../classdroid_1_1_runtime_1_1_utilities_1_1_misc_1_1_searchable_enum_1_1_searchable_enum_attribute.html',1,'droid::Runtime::Utilities::Misc::SearchableEnum']]],
   ['seekandavoidevaluation',['SeekAndAvoidEvaluation',['../classdroid_1_1_runtime_1_1_prototyping_1_1_evaluation_1_1_seek_and_avoid_evaluation.html',1,'droid::Runtime::Prototyping::Evaluation']]],
   ['segmentation',['Segmentation',['../classdroid_1_1_runtime_1_1_utilities_1_1_scriptable_objects_1_1_segmentation.html',1,'droid::Runtime::Utilities::ScriptableObjects']]],
-  ['segmentationcamerasensor',['SegmentationCameraSensor',['../classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_segmentation_1_1_segmentation_camera_sensor.html',1,'droid::Runtime::Prototyping::Sensors::Camera::Segmentation']]],
-  ['segmentationsensor',['SegmentationSensor',['../classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_segmentation_1_1_segmentation_sensor.html',1,'droid::Runtime::Prototyping::Sensors::Camera::Segmentation']]],
+  ['segmentationcamerasensor',['SegmentationCameraSensor',['../classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_deprecated_1_1_segmentation_1_1_segmentation_camera_sensor.html',1,'droid::Runtime::Prototyping::Sensors::Camera::Deprecated::Segmentation']]],
+  ['segmentationsensor',['SegmentationSensor',['../classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_deprecated_1_1_segmentation_1_1_segmentation_sensor.html',1,'droid::Runtime::Prototyping::Sensors::Camera::Deprecated::Segmentation']]],
   ['segmenter',['Segmenter',['../classdroid_1_1_runtime_1_1_utilities_1_1_game_objects_1_1_neodroid_camera_1_1_segmentation_1_1_segmenter.html',1,'droid::Runtime::Utilities::GameObjects::NeodroidCamera::Segmentation']]],
   ['selfdestruct',['SelfDestruct',['../classdroid_1_1_runtime_1_1_utilities_1_1_sampling_1_1_self_destruct.html',1,'droid::Runtime::Utilities::Sampling']]],
   ['sensor',['Sensor',['../classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_sensor.html',1,'droid::Runtime::Prototyping::Sensors']]],
@@ -30,10 +30,10 @@ var searchData=
   ['space4',['Space4',['../structdroid_1_1_runtime_1_1_utilities_1_1_structs_1_1_space4.html',1,'droid::Runtime::Utilities::Structs']]],
   ['standardshadermaterialconfigurable',['StandardShaderMaterialConfigurable',['../classdroid_1_1_runtime_1_1_prototyping_1_1_configurables_1_1_standard_shader_material_configurable.html',1,'droid::Runtime::Prototyping::Configurables']]],
   ['steeringactuator',['SteeringActuator',['../classdroid_1_1_runtime_1_1_prototyping_1_1_actuators_1_1_wheel_collider_actuator_1_1_steering_actuator.html',1,'droid::Runtime::Prototyping::Actuators::WheelColliderActuator']]],
-  ['stringaugmentedcamerasensor',['StringAugmentedCameraSensor',['../classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_string_augmented_camera_sensor.html',1,'droid::Runtime::Prototyping::Sensors::Camera']]],
+  ['stringaugmentedcamerasensor',['StringAugmentedCameraSensor',['../classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_camera_1_1_deprecated_1_1_string_augmented_camera_sensor.html',1,'droid::Runtime::Prototyping::Sensors::Camera::Deprecated']]],
   ['stringgameobjectdictionary',['StringGameObjectDictionary',['../classdroid_1_1_runtime_1_1_utilities_1_1_scriptable_objects_1_1_serialisable_dictionary_1_1_string_game_object_dictionary.html',1,'droid::Runtime::Utilities::ScriptableObjects::SerialisableDictionary']]],
   ['stringintdictionary',['StringIntDictionary',['../classdroid_1_1_runtime_1_1_utilities_1_1_scriptable_objects_1_1_serialisable_dictionary_1_1_string_int_dictionary.html',1,'droid::Runtime::Utilities::ScriptableObjects::SerialisableDictionary']]],
   ['stringpoint',['StringPoint',['../structdroid_1_1_runtime_1_1_utilities_1_1_structs_1_1_points_1_1_string_point.html',1,'droid::Runtime::Utilities::Structs::Points']]],
-  ['stringsensor',['StringSensor',['../classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_string_sensor.html',1,'droid::Runtime::Prototyping::Sensors']]],
+  ['stringsensor',['StringSensor',['../classdroid_1_1_runtime_1_1_prototyping_1_1_sensors_1_1_experimental_1_1_string_sensor.html',1,'droid::Runtime::Prototyping::Sensors::Experimental']]],
   ['synchronisecameraproperties',['SynchroniseCameraProperties',['../classdroid_1_1_runtime_1_1_utilities_1_1_game_objects_1_1_neodroid_camera_1_1_synchronise_camera_properties.html',1,'droid::Runtime::Utilities::GameObjects::NeodroidCamera']]]
 ];

@@ -87,6 +87,8 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     public Space3 AngularSpace { get { return this._angular_velocity_space; } }
 
+    public override ISpace ConfigurableValueSpace { get; }
+
     /// <summary>
     /// </summary>
     public override void UpdateCurrentConfiguration() {

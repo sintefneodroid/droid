@@ -45,6 +45,8 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     public float ObservationValue { get { return this._velocity_space; } }
 
+    public override ISpace ConfigurableValueSpace { get; }
+
     /// <summary>
     /// </summary>
     public override void UpdateCurrentConfiguration() {

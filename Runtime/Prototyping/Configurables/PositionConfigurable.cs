@@ -82,6 +82,8 @@ namespace droid.Runtime.Prototyping.Configurables {
       this.ParentEnvironment.UnRegister(this, this._z);
     }
 
+    public override ISpace ConfigurableValueSpace { get; }
+
     /// <summary>
     /// 
     /// </summary>
@@ -93,6 +95,10 @@ namespace droid.Runtime.Prototyping.Configurables {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="simulator_configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration) {
       var pos = this.transform.position;
       if (this._use_environments_space) {

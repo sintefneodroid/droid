@@ -32,11 +32,6 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     /// <summary>
     ///
     /// </summary>
-    public ObservationSpace ObservationSpace { get { return this.observation_space; } }
-
-    /// <summary>
-    ///
-    /// </summary>
     public Vector2 ObservationValue { get { return this._2_d_position; } set { this._2_d_position = value; } }
 
     /// <summary>
@@ -68,10 +63,16 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
                                : vector2_pos;
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override IEnumerable<float> FloatEnumerable {
       get { return new[] {this._2_d_position.x, this._2_d_position.y}; }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override void UpdateObservation() {
       if (this.ParentEnvironment != null && this.observation_space == ObservationSpace.Environment_) {
         this.SetPosition(this.ParentEnvironment.TransformPoint(this.transform.position));
@@ -89,21 +90,23 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
 
     void OnDrawGizmos() {
       if (this.enabled) {
+        var position = this.transform.position;
         switch (this._dim_combination) {
           case Dimension2DCombination.Xy_:
-            Debug.DrawLine(this.transform.position, this.transform.position + Vector3.right * 2, Color.green);
-            Debug.DrawLine(this.transform.position, this.transform.position + Vector3.up * 2, Color.red);
+            Debug.DrawLine(position, position + Vector3.right * 2, Color.green);
+            Debug.DrawLine(position, position + Vector3.up * 2, Color.red);
             break;
           case Dimension2DCombination.Xz_:
-            Debug.DrawLine(this.transform.position, this.transform.position + Vector3.right * 2, Color.green);
-            Debug.DrawLine(this.transform.position, this.transform.position + Vector3.forward * 2, Color.red);
+            Debug.DrawLine(position, position + Vector3.right * 2, Color.green);
+            Debug.DrawLine(position, position + Vector3.forward * 2, Color.red);
             break;
           case Dimension2DCombination.Yz_:
-            Debug.DrawLine(this.transform.position, this.transform.position + Vector3.up * 2, Color.green);
-            Debug.DrawLine(this.transform.position, this.transform.position + Vector3.forward * 2, Color.red);
+
+            Debug.DrawLine(position, position + Vector3.up * 2, Color.green);
+            Debug.DrawLine(position, position + Vector3.forward * 2, Color.red);
             break;
           default: //TODO add the Direction cases
-            Gizmos.DrawIcon(this.transform.position, "console.warnicon", true);
+            Gizmos.DrawIcon(position, "console.warnicon", true);
             break;
         }
       }

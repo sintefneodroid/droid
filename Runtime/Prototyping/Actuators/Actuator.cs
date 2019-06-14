@@ -1,4 +1,5 @@
 ﻿using System;
+using droid.Runtime.Environments;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Utilities.GameObjects;
@@ -17,7 +18,7 @@ namespace droid.Runtime.Prototyping.Actuators {
                                    IActuator {
     /// <summary>
     /// </summary>
-    public IActor ParentActor { get { return this._actor; } set { this._actor = value; } }
+    public IHasRegister<Actuator> Parent { get { return this._parent; } set { this._parent = value; } }
 
     /// <summary>
     /// </summary>
@@ -81,13 +82,13 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentActor = NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, this, true);
+      this.Parent = NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, true);
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void UnRegisterComponent() { this.ParentActor?.UnRegister(this); }
+    protected override void UnRegisterComponent() { this.Parent?.UnRegister(this); }
 
     /// <summary>
     /// </summary>
@@ -104,7 +105,7 @@ namespace droid.Runtime.Prototyping.Actuators {
 
     [Header("References", order = 99)]
     [SerializeField]
-    IActor _actor;
+    IHasRegister<Actuator> _parent;
 
     [Header("General", order = 101)]
     [SerializeField]

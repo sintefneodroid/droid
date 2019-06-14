@@ -39,6 +39,8 @@ namespace droid.Runtime.Prototyping.Configurables {
       this.active.SetActive(true);
     }
 
+    public override ISpace ConfigurableValueSpace { get; }
+
     /// <summary>
     ///
     /// </summary>

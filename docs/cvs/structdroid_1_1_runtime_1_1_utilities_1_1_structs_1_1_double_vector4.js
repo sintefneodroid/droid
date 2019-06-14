@@ -6,8 +6,8 @@ var structdroid_1_1_runtime_1_1_utilities_1_1_structs_1_1_double_vector4 =
     [ "_X", "structdroid_1_1_runtime_1_1_utilities_1_1_structs_1_1_double_vector4.html#acb88e22b2570bd694bd1fd46b3255d02", null ],
     [ "_Y", "structdroid_1_1_runtime_1_1_utilities_1_1_structs_1_1_double_vector4.html#ae7e70d1e3cc552ee32aeae3fe1d080a0", null ],
     [ "_Z", "structdroid_1_1_runtime_1_1_utilities_1_1_structs_1_1_double_vector4.html#a79ce29299e2c40bf92d5c7c5dc24f206", null ],
-    [ "w", "structdroid_1_1_runtime_1_1_utilities_1_1_structs_1_1_double_vector4.html#af6e029260d8cd9ca23a99a931123b8b5", null ],
-    [ "x", "structdroid_1_1_runtime_1_1_utilities_1_1_structs_1_1_double_vector4.html#aac3021abb45f05b2788fe47ba8d043ea", null ],
-    [ "y", "structdroid_1_1_runtime_1_1_utilities_1_1_structs_1_1_double_vector4.html#a74012536187a6dd9c39613fb371b9eb4", null ],
-    [ "z", "structdroid_1_1_runtime_1_1_utilities_1_1_structs_1_1_double_vector4.html#a5e9d325a753aedb944bc8020f732a524", null ]
+    [ "W", "structdroid_1_1_runtime_1_1_utilities_1_1_structs_1_1_double_vector4.html#ae94acaab3337299509258d50fcf75aa8", null ],
+    [ "X", "structdroid_1_1_runtime_1_1_utilities_1_1_structs_1_1_double_vector4.html#a639cbd6d35ddadd03001f3779ed02905", null ],
+    [ "Y", "structdroid_1_1_runtime_1_1_utilities_1_1_structs_1_1_double_vector4.html#af61bd549362cf04b9a83b53ec91d621d", null ],
+    [ "Z", "structdroid_1_1_runtime_1_1_utilities_1_1_structs_1_1_double_vector4.html#ac57d566ddc656678400054bf25202b40", null ]
 ];

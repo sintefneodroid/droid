@@ -31,7 +31,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
     /// </summary>
     protected override void PreSetup() {
       if (this._manager == null) {
-        this._manager = FindObjectOfType<NeodroidManager>();
+        this._manager = FindObjectOfType<AbstractNeodroidManager>();
       }
 
       if (this._camera == null) {

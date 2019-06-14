@@ -54,20 +54,20 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      //this.ParentActor = NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Actuator)this);
+      //this.ParentActor = NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.ParentActor, (Actuator)this);
 
-      this.ParentActor =
-          NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Actuator)this, this._x);
-      this.ParentActor =
-          NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Actuator)this, this._y);
-      this.ParentActor =
-          NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Actuator)this, this._z);
-      this.ParentActor =
-          NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Actuator)this, this._rot_x);
-      this.ParentActor =
-          NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Actuator)this, this._rot_y);
-      this.ParentActor =
-          NeodroidUtilities.RegisterComponent((Actor)this.ParentActor, (Actuator)this, this._rot_z);
+      this.Parent =
+          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._x);
+      this.Parent =
+          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._y);
+      this.Parent =
+          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._z);
+      this.Parent =
+          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._rot_x);
+      this.Parent =
+          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._rot_y);
+      this.Parent =
+          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._rot_z);
     }
 
     /// <summary>

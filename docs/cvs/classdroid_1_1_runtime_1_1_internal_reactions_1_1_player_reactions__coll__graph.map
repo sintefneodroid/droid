@@ -1,6 +1,6 @@
 <map id="droid.Runtime.InternalReactions.PlayerReactions" name="droid.Runtime.InternalReactions.PlayerReactions">
-<area shape="rect" id="node2" href="$classdroid_1_1_runtime_1_1_internal_reactions_1_1_scripted_reactions.html" title="ScriptedReactions" alt="" coords="928,39,1057,65"/>
-<area shape="rect" id="node4" href="$classdroid_1_1_runtime_1_1_managers_1_1_neodroid_manager.html" title="droid.Runtime.Managers.Neodroid\lManager" alt="" coords="599,65,819,106"/>
+<area shape="rect" id="node2" href="$classdroid_1_1_runtime_1_1_internal_reactions_1_1_scripted_reactions.html" title="ScriptedReactions" alt="" coords="925,39,1055,65"/>
+<area shape="rect" id="node4" href="$classdroid_1_1_runtime_1_1_managers_1_1_abstract_neodroid_manager.html" title="droid.Runtime.Managers.Abstract\lNeodroidManager" alt="" coords="599,65,816,106"/>
 <area shape="rect" id="node5" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_manager.html" title="IManager" alt="" coords="304,56,380,83"/>
 <area shape="rect" id="node6" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html" title="IHasRegister\&lt; IEnvironment \&gt;" alt="" coords="5,56,205,83"/>
 <area shape="rect" id="node7" href="$classdroid_1_1_runtime_1_1_messaging_1_1_messages_1_1_reaction.html" title="droid.Runtime.Messaging.\lMessages.Reaction" alt="" coords="255,107,429,149"/>

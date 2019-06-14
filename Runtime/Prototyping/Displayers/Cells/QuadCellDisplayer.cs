@@ -16,6 +16,10 @@ namespace droid.Runtime.Prototyping.Displayers.Cells {
     /// </summary>
     protected override void Setup() { }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="value"></param>
     public override void Display(Double value) { }
 
     public override void Display(float[] values) { }

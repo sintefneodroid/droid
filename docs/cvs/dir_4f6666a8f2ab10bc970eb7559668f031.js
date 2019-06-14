@@ -9,5 +9,8 @@ var dir_4f6666a8f2ab10bc970eb7559668f031 =
     [ "Properties", "dir_a2491733fe50143706812de39333e14b.html", "dir_a2491733fe50143706812de39333e14b" ],
     [ "Prototyping", "dir_1cc06f725c7b7b64081949405aa1e7dc.html", "dir_1cc06f725c7b7b64081949405aa1e7dc" ],
     [ "Shaders", "dir_3b3271d5e4029486768ebbbd03f3282a.html", "dir_3b3271d5e4029486768ebbbd03f3282a" ],
-    [ "Utilities", "dir_d8da6fe6dddc6eeb0ed1e78a961648bc.html", "dir_d8da6fe6dddc6eeb0ed1e78a961648bc" ]
+    [ "Utilities", "dir_d8da6fe6dddc6eeb0ed1e78a961648bc.html", "dir_d8da6fe6dddc6eeb0ed1e78a961648bc" ],
+    [ "NeodroidRuntimeInfo.cs", "_neodroid_runtime_info_8cs.html", [
+      [ "NeodroidRuntimeInfo", "classdroid_1_1_runtime_1_1_neodroid_runtime_info.html", "classdroid_1_1_runtime_1_1_neodroid_runtime_info" ]
+    ] ]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['earlyfixedupdateevent',['EarlyFixedUpdateEvent',['../classdroid_1_1_runtime_1_1_managers_1_1_neodroid_manager.html#a310c5f0a9c4458e12d33718fcd4f22f8',1,'droid::Runtime::Managers::NeodroidManager']]],
-  ['earlyupdateevent',['EarlyUpdateEvent',['../classdroid_1_1_runtime_1_1_managers_1_1_neodroid_manager.html#ace0fea44f7bf973e8cc9da2ba75b3948',1,'droid::Runtime::Managers::NeodroidManager']]]
+  ['earlyfixedupdateevent',['EarlyFixedUpdateEvent',['../classdroid_1_1_runtime_1_1_managers_1_1_abstract_neodroid_manager.html#a5bc9eaf5c899fb8d25b020b5d733da4c',1,'droid::Runtime::Managers::AbstractNeodroidManager']]],
+  ['earlyupdateevent',['EarlyUpdateEvent',['../classdroid_1_1_runtime_1_1_managers_1_1_abstract_neodroid_manager.html#aa7692133b8406c08c03990e65570cf77',1,'droid::Runtime::Managers::AbstractNeodroidManager']]]
 ];

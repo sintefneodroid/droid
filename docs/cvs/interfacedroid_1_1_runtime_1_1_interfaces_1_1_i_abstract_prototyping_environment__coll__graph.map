@@ -1,0 +1,8 @@
+<map id="droid.Runtime.Interfaces.IAbstractPrototypingEnvironment" name="droid.Runtime.Interfaces.IAbstractPrototypingEnvironment">
+<area shape="rect" id="node2" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_environment.html" title="IEnvironment" alt="" coords="203,5,301,32"/>
+<area shape="rect" id="node3" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_registerable.html" title="IRegisterable" alt="" coords="5,5,104,32"/>
+<area shape="rect" id="node4" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html" title="IHasRegister\&lt; IObserver \&gt;" alt="" coords="162,56,342,83"/>
+<area shape="rect" id="node5" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html" title="IHasRegister\&lt; IConfigurable \&gt;" alt="" coords="152,107,352,133"/>
+<area shape="rect" id="node6" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html" title="IHasRegister\&lt; IEnvironment\lListener \&gt;" alt="" coords="158,158,346,199"/>
+<area shape="rect" id="node7" href="$interfacedroid_1_1_runtime_1_1_interfaces_1_1_i_has_register.html" title="IHasRegister\&lt; IDisplayer \&gt;" alt="" coords="161,224,343,251"/>
+</map>
