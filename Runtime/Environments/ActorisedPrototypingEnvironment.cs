@@ -222,7 +222,7 @@ namespace droid.Runtime.Environments {
 
         if (this._Simulation_Manager.SimulatorConfiguration.AlwaysSerialiseUnobservables
             || this._ReplyWithDescriptionThisStep) {
-          state.Unobservables = new Unobservables(ref this._Tracked_Rigid_Bodies, ref this._Poses);
+          state.Unobservables = new Unobservables(ref this._tracked_rigid_bodies, ref this._Poses);
         }
 
         if (this._Simulation_Manager.SimulatorConfiguration.AlwaysSerialiseIndividualObservables
