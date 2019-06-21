@@ -7,7 +7,7 @@ namespace droid.Runtime.Interfaces {
   /// <summary>
   /// </summary>
   public interface IAbstractPrototypingEnvironment : IEnvironment,
-                                                     IHasRegister<IObserver>,
+                                                     IHasRegister<ISensor>,
                                                      IHasRegister<IConfigurable>,
                                                      IHasRegister<IEnvironmentListener>,
                                                      IHasRegister<IDisplayer> {

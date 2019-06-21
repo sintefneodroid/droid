@@ -35,11 +35,11 @@ namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath + "Camera" + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath + "EncodedCamera" + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [DisallowMultipleComponent]
   [RequireComponent(typeof(UnityEngine.Camera))]
-  public class CameraSensor : Sensor,
+  public class EncodedCameraSensor : Sensor,
                               IHasByteArray {
     /// <summary>
     /// </summary>
@@ -80,12 +80,18 @@ namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
     [field : Header("Observation", order = 103)]
     public byte[] Bytes { get; private set; } = { };
 
+    /// <summary>
+    ///
+    /// </summary>
     public GraphicsFormat DataType {
       get {
         return GraphicsFormat.None; //this.imageFormat;
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public int[] Shape {
       get {
         var channels = 4;
@@ -97,6 +103,10 @@ namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     public string ArrayEncoding {
       get {
         switch (this.imageFormat) {

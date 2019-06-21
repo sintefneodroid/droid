@@ -656,7 +656,7 @@ namespace droid.Runtime.Managers {
                                         describe || this.Configuration.AlwaysSerialiseUnobservables,
                                         serialise_individual_observables :
                                         describe || this.Configuration.AlwaysSerialiseIndividualObservables,
-                                        serialise_aggregated_float_array : describe
+                                        do_serialise_observables : describe
                                                                            || this._configuration
                                                                                   .AlwaysSerialiseAggregatedFloatArray);
         #if NEODROID_DEBUG

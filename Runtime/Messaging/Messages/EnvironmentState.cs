@@ -5,7 +5,6 @@ namespace droid.Runtime.Messaging.Messages {
   [Serializable]
   public class EnvironmentState {
     public EnvironmentState(string environment_name,
-                            float total_energy_spent_since_reset,
                             int frame_number,
                             float time,
                             float signal,
@@ -18,7 +17,6 @@ namespace droid.Runtime.Messaging.Messages {
       this.DebugMessage = debug_message;
       this.TerminationReason = termination_reason;
       this.EnvironmentName = environment_name;
-      this.TotalEnergySpentSinceReset = total_energy_spent_since_reset;
       this.Signal = signal;
       this.FrameNumber = frame_number;
       this.Time = time;
@@ -32,7 +30,6 @@ namespace droid.Runtime.Messaging.Messages {
 
     public string EnvironmentName { get; }
 
-    public float TotalEnergySpentSinceReset { get; }
 
     /// <summary>
     /// </summary>
@@ -50,9 +47,7 @@ namespace droid.Runtime.Messaging.Messages {
     /// </summary>
     public string DebugMessage { get; }
 
-    /// <summary>
-    /// </summary>
-    public IObserver[] Observers { get; set; }
+
 
     /// <summary>
     /// </summary>

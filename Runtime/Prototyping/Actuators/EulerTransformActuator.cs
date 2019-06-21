@@ -37,7 +37,7 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName { get { return "Transform"; } }
+    public override string PrototypingTypeName { get { return "EulerTransform"; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -67,6 +67,18 @@ namespace droid.Runtime.Prototyping.Actuators {
           NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._rot_y);
       this.Parent =
           NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._rot_z);
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    protected override void UnRegisterComponent() {
+      this.Parent?.UnRegister(this, this._x);
+      this.Parent?.UnRegister(this, this._y);
+      this.Parent?.UnRegister(this, this._z);
+      this.Parent?.UnRegister(this, this._rot_x);
+      this.Parent?.UnRegister(this, this._rot_y);
+      this.Parent?.UnRegister(this, this._rot_z);
     }
 
     /// <inheritdoc />

@@ -31,7 +31,7 @@ namespace droid.Runtime.Environments {
       this.Displayers.Clear();
       this.Configurables.Clear();
       this.Actuators.Clear();
-      this.Observers.Clear();
+      this.Sensors.Clear();
       this.Listeners.Clear();
     }
 
@@ -73,8 +73,6 @@ namespace droid.Runtime.Environments {
       return new Reaction(rp, this._Sample_Motions.ToArray(), null, null, null, "", this.Identifier);
     }
 
-
-
     #endregion
 
     #region PublicMethods
@@ -83,9 +81,7 @@ namespace droid.Runtime.Environments {
 
     /// <summary>
     /// </summary>
-    public Dictionary<string, IActuator> Actuators { get; } = new Dictionary<string, IActuator>();
-
-
+    public SortedDictionary<string, IActuator> Actuators { get; } = new SortedDictionary<string, IActuator>();
 
     /// <inheritdoc />
     /// <summary>
@@ -93,8 +89,6 @@ namespace droid.Runtime.Environments {
     public override string PrototypingTypeName { get { return "PrototypingEnvironment"; } }
 
     #endregion
-
-
 
     #region Registration
 
@@ -143,11 +137,6 @@ namespace droid.Runtime.Environments {
     /// <returns></returns>
     public override EnvironmentState CollectState() {
       lock (this._Reaction_Lock) {
-        if (this.Actuators != null) {
-          foreach (var m in this.Actuators.Values) {
-            this._Energy_Spent += m.GetEnergySpend();
-          }
-        }
 
         var signal = 0f;
 
@@ -172,15 +161,18 @@ namespace droid.Runtime.Environments {
             episode_length = this._objective_function.EpisodeLength;
           }
 
-          var virtual_actors = new Dictionary<String, IActor>();
-          virtual_actors.Add("All", new VirtualActor(this.Actuators));
+          var virtual_actors =
+              new SortedDictionary<String, IActor> {{"All", new VirtualActor(this.Actuators)}};
 
-          description =
-              new EnvironmentDescription(episode_length, virtual_actors, this.Configurables, threshold);
+          description = new EnvironmentDescription(episode_length,
+                                                   virtual_actors,
+                                                   this.Configurables,
+                                                   this.Sensors,
+                                                   threshold);
         }
 
         this._Observables.Clear();
-        foreach (var item in this.Observers) {
+        foreach (var item in this.Sensors) {
           if (item.Value != null) {
             if (item.Value.FloatEnumerable != null) {
               this._Observables.AddRange(item.Value.FloatEnumerable);
@@ -205,7 +197,6 @@ namespace droid.Runtime.Environments {
         var time = Time.time - this._Lastest_Reset_Time;
 
         var state = new EnvironmentState(this.Identifier,
-                                         this._Energy_Spent,
                                          this.CurrentFrameNumber,
                                          time,
                                          signal,
@@ -219,10 +210,6 @@ namespace droid.Runtime.Environments {
           state.Unobservables = new Unobservables(ref this._tracked_rigid_bodies, ref this._Poses);
         }
 
-        if (this._Simulation_Manager.SimulatorConfiguration.AlwaysSerialiseIndividualObservables
-            || this._ReplyWithDescriptionThisStep) {
-          state.Observers = this.Observers.Values.ToArray();
-        }
 
         return state;
       }
@@ -234,7 +221,7 @@ namespace droid.Runtime.Environments {
     /// <param name="recipient"></param>
     public override void ObservationsString(DataPoller recipient) {
       recipient.PollData(string.Join("\n\n",
-                                     this.Observers.Values.Select(e => $"{e.Identifier}:\n{e.ToString()}")));
+                                     this.Sensors.Values.Select(e => $"{e.Identifier}:\n{e.ToString()}")));
     }
 
     /// <summary>

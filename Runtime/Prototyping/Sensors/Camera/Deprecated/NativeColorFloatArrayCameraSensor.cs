@@ -8,6 +8,9 @@ using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
+  /// <summary>
+  ///
+  /// </summary>
   [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
                     + "NativeColorArrayCamera"
                     + SensorComponentMenuPath._Postfix)]
@@ -34,6 +37,9 @@ namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
     /// </summary>
     public Space1[] ObservationSpace { get { return new[] {Space1.ZeroOne}; } }
 
+    /// <summary>
+    ///
+    /// </summary>
     protected override void PreSetup() {
       if (this._manager == null) {
         this._manager = FindObjectOfType<AbstractNeodroidManager>();
@@ -164,18 +170,21 @@ namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override String PrototypingTypeName { get { return ""; } }
 
     public override IEnumerable<float> FloatEnumerable {
       get { return null; } //this.ObservationArray; }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override void UpdateObservation() {
       this._grab = true;
       if (this._manager?.SimulatorConfiguration?.SimulationType != SimulationType.Frame_dependent_) {
-        #if NEODROID_DEBUG
-        #endif
-        Debug.Log($"{this._manager?.SimulatorConfiguration?.SimulationType}");
         if (Application.isPlaying) {
           this._camera.Render();
         }

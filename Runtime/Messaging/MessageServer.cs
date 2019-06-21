@@ -5,6 +5,7 @@ using AsyncIO;
 using droid.Runtime.Messaging.FBS;
 using droid.Runtime.Messaging.Messages;
 using FlatBuffers;
+using Neodroid.FBS.Reaction;
 using NetMQ;
 using NetMQ.Sockets;
 using UnityEngine;
@@ -223,13 +224,13 @@ namespace droid.Runtime.Messaging {
     /// <param name="environment_states"></param>
     /// <param name="do_serialise_unobservables"></param>
     /// <param name="serialise_individual_observables"></param>
-    /// <param name="serialise_aggregated_float_array"></param>
+    /// <param name="do_serialise_observables"></param>
     /// <param name="simulator_configuration_message"></param>
     /// <param name="api_version"></param>
     public void SendStates(EnvironmentState[] environment_states,
                            bool do_serialise_unobservables = false,
                            bool serialise_individual_observables = false,
-                           bool serialise_aggregated_float_array = false,
+                           bool do_serialise_observables = false,
                            SimulatorConfigurationMessage simulator_configuration_message = null,
                            string api_version = _api_version) {
       lock (this._thread_lock) {
@@ -269,12 +270,10 @@ namespace droid.Runtime.Messaging {
         this._byte_buffer = FbsStateUtilities.Serialise(environment_states,
                                                         do_serialise_unobservables :
                                                         do_serialise_unobservables,
-                                                        serialise_individual_observables :
-                                                        serialise_individual_observables,
                                                         simulator_configuration :
                                                         simulator_configuration_message,
-                                                        do_serialise_aggregated_float_array :
-                                                        serialise_aggregated_float_array,
+                                                        do_serialise_observables :
+                                                        do_serialise_observables,
                                                         api_version : api_version);
         this._socket.SendFrame(this._byte_buffer);
         this._waiting_for_main_loop_to_send = false;

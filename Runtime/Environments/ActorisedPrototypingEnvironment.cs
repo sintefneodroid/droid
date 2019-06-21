@@ -22,7 +22,7 @@ namespace droid.Runtime.Environments {
       this.Displayers.Clear();
       this.Configurables.Clear();
       this.Actors.Clear();
-      this.Observers.Clear();
+      this.Sensors.Clear();
       this.Listeners.Clear();
     }
 
@@ -77,7 +77,7 @@ namespace droid.Runtime.Environments {
 
     /// <summary>
     /// </summary>
-    public Dictionary<string, IActor> Actors { get; } = new Dictionary<string, IActor>();
+    public SortedDictionary<string, IActor> Actors { get; } = new SortedDictionary<string, IActor>();
 
     #endregion
 
@@ -148,15 +148,6 @@ namespace droid.Runtime.Environments {
     /// <returns></returns>
     public override EnvironmentState CollectState() {
       lock (this._Reaction_Lock) {
-        if (this.Actors != null) {
-          foreach (var a in this.Actors.Values) {
-            if (a.Actuators != null) {
-              foreach (var m in a.Actuators.Values) {
-                this._Energy_Spent += m.GetEnergySpend();
-              }
-            }
-          }
-        }
 
         var signal = 0f;
 
@@ -182,11 +173,12 @@ namespace droid.Runtime.Environments {
           }
 
           description =
-              new EnvironmentDescription(episode_length, this.Actors, this.Configurables, threshold);
+              new EnvironmentDescription(episode_length, this.Actors, this.Configurables, this.Sensors,
+              threshold);
         }
 
         this._Observables.Clear();
-        foreach (var item in this.Observers) {
+        foreach (var item in this.Sensors) {
           if (item.Value != null) {
             if (item.Value.FloatEnumerable != null) {
               this._Observables.AddRange(item.Value.FloatEnumerable);
@@ -211,7 +203,6 @@ namespace droid.Runtime.Environments {
         var time = Time.time - this._Lastest_Reset_Time;
 
         var state = new EnvironmentState(this.Identifier,
-                                         this._Energy_Spent,
                                          this.CurrentFrameNumber,
                                          time,
                                          signal,
@@ -225,10 +216,6 @@ namespace droid.Runtime.Environments {
           state.Unobservables = new Unobservables(ref this._tracked_rigid_bodies, ref this._Poses);
         }
 
-        if (this._Simulation_Manager.SimulatorConfiguration.AlwaysSerialiseIndividualObservables
-            || this._ReplyWithDescriptionThisStep) {
-          state.Observers = this.Observers.Values.ToArray();
-        }
 
         return state;
       }
@@ -240,7 +227,7 @@ namespace droid.Runtime.Environments {
     /// <param name="recipient"></param>
     public override void ObservationsString(DataPoller recipient) {
       recipient.PollData(string.Join("\n\n",
-                                     this.Observers.Values.Select(e => $"{e.Identifier}:\n{e.ToString()}")));
+                                     this.Sensors.Values.Select(e => $"{e.Identifier}:\n{e.ToString()}")));
     }
 
     /// <summary>
@@ -307,9 +294,6 @@ namespace droid.Runtime.Environments {
       }
     }
 
-    #region EnvironmentStateSetters
-
-    #endregion
 
     #endregion
   }

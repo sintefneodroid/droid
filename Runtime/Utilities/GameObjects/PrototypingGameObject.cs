@@ -57,6 +57,9 @@ namespace droid.Runtime.Utilities.GameObjects {
     /// </summary>
     protected void Start() { this.ReRegister(); }
 
+    /// <summary>
+    ///
+    /// </summary>
     void ReRegister() {
       try {
         if (this.enabled && this.isActiveAndEnabled) {

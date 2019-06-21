@@ -32,7 +32,7 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <summary>
     ///
     /// </summary>
-    public override string PrototypingTypeName { get { return "Transform" + this._Axis_Of_Motion; } }
+    public override string PrototypingTypeName { get { return "EulerTransform" + this._Axis_Of_Motion; } }
 
     /// <inheritdoc />
     /// <summary>

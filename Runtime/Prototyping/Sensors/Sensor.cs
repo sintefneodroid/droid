@@ -14,7 +14,7 @@ namespace droid.Runtime.Prototyping.Sensors {
   [ExecuteInEditMode]
   [Serializable]
   public abstract class Sensor : PrototypingGameObject,
-                                 IObserver {
+                                 ISensor {
     /// <summary>
     /// </summary>
     public AbstractPrototypingEnvironment ParentEnvironment {

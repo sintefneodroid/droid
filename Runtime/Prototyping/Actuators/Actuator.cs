@@ -6,6 +6,7 @@ using droid.Runtime.Utilities.GameObjects;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
+using Object = System.Object;
 
 namespace droid.Runtime.Prototyping.Actuators {
   /// <inheritdoc cref="PrototypingGameObject" />
@@ -41,7 +42,8 @@ namespace droid.Runtime.Prototyping.Actuators {
       get { return this._motion_value_space; }
       set { this._motion_value_space = value; }
     }
-
+    
+    
     /// <summary>
     /// </summary>
     /// <param name="motion"></param>
@@ -82,13 +84,20 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
+      this._overriden = false;
       this.Parent = NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, true);
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void UnRegisterComponent() { this.Parent?.UnRegister(this); }
+    protected override void UnRegisterComponent() {
+      if (this._overriden) {
+        throw new NotImplementedException();
+      }
+      this._overriden = true;
+      this.Parent?.UnRegister(this);
+    }
 
     /// <summary>
     /// </summary>
@@ -114,6 +123,7 @@ namespace droid.Runtime.Prototyping.Actuators {
     [SerializeField] float _energy_spend_since_reset;
 
     [SerializeField] float _energy_cost;
+    bool _overriden = false;
 
     #endregion
   }

@@ -13,7 +13,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
                     + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [RequireComponent(typeof(UnityEngine.Camera))]
-  public class StringAugmentedCameraSensor : CameraSensor,
+  public class StringAugmentedEncodedCameraSensor : EncodedCameraSensor,
                                              IHasString {
     const string _color_identifier = "Colors";
 
@@ -23,11 +23,11 @@ namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
     /// </summary>
     [Header("Observation", order = 103)]
     [SerializeField]
-    protected string serialisedString;
+    protected string serialised_string;
 
     /// <summary>
     /// </summary>
-    public String ObservationValue { get { return this.serialisedString; } }
+    public String ObservationValue { get { return this.serialised_string; } }
 
     /// <summary>
     /// 
@@ -65,7 +65,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
     /// </summary>
     public override void UpdateObservation() {
       base.UpdateObservation();
-      this.serialisedString = "";
+      this.serialised_string = "";
     }
   }
 }
