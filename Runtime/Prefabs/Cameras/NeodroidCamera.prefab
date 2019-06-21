@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 2125651880926414503}
   - component: {fileID: 4042856865019220879}
   - component: {fileID: 8164737187736122957}
-  - component: {fileID: 5201764524148834223}
   - component: {fileID: 5394514792230959452}
   - component: {fileID: 772095444812002754}
   - component: {fileID: 7867004361966141453}
+  - component: {fileID: 6766741649957696238}
   m_Layer: 2
   m_Name: Depth360
   m_TagString: Untagged
@@ -108,29 +108,6 @@ MonoBehaviour:
   _sync_gate_fit: 1
   _sync_focal_length: 1
   _camera: {fileID: 4042856865019220879}
---- !u!114 &5201764524148834223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 555281772644808486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96d2b2d8cb1664b2c9870ffd997b2f1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _Custom_Name: RGB
-  _debugging: 0
-  _disables_children: 0
-  _editor_reregistering: 1
-  _unregister_at_disable: 0
-  _environment: {fileID: 0}
-  _normalise_observation: 0
-  _Camera: {fileID: 4042856865019220879}
-  imageFormat: 1
-  jpegQuality: 75
-  disable_encoding: 0
 --- !u!114 &5394514792230959452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +156,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _replace_render_type: 
   _replacement_shader: {fileID: 4800000, guid: ecaae557ba4c4fc1a80e878b62be711d, type: 3}
+--- !u!114 &6766741649957696238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555281772644808486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fce5be366194edf81ec206b319817d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Custom_Name: 
+  _debugging: 0
+  _disables_children: 0
+  _editor_reregistering: 1
+  _unregister_at_disable: 0
+  _environment: {fileID: 0}
+  _normalise_observation: 0
+  _camera: {fileID: 0}
+  _texture: {fileID: 0}
 --- !u!1 &560467474456037829
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,7 +190,7 @@ GameObject:
   - component: {fileID: 7497737142805118209}
   - component: {fileID: 380070056694295161}
   - component: {fileID: 7695131627743389655}
-  - component: {fileID: 1970134112}
+  - component: {fileID: 1742432960864185740}
   m_Layer: 2
   m_Name: Tangents
   m_TagString: Untagged
@@ -212,7 +210,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8956998344135301341}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &4074453690729210485
 Camera:
@@ -334,7 +332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _replace_render_type: 
   _replacement_shader: {fileID: 4800000, guid: f7ec6ef2b94336a8f8c74e04ffd808a5, type: 3}
---- !u!114 &1970134112
+--- !u!114 &1742432960864185740
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -343,7 +341,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 560467474456037829}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bf5add133b4f4c399e63afce43179bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fce5be366194edf81ec206b319817d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
@@ -353,7 +351,6 @@ MonoBehaviour:
   _unregister_at_disable: 0
   _environment: {fileID: 0}
   _normalise_observation: 0
-  _black_white: 0
   _camera: {fileID: 0}
   _texture: {fileID: 0}
 --- !u!1 &761843831046814012
@@ -367,9 +364,8 @@ GameObject:
   - component: {fileID: 4293935796784984133}
   - component: {fileID: 5051394489787786987}
   - component: {fileID: 7782879719068724104}
-  - component: {fileID: 8671715215210447208}
   - component: {fileID: 5306578391102922520}
-  - component: {fileID: 880311590}
+  - component: {fileID: 3581204139143637784}
   m_Layer: 2
   m_Name: Tag
   m_TagString: Untagged
@@ -389,7 +385,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8956998344135301341}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &5051394489787786987
 Camera:
@@ -481,29 +477,6 @@ MonoBehaviour:
   _sync_gate_fit: 1
   _sync_focal_length: 1
   _camera: {fileID: 5051394489787786987}
---- !u!114 &8671715215210447208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 761843831046814012}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1003e9e65c5a4495a80b404ca321593b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _Custom_Name: 
-  _debugging: 0
-  _disables_children: 0
-  _editor_reregistering: 1
-  _unregister_at_disable: 0
-  _environment: {fileID: 0}
-  _normalise_observation: 0
-  _observation_value: 'a: RGBA(1.000, 0.000, 0.000, 1.000), b: RGBA(0.000, 1.000,
-    0.000, 1.000), c: RGBA(0.000, 0.001, 1.000, 1.000), CameraBody: RGBA(0.314, 0.322,
-    0.929, 1.000), Untagged: RGBA(0.333, 0.867, 0.576, 1.000)'
-  _segmenter: {fileID: 5306578391102922520}
 --- !u!114 &5306578391102922520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -524,7 +497,7 @@ MonoBehaviour:
     type: 2}
   _Replace_Untagged_Color: 1
   _Untagged_Color: {r: 0, g: 0, b: 0, a: 1}
---- !u!114 &880311590
+--- !u!114 &3581204139143637784
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -533,7 +506,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 761843831046814012}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bf5add133b4f4c399e63afce43179bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fce5be366194edf81ec206b319817d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
@@ -543,7 +516,6 @@ MonoBehaviour:
   _unregister_at_disable: 0
   _environment: {fileID: 0}
   _normalise_observation: 0
-  _black_white: 0
   _camera: {fileID: 0}
   _texture: {fileID: 0}
 --- !u!1 &1062617331000895241
@@ -778,7 +750,7 @@ Transform:
   - {fileID: 198898113011094675}
   - {fileID: 2125651880926414503}
   m_Father: {fileID: 8956998344135301341}
-  m_RootOrder: 21
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1528727058868257064
 GameObject:
@@ -793,7 +765,7 @@ GameObject:
   - component: {fileID: 1528727058868257043}
   - component: {fileID: 1528727058868257044}
   - component: {fileID: 1528727058868257045}
-  - component: {fileID: 1734544737}
+  - component: {fileID: 8043224994231153991}
   m_Layer: 2
   m_Name: OcclusionMask
   m_TagString: Untagged
@@ -871,10 +843,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 5858083470835474262}
-  - {fileID: 9067738391014373859}
-  - {fileID: 1528727058868257043}
-  - {fileID: 9067191241328514203}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 0
@@ -919,7 +891,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _replace_render_type: 
   _replacement_shader: {fileID: 4800000, guid: b770c7b1542a812fcb2332b249713b12, type: 3}
---- !u!114 &1734544737
+--- !u!114 &8043224994231153991
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -928,7 +900,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1528727058868257064}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bf5add133b4f4c399e63afce43179bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fce5be366194edf81ec206b319817d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
@@ -938,7 +910,6 @@ MonoBehaviour:
   _unregister_at_disable: 0
   _environment: {fileID: 0}
   _normalise_observation: 0
-  _black_white: 0
   _camera: {fileID: 1528727058868257042}
   _texture: {fileID: 0}
 --- !u!1 &1650795372616834621
@@ -954,7 +925,7 @@ GameObject:
   - component: {fileID: 5858083470835474262}
   - component: {fileID: 7726214271362722989}
   - component: {fileID: 5174174409234125835}
-  - component: {fileID: 1528727060416185079}
+  - component: {fileID: 8533207482965459922}
   m_Layer: 2
   m_Name: ObjectSpace
   m_TagString: Untagged
@@ -974,7 +945,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8956998344135301341}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &4343724218787345760
 Camera:
@@ -1032,10 +1003,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 5858083470835474262}
-  - {fileID: 9067738391014373859}
-  - {fileID: 1528727058868257043}
-  - {fileID: 9067191241328514203}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 0
@@ -1080,7 +1051,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _replace_render_type: 
   _replacement_shader: {fileID: 4800000, guid: e0709f4aa78e4226abc13a3c2116a306, type: 3}
---- !u!114 &1528727060416185079
+--- !u!114 &8533207482965459922
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1089,7 +1060,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1650795372616834621}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2a9ad1dd275438d95094ed0f6b885c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fce5be366194edf81ec206b319817d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
@@ -1113,7 +1084,7 @@ GameObject:
   - component: {fileID: 6556453964699370402}
   - component: {fileID: 8220433442214820162}
   - component: {fileID: 2966012784419651180}
-  - component: {fileID: 191672938}
+  - component: {fileID: 6854099043072702622}
   m_Layer: 2
   m_Name: 270
   m_TagString: Untagged
@@ -1242,7 +1213,7 @@ MonoBehaviour:
   _ignore_infrared_if_empty: 1
   _lights_to_ignore:
   - {fileID: 9061319952716675367}
---- !u!114 &191672938
+--- !u!114 &6854099043072702622
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1251,7 +1222,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1804264047114910195}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bf5add133b4f4c399e63afce43179bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fce5be366194edf81ec206b319817d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
@@ -1261,7 +1232,6 @@ MonoBehaviour:
   _unregister_at_disable: 0
   _environment: {fileID: 0}
   _normalise_observation: 0
-  _black_white: 0
   _camera: {fileID: 0}
   _texture: {fileID: 0}
 --- !u!1 &2765739856555304696
@@ -1478,7 +1448,7 @@ GameObject:
   - component: {fileID: 820168553921213373}
   - component: {fileID: 5267640086067651881}
   - component: {fileID: 8953912316991298492}
-  - component: {fileID: 107426186}
+  - component: {fileID: 9185480558025689933}
   m_Layer: 2
   m_Name: Offset
   m_TagString: Untagged
@@ -1590,7 +1560,7 @@ MonoBehaviour:
   _ignore_infrared_if_empty: 1
   _lights_to_ignore:
   - {fileID: 9061319952716675367}
---- !u!114 &107426186
+--- !u!114 &9185480558025689933
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1599,7 +1569,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2996673771288281310}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bf5add133b4f4c399e63afce43179bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fce5be366194edf81ec206b319817d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
@@ -1609,7 +1579,6 @@ MonoBehaviour:
   _unregister_at_disable: 0
   _environment: {fileID: 0}
   _normalise_observation: 0
-  _black_white: 0
   _camera: {fileID: 0}
   _texture: {fileID: 0}
 --- !u!1 &3100465753457093906
@@ -1825,9 +1794,9 @@ GameObject:
   - component: {fileID: 198898113011094675}
   - component: {fileID: 1624795383747980393}
   - component: {fileID: 1220231432200472012}
-  - component: {fileID: 3953812613027034114}
   - component: {fileID: 9024018881244929625}
   - component: {fileID: 8735261634530579661}
+  - component: {fileID: 4475719841817322262}
   m_Layer: 2
   m_Name: RGB360
   m_TagString: Untagged
@@ -1921,29 +1890,6 @@ MonoBehaviour:
   _sync_gate_fit: 1
   _sync_focal_length: 1
   _camera: {fileID: 1624795383747980393}
---- !u!114 &3953812613027034114
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4679155554420493661}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96d2b2d8cb1664b2c9870ffd997b2f1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _Custom_Name: RGB
-  _debugging: 0
-  _disables_children: 0
-  _editor_reregistering: 1
-  _unregister_at_disable: 0
-  _environment: {fileID: 0}
-  _normalise_observation: 0
-  _Camera: {fileID: 1624795383747980393}
-  imageFormat: 1
-  jpegQuality: 75
-  disable_encoding: 0
 --- !u!114 &9024018881244929625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1978,6 +1924,27 @@ MonoBehaviour:
   _texture: {fileID: 0}
   renderStereo: 1
   stereoSeparation: 0.064
+--- !u!114 &4475719841817322262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4679155554420493661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fce5be366194edf81ec206b319817d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Custom_Name: 
+  _debugging: 0
+  _disables_children: 0
+  _editor_reregistering: 1
+  _unregister_at_disable: 0
+  _environment: {fileID: 0}
+  _normalise_observation: 0
+  _camera: {fileID: 0}
+  _texture: {fileID: 0}
 --- !u!1 &6178461646353508841
 GameObject:
   m_ObjectHideFlags: 0
@@ -1991,7 +1958,7 @@ GameObject:
   - component: {fileID: 4093526257781573322}
   - component: {fileID: 6023131450115659877}
   - component: {fileID: 1292432369031266446}
-  - component: {fileID: 1061376915}
+  - component: {fileID: 8602397550792222561}
   m_Layer: 2
   m_Name: UVs
   m_TagString: Untagged
@@ -2011,7 +1978,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8956998344135301341}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &5914161206378883145
 Camera:
@@ -2133,7 +2100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _replace_render_type: 
   _replacement_shader: {fileID: 4800000, guid: 333867bbd39e226998d1bfd376f7ea56, type: 3}
---- !u!114 &1061376915
+--- !u!114 &8602397550792222561
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2142,7 +2109,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6178461646353508841}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bf5add133b4f4c399e63afce43179bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fce5be366194edf81ec206b319817d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
@@ -2152,7 +2119,6 @@ MonoBehaviour:
   _unregister_at_disable: 0
   _environment: {fileID: 0}
   _normalise_observation: 0
-  _black_white: 0
   _camera: {fileID: 0}
   _texture: {fileID: 0}
 --- !u!1 &7613832589404968928
@@ -2166,9 +2132,8 @@ GameObject:
   - component: {fileID: 2182231832007790607}
   - component: {fileID: 3184323363079609984}
   - component: {fileID: 7297530299699051104}
-  - component: {fileID: 7019245981252441147}
   - component: {fileID: 558276101866426549}
-  - component: {fileID: 267291007}
+  - component: {fileID: 9154804966245072272}
   m_Layer: 2
   m_Name: Layer
   m_TagString: Untagged
@@ -2188,7 +2153,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8956998344135301341}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &3184323363079609984
 Camera:
@@ -2280,29 +2245,6 @@ MonoBehaviour:
   _sync_gate_fit: 1
   _sync_focal_length: 1
   _camera: {fileID: 3184323363079609984}
---- !u!114 &7019245981252441147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7613832589404968928}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1003e9e65c5a4495a80b404ca321593b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _Custom_Name: 
-  _debugging: 0
-  _disables_children: 0
-  _editor_reregistering: 1
-  _unregister_at_disable: 0
-  _environment: {fileID: 0}
-  _normalise_observation: 0
-  _observation_value: 'a: RGBA(1.000, 0.000, 0.000, 1.000), b: RGBA(0.000, 1.000,
-    0.000, 1.000), c: RGBA(0.000, 0.001, 1.000, 1.000), Ignore Raycast: RGBA(1.000,
-    1.000, 0.700, 1.000), Default: RGBA(1.000, 1.000, 1.000, 1.000)'
-  _segmenter: {fileID: 558276101866426549}
 --- !u!114 &558276101866426549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2323,7 +2265,7 @@ MonoBehaviour:
     type: 2}
   _Replace_Untagged_Color: 1
   _Untagged_Color: {r: 0, g: 0, b: 0, a: 1}
---- !u!114 &267291007
+--- !u!114 &9154804966245072272
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2332,7 +2274,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7613832589404968928}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bf5add133b4f4c399e63afce43179bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fce5be366194edf81ec206b319817d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
@@ -2342,7 +2284,6 @@ MonoBehaviour:
   _unregister_at_disable: 0
   _environment: {fileID: 0}
   _normalise_observation: 0
-  _black_white: 0
   _camera: {fileID: 0}
   _texture: {fileID: 0}
 --- !u!1 &8953438052584087811
@@ -2468,6 +2409,7 @@ Transform:
   - {fileID: 8953912316715161260}
   - {fileID: 8953912315359767098}
   - {fileID: 7923256381249460920}
+  - {fileID: 4107714061836288019}
   - {fileID: 8956953563177976219}
   - {fileID: 8958335074575024093}
   - {fileID: 8958567879889452077}
@@ -2484,7 +2426,6 @@ Transform:
   - {fileID: 8953912315871983412}
   - {fileID: 8953912315460739085}
   - {fileID: 8956624866575340015}
-  - {fileID: 4107714061836288019}
   - {fileID: 1528727058868257047}
   m_Father: {fileID: 8956537991453593153}
   m_RootOrder: 0
@@ -2501,7 +2442,7 @@ GameObject:
   - component: {fileID: 8953912315359767102}
   - component: {fileID: 8953912315359767103}
   - component: {fileID: 8953912315359767101}
-  - component: {fileID: 1171658901}
+  - component: {fileID: 7541828347438657559}
   m_Layer: 2
   m_Name: 180
   m_TagString: Untagged
@@ -2630,7 +2571,7 @@ MonoBehaviour:
   _ignore_infrared_if_empty: 1
   _lights_to_ignore:
   - {fileID: 9061319952716675367}
---- !u!114 &1171658901
+--- !u!114 &7541828347438657559
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2639,7 +2580,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8953912315359767099}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bf5add133b4f4c399e63afce43179bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fce5be366194edf81ec206b319817d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
@@ -2649,7 +2590,6 @@ MonoBehaviour:
   _unregister_at_disable: 0
   _environment: {fileID: 0}
   _normalise_observation: 0
-  _black_white: 0
   _camera: {fileID: 0}
   _texture: {fileID: 0}
 --- !u!1 &8953912315460739082
@@ -2664,7 +2604,7 @@ GameObject:
   - component: {fileID: 8953912315460739089}
   - component: {fileID: 8953912315460739086}
   - component: {fileID: 8953912315460739084}
-  - component: {fileID: 432536191}
+  - component: {fileID: 2127445625596826555}
   m_Layer: 2
   m_Name: CompressedDepth
   m_TagString: Untagged
@@ -2684,7 +2624,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8956998344135301341}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &8953912315460739089
 Camera:
@@ -2790,7 +2730,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _replace_render_type: 
   _replacement_shader: {fileID: 4800000, guid: ecaae557ba4c4fc1a80e878b62be711d, type: 3}
---- !u!114 &432536191
+--- !u!114 &2127445625596826555
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2799,7 +2739,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8953912315460739082}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bf5add133b4f4c399e63afce43179bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fce5be366194edf81ec206b319817d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
@@ -2809,7 +2749,6 @@ MonoBehaviour:
   _unregister_at_disable: 0
   _environment: {fileID: 0}
   _normalise_observation: 0
-  _black_white: 0
   _camera: {fileID: 0}
   _texture: {fileID: 0}
 --- !u!1 &8953912315871983413
@@ -2825,7 +2764,7 @@ GameObject:
   - component: {fileID: 8953912315871983417}
   - component: {fileID: 8953912315871983414}
   - component: {fileID: 8953912315871983415}
-  - component: {fileID: 1344690944}
+  - component: {fileID: 2656165505746874785}
   m_Layer: 2
   m_Name: Vs
   m_TagString: Untagged
@@ -2845,7 +2784,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8956998344135301341}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &8953912315871983419
 Camera:
@@ -2967,7 +2906,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _replace_render_type: 
   _replacement_shader: {fileID: 4800000, guid: 043c4327de3a39ce7b6086de2593d097, type: 3}
---- !u!114 &1344690944
+--- !u!114 &2656165505746874785
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2976,7 +2915,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8953912315871983413}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bf5add133b4f4c399e63afce43179bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fce5be366194edf81ec206b319817d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
@@ -2986,7 +2925,6 @@ MonoBehaviour:
   _unregister_at_disable: 0
   _environment: {fileID: 0}
   _normalise_observation: 0
-  _black_white: 0
   _camera: {fileID: 0}
   _texture: {fileID: 0}
 --- !u!1 &8953912315943398168
@@ -3000,9 +2938,8 @@ GameObject:
   - component: {fileID: 8953912315943398171}
   - component: {fileID: 8953912315943398174}
   - component: {fileID: 8953912315943398172}
-  - component: {fileID: 8953912315943398170}
   - component: {fileID: 8953912315943398175}
-  - component: {fileID: 720736450}
+  - component: {fileID: 7834815901088139999}
   m_Layer: 2
   m_Name: MaterialId
   m_TagString: Untagged
@@ -3022,7 +2959,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8956998344135301341}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &8953912315943398174
 Camera:
@@ -3114,28 +3051,6 @@ MonoBehaviour:
   _sync_gate_fit: 1
   _sync_focal_length: 1
   _camera: {fileID: 8953912315943398174}
---- !u!114 &8953912315943398170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8953912315943398168}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1003e9e65c5a4495a80b404ca321593b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _Custom_Name: 
-  _debugging: 0
-  _disables_children: 0
-  _editor_reregistering: 1
-  _unregister_at_disable: 0
-  _environment: {fileID: 0}
-  _normalise_observation: 0
-  _observation_value: 'BluePlastic: RGBA(0.188, 0.251, 0.820, 1.000), Default-Material:
-    RGBA(0.502, 0.255, 0.286, 1.000), material1: RGBA(0.204, 0.004, 0.063, 1.000)'
-  _segmenter: {fileID: 8953912315943398175}
 --- !u!114 &8953912315943398175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3150,7 +3065,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   segmentation_shader: {fileID: 4800000, guid: cf1860839d9116438895181a0b52e813, type: 3}
   _camera: {fileID: 8953912315943398174}
---- !u!114 &720736450
+--- !u!114 &7834815901088139999
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3159,7 +3074,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8953912315943398168}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bf5add133b4f4c399e63afce43179bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fce5be366194edf81ec206b319817d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
@@ -3169,7 +3084,6 @@ MonoBehaviour:
   _unregister_at_disable: 0
   _environment: {fileID: 0}
   _normalise_observation: 0
-  _black_white: 0
   _camera: {fileID: 0}
   _texture: {fileID: 0}
 --- !u!1 &8953912316005417426
@@ -3184,8 +3098,7 @@ GameObject:
   - component: {fileID: 8953912316005417435}
   - component: {fileID: 8953912316005417432}
   - component: {fileID: 8953912316005417433}
-  - component: {fileID: 8953912316005417428}
-  - component: {fileID: 593021519}
+  - component: {fileID: 4632851735717350731}
   m_Layer: 2
   m_Name: ObjectIdInstance
   m_TagString: Untagged
@@ -3205,7 +3118,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8956998344135301341}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &8953912316005417435
 Camera:
@@ -3311,29 +3224,7 @@ MonoBehaviour:
   _sync_gate_fit: 1
   _sync_focal_length: 1
   _camera: {fileID: 8953912316005417435}
---- !u!114 &8953912316005417428
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8953912316005417426}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1003e9e65c5a4495a80b404ca321593b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _Custom_Name: 
-  _debugging: 0
-  _disables_children: 0
-  _editor_reregistering: 1
-  _unregister_at_disable: 0
-  _environment: {fileID: 0}
-  _normalise_observation: 0
-  _observation_value: '-2386: RGBA(0.518, 0.157, 0.255, 1.000), -2332: RGBA(0.086,
-    0.157, 0.251, 1.000), 14594: RGBA(0.518, 0.031, 0.565, 1.000)'
-  _segmenter: {fileID: 8953912316005417432}
---- !u!114 &593021519
+--- !u!114 &4632851735717350731
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3342,7 +3233,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8953912316005417426}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bf5add133b4f4c399e63afce43179bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fce5be366194edf81ec206b319817d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
@@ -3352,7 +3243,6 @@ MonoBehaviour:
   _unregister_at_disable: 0
   _environment: {fileID: 0}
   _normalise_observation: 0
-  _black_white: 0
   _camera: {fileID: 0}
   _texture: {fileID: 0}
 --- !u!1 &8953912316051221157
@@ -3368,7 +3258,7 @@ GameObject:
   - component: {fileID: 8953912316051221156}
   - component: {fileID: 8953912316051221158}
   - component: {fileID: 8953912316051221159}
-  - component: {fileID: 356639859}
+  - component: {fileID: 3138322356965150482}
   m_Layer: 2
   m_Name: Us
   m_TagString: Untagged
@@ -3388,7 +3278,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8956998344135301341}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &8953912316051221160
 Camera:
@@ -3510,7 +3400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _replace_render_type: 
   _replacement_shader: {fileID: 4800000, guid: f0f776e767c948816bfdca7bda1ebc72, type: 3}
---- !u!114 &356639859
+--- !u!114 &3138322356965150482
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3519,7 +3409,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8953912316051221157}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bf5add133b4f4c399e63afce43179bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fce5be366194edf81ec206b319817d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
@@ -3529,7 +3419,6 @@ MonoBehaviour:
   _unregister_at_disable: 0
   _environment: {fileID: 0}
   _normalise_observation: 0
-  _black_white: 0
   _camera: {fileID: 0}
   _texture: {fileID: 0}
 --- !u!1 &8953912316715161257
@@ -3544,7 +3433,7 @@ GameObject:
   - component: {fileID: 8953912316715161261}
   - component: {fileID: 8953912316715161256}
   - component: {fileID: 8953912316715161259}
-  - component: {fileID: 1232768627}
+  - component: {fileID: 7451727264647731414}
   m_Layer: 2
   m_Name: 90
   m_TagString: Untagged
@@ -3673,7 +3562,7 @@ MonoBehaviour:
   _ignore_infrared_if_empty: 1
   _lights_to_ignore:
   - {fileID: 9061319952716675367}
---- !u!114 &1232768627
+--- !u!114 &7451727264647731414
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3682,7 +3571,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8953912316715161257}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bf5add133b4f4c399e63afce43179bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fce5be366194edf81ec206b319817d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
@@ -3692,7 +3581,6 @@ MonoBehaviour:
   _unregister_at_disable: 0
   _environment: {fileID: 0}
   _normalise_observation: 0
-  _black_white: 0
   _camera: {fileID: 0}
   _texture: {fileID: 0}
 --- !u!1 &8953912316825990507
@@ -3708,7 +3596,7 @@ GameObject:
   - component: {fileID: 8953912316825990511}
   - component: {fileID: 8953912316825990508}
   - component: {fileID: 8953912316825990509}
-  - component: {fileID: 1827788131}
+  - component: {fileID: 2534227738434775767}
   m_Layer: 2
   m_Name: WorldSpace
   m_TagString: Untagged
@@ -3728,7 +3616,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8956998344135301341}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &8953912316825990513
 Camera:
@@ -3850,7 +3738,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _replace_render_type: 
   _replacement_shader: {fileID: 4800000, guid: a1fe4d82f3c0be1aa917ece055794af2, type: 3}
---- !u!114 &1827788131
+--- !u!114 &2534227738434775767
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3859,7 +3747,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8953912316825990507}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bf5add133b4f4c399e63afce43179bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fce5be366194edf81ec206b319817d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
@@ -3869,7 +3757,6 @@ MonoBehaviour:
   _unregister_at_disable: 0
   _environment: {fileID: 0}
   _normalise_observation: 0
-  _black_white: 0
   _camera: {fileID: 0}
   _texture: {fileID: 0}
 --- !u!1 &8954297562389836415
@@ -3892,7 +3779,7 @@ GameObject:
   - component: {fileID: 8953912316377124612}
   - component: {fileID: 8953912316377124615}
   m_Layer: 2
-  m_Name: NeodroidCameraFloatArray
+  m_Name: NeodroidCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3970,10 +3857,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 5858083470835474262}
-  - {fileID: 9067738391014373859}
-  - {fileID: 1528727058868257043}
-  - {fileID: 9067191241328514203}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 0
@@ -4025,10 +3912,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 4343724218787345760}
-  - {fileID: 8937616187162310363}
-  - {fileID: 1528727058868257042}
-  - {fileID: 8936678778679500885}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _filter_mode: 0
   _size: {x: 128, y: 128}
   _textures:
@@ -4178,7 +4065,7 @@ GameObject:
   - component: {fileID: 9067251757548188713}
   - component: {fileID: 9066936765972153287}
   - component: {fileID: 9068706823226550501}
-  - component: {fileID: 1112313107}
+  - component: {fileID: 6396011134595607581}
   m_Layer: 2
   m_Name: Flow
   m_TagString: Untagged
@@ -4198,7 +4085,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8956998344135301341}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &8938351030468096833
 Camera:
@@ -4336,7 +4223,7 @@ MonoBehaviour:
   _blending: 0.5
   _overlay_amplitude: 60
   _shader: {fileID: 4800000, guid: 3863f59f4842f4d90bc3966b1f9502af, type: 3}
---- !u!114 &1112313107
+--- !u!114 &6396011134595607581
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4345,7 +4232,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8954340607665692633}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bf5add133b4f4c399e63afce43179bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fce5be366194edf81ec206b319817d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
@@ -4355,7 +4242,6 @@ MonoBehaviour:
   _unregister_at_disable: 0
   _environment: {fileID: 0}
   _normalise_observation: 0
-  _black_white: 0
   _camera: {fileID: 0}
   _texture: {fileID: 0}
 --- !u!1 &8954485367378834101
@@ -4403,7 +4289,7 @@ GameObject:
   - component: {fileID: 8938380326639234969}
   - component: {fileID: 9067298761308153321}
   - component: {fileID: 9067982206729525899}
-  - component: {fileID: 1534425954}
+  - component: {fileID: 8798055995797976012}
   m_Layer: 2
   m_Name: Infrared
   m_TagString: Untagged
@@ -4423,7 +4309,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8956998344135301341}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &8938380326639234969
 Camera:
@@ -4541,7 +4427,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
---- !u!114 &1534425954
+--- !u!114 &8798055995797976012
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4550,7 +4436,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8954752269252562429}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bf5add133b4f4c399e63afce43179bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fce5be366194edf81ec206b319817d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
@@ -4560,7 +4446,6 @@ MonoBehaviour:
   _unregister_at_disable: 0
   _environment: {fileID: 0}
   _normalise_observation: 0
-  _black_white: 0
   _camera: {fileID: 0}
   _texture: {fileID: 0}
 --- !u!1 &8954987777335964249
@@ -4666,7 +4551,7 @@ GameObject:
   - component: {fileID: 8938224487570478979}
   - component: {fileID: 9067071972556815189}
   - component: {fileID: 9067910119913123209}
-  - component: {fileID: 920422802}
+  - component: {fileID: 2794050067079799932}
   m_Layer: 2
   m_Name: Normal
   m_TagString: Untagged
@@ -4686,7 +4571,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8956998344135301341}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &8938224487570478979
 Camera:
@@ -4792,7 +4677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _replace_render_type: 
   _replacement_shader: {fileID: 4800000, guid: aa118ec7ab6c04e139900fecf923c766, type: 3}
---- !u!114 &920422802
+--- !u!114 &2794050067079799932
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4801,7 +4686,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8955025393554226475}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bf5add133b4f4c399e63afce43179bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fce5be366194edf81ec206b319817d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
@@ -4811,7 +4696,6 @@ MonoBehaviour:
   _unregister_at_disable: 0
   _environment: {fileID: 0}
   _normalise_observation: 0
-  _black_white: 0
   _camera: {fileID: 0}
   _texture: {fileID: 0}
 --- !u!1 &8955066670320937537
@@ -5028,7 +4912,7 @@ GameObject:
   - component: {fileID: 8937616187162310363}
   - component: {fileID: 9067738391014373859}
   - component: {fileID: 9068718654667840391}
-  - component: {fileID: 2825377953976489514}
+  - component: {fileID: 6653052786517147627}
   m_Layer: 2
   m_Name: RGB
   m_TagString: Untagged
@@ -5107,10 +4991,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 5858083470835474262}
-  - {fileID: 9067738391014373859}
-  - {fileID: 1528727058868257043}
-  - {fileID: 9067191241328514203}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -5141,7 +5025,7 @@ MonoBehaviour:
   _ignore_infrared_if_empty: 1
   _lights_to_ignore:
   - {fileID: 9061319952716675367}
---- !u!114 &2825377953976489514
+--- !u!114 &6653052786517147627
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5150,7 +5034,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8955123872149212813}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bf5add133b4f4c399e63afce43179bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fce5be366194edf81ec206b319817d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
@@ -5160,7 +5044,6 @@ MonoBehaviour:
   _unregister_at_disable: 0
   _environment: {fileID: 0}
   _normalise_observation: 0
-  _black_white: 0
   _camera: {fileID: 8937616187162310363}
   _texture: {fileID: 0}
 --- !u!1 &8955193503972165319
@@ -5177,7 +5060,7 @@ GameObject:
   - component: {fileID: 9068839844146226189}
   - component: {fileID: 9067177901889886573}
   - component: {fileID: 9068724313563213973}
-  - component: {fileID: 530555079}
+  - component: {fileID: 5587323643025284583}
   m_Layer: 2
   m_Name: Satellite
   m_TagString: Untagged
@@ -5197,7 +5080,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8956998344135301341}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 55.000004, y: 0, z: 0}
 --- !u!20 &8938361100219424377
 Camera:
@@ -5332,7 +5215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _direction: {x: 0, y: -1, z: 0}
---- !u!114 &530555079
+--- !u!114 &5587323643025284583
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5341,7 +5224,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8955193503972165319}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bf5add133b4f4c399e63afce43179bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fce5be366194edf81ec206b319817d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
@@ -5351,7 +5234,6 @@ MonoBehaviour:
   _unregister_at_disable: 0
   _environment: {fileID: 0}
   _normalise_observation: 0
-  _black_white: 0
   _camera: {fileID: 0}
   _texture: {fileID: 0}
 --- !u!1 &8955234115522024981
@@ -5366,7 +5248,7 @@ GameObject:
   - component: {fileID: 8936617034565571487}
   - component: {fileID: 9067738700087649343}
   - component: {fileID: 9067414988562624883}
-  - component: {fileID: 1733317835}
+  - component: {fileID: 1799047188069840996}
   m_Layer: 2
   m_Name: MultiChannelDepth
   m_TagString: Untagged
@@ -5386,7 +5268,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8956998344135301341}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &8936617034565571487
 Camera:
@@ -5492,7 +5374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _replace_render_type: 
   _replacement_shader: {fileID: 4800000, guid: 0f2361423bff3490d8f046e398478528, type: 3}
---- !u!114 &1733317835
+--- !u!114 &1799047188069840996
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5501,7 +5383,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8955234115522024981}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bf5add133b4f4c399e63afce43179bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2fce5be366194edf81ec206b319817d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
@@ -5511,7 +5393,6 @@ MonoBehaviour:
   _unregister_at_disable: 0
   _environment: {fileID: 0}
   _normalise_observation: 0
-  _black_white: 0
   _camera: {fileID: 0}
   _texture: {fileID: 0}
 --- !u!1 &8955371836866037965

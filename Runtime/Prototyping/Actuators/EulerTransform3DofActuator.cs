@@ -53,7 +53,7 @@ namespace droid.Runtime.Prototyping.Actuators {
 
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName { get { return "Transform"; } }
+    public override string PrototypingTypeName { get { return "EulerTransform"; } }
 
     /// <summary>
     /// </summary>

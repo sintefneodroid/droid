@@ -11,7 +11,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated.Segmentation {
                     + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [RequireComponent(typeof(UnityEngine.Camera), typeof(Segmenter))]
-  public class SegmentationCameraSensor : StringAugmentedCameraSensor {
+  public class SegmentationEncodedCameraSensor : StringAugmentedEncodedCameraSensor {
     /// <summary>
     /// </summary>
     [SerializeField]
@@ -24,7 +24,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated.Segmentation {
       base.UpdateObservation();
 
       Debug.LogWarning(JsonUtility.ToJson(this._segmenter.ColorsDict));
-      this.serialisedString = this._segmenter != null
+      this.serialised_string = this._segmenter != null
                                   ? this._segmenter.ColorsDict.Select(c => $"{c.Key}: {c.Value.ToString()}")
                                         .Aggregate("", (current, next) => $"{current}, {next}")
                                   : "Nothing";

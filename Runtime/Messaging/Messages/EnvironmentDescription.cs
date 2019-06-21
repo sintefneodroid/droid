@@ -6,23 +6,29 @@ namespace droid.Runtime.Messaging.Messages {
   /// </summary>
   public class EnvironmentDescription {
     public EnvironmentDescription(int max_steps,
-                                  Dictionary<string, IActor> actors,
-                                  Dictionary<string, IConfigurable> configurables,
+                                  SortedDictionary<string, IActor> actors,
+                                  SortedDictionary<string, IConfigurable> configurables,
+                                  SortedDictionary<string, ISensor> sensors,
                                   float solved_threshold) {
       this.Configurables = configurables;
       this.Actors = actors;
       this.MaxSteps = max_steps;
+      this.Sensors = sensors;
 
       this.SolvedThreshold = solved_threshold;
     }
 
     /// <summary>
     /// </summary>
-    public Dictionary<string, IActor> Actors { get; }
+    public SortedDictionary<string, IActor> Actors { get; }
 
     /// <summary>
     /// </summary>
-    public Dictionary<string, IConfigurable> Configurables { get; }
+    public SortedDictionary<string, IConfigurable> Configurables { get; }
+
+    /// <summary>
+    /// </summary>
+    public SortedDictionary<string,ISensor> Sensors { get; }
 
     /// <summary>
     /// </summary>

@@ -26,11 +26,6 @@ namespace droid.Runtime.Environments {
     protected bool _Configure;
 
 
-    /// <summary>
-    /// </summary>
-    [SerializeField]
-    protected float _Energy_Spent;
-
     [SerializeField] Reaction _last_reaction;
 
     /// <summary>
@@ -134,12 +129,6 @@ namespace droid.Runtime.Environments {
     /// <returns></returns>
     public void IdentifierString(DataPoller recipient) { recipient.PollData(this.Identifier); }
 
-    /// <summary>
-    /// </summary>
-    /// <returns></returns>
-    public void EnergyString(DataPoller recipient) {
-      recipient.PollData(this._Energy_Spent.ToString(CultureInfo.InvariantCulture));
-    }
 
 
     /// <summary>

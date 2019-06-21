@@ -4,7 +4,7 @@ namespace droid.Runtime.Interfaces {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  public interface IObserver : IRegisterable {
+  public interface ISensor : IRegisterable {
     /// <summary>
     /// </summary>
     IEnumerable<float> FloatEnumerable { get; }

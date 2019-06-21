@@ -121,9 +121,6 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
     public override void UpdateObservation() {
       this._grab = true;
       if (this._manager?.SimulatorConfiguration?.SimulationType != SimulationType.Frame_dependent_) {
-        #if NEODROID_DEBUG
-        Debug.Log($"{this._manager?.SimulatorConfiguration?.SimulationType}");
-        #endif
         if (Application.isPlaying) {
           this._camera.Render();
         }

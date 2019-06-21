@@ -89,7 +89,7 @@ namespace droid.Runtime.Environments {
     /// <summary>
     /// </summary>
     protected void UpdateObserversData() {
-      foreach (var obs in this.Observers.Values) {
+      foreach (var obs in this.Sensors.Values) {
         obs?.UpdateObservation();
       }
     }
@@ -127,7 +127,7 @@ namespace droid.Runtime.Environments {
 
     /// <summary>
     /// </summary>
-    protected Rigidbody[] _Tracked_Rigid_Bodies;
+    protected Rigidbody[] _tracked_rigid_bodies;
 
     /// <summary>
     /// </summary>
@@ -290,15 +290,15 @@ namespace droid.Runtime.Environments {
             this._bodies = body_list.ToArray();
       */ //Should be equalvalent to the line below, but kept as a reference in case of confusion
 
-      this._Tracked_Rigid_Bodies = this._tracked_game_objects.Where(go => go != null)
+      this._tracked_rigid_bodies = this._tracked_game_objects.Where(go => go != null)
                                        .Select(go => go.GetComponent<Rigidbody>()).Where(body => body)
                                        .ToArray();
 
-      this._reset_velocities = new Vector3[this._Tracked_Rigid_Bodies.Length];
-      this._reset_angulars = new Vector3[this._Tracked_Rigid_Bodies.Length];
-      for (var i = 0; i < this._Tracked_Rigid_Bodies.Length; i++) {
-        this._reset_velocities[i] = this._Tracked_Rigid_Bodies[i].velocity;
-        this._reset_angulars[i] = this._Tracked_Rigid_Bodies[i].angularVelocity;
+      this._reset_velocities = new Vector3[this._tracked_rigid_bodies.Length];
+      this._reset_angulars = new Vector3[this._tracked_rigid_bodies.Length];
+      for (var i = 0; i < this._tracked_rigid_bodies.Length; i++) {
+        this._reset_velocities[i] = this._tracked_rigid_bodies[i].velocity;
+        this._reset_angulars[i] = this._tracked_rigid_bodies[i].angularVelocity;
       }
     }
 
@@ -460,7 +460,7 @@ namespace droid.Runtime.Environments {
                             ref this._reset_rotations,
                             this._Simulation_Manager.SimulatorConfiguration.ResetIterations);
       #if NEODROID_DEBUG
-      ResetEnvironmentBodies(ref this._Tracked_Rigid_Bodies,
+      ResetEnvironmentBodies(ref this._tracked_rigid_bodies,
                              ref this._reset_velocities,
                              ref this._reset_angulars,
                              this.Debugging);
@@ -501,7 +501,7 @@ namespace droid.Runtime.Environments {
 
       this.InnerResetRegisteredObjects();
 
-      foreach (var observer in this.Observers.Values) {
+      foreach (var observer in this.Sensors.Values) {
         observer?.EnvironmentReset();
       }
     }
@@ -531,7 +531,7 @@ namespace droid.Runtime.Environments {
           angulars[i] = this._received_bodies[i].AngularVelocity;
         }
 
-        ResetEnvironmentBodies(ref this._Tracked_Rigid_Bodies, ref velocities, ref angulars);
+        ResetEnvironmentBodies(ref this._tracked_rigid_bodies, ref velocities, ref angulars);
       }
 
       if (this._received_configurations != null) {
@@ -912,20 +912,20 @@ namespace droid.Runtime.Environments {
 
     /// <summary>
     /// </summary>
-    public Dictionary<string, IDisplayer> Displayers { get; } = new Dictionary<string, IDisplayer>();
+    public SortedDictionary<string, IDisplayer> Displayers { get; } = new SortedDictionary<string, IDisplayer>();
 
     /// <summary>
     /// </summary>
-    public Dictionary<string, IConfigurable> Configurables { get; } = new Dictionary<string, IConfigurable>();
+    public SortedDictionary<string, IConfigurable> Configurables { get; } = new SortedDictionary<string, IConfigurable>();
 
     /// <summary>
     /// </summary>
-    public SortedDictionary<string, IObserver> Observers { get; } = new SortedDictionary<string, IObserver>();
+    public SortedDictionary<string, ISensor> Sensors { get; } = new SortedDictionary<string, ISensor>();
 
     /// <summary>
     /// </summary>
-    public Dictionary<string, IEnvironmentListener> Listeners { get; } =
-      new Dictionary<string, IEnvironmentListener>();
+    public SortedDictionary<string, IEnvironmentListener> Listeners { get; } =
+      new SortedDictionary<string, IEnvironmentListener>();
 
     /// <inheritdoc />
     /// <summary>
@@ -994,24 +994,24 @@ namespace droid.Runtime.Environments {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    /// <param name="observer"></param>
-    public void Register(IObserver observer) { this.Register(observer, observer.Identifier); }
+    /// <param name="sensor"></param>
+    public void Register(ISensor sensor) { this.Register(sensor, sensor.Identifier); }
 
     /// <inheritdoc />
     /// ///
     /// <summary>
     /// </summary>
-    /// <param name="observer"></param>
+    /// <param name="sensor"></param>
     /// <param name="identifier"></param>
-    public void Register(IObserver observer, string identifier) {
-      if (!this.Observers.ContainsKey(identifier)) {
+    public void Register(ISensor sensor, string identifier) {
+      if (!this.Sensors.ContainsKey(identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log($"Environment {this.name} has registered observer {identifier}");
         }
         #endif
 
-        this.Observers.Add(identifier, observer);
+        this.Sensors.Add(identifier, sensor);
       } else {
         Debug.LogWarning($"WARNING! Please check for duplicates, Environment {this.name} already has observer {identifier} registered");
       }
@@ -1070,22 +1070,22 @@ namespace droid.Runtime.Environments {
 
     /// <summary>
     /// </summary>
-    /// <param name="observer"></param>
-    public void UnRegister(IObserver observer) { this.UnRegister(observer, observer.Identifier); }
+    /// <param name="sensor"></param>
+    public void UnRegister(ISensor sensor) { this.UnRegister(sensor, sensor.Identifier); }
 
     /// <summary>
     ///
     /// </summary>
     /// <param name="t"></param>
     /// <param name="identifier"></param>
-    public void UnRegister(IObserver t, string identifier) {
-      if (this.Observers.ContainsKey(identifier)) {
+    public void UnRegister(ISensor t, string identifier) {
+      if (this.Sensors.ContainsKey(identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log($"Environment {this.name} unregistered observer {identifier}");
         }
         #endif
-        this.Observers.Remove(identifier);
+        this.Sensors.Remove(identifier);
       }
     }
 

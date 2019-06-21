@@ -48,7 +48,7 @@ namespace droid.Runtime.Prototyping.Actors {
       }
     }
 
-    Dictionary<string, IActuator> IActor.Actuators { get { return this._Actuators; } }
+    SortedDictionary<string, IActuator> IActor.Actuators { get { return this._Actuators; } }
 
     public Transform Transform { get { return this.transform; } }
 
@@ -198,7 +198,7 @@ namespace droid.Runtime.Prototyping.Actors {
     /// </summary>
     [Header("General", order = 101)]
     [SerializeField]
-    protected Dictionary<string, IActuator> _Actuators = new Dictionary<string, IActuator>();
+    protected SortedDictionary<string, IActuator> _Actuators = new SortedDictionary<string, IActuator>();
 
     #if UNITY_EDITOR
     const int _script_execution_order = -10;
@@ -229,7 +229,7 @@ namespace droid.Runtime.Prototyping.Actors {
 
     /// <summary>
     /// </summary>
-    public Dictionary<string, IActuator> Actuators { get { return this._Actuators; } }
+    public SortedDictionary<string, IActuator> Actuators { get { return this._Actuators; } }
 
     /// <summary>
     /// </summary>

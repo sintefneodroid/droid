@@ -256,11 +256,16 @@ namespace droid.Runtime.Prototyping.Evaluation {
     [SerializeField]
     float _solved_threshold = 0f;
 
-    [SerializeField] float _last_signal = 0f;
+    [SerializeField] private float _last_signal = 0f;
+    public float LastSignal
+    {
+        get { return _last_signal; }
+    }
 
-    /// <summary>
-    /// </summary>
-    [SerializeField]
+
+        /// <summary>
+        /// </summary>
+        [SerializeField]
     int _episode_length = 1000;
 
     /// <inheritdoc />

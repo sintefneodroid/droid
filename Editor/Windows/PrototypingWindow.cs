@@ -153,7 +153,7 @@ namespace droid.Editor.Windows {
                                           $"{this._environments[i].Identifier}");
               if (this._show_environment_properties[i]) {
 
-                var observers = this._environments[i].Observers;
+                var observers = this._environments[i].Sensors;
                 var configurables = this._environments[i].Configurables;
                 var listeners = this._environments[i].Listeners;
                 var displayers = this._environments[i].Displayers;
@@ -246,7 +246,7 @@ namespace droid.Editor.Windows {
 
     #region GUIDRAWS
 
-    void DrawListeners(Dictionary<String, IEnvironmentListener> listeners) {
+    void DrawListeners(SortedDictionary<String, IEnvironmentListener> listeners) {
       EditorGUILayout.BeginVertical("Box");
 
       GUILayout.Label("Listeners");
@@ -275,7 +275,7 @@ namespace droid.Editor.Windows {
       EditorGUILayout.EndVertical();
     }
 
-    void DrawActors(Dictionary<string, IActor> actors) {
+    void DrawActors(SortedDictionary<string, IActor> actors) {
       EditorGUILayout.BeginVertical("Box");
       GUILayout.Label("Actors");
       foreach (var actor in actors) {
@@ -309,7 +309,7 @@ namespace droid.Editor.Windows {
     }
 
 
-    void DrawObservers(SortedDictionary<string, IObserver> observers) {
+    void DrawObservers(SortedDictionary<string, ISensor> observers) {
       EditorGUILayout.BeginVertical("Box");
       GUILayout.Label("Observers");
       foreach (var observer in observers) {
@@ -337,7 +337,7 @@ namespace droid.Editor.Windows {
       EditorGUILayout.EndVertical();
     }
 
-    void DrawDisplayers(Dictionary<string, IDisplayer> displayers) {
+    void DrawDisplayers(SortedDictionary<string, IDisplayer> displayers) {
       EditorGUILayout.BeginVertical("Box");
       GUILayout.Label("Displayers");
       foreach (var displayer in displayers) {
@@ -365,7 +365,7 @@ namespace droid.Editor.Windows {
       EditorGUILayout.EndVertical();
     }
 
-    void DrawConfigurables(Dictionary<string, IConfigurable> configurables) {
+    void DrawConfigurables(SortedDictionary<string, IConfigurable> configurables) {
       EditorGUILayout.BeginVertical("Box");
       GUILayout.Label("Configurables");
       foreach (var configurable in configurables) {
@@ -393,7 +393,7 @@ namespace droid.Editor.Windows {
       EditorGUILayout.EndVertical();
     }
 
-    void DrawActuators(Dictionary<string, IActuator> actuators) {
+    void DrawActuators(SortedDictionary<string, IActuator> actuators) {
       EditorGUILayout.BeginVertical("Box");
       GUILayout.Label("Actuators");
       foreach (var actuator in actuators) {

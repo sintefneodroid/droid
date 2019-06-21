@@ -190,7 +190,7 @@ namespace droid.Runtime.Environments {
 
       var observables = new float[] {actor_idx};
 
-      return new EnvironmentState(this.Identifier, 0, 0, time, signal, terminated, ref observables);
+      return new EnvironmentState(this.Identifier, 0,  time, signal, terminated, ref observables);
     }
 
     /// <inheritdoc />

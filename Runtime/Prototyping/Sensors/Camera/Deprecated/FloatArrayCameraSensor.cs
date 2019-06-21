@@ -118,11 +118,18 @@ namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
     ///
     /// </summary>
     public override void UpdateObservation() {
-      if (this._manager?.SimulatorConfiguration != null) {
-        if (this._manager.SimulatorConfiguration.SimulationType != SimulationType.Frame_dependent_) {
-          Debug.LogWarning("WARNING! Camera Observations may be out of sync other data");
+      #if NEODROID_DEBUG
+      if(this.Debugging) {
+        if (this._manager?.SimulatorConfiguration != null) {
+          if (this._manager.SimulatorConfiguration.SimulationType != SimulationType.Frame_dependent_) {
+
+
+            Debug.LogWarning("WARNING! Camera Observations may be out of sync other data");
+
+          }
         }
       }
+      #endif
 
       this._grab = true;
       var manager = this._manager;
