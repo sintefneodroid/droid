@@ -16,7 +16,7 @@ MonoBehaviour:
   NeodroidGithubExtension: 0
   NeodroidIsImportedAsset: 1
   NeodroidImportLocation: Assets/droid/
-  NeodroidGeneratePreviews: 1
+  NeodroidGeneratePreviews: 0
   NeodroidPreviewsLocation: ScenePreviews/
-  NeodroidGenerateDescriptions: 1
+  NeodroidGenerateDescriptions: 0
   NeodroidDescriptionLocation: SceneDescriptions/
