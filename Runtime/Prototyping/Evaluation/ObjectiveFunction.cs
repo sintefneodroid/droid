@@ -259,7 +259,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
     [SerializeField] private float _last_signal = 0f;
     public float LastSignal
     {
-        get { return _last_signal; }
+        get { return this._last_signal; }
     }
 
 

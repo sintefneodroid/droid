@@ -18,7 +18,7 @@ namespace droid.Editor.Utilities.UnityDebug {
 
     void OnEnable() {
       this.icon =
-          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidEditorInfo.ImportLocation
+          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidSettings.Current.NeodroidImportLocationProp
                                                    + "Gizmos/Icons/information.png",
                                                    typeof(Texture2D));
       this.titleContent = new GUIContent("Unity:Debug", this.icon, "Window for debugging Unity");

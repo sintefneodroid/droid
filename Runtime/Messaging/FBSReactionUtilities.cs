@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Messaging.FBS;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Messaging.Messages.Displayables;
 using droid.Runtime.Utilities.Structs;
-using Neodroid.FBS;
-using Neodroid.FBS.Reaction;
 using UnityEngine;
 
-namespace droid.Runtime.Messaging.FBS {
+namespace droid.Runtime.Messaging {
   /// <summary>
   /// </summary>
   public static class FbsReactionUtilities {

@@ -1,4 +1,5 @@
-﻿using droid.Runtime.Managers;
+﻿using droid.Editor.Utilities;
+using droid.Runtime.Managers;
 using droid.Runtime.Messaging.Messages;
 using UnityEditor;
 using UnityEngine;
@@ -25,7 +26,7 @@ namespace droid.Editor.Windows {
     /// </summary>
     void OnEnable() {
       this._icon =
-          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidEditorInfo.ImportLocation
+          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidSettings.Current.NeodroidImportLocationProp
                                                    + "Gizmos/Icons/clock.png",
                                                    typeof(Texture2D));
       this.titleContent = new GUIContent("Neo:Sim", this._icon, "Window for controlling simulation");

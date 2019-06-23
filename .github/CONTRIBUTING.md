@@ -4,7 +4,7 @@ These guidelines are universal for the entire [Neodroid](https://github.com/sint
 ## Pull Requests
 We welcome pull requests.
 
-1. Fork the repo and create your branch from `master`.
+1. Fork the repo and create your branch from `develop`, we are using the git flow branching model.
 2. If you've added code that should be tested, add tests.
 3. If you've changed APIs, update the documentation.
 

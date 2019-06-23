@@ -41,7 +41,7 @@ namespace droid.Runtime.Prototyping.Sensors.Occupancy {
     public override IEnumerable<float> FloatEnumerable {
       get {
         var a = new float[this.ObservationArray.Length*3];
-        for (var i = 0; i < ObservationArray.Length * 3; i += 3) {
+        for (var i = 0; i < this.ObservationArray.Length * 3; i += 3) {
           a[i] = this.ObservationArray[i].x;
           a[i+1] = this.ObservationArray[i].y;
           a[i+2] = this.ObservationArray[i].z;

@@ -1,6 +1,10 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿/*
 #if UNITY_EDITOR
+using droid.Editor.Utilities;
+
+using UnityEditor;
+using UnityEngine;
+
 using System.Linq;
 using droid.Runtime;
 
@@ -46,7 +50,7 @@ namespace droid.Editor.Windows {
                                     NeodroidEditorInfo.SceneDescriptionLocation);
         }
 
-        #if NEODROID_IMPORTED_ASSET
+        #if NEODROID_IS_PACKAGE
         _import_location = EditorPrefs.GetString(NeodroidEditorInfo._Import_Location_Pref_Key,
                                                  NeodroidEditorInfo.ImportLocation);
         #endif
@@ -59,7 +63,7 @@ namespace droid.Editor.Windows {
       var imported_asset_new =
           EditorGUILayout.Toggle(NeodroidEditorInfo._Imported_Asset_Pref_Key, _imported_asset);
 
-      #if NEODROID_IMPORTED_ASSET
+      #if NEODROID_IS_PACKAGE
       EditorGUILayout.HelpBox("Enter import path of Neodroid", MessageType.Info);
       _import_location = EditorGUILayout.TextField(_import_location);
       #endif
@@ -119,7 +123,7 @@ namespace droid.Editor.Windows {
           }
         }
 
-        #if NEODROID_IMPORTED_ASSET
+        #if NEODROID_IS_PACKAGE
         if (NeodroidEditorInfo.ImportLocation != _import_location) {
           NeodroidEditorInfo.ImportLocation = _import_location;
           EditorPrefs.SetString(NeodroidEditorInfo._Import_Location_Pref_Key, _import_location);
@@ -161,156 +165,8 @@ namespace droid.Editor.Windows {
 
     void OnValidate() { _preferences_loaded = false; }
 
-    /*[SettingsProvider]
-    static SettingsProvider CreateProjectSettingsProvider()
-    {
-      var provider = new AssetSettingsProvider("Project/Physics", "ProjectSettings/DynamicsManager.asset")
-      {
-        icon = EditorGUIUtility.IconContent("Profiler.Physics").image as Texture2D
-      };
-      SettingsProvider.GetSearchKeywordsFromSerializedObject(provider.CreateEditor().serializedObject, provider.keywords);
-      return provider;
-    }*/
 
-    /*
-     #if UNITY_2018_3_OR_NEWER
-    [SettingsProvider]
-    static SettingsProvider CreateNeodroidSettingsProvider() {
-      var provider = new AssetSettingsProvider("Project/Neodroid", () => NeodroidSettings.Instance);
-      provider.PopulateSearchKeywordsFromGUIContentProperties<Styles>();
-      return provider;
-    }
-    #endif
-
-    */
-  }
-
-  /// <inheritdoc />
-  /// <summary>
-  ///   Adds the given define symbols to PlayerSettings define symbols.
-  ///   Just add your own define symbols to the Symbols property at the below.
-  /// </summary>
-  [InitializeOnLoad]
-  public class DefineSymbolsController : UnityEditor.Editor {
-    /// <summary>
-    ///   Add define symbols as soon as Unity gets done compiling.
-    /// </summary>
-    static DefineSymbolsController() { DefineSymbolsFunctionality.AddDefineSymbols(); }
-  }
-
-  public static class DefineSymbolsFunctionality {
-    /// <summary>
-    ///   Symbols that will be added to the editor
-    /// </summary>
-    public static readonly string[] _Symbols = {"NEODROID", "NEODROID_EXISTS"};
-
-    /// <summary>
-    ///   Debug symbols that will be added to the editor
-    /// </summary>
-    public static readonly string[] _Debug_Symbols = {"NEODROID_DEBUG"};
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public static readonly string[] _Github_Symbols = {"NEODROID_USE_GITHUB_EXTENSION"};
-
-    /// <summary>
-    ///
-    /// </summary>
-    public static readonly string[] _ImportedAsset_Symbols = {"NEODROID_IMPORTED_ASSET"};
-
-    /// <summary>
-    /// </summary>
-    public static void AddDefineSymbols() {
-      var defines_string =
-          PlayerSettings.GetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup);
-      var all_defines = defines_string.Split(';').ToList();
-      all_defines.AddRange(_Symbols.Except(all_defines));
-      PlayerSettings.SetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup,
-                                                       string.Join(";", all_defines.ToArray()));
-    }
-
-    /// <summary>
-    /// </summary>
-    public static void AddDebugDefineSymbol() {
-      AddDefineSymbols(_Debug_Symbols);
-
-      Debug.LogWarning("Neodroid Debugging enabled");
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public static void RemoveDebugDefineSymbols() {
-      RemoveDefineSymbols(_Debug_Symbols);
-
-      Debug.LogWarning("Neodroid Debugging disabled");
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public static void AddGithubDefineSymbols() {
-      AddDefineSymbols(_Github_Symbols);
-
-      Debug.LogWarning("Github Extension enabled");
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public static void RemoveGithubDefineSymbols() {
-      RemoveDefineSymbols(_Github_Symbols);
-
-      Debug.LogWarning("Github Extension disabled");
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public static void AddImportedAssetDefineSymbols() {
-      AddDefineSymbols(_ImportedAsset_Symbols);
-
-      Debug.LogWarning("Neodroid is assumed to be an imported asset");
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public static void RemoveImportedAssetDefineSymbols() {
-      RemoveDefineSymbols(_ImportedAsset_Symbols);
-
-      Debug.LogWarning("Neodroid is assumed to be an installed package");
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="symbols"></param>
-    public static void AddDefineSymbols(string[] symbols) {
-      var defines_string =
-          PlayerSettings.GetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup);
-      var all_defines = defines_string.Split(';').ToList();
-      all_defines.AddRange(symbols.Except(all_defines));
-
-      PlayerSettings.SetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup,
-                                                       string.Join(";", all_defines.ToArray()));
-    }
-
-    /// <summary>
-    /// </summary>
-    public static void RemoveDefineSymbols(string[] symbols) {
-      var defines_string =
-          PlayerSettings.GetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup);
-      var all_defines = defines_string.Split(';').ToList();
-      foreach (var b in symbols) {
-        var res = all_defines.RemoveAll(c => c == b);
-        Debug.LogWarning($"Removed define symbols {symbols.Aggregate((aa, bb) => aa + "," + bb)} : number of entries removed {res}");
-      }
-
-      PlayerSettings.SetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup,
-                                                       string.Join(";", all_defines.ToArray()));
-    }
   }
 }
 #endif
+*/

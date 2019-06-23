@@ -22,7 +22,7 @@ namespace droid.Editor.Utilities.Git {
     // Constant or Static Members.
     //################################
 
-    static readonly string _resources_path = NeodroidEditorInfo.ImportLocation + "Editor/Resources/";
+    static readonly string _resources_path = NeodroidSettings.Current.NeodroidImportLocationProp + "Editor/Resources/";
     static readonly string _template_path = _resources_path + "GithubExtension.uxml";
     static readonly string _style_path = _resources_path + "GithubExtension.uss";
 

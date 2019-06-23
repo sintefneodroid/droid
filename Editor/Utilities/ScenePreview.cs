@@ -21,13 +21,17 @@ namespace droid.Editor.Utilities {
     /// </summary>
     [RuntimeInitializeOnLoadMethod]
     public static void CaptureScreenShot() {
-      if (NeodroidEditorInfo.GenerateScenePreviews) {
+      if (NeodroidSettings.Current.NeodroidGeneratePreviewsProp) {
         var preview_path = GetPreviewPath(SceneManager.GetActiveScene().name);
         Debug.Log($"Saving scene preview at {preview_path}");
         TakeScreenshot(preview_path);
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="name"></param>
     public static void TakeScreenshot(string name) {
       // Take the screenshot
       ScreenCapture.CaptureScreenshot(name); // TODO: VERY broken, unitys fault
@@ -73,7 +77,7 @@ namespace droid.Editor.Utilities {
     /// <summary>
     /// </summary>
     public override void OnInspectorGUI() {
-      if (NeodroidEditorInfo.GenerateScenePreviews) {
+      if (NeodroidSettings.Current.NeodroidGeneratePreviewsProp) {
         //AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
         var scene_names = this.targets.Select(t => ((SceneAsset)t).name).OrderBy(n => n).ToArray();
 
@@ -96,7 +100,7 @@ namespace droid.Editor.Utilities {
 
       if (preview == null) {
         EditorGUILayout
-            .HelpBox($"There is no image preview for scene {scene_name} at {preview_path}. Please play the scene on editor and image preview will be captured automatically or create the missing path: {NeodroidEditorInfo.ScenePreviewsLocation}.",
+            .HelpBox($"There is no image preview for scene {scene_name} at {preview_path}. Please play the scene on editor and image preview will be captured automatically or create the missing path: {NeodroidSettings.Current.NeodroidPreviewsLocationProp}.",
                      MessageType.Info);
       } else {
         GUI.DrawTexture(new Rect(index, _editor_margin + index * (height + _preview_margin), width, height),
@@ -107,7 +111,7 @@ namespace droid.Editor.Utilities {
 
     static string GetPreviewPath(string scene_name) {
       //return $"{NeodroidEditorInfo.ScenePreviewsLocation}{scene_name}.png";
-      return $"{Application.dataPath}/{NeodroidEditorInfo.ScenePreviewsLocation}{scene_name}.png";
+      return $"{Application.dataPath}/{NeodroidSettings.Current.NeodroidPreviewsLocationProp}{scene_name}.png";
     }
 
     /// <summary>

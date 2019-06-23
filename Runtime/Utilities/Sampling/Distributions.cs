@@ -46,9 +46,9 @@ namespace droid.Runtime.Utilities.Sampling {
     public DistributionSampler(DistributionEnum distribution_enum = DistributionEnum.Uniform_,
                                Distributions.DirectionE d = Distributions.DirectionE.Left_) {
       this._de = distribution_enum;
-      _conf_level = Distributions.ConfidenceLevel._95;
-      _Direction = d;
-      _factor = 1.267291f;
+      this._conf_level = Distributions.ConfidenceLevel._95;
+      this._Direction = d;
+      this._factor = 1.267291f;
     }
 
     /// <summary>
@@ -69,7 +69,7 @@ namespace droid.Runtime.Utilities.Sampling {
         case DistributionEnum.Exponential_:
           return Distributions.RandomRangeExponential(min, max, this._factor, this._Direction);
         case DistributionEnum.Linear_:
-          return Distributions.RandomLinear(_factor);
+          return Distributions.RandomLinear(this._factor);
         default:
           return Random.Range(min, max);
       }

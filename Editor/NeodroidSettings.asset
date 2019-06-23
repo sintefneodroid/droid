@@ -9,9 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_GeneratorAsset: {fileID: 0}
   m_Script: {fileID: 11500000, guid: a44aef6c4e27e82199c3be5129c72155, type: 3}
   m_Name: NeodroidSettings
   m_EditorClassIdentifier: 
-  m_Number: 42
-  m_SomeString: The answer to the universe
+  NeodroidEnableDebug: 0
+  NeodroidGithubExtension: 0
+  NeodroidIsImportedAsset: 1
+  NeodroidImportLocation: Assets/droid/
+  NeodroidGeneratePreviews: 1
+  NeodroidPreviewsLocation: ScenePreviews/
+  NeodroidGenerateDescriptions: 1
+  NeodroidDescriptionLocation: SceneDescriptions/

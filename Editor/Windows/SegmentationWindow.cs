@@ -1,4 +1,5 @@
-﻿using droid.Runtime.Utilities.GameObjects.NeodroidCamera.Segmentation.Obsolete;
+﻿using droid.Editor.Utilities;
+using droid.Runtime.Utilities.GameObjects.NeodroidCamera.Segmentation.Obsolete;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 #if UNITY_EDITOR
@@ -27,7 +28,7 @@ namespace droid.Editor.Windows {
 
     void OnEnable() {
       this._icon =
-          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidEditorInfo.ImportLocation
+          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidSettings.Current.NeodroidImportLocationProp
                                                    + "Gizmos/Icons/color_wheel.png",
                                                    typeof(Texture2D));
       this.titleContent = new GUIContent("Neo:Seg", this._icon, "Window for segmentation");

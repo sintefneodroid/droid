@@ -1,13 +1,12 @@
 ﻿using droid.Runtime.Interfaces;
+using droid.Runtime.Messaging.FBS;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Prototyping.Configurables;
 using FlatBuffers;
-using Neodroid.FBS;
-using Neodroid.FBS.State;
 using UnityEngine;
 
-namespace droid.Runtime.Messaging.FBS {
+namespace droid.Runtime.Messaging {
   /// <summary>
   /// </summary>
   public static class FbsStateUtilities {

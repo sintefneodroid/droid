@@ -60,11 +60,11 @@ namespace droid.Editor.Windows {
     /// </summary>
     void OnEnable() {
       this._icon =
-          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidEditorInfo.ImportLocation
+          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidSettings.Current.NeodroidImportLocationProp
                                                    + "Gizmos/Icons/world.png",
                                                    typeof(Texture2D));
       this._neodroid_icon =
-          (Texture)AssetDatabase.LoadAssetAtPath(NeodroidEditorInfo.ImportLocation
+          (Texture)AssetDatabase.LoadAssetAtPath(NeodroidSettings.Current.NeodroidImportLocationProp
                                                  + "Gizmos/Icons/neodroid_favicon_cut.png",
                                                  typeof(Texture));
       this.titleContent = new GUIContent("Neo:Env", this._icon, "Window for configuring environments");
@@ -152,7 +152,6 @@ namespace droid.Editor.Windows {
                   EditorGUILayout.Foldout(this._show_environment_properties[i],
                                           $"{this._environments[i].Identifier}");
               if (this._show_environment_properties[i]) {
-
                 var observers = this._environments[i].Sensors;
                 var configurables = this._environments[i].Configurables;
                 var listeners = this._environments[i].Listeners;
@@ -307,7 +306,6 @@ namespace droid.Editor.Windows {
 
       EditorGUILayout.EndVertical();
     }
-
 
     void DrawObservers(SortedDictionary<string, ISensor> observers) {
       EditorGUILayout.BeginVertical("Box");

@@ -1,4 +1,6 @@
 ﻿#if UNITY_EDITOR && NEODROID_DEBUG
+using droid.Editor.Utilities;
+
 using droid.Runtime.Environments;
 using droid.Runtime.InternalReactions;
 using droid.Runtime.Managers;
@@ -15,6 +17,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace droid.Editor.Windows {
+  /// <summary>
+  ///
+  /// </summary>
   public class DebugWindow : EditorWindow {
     Actor[] _actors;
 
@@ -50,6 +55,9 @@ namespace droid.Editor.Windows {
     bool _show_player_reactions_debug;
     bool _show_simulation_manager_debug;
 
+    /// <summary>
+    ///
+    /// </summary>
     [MenuItem(EditorWindowMenuPath._WindowMenuPath + "DebugWindow")]
     [MenuItem(EditorWindowMenuPath._ToolMenuPath + "DebugWindow")]
     public static void ShowWindow() {
@@ -59,7 +67,7 @@ namespace droid.Editor.Windows {
     void OnEnable() {
       this.FindObjects();
       this._icon =
-          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidEditorInfo.ImportLocation
+          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidSettings.Current.NeodroidImportLocationProp
                                                    + "Gizmos/Icons/information.png",
                                                    typeof(Texture2D));
       this.titleContent = new GUIContent("Neo:Debug", this._icon, "Window for controlling debug messages");
@@ -205,6 +213,9 @@ namespace droid.Editor.Windows {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public void OnInspectorUpdate() { this.Repaint(); }
   }
 }

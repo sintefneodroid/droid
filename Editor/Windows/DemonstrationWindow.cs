@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using droid.Editor.Utilities;
+using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
 
@@ -28,7 +29,7 @@ namespace droid.Editor.Windows {
 
     void OnEnable() {
       this._icon =
-          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidEditorInfo.ImportLocation
+          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidSettings.Current.NeodroidImportLocationProp
                                                    + "Gizmos/Icons/bullet_red.png",
                                                    typeof(Texture2D));
       this.titleContent = new GUIContent("Neo:Rec", this._icon, "Window for recording demonstrations");

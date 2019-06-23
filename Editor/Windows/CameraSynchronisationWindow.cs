@@ -1,4 +1,5 @@
-﻿using droid.Runtime.Utilities.GameObjects.NeodroidCamera;
+﻿using droid.Editor.Utilities;
+using droid.Runtime.Utilities.GameObjects.NeodroidCamera;
 using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -28,11 +29,11 @@ namespace droid.Editor.Windows {
       this._cameras = FindObjectsOfType<SynchroniseCameraProperties>();
       this.Setup();
       this._icon =
-          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidEditorInfo.ImportLocation
+          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidSettings.Current.NeodroidImportLocationProp
                                                    + "Gizmos/Icons/arrow_refresh.png",
                                                    typeof(Texture2D));
       this.titleContent =
-          new GUIContent("Neo:Sync", this._icon, "Window for controlling syncronisation of cameras");
+          new GUIContent("Neo:Sync", this._icon, "Window for controlling synchronisation of cameras");
     }
 
     /// <summary>
