@@ -15,7 +15,7 @@ Preset:
   - target: {fileID: 0}
     propertyPath: m_Shader
     value: 
-    objectReference: {fileID: 4800000, guid: c4d18cbad9e484771bc509c0d9d033c7, type: 3}
+    objectReference: {fileID: 4800000, guid: 1c7c196301cbce067a9791aee8777b22, type: 3}
   - target: {fileID: 0}
     propertyPath: m_ShaderKeywords
     value: _MAPPING_LATITUDE_LONGITUDE_LAYOUT
@@ -470,7 +470,7 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SavedProperties.m_Colors.Array.size
-    value: 6
+    value: 9
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SavedProperties.m_Colors.Array.data[0].first
@@ -574,21 +574,81 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SavedProperties.m_Colors.Array.data[5].first
-    value: _Tint
+    value: _GroundColor
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SavedProperties.m_Colors.Array.data[5].second.r
-    value: 0.5
+    value: 0.97999996
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SavedProperties.m_Colors.Array.data[5].second.g
-    value: 0.5
+    value: 0.97999996
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SavedProperties.m_Colors.Array.data[5].second.b
-    value: 0.5
+    value: 0.97999996
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SavedProperties.m_Colors.Array.data[5].second.a
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SavedProperties.m_Colors.Array.data[6].first
+    value: _HorizonColor
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SavedProperties.m_Colors.Array.data[6].second.r
+    value: 0.8
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SavedProperties.m_Colors.Array.data[6].second.g
+    value: 0.8
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SavedProperties.m_Colors.Array.data[6].second.b
+    value: 0.8
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SavedProperties.m_Colors.Array.data[6].second.a
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SavedProperties.m_Colors.Array.data[7].first
+    value: _SkyColor
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SavedProperties.m_Colors.Array.data[7].second.r
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SavedProperties.m_Colors.Array.data[7].second.g
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SavedProperties.m_Colors.Array.data[7].second.b
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SavedProperties.m_Colors.Array.data[7].second.a
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SavedProperties.m_Colors.Array.data[8].first
+    value: _Tint
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SavedProperties.m_Colors.Array.data[8].second.r
+    value: 0.5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SavedProperties.m_Colors.Array.data[8].second.g
+    value: 0.5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SavedProperties.m_Colors.Array.data[8].second.b
+    value: 0.5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SavedProperties.m_Colors.Array.data[8].second.a
     value: 0.5
     objectReference: {fileID: 0}
