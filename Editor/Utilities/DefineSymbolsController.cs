@@ -40,7 +40,7 @@ namespace droid.Editor.Utilities {
     /// <summary>
     ///
     /// </summary>
-    public static readonly string[] _ImportedAsset_Symbols = {"NEODROID_IS_PACKAGE"};
+    public static readonly string[] _IsPackage_Symbols = {"NEODROID_IS_PACKAGE"};
 
     /// <summary>
     /// </summary>
@@ -91,8 +91,8 @@ namespace droid.Editor.Utilities {
     /// <summary>
     ///
     /// </summary>
-    public static void AddImportedAssetDefineSymbols() {
-      AddDefineSymbols(_ImportedAsset_Symbols);
+    public static void AddIsPackageDefineSymbols() {
+      AddDefineSymbols(_IsPackage_Symbols);
 
       Debug.LogWarning("Neodroid is assumed to be an imported asset");
     }
@@ -100,9 +100,8 @@ namespace droid.Editor.Utilities {
     /// <summary>
     ///
     /// </summary>
-    public static void RemoveImportedAssetDefineSymbols() {
-      RemoveDefineSymbols(_ImportedAsset_Symbols);
-
+    public static void RemoveIsPackageDefineSymbols() {
+      RemoveDefineSymbols(_IsPackage_Symbols);
       Debug.LogWarning("Neodroid is assumed to be an installed package");
     }
 

@@ -39,7 +39,7 @@ namespace droid.Editor {
     public bool NeodroidEnableDebugProp {
       get { return this.NeodroidEnableDebug; }
       set {
-        if (value != this.NeodroidEnableDebug) {
+        if (value != this.NeodroidEnableDebug|| _force) {
           ApplyDebug(value);
           this.NeodroidEnableDebug = value;
         }
@@ -59,7 +59,7 @@ namespace droid.Editor {
     public bool NeodroidGithubExtensionProp {
       get { return this.NeodroidGithubExtension; }
       set {
-        if (value != this.NeodroidGithubExtension) {
+        if (value != this.NeodroidGithubExtension|| _force) {
           ApplyGithubExt(value);
 
           this.NeodroidGithubExtension = value;
@@ -80,7 +80,7 @@ namespace droid.Editor {
     public bool NeodroidIsImportedAssetProp {
       get { return this.NeodroidIsImportedAsset; }
       set {
-        if (value != this.NeodroidIsImportedAsset) {
+        if (value != this.NeodroidIsImportedAsset|| _force) {
           ApplyIsPackage(value);
           this.NeodroidIsImportedAsset = value;
         }
@@ -89,10 +89,10 @@ namespace droid.Editor {
 
     public static void ApplyIsPackage(bool value) {
       if (!value) {
-        DefineSymbolsFunctionality.AddImportedAssetDefineSymbols();
+        DefineSymbolsFunctionality.AddIsPackageDefineSymbols();
         Debug.Log($"Neodroid is set as an imported asset");
       } else {
-        DefineSymbolsFunctionality.RemoveImportedAssetDefineSymbols();
+        DefineSymbolsFunctionality.RemoveIsPackageDefineSymbols();
         Debug.Log($"Neodroid is set as an package asset");
       }
     }
@@ -100,7 +100,7 @@ namespace droid.Editor {
     public String NeodroidImportLocationProp {
       get { return this.NeodroidImportLocation; }
       set {
-        if (value != this.NeodroidImportLocation) {
+        if (value != this.NeodroidImportLocation|| _force) {
           var new_path = PathTrim(value);
           Debug.Log($"Setting Neodroid import location to: {new_path}");
 
@@ -117,7 +117,7 @@ namespace droid.Editor {
     public String NeodroidPreviewsLocationProp {
       get { return this.NeodroidPreviewsLocation; }
       set {
-        if (value != this.NeodroidPreviewsLocation) {
+        if (value != this.NeodroidPreviewsLocation|| _force) {
           var new_path = PathTrim(value);
           Debug.Log($"Setting Neodroid ScenePreview location to: {new_path}");
 
@@ -134,7 +134,7 @@ namespace droid.Editor {
     public String NeodroidDescriptionLocationProp {
       get { return this.NeodroidDescriptionLocation; }
       set {
-        if (value != this.NeodroidDescriptionLocation) {
+        if (value != this.NeodroidDescriptionLocation || _force) {
           var new_path = PathTrim(value);
           Debug.Log($"Setting Neodroid SceneDescription location to: {new_path}");
 
@@ -182,7 +182,10 @@ namespace droid.Editor {
       }
     }
 
-    internal static void ReapplyProperties() {
+    static bool _force = false;
+
+    internal static void ReapplyProperties(Boolean force=false) {
+      _force = force;
       Current.NeodroidEnableDebugProp = Current.NeodroidEnableDebug;
       Current.NeodroidGithubExtensionProp = Current.NeodroidGithubExtension;
       Current.NeodroidIsImportedAssetProp = Current.NeodroidIsImportedAsset;
@@ -191,9 +194,12 @@ namespace droid.Editor {
       Current.NeodroidPreviewsLocationProp = Current.NeodroidPreviewsLocation;
       Current.NeodroidGenerateDescriptionsProp = Current.NeodroidGenerateDescriptions;
       Current.NeodroidDescriptionLocationProp = Current.NeodroidDescriptionLocation;
+      _force = false;
     }
 
-    void OnValidate() { ReapplyProperties(); }
+    void OnValidate() {
+      //ReapplyProperties();
+    }
 
     internal static SerializedObject GetSerializedSettings() {
       var serialized_object = new SerializedObject(Current);
@@ -292,6 +298,11 @@ namespace droid.Editor {
       }
 
       this._neodroid_settings.ApplyModifiedProperties();
+
+      if (EditorGUILayout.Toggle("Apply",false)) {
+        NeodroidSettings.ReapplyProperties(force:true);
+        EditorUtility.SetDirty(NeodroidSettings.Current);
+      }
     }
 
     // Register the SettingsProvider

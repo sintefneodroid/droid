@@ -264,5 +264,19 @@ namespace droid.Runtime.Environments {
     }
 
     #endregion
+
+    public override String ToString() {
+      var e = " - ";
+
+      e += this.Identifier;
+      e += ", Sensors: ";
+      e += this.Sensors.Count;
+      e += ", Actuators: ";
+      e += this.Actuators.Count;
+      e += ", Objective: ";
+      e += this.ObjectiveFunction != null ?  this.ObjectiveFunction.Identifier: "None";
+
+      return e;
+    }
   }
 }

@@ -8,12 +8,12 @@ namespace droid.Editor {
     /// <summary>
     ///
     /// </summary>
-    public const string _NeodroidSettingsPath = _Default_Import_Location + "Editor/NeodroidSettings.asset";
+    public const string _NeodroidSettingsPath = _Default_Import_Location + "Editor/neodroid_settings.asset";
 
     /// <summary>
     ///
     /// </summary>
-    public const string _Neodroid_Project_Settings_Menu_Path = "Project/NeodroidSettings";
+    public const string _Neodroid_Project_Settings_Menu_Path = "Project/Neodroid Settings";
 
 
     /// <summary>
@@ -85,5 +85,14 @@ namespace droid.Editor {
 
 
 
+
+    /// <summary>
+    ///
+    /// </summary>
+    public     const float _Editor_Margin = 50;
+    /// <summary>
+    ///
+    /// </summary>
+    public const float _Preview_Margin = 5;
   }
 }

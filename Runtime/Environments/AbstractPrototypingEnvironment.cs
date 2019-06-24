@@ -1167,5 +1167,17 @@ namespace droid.Runtime.Environments {
     ///
     /// </summary>
     protected abstract void InnerResetRegisteredObjects();
+
+    public override String ToString() {
+      var e = " - ";
+
+      e += this.Identifier;
+      e += ", Sensors: ";
+      e += this.Sensors.Count;
+      e += ", Objective: ";
+      e += this.ObjectiveFunction != null ?  this.ObjectiveFunction.Identifier: "None";
+
+      return e;
+    }
   }
 }

@@ -188,11 +188,17 @@ namespace droid.Runtime.Utilities.Structs {
       set { this._apply_quality_settings = value; }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Boolean ResizableWindow {
       get { return this._resizable_window; }
       set { this._resizable_window = value; }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public ColorSpace ColorSpace { get { return this._color_space; } set { this._color_space = value; } }
 
     /// <summary>
@@ -295,6 +301,9 @@ namespace droid.Runtime.Utilities.Structs {
       set { this._update_fixed_time_scale = value; }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Boolean AlwaysSerialiseAggregatedFloatArray {
       get { return this._always_serialise_aggregated_float_array; }
       set { this._always_serialise_aggregated_float_array = value; }
@@ -333,11 +342,30 @@ namespace droid.Runtime.Utilities.Structs {
     /// </summary>
     public String IpAddress { get { return this._ip_address; } set { this._ip_address = value; } }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Boolean OptimiseWindowForSpeed {
       get { return this._optimiseWindow_for_speed; }
       set { this._optimiseWindow_for_speed = value; }
     }
 
     #endregion
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
+    public override String ToString() {
+      var e="";
+
+      e += this.name;
+      e += ", ";
+      e += this.SimulationType.ToString();
+
+
+      return e;
+
+    }
   }
 }

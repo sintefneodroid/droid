@@ -35,7 +35,7 @@ namespace droid.Editor.Utilities {
     /// <param name="name"></param>
     public static void MakeDescription(string name) {
       var serializer = new JsonSerializer {NullValueHandling = NullValueHandling.Ignore};
-      var simulation_manager = FindObjectOfType<PausableManager>();
+      var simulation_manager = FindObjectOfType<AbstractNeodroidManager>();
 
       var path = Path.GetDirectoryName(name);
       Directory.CreateDirectory(path);
@@ -52,15 +52,32 @@ namespace droid.Editor.Utilities {
     /// </summary>
     public override void OnInspectorGUI() {
       if (NeodroidSettings.Current.NeodroidGeneratePreviewsProp) {
+        //AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
+        var scene_names = this.targets.Select(t => ((SceneAsset)t).name).OrderBy(n => n).ToArray();
+
+        var previews_count = scene_names.Length;
+        var preview_width = Screen.width;
+        var preview_height =
+            (Screen.height
+             - NeodroidEditorConstants._Editor_Margin * 2
+             - NeodroidEditorConstants._Preview_Margin * previews_count)
+            / previews_count;
+
+        for (var i = 0; i < scene_names.Length; i++) {
+          ScenePreview.DrawPreview(i, scene_names[i], preview_width, preview_height);
+        }
+      }
+
+      if (NeodroidSettings.Current.NeodroidGeneratePreviewsProp) {
         var scene_names = this.targets.Select(t => ((SceneAsset)t).name).OrderBy(n => n).ToArray();
 
         for (var i = 0; i < scene_names.Length; i++) {
-          DrawDescriptionPreview(i, scene_names[i]);
+          PrintDescription(i, scene_names[i]);
         }
       }
     }
 
-    static void DrawDescriptionPreview(int index, string scene_name) {
+    static void PrintDescription(int index, string scene_name) {
       var preview_path = GetDescriptionPath(scene_name);
       var preview = LoadDescription(preview_path);
 
@@ -75,7 +92,8 @@ namespace droid.Editor.Utilities {
 
     static string GetDescriptionPath(string scene_name) {
       //return $"{NeodroidEditorInfo.ScenePreviewsLocation}{scene_name}.png";
-      return $"{Application.dataPath}/{NeodroidSettings.Current.NeodroidDescriptionLocationProp}{scene_name}.md";
+      return
+          $"{Application.dataPath}/{NeodroidSettings.Current.NeodroidDescriptionLocationProp}{scene_name}.md";
     }
 
     /// <summary>
