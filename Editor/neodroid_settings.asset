@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a44aef6c4e27e82199c3be5129c72155, type: 3}
   m_Name: neodroid_settings
   m_EditorClassIdentifier: 
-  NeodroidEnableDebug: 1
+  NeodroidEnableDebug: 0
   NeodroidGithubExtension: 0
-  NeodroidIsImportedAsset: 1
+  NeodroidIsPackage: 0
   NeodroidImportLocation: Assets/droid/
   NeodroidGeneratePreviews: 0
   NeodroidPreviewsLocation: ScenePreviews/

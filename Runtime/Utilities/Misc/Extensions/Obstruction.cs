@@ -2,6 +2,9 @@
 using UnityEngine;
 
 namespace droid.Runtime.Utilities.Misc.Extensions {
+  /// <summary>
+  ///
+  /// </summary>
   public class Obstruction : MonoBehaviour,
                              IMotionTracker {
     Vector3 _last_recorded_move;

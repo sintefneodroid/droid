@@ -19,7 +19,7 @@ namespace droid.Editor {
 
     [SerializeField] bool NeodroidGithubExtension = false;
 
-    [SerializeField] bool NeodroidIsImportedAsset = true;
+    [SerializeField] bool NeodroidIsPackage = false;
 
     [SerializeField] string NeodroidImportLocation = NeodroidEditorConstants._Default_Import_Location;
     [SerializeField] bool NeodroidGeneratePreviews = false;
@@ -77,12 +77,12 @@ namespace droid.Editor {
       }
     }
 
-    public bool NeodroidIsImportedAssetProp {
-      get { return this.NeodroidIsImportedAsset; }
+    public bool NeodroidIsPackageProp {
+      get { return this.NeodroidIsPackage; }
       set {
-        if (value != this.NeodroidIsImportedAsset|| _force) {
+        if (value != this.NeodroidIsPackage || _force) {
           ApplyIsPackage(value);
-          this.NeodroidIsImportedAsset = value;
+          this.NeodroidIsPackage = value;
         }
       }
     }
@@ -154,7 +154,7 @@ namespace droid.Editor {
       var settings = CreateInstance<NeodroidSettings>();
       settings.NeodroidEnableDebugProp = false;
       settings.NeodroidGithubExtensionProp = false;
-      settings.NeodroidIsImportedAssetProp = false;
+      settings.NeodroidIsPackageProp = false;
       settings.NeodroidImportLocationProp = NeodroidEditorConstants._Default_Import_Location;
 
       settings.NeodroidGeneratePreviewsProp = false;
@@ -188,7 +188,7 @@ namespace droid.Editor {
       _force = force;
       Current.NeodroidEnableDebugProp = Current.NeodroidEnableDebug;
       Current.NeodroidGithubExtensionProp = Current.NeodroidGithubExtension;
-      Current.NeodroidIsImportedAssetProp = Current.NeodroidIsImportedAsset;
+      Current.NeodroidIsPackageProp = Current.NeodroidIsPackage;
       Current.NeodroidImportLocationProp = Current.NeodroidImportLocation;
       Current.NeodroidGeneratePreviewsProp = Current.NeodroidGeneratePreviews;
       Current.NeodroidPreviewsLocationProp = Current.NeodroidPreviewsLocation;
@@ -222,8 +222,8 @@ namespace droid.Editor {
       public static GUIContent _EnableGithubExtension =
           new GUIContent(NeodroidEditorConstants._Github_Extension_Pref_Key);
 
-      public static GUIContent _IsImportedAsset =
-          new GUIContent(NeodroidEditorConstants._Imported_Asset_Pref_Key);
+      public static GUIContent _IsPackage =
+          new GUIContent(NeodroidEditorConstants._IsPackage_Pref_Key);
 
       public static GUIContent _ImportLocation =
           new GUIContent(NeodroidEditorConstants._Import_Location_Pref_Key);
@@ -258,10 +258,10 @@ namespace droid.Editor {
     public override void OnGUI(string search_context) {
       EditorGUILayout.HelpBox($"Version {NeodroidRuntimeInfo._Version}", MessageType.Info);
 
-      var is_imported_asset =
-          this._neodroid_settings.FindProperty(NeodroidEditorConstants._Imported_Asset_Pref_Key);
-      EditorGUILayout.PropertyField(is_imported_asset, Styles._IsImportedAsset);
-      if (is_imported_asset.boolValue) {
+      var is_package =
+          this._neodroid_settings.FindProperty(NeodroidEditorConstants._IsPackage_Pref_Key);
+      EditorGUILayout.PropertyField(is_package, Styles._IsPackage);
+      if (!is_package.boolValue) {
         EditorGUILayout.HelpBox("Enter import path of Neodroid", MessageType.Info);
         EditorGUILayout.PropertyField(this._neodroid_settings.FindProperty(NeodroidEditorConstants
                                                                                ._Import_Location_Pref_Key),

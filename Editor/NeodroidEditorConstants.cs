@@ -56,7 +56,7 @@ namespace droid.Editor {
     /// <summary>
     ///
     /// </summary>
-    public const string _Imported_Asset_Pref_Key = "NeodroidIsImportedAsset";
+    public const string _IsPackage_Pref_Key = "NeodroidIsPackage";
 
     /// <summary>
     ///
