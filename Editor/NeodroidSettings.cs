@@ -88,7 +88,7 @@ namespace droid.Editor {
     }
 
     public static void ApplyIsPackage(bool value) {
-      if (!value) {
+      if (value) {
         DefineSymbolsFunctionality.AddIsPackageDefineSymbols();
         Debug.Log($"Neodroid is set as an imported asset");
       } else {
@@ -156,7 +156,7 @@ namespace droid.Editor {
       settings.NeodroidGithubExtensionProp = false;
       settings.NeodroidIsPackageProp = false;
       settings.NeodroidImportLocationProp = NeodroidEditorConstants._Default_Import_Location;
-
+      
       settings.NeodroidGeneratePreviewsProp = false;
       settings.NeodroidPreviewsLocationProp = NeodroidEditorConstants._Default_Scene_Previews_Location;
       settings.NeodroidGenerateDescriptionsProp = false;

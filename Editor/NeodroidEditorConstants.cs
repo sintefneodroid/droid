@@ -8,7 +8,7 @@ namespace droid.Editor {
     /// <summary>
     ///
     /// </summary>
-    public const string _NeodroidSettingsPath = _Default_Import_Location + "Editor/neodroid_settings.asset";
+    public const string _NeodroidSettingsPath = "Assets/droid/Editor/neodroid_settings.asset";
 
     /// <summary>
     ///
