@@ -323,6 +323,7 @@ namespace droid.Editor.Windows {
             //EditorGUILayout.BeginHorizontal("Box");
             #if NEODROID_DEBUG
             observer_value.Debugging = EditorGUILayout.Toggle("Debugging", observer_value.Debugging);
+                        EditorGUILayout.LabelField(observer_value.ToString());
             #endif
             //EditorGUILayout.EndHorizontal();
           }
