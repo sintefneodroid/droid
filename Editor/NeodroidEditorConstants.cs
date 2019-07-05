@@ -33,7 +33,8 @@ namespace droid.Editor {
         /// <summary>
     ///
     /// </summary>
-    public const string _Default_Import_Location = "Packages/com.neodroid.droid/";
+    //public const string _Default_Import_Location = "Packages/com.neodroid.droid/";
+    public const string _Default_Import_Location = "Assets/droid/";
 
     #else
     /// <summary>

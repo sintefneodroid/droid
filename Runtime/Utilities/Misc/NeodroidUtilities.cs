@@ -5,6 +5,7 @@ using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Utilities.GameObjects.ChildSensors;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 namespace droid.Runtime.Utilities.Misc {
   /// <summary>
@@ -14,6 +15,22 @@ namespace droid.Runtime.Utilities.Misc {
     ///
     /// </summary>
     public static Vector4 Zero { get { return new Vector4(0, 0, 0, 0); } }
+
+
+    public static string GetPersistentDataPath(string[] folders, string fileName = null)
+    {
+      string dataPath = Path.Combine(folders);
+      dataPath = Path.Combine(Application.persistentDataPath, dataPath);
+      //dataPath = dataPath.Replace('/', '\\');
+
+      if (!Directory.Exists(dataPath))
+        Directory.CreateDirectory(dataPath);
+
+      if(fileName != null)
+        dataPath = Path.Combine(dataPath, fileName);
+
+      return dataPath;
+    }
 
     /// <summary>
     /// </summary>
