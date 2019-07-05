@@ -71,6 +71,19 @@ namespace droid.Runtime.Prototyping.Actuators {
     }
 
     /// <summary>
+    ///
+    /// </summary>
+    protected override void UnRegisterComponent() {
+      this.Parent?.UnRegister(this, this._x);
+      this.Parent?.UnRegister(this, this._y);
+      this.Parent?.UnRegister(this, this._z);
+
+      this.Parent?.UnRegister(this, this._rot_x);
+      this.Parent?.UnRegister(this, this._rot_y);
+      this.Parent?.UnRegister(this, this._rot_z);
+    }
+
+    /// <summary>
     /// </summary>
     /// <param name="motion"></param>
     protected override void InnerApplyMotion(IMotion motion) {
