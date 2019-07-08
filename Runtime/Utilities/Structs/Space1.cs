@@ -12,6 +12,8 @@ namespace droid.Runtime.Utilities.Structs {
     /// <summary>
     ///
     /// </summary>
+    ///
+    [Range(0, 15)]
     public int _Decimal_Granularity;
 
     /// <summary>
