@@ -23,13 +23,6 @@ namespace droid.Runtime.Utilities.GameObjects {
     [SerializeField]
     bool _disables_children = false;
 
-    #if UNITY_EDITOR
-    /// <summary>
-    /// </summary>
-    [SerializeField]
-    bool _editor_reregistering = true;
-    #endif
-
     [SerializeField] bool _unregister_at_disable = false;
 
     #if NEODROID_DEBUG
@@ -117,7 +110,8 @@ namespace droid.Runtime.Utilities.GameObjects {
     /// <summary>
     /// </summary>
     void OnEnable() {
-      if (this._disables_children) {
+
+        if (this._disables_children) {
         foreach (Transform child in this.transform) {
           if (child != this.transform) {
             child.gameObject.SetActive(true);
@@ -133,7 +127,10 @@ namespace droid.Runtime.Utilities.GameObjects {
           }
         }
       }
-
+      if (EditorApplication.isPlayingOrWillChangePlaymode)
+      {
+          return;
+      }
       this.ReRegister();
     }
 
@@ -149,11 +146,10 @@ namespace droid.Runtime.Utilities.GameObjects {
     /// <summary>
     /// </summary>
     void OnValidate() { // Only called in the editor
-      if (EditorApplication.isPlaying || !this._editor_reregistering) {
-        return;
+      if (!EditorApplication.isPlayingOrWillChangePlaymode) {
+        this.ReRegister();
       }
-
-      this.ReRegister();
+            
     }
     #endif
 
