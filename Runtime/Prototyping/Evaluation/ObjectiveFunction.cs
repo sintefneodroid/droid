@@ -2,6 +2,7 @@
 using System.Globalization;
 using droid.Runtime.Environments;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities.GameObjects;
 using droid.Runtime.Utilities.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Utilities.Structs;
@@ -15,7 +16,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
   public abstract class ObjectiveFunction : PrototypingGameObject,
                                             //IHasRegister<Term>,
                                             //IResetable,
-                                            IObjective {
+                                            IObjectiveFunction {
     /// <summary>
     /// </summary>
     [SerializeField]
@@ -98,12 +99,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
     /// <param name="term"></param>
     public void UnRegister(Term term) { this.UnRegister(term, term.Identifier); }
 */
-    /// <summary>
-    /// </summary>
-    public float SolvedThreshold {
-      get { return this._solved_threshold; }
-      set { this._solved_threshold = value; }
-    }
+
 
     /// <inheritdoc />
     /// <summary>
@@ -253,31 +249,32 @@ namespace droid.Runtime.Prototyping.Evaluation {
     //[SerializeField] protected Dictionary<Term, float> _Extra_Term_Weights = new Dictionary<Term, float>();
 
     [Header("General", order = 101)]
-    [SerializeField]
-    float _solved_threshold = 0f;
 
-    [SerializeField] private float _last_signal = 0f;
+    [SerializeField] float _last_signal = 0f;
+    /// <summary>
+    ///
+    /// </summary>
     public float LastSignal
     {
         get { return this._last_signal; }
     }
 
-
-        /// <summary>
+    /// <summary>
         /// </summary>
-        [SerializeField]
-    int _episode_length = 1000;
+        [SerializeField] int _episode_length = 1000;
 
-    /// <inheritdoc />
+        [SerializeField] Space1 _signal_space;
+
+        /// <inheritdoc />
     /// <summary>
     /// </summary>
     public int EpisodeLength { get { return this._episode_length; } set { this._episode_length = value; } }
 
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public Space1 SignalSpace { get; set; }
+        /// <inheritdoc />
+        /// <summary>
+        /// </summary>
+        public Space1 SignalSpace { get { return this._signal_space; } set { this._signal_space = value; } }
 
-    #endregion
+        #endregion
   }
 }

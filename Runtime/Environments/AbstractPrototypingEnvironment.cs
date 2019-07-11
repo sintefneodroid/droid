@@ -934,7 +934,7 @@ namespace droid.Runtime.Environments {
 
     /// <summary>
     /// </summary>
-    public IObjective ObjectiveFunction {
+    public IObjectiveFunction ObjectiveFunction {
       get { return this._objective_function; }
       set { this._objective_function = (ObjectiveFunction)value; }
     }

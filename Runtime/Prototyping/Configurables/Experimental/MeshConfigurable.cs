@@ -1,5 +1,6 @@
 ﻿using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
+using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Sampling;
 using droid.Runtime.Utilities.Structs;
@@ -24,7 +25,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     [SerializeField] Mesh[] _meshes = null;
     [SerializeField] MeshFilter _mesh_filter = null;
     [SerializeField] bool _displace_mesh = false;
-    [SerializeField] Space1 _deformation_space = new Space1 {_Min_Value = 1f, _Max_Value = 5f};
+    [SerializeField] Space1 _deformation_space = new Space1 {MinValue = 1f, MaxValue = 5f};
 
     /// <inheritdoc />
     /// <summary>

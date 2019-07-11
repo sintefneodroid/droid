@@ -37,7 +37,6 @@ namespace droid.Runtime.Prototyping.Sensors {
     /// </summary>
     public void EnvironmentReset() { }
 
-    //protected abstract void UpdateFloatEnumerable(IEnumerable<float> vals);
 
     /// <inheritdoc />
     /// <summary>
@@ -91,10 +90,6 @@ namespace droid.Runtime.Prototyping.Sensors {
     [Header("References", order = 99)]
     [SerializeField]
     AbstractPrototypingEnvironment _environment;
-
-    [Header("Normalisation", order = 100)]
-    [SerializeField]
-    bool _normalise_observation;
 
     #endregion
   }

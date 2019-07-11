@@ -3,7 +3,7 @@ using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities.Sampling;
 using UnityEngine;
 
-namespace droid.Runtime.Utilities.Structs {
+namespace droid.Runtime.Structs.Space {
   /// <summary>
   /// </summary>
   [Serializable]
@@ -24,6 +24,9 @@ namespace droid.Runtime.Utilities.Structs {
 
     [SerializeField] bool normalised;
 
+    /// <summary>
+    ///
+    /// </summary>
     public DistributionSampler DistributionSampler {
       get { return this._distribution_sampler; }
       set { this._distribution_sampler = value; }
@@ -32,22 +35,23 @@ namespace droid.Runtime.Utilities.Structs {
     /// <summary>
     ///
     /// </summary>
-    public bool IsNormalised { get { return this.normalised; } set { this.normalised = value; } }
+    public bool Normalised { get { return this.normalised; } set { this.normalised = value; } }
 
     /// <summary>
     ///
     /// </summary>
-    public Vector4 _Min_Values;
+    [SerializeField] Vector4 _Min_Values;
 
     /// <summary>
     ///
     /// </summary>
-    public Vector4 _Max_Values;
+    [SerializeField] Vector4 _Max_Values;
 
     /// <summary>
     ///
     /// </summary>
-    public int _decimal_granularity;
+    [Range(0, 15)]
+    [SerializeField] int _decimal_granularity;
 
     public Space4(int decimal_granularity = 2) : this() {
       this._decimal_granularity = decimal_granularity;
@@ -67,8 +71,8 @@ namespace droid.Runtime.Utilities.Structs {
     public Space1 Xspace {
       get {
         return new Space1(this.DecimalGranularity) {
-                                                       _Min_Value = this._Min_Values.x,
-                                                       _Max_Value = this._Max_Values.x
+                                                       MinValue = this._Min_Values.x,
+                                                       MaxValue = this._Max_Values.x
                                                    };
       }
     }
@@ -79,8 +83,8 @@ namespace droid.Runtime.Utilities.Structs {
     public Space1 Yspace {
       get {
         return new Space1(this.DecimalGranularity) {
-                                                       _Min_Value = this._Min_Values.y,
-                                                       _Max_Value = this._Max_Values.y
+                                                       MinValue = this._Min_Values.y,
+                                                       MaxValue = this._Max_Values.y
                                                    };
       }
     }
@@ -91,8 +95,8 @@ namespace droid.Runtime.Utilities.Structs {
     public Space1 Zspace {
       get {
         return new Space1(this.DecimalGranularity) {
-                                                       _Min_Value = this._Min_Values.z,
-                                                       _Max_Value = this._Max_Values.z
+                                                       MinValue = this._Min_Values.z,
+                                                       MaxValue = this._Max_Values.z
                                                    };
       }
     }
@@ -103,8 +107,8 @@ namespace droid.Runtime.Utilities.Structs {
     public Space1 Wspace {
       get {
         return new Space1(this.DecimalGranularity) {
-                                                       _Min_Value = this._Min_Values.w,
-                                                       _Max_Value = this._Max_Values.w
+                                                       MinValue = this._Min_Values.w,
+                                                       MaxValue = this._Max_Values.w
                                                    };
       }
     }
@@ -199,21 +203,31 @@ namespace droid.Runtime.Utilities.Structs {
     ///
     /// </summary>
     public static Space4 ZeroOne {
-      get { return new Space4(1) {_Min_Values = Vector4.zero, _Max_Values = Vector4.one}; }
+      get { return new Space4(1) {_Min_Values = Vector4.zero, MaxValues = Vector4.one}; }
     }
 
     /// <summary>
     ///
     /// </summary>
     public static Space4 TwentyEighty {
-      get { return new Space4(1) {_Min_Values = Vector4.one * 0.2f, _Max_Values = Vector4.one * 0.8f}; }
+      get { return new Space4(1) {_Min_Values = Vector4.one * 0.2f, MaxValues = Vector4.one * 0.8f}; }
     }
 
     /// <summary>
     ///
     /// </summary>
     public static Space4 MinusOneOne {
-      get { return new Space4(2) {_Min_Values = -Vector4.one, _Max_Values = Vector4.one}; }
+      get { return new Space4(2) {_Min_Values = -Vector4.one, MaxValues = Vector4.one}; }
     }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public Vector4 MaxValues { get { return this._Max_Values; } set { this._Max_Values = value; } }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public Vector4 MinValues { get { return this._Min_Values; } set { this._Min_Values = value; } }
   }
 }

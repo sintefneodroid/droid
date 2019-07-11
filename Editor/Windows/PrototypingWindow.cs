@@ -14,6 +14,7 @@ using droid.Runtime.Prototyping.Internals;
 using droid.Runtime.Prototyping.Sensors;
 using droid.Runtime.Utilities.Enums;
 using droid.Runtime.Utilities.GameObjects;
+using droid.Runtime.Utilities.InternalReactions;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
@@ -184,6 +185,9 @@ namespace droid.Editor.Windows {
                                                                                         .ObjectiveFunction,
                                                                      typeof(ObjectiveFunction),
                                                                      true);
+                  EditorGUILayout.LabelField("Signal: " + this._environments[i].ObjectiveFunction.Evaluate());
+                  this._environments[i].ObjectiveFunction.SignalSpace.FromVector3(EditorGUILayout.Vector3Field
+                  (this._environments[i].ObjectiveFunction.SignalSpace.Vector3Description(),this._environments[i].ObjectiveFunction.SignalSpace.ToVector3()));
                   this._environments[i].ObjectiveFunction.EpisodeLength =
                       EditorGUILayout.IntField("Episode Length",
                                                this._environments[i].ObjectiveFunction.EpisodeLength);
@@ -211,7 +215,7 @@ namespace droid.Editor.Windows {
                   }
                 }
 
-                this.DrawObservers(observers);
+                this.DrawSensors(observers);
 
                 this.DrawConfigurables(configurables);
 
@@ -307,7 +311,7 @@ namespace droid.Editor.Windows {
       EditorGUILayout.EndVertical();
     }
 
-    void DrawObservers(SortedDictionary<string, ISensor> observers) {
+    void DrawSensors(SortedDictionary<string, ISensor> observers) {
       EditorGUILayout.BeginVertical("Box");
       GUILayout.Label("Observers");
       foreach (var observer in observers) {
@@ -323,7 +327,7 @@ namespace droid.Editor.Windows {
             //EditorGUILayout.BeginHorizontal("Box");
             #if NEODROID_DEBUG
             observer_value.Debugging = EditorGUILayout.Toggle("Debugging", observer_value.Debugging);
-                        EditorGUILayout.LabelField(observer_value.ToString());
+                        EditorGUILayout.LabelField("Observables: ["+observer_value.ToString()+"]");
             #endif
             //EditorGUILayout.EndHorizontal();
           }
@@ -406,8 +410,9 @@ namespace droid.Editor.Windows {
           EditorGUILayout.ObjectField(actuator_value, typeof(Actuator), true);
 
           if (this._show_detailed_descriptions) {
-            EditorGUILayout.Vector3Field(actuator_value.MotionSpace.Vector3Description(),
-                                         actuator_value.MotionSpace.ToVector3());
+            actuator_value.MotionSpace.FromVector3(EditorGUILayout.Vector3Field(actuator_value.MotionSpace
+            .Vector3Description(),
+                                         actuator_value.MotionSpace.ToVector3()));
             //EditorGUILayout.BeginHorizontal("Box");
             #if NEODROID_DEBUG
             actuator_value.Debugging = EditorGUILayout.Toggle("Debugging", actuator_value.Debugging);

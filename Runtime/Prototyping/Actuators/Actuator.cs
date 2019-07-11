@@ -2,6 +2,7 @@
 using droid.Runtime.Environments;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Prototyping.Actors;
+using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities.GameObjects;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
@@ -54,8 +55,8 @@ namespace droid.Runtime.Prototyping.Actuators {
       }
       #endif
 
-      if (motion.Strength < this.MotionSpace._Min_Value || motion.Strength > this.MotionSpace._Max_Value) {
-        Debug.LogWarning($"It does not accept input {motion.Strength}, outside the allowed range from {this.MotionSpace._Min_Value} to {this.MotionSpace._Max_Value}");
+      if (motion.Strength < this.MotionSpace.MinValue || motion.Strength > this.MotionSpace.MaxValue) {
+        Debug.LogWarning($"It does not accept input {motion.Strength}, outside the allowed range from {this.MotionSpace.MinValue} to {this.MotionSpace.MaxValue}");
         return; // Do nothing
       }
 
@@ -73,6 +74,7 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <summary>
     /// </summary>
     public void EnvironmentReset() { this._energy_spend_since_reset = 0; }
+
 
     /// <summary>
     /// 

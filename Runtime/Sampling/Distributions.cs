@@ -246,10 +246,10 @@ namespace droid.Runtime.Utilities.Sampling {
       // our curve will go from 0 to max_x.
       var max_x = Inverse_Sec_Sqrd(max_y);
 
-      var max_cdf = Sec_Sqrd_CumulativeDistributionFunction(max_x);
+      var max_cdf = Sec_Sqrd_CumulativeDistribution(max_x);
 
       var u = Random.Range(0.0f, max_cdf);
-      var x_val = Sec_Sqrd_InverseCumulativeDistributionFunction(u);
+      var x_val = Sec_Sqrd_InverseCumulativeDistribution(u);
 
       // scale to [0,1]
       var value = x_val / max_x;
@@ -275,14 +275,14 @@ namespace droid.Runtime.Utilities.Sampling {
     }
 
     // The integral of sec^2
-    static float Sec_Sqrd_CumulativeDistributionFunction(float x) {
+    static float Sec_Sqrd_CumulativeDistribution(float x) {
       // The cumulative distribution function for sec^2 is just the definite integral of sec^2(x) = tan(x) - tan(0) = tan(x)
 
       return Mathf.Tan(x);
     }
 
     // The inverse of the integral of sec^2
-    static float Sec_Sqrd_InverseCumulativeDistributionFunction(float x) {
+    static float Sec_Sqrd_InverseCumulativeDistribution(float x) {
       // The cumulative distribution function for sec^2 is just the definite integral of sec^2(x) = tan(x) - tan(0) = tan(x)
       // Then the Inverse cumulative distribution function is just atan(x)
 

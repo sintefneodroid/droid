@@ -1,22 +1,35 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using droid.Runtime.Interfaces;
 
 namespace droid.Runtime.Messaging.Messages {
   /// <summary>
   /// </summary>
   public class EnvironmentDescription {
-    public EnvironmentDescription(int max_steps,
+    public EnvironmentDescription(IObjectiveFunction objective_function_function,
                                   SortedDictionary<string, IActor> actors,
                                   SortedDictionary<string, IConfigurable> configurables,
                                   SortedDictionary<string, ISensor> sensors,
-                                  float solved_threshold) {
+                                  SortedDictionary<string, IDisplayer> displayers) {
       this.Configurables = configurables;
       this.Actors = actors;
-      this.MaxSteps = max_steps;
+;
       this.Sensors = sensors;
 
-      this.SolvedThreshold = solved_threshold;
+      this.Displayers =displayers;
+
+      this.ObjectiveFunction = objective_function_function;
     }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public SortedDictionary<String, IDisplayer> Displayers { get;  }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public IObjectiveFunction ObjectiveFunction { get; }
 
     /// <summary>
     /// </summary>
@@ -30,12 +43,5 @@ namespace droid.Runtime.Messaging.Messages {
     /// </summary>
     public SortedDictionary<string,ISensor> Sensors { get; }
 
-    /// <summary>
-    /// </summary>
-    public int MaxSteps { get; }
-
-    /// <summary>
-    /// </summary>
-    public float SolvedThreshold { get; }
   }
 }

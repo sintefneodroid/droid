@@ -1,4 +1,6 @@
-﻿#if UNITY_EDITOR && NEODROID_DEBUG
+﻿
+using droid.Runtime.Utilities.InternalReactions;
+#if UNITY_EDITOR && NEODROID_DEBUG
 using droid.Editor.Utilities;
 
 using droid.Runtime.Environments;
@@ -38,7 +40,7 @@ namespace droid.Editor.Windows {
 
     Actuator[] _actuators;
 
-    ObjectiveFunction[] _objective_functions;
+    ObjectiveFunction[] _objective_functions_function;
 
     Sensor[] _observers;
 
@@ -80,7 +82,7 @@ namespace droid.Editor.Windows {
       this._actuators = FindObjectsOfType<Actuator>();
       this._observers = FindObjectsOfType<Sensor>();
       this._configurables = FindObjectsOfType<Configurable>();
-      this._objective_functions = FindObjectsOfType<ObjectiveFunction>();
+      this._objective_functions_function = FindObjectsOfType<ObjectiveFunction>();
       this._displayers = FindObjectsOfType<Displayer>();
       this._listeners = FindObjectsOfType<EnvironmentListener>();
       this._player_reactions = FindObjectOfType<PlayerReactions>();
@@ -193,7 +195,7 @@ namespace droid.Editor.Windows {
           configurable.Debugging = this._show_configurables_debug;
         }
 
-        foreach (var objective_functions in this._objective_functions) {
+        foreach (var objective_functions in this._objective_functions_function) {
           objective_functions.Debugging = this._show_objective_functions_debug;
         }
 

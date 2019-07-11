@@ -3,7 +3,7 @@ using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities.Sampling;
 using UnityEngine;
 
-namespace droid.Runtime.Utilities.Structs {
+namespace droid.Runtime.Structs.Space {
   /// <summary>
   ///
   /// </summary>
@@ -27,13 +27,13 @@ namespace droid.Runtime.Utilities.Structs {
       get { return this._decimal_granularity; }
       set { this._decimal_granularity = value; }
     }
+    [Range(0, 15)]
+    [SerializeField]int _decimal_granularity;
+    [SerializeField]bool normalised;
+    public Boolean Normalised { get { return this.normalised; } set { this.normalised = value; } }
 
-    public int _decimal_granularity;
-    public bool normalised;
-    public Boolean IsNormalised { get { return this.normalised; } set { this.normalised = value; } }
-
-    public Vector3 _Min_Values;
-    public Vector3 _Max_Values;
+    [SerializeField]Vector3 _Min_Values;
+    [SerializeField]Vector3 _Max_Values;
 
     public Space3(DistributionSampler ds, int decimal_granularity = 1) : this() {
       this._decimal_granularity = decimal_granularity;
@@ -102,8 +102,8 @@ namespace droid.Runtime.Utilities.Structs {
     public Space1 Xspace {
       get {
         return new Space1(this.DecimalGranularity) {
-                                                       _Min_Value = this._Min_Values.x,
-                                                       _Max_Value = this._Max_Values.x
+                                                       MinValue = this._Min_Values.x,
+                                                       MaxValue = this._Max_Values.x
                                                    };
       }
     }
@@ -111,8 +111,8 @@ namespace droid.Runtime.Utilities.Structs {
     public Space1 Yspace {
       get {
         return new Space1(this.DecimalGranularity) {
-                                                       _Min_Value = this._Min_Values.y,
-                                                       _Max_Value = this._Max_Values.y
+                                                       MinValue = this._Min_Values.y,
+                                                       MaxValue = this._Max_Values.y
                                                    };
       }
     }
@@ -120,8 +120,8 @@ namespace droid.Runtime.Utilities.Structs {
     public Space1 Zspace {
       get {
         return new Space1(this.DecimalGranularity) {
-                                                       _Min_Value = this._Min_Values.z,
-                                                       _Max_Value = this._Max_Values.z
+                                                       MinValue = this._Min_Values.z,
+                                                       MaxValue = this._Max_Values.z
                                                    };
       }
     }
@@ -180,14 +180,14 @@ namespace droid.Runtime.Utilities.Structs {
     /// <returns></returns>
     public static Space3 ZeroOne {
       get {
-        return new Space3(new DistributionSampler()) {_Min_Values = Vector3.zero, _Max_Values = Vector3.one};
+        return new Space3(new DistributionSampler()) {_Min_Values = Vector3.zero, MaxValues = Vector3.one};
       }
     }
 
     public static Space3 TwentyEighty {
       get {
         return new Space3(new DistributionSampler()) {
-                                                         _Min_Values = Vector3.one * 0.2f,
+                                                         MinValues = Vector3.one * 0.2f,
                                                          _Max_Values = Vector3.one * 0.8f
                                                      };
       }
@@ -195,8 +195,12 @@ namespace droid.Runtime.Utilities.Structs {
 
     public static Space3 MinusOneOne {
       get {
-        return new Space3(new DistributionSampler()) {_Min_Values = -Vector3.one, _Max_Values = Vector3.one};
+        return new Space3(new DistributionSampler()) {_Min_Values = -Vector3.one, MaxValues = Vector3.one};
       }
     }
+
+    public Vector3 MinValues { get { return this._Min_Values; } set { this._Min_Values = value; } }
+
+    public Vector3 MaxValues { get { return this._Max_Values; } set { this._Max_Values = value; } }
   }
 }

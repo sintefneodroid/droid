@@ -1,6 +1,7 @@
 ﻿using System;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
+using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
@@ -84,16 +85,16 @@ namespace droid.Runtime.Prototyping.Configurables {
       //var vel = this._rigidbody.velocity;
 
       var v = simulator_configuration.ConfigurableValue;
-      if (this.SingleSpace._Decimal_Granularity >= 0) {
-        v = (int)Math.Round(v, this.SingleSpace._Decimal_Granularity);
+      if (this.SingleSpace.DecimalGranularity >= 0) {
+        v = (int)Math.Round(v, this.SingleSpace.DecimalGranularity);
       }
 
-      if (this.SingleSpace._Min_Value.CompareTo(this.SingleSpace._Max_Value) != 0) {
-        //TODO NOT IMPLEMENTED CORRECTLY VelocitySpace should not be index but should check all pairwise values, VelocitySpace._Min_Values == VelocitySpace._Max_Values
-        if (v < this.SingleSpace._Min_Value || v > this.SingleSpace._Max_Value) {
+      if (this.SingleSpace.MinValue.CompareTo(this.SingleSpace.MaxValue) != 0) {
+        //TODO NOT IMPLEMENTED CORRECTLY VelocitySpace should not be index but should check all pairwise values, VelocitySpace.MinValues == VelocitySpace.MaxValues
+        if (v < this.SingleSpace.MinValue || v > this.SingleSpace.MaxValue) {
           Debug.Log(string.Format("Configurable does not accept input{2}, outside allowed range {0} to {1}",
-                                  this.SingleSpace._Min_Value,
-                                  this.SingleSpace._Max_Value,
+                                  this.SingleSpace.MinValue,
+                                  this.SingleSpace.MaxValue,
                                   v));
           return; // Do nothing
         }

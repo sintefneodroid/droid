@@ -182,9 +182,9 @@ namespace droid.Runtime.Messaging {
       FActuator.AddActuatorName(b, n);
       FActuator.AddActuatorRange(b,
                               FRange.CreateFRange(b,
-                                                  actuator.MotionSpace._Decimal_Granularity,
-                                                  actuator.MotionSpace._Max_Value,
-                                                  actuator.MotionSpace._Min_Value));
+                                                  actuator.MotionSpace.DecimalGranularity,
+                                                  actuator.MotionSpace.MaxValue,
+                                                  actuator.MotionSpace.MinValue));
       return FActuator.EndFActuator(b);
     }
 
@@ -225,6 +225,7 @@ namespace droid.Runtime.Messaging {
                                                                        rot.y,
                                                                        rot.z,
                                                                        rot.w));
+
       return FQT.EndFQT(b);
     }
 
@@ -270,7 +271,7 @@ namespace droid.Runtime.Messaging {
 
       FArray.StartRangesVector(b, float_a.ObservationSpace.Length);
       foreach (var tra in float_a.ObservationSpace) {
-        FRange.CreateFRange(b, tra._Decimal_Granularity, tra._Max_Value, tra._Min_Value);
+        FRange.CreateFRange(b, tra.DecimalGranularity, tra.MaxValue, tra.MinValue);
       }
 
       ranges_vector = b.EndVector();
@@ -300,9 +301,9 @@ namespace droid.Runtime.Messaging {
       FSingle.AddValue(b, numeral.ObservationValue);
 
       var range_offset = FRange.CreateFRange(b,
-                                             numeral.SingleSpace._Decimal_Granularity,
-                                             numeral.SingleSpace._Max_Value,
-                                             numeral.SingleSpace._Min_Value);
+                                             numeral.SingleSpace.DecimalGranularity,
+                                             numeral.SingleSpace.MaxValue,
+                                             numeral.SingleSpace.MinValue);
       FSingle.AddRange(b, range_offset);
       return FSingle.EndFSingle(b);
     }
@@ -315,8 +316,8 @@ namespace droid.Runtime.Messaging {
       var xs = numeral.DoubleSpace.Xspace;
       var ys = numeral.DoubleSpace.Yspace;
 
-      FDouble.AddXRange(b, FRange.CreateFRange(b, granularity, xs._Max_Value, xs._Min_Value));
-      FDouble.AddYRange(b, FRange.CreateFRange(b, granularity, ys._Max_Value, ys._Min_Value));
+      FDouble.AddXRange(b, FRange.CreateFRange(b, granularity, xs.MaxValue, xs.MinValue));
+      FDouble.AddYRange(b, FRange.CreateFRange(b, granularity, ys.MaxValue, ys.MinValue));
       FDouble.AddVec2(b, FVector2.CreateFVector2(b, vec2.x, vec2.y));
 
       return FDouble.EndFDouble(b);
@@ -331,9 +332,9 @@ namespace droid.Runtime.Messaging {
       var xs = numeral.TripleSpace.Xspace;
       var ys = numeral.TripleSpace.Yspace;
       var zs = numeral.TripleSpace.Zspace;
-      FTriple.AddXRange(b, FRange.CreateFRange(b, granularity, xs._Max_Value, xs._Min_Value));
-      FTriple.AddYRange(b, FRange.CreateFRange(b, granularity, ys._Max_Value, ys._Min_Value));
-      FTriple.AddZRange(b, FRange.CreateFRange(b, granularity, zs._Max_Value, zs._Min_Value));
+      FTriple.AddXRange(b, FRange.CreateFRange(b, granularity, xs.MaxValue, xs.MinValue));
+      FTriple.AddYRange(b, FRange.CreateFRange(b, granularity, ys.MaxValue, ys.MinValue));
+      FTriple.AddZRange(b, FRange.CreateFRange(b, granularity, zs.MaxValue, zs.MinValue));
       return FTriple.EndFTriple(b);
     }
 
@@ -346,10 +347,10 @@ namespace droid.Runtime.Messaging {
       var ys = numeral.QuadSpace.Yspace;
       var zs = numeral.QuadSpace.Zspace;
       var ws = numeral.QuadSpace.Wspace;
-      FQuadruple.AddXRange(b, FRange.CreateFRange(b, granularity, xs._Max_Value, xs._Min_Value));
-      FQuadruple.AddYRange(b, FRange.CreateFRange(b, granularity, ys._Max_Value, ys._Min_Value));
-      FQuadruple.AddZRange(b, FRange.CreateFRange(b, granularity, zs._Max_Value, zs._Min_Value));
-      FQuadruple.AddWRange(b, FRange.CreateFRange(b, granularity, ws._Max_Value, ws._Min_Value));
+      FQuadruple.AddXRange(b, FRange.CreateFRange(b, granularity, xs.MaxValue, xs.MinValue));
+      FQuadruple.AddYRange(b, FRange.CreateFRange(b, granularity, ys.MaxValue, ys.MinValue));
+      FQuadruple.AddZRange(b, FRange.CreateFRange(b, granularity, zs.MaxValue, zs.MinValue));
+      FQuadruple.AddWRange(b, FRange.CreateFRange(b, granularity, ws.MaxValue, ws.MinValue));
       return FQuadruple.EndFQuadruple(b);
     }
 
@@ -483,10 +484,10 @@ namespace droid.Runtime.Messaging {
     }
 
     static Offset<FObjective> Serialise(FlatBufferBuilder b, EnvironmentDescription description) {
-      var objective_name_offset = b.CreateString("Default objective");
+      var objective_name_offset = b.CreateString(description.ObjectiveFunction.Identifier);
       FObjective.StartFObjective(b);
-      FObjective.AddMaxEpisodeLength(b, description.MaxSteps);
-      FObjective.AddSolvedThreshold(b, description.SolvedThreshold);
+      FObjective.AddMaxEpisodeLength(b, description.ObjectiveFunction.EpisodeLength);
+      //FObjective.AddSolvedThreshold(b, description.SolvedThreshold); //TODO: Add signal space
       FObjective.AddObjectiveName(b, objective_name_offset);
       return FObjective.EndFObjective(b);
     }

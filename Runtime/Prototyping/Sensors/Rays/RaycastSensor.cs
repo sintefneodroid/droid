@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
     [SerializeField] RaycastHit _hit = new RaycastHit();
 
     [SerializeField]
-    Space1 _observation_space = new Space1 {_Decimal_Granularity = 3, _Min_Value = 0, _Max_Value = 100.0f};
+    Space1 _observation_space = new Space1 {DecimalGranularity = 3, MinValue = 0, MaxValue = 100.0f};
 
     [Header("Observation", order = 103)]
     [SerializeField]
@@ -33,7 +34,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
     public float ObservationValue {
       get { return this._observation_value; }
       private set {
-        this._observation_value = this.SingleSpace.IsNormalised
+        this._observation_value = this.SingleSpace.Normalised
                                       ? this._observation_space.ClipNormaliseRound(value)
                                       : value;
       }

@@ -3,7 +3,7 @@ using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities.Sampling;
 using UnityEngine;
 
-namespace droid.Runtime.Utilities.Structs {
+namespace droid.Runtime.Structs.Space {
   /// <summary>
   /// 
   /// </summary>
@@ -20,14 +20,15 @@ namespace droid.Runtime.Utilities.Structs {
     /// <summary>
     ///
     /// </summary>
-    public Vector2 _Min_Values;
+    [SerializeField]Vector2 _Min_Values;
 
     /// <summary>
     ///
     /// </summary>
-    public Vector2 _Max_Values;
+    [SerializeField]Vector2 _Max_Values;
 
-    public int _decimal_granularity;
+    [Range(0, 15)]
+    [SerializeField]int _decimal_granularity;
     [SerializeField] bool normalised;
 
     /// <summary>
@@ -56,8 +57,8 @@ namespace droid.Runtime.Utilities.Structs {
     public Space1 Xspace {
       get {
         return new Space1(this.DecimalGranularity) {
-                                                       _Min_Value = this._Min_Values.x,
-                                                       _Max_Value = this._Max_Values.x
+                                                       MinValue = this._Min_Values.x,
+                                                       MaxValue = this._Max_Values.x
                                                    };
       }
     }
@@ -65,8 +66,8 @@ namespace droid.Runtime.Utilities.Structs {
     public Space1 Yspace {
       get {
         return new Space1(this.DecimalGranularity) {
-                                                       _Min_Value = this._Min_Values.y,
-                                                       _Max_Value = this._Max_Values.y
+                                                       MinValue = this._Min_Values.y,
+                                                       MaxValue = this._Max_Values.y
                                                    };
       }
     }
@@ -125,13 +126,23 @@ namespace droid.Runtime.Utilities.Structs {
     ///
     /// </summary>
     public static Space2 ZeroOne {
-      get { return new Space2(1) {_Min_Values = Vector2.zero, _Max_Values = Vector2.one}; }
+      get { return new Space2(1) {_Min_Values = Vector2.zero, MaxValues = Vector2.one}; }
     }
 
     public static Space2 TwentyEighty {
-      get { return new Space2(1) {_Min_Values = Vector2.one * 0.2f, _Max_Values = Vector2.one * 0.8f}; }
+      get { return new Space2(1) {_Min_Values = Vector2.one * 0.2f, MaxValues = Vector2.one * 0.8f}; }
     }
 
-    public bool IsNormalised { get { return this.normalised; } set { this.normalised = value; } }
+    public bool Normalised { get { return this.normalised; } set { this.normalised = value; } }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public Vector2 MinValues { get { return this._Min_Values; } set { this._Min_Values = value; } }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public Vector2 MaxValues { get { return this._Max_Values; } set { this._Max_Values = value; } }
   }
 }

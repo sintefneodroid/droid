@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities.GameObjects;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;

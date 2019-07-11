@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities.Enums;
 using droid.Runtime.Utilities.Misc.SearchableEnum;
 using droid.Runtime.Utilities.Structs;
@@ -58,7 +59,7 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
         default: throw new ArgumentOutOfRangeException();
       }
 
-      this._2_d_position = this.DoubleSpace.IsNormalised
+      this._2_d_position = this.DoubleSpace.Normalised
                                ? this._position_space.ClipNormaliseRound(vector2_pos)
                                : vector2_pos;
     }

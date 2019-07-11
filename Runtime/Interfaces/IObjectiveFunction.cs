@@ -1,14 +1,11 @@
+using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities.Structs;
 
 namespace droid.Runtime.Interfaces {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  public interface IObjective : IRegisterable {
-    /// <summary>
-    /// Specify an signal value for which the objective is considered solved
-    /// </summary>
-    float SolvedThreshold { get; set; }
+  public interface IObjectiveFunction : IRegisterable {
 
     /// <summary>
     /// Compute signal
@@ -25,6 +22,7 @@ namespace droid.Runtime.Interfaces {
     /// The length of an episode
     /// </summary>
     int EpisodeLength { get; set; }
+
 
     /// <summary>
     /// The range for which the signal might fall

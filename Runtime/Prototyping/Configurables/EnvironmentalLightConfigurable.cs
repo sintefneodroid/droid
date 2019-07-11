@@ -1,5 +1,6 @@
 ﻿using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
+using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Sampling;
 using droid.Runtime.Utilities.Structs;
@@ -22,9 +23,9 @@ namespace droid.Runtime.Prototyping.Configurables {
 
     [SerializeField]
     Space2 _intensity_space = new Space2 {
-                                             _decimal_granularity = 2,
-                                             _Min_Values = Vector3.one * 0.0f,
-                                             _Max_Values = Vector3.one * 1f,
+                                             DecimalGranularity = 2,
+                                             MinValues = Vector3.one * 0.0f,
+                                             MaxValues = Vector3.one * 1f,
                                              DistributionSampler =
                                                  new DistributionSampler(DistributionEnum.Linear_) {
                                                                                                        _factor
@@ -33,7 +34,7 @@ namespace droid.Runtime.Prototyping.Configurables {
                                          };
 
     [SerializeField]
-    Space3 _color_space = new Space3 {_Min_Values = Vector3.one * 0.6f, _Max_Values = Vector3.one * 1f};
+    Space3 _color_space = new Space3 {MinValues = Vector3.one * 0.6f, MaxValues = Vector3.one * 1f};
 
     /// <inheritdoc />
     /// <summary>

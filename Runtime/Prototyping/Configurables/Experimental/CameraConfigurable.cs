@@ -1,6 +1,7 @@
 ﻿using System;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
+using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities.GameObjects.NeodroidCamera;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
@@ -47,18 +48,18 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
 
     [SerializeField] Camera _camera;
     [SerializeField] SynchroniseCameraProperties _syncer;
-    [SerializeField] Space1 _fov_space = new Space1 {_Min_Value = 60f, _Max_Value = 90f};
-    [SerializeField] Space1 _focal_space = new Space1 {_Min_Value = 2f, _Max_Value = 3f};
+    [SerializeField] Space1 _fov_space = new Space1 {MinValue = 60f, MaxValue = 90f};
+    [SerializeField] Space1 _focal_space = new Space1 {MinValue = 2f, MaxValue = 3f};
 
     [SerializeField]
     Space2 _sensor_size_space =
-        new Space2(2) {_Min_Values = new Vector2(2.5f, 2.5f), _Max_Values = new Vector2(5, 5)};
+        new Space2(2) {MinValues = new Vector2(2.5f, 2.5f), MaxValues = new Vector2(5, 5)};
 
     [SerializeField]
     Space2 _lens_shift_space =
-        new Space2(3) {_Min_Values = new Vector2(-0.1f, -0.1f), _Max_Values = new Vector2(0.1f, 0.1f)};
+        new Space2(3) {MinValues = new Vector2(-0.1f, -0.1f), MaxValues = new Vector2(0.1f, 0.1f)};
 
-    [SerializeField] Space1 _gate_fit_space = new Space1(0) {_Min_Value = 0f, _Max_Value = 4f};
+    [SerializeField] Space1 _gate_fit_space = new Space1(0) {MinValue = 0f, MaxValue = 4f};
 
     /// <inheritdoc />
     /// <summary>
