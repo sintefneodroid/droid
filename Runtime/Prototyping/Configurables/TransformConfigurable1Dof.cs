@@ -1,5 +1,6 @@
 ﻿using System;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities.Enums;
 using droid.Runtime.Utilities.GameObjects.BoundingBoxes;
 using droid.Runtime.Utilities.Structs;
@@ -92,12 +93,12 @@ namespace droid.Runtime.Prototyping.Configurables {
       if (this._use_bounding_box_for_range) {
         if (this._bounding_box != null) {
           var valid_input = new Space1 {
-                                           _Max_Value =
+                                           MaxValue =
                                                Math.Min(this._bounding_box.Bounds.size.x,
                                                         Math.Min(this._bounding_box.Bounds.size.y,
                                                                  this._bounding_box.Bounds.size.z))
                                        };
-          valid_input._Min_Value = -valid_input._Max_Value;
+          valid_input.MinValue = -valid_input.MaxValue;
           this.SingleSpace = valid_input;
         }
       }
@@ -111,9 +112,9 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <param name="simulator_configuration"></param>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
     public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration) {
-      if (simulator_configuration.ConfigurableValue < this.SingleSpace._Min_Value
-          || simulator_configuration.ConfigurableValue > this.SingleSpace._Max_Value) {
-        Debug.Log($"It does not accept input, outside allowed range {this.SingleSpace._Min_Value} to {this.SingleSpace._Max_Value}");
+      if (simulator_configuration.ConfigurableValue < this.SingleSpace.MinValue
+          || simulator_configuration.ConfigurableValue > this.SingleSpace.MaxValue) {
+        Debug.Log($"It does not accept input, outside allowed range {this.SingleSpace.MinValue} to {this.SingleSpace.MaxValue}");
         return; // Do nothing
       }
 

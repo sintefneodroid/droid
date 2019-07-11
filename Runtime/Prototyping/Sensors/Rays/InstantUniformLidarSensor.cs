@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
@@ -20,7 +21,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
     [SerializeField]
     float[] _obs_array;
 
-    [SerializeField] Space1 _space = new Space1 {_Min_Value = 0, _Max_Value = 5f};
+    [SerializeField] Space1 _space = new Space1 {MinValue = 0, MaxValue = 5f};
 
     /// <summary>
     /// </summary>
@@ -56,159 +57,159 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
     public override void UpdateObservation() {
       if (this._is_2_d) {
         var vals = new float[8];
-        if (Physics.Raycast(this.transform.position + this._space._Min_Value * Vector3.forward,
+        if (Physics.Raycast(this.transform.position + this._space.MinValue * Vector3.forward,
                             Vector3.forward,
                             out this._hit,
-                            this._space._Max_Value)) {
+                            this._space.MaxValue)) {
           vals[0] = 1;
         } else {
-          vals[0] = this._space._Min_Value;
+          vals[0] = this._space.MinValue;
         }
 
-        if (Physics.Raycast(this.transform.position + this._space._Min_Value * Vector3.left,
+        if (Physics.Raycast(this.transform.position + this._space.MinValue * Vector3.left,
                             Vector3.left,
                             out this._hit,
-                            this._space._Max_Value)) {
+                            this._space.MaxValue)) {
           vals[1] = this._space.ClipNormaliseRound(this._hit.distance);
         } else {
-          vals[1] = this._space._Min_Value;
+          vals[1] = this._space.MinValue;
         }
 
-        if (Physics.Raycast(this.transform.position + this._space._Min_Value * Vector3.right,
+        if (Physics.Raycast(this.transform.position + this._space.MinValue * Vector3.right,
                             Vector3.right,
                             out this._hit,
-                            this._space._Max_Value)) {
+                            this._space.MaxValue)) {
           vals[2] = this._space.ClipNormaliseRound(this._hit.distance);
         } else {
-          vals[2] = this._space._Min_Value;
+          vals[2] = this._space.MinValue;
         }
 
-        if (Physics.Raycast(this.transform.position + this._space._Min_Value * Vector3.back,
+        if (Physics.Raycast(this.transform.position + this._space.MinValue * Vector3.back,
                             Vector3.back,
                             out this._hit,
-                            this._space._Max_Value)) {
+                            this._space.MaxValue)) {
           vals[3] = this._space.ClipNormaliseRound(this._hit.distance);
         } else {
-          vals[3] = this._space._Min_Value;
+          vals[3] = this._space.MinValue;
         }
 
         if (Physics.Raycast(this.transform.position
-                            + this._space._Min_Value * (Vector3.forward + Vector3.left).normalized,
+                            + this._space.MinValue * (Vector3.forward + Vector3.left).normalized,
                             (Vector3.forward + Vector3.left).normalized,
                             out this._hit,
-                            this._space._Max_Value)) {
+                            this._space.MaxValue)) {
           vals[4] = this._space.ClipNormaliseRound(this._hit.distance);
         } else {
-          vals[4] = this._space._Min_Value;
+          vals[4] = this._space.MinValue;
         }
 
         if (Physics.Raycast(this.transform.position
-                            + this._space._Min_Value * (Vector3.forward + Vector3.right).normalized,
+                            + this._space.MinValue * (Vector3.forward + Vector3.right).normalized,
                             (Vector3.forward + Vector3.right).normalized,
                             out this._hit,
-                            this._space._Max_Value)) {
+                            this._space.MaxValue)) {
           vals[5] = this._space.ClipNormaliseRound(this._hit.distance);
         } else {
-          vals[5] = this._space._Min_Value;
+          vals[5] = this._space.MinValue;
         }
 
         if (Physics.Raycast(this.transform.position
-                            + this._space._Min_Value * (Vector3.back + Vector3.left).normalized,
+                            + this._space.MinValue * (Vector3.back + Vector3.left).normalized,
                             (Vector3.back + Vector3.left).normalized,
                             out this._hit,
-                            this._space._Max_Value)) {
+                            this._space.MaxValue)) {
           vals[6] = this._space.ClipNormaliseRound(this._hit.distance);
         } else {
-          vals[6] = this._space._Min_Value;
+          vals[6] = this._space.MinValue;
         }
 
         if (Physics.Raycast(this.transform.position
-                            + this._space._Min_Value * (Vector3.back + Vector3.right).normalized,
+                            + this._space.MinValue * (Vector3.back + Vector3.right).normalized,
                             (Vector3.back + Vector3.right).normalized,
                             out this._hit,
-                            this._space._Max_Value)) {
+                            this._space.MaxValue)) {
           vals[7] = this._space.ClipNormaliseRound(this._hit.distance);
         } else {
-          vals[7] = this._space._Min_Value;
+          vals[7] = this._space.MinValue;
         }
 
         this.ObservationArray = vals;
       } else {
         var vals = new float[27];
-        if (Physics.Raycast(this.transform.position + this._space._Min_Value * Vector3.forward,
+        if (Physics.Raycast(this.transform.position + this._space.MinValue * Vector3.forward,
                             Vector3.forward,
                             out this._hit,
-                            this._space._Max_Value)) {
+                            this._space.MaxValue)) {
           vals[0] = 1;
         } else {
-          vals[0] = this._space._Min_Value;
+          vals[0] = this._space.MinValue;
         }
 
-        if (Physics.Raycast(this.transform.position + this._space._Min_Value * Vector3.left,
+        if (Physics.Raycast(this.transform.position + this._space.MinValue * Vector3.left,
                             Vector3.left,
                             out this._hit,
-                            this._space._Max_Value)) {
+                            this._space.MaxValue)) {
           vals[1] = this._space.ClipNormaliseRound(this._hit.distance);
         } else {
-          vals[1] = this._space._Min_Value;
+          vals[1] = this._space.MinValue;
         }
 
-        if (Physics.Raycast(this.transform.position + this._space._Min_Value * Vector3.right,
+        if (Physics.Raycast(this.transform.position + this._space.MinValue * Vector3.right,
                             Vector3.right,
                             out this._hit,
-                            this._space._Max_Value)) {
+                            this._space.MaxValue)) {
           vals[2] = this._space.ClipNormaliseRound(this._hit.distance);
         } else {
-          vals[2] = this._space._Min_Value;
+          vals[2] = this._space.MinValue;
         }
 
-        if (Physics.Raycast(this.transform.position + this._space._Min_Value * Vector3.back,
+        if (Physics.Raycast(this.transform.position + this._space.MinValue * Vector3.back,
                             Vector3.back,
                             out this._hit,
-                            this._space._Max_Value)) {
+                            this._space.MaxValue)) {
           vals[3] = this._space.ClipNormaliseRound(this._hit.distance);
         } else {
-          vals[3] = this._space._Min_Value;
+          vals[3] = this._space.MinValue;
         }
 
         if (Physics.Raycast(this.transform.position
-                            + this._space._Min_Value * (Vector3.forward + Vector3.left).normalized,
+                            + this._space.MinValue * (Vector3.forward + Vector3.left).normalized,
                             (Vector3.forward + Vector3.left).normalized,
                             out this._hit,
-                            this._space._Max_Value)) {
+                            this._space.MaxValue)) {
           vals[4] = this._space.ClipNormaliseRound(this._hit.distance);
         } else {
-          vals[4] = this._space._Min_Value;
+          vals[4] = this._space.MinValue;
         }
 
         if (Physics.Raycast(this.transform.position
-                            + this._space._Min_Value * (Vector3.forward + Vector3.right).normalized,
+                            + this._space.MinValue * (Vector3.forward + Vector3.right).normalized,
                             (Vector3.forward + Vector3.right).normalized,
                             out this._hit,
-                            this._space._Max_Value)) {
+                            this._space.MaxValue)) {
           vals[5] = this._space.ClipNormaliseRound(this._hit.distance);
         } else {
-          vals[5] = this._space._Min_Value;
+          vals[5] = this._space.MinValue;
         }
 
         if (Physics.Raycast(this.transform.position
-                            + this._space._Min_Value * (Vector3.back + Vector3.left).normalized,
+                            + this._space.MinValue * (Vector3.back + Vector3.left).normalized,
                             (Vector3.back + Vector3.left).normalized,
                             out this._hit,
-                            this._space._Max_Value)) {
+                            this._space.MaxValue)) {
           vals[6] = this._space.ClipNormaliseRound(this._hit.distance);
         } else {
-          vals[6] = this._space._Min_Value;
+          vals[6] = this._space.MinValue;
         }
 
         if (Physics.Raycast(this.transform.position
-                            + this._space._Min_Value * (Vector3.back + Vector3.right).normalized,
+                            + this._space.MinValue * (Vector3.back + Vector3.right).normalized,
                             (Vector3.back + Vector3.right).normalized,
                             out this._hit,
-                            this._space._Max_Value)) {
+                            this._space.MaxValue)) {
           vals[7] = this._space.ClipNormaliseRound(this._hit.distance);
         } else {
-          vals[7] = this._space._Min_Value;
+          vals[7] = this._space.MinValue;
         }
 
         //TODO:Missing combinations Vector3.down+Vector3.left...
@@ -223,94 +224,94 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
     void OnDrawGizmosSelected() {
       if (this.enabled) {
         var position = this.transform.position;
-        Debug.DrawLine(position, position - Vector3.forward * this._space._Max_Value, this._color);
-        Debug.DrawLine(position, position - Vector3.left * this._space._Max_Value, this._color);
-        Debug.DrawLine(position, position - Vector3.right * this._space._Max_Value, this._color);
-        Debug.DrawLine(position, position - Vector3.back * this._space._Max_Value, this._color);
+        Debug.DrawLine(position, position - Vector3.forward * this._space.MaxValue, this._color);
+        Debug.DrawLine(position, position - Vector3.left * this._space.MaxValue, this._color);
+        Debug.DrawLine(position, position - Vector3.right * this._space.MaxValue, this._color);
+        Debug.DrawLine(position, position - Vector3.back * this._space.MaxValue, this._color);
         Debug.DrawLine(position,
-                       position - (Vector3.forward + Vector3.left).normalized * this._space._Max_Value,
+                       position - (Vector3.forward + Vector3.left).normalized * this._space.MaxValue,
                        this._color);
         Debug.DrawLine(position,
-                       position - (Vector3.forward + Vector3.right).normalized * this._space._Max_Value,
+                       position - (Vector3.forward + Vector3.right).normalized * this._space.MaxValue,
                        this._color);
         Debug.DrawLine(position,
-                       position - (Vector3.back + Vector3.left).normalized * this._space._Max_Value,
+                       position - (Vector3.back + Vector3.left).normalized * this._space.MaxValue,
                        this._color);
         Debug.DrawLine(position,
-                       position - (Vector3.back + Vector3.right).normalized * this._space._Max_Value,
+                       position - (Vector3.back + Vector3.right).normalized * this._space.MaxValue,
                        this._color);
         if (!this._is_2_d) {
           var position1 = this.transform.position;
-          Debug.DrawLine(position1, position1 - Vector3.up * this._space._Max_Value, this._color);
-          Debug.DrawLine(position1, position1 - Vector3.down * this._space._Max_Value, this._color);
+          Debug.DrawLine(position1, position1 - Vector3.up * this._space.MaxValue, this._color);
+          Debug.DrawLine(position1, position1 - Vector3.down * this._space.MaxValue, this._color);
 
           Debug.DrawLine(position1,
-                         position1 - (Vector3.up + Vector3.left).normalized * this._space._Max_Value,
+                         position1 - (Vector3.up + Vector3.left).normalized * this._space.MaxValue,
                          this._color);
           Debug.DrawLine(position1,
-                         position1 - (Vector3.up + Vector3.right).normalized * this._space._Max_Value,
+                         position1 - (Vector3.up + Vector3.right).normalized * this._space.MaxValue,
                          this._color);
           Debug.DrawLine(position1,
-                         position1 - (Vector3.up + Vector3.forward).normalized * this._space._Max_Value,
+                         position1 - (Vector3.up + Vector3.forward).normalized * this._space.MaxValue,
                          this._color);
           Debug.DrawLine(position1,
-                         position1 - (Vector3.up + Vector3.back).normalized * this._space._Max_Value,
-                         this._color);
-
-          Debug.DrawLine(position1,
-                         position1 - (Vector3.down + Vector3.left).normalized * this._space._Max_Value,
+                         position1 - (Vector3.up + Vector3.back).normalized * this._space.MaxValue,
                          this._color);
 
           Debug.DrawLine(position1,
-                         position1 - (Vector3.down + Vector3.right).normalized * this._space._Max_Value,
+                         position1 - (Vector3.down + Vector3.left).normalized * this._space.MaxValue,
                          this._color);
 
           Debug.DrawLine(position1,
-                         position1 - (Vector3.down + Vector3.forward).normalized * this._space._Max_Value,
+                         position1 - (Vector3.down + Vector3.right).normalized * this._space.MaxValue,
                          this._color);
 
           Debug.DrawLine(position1,
-                         position1 - (Vector3.down + Vector3.back).normalized * this._space._Max_Value,
+                         position1 - (Vector3.down + Vector3.forward).normalized * this._space.MaxValue,
+                         this._color);
+
+          Debug.DrawLine(position1,
+                         position1 - (Vector3.down + Vector3.back).normalized * this._space.MaxValue,
                          this._color);
 
           Debug.DrawLine(position1,
                          position1
                          - (Vector3.down + Vector3.forward + Vector3.left).normalized
-                         * this._space._Max_Value,
+                         * this._space.MaxValue,
                          this._color);
 
           Debug.DrawLine(position1,
                          position1
                          - (Vector3.down + Vector3.forward + Vector3.right).normalized
-                         * this._space._Max_Value,
+                         * this._space.MaxValue,
                          this._color);
           Debug.DrawLine(position1,
                          position1
-                         - (Vector3.down + Vector3.back + Vector3.left).normalized * this._space._Max_Value,
-                         this._color);
-
-          Debug.DrawLine(position1,
-                         position1
-                         - (Vector3.down + Vector3.back + Vector3.right).normalized * this._space._Max_Value,
+                         - (Vector3.down + Vector3.back + Vector3.left).normalized * this._space.MaxValue,
                          this._color);
 
           Debug.DrawLine(position1,
                          position1
-                         - (Vector3.up + Vector3.forward + Vector3.left).normalized * this._space._Max_Value,
+                         - (Vector3.down + Vector3.back + Vector3.right).normalized * this._space.MaxValue,
                          this._color);
 
           Debug.DrawLine(position1,
                          position1
-                         - (Vector3.up + Vector3.forward + Vector3.right).normalized * this._space._Max_Value,
-                         this._color);
-          Debug.DrawLine(position1,
-                         position1
-                         - (Vector3.up + Vector3.back + Vector3.left).normalized * this._space._Max_Value,
+                         - (Vector3.up + Vector3.forward + Vector3.left).normalized * this._space.MaxValue,
                          this._color);
 
           Debug.DrawLine(position1,
                          position1
-                         - (Vector3.up + Vector3.back + Vector3.right).normalized * this._space._Max_Value,
+                         - (Vector3.up + Vector3.forward + Vector3.right).normalized * this._space.MaxValue,
+                         this._color);
+          Debug.DrawLine(position1,
+                         position1
+                         - (Vector3.up + Vector3.back + Vector3.left).normalized * this._space.MaxValue,
+                         this._color);
+
+          Debug.DrawLine(position1,
+                         position1
+                         - (Vector3.up + Vector3.back + Vector3.right).normalized * this._space.MaxValue,
                          this._color);
         }
       }

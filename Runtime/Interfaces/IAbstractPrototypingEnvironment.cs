@@ -63,7 +63,7 @@ namespace droid.Runtime.Interfaces {
     /// </summary>
     event Action PostStepEvent;
 
-    IObjective ObjectiveFunction { get; }
+    IObjectiveFunction ObjectiveFunction { get; }
 
     void Terminate(string reason);
   }

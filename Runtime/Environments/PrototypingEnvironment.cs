@@ -151,24 +151,15 @@ namespace droid.Runtime.Environments {
             Debug.Log("Describing Environment");
           }
           #endif
-          var threshold = 0f;
-          if (this._objective_function != null) {
-            threshold = this._objective_function.SolvedThreshold;
-          }
-
-          var episode_length = 0;
-          if (this._objective_function) {
-            episode_length = this._objective_function.EpisodeLength;
-          }
 
           var virtual_actors =
               new SortedDictionary<String, IActor> {{"All", new VirtualActor(this.Actuators)}};
 
-          description = new EnvironmentDescription(episode_length,
+          description = new EnvironmentDescription(this.ObjectiveFunction,
                                                    virtual_actors,
                                                    this.Configurables,
                                                    this.Sensors,
-                                                   threshold);
+                                                   Displayers);
         }
 
         this._Observables.Clear();
@@ -264,5 +255,19 @@ namespace droid.Runtime.Environments {
     }
 
     #endregion
+
+    public override String ToString() {
+      var e = " - ";
+
+      e += this.Identifier;
+      e += ", Sensors: ";
+      e += this.Sensors.Count;
+      e += ", Actuators: ";
+      e += this.Actuators.Count;
+      e += ", Objective: ";
+      e += this.ObjectiveFunction != null ?  this.ObjectiveFunction.Identifier: "None";
+
+      return e;
+    }
   }
 }

@@ -5,7 +5,13 @@ using UnityEngine;
 using UnityEditor;
 
 namespace droid.Editor.ScriptableObjects {
+  /// <summary>
+  /// 
+  /// </summary>
   public static class CreatePlayerMotions {
+    /// <summary>
+    ///
+    /// </summary>
     [MenuItem(EditorScriptableObjectMenuPath._ScriptableObjectMenuPath + "PlayerMotions")]
     public static void CreatePlayerMotionsAsset() {
       var asset = ScriptableObject.CreateInstance<PlayerMotions>();

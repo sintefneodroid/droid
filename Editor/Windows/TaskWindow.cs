@@ -1,4 +1,5 @@
-﻿using droid.Runtime.Prototyping.Evaluation.Tasks;
+﻿using droid.Editor.Utilities;
+using droid.Runtime.Prototyping.Evaluation.Tasks;
 using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -18,7 +19,7 @@ namespace droid.Editor.Windows {
 
     void OnEnable() {
       this._icon =
-          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidEditorInfo.ImportLocation
+          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidSettings.Current.NeodroidImportLocationProp
                                                    + "Gizmos/Icons/script.png",
                                                    typeof(Texture2D));
       this.titleContent = new GUIContent("Neo:Task", this._icon, "Window for task descriptions");
@@ -27,10 +28,13 @@ namespace droid.Editor.Windows {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public void OnInspectorUpdate() { this.Repaint(); }
 
     void OnGUI() {
-      GUILayout.Label("Tasklist", EditorStyles.boldLabel);
+      GUILayout.Label("Task list", EditorStyles.boldLabel);
       this._task_sequence = FindObjectOfType<TaskSequence>();
       if (this._task_sequence != null) {
         this._scroll_position = EditorGUILayout.BeginScrollView(this._scroll_position);

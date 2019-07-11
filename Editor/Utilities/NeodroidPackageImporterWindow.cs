@@ -85,7 +85,7 @@ namespace droid.Editor.Utilities {
       if (import_essentials_package) {
         AssetDatabase.importPackageCompleted += this.ImportCallback;
 
-        var package_full_path = this.GetPackageFullPath();
+        var package_full_path = GetPackageFullPath();
         AssetDatabase.ImportPackage(package_full_path
                                     + "/Package Resources/TMP Essential Resources.unitypackage",
                                     false);
@@ -96,7 +96,7 @@ namespace droid.Editor.Utilities {
         // Set flag to get around importing scripts as per of this package which results in an assembly reload which in turn prevents / clears any callbacks.
         this.kIsImportingExamples = true;
 
-        var package_full_path = this.GetPackageFullPath();
+        var package_full_path = GetPackageFullPath();
         AssetDatabase.ImportPackage(package_full_path
                                     + "/Package Resources/TMP Examples & Extras.unitypackage",
                                     false);
@@ -137,7 +137,7 @@ namespace droid.Editor.Utilities {
       AssetDatabase.importPackageCompleted -= this.ImportCallback;
     }
 
-    string GetPackageFullPath() {
+    static string GetPackageFullPath() {
       // Check for potential UPM package
       var package_path = Path.GetFullPath("Packages/com.unity.textmeshpro");
       if (Directory.Exists(package_path)) {
@@ -159,7 +159,7 @@ namespace droid.Editor.Utilities {
         // Search for potential alternative locations in the user project
         var matching_paths =
             Directory.GetDirectories(package_path, "TextMesh Pro", SearchOption.AllDirectories);
-        var path = this.ValidateLocation(matching_paths, package_path);
+        var path = ValidateLocation(matching_paths, package_path);
         if (path != null) {
           return package_path + path;
         }
@@ -168,7 +168,7 @@ namespace droid.Editor.Utilities {
       return null;
     }
 
-    string ValidateLocation(string[] paths, string project_path) {
+    static string ValidateLocation(string[] paths, string project_path) {
       for (var i = 0; i < paths.Length; i++) {
         // Check if the Editor Resources folder exists.
         if (Directory.Exists(paths[i] + "Editor/Resources")) {

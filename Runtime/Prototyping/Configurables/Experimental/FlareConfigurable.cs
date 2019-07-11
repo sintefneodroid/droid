@@ -1,5 +1,6 @@
 ﻿using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
+using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
@@ -25,9 +26,9 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
 
     [SerializeField]
     Space3 _color_space = new Space3 {
-                                         _decimal_granularity = 2,
-                                         _Min_Values = Vector3.one * 0.7f,
-                                         _Max_Values = Vector3.one * 1f
+                                         DecimalGranularity = 2,
+                                         MinValues = Vector3.one * 0.7f,
+                                         MaxValues = Vector3.one * 1f
                                      };
 
     [SerializeField] Space3 _int_ind_sha_space = Space3.TwentyEighty + Vector3.one * 0.4f;

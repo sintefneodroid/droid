@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
@@ -30,7 +31,7 @@ namespace droid.Runtime.Prototyping.Sensors.Occupancy {
     public Vector3[] ObservationArray {
       get { return this._observation_value; }
       set {
-        this._observation_value = this.SingleSpace.IsNormalised
+        this._observation_value = this.SingleSpace.Normalised
                                       ? value //this._observation_value_space.ClipNormaliseRound(value)
                                       : value;
       }
@@ -41,7 +42,7 @@ namespace droid.Runtime.Prototyping.Sensors.Occupancy {
     public override IEnumerable<float> FloatEnumerable {
       get {
         var a = new float[this.ObservationArray.Length*3];
-        for (var i = 0; i < ObservationArray.Length * 3; i += 3) {
+        for (var i = 0; i < this.ObservationArray.Length * 3; i += 3) {
           a[i] = this.ObservationArray[i].x;
           a[i+1] = this.ObservationArray[i].y;
           a[i+2] = this.ObservationArray[i].z;

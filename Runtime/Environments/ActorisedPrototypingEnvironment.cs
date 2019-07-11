@@ -162,19 +162,10 @@ namespace droid.Runtime.Environments {
             Debug.Log("Describing Environment");
           }
           #endif
-          var threshold = 0f;
-          if (this._objective_function != null) {
-            threshold = this._objective_function.SolvedThreshold;
-          }
-
-          var episode_length = 0;
-          if (this._objective_function) {
-            episode_length = this._objective_function.EpisodeLength;
-          }
 
           description =
-              new EnvironmentDescription(episode_length, this.Actors, this.Configurables, this.Sensors,
-              threshold);
+              new EnvironmentDescription(this.ObjectiveFunction, this.Actors, this.Configurables, this
+              .Sensors,Displayers);
         }
 
         this._Observables.Clear();

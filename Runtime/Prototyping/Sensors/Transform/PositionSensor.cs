@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities.Sampling;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
@@ -34,7 +35,7 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     public Vector3 ObservationValue {
       get { return this._position; }
       set {
-        this._position = this.TripleSpace.IsNormalised
+        this._position = this.TripleSpace.Normalised
                              ? this._position_space.ClipNormaliseRound(value)
                              : value;
       }
@@ -48,6 +49,9 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     /// </summary>
     protected override void PreSetup() { }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override IEnumerable<float> FloatEnumerable {
       get { return new[] {this.ObservationValue.x, this.ObservationValue.y, this.ObservationValue.z}; }
     }

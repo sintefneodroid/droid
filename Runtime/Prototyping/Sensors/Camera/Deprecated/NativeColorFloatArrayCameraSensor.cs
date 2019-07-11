@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Managers;
+using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities.Enums;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;

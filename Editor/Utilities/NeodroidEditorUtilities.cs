@@ -5,18 +5,14 @@ namespace droid.Editor.Utilities {
   /// <summary>
   /// </summary>
   public static class NeodroidEditorUtilities {
+    static Color _link_color = new Color(0x00 / 255f, 0x78 / 255f, 0xDA / 255f, 1f);
+
     static GUIStyle _default_link_style = new GUIStyle(EditorStyles.label) {
                                                                                fontSize = 14,
                                                                                wordWrap = false,
                                                                                normal = {
                                                                                             textColor =
-                                                                                                new Color(0x00
-                                                                                                          / 255f,
-                                                                                                          0x78
-                                                                                                          / 255f,
-                                                                                                          0xDA
-                                                                                                          / 255f,
-                                                                                                          1f)
+                                                                                                _link_color
                                                                                         },
                                                                                stretchWidth = false
                                                                            };
@@ -39,7 +35,8 @@ namespace droid.Editor.Utilities {
       Handles.BeginGUI();
 
       Handles.color = link_style.normal.textColor;
-      Handles.DrawLine(new Vector3(position.xMin, position.yMax), new Vector3(position.xMax, position.yMax));
+      Handles.DrawLine(new Vector3(position.xMin, position.yMax),
+                       new Vector3(position.xMax, position.yMax));
       Handles.color = Color.white;
       Handles.EndGUI();
 

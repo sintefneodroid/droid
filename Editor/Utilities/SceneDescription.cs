@@ -20,7 +20,7 @@ namespace droid.Editor.Utilities {
     /// </summary>
     [RuntimeInitializeOnLoadMethod]
     public static void CaptureDescription() {
-      if (NeodroidEditorInfo.GenerateSceneDescriptions) {
+      if (NeodroidSettings.Current.NeodroidGenerateDescriptionsProp) {
         var preview_path = GetDescriptionPath(SceneManager.GetActiveScene().name);
         #if NEODROID_DEBUG
         Debug.Log($"Saving scene preview at {preview_path}");
@@ -29,9 +29,16 @@ namespace droid.Editor.Utilities {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="name"></param>
     public static void MakeDescription(string name) {
       var serializer = new JsonSerializer {NullValueHandling = NullValueHandling.Ignore};
-      var simulation_manager = FindObjectOfType<PausableManager>();
+      var simulation_manager = FindObjectOfType<AbstractNeodroidManager>();
+
+      var path = Path.GetDirectoryName(name);
+      Directory.CreateDirectory(path);
 
       using (var sw = new StreamWriter(name)) {
         using (JsonWriter writer = new JsonTextWriter(sw)) {
@@ -44,31 +51,49 @@ namespace droid.Editor.Utilities {
     /// <summary>
     /// </summary>
     public override void OnInspectorGUI() {
-      if (NeodroidEditorInfo.GenerateScenePreviews) {
+      if (NeodroidSettings.Current.NeodroidGeneratePreviewsProp) {
+        //AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
+        var scene_names = this.targets.Select(t => ((SceneAsset)t).name).OrderBy(n => n).ToArray();
+
+        var previews_count = scene_names.Length;
+        var preview_width = Screen.width;
+        var preview_height =
+            (Screen.height
+             - NeodroidEditorConstants._Editor_Margin * 2
+             - NeodroidEditorConstants._Preview_Margin * previews_count)
+            / previews_count;
+
+        for (var i = 0; i < scene_names.Length; i++) {
+          ScenePreview.DrawPreview(i, scene_names[i], preview_width, preview_height);
+        }
+      }
+
+      if (NeodroidSettings.Current.NeodroidGeneratePreviewsProp) {
         var scene_names = this.targets.Select(t => ((SceneAsset)t).name).OrderBy(n => n).ToArray();
 
         for (var i = 0; i < scene_names.Length; i++) {
-          DrawDescriptionPreview(i, scene_names[i]);
+          PrintDescription(i, scene_names[i]);
         }
       }
     }
 
-    static void DrawDescriptionPreview(int index, string scene_name) {
+    static void PrintDescription(int index, string scene_name) {
       var preview_path = GetDescriptionPath(scene_name);
       var preview = LoadDescription(preview_path);
 
-      if (preview == null) {
+      if (preview != null) {
         EditorGUILayout.HelpBox(preview, MessageType.Info);
       } else {
         EditorGUILayout
-            .HelpBox($"There is no image preview for scene {scene_name} at {preview_path}. Please play the scene on editor and image preview will be captured automatically or create the missing path: {NeodroidEditorInfo.ScenePreviewsLocation}.",
+            .HelpBox($"There is no image preview for scene {scene_name} at {preview_path}. Please play the scene on editor and image preview will be captured automatically or create the missing path: {NeodroidSettings.Current.NeodroidPreviewsLocationProp}.",
                      MessageType.Info);
       }
     }
 
     static string GetDescriptionPath(string scene_name) {
       //return $"{NeodroidEditorInfo.ScenePreviewsLocation}{scene_name}.png";
-      return $"{Application.dataPath}/{NeodroidEditorInfo.SceneDescriptionLocation}{scene_name}.md";
+      return
+          $"{Application.dataPath}/{NeodroidSettings.Current.NeodroidDescriptionLocationProp}{scene_name}.md";
     }
 
     /// <summary>
@@ -76,10 +101,12 @@ namespace droid.Editor.Utilities {
     /// <param name="file_path"></param>
     /// <returns></returns>
     public static string LoadDescription(string file_path) {
-      var description = "";
+      var description = "The is no description available, press play to generate a description";
 
-      using (var sr = new StreamReader(file_path)) {
-        description = sr.ReadToEnd();
+      if (File.Exists(file_path)) {
+        using (var sr = new StreamReader(file_path)) {
+          description = sr.ReadToEnd();
+        }
       }
 
       return description;

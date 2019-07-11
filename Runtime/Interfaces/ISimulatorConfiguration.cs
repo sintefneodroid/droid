@@ -112,8 +112,17 @@ namespace droid.Runtime.Interfaces {
     /// </summary>
     bool ApplyQualitySettings { get; set; }
 
+    /// <summary>
+    ///
+    /// </summary>
     bool ResizableWindow { get; set; }
+    /// <summary>
+    ///
+    /// </summary>
     ColorSpace ColorSpace { get; set; }
+    /// <summary>
+    ///
+    /// </summary>
     int VSyncCount { get; set; }
   }
 }

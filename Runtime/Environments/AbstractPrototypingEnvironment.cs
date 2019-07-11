@@ -934,7 +934,7 @@ namespace droid.Runtime.Environments {
 
     /// <summary>
     /// </summary>
-    public IObjective ObjectiveFunction {
+    public IObjectiveFunction ObjectiveFunction {
       get { return this._objective_function; }
       set { this._objective_function = (ObjectiveFunction)value; }
     }
@@ -1167,5 +1167,17 @@ namespace droid.Runtime.Environments {
     ///
     /// </summary>
     protected abstract void InnerResetRegisteredObjects();
+
+    public override String ToString() {
+      var e = " - ";
+
+      e += this.Identifier;
+      e += ", Sensors: ";
+      e += this.Sensors.Count;
+      e += ", Objective: ";
+      e += this.ObjectiveFunction != null ?  this.ObjectiveFunction.Identifier: "None";
+
+      return e;
+    }
   }
 }

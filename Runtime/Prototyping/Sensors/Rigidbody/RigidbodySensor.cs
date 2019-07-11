@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities.Sampling;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
@@ -51,7 +52,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rigidbody {
     public Vector3 Velocity {
       get { return this._velocity; }
       set {
-        this._velocity = this._velocity_space.IsNormalised
+        this._velocity = this._velocity_space.Normalised
                              ? this._velocity_space.ClipNormaliseRound(value)
                              : value;
       }
@@ -63,7 +64,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rigidbody {
     public Vector3 AngularVelocity {
       get { return this._angular_velocity; }
       set {
-        this._angular_velocity = this._angular_space.IsNormalised
+        this._angular_velocity = this._angular_space.Normalised
                                      ? this._angular_space.ClipNormaliseRound(value)
                                      : value;
       }

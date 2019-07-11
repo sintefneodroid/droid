@@ -74,6 +74,17 @@ namespace droid.Runtime.Prototyping.Actuators {
           NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, this._z);
     }
 
+
+    /// <summary>
+    ///
+    /// </summary>
+    protected override void UnRegisterComponent() {
+      this.Parent?.UnRegister(this, this._x);
+      this.Parent?.UnRegister(this, this._y);
+      this.Parent?.UnRegister(this, this._z);
+
+    }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>

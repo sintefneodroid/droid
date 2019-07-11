@@ -280,6 +280,9 @@ namespace droid.Runtime.Managers {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public ISimulatorConfiguration SimulatorConfiguration { get { return this._configuration; } }
 
     /// <summary>
@@ -1030,5 +1033,16 @@ namespace droid.Runtime.Managers {
     void OnDestroy() { this._Message_Server.Destroy(); }
 
     #endregion
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
+    public override String ToString() {
+      var c = this.SimulatorConfiguration.ToString();
+      var e = this._Environments.FirstOrDefault().Value.ToString();
+
+      return $"{c}, {e}";
+    }
   }
 }

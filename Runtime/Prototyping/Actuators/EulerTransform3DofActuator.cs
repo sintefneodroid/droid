@@ -8,7 +8,7 @@ namespace droid.Runtime.Prototyping.Actuators {
   /// <summary>
   /// </summary>
   [AddComponentMenu(ActuatorComponentMenuPath._ComponentMenuPath
-                    + "EulerTransform3DofActuator"
+                    + "EulerTransform3Dof"
                     + ActuatorComponentMenuPath._Postfix)]
   public class EulerTransform3DofActuator : Actuator {
     /// <summary>
@@ -78,6 +78,15 @@ namespace droid.Runtime.Prototyping.Actuators {
           NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, this._y);
       this.Parent =
           NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, this._z);
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    protected override void UnRegisterComponent() {
+      this.Parent?.UnRegister(this, this._x);
+      this.Parent?.UnRegister(this, this._y);
+      this.Parent?.UnRegister(this, this._z);
     }
 
     /// <summary>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
@@ -31,8 +32,8 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
     [SerializeField]
     Space3 _position_space = new Space3 {
                                             DecimalGranularity = 1,
-                                            _Max_Values = Vector3.one,
-                                            _Min_Values = -Vector3.one
+                                            MaxValues = Vector3.one,
+                                            MinValues = -Vector3.one
                                         };
 
     /// <summary>
@@ -51,7 +52,7 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
     public Vector3 Position {
       get { return this._position; }
       set {
-        this._position = this._position_space.IsNormalised
+        this._position = this._position_space.Normalised
                              ? this._position_space.ClipNormaliseRound(value)
                              : value;
         this._2_d_position = new Vector2(this._position.x, this._position.z);
@@ -63,17 +64,16 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
     /// </summary>
     public Space2 DoubleSpace {
       get {
-        return new Space2(this._position_space.DecimalGranularity) {
-                                                                       _Max_Values =
+        return new Space2(this._position_space.DecimalGranularity) {MaxValues =
                                                                            new Vector2(this._position_space
-                                                                                           ._Max_Values.x,
+                                                                                           .MaxValues.x,
                                                                                        this._position_space
-                                                                                           ._Max_Values.y),
-                                                                       _Min_Values =
+                                                                                           .MaxValues.y),
+                                                                       MinValues =
                                                                            new Vector2(this._position_space
-                                                                                           ._Min_Values.x,
+                                                                                           .MinValues.x,
                                                                                        this._position_space
-                                                                                           ._Min_Values.y)
+                                                                                           .MinValues.y)
                                                                    };
       }
     }

@@ -1,4 +1,8 @@
-﻿#if UNITY_EDITOR && NEODROID_DEBUG
+﻿
+using droid.Runtime.Utilities.InternalReactions;
+#if UNITY_EDITOR && NEODROID_DEBUG
+using droid.Editor.Utilities;
+
 using droid.Runtime.Environments;
 using droid.Runtime.InternalReactions;
 using droid.Runtime.Managers;
@@ -15,6 +19,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace droid.Editor.Windows {
+  /// <summary>
+  ///
+  /// </summary>
   public class DebugWindow : EditorWindow {
     Actor[] _actors;
 
@@ -33,7 +40,7 @@ namespace droid.Editor.Windows {
 
     Actuator[] _actuators;
 
-    ObjectiveFunction[] _objective_functions;
+    ObjectiveFunction[] _objective_functions_function;
 
     Sensor[] _observers;
 
@@ -50,6 +57,9 @@ namespace droid.Editor.Windows {
     bool _show_player_reactions_debug;
     bool _show_simulation_manager_debug;
 
+    /// <summary>
+    ///
+    /// </summary>
     [MenuItem(EditorWindowMenuPath._WindowMenuPath + "DebugWindow")]
     [MenuItem(EditorWindowMenuPath._ToolMenuPath + "DebugWindow")]
     public static void ShowWindow() {
@@ -59,7 +69,7 @@ namespace droid.Editor.Windows {
     void OnEnable() {
       this.FindObjects();
       this._icon =
-          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidEditorInfo.ImportLocation
+          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidSettings.Current.NeodroidImportLocationProp
                                                    + "Gizmos/Icons/information.png",
                                                    typeof(Texture2D));
       this.titleContent = new GUIContent("Neo:Debug", this._icon, "Window for controlling debug messages");
@@ -72,7 +82,7 @@ namespace droid.Editor.Windows {
       this._actuators = FindObjectsOfType<Actuator>();
       this._observers = FindObjectsOfType<Sensor>();
       this._configurables = FindObjectsOfType<Configurable>();
-      this._objective_functions = FindObjectsOfType<ObjectiveFunction>();
+      this._objective_functions_function = FindObjectsOfType<ObjectiveFunction>();
       this._displayers = FindObjectsOfType<Displayer>();
       this._listeners = FindObjectsOfType<EnvironmentListener>();
       this._player_reactions = FindObjectOfType<PlayerReactions>();
@@ -185,7 +195,7 @@ namespace droid.Editor.Windows {
           configurable.Debugging = this._show_configurables_debug;
         }
 
-        foreach (var objective_functions in this._objective_functions) {
+        foreach (var objective_functions in this._objective_functions_function) {
           objective_functions.Debugging = this._show_objective_functions_debug;
         }
 
@@ -205,6 +215,9 @@ namespace droid.Editor.Windows {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public void OnInspectorUpdate() { this.Repaint(); }
   }
 }
