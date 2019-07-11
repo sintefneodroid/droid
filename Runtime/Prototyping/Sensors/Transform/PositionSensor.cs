@@ -49,6 +49,9 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     /// </summary>
     protected override void PreSetup() { }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override IEnumerable<float> FloatEnumerable {
       get { return new[] {this.ObservationValue.x, this.ObservationValue.y, this.ObservationValue.z}; }
     }

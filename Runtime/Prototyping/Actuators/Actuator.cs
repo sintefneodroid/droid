@@ -60,7 +60,9 @@ namespace droid.Runtime.Prototyping.Actuators {
         return; // Do nothing
       }
 
-      motion.Strength = this._motion_value_space.Round(motion.Strength);
+      if(this._motion_value_space.Normalised) {
+        motion.Strength = this._motion_value_space.Clip01DenormaliseRoundClip(motion.Strength);
+      }
 
       this.InnerApplyMotion(motion);
       this.EnergySpendSinceReset += Mathf.Abs(this.EnergyCost * motion.Strength);
