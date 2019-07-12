@@ -5,11 +5,12 @@ using System.Linq;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Prototyping.Evaluation;
+using droid.Runtime.Utilities;
 using droid.Runtime.Utilities.Enums;
+using droid.Runtime.Utilities.Extensions;
 using droid.Runtime.Utilities.GameObjects;
 using droid.Runtime.Utilities.GameObjects.BoundingBoxes;
 using droid.Runtime.Utilities.Misc;
-using droid.Runtime.Utilities.Misc.Extensions;
 using UnityEngine;
 using Object = System.Object;
 

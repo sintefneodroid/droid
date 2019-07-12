@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace droid.Runtime.Utilities.Misc.Extensions {
+namespace droid.Runtime.Utilities.Extensions {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
@@ -122,12 +122,12 @@ namespace droid.Runtime.Utilities.Misc.Extensions {
     }
 
     void Update() {
-      if (framesCounted >= resetAfterFrames) {
-        Reset();
-        framesCounted = 0;
+      if (this.framesCounted >= this.resetAfterFrames) {
+        this.Reset();
+        this.framesCounted = 0;
       }
-      if (counting)
-      framesCounted++;
+      if (this.counting)
+      this.framesCounted++;
 
       if (this._was_disabled) {
         this._was_disabled = false;

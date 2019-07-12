@@ -70,9 +70,7 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-    public float Clip(float v) {
-      return Mathf.Clamp(v, this._Min_Value, this._Max_Value);
-    }
+    public float Clip(float v) { return Mathf.Clamp(v, this._Min_Value, this._Max_Value); }
 
     /// <summary>
     ///
@@ -107,16 +105,16 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-    public float Denormalise(float v) { return v *this.Span - this.MinValue; }
+    public float Denormalise(float v) { return v * this.Span - this.MinValue; }
 
     /// <summary>
     ///
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-    public float Clip01DenormaliseRoundClip(float v) { return this.Clip(this.Round(this.Denormalise(Mathf
-    .Clamp(v,-1,1)))
-    ); }
+    public float ClipDenormaliseRoundClip(float v) {
+      return this.Clip(this.Round(this.Denormalise(Mathf.Clamp(v, -1, 1))));
+    }
 
     /// <summary>
     ///
@@ -158,6 +156,7 @@ namespace droid.Runtime.Structs.Space {
     ///
     /// </summary>
     public static Space1 MinusOneOne { get { return new Space1(1) {_Min_Value = -1, _Max_Value = 1}; } }
+
     /// <summary>
     ///
     /// </summary>

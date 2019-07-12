@@ -3,6 +3,7 @@ using droid.Runtime.Environments;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Structs.Space;
+using droid.Runtime.Utilities;
 using droid.Runtime.Utilities.GameObjects;
 using droid.Runtime.Utilities.Misc;
 using droid.Runtime.Utilities.Structs;
@@ -61,7 +62,7 @@ namespace droid.Runtime.Prototyping.Actuators {
       }
 
       if(this._motion_value_space.Normalised) {
-        motion.Strength = this._motion_value_space.Clip01DenormaliseRoundClip(motion.Strength);
+        motion.Strength = this._motion_value_space.ClipDenormaliseRoundClip(motion.Strength);
       }
 
       this.InnerApplyMotion(motion);

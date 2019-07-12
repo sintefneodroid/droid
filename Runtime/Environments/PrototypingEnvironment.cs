@@ -10,7 +10,6 @@ using droid.Runtime.Utilities.Enums;
 using droid.Runtime.Utilities.GameObjects.BoundingBoxes;
 using droid.Runtime.Utilities.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Utilities.Misc;
-using droid.Runtime.Utilities.Misc.Extensions;
 using UnityEngine;
 using Object = System.Object;
 

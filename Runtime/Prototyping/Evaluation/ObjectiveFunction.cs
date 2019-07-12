@@ -3,6 +3,7 @@ using System.Globalization;
 using droid.Runtime.Environments;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Structs.Space;
+using droid.Runtime.Utilities;
 using droid.Runtime.Utilities.GameObjects;
 using droid.Runtime.Utilities.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Utilities.Structs;
@@ -44,7 +45,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
 
     /// <summary>
     /// </summary>
-    public AbstractPrototypingEnvironment ParentEnvironment {
+    public IAbstractPrototypingEnvironment ParentEnvironment {
       get { return this._environment; }
       set { this._environment = value; }
     }
@@ -164,7 +165,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
       //  this.Register(go);
 
       if (this.ParentEnvironment == null) {
-        this.ParentEnvironment = FindObjectOfType<AbstractPrototypingEnvironment>();
+        this.ParentEnvironment = NeodroidUtilities.FindObjectOfType<IAbstractPrototypingEnvironment>();
       }
 
       this.PostSetup();
@@ -240,7 +241,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
     [Header("References", order = 100)]
     [SerializeField]
     //[SerializeField]float _internal_discount_factor = 1.0f;
-    AbstractPrototypingEnvironment _environment = null;
+    IAbstractPrototypingEnvironment _environment = null;
 
     //[SerializeField] Term[] _extra_terms_external;
 
