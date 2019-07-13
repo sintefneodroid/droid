@@ -29,9 +29,9 @@ namespace droid.Runtime.Utilities.Extensions {
     Vector3[] _target_velocities;
     float[] _torque_break_limits;
 
-    [SerializeField] bool counting;
+    [SerializeField] bool counting=false;
     [SerializeField] int resetAfterFrames = 500;
-    int framesCounted;
+    int _frames_counted;
 
     bool _was_disabled;
     SoftJointLimit[] _x_ang_high_limits;
@@ -122,13 +122,13 @@ namespace droid.Runtime.Utilities.Extensions {
     }
 
     void Update() {
-      if (this.framesCounted >= this.resetAfterFrames) {
+      if (this._frames_counted >= this.resetAfterFrames) {
         this.Reset();
-        this.framesCounted = 0;
+        this._frames_counted = 0;
       }
 
       if (this.counting) {
-        this.framesCounted++;
+        this._frames_counted++;
       }
 
       if (this._was_disabled) {

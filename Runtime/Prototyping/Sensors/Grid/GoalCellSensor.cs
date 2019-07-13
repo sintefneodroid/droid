@@ -75,7 +75,7 @@ namespace droid.Runtime.Prototyping.Sensors.Grid {
     void OnDrawGizmosSelected() {
       if (this.DrawNames) {
         if (this._current_goal) {
-          NeodroidDrawingUtilities.DrawString(this._current_goal.name,
+          NeodroidUtilities.DrawString(this._current_goal.name,
                                               this._current_goal.transform.position,
                                               Color.green);
         }

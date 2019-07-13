@@ -91,22 +91,22 @@ namespace droid.Runtime.Prototyping.Displayers.Cells {
         //point._Size
         switch ((int)point._Val) {
           case 0:
-            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.forward, Color.cyan);
+            NeodroidUtilities.ForDebug(point._Pos, Vector3.forward, Color.cyan);
             break;
           case 1:
-            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.back, Color.cyan);
+            NeodroidUtilities.ForDebug(point._Pos, Vector3.back, Color.cyan);
             break;
           case 2:
-            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.up, Color.cyan);
+            NeodroidUtilities.ForDebug(point._Pos, Vector3.up, Color.cyan);
             break;
           case 3:
-            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.down, Color.cyan);
+            NeodroidUtilities.ForDebug(point._Pos, Vector3.down, Color.cyan);
             break;
           case 4:
-            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.left, Color.cyan);
+            NeodroidUtilities.ForDebug(point._Pos, Vector3.left, Color.cyan);
             break;
           case 5:
-            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.right, Color.cyan);
+            NeodroidUtilities.ForDebug(point._Pos, Vector3.right, Color.cyan);
             break;
         }
       }

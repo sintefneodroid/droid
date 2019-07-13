@@ -9,8 +9,17 @@ namespace droid.Runtime.Structs {
     /// 
     /// </summary>
     public struct StringPoint {
+      /// <summary>
+      ///
+      /// </summary>
       public Vector3 _Pos;
+      /// <summary>
+      ///
+      /// </summary>
       public float _Size;
+      /// <summary>
+      ///
+      /// </summary>
       public string _Val;
 
       public StringPoint(Vector3 pos, string val, float size) {
@@ -24,8 +33,17 @@ namespace droid.Runtime.Structs {
     /// 
     /// </summary>
     public struct ValuePoint {
+      /// <summary>
+      ///
+      /// </summary>
       public Vector3 _Pos;
+      /// <summary>
+      ///
+      /// </summary>
       public float _Size;
+      /// <summary>
+      ///
+      /// </summary>
       public float _Val;
 
       public ValuePoint(Vector3 pos, float val, float size) {

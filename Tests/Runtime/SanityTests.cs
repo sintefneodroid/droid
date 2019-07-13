@@ -13,6 +13,5 @@ namespace droid.Tests.Runtime {
     /// </summary>
     [Test]
     public void Sanity() { Assert.That(true, Is.True); }
-
   }
 }

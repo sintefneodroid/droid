@@ -3,7 +3,7 @@ using UnityEngine;
 
 #if UNITY_EDITOR
 namespace droid.Runtime.Utilities.Drawing {
-  public static partial class NeodroidDrawingUtilities {
+  public static partial class NeodroidUtilities {
     /// <summary>
     /// </summary>
     /// <param name="text"></param>

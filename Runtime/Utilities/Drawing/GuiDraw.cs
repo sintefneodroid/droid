@@ -3,10 +3,10 @@
 namespace droid.Runtime.Utilities.Drawing {
   /// <summary>
   /// </summary>
-  public static partial class NeodroidDrawingUtilities {
+  public static partial class NeodroidUtilities {
     static Texture2D _s_line_tex;
 
-    static NeodroidDrawingUtilities() {
+    static NeodroidUtilities() {
       _s_line_tex = new Texture2D(1, 3, TextureFormat.ARGB32, true);
       _s_line_tex.SetPixel(0, 0, new Color(1, 1, 1, 0));
       _s_line_tex.SetPixel(0, 1, Color.white);
@@ -14,6 +14,12 @@ namespace droid.Runtime.Utilities.Drawing {
       _s_line_tex.Apply();
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="p_point_a"></param>
+    /// <param name="p_point_b"></param>
+    /// <param name="p_width"></param>
     public static void DrawLine(Vector2 p_point_a, Vector2 p_point_b, float p_width) {
       var save_matrix = GUI.matrix;
       var save_color = GUI.color;

@@ -17,7 +17,7 @@ namespace droid.Runtime.Prototyping.Sensors.Occupancy {
     [SerializeField]
     Vector3[] _observation_value;
 
-    [SerializeField] Space1 _observation_value_space;
+    [SerializeField] Space1 _observation_value_space = Space1.ZeroOne;
 
     /// <summary>
     ///

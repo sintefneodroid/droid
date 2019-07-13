@@ -39,7 +39,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     Renderer _renderer;
 
     [SerializeField] bool _use_shared = false;
-    [SerializeField] Space4 _configurable_value_space;
+    [SerializeField] Space4 _configurable_value_space = Space4.ZeroOne;
 
     static readonly int _glossiness = Shader.PropertyToID("_Glossiness");
     static readonly int _glossy_reflections = Shader.PropertyToID("_GlossyReflections");
