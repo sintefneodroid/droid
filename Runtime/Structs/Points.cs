@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace droid.Runtime.Utilities.Structs {
+namespace droid.Runtime.Structs {
   /// <summary>
   /// 
   /// </summary>

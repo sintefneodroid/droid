@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace droid.Runtime.Utilities.GameObjects.BoundingBoxes.Experimental.Unused {
+namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental.Unused {
   public static class BoundingBoxUtilities {
     /// <summary>
     ///

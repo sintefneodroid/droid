@@ -1,5 +1,4 @@
 using System;
-using droid.Runtime.Utilities.GameObjects.BoundingBoxes;
 using UnityEngine;
 using Object = System.Object;
 
@@ -8,7 +7,5 @@ namespace droid.Runtime.Interfaces {
   /// <summary>
   /// </summary>
   public interface IPrototypingEnvironment : IAbstractPrototypingEnvironment,
-                                             IHasRegister<IActuator>
-                                              {
-                                              }
+                                             IHasRegister<IActuator> { }
 }

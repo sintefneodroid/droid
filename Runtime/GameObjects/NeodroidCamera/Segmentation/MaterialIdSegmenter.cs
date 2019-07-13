@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using droid.Runtime.Utilities.GameObjects.NeodroidCamera.Synthesis;
+using droid.Runtime.GameObjects.NeodroidCamera.Synthesis;
 using UnityEngine;
 
-namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera.Segmentation {
+namespace droid.Runtime.GameObjects.NeodroidCamera.Segmentation {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

@@ -1,7 +1,7 @@
 ﻿using System;
+using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Prototyping.Actuators;
-using droid.Runtime.Utilities.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -17,7 +17,6 @@ namespace droid.Samples.MultiArmedBandit {
   public class MultiArmedBanditActuator : Actuator {
     [SerializeField] Color _inactive_color = Color.yellow;
 
-
     /// <summary>
     ///
     /// </summary>
@@ -27,15 +26,11 @@ namespace droid.Samples.MultiArmedBandit {
     [SerializeField] int _last_index;
     [SerializeField] Color _lose_color = Color.red;
 
-
-    [SerializeField]
-    protected float[] _Win_Amounts;
+    [SerializeField] protected float[] _Win_Amounts;
 
     [SerializeField] Color _win_color = Color.green;
 
-
-    [SerializeField]
-    protected float[] _Win_Likelihoods;
+    [SerializeField] protected float[] _Win_Likelihoods;
 
     [SerializeField] bool _won;
 

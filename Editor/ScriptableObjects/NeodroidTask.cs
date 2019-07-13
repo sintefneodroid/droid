@@ -1,5 +1,5 @@
 ﻿using droid.Editor.Windows;
-using droid.Runtime.Utilities.ScriptableObjects.Unused;
+using droid.Runtime.ScriptableObjects.Deprecated;
 using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;

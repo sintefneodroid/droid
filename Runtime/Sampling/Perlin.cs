@@ -1,6 +1,6 @@
 using System;
 
-namespace droid.Runtime.Utilities.Sampling {
+namespace droid.Runtime.Sampling {
   public class Perlin {
     // Original C code derived from
     // http://astronomy.swin.edu.au/~pbourke/texture/perlin/perlin.c

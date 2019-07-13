@@ -1,4 +1,4 @@
-﻿namespace droid.Runtime.Utilities.Misc.Orientation {
+﻿namespace droid.Runtime.Utilities.Orientation {
   public interface IMotionTracker {
     bool IsInMotion();
 

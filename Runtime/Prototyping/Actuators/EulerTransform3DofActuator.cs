@@ -1,8 +1,8 @@
 ﻿using droid.Runtime.Interfaces;
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Utilities;
-using droid.Runtime.Utilities.Misc;
 using UnityEngine;
+using NeodroidUtilities = droid.Runtime.Utilities.NeodroidUtilities;
 
 namespace droid.Runtime.Prototyping.Actuators {
   /// <inheritdoc />
@@ -73,12 +73,9 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.Parent =
-          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, this._x);
-      this.Parent =
-          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, this._y);
-      this.Parent =
-          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, this._z);
+      this.Parent = NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, this._x);
+      this.Parent = NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, this._y);
+      this.Parent = NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, this._z);
     }
 
     /// <summary>

@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Structs.Space;
-using droid.Runtime.Utilities.Misc.Drawing;
-using droid.Runtime.Utilities.Misc.Grid;
-using droid.Runtime.Utilities.Structs;
+using droid.Runtime.Utilities.Drawing;
+using droid.Runtime.Utilities.Grid;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Grid {

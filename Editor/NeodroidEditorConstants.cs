@@ -15,7 +15,6 @@ namespace droid.Editor {
     /// </summary>
     public const string _Neodroid_Project_Settings_Menu_Path = "Project/Neodroid Settings";
 
-
     /// <summary>
     ///
     /// </summary>
@@ -25,9 +24,6 @@ namespace droid.Editor {
     ///
     /// </summary>
     public const string _Default_Scene_Description_Location = "SceneDescriptions/";
-
-
-
 
     #if NEODROID_IS_PACKAGE
         /// <summary>
@@ -42,7 +38,6 @@ namespace droid.Editor {
     /// </summary>
     public const string _Default_Import_Location = "Assets/droid/";
     #endif
-
 
     /// <summary>
     ///
@@ -84,13 +79,11 @@ namespace droid.Editor {
     /// </summary>
     public const string _Generate_Descriptions_Loc_Pref_Key = "NeodroidDescriptionLocation";
 
-
-
-
     /// <summary>
     ///
     /// </summary>
-    public     const float _Editor_Margin = 50;
+    public const float _Editor_Margin = 50;
+
     /// <summary>
     ///
     /// </summary>

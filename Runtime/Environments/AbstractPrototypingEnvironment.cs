@@ -2,16 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using droid.Runtime.Enums;
+using droid.Runtime.GameObjects;
+using droid.Runtime.GameObjects.BoundingBoxes;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Prototyping.Evaluation;
 using droid.Runtime.Utilities;
-using droid.Runtime.Utilities.Enums;
 using droid.Runtime.Utilities.Extensions;
-using droid.Runtime.Utilities.GameObjects;
-using droid.Runtime.Utilities.GameObjects.BoundingBoxes;
-using droid.Runtime.Utilities.Misc;
 using UnityEngine;
+using NeodroidUtilities = droid.Runtime.Utilities.NeodroidUtilities;
 using Object = System.Object;
 
 namespace droid.Runtime.Environments {
@@ -913,11 +913,13 @@ namespace droid.Runtime.Environments {
 
     /// <summary>
     /// </summary>
-    public SortedDictionary<string, IDisplayer> Displayers { get; } = new SortedDictionary<string, IDisplayer>();
+    public SortedDictionary<string, IDisplayer> Displayers { get; } =
+      new SortedDictionary<string, IDisplayer>();
 
     /// <summary>
     /// </summary>
-    public SortedDictionary<string, IConfigurable> Configurables { get; } = new SortedDictionary<string, IConfigurable>();
+    public SortedDictionary<string, IConfigurable> Configurables { get; } =
+      new SortedDictionary<string, IConfigurable>();
 
     /// <summary>
     /// </summary>
@@ -1176,7 +1178,7 @@ namespace droid.Runtime.Environments {
       e += ", Sensors: ";
       e += this.Sensors.Count;
       e += ", Objective: ";
-      e += this.ObjectiveFunction != null ?  this.ObjectiveFunction.Identifier: "None";
+      e += this.ObjectiveFunction != null ? this.ObjectiveFunction.Identifier : "None";
 
       return e;
     }

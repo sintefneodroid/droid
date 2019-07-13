@@ -1,4 +1,4 @@
-namespace droid.Runtime.Utilities.ScriptableObjects {
+namespace droid.Runtime.ScriptableObjects {
   /// <summary>
   /// </summary>
   public static class ScriptableObjectMenuPath {

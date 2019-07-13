@@ -1,6 +1,6 @@
 ﻿using droid.Editor.Utilities;
-using droid.Runtime.Utilities.GameObjects.NeodroidCamera.Segmentation.Obsolete;
-using droid.Runtime.Utilities.Structs;
+using droid.Runtime.GameObjects.NeodroidCamera.Segmentation.Obsolete;
+using droid.Runtime.Structs;
 using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;

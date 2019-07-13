@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
 using UnityEditor;
-#if UNITY_EDITOR
 using UnityEngine;
+#if UNITY_EDITOR
 
-namespace droid.Runtime.Utilities.ScriptableObjects.SerialisableDictionary {
+namespace droid.Runtime.ScriptableObjects.SerialisableDictionary {
   public abstract class SerializableKeyValueTemplate<TK, TV> : ScriptableObject {
     public TK _Key;
     public TV _Value;

@@ -1,6 +1,6 @@
 ﻿using System;
-using droid.Runtime.Utilities.Misc.Drawing;
-using droid.Runtime.Utilities.ScriptableObjects.Unused;
+using droid.Runtime.ScriptableObjects.Deprecated;
+using droid.Runtime.Utilities.Drawing;
 using UnityEngine;
 
 namespace droid.Runtime.Managers.Experimental {

@@ -1,9 +1,9 @@
-﻿using droid.Runtime.Prototyping.Actors;
+﻿using droid.Runtime.GameObjects.ChildSensors;
+using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Utilities;
-using droid.Runtime.Utilities.GameObjects.ChildSensors;
-using droid.Runtime.Utilities.Misc;
-using droid.Runtime.Utilities.Misc.Grid;
+using droid.Runtime.Utilities.Grid;
 using UnityEngine;
+using NeodroidUtilities = droid.Runtime.Utilities.NeodroidUtilities;
 
 namespace droid.Runtime.Prototyping.Evaluation {
   /// <summary>

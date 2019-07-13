@@ -1,5 +1,5 @@
 ﻿using System;
-using droid.Runtime.Utilities.Structs;
+using droid.Runtime.Structs;
 using UnityEngine;
 
 #if TEXT_MESH_PRO_EXISTS

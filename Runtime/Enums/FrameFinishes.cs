@@ -1,4 +1,4 @@
-namespace droid.Runtime.Utilities.Enums {
+namespace droid.Runtime.Enums {
   /// <summary>
   ///   Determines where in the monobehaviour cycle a frame/step is finished
   /// </summary>

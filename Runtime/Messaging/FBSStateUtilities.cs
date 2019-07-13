@@ -33,10 +33,7 @@ namespace droid.Runtime.Messaging {
       var state_offsets = new Offset<FState>[states.Length];
       var i = 0;
       foreach (var state in states) {
-        state_offsets[i++] = SerialiseState(b,
-                                             state,
-                                             do_serialise_unobservables,
-                                             do_serialise_observables);
+        state_offsets[i++] = SerialiseState(b, state, do_serialise_unobservables, do_serialise_observables);
       }
 
       var states_vector_offset = FStates.CreateStatesVector(b, state_offsets);
@@ -92,17 +89,15 @@ namespace droid.Runtime.Messaging {
     /// <param name="do_serialise_aggregated_float_array"></param>
     /// <returns></returns>
     static Offset<FState> SerialiseState(FlatBufferBuilder b,
-                                          EnvironmentState state,
-                                          bool do_serialise_unobservables = false,
-                                          bool do_serialise_aggregated_float_array = false) {
+                                         EnvironmentState state,
+                                         bool do_serialise_unobservables = false,
+                                         bool do_serialise_aggregated_float_array = false) {
       var n = b.CreateString(state.EnvironmentName);
 
       var observables_vector = _null_vector_offset;
       if (do_serialise_aggregated_float_array) {
         observables_vector = FState.CreateObservablesVector(b, state.Observables);
       }
-
-
 
       var unobservables = _null_unobservables_offset;
       if (do_serialise_unobservables) {
@@ -164,7 +159,6 @@ namespace droid.Runtime.Messaging {
       FState.AddTerminated(b, state.Terminated);
       FState.AddTerminationReason(b, t);
 
-
       if (state.Description != null) {
         FState.AddEnvironmentDescription(b, description_offset);
       }
@@ -181,10 +175,10 @@ namespace droid.Runtime.Messaging {
       FActuator.StartFActuator(b);
       FActuator.AddActuatorName(b, n);
       FActuator.AddActuatorRange(b,
-                              FRange.CreateFRange(b,
-                                                  actuator.MotionSpace.DecimalGranularity,
-                                                  actuator.MotionSpace.MaxValue,
-                                                  actuator.MotionSpace.MinValue));
+                                 FRange.CreateFRange(b,
+                                                     actuator.MotionSpace.DecimalGranularity,
+                                                     actuator.MotionSpace.MaxValue,
+                                                     actuator.MotionSpace.MinValue));
       return FActuator.EndFActuator(b);
     }
 
@@ -463,15 +457,13 @@ namespace droid.Runtime.Messaging {
 
       var objective_offset = Serialise(b, state.Description);
 
-
       var sensors = new Offset<FSensor>[state.Description.Sensors.Values.Count];
       var js = 0;
       foreach (var sensor in state.Description.Sensors) {
         sensors[js++] = Serialise(b, sensor.Key, sensor.Value);
       }
 
-      var       observers_vector = FEnvironmentDescription.CreateSensorsVector(b, sensors);
-
+      var observers_vector = FEnvironmentDescription.CreateSensorsVector(b, sensors);
 
       FEnvironmentDescription.StartFEnvironmentDescription(b);
       FEnvironmentDescription.AddObjective(b, objective_offset);
@@ -530,8 +522,6 @@ namespace droid.Runtime.Messaging {
         FConfigurable.AddConfigurableName(b, n);
         return FConfigurable.EndFConfigurable(b);
       }
-
-
 
       FConfigurable.StartFConfigurable(b);
       FConfigurable.AddConfigurableName(b, n);

@@ -4,7 +4,7 @@ using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.FBS;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Messaging.Messages.Displayables;
-using droid.Runtime.Utilities.Structs;
+using droid.Runtime.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Messaging {

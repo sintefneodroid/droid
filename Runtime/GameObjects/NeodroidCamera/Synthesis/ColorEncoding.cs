@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera.Synthesis {
+namespace droid.Runtime.GameObjects.NeodroidCamera.Synthesis {
   /// <summary>
   ///
   /// </summary>

@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using droid.Runtime.Enums;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Managers;
 using droid.Runtime.Structs.Space;
-using droid.Runtime.Utilities.Enums;
-using droid.Runtime.Utilities.Misc;
-using droid.Runtime.Utilities.Structs;
+using droid.Runtime.Utilities;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
@@ -55,7 +54,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
         this.ObservationArray = new float[target_texture.width * target_texture.height * 4];
       } else {
         #if NEODROID_DEBUG
-          Debug.LogWarning("Texture not available!");
+        Debug.LogWarning("Texture not available!");
         #endif
         this._texture = new Texture2D(NeodroidConstants._Default_Width,
                                       NeodroidConstants._Default_Height,
@@ -70,16 +69,16 @@ namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
     /// </summary>
     protected virtual void OnPostRender() {
       #if NEODROID_DEBUG
-      if(this.Debugging){
-            this._grab = true;
+      if (this.Debugging) {
+        this._grab = true;
       }
       #endif
       if (this._camera.targetTexture) {
         this.UpdateArray();
       }
       #if NEODROID_DEBUG
-      if(this.Debugging){
-      Graphics.DrawTexture(new Rect(new Vector2(0,0),new Vector2(128,128)), this._texture);
+      if (this.Debugging) {
+        Graphics.DrawTexture(new Rect(new Vector2(0, 0), new Vector2(128, 128)), this._texture);
       }
       #endif
     }
@@ -146,8 +145,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
           i += 4;
 
           #if NEODROID_DEBUG
-          if (this.Debugging)
-          {
+          if (this.Debugging) {
             max[0] = Mathf.Max(b[0], max[0]);
             min[0] = Mathf.Min(b[0], min[0]);
             max[1] = Mathf.Max(b[1], max[1]);
@@ -161,8 +159,9 @@ namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
         }
 
         #if NEODROID_DEBUG
-        if (this.Debugging)
-        Debug.Log($"len(a):{a.Length}, min:{min}, max:{max}");
+        if (this.Debugging) {
+          Debug.Log($"len(a):{a.Length}, min:{min}, max:{max}");
+        }
         #endif
 
         RenderTexture.active = current_render_texture;

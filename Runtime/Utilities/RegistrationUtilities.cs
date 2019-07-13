@@ -1,17 +1,13 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using droid.Runtime.Environments;
+﻿using droid.Runtime.Environments;
+using droid.Runtime.GameObjects.ChildSensors;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Prototyping.Actors;
-using droid.Runtime.Utilities.GameObjects.ChildSensors;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace droid.Runtime.Utilities {
   /// <summary>
   /// </summary>
-  public  static partial class NeodroidUtilities {
-
+  public static partial class NeodroidUtilities {
     /// <summary>
     ///
     /// </summary>
@@ -102,7 +98,6 @@ namespace droid.Runtime.Utilities {
       }
     }
 
-
     /// <summary>
     ///
     /// </summary>
@@ -112,20 +107,15 @@ namespace droid.Runtime.Utilities {
     /// <param name="debug"></param>
     /// <typeparam name="TCaller"></typeparam>
     /// <returns></returns>
-    public static IHasRegister<IActuator> RegisterComponent< TCaller>(
+    public static IHasRegister<IActuator> RegisterComponent<TCaller>(
         IHasRegister<IActuator> r,
         TCaller c,
         bool only_parents = false,
-        bool debug = false)
-        where TCaller : Component, IRegisterable {
-
-
+        bool debug = false) where TCaller : Component, IRegisterable {
       IHasRegister<IActuator> component = null;
       if (r != null) {
         component = r; //.GetComponent<Recipient>();
-                       }
-      else{
-
+      } else {
         if (c.GetComponentInParent<Actor>() != null) {
           component = c.GetComponentInParent<Actor>();
         } else if (!only_parents) {
@@ -133,13 +123,12 @@ namespace droid.Runtime.Utilities {
         }
       }
 
-      if (component == null){
+      if (component == null) {
         if (c.GetComponentInParent<PrototypingEnvironment>() != null) {
           component = c.GetComponentInParent<PrototypingEnvironment>();
         } else if (!only_parents) {
           component = Object.FindObjectOfType<PrototypingEnvironment>();
         }
-
       }
 
       if (component != null) {
@@ -165,21 +154,16 @@ namespace droid.Runtime.Utilities {
     /// <typeparam name="TRecipient"></typeparam>
     /// <typeparam name="TCaller"></typeparam>
     /// <returns></returns>
-    public static IHasRegister<IActuator> RegisterComponent< TCaller>(
+    public static IHasRegister<IActuator> RegisterComponent<TCaller>(
         IHasRegister<IActuator> r,
         TCaller c,
         string identifier,
         bool only_parents = false,
-        bool debug = false)
-        where TCaller : Component, IRegisterable {
-
-
+        bool debug = false) where TCaller : Component, IRegisterable {
       IHasRegister<IActuator> component = null;
       if (r != null) {
         component = r; //.GetComponent<Recipient>();
-      }
-      else{
-
+      } else {
         if (c.GetComponentInParent<Actor>() != null) {
           component = c.GetComponentInParent<Actor>();
         } else if (!only_parents) {
@@ -187,13 +171,12 @@ namespace droid.Runtime.Utilities {
         }
       }
 
-      if (component == null){
+      if (component == null) {
         if (c.GetComponentInParent<PrototypingEnvironment>() != null) {
           component = c.GetComponentInParent<PrototypingEnvironment>();
         } else if (!only_parents) {
           component = Object.FindObjectOfType<PrototypingEnvironment>();
         }
-
       }
 
       if (component != null) {
@@ -206,10 +189,8 @@ namespace droid.Runtime.Utilities {
         #endif
       }
 
-
       return component;
     }
-
 
     /// <summary>
     /// </summary>
@@ -226,8 +207,6 @@ namespace droid.Runtime.Utilities {
         bool only_parents = false,
         bool debug = false)
         where TRecipient : Object, IHasRegister<TCaller> where TCaller : Component, IRegisterable {
-
-
       TRecipient component = null;
       if (r != null) {
         component = r; //.GetComponent<Recipient>();
@@ -289,12 +268,5 @@ namespace droid.Runtime.Utilities {
 
       return component;
     }
-
-
-
-
-
-
-
   }
 }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Structs.Space;
-using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Experimental {
@@ -64,7 +63,8 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
     /// </summary>
     public Space2 DoubleSpace {
       get {
-        return new Space2(this._position_space.DecimalGranularity) {MaxValues =
+        return new Space2(this._position_space.DecimalGranularity) {
+                                                                       MaxValues =
                                                                            new Vector2(this._position_space
                                                                                            .MaxValues.x,
                                                                                        this._position_space

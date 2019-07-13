@@ -1,6 +1,6 @@
 ﻿using System;
+using droid.Runtime.Enums;
 using droid.Runtime.Interfaces;
-using droid.Runtime.Utilities.Enums;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Actuators {
@@ -17,17 +17,20 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <summary>
     ///
     /// </summary>
-    [SerializeField] protected string _Layer_Mask = "Obstructions";
+    [SerializeField]
+    protected string _Layer_Mask = "Obstructions";
 
     /// <summary>
     ///
     /// </summary>
-    [SerializeField] protected bool _No_Collisions = true;
+    [SerializeField]
+    protected bool _No_Collisions = true;
 
     /// <summary>
     ///
     /// </summary>
-    [SerializeField] protected Space _Relative_To = Space.Self;
+    [SerializeField]
+    protected Space _Relative_To = Space.Self;
 
     /// <summary>
     ///

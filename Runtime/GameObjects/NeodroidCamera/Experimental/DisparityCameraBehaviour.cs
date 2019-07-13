@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera.Experimental {
+namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

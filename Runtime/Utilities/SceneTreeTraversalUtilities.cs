@@ -1,19 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.IO;
-using System.Net.Http.Headers;
-using droid.Runtime.Environments;
-using droid.Runtime.Interfaces;
-using droid.Runtime.Prototyping.Actors;
-using droid.Runtime.Utilities.GameObjects.ChildSensors;
-using NSubstitute;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace droid.Runtime.Utilities {
   /// <summary>
   /// </summary>
-  public  static partial class NeodroidUtilities {
-
+  public static partial class NeodroidUtilities {
     /// <summary>
     /// Find UnityEngine.Object assignables from Generic Type T, this allows for FindObjectOfType with interfaces.
     /// </summary>
@@ -24,7 +16,9 @@ namespace droid.Runtime.Utilities {
       if (FindAllObjectsOfTypeInScene<T>() is T[] obj) {
         return obj;
       }
-      throw new System.ArgumentException($"Found no UnityEngine.Object assignables from type {typeof(T).Name}");
+
+      throw new
+          System.ArgumentException($"Found no UnityEngine.Object assignables from type {typeof(T).Name}");
     }
 
     /// <summary>
@@ -32,10 +26,7 @@ namespace droid.Runtime.Utilities {
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static T FindObjectOfType<T>() {
-
-      return FindObjectsOfType<T>()[0];
-    }
+    public static T FindObjectOfType<T>() { return FindObjectsOfType<T>()[0]; }
 
     /// <summary>
     /// </summary>
@@ -52,8 +43,6 @@ namespace droid.Runtime.Utilities {
 
       return game_objects.ToArray();
     }
-
-
 
     /// <summary>
     /// </summary>
@@ -96,7 +85,5 @@ namespace droid.Runtime.Utilities {
 
       return results.ToArray();
     }
-
-
   }
 }

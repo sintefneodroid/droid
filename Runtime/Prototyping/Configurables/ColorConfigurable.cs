@@ -2,9 +2,8 @@
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities;
-using droid.Runtime.Utilities.Misc;
-using droid.Runtime.Utilities.Structs;
 using UnityEngine;
+using NeodroidUtilities = droid.Runtime.Utilities.NeodroidUtilities;
 
 namespace droid.Runtime.Prototyping.Configurables {
   /// <inheritdoc />
@@ -88,6 +87,9 @@ namespace droid.Runtime.Prototyping.Configurables {
       this.ParentEnvironment.UnRegister(this, this._a_id);
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override ISpace ConfigurableValueSpace { get { return this._space; } }
 
     /// <summary>
@@ -145,6 +147,9 @@ namespace droid.Runtime.Prototyping.Configurables {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     protected override void Randomise() {
       if (this.use_shared) {
         foreach (var mat in this._renderer.sharedMaterials) {

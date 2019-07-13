@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace droid.Runtime.InternalReactions {
+namespace droid.Runtime.Utilities.InternalReactions {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

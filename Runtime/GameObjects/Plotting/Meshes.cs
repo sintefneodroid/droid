@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace droid.Runtime.Utilities.GameObjects.Plotting {
+namespace droid.Runtime.GameObjects.Plotting {
   public class Meshes {
     public static Mesh ConeMesh() {
       var mesh = new Mesh();

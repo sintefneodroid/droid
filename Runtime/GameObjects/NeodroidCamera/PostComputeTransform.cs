@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera {
+namespace droid.Runtime.GameObjects.NeodroidCamera {
   /// <summary>
   ///
   /// </summary>

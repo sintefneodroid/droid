@@ -1,8 +1,8 @@
 ﻿using System;
-using droid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities;
 using UnityEngine;
 
-namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera.Experimental.Camera360 {
+namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental.Camera360 {
   public class CreateStereoCubemaps : MonoBehaviour {
     public RenderTexture cubemapLeftEye;
     public RenderTexture cubemapRightEye;

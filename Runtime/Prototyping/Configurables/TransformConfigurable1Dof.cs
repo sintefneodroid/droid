@@ -1,9 +1,8 @@
 ﻿using System;
+using droid.Runtime.Enums;
+using droid.Runtime.GameObjects.BoundingBoxes;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Structs.Space;
-using droid.Runtime.Utilities.Enums;
-using droid.Runtime.Utilities.GameObjects.BoundingBoxes;
-using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Configurables {
@@ -93,10 +92,9 @@ namespace droid.Runtime.Prototyping.Configurables {
       if (this._use_bounding_box_for_range) {
         if (this._bounding_box != null) {
           var valid_input = new Space1 {
-                                           MaxValue =
-                                               Math.Min(this._bounding_box.Bounds.size.x,
-                                                        Math.Min(this._bounding_box.Bounds.size.y,
-                                                                 this._bounding_box.Bounds.size.z))
+                                           MaxValue = Math.Min(this._bounding_box.Bounds.size.x,
+                                                               Math.Min(this._bounding_box.Bounds.size.y,
+                                                                        this._bounding_box.Bounds.size.z))
                                        };
           valid_input.MinValue = -valid_input.MaxValue;
           this.SingleSpace = valid_input;

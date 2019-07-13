@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace droid.Runtime.Utilities.GameObjects.StatusDisplayer {
+namespace droid.Runtime.GameObjects.StatusDisplayer {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

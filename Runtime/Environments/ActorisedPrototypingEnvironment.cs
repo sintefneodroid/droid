@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
-using droid.Runtime.Utilities.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
 
 namespace droid.Runtime.Environments {
@@ -67,8 +67,6 @@ namespace droid.Runtime.Environments {
       return new Reaction(rp, this._Sample_Motions.ToArray(), null, null, null, "", this.Identifier);
     }
 
-
-
     #endregion
 
     #region PublicMethods
@@ -80,7 +78,6 @@ namespace droid.Runtime.Environments {
     public SortedDictionary<string, IActor> Actors { get; } = new SortedDictionary<string, IActor>();
 
     #endregion
-
 
     /// <inheritdoc />
     /// <summary>
@@ -148,7 +145,6 @@ namespace droid.Runtime.Environments {
     /// <returns></returns>
     public override EnvironmentState CollectState() {
       lock (this._Reaction_Lock) {
-
         var signal = 0f;
 
         if (this._objective_function != null) {
@@ -163,9 +159,11 @@ namespace droid.Runtime.Environments {
           }
           #endif
 
-          description =
-              new EnvironmentDescription(this.ObjectiveFunction, this.Actors, this.Configurables, this
-              .Sensors,Displayers);
+          description = new EnvironmentDescription(this.ObjectiveFunction,
+                                                   this.Actors,
+                                                   this.Configurables,
+                                                   this.Sensors,
+                                                   this.Displayers);
         }
 
         this._Observables.Clear();
@@ -206,7 +204,6 @@ namespace droid.Runtime.Environments {
             || this._ReplyWithDescriptionThisStep) {
           state.Unobservables = new Unobservables(ref this._tracked_rigid_bodies, ref this._Poses);
         }
-
 
         return state;
       }
@@ -284,7 +281,6 @@ namespace droid.Runtime.Environments {
         actor?.EnvironmentReset();
       }
     }
-
 
     #endregion
   }

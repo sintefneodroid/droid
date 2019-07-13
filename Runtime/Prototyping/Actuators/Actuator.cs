@@ -1,13 +1,12 @@
 ﻿using System;
 using droid.Runtime.Environments;
+using droid.Runtime.GameObjects;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities;
-using droid.Runtime.Utilities.GameObjects;
-using droid.Runtime.Utilities.Misc;
-using droid.Runtime.Utilities.Structs;
 using UnityEngine;
+using NeodroidUtilities = droid.Runtime.Utilities.NeodroidUtilities;
 using Object = System.Object;
 
 namespace droid.Runtime.Prototyping.Actuators {
@@ -44,8 +43,7 @@ namespace droid.Runtime.Prototyping.Actuators {
       get { return this._motion_value_space; }
       set { this._motion_value_space = value; }
     }
-    
-    
+
     /// <summary>
     /// </summary>
     /// <param name="motion"></param>
@@ -61,7 +59,7 @@ namespace droid.Runtime.Prototyping.Actuators {
         return; // Do nothing
       }
 
-      if(this._motion_value_space.Normalised) {
+      if (this._motion_value_space.Normalised) {
         motion.Strength = this._motion_value_space.ClipDenormaliseRoundClip(motion.Strength);
       }
 
@@ -77,7 +75,6 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <summary>
     /// </summary>
     public void EnvironmentReset() { this._energy_spend_since_reset = 0; }
-
 
     /// <summary>
     /// 
@@ -100,6 +97,7 @@ namespace droid.Runtime.Prototyping.Actuators {
       if (this._overriden) {
         throw new NotImplementedException();
       }
+
       this._overriden = true;
       this.Parent?.UnRegister(this);
     }

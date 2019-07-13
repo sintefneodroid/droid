@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace droid.Runtime.Utilities.Sampling {
+namespace droid.Runtime.Sampling {
   public class RandomWalk : MonoBehaviour //Self-Avoiding Random Walk algorithm
   {
     //How many steps do we want to take before we stop?

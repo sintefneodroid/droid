@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Globalization;
+using droid.Runtime.GameObjects;
+using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Managers;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Utilities;
-using droid.Runtime.Utilities.GameObjects;
-using droid.Runtime.Utilities.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
-using droid.Runtime.Utilities.Misc;
 using UnityEditor;
 using UnityEngine;
+using NeodroidUtilities = droid.Runtime.Utilities.NeodroidUtilities;
 
 namespace droid.Runtime.Environments {
   /// <inheritdoc cref="PrototypingGameObject" />
@@ -25,7 +25,6 @@ namespace droid.Runtime.Environments {
     /// <summary>
     /// </summary>
     protected bool _Configure;
-
 
     [SerializeField] Reaction _last_reaction;
 
@@ -82,8 +81,6 @@ namespace droid.Runtime.Environments {
     /// </summary>
     public Reaction LastReaction { get { return this._last_reaction; } set { this._last_reaction = value; } }
 
-
-
     /// <summary>
     /// </summary>
     public bool IsResetting { get { return this._Resetting; } }
@@ -129,8 +126,6 @@ namespace droid.Runtime.Environments {
     /// </summary>
     /// <returns></returns>
     public void IdentifierString(DataPoller recipient) { recipient.PollData(this.Identifier); }
-
-
 
     /// <summary>
     /// </summary>
@@ -192,14 +187,12 @@ namespace droid.Runtime.Environments {
 
     public abstract void EnvironmentReset();
 
-
     #region Public Methods
 
     /// <summary>
     /// </summary>
     /// <returns></returns>
     public void FrameString(DataPoller recipient) { recipient.PollData($"{this.CurrentFrameNumber}"); }
-
 
     #endregion
 
@@ -211,7 +204,6 @@ namespace droid.Runtime.Environments {
       get { return this._current_frame_number; }
       set { this._current_frame_number = value; }
     }
-
 
     #endregion
   }

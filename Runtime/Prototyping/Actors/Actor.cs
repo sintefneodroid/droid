@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using droid.Runtime.Environments;
+using droid.Runtime.GameObjects;
+using droid.Runtime.GameObjects.BoundingBoxes.Experimental;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities;
-using droid.Runtime.Utilities.GameObjects;
-using droid.Runtime.Utilities.GameObjects.BoundingBoxes.Experimental;
-using droid.Runtime.Utilities.Misc;
 using UnityEditor;
 using UnityEngine;
+using NeodroidUtilities = droid.Runtime.Utilities.NeodroidUtilities;
 
 namespace droid.Runtime.Prototyping.Actors {
   /// <inheritdoc cref="PrototypingGameObject" />
@@ -137,8 +137,7 @@ namespace droid.Runtime.Prototyping.Actors {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, this);
+      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(this.ParentEnvironment, this);
     }
 
     /// <inheritdoc />

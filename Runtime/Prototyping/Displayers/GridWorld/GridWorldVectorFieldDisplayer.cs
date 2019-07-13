@@ -1,6 +1,6 @@
 using System;
-using droid.Runtime.Utilities.Misc.Drawing;
-using droid.Runtime.Utilities.Structs;
+using droid.Runtime.Structs;
+using droid.Runtime.Utilities.Drawing;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Displayers.GridWorld {
@@ -40,6 +40,7 @@ namespace droid.Runtime.Prototyping.Displayers.GridWorld {
     /// <param name="value"></param>
     /// <exception cref="NotImplementedException"></exception>
     public override void Display(Vector3 value) { throw new NotImplementedException(); }
+
     /// <summary>
     ///
     /// </summary>
@@ -64,6 +65,7 @@ namespace droid.Runtime.Prototyping.Displayers.GridWorld {
     /// <param name="point"></param>
     /// <exception cref="NotImplementedException"></exception>
     public override void Display(Points.StringPoint point) { throw new NotImplementedException(); }
+
     /// <summary>
     ///
     /// </summary>

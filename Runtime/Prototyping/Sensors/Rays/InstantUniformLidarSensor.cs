@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Structs.Space;
-using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Rays {
@@ -276,14 +275,12 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
 
           Debug.DrawLine(position1,
                          position1
-                         - (Vector3.down + Vector3.forward + Vector3.left).normalized
-                         * this._space.MaxValue,
+                         - (Vector3.down + Vector3.forward + Vector3.left).normalized * this._space.MaxValue,
                          this._color);
 
           Debug.DrawLine(position1,
                          position1
-                         - (Vector3.down + Vector3.forward + Vector3.right).normalized
-                         * this._space.MaxValue,
+                         - (Vector3.down + Vector3.forward + Vector3.right).normalized * this._space.MaxValue,
                          this._color);
           Debug.DrawLine(position1,
                          position1

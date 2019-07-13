@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using droid.Runtime.Structs;
 using droid.Runtime.Utilities;
-using droid.Runtime.Utilities.Misc;
-using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {

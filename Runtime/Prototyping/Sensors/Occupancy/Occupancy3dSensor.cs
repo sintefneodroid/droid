@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Structs.Space;
-using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Occupancy {
@@ -41,11 +40,11 @@ namespace droid.Runtime.Prototyping.Sensors.Occupancy {
 
     public override IEnumerable<float> FloatEnumerable {
       get {
-        var a = new float[this.ObservationArray.Length*3];
+        var a = new float[this.ObservationArray.Length * 3];
         for (var i = 0; i < this.ObservationArray.Length * 3; i += 3) {
           a[i] = this.ObservationArray[i].x;
-          a[i+1] = this.ObservationArray[i].y;
-          a[i+2] = this.ObservationArray[i].z;
+          a[i + 1] = this.ObservationArray[i].y;
+          a[i + 2] = this.ObservationArray[i].z;
         }
 
         return a;

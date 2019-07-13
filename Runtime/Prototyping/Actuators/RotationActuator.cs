@@ -1,8 +1,8 @@
 ﻿using droid.Runtime.Interfaces;
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Utilities;
-using droid.Runtime.Utilities.Misc;
 using UnityEngine;
+using NeodroidUtilities = droid.Runtime.Utilities.NeodroidUtilities;
 
 namespace droid.Runtime.Prototyping.Actuators {
   /// <inheritdoc />
@@ -44,13 +44,21 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// </summary>
     protected override void RegisterComponent() {
       this.Parent =
-          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._rot_x);
+          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
+                                              (Actuator)this,
+                                              this._rot_x);
       this.Parent =
-          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._rot_y);
+          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
+                                              (Actuator)this,
+                                              this._rot_y);
       this.Parent =
-          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._rot_z);
+          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
+                                              (Actuator)this,
+                                              this._rot_z);
       this.Parent =
-          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._rot_w);
+          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
+                                              (Actuator)this,
+                                              this._rot_w);
     }
 
     /// <summary>

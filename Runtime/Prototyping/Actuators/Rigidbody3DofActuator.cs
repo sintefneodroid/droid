@@ -1,8 +1,8 @@
 ﻿using droid.Runtime.Interfaces;
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Utilities;
-using droid.Runtime.Utilities.Misc;
 using UnityEngine;
+using NeodroidUtilities = droid.Runtime.Utilities.NeodroidUtilities;
 
 namespace droid.Runtime.Prototyping.Actuators {
   /// <inheritdoc />
@@ -67,14 +67,10 @@ namespace droid.Runtime.Prototyping.Actuators {
         this._z = this.Identifier + "RotZ_";
       }
 
-      this.Parent =
-          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, this._x);
-      this.Parent =
-          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, this._y);
-      this.Parent =
-          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, this._z);
+      this.Parent = NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, this._x);
+      this.Parent = NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, this._y);
+      this.Parent = NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, this._z);
     }
-
 
     /// <summary>
     ///
@@ -83,7 +79,6 @@ namespace droid.Runtime.Prototyping.Actuators {
       this.Parent?.UnRegister(this, this._x);
       this.Parent?.UnRegister(this, this._y);
       this.Parent?.UnRegister(this, this._z);
-
     }
 
     /// <inheritdoc />

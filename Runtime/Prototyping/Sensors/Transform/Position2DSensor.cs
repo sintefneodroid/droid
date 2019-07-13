@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using droid.Runtime.Enums;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Structs.Space;
-using droid.Runtime.Utilities.Enums;
-using droid.Runtime.Utilities.Misc.SearchableEnum;
-using droid.Runtime.Utilities.Structs;
+using droid.Runtime.Utilities;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Transform {

@@ -3,7 +3,7 @@ using droid.Runtime.Interfaces;
 using UnityEditor;
 using UnityEngine;
 
-namespace droid.Runtime.Utilities.GameObjects {
+namespace droid.Runtime.GameObjects {
   /// <inheritdoc cref="IRegisterable" />
   /// <summary>
   /// </summary>
@@ -110,8 +110,7 @@ namespace droid.Runtime.Utilities.GameObjects {
     /// <summary>
     /// </summary>
     void OnEnable() {
-
-        if (this._disables_children) {
+      if (this._disables_children) {
         foreach (Transform child in this.transform) {
           if (child != this.transform) {
             child.gameObject.SetActive(true);
@@ -127,10 +126,11 @@ namespace droid.Runtime.Utilities.GameObjects {
           }
         }
       }
-      if (EditorApplication.isPlayingOrWillChangePlaymode)
-      {
-          return;
+
+      if (EditorApplication.isPlayingOrWillChangePlaymode) {
+        return;
       }
+
       this.ReRegister();
     }
 
@@ -149,7 +149,6 @@ namespace droid.Runtime.Utilities.GameObjects {
       if (!EditorApplication.isPlayingOrWillChangePlaymode) {
         this.ReRegister();
       }
-            
     }
     #endif
 

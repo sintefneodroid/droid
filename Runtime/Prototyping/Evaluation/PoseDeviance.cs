@@ -1,6 +1,6 @@
-﻿using droid.Runtime.Utilities.Extensions;
-using droid.Runtime.Utilities.GameObjects.BoundingBoxes;
-using droid.Runtime.Utilities.GameObjects.ChildSensors;
+﻿using droid.Runtime.GameObjects.BoundingBoxes;
+using droid.Runtime.GameObjects.ChildSensors;
+using droid.Runtime.Utilities.Extensions;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Evaluation {

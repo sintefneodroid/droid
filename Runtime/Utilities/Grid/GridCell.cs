@@ -1,7 +1,7 @@
-﻿using droid.Runtime.Utilities.Structs;
+﻿using droid.Runtime.Structs.Vectors;
 using UnityEngine;
 
-namespace droid.Runtime.Utilities.Misc.Grid {
+namespace droid.Runtime.Utilities.Grid {
   public abstract class GridCell : MonoBehaviour {
     protected Collider _Col;
     protected Renderer _Rend;

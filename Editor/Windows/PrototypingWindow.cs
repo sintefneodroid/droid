@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using droid.Editor.Utilities;
+using droid.Runtime.Enums;
 using droid.Runtime.Environments;
+using droid.Runtime.GameObjects;
 using droid.Runtime.Interfaces;
-using droid.Runtime.InternalReactions;
 using droid.Runtime.Managers;
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Prototyping.Actuators;
@@ -12,14 +13,12 @@ using droid.Runtime.Prototyping.Displayers;
 using droid.Runtime.Prototyping.Evaluation;
 using droid.Runtime.Prototyping.Internals;
 using droid.Runtime.Prototyping.Sensors;
+using droid.Runtime.Structs;
 using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities;
-using droid.Runtime.Utilities.Enums;
-using droid.Runtime.Utilities.GameObjects;
 using droid.Runtime.Utilities.InternalReactions;
-using droid.Runtime.Utilities.Misc;
-using droid.Runtime.Utilities.Structs;
 using UnityEngine;
+using NeodroidUtilities = droid.Runtime.Utilities.NeodroidUtilities;
 #if UNITY_EDITOR
 using UnityEditor;
 
@@ -188,8 +187,10 @@ namespace droid.Editor.Windows {
                                                                      typeof(ObjectiveFunction),
                                                                      true);
                   EditorGUILayout.LabelField("Signal: " + this._environments[i].ObjectiveFunction.Evaluate());
-                  this._environments[i].ObjectiveFunction.SignalSpace.FromVector3(EditorGUILayout.Vector3Field
-                  (Space1.Vector3Description(),this._environments[i].ObjectiveFunction.SignalSpace.ToVector3()));
+                  this._environments[i].ObjectiveFunction.SignalSpace
+                      .FromVector3(EditorGUILayout.Vector3Field(Space1.Vector3Description(),
+                                                                this._environments[i].ObjectiveFunction
+                                                                    .SignalSpace.ToVector3()));
                   this._environments[i].ObjectiveFunction.EpisodeLength =
                       EditorGUILayout.IntField("Episode Length",
                                                this._environments[i].ObjectiveFunction.EpisodeLength);
@@ -329,7 +330,7 @@ namespace droid.Editor.Windows {
             //EditorGUILayout.BeginHorizontal("Box");
             #if NEODROID_DEBUG
             observer_value.Debugging = EditorGUILayout.Toggle("Debugging", observer_value.Debugging);
-                        EditorGUILayout.LabelField("Observables: ["+observer_value.ToString()+"]");
+            EditorGUILayout.LabelField("Observables: [" + observer_value.ToString() + "]");
             #endif
             //EditorGUILayout.EndHorizontal();
           }
@@ -413,7 +414,9 @@ namespace droid.Editor.Windows {
 
           if (this._show_detailed_descriptions) {
             actuator_value.MotionSpace.FromVector3(EditorGUILayout.Vector3Field(Space1.Vector3Description(),
-                                         actuator_value.MotionSpace.ToVector3()));
+                                                                                actuator_value
+                                                                                    .MotionSpace
+                                                                                    .ToVector3()));
             //EditorGUILayout.BeginHorizontal("Box");
             #if NEODROID_DEBUG
             actuator_value.Debugging = EditorGUILayout.Toggle("Debugging", actuator_value.Debugging);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace droid.Runtime.Utilities.Sampling {
+namespace droid.Runtime.Sampling {
   [Serializable]
   public enum DistributionEnum {
     /// <summary>

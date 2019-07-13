@@ -1,6 +1,4 @@
-﻿using droid.Runtime.Utilities.Structs;
-
-namespace droid.Runtime.Interfaces {
+﻿namespace droid.Runtime.Interfaces {
   /// <summary>
   /// </summary>
   public interface IHasTArray {

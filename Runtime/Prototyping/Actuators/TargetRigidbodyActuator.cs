@@ -3,8 +3,8 @@ using droid.Runtime.Environments;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Utilities;
-using droid.Runtime.Utilities.Misc;
 using UnityEngine;
+using NeodroidUtilities = droid.Runtime.Utilities.NeodroidUtilities;
 
 namespace droid.Runtime.Prototyping.Actuators {
   /// <inheritdoc cref="Actuator" />
@@ -71,13 +71,15 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// </summary>
     protected override void RegisterComponent() {
       this.Parent =
-          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._movement);
+          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
+                                              (Actuator)this,
+                                              this._movement);
       this.Parent =
-          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._turn);
+          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
+                                              (Actuator)this,
+                                              this._turn);
 
-      this._parent_environment =
-          NeodroidUtilities.RegisterComponent(this._parent_environment,
-                                              this);
+      this._parent_environment = NeodroidUtilities.RegisterComponent(this._parent_environment, this);
 
       if (this._parent_environment != null) {
         this._parent_environment.PreStepEvent += this.PreStep;

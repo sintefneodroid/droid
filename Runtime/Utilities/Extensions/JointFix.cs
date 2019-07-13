@@ -126,8 +126,10 @@ namespace droid.Runtime.Utilities.Extensions {
         this.Reset();
         this.framesCounted = 0;
       }
-      if (this.counting)
-      this.framesCounted++;
+
+      if (this.counting) {
+        this.framesCounted++;
+      }
 
       if (this._was_disabled) {
         this._was_disabled = false;

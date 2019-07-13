@@ -1,38 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.IO;
-using droid.Runtime.Environments;
-using droid.Runtime.Interfaces;
-using droid.Runtime.Prototyping.Actors;
-using droid.Runtime.Utilities.GameObjects.ChildSensors;
+
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace droid.Runtime.Utilities {
   /// <summary>
   /// </summary>
-  public  static partial class NeodroidUtilities {
-
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="folders"></param>
-    /// <param name="file_name"></param>
-    /// <returns></returns>
-    public static string GetPersistentDataPath(string[] folders, string file_name = null)
-    {
-      string dataPath = Path.Combine(folders);
-      dataPath = Path.Combine(Application.persistentDataPath, dataPath);
-      //dataPath = dataPath.Replace('/', '\\');
-
-      if (!Directory.Exists(dataPath))
-        Directory.CreateDirectory(dataPath);
-
-      if(file_name != null)
-        dataPath = Path.Combine(dataPath, file_name);
-
-      return dataPath;
-    }
-
+  public static partial class NeodroidUtilities {
     /// <summary>
     /// </summary>
     /// <param name="rb"></param>
@@ -134,7 +107,6 @@ namespace droid.Runtime.Utilities {
       return texture;
     }
 
-
     /// <summary>
     /// </summary>
     /// <param name="colors"></param>
@@ -147,7 +119,6 @@ namespace droid.Runtime.Utilities {
 
       return s;
     }
-
 
     /** Contains logic for coverting a camera component into a Texture2D. */
     /*public Texture2D ObservationToTex(Camera camera, int width, int height)

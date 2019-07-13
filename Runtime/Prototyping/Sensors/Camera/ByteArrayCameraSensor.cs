@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using droid.Runtime.Enums;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Managers;
-using droid.Runtime.Utilities.Enums;
-using droid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 

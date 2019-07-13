@@ -1,12 +1,11 @@
 ﻿using System;
+using droid.Runtime.GameObjects.NeodroidCamera;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities;
-using droid.Runtime.Utilities.GameObjects.NeodroidCamera;
-using droid.Runtime.Utilities.Misc;
-using droid.Runtime.Utilities.Structs;
 using UnityEngine;
+using NeodroidUtilities = droid.Runtime.Utilities.NeodroidUtilities;
 using Random = UnityEngine.Random;
 
 namespace droid.Runtime.Prototyping.Configurables.Experimental {

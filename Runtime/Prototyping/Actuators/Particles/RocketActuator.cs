@@ -1,6 +1,6 @@
 ﻿using System;
+using droid.Runtime.Enums;
 using droid.Runtime.Interfaces;
-using droid.Runtime.Utilities.Enums;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Actuators.Particles {

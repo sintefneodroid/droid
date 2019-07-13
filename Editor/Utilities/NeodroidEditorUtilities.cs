@@ -35,8 +35,7 @@ namespace droid.Editor.Utilities {
       Handles.BeginGUI();
 
       Handles.color = link_style.normal.textColor;
-      Handles.DrawLine(new Vector3(position.xMin, position.yMax),
-                       new Vector3(position.xMax, position.yMax));
+      Handles.DrawLine(new Vector3(position.xMin, position.yMax), new Vector3(position.xMax, position.yMax));
       Handles.color = Color.white;
       Handles.EndGUI();
 

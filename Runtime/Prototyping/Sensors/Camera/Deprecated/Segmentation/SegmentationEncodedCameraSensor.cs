@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using droid.Runtime.Utilities.GameObjects.NeodroidCamera.Segmentation;
+using droid.Runtime.GameObjects.NeodroidCamera.Segmentation;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated.Segmentation {
@@ -25,9 +25,9 @@ namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated.Segmentation {
 
       Debug.LogWarning(JsonUtility.ToJson(this._segmenter.ColorsDict));
       this.serialised_string = this._segmenter != null
-                                  ? this._segmenter.ColorsDict.Select(c => $"{c.Key}: {c.Value.ToString()}")
-                                        .Aggregate("", (current, next) => $"{current}, {next}")
-                                  : "Nothing";
+                                   ? this._segmenter.ColorsDict.Select(c => $"{c.Key}: {c.Value.ToString()}")
+                                         .Aggregate("", (current, next) => $"{current}, {next}")
+                                   : "Nothing";
     }
   }
 }

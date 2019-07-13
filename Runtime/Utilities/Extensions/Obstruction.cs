@@ -1,4 +1,4 @@
-﻿using droid.Runtime.Utilities.Misc.Orientation;
+﻿using droid.Runtime.Utilities.Orientation;
 using UnityEngine;
 
 namespace droid.Runtime.Utilities.Extensions {

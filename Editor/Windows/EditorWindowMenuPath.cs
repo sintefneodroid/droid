@@ -8,10 +8,12 @@ namespace droid.Editor.Windows {
     ///
     /// </summary>
     public const string _ToolMenuPath = "Tools/Neodroid/";
+
     /// <summary>
     ///
     /// </summary>
     public const string _WindowMenuPath = "Window/Neodroid/";
+
     /// <summary>
     ///
     /// </summary>

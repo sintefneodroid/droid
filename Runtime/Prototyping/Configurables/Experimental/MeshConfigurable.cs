@@ -1,11 +1,10 @@
 ﻿using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
+using droid.Runtime.Sampling;
 using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities;
-using droid.Runtime.Utilities.Misc;
-using droid.Runtime.Utilities.Sampling;
-using droid.Runtime.Utilities.Structs;
 using UnityEngine;
+using NeodroidUtilities = droid.Runtime.Utilities.NeodroidUtilities;
 
 namespace droid.Runtime.Prototyping.Configurables.Experimental {
   /// <inheritdoc cref="Configurable" />
