@@ -2,7 +2,12 @@
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Utilities;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.NeodroidUtilities;
+using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
+
+#if UNITY_EDITOR
+using UnityEditor;
+
+#endif
 
 namespace droid.Runtime.Prototyping.Actuators {
   /// <inheritdoc />
@@ -55,24 +60,24 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      //this.ParentActor = NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.ParentActor, (Actuator)this);
+      //this.ParentActor = NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.ParentActor, (Actuator)this);
 
       this.Parent =
-          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._x);
+          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._x);
       this.Parent =
-          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._y);
+          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._y);
       this.Parent =
-          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._z);
+          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._z);
       this.Parent =
-          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
+          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
                                               (Actuator)this,
                                               this._rot_x);
       this.Parent =
-          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
+          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
                                               (Actuator)this,
                                               this._rot_y);
       this.Parent =
-          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
+          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
                                               (Actuator)this,
                                               this._rot_z);
     }
@@ -96,13 +101,13 @@ namespace droid.Runtime.Prototyping.Actuators {
     protected override void InnerApplyMotion(IMotion motion) {
       if (this._Relative_To == Space.World) {
         if (motion.ActuatorName == this._x) {
-          this._Rigidbody.AddForce(Vector3.left * motion.Strength, this._ForceMode);
+          this._Rigidbody.AddForce(Vector3.right * motion.Strength, this._ForceMode);
         } else if (motion.ActuatorName == this._y) {
           this._Rigidbody.AddForce(Vector3.up * motion.Strength, this._ForceMode);
         } else if (motion.ActuatorName == this._z) {
           this._Rigidbody.AddForce(Vector3.forward * motion.Strength, this._ForceMode);
         } else if (motion.ActuatorName == this._rot_x) {
-          this._Rigidbody.AddTorque(Vector3.left * motion.Strength, this._ForceMode);
+          this._Rigidbody.AddTorque(Vector3.right * motion.Strength, this._ForceMode);
         } else if (motion.ActuatorName == this._rot_y) {
           this._Rigidbody.AddTorque(Vector3.up * motion.Strength, this._ForceMode);
         } else if (motion.ActuatorName == this._rot_z) {
@@ -110,13 +115,13 @@ namespace droid.Runtime.Prototyping.Actuators {
         }
       } else if (this._Relative_To == Space.Self) {
         if (motion.ActuatorName == this._x) {
-          this._Rigidbody.AddRelativeForce(Vector3.left * motion.Strength, this._ForceMode);
+          this._Rigidbody.AddRelativeForce(Vector3.right * motion.Strength, this._ForceMode);
         } else if (motion.ActuatorName == this._y) {
           this._Rigidbody.AddRelativeForce(Vector3.up * motion.Strength, this._ForceMode);
         } else if (motion.ActuatorName == this._z) {
           this._Rigidbody.AddRelativeForce(Vector3.forward * motion.Strength, this._ForceMode);
         } else if (motion.ActuatorName == this._rot_x) {
-          this._Rigidbody.AddRelativeTorque(Vector3.left * motion.Strength, this._ForceMode);
+          this._Rigidbody.AddRelativeTorque(Vector3.right * motion.Strength, this._ForceMode);
         } else if (motion.ActuatorName == this._rot_y) {
           this._Rigidbody.AddRelativeTorque(Vector3.up * motion.Strength, this._ForceMode);
         } else if (motion.ActuatorName == this._rot_z) {
@@ -126,5 +131,26 @@ namespace droid.Runtime.Prototyping.Actuators {
         Debug.LogWarning($"Not applying force in space {this._Relative_To}");
       }
     }
+
+    #if UNITY_EDITOR
+    void OnDrawGizmosSelected() {
+      if (this.enabled) {
+        var position = this.transform.position;
+
+          Handles.DrawWireArc(this.transform.position, this.transform.right, -this.transform.forward, 180, 2);
+
+          Handles.DrawWireArc(this.transform.position, this.transform.up, -this.transform.right, 180, 2);
+
+          Handles.DrawWireArc(this.transform.position, this.transform.forward, -this.transform.right, 180, 2);
+
+          Debug.DrawLine(position, position + Vector3.right * 2, Color.green);
+
+          Debug.DrawLine(position, position + Vector3.forward * 2, Color.green);
+
+          Debug.DrawLine(position, position + Vector3.up * 2, Color.green);
+        }
+
+    }
+    #endif
   }
 }

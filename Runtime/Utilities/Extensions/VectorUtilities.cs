@@ -1,9 +1,9 @@
 using UnityEngine;
 
-namespace droid.Runtime.Utilities {
+namespace droid.Runtime.Utilities.Extensions {
   /// <summary>
   /// </summary>
-  public static partial class NeodroidUtilities {
+  public static partial class NeodroidVectorUtilities {
     /// <summary>
     ///
     /// </summary>

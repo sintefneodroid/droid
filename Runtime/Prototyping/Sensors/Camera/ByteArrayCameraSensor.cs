@@ -75,7 +75,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
       }
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Graphics.DrawTexture(new Rect(new Vector2(0, 0), new Vector2(0, 0)), this._texture);
+        //Graphics.DrawTexture(new Rect(new Vector2(0, 0), new Vector2(256, 256)), this._texture);
       }
       #endif
     }

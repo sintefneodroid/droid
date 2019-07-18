@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 namespace droid.Runtime.Utilities {
   /// <summary>
   /// </summary>
-  public static partial class NeodroidUtilities {
+  public static partial class NeodroidSceneUtilities {
     /// <summary>
     /// Find UnityEngine.Object assignables from Generic Type T, this allows for FindObjectOfType with interfaces.
     /// </summary>

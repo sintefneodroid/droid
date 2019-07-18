@@ -66,9 +66,9 @@ namespace droid.Runtime.Prototyping.Actuators.Particles {
       switch (this._Axis_Of_Motion) {
         case Axis.X_:
           if (this._Relative_To == Space.World) {
-            this._Rigidbody.AddForce(Vector3.left * motion.Strength);
+            this._Rigidbody.AddForce(Vector3.right * motion.Strength);
           } else {
-            this._Rigidbody.AddRelativeForce(Vector3.left * motion.Strength);
+            this._Rigidbody.AddRelativeForce(Vector3.right * motion.Strength);
           }
 
           break;
@@ -90,9 +90,9 @@ namespace droid.Runtime.Prototyping.Actuators.Particles {
           break;
         case Axis.Rot_x_:
           if (this._Relative_To == Space.World) {
-            this._Rigidbody.AddTorque(Vector3.left * motion.Strength);
+            this._Rigidbody.AddTorque(Vector3.right * motion.Strength);
           } else {
-            this._Rigidbody.AddRelativeTorque(Vector3.left * motion.Strength);
+            this._Rigidbody.AddRelativeTorque(Vector3.right * motion.Strength);
           }
 
           break;

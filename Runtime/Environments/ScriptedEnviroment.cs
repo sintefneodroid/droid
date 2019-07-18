@@ -6,7 +6,7 @@ using droid.Runtime.Managers;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Utilities;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.NeodroidUtilities;
+using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 using Random = UnityEngine.Random;
 
 namespace droid.Runtime.Environments {
@@ -113,7 +113,7 @@ namespace droid.Runtime.Environments {
       }
 
       this._time_simulation_manager =
-          NeodroidUtilities.RegisterComponent((AbstractNeodroidManager)this._time_simulation_manager, this);
+          NeodroidRegistrationUtilities.RegisterComponent((AbstractNeodroidManager)this._time_simulation_manager, this);
     }
 
     /// <inheritdoc />

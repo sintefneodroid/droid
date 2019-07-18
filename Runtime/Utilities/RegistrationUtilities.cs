@@ -7,7 +7,7 @@ using UnityEngine;
 namespace droid.Runtime.Utilities {
   /// <summary>
   /// </summary>
-  public static partial class NeodroidUtilities {
+  public static partial class NeodroidRegistrationUtilities {
     /// <summary>
     ///
     /// </summary>

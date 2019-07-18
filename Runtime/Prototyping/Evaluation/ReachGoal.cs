@@ -3,7 +3,7 @@ using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Utilities;
 using droid.Runtime.Utilities.Grid;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.NeodroidUtilities;
+using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
 namespace droid.Runtime.Prototyping.Evaluation {
   /// <summary>
@@ -68,7 +68,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
       }
 
       if (this._goal) {
-        NeodroidUtilities
+        NeodroidRegistrationUtilities
             .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider, Collision>(this,
                                                                                                      this
                                                                                                          ._goal
@@ -79,7 +79,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
       }
 
       if (this._actor) {
-        NeodroidUtilities
+        NeodroidRegistrationUtilities
             .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider, Collision>(this,
                                                                                                      this
                                                                                                          ._actor

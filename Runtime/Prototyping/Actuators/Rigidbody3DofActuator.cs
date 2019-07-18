@@ -2,7 +2,11 @@
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Utilities;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.NeodroidUtilities;
+using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
+#if UNITY_EDITOR
+using UnityEditor;
+
+#endif
 
 namespace droid.Runtime.Prototyping.Actuators {
   /// <inheritdoc />
@@ -67,9 +71,18 @@ namespace droid.Runtime.Prototyping.Actuators {
         this._z = this.Identifier + "RotZ_";
       }
 
-      this.Parent = NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, this._x);
-      this.Parent = NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, this._y);
-      this.Parent = NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, this._z);
+      this.Parent =
+          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
+                                                          this,
+                                                          this._x);
+      this.Parent =
+          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
+                                                          this,
+                                                          this._y);
+      this.Parent =
+          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
+                                                          this,
+                                                          this._z);
     }
 
     /// <summary>
@@ -89,9 +102,9 @@ namespace droid.Runtime.Prototyping.Actuators {
       if (!this._Angular_Actuators) {
         if (motion.ActuatorName == this._x) {
           if (this._Relative_To == Space.World) {
-            this._Rigidbody.AddForce(Vector3.left * motion.Strength, this._ForceMode);
+            this._Rigidbody.AddForce(Vector3.right * motion.Strength, this._ForceMode);
           } else {
-            this._Rigidbody.AddRelativeForce(Vector3.left * motion.Strength, this._ForceMode);
+            this._Rigidbody.AddRelativeForce(Vector3.right * motion.Strength, this._ForceMode);
           }
         } else if (motion.ActuatorName == this._y) {
           if (this._Relative_To == Space.World) {
@@ -109,9 +122,9 @@ namespace droid.Runtime.Prototyping.Actuators {
       } else {
         if (motion.ActuatorName == this._x) {
           if (this._Relative_To == Space.World) {
-            this._Rigidbody.AddTorque(Vector3.left * motion.Strength, this._ForceMode);
+            this._Rigidbody.AddTorque(Vector3.right * motion.Strength, this._ForceMode);
           } else {
-            this._Rigidbody.AddRelativeTorque(Vector3.left * motion.Strength, this._ForceMode);
+            this._Rigidbody.AddRelativeTorque(Vector3.right * motion.Strength, this._ForceMode);
           }
         } else if (motion.ActuatorName == this._y) {
           if (this._Relative_To == Space.World) {
@@ -128,5 +141,26 @@ namespace droid.Runtime.Prototyping.Actuators {
         }
       }
     }
+
+    #if UNITY_EDITOR
+    void OnDrawGizmosSelected() {
+      if (this.enabled) {
+        var position = this.transform.position;
+        if (_Angular_Actuators) {
+          Handles.DrawWireArc(this.transform.position, this.transform.right, -this.transform.forward, 180, 2);
+
+          Handles.DrawWireArc(this.transform.position, this.transform.up, -this.transform.right, 180, 2);
+
+          Handles.DrawWireArc(this.transform.position, this.transform.forward, -this.transform.right, 180, 2);
+        } else {
+          Debug.DrawLine(position, position + Vector3.right * 2, Color.green);
+
+          Debug.DrawLine(position, position + Vector3.forward * 2, Color.green);
+
+          Debug.DrawLine(position, position + Vector3.up * 2, Color.green);
+        }
+      }
+    }
+    #endif
   }
 }

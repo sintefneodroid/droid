@@ -11,7 +11,7 @@ using droid.Runtime.Prototyping.Evaluation;
 using droid.Runtime.Utilities;
 using droid.Runtime.Utilities.Extensions;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.NeodroidUtilities;
+using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 using Object = System.Object;
 
 namespace droid.Runtime.Environments {
@@ -245,9 +245,9 @@ namespace droid.Runtime.Environments {
       var ignored_layer = LayerMask.NameToLayer("IgnoredByNeodroid");
       if (this._track_only_children) {
         this._tracked_game_objects =
-            NeodroidUtilities.RecursiveChildGameObjectsExceptLayer(this.transform, ignored_layer);
+            NeodroidSceneUtilities.RecursiveChildGameObjectsExceptLayer(this.transform, ignored_layer);
       } else {
-        this._tracked_game_objects = NeodroidUtilities.FindAllGameObjectsExceptLayer(ignored_layer);
+        this._tracked_game_objects = NeodroidSceneUtilities.FindAllGameObjectsExceptLayer(ignored_layer);
       }
 
       var length = this._tracked_game_objects.Length;

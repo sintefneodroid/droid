@@ -113,22 +113,22 @@ namespace droid.Runtime.Prototyping.Displayers.GridWorld {
         //point._Size
         switch ((int)point._Val) {
           case 0:
-            NeodroidUtilities.ForDebug(point._Pos, Vector3.forward, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.forward, Color.cyan);
             break;
           case 1:
-            NeodroidUtilities.ForDebug(point._Pos, Vector3.back, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.back, Color.cyan);
             break;
           case 2:
-            NeodroidUtilities.ForDebug(point._Pos, Vector3.up, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.up, Color.cyan);
             break;
           case 3:
-            NeodroidUtilities.ForDebug(point._Pos, Vector3.down, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.down, Color.cyan);
             break;
           case 4:
-            NeodroidUtilities.ForDebug(point._Pos, Vector3.left, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.left, Color.cyan);
             break;
           case 5:
-            NeodroidUtilities.ForDebug(point._Pos, Vector3.right, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.right, Color.cyan);
             break;
         }
       }

@@ -8,7 +8,7 @@ using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Utilities;
 using UnityEditor;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.NeodroidUtilities;
+using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
 namespace droid.Runtime.Environments {
   /// <inheritdoc cref="PrototypingGameObject" />
@@ -167,7 +167,7 @@ namespace droid.Runtime.Environments {
     protected override void RegisterComponent() {
       if (this._Simulation_Manager != null) {
         this._Simulation_Manager =
-            NeodroidUtilities.RegisterComponent((PausableManager)this._Simulation_Manager, this);
+            NeodroidRegistrationUtilities.RegisterComponent((PausableManager)this._Simulation_Manager, this);
       }
     }
 

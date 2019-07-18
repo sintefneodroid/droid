@@ -5,7 +5,7 @@ using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.NeodroidUtilities;
+using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 using Random = UnityEngine.Random;
 
 namespace droid.Runtime.Prototyping.Configurables.Experimental {
@@ -87,28 +87,28 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     protected override void RegisterComponent() {
       if (!this._camera.usePhysicalProperties) {
         this.ParentEnvironment =
-            NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._fov_str);
+            NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._fov_str);
       } else {
         this.ParentEnvironment =
-            NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._focal_str);
+            NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._focal_str);
         this.ParentEnvironment =
-            NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
+            NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
                                                 (Configurable)this,
                                                 this._sensor_width_str);
         this.ParentEnvironment =
-            NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
+            NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
                                                 (Configurable)this,
                                                 this._sensor_height_str);
         this.ParentEnvironment =
-            NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
+            NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
                                                 (Configurable)this,
                                                 this._lens_shift_x_str);
         this.ParentEnvironment =
-            NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
+            NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
                                                 (Configurable)this,
                                                 this._lens_shift_y_str);
         this.ParentEnvironment =
-            NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
+            NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
                                                 (Configurable)this,
                                                 this._gate_fit_str);
       }

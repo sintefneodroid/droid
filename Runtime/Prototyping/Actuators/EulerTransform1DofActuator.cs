@@ -2,6 +2,9 @@
 using droid.Runtime.Enums;
 using droid.Runtime.Interfaces;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace droid.Runtime.Prototyping.Actuators {
   /// <inheritdoc />
@@ -56,7 +59,7 @@ namespace droid.Runtime.Prototyping.Actuators {
           vec = -Vector3.forward * motion.Strength;
           break;
         case Axis.Rot_x_: // Rotational
-          this.transform.Rotate(Vector3.left, motion.Strength, this._Relative_To);
+          this.transform.Rotate(Vector3.right, motion.Strength, this._Relative_To);
           break;
         case Axis.Rot_y_: // Rotational
           this.transform.Rotate(Vector3.up, motion.Strength, this._Relative_To);
@@ -64,9 +67,15 @@ namespace droid.Runtime.Prototyping.Actuators {
         case Axis.Rot_z_: // Rotational
           this.transform.Rotate(Vector3.forward, motion.Strength, this._Relative_To);
           break;
-        case Axis.Dir_x_: break;
-        case Axis.Dir_y_: break;
-        case Axis.Dir_z_: break;
+        case Axis.Dir_x_:
+          this.transform.Rotate(Vector3.forward, motion.Strength, this._Relative_To);
+          break;
+        case Axis.Dir_y_:
+          this.transform.Rotate(Vector3.up, motion.Strength, this._Relative_To);
+          break;
+        case Axis.Dir_z_:
+          this.transform.Rotate(Vector3.right, motion.Strength, this._Relative_To);
+          break;
         default: throw new ArgumentOutOfRangeException();
       }
 
@@ -78,5 +87,50 @@ namespace droid.Runtime.Prototyping.Actuators {
         this.transform.Translate(vec, this._Relative_To);
       }
     }
+    #if UNITY_EDITOR
+    void OnDrawGizmosSelected() {
+      if (this.enabled) {
+        var position = this.transform.position;
+        switch (this._Axis_Of_Motion) {
+          case Axis.X_:
+            Debug.DrawLine(position, position + Vector3.right * 2, Color.green);
+            break;
+          case Axis.Y_:
+            Debug.DrawLine(position, position + Vector3.up * 2, Color.green);
+            break;
+          case Axis.Z_:
+            Debug.DrawLine(position, position + Vector3.forward * 2, Color.green);
+            break;
+          case Axis.Rot_x_:
+            //Handles.DrawSolidArc
+            //Handles.DrawSolidDisc
+
+            Handles.DrawWireArc(this.transform.position, this.transform.right, -this.transform.forward, 180, 2);
+            break;
+          case Axis.Rot_y_:
+            Handles.DrawWireArc(this.transform.position, this.transform.up, -this.transform.right, 180, 2);
+            break;
+          case Axis.Rot_z_:
+            Handles.DrawWireArc(this.transform.position, this.transform.forward, -this.transform.right, 180, 2);
+            break;
+          case Axis.Dir_x_:
+            Handles.DrawWireArc(this.transform.position, this.transform.forward, -this.transform.right, 180, 2);
+            break;
+          case Axis.Dir_y_:
+            Handles.DrawWireArc(this.transform.position, this.transform.up, -this.transform.right, 180, 2);
+            break;
+          case Axis.Dir_z_:
+            Handles.DrawWireArc(this.transform.position, this.transform.right, -this.transform.forward, 180, 2);
+            break;
+          default:
+            Gizmos.DrawIcon(position, "console.warnicon", true);
+            break;
+        }
+      }
+    }
+
+
+
+    #endif
   }
 }

@@ -7,7 +7,7 @@ using droid.Runtime.Interfaces;
 using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.NeodroidUtilities;
+using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
 namespace droid.Runtime.Prototyping.Evaluation {
   /// <inheritdoc cref="ObjectiveFunction" />
@@ -164,7 +164,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
       //  this.Register(go);
 
       if (this.ParentEnvironment == null) {
-        this.ParentEnvironment = NeodroidUtilities.FindObjectOfType<IAbstractPrototypingEnvironment>();
+        this.ParentEnvironment = NeodroidSceneUtilities.FindObjectOfType<IAbstractPrototypingEnvironment>();
       }
 
       this.PostSetup();

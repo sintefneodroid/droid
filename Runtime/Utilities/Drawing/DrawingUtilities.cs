@@ -4,7 +4,7 @@ using UnityEngine;
 namespace droid.Runtime.Utilities.Drawing {
   /// <summary>
   /// </summary>
-  public static partial class NeodroidUtilities {
+  public static partial class NeodroidDrawingUtilities {
     /// <summary>
     /// </summary>
     /// <param name="pos"></param>

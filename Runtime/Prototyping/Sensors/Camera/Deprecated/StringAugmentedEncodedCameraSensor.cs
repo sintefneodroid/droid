@@ -3,7 +3,7 @@ using droid.Runtime.Environments;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.NeodroidUtilities;
+using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
 namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
   /// <inheritdoc cref="Sensor" />
@@ -43,10 +43,10 @@ namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, this, this.Identifier);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, this, this.Identifier);
 
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, this, this._colors);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, this, this._colors);
     }
 
     /// <inheritdoc />

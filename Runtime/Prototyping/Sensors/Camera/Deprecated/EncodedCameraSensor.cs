@@ -68,7 +68,10 @@ namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
     /// </summary>
     protected IManager _Manager = null;
 
-    public override String PrototypingTypeName { get { return ""; } }
+    /// <summary>
+    ///
+    /// </summary>
+    public override string PrototypingTypeName { get { return ""; } }
 
     /// <summary>
     /// </summary>

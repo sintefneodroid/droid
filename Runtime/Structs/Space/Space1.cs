@@ -55,9 +55,14 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     /// <returns></returns>
     public dynamic Sample() {
-      var x = this.DistributionSampler.Range(this._Min_Value, this._Max_Value);
-
-      return x;
+      if (!this.normalised) {
+        var x = this.DistributionSampler.Range(this._Min_Value, this._Max_Value);
+        return x;
+      } else
+      {
+        var x = this.DistributionSampler.Range(0, 1);
+        return x;
+      }
     }
 
     /// <summary>
@@ -85,7 +90,6 @@ namespace droid.Runtime.Structs.Space {
     /// <param name="v"></param>
     /// <returns></returns>
     public float Normalise01(float v) {
-
       if (v > this._Max_Value || v < this._Min_Value) {
         throw new ArgumentException();
       }
@@ -93,8 +97,6 @@ namespace droid.Runtime.Structs.Space {
       if (this.Span <= 0) {
         return 0;
       }
-
-
 
       return (v - this._Min_Value) / this.Span;
     }
@@ -119,7 +121,6 @@ namespace droid.Runtime.Structs.Space {
     /// <param name="v"></param>
     /// <returns></returns>
     public float Denormalise01(float v) {
-
       if (v > 1 || v < 0) {
         throw new ArgumentException();
       }
@@ -127,7 +128,6 @@ namespace droid.Runtime.Structs.Space {
       if (this.Span <= 0) {
         return 0;
       }
-
 
       return v * this.Span + this._Min_Value;
     }

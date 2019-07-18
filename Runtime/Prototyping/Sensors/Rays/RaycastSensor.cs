@@ -24,12 +24,21 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
 
     [SerializeField] float _range = 100.0f;
 
+    /// <summary>
+    ///
+    /// </summary>
     public override string PrototypingTypeName {
       get { return "Raycast" + $"{this._direction.x}{this._direction.y}{this._direction.z}"; }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Space1 SingleSpace { get { return this._observation_value_space; } }
 
+    /// <summary>
+    ///
+    /// </summary>
     public float ObservationValue {
       get { return this._observation_value; }
       private set {
@@ -39,10 +48,19 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     protected override void PreSetup() { }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override IEnumerable<float> FloatEnumerable { get { return new[] {this.ObservationValue}; } }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override void UpdateObservation() {
       if (Physics.Raycast(this.transform.position, this._direction, out this._hit, this._range)) {
         this.ObservationValue = this._hit.distance;

@@ -1,41 +1,31 @@
 ﻿using System;
 using droid.Runtime.Utilities;
 using UnityEngine;
+using Object = System.Object;
 
-namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental.Camera360 {
+namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
+  /// <summary>
+  ///
+  /// </summary>
   public class CreateStereoCubemaps : MonoBehaviour {
-    public RenderTexture cubemapLeftEye;
-    public RenderTexture cubemapRightEye;
-    public RenderTexture cubemapEquirect;
-    public Texture2D _texture;
-    public bool renderStereo = true;
-    public float stereoSeparation = 0.064f;
+    /// <summary>
+    ///
+    /// </summary>
+    [SerializeField]
+    RenderTexture cubemapLeftEye;
 
-    Camera _cam;
+    [SerializeField] RenderTexture cubemapRightEye;
+    [SerializeField] RenderTexture cubemapEquirect;
+    [SerializeField] bool renderStereo = false;
+    [SerializeField] float stereoSeparation = 0.064f;
+
+    [SerializeField] Camera _cam;
 
     void Start() {
       this._cam = this.GetComponent<Camera>();
 
       if (this._cam == null) {
         this._cam = this.GetComponentInParent<Camera>();
-      }
-
-      if (this._cam) {
-        var target_texture = this._cam.targetTexture;
-        if (!target_texture) {
-          Debug.LogWarning($"No targetTexture defaulting to a texture of size ({NeodroidConstants._Default_Width}, {NeodroidConstants._Default_Height})");
-
-          this._texture = new Texture2D(NeodroidConstants._Default_Width, NeodroidConstants._Default_Height);
-        } else {
-          var texture_format_str = target_texture.format.ToString();
-          if (Enum.TryParse(texture_format_str, out TextureFormat texture_format)) {
-            this._texture = new Texture2D(target_texture.width,
-                                          target_texture.height,
-                                          texture_format,
-                                          target_texture.useMipMap,
-                                          !target_texture.sRGB);
-          }
-        }
       }
     }
 
