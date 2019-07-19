@@ -1,9 +1,9 @@
 ﻿using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Structs.Space;
-using droid.Runtime.Utilities.Misc;
-using droid.Runtime.Utilities.Structs;
+using droid.Runtime.Utilities;
 using UnityEngine;
+using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
 namespace droid.Runtime.Prototyping.Configurables {
   /// <inheritdoc />
@@ -64,13 +64,13 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._r_id);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._r_id);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._g_id);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._g_id);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._b_id);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._b_id);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._a_id);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._a_id);
     }
 
     /// <inheritdoc />
@@ -87,6 +87,9 @@ namespace droid.Runtime.Prototyping.Configurables {
       this.ParentEnvironment.UnRegister(this, this._a_id);
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override ISpace ConfigurableValueSpace { get { return this._space; } }
 
     /// <summary>
@@ -144,6 +147,9 @@ namespace droid.Runtime.Prototyping.Configurables {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     protected override void Randomise() {
       if (this.use_shared) {
         foreach (var mat in this._renderer.sharedMaterials) {

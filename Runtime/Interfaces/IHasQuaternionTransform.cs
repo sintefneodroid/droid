@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using droid.Runtime.Structs.Space;
+using UnityEngine;
 
 namespace droid.Runtime.Interfaces {
   /// <summary>
@@ -11,5 +12,15 @@ namespace droid.Runtime.Interfaces {
     /// <summary>
     /// </summary>
     Quaternion Rotation { get; }
+
+    /// <summary>
+    ///
+    /// </summary>
+    Space1 PositionSpace { get; }
+
+    /// <summary>
+    ///
+    /// </summary>
+    Space1 RotationSpace { get; }
   }
 }

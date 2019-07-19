@@ -1,9 +1,9 @@
 ﻿using System.Collections;
-using droid.Runtime.Utilities.GameObjects.BoundingBoxes;
-using droid.Runtime.Utilities.GameObjects.BoundingBoxes.Experimental.Unused;
+using droid.Runtime.GameObjects.BoundingBoxes;
+using droid.Runtime.GameObjects.BoundingBoxes.Experimental.Unused;
 using UnityEngine;
 
-namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera {
+namespace droid.Runtime.GameObjects.NeodroidCamera {
   /// <inheritdoc />
   ///  <summary>
   ///  </summary>

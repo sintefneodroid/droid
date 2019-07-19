@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using droid.Runtime.Prototyping.Sensors.Grid;
-using droid.Runtime.Utilities.ScriptableObjects.Unused;
+using droid.Runtime.ScriptableObjects.Deprecated;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Evaluation.Tasks {

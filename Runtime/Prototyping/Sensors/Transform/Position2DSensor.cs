@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using droid.Runtime.Enums;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Structs.Space;
-using droid.Runtime.Utilities.Enums;
-using droid.Runtime.Utilities.Misc.SearchableEnum;
-using droid.Runtime.Utilities.Structs;
+using droid.Runtime.Utilities;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Transform {
@@ -89,7 +88,10 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     /// </summary>
     protected override void PreSetup() { }
 
-    void OnDrawGizmos() {
+    #if UNITY_EDITOR
+
+
+    void OnDrawGizmosSelected() {
       if (this.enabled) {
         var position = this.transform.position;
         switch (this._dim_combination) {
@@ -112,5 +114,6 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
         }
       }
     }
+    #endif
   }
 }

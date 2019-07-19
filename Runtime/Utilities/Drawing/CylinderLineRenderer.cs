@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace droid.Runtime.Utilities.Misc.Drawing {
+namespace droid.Runtime.Utilities.Drawing {
   public class CylinderLineRenderer : MonoBehaviour {
     // Fill in this with the default Unity Cylinder mesh
     // We will account for the cylinder pivot/origin being in the middle.

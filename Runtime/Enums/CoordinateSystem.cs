@@ -1,4 +1,4 @@
-﻿namespace droid.Runtime.Utilities.Enums {
+﻿namespace droid.Runtime.Enums {
   /// <summary>
   /// </summary>
   public enum CoordinateSystem {

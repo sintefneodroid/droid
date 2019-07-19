@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
+using droid.Runtime.Enums.BoundingBox;
 using droid.Runtime.Environments;
+using droid.Runtime.GameObjects.BoundingBoxes.Experimental;
 using droid.Runtime.Interfaces;
-using droid.Runtime.Utilities.Enums.BoundingBox;
-using droid.Runtime.Utilities.GameObjects.BoundingBoxes.Experimental;
-using droid.Runtime.Utilities.Misc.SearchableEnum;
+using droid.Runtime.Utilities;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,7 +12,7 @@ using UnityEngine;
 
 #endif
 
-namespace droid.Runtime.Utilities.GameObjects.BoundingBoxes {
+namespace droid.Runtime.GameObjects.BoundingBoxes {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

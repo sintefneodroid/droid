@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Sampling;
 using droid.Runtime.Structs.Space;
-using droid.Runtime.Utilities.Sampling;
-using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Rigidbody {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
+  [RequireComponent(typeof(UnityEngine.Rigidbody))]
   public class VelocitySensor : Sensor,
                                 IHasTriple {
     [SerializeField] UnityEngine.Rigidbody _rigidbody;
@@ -31,6 +31,9 @@ namespace droid.Runtime.Prototyping.Sensors.Rigidbody {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Space3 TripleSpace { get { return this._velocity_space; } }
 
     /// <summary>
@@ -47,6 +50,10 @@ namespace droid.Runtime.Prototyping.Sensors.Rigidbody {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() { this._rigidbody = this.GetComponent<UnityEngine.Rigidbody>(); }
+    protected override void PreSetup() {
+
+
+      this._rigidbody = this.GetComponent<UnityEngine.Rigidbody>();
+    }
   }
 }

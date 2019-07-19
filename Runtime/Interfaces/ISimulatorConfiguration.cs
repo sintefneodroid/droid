@@ -1,5 +1,5 @@
+using droid.Runtime.Enums;
 using droid.Runtime.Messaging.Messages;
-using droid.Runtime.Utilities.Enums;
 using UnityEngine;
 
 namespace droid.Runtime.Interfaces {
@@ -116,10 +116,12 @@ namespace droid.Runtime.Interfaces {
     ///
     /// </summary>
     bool ResizableWindow { get; set; }
+
     /// <summary>
     ///
     /// </summary>
     ColorSpace ColorSpace { get; set; }
+
     /// <summary>
     ///
     /// </summary>

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Managers;
 using droid.Runtime.Messaging.Messages;
-using droid.Runtime.Utilities.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
-using droid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities;
 using UnityEngine;
+using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 using Random = UnityEngine.Random;
 
 namespace droid.Runtime.Environments {
@@ -112,7 +113,7 @@ namespace droid.Runtime.Environments {
       }
 
       this._time_simulation_manager =
-          NeodroidUtilities.RegisterComponent((AbstractNeodroidManager)this._time_simulation_manager, this);
+          NeodroidRegistrationUtilities.RegisterComponent((AbstractNeodroidManager)this._time_simulation_manager, this);
     }
 
     /// <inheritdoc />
@@ -190,7 +191,7 @@ namespace droid.Runtime.Environments {
 
       var observables = new float[] {actor_idx};
 
-      return new EnvironmentState(this.Identifier, 0,  time, signal, terminated, ref observables);
+      return new EnvironmentState(this.Identifier, 0, time, signal, terminated, ref observables);
     }
 
     /// <inheritdoc />

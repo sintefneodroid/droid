@@ -1,4 +1,4 @@
-namespace droid.Runtime.Utilities.Enums.BoundingBox {
+namespace droid.Runtime.Enums.BoundingBox {
   /// <summary>
   ///
   /// </summary>

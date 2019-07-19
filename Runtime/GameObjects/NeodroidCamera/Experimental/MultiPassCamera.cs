@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq;
-using droid.Runtime.Utilities.GameObjects.NeodroidCamera.Synthesis;
+using droid.Runtime.GameObjects.NeodroidCamera.Synthesis;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using Object = UnityEngine.Object;
 
-namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera.Experimental {
+namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

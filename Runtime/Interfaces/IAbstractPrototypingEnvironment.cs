@@ -1,5 +1,5 @@
 using System;
-using droid.Runtime.Utilities.GameObjects.BoundingBoxes;
+using droid.Runtime.GameObjects.BoundingBoxes;
 using UnityEngine;
 
 namespace droid.Runtime.Interfaces {
@@ -49,6 +49,11 @@ namespace droid.Runtime.Interfaces {
     /// <returns></returns>
     Quaternion TransformRotation(Quaternion transform_rotation);
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="transform_rotation"></param>
+    /// <returns></returns>
     Quaternion InverseTransformRotation(Quaternion transform_rotation);
 
     /// <summary>
@@ -63,8 +68,15 @@ namespace droid.Runtime.Interfaces {
     /// </summary>
     event Action PostStepEvent;
 
+    /// <summary>
+    ///
+    /// </summary>
     IObjectiveFunction ObjectiveFunction { get; }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="reason"></param>
     void Terminate(string reason);
   }
 }

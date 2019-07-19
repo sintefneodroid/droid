@@ -1,8 +1,8 @@
 ﻿using System;
-using droid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities;
 using UnityEngine;
 
-namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera {
+namespace droid.Runtime.GameObjects.NeodroidCamera {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
@@ -402,7 +402,7 @@ namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera {
       } else {
         #if NEODROID_DEBUG
 
-          //Debug.Log($"No SyncCameraProperties component found on {this.name} GameObject");
+        //Debug.Log($"No SyncCameraProperties component found on {this.name} GameObject");
 
         #endif
       }

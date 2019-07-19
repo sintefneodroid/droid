@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace droid.Runtime.Utilities.Structs {
+namespace droid.Runtime.Structs.Vectors {
   [Serializable]
   public struct IntVector4 {
     [SerializeField] public int _X;
@@ -38,7 +38,6 @@ namespace droid.Runtime.Utilities.Structs {
       this._W = (int)w;
     }
 
-
     public int X { get { return this._X; } set { this._X = value; } }
 
     public int Y { get { return this._Y; } set { this._Y = value; } }
@@ -52,5 +51,4 @@ namespace droid.Runtime.Utilities.Structs {
     /// </summary>
     public static IntVector4 Zero { get { return new IntVector4(0, 0, 0, 0); } }
   }
-
 }

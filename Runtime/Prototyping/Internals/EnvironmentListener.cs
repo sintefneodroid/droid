@@ -1,8 +1,9 @@
 ﻿using System;
 using droid.Runtime.Environments;
+using droid.Runtime.GameObjects;
 using droid.Runtime.Interfaces;
-using droid.Runtime.Utilities.GameObjects;
-using droid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities;
+using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
 namespace droid.Runtime.Prototyping.Internals {
   /// <inheritdoc cref="PrototypingGameObject" />
@@ -31,9 +32,7 @@ namespace droid.Runtime.Prototyping.Internals {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this._Parent_Environment =
-          NeodroidUtilities.RegisterComponent(this._Parent_Environment,
-                                              this);
+      this._Parent_Environment = NeodroidRegistrationUtilities.RegisterComponent(this._Parent_Environment, this);
 
       if (this._Parent_Environment != null) {
         this._Parent_Environment.PreStepEvent += this.PreStep;

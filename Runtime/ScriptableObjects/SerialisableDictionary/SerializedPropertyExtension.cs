@@ -1,8 +1,8 @@
 using System;
-#if UNITY_EDITOR
 using UnityEditor;
+#if UNITY_EDITOR
 
-namespace droid.Runtime.Utilities.ScriptableObjects.SerialisableDictionary {
+namespace droid.Runtime.ScriptableObjects.SerialisableDictionary {
   /// <summary>
   /// </summary>
   public static class SerializedPropertyExtension {

@@ -13,10 +13,10 @@ namespace droid.Runtime.Messaging.Messages {
                                   SortedDictionary<string, IDisplayer> displayers) {
       this.Configurables = configurables;
       this.Actors = actors;
-;
+      ;
       this.Sensors = sensors;
 
-      this.Displayers =displayers;
+      this.Displayers = displayers;
 
       this.ObjectiveFunction = objective_function_function;
     }
@@ -24,7 +24,7 @@ namespace droid.Runtime.Messaging.Messages {
     /// <summary>
     ///
     /// </summary>
-    public SortedDictionary<String, IDisplayer> Displayers { get;  }
+    public SortedDictionary<String, IDisplayer> Displayers { get; }
 
     /// <summary>
     ///
@@ -41,7 +41,6 @@ namespace droid.Runtime.Messaging.Messages {
 
     /// <summary>
     /// </summary>
-    public SortedDictionary<string,ISensor> Sensors { get; }
-
+    public SortedDictionary<string, ISensor> Sensors { get; }
   }
 }

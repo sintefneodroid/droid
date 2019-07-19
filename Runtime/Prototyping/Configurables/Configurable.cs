@@ -1,10 +1,10 @@
 ﻿using droid.Runtime.Environments;
+using droid.Runtime.GameObjects;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
-using droid.Runtime.Utilities.GameObjects;
-using droid.Runtime.Utilities.Misc;
-using droid.Runtime.Utilities.Structs;
+using droid.Runtime.Utilities;
 using UnityEngine;
+using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
 namespace droid.Runtime.Prototyping.Configurables {
   /// <inheritdoc cref="PrototypingGameObject" />
@@ -19,7 +19,6 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     public bool RelativeToExistingValue { get { return this._relative_to_existing_value; } }
-
 
     /// <summary>
     ///
@@ -73,7 +72,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidUtilities.RegisterComponent(this.ParentEnvironment, this);
+      this.ParentEnvironment = NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, this);
     }
 
     /// <summary>

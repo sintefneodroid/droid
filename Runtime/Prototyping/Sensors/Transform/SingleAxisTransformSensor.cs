@@ -1,7 +1,7 @@
 ﻿using System;
+using droid.Runtime.Enums;
 using droid.Runtime.Prototyping.Sensors.Experimental;
-using droid.Runtime.Utilities.Enums;
-using droid.Runtime.Utilities.Misc.SearchableEnum;
+using droid.Runtime.Utilities;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Transform {
@@ -72,9 +72,7 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
             break;
           case Axis.Rot_z_:
           case Axis.Z_:
-            Debug.DrawLine(position,
-                           position + Vector3.forward * 2,
-                           Color.green);
+            Debug.DrawLine(position, position + Vector3.forward * 2, Color.green);
             break;
           case Axis.Dir_x_: break;
           case Axis.Dir_y_: break;

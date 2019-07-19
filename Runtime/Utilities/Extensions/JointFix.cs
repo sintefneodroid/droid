@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace droid.Runtime.Utilities.Misc.Extensions {
+namespace droid.Runtime.Utilities.Extensions {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
@@ -29,9 +29,9 @@ namespace droid.Runtime.Utilities.Misc.Extensions {
     Vector3[] _target_velocities;
     float[] _torque_break_limits;
 
-    [SerializeField] bool counting;
+    [SerializeField] bool counting=false;
     [SerializeField] int resetAfterFrames = 500;
-    int framesCounted;
+    int _frames_counted;
 
     bool _was_disabled;
     SoftJointLimit[] _x_ang_high_limits;
@@ -122,12 +122,14 @@ namespace droid.Runtime.Utilities.Misc.Extensions {
     }
 
     void Update() {
-      if (framesCounted >= resetAfterFrames) {
-        Reset();
-        framesCounted = 0;
+      if (this._frames_counted >= this.resetAfterFrames) {
+        this.Reset();
+        this._frames_counted = 0;
       }
-      if (counting)
-      framesCounted++;
+
+      if (this.counting) {
+        this._frames_counted++;
+      }
 
       if (this._was_disabled) {
         this._was_disabled = false;

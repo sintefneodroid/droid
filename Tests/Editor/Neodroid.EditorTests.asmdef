@@ -1,7 +1,8 @@
 {
     "name": "Neodroid.EditorTests",
     "references": [
-        "Neodroid.Editor"
+        "Neodroid.Editor",
+        "Neodroid.Runtime"
     ],
     "optionalUnityReferences": [
         "TestAssemblies"

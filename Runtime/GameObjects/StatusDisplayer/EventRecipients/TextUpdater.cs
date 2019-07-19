@@ -1,8 +1,8 @@
-﻿using droid.Runtime.Utilities.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
+﻿using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace droid.Runtime.Utilities.GameObjects.StatusDisplayer.EventRecipients {
+namespace droid.Runtime.GameObjects.StatusDisplayer.EventRecipients {
   /// <inheritdoc cref="DataPoller" />
   /// <summary>
   /// </summary>

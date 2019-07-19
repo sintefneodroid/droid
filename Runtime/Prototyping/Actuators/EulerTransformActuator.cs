@@ -1,7 +1,13 @@
 ﻿using droid.Runtime.Interfaces;
 using droid.Runtime.Prototyping.Actors;
-using droid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities;
 using UnityEngine;
+using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
+
+#if UNITY_EDITOR
+using UnityEditor;
+
+#endif
 
 namespace droid.Runtime.Prototyping.Actuators {
   /// <inheritdoc />
@@ -56,17 +62,23 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// </summary>
     protected override void RegisterComponent() {
       this.Parent =
-          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._x);
+          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._x);
       this.Parent =
-          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._y);
+          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._y);
       this.Parent =
-          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._z);
+          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._z);
       this.Parent =
-          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._rot_x);
+          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
+                                              (Actuator)this,
+                                              this._rot_x);
       this.Parent =
-          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._rot_y);
+          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
+                                              (Actuator)this,
+                                              this._rot_y);
       this.Parent =
-          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._rot_z);
+          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
+                                              (Actuator)this,
+                                              this._rot_z);
     }
 
     /// <summary>
@@ -87,18 +99,39 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <param name="motion"></param>
     protected override void InnerApplyMotion(IMotion motion) {
       if (motion.ActuatorName == this._x) {
-        this.transform.Translate(Vector3.left * motion.Strength, this._Relative_To);
+        this.transform.Translate(Vector3.right * motion.Strength, this._Relative_To);
       } else if (motion.ActuatorName == this._y) {
         this.transform.Translate(-Vector3.up * motion.Strength, this._Relative_To);
       } else if (motion.ActuatorName == this._z) {
         this.transform.Translate(-Vector3.forward * motion.Strength, this._Relative_To);
       } else if (motion.ActuatorName == this._rot_x) {
-        this.transform.Rotate(Vector3.left, motion.Strength, this._Relative_To);
+        this.transform.Rotate(Vector3.right, motion.Strength, this._Relative_To);
       } else if (motion.ActuatorName == this._rot_y) {
         this.transform.Rotate(Vector3.up, motion.Strength, this._Relative_To);
       } else if (motion.ActuatorName == this._rot_z) {
         this.transform.Rotate(Vector3.forward, motion.Strength, this._Relative_To);
       }
     }
+
+    #if UNITY_EDITOR
+    void OnDrawGizmosSelected() {
+      if (this.enabled) {
+        var position = this.transform.position;
+
+        Handles.DrawWireArc(this.transform.position, this.transform.right, -this.transform.forward, 180, 2);
+
+        Handles.DrawWireArc(this.transform.position, this.transform.up, -this.transform.right, 180, 2);
+
+        Handles.DrawWireArc(this.transform.position, this.transform.forward, -this.transform.right, 180, 2);
+
+        Debug.DrawLine(position, position + Vector3.right * 2, Color.green);
+
+        Debug.DrawLine(position, position + Vector3.forward * 2, Color.green);
+
+        Debug.DrawLine(position, position + Vector3.up * 2, Color.green);
+      }
+
+    }
+    #endif
   }
 }

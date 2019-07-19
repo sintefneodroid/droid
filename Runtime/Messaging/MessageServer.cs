@@ -5,6 +5,7 @@ using AsyncIO;
 using droid.Runtime.Messaging.FBS;
 using droid.Runtime.Messaging.Messages;
 using FlatBuffers;
+using Neodroid.FBS.Reaction;
 using NetMQ;
 using NetMQ.Sockets;
 using UnityEngine;
@@ -271,8 +272,7 @@ namespace droid.Runtime.Messaging {
                                                         do_serialise_unobservables,
                                                         simulator_configuration :
                                                         simulator_configuration_message,
-                                                        do_serialise_observables :
-                                                        do_serialise_observables,
+                                                        do_serialise_observables : do_serialise_observables,
                                                         api_version : api_version);
         this._socket.SendFrame(this._byte_buffer);
         this._waiting_for_main_loop_to_send = false;
@@ -329,7 +329,7 @@ namespace droid.Runtime.Messaging {
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log($"Starting a message server at address:port {ip_address}:{port }");
+        Debug.Log($"Starting a message server at address:port {ip_address}:{port}");
       }
       #endif
 

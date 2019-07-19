@@ -39,7 +39,7 @@ namespace droid.Editor {
     public bool NeodroidEnableDebugProp {
       get { return this.NeodroidEnableDebug; }
       set {
-        if (value != this.NeodroidEnableDebug|| _force) {
+        if (value != this.NeodroidEnableDebug || _force) {
           ApplyDebug(value);
           this.NeodroidEnableDebug = value;
         }
@@ -59,7 +59,7 @@ namespace droid.Editor {
     public bool NeodroidGithubExtensionProp {
       get { return this.NeodroidGithubExtension; }
       set {
-        if (value != this.NeodroidGithubExtension|| _force) {
+        if (value != this.NeodroidGithubExtension || _force) {
           ApplyGithubExt(value);
 
           this.NeodroidGithubExtension = value;
@@ -100,7 +100,7 @@ namespace droid.Editor {
     public String NeodroidImportLocationProp {
       get { return this.NeodroidImportLocation; }
       set {
-        if (value != this.NeodroidImportLocation|| _force) {
+        if (value != this.NeodroidImportLocation || _force) {
           var new_path = PathTrim(value);
           Debug.Log($"Setting Neodroid import location to: {new_path}");
 
@@ -117,7 +117,7 @@ namespace droid.Editor {
     public String NeodroidPreviewsLocationProp {
       get { return this.NeodroidPreviewsLocation; }
       set {
-        if (value != this.NeodroidPreviewsLocation|| _force) {
+        if (value != this.NeodroidPreviewsLocation || _force) {
           var new_path = PathTrim(value);
           Debug.Log($"Setting Neodroid ScenePreview location to: {new_path}");
 
@@ -156,7 +156,7 @@ namespace droid.Editor {
       settings.NeodroidGithubExtensionProp = false;
       settings.NeodroidIsPackageProp = false;
       settings.NeodroidImportLocationProp = NeodroidEditorConstants._Default_Import_Location;
-      
+
       settings.NeodroidGeneratePreviewsProp = false;
       settings.NeodroidPreviewsLocationProp = NeodroidEditorConstants._Default_Scene_Previews_Location;
       settings.NeodroidGenerateDescriptionsProp = false;
@@ -184,7 +184,7 @@ namespace droid.Editor {
 
     static bool _force = false;
 
-    internal static void ReapplyProperties(Boolean force=false) {
+    internal static void ReapplyProperties(Boolean force = false) {
       _force = force;
       Current.NeodroidEnableDebugProp = Current.NeodroidEnableDebug;
       Current.NeodroidGithubExtensionProp = Current.NeodroidGithubExtension;
@@ -222,8 +222,7 @@ namespace droid.Editor {
       public static GUIContent _EnableGithubExtension =
           new GUIContent(NeodroidEditorConstants._Github_Extension_Pref_Key);
 
-      public static GUIContent _IsPackage =
-          new GUIContent(NeodroidEditorConstants._IsPackage_Pref_Key);
+      public static GUIContent _IsPackage = new GUIContent(NeodroidEditorConstants._IsPackage_Pref_Key);
 
       public static GUIContent _ImportLocation =
           new GUIContent(NeodroidEditorConstants._Import_Location_Pref_Key);
@@ -258,8 +257,7 @@ namespace droid.Editor {
     public override void OnGUI(string search_context) {
       EditorGUILayout.HelpBox($"Version {NeodroidRuntimeInfo._Version}", MessageType.Info);
 
-      var is_package =
-          this._neodroid_settings.FindProperty(NeodroidEditorConstants._IsPackage_Pref_Key);
+      var is_package = this._neodroid_settings.FindProperty(NeodroidEditorConstants._IsPackage_Pref_Key);
       EditorGUILayout.PropertyField(is_package, Styles._IsPackage);
       if (!is_package.boolValue) {
         EditorGUILayout.HelpBox("Enter import path of Neodroid", MessageType.Info);
@@ -299,8 +297,8 @@ namespace droid.Editor {
 
       this._neodroid_settings.ApplyModifiedProperties();
 
-      if (EditorGUILayout.Toggle("Apply",false)) {
-        NeodroidSettings.ReapplyProperties(force:true);
+      if (EditorGUILayout.Toggle("Apply", false)) {
+        NeodroidSettings.ReapplyProperties(force : true);
         EditorUtility.SetDirty(NeodroidSettings.Current);
       }
     }

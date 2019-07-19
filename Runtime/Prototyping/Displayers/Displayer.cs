@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Linq;
 using droid.Runtime.Environments;
+using droid.Runtime.GameObjects;
+using droid.Runtime.GameObjects.Plotting;
 using droid.Runtime.Interfaces;
-using droid.Runtime.Utilities.GameObjects;
-using droid.Runtime.Utilities.GameObjects.Plotting;
-using droid.Runtime.Utilities.Misc;
-using droid.Runtime.Utilities.Structs;
+using droid.Runtime.Structs;
+using droid.Runtime.Utilities;
 using UnityEditor;
 using UnityEngine;
+using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
 namespace droid.Runtime.Prototyping.Displayers {
   /// <inheritdoc cref="PrototypingGameObject" />
@@ -59,8 +60,7 @@ namespace droid.Runtime.Prototyping.Displayers {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, this);
+      this.ParentEnvironment = NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, this);
     }
 
     /// <inheritdoc />
@@ -136,51 +136,61 @@ namespace droid.Runtime.Prototyping.Displayers {
     /// </summary>
     /// <param name="value"></param>
     public abstract void Display(Single value);
+
     /// <summary>
     ///
     /// </summary>
     /// <param name="value"></param>
     public abstract void Display(Double value);
+
     /// <summary>
     ///
     /// </summary>
     /// <param name="values"></param>
     public abstract void Display(Single[] values);
+
     /// <summary>
     ///
     /// </summary>
     /// <param name="value"></param>
     public abstract void Display(String value);
+
     /// <summary>
     ///
     /// </summary>
     /// <param name="value"></param>
     public abstract void Display(Vector3 value);
+
     /// <summary>
     ///
     /// </summary>
     /// <param name="value"></param>
     public abstract void Display(Vector3[] value);
+
     /// <summary>
     ///
     /// </summary>
     /// <param name="point"></param>
     public abstract void Display(Points.ValuePoint point);
+
     /// <summary>
     ///
     /// </summary>
     /// <param name="points"></param>
     public abstract void Display(Points.ValuePoint[] points);
+
     /// <summary>
     ///
     /// </summary>
     /// <param name="point"></param>
     public abstract void Display(Points.StringPoint point);
+
     /// <summary>
     ///
     /// </summary>
     /// <param name="points"></param>
     public abstract void Display(Points.StringPoint[] points);
+
     /// <summary>
     ///
     /// </summary>

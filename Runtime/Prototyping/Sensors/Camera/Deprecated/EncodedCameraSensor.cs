@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using droid.Runtime.Enums;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Managers;
-using droid.Runtime.Utilities.Enums;
-using droid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 
@@ -35,12 +35,14 @@ namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath + "EncodedCamera" + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
+                    + "EncodedCamera"
+                    + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [DisallowMultipleComponent]
   [RequireComponent(typeof(UnityEngine.Camera))]
   public class EncodedCameraSensor : Sensor,
-                              IHasByteArray {
+                                     IHasByteArray {
     /// <summary>
     /// </summary>
     [Header("Specific", order = 102)]
@@ -66,7 +68,10 @@ namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
     /// </summary>
     protected IManager _Manager = null;
 
-    public override String PrototypingTypeName { get { return ""; } }
+    /// <summary>
+    ///
+    /// </summary>
+    public override string PrototypingTypeName { get { return ""; } }
 
     /// <summary>
     /// </summary>

@@ -1,12 +1,12 @@
 ﻿using System;
 using droid.Runtime.Environments;
+using droid.Runtime.GameObjects;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Structs.Space;
-using droid.Runtime.Utilities.GameObjects;
-using droid.Runtime.Utilities.Misc;
-using droid.Runtime.Utilities.Structs;
+using droid.Runtime.Utilities;
 using UnityEngine;
+using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 using Object = System.Object;
 
 namespace droid.Runtime.Prototyping.Actuators {
@@ -43,8 +43,7 @@ namespace droid.Runtime.Prototyping.Actuators {
       get { return this._motion_value_space; }
       set { this._motion_value_space = value; }
     }
-    
-    
+
     /// <summary>
     /// </summary>
     /// <param name="motion"></param>
@@ -60,8 +59,8 @@ namespace droid.Runtime.Prototyping.Actuators {
         return; // Do nothing
       }
 
-      if(this._motion_value_space.Normalised) {
-        motion.Strength = this._motion_value_space.Clip01DenormaliseRoundClip(motion.Strength);
+      if (this._motion_value_space.Normalised) {
+        motion.Strength = this._motion_value_space.ClipDenormaliseRoundClip(motion.Strength);
       }
 
       this.InnerApplyMotion(motion);
@@ -77,7 +76,6 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// </summary>
     public void EnvironmentReset() { this._energy_spend_since_reset = 0; }
 
-
     /// <summary>
     /// 
     /// </summary>
@@ -89,7 +87,7 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// </summary>
     protected override void RegisterComponent() {
       this._overriden = false;
-      this.Parent = NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, true);
+      this.Parent = NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, true);
     }
 
     /// <inheritdoc />
@@ -99,6 +97,7 @@ namespace droid.Runtime.Prototyping.Actuators {
       if (this._overriden) {
         throw new NotImplementedException();
       }
+
       this._overriden = true;
       this.Parent?.UnRegister(this);
     }

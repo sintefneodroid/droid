@@ -4,6 +4,8 @@ using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Prototyping.Configurables;
 using FlatBuffers;
+using Neodroid.FBS;
+using Neodroid.FBS.State;
 using UnityEngine;
 
 namespace droid.Runtime.Messaging {
@@ -33,10 +35,7 @@ namespace droid.Runtime.Messaging {
       var state_offsets = new Offset<FState>[states.Length];
       var i = 0;
       foreach (var state in states) {
-        state_offsets[i++] = SerialiseState(b,
-                                             state,
-                                             do_serialise_unobservables,
-                                             do_serialise_observables);
+        state_offsets[i++] = SerialiseState(b, state, do_serialise_unobservables, do_serialise_observables);
       }
 
       var states_vector_offset = FStates.CreateStatesVector(b, state_offsets);
@@ -92,17 +91,15 @@ namespace droid.Runtime.Messaging {
     /// <param name="do_serialise_aggregated_float_array"></param>
     /// <returns></returns>
     static Offset<FState> SerialiseState(FlatBufferBuilder b,
-                                          EnvironmentState state,
-                                          bool do_serialise_unobservables = false,
-                                          bool do_serialise_aggregated_float_array = false) {
+                                         EnvironmentState state,
+                                         bool do_serialise_unobservables = false,
+                                         bool do_serialise_aggregated_float_array = false) {
       var n = b.CreateString(state.EnvironmentName);
 
       var observables_vector = _null_vector_offset;
       if (do_serialise_aggregated_float_array) {
         observables_vector = FState.CreateObservablesVector(b, state.Observables);
       }
-
-
 
       var unobservables = _null_unobservables_offset;
       if (do_serialise_unobservables) {
@@ -164,7 +161,6 @@ namespace droid.Runtime.Messaging {
       FState.AddTerminated(b, state.Terminated);
       FState.AddTerminationReason(b, t);
 
-
       if (state.Description != null) {
         FState.AddEnvironmentDescription(b, description_offset);
       }
@@ -181,10 +177,10 @@ namespace droid.Runtime.Messaging {
       FActuator.StartFActuator(b);
       FActuator.AddActuatorName(b, n);
       FActuator.AddActuatorRange(b,
-                              FRange.CreateFRange(b,
-                                                  actuator.MotionSpace.DecimalGranularity,
-                                                  actuator.MotionSpace.MaxValue,
-                                                  actuator.MotionSpace.MinValue));
+                                 FRange.CreateFRange(b,
+                                                     actuator.MotionSpace.DecimalGranularity,
+                                                     actuator.MotionSpace.MaxValue,
+                                                     actuator.MotionSpace.MinValue,actuator.MotionSpace.Normalised));
       return FActuator.EndFActuator(b);
     }
 
@@ -193,18 +189,21 @@ namespace droid.Runtime.Messaging {
     /// <param name="b"></param>
     /// <param name="observer"></param>
     /// <returns></returns>
-    static Offset<FEulerTransform> Serialise(FlatBufferBuilder b, IHasEulerTransform observer) {
+    static Offset<FETObs> Serialise(FlatBufferBuilder b, IHasEulerTransform observer) {
+      FETObs.StartFETObs(b);
       Vector3 pos = observer.Position, rot = observer.Rotation, dir = observer.Direction;
-      return FEulerTransform.CreateFEulerTransform(b,
-                                                   pos.x,
-                                                   pos.y,
-                                                   pos.z,
-                                                   rot.x,
-                                                   rot.y,
-                                                   rot.z,
-                                                   dir.x,
-                                                   dir.y,
-                                                   dir.z);
+      FETObs.AddTransform(b,FEulerTransform.CreateFEulerTransform(b,
+                                                                pos.x,
+                                                                pos.y,
+                                                                pos.z,
+                                                                rot.x,
+                                                                rot.y,
+                                                                rot.z,
+                                                                dir.x,
+                                                                dir.y,
+                                                                dir.z));
+
+       return FETObs.EndFETObs(b);
     }
 
     /// <summary>
@@ -212,21 +211,27 @@ namespace droid.Runtime.Messaging {
     /// <param name="b"></param>
     /// <param name="observer"></param>
     /// <returns></returns>
-    static Offset<FQT> Serialise(FlatBufferBuilder b, IHasQuaternionTransform observer) {
+    static Offset<FQTObs> Serialise(FlatBufferBuilder b, IHasQuaternionTransform observer) {
       var pos = observer.Position;
       var rot = observer.Rotation;
-      FQT.StartFQT(b);
-      FQT.AddTransform(b,
-                       FQuaternionTransform.CreateFQuaternionTransform(b,
-                                                                       pos.x,
-                                                                       pos.y,
-                                                                       pos.z,
-                                                                       rot.x,
-                                                                       rot.y,
-                                                                       rot.z,
-                                                                       rot.w));
+      var pos_range = observer.PositionSpace;
+      var rot_range = observer.RotationSpace;
+      FQTObs.StartFQTObs(b);
+      FQTObs.AddPosRange(b,FRange.CreateFRange(b,pos_range.DecimalGranularity,pos_range.MaxValue,pos_range
+      .MinValue,pos_range.Normalised));
+      FQTObs.AddRotRange(b,FRange.CreateFRange(b,rot_range.DecimalGranularity,rot_range.MaxValue,rot_range
+                                                   .MinValue,rot_range.Normalised));
+      FQTObs.AddTransform(b,
+                          FQuaternionTransform.CreateFQuaternionTransform(b,
+                                                                          pos.x,
+                                                                          pos.y,
+                                                                          pos.z,
+                                                                          rot.x,
+                                                                          rot.y,
+                                                                          rot.z,
+                                                                          rot.w));
 
-      return FQT.EndFQT(b);
+      return FQTObs.EndFQTObs(b);
     }
 
     static Offset<FByteArray> Serialise(FlatBufferBuilder b, IHasByteArray observer) {
@@ -271,7 +276,7 @@ namespace droid.Runtime.Messaging {
 
       FArray.StartRangesVector(b, float_a.ObservationSpace.Length);
       foreach (var tra in float_a.ObservationSpace) {
-        FRange.CreateFRange(b, tra.DecimalGranularity, tra.MaxValue, tra.MinValue);
+        FRange.CreateFRange(b, tra.DecimalGranularity, tra.MaxValue, tra.MinValue, tra.Normalised);
       }
 
       ranges_vector = b.EndVector();
@@ -290,10 +295,13 @@ namespace droid.Runtime.Messaging {
     /// <param name="vel"></param>
     /// <param name="ang"></param>
     /// <returns></returns>
-    static Offset<FRB> Serialise(FlatBufferBuilder b, Vector3 vel, Vector3 ang) {
-      FRB.StartFRB(b);
-      FRB.AddBody(b, FBody.CreateFBody(b, vel.x, vel.y, vel.z, ang.x, ang.y, ang.z));
-      return FRB.EndFRB(b);
+    static Offset<FRBObs> Serialise(FlatBufferBuilder b, IHasRigidbody rigidbody) {
+      FRBObs.StartFRBObs(b);
+      var a = rigidbody.Velocity;
+      var c = rigidbody.AngularVelocity;
+
+      FRBObs.AddBody(b, FBody.CreateFBody(b, a.x, a.y, a.z, c.x, c.y, c.z));
+      return FRBObs.EndFRBObs(b);
     }
 
     static Offset<FSingle> Serialise(FlatBufferBuilder b, IHasSingle numeral) {
@@ -303,7 +311,8 @@ namespace droid.Runtime.Messaging {
       var range_offset = FRange.CreateFRange(b,
                                              numeral.SingleSpace.DecimalGranularity,
                                              numeral.SingleSpace.MaxValue,
-                                             numeral.SingleSpace.MinValue);
+                                             numeral.SingleSpace.MinValue,
+                                             numeral.SingleSpace.Normalised);
       FSingle.AddRange(b, range_offset);
       return FSingle.EndFSingle(b);
     }
@@ -316,8 +325,8 @@ namespace droid.Runtime.Messaging {
       var xs = numeral.DoubleSpace.Xspace;
       var ys = numeral.DoubleSpace.Yspace;
 
-      FDouble.AddXRange(b, FRange.CreateFRange(b, granularity, xs.MaxValue, xs.MinValue));
-      FDouble.AddYRange(b, FRange.CreateFRange(b, granularity, ys.MaxValue, ys.MinValue));
+      FDouble.AddXRange(b, FRange.CreateFRange(b, granularity, xs.MaxValue, xs.MinValue, xs.Normalised));
+      FDouble.AddYRange(b, FRange.CreateFRange(b, granularity, ys.MaxValue, ys.MinValue, ys.Normalised));
       FDouble.AddVec2(b, FVector2.CreateFVector2(b, vec2.x, vec2.y));
 
       return FDouble.EndFDouble(b);
@@ -332,9 +341,9 @@ namespace droid.Runtime.Messaging {
       var xs = numeral.TripleSpace.Xspace;
       var ys = numeral.TripleSpace.Yspace;
       var zs = numeral.TripleSpace.Zspace;
-      FTriple.AddXRange(b, FRange.CreateFRange(b, granularity, xs.MaxValue, xs.MinValue));
-      FTriple.AddYRange(b, FRange.CreateFRange(b, granularity, ys.MaxValue, ys.MinValue));
-      FTriple.AddZRange(b, FRange.CreateFRange(b, granularity, zs.MaxValue, zs.MinValue));
+      FTriple.AddXRange(b, FRange.CreateFRange(b, granularity, xs.MaxValue, xs.MinValue, xs.Normalised));
+      FTriple.AddYRange(b, FRange.CreateFRange(b, granularity, ys.MaxValue, ys.MinValue, ys.Normalised));
+      FTriple.AddZRange(b, FRange.CreateFRange(b, granularity, zs.MaxValue, zs.MinValue, zs.Normalised));
       return FTriple.EndFTriple(b);
     }
 
@@ -347,10 +356,10 @@ namespace droid.Runtime.Messaging {
       var ys = numeral.QuadSpace.Yspace;
       var zs = numeral.QuadSpace.Zspace;
       var ws = numeral.QuadSpace.Wspace;
-      FQuadruple.AddXRange(b, FRange.CreateFRange(b, granularity, xs.MaxValue, xs.MinValue));
-      FQuadruple.AddYRange(b, FRange.CreateFRange(b, granularity, ys.MaxValue, ys.MinValue));
-      FQuadruple.AddZRange(b, FRange.CreateFRange(b, granularity, zs.MaxValue, zs.MinValue));
-      FQuadruple.AddWRange(b, FRange.CreateFRange(b, granularity, ws.MaxValue, ws.MinValue));
+      FQuadruple.AddXRange(b, FRange.CreateFRange(b, granularity, xs.MaxValue, xs.MinValue, xs.Normalised));
+      FQuadruple.AddYRange(b, FRange.CreateFRange(b, granularity, ys.MaxValue, ys.MinValue, ys.Normalised));
+      FQuadruple.AddZRange(b, FRange.CreateFRange(b, granularity, zs.MaxValue, zs.MinValue, zs.Normalised));
+      FQuadruple.AddWRange(b, FRange.CreateFRange(b, granularity, ws.MaxValue, ws.MinValue, ws.Normalised));
       return FQuadruple.EndFQuadruple(b);
     }
 
@@ -412,15 +421,15 @@ namespace droid.Runtime.Messaging {
           break;
         case IHasEulerTransform transform:
           observation_offset = Serialise(b, transform).Value;
-          observation_type = FObservation.FET;
+          observation_type = FObservation.FETObs;
           break;
         case IHasQuaternionTransform quaternion_transform:
           observation_offset = Serialise(b, quaternion_transform).Value;
-          observation_type = FObservation.FQT;
+          observation_type = FObservation.FQTObs;
           break;
         case IHasRigidbody rigidbody:
-          observation_offset = Serialise(b, rigidbody.Velocity, rigidbody.AngularVelocity).Value;
-          observation_type = FObservation.FRB;
+          observation_offset = Serialise(b, rigidbody).Value;
+          observation_type = FObservation.FRBObs;
           break;
         case IHasByteArray array:
           observation_offset = Serialise(b, array).Value;
@@ -463,15 +472,13 @@ namespace droid.Runtime.Messaging {
 
       var objective_offset = Serialise(b, state.Description);
 
-
       var sensors = new Offset<FSensor>[state.Description.Sensors.Values.Count];
       var js = 0;
       foreach (var sensor in state.Description.Sensors) {
         sensors[js++] = Serialise(b, sensor.Key, sensor.Value);
       }
 
-      var       observers_vector = FEnvironmentDescription.CreateSensorsVector(b, sensors);
-
+      var observers_vector = FEnvironmentDescription.CreateSensorsVector(b, sensors);
 
       FEnvironmentDescription.StartFEnvironmentDescription(b);
       FEnvironmentDescription.AddObjective(b, objective_offset);
@@ -484,10 +491,26 @@ namespace droid.Runtime.Messaging {
     }
 
     static Offset<FObjective> Serialise(FlatBufferBuilder b, EnvironmentDescription description) {
-      var objective_name_offset = b.CreateString(description.ObjectiveFunction.Identifier);
+      var ob_name = "None";
+      var ep_len = -1;
+      var a = 0;
+      var f = 0f;
+      var c = 0f;
+      var d = false;
+      if (description.ObjectiveFunction != null){
+        ob_name = description.ObjectiveFunction.Identifier;
+        ep_len = description.ObjectiveFunction.EpisodeLength;
+        f = description.ObjectiveFunction.SignalSpace.MinValue;
+        c = description.ObjectiveFunction.SignalSpace.MaxValue;
+        a = description.ObjectiveFunction.SignalSpace.DecimalGranularity;
+        d = description.ObjectiveFunction.SignalSpace.Normalised;
+      }
+
+
+      var objective_name_offset = b.CreateString(ob_name);
       FObjective.StartFObjective(b);
-      FObjective.AddMaxEpisodeLength(b, description.ObjectiveFunction.EpisodeLength);
-      //FObjective.AddSolvedThreshold(b, description.SolvedThreshold); //TODO: Add signal space
+      FObjective.AddMaxEpisodeLength(b, ep_len);
+      FObjective.AddSignalSpace(b, FRange.CreateFRange(b, a,f,c,d));
       FObjective.AddObjectiveName(b, objective_name_offset);
       return FObjective.EndFObjective(b);
     }
@@ -510,7 +533,7 @@ namespace droid.Runtime.Messaging {
 
       if (configurable is IHasQuaternionTransform) {
         observation_offset = Serialise(b, (IHasQuaternionTransform)configurable).Value;
-        observation_type = FObservation.FQT;
+        observation_type = FObservation.FQTObs;
       } else if (configurable is PositionConfigurable) {
         observation_offset = Serialise(b, (PositionConfigurable)configurable).Value;
         observation_type = FObservation.FTriple;
@@ -524,20 +547,18 @@ namespace droid.Runtime.Messaging {
         observation_type = FObservation.FDouble;
       } else if (configurable is EulerTransformConfigurable) {
         observation_offset = Serialise(b, (IHasEulerTransform)configurable).Value;
-        observation_type = FObservation.FET;
+        observation_type = FObservation.FETObs;
       } else {
         FConfigurable.StartFConfigurable(b);
         FConfigurable.AddConfigurableName(b, n);
         return FConfigurable.EndFConfigurable(b);
       }
 
-
-
       FConfigurable.StartFConfigurable(b);
       FConfigurable.AddConfigurableName(b, n);
       FConfigurable.AddConfigurableValue(b, observation_offset);
       FConfigurable.AddConfigurableValueType(b, observation_type);
-      FConfigurable.AddConfigurableRange(b, FRange.CreateFRange(b, 0, 0, 0));
+      FConfigurable.AddConfigurableRange(b, FRange.CreateFRange(b, 0, 0, 0, false));
       return FConfigurable.EndFConfigurable(b);
     }
 

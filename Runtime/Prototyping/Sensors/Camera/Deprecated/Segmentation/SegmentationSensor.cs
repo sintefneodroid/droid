@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using droid.Runtime.GameObjects.NeodroidCamera.Segmentation;
 using droid.Runtime.Prototyping.Sensors.Experimental;
-using droid.Runtime.Utilities.GameObjects.NeodroidCamera.Segmentation;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated.Segmentation {

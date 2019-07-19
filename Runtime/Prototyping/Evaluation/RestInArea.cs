@@ -1,11 +1,12 @@
 ﻿using System.Collections;
+using droid.Runtime.GameObjects.BoundingBoxes;
+using droid.Runtime.GameObjects.ChildSensors;
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Prototyping.Sensors;
-using droid.Runtime.Utilities.GameObjects.BoundingBoxes;
-using droid.Runtime.Utilities.GameObjects.ChildSensors;
-using droid.Runtime.Utilities.Misc;
-using droid.Runtime.Utilities.Misc.Extensions;
+using droid.Runtime.Utilities;
+using droid.Runtime.Utilities.Extensions;
 using UnityEngine;
+using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
 namespace droid.Runtime.Prototyping.Evaluation {
   /// <inheritdoc />
@@ -80,6 +81,9 @@ namespace droid.Runtime.Prototyping.Evaluation {
       this._is_resting = true;
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     protected override void PostSetup() {
       if (!this._area) {
         this._area = FindObjectOfType<Sensor>().gameObject.GetComponent<Collider>();
@@ -97,7 +101,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
         this._playable_area = FindObjectOfType<BoundingBox>();
       }
 
-      NeodroidUtilities
+      NeodroidRegistrationUtilities
           .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider, Collision>(this,
                                                                                                    this
                                                                                                        ._area
@@ -112,7 +116,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
                                                                                                    this
                                                                                                        .OnTriggerStayChild);
 
-      NeodroidUtilities
+      NeodroidRegistrationUtilities
           .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider, Collision>(this,
                                                                                                    this
                                                                                                        ._actor

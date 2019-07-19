@@ -6,6 +6,7 @@
     ///
     /// </summary>
     public const string _ComponentMenuPath = PrototypingComponentMenuPath._ComponentMenuPath + "Actors/";
+
     /// <summary>
     ///
     /// </summary>

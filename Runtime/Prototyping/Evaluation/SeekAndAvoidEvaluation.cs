@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using droid.Runtime.Utilities.GameObjects.ChildSensors;
+using droid.Runtime.GameObjects.ChildSensors;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

@@ -1,7 +1,7 @@
-﻿using droid.Runtime.Utilities.Structs;
+﻿using droid.Runtime.Structs;
 using UnityEngine;
 
-namespace droid.Runtime.Utilities.ScriptableObjects {
+namespace droid.Runtime.ScriptableObjects {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

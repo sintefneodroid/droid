@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using droid.Runtime.Utilities.Structs;
+using droid.Runtime.Structs;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera.Segmentation.Obsolete {
+namespace droid.Runtime.GameObjects.NeodroidCamera.Segmentation.Obsolete {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

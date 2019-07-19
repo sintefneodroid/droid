@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace droid.Runtime.Utilities.GameObjects.BoundingBoxes {
+namespace droid.Runtime.GameObjects.BoundingBoxes {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

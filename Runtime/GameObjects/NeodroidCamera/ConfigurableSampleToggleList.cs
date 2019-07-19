@@ -3,7 +3,7 @@ using droid.Runtime.Prototyping.Configurables;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera {
+namespace droid.Runtime.GameObjects.NeodroidCamera {
   /// <summary>
   ///
   /// </summary>

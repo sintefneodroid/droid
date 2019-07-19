@@ -1,15 +1,15 @@
 ﻿using droid.Runtime.Environments;
-using droid.Runtime.Utilities.GameObjects.StatusDisplayer.EventRecipients;
-using droid.Runtime.Utilities.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
-#if UNITY_EDITOR
+using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients;
+using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Managers;
 using droid.Runtime.Prototyping.Evaluation;
 using UnityEditor.Events;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+#if UNITY_EDITOR
 
-namespace droid.Runtime.Utilities.GameObjects.StatusDisplayer {
+namespace droid.Runtime.GameObjects.StatusDisplayer {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

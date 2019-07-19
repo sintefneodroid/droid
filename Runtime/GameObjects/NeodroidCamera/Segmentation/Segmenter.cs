@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using droid.Runtime.Interfaces;
 using UnityEngine;
 
-namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera.Segmentation {
+namespace droid.Runtime.GameObjects.NeodroidCamera.Segmentation {
   /// <inheritdoc cref="MonoBehaviour" />
   /// <summary>
   /// </summary>

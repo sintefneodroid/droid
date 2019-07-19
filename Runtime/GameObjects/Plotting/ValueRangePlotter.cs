@@ -3,7 +3,7 @@ using UnityEngine;
 
 #if UNITY_2019_1_OR_NEWER
 
-namespace droid.Runtime.Utilities.GameObjects.Plotting {
+namespace droid.Runtime.GameObjects.Plotting {
   [ExecuteInEditMode]
   public class ValueRangePlotter : MonoBehaviour {
     Material _material;
