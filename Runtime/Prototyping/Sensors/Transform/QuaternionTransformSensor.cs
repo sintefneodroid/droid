@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Structs.Space;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Transform {
@@ -38,6 +39,9 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     ///
     /// </summary>
     public Quaternion Rotation { get { return this._rotation; } }
+
+    public Space1 PositionSpace { get; } //TODO: Implement
+    public Space1 RotationSpace { get; } //TODO: Implement
 
     /// <summary>
     ///
