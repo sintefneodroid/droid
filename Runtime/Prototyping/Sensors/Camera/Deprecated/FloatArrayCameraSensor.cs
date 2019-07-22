@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
+using droid.Runtime.Enums;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Managers;
 using droid.Runtime.Structs.Space;
-using droid.Runtime.Utilities.Enums;
-using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
@@ -120,13 +119,10 @@ namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
     /// </summary>
     public override void UpdateObservation() {
       #if NEODROID_DEBUG
-      if(this.Debugging) {
+      if (this.Debugging) {
         if (this._manager?.SimulatorConfiguration != null) {
           if (this._manager.SimulatorConfiguration.SimulationType != SimulationType.Frame_dependent_) {
-
-
             Debug.LogWarning("WARNING! Camera Observations may be out of sync other data");
-
           }
         }
       }

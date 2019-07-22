@@ -1,6 +1,7 @@
 ﻿using System;
 using droid.Runtime.Interfaces;
-using droid.Runtime.Utilities.Sampling;
+using droid.Runtime.Sampling;
+using droid.Runtime.Utilities.Extensions;
 using UnityEngine;
 
 namespace droid.Runtime.Structs.Space {
@@ -27,13 +28,13 @@ namespace droid.Runtime.Structs.Space {
       get { return this._decimal_granularity; }
       set { this._decimal_granularity = value; }
     }
-    [Range(0, 15)]
-    [SerializeField]int _decimal_granularity;
-    [SerializeField]bool normalised;
+
+    [Range(0, 15)] [SerializeField] int _decimal_granularity;
+    [SerializeField] bool normalised;
     public Boolean Normalised { get { return this.normalised; } set { this.normalised = value; } }
 
-    [SerializeField]Vector3 _Min_Values;
-    [SerializeField]Vector3 _Max_Values;
+    [SerializeField] Vector3 _Min_Values;
+    [SerializeField] Vector3 _Max_Values;
 
     public Space3(DistributionSampler ds, int decimal_granularity = 1) : this() {
       this._decimal_granularity = decimal_granularity;
@@ -202,5 +203,8 @@ namespace droid.Runtime.Structs.Space {
     public Vector3 MinValues { get { return this._Min_Values; } set { this._Min_Values = value; } }
 
     public Vector3 MaxValues { get { return this._Max_Values; } set { this._Max_Values = value; } }
+    public Vector3 Denormalise01(Vector3 v) {  return v.Multiply(this.Span) + this._Min_Values; }
+
+    public Vector3 Normalise01(Vector3 v)  { return (v - this._Min_Values).Divide(this.Span); }
   }
 }

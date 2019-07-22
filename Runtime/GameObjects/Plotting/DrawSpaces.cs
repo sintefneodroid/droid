@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace droid.Runtime.Utilities.GameObjects.Plotting {
+namespace droid.Runtime.GameObjects.Plotting {
   /// <summary>
   /// </summary>
   public class DrawSpaces : MonoBehaviour {

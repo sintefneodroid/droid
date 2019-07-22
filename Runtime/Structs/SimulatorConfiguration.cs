@@ -1,12 +1,12 @@
 ﻿using System;
+using droid.Runtime.Enums;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
-using droid.Runtime.Utilities.Enums;
-using droid.Runtime.Utilities.Misc.SearchableEnum;
-using droid.Runtime.Utilities.ScriptableObjects;
+using droid.Runtime.ScriptableObjects;
+using droid.Runtime.Utilities;
 using UnityEngine;
 
-namespace droid.Runtime.Utilities.Structs {
+namespace droid.Runtime.Structs {
   /// <inheritdoc cref="ScriptableObject" />
   /// <summary>
   ///   Contains everything relevant to configuring simulation environments engine specific settings
@@ -357,15 +357,13 @@ namespace droid.Runtime.Utilities.Structs {
     /// </summary>
     /// <returns></returns>
     public override String ToString() {
-      var e="";
+      var e = "";
 
       e += this.name;
       e += ", ";
       e += this.SimulationType.ToString();
 
-
       return e;
-
     }
   }
 }

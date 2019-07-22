@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
-using droid.Runtime.Utilities.GameObjects.Plotting;
-using droid.Runtime.Utilities.Misc.Drawing;
-using droid.Runtime.Utilities.Structs;
+using droid.Runtime.GameObjects.Plotting;
+using droid.Runtime.Structs;
+using droid.Runtime.Utilities.Drawing;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Displayers.Cells {

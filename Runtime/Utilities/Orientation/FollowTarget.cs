@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace droid.Runtime.Utilities.Misc.Orientation {
+namespace droid.Runtime.Utilities.Orientation {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

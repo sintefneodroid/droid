@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Globalization;
 using droid.Runtime.Environments;
+using droid.Runtime.GameObjects;
+using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Structs.Space;
-using droid.Runtime.Utilities.GameObjects;
-using droid.Runtime.Utilities.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
-using droid.Runtime.Utilities.Structs;
+using droid.Runtime.Utilities;
 using UnityEngine;
+using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
 namespace droid.Runtime.Prototyping.Evaluation {
   /// <inheritdoc cref="ObjectiveFunction" />
@@ -44,7 +45,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
 
     /// <summary>
     /// </summary>
-    public AbstractPrototypingEnvironment ParentEnvironment {
+    public IAbstractPrototypingEnvironment ParentEnvironment {
       get { return this._environment; }
       set { this._environment = value; }
     }
@@ -99,7 +100,6 @@ namespace droid.Runtime.Prototyping.Evaluation {
     /// <param name="term"></param>
     public void UnRegister(Term term) { this.UnRegister(term, term.Identifier); }
 */
-
 
     /// <inheritdoc />
     /// <summary>
@@ -164,7 +164,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
       //  this.Register(go);
 
       if (this.ParentEnvironment == null) {
-        this.ParentEnvironment = FindObjectOfType<AbstractPrototypingEnvironment>();
+        this.ParentEnvironment = NeodroidSceneUtilities.FindObjectOfType<IAbstractPrototypingEnvironment>();
       }
 
       this.PostSetup();
@@ -240,7 +240,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
     [Header("References", order = 100)]
     [SerializeField]
     //[SerializeField]float _internal_discount_factor = 1.0f;
-    AbstractPrototypingEnvironment _environment = null;
+    IAbstractPrototypingEnvironment _environment = null;
 
     //[SerializeField] Term[] _extra_terms_external;
 
@@ -249,32 +249,31 @@ namespace droid.Runtime.Prototyping.Evaluation {
     //[SerializeField] protected Dictionary<Term, float> _Extra_Term_Weights = new Dictionary<Term, float>();
 
     [Header("General", order = 101)]
+    [SerializeField]
+    float _last_signal = 0f;
 
-    [SerializeField] float _last_signal = 0f;
     /// <summary>
     ///
     /// </summary>
-    public float LastSignal
-    {
-        get { return this._last_signal; }
-    }
+    public float LastSignal { get { return this._last_signal; } }
 
     /// <summary>
-        /// </summary>
-        [SerializeField] int _episode_length = 1000;
+    /// </summary>
+    [SerializeField]
+    int _episode_length = 1000;
 
-        [SerializeField] Space1 _signal_space;
+    [SerializeField] Space1 _signal_space;
 
-        /// <inheritdoc />
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public int EpisodeLength { get { return this._episode_length; } set { this._episode_length = value; } }
 
-        /// <inheritdoc />
-        /// <summary>
-        /// </summary>
-        public Space1 SignalSpace { get { return this._signal_space; } set { this._signal_space = value; } }
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public Space1 SignalSpace { get { return this._signal_space; } set { this._signal_space = value; } }
 
-        #endregion
+    #endregion
   }
 }

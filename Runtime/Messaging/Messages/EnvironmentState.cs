@@ -30,7 +30,6 @@ namespace droid.Runtime.Messaging.Messages {
 
     public string EnvironmentName { get; }
 
-
     /// <summary>
     /// </summary>
     public int FrameNumber { get; }
@@ -46,8 +45,6 @@ namespace droid.Runtime.Messaging.Messages {
     /// <summary>
     /// </summary>
     public string DebugMessage { get; }
-
-
 
     /// <summary>
     /// </summary>

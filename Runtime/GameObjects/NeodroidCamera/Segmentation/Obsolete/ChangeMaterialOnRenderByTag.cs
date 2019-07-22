@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using droid.Runtime.Utilities.Structs;
+using droid.Runtime.Structs;
 using UnityEngine;
 
-namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera.Segmentation.Obsolete {
+namespace droid.Runtime.GameObjects.NeodroidCamera.Segmentation.Obsolete {
   /// <inheritdoc cref="MonoBehaviour" />
   /// <summary>
   /// </summary>

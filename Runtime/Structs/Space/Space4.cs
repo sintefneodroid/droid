@@ -1,6 +1,7 @@
 ﻿using System;
 using droid.Runtime.Interfaces;
-using droid.Runtime.Utilities.Sampling;
+using droid.Runtime.Sampling;
+using droid.Runtime.Utilities.Extensions;
 using UnityEngine;
 
 namespace droid.Runtime.Structs.Space {
@@ -40,18 +41,21 @@ namespace droid.Runtime.Structs.Space {
     /// <summary>
     ///
     /// </summary>
-    [SerializeField] Vector4 _Min_Values;
+    [SerializeField]
+    Vector4 _Min_Values;
 
     /// <summary>
     ///
     /// </summary>
-    [SerializeField] Vector4 _Max_Values;
+    [SerializeField]
+    Vector4 _Max_Values;
 
     /// <summary>
     ///
     /// </summary>
     [Range(0, 15)]
-    [SerializeField] int _decimal_granularity;
+    [SerializeField]
+    int _decimal_granularity;
 
     public Space4(int decimal_granularity = 2) : this() {
       this._decimal_granularity = decimal_granularity;
@@ -229,5 +233,9 @@ namespace droid.Runtime.Structs.Space {
     ///
     /// </summary>
     public Vector4 MinValues { get { return this._Min_Values; } set { this._Min_Values = value; } }
+
+    public Vector4 Denormalise01(Vector4 v) {  return v.Multiply(this.Span) + this._Min_Values; }
+
+    public Vector4 Normalise01(Vector4 v)  { return (v - this._Min_Values).Divide(this.Span); }
   }
 }

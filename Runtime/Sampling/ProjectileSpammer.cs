@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace droid.Runtime.Utilities.Sampling {
+namespace droid.Runtime.Sampling {
   public class ProjectileSpammer : MonoBehaviour {
     [SerializeField] string _assigned_tag = "Obstruction";
     float _last_spawn = 0f;

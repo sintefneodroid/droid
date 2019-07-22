@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace droid.Runtime.Utilities.Structs {
+namespace droid.Runtime.Structs {
   public class OutPose {
     /// Encapsulates a rotation and a translation.  This is a convenience class that allows
     /// construction and value access either by Matrix4x4 or Quaternion + Vector3 types.
@@ -33,12 +33,21 @@ namespace droid.Runtime.Utilities.Structs {
     /// Constructor that takes a Matrix4x4.
     public OutPose(Matrix4x4 matrix) { this.Set(matrix); }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="position"></param>
+    /// <param name="orientation"></param>
     protected void Set(Vector3 position, Quaternion orientation) {
       this.Position = position;
       this.Orientation = orientation;
       this.Matrix = Matrix4x4.TRS(position, orientation, Vector3.one);
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="matrix"></param>
     protected void Set(Matrix4x4 matrix) {
       this.Matrix = matrix;
       this.Position = matrix.GetColumn(3);

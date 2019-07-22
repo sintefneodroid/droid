@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Structs.Space;
-using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Experimental {

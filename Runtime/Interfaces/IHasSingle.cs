@@ -1,5 +1,4 @@
 ﻿using droid.Runtime.Structs.Space;
-using droid.Runtime.Utilities.Structs;
 
 namespace droid.Runtime.Interfaces {
   /// <summary>

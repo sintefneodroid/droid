@@ -2,9 +2,9 @@
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Structs.Space;
-using droid.Runtime.Utilities.Misc;
-using droid.Runtime.Utilities.Structs;
+using droid.Runtime.Utilities;
 using UnityEngine;
+using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
 namespace droid.Runtime.Prototyping.Configurables {
   /// <inheritdoc cref="Configurable" />
@@ -39,7 +39,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     Renderer _renderer;
 
     [SerializeField] bool _use_shared = false;
-    [SerializeField] Space4 _configurable_value_space;
+    [SerializeField] Space4 _configurable_value_space = Space4.ZeroOne;
 
     static readonly int _glossiness = Shader.PropertyToID("_Glossiness");
     static readonly int _glossy_reflections = Shader.PropertyToID("_GlossyReflections");
@@ -68,25 +68,25 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._r);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._r);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._g);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._g);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._b);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._b);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._a);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._a);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._reflection);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._reflection);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._smoothness);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._smoothness);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._offset_x);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._offset_x);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._offset_y);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._offset_y);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._tiling_x);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._tiling_x);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._tiling_y);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._tiling_y);
     }
 
     /// <inheritdoc />

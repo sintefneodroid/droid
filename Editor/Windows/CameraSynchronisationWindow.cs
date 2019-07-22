@@ -1,5 +1,5 @@
 ﻿using droid.Editor.Utilities;
-using droid.Runtime.Utilities.GameObjects.NeodroidCamera;
+using droid.Runtime.GameObjects.NeodroidCamera;
 using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;

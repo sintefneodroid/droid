@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace droid.Runtime.Utilities.ScriptableObjects.Unused {
+namespace droid.Runtime.ScriptableObjects.Deprecated {
   [CreateAssetMenu(fileName = "NeodroidTask",
       menuName = ScriptableObjectMenuPath._ScriptableObjectMenuPath + "NeodroidTask",
       order = 1)]

@@ -1,8 +1,8 @@
 using UnityEditor;
-#if UNITY_EDITOR
 using UnityEngine;
+#if UNITY_EDITOR
 
-namespace droid.Runtime.Utilities.ScriptableObjects.SerialisableDictionary {
+namespace droid.Runtime.ScriptableObjects.SerialisableDictionary {
   [CustomPropertyDrawer(typeof(StringIntDictionary))]
   public class StringIntDictionaryDrawer : SerializableDictionaryDrawer<string, int> {
     protected override SerializableKeyValueTemplate<string, int> GetTemplate() {

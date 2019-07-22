@@ -2,12 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using droid.Runtime.Enums;
+using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging;
 using droid.Runtime.Messaging.Messages;
-using droid.Runtime.Utilities.Enums;
-using droid.Runtime.Utilities.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
-using droid.Runtime.Utilities.Structs;
+using droid.Runtime.Structs;
 using UnityEngine;
 using Object = System.Object;
 #if UNITY_EDITOR
@@ -660,8 +660,8 @@ namespace droid.Runtime.Managers {
                                         serialise_individual_observables :
                                         describe || this.Configuration.AlwaysSerialiseIndividualObservables,
                                         do_serialise_observables : describe
-                                                                           || this._configuration
-                                                                                  .AlwaysSerialiseAggregatedFloatArray);
+                                                                   || this._configuration
+                                                                          .AlwaysSerialiseAggregatedFloatArray);
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log("Replying");

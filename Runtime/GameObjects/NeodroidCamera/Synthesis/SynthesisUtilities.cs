@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera.Synthesis {
+namespace droid.Runtime.GameObjects.NeodroidCamera.Synthesis {
   /// <summary>
   ///
   /// </summary>

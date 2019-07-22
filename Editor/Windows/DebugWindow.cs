@@ -1,10 +1,7 @@
-﻿
-using droid.Runtime.Utilities.InternalReactions;
+﻿using droid.Runtime.Utilities.InternalReactions;
 #if UNITY_EDITOR && NEODROID_DEBUG
 using droid.Editor.Utilities;
-
 using droid.Runtime.Environments;
-using droid.Runtime.InternalReactions;
 using droid.Runtime.Managers;
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Prototyping.Configurables;

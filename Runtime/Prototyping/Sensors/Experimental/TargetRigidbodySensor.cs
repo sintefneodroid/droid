@@ -2,7 +2,6 @@
 using droid.Runtime.Interfaces;
 using droid.Runtime.Prototyping.Actuators;
 using droid.Runtime.Structs.Space;
-using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -12,9 +11,7 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
   /// </summary>
   public class TargetRigidbodySensor : Sensor,
                                        IHasDouble {
-
-    [SerializeField]
-    TargetRigidbodyActuator _actuator = null;
+    [SerializeField] TargetRigidbodyActuator _actuator = null;
 
     [SerializeField] Space2 _observation_space2_d = Space2.ZeroOne;
 

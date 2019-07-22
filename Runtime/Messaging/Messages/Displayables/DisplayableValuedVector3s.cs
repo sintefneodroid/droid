@@ -1,5 +1,5 @@
 ﻿using System;
-using droid.Runtime.Utilities.Structs;
+using droid.Runtime.Structs;
 
 namespace droid.Runtime.Messaging.Messages.Displayables {
   /// <inheritdoc />

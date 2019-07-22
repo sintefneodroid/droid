@@ -1,6 +1,6 @@
 ﻿using System;
 using droid.Runtime.Interfaces;
-using droid.Runtime.Utilities.Sampling;
+using droid.Runtime.Sampling;
 using UnityEngine;
 
 namespace droid.Runtime.Structs.Space {
@@ -55,9 +55,14 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     /// <returns></returns>
     public dynamic Sample() {
-      var x = this.DistributionSampler.Range(this._Min_Value, this._Max_Value);
-
-      return x;
+      if (!this.normalised) {
+        var x = this.DistributionSampler.Range(this._Min_Value, this._Max_Value);
+        return x;
+      } else
+      {
+        var x = this.DistributionSampler.Range(0, 1);
+        return x;
+      }
     }
 
     /// <summary>
@@ -70,23 +75,31 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-    public float Clip(float v) {
-      return Mathf.Clamp(v, this._Min_Value, this._Max_Value);
+    public float Clip(float v) { return Mathf.Clamp(v, this._Min_Value, this._Max_Value); }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    public float ClipNormaliseRound(float v) { return this.Round(this.Normalise01(this.Clip(v))); }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    public float Normalise01(float v) {
+      if (v > this._Max_Value || v < this._Min_Value) {
+        throw new ArgumentException();
+      }
+
+      if (this.Span <= 0) {
+        return 0;
+      }
+
+      return (v - this._Min_Value) / this.Span;
     }
-
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="v"></param>
-    /// <returns></returns>
-    public float ClipNormaliseRound(float v) { return this.Round(this.Normalise(this.Clip(v))); }
-
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="v"></param>
-    /// <returns></returns>
-    public float Normalise(float v) { return (v - this._Min_Value) / this.Span; }
 
     /// <summary>
     ///
@@ -107,16 +120,26 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-    public float Denormalise(float v) { return v *this.Span - this.MinValue; }
+    public float Denormalise01(float v) {
+      if (v > 1 || v < 0) {
+        throw new ArgumentException();
+      }
+
+      if (this.Span <= 0) {
+        return 0;
+      }
+
+      return v * this.Span + this._Min_Value;
+    }
 
     /// <summary>
     ///
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-    public float Clip01DenormaliseRoundClip(float v) { return this.Clip(this.Round(this.Denormalise(Mathf
-    .Clamp(v,-1,1)))
-    ); }
+    public float ClipDenormaliseRoundClip(float v) {
+      return this.Clip(this.Round(this.Denormalise01(Mathf.Clamp(v, -1, 1))));
+    }
 
     /// <summary>
     ///
@@ -158,6 +181,7 @@ namespace droid.Runtime.Structs.Space {
     ///
     /// </summary>
     public static Space1 MinusOneOne { get { return new Space1(1) {_Min_Value = -1, _Max_Value = 1}; } }
+
     /// <summary>
     ///
     /// </summary>

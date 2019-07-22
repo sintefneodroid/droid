@@ -1,4 +1,4 @@
-using droid.Runtime.Utilities.Structs;
+using droid.Runtime.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Interfaces {

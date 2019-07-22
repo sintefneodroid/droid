@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace droid.Runtime.Utilities.GameObjects.StatusDisplayer.EventRecipients {
+namespace droid.Runtime.GameObjects.StatusDisplayer.EventRecipients {
   namespace droid.Neodroid.Utilities.Unsorted {
     /// <inheritdoc />
     /// <summary>

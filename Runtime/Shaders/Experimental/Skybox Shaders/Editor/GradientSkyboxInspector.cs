@@ -31,9 +31,9 @@ namespace droid.Runtime.Shaders.Experimental.Skybox_Shaders.Editor {
           var ry = dy.floatValue * Mathf.Deg2Rad;
 
           var up_vector = new Vector4(Mathf.Sin(rp) * Mathf.Sin(ry),
-                                     Mathf.Cos(rp),
-                                     Mathf.Sin(rp) * Mathf.Cos(ry),
-                                     0.0f);
+                                      Mathf.Cos(rp),
+                                      Mathf.Sin(rp) * Mathf.Cos(ry),
+                                      0.0f);
           GetMaterialProperty(this.targets, "_UpVector").vectorValue = up_vector;
 
           this.PropertiesChanged();

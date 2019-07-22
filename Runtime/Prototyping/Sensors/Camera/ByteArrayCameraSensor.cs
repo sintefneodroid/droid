@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using droid.Runtime.Enums;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Managers;
-using droid.Runtime.Utilities.Enums;
-using droid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 
@@ -75,7 +75,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
       }
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Graphics.DrawTexture(new Rect(new Vector2(0, 0), new Vector2(0, 0)), this._texture);
+        //Graphics.DrawTexture(new Rect(new Vector2(0, 0), new Vector2(256, 256)), this._texture);
       }
       #endif
     }

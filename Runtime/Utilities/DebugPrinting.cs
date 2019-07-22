@@ -1,7 +1,7 @@
 using droid.Runtime.Interfaces;
 using UnityEngine;
 
-namespace droid.Runtime.Utilities.Misc {
+namespace droid.Runtime.Utilities {
   /// <summary>
   /// 
   /// </summary>

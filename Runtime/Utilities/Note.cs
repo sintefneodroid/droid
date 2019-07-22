@@ -1,8 +1,8 @@
 ﻿using System;
-#if UNITY_EDITOR
 using UnityEngine;
+#if UNITY_EDITOR
 
-namespace droid.Runtime.Utilities.Misc {
+namespace droid.Runtime.Utilities {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

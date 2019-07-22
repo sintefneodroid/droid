@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
+using droid.Runtime.Structs;
 using droid.Runtime.Structs.Space;
-using droid.Runtime.Utilities.Structs;
 using UnityEngine;
 
-namespace droid.Runtime.Utilities.GameObjects.Plotting {
+namespace droid.Runtime.GameObjects.Plotting {
   public static class PlotFunctions {
     static List<Points.ValuePoint> _points = new List<Points.ValuePoint>();
 

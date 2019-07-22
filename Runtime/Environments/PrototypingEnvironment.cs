@@ -2,15 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Prototyping.Evaluation;
-using droid.Runtime.Utilities.Enums;
-using droid.Runtime.Utilities.GameObjects.BoundingBoxes;
-using droid.Runtime.Utilities.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
-using droid.Runtime.Utilities.Misc;
-using droid.Runtime.Utilities.Misc.Extensions;
 using UnityEngine;
 using Object = System.Object;
 
@@ -137,7 +133,6 @@ namespace droid.Runtime.Environments {
     /// <returns></returns>
     public override EnvironmentState CollectState() {
       lock (this._Reaction_Lock) {
-
         var signal = 0f;
 
         if (this._objective_function != null) {
@@ -159,7 +154,7 @@ namespace droid.Runtime.Environments {
                                                    virtual_actors,
                                                    this.Configurables,
                                                    this.Sensors,
-                                                   Displayers);
+                                                   this.Displayers);
         }
 
         this._Observables.Clear();
@@ -200,7 +195,6 @@ namespace droid.Runtime.Environments {
             || this._ReplyWithDescriptionThisStep) {
           state.Unobservables = new Unobservables(ref this._tracked_rigid_bodies, ref this._Poses);
         }
-
 
         return state;
       }
@@ -265,7 +259,7 @@ namespace droid.Runtime.Environments {
       e += ", Actuators: ";
       e += this.Actuators.Count;
       e += ", Objective: ";
-      e += this.ObjectiveFunction != null ?  this.ObjectiveFunction.Identifier: "None";
+      e += this.ObjectiveFunction != null ? this.ObjectiveFunction.Identifier : "None";
 
       return e;
     }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace droid.Runtime.Utilities.GameObjects.ChildSensors {
+namespace droid.Runtime.GameObjects.ChildSensors {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

@@ -16,8 +16,6 @@ namespace droid.Editor.Utilities {
   [CustomEditor(typeof(SceneAsset))]
   [CanEditMultipleObjects]
   public class ScenePreview : UnityEditor.Editor {
-
-
     /// <summary>
     /// </summary>
     [RuntimeInitializeOnLoadMethod]
@@ -34,7 +32,6 @@ namespace droid.Editor.Utilities {
     /// </summary>
     /// <param name="name"></param>
     public static void TakeScreenshot(string name) {
-
       var path = Path.GetDirectoryName(name);
       Directory.CreateDirectory(path);
       // Take the screenshot
@@ -81,16 +78,17 @@ namespace droid.Editor.Utilities {
     /// <summary>
     /// </summary>
     public override void OnInspectorGUI() {
-
-
       if (NeodroidSettings.Current.NeodroidGeneratePreviewsProp) {
         //AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
         var scene_names = this.targets.Select(t => ((SceneAsset)t).name).OrderBy(n => n).ToArray();
 
         var previews_count = scene_names.Length;
         var preview_width = Screen.width;
-        var preview_height = (Screen.height - NeodroidEditorConstants._Editor_Margin * 2 - NeodroidEditorConstants._Preview_Margin  * previews_count)
-                             / previews_count;
+        var preview_height =
+            (Screen.height
+             - NeodroidEditorConstants._Editor_Margin * 2
+             - NeodroidEditorConstants._Preview_Margin * previews_count)
+            / previews_count;
 
         for (var i = 0; i < scene_names.Length; i++) {
           DrawPreview(i, scene_names[i], preview_width, preview_height);
@@ -119,27 +117,25 @@ NeodroidEditorConstants._Preview_Margin), width, height),
                 preview
                );
 */
-        GUI.DrawTexture(new Rect(index, NeodroidEditorConstants._Editor_Margin + index * (height +
-                                                                                          NeodroidEditorConstants._Preview_Margin), width, height),
-                        preview
-
-                        ,ScaleMode.ScaleToFit
-                       );
-
-
-
+        GUI.DrawTexture(new Rect(index,
+                                 NeodroidEditorConstants._Editor_Margin
+                                 + index * (height + NeodroidEditorConstants._Preview_Margin),
+                                 width,
+                                 height),
+                        preview,
+                        ScaleMode.ScaleToFit);
       } else {
-        EditorGUILayout
-            .HelpBox($"There is no image preview for scene {scene_name} at {preview_path}."
-                     + $" Please play the scene on editor and image preview will be captured automatically"
-                     + $" or create the missing path: {preview_path}.",
-                     MessageType.Info);
+        EditorGUILayout.HelpBox($"There is no image preview for scene {scene_name} at {preview_path}."
+                                + $" Please play the scene on editor and image preview will be captured automatically"
+                                + $" or create the missing path: {preview_path}.",
+                                MessageType.Info);
       }
     }
 
     static string GetPreviewPath(string scene_name) {
       //return $"{NeodroidEditorInfo.ScenePreviewsLocation}{scene_name}.png";
-      return $"{Application.dataPath}/{NeodroidSettings.Current.NeodroidPreviewsLocationProp}{scene_name}.png";
+      return
+          $"{Application.dataPath}/{NeodroidSettings.Current.NeodroidPreviewsLocationProp}{scene_name}.png";
     }
 
     /// <summary>

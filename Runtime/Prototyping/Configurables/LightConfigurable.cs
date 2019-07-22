@@ -1,10 +1,10 @@
 ﻿using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
+using droid.Runtime.Sampling;
 using droid.Runtime.Structs.Space;
-using droid.Runtime.Utilities.Misc;
-using droid.Runtime.Utilities.Sampling;
-using droid.Runtime.Utilities.Structs;
+using droid.Runtime.Utilities;
 using UnityEngine;
+using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
 namespace droid.Runtime.Prototyping.Configurables {
   /// <inheritdoc />
@@ -62,19 +62,19 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
                                               (Configurable)this,
                                               this._shadow_strength);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._color_r);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._color_r);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._color_b);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._color_b);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._color_g);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._color_g);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._intensity);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._intensity);
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
                                               (Configurable)this,
                                               this._indirect_multiplier);
     }

@@ -1,0 +1,18 @@
+{
+    "name": "Neodroid.RuntimeTests",
+    "references": [
+        "GUID:68af22e97abf36b1f9e89f9483bd37f1",
+        "GUID:d2007c2033e45bf2aaeedbdb8504ed4a"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}

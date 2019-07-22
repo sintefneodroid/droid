@@ -1,7 +1,7 @@
 ﻿using droid.Runtime.Environments;
+using droid.Runtime.GameObjects.BoundingBoxes;
 using droid.Runtime.Prototyping.Actors;
-using droid.Runtime.Utilities.GameObjects.BoundingBoxes;
-using droid.Runtime.Utilities.Misc.Extensions;
+using droid.Runtime.Utilities.Extensions;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Internals.StateValidation {

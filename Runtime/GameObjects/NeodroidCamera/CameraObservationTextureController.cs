@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using droid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities;
 using UnityEngine;
 
-namespace droid.Runtime.Utilities.GameObjects.NeodroidCamera {
+namespace droid.Runtime.GameObjects.NeodroidCamera {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

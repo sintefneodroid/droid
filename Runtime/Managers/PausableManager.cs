@@ -1,5 +1,5 @@
 ﻿using System;
-using droid.Runtime.Utilities.Enums;
+using droid.Runtime.Enums;
 using UnityEngine;
 
 namespace droid.Runtime.Managers {

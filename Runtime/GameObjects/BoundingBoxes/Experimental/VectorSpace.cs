@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-namespace droid.Runtime.Utilities.GameObjects.BoundingBoxes.Experimental {
+namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
   /// <summary>
   ///
   /// </summary>

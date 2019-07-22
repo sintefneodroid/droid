@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace droid.Runtime.Utilities.GameObjects.BoundingBoxes.Experimental {
+namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

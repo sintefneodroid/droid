@@ -1,7 +1,11 @@
 ﻿using droid.Runtime.Interfaces;
 using droid.Runtime.Prototyping.Actors;
-using droid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+
+#endif
 
 namespace droid.Runtime.Prototyping.Actuators {
   /// <inheritdoc />
@@ -29,7 +33,7 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <summary>
     /// </summary>
     [SerializeField]
-    protected bool _Rotational_Actuators;
+    protected bool _angular_Actuators;
 
     /// <summary>
     /// </summary>
@@ -58,7 +62,7 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <summary>
     /// </summary>
     protected override void Setup() {
-      if (!this._Rotational_Actuators) {
+      if (!this._angular_Actuators) {
         this._x = this.Identifier + "X_";
         this._y = this.Identifier + "Y_";
         this._z = this.Identifier + "Z_";
@@ -73,11 +77,17 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// </summary>
     protected override void RegisterComponent() {
       this.Parent =
-          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, this._x);
+          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
+                                                          this,
+                                                          this._x);
       this.Parent =
-          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, this._y);
+          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
+                                                          this,
+                                                          this._y);
       this.Parent =
-          NeodroidUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, this._z);
+          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
+                                                          this,
+                                                          this._z);
     }
 
     /// <summary>
@@ -94,7 +104,7 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <param name="motion"></param>
     protected override void InnerApplyMotion(IMotion motion) {
       var layer_mask = 1 << LayerMask.NameToLayer(this._Layer_Mask);
-      if (!this._Rotational_Actuators) {
+      if (!this._angular_Actuators) {
         if (motion.ActuatorName == this._x) {
           var vec = Vector3.right * motion.Strength;
           if (this._No_Collisions) {
@@ -125,7 +135,7 @@ namespace droid.Runtime.Prototyping.Actuators {
         }
       } else {
         if (motion.ActuatorName == this._x) {
-          this.transform.Rotate(Vector3.left, motion.Strength, this._Relative_To);
+          this.transform.Rotate(Vector3.right, motion.Strength, this._Relative_To);
         } else if (motion.ActuatorName == this._y) {
           this.transform.Rotate(Vector3.up, motion.Strength, this._Relative_To);
         } else if (motion.ActuatorName == this._z) {
@@ -133,5 +143,22 @@ namespace droid.Runtime.Prototyping.Actuators {
         }
       }
     }
+
+    #if UNITY_EDITOR
+    void OnDrawGizmosSelected() {
+      if (this.enabled) {
+        var position = this.transform.position;
+        if (this._angular_Actuators) {
+          Handles.DrawWireArc(this.transform.position, this.transform.right, -this.transform.forward, 180, 2);
+          Handles.DrawWireArc(this.transform.position, this.transform.up, -this.transform.right, 180, 2);
+          Handles.DrawWireArc(this.transform.position, this.transform.forward, -this.transform.right, 180, 2);
+        } else {
+          Debug.DrawLine(position, position + Vector3.up * 2, Color.green);
+          Debug.DrawLine(position, position + Vector3.forward * 2, Color.green);
+          Debug.DrawLine(position, position + Vector3.right * 2, Color.green);
+        }
+      }
+    }
+    #endif
   }
 }

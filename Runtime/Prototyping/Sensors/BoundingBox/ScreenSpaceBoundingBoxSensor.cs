@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using droid.Runtime.GameObjects.BoundingBoxes.Experimental;
 using droid.Runtime.Interfaces;
-using droid.Runtime.Utilities.GameObjects.BoundingBoxes.Experimental;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.BoundingBox {
@@ -12,7 +12,7 @@ namespace droid.Runtime.Prototyping.Sensors.BoundingBox {
                     + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   //[ExecuteAlways]
-  [RequireComponent(typeof(Utilities.GameObjects.BoundingBoxes.BoundingBox))]
+  [RequireComponent(typeof(GameObjects.BoundingBoxes.BoundingBox))]
   public class ScreenSpaceBoundingBoxSensor : Sensor,
                                               IHasString {
     /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace droid.Runtime.Prototyping.Sensors.BoundingBox {
     /// </summary>
     public override string PrototypingTypeName { get { return "BoundingBox"; } }
 
-    Utilities.GameObjects.BoundingBoxes.BoundingBox _bounding_box = null;
+    GameObjects.BoundingBoxes.BoundingBox _bounding_box = null;
     [SerializeField] UnityEngine.Camera _camera = null;
     [SerializeField] Rect _out_rect = new Rect();
 
@@ -28,7 +28,7 @@ namespace droid.Runtime.Prototyping.Sensors.BoundingBox {
     /// <summary>
     /// </summary>
     protected override void PreSetup() {
-      this._bounding_box = this.GetComponent<Utilities.GameObjects.BoundingBoxes.BoundingBox>();
+      this._bounding_box = this.GetComponent<GameObjects.BoundingBoxes.BoundingBox>();
     }
 
     [SerializeField] bool NormaliseObservation = true;

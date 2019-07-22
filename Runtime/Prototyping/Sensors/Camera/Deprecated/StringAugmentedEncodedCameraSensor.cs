@@ -1,8 +1,9 @@
 ﻿using System;
 using droid.Runtime.Environments;
 using droid.Runtime.Interfaces;
-using droid.Runtime.Utilities.Misc;
+using droid.Runtime.Utilities;
 using UnityEngine;
+using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
 namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
   /// <inheritdoc cref="Sensor" />
@@ -14,7 +15,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
   [ExecuteInEditMode]
   [RequireComponent(typeof(UnityEngine.Camera))]
   public class StringAugmentedEncodedCameraSensor : EncodedCameraSensor,
-                                             IHasString {
+                                                    IHasString {
     const string _color_identifier = "Colors";
 
     string _colors;
@@ -42,14 +43,10 @@ namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              this,
-                                              this.Identifier);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, this, this.Identifier);
 
       this.ParentEnvironment =
-          NeodroidUtilities.RegisterComponent(this.ParentEnvironment,
-                                              this,
-                                              this._colors);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, this, this._colors);
     }
 
     /// <inheritdoc />

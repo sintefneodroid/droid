@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace droid.Runtime.Utilities.Misc.Drawing {
+namespace droid.Runtime.Utilities.Drawing {
 // Put this script on a Camera
   /// <inheritdoc />
   /// <summary>

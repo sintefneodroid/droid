@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using droid.Runtime.Utilities.Structs;
+using droid.Runtime.Structs;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
