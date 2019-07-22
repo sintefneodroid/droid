@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using droid.Runtime.Utilities.GameObjects.BoundingBoxes;
+using droid.Runtime.GameObjects.BoundingBoxes;
 
 namespace droid.Runtime.Prototyping.Evaluation
 {
@@ -19,7 +19,9 @@ namespace droid.Runtime.Prototyping.Evaluation
         public new virtual void PostSetup()
         {
             base.PostSetup();
-            gameObject.GetComponent<BoundingBox>();
+
+            if(boundingBox == null)
+                boundingBox = gameObject.GetComponent<BoundingBox>();
         }
 
         /// <summary>
