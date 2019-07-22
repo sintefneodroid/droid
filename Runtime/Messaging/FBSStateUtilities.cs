@@ -461,6 +461,9 @@ namespace droid.Runtime.Messaging {
       var configurables_vector_offset =
           FEnvironmentDescription.CreateConfigurablesVector(b, configurables_offsets);
 
+
+     
+    
       var objective_offset = Serialise(b, state.Description);
 
 
@@ -474,8 +477,8 @@ namespace droid.Runtime.Messaging {
 
 
       FEnvironmentDescription.StartFEnvironmentDescription(b);
-      FEnvironmentDescription.AddObjective(b, objective_offset);
 
+      FEnvironmentDescription.AddObjective(b, objective_offset);
       FEnvironmentDescription.AddActors(b, actors_vector_offset);
       FEnvironmentDescription.AddConfigurables(b, configurables_vector_offset);
       FEnvironmentDescription.AddSensors(b, observers_vector);
@@ -484,9 +487,15 @@ namespace droid.Runtime.Messaging {
     }
 
     static Offset<FObjective> Serialise(FlatBufferBuilder b, EnvironmentDescription description) {
-      var objective_name_offset = b.CreateString(description.ObjectiveFunction.Identifier);
+      var name = "None";
+      int length = -1;
+      if (description.ObjectiveFunction != null) { 
+          length = description.ObjectiveFunction.EpisodeLength;
+          name = description.ObjectiveFunction.Identifier;
+      }
+      var objective_name_offset = b.CreateString(name);
       FObjective.StartFObjective(b);
-      FObjective.AddMaxEpisodeLength(b, description.ObjectiveFunction.EpisodeLength);
+      FObjective.AddMaxEpisodeLength(b, length);
       //FObjective.AddSolvedThreshold(b, description.SolvedThreshold); //TODO: Add signal space
       FObjective.AddObjectiveName(b, objective_name_offset);
       return FObjective.EndFObjective(b);

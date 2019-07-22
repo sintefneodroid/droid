@@ -318,7 +318,7 @@ namespace droid.Runtime.Utilities.GameObjects.BoundingBoxes {
       }
 
       if (this.environment == null) {
-        this.environment = FindObjectOfType<ActorisedPrototypingEnvironment>();
+        this.environment = FindObjectOfType<AbstractPrototypingEnvironment>();
       }
 
       if (!this._bb_transform) {
@@ -738,21 +738,20 @@ namespace droid.Runtime.Utilities.GameObjects.BoundingBoxes {
       if (this.enabled) {
         Gizmos.color = this.editorPreviewLineColor;
 
-        if (this._use_bb_transform) {
-          if (this.Lines != null) {
-            for (var i = 0; i < this.Lines.GetLength(0); i++) {
-              Gizmos.DrawLine(this.Lines[i, 0], this.Lines[i, 1]);
-            }
-          } else {
-            Gizmos.DrawWireCube(this.Bounds.center, this.Bounds.size);
+        if (this.Lines != null) {
+          for (var i = 0; i < this.Lines.GetLength(0); i++) {
+            Gizmos.DrawLine(this.Lines[i, 0], this.Lines[i, 1]);
           }
-
-          if (this._bb_transform) {
-            Handles.Label(this._bb_transform.position, this._bb_transform.gameObject.name);
-          } else {
-            Handles.Label(this.transform.position, this.gameObject.name);
-          }
+        } else {
+          Gizmos.DrawWireCube(this.Bounds.center, this.Bounds.size);
         }
+
+        if (this._bb_transform) {
+          Handles.Label(this._bb_transform.position, this._bb_transform.gameObject.name);
+        } else {
+          Handles.Label(this.transform.position, this.gameObject.name);
+        }
+        
       }
     }
     #endif
