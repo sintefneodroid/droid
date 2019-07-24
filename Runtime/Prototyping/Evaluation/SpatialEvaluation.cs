@@ -13,10 +13,11 @@ namespace droid.Runtime.Prototyping.Evaluation
         /// </summary>
         [SerializeField]
         protected List<Transform> terminatingTransforms;
+        // TODO: Look at how to simplify a way to describe which objects should be in this list
         [SerializeField]
         protected BoundingBox boundingBox;
 
-        public new virtual void PostSetup()
+        protected override void PostSetup()
         {
             base.PostSetup();
 
