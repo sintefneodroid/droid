@@ -3,11 +3,11 @@ using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients;
 using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Managers;
 using droid.Runtime.Prototyping.Evaluation;
-using UnityEditor.Events;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 #if UNITY_EDITOR
+using UnityEditor.Events;
 
 namespace droid.Runtime.GameObjects.StatusDisplayer {
   /// <inheritdoc />
