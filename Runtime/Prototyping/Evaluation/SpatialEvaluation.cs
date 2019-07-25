@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using droid.Runtime.Utilities.GameObjects.BoundingBoxes;
+using droid.Runtime.GameObjects.BoundingBoxes;
 
 namespace droid.Runtime.Prototyping.Evaluation
 {
@@ -13,13 +13,16 @@ namespace droid.Runtime.Prototyping.Evaluation
         /// </summary>
         [SerializeField]
         protected List<Transform> terminatingTransforms;
+        // TODO: Look at how to simplify a way to describe which objects should be in this list
         [SerializeField]
         protected BoundingBox boundingBox;
 
-        public new virtual void PostSetup()
+        protected override void PostSetup()
         {
             base.PostSetup();
-            gameObject.GetComponent<BoundingBox>();
+
+            if(boundingBox == null)
+                boundingBox = gameObject.GetComponent<BoundingBox>();
         }
 
         /// <summary>
