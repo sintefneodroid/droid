@@ -129,8 +129,8 @@ namespace droid.Runtime.Prototyping.Actuators {
       }
     }
 
+    public override string[] InnerMotionNames => new[] { this._Axis_Of_Motion.ToString() };
 
-
-    #endif
-  }
+#endif
+    }
 }

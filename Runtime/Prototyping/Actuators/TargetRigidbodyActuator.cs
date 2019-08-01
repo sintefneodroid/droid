@@ -65,6 +65,7 @@ namespace droid.Runtime.Prototyping.Actuators {
       this._movement = this.Identifier + "Movement_";
       this._turn = this.Identifier + "Turn_";
     }
+    public override string[] InnerMotionNames => new[] { this._movement, this._turn };
 
     /// <inheritdoc />
     /// <summary>

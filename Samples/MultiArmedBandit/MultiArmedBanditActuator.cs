@@ -5,6 +5,7 @@ using droid.Runtime.Prototyping.Actuators;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using System.Linq;
 using Random = UnityEngine.Random;
 
 namespace droid.Samples.MultiArmedBandit {
@@ -129,5 +130,6 @@ namespace droid.Samples.MultiArmedBandit {
         this._won = false;
       }
     }
+    public override string[] InnerMotionNames => _Indicators.Select(m => Identifier).ToArray();
   }
 }

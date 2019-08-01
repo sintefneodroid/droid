@@ -107,6 +107,7 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <param name="motion"></param>
     protected abstract void InnerApplyMotion(IMotion motion);
 
+    public abstract string[] InnerMotionNames { get; }
     /// <inheritdoc />
     /// <summary>
     /// </summary>
