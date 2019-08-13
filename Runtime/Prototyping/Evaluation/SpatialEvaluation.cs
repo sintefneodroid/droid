@@ -21,8 +21,7 @@ namespace droid.Runtime.Prototyping.Evaluation
         {
             base.PostSetup();
 
-            if(boundingBox == null)
-                boundingBox = gameObject.GetComponent<BoundingBox>();
+            if(this.boundingBox == null) this.boundingBox = this.gameObject.GetComponent<BoundingBox>();
         }
 
         /// <summary>

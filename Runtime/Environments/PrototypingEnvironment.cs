@@ -94,6 +94,11 @@ namespace droid.Runtime.Environments {
     /// <param name="obj"></param>
     public void Register(IActuator obj) { this.Register(obj, obj.Identifier); }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <param name="identifier"></param>
     public void Register(IActuator obj, String identifier) {
       if (!this.Actuators.ContainsKey(identifier)) {
         #if NEODROID_DEBUG
@@ -108,13 +113,22 @@ namespace droid.Runtime.Environments {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="obj"></param>
     public void UnRegister(IActuator obj) { this.UnRegister(obj, obj.Identifier); }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="t"></param>
+    /// <param name="obj"></param>
     public void UnRegister(IActuator t, String obj) {
       if (this.Actuators.ContainsKey(obj)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Environment {this.name} unregistered observer {obj}");
+          Debug.Log($"Environment {this.name} unregistered actuator {obj}");
         }
         #endif
         this.Actuators.Remove(obj);

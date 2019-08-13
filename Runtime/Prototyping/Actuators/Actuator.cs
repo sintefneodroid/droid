@@ -56,7 +56,7 @@ namespace droid.Runtime.Prototyping.Actuators {
 
       if (motion.Strength < this.MotionSpace.MinValue || motion.Strength > this.MotionSpace.MaxValue) {
         Debug.LogWarning($"It does not accept input {motion.Strength}, outside the allowed range from {this.MotionSpace.MinValue} to {this.MotionSpace.MaxValue}, rounding to be inside space.");
-        motion.Strength = MotionSpace.Round(MotionSpace.Clip(motion.Strength));
+        motion.Strength = this.MotionSpace.Round(this.MotionSpace.Clip(motion.Strength));
       }
 
       if (this._motion_value_space.Normalised) {

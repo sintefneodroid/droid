@@ -154,7 +154,7 @@ namespace droid.Editor.Windows {
                   EditorGUILayout.Foldout(this._show_environment_properties[i],
                                           $"{this._environments[i].Identifier}");
               if (this._show_environment_properties[i]) {
-                var observers = this._environments[i].Sensors;
+                var sensors = this._environments[i].Sensors;
                 var configurables = this._environments[i].Configurables;
                 var listeners = this._environments[i].Listeners;
                 var displayers = this._environments[i].Displayers;
@@ -220,7 +220,7 @@ namespace droid.Editor.Windows {
                   }
                 }
 
-                this.DrawSensors(observers);
+                this.DrawSensors(sensors);
 
                 this.DrawConfigurables(configurables);
 
@@ -316,23 +316,23 @@ namespace droid.Editor.Windows {
       EditorGUILayout.EndVertical();
     }
 
-    void DrawSensors(SortedDictionary<string, ISensor> observers) {
+    void DrawSensors(SortedDictionary<string, ISensor> sensors) {
       EditorGUILayout.BeginVertical("Box");
-      GUILayout.Label("Observers");
-      foreach (var observer in observers) {
-        var observer_value = (Sensor)observer.Value;
-        if (observer_value != null) {
+      GUILayout.Label("Sensors");
+      foreach (var sensor in sensors) {
+        var sensor_value = (Sensor)sensor.Value;
+        if (sensor_value != null) {
           EditorGUILayout.BeginVertical("Box");
-          observer_value.enabled =
-              EditorGUILayout.BeginToggleGroup(observer.Key,
-                                               observer_value.enabled
-                                               && observer_value.gameObject.activeSelf);
-          EditorGUILayout.ObjectField(observer_value, typeof(Sensor), true);
+          sensor_value.enabled =
+              EditorGUILayout.BeginToggleGroup(sensor.Key,
+                                               sensor_value.enabled
+                                               && sensor_value.gameObject.activeSelf);
+          EditorGUILayout.ObjectField(sensor_value, typeof(Sensor), true);
           if (this._show_detailed_descriptions) {
             //EditorGUILayout.BeginHorizontal("Box");
             #if NEODROID_DEBUG
-            observer_value.Debugging = EditorGUILayout.Toggle("Debugging", observer_value.Debugging);
-            EditorGUILayout.LabelField("Observables: [" + observer_value.ToString() + "]");
+            sensor_value.Debugging = EditorGUILayout.Toggle("Debugging", sensor_value.Debugging);
+            EditorGUILayout.LabelField("Observables: [" + sensor_value.ToString() + "]");
             #endif
             //EditorGUILayout.EndHorizontal();
           }

@@ -1,5 +1,5 @@
-﻿using droid.Runtime.Utilities.InternalReactions;
-#if UNITY_EDITOR && NEODROID_DEBUG
+﻿#if UNITY_EDITOR && NEODROID_DEBUG
+using droid.Runtime.Utilities.InternalReactions;
 using droid.Editor.Utilities;
 using droid.Runtime.Environments;
 using droid.Runtime.Managers;
@@ -39,7 +39,7 @@ namespace droid.Editor.Windows {
 
     ObjectiveFunction[] _objective_functions_function;
 
-    Sensor[] _observers;
+    Sensor[] _sensors;
 
     PlayerReactions _player_reactions;
 
@@ -50,7 +50,7 @@ namespace droid.Editor.Windows {
     bool _show_listeners_debug;
     bool _show_actuators_debug;
     bool _show_objective_functions_debug;
-    bool _show_observers_debug;
+    bool _show_sensors_debug;
     bool _show_player_reactions_debug;
     bool _show_simulation_manager_debug;
 
@@ -77,7 +77,7 @@ namespace droid.Editor.Windows {
       this._environments = FindObjectsOfType<NeodroidEnvironment>();
       this._actors = FindObjectsOfType<Actor>();
       this._actuators = FindObjectsOfType<Actuator>();
-      this._observers = FindObjectsOfType<Sensor>();
+      this._sensors = FindObjectsOfType<Sensor>();
       this._configurables = FindObjectsOfType<Configurable>();
       this._objective_functions_function = FindObjectsOfType<ObjectiveFunction>();
       this._displayers = FindObjectsOfType<Displayer>();
@@ -91,7 +91,7 @@ namespace droid.Editor.Windows {
       this._show_environments_debug = true;
       this._show_actors_debug = true;
       this._show_actuators_debug = true;
-      this._show_observers_debug = true;
+      this._show_sensors_debug = true;
       this._show_configurables_debug = true;
       this._show_objective_functions_debug = true;
       this._show_displayers_debug = true;
@@ -104,7 +104,7 @@ namespace droid.Editor.Windows {
       this._show_environments_debug = false;
       this._show_actors_debug = false;
       this._show_actuators_debug = false;
-      this._show_observers_debug = false;
+      this._show_sensors_debug = false;
       this._show_configurables_debug = false;
       this._show_objective_functions_debug = false;
       this._show_displayers_debug = false;
@@ -117,7 +117,7 @@ namespace droid.Editor.Windows {
           && this._show_environments_debug
           && this._show_actors_debug
           && this._show_actuators_debug
-          && this._show_observers_debug
+          && this._show_sensors_debug
           && this._show_configurables_debug
           && this._show_objective_functions_debug
           && this._show_displayers_debug
@@ -151,7 +151,7 @@ namespace droid.Editor.Windows {
           EditorGUILayout.Toggle("Debug all environments", this._show_environments_debug);
       this._show_actors_debug = EditorGUILayout.Toggle("Debug all actors", this._show_actors_debug);
       this._show_actuators_debug = EditorGUILayout.Toggle("Debug all Actuators", this._show_actuators_debug);
-      this._show_observers_debug = EditorGUILayout.Toggle("Debug all observers", this._show_observers_debug);
+      this._show_sensors_debug = EditorGUILayout.Toggle("Debug all sensors", this._show_sensors_debug);
       this._show_configurables_debug =
           EditorGUILayout.Toggle("Debug all configurables", this._show_configurables_debug);
       this._show_objective_functions_debug =
@@ -184,8 +184,8 @@ namespace droid.Editor.Windows {
           actuator.Debugging = this._show_actuators_debug;
         }
 
-        foreach (var observer in this._observers) {
-          observer.Debugging = this._show_observers_debug;
+        foreach (var observer in this._sensors) {
+          observer.Debugging = this._show_sensors_debug;
         }
 
         foreach (var configurable in this._configurables) {
@@ -208,7 +208,7 @@ namespace droid.Editor.Windows {
       if (GUI.changed && !Application.isPlaying) {
         EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
         // Unity not tracking changes to properties of a GameObject made through this window automatically and
-        // are not saved unless other changes are made from a working inpector window
+        // are not saved unless other changes are made from a working inspector window
       }
     }
 

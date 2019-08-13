@@ -338,7 +338,7 @@ namespace droid.Runtime.Managers {
                          + Instance);
       }
 
-      Setup();
+      this.Setup();
 
       #if UNITY_EDITOR
       if (!Application.isPlaying) {

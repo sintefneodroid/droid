@@ -5,7 +5,7 @@ using droid.Runtime.Structs.Space;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Transform {
-  [AddComponentMenu(PrototypingComponentMenuPath._ComponentMenuPath + "Observers/Position")]
+  [AddComponentMenu(PrototypingComponentMenuPath._ComponentMenuPath + "Rotation")]
   [ExecuteInEditMode]
   [Serializable]
   public class RotationSensor : Sensor,

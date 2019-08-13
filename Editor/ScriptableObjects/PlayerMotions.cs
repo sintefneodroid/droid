@@ -47,8 +47,8 @@ namespace droid.Editor.ScriptableObjects
                 var icon = AssetDatabase.LoadAssetAtPath<Texture2D>(
                     NeodroidSettings.Current.NeodroidImportLocationProp + "Gizmos/Icons/table.png"
                 );
-                minSize = maxSize = new Vector2(WINDOW_WIDTH, WINDOW_HEIGHT);
-                titleContent = new GUIContent(titleContent.text, icon);
+                this.minSize = this.maxSize = new Vector2(WINDOW_WIDTH, WINDOW_HEIGHT);
+                this.titleContent = new GUIContent(this.titleContent.text, icon);
             }
             [Header("Actuators to generate motions for")]
             public Actor[] actors;
@@ -58,7 +58,7 @@ namespace droid.Editor.ScriptableObjects
                 var asset = CreateInstance<PlayerMotions>();
                 int motionCount = 0;
 
-                foreach(var actor in actors)
+                foreach(var actor in this.actors)
                 {
                     foreach(var actuator in actor.Actuators)
                     {
@@ -67,7 +67,7 @@ namespace droid.Editor.ScriptableObjects
                 }
                 asset._Motions = new PlayerMotion[motionCount];
                 int i = 0;
-                foreach (var actor in actors)
+                foreach (var actor in this.actors)
                 {
                     foreach (var actuator in actor.Actuators)
                     {
