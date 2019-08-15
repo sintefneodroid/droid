@@ -28,6 +28,9 @@ namespace droid.Editor.ScriptableObjects
     }
 
 
+        /// <summary>
+        ///
+        /// </summary>
         public class CreatePlayerMotionsWizard : ScriptableWizard
         {
             const float 
@@ -50,6 +53,9 @@ namespace droid.Editor.ScriptableObjects
                 minSize = maxSize = new Vector2(WINDOW_WIDTH, WINDOW_HEIGHT);
                 titleContent = new GUIContent(titleContent.text, icon);
             }
+            /// <summary>
+            ///
+            /// </summary>
             [Header("Actuators to generate motions for")]
             public Actor[] actors;
 
