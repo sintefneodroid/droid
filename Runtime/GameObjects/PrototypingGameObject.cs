@@ -127,9 +127,12 @@ namespace droid.Runtime.GameObjects {
         }
       }
 
-      if (EditorApplication.isPlayingOrWillChangePlaymode) {
-        return;
+#if UNITY_EDITOR
+      if (EditorApplication.isPlayingOrWillChangePlaymode)
+      {
+          return;
       }
+#endif
 
       this.ReRegister();
     }
@@ -142,7 +145,7 @@ namespace droid.Runtime.GameObjects {
     /// </summary>
     protected virtual void Clear() { }
 
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     /// <summary>
     /// </summary>
     void OnValidate() { // Only called in the editor
@@ -150,7 +153,7 @@ namespace droid.Runtime.GameObjects {
         this.ReRegister();
       }
     }
-    #endif
+#endif
 
     /// <summary>
     /// </summary>

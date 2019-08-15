@@ -14,8 +14,8 @@ function toggleVisibility(linkObj)
    content.show();
    summary.hide();
    $(linkObj).removeClass('closed').addClass('opened');
-   $(trigger).attr('src',src.substring(0,src.length-10)+'open.png');
- } 
+   $(trigger).attr('src',src.substring(0,src.length-10)+'open_data.py.png');
+ }
  return false;
 }
 
@@ -91,7 +91,7 @@ function toggleInherit(id)
     $(img).attr('src',src.substring(0,src.length-8)+'closed.png');
   } else {
     rows.css('display','table-row'); // using show() causes jump in firefox
-    $(img).attr('src',src.substring(0,src.length-10)+'open.png');
+    $(img).attr('src',src.substring(0,src.length-10)+'open_data.py.png');
   }
 }
 

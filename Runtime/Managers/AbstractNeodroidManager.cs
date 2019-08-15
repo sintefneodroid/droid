@@ -338,6 +338,8 @@ namespace droid.Runtime.Managers {
                          + Instance);
       }
 
+      this.Setup();
+
       #if UNITY_EDITOR
       if (!Application.isPlaying) {
         var manager_script = MonoScript.FromMonoBehaviour(this);
@@ -351,6 +353,9 @@ namespace droid.Runtime.Managers {
       }
       #endif
     }
+
+    protected virtual void Setup()
+    { }
 
     /// <summary>
     /// </summary>

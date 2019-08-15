@@ -10,7 +10,7 @@ namespace droid.Editor.GameObjects {
   /// </summary>
   public class SensorSpawner : MonoBehaviour {
     [MenuItem(EditorGameObjectMenuPath._GameObjectMenuPath + "Sensors/Base", false, 10)]
-    static void CreateObserverGameObject(MenuCommand menu_command) {
+    static void CreateSensorGameObject(MenuCommand menu_command) {
       var go = new GameObject("Sensor");
       go.AddComponent<Sensor>();
       GameObjectUtility.SetParentAndAlign(go,
@@ -22,7 +22,7 @@ namespace droid.Editor.GameObjects {
     }
 
     [MenuItem(EditorGameObjectMenuPath._GameObjectMenuPath + "Sensors/EulerTransform", false, 10)]
-    static void CreateEulerTransformObserverGameObject(MenuCommand menu_command) {
+    static void CreateEulerTransformSensorGameObject(MenuCommand menu_command) {
       var go = new GameObject("EulerTransformSensor");
       go.AddComponent<EulerTransformSensor>();
       GameObjectUtility.SetParentAndAlign(go,

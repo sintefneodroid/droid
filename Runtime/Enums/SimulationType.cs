@@ -10,12 +10,12 @@ namespace droid.Runtime.Enums {
     Frame_dependent_, // TODO: Sometimes some frame seems to be dropped with the frame dependent configuration at high frame rates.
 
     /// <summary>
-    ///   Camera observers should be manually rendered to ensure validity and freshness with camera.Render()
+    ///   Camera sensors should be manually rendered to ensure validity and freshness with camera.Render()
     /// </summary>
     Physics_dependent_,
 
     /// <summary>
-    ///   Camera observers should be manually rendered to ensure validity and freshness with camera.Render()
+    ///   Camera sensors should be manually rendered to ensure validity and freshness with camera.Render()
     /// </summary>
     Event_dependent_,
 

@@ -63,7 +63,7 @@ namespace droid.Runtime.Environments {
           this._Resetting = false;
           this._reset_i = 0;
           this.UpdateConfigurableValues();
-          this.UpdateObserversData();
+          this.UpdateSensorsData();
         } else {
           this.EnvironmentReset();
           this._reset_i += 1;
@@ -76,7 +76,7 @@ namespace droid.Runtime.Environments {
         #endif
       } else {
         if (this.update_observations_with_every_tick) {
-          this.UpdateObserversData();
+          this.UpdateSensorsData();
         }
       }
 
@@ -89,7 +89,7 @@ namespace droid.Runtime.Environments {
 
     /// <summary>
     /// </summary>
-    protected void UpdateObserversData() {
+    protected void UpdateSensorsData() {
       foreach (var obs in this.Sensors.Values) {
         obs?.UpdateObservation();
       }
@@ -385,7 +385,7 @@ namespace droid.Runtime.Environments {
 
         this.StepEvent?.Invoke();
 
-        this.UpdateObserversData();
+        this.UpdateSensorsData();
       }
     }
 
@@ -502,8 +502,8 @@ namespace droid.Runtime.Environments {
 
       this.InnerResetRegisteredObjects();
 
-      foreach (var observer in this.Sensors.Values) {
-        observer?.EnvironmentReset();
+      foreach (var sensor in this.Sensors.Values) {
+        sensor?.EnvironmentReset();
       }
     }
 
@@ -566,7 +566,7 @@ namespace droid.Runtime.Environments {
       }
 
       this.UpdateConfigurableValues();
-      this.UpdateObserversData();
+      this.UpdateSensorsData();
     }
 
     /// <summary>
@@ -1010,7 +1010,7 @@ namespace droid.Runtime.Environments {
       if (!this.Sensors.ContainsKey(identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Environment {this.name} has registered observer {identifier}");
+          Debug.Log($"Environment {this.name} has registered sensor {identifier}");
         }
         #endif
 
@@ -1085,7 +1085,7 @@ namespace droid.Runtime.Environments {
       if (this.Sensors.ContainsKey(identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Environment {this.name} unregistered observer {identifier}");
+          Debug.Log($"Environment {this.name} unregistered sensor {identifier}");
         }
         #endif
         this.Sensors.Remove(identifier);

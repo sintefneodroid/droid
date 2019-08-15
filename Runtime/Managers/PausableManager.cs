@@ -25,7 +25,7 @@ namespace droid.Runtime.Managers {
 
     /// <summary>
     /// </summary>
-    protected new void Awake() {
+    protected virtual new void Awake() {
       base.Awake();
       if (this.Configuration.SimulationType == SimulationType.Frame_dependent_) {
         this.EarlyUpdateEvent += this.PauseSimulation;

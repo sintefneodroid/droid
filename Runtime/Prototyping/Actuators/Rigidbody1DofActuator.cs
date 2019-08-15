@@ -106,6 +106,7 @@ namespace droid.Runtime.Prototyping.Actuators {
           throw new ArgumentOutOfRangeException();
       }
     }
+    public override string[] InnerMotionNames => new[] { this._Axis_Of_Motion.ToString() };
 
 
     #if UNITY_EDITOR

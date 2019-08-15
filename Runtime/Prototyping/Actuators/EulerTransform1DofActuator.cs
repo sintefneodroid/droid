@@ -4,6 +4,7 @@ using droid.Runtime.Interfaces;
 using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
+
 #endif
 
 namespace droid.Runtime.Prototyping.Actuators {
@@ -105,22 +106,38 @@ namespace droid.Runtime.Prototyping.Actuators {
             //Handles.DrawSolidArc
             //Handles.DrawSolidDisc
 
-            Handles.DrawWireArc(this.transform.position, this.transform.right, -this.transform.forward, 180, 2);
+            Handles.DrawWireArc(this.transform.position,
+                                this.transform.right,
+                                -this.transform.forward,
+                                180,
+                                2);
             break;
           case Axis.Rot_y_:
             Handles.DrawWireArc(this.transform.position, this.transform.up, -this.transform.right, 180, 2);
             break;
           case Axis.Rot_z_:
-            Handles.DrawWireArc(this.transform.position, this.transform.forward, -this.transform.right, 180, 2);
+            Handles.DrawWireArc(this.transform.position,
+                                this.transform.forward,
+                                -this.transform.right,
+                                180,
+                                2);
             break;
           case Axis.Dir_x_:
-            Handles.DrawWireArc(this.transform.position, this.transform.forward, -this.transform.right, 180, 2);
+            Handles.DrawWireArc(this.transform.position,
+                                this.transform.forward,
+                                -this.transform.right,
+                                180,
+                                2);
             break;
           case Axis.Dir_y_:
             Handles.DrawWireArc(this.transform.position, this.transform.up, -this.transform.right, 180, 2);
             break;
           case Axis.Dir_z_:
-            Handles.DrawWireArc(this.transform.position, this.transform.right, -this.transform.forward, 180, 2);
+            Handles.DrawWireArc(this.transform.position,
+                                this.transform.right,
+                                -this.transform.forward,
+                                180,
+                                2);
             break;
           default:
             Gizmos.DrawIcon(position, "console.warnicon", true);
@@ -132,5 +149,10 @@ namespace droid.Runtime.Prototyping.Actuators {
 
 
     #endif
+
+    /// <summary>
+    ///
+    /// </summary>
+    public override string[] InnerMotionNames { get { return new[] {this._Axis_Of_Motion.ToString()}; } }
   }
 }

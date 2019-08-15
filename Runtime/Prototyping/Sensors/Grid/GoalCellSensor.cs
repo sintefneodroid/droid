@@ -28,7 +28,7 @@ namespace droid.Runtime.Prototyping.Sensors.Grid {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName { get { return "GoalObserver"; } }
+    public override string PrototypingTypeName { get { return "GoalSensor"; } }
 
     /// <summary>
     /// </summary>

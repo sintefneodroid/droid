@@ -32,6 +32,7 @@ namespace droid.Runtime.Prototyping.Actuators.WheelColliderActuator {
     protected override void InnerApplyMotion(IMotion motion) {
       this._wheel_collider.steerAngle = motion.Strength;
     }
+    public override string[] InnerMotionNames => new[] { "steerAngle" };
 
     /// <summary>
     /// </summary>

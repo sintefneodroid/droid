@@ -158,7 +158,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
                                           !target_texture.sRGB);
           } else {
             #if NEODROID_DEBUG
-            Debug.LogWarning($"Texture format {texture_format_str} is not a valid TextureFormat for Texture2D for observer {this.Identifier}");
+            Debug.LogWarning($"Texture format {texture_format_str} is not a valid TextureFormat for Texture2D for sensor {this.Identifier}");
             #endif
           }
         }
