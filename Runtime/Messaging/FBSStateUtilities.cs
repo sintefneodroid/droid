@@ -187,11 +187,11 @@ namespace droid.Runtime.Messaging {
     /// <summary>
     /// </summary>
     /// <param name="b"></param>
-    /// <param name="observer"></param>
+    /// <param name="sensor"></param>
     /// <returns></returns>
-    static Offset<FETObs> Serialise(FlatBufferBuilder b, IHasEulerTransform observer) {
+    static Offset<FETObs> Serialise(FlatBufferBuilder b, IHasEulerTransform sensor) {
       FETObs.StartFETObs(b);
-      Vector3 pos = observer.Position, rot = observer.Rotation, dir = observer.Direction;
+      Vector3 pos = sensor.Position, rot = sensor.Rotation, dir = sensor.Direction;
       FETObs.AddTransform(b,FEulerTransform.CreateFEulerTransform(b,
                                                                 pos.x,
                                                                 pos.y,
@@ -209,13 +209,13 @@ namespace droid.Runtime.Messaging {
     /// <summary>
     /// </summary>
     /// <param name="b"></param>
-    /// <param name="observer"></param>
+    /// <param name="sensor"></param>
     /// <returns></returns>
-    static Offset<FQTObs> Serialise(FlatBufferBuilder b, IHasQuaternionTransform observer) {
-      var pos = observer.Position;
-      var rot = observer.Rotation;
-      var pos_range = observer.PositionSpace;
-      var rot_range = observer.RotationSpace;
+    static Offset<FQTObs> Serialise(FlatBufferBuilder b, IHasQuaternionTransform sensor) {
+      var pos = sensor.Position;
+      var rot = sensor.Rotation;
+      var pos_range = sensor.PositionSpace;
+      var rot_range = sensor.RotationSpace;
       FQTObs.StartFQTObs(b);
       FQTObs.AddPosRange(b,FRange.CreateFRange(b,pos_range.DecimalGranularity,pos_range.MaxValue,pos_range
       .MinValue,pos_range.Normalised));
@@ -234,11 +234,11 @@ namespace droid.Runtime.Messaging {
       return FQTObs.EndFQTObs(b);
     }
 
-    static Offset<FByteArray> Serialise(FlatBufferBuilder b, IHasByteArray observer) {
-      var v_offset = FByteArray.CreateBytesVectorBlock(b, observer.Bytes);
+    static Offset<FByteArray> Serialise(FlatBufferBuilder b, IHasByteArray sensor) {
+      var v_offset = FByteArray.CreateBytesVectorBlock(b, sensor.Bytes);
       //var v_offset = CustomFlatBufferImplementation.CreateByteVector(b, camera.Bytes);
       FByteDataType a;
-      switch (observer.ArrayEncoding) {
+      switch (sensor.ArrayEncoding) {
         case "UINT8":
           a = FByteDataType.UINT8;
           break;
@@ -259,7 +259,7 @@ namespace droid.Runtime.Messaging {
           break;
       }
 
-      var c = FByteArray.CreateShapeVector(b, observer.Shape);
+      var c = FByteArray.CreateShapeVector(b, sensor.Shape);
 
       FByteArray.StartFByteArray(b);
       FByteArray.AddType(b, a);
@@ -481,14 +481,14 @@ namespace droid.Runtime.Messaging {
         sensors[js++] = Serialise(b, sensor.Key, sensor.Value);
       }
 
-      var observers_vector = FEnvironmentDescription.CreateSensorsVector(b, sensors);
+      var sensors_vector = FEnvironmentDescription.CreateSensorsVector(b, sensors);
 
       FEnvironmentDescription.StartFEnvironmentDescription(b);
 
       FEnvironmentDescription.AddObjective(b, objective_offset);
       FEnvironmentDescription.AddActors(b, actors_vector_offset);
       FEnvironmentDescription.AddConfigurables(b, configurables_vector_offset);
-      FEnvironmentDescription.AddSensors(b, observers_vector);
+      FEnvironmentDescription.AddSensors(b, sensors_vector);
 
       return FEnvironmentDescription.EndFEnvironmentDescription(b);
     }
@@ -519,8 +519,8 @@ namespace droid.Runtime.Messaging {
       return FObjective.EndFObjective(b);
     }
 
-    static Offset<FTriple> Serialise(FlatBufferBuilder b, PositionConfigurable observer) {
-      var pos = observer.ObservationValue;
+    static Offset<FTriple> Serialise(FlatBufferBuilder b, PositionConfigurable sensor) {
+      var pos = sensor.ObservationValue;
       FTriple.StartFTriple(b);
       FTriple.AddVec3(b, FVector3.CreateFVector3(b, pos.x, pos.y, pos.z));
       return FTriple.EndFTriple(b);

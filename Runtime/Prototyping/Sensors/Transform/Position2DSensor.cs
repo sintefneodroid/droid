@@ -11,7 +11,7 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
   /// <summary>
   /// </summary>
   [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
-                    + "PositionObserver2D"
+                    + "Position2DSensor"
                     + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [Serializable]

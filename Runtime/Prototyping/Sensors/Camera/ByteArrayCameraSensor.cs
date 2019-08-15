@@ -8,6 +8,9 @@ using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 
 namespace droid.Runtime.Prototyping.Sensors.Camera {
+  /// <summary>
+  ///
+  /// </summary>
   [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
                     + "ByteArrayCamera"
                     + SensorComponentMenuPath._Postfix)]
@@ -112,12 +115,21 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override String PrototypingTypeName { get { return ""; } }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override IEnumerable<float> FloatEnumerable {
       get { return null; } //this.ObservationArray; }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override void UpdateObservation() {
       this._grab = true;
       if (this._manager?.SimulatorConfiguration?.SimulationType != SimulationType.Frame_dependent_) {

@@ -147,7 +147,7 @@ namespace droid.Runtime.Prototyping.Actuators {
     void OnDrawGizmosSelected() {
       if (this.enabled) {
         var position = this.transform.position;
-        if (_Angular_Actuators) {
+        if (this._Angular_Actuators) {
           Handles.DrawWireArc(this.transform.position, this.transform.right, -this.transform.forward, 180, 2);
 
           Handles.DrawWireArc(this.transform.position, this.transform.up, -this.transform.right, 180, 2);

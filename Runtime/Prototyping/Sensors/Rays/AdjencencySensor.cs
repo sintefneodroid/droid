@@ -62,7 +62,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
       if (this._is_2_d) {
         var vals = new float[8];
         if (Physics.Raycast(this.transform.position + this._space.MinValue * Vector3.forward,
-                            transform.TransformDirection(Vector3.forward),
+                            this.transform.TransformDirection(Vector3.forward),
                             out this._hit,
                             this._space.MaxValue)) {
           vals[0] = this._space.ClipNormaliseRound(this._hit.distance);
@@ -71,7 +71,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
         }
 
         if (Physics.Raycast(this.transform.position + this._space.MinValue * Vector3.left,
-                            transform.TransformDirection(Vector3.left),
+                            this.transform.TransformDirection(Vector3.left),
                             out this._hit,
                             this._space.MaxValue)) {
           vals[1] = this._space.ClipNormaliseRound(this._hit.distance);
@@ -80,7 +80,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
         }
 
         if (Physics.Raycast(this.transform.position + this._space.MinValue * Vector3.right,
-                            transform.TransformDirection(Vector3.right),
+                            this.transform.TransformDirection(Vector3.right),
                             out this._hit,
                             this._space.MaxValue)) {
           vals[2] = this._space.ClipNormaliseRound(this._hit.distance);
@@ -89,7 +89,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
         }
 
         if (Physics.Raycast(this.transform.position + this._space.MinValue * Vector3.back,
-                            transform.TransformDirection(Vector3.back),
+                            this.transform.TransformDirection(Vector3.back),
                             out this._hit,
                             this._space.MaxValue)) {
           vals[3] = this._space.ClipNormaliseRound(this._hit.distance);
@@ -99,7 +99,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
 
         if (Physics.Raycast(this.transform.position
                             + this._space.MinValue * (Vector3.forward + Vector3.left).normalized,
-                            transform.TransformDirection((Vector3.forward + Vector3.left).normalized),
+                            this.transform.TransformDirection((Vector3.forward + Vector3.left).normalized),
                             out this._hit,
                             this._space.MaxValue)) {
           vals[4] = this._space.ClipNormaliseRound(this._hit.distance);
@@ -109,7 +109,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
 
         if (Physics.Raycast(this.transform.position
                             + this._space.MinValue * (Vector3.forward + Vector3.right).normalized,
-                            transform.TransformDirection((Vector3.forward + Vector3.right).normalized),
+                            this.transform.TransformDirection((Vector3.forward + Vector3.right).normalized),
                             out this._hit,
                             this._space.MaxValue)) {
           vals[5] = this._space.ClipNormaliseRound(this._hit.distance);
@@ -119,7 +119,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
 
         if (Physics.Raycast(this.transform.position
                             + this._space.MinValue * (Vector3.back + Vector3.left).normalized,
-                            transform.TransformDirection((Vector3.back + Vector3.left).normalized),
+                            this.transform.TransformDirection((Vector3.back + Vector3.left).normalized),
                             out this._hit,
                             this._space.MaxValue)) {
           vals[6] = this._space.ClipNormaliseRound(this._hit.distance);
@@ -129,7 +129,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
 
         if (Physics.Raycast(this.transform.position
                             + this._space.MinValue * (Vector3.back + Vector3.right).normalized,
-                            transform.TransformDirection((Vector3.back + Vector3.right).normalized),
+                            this.transform.TransformDirection((Vector3.back + Vector3.right).normalized),
                             out this._hit,
                             this._space.MaxValue)) {
           vals[7] = this._space.ClipNormaliseRound(this._hit.distance);
@@ -141,7 +141,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
       } else {
         var vals = new float[27];
         if (Physics.Raycast(this.transform.position + this._space.MinValue * Vector3.forward,
-                            transform.TransformDirection(Vector3.forward),
+                            this.transform.TransformDirection(Vector3.forward),
                             out this._hit,
                             this._space.MaxValue)) {
           vals[0] = this._space.ClipNormaliseRound(this._hit.distance);
@@ -150,7 +150,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
         }
 
         if (Physics.Raycast(this.transform.position + this._space.MinValue * Vector3.left,
-                            transform.TransformDirection(Vector3.left),
+                            this.transform.TransformDirection(Vector3.left),
                             out this._hit,
                             this._space.MaxValue)) {
           vals[1] = this._space.ClipNormaliseRound(this._hit.distance);
@@ -159,7 +159,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
         }
 
         if (Physics.Raycast(this.transform.position + this._space.MinValue * Vector3.right,
-                            transform.TransformDirection(Vector3.right),
+                            this.transform.TransformDirection(Vector3.right),
                             out this._hit,
                             this._space.MaxValue)) {
           vals[2] = this._space.ClipNormaliseRound(this._hit.distance);
@@ -168,7 +168,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
         }
 
         if (Physics.Raycast(this.transform.position + this._space.MinValue * Vector3.back,
-                            transform.TransformDirection(Vector3.back),
+                            this.transform.TransformDirection(Vector3.back),
                             out this._hit,
                             this._space.MaxValue)) {
           vals[3] = this._space.ClipNormaliseRound(this._hit.distance);
@@ -178,7 +178,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
 
         if (Physics.Raycast(this.transform.position
                             + this._space.MinValue * (Vector3.forward + Vector3.left).normalized,
-                            transform.TransformDirection((Vector3.forward + Vector3.left).normalized),
+                            this.transform.TransformDirection((Vector3.forward + Vector3.left).normalized),
                             out this._hit,
                             this._space.MaxValue)) {
           vals[4] = this._space.ClipNormaliseRound(this._hit.distance);
@@ -188,7 +188,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
 
         if (Physics.Raycast(this.transform.position
                             + this._space.MinValue * (Vector3.forward + Vector3.right).normalized,
-                            transform.TransformDirection((Vector3.forward + Vector3.right).normalized),
+                            this.transform.TransformDirection((Vector3.forward + Vector3.right).normalized),
                             out this._hit,
                             this._space.MaxValue)) {
           vals[5] = this._space.ClipNormaliseRound(this._hit.distance);
@@ -198,7 +198,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
 
         if (Physics.Raycast(this.transform.position
                             + this._space.MinValue * (Vector3.back + Vector3.left).normalized,
-                            transform.TransformDirection((Vector3.back + Vector3.left).normalized),
+                            this.transform.TransformDirection((Vector3.back + Vector3.left).normalized),
                             out this._hit,
                             this._space.MaxValue)) {
           vals[6] = this._space.ClipNormaliseRound(this._hit.distance);
@@ -208,7 +208,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
 
         if (Physics.Raycast(this.transform.position
                             + this._space.MinValue * (Vector3.back + Vector3.right).normalized,
-                            transform.TransformDirection((Vector3.back + Vector3.right).normalized),
+                            this.transform.TransformDirection((Vector3.back + Vector3.right).normalized),
                             out this._hit,
                             this._space.MaxValue)) {
           vals[7] = this._space.ClipNormaliseRound(this._hit.distance);

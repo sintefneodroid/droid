@@ -130,6 +130,6 @@ namespace droid.Samples.MultiArmedBandit {
         this._won = false;
       }
     }
-    public override string[] InnerMotionNames => _Indicators.Select(m => Identifier).ToArray();
+    public override string[] InnerMotionNames => this._Indicators.Select(m => this.Identifier).ToArray();
   }
 }

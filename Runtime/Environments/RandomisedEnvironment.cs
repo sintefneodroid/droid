@@ -42,7 +42,7 @@ namespace droid.Runtime.Environments {
       }
 
       this.UpdateConfigurableValues();
-      this.UpdateObserversData();
+      this.UpdateSensorsData();
     }
   }
 }
