@@ -105,9 +105,20 @@ namespace droid.Runtime.Managers {
           this._Message_Server = new MessageServer(this.Configuration.IpAddress,
                                                    this.Configuration.Port,
                                                    false,
-                                                   this.Debugging);
+                                                   #if NEODROID_DEBUG
+                                                   this.Debugging
+                                                   #else
+                                                   false
+                                                   #endif
+                                                  );
         } else {
-          this._Message_Server = new MessageServer(this.Debugging);
+          this._Message_Server = new MessageServer(
+                                                   #if NEODROID_DEBUG
+                                                   this.Debugging
+                                                   #else
+                                                   false
+                                                   #endif
+                                                  );
         }
       } catch (Exception exception) {
         Debug.Log(exception);
@@ -252,6 +263,7 @@ namespace droid.Runtime.Managers {
       set { this._testing_Actuators = value; }
     }
 
+    #if NEODROID_DEBUG
     /// <summary>
     /// </summary>
     public bool Debugging {
@@ -264,6 +276,7 @@ namespace droid.Runtime.Managers {
         this._debugging = value;
       }
     }
+    #endif
 
     /// <summary>
     /// </summary>
@@ -354,8 +367,7 @@ namespace droid.Runtime.Managers {
       #endif
     }
 
-    protected virtual void Setup()
-    { }
+    protected virtual void Setup() { }
 
     /// <summary>
     /// </summary>
