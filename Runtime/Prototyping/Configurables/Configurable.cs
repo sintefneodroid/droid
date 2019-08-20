@@ -1,10 +1,13 @@
-﻿using droid.Runtime.Environments;
+﻿using System;
+using droid.Runtime.Enums;
+using droid.Runtime.Environments;
 using droid.Runtime.GameObjects;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Utilities;
 using UnityEngine;
 using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
+using Object = System.Object;
 
 namespace droid.Runtime.Prototyping.Configurables {
   /// <inheritdoc cref="PrototypingGameObject" />
@@ -33,6 +36,14 @@ namespace droid.Runtime.Prototyping.Configurables {
     }
 
     /// <summary>
+    ///
+    /// </summary>
+    public RandomSamplingMode RandomSamplingMode {
+      get { return this.random_sampling_mode; }
+      set { this.random_sampling_mode = value; }
+    }
+
+    /// <summary>
     /// </summary>
     public virtual void UpdateCurrentConfiguration() { }
 
@@ -44,7 +55,26 @@ namespace droid.Runtime.Prototyping.Configurables {
 
     /// <summary>
     /// </summary>
-    public void EnvironmentReset() { }
+    public void EnvironmentReset() {
+      #if NEODROID_DEBUG
+      if (this.Debugging) {
+        Debug.Log($"OnReset");
+      }
+
+      #endif
+
+      if (this.random_sampling_mode == RandomSamplingMode.On_reset_ && Application.isPlaying) {
+        #if NEODROID_DEBUG
+        if (this.Debugging) {
+          Debug.Log($"Random reconfiguring {this} OnReset");
+        }
+
+        #endif
+        foreach (var v in this.SampleConfigurations()) {
+          this.ApplyConfiguration(v);
+        }
+      }
+    }
 
     /// <summary>
     ///
@@ -79,7 +109,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     ///
     /// </summary>
     public virtual void Tick() {
-      if (this.SampleRandom && Application.isPlaying && this.on_tick) {
+      if (this.RandomSamplingMode == RandomSamplingMode.On_tick_ && Application.isPlaying) {
         foreach (var v in this.SampleConfigurations()) {
           this.ApplyConfiguration(v);
         }
@@ -87,7 +117,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     }
 
     void Update() {
-      if (this.SampleRandom && Application.isPlaying && !this.on_tick) {
+      if (this.RandomSamplingMode == RandomSamplingMode.On_update_ && Application.isPlaying) {
         this.Randomise();
       }
     }
@@ -120,10 +150,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     [SerializeField]
     bool _relative_to_existing_value = false;
 
-    public bool SampleRandom { get { return this._sampleRandom; } set { this._sampleRandom = value; } }
-
-    [SerializeField] bool _sampleRandom = false;
-    [SerializeField] bool on_tick = false;
+    [SerializeField] RandomSamplingMode random_sampling_mode = RandomSamplingMode.On_reset_;
 
     #endregion
   }

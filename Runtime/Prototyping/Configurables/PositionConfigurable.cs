@@ -60,13 +60,17 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._x);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._x);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._y);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._y);
-      this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._z);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._z);
     }
 
     /// <summary>
@@ -77,13 +81,15 @@ namespace droid.Runtime.Prototyping.Configurables {
         return;
       }
 
-      this.ParentEnvironment.UnRegister(this);
       this.ParentEnvironment.UnRegister(this, this._x);
       this.ParentEnvironment.UnRegister(this, this._y);
       this.ParentEnvironment.UnRegister(this, this._z);
     }
 
-    public override ISpace ConfigurableValueSpace { get; }
+    /// <summary>
+    ///
+    /// </summary>
+    public override ISpace ConfigurableValueSpace { get { return this._triple_space; } }
 
     /// <summary>
     /// 
@@ -107,17 +113,21 @@ namespace droid.Runtime.Prototyping.Configurables {
       }
 
       var v = simulator_configuration.ConfigurableValue;
-      if (this.TripleSpace.DecimalGranularity >= 0) {
-        v = (int)Math.Round(v, this.TripleSpace.DecimalGranularity);
-      }
+      /*
 
-      if (this.TripleSpace.MinValues[0].CompareTo(this.TripleSpace.MaxValues[0]) != 0) {
-        //TODO NOT IMPLEMENTED CORRECTLY VelocitySpace should not be index but should check all pairwise values, TripleSpace.MinValues == TripleSpace.MaxValues
-        if (v < this.TripleSpace.MinValues[0] || v > this.TripleSpace.MaxValues[0]) {
-          Debug.Log($"Configurable does not accept input{v}, outside allowed range {this.TripleSpace.MinValues[0]} to {this.TripleSpace.MaxValues[0]}");
-          return; // Do nothing
-        }
-      }
+if (this.TripleSpace.DecimalGranularity >= 0) {
+  v = (int)Math.Round(v, this.TripleSpace.DecimalGranularity);
+}
+
+
+if (this.TripleSpace.MinValues[0].CompareTo(this.TripleSpace.MaxValues[0]) != 0) {
+  //TODO NOT IMPLEMENTED CORRECTLY VelocitySpace should not be index but should check all pairwise values, TripleSpace.MinValues == TripleSpace.MaxValues
+  if (v < this.TripleSpace.MinValues[0] || v > this.TripleSpace.MaxValues[0]) {
+    Debug.Log($"Configurable does not accept input{v}, outside allowed range {this.TripleSpace.MinValues[0]} to {this.TripleSpace.MaxValues[0]}");
+    return; // Do nothing
+  }
+}
+*/
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
@@ -151,22 +161,17 @@ namespace droid.Runtime.Prototyping.Configurables {
       this.transform.position = inv_pos;
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
     public override Configuration[] SampleConfigurations() {
       var sample = this.TripleSpace.Sample();
-      var r = Random.Range(0, 3);
-      switch (r) {
-        case 0:
-          return new[] {new Configuration(this._x, sample.x)};
-
-        case 1:
-          return new[] {new Configuration(this._y, sample.y)};
-
-        case 2:
-          return new[] {new Configuration(this._z, sample.z)};
-
-        default:
-          throw new IndexOutOfRangeException();
-      }
+      return new[] {
+                       new Configuration(this._x, sample.x),
+                       new Configuration(this._y, sample.y),
+                       new Configuration(this._z, sample.z)
+                   };
     }
   }
 }

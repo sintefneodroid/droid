@@ -2,9 +2,9 @@
 using droid.Runtime.Enums;
 using droid.Runtime.Interfaces;
 using UnityEngine;
-
 #if UNITY_EDITOR
 using UnityEditor;
+
 #endif
 
 namespace droid.Runtime.Prototyping.Actuators {
@@ -106,8 +106,8 @@ namespace droid.Runtime.Prototyping.Actuators {
           throw new ArgumentOutOfRangeException();
       }
     }
-    public override string[] InnerMotionNames => new[] { this._Axis_Of_Motion.ToString() };
 
+    public override string[] InnerMotionNames => new[] {this._Axis_Of_Motion.ToString()};
 
     #if UNITY_EDITOR
     void OnDrawGizmosSelected() {
@@ -124,13 +124,21 @@ namespace droid.Runtime.Prototyping.Actuators {
             Debug.DrawLine(position, position + Vector3.forward * 2, Color.green);
             break;
           case Axis.Rot_x_:
-            Handles.DrawWireArc(this.transform.position, this.transform.right, -this.transform.forward, 180, 2);
+            Handles.DrawWireArc(this.transform.position,
+                                this.transform.right,
+                                -this.transform.forward,
+                                180,
+                                2);
             break;
           case Axis.Rot_y_:
             Handles.DrawWireArc(this.transform.position, this.transform.up, -this.transform.right, 180, 2);
             break;
           case Axis.Rot_z_:
-            Handles.DrawWireArc(this.transform.position, this.transform.forward, -this.transform.right, 180, 2);
+            Handles.DrawWireArc(this.transform.position,
+                                this.transform.forward,
+                                -this.transform.right,
+                                180,
+                                2);
             break;
           case Axis.Dir_x_: break;
           case Axis.Dir_y_: break;
@@ -141,6 +149,6 @@ namespace droid.Runtime.Prototyping.Actuators {
         }
       }
     }
-#endif
+    #endif
   }
 }

@@ -24,6 +24,9 @@ namespace droid.Runtime.Structs.Space {
       set { this._distribution_sampler = value; }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Int32 DecimalGranularity {
       get { return this._decimal_granularity; }
       set { this._decimal_granularity = value; }
@@ -31,6 +34,9 @@ namespace droid.Runtime.Structs.Space {
 
     [Range(0, 15)] [SerializeField] int _decimal_granularity;
     [SerializeField] bool normalised;
+    /// <summary>
+    ///
+    /// </summary>
     public Boolean Normalised { get { return this.normalised; } set { this.normalised = value; } }
 
     [SerializeField] Vector3 _Min_Values;
@@ -43,8 +49,15 @@ namespace droid.Runtime.Structs.Space {
       this._distribution_sampler = new DistributionSampler();
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Vector3 Span { get { return this._Max_Values - this._Min_Values; } }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
     public dynamic Sample() {
       var x = this.DistributionSampler.Range(this._Min_Values.x, this._Max_Values.x);
       var y = this.DistributionSampler.Range(this._Min_Values.y, this._Max_Values.y);
@@ -53,6 +66,11 @@ namespace droid.Runtime.Structs.Space {
       return new Vector3(x, y, z);
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
     public Vector3 ClipNormaliseRound(Vector3 v) {
       if (v.x > this._Max_Values.x) {
         v.x = this._Max_Values.x;
@@ -100,6 +118,9 @@ namespace droid.Runtime.Structs.Space {
     /// <returns></returns>
     public float Round(float v) { return (float)Math.Round(v, this.DecimalGranularity); }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Space1 Xspace {
       get {
         return new Space1(this.DecimalGranularity) {
@@ -109,6 +130,9 @@ namespace droid.Runtime.Structs.Space {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Space1 Yspace {
       get {
         return new Space1(this.DecimalGranularity) {
@@ -118,6 +142,9 @@ namespace droid.Runtime.Structs.Space {
       }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public Space1 Zspace {
       get {
         return new Space1(this.DecimalGranularity) {
@@ -185,6 +212,9 @@ namespace droid.Runtime.Structs.Space {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public static Space3 TwentyEighty {
       get {
         return new Space3(new DistributionSampler()) {
@@ -194,17 +224,36 @@ namespace droid.Runtime.Structs.Space {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public static Space3 MinusOneOne {
       get {
         return new Space3(new DistributionSampler()) {_Min_Values = -Vector3.one, MaxValues = Vector3.one};
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Vector3 MinValues { get { return this._Min_Values; } set { this._Min_Values = value; } }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Vector3 MaxValues { get { return this._Max_Values; } set { this._Max_Values = value; } }
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
     public Vector3 Denormalise01(Vector3 v) {  return v.Multiply(this.Span) + this._Min_Values; }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
     public Vector3 Normalise01(Vector3 v)  { return (v - this._Min_Values).Divide(this.Span); }
   }
 }

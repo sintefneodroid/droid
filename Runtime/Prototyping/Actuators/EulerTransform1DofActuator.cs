@@ -61,22 +61,22 @@ namespace droid.Runtime.Prototyping.Actuators {
           break;
         case Axis.Rot_x_: // Rotational
           this.transform.Rotate(Vector3.right, motion.Strength, this._Relative_To);
-          break;
+          return;
         case Axis.Rot_y_: // Rotational
           this.transform.Rotate(Vector3.up, motion.Strength, this._Relative_To);
-          break;
+          return;
         case Axis.Rot_z_: // Rotational
           this.transform.Rotate(Vector3.forward, motion.Strength, this._Relative_To);
-          break;
+          return;
         case Axis.Dir_x_:
           this.transform.Rotate(Vector3.forward, motion.Strength, this._Relative_To);
-          break;
+          return;
         case Axis.Dir_y_:
           this.transform.Rotate(Vector3.up, motion.Strength, this._Relative_To);
-          break;
+          return;
         case Axis.Dir_z_:
           this.transform.Rotate(Vector3.right, motion.Strength, this._Relative_To);
-          break;
+          return;
         default: throw new ArgumentOutOfRangeException();
       }
 
@@ -145,8 +145,6 @@ namespace droid.Runtime.Prototyping.Actuators {
         }
       }
     }
-
-
 
     #endif
 

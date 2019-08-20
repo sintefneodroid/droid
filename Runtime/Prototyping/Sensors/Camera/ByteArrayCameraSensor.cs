@@ -49,15 +49,11 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
         var rt = new RenderTexture(NeodroidConstants._Default_Width,
                                    NeodroidConstants._Default_Height,
                                    0,
-        RenderTextureFormat.ARGBFloat) {
-                                                                                                     filterMode
-                                                                                                         = FilterMode
-                                                                                                             .Point,
-                                                                                                     name
-                                                                                                         =
-                                                                                                         $"rt_{this.Identifier}",
-                                                                                                     enableRandomWrite = true
-                                                                                                 };
+                                   RenderTextureFormat.ARGBFloat) {
+                                                                      filterMode = FilterMode.Point,
+                                                                      name = $"rt_{this.Identifier}",
+                                                                      enableRandomWrite = true
+                                                                  };
         rt.Create();
         this._camera.targetTexture = rt;
         this._texture = new Texture2D(NeodroidConstants._Default_Width,

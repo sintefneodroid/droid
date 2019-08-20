@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-namespace droid.Runtime.Prototyping.Evaluation {
+namespace droid.Runtime.Prototyping.Evaluation.Spatial {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  public class VelocityEvaluation : ObjectiveFunction {
+  public class VelocityEvaluation : SpatialObjectionFunction {
     /// <summary>
     /// </summary>
     [SerializeField]

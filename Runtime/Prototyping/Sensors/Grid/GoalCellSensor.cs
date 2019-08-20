@@ -28,7 +28,7 @@ namespace droid.Runtime.Prototyping.Sensors.Grid {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName { get { return "GoalSensor"; } }
+    public override string PrototypingTypeName { get { return "Goal"; } }
 
     /// <summary>
     /// </summary>
@@ -76,8 +76,8 @@ namespace droid.Runtime.Prototyping.Sensors.Grid {
       if (this.DrawNames) {
         if (this._current_goal) {
           NeodroidUtilities.DrawString(this._current_goal.name,
-                                              this._current_goal.transform.position,
-                                              Color.green);
+                                       this._current_goal.transform.position,
+                                       Color.green);
         }
       }
     }

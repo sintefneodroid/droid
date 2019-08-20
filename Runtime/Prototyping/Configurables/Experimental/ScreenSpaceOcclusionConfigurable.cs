@@ -92,13 +92,21 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._r);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._r);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._g);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._g);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._b);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._b);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._a);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._a);
     }
 
     /// <inheritdoc />

@@ -61,6 +61,10 @@ namespace droid.Runtime.Prototyping.Configurables {
 
     public override ISpace ConfigurableValueSpace { get; }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="obj"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration obj) {
       if (obj.ConfigurableName == this._pos_x) {
         this._position.x = obj.ConfigurableValue;

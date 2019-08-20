@@ -1,10 +1,14 @@
 ﻿using System;
+using UnityEngine;
 
-namespace droid.Runtime.Prototyping.Evaluation {
+namespace droid.Runtime.Prototyping.Evaluation.Spatial {
   /// <summary>
   ///
   /// </summary>
-  public class AvoidCollisionEvaluation : ObjectiveFunction {
+  [AddComponentMenu(EvaluationComponentMenuPath._ComponentMenuPath
+                    + "AvoidCollision"
+                    + EvaluationComponentMenuPath._Postfix)]
+  public class AvoidCollisionEvaluation : SpatialObjectionFunction {
     /// <summary>
     ///
     /// </summary>

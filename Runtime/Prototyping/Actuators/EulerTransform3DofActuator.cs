@@ -72,8 +72,8 @@ namespace droid.Runtime.Prototyping.Actuators {
         this._z = this.Identifier + "RotZ_";
       }
     }
-    
-    public override string[] InnerMotionNames => new[] { this._x, this._y, this._z};
+
+    public override string[] InnerMotionNames => new[] {this._x, this._y, this._z};
 
     /// <summary>
     /// </summary>

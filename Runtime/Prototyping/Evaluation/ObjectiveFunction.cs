@@ -16,7 +16,6 @@ namespace droid.Runtime.Prototyping.Evaluation {
   [Serializable]
   public abstract class ObjectiveFunction : PrototypingGameObject,
                                             //IHasRegister<Term>,
-                                            //IResetable,
                                             IObjectiveFunction {
     /// <summary>
     /// </summary>
@@ -26,7 +25,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
     /// <summary>
     /// </summary>
     [SerializeField]
-    float _failed_reward = -1.0f;
+    protected float _failed_reward = -1.0f;
 
     /// <summary>
     /// </summary>
@@ -50,67 +49,13 @@ namespace droid.Runtime.Prototyping.Evaluation {
       set { this._environment = value; }
     }
 
-    /*
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    /// <param name="term"></param>
-    public virtual void Register(Term term) { this.Register(term, term.Identifier); }
-
-
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    /// <param name="term"></param>
-    /// <param name="identifier"></param>
-    public void Register(Term term, string identifier) {
-      if (!this._Extra_Terms_Dict.ContainsKey(identifier)) {
-        #if NEODROID_DEBUG
-        if (this.Debugging) {
-          Debug.Log($"ObjectiveFunction {this.name} has registered term {identifier}");
-        }
-        #endif
-
-        this._Extra_Terms_Dict.Add(identifier, term);
-        this._Extra_Term_Weights.Add(term, 1);
-      } else {
-        Debug.LogWarning($"WARNING! Please check for duplicates, ObjectiveFunction {this.name} already has term {identifier} registered");
-      }
-    }
-
-    /// <summary>
-    /// </summary>
-    /// <param name="term"></param>
-    /// <param name="identifier"></param>
-    public void UnRegister(Term term, string identifier) {
-      if (this._Extra_Terms_Dict.ContainsKey(identifier)) {
-        #if NEODROID_DEBUG
-        if (this.Debugging) {
-          Debug.Log($"ObjectiveFunction {this.name} unregistered term {identifier}");
-        }
-        #endif
-
-        this._Extra_Term_Weights.Remove(this._Extra_Terms_Dict[identifier]);
-        this._Extra_Terms_Dict.Remove(identifier);
-      }
-    }
-
-    /// <summary>
-    /// </summary>
-    /// <param name="term"></param>
-    public void UnRegister(Term term) { this.UnRegister(term, term.Identifier); }
-*/
-
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public float Evaluate() {
+    public virtual float Evaluate() {
       var signal = 0.0f;
       signal += this.InternalEvaluate();
-      //signal += this.EvaluateExtraTerms();
-
-      //signal = signal * Mathf.Pow(this._internal_discount_factor, this._environment.CurrentFrameNumber);
 
       if (this.EpisodeLength > 0 && this._environment.CurrentFrameNumber >= this.EpisodeLength) {
         #if NEODROID_DEBUG
@@ -126,7 +71,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log(signal);
+        Debug.Log($"Signal for this step: {signal}");
       }
       #endif
 
@@ -149,22 +94,10 @@ namespace droid.Runtime.Prototyping.Evaluation {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void Clear() {
-      /*
-      this._Extra_Term_Weights.Clear();
-      this._Extra_Terms_Dict.Clear();
-      */
-    }
-
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
     protected sealed override void Setup() {
-      //foreach (var go in this._extra_terms_external)
-      //  this.Register(go);
-
       if (this.ParentEnvironment == null) {
-        this.ParentEnvironment = NeodroidSceneUtilities.FindObjectOfType<IAbstractPrototypingEnvironment>();
+        this.ParentEnvironment = NeodroidSceneUtilities
+            .RecursiveFirstSelfSiblingParentGetComponent<AbstractPrototypingEnvironment>(this.transform);
       }
 
       this.PostSetup();
@@ -200,57 +133,15 @@ namespace droid.Runtime.Prototyping.Evaluation {
     /// </summary>
     public abstract void InternalReset();
 
-    /*
-    /// <summary>
-    /// </summary>
-    /// <param name="term"></param>
-    /// <param name="new_weight"></param>
-    public virtual void AdjustExtraTermsWeights(Term term, float new_weight) {
-      if (this._Extra_Term_Weights.ContainsKey(term)) {
-        this._Extra_Term_Weights[term] = new_weight;
-      }
-    }
-
-    /// <summary>
-    /// </summary>
-    /// <returns></returns>
-    public virtual float EvaluateExtraTerms() {
-      float extra_terms_output = 0;
-      foreach (var term in this._Extra_Terms_Dict.Values) {
-        #if NEODROID_DEBUG
-        if (this.Debugging) {
-          Debug.Log($"Extra term: {term}");
-        }
-        #endif
-
-        extra_terms_output += this._Extra_Term_Weights[term] * term.Evaluate();
-      }
-
-      #if NEODROID_DEBUG
-      if (this.Debugging) {
-        Debug.Log($"Extra terms signal: {extra_terms_output}");
-      }
-      #endif
-      return extra_terms_output;
-    }
-*/
-
     #region Fields
 
     [Header("References", order = 100)]
     [SerializeField]
-    //[SerializeField]float _internal_discount_factor = 1.0f;
-    IAbstractPrototypingEnvironment _environment = null;
-
-    //[SerializeField] Term[] _extra_terms_external;
-
-    //[SerializeField] protected Dictionary<string, Term> _Extra_Terms_Dict = new Dictionary<string, Term>();
-
-    //[SerializeField] protected Dictionary<Term, float> _Extra_Term_Weights = new Dictionary<Term, float>();
+    protected IAbstractPrototypingEnvironment _environment = null;
 
     [Header("General", order = 101)]
     [SerializeField]
-    float _last_signal = 0f;
+    protected float _last_signal = 0f;
 
     /// <summary>
     ///

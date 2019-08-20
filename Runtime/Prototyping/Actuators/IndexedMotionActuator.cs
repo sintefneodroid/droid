@@ -62,7 +62,7 @@ namespace droid.Runtime.Prototyping.Actuators {
         this.transform.Translate(vec, this._Relative_To);
       }
     }
-    
-    public override string[] InnerMotionNames => new[] { "forward", "back", "left", "right" };
+
+    public override string[] InnerMotionNames => new[] {"forward", "back", "left", "right"};
   }
 }

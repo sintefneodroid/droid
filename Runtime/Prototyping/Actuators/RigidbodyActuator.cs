@@ -3,7 +3,6 @@ using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Utilities;
 using UnityEngine;
 using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
-
 #if UNITY_EDITOR
 using UnityEditor;
 
@@ -56,14 +55,9 @@ namespace droid.Runtime.Prototyping.Actuators {
       this._rot_y = this.Identifier + "RotY_";
       this._rot_z = this.Identifier + "RotZ_";
     }
-    public override string[] InnerMotionNames => new[] {
-        this._x,
-        this._y,
-        this._z,
-        this._rot_x,
-        this._rot_y,
-        this._rot_z
-    };
+
+    public override string[] InnerMotionNames =>
+        new[] {this._x, this._y, this._z, this._rot_x, this._rot_y, this._rot_z};
 
     /// <summary>
     /// </summary>
@@ -71,23 +65,29 @@ namespace droid.Runtime.Prototyping.Actuators {
       //this.ParentActor = NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.ParentActor, (Actuator)this);
 
       this.Parent =
-          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._x);
-      this.Parent =
-          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._y);
-      this.Parent =
-          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, (Actuator)this, this._z);
+          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
+                                                          (Actuator)this,
+                                                          this._x);
       this.Parent =
           NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
-                                              (Actuator)this,
-                                              this._rot_x);
+                                                          (Actuator)this,
+                                                          this._y);
       this.Parent =
           NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
-                                              (Actuator)this,
-                                              this._rot_y);
+                                                          (Actuator)this,
+                                                          this._z);
       this.Parent =
           NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
-                                              (Actuator)this,
-                                              this._rot_z);
+                                                          (Actuator)this,
+                                                          this._rot_x);
+      this.Parent =
+          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
+                                                          (Actuator)this,
+                                                          this._rot_y);
+      this.Parent =
+          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
+                                                          (Actuator)this,
+                                                          this._rot_z);
     }
 
     /// <summary>
@@ -145,19 +145,18 @@ namespace droid.Runtime.Prototyping.Actuators {
       if (this.enabled) {
         var position = this.transform.position;
 
-          Handles.DrawWireArc(this.transform.position, this.transform.right, -this.transform.forward, 180, 2);
+        Handles.DrawWireArc(this.transform.position, this.transform.right, -this.transform.forward, 180, 2);
 
-          Handles.DrawWireArc(this.transform.position, this.transform.up, -this.transform.right, 180, 2);
+        Handles.DrawWireArc(this.transform.position, this.transform.up, -this.transform.right, 180, 2);
 
-          Handles.DrawWireArc(this.transform.position, this.transform.forward, -this.transform.right, 180, 2);
+        Handles.DrawWireArc(this.transform.position, this.transform.forward, -this.transform.right, 180, 2);
 
-          Debug.DrawLine(position, position + Vector3.right * 2, Color.green);
+        Debug.DrawLine(position, position + Vector3.right * 2, Color.green);
 
-          Debug.DrawLine(position, position + Vector3.forward * 2, Color.green);
+        Debug.DrawLine(position, position + Vector3.forward * 2, Color.green);
 
-          Debug.DrawLine(position, position + Vector3.up * 2, Color.green);
-        }
-
+        Debug.DrawLine(position, position + Vector3.up * 2, Color.green);
+      }
     }
     #endif
   }

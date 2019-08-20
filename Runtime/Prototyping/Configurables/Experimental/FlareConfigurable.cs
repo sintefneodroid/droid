@@ -53,20 +53,28 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     protected override void RegisterComponent() {
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._shadow_strength);
-      this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._color_r);
-      this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._color_b);
-      this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._color_g);
-      this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._intensity);
+                                                          (Configurable)this,
+                                                          this._shadow_strength);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._indirect_multiplier);
+                                                          (Configurable)this,
+                                                          this._color_r);
+      this.ParentEnvironment =
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._color_b);
+      this.ParentEnvironment =
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._color_g);
+      this.ParentEnvironment =
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._intensity);
+      this.ParentEnvironment =
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._indirect_multiplier);
     }
 
     /// <inheritdoc />

@@ -40,11 +40,14 @@ namespace droid.Runtime.Prototyping.Configurables {
 
     [SerializeField]
     Space3 _euler_space =
-        new Space3(new DistributionSampler(), 2) {
+        new Space3(new DistributionSampler(), 4) {
                                                      MinValues = Vector3.zero,
                                                      MaxValues = new Vector3(360f, 360f, 360f)
                                                  };
 
+    /// <summary>
+    ///
+    /// </summary>
     public Space3 TripleSpace { get { return this._euler_space; } }
 
     /// <inheritdoc />
@@ -64,13 +67,21 @@ namespace droid.Runtime.Prototyping.Configurables {
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._x);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._x);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._y);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._y);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._z);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._z);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._w);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._w);
     }
 
     /// <inheritdoc />
@@ -88,7 +99,10 @@ namespace droid.Runtime.Prototyping.Configurables {
       this.ParentEnvironment.UnRegister(this, this._w);
     }
 
-    public override ISpace ConfigurableValueSpace { get; }
+    /// <summary>
+    ///
+    /// </summary>
+    public override ISpace ConfigurableValueSpace { get { return this.TripleSpace; } }
 
     /// <summary>
     /// 
@@ -101,6 +115,10 @@ namespace droid.Runtime.Prototyping.Configurables {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="simulator_configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration) {
       var rot = this.transform.rotation;
       if (this._use_environments_space) {

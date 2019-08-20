@@ -44,15 +44,38 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     public Vector3 Position { get { return this._position; } set { this._position = value; } }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Vector3 Direction { get { return this._direction; } set { this._direction = value; } }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Vector3 Rotation { get { return this._rotation; } set { this._rotation = value; } }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Space3 PositionSpace { get; } = new Space3();
+
+    /// <summary>
+    ///
+    /// </summary>
     public Space3 DirectionSpace { get; } = new Space3();
+
+    /// <summary>
+    ///
+    /// </summary>
     public Space3 RotationSpace { get; } = new Space3();
 
-    public override ISpace ConfigurableValueSpace { get; }
+    public override ISpace ConfigurableValueSpace {
+      get {
+        return this.PositionSpace;
+        //return DirectionSpace;
+        //return RotationSpace;
+      }
+    }
 
     /// <summary>
     /// </summary>
@@ -75,23 +98,41 @@ namespace droid.Runtime.Prototyping.Configurables {
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._x);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._x);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._y);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._y);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._z);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._z);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._dir_x);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._dir_x);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._dir_y);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._dir_y);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._dir_z);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._dir_z);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._rot_x);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._rot_x);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._rot_y);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._rot_y);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._rot_z);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._rot_z);
     }
 
     /// <inheritdoc />

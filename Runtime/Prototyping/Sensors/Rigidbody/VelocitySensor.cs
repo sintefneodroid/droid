@@ -18,7 +18,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rigidbody {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName { get { return "Rigidbody"; } }
+    public override string PrototypingTypeName { get { return "Velocity"; } }
 
     /// <summary>
     /// </summary>
@@ -50,10 +50,6 @@ namespace droid.Runtime.Prototyping.Sensors.Rigidbody {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
-
-
-      this._rigidbody = this.GetComponent<UnityEngine.Rigidbody>();
-    }
+    protected override void PreSetup() { this._rigidbody = this.GetComponent<UnityEngine.Rigidbody>(); }
   }
 }

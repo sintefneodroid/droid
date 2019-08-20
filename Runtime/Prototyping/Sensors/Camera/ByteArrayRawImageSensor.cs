@@ -49,8 +49,8 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
         this.texture2D = new Texture2D(this.webcam_texture.width,
                                        this.webcam_texture.height,
                                        GraphicsFormat.R8G8B8A8_UNorm,
-                                       0
-                                       ,TextureCreationFlags.None);
+                                       0,
+                                       TextureCreationFlags.None);
       }
     }
 
@@ -109,27 +109,24 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
       get {
         var s = "Unknown";
 
-
-            var texture = this.texture2D;
-            switch (texture.graphicsFormat) {
-              case GraphicsFormat.R8G8B8A8_UNorm:
-              case GraphicsFormat.R8_UInt:
-                s = "UINT8";
-                break;
-              case GraphicsFormat.R16_SFloat:
-              case GraphicsFormat.R16G16B16A16_SFloat:
-                s = "FLOAT16";
-                break;
-              case GraphicsFormat.R32_SFloat:
-              case GraphicsFormat.R32G32B32A32_SFloat:
-                s = "FLOAT32";
-                break;
-              default:
-                s = "Unknown";
-                break;
-            }
-
-
+        var texture = this.texture2D;
+        switch (texture.graphicsFormat) {
+          case GraphicsFormat.R8G8B8A8_UNorm:
+          case GraphicsFormat.R8_UInt:
+            s = "UINT8";
+            break;
+          case GraphicsFormat.R16_SFloat:
+          case GraphicsFormat.R16G16B16A16_SFloat:
+            s = "FLOAT16";
+            break;
+          case GraphicsFormat.R32_SFloat:
+          case GraphicsFormat.R32G32B32A32_SFloat:
+            s = "FLOAT32";
+            break;
+          default:
+            s = "Unknown";
+            break;
+        }
 
         return s;
       }

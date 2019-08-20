@@ -3,14 +3,14 @@ using droid.Runtime.GameObjects.ChildSensors;
 using droid.Runtime.Utilities.Extensions;
 using UnityEngine;
 
-namespace droid.Runtime.Prototyping.Evaluation {
+namespace droid.Runtime.Prototyping.Evaluation.Spatial {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
   [AddComponentMenu(EvaluationComponentMenuPath._ComponentMenuPath
                     + "PoseDeviance"
                     + EvaluationComponentMenuPath._Postfix)]
-  public class PoseDeviance : ObjectiveFunction {
+  public class PoseDeviance : SpatialObjectionFunction {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
@@ -131,7 +131,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
     }
 
     void OnChildTriggerEnter(GameObject child_sensor_game_object, Collision collision) {
-      if(collision.collider.CompareTag("Obstruction")) {
+      if (collision.collider.CompareTag("Obstruction")) {
         if (this._terminate_on_obstruction_collision) {
           this.ParentEnvironment.Terminate("Collided with obstruction");
         }
@@ -141,7 +141,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
     }
 
     void OnChildTriggerEnter(GameObject child_sensor_game_object, Collider collider1) {
-      if(collider1.CompareTag("Obstruction")) {
+      if (collider1.CompareTag("Obstruction")) {
         if (this._terminate_on_obstruction_collision) {
           this.ParentEnvironment.Terminate("Collided with obstruction");
         }

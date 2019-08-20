@@ -65,7 +65,8 @@ namespace droid.Runtime.Prototyping.Actuators {
       this._movement = this.Identifier + "Movement_";
       this._turn = this.Identifier + "Turn_";
     }
-    public override string[] InnerMotionNames => new[] { this._movement, this._turn };
+
+    public override string[] InnerMotionNames => new[] {this._movement, this._turn};
 
     /// <inheritdoc />
     /// <summary>
@@ -73,14 +74,15 @@ namespace droid.Runtime.Prototyping.Actuators {
     protected override void RegisterComponent() {
       this.Parent =
           NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
-                                              (Actuator)this,
-                                              this._movement);
+                                                          (Actuator)this,
+                                                          this._movement);
       this.Parent =
           NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
-                                              (Actuator)this,
-                                              this._turn);
+                                                          (Actuator)this,
+                                                          this._turn);
 
-      this._parent_environment = NeodroidRegistrationUtilities.RegisterComponent(this._parent_environment, this);
+      this._parent_environment =
+          NeodroidRegistrationUtilities.RegisterComponent(this._parent_environment, this);
 
       if (this._parent_environment != null) {
         this._parent_environment.PreStepEvent += this.PreStep;

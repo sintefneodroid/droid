@@ -8,6 +8,7 @@ using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 namespace droid.Runtime.Prototyping.Configurables {
   /// <inheritdoc />
   /// <summary>
+  /// Configurable for scaling
   /// </summary>
   [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
                     + "Size"
@@ -44,11 +45,17 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._x);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._x);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._y);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._y);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._z);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._z);
     }
 
     /// <inheritdoc />
@@ -64,7 +71,7 @@ namespace droid.Runtime.Prototyping.Configurables {
       this.ParentEnvironment.UnRegister(this, this._z);
     }
 
-    public override ISpace ConfigurableValueSpace { get; }
+    public override ISpace ConfigurableValueSpace { get { return this._space; } }
 
     /// <summary>
     /// </summary>
@@ -92,19 +99,13 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     /// <returns></returns>
     public override Configuration[] SampleConfigurations() {
-      var sample = Space1.ZeroOne.Sample();
-
       var v = this._space.Sample();
 
-      if (sample < .33f) {
-        return new[] {new Configuration(this._x, v.x)};
-      }
-
-      if (sample > .66f) {
-        return new[] {new Configuration(this._y, v.y)};
-      }
-
-      return new[] {new Configuration(this._z, v.z)};
+      return new[] {
+                       new Configuration(this._x, v.x),
+                       new Configuration(this._y, v.y),
+                       new Configuration(this._z, v.z)
+                   };
     }
   }
 }

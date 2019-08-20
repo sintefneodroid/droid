@@ -28,8 +28,8 @@ namespace droid.Runtime.Prototyping.Actuators.WheelColliderActuator {
     protected override void InnerApplyMotion(IMotion motion) {
       this._wheel_collider.motorTorque = motion.Strength;
     }
-        
-    public override string[] InnerMotionNames => new[] { "motorTorque" };
+
+    public override string[] InnerMotionNames => new[] {"motorTorque"};
     void FixedUpdate() { ApplyLocalPositionToVisuals(this._wheel_collider); }
 
     /// <summary>

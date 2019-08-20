@@ -6,16 +6,15 @@ using droid.Runtime.Prototyping.Sensors;
 using droid.Runtime.Utilities;
 using droid.Runtime.Utilities.Extensions;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
-namespace droid.Runtime.Prototyping.Evaluation {
+namespace droid.Runtime.Prototyping.Evaluation.Spatial {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
   [AddComponentMenu(EvaluationComponentMenuPath._ComponentMenuPath
                     + "RestInArea"
                     + EvaluationComponentMenuPath._Postfix)]
-  public class RestInArea : ObjectiveFunction {
+  public class RestInArea : SpatialObjectionFunction {
     [SerializeField] Actor _actor = null;
 
     [SerializeField] Collider _area = null;

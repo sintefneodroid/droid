@@ -5,9 +5,8 @@ using droid.Runtime.Prototyping.Sensors;
 using droid.Runtime.Utilities;
 using droid.Runtime.Utilities.Extensions;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
-namespace droid.Runtime.Prototyping.Evaluation {
+namespace droid.Runtime.Prototyping.Evaluation.Spatial {
   /// <summary>
   /// 
   /// </summary>
@@ -29,7 +28,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
   [AddComponentMenu(EvaluationComponentMenuPath._ComponentMenuPath
                     + "ReachArea"
                     + EvaluationComponentMenuPath._Postfix)]
-  public class ReachArea : ObjectiveFunction {
+  public class ReachArea : SpatialObjectionFunction {
     [SerializeField] Collider _actor = null;
 
     [SerializeField] Collider _area = null;

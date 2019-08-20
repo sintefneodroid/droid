@@ -37,6 +37,9 @@ namespace droid.Runtime.Structs.Space {
     [SerializeField]
     DistributionSampler _distribution_sampler;
 
+    /// <summary>
+    ///
+    /// </summary>
     public DistributionSampler DistributionSampler {
       get { return this._distribution_sampler; }
       set { this._distribution_sampler = value; }
@@ -205,6 +208,18 @@ namespace droid.Runtime.Structs.Space {
       this._Decimal_Granularity = (int)vector3_field.z;
       this._Max_Value = vector3_field.y;
       this._Min_Value = vector3_field.x;
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="a"></param>
+    /// <param name="b"></param>
+    /// <returns></returns>
+    public static Space1 operator*(Space1 a, float b) {
+      a.MaxValue *= b;
+      a.MinValue *= b;
+      return a;
     }
   }
 }

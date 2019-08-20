@@ -84,7 +84,6 @@ namespace droid.Runtime.Prototyping.Actuators {
                                                           this,
                                                           this._z);
     }
-    public override string[] InnerMotionNames => new[] { this._x, this._y, this._z };
 
     /// <summary>
     ///
@@ -94,6 +93,8 @@ namespace droid.Runtime.Prototyping.Actuators {
       this.Parent?.UnRegister(this, this._y);
       this.Parent?.UnRegister(this, this._z);
     }
+
+    public override string[] InnerMotionNames => new[] {this._x, this._y, this._z};
 
     /// <inheritdoc />
     /// <summary>

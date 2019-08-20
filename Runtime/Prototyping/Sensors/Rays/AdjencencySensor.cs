@@ -58,7 +58,6 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
     /// <summary>
     /// </summary>
     public override void UpdateObservation() {
-
       if (this._is_2_d) {
         var vals = new float[8];
         if (Physics.Raycast(this.transform.position + this._space.MinValue * Vector3.forward,
@@ -228,85 +227,144 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
     void OnDrawGizmosSelected() {
       if (this.enabled) {
         var position = this.transform.position;
-        Debug.DrawLine(position, this.transform.TransformDirection(position - Vector3.forward * this._space.MaxValue), this
-        ._color);
-        Debug.DrawLine(position, this.transform.TransformDirection(position - Vector3.left * this._space.MaxValue), this._color);
-        Debug.DrawLine(position, this.transform.TransformDirection(position - Vector3.right * this._space.MaxValue), this._color);
-        Debug.DrawLine(position, this.transform.TransformDirection(position - Vector3.back * this._space.MaxValue), this._color);
         Debug.DrawLine(position,
-                       this.transform.TransformDirection(position - (Vector3.forward + Vector3.left).normalized * this._space.MaxValue),
+                       this.transform.TransformDirection(position - Vector3.forward * this._space.MaxValue),
                        this._color);
         Debug.DrawLine(position,
-                       this.transform.TransformDirection(position - (Vector3.forward + Vector3.right).normalized * this._space.MaxValue),
+                       this.transform.TransformDirection(position - Vector3.left * this._space.MaxValue),
                        this._color);
         Debug.DrawLine(position,
-                       this.transform.TransformDirection(position - (Vector3.back + Vector3.left).normalized * this._space.MaxValue),
+                       this.transform.TransformDirection(position - Vector3.right * this._space.MaxValue),
                        this._color);
         Debug.DrawLine(position,
-                       this.transform.TransformDirection(position - (Vector3.back + Vector3.right).normalized * this._space.MaxValue),
+                       this.transform.TransformDirection(position - Vector3.back * this._space.MaxValue),
+                       this._color);
+        Debug.DrawLine(position,
+                       this.transform.TransformDirection(position
+                                                         - (Vector3.forward + Vector3.left).normalized
+                                                         * this._space.MaxValue),
+                       this._color);
+        Debug.DrawLine(position,
+                       this.transform.TransformDirection(position
+                                                         - (Vector3.forward + Vector3.right).normalized
+                                                         * this._space.MaxValue),
+                       this._color);
+        Debug.DrawLine(position,
+                       this.transform.TransformDirection(position
+                                                         - (Vector3.back + Vector3.left).normalized
+                                                         * this._space.MaxValue),
+                       this._color);
+        Debug.DrawLine(position,
+                       this.transform.TransformDirection(position
+                                                         - (Vector3.back + Vector3.right).normalized
+                                                         * this._space.MaxValue),
                        this._color);
         if (!this._is_2_d) {
           var position1 = this.transform.position;
-          Debug.DrawLine(position1, this.transform.TransformDirection(position1 - Vector3.up * this._space.MaxValue), this._color);
-          Debug.DrawLine(position1, this.transform.TransformDirection(position1 - Vector3.down * this._space.MaxValue), this._color);
-
           Debug.DrawLine(position1,
-                         this.transform.TransformDirection(position1 - (Vector3.up + Vector3.left).normalized * this._space.MaxValue),
+                         this.transform.TransformDirection(position1 - Vector3.up * this._space.MaxValue),
                          this._color);
           Debug.DrawLine(position1,
-                         this.transform.TransformDirection(position1 - (Vector3.up + Vector3.right).normalized * this._space.MaxValue),
-                         this._color);
-          Debug.DrawLine(position1,
-                         this.transform.TransformDirection(position1 - (Vector3.up + Vector3.forward).normalized * this._space.MaxValue),
-                         this._color);
-          Debug.DrawLine(position1,
-                         this.transform.TransformDirection(position1 - (Vector3.up + Vector3.back).normalized * this._space.MaxValue),
+                         this.transform.TransformDirection(position1 - Vector3.down * this._space.MaxValue),
                          this._color);
 
           Debug.DrawLine(position1,
-                         this.transform.TransformDirection(position1 - (Vector3.down + Vector3.left).normalized * this._space.MaxValue),
+                         this.transform.TransformDirection(position1
+                                                           - (Vector3.up + Vector3.left).normalized
+                                                           * this._space.MaxValue),
+                         this._color);
+          Debug.DrawLine(position1,
+                         this.transform.TransformDirection(position1
+                                                           - (Vector3.up + Vector3.right).normalized
+                                                           * this._space.MaxValue),
+                         this._color);
+          Debug.DrawLine(position1,
+                         this.transform.TransformDirection(position1
+                                                           - (Vector3.up + Vector3.forward).normalized
+                                                           * this._space.MaxValue),
+                         this._color);
+          Debug.DrawLine(position1,
+                         this.transform.TransformDirection(position1
+                                                           - (Vector3.up + Vector3.back).normalized
+                                                           * this._space.MaxValue),
                          this._color);
 
           Debug.DrawLine(position1,
-                         this.transform.TransformDirection(position1 - (Vector3.down + Vector3.right).normalized * this._space.MaxValue),
+                         this.transform.TransformDirection(position1
+                                                           - (Vector3.down + Vector3.left).normalized
+                                                           * this._space.MaxValue),
                          this._color);
 
           Debug.DrawLine(position1,
-                         this.transform.TransformDirection(position1 - (Vector3.down + Vector3.forward).normalized * this._space.MaxValue),
+                         this.transform.TransformDirection(position1
+                                                           - (Vector3.down + Vector3.right).normalized
+                                                           * this._space.MaxValue),
                          this._color);
 
           Debug.DrawLine(position1,
-                         this.transform.TransformDirection(position1 - (Vector3.down + Vector3.back).normalized * this._space.MaxValue),
+                         this.transform.TransformDirection(position1
+                                                           - (Vector3.down + Vector3.forward).normalized
+                                                           * this._space.MaxValue),
                          this._color);
 
           Debug.DrawLine(position1,
-                         this.transform.TransformDirection(position1 - (Vector3.down + Vector3.forward + Vector3.left).normalized * this._space.MaxValue),
+                         this.transform.TransformDirection(position1
+                                                           - (Vector3.down + Vector3.back).normalized
+                                                           * this._space.MaxValue),
                          this._color);
 
           Debug.DrawLine(position1,
-                         this.transform.TransformDirection(position1 - (Vector3.down + Vector3.forward + Vector3.right).normalized * this._space.MaxValue),
-                         this._color);
-          Debug.DrawLine(position1,
-                         this.transform.TransformDirection(position1 - (Vector3.down + Vector3.back + Vector3.left).normalized * this._space.MaxValue),
-                         this._color);
-
-          Debug.DrawLine(position1,
-                         this.transform.TransformDirection(position1 - (Vector3.down + Vector3.back + Vector3.right).normalized * this._space.MaxValue),
+                         this.transform.TransformDirection(position1
+                                                           - (Vector3.down + Vector3.forward + Vector3.left)
+                                                           .normalized
+                                                           * this._space.MaxValue),
                          this._color);
 
           Debug.DrawLine(position1,
-                         this.transform.TransformDirection(position1 - (Vector3.up + Vector3.forward + Vector3.left).normalized * this._space.MaxValue),
+                         this.transform.TransformDirection(position1
+                                                           - (Vector3.down + Vector3.forward + Vector3.right)
+                                                           .normalized
+                                                           * this._space.MaxValue),
+                         this._color);
+          Debug.DrawLine(position1,
+                         this.transform.TransformDirection(position1
+                                                           - (Vector3.down + Vector3.back + Vector3.left)
+                                                           .normalized
+                                                           * this._space.MaxValue),
                          this._color);
 
           Debug.DrawLine(position1,
-                         this.transform.TransformDirection(position1 - (Vector3.up + Vector3.forward + Vector3.right).normalized * this._space.MaxValue),
-                         this._color);
-          Debug.DrawLine(position1,
-                         this.transform.TransformDirection(position1 - (Vector3.up + Vector3.back + Vector3.left).normalized * this._space.MaxValue),
+                         this.transform.TransformDirection(position1
+                                                           - (Vector3.down + Vector3.back + Vector3.right)
+                                                           .normalized
+                                                           * this._space.MaxValue),
                          this._color);
 
           Debug.DrawLine(position1,
-                         this.transform.TransformDirection(position1 - (Vector3.up + Vector3.back + Vector3.right).normalized * this._space.MaxValue),
+                         this.transform.TransformDirection(position1
+                                                           - (Vector3.up + Vector3.forward + Vector3.left)
+                                                           .normalized
+                                                           * this._space.MaxValue),
+                         this._color);
+
+          Debug.DrawLine(position1,
+                         this.transform.TransformDirection(position1
+                                                           - (Vector3.up + Vector3.forward + Vector3.right)
+                                                           .normalized
+                                                           * this._space.MaxValue),
+                         this._color);
+          Debug.DrawLine(position1,
+                         this.transform.TransformDirection(position1
+                                                           - (Vector3.up + Vector3.back + Vector3.left)
+                                                           .normalized
+                                                           * this._space.MaxValue),
+                         this._color);
+
+          Debug.DrawLine(position1,
+                         this.transform.TransformDirection(position1
+                                                           - (Vector3.up + Vector3.back + Vector3.right)
+                                                           .normalized
+                                                           * this._space.MaxValue),
                          this._color);
         }
       }

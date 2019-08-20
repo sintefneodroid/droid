@@ -44,9 +44,6 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     public Quaternion ObservationValue { get { return this.observation_value; } }
 
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
     public Space4 QuadSpace { get { return this._quad_space; } }
 
     /// <inheritdoc />
@@ -64,13 +61,21 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._x);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._x);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._y);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._y);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._z);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._z);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._w);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._w);
     }
 
     /// <inheritdoc />
@@ -87,7 +92,10 @@ namespace droid.Runtime.Prototyping.Configurables {
       this.ParentEnvironment.UnRegister(this, this._w);
     }
 
-    public override ISpace ConfigurableValueSpace { get; }
+    /// <summary>
+    ///
+    /// </summary>
+    public override ISpace ConfigurableValueSpace { get { return this._quad_space; } }
 
     /// <inheritdoc />
     ///  <summary>
@@ -100,6 +108,10 @@ namespace droid.Runtime.Prototyping.Configurables {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="simulator_configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration) {
       var rot = this.transform.rotation;
       if (this.ParentEnvironment && this._use_environments_space) {
@@ -220,24 +232,12 @@ namespace droid.Runtime.Prototyping.Configurables {
     ///  <returns></returns>
     public override Configuration[] SampleConfigurations() {
       var sample = this.QuadSpace.Sample();
-
-      var r = Random.Range(0, 4);
-      switch (r) {
-        case 0:
-          return new[] {new Configuration(this._x, sample.x)};
-
-        case 1:
-          return new[] {new Configuration(this._y, sample.y)};
-
-        case 2:
-          return new[] {new Configuration(this._z, sample.z)};
-
-        case 3:
-          return new[] {new Configuration(this._w, sample.w)};
-
-        default:
-          throw new IndexOutOfRangeException();
-      }
+      return new[] {
+                       new Configuration(this._x, sample.x),
+                       new Configuration(this._y, sample.y),
+                       new Configuration(this._z, sample.z),
+                       new Configuration(this._w, sample.w)
+                   };
     }
   }
 }

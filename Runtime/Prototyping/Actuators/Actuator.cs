@@ -16,7 +16,6 @@ namespace droid.Runtime.Prototyping.Actuators {
   [ExecuteInEditMode]
   [Serializable]
   public abstract class Actuator : PrototypingGameObject,
-                                   //IResetable,
                                    IActuator {
     /// <summary>
     /// </summary>
@@ -87,7 +86,8 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// </summary>
     protected override void RegisterComponent() {
       this._overriden = false;
-      this.Parent = NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, true);
+      this.Parent =
+          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, true);
     }
 
     /// <inheritdoc />
@@ -108,6 +108,7 @@ namespace droid.Runtime.Prototyping.Actuators {
     protected abstract void InnerApplyMotion(IMotion motion);
 
     public abstract string[] InnerMotionNames { get; }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>

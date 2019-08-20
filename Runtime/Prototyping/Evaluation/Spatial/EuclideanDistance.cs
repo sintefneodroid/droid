@@ -1,11 +1,14 @@
 ﻿using droid.Runtime.Prototyping.Actors;
 using UnityEngine;
 
-namespace droid.Runtime.Prototyping.Evaluation {
+namespace droid.Runtime.Prototyping.Evaluation.Spatial {
+  /// <summary>
+  ///
+  /// </summary>
   [AddComponentMenu(EvaluationComponentMenuPath._ComponentMenuPath
                     + "EuclideanDistance"
                     + EvaluationComponentMenuPath._Postfix)]
-  class EuclideanDistance : ObjectiveFunction {
+  class EuclideanDistance : SpatialObjectionFunction {
     [SerializeField] Transform _g1;
     [SerializeField] Transform _g2;
 

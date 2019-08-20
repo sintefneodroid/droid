@@ -13,8 +13,9 @@ namespace droid.Runtime.Prototyping.Configurables {
   public class ChildSelectorConfigurable : Configurable,
                                            ICategoryProvider {
     [SerializeField] GameObject active;
-    [SerializeField] GameObject[] children ;
+    [SerializeField] GameObject[] children;
     [SerializeField] int len;
+    [SerializeField] ISpace _configurable_value_space;
 
     /// <summary>
     ///
@@ -36,12 +37,12 @@ namespace droid.Runtime.Prototyping.Configurables {
 
       this.len = this.transform.childCount;
 
-      if(this.active) {
+      if (this.active) {
         this.active.SetActive(true);
       }
     }
 
-    public override ISpace ConfigurableValueSpace { get; }
+    public override ISpace ConfigurableValueSpace { get { return this._configurable_value_space; } }
 
     /// <summary>
     ///
@@ -61,7 +62,7 @@ namespace droid.Runtime.Prototyping.Configurables {
         this.active = this.children[this.CurrentCategoryValue];
       }
 
-      if(this.active) {
+      if (this.active) {
         this.active.SetActive(true);
       }
     }

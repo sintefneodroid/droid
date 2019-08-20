@@ -11,7 +11,7 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
   /// <summary>
   /// </summary>
   [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
-                    + "Position2DSensor"
+                    + "Position2D"
                     + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [Serializable]
@@ -89,7 +89,6 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     protected override void PreSetup() { }
 
     #if UNITY_EDITOR
-
 
     void OnDrawGizmosSelected() {
       if (this.enabled) {

@@ -3,16 +3,15 @@ using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Utilities;
 using droid.Runtime.Utilities.Grid;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
-namespace droid.Runtime.Prototyping.Evaluation {
+namespace droid.Runtime.Prototyping.Evaluation.Spatial {
   /// <summary>
   ///
   /// </summary>
   [AddComponentMenu(EvaluationComponentMenuPath._ComponentMenuPath
                     + "ReachGoal"
                     + EvaluationComponentMenuPath._Postfix)]
-  public class ReachGoal : ObjectiveFunction {
+  public class ReachGoal : SpatialObjectionFunction {
     [SerializeField] Actor _actor = null;
 
     [SerializeField] bool _based_on_tags = false;

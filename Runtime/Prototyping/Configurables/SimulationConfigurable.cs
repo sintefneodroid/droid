@@ -44,20 +44,28 @@ namespace droid.Runtime.Prototyping.Configurables {
     protected override void RegisterComponent() {
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._quality_level);
+                                                          (Configurable)this,
+                                                          this._quality_level);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._target_frame_rate);
+                                                          (Configurable)this,
+                                                          this._target_frame_rate);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._width);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._width);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._height);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._height);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._fullscreen);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._fullscreen);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._time_scale);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._time_scale);
     }
 
     /// <summary>
@@ -75,7 +83,12 @@ namespace droid.Runtime.Prototyping.Configurables {
       this.ParentEnvironment.UnRegister(this, this._fullscreen);
     }
 
-    public override ISpace ConfigurableValueSpace { get; }
+    /// <summary>
+    ///
+    /// </summary>
+    public override ISpace ConfigurableValueSpace {
+      get { return new Space1(0) {MinValue = 0, MaxValue = 0}; }
+    }
 
     /// <summary>
     /// </summary>
