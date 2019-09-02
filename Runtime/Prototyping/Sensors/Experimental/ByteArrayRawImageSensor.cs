@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using droid.Runtime.Interfaces;
-using droid.Runtime.Utilities.Extensions;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.UI;
-using Object = System.Object;
 
-namespace droid.Runtime.Prototyping.Sensors.Camera {
+namespace droid.Runtime.Prototyping.Sensors.Experimental {
   /// <summary>
   ///
   /// </summary>

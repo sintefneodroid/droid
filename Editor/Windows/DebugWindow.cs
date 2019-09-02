@@ -73,7 +73,7 @@ namespace droid.Editor.Windows {
     }
 
     void FindObjects() {
-      this._manager = FindObjectOfType<PausableManager>();
+      this._manager = FindObjectOfType<NeodroidManager>();
       this._environments = FindObjectsOfType<NeodroidEnvironment>();
       this._actors = FindObjectsOfType<Actor>();
       this._actuators = FindObjectsOfType<Actuator>();

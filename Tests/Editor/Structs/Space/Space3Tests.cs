@@ -14,7 +14,7 @@ namespace droid.Tests.Editor.Structs.Space {
     /// </summary>
     [Test]
     public void TestDenormalise010() {
-      var space = new Space3 {MinValues = Vector3.zero,MaxValues =Vector3.one*10};
+      var space = new Space3 {Min = Vector3.zero,Max =Vector3.one*10};
 
       Assert.That(Vector3.Distance(space.Denormalise01(Vector3.one*0.5f) ,Vector3.one*5f) <= float.Epsilon, Is
                       .True);
@@ -25,7 +25,7 @@ namespace droid.Tests.Editor.Structs.Space {
     /// </summary>
     [Test]
     public void TestNormalise010() {
-      var space = new Space3 {MinValues = Vector3.zero,MaxValues =Vector3.one*10};
+      var space = new Space3 {Min = Vector3.zero,Max =Vector3.one*10};
 
       Assert.That(Vector3.Distance(space.Normalise01(6*Vector3.one),Vector3.one*0.6f) <= float.Epsilon, Is.True);
 
@@ -38,7 +38,7 @@ namespace droid.Tests.Editor.Structs.Space {
     [Test]
     public void TestNormaliseMinus11() {
 
-      var space = new Space3 {MinValues = Vector3.one*-1,MaxValues =Vector3.one*1};
+      var space = new Space3 {Min = Vector3.one*-1,Max =Vector3.one*1};
 
       Assert.That(Vector3.Distance(space.Normalise01(0.5f*Vector3.one),Vector3.one*0.75f) <= float.Epsilon,
                   Is.True);
@@ -54,7 +54,7 @@ namespace droid.Tests.Editor.Structs.Space {
     public void TestDenormaliseMinus11() {
 
 
-      var space = new Space3 {MinValues = Vector3.one*-1,MaxValues =Vector3.one*1};
+      var space = new Space3 {Min = Vector3.one*-1,Max =Vector3.one*1};
 
       Assert.That(Vector3.Distance(space.Denormalise01(0.75f*Vector3.one),Vector3.one*0.5f) <= float.Epsilon,
                   Is.True);

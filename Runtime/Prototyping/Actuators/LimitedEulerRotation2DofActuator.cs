@@ -69,13 +69,13 @@ namespace droid.Runtime.Prototyping.Actuators {
       }
       #endif
       if (motion.ActuatorName == this._x) {
-        if (this.transform.rotation.x < this.limits.MaxValue && m > 0f
-            || this.transform.rotation.x > this.limits.MinValue && m < 0f) {
+        if (this.transform.rotation.x < this.limits.Max && m > 0f
+            || this.transform.rotation.x > this.limits.Min && m < 0f) {
           this.transform.Rotate(new Vector3(1, 0, 0), m);
         }
       } else if (motion.ActuatorName == this._z) {
-        if (this.transform.rotation.z < this.limits.MaxValue && m > 0f
-            || this.transform.rotation.z > this.limits.MinValue && m < 0f) {
+        if (this.transform.rotation.z < this.limits.Max && m > 0f
+            || this.transform.rotation.z > this.limits.Min && m < 0f) {
           this.transform.Rotate(new Vector3(0, 0, 1), m);
         }
       }

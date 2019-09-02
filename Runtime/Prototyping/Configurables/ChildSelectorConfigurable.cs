@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
+using droid.Runtime.Structs.Space;
+using droid.Runtime.Structs.Space.Sample;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Configurables {
@@ -15,7 +17,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     [SerializeField] GameObject active;
     [SerializeField] GameObject[] children;
     [SerializeField] int len;
-    [SerializeField] ISpace _configurable_value_space;
+    [SerializeField] ISamplable _configurable_value_space = new SampleSpace1();
 
     /// <summary>
     ///
@@ -42,7 +44,7 @@ namespace droid.Runtime.Prototyping.Configurables {
       }
     }
 
-    public override ISpace ConfigurableValueSpace { get { return this._configurable_value_space; } }
+    public override ISamplable ConfigurableValueSpace { get { return this._configurable_value_space; } }
 
     /// <summary>
     ///

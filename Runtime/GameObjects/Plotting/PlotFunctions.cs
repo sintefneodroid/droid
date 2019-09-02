@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using droid.Runtime.Structs;
 using droid.Runtime.Structs.Space;
+using droid.Runtime.Structs.Space.Sample;
 using UnityEngine;
 
 namespace droid.Runtime.GameObjects.Plotting {
@@ -20,9 +21,12 @@ namespace droid.Runtime.GameObjects.Plotting {
                                                          float max_val = 5,
                                                          float particle_size_min = 0.2f,
                                                          float particle_size_max = 1.8f) {
+      var s = new SampleSpace3 {_space3 = Space3.MinusOneOne};
       _points.Clear();
       for (var j = 0; j < size; j++) {
-        var point = Space3.MinusOneOne.Sample() * max_val;
+
+
+        var point = s.Sample() * max_val;
         var vp = new Points.ValuePoint(point,
                                        Random.Range(min_val, max_val),
                                        Random.Range(particle_size_min, particle_size_max));

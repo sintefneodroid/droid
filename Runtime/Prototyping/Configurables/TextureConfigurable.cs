@@ -42,7 +42,7 @@ namespace droid.Runtime.Prototyping.Configurables {
       }
     }
 
-    public override ISpace ConfigurableValueSpace { get; }
+    public override ISamplable ConfigurableValueSpace { get; }
 
     /// <summary>
     /// </summary>

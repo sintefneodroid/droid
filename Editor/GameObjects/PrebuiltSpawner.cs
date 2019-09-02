@@ -17,7 +17,7 @@ namespace droid.Editor.GameObjects {
     [MenuItem(EditorGameObjectMenuPath._GameObjectMenuPath + "Prebuilt/SimpleEnvironment", false, 10)]
     static void CreateSingleEnvironmentGameObject(MenuCommand menu_command) {
       var go = new GameObject("SimpleEnvironment");
-      go.AddComponent<PausableManager>();
+      go.AddComponent<NeodroidManager>();
       var env = go.AddComponent<PrototypingEnvironment>();
       go.AddComponent<BoxCollider>();
       var bounding_box = go.AddComponent<BoundingBox>();

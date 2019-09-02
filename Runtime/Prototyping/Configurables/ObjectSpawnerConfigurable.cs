@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using droid.Runtime.Enums;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Structs.Space;
+using droid.Runtime.Structs.Space.Sample;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Configurables {
@@ -18,8 +20,10 @@ namespace droid.Runtime.Prototyping.Configurables {
     [SerializeField] GameObject _object_to_spawn = null;
 
     List<GameObject> _spawned_objects = null;
+    [SerializeField] ISamplable _configurable_value_space = new SampleSpace1{_space1 = Space1.TwentyEighty
+  };
 
-    /// <inheritdoc />
+  /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override string PrototypingTypeName { get { return "ObjectSpawnerConfigurable"; } }
@@ -63,7 +67,7 @@ namespace droid.Runtime.Prototyping.Configurables {
 
     void OnApplicationQuit() { this.DestroyObjects(); }
 
-    public override ISpace ConfigurableValueSpace { get; }
+    public override ISamplable ConfigurableValueSpace { get { return this._configurable_value_space; } }
 
     public override void ApplyConfiguration(IConfigurableConfiguration obj) {
       if (this._spawned_objects.Count < obj.ConfigurableValue) {

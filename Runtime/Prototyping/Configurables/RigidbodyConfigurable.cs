@@ -2,6 +2,7 @@
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Structs.Space;
+using droid.Runtime.Structs.Space.Sample;
 using droid.Runtime.Utilities;
 using UnityEngine;
 using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
@@ -14,7 +15,7 @@ namespace droid.Runtime.Prototyping.Configurables {
                     + "Rigidbody"
                     + ConfigurableComponentMenuPath._Postfix)]
   [RequireComponent(typeof(Rigidbody))]
-  public class RigidbodyConfigurable : Configurable,
+  public class RigidbodyConfigurable : SpatialConfigurable,
                                        IHasRigidbody {
     /// <summary>
     /// </summary>
@@ -36,7 +37,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     [SerializeField]
-    Space3 _angular_velocity_space = Space3.ZeroOne;
+    SampleSpace3 _angular_velocity_space = new SampleSpace3{_space3 = Space3.ZeroOne};
 
     /// <summary>
     /// </summary>
@@ -63,7 +64,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     [SerializeField]
-    Space3 _velocity_space = Space3.ZeroOne;
+    SampleSpace3 _velocity_space = new SampleSpace3{_space3 = Space3.ZeroOne};
 
     /// <summary>
     /// </summary>
@@ -80,15 +81,10 @@ namespace droid.Runtime.Prototyping.Configurables {
       private set { this._angular_velocity = value; }
     }
 
-    /// <summary>
-    /// </summary>
-    public Space3 VelocitySpace { get { return this._velocity_space; } }
+    public Space3 VelocitySpace { get { return this._velocity_space._space3; } }
+    public Space3 AngularSpace { get { return this._angular_velocity_space._space3; } }
 
-    /// <summary>
-    /// </summary>
-    public Space3 AngularSpace { get { return this._angular_velocity_space; } }
-
-    public override ISpace ConfigurableValueSpace { get; }
+    public override ISamplable ConfigurableValueSpace { get; }
 
     /// <summary>
     /// </summary>
@@ -165,12 +161,12 @@ namespace droid.Runtime.Prototyping.Configurables {
         v = (int)Math.Round(v, this.VelocitySpace.DecimalGranularity);
       }
 
-      if (this.VelocitySpace.MinValues[0].CompareTo(this.VelocitySpace.MaxValues[0]) != 0) {
+      if (this.VelocitySpace.Min[0].CompareTo(this.VelocitySpace.Max[0]) != 0) {
         //TODO NOT IMPLEMENTED CORRECTLY VelocitySpace should not be index but should check all pairwise values, VelocitySpace.MinValues == VelocitySpace.MaxValues
-        if (v < this.VelocitySpace.MinValues[0] || v > this.VelocitySpace.MaxValues[0]) {
+        if (v < this.VelocitySpace.Min[0] || v > this.VelocitySpace.Max[0]) {
           Debug.Log(string.Format("Configurable does not accept input{2}, outside allowed range {0} to {1}",
-                                  this.VelocitySpace.MinValues[0],
-                                  this.VelocitySpace.MaxValues[0],
+                                  this.VelocitySpace.Min[0],
+                                  this.VelocitySpace.Max[0],
                                   v));
           return; // Do nothing
         }
@@ -222,7 +218,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <returns></returns>
     /// <exception cref="T:System.NotImplementedException"></exception>
     public override Configuration[] SampleConfigurations() {
-      return new[] {new Configuration(this._ang_x, Space1.ZeroOne.Sample())};
+      return new[] {new Configuration(this._ang_x, this._angular_velocity_space.Sample())};
     }
   }
 }

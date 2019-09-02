@@ -2,6 +2,7 @@
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Sampling;
 using droid.Runtime.Structs.Space;
+using droid.Runtime.Structs.Space.Sample;
 using droid.Runtime.Utilities;
 using UnityEngine;
 using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
@@ -25,17 +26,17 @@ namespace droid.Runtime.Prototyping.Configurables {
     Light _light;
 
     [SerializeField]
-    Space3 _color_space = new Space3 {
+    ISamplable _color_space = new SampleSpace3 { _space3 = new Space3{
                                          DecimalGranularity = 2,
-                                         MinValues = Vector3.one * 0.7f,
-                                         MaxValues = Vector3.one * 1f
+                                         Min = Vector3.one * 0.7f,
+                                         Max = Vector3.one * 1f}
                                      };
 
     [SerializeField]
-    Space3 _int_ind_sha_space = new Space3 {
+    ISamplable _int_ind_sha_space = new SampleSpace3 { _space3 = new Space3{
                                                DecimalGranularity = 2,
-                                               MinValues = Vector3.one * 0.0f,
-                                               MaxValues = Vector3.one * 1f,
+                                               Min = Vector3.one * 0.0f,
+                                               Max = Vector3.one * 1f,},
                                                DistributionSampler =
                                                    new DistributionSampler(DistributionEnum.Linear_) {
                                                                                                          _factor
@@ -103,7 +104,10 @@ namespace droid.Runtime.Prototyping.Configurables {
       this.ParentEnvironment.UnRegister(this, this._indirect_multiplier);
     }
 
-    public override ISpace ConfigurableValueSpace { get; }
+    /// <summary>
+    ///
+    /// </summary>
+    public override ISamplable ConfigurableValueSpace { get { return this._color_space; } }
 
     /// <summary>
     /// </summary>

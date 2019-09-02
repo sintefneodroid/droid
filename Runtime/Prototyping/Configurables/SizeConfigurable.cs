@@ -1,6 +1,7 @@
 ﻿using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Structs.Space;
+using droid.Runtime.Structs.Space.Sample;
 using droid.Runtime.Utilities;
 using UnityEngine;
 using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
@@ -29,7 +30,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     string _z;
 
-    [SerializeField] Space3 _space = Space3.ZeroOne;
+    [SerializeField] ISamplable _space = new SampleSpace3{Space = Space3.ZeroOne};
 
     /// <inheritdoc />
     /// <summary>
@@ -71,7 +72,7 @@ namespace droid.Runtime.Prototyping.Configurables {
       this.ParentEnvironment.UnRegister(this, this._z);
     }
 
-    public override ISpace ConfigurableValueSpace { get { return this._space; } }
+    public override ISamplable ConfigurableValueSpace { get { return this._space; } }
 
     /// <summary>
     /// </summary>

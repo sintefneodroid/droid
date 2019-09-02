@@ -3,6 +3,7 @@ using droid.Runtime.Enums;
 using droid.Runtime.GameObjects.BoundingBoxes;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Structs.Space;
+using droid.Runtime.Structs.Space.Sample;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Configurables {
@@ -12,7 +13,7 @@ namespace droid.Runtime.Prototyping.Configurables {
   [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
                     + "TransformConfigurable1Dof"
                     + ConfigurableComponentMenuPath._Postfix)]
-  public class TransformConfigurable1Dof : Configurable,
+  public class TransformConfigurable1Dof : SpatialConfigurable,
                                            IHasSingle {
     /// <inheritdoc />
     /// <summary>
@@ -21,6 +22,9 @@ namespace droid.Runtime.Prototyping.Configurables {
       get { return "Transform" + this._axis_of_configuration + "Configurable"; }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public float ObservationValue {
       get { return this._observation_value; }
       private set { this._observation_value = value; }
@@ -30,8 +34,8 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     public Space1 SingleSpace {
-      get { return this._single_value_space; }
-      set { this._single_value_space = value; }
+      get { return (Space1)this._single_value_space.Space; }
+      set { this._single_value_space.Space = value; }
     }
 
     /// <summary>
@@ -92,17 +96,20 @@ namespace droid.Runtime.Prototyping.Configurables {
       if (this._use_bounding_box_for_range) {
         if (this._bounding_box != null) {
           var valid_input = new Space1 {
-                                           MaxValue = Math.Min(this._bounding_box.Bounds.size.x,
-                                                               Math.Min(this._bounding_box.Bounds.size.y,
-                                                                        this._bounding_box.Bounds.size.z))
+                                           Max = Math.Min(this._bounding_box.Bounds.size.x,
+                                                          Math.Min(this._bounding_box.Bounds.size.y,
+                                                                   this._bounding_box.Bounds.size.z))
                                        };
-          valid_input.MinValue = -valid_input.MaxValue;
+          valid_input.Min = -valid_input.Max;
           this.SingleSpace = valid_input;
         }
       }
     }
 
-    public override ISpace ConfigurableValueSpace { get { return this.SingleSpace; } }
+    /// <summary>
+    ///
+    /// </summary>
+    public override ISamplable ConfigurableValueSpace { get { return this._single_value_space; } }
 
     /// <summary>
     ///
@@ -110,9 +117,9 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <param name="simulator_configuration"></param>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
     public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration) {
-      if (simulator_configuration.ConfigurableValue < this.SingleSpace.MinValue
-          || simulator_configuration.ConfigurableValue > this.SingleSpace.MaxValue) {
-        Debug.Log($"It does not accept input, outside allowed range {this.SingleSpace.MinValue} to {this.SingleSpace.MaxValue}");
+      if (simulator_configuration.ConfigurableValue < this.SingleSpace.Min
+          || simulator_configuration.ConfigurableValue > this.SingleSpace.Max) {
+        Debug.Log($"It does not accept input, outside allowed range {this.SingleSpace.Min} to {this.SingleSpace.Max}");
         return; // Do nothing
       }
 
@@ -141,7 +148,7 @@ namespace droid.Runtime.Prototyping.Configurables {
       switch (this._axis_of_configuration) {
         case Axis.X_:
           if (this.RelativeToExistingValue) {
-            pos.Set(cv - pos.x, pos.y, pos.z);
+            pos.Set(cv + pos.x, pos.y, pos.z);
           } else {
             pos.Set(cv, pos.y, pos.z);
           }
@@ -149,7 +156,7 @@ namespace droid.Runtime.Prototyping.Configurables {
           break;
         case Axis.Y_:
           if (this.RelativeToExistingValue) {
-            pos.Set(pos.x, cv - pos.y, pos.z);
+            pos.Set(pos.x, cv + pos.y, pos.z);
           } else {
             pos.Set(pos.x, cv, pos.z);
           }
@@ -157,7 +164,7 @@ namespace droid.Runtime.Prototyping.Configurables {
           break;
         case Axis.Z_:
           if (this.RelativeToExistingValue) {
-            pos.Set(pos.x, pos.y, cv - pos.z);
+            pos.Set(pos.x, pos.y, cv + pos.z);
           } else {
             pos.Set(pos.x, pos.y, cv);
           }
@@ -165,7 +172,7 @@ namespace droid.Runtime.Prototyping.Configurables {
           break;
         case Axis.Dir_x_:
           if (this.RelativeToExistingValue) {
-            dir.Set(cv - dir.x, dir.y, dir.z);
+            dir.Set(cv + dir.x, dir.y, dir.z);
           } else {
             dir.Set(cv, dir.y, dir.z);
           }
@@ -173,7 +180,7 @@ namespace droid.Runtime.Prototyping.Configurables {
           break;
         case Axis.Dir_y_:
           if (this.RelativeToExistingValue) {
-            dir.Set(dir.x, cv - dir.y, dir.z);
+            dir.Set(dir.x, cv + dir.y, dir.z);
           } else {
             dir.Set(dir.x, cv, dir.z);
           }
@@ -181,7 +188,7 @@ namespace droid.Runtime.Prototyping.Configurables {
           break;
         case Axis.Dir_z_:
           if (this.RelativeToExistingValue) {
-            dir.Set(dir.x, dir.y, cv - dir.z);
+            dir.Set(dir.x, dir.y, cv + dir.z);
           } else {
             dir.Set(dir.x, dir.y, cv);
           }
@@ -189,7 +196,7 @@ namespace droid.Runtime.Prototyping.Configurables {
           break;
         case Axis.Rot_x_:
           if (this.RelativeToExistingValue) {
-            rot.Set(cv - rot.x, rot.y, rot.z);
+            rot.Set(cv + rot.x, rot.y, rot.z);
           } else {
             rot.Set(cv, rot.y, rot.z);
           }
@@ -197,7 +204,7 @@ namespace droid.Runtime.Prototyping.Configurables {
           break;
         case Axis.Rot_y_:
           if (this.RelativeToExistingValue) {
-            rot.Set(rot.x, cv - rot.y, rot.z);
+            rot.Set(rot.x, cv + rot.y, rot.z);
           } else {
             rot.Set(rot.x, cv, rot.z);
           }
@@ -205,7 +212,7 @@ namespace droid.Runtime.Prototyping.Configurables {
           break;
         case Axis.Rot_z_:
           if (this.RelativeToExistingValue) {
-            rot.Set(rot.x, rot.y, cv - rot.z);
+            rot.Set(rot.x, rot.y, cv + rot.z);
           } else {
             rot.Set(rot.x, rot.y, cv);
           }
@@ -240,7 +247,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     [SerializeField] bool _use_bounding_box_for_range = false;
     [SerializeField] float _observation_value = 0;
     [SerializeField] bool _use_environments_space = false;
-    [SerializeField] Space1 _single_value_space = Space1.ZeroOne;
+    [SerializeField] SampleSpace1 _single_value_space = new SampleSpace1 {_space1 = Space1.ZeroOne};
 
     #endregion
   }

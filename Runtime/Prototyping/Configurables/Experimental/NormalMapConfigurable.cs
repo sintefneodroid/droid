@@ -1,6 +1,7 @@
 ﻿using System;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
+using droid.Runtime.Structs.Space.Sample;
 using droid.Runtime.Utilities;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -43,7 +44,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       }
     }
 
-    public override ISpace ConfigurableValueSpace { get; }
+    public override ISamplable ConfigurableValueSpace { get{return new SampleSpace1();} }
 
     /// <summary>
     /// </summary>

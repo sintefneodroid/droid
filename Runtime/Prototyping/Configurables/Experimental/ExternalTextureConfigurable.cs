@@ -1,6 +1,7 @@
 ﻿using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Structs.Space;
+using droid.Runtime.Structs.Space.Sample;
 using droid.Runtime.Utilities;
 using UnityEngine;
 using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
@@ -42,8 +43,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       this.ParentEnvironment?.UnRegister(this, this._texture_str);
     }
 
-    public override ISpace ConfigurableValueSpace { get; }
-
+    public override ISamplable ConfigurableValueSpace { get{return new SampleSpace1();} }
     /// <summary>
     /// </summary>
     /// <param name="configuration"></param>
@@ -66,7 +66,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     /// <returns></returns>
     public override Configuration[] SampleConfigurations() {
-      return new[] {new Configuration(this._texture_str, Space1.ZeroOne.Sample())};
+      return new[] {new Configuration(this._texture_str, ConfigurableValueSpace.Sample())};
     }
   }
 }

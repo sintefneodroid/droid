@@ -2,6 +2,7 @@
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Sampling;
 using droid.Runtime.Structs.Space;
+using droid.Runtime.Structs.Space.Sample;
 using droid.Runtime.Utilities;
 using UnityEngine;
 using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
@@ -22,11 +23,12 @@ namespace droid.Runtime.Prototyping.Configurables {
     string _reflection_intensity;
 
     [SerializeField]
-    Space2 _intensity_space = new Space2 {
-                                             DecimalGranularity = 2,
-                                             MinValues = Vector3.one * 0.0f,
-                                             MaxValues = Vector3.one * 1f,
-                                             DistributionSampler =
+    ISamplable _intensity_space = new SampleSpace2{Space = new Space2 {
+                                                                   Min = Vector3.one * 0.0f,
+                                                                   Max = Vector3.one * 1f
+                                                               },
+
+                                             _distribution_sampler=
                                                  new DistributionSampler(DistributionEnum.Linear_) {
                                                                                                        _factor
                                                                                                            = -1
@@ -34,7 +36,12 @@ namespace droid.Runtime.Prototyping.Configurables {
                                          };
 
     [SerializeField]
-    Space3 _color_space = new Space3 {MinValues = Vector3.one * 0.6f, MaxValues = Vector3.one * 1f};
+    ISamplable _color_space = new SampleSpace3 {
+                                                   _space3 = new Space3 {
+                                                                            Min = Vector3.one * 0.6f,
+                                                                            Max = Vector3.one * 1f
+                                                                        }
+                                               };
 
     /// <inheritdoc />
     /// <summary>
@@ -88,7 +95,7 @@ namespace droid.Runtime.Prototyping.Configurables {
       this.ParentEnvironment.UnRegister(this, this._reflection_intensity);
     }
 
-    public override ISpace ConfigurableValueSpace { get; }
+    public override ISamplable ConfigurableValueSpace { get; }
 
     /// <summary>
     /// </summary>

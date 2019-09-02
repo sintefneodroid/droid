@@ -2,6 +2,7 @@
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Sampling;
 using droid.Runtime.Structs.Space;
+using droid.Runtime.Structs.Space.Sample;
 using droid.Runtime.Utilities;
 using UnityEngine;
 using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
@@ -25,7 +26,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     [SerializeField] Mesh[] _meshes = null;
     [SerializeField] MeshFilter _mesh_filter = null;
     [SerializeField] bool _displace_mesh = false;
-    [SerializeField] Space1 _deformation_space = new Space1 {MinValue = 1f, MaxValue = 5f};
+    [SerializeField] ISamplable _deformation_space =new SampleSpace1{_space1 = new Space1 {Min = 1f, Max = 5f}};
 
     /// <inheritdoc />
     /// <summary>
@@ -62,7 +63,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       this.ParentEnvironment?.UnRegister(this, this._mesh_str);
     }
 
-    public override ISpace ConfigurableValueSpace { get; }
+    public override ISamplable ConfigurableValueSpace { get{return this._deformation_space;} }
 
     /// <summary>
     /// </summary>

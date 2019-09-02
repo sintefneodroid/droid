@@ -80,7 +80,7 @@ namespace droid.Runtime.Messaging {
     /// </summary>
     Double _wait_time_seconds;
 
-    const string _api_version = "0.1.2";
+
 
     #endregion
 
@@ -231,7 +231,7 @@ namespace droid.Runtime.Messaging {
                            bool serialise_individual_observables = false,
                            bool do_serialise_observables = false,
                            SimulatorConfigurationMessage simulator_configuration_message = null,
-                           string api_version = _api_version) {
+                           string api_version = NeodroidRuntimeInfo._Version) {
       lock (this._thread_lock) {
         #if NEODROID_DEBUG
         if (this.Debugging) {

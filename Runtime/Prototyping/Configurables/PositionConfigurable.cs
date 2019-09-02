@@ -2,6 +2,7 @@
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Structs.Space;
+using droid.Runtime.Structs.Space.Sample;
 using droid.Runtime.Utilities;
 using UnityEngine;
 using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
@@ -14,7 +15,7 @@ namespace droid.Runtime.Prototyping.Configurables {
   [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
                     + "Position"
                     + ConfigurableComponentMenuPath._Postfix)]
-  public class PositionConfigurable : Configurable,
+  public class PositionConfigurable : SpatialConfigurable,
                                       IHasTriple {
     [Header("Observation", order = 103)]
     [SerializeField]
@@ -34,17 +35,14 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     string _z;
 
-    [SerializeField] Space3 _triple_space = Space3.ZeroOne;
+    [SerializeField] SampleSpace3 _triple_space = new SampleSpace3 {Space = Space3.ZeroOne};
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     public Vector3 ObservationValue { get { return this._position; } }
 
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public Space3 TripleSpace { get { return this._triple_space; } }
+    public Space3 TripleSpace { get { return this._triple_space._space3; } }
 
     /// <summary>
     /// 
@@ -89,7 +87,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     ///
     /// </summary>
-    public override ISpace ConfigurableValueSpace { get { return this._triple_space; } }
+    public override ISamplable ConfigurableValueSpace { get { return this._triple_space; } }
 
     /// <summary>
     /// 
@@ -166,7 +164,7 @@ if (this.TripleSpace.MinValues[0].CompareTo(this.TripleSpace.MaxValues[0]) != 0)
     /// </summary>
     /// <returns></returns>
     public override Configuration[] SampleConfigurations() {
-      var sample = this.TripleSpace.Sample();
+      var sample = this._triple_space.Sample();
       return new[] {
                        new Configuration(this._x, sample.x),
                        new Configuration(this._y, sample.y),

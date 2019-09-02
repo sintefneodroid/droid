@@ -14,7 +14,7 @@ namespace droid.Runtime.Prototyping.Configurables {
   [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
                     + "Simulation"
                     + ConfigurableComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(PausableManager))]
+  [RequireComponent(typeof(NeodroidManager))]
   public class SimulationConfigurable : Configurable {
     string _fullscreen;
     string _height;
@@ -83,12 +83,11 @@ namespace droid.Runtime.Prototyping.Configurables {
       this.ParentEnvironment.UnRegister(this, this._fullscreen);
     }
 
+    public override ISamplable ConfigurableValueSpace { get; }
+
     /// <summary>
     ///
     /// </summary>
-    public override ISpace ConfigurableValueSpace {
-      get { return new Space1(0) {MinValue = 0, MaxValue = 0}; }
-    }
 
     /// <summary>
     /// </summary>
@@ -122,7 +121,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
     public override Configuration[] SampleConfigurations() {
-      return new[] {new Configuration(this._time_scale, Space1.ZeroOne.Sample())};
+      return new[] {new Configuration(this._time_scale, this.ConfigurableValueSpace.Sample())};
     }
   }
 }

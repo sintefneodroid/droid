@@ -3,6 +3,7 @@ using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Sampling;
 using droid.Runtime.Structs.Space;
+using droid.Runtime.Structs.Space.Sample;
 using droid.Runtime.Utilities;
 using UnityEngine;
 using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
@@ -14,7 +15,7 @@ namespace droid.Runtime.Prototyping.Configurables {
   [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
                     + "EulerRotation"
                     + ConfigurableComponentMenuPath._Postfix)]
-  public class EulerRotationConfigurable : Configurable,
+  public class EulerRotationConfigurable : SpatialConfigurable,
                                            IHasTriple {
     [Header("Observation", order = 103)]
     [SerializeField]
@@ -39,16 +40,17 @@ namespace droid.Runtime.Prototyping.Configurables {
     string _w;
 
     [SerializeField]
-    Space3 _euler_space =
-        new Space3(new DistributionSampler(), 4) {
-                                                     MinValues = Vector3.zero,
-                                                     MaxValues = new Vector3(360f, 360f, 360f)
-                                                 };
+    ISamplable _euler_space = new SampleSpace3 {
+                                                   _space3 = new Space3(4) {
+                                                                     Min = Vector3.zero,
+                                                                     Max = new Vector3(360f, 360f, 360f)
+                                                                 }
+                                               };
 
     /// <summary>
     ///
     /// </summary>
-    public Space3 TripleSpace { get { return this._euler_space; } }
+    public Space3 TripleSpace { get { return (Space3)this._euler_space.Space; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -102,7 +104,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     ///
     /// </summary>
-    public override ISpace ConfigurableValueSpace { get { return this.TripleSpace; } }
+    public override ISamplable ConfigurableValueSpace { get { return this._euler_space; } }
 
     /// <summary>
     /// 
@@ -130,11 +132,11 @@ namespace droid.Runtime.Prototyping.Configurables {
         v = (int)Math.Round(v, this.TripleSpace.DecimalGranularity);
       }
 
-      if (this.TripleSpace.MinValues[0].CompareTo(this.TripleSpace.MaxValues[0]) != 0) {
+      if (this.TripleSpace.Min[0].CompareTo(this.TripleSpace.Max[0]) != 0) {
         #if NEODROID_DEBUG
         //TODO NOT IMPLEMENTED CORRECTLY VelocitySpace should not be index but should check all pairwise values, TripleSpace.MinValues == TripleSpace.MaxValues
-        if (v < this.TripleSpace.MinValues[0] || v > this.TripleSpace.MaxValues[0]) {
-          Debug.Log($"Configurable does not accept input {v}, outside allowed range {this.TripleSpace.MinValues[0]} to {this.TripleSpace.MaxValues[0]}");
+        if (v < this.TripleSpace.Min[0] || v > this.TripleSpace.Max[0]) {
+          Debug.Log($"Configurable does not accept input {v}, outside allowed range {this.TripleSpace.Min[0]} to {this.TripleSpace.Max[0]}");
           return; // Do nothing
         }
         #endif
@@ -177,7 +179,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     ///  </summary>
     ///  <returns></returns>
     public override Configuration[] SampleConfigurations() {
-      var sample = this.TripleSpace.Sample();
+      var sample = this._euler_space.Sample();
 
       return new[] {
                        new Configuration(this._x, sample.x),

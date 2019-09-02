@@ -59,8 +59,8 @@ namespace droid.Samples.MultiArmedBandit {
     /// </summary>
     protected override void Setup() {
       var mvs = this.MotionSpace;
-      mvs.MinValue = 0;
-      mvs.MaxValue = 2;
+      mvs.Min = 0;
+      mvs.Max = 2;
       mvs.DecimalGranularity = 0;
       this.MotionSpace = mvs;
       if (this._Win_Likelihoods == null || this._Win_Likelihoods.Length == 0) {

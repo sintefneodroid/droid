@@ -10,7 +10,7 @@ namespace droid.Editor.GameObjects {
     [MenuItem(EditorGameObjectMenuPath._GameObjectMenuPath + "SimulationManager", false, 10)]
     static void CreateSimulationManagerGameObject(MenuCommand menu_command) {
       var go = new GameObject("SimulationManager");
-      go.AddComponent<PausableManager>();
+      go.AddComponent<NeodroidManager>();
       GameObjectUtility.SetParentAndAlign(go,
                                           menu_command
                                                   .context as

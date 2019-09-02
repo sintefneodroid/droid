@@ -167,7 +167,7 @@ namespace droid.Runtime.Environments {
     protected override void RegisterComponent() {
       if (this._Simulation_Manager != null) {
         this._Simulation_Manager =
-            NeodroidRegistrationUtilities.RegisterComponent((PausableManager)this._Simulation_Manager, this);
+            NeodroidRegistrationUtilities.RegisterComponent((NeodroidManager)this._Simulation_Manager, this);
       }
     }
 

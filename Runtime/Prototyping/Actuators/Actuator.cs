@@ -4,6 +4,7 @@ using droid.Runtime.GameObjects;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Structs.Space;
+using droid.Runtime.Structs.Space.Sample;
 using droid.Runtime.Utilities;
 using UnityEngine;
 using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
@@ -36,12 +37,6 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// </summary>
     public override String PrototypingTypeName { get { return "Actuator"; } }
 
-    /// <summary>
-    /// </summary>
-    public Space1 MotionSpace {
-      get { return this._motion_value_space; }
-      set { this._motion_value_space = value; }
-    }
 
     /// <summary>
     /// </summary>
@@ -53,13 +48,13 @@ namespace droid.Runtime.Prototyping.Actuators {
       }
       #endif
 
-      if (motion.Strength < this.MotionSpace.MinValue || motion.Strength > this.MotionSpace.MaxValue) {
-        Debug.LogWarning($"It does not accept input {motion.Strength}, outside the allowed range from {this.MotionSpace.MinValue} to {this.MotionSpace.MaxValue}, rounding to be inside space.");
-        motion.Strength = this.MotionSpace.Round(this.MotionSpace.Clip(motion.Strength));
+      if (motion.Strength < this._motion_value_space._space1.Min || motion.Strength > this._motion_value_space._space1.Max) {
+        Debug.LogWarning($"It does not accept input {motion.Strength}, outside the allowed range from {this._motion_value_space._space1.Min} to {this._motion_value_space._space1.Max}, rounding to be inside space.");
+        motion.Strength = this._motion_value_space._space1.Round(this._motion_value_space._space1.Clip(motion.Strength));
       }
 
-      if (this._motion_value_space.Normalised) {
-        motion.Strength = this._motion_value_space.ClipDenormaliseRoundClip(motion.Strength);
+      if (this._motion_value_space._space1.Normalised) {
+        motion.Strength = this._motion_value_space._space1.ClipDenormaliseRoundClip(motion.Strength);
       }
 
       this.InnerApplyMotion(motion);
@@ -75,11 +70,16 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// </summary>
     public void EnvironmentReset() { this._energy_spend_since_reset = 0; }
 
+    public Space1 MotionSpace {
+      get { return this._motion_value_space._space1; }
+      set { this._motion_value_space.Space = value; }
+    }
+
     /// <summary>
     /// 
     /// </summary>
     /// <returns></returns>
-    public virtual float Sample() { return this.MotionSpace.Sample(); }
+    public virtual float Sample() { return this._motion_value_space.Sample(); }
 
     /// <inheritdoc />
     /// <summary>
@@ -123,7 +123,7 @@ namespace droid.Runtime.Prototyping.Actuators {
 
     [Header("General", order = 101)]
     [SerializeField]
-    Space1 _motion_value_space = Space1.MinusOneOne;
+    SampleSpace1 _motion_value_space = new SampleSpace1{_space1 = Space1.MinusOneOne};
 
     [SerializeField] float _energy_spend_since_reset;
 

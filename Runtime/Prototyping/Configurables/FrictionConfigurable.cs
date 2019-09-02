@@ -2,6 +2,7 @@
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Structs.Space;
+using droid.Runtime.Structs.Space.Sample;
 using droid.Runtime.Utilities;
 using UnityEngine;
 using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
@@ -14,16 +15,12 @@ namespace droid.Runtime.Prototyping.Configurables {
                     + "Friction"
                     + ConfigurableComponentMenuPath._Postfix)]
   [RequireComponent(typeof(Rigidbody))]
-  public class FrictionConfigurable : Configurable,
+  public class FrictionConfigurable : SpatialConfigurable,
                                       IHasSingle {
-    /// <summary>
-    /// </summary>
-    [SerializeField]
-    float _velocity_space = 0;
 
     /// <summary>
     /// </summary>
-    Space1 _angular_velocity = Space1.ZeroOne;
+    ISamplable _friction_space = new SampleSpace1{ _space1 = Space1.ZeroOne};
 
     /// <summary>
     /// </summary>
@@ -35,18 +32,18 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     public override string PrototypingTypeName { get { return "RigidbodyConfigurable"; } }
 
-    /// <summary>
-    /// </summary>
-    public Space1 SingleSpace {
-      get { return this._angular_velocity; }
-      private set { this._angular_velocity = value; }
-    }
+
 
     /// <summary>
     /// </summary>
-    public float ObservationValue { get { return this._velocity_space; } }
+    public float ObservationValue { get { return this._friction_space.Sample(); } }
 
-    public override ISpace ConfigurableValueSpace { get; }
+    /// <summary>
+    ///
+    /// </summary>
+    public Space1 SingleSpace { get { return (Space1) this._friction_space.Space; } }
+
+    public override ISamplable ConfigurableValueSpace { get; }
 
     /// <summary>
     /// </summary>
@@ -91,12 +88,12 @@ namespace droid.Runtime.Prototyping.Configurables {
         v = (int)Math.Round(v, this.SingleSpace.DecimalGranularity);
       }
 
-      if (this.SingleSpace.MinValue.CompareTo(this.SingleSpace.MaxValue) != 0) {
+      if (this.SingleSpace.Min.CompareTo(this.SingleSpace.Max) != 0) {
         //TODO NOT IMPLEMENTED CORRECTLY VelocitySpace should not be index but should check all pairwise values, VelocitySpace.MinValues == VelocitySpace.MaxValues
-        if (v < this.SingleSpace.MinValue || v > this.SingleSpace.MaxValue) {
+        if (v < this.SingleSpace.Min || v > this.SingleSpace.Max) {
           Debug.Log(string.Format("Configurable does not accept input{2}, outside allowed range {0} to {1}",
-                                  this.SingleSpace.MinValue,
-                                  this.SingleSpace.MaxValue,
+                                  this.SingleSpace.Min,
+                                  this.SingleSpace.Max,
                                   v));
           return; // Do nothing
         }
@@ -127,7 +124,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <returns></returns>
     /// <exception cref="T:System.NotImplementedException"></exception>
     public override Configuration[] SampleConfigurations() {
-      return new[] {new Configuration(this._vel_x, this._angular_velocity.Sample())};
+      return new[] {new Configuration(this._vel_x, this._friction_space.Sample())};
     }
   }
 }

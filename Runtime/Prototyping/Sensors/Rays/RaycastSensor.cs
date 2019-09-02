@@ -4,9 +4,13 @@ using droid.Runtime.Structs.Space;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Rays {
+  /// <summary>
+  ///
+  /// </summary>
   [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
                     + "Raycast"
                     + SensorComponentMenuPath._Postfix)]
+  [ExecuteInEditMode]
   public class RaycastSensor : Sensor,
                                IHasSingle {
     [SerializeField] Vector3 _direction = Vector3.forward;
@@ -14,15 +18,11 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
     [SerializeField] RaycastHit _hit = new RaycastHit();
 
     [SerializeField]
-    Space1 _observation_space = new Space1 {DecimalGranularity = 3, MinValue = 0, MaxValue = 100.0f};
+    Space1 _observation_space = new Space1 {DecimalGranularity = 3, Min = 0f, Max = 100.0f};
 
     [Header("Observation", order = 103)]
     [SerializeField]
     float _observation_value = 0;
-
-    [SerializeField] Space1 _observation_value_space = Space1.ZeroOne;
-
-    [SerializeField] float _range = 100.0f;
 
     /// <summary>
     ///
@@ -34,7 +34,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
     /// <summary>
     ///
     /// </summary>
-    public Space1 SingleSpace { get { return this._observation_value_space; } }
+    public Space1 SingleSpace { get { return this._observation_space; } }
 
     /// <summary>
     ///
@@ -62,11 +62,20 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
     ///
     /// </summary>
     public override void UpdateObservation() {
-      if (Physics.Raycast(this.transform.position, this._direction, out this._hit, this._range)) {
+      if (Physics.Raycast(this.transform.position,
+                          this._direction,
+                          out this._hit,
+                          this._observation_space.Max)) {
         this.ObservationValue = this._hit.distance;
+
       } else {
-        this.ObservationValue = this._range;
+        this.ObservationValue = this._observation_space.Max;
       }
+      #if NEODROID_DEBUG
+      if (this.Debugging) {
+        Debug.Log($"Raycast hit at distance {this._hit.distance}");
+      }
+      #endif
     }
 
     #if UNITY_EDITOR
@@ -75,7 +84,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
     void OnDrawGizmosSelected() {
       if (this.enabled) {
         var position = this.transform.position;
-        Debug.DrawLine(position, position - this._direction * this._range, this._color);
+        Debug.DrawLine(position, position + this._direction * this._observation_space.Max, this._color);
       }
     }
     #endif

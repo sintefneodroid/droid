@@ -2,6 +2,7 @@
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Structs.Space;
+using droid.Runtime.Structs.Space.Sample;
 using droid.Runtime.Utilities;
 using UnityEngine;
 using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
@@ -13,7 +14,7 @@ namespace droid.Runtime.Prototyping.Configurables {
   [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
                     + "EulerTransform"
                     + ConfigurableComponentMenuPath._Postfix)]
-  public class EulerTransformConfigurable : Configurable,
+  public class EulerTransformConfigurable : SpatialConfigurable,
                                             IHasEulerTransform {
     string _dir_x;
     string _dir_y;
@@ -54,24 +55,28 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     public Vector3 Rotation { get { return this._rotation; } set { this._rotation = value; } }
 
-    /// <summary>
-    ///
-    /// </summary>
-    public Space3 PositionSpace { get; } = new Space3();
+    ISamplable pos_space = new SampleSpace3();
+    ISamplable dir_space = new SampleSpace3();
+    ISamplable rot_space = new SampleSpace3();
 
     /// <summary>
     ///
     /// </summary>
-    public Space3 DirectionSpace { get; } = new Space3();
+    public Space3 PositionSpace { get { return (Space3)pos_space.Space; } }
 
     /// <summary>
     ///
     /// </summary>
-    public Space3 RotationSpace { get; } = new Space3();
+    public Space3 DirectionSpace { get { return (Space3)dir_space.Space; } }
 
-    public override ISpace ConfigurableValueSpace {
+    /// <summary>
+    ///
+    /// </summary>
+    public Space3 RotationSpace { get { return (Space3)rot_space.Space; } }
+
+    public override ISamplable ConfigurableValueSpace {
       get {
-        return this.PositionSpace;
+        return this.pos_space;
         //return DirectionSpace;
         //return RotationSpace;
       }
@@ -189,12 +194,12 @@ namespace droid.Runtime.Prototyping.Configurables {
         v = (int)Math.Round(v, this.PositionSpace.DecimalGranularity);
       }
 
-      if (this.PositionSpace.MinValues[0].CompareTo(this.PositionSpace.MaxValues[0]) != 0) {
+      if (this.PositionSpace.Min[0].CompareTo(this.PositionSpace.Max[0]) != 0) {
         //TODO NOT IMPLEMENTED CORRECTLY VelocitySpace should not be index but should check all pairwise values, PositionSpace.MinValues == PositionSpace.MaxValues, and use other space aswell!
-        if (v < this.PositionSpace.MinValues[0] || v > this.PositionSpace.MaxValues[0]) {
+        if (v < this.PositionSpace.Min[0] || v > this.PositionSpace.Max[0]) {
           Debug.Log(string.Format("Configurable does not accept input{2}, outside allowed range {0} to {1}",
-                                  this.PositionSpace.MinValues[0],
-                                  this.PositionSpace.MaxValues[0],
+                                  this.PositionSpace.Min[0],
+                                  this.PositionSpace.Max[0],
                                   v));
           return; // Do nothing
         }
@@ -266,7 +271,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     /// <returns></returns>
     public override Configuration[] SampleConfigurations() {
-      return new[] {new Configuration(this._rot_x, Space1.ZeroOne.Sample())};
+      return new[] {new Configuration(this._rot_x, ConfigurableValueSpace.Sample())};
     }
   }
 }

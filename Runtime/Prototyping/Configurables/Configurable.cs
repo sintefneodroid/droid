@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using droid.Runtime.Enums;
 using droid.Runtime.Environments;
 using droid.Runtime.GameObjects;
@@ -6,8 +6,7 @@ using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Utilities;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
-using Object = System.Object;
+
 
 namespace droid.Runtime.Prototyping.Configurables {
   /// <inheritdoc cref="PrototypingGameObject" />
@@ -19,14 +18,11 @@ namespace droid.Runtime.Prototyping.Configurables {
   [ExecuteInEditMode]
   public abstract class Configurable : PrototypingGameObject,
                                        IConfigurable {
-    /// <summary>
-    /// </summary>
-    public bool RelativeToExistingValue { get { return this._relative_to_existing_value; } }
 
     /// <summary>
     ///
     /// </summary>
-    public abstract ISpace ConfigurableValueSpace { get; }
+    public abstract ISamplable ConfigurableValueSpace { get; }
 
     /// <summary>
     /// </summary>
@@ -144,13 +140,8 @@ namespace droid.Runtime.Prototyping.Configurables {
     [SerializeField]
     AbstractPrototypingEnvironment _environment = null;
 
-    /// <summary>
-    /// </summary>
-    [Header("Configurable", order = 30)]
-    [SerializeField]
-    bool _relative_to_existing_value = false;
 
-    [SerializeField] RandomSamplingMode random_sampling_mode = RandomSamplingMode.On_reset_;
+    [SerializeField] RandomSamplingMode random_sampling_mode = RandomSamplingMode.Disabled_;
 
     #endregion
   }

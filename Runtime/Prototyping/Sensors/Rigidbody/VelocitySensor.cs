@@ -13,7 +13,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rigidbody {
                                 IHasTriple {
     [SerializeField] UnityEngine.Rigidbody _rigidbody;
     [SerializeField] Vector3 _velocity;
-    [SerializeField] Space3 _velocity_space = new Space3(new DistributionSampler(), 10);
+    [SerializeField] Space3 _velocity_space = new Space3( 10);
 
     /// <inheritdoc />
     /// <summary>

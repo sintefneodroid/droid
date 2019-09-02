@@ -17,8 +17,8 @@ namespace droid.Samples.MultiArmedBandit {
     /// </summary>
     protected override void Setup() {
       var mvs = this.MotionSpace;
-      mvs.MinValue = 0;
-      mvs.MaxValue = this._Indicators.Length - 1;
+      mvs.Min = 0;
+      mvs.Max = this._Indicators.Length - 1;
       this.MotionSpace = mvs;
 
       this.ReAssignValues();

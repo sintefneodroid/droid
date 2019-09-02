@@ -59,7 +59,7 @@ namespace droid.Runtime.Prototyping.Configurables {
       transform1.rotation = this._rotation;
     }
 
-    public override ISpace ConfigurableValueSpace { get; }
+    public override ISamplable ConfigurableValueSpace { get; }
 
     /// <summary>
     ///

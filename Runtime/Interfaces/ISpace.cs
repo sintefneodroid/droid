@@ -12,6 +12,9 @@ namespace droid.Runtime.Interfaces {
 
     bool Normalised { get; }
 
-    dynamic Sample();
+    dynamic Max{ get; }
+
+    dynamic Min{ get; }
+
   }
 }

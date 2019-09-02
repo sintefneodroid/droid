@@ -2,6 +2,7 @@
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Structs.Space;
+using droid.Runtime.Structs.Space.Sample;
 using droid.Runtime.Utilities;
 using UnityEngine;
 using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
@@ -27,19 +28,18 @@ namespace droid.Runtime.Prototyping.Configurables {
     string _b;
     string _a;
 
-    [SerializeField] Space2 _tiling_space = Space2.TwentyEighty;
-    [SerializeField] Space2 _offset_space = Space2.TwentyEighty;
+    [SerializeField] ISamplable _tiling_space = new SampleSpace2{Space = Space2.TwentyEighty};
+    [SerializeField] ISamplable _offset_space = new SampleSpace2{Space = Space2.TwentyEighty};
 
-    [SerializeField] Space4 _color_space = Space4.TwentyEighty;
-    [SerializeField] Space1 _smoothness_space = Space1.TwentyEighty;
-    [SerializeField] Space1 _reflection_space = Space1.TwentyEighty;
+    [SerializeField] ISamplable _color_space = new SampleSpace4{Space = Space4.TwentyEighty};
+    [SerializeField] ISamplable _smoothness_space =new SampleSpace1{Space = Space1.TwentyEighty};
+    [SerializeField] ISamplable _reflection_space = new SampleSpace1{Space = Space1.TwentyEighty};
 
     /// <summary>
     /// </summary>
     Renderer _renderer;
 
     [SerializeField] bool _use_shared = false;
-    [SerializeField] Space4 _configurable_value_space = Space4.ZeroOne;
 
     static readonly int _glossiness = Shader.PropertyToID("_Glossiness");
     static readonly int _glossy_reflections = Shader.PropertyToID("_GlossyReflections");
@@ -132,7 +132,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     ///
     /// </summary>
-    public override ISpace ConfigurableValueSpace { get { return this._configurable_value_space; } }
+    public override ISamplable ConfigurableValueSpace { get { return this._tiling_space; } }
 
     /// <summary>
     /// </summary>
@@ -293,6 +293,6 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     ///
     /// </summary>
-    public ISpace[] ObservationSpace { get { return new ISpace[] {this._configurable_value_space}; } }
+    public ISpace[] ObservationSpace { get { return new ISpace[] {this._tiling_space.Space}; } }
   }
 }

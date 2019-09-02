@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Material
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: Terrain
+  m_Shader: {fileID: 4800000, guid: 8ab05313904c31cbeb7fc31b60aa9fe8, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
@@ -40,9 +40,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 7da02c63abdea34debe24724fdfdc829, type: 3}
-        m_Scale: {x: 0.3099542, y: 0.6549745}
-        m_Offset: {x: 0.21142922, y: 0.5312983}
+        m_Texture: {fileID: 2800000, guid: 4f8fc7fd43dfaed9892214e9d0dc0703, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -61,7 +61,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.16871008
+    - _Glossiness: 0
     - _GlossyReflections: 0.27509695
     - _Metallic: 0
     - _Mode: 0
@@ -73,5 +73,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
+    - _BaseScale: {r: 1, g: 1, b: 1, a: 0}
     - _Color: {r: 0.9832063, g: 0.93029237, b: 0.99399346, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

@@ -1,4 +1,4 @@
-﻿#if UNITY_2019_1_OR_NEWER && USE_GITHUB_EXTENSION
+﻿#if UNITY_2019_1_OR_NEWER && USE_GITHUB_EXTENSION && False
 using System.Collections;
 using System.IO;
 using System.Linq;
