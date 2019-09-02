@@ -17,8 +17,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
 
     [SerializeField] RaycastHit _hit = new RaycastHit();
 
-    [SerializeField]
-    Space1 _observation_space = new Space1 {DecimalGranularity = 3, Min = 0f, Max = 100.0f};
+    [SerializeField] Space1 _observation_space = new Space1 {DecimalGranularity = 3, Min = 0f, Max = 100.0f};
 
     [Header("Observation", order = 103)]
     [SerializeField]
@@ -63,11 +62,10 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
     /// </summary>
     public override void UpdateObservation() {
       if (Physics.Raycast(this.transform.position,
-                          this._direction,
+                          this.transform.TransformDirection(this._direction),
                           out this._hit,
                           this._observation_space.Max)) {
         this.ObservationValue = this._hit.distance;
-
       } else {
         this.ObservationValue = this._observation_space.Max;
       }
@@ -84,7 +82,9 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
     void OnDrawGizmosSelected() {
       if (this.enabled) {
         var position = this.transform.position;
-        Debug.DrawLine(position, position + this._direction * this._observation_space.Max, this._color);
+        Debug.DrawLine(position,
+                       position + this.transform.TransformDirection(this._direction) * this._observation_space.Max,
+                       this._color);
       }
     }
     #endif
