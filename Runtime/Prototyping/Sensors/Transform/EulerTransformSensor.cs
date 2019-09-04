@@ -49,6 +49,7 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     [SerializeField]
     [SearchableEnum]
     ObservationSpace _space = ObservationSpace.Environment_;
+    [SerializeField] bool normalised_overwrite_space_if_env_bounds = true;
 
     /// <summary>
     ///
@@ -147,6 +148,12 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     /// <summary>
     ///
     /// </summary>
-    protected override void PreSetup() { }
+    protected override void PreSetup() {
+      if (this.normalised_overwrite_space_if_env_bounds) {
+        if (this.ParentEnvironment) {
+          this._position_space = Space3.FromCenterExtents(this.ParentEnvironment.PlayableArea.Bounds.extents);
+        }
+      }
+    }
   }
 }

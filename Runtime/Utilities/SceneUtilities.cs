@@ -20,7 +20,7 @@ namespace droid.Runtime.Utilities {
       }
 
       throw new
-          System.ArgumentException($"Found no UnityEngine.Object assignables from type {typeof(T).Name}");
+          ArgumentException($"Found no UnityEngine.Object assignables from type {typeof(T).Name}");
     }
 
     /// <summary>

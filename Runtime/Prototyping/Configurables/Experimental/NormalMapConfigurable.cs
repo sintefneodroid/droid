@@ -20,7 +20,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     [SerializeField] Texture _texture = null;
     [SerializeField] Renderer _renderer = null;
     [SerializeField] bool use_shared = false;
-    [SerializeField] UnityEngine.Material _mat;
+    [SerializeField] Material _mat;
     [SerializeField] int _last_sample;
     static readonly Int32 _main_tex = Shader.PropertyToID("_BumpMap");
 

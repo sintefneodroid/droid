@@ -199,8 +199,18 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     public dynamic Min { get { return this._min_; } set { this._min_ = value; } }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
     public Vector4 Denormalise01(Vector4 v) {  return v.Multiply(this.Span) + this._min_; }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
     public Vector4 Normalise01(Vector4 v)  { return (v - this._min_).Divide(this.Span); }
   }
 }

@@ -36,12 +36,12 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     string _r;
 
-    [SerializeField] ISamplable rot_space = new SampleSpace4{_space = Space4.ZeroOne};
+    [SerializeField] SampleSpace4 rot_space = new SampleSpace4{_space = Space4.ZeroOne};
 
-    [SerializeField] ISamplable xy_space2 = new SampleSpace2{_space2 = Space2.ZeroOne};
+    [SerializeField] SampleSpace2 xy_space2 = new SampleSpace2{_space2 = Space2.ZeroOne};
 
-    [SerializeField] ISamplable depth_space1 = new SampleSpace1{_space1 = Space1.ZeroOne};
-    [SerializeField] ISamplable size_space = new SampleSpace3{_space3 = Space3.ZeroOne};
+    [SerializeField] SampleSpace1 depth_space1 = new SampleSpace1{_space1 = Space1.ZeroOne};
+    [SerializeField] SampleSpace3 size_space = new SampleSpace3{_space3 = Space3.ZeroOne};
 
     /// <summary>
     /// </summary>

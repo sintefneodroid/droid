@@ -1,6 +1,7 @@
 ﻿using System;
 using droid.Runtime.Enums;
 using droid.Runtime.Prototyping.Sensors.Experimental;
+using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities;
 using UnityEngine;
 

@@ -192,5 +192,23 @@ namespace droid.Runtime.Structs.Space {
       a.Min *= b;
       return a;
     }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="bounds_extents"></param>
+    /// <param name="normalised"></param>
+    /// <param name="decimal_granularity"></param>
+    /// <returns></returns>
+    public static Space1 FromCenterExtents(float bounds_extents,
+                                           bool normalised = true,
+                                           int decimal_granularity = 4) {
+      return new Space1 {
+                            _min_ = -bounds_extents,
+                            Max = bounds_extents,
+                            normalised = normalised,
+                            DecimalGranularity = decimal_granularity
+                        };
+    }
   }
 }

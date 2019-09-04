@@ -16,7 +16,7 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
     [SerializeField] GameObject active;
     [SerializeField] GameObject[] children;
     [SerializeField] int len;
-    [SerializeField] ISamplable _configurable_value_space = new SampleSpace1();
+    [SerializeField] SampleSpace1 _configurable_value_space = new SampleSpace1();
 
     /// <summary>
     ///

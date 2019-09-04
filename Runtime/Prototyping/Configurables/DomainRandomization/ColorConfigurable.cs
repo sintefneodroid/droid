@@ -43,7 +43,7 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
     /// </summary>
     Renderer _renderer;
 
-    [SerializeField] ISamplable _space = new SampleSpace4 {_space = Space4.TwentyEighty};
+    [SerializeField] SampleSpace4 _space = new SampleSpace4 {_space = Space4.TwentyEighty};
 
     [SerializeField] bool use_shared = false;
 

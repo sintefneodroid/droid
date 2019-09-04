@@ -29,7 +29,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// </summary>
     string _z;
 
-    [SerializeField] ISamplable _space = new SampleSpace3{Space = Space3.ZeroOne};
+    [SerializeField] SampleSpace3 _space = new SampleSpace3{Space = Space3.ZeroOne};
 
     /// <inheritdoc />
     /// <summary>

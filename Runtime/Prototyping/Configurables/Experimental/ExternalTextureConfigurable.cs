@@ -66,7 +66,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     /// <returns></returns>
     public override Configuration[] SampleConfigurations() {
-      return new[] {new Configuration(this._texture_str, ConfigurableValueSpace.Sample())};
+      return new[] {new Configuration(this._texture_str, this.ConfigurableValueSpace.Sample())};
     }
   }
 }

@@ -29,6 +29,8 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     [SerializeField]
     ObservationSpace observation_space = ObservationSpace.Environment_;
 
+    [SerializeField] bool normalised_overwrite_space_if_env_bounds = true;
+
     /// <summary>
     ///
     /// </summary>
@@ -86,7 +88,25 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() { }
+    protected override void PreSetup() {
+      if (this.normalised_overwrite_space_if_env_bounds) {
+        if (this.ParentEnvironment) {
+          var ex = this.ParentEnvironment.PlayableArea.Bounds.extents;
+          switch (this._dim_combination) {
+            case Dimension2DCombination.Xy_:
+              this._position_space = Space2.FromCenterExtents(new Vector2(ex.x, ex.y));
+              break;
+            case Dimension2DCombination.Xz_:
+              this._position_space = Space2.FromCenterExtents(new Vector2(ex.x, ex.z));
+              break;
+            case Dimension2DCombination.Yz_:
+              this._position_space = Space2.FromCenterExtents(new Vector2(ex.y, ex.z));
+              break;
+            default: throw new ArgumentOutOfRangeException();
+          }
+        }
+      }
+    }
 
     #if UNITY_EDITOR
 
