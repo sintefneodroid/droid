@@ -1,8 +1,7 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-using droid.Runtime.GameObjects.BoundingBoxes;
+﻿using droid.Runtime.GameObjects.BoundingBoxes;
+using UnityEngine;
 
-namespace droid.Runtime.Prototyping.Evaluation {
+namespace droid.Runtime.Prototyping.Evaluation.Spatial {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

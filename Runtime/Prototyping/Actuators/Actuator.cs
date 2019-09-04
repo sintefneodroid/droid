@@ -37,7 +37,6 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// </summary>
     public override String PrototypingTypeName { get { return "Actuator"; } }
 
-
     /// <summary>
     /// </summary>
     /// <param name="motion"></param>
@@ -48,13 +47,13 @@ namespace droid.Runtime.Prototyping.Actuators {
       }
       #endif
 
-      if (motion.Strength < this._motion_value_space._space1.Min || motion.Strength > this._motion_value_space._space1.Max) {
-        Debug.LogWarning($"It does not accept input {motion.Strength}, outside the allowed range from {this._motion_value_space._space1.Min} to {this._motion_value_space._space1.Max}, rounding to be inside space.");
-        motion.Strength = this._motion_value_space._space1.Round(this._motion_value_space._space1.Clip(motion.Strength));
-      }
-
       if (this._motion_value_space._space1.Normalised) {
         motion.Strength = this._motion_value_space._space1.ClipDenormaliseRoundClip(motion.Strength);
+      } else if (motion.Strength < this._motion_value_space._space1.Min
+                 || motion.Strength > this._motion_value_space._space1.Max) {
+        Debug.LogWarning($"It does not accept input {motion.Strength}, outside the allowed range from {this._motion_value_space._space1.Min} to {this._motion_value_space._space1.Max}, rounding to be inside space.");
+        motion.Strength =
+            this._motion_value_space._space1.Round(this._motion_value_space._space1.Clip(motion.Strength));
       }
 
       this.InnerApplyMotion(motion);
@@ -123,7 +122,7 @@ namespace droid.Runtime.Prototyping.Actuators {
 
     [Header("General", order = 101)]
     [SerializeField]
-    SampleSpace1 _motion_value_space = new SampleSpace1{_space1 = Space1.MinusOneOne};
+    SampleSpace1 _motion_value_space = new SampleSpace1 {_space1 = Space1.MinusOneOne};
 
     [SerializeField] float _energy_spend_since_reset;
 

@@ -1,7 +1,7 @@
 ﻿using droid.Runtime.GameObjects.ChildSensors;
 using UnityEngine;
 
-namespace droid.Runtime.Prototyping.Evaluation {
+namespace droid.Runtime.Prototyping.Evaluation.Spatial {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

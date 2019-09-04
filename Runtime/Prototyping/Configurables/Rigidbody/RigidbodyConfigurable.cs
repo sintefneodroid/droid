@@ -1,20 +1,20 @@
 ﻿using System;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
+using droid.Runtime.Prototyping.Configurables.Transforms;
 using droid.Runtime.Structs.Space;
 using droid.Runtime.Structs.Space.Sample;
 using droid.Runtime.Utilities;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
-namespace droid.Runtime.Prototyping.Configurables {
+namespace droid.Runtime.Prototyping.Configurables.Rigidbody {
   /// <inheritdoc cref="Configurable" />
   /// <summary>
   /// </summary>
   [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
                     + "Rigidbody"
                     + ConfigurableComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(Rigidbody))]
+  [RequireComponent(typeof(UnityEngine.Rigidbody))]
   public class RigidbodyConfigurable : SpatialConfigurable,
                                        IHasRigidbody {
     /// <summary>
@@ -41,7 +41,7 @@ namespace droid.Runtime.Prototyping.Configurables {
 
     /// <summary>
     /// </summary>
-    Rigidbody _rigidbody = null;
+    UnityEngine.Rigidbody _rigidbody = null;
 
     /// <summary>
     /// </summary>
@@ -96,7 +96,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     protected override void PreSetup() {
-      this._rigidbody = this.GetComponent<Rigidbody>();
+      this._rigidbody = this.GetComponent<UnityEngine.Rigidbody>();
       this._vel_x = this.Identifier + "VelX";
       this._vel_y = this.Identifier + "VelY";
       this._vel_z = this.Identifier + "VelZ";

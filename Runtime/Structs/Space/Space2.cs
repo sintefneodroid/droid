@@ -115,6 +115,10 @@ namespace droid.Runtime.Structs.Space {
       get { return new Space2(1) {_min_ = Vector2.one * 0.2f, Max = Vector2.one * 0.8f}; }
     }
 
+    public static Space2 MinusOneOne {
+      get { return new Space2(1) {_min_ = -Vector2.one, Max = Vector2.one}; }
+    }
+
     /// <summary>
     ///
     /// </summary>
@@ -147,5 +151,17 @@ namespace droid.Runtime.Structs.Space {
     /// <returns></returns>
     public Vector2 Normalise01(Vector2 v) { return (v - this._min_) / this.Span; }
 
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="a"></param>
+    /// <param name="b"></param>
+    /// <returns></returns>
+    public static Space2 operator*(Space2 a, float b) {
+      a.Max *= b;
+      a.Min *= b;
+      return a;
+    }
   }
 }

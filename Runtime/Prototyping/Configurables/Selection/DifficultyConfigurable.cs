@@ -2,7 +2,7 @@
 using droid.Runtime.Interfaces;
 using UnityEngine;
 
-namespace droid.Runtime.Prototyping.Configurables {
+namespace droid.Runtime.Prototyping.Configurables.Selection {
   [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
                     + "Difficulty"
                     + ConfigurableComponentMenuPath._Postfix)]

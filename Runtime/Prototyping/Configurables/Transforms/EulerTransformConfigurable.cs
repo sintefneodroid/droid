@@ -5,9 +5,8 @@ using droid.Runtime.Structs.Space;
 using droid.Runtime.Structs.Space.Sample;
 using droid.Runtime.Utilities;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
-namespace droid.Runtime.Prototyping.Configurables {
+namespace droid.Runtime.Prototyping.Configurables.Transforms {
   /// <inheritdoc cref="Configurable" />
   /// <summary>
   /// </summary>
@@ -62,17 +61,17 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     ///
     /// </summary>
-    public Space3 PositionSpace { get { return (Space3)pos_space.Space; } }
+    public Space3 PositionSpace { get { return (Space3)this.pos_space.Space; } }
 
     /// <summary>
     ///
     /// </summary>
-    public Space3 DirectionSpace { get { return (Space3)dir_space.Space; } }
+    public Space3 DirectionSpace { get { return (Space3)this.dir_space.Space; } }
 
     /// <summary>
     ///
     /// </summary>
-    public Space3 RotationSpace { get { return (Space3)rot_space.Space; } }
+    public Space3 RotationSpace { get { return (Space3)this.rot_space.Space; } }
 
     public override ISamplable ConfigurableValueSpace {
       get {
@@ -271,7 +270,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     /// <returns></returns>
     public override Configuration[] SampleConfigurations() {
-      return new[] {new Configuration(this._rot_x, ConfigurableValueSpace.Sample())};
+      return new[] {new Configuration(this._rot_x, this.ConfigurableValueSpace.Sample())};
     }
   }
 }

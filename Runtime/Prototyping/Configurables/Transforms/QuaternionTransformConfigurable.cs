@@ -2,7 +2,7 @@
 using droid.Runtime.Structs.Space;
 using UnityEngine;
 
-namespace droid.Runtime.Prototyping.Configurables {
+namespace droid.Runtime.Prototyping.Configurables.Transforms {
   [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
                     + "QuaternionTransform"
                     + ConfigurableComponentMenuPath._Postfix)]

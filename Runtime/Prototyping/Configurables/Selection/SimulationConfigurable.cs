@@ -2,12 +2,10 @@
 using droid.Runtime.Interfaces;
 using droid.Runtime.Managers;
 using droid.Runtime.Messaging.Messages;
-using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
-namespace droid.Runtime.Prototyping.Configurables {
+namespace droid.Runtime.Prototyping.Configurables.Selection {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

@@ -1,14 +1,7 @@
-﻿
-using droid.Runtime.Enums;
-using droid.Runtime.Environments;
-using droid.Runtime.GameObjects;
-using droid.Runtime.Interfaces;
-using droid.Runtime.Messaging.Messages;
-using droid.Runtime.Utilities;
+﻿using droid.Runtime.GameObjects;
 using UnityEngine;
 
-
-namespace droid.Runtime.Prototyping.Configurables {
+namespace droid.Runtime.Prototyping.Configurables.Transforms {
   /// <inheritdoc cref="PrototypingGameObject" />
   /// <summary>
   /// </summary>

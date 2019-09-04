@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
-using droid.Runtime.Structs.Space;
 using droid.Runtime.Structs.Space.Sample;
 using UnityEngine;
 
-namespace droid.Runtime.Prototyping.Configurables {
+namespace droid.Runtime.Prototyping.Configurables.Selection {
   /// <summary>
   ///
   /// </summary>

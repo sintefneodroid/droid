@@ -5,21 +5,19 @@ using droid.Runtime.Structs.Space;
 using droid.Runtime.Structs.Space.Sample;
 using droid.Runtime.Utilities;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
-using Random = UnityEngine.Random;
 
-namespace droid.Runtime.Prototyping.Configurables {
+namespace droid.Runtime.Prototyping.Configurables.Transforms {
   /// <inheritdoc cref="Configurable" />
   /// <summary>
   /// </summary>
   [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
-                    + "Position"
+                    + "EulerRotation"
                     + ConfigurableComponentMenuPath._Postfix)]
-  public class PositionConfigurable : SpatialConfigurable,
-                                      IHasTriple {
+  public class EulerRotationConfigurable : SpatialConfigurable,
+                                           IHasTriple {
     [Header("Observation", order = 103)]
     [SerializeField]
-    Vector3 _position = Vector3.zero;
+    Quaternion _euler_rotation = Quaternion.identity;
 
     [SerializeField] bool _use_environments_space = false;
 
@@ -35,28 +33,39 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     string _z;
 
-    [SerializeField] SampleSpace3 _triple_space = new SampleSpace3 {Space = Space3.ZeroOne};
+    /// <summary>
+    /// </summary>
+    string _w;
+
+    [SerializeField]
+    SampleSpace3 _euler_space = new SampleSpace3 {
+                                                   _space3 = new Space3(4) {
+                                                                     Min = Vector3.zero,
+                                                                     Max = new Vector3(360f, 360f, 360f)
+                                                                 }
+                                               };
+
+    /// <summary>
+    ///
+    /// </summary>
+    public Space3 TripleSpace { get { return (Space3)this._euler_space.Space; } }
 
     /// <inheritdoc />
     /// <summary>
-    /// </summary>
-    public Vector3 ObservationValue { get { return this._position; } }
-
-    public Space3 TripleSpace { get { return this._triple_space._space3; } }
-
-    /// <summary>
-    /// 
     /// </summary>
     protected override void PreSetup() {
       this._x = this.Identifier + "X_";
       this._y = this.Identifier + "Y_";
       this._z = this.Identifier + "Z_";
+      this._w = this.Identifier + "W_";
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
+      this.ParentEnvironment =
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
                                                           (Configurable)this,
@@ -69,34 +78,40 @@ namespace droid.Runtime.Prototyping.Configurables {
           NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
                                                           (Configurable)this,
                                                           this._z);
+      this.ParentEnvironment =
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._w);
     }
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
     protected override void UnRegisterComponent() {
       if (this.ParentEnvironment == null) {
         return;
       }
 
+      this.ParentEnvironment.UnRegister(this);
       this.ParentEnvironment.UnRegister(this, this._x);
       this.ParentEnvironment.UnRegister(this, this._y);
       this.ParentEnvironment.UnRegister(this, this._z);
+      this.ParentEnvironment.UnRegister(this, this._w);
     }
 
     /// <summary>
     ///
     /// </summary>
-    public override ISamplable ConfigurableValueSpace { get { return this._triple_space; } }
+    public override ISamplable ConfigurableValueSpace { get { return this._euler_space; } }
 
     /// <summary>
     /// 
     /// </summary>
     public override void UpdateCurrentConfiguration() {
-      if (this._use_environments_space) {
-        this._position = this.ParentEnvironment.TransformPoint(this.transform.position);
+      if (this._use_environments_space && this.ParentEnvironment != null) {
+        this._euler_rotation = this.ParentEnvironment.TransformRotation(this.transform.rotation);
       } else {
-        this._position = this.transform.position;
+        this._euler_rotation = this.transform.rotation;
       }
     }
 
@@ -105,71 +120,72 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     /// <param name="simulator_configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration) {
-      var pos = this.transform.position;
+      var rot = this.transform.rotation;
       if (this._use_environments_space) {
-        pos = this.ParentEnvironment.TransformPoint(this.transform.position);
+        rot = this.ParentEnvironment.TransformRotation(this.transform.rotation);
       }
 
       var v = simulator_configuration.ConfigurableValue;
-      /*
-
-if (this.TripleSpace.DecimalGranularity >= 0) {
-  v = (int)Math.Round(v, this.TripleSpace.DecimalGranularity);
-}
+      if (this.TripleSpace.DecimalGranularity >= 0) {
+        v = (int)Math.Round(v, this.TripleSpace.DecimalGranularity);
+      }
 
 
-if (this.TripleSpace.MinValues[0].CompareTo(this.TripleSpace.MaxValues[0]) != 0) {
-  //TODO NOT IMPLEMENTED CORRECTLY VelocitySpace should not be index but should check all pairwise values, TripleSpace.MinValues == TripleSpace.MaxValues
-  if (v < this.TripleSpace.MinValues[0] || v > this.TripleSpace.MaxValues[0]) {
-    Debug.Log($"Configurable does not accept input{v}, outside allowed range {this.TripleSpace.MinValues[0]} to {this.TripleSpace.MaxValues[0]}");
-    return; // Do nothing
-  }
-}
-*/
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
         Debug.Log($"Applying {v} to {simulator_configuration.ConfigurableName} configurable");
       }
       #endif
+      var rote = rot.eulerAngles;
 
       if (this.RelativeToExistingValue) {
         if (simulator_configuration.ConfigurableName == this._x) {
-          pos.Set(v - pos.x, pos.y, pos.z);
+          if (this.TripleSpace.Min[0].CompareTo(this.TripleSpace.Max[0]) != 0) {
+            #if NEODROID_DEBUG
+            if (v < this.TripleSpace.Min[0] || v > this.TripleSpace.Max[0]) {
+              Debug.Log($"Configurable does not accept input {v}, outside allowed range {this.TripleSpace.Min[0]} to {this.TripleSpace.Max[0]}");
+              return; // Do nothing
+            }
+            #endif
+          }
+          rot.eulerAngles = new Vector3(v + rote.x, rote.y, rote.z);
         } else if (simulator_configuration.ConfigurableName == this._y) {
-          pos.Set(pos.x, v - pos.y, pos.z);
+          rot.eulerAngles = new Vector3(rote.x, v + rote.y, rote.z);
         } else if (simulator_configuration.ConfigurableName == this._z) {
-          pos.Set(pos.x, pos.y, v - pos.z);
+          rot.eulerAngles = new Vector3(rote.x, rote.y, v + rote.z);
         }
       } else {
         if (simulator_configuration.ConfigurableName == this._x) {
-          pos.Set(v, pos.y, pos.z);
+          rot.eulerAngles = new Vector3(v, rote.y, rote.z);
         } else if (simulator_configuration.ConfigurableName == this._y) {
-          pos.Set(pos.x, v, pos.z);
+          rot.eulerAngles = new Vector3(rote.x, v, rote.z);
         } else if (simulator_configuration.ConfigurableName == this._z) {
-          pos.Set(pos.x, pos.y, v);
+          rot.eulerAngles = new Vector3(rote.x, rote.y, v);
         }
       }
 
-      var inv_pos = pos;
       if (this._use_environments_space) {
-        inv_pos = this.ParentEnvironment.InverseTransformPoint(inv_pos);
+        rot = this.ParentEnvironment.InverseTransformRotation(rot);
       }
 
-      this.transform.position = inv_pos;
+      this.transform.rotation = rot;
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <returns></returns>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <returns></returns>
     public override Configuration[] SampleConfigurations() {
-      var sample = this._triple_space.Sample();
+      var sample = this._euler_space.Sample();
+
       return new[] {
                        new Configuration(this._x, sample.x),
                        new Configuration(this._y, sample.y),
                        new Configuration(this._z, sample.z)
                    };
     }
+
+    Vector3 IHasTriple.ObservationValue { get { return this._euler_rotation.eulerAngles; } }
   }
 }

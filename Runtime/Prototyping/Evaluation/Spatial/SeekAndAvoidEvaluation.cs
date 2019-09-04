@@ -4,7 +4,7 @@ using droid.Runtime.GameObjects.ChildSensors;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace droid.Runtime.Prototyping.Evaluation {
+namespace droid.Runtime.Prototyping.Evaluation.Spatial {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

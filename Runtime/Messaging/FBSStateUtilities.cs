@@ -3,6 +3,7 @@ using droid.Runtime.Messaging.FBS;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Prototyping.Configurables;
+using droid.Runtime.Prototyping.Configurables.Transforms;
 using FlatBuffers;
 using UnityEngine;
 
@@ -102,7 +103,9 @@ namespace droid.Runtime.Messaging {
       var unobservables = _null_unobservables_offset;
       if (do_serialise_unobservables) {
         var state_unobservables = state.Unobservables;
-        var bodies = state_unobservables.Bodies;
+        if (state_unobservables != null) {
+          var bodies = state_unobservables.Bodies;
+
 
         FUnobservables.StartBodiesVector(b, bodies.Length);
         foreach (var rig in bodies) {
@@ -128,7 +131,8 @@ namespace droid.Runtime.Messaging {
         FUnobservables.AddPoses(b, poses_vector);
         FUnobservables.AddBodies(b, bodies_vector);
         unobservables = FUnobservables.EndFUnobservables(b);
-      }
+        }
+        }
 
       var description_offset = new Offset<FEnvironmentDescription>();
       if (state.Description != null) {

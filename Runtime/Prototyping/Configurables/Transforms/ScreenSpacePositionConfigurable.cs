@@ -1,11 +1,9 @@
 ﻿using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
-using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
-namespace droid.Runtime.Prototyping.Configurables {
+namespace droid.Runtime.Prototyping.Configurables.Transforms {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
@@ -135,8 +133,8 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     /// <returns></returns>
     public override Configuration[] SampleConfigurations() {
-      var x = ConfigurableValueSpace.Sample();
-      var y =ConfigurableValueSpace.Sample();
+      var x = this.ConfigurableValueSpace.Sample();
+      var y =this.ConfigurableValueSpace.Sample();
 
       var a = new Vector2(x, y);
       var bounded = Vector2.Min(Vector2.Max(a, new Vector2(0.2f, 0.2f)), new Vector2(0.8f, 0.8f));
@@ -147,12 +145,12 @@ namespace droid.Runtime.Prototyping.Configurables {
 
       var c = this._camera.ViewportToWorldPoint(bounded3);
 
-      var b = new Quaternion(ConfigurableValueSpace.Sample(),
-                             ConfigurableValueSpace.Sample(),
-                             ConfigurableValueSpace.Sample(),
-                             ConfigurableValueSpace.Sample());
-      var sample1 = ConfigurableValueSpace.Sample();
-      var sample = ConfigurableValueSpace.Sample();
+      var b = new Quaternion(this.ConfigurableValueSpace.Sample(),
+                             this.ConfigurableValueSpace.Sample(),
+                             this.ConfigurableValueSpace.Sample(),
+                             this.ConfigurableValueSpace.Sample());
+      var sample1 = this.ConfigurableValueSpace.Sample();
+      var sample = this.ConfigurableValueSpace.Sample();
 
       if (sample1 > 0.5f) {
         if (sample < .33f) {

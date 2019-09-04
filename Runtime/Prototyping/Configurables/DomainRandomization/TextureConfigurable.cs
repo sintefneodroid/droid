@@ -3,7 +3,7 @@ using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Utilities;
 using UnityEngine;
 
-namespace droid.Runtime.Prototyping.Configurables {
+namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
@@ -17,7 +17,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     [SerializeField] Texture _texture = null;
     [SerializeField] Renderer _renderer = null;
     [SerializeField] bool use_shared = false;
-    Material _mat;
+    UnityEngine.Material _mat;
     [SerializeField] int _last_sample;
     [SerializeField] string load_path = "Textures";
     static readonly int _main_tex = Shader.PropertyToID("_MainTex");

@@ -1,20 +1,20 @@
 ﻿using System;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
+using droid.Runtime.Prototyping.Configurables.Transforms;
 using droid.Runtime.Structs.Space;
 using droid.Runtime.Structs.Space.Sample;
 using droid.Runtime.Utilities;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
-namespace droid.Runtime.Prototyping.Configurables {
+namespace droid.Runtime.Prototyping.Configurables.Rigidbody {
   /// <inheritdoc cref="Configurable" />
   /// <summary>
   /// </summary>
   [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
                     + "Friction"
                     + ConfigurableComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(Rigidbody))]
+  [RequireComponent(typeof(UnityEngine.Rigidbody))]
   public class FrictionConfigurable : SpatialConfigurable,
                                       IHasSingle {
 
@@ -26,7 +26,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     string _vel_x;
 
-    Rigidbody _rigidbody;
+    UnityEngine.Rigidbody _rigidbody;
 
     /// <summary>
     /// </summary>
@@ -54,7 +54,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     protected override void PreSetup() {
-      this._rigidbody = this.GetComponent<Rigidbody>();
+      this._rigidbody = this.GetComponent<UnityEngine.Rigidbody>();
       this._vel_x = this.Identifier + "VelX";
     }
 

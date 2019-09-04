@@ -112,7 +112,7 @@ namespace droid.Runtime.Structs.Space {
     /// <param name="v"></param>
     /// <returns></returns>
     public float ClipDenormaliseRoundClip(float v) {
-      return this.Clip(this.Round(this.Denormalise01(Mathf.Clamp(v, -1, 1))));
+      return this.Clip(this.Round(this.Denormalise01(Mathf.Clamp(v, 0, 1))));
     }
 
     /// <summary>

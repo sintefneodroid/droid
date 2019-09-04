@@ -63,6 +63,15 @@ namespace droid.Tests.Editor.Structs.Space {
       Assert.That(Math.Abs(space.Normalise01(0.5f) - 0.75f) <= float.Epsilon, Is.True);
     }
 
+    [Test]
+    public void TestClipDenomalise01RoundClip() {
+
+      var space = new Space1 {Min = -1, Max = 1};
+
+      Assert.That(Math.Abs(space.      ClipDenormaliseRoundClip(0.5f) - 0.0f) <= float.Epsilon, Is.True);
+
+    }
+
     /// <summary>
     ///
     /// </summary>

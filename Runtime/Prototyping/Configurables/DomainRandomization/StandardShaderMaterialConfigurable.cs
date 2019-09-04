@@ -5,9 +5,8 @@ using droid.Runtime.Structs.Space;
 using droid.Runtime.Structs.Space.Sample;
 using droid.Runtime.Utilities;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
-namespace droid.Runtime.Prototyping.Configurables {
+namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
   /// <inheritdoc cref="Configurable" />
   /// <summary>
   /// </summary>
@@ -269,7 +268,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     ///
     /// </summary>
     protected override void Randomise() {
-      Material[] materials;
+      UnityEngine.Material[] materials;
       if (this._use_shared) {
         materials = this._renderer.sharedMaterials;
       } else {

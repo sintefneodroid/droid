@@ -4,6 +4,7 @@ using droid.Runtime.Managers;
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Prototyping.Actuators;
 using droid.Runtime.Prototyping.Configurables;
+using droid.Runtime.Prototyping.Configurables.Transforms;
 using droid.Runtime.Prototyping.Sensors.Transform;
 using UnityEditor;
 #if UNITY_EDITOR
