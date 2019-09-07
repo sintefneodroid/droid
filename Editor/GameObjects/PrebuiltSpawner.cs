@@ -4,6 +4,7 @@ using droid.Runtime.Managers;
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Prototyping.Actuators;
 using droid.Runtime.Prototyping.Configurables;
+using droid.Runtime.Prototyping.Configurables.Transforms;
 using droid.Runtime.Prototyping.Sensors.Transform;
 using UnityEditor;
 #if UNITY_EDITOR
@@ -17,7 +18,7 @@ namespace droid.Editor.GameObjects {
     [MenuItem(EditorGameObjectMenuPath._GameObjectMenuPath + "Prebuilt/SimpleEnvironment", false, 10)]
     static void CreateSingleEnvironmentGameObject(MenuCommand menu_command) {
       var go = new GameObject("SimpleEnvironment");
-      go.AddComponent<PausableManager>();
+      go.AddComponent<NeodroidManager>();
       var env = go.AddComponent<PrototypingEnvironment>();
       go.AddComponent<BoxCollider>();
       var bounding_box = go.AddComponent<BoundingBox>();

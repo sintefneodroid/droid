@@ -44,8 +44,18 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
       var target_texture = this._camera.targetTexture;
       if (!target_texture) {
         #if NEODROID_DEBUG
-        Debug.LogWarning("Texture not available!");
+        Debug.LogWarning($"RenderTexture target not available on {this.Identifier} not available, allocating a default!");
         #endif
+        var rt = new RenderTexture(NeodroidConstants._Default_Width,
+                                   NeodroidConstants._Default_Height,
+                                   0,
+                                   RenderTextureFormat.ARGBFloat) {
+                                                                      filterMode = FilterMode.Point,
+                                                                      name = $"rt_{this.Identifier}",
+                                                                      enableRandomWrite = true
+                                                                  };
+        rt.Create();
+        this._camera.targetTexture = rt;
         this._texture = new Texture2D(NeodroidConstants._Default_Width,
                                       NeodroidConstants._Default_Height,
                                       NeodroidConstants._Default_TextureFormat,

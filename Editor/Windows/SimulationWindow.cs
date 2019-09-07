@@ -20,7 +20,7 @@ namespace droid.Editor.Windows {
     }
 
     Texture _icon;
-    PausableManager _simulation_manager;
+    NeodroidManager _simulation_manager;
 
     /// <summary>
     /// </summary>
@@ -35,7 +35,7 @@ namespace droid.Editor.Windows {
 
     void Setup() {
       var serialised_object = new SerializedObject(this);
-      this._simulation_manager = FindObjectOfType<PausableManager>();
+      this._simulation_manager = FindObjectOfType<NeodroidManager>();
 
       serialised_object.ApplyModifiedProperties();
     }

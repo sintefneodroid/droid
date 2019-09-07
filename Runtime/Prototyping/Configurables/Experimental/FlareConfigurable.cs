@@ -1,6 +1,7 @@
 ﻿using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Structs.Space;
+using droid.Runtime.Structs.Space.Sample;
 using droid.Runtime.Utilities;
 using UnityEngine;
 using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
@@ -25,13 +26,13 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     Flare _flare;
 
     [SerializeField]
-    Space3 _color_space = new Space3 {
+    SampleSpace3 _color_space = new SampleSpace3{ _space = new Space3 {
                                          DecimalGranularity = 2,
-                                         MinValues = Vector3.one * 0.7f,
-                                         MaxValues = Vector3.one * 1f
-                                     };
+                                         Min = Vector3.one * 0.7f,
+                                         Max = Vector3.one * 1f
+                                     }};
 
-    [SerializeField] Space3 _int_ind_sha_space = Space3.TwentyEighty + Vector3.one * 0.4f;
+    [SerializeField] SampleSpace3 _int_ind_sha_space = new SampleSpace3{ _space = Space3.TwentyEighty + Vector3.one * 0.4f};
 
     /// <inheritdoc />
     /// <summary>
@@ -53,20 +54,28 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     protected override void RegisterComponent() {
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._shadow_strength);
-      this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._color_r);
-      this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._color_b);
-      this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._color_g);
-      this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._intensity);
+                                                          (Configurable)this,
+                                                          this._shadow_strength);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
-                                              (Configurable)this,
-                                              this._indirect_multiplier);
+                                                          (Configurable)this,
+                                                          this._color_r);
+      this.ParentEnvironment =
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._color_b);
+      this.ParentEnvironment =
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._color_g);
+      this.ParentEnvironment =
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._intensity);
+      this.ParentEnvironment =
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._indirect_multiplier);
     }
 
     /// <inheritdoc />
@@ -85,8 +94,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       this.ParentEnvironment.UnRegister(this, this._indirect_multiplier);
     }
 
-    public override ISpace ConfigurableValueSpace { get; }
-
+    public override ISamplable ConfigurableValueSpace { get { return this._color_space; } }
     /// <summary>
     /// </summary>
     /// <param name="configuration"></param>

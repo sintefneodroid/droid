@@ -19,11 +19,13 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     [SerializeField]
     Vector3 _position;
 
-    [SerializeField] Space3 _position_space = new Space3(new DistributionSampler(), 10);
+    [SerializeField] Space3 _position_space = new Space3( 10);
 
     [Header("Specific", order = 102)]
     [SerializeField]
     ObservationSpace _space = ObservationSpace.Environment_;
+
+    [SerializeField] bool normalised_overwrite_space_if_env_bounds = true;
 
     /// <summary>
     /// </summary>
@@ -34,17 +36,25 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     public Vector3 ObservationValue {
       get { return this._position; }
       set {
-        this._position = this.TripleSpace.Normalised ? this._position_space.ClipNormaliseRound(value) : value;
+        this._position = this._position_space.Normalised
+                             ? this._position_space.ClipNormaliseRound(value)
+                             : value;
       }
     }
 
     /// <summary>
     /// </summary>
-    public Space3 TripleSpace { get; } = new Space3();
+    public Space3 TripleSpace { get { return this._position_space; } }
 
     /// <summary>
     /// </summary>
-    protected override void PreSetup() { }
+    protected override void PreSetup() {
+      if (this.normalised_overwrite_space_if_env_bounds) {
+        if (this.ParentEnvironment) {
+          this._position_space = Space3.FromCenterExtents(this.ParentEnvironment.PlayableArea.Bounds.extents);
+        }
+      }
+    }
 
     /// <summary>
     ///

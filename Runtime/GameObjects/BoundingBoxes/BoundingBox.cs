@@ -192,9 +192,9 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
         var position = transform1.position;
         if (this.environment != null) {
           str_rep +=
-              $"\"top_front_left\":{this.JsonifyVec3(this.environment.TransformPoint(rotation * this._point_tfl + position))}, ";
+              $"\"top_front_left\":{JsonifyVec3(this.environment.TransformPoint(rotation * this._point_tfl + position))}, ";
           str_rep +=
-              $"\"bottom_back_right\":{this.JsonifyVec3(this.environment.TransformPoint(rotation * this._point_bbr + position))}";
+              $"\"bottom_back_right\":{JsonifyVec3(this.environment.TransformPoint(rotation * this._point_bbr + position))}";
         }
 
         str_rep += "}";
@@ -293,7 +293,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
     /// </summary>
     /// <param name="vec"></param>
     /// <returns></returns>
-    string JsonifyVec3(Vector3 vec) { return $"[{vec.x},{vec.y},{vec.z}]"; }
+    static string JsonifyVec3(Vector3 vec) { return $"[{vec.x},{vec.y},{vec.z}]"; }
 
     /// <summary>
     /// </summary>
@@ -734,7 +734,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
 
     /// <summary>
     /// </summary>
-    void OnDrawGizmos() {
+    void OnDrawGizmosSelected() {
       if (this.enabled) {
         Gizmos.color = this.editorPreviewLineColor;
 
@@ -747,9 +747,9 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
         }
 
         if (this._bb_transform) {
-          Handles.Label(this._bb_transform.position, this._bb_transform.gameObject.name);
+          Handles.Label(this._bb_transform.position, this.name);
         } else {
-          Handles.Label(this.transform.position, this.gameObject.name);
+          Handles.Label(this.transform.position, this.name);
         }
         
       }

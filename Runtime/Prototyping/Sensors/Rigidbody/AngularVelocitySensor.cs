@@ -8,9 +8,14 @@ namespace droid.Runtime.Prototyping.Sensors.Rigidbody {
   public class AngularVelocitySensor : Sensor,
                                        IHasTriple {
     [SerializeField] Vector3 _angular_velocity;
-    [SerializeField] Space3 _angular_velocity_space = new Space3(new DistributionSampler(), 10);
+    [SerializeField] Space3 _angular_velocity_space = new Space3( 10);
 
     [SerializeField] UnityEngine.Rigidbody _rigidbody;
+
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public override string PrototypingTypeName { get { return "AngularVelocity"; } }
 
     public Vector3 ObservationValue {
       get { return this._angular_velocity; }

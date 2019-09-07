@@ -34,21 +34,22 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
   public class EulerTransformSensor : Sensor,
                                       IHasEulerTransform {
     [SerializeField] Vector3 _direction;
-    [SerializeField] Space3 _direction_space = new Space3(new DistributionSampler(), 10);
+    [SerializeField] Space3 _direction_space = new Space3( 10);
 
     [Header("Observation", order = 103)]
     [SerializeField]
     Vector3 _position;
 
-    [SerializeField] Space3 _position_space = new Space3(new DistributionSampler(), 10);
+    [SerializeField] Space3 _position_space = new Space3( 10);
 
     [SerializeField] Vector3 _rotation;
-    [SerializeField] Space3 _rotation_space = new Space3(new DistributionSampler(), 10);
+    [SerializeField] Space3 _rotation_space = new Space3( 10);
 
     [Header("Specific", order = 102)]
     [SerializeField]
     [SearchableEnum]
     ObservationSpace _space = ObservationSpace.Environment_;
+    [SerializeField] bool normalised_overwrite_space_if_env_bounds = true;
 
     /// <summary>
     ///
@@ -147,6 +148,12 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     /// <summary>
     ///
     /// </summary>
-    protected override void PreSetup() { }
+    protected override void PreSetup() {
+      if (this.normalised_overwrite_space_if_env_bounds) {
+        if (this.ParentEnvironment) {
+          this._position_space = Space3.FromCenterExtents(this.ParentEnvironment.PlayableArea.Bounds.extents);
+        }
+      }
+    }
   }
 }

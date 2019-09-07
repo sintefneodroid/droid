@@ -31,8 +31,8 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
     [SerializeField]
     Space3 _position_space = new Space3 {
                                             DecimalGranularity = 1,
-                                            MaxValues = Vector3.one,
-                                            MinValues = -Vector3.one
+                                            Max = Vector3.one,
+                                            Min = -Vector3.one
                                         };
 
     /// <summary>
@@ -64,16 +64,16 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
     public Space2 DoubleSpace {
       get {
         return new Space2(this._position_space.DecimalGranularity) {
-                                                                       MaxValues =
+                                                                       Max =
                                                                            new Vector2(this._position_space
-                                                                                           .MaxValues.x,
+                                                                                           .Max.x,
                                                                                        this._position_space
-                                                                                           .MaxValues.y),
-                                                                       MinValues =
+                                                                                           .Max.y),
+                                                                       Min =
                                                                            new Vector2(this._position_space
-                                                                                           .MinValues.x,
+                                                                                           .Min.x,
                                                                                        this._position_space
-                                                                                           .MinValues.y)
+                                                                                           .Min.y)
                                                                    };
       }
     }

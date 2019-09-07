@@ -20,7 +20,7 @@ namespace droid.Runtime.Environments {
   /// </summary>
   public abstract class AbstractPrototypingEnvironment : NeodroidEnvironment,
                                                          IAbstractPrototypingEnvironment
-      //, IResetable
+
 
   {
     /// <inheritdoc />
@@ -289,7 +289,7 @@ namespace droid.Runtime.Environments {
         }
       }
             this._bodies = body_list.ToArray();
-      */ //Should be equalvalent to the line below, but kept as a reference in case of confusion
+      */ //Should be equivalent to the line below, but kept as a reference in case of confusion
 
       this._tracked_rigid_bodies = this._tracked_game_objects.Where(go => go != null)
                                        .Select(go => go.GetComponent<Rigidbody>()).Where(body => body)
@@ -458,18 +458,12 @@ namespace droid.Runtime.Environments {
 
       ResetEnvironmentPoses(ref this._tracked_game_objects,
                             ref this._reset_positions,
-                            ref this._reset_rotations,
-                            this._Simulation_Manager.SimulatorConfiguration.ResetIterations);
-      #if NEODROID_DEBUG
-      ResetEnvironmentBodies(ref this._tracked_rigid_bodies,
-                             ref this._reset_velocities,
-                             ref this._reset_angulars,
-                             this.Debugging);
-      #else
+                            ref this._reset_rotations);
+
       ResetEnvironmentBodies(ref this._tracked_rigid_bodies,
                              ref this._reset_velocities,
                              ref this._reset_angulars);
-      #endif
+
 
       this.ResetRegisteredObjects();
       this.Reconfigure();

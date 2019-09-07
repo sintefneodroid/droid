@@ -13,12 +13,12 @@ namespace droid.Runtime.Prototyping.Sensors.Rigidbody {
                                 IHasTriple {
     [SerializeField] UnityEngine.Rigidbody _rigidbody;
     [SerializeField] Vector3 _velocity;
-    [SerializeField] Space3 _velocity_space = new Space3(new DistributionSampler(), 10);
+    [SerializeField] Space3 _velocity_space = new Space3( 10);
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName { get { return "Rigidbody"; } }
+    public override string PrototypingTypeName { get { return "Velocity"; } }
 
     /// <summary>
     /// </summary>
@@ -50,10 +50,6 @@ namespace droid.Runtime.Prototyping.Sensors.Rigidbody {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
-
-
-      this._rigidbody = this.GetComponent<UnityEngine.Rigidbody>();
-    }
+    protected override void PreSetup() { this._rigidbody = this.GetComponent<UnityEngine.Rigidbody>(); }
   }
 }

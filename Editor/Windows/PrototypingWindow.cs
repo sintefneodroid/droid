@@ -85,7 +85,7 @@ namespace droid.Editor.Windows {
     /// </summary>
     void OnGUI() {
       var serialised_object = new SerializedObject(this);
-      this._simulation_manager = FindObjectOfType<PausableManager>();
+      this._simulation_manager = FindObjectOfType<NeodroidManager>();
       if (this._simulation_manager) {
         EditorGUILayout.BeginHorizontal();
 

@@ -2,6 +2,7 @@
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Structs.Space;
+using droid.Runtime.Structs.Space.Sample;
 using droid.Runtime.Utilities;
 using UnityEngine;
 using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
@@ -35,12 +36,12 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     string _r;
 
-    [SerializeField] Space4 rot_space = Space4.ZeroOne;
+    [SerializeField] SampleSpace4 rot_space = new SampleSpace4{_space = Space4.ZeroOne};
 
-    [SerializeField] Space2 xy_space2 = Space2.ZeroOne;
+    [SerializeField] SampleSpace2 xy_space2 = new SampleSpace2{_space = Space2.ZeroOne};
 
-    [SerializeField] Space1 depth_space1 = Space1.ZeroOne;
-    [SerializeField] Space3 size_space = Space3.ZeroOne;
+    [SerializeField] SampleSpace1 depth_space1 = new SampleSpace1{_space = Space1.ZeroOne};
+    [SerializeField] SampleSpace3 size_space = new SampleSpace3{_space = Space3.ZeroOne};
 
     /// <summary>
     /// </summary>
@@ -61,10 +62,13 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       this._b = this.Identifier + "B";
       this._a = this.Identifier + "A";
 
+      var s = new SampleSpace1 {_space = Space1.ZeroOne};
+
       if (Application.isPlaying && this._fsafas) {
         if (this._prefabs != null && this._prefabs.Length > 0 && this._camera) {
           for (var i = 0; i < this.num_obstructions; i++) {
-            var prefab = this._prefabs[(int)(Space1.ZeroOne.Sample() * this._prefabs.Length)];
+            var prefab = this._prefabs[(int)(s.Sample() * this._prefabs
+            .Length)];
 
             var xy = this.xy_space2.Sample();
             var z = this._camera.nearClipPlane + this.depth_space1.Sample() * this._camera.farClipPlane;
@@ -92,13 +96,21 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._r);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._r);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._g);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._g);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._b);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._b);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this, this._a);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+                                                          (Configurable)this,
+                                                          this._a);
     }
 
     /// <inheritdoc />
@@ -115,7 +127,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       this.ParentEnvironment.UnRegister(this, this._a);
     }
 
-    public override ISpace ConfigurableValueSpace { get; }
+    public override ISamplable ConfigurableValueSpace { get{return new SampleSpace1();} }
 
     /// <summary>
     /// </summary>
@@ -151,14 +163,12 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     /// <returns></returns>
     public override Configuration[] SampleConfigurations() {
-      var s = this.depth_space1.Sample();
-
-      var sample = Space3.ZeroOne.Sample();
+      var s = this.size_space.Sample();
 
       return new[] {
-                       new Configuration(this._r, sample.x),
-                       new Configuration(this._b, sample.y),
-                       new Configuration(this._g, sample.z)
+                       new Configuration(this._r, s.x),
+                       new Configuration(this._b, s.y),
+                       new Configuration(this._g, s.z)
                    };
     }
   }

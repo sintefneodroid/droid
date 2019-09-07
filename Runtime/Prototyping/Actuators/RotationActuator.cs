@@ -38,7 +38,8 @@ namespace droid.Runtime.Prototyping.Actuators {
       this._rot_z = this.Identifier + "RotZ";
       this._rot_w = this.Identifier + "RotW";
     }
-    public override string[] InnerMotionNames => new[] { this._rot_x, this._rot_y, this._rot_z, this._rot_w };
+
+    public override string[] InnerMotionNames => new[] {this._rot_x, this._rot_y, this._rot_z, this._rot_w};
 
     /// <inheritdoc />
     /// <summary>
@@ -46,20 +47,20 @@ namespace droid.Runtime.Prototyping.Actuators {
     protected override void RegisterComponent() {
       this.Parent =
           NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
-                                              (Actuator)this,
-                                              this._rot_x);
+                                                          (Actuator)this,
+                                                          this._rot_x);
       this.Parent =
           NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
-                                              (Actuator)this,
-                                              this._rot_y);
+                                                          (Actuator)this,
+                                                          this._rot_y);
       this.Parent =
           NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
-                                              (Actuator)this,
-                                              this._rot_z);
+                                                          (Actuator)this,
+                                                          this._rot_z);
       this.Parent =
           NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
-                                              (Actuator)this,
-                                              this._rot_w);
+                                                          (Actuator)this,
+                                                          this._rot_w);
     }
 
     /// <summary>

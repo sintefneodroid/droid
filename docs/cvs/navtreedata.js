@@ -1,6 +1,6 @@
 var NAVTREE =
 [
-  [ "Neodroid", "index.html", [
+  [ "Neodroid", "docs.index.html", [
     [ "CHANGELOG", "md__home_heider__projects__neodroid__unity__examples__assets_droid__runtime__c_h_a_n_g_e_l_o_g.html", null ],
     [ "LICENSE", "md__home_heider__projects__neodroid__unity__examples__assets_droid__runtime__l_i_c_e_n_s_e.html", null ],
     [ "README", "md__home_heider__projects__neodroid__unity__examples__assets_droid__runtime__r_e_a_d_m_e.html", null ],

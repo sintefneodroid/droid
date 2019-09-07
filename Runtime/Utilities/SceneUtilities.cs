@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Object = UnityEngine.Object;
 
 namespace droid.Runtime.Utilities {
   /// <summary>
@@ -18,7 +20,7 @@ namespace droid.Runtime.Utilities {
       }
 
       throw new
-          System.ArgumentException($"Found no UnityEngine.Object assignables from type {typeof(T).Name}");
+          ArgumentException($"Found no UnityEngine.Object assignables from type {typeof(T).Name}");
     }
 
     /// <summary>
@@ -43,6 +45,36 @@ namespace droid.Runtime.Utilities {
 
       return game_objects.ToArray();
     }
+
+    /// <summary>
+    /// </summary>
+    /// <param name="parent"></param>
+    /// <param name="layer"></param>
+    /// <param name="child"></param>
+    /// <returns></returns>
+    public static T RecursiveFirstSelfSiblingParentGetComponent<T>(Transform child) where T:Component {
+      var a = child.GetComponent<T>();
+      if (a != null)
+        return a;
+      if (child.parent) {
+        foreach (Transform go in child.parent) {
+          a = go.GetComponent<T>();
+          if (a != null) {
+            return a;
+          }
+        }
+
+        a = child.parent.GetComponent<T>();
+        if (a != null) {
+          return a;
+        }
+
+        return RecursiveFirstSelfSiblingParentGetComponent<T>(child.parent);
+      }
+
+      return null;
+    }
+
 
     /// <summary>
     /// </summary>
