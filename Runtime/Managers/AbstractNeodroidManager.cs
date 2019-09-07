@@ -993,7 +993,12 @@ namespace droid.Runtime.Managers {
             current_reaction.Parameters.IsExternal = true;
           }
 
-          this.Configuration.StepExecutionPhase = this.CurrentReactions[0].Parameters.Phase;
+          var phase = this.Configuration.StepExecutionPhase;
+          foreach (var current_reaction in this.CurrentReactions) {
+            phase= current_reaction.Parameters.Phase;
+          }
+
+          this.Configuration.StepExecutionPhase = phase;
           this.AwaitingReply = true;
           this.HasStepped = false;
         } else {

@@ -20,7 +20,7 @@ namespace droid.Runtime.Prototyping.Configurables.Rigidbody {
 
     /// <summary>
     /// </summary>
-    ISamplable _friction_space = new SampleSpace1{ _space1 = Space1.ZeroOne};
+    ISamplable _friction_space = new SampleSpace1{ _space = Space1.ZeroOne};
 
     /// <summary>
     /// </summary>

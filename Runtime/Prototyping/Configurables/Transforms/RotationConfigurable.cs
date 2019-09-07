@@ -109,6 +109,8 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// </summary>
     /// <param name="simulator_configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration) {
+      //TODO: Denormalize configuration if space is marked as normalised
+
       var rot = this.transform.rotation;
       if (this.ParentEnvironment && this._use_environments_space) {
         rot = this.ParentEnvironment.TransformRotation(this.transform.rotation);

@@ -15,7 +15,7 @@ namespace droid.Runtime.Prototyping.Evaluation.Spatial {
     public override void InternalReset() { }
 
     public override float InternalEvaluate() {
-      return Vector3.Distance(this._g1.position, this._g2.position);
+      return -Vector3.Distance(this._g1.position, this._g2.position);
     }
 
     protected override void PostSetup() {

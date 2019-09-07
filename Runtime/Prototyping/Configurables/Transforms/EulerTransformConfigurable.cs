@@ -143,6 +143,8 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// <summary>
     /// </summary>
     protected override void PreSetup() {
+      //TODO: use envs bound extent if available for space
+
       this._x = this.Identifier + "X_";
       this._y = this.Identifier + "Y_";
       this._z = this.Identifier + "Z_";
@@ -178,6 +180,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// </summary>
     /// <param name="configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
+      //TODO: Denormalize configuration if space is marked as normalised
       var transform1 = this.transform;
       var pos = transform1.position;
       var dir = transform1.forward;

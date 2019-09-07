@@ -47,13 +47,13 @@ namespace droid.Runtime.Prototyping.Actuators {
       }
       #endif
 
-      if (this._motion_value_space._space1.Normalised) {
-        motion.Strength = this._motion_value_space._space1.ClipDenormaliseRoundClip(motion.Strength);
-      } else if (motion.Strength < this._motion_value_space._space1.Min
-                 || motion.Strength > this._motion_value_space._space1.Max) {
-        Debug.LogWarning($"It does not accept input {motion.Strength}, outside the allowed range from {this._motion_value_space._space1.Min} to {this._motion_value_space._space1.Max}, rounding to be inside space.");
+      if (this._motion_value_space._space.Normalised) {
+        motion.Strength = this._motion_value_space._space.ClipRoundDenormaliseClip(motion.Strength);
+      } else if (motion.Strength < this._motion_value_space._space.Min
+                 || motion.Strength > this._motion_value_space._space.Max) {
+        Debug.LogWarning($"It does not accept input {motion.Strength}, outside the allowed range from {this._motion_value_space._space.Min} to {this._motion_value_space._space.Max}, rounding to be inside space.");
         motion.Strength =
-            this._motion_value_space._space1.Round(this._motion_value_space._space1.Clip(motion.Strength));
+            this._motion_value_space._space.Round(this._motion_value_space._space.Clip(motion.Strength));
       }
 
       this.InnerApplyMotion(motion);
@@ -70,12 +70,12 @@ namespace droid.Runtime.Prototyping.Actuators {
     public void EnvironmentReset() { this._energy_spend_since_reset = 0; }
 
     public Space1 MotionSpace {
-      get { return this._motion_value_space._space1; }
+      get { return this._motion_value_space._space; }
       set { this._motion_value_space.Space = value; }
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <returns></returns>
     public virtual float Sample() { return this._motion_value_space.Sample(); }
@@ -122,7 +122,7 @@ namespace droid.Runtime.Prototyping.Actuators {
 
     [Header("General", order = 101)]
     [SerializeField]
-    SampleSpace1 _motion_value_space = new SampleSpace1 {_space1 = Space1.MinusOneOne};
+    SampleSpace1 _motion_value_space = new SampleSpace1 {_space = Space1.DiscreteMinusOneOne};
 
     [SerializeField] float _energy_spend_since_reset;
 

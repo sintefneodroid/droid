@@ -15,7 +15,7 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
     [SerializeField]
     float _observation_value;
 
-    [SerializeField] Space1 _observation_value_space;
+    [SerializeField] protected Space1 _observation_value_space;
 
     /// <summary>
     ///

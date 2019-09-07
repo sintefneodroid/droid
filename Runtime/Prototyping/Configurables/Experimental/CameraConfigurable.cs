@@ -49,18 +49,18 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
 
     [SerializeField] Camera _camera;
     [SerializeField] SynchroniseCameraProperties _syncer;
-    [SerializeField] SampleSpace1 _fov_space = new SampleSpace1{_space1 = new Space1 {Min = 60f, Max = 90f}};
-    [SerializeField] SampleSpace1 _focal_space = new SampleSpace1{_space1 = new Space1  {Min = 2f, Max = 3f}};
+    [SerializeField] SampleSpace1 _fov_space = new SampleSpace1{_space = new Space1 {Min = 60f, Max = 90f}};
+    [SerializeField] SampleSpace1 _focal_space = new SampleSpace1{_space = new Space1  {Min = 2f, Max = 3f}};
 
     [SerializeField]
-    SampleSpace2 _sensor_size_space =new SampleSpace2{_space2 =
+    SampleSpace2 _sensor_size_space =new SampleSpace2{_space =
         new Space2(2) {Min = new Vector2(2.5f, 2.5f), Max = new Vector2(5, 5)}};
 
     [SerializeField]
-    SampleSpace2 _lens_shift_space =new SampleSpace2{_space2 =
+    SampleSpace2 _lens_shift_space =new SampleSpace2{_space =
         new Space2(3) {Min = new Vector2(-0.1f, -0.1f), Max = new Vector2(0.1f, 0.1f)}};
 
-    [SerializeField] SampleSpace1 _gate_fit_space =new SampleSpace1{_space1 = new Space1(0) {Min = 0f, Max = 4f}};
+    [SerializeField] SampleSpace1 _gate_fit_space =new SampleSpace1{_space = new Space1(0) {Min = 0f, Max = 4f}};
 
     /// <inheritdoc />
     /// <summary>

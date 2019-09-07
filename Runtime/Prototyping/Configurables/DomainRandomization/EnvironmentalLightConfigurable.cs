@@ -36,7 +36,7 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
 
     [SerializeField]
     ISamplable _color_space = new SampleSpace3 {
-                                                   _space3 = new Space3 {
+                                                   _space = new Space3 {
                                                                             Min = Vector3.one * 0.6f,
                                                                             Max = Vector3.one * 1f
                                                                         }

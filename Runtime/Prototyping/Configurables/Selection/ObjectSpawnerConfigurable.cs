@@ -20,7 +20,7 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
     [SerializeField] GameObject _object_to_spawn = null;
 
     List<GameObject> _spawned_objects = null;
-    [SerializeField] SampleSpace1 _configurable_value_space = new SampleSpace1{_space1 = Space1.TwentyEighty
+    [SerializeField] SampleSpace1 _configurable_value_space = new SampleSpace1{_space = Space1.TwentyEighty
   };
 
   /// <inheritdoc />

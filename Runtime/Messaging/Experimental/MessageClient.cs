@@ -13,6 +13,7 @@ using NetMQ.Sockets;
 using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.UI;
+using Object = System.Object;
 
 namespace droid.Runtime.Messaging.Experimental {
   /// <summary>
@@ -393,86 +394,51 @@ namespace droid.Runtime.Messaging.Experimental {
     #endregion
   }
 
-
   /// <summary>
   ///
   /// </summary>
-  public class DepthPrediction : MonoBehaviour{
+  public class DepthPrediction : MonoBehaviour {
     RequestSocket _client = new RequestSocket();
 
     List<Vector3> _feature_points;
 
-    //entirely here for test reasons, change to keypoints found by pose detector later
-    //private Dictionary<string, Vector3> pointDict = new Dictionary<string, Vector3>();
-
-    Dictionary<string, string> _point_connections = new Dictionary<string, string>
-                                                    {
-                                                        {"left_eye", "nose"},
-                                                        {"left_ear", "left_eye"},
-                                                        {"right_eye", "nose"},
-                                                        {"right_ear", "right_eye"},
-                                                        {"right_shoulder", "nose"},
-                                                        {"left_shoulder", "nose"},
-                                                        {"left_elbow", "left_shoulder"},
-                                                        {"right_elbow", "right_shoulder"},
-                                                        {"right_wrist", "right_elbow"},
-                                                        {"left_wrist", "left_elbow"},
-                                                        {"left_hip", "left_shoulder"},
-                                                        {"right_hip", "right_shoulder"},
-                                                        {"left_knee", "left_hip"},
-                                                        {"right_knee", "right_hip"},
-                                                        {"left_ankle", "left_knee"},
-                                                        {"right_ankle", "right_knee"}
-                                                    };
-
     bool _server_working = false;
-
-    Texture2D _tex;
-
-    [SerializeField] GameObject cameraObject;
 
     /// <summary>
     ///
     /// </summary>
     public bool recording;
 
-    [SerializeField] RenderTexture rendTex;
-
     [SerializeField] Text textBox;
+    [SerializeField] Texture2D _tex;
 
-    void Start(){
-
-
+    void Start() {
       this._client.Connect("tcp://10.24.11.87:8989");
       Debug.Log("connected");
     }
 
-    void FixedUpdate(){
-      if(!this._server_working && this.recording) {
+    void FixedUpdate() {
+      if (!this._server_working && this.recording) {
         this.GrabFrame();
       }
     }
 
     void GrabFrame() {
       try {
-
         var bytes = this._tex.EncodeToJPG();
 
         this.StartCoroutine(this.SendZmqRequest(bytes));
-
-      }catch (Exception e){
-        var text = this.textBox.text;
-        text += e + "\n";
-        text += e.Message + "\n";
+      } catch (Exception e) {
+        var text = $"{this.textBox.text}{e}\n{e.Message}\n";
         this.textBox.text = text;
       }
     }
 
-    IEnumerator SendZmqRequest(byte[] bytes){
+    IEnumerator SendZmqRequest(byte[] bytes) {
       var task = new Task(() => this._client.SendFrame(bytes));
       task.Start();
 
-      while (!task.IsCompleted && !task.IsCanceled){
+      while (!task.IsCompleted && !task.IsCanceled) {
         Debug.Log("sending a frame");
         yield return new WaitForEndOfFrame();
       }
@@ -481,28 +447,28 @@ namespace droid.Runtime.Messaging.Experimental {
       var task2 = new Task(() => response = this._client.ReceiveFrameString());
       task2.Start();
 
-      while (!task2.IsCompleted){
+      while (!task2.IsCompleted) {
         Debug.Log("waiting for response");
         yield return new WaitForEndOfFrame();
       }
 
       this.textBox.text += response + "\n";
 
-      try{
+      try {
         var l = JsonConvert.DeserializeObject<List<Dictionary<string, int[]>>>(response);
 
         this.textBox.text += l.Count + " in list\n";
 
         var num = 0;
 
-        foreach (var dict in l){
+        foreach (var dict in l) {
           var prefix = "person_" + num;
 
           this.textBox.text += dict.Count + " in dict\n";
 
           var point_dict = new Dictionary<string, Vector3>();
 
-          foreach (var kvp in dict){
+          foreach (var kvp in dict) {
             var text = this.textBox.text;
             text += kvp.Key + " added\n";
 
@@ -525,40 +491,14 @@ namespace droid.Runtime.Messaging.Experimental {
 
             this.textBox.text += "after dict add\n";
           }
-
-          this.UpdateDict(prefix, point_dict);
         }
-      }catch (Exception e){
+      } catch (Exception e) {
         this.textBox.text += e.ToString();
       }
 
       yield return new WaitForEndOfFrame();
 
       this._server_working = false;
-    }
-
-    void UpdateDict(string prefix, Dictionary<string, Vector3> point_dict) {
-      this.textBox.text += "starting person\n";
-
-      foreach (var kvp in point_dict){
-        var text = this.textBox.text;
-        text += "testing " + kvp.Key + " on position " + kvp.Value + "\n";
-
-        //get known values (name of point and its screen position)
-        var name = prefix + "_" + kvp.Key;
-        var screen_pos = kvp.Value;
-
-        text += "after init\n";
-
-
-        //attempt to get its anchor point if it is defined (ie. hand to elbow)
-        this._point_connections.TryGetValue(kvp.Key, out var anchor);
-        anchor = prefix + "_" + anchor;
-
-        text += "after get connection\n";
-
-        this.textBox.text = text;
-      }
     }
   }
 }

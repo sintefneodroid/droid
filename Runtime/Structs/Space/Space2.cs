@@ -5,21 +5,16 @@ using UnityEngine;
 
 namespace droid.Runtime.Structs.Space {
   /// <summary>
-  /// 
+  ///
   /// </summary>
   [Serializable]
   public struct Space2 : ISpace {
-    /// <summary>
-    /// 
-    /// </summary>
-    public int DecimalGranularity {
-      get { return this._decimal_granularity; }
-      set { this._decimal_granularity = value; }
-    }
+    #region Fields
 
     /// <summary>
     ///
     /// </summary>
+    [Header("Space", order = 103)]
     [SerializeField]
     internal Vector2 _min_;
 
@@ -30,8 +25,9 @@ namespace droid.Runtime.Structs.Space {
     internal Vector2 _max_;
 
     [Range(0, 15)] [SerializeField] int _decimal_granularity;
-    [SerializeField] bool normalised;
+    [SerializeField] internal bool normalised;
 
+    #endregion
 
     public Space2(int decimal_granularity = 2) : this() {
       this._min_ = Vector2.one * -100f; //Vector2.negativeInfinity;
@@ -44,22 +40,28 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     public Vector2 Span { get { return this._max_ - this._min_; } }
 
-    public Space1 Xspace {
-      get {
-        return new Space1(this.DecimalGranularity) {
-                                                       Min = this._min_.x,
-                                                       Max = this._max_.x
-                                                   };
-      }
+    /// <summary>
+    ///
+    /// </summary>
+    public int DecimalGranularity {
+      get { return this._decimal_granularity; }
+      set { this._decimal_granularity = value; }
     }
 
+    public Space1 Xspace {
+      get { return new Space1(this.DecimalGranularity) {Min = this._min_.x, Max = this._max_.x}; }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
     public Space1 Yspace {
-      get {
-        return new Space1(this.DecimalGranularity) {
-                                                       Min = this._min_.y,
-                                                       Max = this._max_.y
-                                                   };
-      }
+      get { return new Space1(this.DecimalGranularity) {Min = this._min_.y, Max = this._max_.y}; }
+    }
+
+    public dynamic ClipRoundDenormaliseClip(dynamic configuration_configurable_value) {
+      //TODO: implement
+      return configuration_configurable_value;
     }
 
     /// <summary>
@@ -67,7 +69,7 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-    public Vector2 ClipNormaliseRound(Vector2 v) {
+    public dynamic ClipNormaliseRound(dynamic v) {
       if (v.x > this._max_.x) {
         v.x = this._max_.x;
       } else if (v.x < this._min_.x) {
@@ -104,9 +106,7 @@ namespace droid.Runtime.Structs.Space {
     /// <summary>
     ///
     /// </summary>
-    public static Space2 ZeroOne {
-      get { return new Space2(1) {_min_ = Vector2.zero, Max = Vector2.one}; }
-    }
+    public static Space2 ZeroOne { get { return new Space2(1) {_min_ = Vector2.zero, Max = Vector2.one}; } }
 
     /// <summary>
     ///
@@ -134,7 +134,6 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     public dynamic Max { get { return this._max_; } set { this._max_ = value; } }
 
-
     /// <summary>
     ///
     /// </summary>
@@ -142,15 +141,12 @@ namespace droid.Runtime.Structs.Space {
     /// <returns></returns>
     public Vector2 Denormalise01(Vector2 v) { return v * this.Span + this._min_; }
 
-
-
     /// <summary>
     ///
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
     public Vector2 Normalise01(Vector2 v) { return (v - this._min_) / this.Span; }
-
 
     /// <summary>
     ///

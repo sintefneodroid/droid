@@ -37,7 +37,7 @@ namespace droid.Runtime.Prototyping.Configurables.Rigidbody {
     /// <summary>
     /// </summary>
     [SerializeField]
-    SampleSpace3 _angular_velocity_space = new SampleSpace3{_space3 = Space3.ZeroOne};
+    SampleSpace3 _angular_velocity_space = new SampleSpace3{_space = Space3.ZeroOne};
 
     /// <summary>
     /// </summary>
@@ -64,7 +64,7 @@ namespace droid.Runtime.Prototyping.Configurables.Rigidbody {
     /// <summary>
     /// </summary>
     [SerializeField]
-    SampleSpace3 _velocity_space = new SampleSpace3{_space3 = Space3.ZeroOne};
+    SampleSpace3 _velocity_space = new SampleSpace3{_space = Space3.ZeroOne};
 
     /// <summary>
     /// </summary>
@@ -81,8 +81,8 @@ namespace droid.Runtime.Prototyping.Configurables.Rigidbody {
       private set { this._angular_velocity = value; }
     }
 
-    public Space3 VelocitySpace { get { return this._velocity_space._space3; } }
-    public Space3 AngularSpace { get { return this._angular_velocity_space._space3; } }
+    public Space3 VelocitySpace { get { return this._velocity_space._space; } }
+    public Space3 AngularSpace { get { return this._angular_velocity_space._space; } }
 
     public override ISamplable ConfigurableValueSpace { get; }
 

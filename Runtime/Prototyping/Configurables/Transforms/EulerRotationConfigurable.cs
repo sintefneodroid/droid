@@ -39,7 +39,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
 
     [SerializeField]
     SampleSpace3 _euler_space = new SampleSpace3 {
-                                                   _space3 = new Space3(4) {
+                                                   _space = new Space3(4) {
                                                                      Min = Vector3.zero,
                                                                      Max = new Vector3(360f, 360f, 360f)
                                                                  }
@@ -105,7 +105,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     public override ISamplable ConfigurableValueSpace { get { return this._euler_space; } }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public override void UpdateCurrentConfiguration() {
       if (this._use_environments_space && this.ParentEnvironment != null) {

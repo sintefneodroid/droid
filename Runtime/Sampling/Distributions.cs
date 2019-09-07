@@ -4,6 +4,9 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace droid.Runtime.Sampling {
+  /// <summary>
+  ///
+  /// </summary>
   [Serializable]
   public enum DistributionEnum {
     /// <summary>

@@ -25,14 +25,14 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
     Light _light;
 
     [SerializeField]
-    ISamplable _color_space = new SampleSpace3 { _space3 = new Space3{
+    ISamplable _color_space = new SampleSpace3 { _space = new Space3{
                                          DecimalGranularity = 2,
                                          Min = Vector3.one * 0.7f,
                                          Max = Vector3.one * 1f}
                                      };
 
     [SerializeField]
-    ISamplable _int_ind_sha_space = new SampleSpace3 { _space3 = new Space3{
+    ISamplable _int_ind_sha_space = new SampleSpace3 { _space = new Space3{
                                                DecimalGranularity = 2,
                                                Min = Vector3.one * 0.0f,
                                                Max = Vector3.one * 1f,},

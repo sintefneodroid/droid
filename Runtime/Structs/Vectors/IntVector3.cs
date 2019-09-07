@@ -21,8 +21,6 @@ namespace droid.Runtime.Structs.Vectors {
       return a;
     }
 
-
-
     public IntVector3(int x, int y, int z) {
       this._X = x;
       this._Y = y;

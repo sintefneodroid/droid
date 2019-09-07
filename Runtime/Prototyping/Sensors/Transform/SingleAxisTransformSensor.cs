@@ -16,9 +16,19 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
   public class SingleAxisTransformSensor : ValueSensor {
     [SerializeField] [SearchableEnum] Axis _dim = Axis.X_;
 
+    [SerializeField] bool normalised_overwrite_space_if_env_bounds = true;
+
+
+
     /// <summary>
     /// </summary>
-    protected override void PreSetup() { }
+    protected override void PreSetup() {
+      if (this.normalised_overwrite_space_if_env_bounds) {
+        if (this.ParentEnvironment) {
+          this._observation_value_space = Space1.FromCenterExtents(this.ParentEnvironment.PlayableArea.Bounds.extents.x);
+        }
+      }
+    }
 
     /// <summary>
     ///

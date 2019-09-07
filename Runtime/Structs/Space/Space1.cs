@@ -9,17 +9,12 @@ namespace droid.Runtime.Structs.Space {
   ///  </summary>
   [Serializable]
   public struct Space1 : ISpace {
-    /// <summary>
-    ///
-    /// </summary>
-    ///
-    [Range(0, 15)]
-    [SerializeField]
-    int _Decimal_Granularity;
+    #region Fields
 
     /// <summary>
     ///
     /// </summary>
+    [Header("Space", order = 103)]
     [SerializeField]
     internal float _min_;
 
@@ -29,12 +24,20 @@ namespace droid.Runtime.Structs.Space {
     [SerializeField]
     internal float _max_;
 
+    /// <summary>
+    ///
+    /// </summary>
+    ///
+    [Range(0, 15)]
+    [SerializeField]
+    int _decimal_granularity;
+
     [SerializeField] internal bool normalised;
 
-
+    #endregion
 
     public Space1(int decimal_granularity = 2) : this() {
-      this._Decimal_Granularity = decimal_granularity;
+      this._decimal_granularity = decimal_granularity;
       this._min_ = -1f; //float.NegativeInfinity;
       this._max_ = 1f; //float.PositiveInfinity;
     }
@@ -56,7 +59,7 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-    public float ClipNormaliseRound(float v) { return this.Round(this.Normalise01(this.Clip(v))); }
+    public dynamic ClipNormaliseRound(dynamic v) { return this.Round(this.Normalise01(this.Clip(v))); }
 
     /// <summary>
     ///
@@ -85,9 +88,7 @@ namespace droid.Runtime.Structs.Space {
     ///
     /// </summary>
     /// <returns></returns>
-    public Vector3 ToVector3() {
-      return new Vector3(this._min_, this._max_, this._Decimal_Granularity);
-    }
+    public Vector3 ToVector3() { return new Vector3(this._min_, this._max_, this._decimal_granularity); }
 
     /// <summary>
     ///
@@ -111,7 +112,7 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-    public float ClipDenormaliseRoundClip(float v) {
+    public dynamic ClipRoundDenormaliseClip(dynamic v) {
       return this.Clip(this.Round(this.Denormalise01(Mathf.Clamp(v, 0, 1))));
     }
 
@@ -126,7 +127,7 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-    public float Round(float v) { return (float)Math.Round(v, this._Decimal_Granularity); }
+    public float Round(float v) { return (float)Math.Round(v, this._decimal_granularity); }
 
     /// <summary>
     ///
@@ -142,8 +143,8 @@ namespace droid.Runtime.Structs.Space {
     ///
     /// </summary>
     public int DecimalGranularity {
-      get { return this._Decimal_Granularity; }
-      set { this._Decimal_Granularity = value; }
+      get { return this._decimal_granularity; }
+      set { this._decimal_granularity = value; }
     }
 
     /// <summary>
@@ -154,7 +155,7 @@ namespace droid.Runtime.Structs.Space {
     /// <summary>
     ///
     /// </summary>
-    public static Space1 MinusOneOne { get { return new Space1(1) {_min_ = -1, _max_ = 1}; } }
+    public static Space1 DiscreteMinusOneOne { get { return new Space1(0) {_min_ = -1, _max_ = 1}; } }
 
     /// <summary>
     ///
@@ -176,7 +177,7 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     /// <param name="vector3_field"></param>
     public void FromVector3(Vector3 vector3_field) {
-      this._Decimal_Granularity = (int)vector3_field.z;
+      this._decimal_granularity = (int)vector3_field.z;
       this._max_ = vector3_field.y;
       this._min_ = vector3_field.x;
     }

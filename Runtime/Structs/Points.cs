@@ -13,10 +13,12 @@ namespace droid.Runtime.Structs {
       ///
       /// </summary>
       public Vector3 _Pos;
+
       /// <summary>
       ///
       /// </summary>
       public float _Size;
+
       /// <summary>
       ///
       /// </summary>
@@ -37,10 +39,12 @@ namespace droid.Runtime.Structs {
       ///
       /// </summary>
       public Vector3 _Pos;
+
       /// <summary>
       ///
       /// </summary>
       public float _Size;
+
       /// <summary>
       ///
       /// </summary>

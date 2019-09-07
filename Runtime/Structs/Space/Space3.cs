@@ -10,24 +10,30 @@ namespace droid.Runtime.Structs.Space {
   /// </summary>
   [Serializable]
   public struct Space3 : ISpace {
-    /// <summary>
-    ///
-    /// </summary>
-    public Int32 DecimalGranularity {
-      get { return this._decimal_granularity; }
-      set { this._decimal_granularity = value; }
-    }
+    #region Fields
 
+    [Header("Space", order = 103)]
+    [SerializeField]
+    internal Vector3 _min_;
+
+    [SerializeField] internal Vector3 _max_;
     [Range(0, 15)] [SerializeField] int _decimal_granularity;
-    [SerializeField] bool normalised;
+    [SerializeField] internal bool normalised;
+
+    #endregion
 
     /// <summary>
     ///
     /// </summary>
     public Boolean Normalised { get { return this.normalised; } set { this.normalised = value; } }
 
-    [SerializeField] internal Vector3 _min_;
-    [SerializeField] internal Vector3 _max_;
+    /// <summary>
+    ///
+    /// </summary>
+    public int DecimalGranularity {
+      get { return this._decimal_granularity; }
+      set { this._decimal_granularity = value; }
+    }
 
     public Space3(int decimal_granularity = 1) : this() {
       this._decimal_granularity = decimal_granularity;
@@ -40,12 +46,17 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     public Vector3 Span { get { return this._max_ - this._min_; } }
 
+    public dynamic ClipRoundDenormaliseClip(dynamic configuration_configurable_value) {
+      //TODO: implement
+      return configuration_configurable_value;
+    }
+
     /// <summary>
     ///
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-    public Vector3 ClipNormaliseRound(Vector3 v) {
+    public dynamic ClipNormaliseRound(dynamic v) {
       if (v.x > this._max_.x) {
         v.x = this._max_.x;
       } else if (v.x < this._min_.x) {

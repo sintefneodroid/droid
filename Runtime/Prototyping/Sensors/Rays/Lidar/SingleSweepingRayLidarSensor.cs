@@ -15,7 +15,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays.Lidar {
                                            IHasSingle {
     [SerializeField] RaycastHit _hit;
     [SerializeField] Vector3 current_direction = Vector3.forward;
-    [SerializeField] Space1 sweeping_range = Space1.MinusOneOne;
+    [SerializeField] Space1 sweeping_range = Space1.DiscreteMinusOneOne;
 
     [Header("Observation", order = 103)]
     [SerializeField]

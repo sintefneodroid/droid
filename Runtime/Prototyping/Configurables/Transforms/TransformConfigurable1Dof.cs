@@ -22,6 +22,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       get { return "Transform" + this._axis_of_configuration + "Configurable"; }
     }
 
+
     /// <summary>
     ///
     /// </summary>
@@ -29,6 +30,8 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       get { return this._observation_value; }
       private set { this._observation_value = value; }
     }
+
+
 
     /// <inheritdoc />
     /// <summary>
@@ -89,19 +92,32 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
           throw new ArgumentOutOfRangeException();
       }
     }
+    [SerializeField] bool normalised_overwrite_space_if_env_bounds = true;
 
     /// <summary>
     /// </summary>
     protected override void PreSetup() {
-      if (this._use_bounding_box_for_range) {
-        if (this._bounding_box != null) {
-          var valid_input = new Space1 {
-                                           Max = Math.Min(this._bounding_box.Bounds.size.x,
-                                                          Math.Min(this._bounding_box.Bounds.size.y,
-                                                                   this._bounding_box.Bounds.size.z))
-                                       };
-          valid_input.Min = -valid_input.Max;
-          this.SingleSpace = valid_input;
+      if (this.normalised_overwrite_space_if_env_bounds) {
+        var dec_gran = 4;
+        if (this._single_value_space.Space != null && this.ParentEnvironment.PlayableArea) {
+          dec_gran = this._single_value_space.Space.DecimalGranularity;
+        }
+        if (this.ParentEnvironment) {
+          switch (_axis_of_configuration) {
+            case Axis.X_:
+              this.SingleSpace = Space1.FromCenterExtents(this.ParentEnvironment.PlayableArea.Bounds.extents.x,
+                                                          decimal_granularity:dec_gran);
+              break;
+            case Axis.Y_:
+              this.SingleSpace = Space1.FromCenterExtents(this.ParentEnvironment.PlayableArea.Bounds.extents.y,
+                                                          decimal_granularity:dec_gran);
+              break;
+            case Axis.Z_:
+              this.SingleSpace = Space1.FromCenterExtents(this.ParentEnvironment.PlayableArea.Bounds.extents.z,
+                                                          decimal_granularity:dec_gran);
+              break;
+
+          }
         }
       }
     }
@@ -117,13 +133,18 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// <param name="simulator_configuration"></param>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
     public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration) {
-      if (simulator_configuration.ConfigurableValue < this.SingleSpace.Min
-          || simulator_configuration.ConfigurableValue > this.SingleSpace.Max) {
-        Debug.Log($"It does not accept input, outside allowed range {this.SingleSpace.Min} to {this.SingleSpace.Max}");
-        return; // Do nothing
-      }
 
-      var cv = this.SingleSpace.Round(simulator_configuration.ConfigurableValue);
+      float cv;
+      if(this._single_value_space._space.normalised) {
+        cv = this.SingleSpace.ClipRoundDenormaliseClip(simulator_configuration.ConfigurableValue);
+      } else {
+        if (simulator_configuration.ConfigurableValue < this.SingleSpace.Min
+            || simulator_configuration.ConfigurableValue > this.SingleSpace.Max) {
+          Debug.Log($"It does not accept input, outside allowed range {this.SingleSpace.Min} to {this.SingleSpace.Max}");
+          return; // Do nothing
+        }
+        cv = simulator_configuration.ConfigurableValue;
+      }
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
@@ -243,11 +264,9 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     #region Fields
 
     [SerializeField] Axis _axis_of_configuration = Axis.X_;
-    [SerializeField] BoundingBox _bounding_box = null;
-    [SerializeField] bool _use_bounding_box_for_range = false;
     [SerializeField] float _observation_value = 0;
     [SerializeField] bool _use_environments_space = false;
-    [SerializeField] SampleSpace1 _single_value_space = new SampleSpace1 {_space1 = Space1.ZeroOne};
+    [SerializeField] SampleSpace1 _single_value_space = new SampleSpace1 {_space = Space1.ZeroOne};
 
     #endregion
   }

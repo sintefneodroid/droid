@@ -39,12 +39,14 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// </summary>
     public Vector3 ObservationValue { get { return this._position; } }
 
-    public Space3 TripleSpace { get { return this._triple_space._space3; } }
+    public Space3 TripleSpace { get { return this._triple_space._space; } }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     protected override void PreSetup() {
+      //TODO: use envs bound extent if available for space
+
       this._x = this.Identifier + "X_";
       this._y = this.Identifier + "Y_";
       this._z = this.Identifier + "Z_";
@@ -69,7 +71,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     protected override void UnRegisterComponent() {
       if (this.ParentEnvironment == null) {
@@ -87,7 +89,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     public override ISamplable ConfigurableValueSpace { get { return this._triple_space; } }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public override void UpdateCurrentConfiguration() {
       if (this._use_environments_space) {
@@ -102,27 +104,14 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// </summary>
     /// <param name="simulator_configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration) {
+      //TODO: Denormalize configuration if space is marked as normalised
       var pos = this.transform.position;
       if (this._use_environments_space) {
         pos = this.ParentEnvironment.TransformPoint(this.transform.position);
       }
 
       var v = simulator_configuration.ConfigurableValue;
-      /*
 
-if (this.TripleSpace.DecimalGranularity >= 0) {
-  v = (int)Math.Round(v, this.TripleSpace.DecimalGranularity);
-}
-
-
-if (this.TripleSpace.MinValues[0].CompareTo(this.TripleSpace.MaxValues[0]) != 0) {
-  //TODO NOT IMPLEMENTED CORRECTLY VelocitySpace should not be index but should check all pairwise values, TripleSpace.MinValues == TripleSpace.MaxValues
-  if (v < this.TripleSpace.MinValues[0] || v > this.TripleSpace.MaxValues[0]) {
-    Debug.Log($"Configurable does not accept input{v}, outside allowed range {this.TripleSpace.MinValues[0]} to {this.TripleSpace.MaxValues[0]}");
-    return; // Do nothing
-  }
-}
-*/
 
       #if NEODROID_DEBUG
       if (this.Debugging) {

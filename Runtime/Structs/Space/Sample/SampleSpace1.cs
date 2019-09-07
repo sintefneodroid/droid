@@ -9,15 +9,19 @@ namespace droid.Runtime.Structs.Space.Sample {
   ///  </summary>
   [Serializable]
   public struct SampleSpace1 : ISamplable {
+    #region Fields
+
+    [Header("Sampling", order = 103)]
     [SerializeField]
-    internal
-    Space1 _space1;
+    internal Space1 _space;
 
     /// <summary>
     ///
     /// </summary>
     [SerializeField]
     internal DistributionSampler _distribution_sampler;
+
+    #endregion
 
     /// <summary>
     ///
@@ -27,8 +31,8 @@ namespace droid.Runtime.Structs.Space.Sample {
       set { this._distribution_sampler = value; }
     }
 
-    public SampleSpace1(string unused = null){
-      this._space1 = Space1.ZeroOne;
+    public SampleSpace1(string unused = null) {
+      this._space = Space1.ZeroOne;
       this._distribution_sampler = new DistributionSampler();
     }
 
@@ -37,19 +41,13 @@ namespace droid.Runtime.Structs.Space.Sample {
     /// </summary>
     /// <returns></returns>
     public dynamic Sample() {
-      if (!this._space1.normalised) {
-        var x = this.DistributionSampler.Range(this._space1._min_, this._space1._max_);
-        return x;
-      } else
-      {
-        var x = this.DistributionSampler.Range(0, 1);
-        return x;
+      if (!this._space.normalised) {
+        return this.DistributionSampler.Range(this._space._min_, this._space._max_);
       }
+
+      return this.DistributionSampler.Range(0, 1);
     }
 
-    public ISpace Space {
-      get { return this._space1; }
-      set { this._space1 = (Space1) value; }
-    }
+    public ISpace Space { get { return this._space; } set { this._space = (Space1)value; } }
   }
 }

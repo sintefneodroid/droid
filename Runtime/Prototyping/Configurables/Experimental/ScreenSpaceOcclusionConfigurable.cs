@@ -38,10 +38,10 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
 
     [SerializeField] SampleSpace4 rot_space = new SampleSpace4{_space = Space4.ZeroOne};
 
-    [SerializeField] SampleSpace2 xy_space2 = new SampleSpace2{_space2 = Space2.ZeroOne};
+    [SerializeField] SampleSpace2 xy_space2 = new SampleSpace2{_space = Space2.ZeroOne};
 
-    [SerializeField] SampleSpace1 depth_space1 = new SampleSpace1{_space1 = Space1.ZeroOne};
-    [SerializeField] SampleSpace3 size_space = new SampleSpace3{_space3 = Space3.ZeroOne};
+    [SerializeField] SampleSpace1 depth_space1 = new SampleSpace1{_space = Space1.ZeroOne};
+    [SerializeField] SampleSpace3 size_space = new SampleSpace3{_space = Space3.ZeroOne};
 
     /// <summary>
     /// </summary>
@@ -62,7 +62,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       this._b = this.Identifier + "B";
       this._a = this.Identifier + "A";
 
-      var s = new SampleSpace1 {_space1 = Space1.ZeroOne};
+      var s = new SampleSpace1 {_space = Space1.ZeroOne};
 
       if (Application.isPlaying && this._fsafas) {
         if (this._prefabs != null && this._prefabs.Length > 0 && this._camera) {
