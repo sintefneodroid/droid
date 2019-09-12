@@ -55,7 +55,10 @@ namespace droid.Editor.Utilities.SearchableEnum {
                                   property.serializedObject.ApplyModifiedProperties();
                                 };
 
-        SearchablePopup.Show(position, property.enumDisplayNames, property.enumValueIndex, on_select);
+        SearchablePopup.Show(position,
+                             property.enumDisplayNames,
+                             property.enumValueIndex,
+                             on_select);
       }
 
       EditorGUI.EndProperty();
@@ -84,7 +87,10 @@ namespace droid.Editor.Utilities.SearchableEnum {
 
           break;
         case EventType.Repaint:
-          EditorStyles.popup.Draw(position, content, id, false);
+          EditorStyles.popup.Draw(position,
+                                  content,
+                                  id,
+                                  false);
           break;
       }
 

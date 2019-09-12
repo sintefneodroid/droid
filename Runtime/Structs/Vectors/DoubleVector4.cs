@@ -42,6 +42,13 @@ namespace droid.Runtime.Structs.Vectors {
     /// <summary>
     ///
     /// </summary>
-    public static DoubleVector4 Zero { get { return new DoubleVector4(0, 0, 0, 0); } }
+    public static DoubleVector4 Zero {
+      get {
+        return new DoubleVector4(0,
+                                 0,
+                                 0,
+                                 0);
+      }
+    }
   }
 }

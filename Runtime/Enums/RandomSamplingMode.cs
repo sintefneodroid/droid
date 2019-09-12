@@ -7,14 +7,17 @@ namespace droid.Runtime.Enums {
     ///
     /// </summary>
     On_update_,
+
     /// <summary>
     ///
     /// </summary>
     On_tick_,
+
     /// <summary>
     ///
     /// </summary>
     On_reset_,
+
     /// <summary>
     ///
     /// </summary>

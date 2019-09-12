@@ -9,17 +9,16 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      SensorComponentMenuPath._ComponentMenuPath + "Scale" + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath + "Scale" + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [Serializable]
   public class ScaleSensor : Sensor,
-                                IHasTriple {
+                             IHasTriple {
     [Header("Observation", order = 103)]
     [SerializeField]
     Vector3 _position;
 
-    [SerializeField] Space3 _scale_space = new Space3( 10);
+    [SerializeField] Space3 _scale_space = new Space3(10);
 
     /// <summary>
     /// </summary>
@@ -30,9 +29,7 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     public Vector3 ObservationValue {
       get { return this._position; }
       set {
-        this._position = this._scale_space.Normalised
-                             ? this._scale_space.ClipNormaliseRound(value)
-                             : value;
+        this._position = this._scale_space.NormalisedBool ? this._scale_space.ClipNormaliseRound(value) : value;
       }
     }
 
@@ -53,11 +50,6 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
 
     /// <summary>
     /// </summary>
-    public override void UpdateObservation() {
-
-
-        this.ObservationValue = this.transform.localScale;
-      }
-
+    public override void UpdateObservation() { this.ObservationValue = this.transform.localScale; }
   }
 }

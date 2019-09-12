@@ -6,7 +6,7 @@ using droid.Runtime.Utilities;
 using droid.Runtime.Utilities.Extensions;
 using UnityEngine;
 
-namespace droid.Runtime.Prototyping.Evaluation.Spatial {
+namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
   /// <summary>
   /// 
   /// </summary>

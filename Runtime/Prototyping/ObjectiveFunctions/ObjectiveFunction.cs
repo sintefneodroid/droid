@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Globalization;
-using droid.Runtime.Environments;
+using droid.Runtime.Environments.Prototyping;
 using droid.Runtime.GameObjects;
 using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
-namespace droid.Runtime.Prototyping.Evaluation {
+namespace droid.Runtime.Prototyping.ObjectiveFunctions {
   /// <inheritdoc cref="ObjectiveFunction" />
   /// <summary>
   /// </summary>
@@ -44,7 +43,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
 
     /// <summary>
     /// </summary>
-    public IAbstractPrototypingEnvironment ParentEnvironment {
+    public ISpatialPrototypingEnvironment ParentEnvironment {
       get { return this._environment; }
       set { this._environment = value; }
     }
@@ -57,10 +56,10 @@ namespace droid.Runtime.Prototyping.Evaluation {
       var signal = 0.0f;
       signal += this.InternalEvaluate();
 
-      if (this.EpisodeLength > 0 && this._environment.CurrentFrameNumber >= this.EpisodeLength) {
+      if (this.EpisodeLength > 0 && this._environment.step_i >= this.EpisodeLength) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Maximum episode length reached, Length {this._environment.CurrentFrameNumber}");
+          Debug.Log($"Maximum episode length reached, Length {this._environment.step_i}");
         }
         #endif
 
@@ -97,7 +96,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
     protected sealed override void Setup() {
       if (this.ParentEnvironment == null) {
         this.ParentEnvironment = NeodroidSceneUtilities
-            .RecursiveFirstSelfSiblingParentGetComponent<AbstractPrototypingEnvironment>(this.transform);
+            .RecursiveFirstSelfSiblingParentGetComponent<BaseSpatialPrototypingEnvironment>(this.transform);
       }
 
       this.PostSetup();
@@ -137,7 +136,7 @@ namespace droid.Runtime.Prototyping.Evaluation {
 
     [Header("References", order = 100)]
     [SerializeField]
-    protected IAbstractPrototypingEnvironment _environment = null;
+    protected ISpatialPrototypingEnvironment _environment = null;
 
     [Header("General", order = 101)]
     [SerializeField]

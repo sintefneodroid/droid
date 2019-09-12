@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using droid.Runtime.Environments;
+using droid.Runtime.Environments.Prototyping;
 using droid.Runtime.GameObjects;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities;
@@ -18,7 +19,7 @@ namespace droid.Runtime.Prototyping.Sensors {
                                  ISensor {
     /// <summary>
     /// </summary>
-    public AbstractPrototypingEnvironment ParentEnvironment {
+    public BaseSpatialPrototypingEnvironment ParentEnvironment {
       get { return this._environment; }
       set { this._environment = value; }
     }
@@ -66,7 +67,7 @@ namespace droid.Runtime.Prototyping.Sensors {
     /// </summary>
     protected virtual void Update() {
       if (Application.isPlaying) {
-        if (this.FloatEnumerable == null || !this.FloatEnumerable.Any()) {
+        if (this.FloatEnumerable == null) {
           #if NEODROID_DEBUG
           if (this.Debugging) {
             Debug.LogWarning($"FloatEnumerable of {this.Identifier} is empty! Maybe you forget an assignment to it when updating observations");
@@ -88,7 +89,7 @@ namespace droid.Runtime.Prototyping.Sensors {
 
     [Header("References", order = 99)]
     [SerializeField]
-    AbstractPrototypingEnvironment _environment;
+    BaseSpatialPrototypingEnvironment _environment;
 
     #endregion
   }

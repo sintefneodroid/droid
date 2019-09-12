@@ -4,7 +4,7 @@ using droid.Runtime.Prototyping.Sensors.Grid;
 using droid.Runtime.ScriptableObjects.Deprecated;
 using UnityEngine;
 
-namespace droid.Runtime.Prototyping.Evaluation.Tasks {
+namespace droid.Runtime.Prototyping.ObjectiveFunctions.Tasks {
   //[ExecuteInEditMode]
   /// <summary>
   /// </summary>

@@ -7,12 +7,10 @@ namespace droid.Runtime.Prototyping.Sensors.Strings {
   /// <summary>
   ///
   /// </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
-                    + "String"
-                    + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath + "String" + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   public class StringSensor : Sensor,
-                                       IHasString {
+                              IHasString {
     [Header("Observation", order = 103)]
     [SerializeField]
     string _observation_value;
@@ -29,9 +27,12 @@ namespace droid.Runtime.Prototyping.Sensors.Strings {
     ///
     /// </summary>
     public override IEnumerable<Single> FloatEnumerable { get { return new float[] { }; } }
+
     /// <summary>
     ///
     /// </summary>
-    public override void UpdateObservation() { this._observation_value = this.ParentEnvironment.CurrentFrameNumber.ToString(); }
+    public override void UpdateObservation() {
+      this._observation_value = this.ParentEnvironment.step_i.ToString();
+    }
   }
 }

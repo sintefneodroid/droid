@@ -43,7 +43,8 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       this.ParentEnvironment?.UnRegister(this, this._texture_str);
     }
 
-    public override ISamplable ConfigurableValueSpace { get{return new SampleSpace1();} }
+    public override ISamplable ConfigurableValueSpace { get { return new SampleSpace1(); } }
+
     /// <summary>
     /// </summary>
     /// <param name="configuration"></param>

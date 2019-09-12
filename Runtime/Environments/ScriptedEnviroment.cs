@@ -113,7 +113,9 @@ namespace droid.Runtime.Environments {
       }
 
       this._time_simulation_manager =
-          NeodroidRegistrationUtilities.RegisterComponent((AbstractNeodroidManager)this._time_simulation_manager, this);
+          NeodroidRegistrationUtilities.RegisterComponent((AbstractNeodroidManager)this
+                                                              ._time_simulation_manager,
+                                                          this);
     }
 
     /// <inheritdoc />
@@ -139,19 +141,13 @@ namespace droid.Runtime.Environments {
       var strength = Random.Range(0, 4);
       this._motions.Add(new ActuatorMotion("", "", strength));
 
-      var rp = new ReactionParameters(true, true, episode_count : true) {IsExternal = false};
-      return new Reaction(rp, this._motions.ToArray(), null, null, null, "");
-    }
-
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    /// <param name="reaction"></param>
-    /// <returns></returns>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public override EnvironmentState ReactAndCollectState(Reaction reaction) {
-      this.React(reaction);
-      return this.CollectState();
+      var rp = new ReactionParameters(StepResetObserve.Step_, true, episode_count : true);
+      return new Reaction(rp,
+                          this._motions.ToArray(),
+                          null,
+                          null,
+                          null,
+                          "");
     }
 
     public override void React(Reaction reaction) {
@@ -187,11 +183,16 @@ namespace droid.Runtime.Environments {
       var terminated = actor_idx == goal_idx;
       var signal = terminated ? 1 : 0;
 
-      var time = Time.time - this._Lastest_Reset_Time;
+      var time = Time.time - this._LastResetTime;
 
       var observables = new float[] {actor_idx};
 
-      return new EnvironmentState(this.Identifier, 0, time, signal, terminated, ref observables);
+      return new EnvironmentState(this.Identifier,
+                                  0,
+                                  time,
+                                  signal,
+                                  terminated,
+                                  ref observables);
     }
 
     /// <inheritdoc />
@@ -202,6 +203,6 @@ namespace droid.Runtime.Environments {
       recipient.PollData(this.CollectState().ToString());
     }
 
-    public override void EnvironmentReset() { }
+    protected override void EnvironmentReset() { }
   }
 }

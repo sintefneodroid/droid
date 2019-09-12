@@ -11,15 +11,18 @@ namespace droid.Runtime.Interfaces {
     ///
     /// </summary>
     SortedDictionary<string, IActuator> Actuators { get; }
+
     /// <summary>
     ///
     /// </summary>
     Transform Transform { get; }
+
     /// <summary>
     ///
     /// </summary>
     /// <param name="motion"></param>
     void ApplyMotion(IMotion motion);
+
     /// <summary>
     ///
     /// </summary>

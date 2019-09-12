@@ -12,7 +12,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays.Lidar {
                     + "SweepingLidar"
                     + SensorComponentMenuPath._Postfix)]
   public class SweepingLidarSensor : Sensor,
-                                           IHasSingle {
+                                     IHasSingle {
     [SerializeField] RaycastHit _hit;
     [SerializeField] Vector3 current_direction = Vector3.forward;
     [SerializeField] Space1 sweeping_range = Space1.DiscreteMinusOneOne;
@@ -32,27 +32,24 @@ namespace droid.Runtime.Prototyping.Sensors.Rays.Lidar {
     /// <summary>
     ///
     /// </summary>
-    public override IEnumerable<float> FloatEnumerable { get { return new []{ this.ObservationValue}; } }
-
+    public override IEnumerable<float> FloatEnumerable { get { return new[] {this.ObservationValue}; } }
 
     /// <summary>
     /// </summary>
     protected override void PreSetup() { }
 
-
     /// <summary>
     /// </summary>
     public override void UpdateObservation() {
       float outs;
-        if (Physics.Raycast(this.transform.position + this._space.Min * Vector3.forward,
-                            this.transform.TransformDirection(Vector3.forward),
-                            out this._hit,
-                            this._space.Max)) {
-          outs = this._space.ClipNormaliseRound(this._hit.distance);
-        } else {
-          outs = this._space.Max;
-        }
-
+      if (Physics.Raycast(this.transform.position + this._space.Min * Vector3.forward,
+                          this.transform.TransformDirection(Vector3.forward),
+                          out this._hit,
+                          this._space.Max)) {
+        outs = this._space.ClipNormaliseRound(this._hit.distance);
+      } else {
+        outs = this._space.Max;
+      }
     }
 
     #if UNITY_EDITOR

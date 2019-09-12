@@ -39,7 +39,13 @@ namespace droid.Runtime.Prototyping.Actuators {
       this._rot_w = this.Identifier + "RotW";
     }
 
-    public override string[] InnerMotionNames => new[] {this._rot_x, this._rot_y, this._rot_z, this._rot_w};
+    public override string[] InnerMotionNames =>
+        new[] {
+                  this._rot_x,
+                  this._rot_y,
+                  this._rot_z,
+                  this._rot_w
+              };
 
     /// <inheritdoc />
     /// <summary>

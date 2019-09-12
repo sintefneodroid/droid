@@ -5,7 +5,10 @@ namespace droid.Editor.Utilities {
   /// <summary>
   /// </summary>
   public static class NeodroidEditorUtilities {
-    static Color _link_color = new Color(0x00 / 255f, 0x78 / 255f, 0xDA / 255f, 1f);
+    static Color _link_color = new Color(0x00 / 255f,
+                                         0x78 / 255f,
+                                         0xDA / 255f,
+                                         1f);
 
     static GUIStyle _default_link_style = new GUIStyle(EditorStyles.label) {
                                                                                fontSize = 14,

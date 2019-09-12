@@ -29,7 +29,7 @@ namespace droid.Runtime.Utilities.Extensions {
     Vector3[] _target_velocities;
     float[] _torque_break_limits;
 
-    [SerializeField] bool counting=false;
+    [SerializeField] bool counting = false;
     [SerializeField] int resetAfterFrames = 500;
     int _frames_counted;
 

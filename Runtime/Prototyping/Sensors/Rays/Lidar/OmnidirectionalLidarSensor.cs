@@ -11,7 +11,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays.Lidar {
                     + "OmnidirectionalLidar"
                     + SensorComponentMenuPath._Postfix)]
   public class OmnidirectionalLidarSensor : Sensor,
-                                           IHasFloatArray {
+                                            IHasFloatArray {
     [SerializeField] RaycastHit _hit;
 
     [SerializeField] bool _is_2_d = false;

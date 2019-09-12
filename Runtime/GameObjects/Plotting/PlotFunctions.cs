@@ -24,8 +24,6 @@ namespace droid.Runtime.GameObjects.Plotting {
       var s = new SampleSpace3 {_space = Space3.MinusOneOne};
       _points.Clear();
       for (var j = 0; j < size; j++) {
-
-
         var point = s.Sample() * max_val;
         var vp = new Points.ValuePoint(point,
                                        Random.Range(min_val, max_val),

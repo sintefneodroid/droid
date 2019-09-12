@@ -8,7 +8,6 @@ namespace droid.Tests.Runtime {
   /// </summary>
   [TestFixture]
   public class RegistrationTests {
-
     /// <summary>
     ///
     /// </summary>

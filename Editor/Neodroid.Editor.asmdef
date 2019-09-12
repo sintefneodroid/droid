@@ -2,9 +2,10 @@
     "name": "Neodroid.Editor",
     "references": [
         "Neodroid.Runtime",
-        "Unity.PackageManagerUI.Editor"
+        "Unity.PackageManagerUI.Editor",
+        "Unity.Postprocessing.Editor",
+        "Unity.Postprocessing.Runtime"
     ],
-    "optionalUnityReferences": [],
     "includePlatforms": [
         "Editor"
     ],
@@ -14,5 +15,6 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": []
+    "versionDefines": [],
+    "noEngineReferences": false
 }

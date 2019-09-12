@@ -1,4 +1,5 @@
 ﻿using droid.Runtime.Environments;
+using droid.Runtime.Environments.Prototyping;
 using droid.Runtime.GameObjects.ChildSensors;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Prototyping.Actors;

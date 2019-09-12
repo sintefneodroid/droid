@@ -57,6 +57,12 @@ namespace droid.Runtime.Prototyping.Actuators {
       }
     }
 
-    public override string[] InnerMotionNames => new[] {"1", "2", "3", "4"};
+    public override string[] InnerMotionNames =>
+        new[] {
+                  "1",
+                  "2",
+                  "3",
+                  "4"
+              };
   }
 }

@@ -18,7 +18,12 @@ namespace droid.Runtime.Utilities.Drawing {
                                 float arrow_head_length = 0.25f,
                                 float arrow_head_angle = 20.0f) {
       Gizmos.DrawRay(pos, direction);
-      NeodroidDrawingUtilitiesEnd(true, pos, direction, color, arrow_head_length, arrow_head_angle);
+      NeodroidDrawingUtilitiesEnd(true,
+                                  pos,
+                                  direction,
+                                  color,
+                                  arrow_head_length,
+                                  arrow_head_angle);
     }
 
     /// <summary>
@@ -36,7 +41,10 @@ namespace droid.Runtime.Utilities.Drawing {
                                 float arrow_head_angle = 20.0f,
                                 float ray_duration = 0f) {
       if (ray_duration > 0) {
-        Debug.DrawRay(pos, direction, color, ray_duration);
+        Debug.DrawRay(pos,
+                      direction,
+                      color,
+                      ray_duration);
       } else {
         Debug.DrawRay(pos, direction, color);
       }
@@ -75,10 +83,22 @@ namespace droid.Runtime.Utilities.Drawing {
         Gizmos.DrawRay(pos + direction, down * arrow_head_length);
       } else {
         if (ray_duration > 0) {
-          Debug.DrawRay(pos + direction, right * arrow_head_length, color, ray_duration);
-          Debug.DrawRay(pos + direction, left * arrow_head_length, color, ray_duration);
-          Debug.DrawRay(pos + direction, up * arrow_head_length, color, ray_duration);
-          Debug.DrawRay(pos + direction, down * arrow_head_length, color, ray_duration);
+          Debug.DrawRay(pos + direction,
+                        right * arrow_head_length,
+                        color,
+                        ray_duration);
+          Debug.DrawRay(pos + direction,
+                        left * arrow_head_length,
+                        color,
+                        ray_duration);
+          Debug.DrawRay(pos + direction,
+                        up * arrow_head_length,
+                        color,
+                        ray_duration);
+          Debug.DrawRay(pos + direction,
+                        down * arrow_head_length,
+                        color,
+                        ray_duration);
         } else {
           Debug.DrawRay(pos + direction, right * arrow_head_length, color);
           Debug.DrawRay(pos + direction, left * arrow_head_length, color);
@@ -94,8 +114,6 @@ namespace droid.Runtime.Utilities.Drawing {
  */
     }
 
-
-
     /// <summary>
     /// </summary>
     /// <param name="rb"></param>
@@ -107,7 +125,6 @@ namespace droid.Runtime.Utilities.Drawing {
           * Mathf.Pow(rb.velocity.magnitude,
                       2); // mass in kg, velocity in meters per second, result is joules
     }
-
 
     /// <summary>
     /// </summary>
@@ -136,8 +153,6 @@ namespace droid.Runtime.Utilities.Drawing {
       }
     }
 
-
-
     /// <summary>
     ///
     /// </summary>
@@ -150,7 +165,12 @@ namespace droid.Runtime.Utilities.Drawing {
       camera.Render();
       var target_texture = camera.targetTexture;
       var texture = new Texture2D(target_texture.width, target_texture.height);
-      texture.ReadPixels(new Rect(0, 0, target_texture.width, target_texture.height), 0, 0);
+      texture.ReadPixels(new Rect(0,
+                                  0,
+                                  target_texture.width,
+                                  target_texture.height),
+                         0,
+                         0);
       texture.Apply();
       RenderTexture.active = current_render_texture;
       return texture;

@@ -59,9 +59,16 @@ namespace droid.Runtime.Structs.Space {
       get { return new Space1(this.DecimalGranularity) {Min = this._min_.y, Max = this._max_.y}; }
     }
 
+    public Vector2 Clip(Vector2 v, Vector2 min, Vector2 max) {
+      return new Vector2(Mathf.Clamp(v.x, min.x, max.x), Mathf.Clamp(v.y, min.y, max.y));
+    }
+
+    public Vector2 Clip(Vector2 v) { return Clip(v, this._min_, this._max_); }
+
     public dynamic ClipRoundDenormaliseClip(dynamic configuration_configurable_value) {
-      //TODO: implement
-      return configuration_configurable_value;
+      return this.Clip(this.Round(this.Denormalise01(Clip(configuration_configurable_value,
+                                                          Vector2.zero,
+                                                          Vector2.one))));
     }
 
     /// <summary>
@@ -122,7 +129,7 @@ namespace droid.Runtime.Structs.Space {
     /// <summary>
     ///
     /// </summary>
-    public bool Normalised { get { return this.normalised; } set { this.normalised = value; } }
+    public bool NormalisedBool { get { return this.normalised; } set { this.normalised = value; } }
 
     /// <summary>
     ///

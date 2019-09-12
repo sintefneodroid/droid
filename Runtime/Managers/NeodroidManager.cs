@@ -25,11 +25,10 @@ namespace droid.Runtime.Managers {
 
     /// <summary>
     /// </summary>
-    protected virtual new void Awake() {
-      base.Awake();
+    protected override void Setup() {
       if (this.Configuration.SimulationType == SimulationType.Frame_dependent_) {
-        this.EarlyUpdateEvent += this.PauseSimulation;
-        this.UpdateEvent += this.MaybeResume;
+        this.EarlyUpdateEvent += this.Pause;
+        this.UpdateEvent += this.Resume;
       } else if (this.Configuration.SimulationType == SimulationType.Physics_dependent_) {
         #if UNITY_EDITOR
         if (this._allow_in_editor_blockage) {
@@ -50,8 +49,8 @@ namespace droid.Runtime.Managers {
 
     /// <summary>
     /// </summary>
-    void MaybeResume() {
-      if (this.Stepping) {
+    void Resume() {
+      if (this.ShouldResume) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log("Resuming simulation because of stepping");
@@ -82,7 +81,7 @@ namespace droid.Runtime.Managers {
 
     /// <summary>
     /// </summary>
-    void PauseSimulation() {
+    void Pause() {
       #if NEODROID_DEBUG
       if (this.Debugging) {
         Debug.Log("Pausing simulation");
@@ -114,7 +113,7 @@ namespace droid.Runtime.Managers {
     /// </summary>
     void Receive() {
       var reaction = this._Message_Server.Receive(TimeSpan.Zero);
-      this.SetReactionsFromExternalSource(reaction);
+      this.SetReactions(reaction);
     }
 
     #endregion

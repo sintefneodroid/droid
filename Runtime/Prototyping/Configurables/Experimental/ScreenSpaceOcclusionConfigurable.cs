@@ -36,12 +36,12 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     string _r;
 
-    [SerializeField] SampleSpace4 rot_space = new SampleSpace4{_space = Space4.ZeroOne};
+    [SerializeField] SampleSpace4 rot_space = new SampleSpace4 {_space = Space4.ZeroOne};
 
-    [SerializeField] SampleSpace2 xy_space2 = new SampleSpace2{_space = Space2.ZeroOne};
+    [SerializeField] SampleSpace2 xy_space2 = new SampleSpace2 {_space = Space2.ZeroOne};
 
-    [SerializeField] SampleSpace1 depth_space1 = new SampleSpace1{_space = Space1.ZeroOne};
-    [SerializeField] SampleSpace3 size_space = new SampleSpace3{_space = Space3.ZeroOne};
+    [SerializeField] SampleSpace1 depth_space1 = new SampleSpace1 {_space = Space1.ZeroOne};
+    [SerializeField] SampleSpace3 size_space = new SampleSpace3 {_space = Space3.ZeroOne};
 
     /// <summary>
     /// </summary>
@@ -67,8 +67,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       if (Application.isPlaying && this._fsafas) {
         if (this._prefabs != null && this._prefabs.Length > 0 && this._camera) {
           for (var i = 0; i < this.num_obstructions; i++) {
-            var prefab = this._prefabs[(int)(s.Sample() * this._prefabs
-            .Length)];
+            var prefab = this._prefabs[(int)(s.Sample() * this._prefabs.Length)];
 
             var xy = this.xy_space2.Sample();
             var z = this._camera.nearClipPlane + this.depth_space1.Sample() * this._camera.farClipPlane;
@@ -78,9 +77,15 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
             var c = this._camera.ViewportToWorldPoint(a);
 
             var rot = this.rot_space.Sample();
-            var b = new Quaternion(rot.x, rot.y, rot.z, rot.w);
+            var b = new Quaternion(rot.x,
+                                   rot.y,
+                                   rot.z,
+                                   rot.w);
 
-            var d = Instantiate(prefab, c, b, this.transform);
+            var d = Instantiate(prefab,
+                                c,
+                                b,
+                                this.transform);
             d.transform.localScale = this.size_space.Sample();
 
             this._spawned.Add(d);
@@ -127,7 +132,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       this.ParentEnvironment.UnRegister(this, this._a);
     }
 
-    public override ISamplable ConfigurableValueSpace { get{return new SampleSpace1();} }
+    public override ISamplable ConfigurableValueSpace { get { return new SampleSpace1(); } }
 
     /// <summary>
     /// </summary>
@@ -143,7 +148,10 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
         var c = this._camera.ViewportToWorldPoint(a);
 
         var rot = this.rot_space.Sample();
-        var b = new Quaternion(rot.x, rot.y, rot.z, rot.w);
+        var b = new Quaternion(rot.x,
+                               rot.y,
+                               rot.z,
+                               rot.w);
 
         bb.transform.localScale = this.size_space.Sample();
 

@@ -29,7 +29,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// </summary>
     string _z;
 
-    [SerializeField] SampleSpace3 _space = new SampleSpace3{Space = Space3.ZeroOne};
+    [SerializeField] SampleSpace3 _space = new SampleSpace3 {Space = Space3.ZeroOne};
 
     /// <inheritdoc />
     /// <summary>
@@ -77,7 +77,6 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// </summary>
     /// <param name="configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
-
       //TODO: Denormalize configuration if space is marked as normalised
 
       #if NEODROID_DEBUG

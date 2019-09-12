@@ -65,7 +65,10 @@ namespace droid.Editor.Utilities.UnityDebug {
           while (sp.NextVisible(true)) {
             if (sp.propertyType == SerializedPropertyType.ObjectReference) {
               if (sp.objectReferenceValue == null && sp.objectReferenceInstanceIDValue != 0) {
-                ShowError(context, go, c.GetType().Name, ObjectNames.NicifyVariableName(sp.name));
+                ShowError(context,
+                          go,
+                          c.GetType().Name,
+                          ObjectNames.NicifyVariableName(sp.name));
               }
             }
           }
@@ -83,7 +86,11 @@ namespace droid.Editor.Utilities.UnityDebug {
     static void ShowError(string context, GameObject go, string component_name, string property_name) {
       const String error_template = "Missing Ref in: [{3}]{0}. Component: {1}, Property: {2}";
 
-      Debug.LogError(string.Format(error_template, GetFullPath(go), component_name, property_name, context),
+      Debug.LogError(string.Format(error_template,
+                                   GetFullPath(go),
+                                   component_name,
+                                   property_name,
+                                   context),
                      go);
     }
 

@@ -7,10 +7,23 @@ namespace droid.Runtime.Utilities.Drawing {
     static Texture2D _s_line_tex;
 
     static NeodroidUtilities() {
-      _s_line_tex = new Texture2D(1, 3, TextureFormat.ARGB32, true);
-      _s_line_tex.SetPixel(0, 0, new Color(1, 1, 1, 0));
+      _s_line_tex = new Texture2D(1,
+                                  3,
+                                  TextureFormat.ARGB32,
+                                  true);
+      _s_line_tex.SetPixel(0,
+                           0,
+                           new Color(1,
+                                     1,
+                                     1,
+                                     0));
       _s_line_tex.SetPixel(0, 1, Color.white);
-      _s_line_tex.SetPixel(0, 2, new Color(1, 1, 1, 0));
+      _s_line_tex.SetPixel(0,
+                           2,
+                           new Color(1,
+                                     1,
+                                     1,
+                                     0));
       _s_line_tex.Apply();
     }
 

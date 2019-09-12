@@ -199,14 +199,9 @@ namespace droid.Runtime.Managers {
     /// <summary>
     /// </summary>
     [SerializeField]
-    bool _syncing_environments;
-
-    /// <summary>
-    /// </summary>
-    [SerializeField]
     bool _awaiting_reply;
 
-    [SerializeField] bool _step;
+    [SerializeField] bool _executing_step;
 
     WaitForEndOfFrame _wait_for_end_of_frame = new WaitForEndOfFrame();
     WaitForFixedUpdate _wait_for_fixed_update = new WaitForFixedUpdate();
@@ -298,16 +293,10 @@ namespace droid.Runtime.Managers {
     /// </summary>
     public ISimulatorConfiguration SimulatorConfiguration { get { return this._configuration; } }
 
-    /// <summary>
-    /// </summary>
-    public bool IsSyncingEnvironments {
-      get { return this._syncing_environments; }
-      set { this._syncing_environments = value; }
-    }
 
     /// <summary>
     /// </summary>
-    public bool Stepping { get { return this._step; } }
+    public bool ShouldResume { get { return this._executing_step; } }
 
     #endregion
 
@@ -367,6 +356,9 @@ namespace droid.Runtime.Managers {
       #endif
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     protected virtual void Setup() { }
 
     /// <summary>
@@ -455,7 +447,7 @@ namespace droid.Runtime.Managers {
     /// <param name="src"></param>
     /// <param name="dest"></param>
     void OnRenderImage(RenderTexture src, RenderTexture dest) {
-      this.OnRenderImageEvent?.Invoke(); //TODO: May not work
+      this.OnRenderImageEvent?.Invoke(); //Will need Camera component!
     }
 
     /// <summary>
@@ -554,25 +546,22 @@ namespace droid.Runtime.Managers {
       }
       #endif
 
-      foreach (var environment in this._Environments.Values) {
-        environment.PostStep();
-      }
-
       if (this.Configuration.StepExecutionPhase == ExecutionPhase.After_) {
         this.ExecuteStep();
       }
 
-      if (this._has_stepped) {
-        this.ClearCurrentReactions();
+      foreach (var environment in this._Environments.Values) {
+        environment.PostStep();
       }
+
     }
 
     /// <summary>
     /// </summary>
     void ExecuteStep() {
-      if (!this._syncing_environments) {
-        this.React(this.CurrentReactions);
-      }
+
+        this.SendToEnvironments(this.CurrentReactions);
+
 
       if (this.AwaitingReply) {
         var states = this.CollectStates();
@@ -580,13 +569,14 @@ namespace droid.Runtime.Managers {
       }
 
       this.HasStepped = true;
+      this.CurrentReactions = new Reaction[] { };
     }
 
     /// <summary>
     /// </summary>
     protected void Tick() {
       if (this.TestActuators) {
-        this.React(this.SampleRandomReactions());
+        this.SendToEnvironments(this.SampleRandomReactions());
         this.CollectStates();
       }
 
@@ -606,20 +596,7 @@ namespace droid.Runtime.Managers {
     /// <param name="states"></param>
     protected void PostReact(EnvironmentState[] states) {
       lock (this._send_lock) {
-        foreach (var env in this._Environments.Values) {
-          if (env.IsResetting) {
-            #if NEODROID_DEBUG
-            if (this.Debugging) {
-              Debug.Log($"Environment {env} is resetting");
-            }
-            #endif
 
-            this._syncing_environments = true;
-            return;
-          }
-        }
-
-        this._syncing_environments = false;
         if (this._skip_frame_i >= this.Configuration.FrameSkips) {
           #if NEODROID_DEBUG
           if (this.Debugging) {
@@ -688,87 +665,15 @@ namespace droid.Runtime.Managers {
       }
     }
 
-    /// <summary>
-    /// </summary>
-    void ClearCurrentReactions() {
-      this._step = false;
-      this.CurrentReactions = new Reaction[] { };
-    }
 
     #endregion
 
     #region PublicMethods
-
-    /// <summary>
-    /// </summary>
-    /// <param name="reaction"></param>
-    /// <returns></returns>
-    public EnvironmentState[] ReactAndCollectStates(Reaction reaction) {
-      this.SetStepping(reaction);
-      var states = new EnvironmentState[this._Environments.Values.Count];
-      var i = 0;
-      foreach (var environment in this._Environments.Values) {
-        if (reaction.RecipientEnvironment != "all") {
-          #if NEODROID_DEBUG
-          if (this.Debugging) {
-            Debug.Log($"Applying reaction to {reaction.RecipientEnvironment} environment");
-          }
-          #endif
-          if (this._Environments.ContainsKey(reaction.RecipientEnvironment)) {
-            states[i++] = this._Environments[reaction.RecipientEnvironment].ReactAndCollectState(reaction);
-          }
-          #if NEODROID_DEBUG
-          else {
-            if (this.Debugging) {
-              Debug.Log($"Could not find environment: {reaction.RecipientEnvironment}");
-            }
-          }
-          #endif
-        } else {
-          #if NEODROID_DEBUG
-          if (this.Debugging) {
-            Debug.Log("Applying reaction to all environments");
-          }
-          #endif
-          states[i++] = environment.ReactAndCollectState(reaction);
-        }
-      }
-
-      return states;
-    }
-
-    /// <summary>
-    /// </summary>
-    /// <param name="reaction"></param>
-    /// <returns></returns>
-    public void React(Reaction reaction) {
-      this.SetStepping(reaction);
-      if (this._Environments.ContainsKey(reaction.RecipientEnvironment)) {
-        this._Environments[reaction.RecipientEnvironment].React(reaction);
-      } else {
-        #if NEODROID_DEBUG
-        if (this.Debugging) {
-          Debug.Log($"Could not find an environment with the identifier: {reaction.RecipientEnvironment}");
-        }
-        #endif
-
-        #if NEODROID_DEBUG
-        if (this.Debugging) {
-          Debug.Log("Applying to all environments");
-        }
-        #endif
-
-        foreach (var environment in this._Environments.Values) {
-          environment.React(reaction);
-        }
-      }
-    }
-
     /// <summary>
     /// </summary>
     /// <param name="reactions"></param>
     /// <returns></returns>
-    public void React(Reaction[] reactions) {
+    public void SendToEnvironments(Reaction[] reactions) {
       this.SetStepping(reactions);
       foreach (var reaction in reactions) {
         if (this._Environments.ContainsKey(reaction.RecipientEnvironment)) {
@@ -807,8 +712,14 @@ namespace droid.Runtime.Managers {
       return states;
     }
 
+    void SetStepping(IEnumerable<Reaction> reactions) {
+      if (reactions.Any(reaction => reaction.Parameters.StepResetObserveEnu == StepResetObserve.Step_)) {
+        this.SetStepping(true);
+      }
+    }
+
     void SetStepping(Reaction reaction) {
-      if (reaction.Parameters.Step) {
+      if (reaction.Parameters.StepResetObserveEnu == StepResetObserve.Step_) {
         this.SetStepping(true);
       }
     }
@@ -821,72 +732,38 @@ namespace droid.Runtime.Managers {
         }
         #endif
 
-        this._step = true;
+        this._executing_step = true;
       } else {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log("Not stepping from Reaction");
         }
         #endif
-        if (this.HasStepped) {
-          this._step = false;
-        }
+        this._executing_step = false;
+
       }
     }
 
-    void SetStepping(Reaction[] reactions) {
-      if (reactions.Any(reaction => reaction.Parameters.Step)) {
-        this.SetStepping(true);
-      }
-    }
+
 
     public void SetTesting(bool arg0) { this.TestActuators = arg0; }
-
-/*
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="reactions"></param>
-    /// <returns></returns>
-    public EnvironmentState[] ReactAndCollectStates(Reaction[] reactions) {
-      this.SetStepping(reactions);
-      var states = new EnvironmentState[reactions.Length * this._Environments.Count];
-      var i = 0;
-      foreach (var reaction in reactions) {
-        if (this._Environments.ContainsKey(reaction.RecipientEnvironment)) {
-          states[i++] = this._Environments[reaction.RecipientEnvironment].ReactAndCollectState(reaction);
-        } else {
-          #if NEODROID_DEBUG
-          if (this.Debugging) {
-            Debug.Log($"Could not find an environment with the identifier: {reaction.RecipientEnvironment}");
-          }
-          #endif
-
-          #if NEODROID_DEBUG
-          if (this.Debugging) {
-            Debug.Log($"Applying to all environments");
-          }
-          #endif
-
-          foreach (var environment in this._Environments.Values) {
-            states[i++] = environment.ReactAndCollectState(reaction);
-          }
-        }
-      }
-
-      return states;
-    }
-*/
 
     /// <summary>
     /// </summary>
     public void ResetAllEnvironments() {
-      this.React(new Reaction(new ReactionParameters(true, false, true, episode_count : true),
-                              null,
-                              null,
-                              null,
-                              null,
-                              ""));
+      var reactions = new List<Reaction>();
+      foreach (var environment in this._Environments) {
+        var a = environment.Value.Identifier;
+
+        reactions.Add(new Reaction(new ReactionParameters(StepResetObserve.Reset_, false, true),
+                     null,
+                     null,
+                     null,
+                     null,
+                     "",
+                     recipient_environment : a));
+      }
+      this.SendToEnvironments(reactions.ToArray());
     }
 
     /// <summary>
@@ -968,7 +845,7 @@ namespace droid.Runtime.Managers {
         }
         #endif
 
-        this.SetReactionsFromExternalSource(reactions);
+        this.SetReactions(reactions);
 
         this.OnReceiveEvent?.Invoke();
       }
@@ -977,7 +854,7 @@ namespace droid.Runtime.Managers {
     /// <summary>
     /// </summary>
     /// <param name="reactions"></param>
-    protected void SetReactionsFromExternalSource(Reaction[] reactions) {
+    protected void SetReactions(Reaction[] reactions) {
       lock (this._send_lock) {
         if (reactions != null) {
           if (this.AwaitingReply || !this.HasStepped) {
@@ -989,13 +866,10 @@ namespace droid.Runtime.Managers {
           }
 
           this.CurrentReactions = reactions;
-          foreach (var current_reaction in this.CurrentReactions) {
-            current_reaction.Parameters.IsExternal = true;
-          }
 
           var phase = this.Configuration.StepExecutionPhase;
           foreach (var current_reaction in this.CurrentReactions) {
-            phase= current_reaction.Parameters.Phase;
+            phase = current_reaction.Parameters.Phase;
           }
 
           this.Configuration.StepExecutionPhase = phase;

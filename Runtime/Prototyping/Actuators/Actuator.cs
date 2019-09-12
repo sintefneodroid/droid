@@ -47,7 +47,7 @@ namespace droid.Runtime.Prototyping.Actuators {
       }
       #endif
 
-      if (this._motion_value_space._space.Normalised) {
+      if (this._motion_value_space._space.NormalisedBool) {
         motion.Strength = this._motion_value_space._space.ClipRoundDenormaliseClip(motion.Strength);
       } else if (motion.Strength < this._motion_value_space._space.Min
                  || motion.Strength > this._motion_value_space._space.Max) {

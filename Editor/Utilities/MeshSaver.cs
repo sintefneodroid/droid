@@ -19,7 +19,10 @@ namespace droid.Editor.Utilities {
 
       if (mf != null) {
         var m = mf.sharedMesh;
-        SaveMesh(m, m.name, false, true);
+        SaveMesh(m,
+                 m.name,
+                 false,
+                 true);
       }
     }
 
@@ -33,7 +36,10 @@ namespace droid.Editor.Utilities {
 
       if (mf != null) {
         var m = mf.sharedMesh;
-        SaveMesh(m, m.name, true, true);
+        SaveMesh(m,
+                 m.name,
+                 true,
+                 true);
       }
     }
 

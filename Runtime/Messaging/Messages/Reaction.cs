@@ -44,7 +44,8 @@ namespace droid.Runtime.Messaging.Messages {
                     Unobservables unobservables,
                     Displayable[] displayables,
                     String serialised_message,
-                    string recipient_environment = "all") {
+                    string recipient_environment = "all",
+                    string reaction_source = "somewhere") {
       this.Parameters = parameters;
       this.Motions = motions;
       this.Configurations = configurations;
@@ -52,7 +53,13 @@ namespace droid.Runtime.Messaging.Messages {
       this.Displayables = displayables;
       this.RecipientEnvironment = recipient_environment;
       this.SerialisedMessage = serialised_message;
+      this.ReactionSource = reaction_source;
     }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public String ReactionSource { get; set; }
 
     /// <summary>
     /// </summary>

@@ -114,7 +114,10 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
       var min = cen[0];
       var max = cen[1];
 
-      var r = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
+      var r = Rect.MinMaxRect(min.x,
+                              min.y,
+                              max.x,
+                              max.y);
       r.xMin -= margin;
       r.xMax += margin;
       r.yMin -= margin;
@@ -124,7 +127,10 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
     }
 
     public static Rect GetMinMaxRect(Vector3 min, Vector3 max, float margin = 0) {
-      var r = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
+      var r = Rect.MinMaxRect(min.x,
+                              min.y,
+                              max.x,
+                              max.y);
       r.xMin -= margin;
       r.xMax += margin;
       r.yMin -= margin;

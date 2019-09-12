@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Linq;
-using droid.Runtime.Prototyping.Evaluation;
+using droid.Runtime.Prototyping.ObjectiveFunctions;
+using droid.Samples.MultiArmedBandit.Actuators;
+using droid.Samples.MultiArmedBandit.Displayers;
 using UnityEngine;
 
-namespace droid.Samples.MultiArmedBandit {
+namespace droid.Samples.MultiArmedBandit.Evaluation {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

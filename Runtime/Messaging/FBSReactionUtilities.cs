@@ -17,7 +17,13 @@ namespace droid.Runtime.Messaging {
 
     #region PublicMethods
 
-    static Reaction _null_reaction = new Reaction(null, null, null, null, null, "");
+    static Reaction _null_reaction = new Reaction(null,
+                                                  null,
+                                                  null,
+                                                  null,
+                                                  null,
+                                                  "");
+
     static ReactionParameters _null_reaction_parameters = new ReactionParameters();
     static List<Reaction> _out_reactions = new List<Reaction>();
 
@@ -109,9 +115,15 @@ namespace droid.Runtime.Messaging {
 
     static ReactionParameters deserialise_parameters(FReaction reaction) {
       if (reaction.Parameters.HasValue) {
-        return new ReactionParameters(reaction.Parameters.Value.Terminable,
-                                      reaction.Parameters.Value.Step,
-                                      reaction.Parameters.Value.Reset,
+        var s = StepResetObserve.Observe_;
+        if (reaction.Parameters.Value.Step) {
+          s = StepResetObserve.Step_;
+        } else if (reaction.Parameters.Value.Reset) {
+          s = StepResetObserve.Reset_;
+        }
+
+        return new ReactionParameters(s,
+                                      reaction.Parameters.Value.Terminable,
                                       reaction.Parameters.Value.Configure,
                                       reaction.Parameters.Value.Describe,
                                       reaction.Parameters.Value.EpisodeCount);

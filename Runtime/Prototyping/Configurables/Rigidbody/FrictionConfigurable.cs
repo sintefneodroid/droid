@@ -17,10 +17,9 @@ namespace droid.Runtime.Prototyping.Configurables.Rigidbody {
   [RequireComponent(typeof(UnityEngine.Rigidbody))]
   public class FrictionConfigurable : SpatialConfigurable,
                                       IHasSingle {
-
     /// <summary>
     /// </summary>
-    ISamplable _friction_space = new SampleSpace1{ _space = Space1.ZeroOne};
+    ISamplable _friction_space = new SampleSpace1 {_space = Space1.ZeroOne};
 
     /// <summary>
     /// </summary>
@@ -32,8 +31,6 @@ namespace droid.Runtime.Prototyping.Configurables.Rigidbody {
     /// </summary>
     public override string PrototypingTypeName { get { return "RigidbodyConfigurable"; } }
 
-
-
     /// <summary>
     /// </summary>
     public float ObservationValue { get { return this._friction_space.Sample(); } }
@@ -41,7 +38,7 @@ namespace droid.Runtime.Prototyping.Configurables.Rigidbody {
     /// <summary>
     ///
     /// </summary>
-    public Space1 SingleSpace { get { return (Space1) this._friction_space.Space; } }
+    public Space1 SingleSpace { get { return (Space1)this._friction_space.Space; } }
 
     public override ISamplable ConfigurableValueSpace { get; }
 

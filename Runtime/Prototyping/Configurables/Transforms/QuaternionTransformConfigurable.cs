@@ -68,7 +68,6 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// </summary>
     /// <param name="obj"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration obj) {
-
       //TODO: Denormalize configuration if space is marked as normalised
 
       if (obj.ConfigurableName == this._pos_x) {

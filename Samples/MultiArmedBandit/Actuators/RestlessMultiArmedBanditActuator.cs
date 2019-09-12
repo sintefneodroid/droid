@@ -4,7 +4,7 @@ using droid.Runtime.Prototyping.Actuators;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace droid.Samples.MultiArmedBandit {
+namespace droid.Samples.MultiArmedBandit.Actuators {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

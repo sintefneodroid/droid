@@ -91,7 +91,11 @@ Important Notes:
       [Conditional(_conditional_flag)]
       public static void DrawLine(Vector3 start, Vector3 end, Color color, float duration, bool depth_test) {
         CheckAndBuildHiddenRtDrawObject();
-        _rt_draw.RegisterLine(start, end, color, duration, !depth_test);
+        _rt_draw.RegisterLine(start,
+                              end,
+                              color,
+                              duration,
+                              !depth_test);
       }
 
       /// <summary>
@@ -105,7 +109,11 @@ Important Notes:
       [Conditional(_conditional_flag)]
       public static void DrawRay(Vector3 start, Vector3 dir, Color color, float duration, bool depth_test) {
         CheckAndBuildHiddenRtDrawObject();
-        _rt_draw.RegisterLine(start, start + dir, color, duration, !depth_test);
+        _rt_draw.RegisterLine(start,
+                              start + dir,
+                              color,
+                              duration,
+                              !depth_test);
       }
 
       /// <summary>
@@ -128,7 +136,12 @@ Important Notes:
                                   float duration,
                                   bool pop_up = false) {
         CheckAndBuildHiddenRtDrawObject();
-        _rt_draw.RegisterDrawText(pos, text, color, size, duration, pop_up);
+        _rt_draw.RegisterDrawText(pos,
+                                  text,
+                                  color,
+                                  size,
+                                  duration,
+                                  pop_up);
       }
 
       /// <summary>
@@ -146,7 +159,11 @@ Important Notes:
                                     Color color,
                                     int size) {
         CheckAndBuildHiddenRtDrawObject();
-        _rt_draw.RegisterAttachText(transform, str_func, offset, color, size);
+        _rt_draw.RegisterAttachText(transform,
+                                    str_func,
+                                    offset,
+                                    color,
+                                    size);
       }
 
       #endregion

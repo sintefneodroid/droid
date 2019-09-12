@@ -1,4 +1,6 @@
-﻿#if UNITY_EDITOR && NEODROID_DEBUG
+﻿using droid.Runtime.Prototyping.ObjectiveFunctions;
+using droid.Runtime.Prototyping.Unobservables;
+#if UNITY_EDITOR && NEODROID_DEBUG
 using droid.Runtime.Utilities.InternalReactions;
 using droid.Editor.Utilities;
 using droid.Runtime.Environments;
@@ -6,8 +8,6 @@ using droid.Runtime.Managers;
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Prototyping.Configurables;
 using droid.Runtime.Prototyping.Displayers;
-using droid.Runtime.Prototyping.Evaluation;
-using droid.Runtime.Prototyping.Internals;
 using droid.Runtime.Prototyping.Actuators;
 using droid.Runtime.Prototyping.Sensors;
 using UnityEditor;
@@ -31,7 +31,7 @@ namespace droid.Editor.Windows {
 
     Texture _icon;
 
-    EnvironmentListener[] _listeners;
+    Unobservable[] _listeners;
 
     AbstractNeodroidManager _manager;
 
@@ -42,6 +42,8 @@ namespace droid.Editor.Windows {
     Sensor[] _sensors;
 
     PlayerReactions _player_reactions;
+
+    Vector2 _scroll_position;
 
     bool _show_actors_debug;
     bool _show_configurables_debug;
@@ -81,7 +83,7 @@ namespace droid.Editor.Windows {
       this._configurables = FindObjectsOfType<Configurable>();
       this._objective_functions_function = FindObjectsOfType<ObjectiveFunction>();
       this._displayers = FindObjectsOfType<Displayer>();
-      this._listeners = FindObjectsOfType<EnvironmentListener>();
+      this._listeners = FindObjectsOfType<Unobservable>();
       this._player_reactions = FindObjectOfType<PlayerReactions>();
     }
 
@@ -143,6 +145,9 @@ namespace droid.Editor.Windows {
 
       EditorGUILayout.Separator();
 
+      this._scroll_position = EditorGUILayout.BeginScrollView(this._scroll_position);
+      EditorGUILayout.BeginVertical("Box");
+
       this._show_simulation_manager_debug =
           EditorGUILayout.Toggle("Debug simulation manager", this._show_simulation_manager_debug);
       this._show_player_reactions_debug =
@@ -158,8 +163,11 @@ namespace droid.Editor.Windows {
           EditorGUILayout.Toggle("Debug all objective functions", this._show_objective_functions_debug);
       this._show_displayers_debug =
           EditorGUILayout.Toggle("Debug all displayers", this._show_displayers_debug);
-
       this._show_listeners_debug = EditorGUILayout.Toggle("Debug all listeners", this._show_listeners_debug);
+
+      EditorGUILayout.EndVertical();
+
+      EditorGUILayout.EndScrollView();
 
       this._debug_all = this.AreAllChecked();
 

@@ -201,14 +201,23 @@ namespace droid.Editor.Utilities.Git {
       foreach (var t in this._tags.OrderByDescending(x => x)) {
         var tag = t;
         var text = new GUIContent("All Tags/" + (current == tag ? tag + " - current" : tag));
-        menu.AddItem(text, this._version_popup.text == tag, this.SetVersion, tag);
+        menu.AddItem(text,
+                     this._version_popup.text == tag,
+                     this.SetVersion,
+                     tag);
       }
 
-      menu.AddItem(new GUIContent("All Branches/(default)"), false, this.SetVersion, "(default)");
+      menu.AddItem(new GUIContent("All Branches/(default)"),
+                   false,
+                   this.SetVersion,
+                   "(default)");
       foreach (var t in this._branches.OrderBy(x => x)) {
         var tag = t;
         var text = new GUIContent("All Branches/" + (current == tag ? tag + " - current" : tag));
-        menu.AddItem(text, this._version_popup.text == tag, this.SetVersion, tag);
+        menu.AddItem(text,
+                     this._version_popup.text == tag,
+                     this.SetVersion,
+                     tag);
       }
 
       menu.DropDown(new Rect(this._version_popup.LocalToWorld(new Vector2(0, 10)), Vector2.zero));

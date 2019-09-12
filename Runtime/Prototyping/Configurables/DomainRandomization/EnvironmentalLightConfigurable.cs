@@ -22,24 +22,25 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
     string _reflection_intensity;
 
     [SerializeField]
-    ISamplable _intensity_space = new SampleSpace2{Space = new Space2 {
-                                                                   Min = Vector3.one * 0.0f,
-                                                                   Max = Vector3.one * 1f
-                                                               },
-
-                                             _distribution_sampler=
-                                                 new DistributionSampler(DistributionEnum.Linear_) {
-                                                                                                       _factor
-                                                                                                           = -1
-                                                                                                   }
-                                         };
+    ISamplable _intensity_space = new SampleSpace2 {
+                                                       Space =
+                                                           new Space2 {
+                                                                          Min = Vector3.one * 0.0f,
+                                                                          Max = Vector3.one * 1f
+                                                                      },
+                                                       _distribution_sampler =
+                                                           new DistributionSampler(DistributionEnum.Linear_) {
+                                                                                                                 _factor
+                                                                                                                     = -1
+                                                                                                             }
+                                                   };
 
     [SerializeField]
     ISamplable _color_space = new SampleSpace3 {
                                                    _space = new Space3 {
-                                                                            Min = Vector3.one * 0.6f,
-                                                                            Max = Vector3.one * 1f
-                                                                        }
+                                                                           Min = Vector3.one * 0.6f,
+                                                                           Max = Vector3.one * 1f
+                                                                       }
                                                };
 
     /// <inheritdoc />

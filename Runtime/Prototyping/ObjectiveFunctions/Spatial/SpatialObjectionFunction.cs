@@ -1,7 +1,7 @@
 ﻿using droid.Runtime.GameObjects.BoundingBoxes;
 using UnityEngine;
 
-namespace droid.Runtime.Prototyping.Evaluation.Spatial {
+namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
@@ -41,10 +41,10 @@ namespace droid.Runtime.Prototyping.Evaluation.Spatial {
       var signal = 0.0f;
       signal += this.InternalEvaluate();
 
-      if (this.EpisodeLength > 0 && this._environment.CurrentFrameNumber >= this.EpisodeLength) {
+      if (this.EpisodeLength > 0 && this._environment.step_i >= this.EpisodeLength) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Maximum episode length reached, Length {this._environment.CurrentFrameNumber}");
+          Debug.Log($"Maximum episode length reached, Length {this._environment.step_i}");
         }
         #endif
 

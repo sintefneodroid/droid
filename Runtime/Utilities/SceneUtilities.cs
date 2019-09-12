@@ -19,8 +19,7 @@ namespace droid.Runtime.Utilities {
         return obj;
       }
 
-      throw new
-          ArgumentException($"Found no UnityEngine.Object assignables from type {typeof(T).Name}");
+      throw new ArgumentException($"Found no UnityEngine.Object assignables from type {typeof(T).Name}");
     }
 
     /// <summary>
@@ -52,7 +51,7 @@ namespace droid.Runtime.Utilities {
     /// <param name="layer"></param>
     /// <param name="child"></param>
     /// <returns></returns>
-    public static T RecursiveFirstSelfSiblingParentGetComponent<T>(Transform child) where T:Component {
+    public static T RecursiveFirstSelfSiblingParentGetComponent<T>(Transform child) where T : Component {
       var a = child.GetComponent<T>();
       if (a != null)
         return a;
@@ -74,7 +73,6 @@ namespace droid.Runtime.Utilities {
 
       return null;
     }
-
 
     /// <summary>
     /// </summary>

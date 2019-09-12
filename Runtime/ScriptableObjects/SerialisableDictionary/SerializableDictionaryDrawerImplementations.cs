@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+
 #if UNITY_EDITOR
 
 namespace droid.Runtime.ScriptableObjects.SerialisableDictionary {

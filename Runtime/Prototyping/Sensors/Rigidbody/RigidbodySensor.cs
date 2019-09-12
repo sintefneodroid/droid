@@ -30,7 +30,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rigidbody {
     UnityEngine.Rigidbody _rigidbody = null;
 
     [SerializeField] Vector3 _velocity = Vector3.zero;
-    [SerializeField] Space3 _velocity_space = new Space3( 10);
+    [SerializeField] Space3 _velocity_space = new Space3(10);
 
     /// <inheritdoc />
     /// <summary>
@@ -51,7 +51,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rigidbody {
     public Vector3 Velocity {
       get { return this._velocity; }
       set {
-        this._velocity = this._velocity_space.Normalised
+        this._velocity = this._velocity_space.NormalisedBool
                              ? this._velocity_space.ClipNormaliseRound(value)
                              : value;
       }
@@ -63,7 +63,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rigidbody {
     public Vector3 AngularVelocity {
       get { return this._angular_velocity; }
       set {
-        this._angular_velocity = this._angular_space.Normalised
+        this._angular_velocity = this._angular_space.NormalisedBool
                                      ? this._angular_space.ClipNormaliseRound(value)
                                      : value;
       }

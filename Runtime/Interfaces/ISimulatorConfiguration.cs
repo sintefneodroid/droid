@@ -7,10 +7,6 @@ namespace droid.Runtime.Interfaces {
   ///
   /// </summary>
   public interface ISimulatorConfiguration {
-    /// <summary>
-    ///
-    /// </summary>
-    int ResetIterations { get; set; }
 
     /// <summary>
     ///

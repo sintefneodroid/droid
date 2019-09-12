@@ -10,15 +10,18 @@ namespace droid.Runtime.Interfaces {
     ///
     /// </summary>
     void UpdateCurrentConfiguration();
+
     /// <summary>
     ///
     /// </summary>
     /// <param name="configuration"></param>
     void ApplyConfiguration(IConfigurableConfiguration configuration);
+
     /// <summary>
     ///
     /// </summary>
     void EnvironmentReset();
+
     /// <summary>
     ///
     /// </summary>
@@ -34,6 +37,7 @@ namespace droid.Runtime.Interfaces {
     ///
     /// </summary>
     void PostEnvironmentSetup();
+
     /// <summary>
     ///
     /// </summary>

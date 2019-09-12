@@ -1,4 +1,5 @@
 ﻿using System;
+using droid.Runtime.Enums;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Sampling;
 using UnityEngine;
@@ -32,7 +33,7 @@ namespace droid.Runtime.Structs.Space {
     [SerializeField]
     int _decimal_granularity;
 
-    [SerializeField] internal bool normalised;
+    [SerializeField] Normalisation normalised;
 
     #endregion
 
@@ -47,12 +48,8 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     public float Span { get { return this._max_ - this._min_; } }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="v"></param>
-    /// <returns></returns>
-    public float Clip(float v) { return Mathf.Clamp(v, this._min_, this._max_); }
+    public float Clip(float v, float min, float max) { return Mathf.Clamp(v, min, max); }
+    public float Clip(float v) { return this.Clip(v, this._min_, this._max_); }
 
     /// <summary>
     ///
@@ -113,7 +110,7 @@ namespace droid.Runtime.Structs.Space {
     /// <param name="v"></param>
     /// <returns></returns>
     public dynamic ClipRoundDenormaliseClip(dynamic v) {
-      return this.Clip(this.Round(this.Denormalise01(Mathf.Clamp(v, 0, 1))));
+      return this.Clip(this.Round(this.Denormalise01(Clip(v, 0, 1))));
     }
 
     /// <summary>
@@ -150,7 +147,7 @@ namespace droid.Runtime.Structs.Space {
     /// <summary>
     ///
     /// </summary>
-    public Boolean Normalised { get { return this.normalised; } set { this.normalised = value; } }
+    public Boolean NormalisedBool { get { return this.normalised == Normalisation.Zero_one_; } set { this.normalised = value?Normalisation.Zero_one_:Normalisation.None_; } }
 
     /// <summary>
     ///
@@ -171,6 +168,8 @@ namespace droid.Runtime.Structs.Space {
     ///
     /// </summary>
     public dynamic Max { get { return this._max_; } set { this._max_ = value; } }
+
+    public Normalisation Normalised { get { return this.normalised; } }
 
     /// <summary>
     ///
@@ -207,7 +206,7 @@ namespace droid.Runtime.Structs.Space {
       return new Space1 {
                             _min_ = -bounds_extents,
                             Max = bounds_extents,
-                            normalised = normalised,
+                            NormalisedBool = normalised,
                             DecimalGranularity = decimal_granularity
                         };
     }

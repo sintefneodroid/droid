@@ -81,7 +81,10 @@ namespace droid.Runtime.Prototyping.Actuators {
       }
 
       if (this._No_Collisions) {
-        if (!Physics.Raycast(this.transform.position, vec, Mathf.Abs(motion.Strength), layer_mask)) {
+        if (!Physics.Raycast(this.transform.position,
+                             vec,
+                             Mathf.Abs(motion.Strength),
+                             layer_mask)) {
           this.transform.Translate(vec, this._Relative_To);
         }
       } else {
@@ -113,7 +116,11 @@ namespace droid.Runtime.Prototyping.Actuators {
                                 2);
             break;
           case Axis.Rot_y_:
-            Handles.DrawWireArc(this.transform.position, this.transform.up, -this.transform.right, 180, 2);
+            Handles.DrawWireArc(this.transform.position,
+                                this.transform.up,
+                                -this.transform.right,
+                                180,
+                                2);
             break;
           case Axis.Rot_z_:
             Handles.DrawWireArc(this.transform.position,
@@ -130,7 +137,11 @@ namespace droid.Runtime.Prototyping.Actuators {
                                 2);
             break;
           case Axis.Dir_y_:
-            Handles.DrawWireArc(this.transform.position, this.transform.up, -this.transform.right, 180, 2);
+            Handles.DrawWireArc(this.transform.position,
+                                this.transform.up,
+                                -this.transform.right,
+                                180,
+                                2);
             break;
           case Axis.Dir_z_:
             Handles.DrawWireArc(this.transform.position,

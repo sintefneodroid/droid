@@ -1,0 +1,15 @@
+﻿ #pragma kernel Flip
+// Create a RenderTexture with enableRandomWrite flag and set it
+// with cs.SetTexture
+RWTexture2D<float4> Result;
+Texture2D<float4> ImageInput;
+int width;
+int height;
+
+float2 flip;
+[numthreads(8,8,1)]
+void Flip (uint3 id : SV_DispatchThreadID)
+{
+    flip = float2(width , height) - id.xy ;
+    Result[id.xy] = float4(ImageInput[flip].x, ImageInput[flip].y, ImageInput[flip].z, 1.0);
+}

@@ -315,7 +315,10 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental.Unused {
       a_max_height = center.y + Mathf.Min(max_dist.x, max_dist.y);
 
       // the min and max x and z coordinates the camera can be at the current distance.
-      a_limits = new Rect(center.x - dim.x, center.z - dim.z, dim.x * 2, dim.z * 2);
+      a_limits = new Rect(center.x - dim.x,
+                          center.z - dim.z,
+                          dim.x * 2,
+                          dim.z * 2);
     }
 
     public static bool CullToFrustum(Mesh mesh, Camera cam, Transform trans, bool update_position) {
@@ -377,7 +380,10 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental.Unused {
       point = cam.WorldToScreenPoint(new Vector3(x_min, y_max, z_max));
       point.GetMinMax(ref min, ref max);
 
-      var r = Rect.MinMaxRect(min.x, min.y, max.x, max.y);
+      var r = Rect.MinMaxRect(min.x,
+                              min.y,
+                              max.x,
+                              max.y);
       r.xMin -= margin;
       r.xMax += margin;
       r.yMin -= margin;

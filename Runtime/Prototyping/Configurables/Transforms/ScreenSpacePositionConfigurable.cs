@@ -102,9 +102,8 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// </summary>
     /// <param name="configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
-
       float cv;
-      if(this._configurable_value_space.Space.Normalised) {
+      if (this._configurable_value_space.Space.NormalisedBool) {
         cv = this._configurable_value_space.Space.ClipRoundDenormaliseClip(configuration.ConfigurableValue);
       } else {
         if (configuration.ConfigurableValue < this._configurable_value_space.Space.Min
@@ -112,6 +111,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
           Debug.Log($"It does not accept input, outside allowed range {this._configurable_value_space.Space.Min} to {this._configurable_value_space.Space.Max}");
           return; // Do nothing
         }
+
         cv = configuration.ConfigurableValue;
       }
 
@@ -152,7 +152,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// <returns></returns>
     public override Configuration[] SampleConfigurations() {
       var x = this.ConfigurableValueSpace.Sample();
-      var y =this.ConfigurableValueSpace.Sample();
+      var y = this.ConfigurableValueSpace.Sample();
 
       var a = new Vector2(x, y);
       var bounded = Vector2.Min(Vector2.Max(a, new Vector2(0.2f, 0.2f)), new Vector2(0.8f, 0.8f));

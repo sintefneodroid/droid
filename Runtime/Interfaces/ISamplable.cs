@@ -13,7 +13,6 @@ namespace droid.Runtime.Interfaces {
     /// <returns></returns>
     dynamic Sample();
 
-
     /// <summary>
     ///
     /// </summary>

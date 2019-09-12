@@ -52,11 +52,12 @@ Shader "Neodroid/Spaces/ObjectSpace" {
 
 
    SubShader {
+   //Blend One Zero
       Pass {
          CGPROGRAM
 
-         #pragma vertex vert // vert function is the vertex shader
-         #pragma fragment frag // frag function is the fragment shader
+         #pragma vertex vert
+         #pragma fragment frag
 
          void vert(float4 vertexPos : POSITION,
                      out float4 pos : SV_POSITION,
@@ -66,7 +67,7 @@ Shader "Neodroid/Spaces/ObjectSpace" {
             return;
          }
 
-            float _Scalar;
+            //float _Scalar;
 
          float4 frag(float4 pos : SV_POSITION,
                      float4 col : TEXCOORD0) : COLOR {

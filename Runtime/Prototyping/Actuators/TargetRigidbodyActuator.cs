@@ -1,5 +1,6 @@
 ﻿using System;
 using droid.Runtime.Environments;
+using droid.Runtime.Environments.Prototyping;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Utilities;
@@ -15,9 +16,9 @@ namespace droid.Runtime.Prototyping.Actuators {
                     + ActuatorComponentMenuPath._Postfix)]
   [RequireComponent(typeof(Rigidbody))]
   public class TargetRigidbodyActuator : Actuator,
-                                         IEnvironmentListener {
+                                         IUnobservable {
     string _movement;
-    AbstractPrototypingEnvironment _parent_environment;
+    BaseSpatialPrototypingEnvironment _parent_environment;
 
     /// <summary>
     /// </summary>

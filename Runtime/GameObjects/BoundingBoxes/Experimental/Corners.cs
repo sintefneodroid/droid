@@ -110,7 +110,10 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
         Vector2 rotated_point = rot_quaternion * vertex_start;
 
         // Draw the segment, shifted by the center
-        Debug.DrawLine(center + vertex_start, center + rotated_point, color, duration);
+        Debug.DrawLine(center + vertex_start,
+                       center + rotated_point,
+                       color,
+                       duration);
 
         vertex_start = rotated_point;
       }
@@ -130,10 +133,22 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
       var world_top_right = new Vector2(world_bottom_right.x, world_top_left.y);
       var world_bottom_left = new Vector2(world_top_left.x, world_bottom_right.y);
 
-      Debug.DrawLine(world_top_left, world_bottom_left, color, duration);
-      Debug.DrawLine(world_bottom_left, world_bottom_right, color, duration);
-      Debug.DrawLine(world_bottom_right, world_top_right, color, duration);
-      Debug.DrawLine(world_top_right, world_top_left, color, duration);
+      Debug.DrawLine(world_top_left,
+                     world_bottom_left,
+                     color,
+                     duration);
+      Debug.DrawLine(world_bottom_left,
+                     world_bottom_right,
+                     color,
+                     duration);
+      Debug.DrawLine(world_bottom_right,
+                     world_top_right,
+                     color,
+                     duration);
+      Debug.DrawLine(world_top_right,
+                     world_top_left,
+                     color,
+                     duration);
     }
 
     /// <summary>
@@ -147,7 +162,10 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
       for (var i = 0; i < world_points.Length - 1; i++) {
         Vector3 next_point = world_points[i + 1];
         Vector3 current_point = world_points[i];
-        Debug.DrawLine(current_point, next_point, color, duration);
+        Debug.DrawLine(current_point,
+                       next_point,
+                       color,
+                       duration);
       }
     }
 
@@ -162,7 +180,10 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
 
       // Polygons are just edges with the first and last points connected
       if (world_points.Length > 1) {
-        Debug.DrawLine(world_points[world_points.Length - 1], world_points[0], color, duration);
+        Debug.DrawLine(world_points[world_points.Length - 1],
+                       world_points[0],
+                       color,
+                       duration);
       }
     }
 
@@ -175,7 +196,10 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
     /// <param name="duration">Duration to show the arrow.</param>
     public static void DrawArrow(Vector2 origin, Vector2 endpoint, Color color, float duration = 0.01f) {
       // Draw the line that makes up the body of the arrow
-      Debug.DrawLine(origin, endpoint, color, 0.01f);
+      Debug.DrawLine(origin,
+                     endpoint,
+                     color,
+                     0.01f);
 
       // Draw arrowhead so we can see direction
       var arrow_direction = endpoint - origin;
@@ -202,11 +226,17 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
 
       var arrow_rotation_r = Quaternion.AngleAxis(theta, Vector3.forward);
       Vector2 arrowhead_r = arrow_rotation_r * arrowhead_handle;
-      Debug.DrawLine(origin, origin + arrowhead_r, color, duration);
+      Debug.DrawLine(origin,
+                     origin + arrowhead_r,
+                     color,
+                     duration);
 
       var arrow_rotation_l = Quaternion.AngleAxis(-theta, Vector3.forward);
       Vector2 arrowhead_l = arrow_rotation_l * arrowhead_handle;
-      Debug.DrawLine(origin, origin + arrowhead_l, color, duration);
+      Debug.DrawLine(origin,
+                     origin + arrowhead_l,
+                     color,
+                     duration);
     }
   }
 }

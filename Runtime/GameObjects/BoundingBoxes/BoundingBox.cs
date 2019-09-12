@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using droid.Runtime.Enums.BoundingBox;
 using droid.Runtime.Environments;
+using droid.Runtime.Environments.Prototyping;
 using droid.Runtime.GameObjects.BoundingBoxes.Experimental;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities;
@@ -95,12 +96,15 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
     /// <summary>
     /// </summary>
     [SerializeField]
-    Color editorPreviewLineColor = new Color(1f, 0.36f, 0.38f, 0.74f);
+    Color editorPreviewLineColor = new Color(1f,
+                                             0.36f,
+                                             0.38f,
+                                             0.74f);
 
     /// <summary>
     /// </summary>
     [SerializeField]
-    IAbstractPrototypingEnvironment environment = null;
+    ISpatialPrototypingEnvironment environment = null;
 
     /// <summary>
     /// </summary>
@@ -247,7 +251,10 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
           var a = this._local_mesh.mesh.GetCameraMinMaxPoints(this.transform, a_camera);
           if (this.includeChildren) {
             foreach (var children_mesh in this._children_meshes) {
-              a = children_mesh.mesh.GetCameraMinMaxPoints(children_mesh.transform, a_camera, a[0], a[1]);
+              a = children_mesh.mesh.GetCameraMinMaxPoints(children_mesh.transform,
+                                                           a_camera,
+                                                           a[0],
+                                                           a[1]);
             }
 
             return BoundingBoxUtilities.GetMinMaxRect(a[0], a[1], this.bb_margin - margin);
@@ -277,7 +284,10 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
             if (this.includeChildren) {
               for (var index = 1; index < this._children_meshes.Length; index++) {
                 var children_mesh = this._children_meshes[index];
-                a = children_mesh.mesh.GetCameraMinMaxPoints(children_mesh.transform, a_camera, a[0], a[1]);
+                a = children_mesh.mesh.GetCameraMinMaxPoints(children_mesh.transform,
+                                                             a_camera,
+                                                             a[0],
+                                                             a[1]);
               }
 
               return BoundingBoxUtilities.GetMinMaxRect(a[0], a[1], this.bb_margin - margin);
@@ -318,7 +328,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
       }
 
       if (this.environment == null) {
-        this.environment = FindObjectOfType<AbstractPrototypingEnvironment>();
+        this.environment = FindObjectOfType<BaseSpatialPrototypingEnvironment>();
       }
 
       if (!this._bb_transform) {
@@ -751,7 +761,6 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
         } else {
           Handles.Label(this.transform.position, this.name);
         }
-        
       }
     }
     #endif

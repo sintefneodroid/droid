@@ -11,6 +11,7 @@ using droid.Runtime.Structs;
 using UnityEditor;
 using UnityEngine;
 using Object = System.Object;
+
 #if UNITY_EDITOR
 
 #endif
@@ -20,9 +21,9 @@ namespace droid.Runtime.Managers.Experimental {
   /// <summary>
   /// </summary>
   [DisallowMultipleComponent]
-      [AddComponentMenu("Neodroid/Managers/SlaveNeodroidManager")]
+  [AddComponentMenu("Neodroid/Managers/SlaveNeodroidManager")]
   public class SlaveNeodroidManager : MonoBehaviour,
-                                                  IManager {
+                                      IManager {
     /// <summary>
     /// </summary>
     public static SlaveNeodroidManager Instance { get; private set; }
@@ -133,8 +134,6 @@ namespace droid.Runtime.Managers.Experimental {
     /// </summary>
     /// <param name="threaded"></param>
     void StartMessagingServer(bool threaded = false) {
-
-
       this._Message_Client.ListenForClientToConnect(this.OnDebugCallback);
       #if NEODROID_DEBUG
       if (this.Debugging) {
@@ -203,7 +202,6 @@ namespace droid.Runtime.Managers.Experimental {
 
     WaitForEndOfFrame _wait_for_end_of_frame = new WaitForEndOfFrame();
     WaitForFixedUpdate _wait_for_fixed_update = new WaitForFixedUpdate();
-    List<Reaction> _sample_reactions = new List<Reaction>();
 
     #endregion
 
@@ -555,9 +553,7 @@ namespace droid.Runtime.Managers.Experimental {
         this.ExecuteStep();
       }
 
-      if (this._has_stepped) {
-        this.ClearCurrentReactions();
-      }
+      this.CurrentReactions = new Reaction[] { };
     }
 
     /// <summary>
@@ -639,12 +635,12 @@ namespace droid.Runtime.Managers.Experimental {
     /// </summary>
     /// <returns></returns>
     protected Reaction[] SampleRandomReactions() {
-      this._sample_reactions.Clear();
+      var sample_reactions = new List<Reaction>();
       foreach (var environment in this._Environments.Values) {
-        this._sample_reactions.Add(environment.SampleReaction());
+        sample_reactions.Add(environment.SampleReaction());
       }
 
-      return this._sample_reactions.ToArray();
+      return sample_reactions.ToArray();
     }
 
     //TODO: Maybe add EnvironmentState[][] states for aggregation of states in unity side buffer, when using skips?
@@ -681,12 +677,6 @@ namespace droid.Runtime.Managers.Experimental {
       }
     }
 
-    /// <summary>
-    /// </summary>
-    void ClearCurrentReactions() {
-      this._step = false;
-      this.CurrentReactions = new Reaction[] { };
-    }
 
     #endregion
 
@@ -697,7 +687,7 @@ namespace droid.Runtime.Managers.Experimental {
     /// <param name="reaction"></param>
     /// <returns></returns>
     public EnvironmentState[] ReactAndCollectStates(Reaction reaction) {
-      this.SetStepping(reaction);
+      this.SetStepping(new[] {reaction});
       var states = new EnvironmentState[this._Environments.Values.Count];
       var i = 0;
       foreach (var environment in this._Environments.Values) {
@@ -734,28 +724,7 @@ namespace droid.Runtime.Managers.Experimental {
     /// </summary>
     /// <param name="reaction"></param>
     /// <returns></returns>
-    public void React(Reaction reaction) {
-      this.SetStepping(reaction);
-      if (this._Environments.ContainsKey(reaction.RecipientEnvironment)) {
-        this._Environments[reaction.RecipientEnvironment].React(reaction);
-      } else {
-        #if NEODROID_DEBUG
-        if (this.Debugging) {
-          Debug.Log($"Could not find an environment with the identifier: {reaction.RecipientEnvironment}");
-        }
-        #endif
-
-        #if NEODROID_DEBUG
-        if (this.Debugging) {
-          Debug.Log("Applying to all environments");
-        }
-        #endif
-
-        foreach (var environment in this._Environments.Values) {
-          environment.React(reaction);
-        }
-      }
-    }
+    public void React(Reaction reaction) { this.React(new[] {reaction}); }
 
     /// <summary>
     /// </summary>
@@ -800,12 +769,6 @@ namespace droid.Runtime.Managers.Experimental {
       return states;
     }
 
-    void SetStepping(Reaction reaction) {
-      if (reaction.Parameters.Step) {
-        this.SetStepping(true);
-      }
-    }
-
     void SetStepping(bool step) {
       if (step) {
         #if NEODROID_DEBUG
@@ -828,19 +791,17 @@ namespace droid.Runtime.Managers.Experimental {
     }
 
     void SetStepping(Reaction[] reactions) {
-      if (reactions.Any(reaction => reaction.Parameters.Step)) {
+      if (reactions.Any(reaction => reaction.Parameters.StepResetObserveEnu == StepResetObserve.Step_)) {
         this.SetStepping(true);
       }
     }
 
     public void SetTesting(bool arg0) { this.TestActuators = arg0; }
 
-
-
     /// <summary>
     /// </summary>
     public void ResetAllEnvironments() {
-      this.React(new Reaction(new ReactionParameters(true, false, true, episode_count : true),
+      this.React(new Reaction(new ReactionParameters(StepResetObserve.Reset_, false, true),
                               null,
                               null,
                               null,
@@ -948,9 +909,6 @@ namespace droid.Runtime.Managers.Experimental {
           }
 
           this.CurrentReactions = reactions;
-          foreach (var current_reaction in this.CurrentReactions) {
-            current_reaction.Parameters.IsExternal = true;
-          }
 
           this.Configuration.StepExecutionPhase = this.CurrentReactions[0].Parameters.Phase;
           this.AwaitingReply = true;

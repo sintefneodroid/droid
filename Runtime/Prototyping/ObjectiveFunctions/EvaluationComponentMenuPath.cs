@@ -1,4 +1,4 @@
-﻿namespace droid.Runtime.Prototyping.Evaluation {
+﻿namespace droid.Runtime.Prototyping.ObjectiveFunctions {
   /// <summary>
   /// </summary>
   public static class EvaluationComponentMenuPath {

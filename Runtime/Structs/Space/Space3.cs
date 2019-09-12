@@ -25,7 +25,7 @@ namespace droid.Runtime.Structs.Space {
     /// <summary>
     ///
     /// </summary>
-    public Boolean Normalised { get { return this.normalised; } set { this.normalised = value; } }
+    public Boolean NormalisedBool { get { return this.normalised; } set { this.normalised = value; } }
 
     /// <summary>
     ///
@@ -46,9 +46,18 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     public Vector3 Span { get { return this._max_ - this._min_; } }
 
+    public Vector3 Clip(Vector3 v, Vector3 min, Vector3 max) {
+      return new Vector3(Mathf.Clamp(v.x, min.x, max.x),
+                         Mathf.Clamp(v.y, min.y, max.y),
+                         Mathf.Clamp(v.z, min.z, max.z));
+    }
+
+    public Vector3 Clip(Vector3 v) { return Clip(v, this._min_, this._max_); }
+
     public dynamic ClipRoundDenormaliseClip(dynamic configuration_configurable_value) {
-      //TODO: implement
-      return configuration_configurable_value;
+      return this.Clip(this.Round(this.Denormalise01(Clip(configuration_configurable_value,
+                                                          Vector3.zero,
+                                                          Vector3.one))));
     }
 
     /// <summary>

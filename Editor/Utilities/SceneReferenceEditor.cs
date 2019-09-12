@@ -27,7 +27,10 @@ namespace droid.Editor.Utilities {
       position = this.DisplayErrorsIfNecessary(position);
 
       EditorGUI.BeginChangeCheck();
-      EditorGUI.PropertyField(position, this._scene, GUIContent.none, false);
+      EditorGUI.PropertyField(position,
+                              this._scene,
+                              GUIContent.none,
+                              false);
       if (EditorGUI.EndChangeCheck()) {
         property.serializedObject.ApplyModifiedProperties();
         this.CacheProperties(property);
@@ -101,12 +104,11 @@ namespace droid.Editor.Utilities {
     void DisplaySceneErrorPrompt(string message) {
       var scenes = EditorBuildSettings.scenes;
 
-      var choice =
-          EditorUtility.DisplayDialogComplex("Scene Not In Build",
-                                             message,
-                                             "Yes",
-                                             "No",
-                                             "Open Build Settings");
+      var choice = EditorUtility.DisplayDialogComplex("Scene Not In Build",
+                                                      message,
+                                                      "Yes",
+                                                      "No",
+                                                      "Open Build Settings");
 
       if (choice == 0) {
         var new_count = this._scene_index.intValue < 0 ? scenes.Length + 1 : scenes.Length;

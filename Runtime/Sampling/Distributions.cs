@@ -68,9 +68,15 @@ namespace droid.Runtime.Sampling {
         case DistributionEnum.Normal_:
           return Distributions.RandomRangeNormalDistribution(min, max, this._conf_level);
         case DistributionEnum.Sloped_:
-          return Distributions.RandomRangeSlope(min, max, this._factor, this._Direction);
+          return Distributions.RandomRangeSlope(min,
+                                                max,
+                                                this._factor,
+                                                this._Direction);
         case DistributionEnum.Exponential_:
-          return Distributions.RandomRangeExponential(min, max, this._factor, this._Direction);
+          return Distributions.RandomRangeExponential(min,
+                                                      max,
+                                                      this._factor,
+                                                      this._Direction);
         case DistributionEnum.Linear_:
           return Distributions.RandomLinear(this._factor);
         default:
