@@ -4,7 +4,7 @@ using droid.Runtime.GameObjects.ChildSensors;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace droid.Runtime.Prototyping.Evaluation.Spatial {
+namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
@@ -140,7 +140,10 @@ namespace droid.Runtime.Prototyping.Evaluation.Spatial {
 
         this._spawned_locations.Add(location);
 
-        return Instantiate(prefab, location, Quaternion.identity, this.ParentEnvironment.Transform);
+        return Instantiate(prefab,
+                           location,
+                           Quaternion.identity,
+                           this.ParentEnvironment.Transform);
       }
 
       return null;

@@ -1,12 +1,11 @@
-﻿
-using droid.Runtime.Enums;
+﻿using droid.Runtime.Enums;
 using droid.Runtime.Environments;
+using droid.Runtime.Environments.Prototyping;
 using droid.Runtime.GameObjects;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Utilities;
 using UnityEngine;
-
 
 namespace droid.Runtime.Prototyping.Configurables {
   /// <inheritdoc cref="PrototypingGameObject" />
@@ -18,7 +17,6 @@ namespace droid.Runtime.Prototyping.Configurables {
   [ExecuteInEditMode]
   public abstract class Configurable : PrototypingGameObject,
                                        IConfigurable {
-
     /// <summary>
     ///
     /// </summary>
@@ -26,7 +24,7 @@ namespace droid.Runtime.Prototyping.Configurables {
 
     /// <summary>
     /// </summary>
-    public AbstractPrototypingEnvironment ParentEnvironment {
+    public BaseSpatialPrototypingEnvironment ParentEnvironment {
       get { return this._environment; }
       set { this._environment = value; }
     }
@@ -52,23 +50,13 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     public void EnvironmentReset() {
-      #if NEODROID_DEBUG
-      if (this.Debugging) {
-        Debug.Log($"OnReset");
-      }
-
-      #endif
-
       if (this.random_sampling_mode == RandomSamplingMode.On_reset_ && Application.isPlaying) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Random reconfiguring {this} OnReset");
+          Debug.Log($"Random reconfiguring {this} Reset");
         }
-
         #endif
-        foreach (var v in this.SampleConfigurations()) {
-          this.ApplyConfiguration(v);
-        }
+        this.Randomise();
       }
     }
 
@@ -106,14 +94,22 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     public virtual void Tick() {
       if (this.RandomSamplingMode == RandomSamplingMode.On_tick_ && Application.isPlaying) {
-        foreach (var v in this.SampleConfigurations()) {
-          this.ApplyConfiguration(v);
+        #if NEODROID_DEBUG
+        if (this.Debugging) {
+          Debug.Log($"Random reconfiguring {this} Tick");
         }
+        #endif
+        this.Randomise();
       }
     }
 
     void Update() {
       if (this.RandomSamplingMode == RandomSamplingMode.On_update_ && Application.isPlaying) {
+        #if NEODROID_DEBUG
+        if (this.Debugging) {
+          Debug.Log($"Random reconfiguring {this} Update");
+        }
+        #endif
         this.Randomise();
       }
     }
@@ -138,8 +134,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     [Header("References", order = 20)]
     [SerializeField]
-    AbstractPrototypingEnvironment _environment = null;
-
+    BaseSpatialPrototypingEnvironment _environment = null;
 
     [SerializeField] RandomSamplingMode random_sampling_mode = RandomSamplingMode.Disabled_;
 

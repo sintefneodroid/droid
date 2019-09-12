@@ -72,7 +72,6 @@ namespace droid.Runtime.Messaging.Messages {
       this.Finishes = (int)simulator_configuration.FrameFinishes;
       this.NumOfEnvironments = simulator_configuration.NumOfEnvironments;
       this.TimeScale = simulator_configuration.TimeScale;
-      this.ResetIterations = simulator_configuration.ResetIterations;
       this.QualityLevel = simulator_configuration.QualityLevel;
       this.TargetFrameRate = simulator_configuration.TargetFrameRate;
       this.SimulationType = (int)simulator_configuration.SimulationType;

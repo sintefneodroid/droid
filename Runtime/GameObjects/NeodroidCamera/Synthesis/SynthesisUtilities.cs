@@ -211,7 +211,10 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Synthesis {
     }
 
     static void AddReplacementShaderCommandBufferOnCamera(Camera cam, Shader shader, ReplacementModes mode) {
-      AddReplacementShaderCommandBufferOnCamera(cam, shader, mode, Color.black);
+      AddReplacementShaderCommandBufferOnCamera(cam,
+                                                shader,
+                                                mode,
+                                                Color.black);
     }
 
     static void AddReplacementShaderCommandBufferOnCamera(Camera camera,

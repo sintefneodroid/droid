@@ -76,7 +76,10 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
       if (this._TransformationComputeShader) {
         this._TransformationComputeShader.SetTexture(0, "Result", this.MyRenderTexture);
         //this._TransformationComputeShader.SetBuffer(0,"",this._transformation_compute_buffer);
-        this._TransformationComputeShader.Dispatch(0, 256 / 32, 256 / 32, 1);
+        this._TransformationComputeShader.Dispatch(0,
+                                                   256 / 32,
+                                                   256 / 32,
+                                                   1);
       }
     }
 

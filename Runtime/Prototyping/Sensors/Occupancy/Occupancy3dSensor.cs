@@ -30,7 +30,7 @@ namespace droid.Runtime.Prototyping.Sensors.Occupancy {
     public Vector3[] ObservationArray {
       get { return this._observation_value; }
       set {
-        this._observation_value = this.SingleSpace.Normalised
+        this._observation_value = this.SingleSpace.NormalisedBool
                                       ? value //this._observation_value_space.ClipNormaliseRound(value)
                                       : value;
       }

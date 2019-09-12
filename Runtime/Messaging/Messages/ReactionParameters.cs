@@ -15,19 +15,30 @@
     After_
   }
 
+  public enum StepResetObserve {
+    /// <summary>
+    /// </summary>
+    Step_,
+
+    /// <summary>
+    /// </summary>
+    Reset_,
+
+    /// <summary>
+    /// </summary>
+    Observe_
+  }
+
   /// <summary>
   /// </summary>
   public class ReactionParameters {
-    public ReactionParameters(bool terminable = false,
-                              bool step = false,
-                              bool reset = false,
+    public ReactionParameters(StepResetObserve sro = StepResetObserve.Observe_,
+                              bool terminable = false,
                               bool configure = false,
                               bool describe = false,
-                              bool episode_count = false) {
-      this.IsExternal = false;
+                              bool episode_count = true) {
       this.Terminable = terminable;
-      this.Reset = reset;
-      this.Step = step;
+      this.StepResetObserveEnu = sro;
       this.Configure = configure;
       this.Describe = describe;
       this.EpisodeCount = episode_count;
@@ -41,9 +52,6 @@
     /// </summary>
     public ExecutionPhase Phase { get; set; } = ExecutionPhase.Middle_;
 
-    /// <summary>
-    /// </summary>
-    public bool IsExternal { get; set; }
 
     /// <summary>
     /// </summary>
@@ -53,13 +61,7 @@
     /// </summary>
     public bool Describe { get; }
 
-    /// <summary>
-    /// </summary>
-    public bool Reset { get; }
-
-    /// <summary>
-    /// </summary>
-    public bool Step { get; }
+    public StepResetObserve StepResetObserveEnu { get; }
 
     /// <summary>
     /// </summary>
@@ -71,8 +73,7 @@
     public override string ToString() {
       return "<ReactionParameters>\n "
              + $"Terminable:{this.Terminable},\n"
-             + $"Step:{this.Step},\n"
-             + $"Reset:{this.Reset},\n"
+             + $"StepResetObserveEnu:{this.StepResetObserveEnu},\n"
              + $"Configure:{this.Configure},\n"
              + $"Describe:{this.Describe}\n"
              + $"EpisodeCount:{this.EpisodeCount}"

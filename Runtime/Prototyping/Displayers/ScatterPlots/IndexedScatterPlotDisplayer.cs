@@ -53,7 +53,10 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
 
     void SpawnDesign(GameObject design, Vector3 position, Quaternion rotation) {
       //var go = Instantiate(design, position, rotation,this.transform);
-      var go = Instantiate(design, position, design.transform.rotation, this.transform);
+      var go = Instantiate(design,
+                           position,
+                           design.transform.rotation,
+                           this.transform);
       this._instances.Add(go);
     }
 

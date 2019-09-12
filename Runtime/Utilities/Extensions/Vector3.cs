@@ -5,16 +5,14 @@ namespace droid.Runtime.Utilities.Extensions {
   ///
   /// </summary>
   public static partial class NeodroidUtilities {
-
-
     /// <summary>
     ///
     /// </summary>
     /// <param name="a"></param>
     /// <param name="b"></param>
     /// <returns></returns>
-    public static Vector3 Divide(this Vector3 a, Vector3 b){
-      return new Vector3(a.x / b.x, a.y / b.y,a.z / b.z);
+    public static Vector3 Divide(this Vector3 a, Vector3 b) {
+      return new Vector3(a.x / b.x, a.y / b.y, a.z / b.z);
     }
 
     /// <summary>
@@ -23,8 +21,8 @@ namespace droid.Runtime.Utilities.Extensions {
     /// <param name="a"></param>
     /// <param name="b"></param>
     /// <returns></returns>
-    public static Vector3 Multiply(this Vector3 a, Vector3 b){
-      return new Vector3(a.x * b.x, a.y * b.y,a.z * b.z);
+    public static Vector3 Multiply(this Vector3 a, Vector3 b) {
+      return new Vector3(a.x * b.x, a.y * b.y, a.z * b.z);
     }
 
     /// <summary>
@@ -39,7 +37,5 @@ namespace droid.Runtime.Utilities.Extensions {
       vec.z = Mathf.Clamp(vec.z, min_point.z, max_point.z);
       return vec;
     }
-
-
   }
 }

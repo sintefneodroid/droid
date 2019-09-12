@@ -9,6 +9,8 @@ Shader "Neodroid/Spaces/WorldSpace" {
 	}
 
     SubShader {
+    Blend One Zero
+
       Pass {
          CGPROGRAM
 

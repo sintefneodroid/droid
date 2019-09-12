@@ -85,7 +85,12 @@ namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
       var target_texture = this._camera.targetTexture;
       RenderTexture.active = target_texture;
 
-      this._texture.ReadPixels(new Rect(0, 0, target_texture.width, target_texture.height), 0, 0);
+      this._texture.ReadPixels(new Rect(0,
+                                        0,
+                                        target_texture.width,
+                                        target_texture.height),
+                               0,
+                               0);
       this._texture.Apply();
 
       if (!this._black_white) {

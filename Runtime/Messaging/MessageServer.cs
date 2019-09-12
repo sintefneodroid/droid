@@ -80,8 +80,6 @@ namespace droid.Runtime.Messaging {
     /// </summary>
     Double _wait_time_seconds;
 
-
-
     #endregion
 
     #region PrivateMethods
@@ -339,7 +337,10 @@ namespace droid.Runtime.Messaging {
       this._socket = new ResponseSocket();
     }
 
-    public MessageServer(bool debug = false) : this("127.0.0.1", 6969, false, debug) { }
+    public MessageServer(bool debug = false) : this("127.0.0.1",
+                                                    6969,
+                                                    false,
+                                                    debug) { }
 
     #endregion
 

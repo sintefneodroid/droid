@@ -37,7 +37,7 @@ namespace droid.Runtime.Prototyping.Configurables.Rigidbody {
     /// <summary>
     /// </summary>
     [SerializeField]
-    SampleSpace3 _angular_velocity_space = new SampleSpace3{_space = Space3.ZeroOne};
+    SampleSpace3 _angular_velocity_space = new SampleSpace3 {_space = Space3.ZeroOne};
 
     /// <summary>
     /// </summary>
@@ -64,7 +64,7 @@ namespace droid.Runtime.Prototyping.Configurables.Rigidbody {
     /// <summary>
     /// </summary>
     [SerializeField]
-    SampleSpace3 _velocity_space = new SampleSpace3{_space = Space3.ZeroOne};
+    SampleSpace3 _velocity_space = new SampleSpace3 {_space = Space3.ZeroOne};
 
     /// <summary>
     /// </summary>

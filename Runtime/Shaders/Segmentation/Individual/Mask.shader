@@ -7,6 +7,7 @@ Shader "Neodroid/Mask" {
         Cull Off
         ZWrite Off
         ZTest Always
+        Blend One Zero
 
         Pass
         {

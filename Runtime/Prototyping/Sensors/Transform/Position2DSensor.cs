@@ -60,7 +60,7 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
         default: throw new ArgumentOutOfRangeException();
       }
 
-      this._2_d_position = this.DoubleSpace.Normalised
+      this._2_d_position = this.DoubleSpace.NormalisedBool
                                ? this._position_space.ClipNormaliseRound(vector2_pos)
                                : vector2_pos;
     }
@@ -90,7 +90,7 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     /// </summary>
     protected override void PreSetup() {
       if (this.normalised_overwrite_space_if_env_bounds) {
-        if (this.ParentEnvironment && this.ParentEnvironment.PlayableArea!=null) {
+        if (this.ParentEnvironment && this.ParentEnvironment.PlayableArea != null) {
           var ex = this.ParentEnvironment.PlayableArea.Bounds.extents;
           switch (this._dim_combination) {
             case Dimension2DCombination.Xy_:

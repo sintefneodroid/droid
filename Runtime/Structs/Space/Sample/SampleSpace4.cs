@@ -11,7 +11,8 @@ namespace droid.Runtime.Structs.Space.Sample {
     #region Fields
 
     [Header("Sampling", order = 103)]
-    [SerializeField] internal Space4 _space;
+    [SerializeField]
+    internal Space4 _space;
 
     [SerializeField] internal DistributionSampler _distribution_sampler;
 
@@ -51,7 +52,10 @@ namespace droid.Runtime.Structs.Space.Sample {
         w = this.DistributionSampler.Range(0, 1);
       }
 
-      return new Vector4(x, y, z, w);
+      return new Vector4(x,
+                         y,
+                         z,
+                         w);
     }
 
     public ISpace Space { get { return this._space; } set { this._space = (Space4)value; } }

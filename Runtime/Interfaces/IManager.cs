@@ -7,8 +7,5 @@ namespace droid.Runtime.Interfaces {
     /// </summary>
     ISimulatorConfiguration SimulatorConfiguration { get; }
 
-    /// <summary>
-    /// </summary>
-    bool IsSyncingEnvironments { get; }
   }
 }

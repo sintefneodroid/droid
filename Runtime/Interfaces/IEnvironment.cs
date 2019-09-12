@@ -13,7 +13,7 @@ namespace droid.Runtime.Interfaces {
     /// <summary>
     ///
     /// </summary>
-    int CurrentFrameNumber { get; }
+    int step_i { get; }
 
     /// <summary>
     ///

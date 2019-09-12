@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using droid.Runtime.Interfaces;
 using droid.Runtime.Managers;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.ScriptableObjects;
 using UnityEngine;
+using Object = System.Object;
 
 namespace droid.Runtime.Utilities.InternalReactions {
   /// <inheritdoc />
@@ -15,37 +19,27 @@ namespace droid.Runtime.Utilities.InternalReactions {
     [SerializeField]
     bool _auto_reset = true;
 
-    List<ActuatorMotion> _motions = new List<ActuatorMotion>();
-
     /// <summary>
     /// </summary>
     [SerializeField]
     PlayerMotions _player_motions = null;
 
-    /// <summary>
-    /// </summary>
-    EnvironmentState[] _states;
+    [SerializeField] Boolean terminated;
 
     /// <summary>
     /// </summary>
     void Start() {
       this._Manager = FindObjectOfType<AbstractNeodroidManager>();
       if (Application.isPlaying) {
-        var reset_reaction = new ReactionParameters(reset : true);
-        this._states = this._Manager.ReactAndCollectStates(new Reaction(reset_reaction, "all"));
+        var reset_reaction = new ReactionParameters(StepResetObserve.Reset_);
+        this._Manager.SendToEnvironments(new[] {new Reaction(reset_reaction, "all")});
       }
     }
 
     void Update() {
       if (Application.isPlaying) {
-        if (this._states == null) {
-          var reset_reaction_parameters = new ReactionParameters(reset : true);
-          this._states = this._Manager.ReactAndCollectStates(new Reaction(reset_reaction_parameters, "all"));
-        }
-
-        var reset = false;
         if (this._player_motions != null) {
-          this._motions.Clear();
+          var motions = new List<IMotion>();
           if (this._player_motions._Motions != null) {
             foreach (var player_motion in this._player_motions._Motions) {
               if (Input.GetKey(player_motion._Key)) {
@@ -56,45 +50,44 @@ namespace droid.Runtime.Utilities.InternalReactions {
                 #endif
 
                 if (player_motion._Actuator == "Reset") {
-                  reset = true;
+                  this.terminated = true;
                   break;
                 }
 
                 var motion = new ActuatorMotion(player_motion._Actor,
                                                 player_motion._Actuator,
                                                 player_motion._Strength);
-                this._motions.Add(motion);
+                motions.Add(motion);
               }
             }
           }
 
-          if (reset) {
-            var reset_reaction_parameters = new ReactionParameters(reset : true);
-            this._states =
-                this._Manager.ReactAndCollectStates(new Reaction(reset_reaction_parameters, "all"));
+          if (this.terminated && this._auto_reset) {
+            var reset_reaction_parameters = new ReactionParameters(StepResetObserve.Reset_);
+            this._Manager.SendToEnvironments(new[] {new Reaction(reset_reaction_parameters, "all")});
+            this.terminated = this._Manager.CollectStates().Any(e=>e.Terminated);
           } else {
-            var step = this._motions.Count > 0;
-            if (step) {
-              foreach (var state in this._states) {
-                if (this._auto_reset && state.Terminated) {
-                  var reset_reaction = new ReactionParameters(reset : true) {IsExternal = false};
-                  this._Manager.ReactAndCollectStates(new Reaction(reset_reaction, state.EnvironmentName));
-                }
-              }
-
-              var parameters = new ReactionParameters(true, true, episode_count : true) {IsExternal = false};
-              var reaction = new Reaction(parameters, this._motions.ToArray(), null, null, null, "");
-              this._states = this._Manager.ReactAndCollectStates(reaction);
-            }
+            var parameters = new ReactionParameters(StepResetObserve.Step_, true, episode_count : true);
+            var reaction = new Reaction(parameters,
+                                        motions.ToArray(),
+                                        null,
+                                        null,
+                                        null,
+                                        "",
+                                        reaction_source : "PlayerReactions");
+            this._Manager.SendToEnvironments(new[] {reaction});
+            this.terminated = this._Manager.CollectStates().Any(e=>e.Terminated);
           }
-        } else {
-          #if NEODROID_DEBUG
-          if (this.Debugging) {
-            Debug.Log("No PlayerMotions ScriptableObject assigned");
-          }
-          #endif
         }
+      } else {
+        #if NEODROID_DEBUG
+        if (this.Debugging) {
+          Debug.Log("No PlayerMotions ScriptableObject assigned");
+        }
+        #endif
       }
     }
   }
 }
+
+

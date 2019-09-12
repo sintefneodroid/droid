@@ -76,7 +76,10 @@ namespace droid.Editor.Utilities.ObjectDropdown {
                                                    property.serializedObject.ApplyModifiedProperties();
                                                  };
                 foreach (var item in this._m_list) {
-                  gm.AddItem(new GUIContent(item.name + "(" + item.GetType().Name + ")"), false, func, item);
+                  gm.AddItem(new GUIContent(item.name + "(" + item.GetType().Name + ")"),
+                             false,
+                             func,
+                             item);
                 }
 
                 gm.ShowAsContext();

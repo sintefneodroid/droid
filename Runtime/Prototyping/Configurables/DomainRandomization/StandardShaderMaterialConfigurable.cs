@@ -27,12 +27,12 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
     string _b;
     string _a;
 
-    [SerializeField] SampleSpace2 _tiling_space = new SampleSpace2{Space = Space2.TwentyEighty};
-    [SerializeField] SampleSpace2 _offset_space = new SampleSpace2{Space = Space2.TwentyEighty};
+    [SerializeField] SampleSpace2 _tiling_space = new SampleSpace2 {Space = Space2.TwentyEighty};
+    [SerializeField] SampleSpace2 _offset_space = new SampleSpace2 {Space = Space2.TwentyEighty};
 
-    [SerializeField] SampleSpace4 _color_space = new SampleSpace4{Space = Space4.TwentyEighty};
-    [SerializeField] SampleSpace1 _smoothness_space =new SampleSpace1{Space = Space1.TwentyEighty};
-    [SerializeField] SampleSpace1 _reflection_space = new SampleSpace1{Space = Space1.TwentyEighty};
+    [SerializeField] SampleSpace4 _color_space = new SampleSpace4 {Space = Space4.TwentyEighty};
+    [SerializeField] SampleSpace1 _smoothness_space = new SampleSpace1 {Space = Space1.TwentyEighty};
+    [SerializeField] SampleSpace1 _reflection_space = new SampleSpace1 {Space = Space1.TwentyEighty};
 
     /// <summary>
     /// </summary>

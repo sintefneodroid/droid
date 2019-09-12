@@ -1,4 +1,5 @@
 ﻿using System;
+using droid.Runtime.Enums;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Sampling;
 using UnityEngine;
@@ -41,11 +42,15 @@ namespace droid.Runtime.Structs.Space.Sample {
     /// </summary>
     /// <returns></returns>
     public dynamic Sample() {
-      if (!this._space.normalised) {
-        return this.DistributionSampler.Range(this._space._min_, this._space._max_);
+      switch (this._space.Normalised) {
+        case Normalisation.None_:
+          return this.DistributionSampler.Range(this._space._min_, this._space._max_);
+        case Normalisation.Zero_one_:
+          return this.DistributionSampler.Range(0, 1);
+        case Normalisation.Minus_one_one_:
+          return this.DistributionSampler.Range(-1, 1);
+        default: throw new ArgumentOutOfRangeException();
       }
-
-      return this.DistributionSampler.Range(0, 1);
     }
 
     public ISpace Space { get { return this._space; } set { this._space = (Space1)value; } }

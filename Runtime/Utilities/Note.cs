@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+
 #if UNITY_EDITOR
 
 namespace droid.Runtime.Utilities {

@@ -343,7 +343,10 @@ namespace droid.Runtime.Messaging.Experimental {
       this._socket = new ResponseSocket();
     }
 
-    public MessageClient(bool debug = false) : this("127.0.0.1", 6969, false, debug) { }
+    public MessageClient(bool debug = false) : this("127.0.0.1",
+                                                    6969,
+                                                    false,
+                                                    debug) { }
 
     #endregion
 

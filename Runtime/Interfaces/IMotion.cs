@@ -7,10 +7,12 @@ namespace droid.Runtime.Interfaces {
     ///
     /// </summary>
     string ActuatorName { get; }
+
     /// <summary>
     ///
     /// </summary>
     string ActorName { get; }
+
     /// <summary>
     ///
     /// </summary>

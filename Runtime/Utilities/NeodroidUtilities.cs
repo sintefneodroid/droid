@@ -4,7 +4,6 @@ namespace droid.Runtime.Utilities {
   /// <summary>
   /// </summary>
   public static partial class NeodroidDefaultsUtilities {
-
     /// <summary>
     ///
     /// </summary>
@@ -35,8 +34,5 @@ namespace droid.Runtime.Utilities {
 
       return gradient;
     }
-
-
-
   }
 }

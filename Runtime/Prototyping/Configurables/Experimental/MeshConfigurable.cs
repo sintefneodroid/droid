@@ -26,7 +26,9 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     [SerializeField] Mesh[] _meshes = null;
     [SerializeField] MeshFilter _mesh_filter = null;
     [SerializeField] bool _displace_mesh = false;
-    [SerializeField] SampleSpace1 _deformation_space =new SampleSpace1{_space = new Space1 {Min = 1f, Max = 5f}};
+
+    [SerializeField]
+    SampleSpace1 _deformation_space = new SampleSpace1 {_space = new Space1 {Min = 1f, Max = 5f}};
 
     /// <inheritdoc />
     /// <summary>
@@ -63,7 +65,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       this.ParentEnvironment?.UnRegister(this, this._mesh_str);
     }
 
-    public override ISamplable ConfigurableValueSpace { get{return this._deformation_space;} }
+    public override ISamplable ConfigurableValueSpace { get { return this._deformation_space; } }
 
     /// <summary>
     /// </summary>

@@ -86,7 +86,6 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
     /// <summary>
     ///
     /// </summary>
-
     /// <summary>
     /// </summary>
     /// <param name="simulator_configuration"></param>

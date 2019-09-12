@@ -39,11 +39,13 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
 
     [SerializeField]
     SampleSpace3 _euler_space = new SampleSpace3 {
-                                                   _space = new Space3(4) {
-                                                                     Min = Vector3.zero,
-                                                                     Max = new Vector3(360f, 360f, 360f)
-                                                                 }
-                                               };
+                                                     _space = new Space3(4) {
+                                                                                Min = Vector3.zero,
+                                                                                Max = new Vector3(360f,
+                                                                                                  360f,
+                                                                                                  360f)
+                                                                            }
+                                                 };
 
     /// <summary>
     ///
@@ -130,8 +132,6 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
         v = (int)Math.Round(v, this.TripleSpace.DecimalGranularity);
       }
 
-
-
       #if NEODROID_DEBUG
       if (this.Debugging) {
         Debug.Log($"Applying {v} to {simulator_configuration.ConfigurableName} configurable");
@@ -149,6 +149,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
             }
             #endif
           }
+
           rot.eulerAngles = new Vector3(v + rote.x, rote.y, rote.z);
         } else if (simulator_configuration.ConfigurableName == this._y) {
           rot.eulerAngles = new Vector3(rote.x, v + rote.y, rote.z);

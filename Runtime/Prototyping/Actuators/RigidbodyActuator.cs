@@ -57,7 +57,14 @@ namespace droid.Runtime.Prototyping.Actuators {
     }
 
     public override string[] InnerMotionNames =>
-        new[] {this._x, this._y, this._z, this._rot_x, this._rot_y, this._rot_z};
+        new[] {
+                  this._x,
+                  this._y,
+                  this._z,
+                  this._rot_x,
+                  this._rot_y,
+                  this._rot_z
+              };
 
     /// <summary>
     /// </summary>
@@ -145,11 +152,23 @@ namespace droid.Runtime.Prototyping.Actuators {
       if (this.enabled) {
         var position = this.transform.position;
 
-        Handles.DrawWireArc(this.transform.position, this.transform.right, -this.transform.forward, 180, 2);
+        Handles.DrawWireArc(this.transform.position,
+                            this.transform.right,
+                            -this.transform.forward,
+                            180,
+                            2);
 
-        Handles.DrawWireArc(this.transform.position, this.transform.up, -this.transform.right, 180, 2);
+        Handles.DrawWireArc(this.transform.position,
+                            this.transform.up,
+                            -this.transform.right,
+                            180,
+                            2);
 
-        Handles.DrawWireArc(this.transform.position, this.transform.forward, -this.transform.right, 180, 2);
+        Handles.DrawWireArc(this.transform.position,
+                            this.transform.forward,
+                            -this.transform.right,
+                            180,
+                            2);
 
         Debug.DrawLine(position, position + Vector3.right * 2, Color.green);
 

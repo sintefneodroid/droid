@@ -1,14 +1,13 @@
 ﻿using System;
+using System.Linq;
+using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Prototyping.Actuators;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
-using System.Linq;
-using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using Random = UnityEngine.Random;
 
-namespace droid.Samples.MultiArmedBandit {
+namespace droid.Samples.MultiArmedBandit.Actuators {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
@@ -130,6 +129,7 @@ namespace droid.Samples.MultiArmedBandit {
         this._won = false;
       }
     }
+
     public override string[] InnerMotionNames => this._Indicators.Select(m => this.Identifier).ToArray();
   }
 }

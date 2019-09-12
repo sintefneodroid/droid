@@ -11,11 +11,11 @@ namespace droid.Runtime.Interfaces {
     /// </summary>
     int DecimalGranularity { get; }
 
-    bool Normalised { get; }
+    bool NormalisedBool { get; }
 
-    dynamic Max{ get; }
+    dynamic Max { get; }
 
-    dynamic Min{ get; }
+    dynamic Min { get; }
 
     dynamic ClipRoundDenormaliseClip(dynamic configuration_configurable_value);
 

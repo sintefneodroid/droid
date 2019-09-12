@@ -1,4 +1,5 @@
 ﻿using droid.Runtime.Environments;
+using droid.Runtime.Environments.Prototyping;
 using droid.Runtime.GameObjects.BoundingBoxes;
 using droid.Runtime.Managers;
 using droid.Runtime.Prototyping.Actors;

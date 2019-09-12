@@ -15,13 +15,22 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
                     + ConfigurableComponentMenuPath._Postfix)]
   public class TransformConfigurable1Dof : SpatialConfigurable,
                                            IHasSingle {
+    #region Fields
+
+    [SerializeField] Axis _axis_of_configuration = Axis.X_;
+    [SerializeField] float _observation_value = 0;
+    [SerializeField] bool _use_environments_space = false;
+    [SerializeField] SampleSpace1 _single_value_space = new SampleSpace1 {_space = Space1.ZeroOne};
+    [SerializeField] bool normalised_overwrite_space_if_env_bounds = true;
+
+    #endregion
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override string PrototypingTypeName {
       get { return "Transform" + this._axis_of_configuration + "Configurable"; }
     }
-
 
     /// <summary>
     ///
@@ -30,8 +39,6 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       get { return this._observation_value; }
       private set { this._observation_value = value; }
     }
-
-
 
     /// <inheritdoc />
     /// <summary>
@@ -92,7 +99,6 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
           throw new ArgumentOutOfRangeException();
       }
     }
-    [SerializeField] bool normalised_overwrite_space_if_env_bounds = true;
 
     /// <summary>
     /// </summary>
@@ -102,21 +108,24 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
         if (this._single_value_space.Space != null && this.ParentEnvironment.PlayableArea) {
           dec_gran = this._single_value_space.Space.DecimalGranularity;
         }
+
         if (this.ParentEnvironment) {
           switch (_axis_of_configuration) {
             case Axis.X_:
-              this.SingleSpace = Space1.FromCenterExtents(this.ParentEnvironment.PlayableArea.Bounds.extents.x,
-                                                          decimal_granularity:dec_gran);
+              this.SingleSpace =
+                  Space1.FromCenterExtents(this.ParentEnvironment.PlayableArea.Bounds.extents.x,
+                                           decimal_granularity : dec_gran);
               break;
             case Axis.Y_:
-              this.SingleSpace = Space1.FromCenterExtents(this.ParentEnvironment.PlayableArea.Bounds.extents.y,
-                                                          decimal_granularity:dec_gran);
+              this.SingleSpace =
+                  Space1.FromCenterExtents(this.ParentEnvironment.PlayableArea.Bounds.extents.y,
+                                           decimal_granularity : dec_gran);
               break;
             case Axis.Z_:
-              this.SingleSpace = Space1.FromCenterExtents(this.ParentEnvironment.PlayableArea.Bounds.extents.z,
-                                                          decimal_granularity:dec_gran);
+              this.SingleSpace =
+                  Space1.FromCenterExtents(this.ParentEnvironment.PlayableArea.Bounds.extents.z,
+                                           decimal_granularity : dec_gran);
               break;
-
           }
         }
       }
@@ -133,9 +142,8 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// <param name="simulator_configuration"></param>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
     public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration) {
-
       float cv;
-      if(this._single_value_space._space.normalised) {
+      if (this._single_value_space._space.NormalisedBool) {
         cv = this.SingleSpace.ClipRoundDenormaliseClip(simulator_configuration.ConfigurableValue);
       } else {
         if (simulator_configuration.ConfigurableValue < this.SingleSpace.Min
@@ -143,6 +151,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
           Debug.Log($"It does not accept input, outside allowed range {this.SingleSpace.Min} to {this.SingleSpace.Max}");
           return; // Do nothing
         }
+
         cv = simulator_configuration.ConfigurableValue;
       }
 
@@ -260,14 +269,5 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       this.transform.rotation = Quaternion.identity;
       this.transform.rotation = Quaternion.LookRotation(inv_dir, inv_rot);
     }
-
-    #region Fields
-
-    [SerializeField] Axis _axis_of_configuration = Axis.X_;
-    [SerializeField] float _observation_value = 0;
-    [SerializeField] bool _use_environments_space = false;
-    [SerializeField] SampleSpace1 _single_value_space = new SampleSpace1 {_space = Space1.ZeroOne};
-
-    #endregion
   }
 }

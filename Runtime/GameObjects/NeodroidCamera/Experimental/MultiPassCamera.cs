@@ -59,7 +59,14 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
                                                 new Vector3(-1.0f, -1.0f, 0.0f),
                                                 new Vector3(1.0f, -1.0f, 0.0f)
                                             },
-                           triangles = new[] {0, 1, 2, 2, 3, 0}
+                           triangles = new[] {
+                                                 0,
+                                                 1,
+                                                 2,
+                                                 2,
+                                                 3,
+                                                 0
+                                             }
                        };
       r.UploadMeshData(true);
       return r;
@@ -133,12 +140,20 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
         cb.Clear();
 
         if (capture_pass._Material) {
-          cb.GetTemporaryRT(capture_pass._TextureId, -1, -1, 0, FilterMode.Point);
+          cb.GetTemporaryRT(capture_pass._TextureId,
+                            -1,
+                            -1,
+                            0,
+                            FilterMode.Point);
           //cb.Blit(capture_pass.Source, capture_pass._RenderTexture, capture_pass._Material);
           cb.Blit(capture_pass.Source, capture_pass._TextureId);
           cb.SetRenderTarget(new RenderTargetIdentifier[] {capture_pass._RenderTexture},
                              capture_pass._RenderTexture);
-          cb.DrawMesh(this.m_quad, Matrix4x4.identity, capture_pass._Material, 0, 0);
+          cb.DrawMesh(this.m_quad,
+                      Matrix4x4.identity,
+                      capture_pass._Material,
+                      0,
+                      0);
           cb.ReleaseTemporaryRT(capture_pass._TextureId);
         } else {
           cb.Blit(capture_pass.Source, capture_pass._RenderTexture);
@@ -172,7 +187,10 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
           var xi = (_size + _margin) * index++;
           var x = xi % (Screen.width - _size);
           var y = (_size + _margin) * (xi / (Screen.width - _size));
-          var r = new Rect(_margin + x, _margin + y, _size, _size);
+          var r = new Rect(_margin + x,
+                           _margin + y,
+                           _size,
+                           _size);
           //this._asf?.Flip(pass._RenderTexture);
 
           GUI.DrawTexture(r, pass._RenderTexture, ScaleMode.ScaleToFit);

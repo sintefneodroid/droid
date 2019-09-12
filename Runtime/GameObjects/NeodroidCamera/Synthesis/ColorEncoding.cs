@@ -51,7 +51,10 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Synthesis {
       var b = (byte)(sid);
 
       //Debug.Log(r + " " + g + " " + b);
-      return new Color32(r, g, b, 255);
+      return new Color32(r,
+                         g,
+                         b,
+                         255);
     }
 
     /// <summary>
@@ -65,7 +68,10 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Synthesis {
       var r = (byte)(hash >> 16);
       var g = (byte)(hash >> 8);
       var b = (byte)(hash);
-      return new Color32(r, g, b, 255);
+      return new Color32(r,
+                         g,
+                         b,
+                         255);
     }
 
     /// <summary>
@@ -83,23 +89,71 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Synthesis {
 
       // Lets create palette of unique 16 colors
       var unique_colors = new[] {
-                                    new Color(1, 1, 1, 1),
-                                    new Color(z, z, z, 1), // 0
-                                    new Color(1, 1, z, 1),
-                                    new Color(1, z, 1, 1),
-                                    new Color(z, 1, 1, 1), //
-                                    new Color(1, z, 0, 1),
-                                    new Color(z, 0, 1, 1),
-                                    new Color(0, 1, z, 1), // 7
+                                    new Color(1,
+                                              1,
+                                              1,
+                                              1),
+                                    new Color(z,
+                                              z,
+                                              z,
+                                              1), // 0
+                                    new Color(1,
+                                              1,
+                                              z,
+                                              1),
+                                    new Color(1,
+                                              z,
+                                              1,
+                                              1),
+                                    new Color(z,
+                                              1,
+                                              1,
+                                              1), //
+                                    new Color(1,
+                                              z,
+                                              0,
+                                              1),
+                                    new Color(z,
+                                              0,
+                                              1,
+                                              1),
+                                    new Color(0,
+                                              1,
+                                              z,
+                                              1), // 7
 
-                                    new Color(1, 0, 0, 1),
-                                    new Color(0, 1, 0, 1),
-                                    new Color(0, 0, 1, 1), // 8
-                                    new Color(1, 1, 0, 1),
-                                    new Color(1, 0, 1, 1),
-                                    new Color(0, 1, 1, 1), //
-                                    new Color(1, z, z, 1),
-                                    new Color(z, 1, z, 1) // 15
+                                    new Color(1,
+                                              0,
+                                              0,
+                                              1),
+                                    new Color(0,
+                                              1,
+                                              0,
+                                              1),
+                                    new Color(0,
+                                              0,
+                                              1,
+                                              1), // 8
+                                    new Color(1,
+                                              1,
+                                              0,
+                                              1),
+                                    new Color(1,
+                                              0,
+                                              1,
+                                              1),
+                                    new Color(0,
+                                              1,
+                                              1,
+                                              1), //
+                                    new Color(1,
+                                              z,
+                                              z,
+                                              1),
+                                    new Color(z,
+                                              1,
+                                              z,
+                                              1) // 15
                                 };
 
       // Create as many colors as necessary by using base 16 color palette

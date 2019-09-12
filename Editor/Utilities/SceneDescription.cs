@@ -64,7 +64,10 @@ namespace droid.Editor.Utilities {
             / previews_count;
 
         for (var i = 0; i < scene_names.Length; i++) {
-          ScenePreview.DrawPreview(i, scene_names[i], preview_width, preview_height);
+          ScenePreview.DrawPreview(i,
+                                   scene_names[i],
+                                   preview_width,
+                                   preview_height);
         }
       }
 

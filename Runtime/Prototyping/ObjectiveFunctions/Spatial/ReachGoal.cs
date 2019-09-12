@@ -4,7 +4,7 @@ using droid.Runtime.Utilities;
 using droid.Runtime.Utilities.Grid;
 using UnityEngine;
 
-namespace droid.Runtime.Prototyping.Evaluation.Spatial {
+namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
   /// <summary>
   ///
   /// </summary>

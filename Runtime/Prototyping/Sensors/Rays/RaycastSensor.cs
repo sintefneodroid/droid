@@ -41,7 +41,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
     public float ObservationValue {
       get { return this._observation_value; }
       private set {
-        this._observation_value = this.SingleSpace.Normalised
+        this._observation_value = this.SingleSpace.NormalisedBool
                                       ? this._observation_space.ClipNormaliseRound(value)
                                       : value;
       }
@@ -83,7 +83,8 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
       if (this.enabled) {
         var position = this.transform.position;
         Debug.DrawLine(position,
-                       position + this.transform.TransformDirection(this._direction) * this._observation_space.Max,
+                       position
+                       + this.transform.TransformDirection(this._direction) * this._observation_space.Max,
                        this._color);
       }
     }

@@ -12,12 +12,14 @@ namespace droid.Runtime.Structs.Space.Sample {
     #region Fields
 
     [Header("Sampling", order = 103)]
-    [SerializeField]internal Space2 _space;
+    [SerializeField]
+    internal Space2 _space;
 
     /// <summary>
     ///
     /// </summary>
-    [SerializeField]internal DistributionSampler _distribution_sampler;
+    [SerializeField]
+    internal DistributionSampler _distribution_sampler;
 
     #endregion
 

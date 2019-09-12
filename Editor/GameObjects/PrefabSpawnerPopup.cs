@@ -7,7 +7,10 @@ namespace droid.Editor.GameObjects {
   /// <summary>
   /// </summary>
   public class PrefabSpawnerPopup : EditorWindow {
-    static Rect _rect = new Rect(0, 0, 0, 0);
+    static Rect _rect = new Rect(0,
+                                 0,
+                                 0,
+                                 0);
 
     [MenuItem(EditorGameObjectMenuPath._GameObjectMenuPath + "SpawnPrefab", false, 10)]
     static void Init2() {

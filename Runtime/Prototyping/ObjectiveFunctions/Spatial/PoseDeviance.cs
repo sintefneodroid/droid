@@ -3,7 +3,7 @@ using droid.Runtime.GameObjects.ChildSensors;
 using droid.Runtime.Utilities.Extensions;
 using UnityEngine;
 
-namespace droid.Runtime.Prototyping.Evaluation.Spatial {
+namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
@@ -75,7 +75,7 @@ namespace droid.Runtime.Prototyping.Evaluation.Spatial {
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log($"Frame Number: {this.ParentEnvironment?.CurrentFrameNumber}, "
+        Debug.Log($"Frame Number: {this.ParentEnvironment?.step_i}, "
                   + $"Terminated: {this.ParentEnvironment?.Terminated}, "
                   + $"Last Reason: {this.ParentEnvironment?.LastTerminationReason}, "
                   + $"Internal Feedback Signal: {signal}, "

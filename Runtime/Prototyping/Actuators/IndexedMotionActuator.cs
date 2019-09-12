@@ -55,7 +55,10 @@ namespace droid.Runtime.Prototyping.Actuators {
       }
 
       if (this._No_Collisions) {
-        if (!Physics.Raycast(this.transform.position, vec, Mathf.Abs(motion.Strength), layer_mask)) {
+        if (!Physics.Raycast(this.transform.position,
+                             vec,
+                             Mathf.Abs(motion.Strength),
+                             layer_mask)) {
           this.transform.Translate(vec, this._Relative_To);
         }
       } else {
@@ -63,6 +66,12 @@ namespace droid.Runtime.Prototyping.Actuators {
       }
     }
 
-    public override string[] InnerMotionNames => new[] {"forward", "back", "left", "right"};
+    public override string[] InnerMotionNames =>
+        new[] {
+                  "forward",
+                  "back",
+                  "left",
+                  "right"
+              };
   }
 }

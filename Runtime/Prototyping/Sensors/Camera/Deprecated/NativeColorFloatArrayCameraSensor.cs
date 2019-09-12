@@ -100,7 +100,12 @@ namespace droid.Runtime.Prototyping.Sensors.Camera.Deprecated {
         if (this._texture
             && this._camera.targetTexture.width == this._texture.width
             && this._camera.targetTexture.height == this._texture.height) {
-          this._texture.ReadPixels(new Rect(0, 0, this._texture.width, this._texture.height), 0, 0);
+          this._texture.ReadPixels(new Rect(0,
+                                            0,
+                                            this._texture.width,
+                                            this._texture.height),
+                                   0,
+                                   0);
           //this._texture.Apply();
         } else {
           #if NEODROID_DEBUG

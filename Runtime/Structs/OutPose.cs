@@ -55,6 +55,9 @@ namespace droid.Runtime.Structs {
     }
   }
 
+  /// <summary>
+  ///
+  /// </summary>
   public class MutableOutPose : OutPose {
     /// Sets the position and orientation from a Vector3 + Quaternion.
     public new void Set(Vector3 position, Quaternion orientation) { base.Set(position, orientation); }

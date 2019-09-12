@@ -131,7 +131,11 @@ namespace droid.Runtime.Prototyping.Actuators {
                                 2);
             break;
           case Axis.Rot_y_:
-            Handles.DrawWireArc(this.transform.position, this.transform.up, -this.transform.right, 180, 2);
+            Handles.DrawWireArc(this.transform.position,
+                                this.transform.up,
+                                -this.transform.right,
+                                180,
+                                2);
             break;
           case Axis.Rot_z_:
             Handles.DrawWireArc(this.transform.position,

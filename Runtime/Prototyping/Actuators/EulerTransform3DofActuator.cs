@@ -110,7 +110,10 @@ namespace droid.Runtime.Prototyping.Actuators {
         if (motion.ActuatorName == this._x) {
           var vec = Vector3.right * motion.Strength;
           if (this._No_Collisions) {
-            if (!Physics.Raycast(this.transform.position, vec, Mathf.Abs(motion.Strength), layer_mask)) {
+            if (!Physics.Raycast(this.transform.position,
+                                 vec,
+                                 Mathf.Abs(motion.Strength),
+                                 layer_mask)) {
               this.transform.Translate(vec, this._Relative_To);
             }
           } else {
@@ -119,7 +122,10 @@ namespace droid.Runtime.Prototyping.Actuators {
         } else if (motion.ActuatorName == this._y) {
           var vec = -Vector3.up * motion.Strength;
           if (this._No_Collisions) {
-            if (!Physics.Raycast(this.transform.position, vec, Mathf.Abs(motion.Strength), layer_mask)) {
+            if (!Physics.Raycast(this.transform.position,
+                                 vec,
+                                 Mathf.Abs(motion.Strength),
+                                 layer_mask)) {
               this.transform.Translate(vec, this._Relative_To);
             }
           } else {
@@ -128,7 +134,10 @@ namespace droid.Runtime.Prototyping.Actuators {
         } else if (motion.ActuatorName == this._z) {
           var vec = -Vector3.forward * motion.Strength;
           if (this._No_Collisions) {
-            if (!Physics.Raycast(this.transform.position, vec, Mathf.Abs(motion.Strength), layer_mask)) {
+            if (!Physics.Raycast(this.transform.position,
+                                 vec,
+                                 Mathf.Abs(motion.Strength),
+                                 layer_mask)) {
               this.transform.Translate(vec, this._Relative_To);
             }
           } else {
@@ -151,9 +160,21 @@ namespace droid.Runtime.Prototyping.Actuators {
       if (this.enabled) {
         var position = this.transform.position;
         if (this._angular_Actuators) {
-          Handles.DrawWireArc(this.transform.position, this.transform.right, -this.transform.forward, 180, 2);
-          Handles.DrawWireArc(this.transform.position, this.transform.up, -this.transform.right, 180, 2);
-          Handles.DrawWireArc(this.transform.position, this.transform.forward, -this.transform.right, 180, 2);
+          Handles.DrawWireArc(this.transform.position,
+                              this.transform.right,
+                              -this.transform.forward,
+                              180,
+                              2);
+          Handles.DrawWireArc(this.transform.position,
+                              this.transform.up,
+                              -this.transform.right,
+                              180,
+                              2);
+          Handles.DrawWireArc(this.transform.position,
+                              this.transform.forward,
+                              -this.transform.right,
+                              180,
+                              2);
         } else {
           Debug.DrawLine(position, position + Vector3.up * 2, Color.green);
           Debug.DrawLine(position, position + Vector3.forward * 2, Color.green);

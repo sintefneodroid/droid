@@ -149,11 +149,23 @@ namespace droid.Runtime.Prototyping.Actuators {
       if (this.enabled) {
         var position = this.transform.position;
         if (this._Angular_Actuators) {
-          Handles.DrawWireArc(this.transform.position, this.transform.right, -this.transform.forward, 180, 2);
+          Handles.DrawWireArc(this.transform.position,
+                              this.transform.right,
+                              -this.transform.forward,
+                              180,
+                              2);
 
-          Handles.DrawWireArc(this.transform.position, this.transform.up, -this.transform.right, 180, 2);
+          Handles.DrawWireArc(this.transform.position,
+                              this.transform.up,
+                              -this.transform.right,
+                              180,
+                              2);
 
-          Handles.DrawWireArc(this.transform.position, this.transform.forward, -this.transform.right, 180, 2);
+          Handles.DrawWireArc(this.transform.position,
+                              this.transform.forward,
+                              -this.transform.right,
+                              180,
+                              2);
         } else {
           Debug.DrawLine(position, position + Vector3.right * 2, Color.green);
 

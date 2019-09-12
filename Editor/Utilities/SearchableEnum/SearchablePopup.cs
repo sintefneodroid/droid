@@ -238,8 +238,14 @@ namespace droid.Editor.Utilities.SearchableEnum {
     /// </summary>
     /// <param name="rect"></param>
     public override void OnGUI(Rect rect) {
-      var search_rect = new Rect(0, 0, rect.width, EditorStyles.toolbar.fixedHeight);
-      var scroll_rect = Rect.MinMaxRect(0, search_rect.yMax, rect.xMax, rect.yMax);
+      var search_rect = new Rect(0,
+                                 0,
+                                 rect.width,
+                                 EditorStyles.toolbar.fixedHeight);
+      var scroll_rect = Rect.MinMaxRect(0,
+                                        search_rect.yMax,
+                                        rect.xMax,
+                                        rect.yMax);
 
       this.HandleKeyboard();
       this.DrawSearch(search_rect);
@@ -252,7 +258,11 @@ namespace droid.Editor.Utilities.SearchableEnum {
 
     void DrawSearch(Rect rect) {
       if (Event.current.type == EventType.Repaint) {
-        EditorStyles.toolbar.Draw(rect, false, false, false, false);
+        EditorStyles.toolbar.Draw(rect,
+                                  false,
+                                  false,
+                                  false,
+                                  false);
       }
 
       var search_rect = new Rect(rect);
@@ -289,7 +299,10 @@ namespace droid.Editor.Utilities.SearchableEnum {
 
       this._scroll = GUI.BeginScrollView(scroll_rect, this._scroll, content_rect);
 
-      var row_rect = new Rect(0, 0, scroll_rect.width, _row_height);
+      var row_rect = new Rect(0,
+                              0,
+                              scroll_rect.width,
+                              _row_height);
 
       for (var i = 0; i < this._list.Entries.Count; i++) {
         if (this._scroll_to_index == i

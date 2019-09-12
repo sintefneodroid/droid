@@ -14,10 +14,11 @@ namespace droid.Tests.Editor.Structs.Space {
     /// </summary>
     [Test]
     public void TestDenormalise010() {
-      var space = new Space2 {Min = Vector2.zero,Max =Vector2.one*10};
+      var space = new Space2 {Min = Vector2.zero, Max = Vector2.one * 10};
 
-      Assert.That(Vector2.Distance(space.Denormalise01(Vector2.one*0.5f) ,Vector2.one*5f) <= float.Epsilon, Is
-      .True);
+      Assert.That(Vector2.Distance(space.Denormalise01(Vector2.one * 0.5f), Vector2.one * 5f)
+                  <= float.Epsilon,
+                  Is.True);
     }
 
     /// <summary>
@@ -25,40 +26,34 @@ namespace droid.Tests.Editor.Structs.Space {
     /// </summary>
     [Test]
     public void TestNormalise010() {
-      var space = new Space2 {Min = Vector2.zero,Max =Vector2.one*10};
+      var space = new Space2 {Min = Vector2.zero, Max = Vector2.one * 10};
 
-      Assert.That(Vector2.Distance(space.Normalise01(6*Vector2.one),Vector2.one*0.6f) <= float.Epsilon, Is.True);
-
+      Assert.That(Vector2.Distance(space.Normalise01(6 * Vector2.one), Vector2.one * 0.6f) <= float.Epsilon,
+                  Is.True);
     }
-
 
     /// <summary>
     ///
     /// </summary>
     [Test]
     public void TestNormaliseMinus11() {
+      var space = new Space2 {Min = Vector2.one * -1, Max = Vector2.one * 1};
 
-      var space = new Space2 {Min = Vector2.one*-1,Max =Vector2.one*1};
-
-      Assert.That(Vector2.Distance(space.Normalise01(0.5f*Vector2.one),Vector2.one*0.75f) <= float.Epsilon,
-      Is.True);
-
+      Assert.That(Vector2.Distance(space.Normalise01(0.5f * Vector2.one), Vector2.one * 0.75f)
+                  <= float.Epsilon,
+                  Is.True);
     }
-
-
 
     /// <summary>
     ///
     /// </summary>
     [Test]
     public void TestDenormaliseMinus11() {
+      var space = new Space2 {Min = Vector2.one * -1, Max = Vector2.one * 1};
 
-
-      var space = new Space2 {Min = Vector2.one*-1,Max =Vector2.one*1};
-
-      Assert.That(Vector2.Distance(space.Denormalise01(0.75f*Vector2.one),Vector2.one*0.5f) <= float.Epsilon,
+      Assert.That(Vector2.Distance(space.Denormalise01(0.75f * Vector2.one), Vector2.one * 0.5f)
+                  <= float.Epsilon,
                   Is.True);
-
     }
   }
 }

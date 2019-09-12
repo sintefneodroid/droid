@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using droid.Runtime.Environments;
+using droid.Runtime.Environments.Prototyping;
 using droid.Runtime.GameObjects;
 using droid.Runtime.GameObjects.Plotting;
 using droid.Runtime.Interfaces;
@@ -18,7 +19,7 @@ namespace droid.Runtime.Prototyping.Displayers {
                                     IDisplayer {
     /// <summary>
     /// </summary>
-    AbstractPrototypingEnvironment _environment = null;
+    BaseSpatialPrototypingEnvironment _environment = null;
 
     /// <summary>
     ///
@@ -46,7 +47,7 @@ namespace droid.Runtime.Prototyping.Displayers {
 
     /// <summary>
     /// </summary>
-    public AbstractPrototypingEnvironment ParentEnvironment {
+    public BaseSpatialPrototypingEnvironment ParentEnvironment {
       get { return this._environment; }
       set { this._environment = value; }
     }

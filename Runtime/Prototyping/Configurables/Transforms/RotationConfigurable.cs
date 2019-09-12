@@ -15,7 +15,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
                     + ConfigurableComponentMenuPath._Postfix)]
   public class RotationConfigurable : SpatialConfigurable,
                                       IHasQuadruple {
-    [SerializeField] SampleSpace4 _quad_space = new SampleSpace4{_space = Space4.MinusOneOne};
+    [SerializeField] SampleSpace4 _quad_space = new SampleSpace4 {_space = Space4.MinusOneOne};
     [SerializeField] bool _use_environments_space = false;
 
     [Header("Observation", order = 103)]
@@ -137,7 +137,10 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
             }
           }
 
-          rot.Set(rot.x - v, rot.y, rot.z, rot.w);
+          rot.Set(rot.x - v,
+                  rot.y,
+                  rot.z,
+                  rot.w);
         } else if (simulator_configuration.ConfigurableName == this._y) {
           if (this.QuadSpace.Min.y.CompareTo(this.QuadSpace.Max.y) != 0) {
             if (v < this.QuadSpace.Min.y || v > this.QuadSpace.Max.y) {
@@ -147,7 +150,10 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
             }
           }
 
-          rot.Set(rot.x, rot.y - v, rot.z, rot.w);
+          rot.Set(rot.x,
+                  rot.y - v,
+                  rot.z,
+                  rot.w);
         } else if (simulator_configuration.ConfigurableName == this._z) {
           if (this.QuadSpace.Min.z.CompareTo(this.QuadSpace.Max.z) != 0) {
             if (v < this.QuadSpace.Min.z || v > this.QuadSpace.Max.z) {
@@ -157,7 +163,10 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
             }
           }
 
-          rot.Set(rot.x, rot.y, rot.z - v, rot.w);
+          rot.Set(rot.x,
+                  rot.y,
+                  rot.z - v,
+                  rot.w);
         } else if (simulator_configuration.ConfigurableName == this._w) {
           if (this.QuadSpace.Min.w.CompareTo(this.QuadSpace.Max.w) != 0) {
             if (v < this.QuadSpace.Min.w || v > this.QuadSpace.Max.w) {
@@ -167,7 +176,10 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
             }
           }
 
-          rot.Set(rot.x, rot.y, rot.z, rot.w - v);
+          rot.Set(rot.x,
+                  rot.y,
+                  rot.z,
+                  rot.w - v);
         }
       } else {
         if (simulator_configuration.ConfigurableName == this._x) {
@@ -179,7 +191,10 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
             }
           }
 
-          rot.Set(v, rot.y, rot.z, rot.w);
+          rot.Set(v,
+                  rot.y,
+                  rot.z,
+                  rot.w);
           //rot.x = v;
         } else if (simulator_configuration.ConfigurableName == this._y) {
           if (this.QuadSpace.Min.y.CompareTo(this.QuadSpace.Max.y) != 0) {
@@ -190,7 +205,10 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
             }
           }
 
-          rot.Set(rot.x, v, rot.z, rot.w);
+          rot.Set(rot.x,
+                  v,
+                  rot.z,
+                  rot.w);
           //rot.y = v;
         } else if (simulator_configuration.ConfigurableName == this._z) {
           if (this.QuadSpace.Min.z.CompareTo(this.QuadSpace.Max.z) != 0) {
@@ -201,7 +219,10 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
             }
           }
 
-          rot.Set(rot.x, rot.y, v, rot.w);
+          rot.Set(rot.x,
+                  rot.y,
+                  v,
+                  rot.w);
           //rot.z = v;
         } else if (simulator_configuration.ConfigurableName == this._w) {
           if (this.QuadSpace.Min.w.CompareTo(this.QuadSpace.Max.w) != 0) {
@@ -212,7 +233,10 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
             }
           }
 
-          rot.Set(rot.x, rot.y, rot.z, v);
+          rot.Set(rot.x,
+                  rot.y,
+                  rot.z,
+                  v);
           //rot.w = v;
         }
       }

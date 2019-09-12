@@ -78,12 +78,6 @@ namespace droid.Runtime.Structs {
 
     [SerializeField] bool _replay_reaction_in_skips;
 
-    /// <summary>
-    ///   Allow relative transforms to reset a couple of times.
-    /// </summary>
-    [SerializeField]
-    [Range(1, 99)]
-    int _reset_iterations = 1;
 
     /// <summary>
     /// </summary>
@@ -132,7 +126,6 @@ namespace droid.Runtime.Structs {
       this.SimulationType = SimulationType.Frame_dependent_;
       this.FrameFinishes = FrameFinishes.Late_update_;
       this.FrameSkips = 0;
-      this.ResetIterations = 1;
       this.MaxReplyInterval = 0;
       this.NumOfEnvironments = 1;
       this.ResizableWindow = true;
@@ -153,17 +146,6 @@ namespace droid.Runtime.Structs {
       }
     }
 
-    /// <summary>
-    /// </summary>
-    public int ResetIterations {
-      get { return this._reset_iterations; }
-      set {
-        if (value >= 1) {
-          this._reset_iterations = value;
-        }
-      }
-    }
-    //When resetting transforms we run multiple times to ensure that we properly reset hierachies of objects
 
     /// <summary>
     /// </summary>
