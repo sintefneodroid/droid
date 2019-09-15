@@ -154,7 +154,7 @@ namespace droid.Runtime.Environments.Prototyping {
         }
 
         EnvironmentDescription description = null;
-        if (this._ReplyWithDescriptionThisStep) {
+        if (this._ReplyWithDescriptionThisStep|| this._Simulation_Manager.SimulatorConfiguration.AlwaysSerialiseIndividualObservables) {
           #if NEODROID_DEBUG
           if (this.Debugging) {
             Debug.Log("Describing Environment");
