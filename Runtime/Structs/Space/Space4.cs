@@ -94,7 +94,7 @@ namespace droid.Runtime.Structs.Space {
                          Mathf.Clamp(v.w, min.w, max.w));
     }
 
-    public Vector4 Clip(Vector4 v) { return Clip(v, this._min_, this._max_); }
+    public Vector4 Clip(Vector4 v) { return this.Clip(v, this._min_, this._max_); }
 
     public dynamic ClipRoundDenormaliseClip(dynamic configuration_configurable_value) {
       return this.Clip(this.Round(this.Denormalise01(Clip(configuration_configurable_value,

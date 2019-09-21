@@ -176,7 +176,7 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     public override void Tick() {
       if (this._Resetting) {
-        _Resetting = false;
+        this._Resetting = false;
         this.EnvironmentReset();
 
         this.UpdateConfigurableValues();
@@ -440,7 +440,7 @@ namespace droid.Runtime.Environments.Prototyping {
                             ref this._reset_positions,
                             ref this._reset_rotations,ref this._reset_scales);
 
-      SetBodies(ref this._Tracked_Rigid_Bodies,
+      this.SetBodies(ref this._Tracked_Rigid_Bodies,
                              ref this._reset_velocities,
                              ref this._reset_angulars);
 
@@ -504,7 +504,7 @@ namespace droid.Runtime.Environments.Prototyping {
           angulars[i] = this._received_bodies[i].AngularVelocity;
         }
 
-        SetBodies(ref this._Tracked_Rigid_Bodies, ref velocities, ref angulars);
+        this.SetBodies(ref this._Tracked_Rigid_Bodies, ref velocities, ref angulars);
       }
 
       if (this._last_configuration != null) {
@@ -623,7 +623,7 @@ namespace droid.Runtime.Environments.Prototyping {
         for (var i = 0; i < bodies.Length; i++) {
           if (i < bodies.Length && bodies[i] != null && i < velocities.Length && i < angulars.Length) {
             #if NEODROID_DEBUG
-            if (Debugging) {
+            if (this.Debugging) {
               Debug.Log($"Setting {bodies[i].name}, velocity to {velocities[i]} and angular velocity to {angulars[i]}");
             }
 
