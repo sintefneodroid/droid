@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using droid.Runtime.Structs.Space;
+using UnityEngine;
 
 namespace droid.Runtime.Utilities {
   /// <summary>
@@ -23,10 +24,10 @@ namespace droid.Runtime.Utilities {
     /// <summary>
     ///
     /// </summary>
-    public SphericalCoordinates sphericalCoordinates;
+    public SphericalSpace _sphericalSpace;
 
     void Start() {
-      this.sphericalCoordinates = new SphericalCoordinates(this.transform.position,
+      this._sphericalSpace =  SphericalSpace.FromCartesian(this.transform.position,
                                          3f,
                                          10f,
                                          0f,
@@ -34,7 +35,7 @@ namespace droid.Runtime.Utilities {
                                          0f,
                                          Mathf.PI / 4f);
       // Initialize position
-      this.transform.position = this.sphericalCoordinates.ToCartesian + this.pivot.position;
+      this.transform.position = this._sphericalSpace.ToCartesian() + this.pivot.position;
     }
 
     void Update() {
@@ -50,14 +51,15 @@ namespace droid.Runtime.Utilities {
 
       if (h * h > .1f || v * v > .1f) {
         this.transform.position =
-            this.sphericalCoordinates.Rotate(h * this.rotateSpeed * Time.deltaTime, v * this.rotateSpeed * Time.deltaTime)
-                .ToCartesian
+            this._sphericalSpace.Rotate(h * this.rotateSpeed * Time.deltaTime,
+                                        v * this.rotateSpeed * Time.deltaTime)
+                .ToCartesian()
             + this.pivot.position;
       }
 
       var sw = -Input.GetAxis("Mouse ScrollWheel");
       if (sw * sw > Mathf.Epsilon) {
-        this.transform.position = this.sphericalCoordinates.TranslateRadius(sw * Time.deltaTime * this.scrollSpeed).ToCartesian
+        this.transform.position = this._sphericalSpace.TranslateRadius(sw * Time.deltaTime * this.scrollSpeed).ToCartesian()
                                   + this.pivot.position;
       }
 
