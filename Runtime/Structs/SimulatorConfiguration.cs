@@ -78,7 +78,6 @@ namespace droid.Runtime.Structs {
 
     [SerializeField] bool _replay_reaction_in_skips;
 
-
     /// <summary>
     /// </summary>
     [SerializeField]
@@ -145,7 +144,6 @@ namespace droid.Runtime.Structs {
         }
       }
     }
-
 
     /// <summary>
     /// </summary>

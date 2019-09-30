@@ -4,7 +4,8 @@
   public static class ObservablesComponentMenuPath {
     /// <summary>
     /// </summary>
-    public const string _ComponentMenuPath = PrototypingComponentMenuPath._ComponentMenuPath + "Unobservables/";
+    public const string _ComponentMenuPath =
+        PrototypingComponentMenuPath._ComponentMenuPath + "Unobservables/";
 
     /// <summary>
     /// </summary>

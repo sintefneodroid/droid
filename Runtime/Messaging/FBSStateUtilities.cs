@@ -27,9 +27,8 @@ namespace droid.Runtime.Messaging {
     /// <returns></returns>
     public static byte[] Serialise(EnvironmentState[] states,
                                    SimulatorConfigurationMessage simulator_configuration = null,
-
                                    bool do_serialise_unobservables = false,
-                                   bool serialise_individual_observables =false,
+                                   bool serialise_individual_observables = false,
                                    bool do_serialise_observables = false,
                                    string api_version = "N/A") {
       var b = new FlatBufferBuilder(1);
@@ -39,7 +38,9 @@ namespace droid.Runtime.Messaging {
         state_offsets[i++] = SerialiseState(b,
                                             state,
                                             do_serialise_unobservables,
-                                            do_serialise_observables,serialise_individual_observables:serialise_individual_observables);
+                                            do_serialise_observables,
+                                            serialise_individual_observables :
+                                            serialise_individual_observables);
       }
 
       var states_vector_offset = FStates.CreateStatesVector(b, state_offsets);
@@ -98,7 +99,7 @@ namespace droid.Runtime.Messaging {
                                          EnvironmentState state,
                                          bool do_serialise_unobservables = false,
                                          bool do_serialise_aggregated_float_array = false,
-                                         bool serialise_individual_observables=false) {
+                                         bool serialise_individual_observables = false) {
       var n = b.CreateString(state.EnvironmentName);
 
       var observables_vector = _null_vector_offset;

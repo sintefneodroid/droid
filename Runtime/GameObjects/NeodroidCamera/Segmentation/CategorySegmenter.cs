@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace droid.Runtime.GameObjects.NeodroidCamera.Segmentation {
   /// <summary>
-  /// 
+  ///
   /// </summary>
   enum SegmentationMode {
     Tag_,
@@ -168,18 +168,22 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Segmentation {
         }
 
         if (!this.ColorsDictGameObject.ContainsKey(category_name)) {
-          switch (this._segmentation_mode) {
-            case SegmentationMode.Tag_:
-              category_int = category_name.GetHashCode();
-              color = ColorEncoding.EncodeTagHashCodeAsColor(category_int);
-              //color = ColorEncoding.EncodeIdAsColor(category_int);
-              break;
-            case SegmentationMode.Layer_:
-              color = ColorEncoding.EncodeLayerAsColor(category_int);
-              break;
-            default:
-              //color = ColorEncoding.EncodeIdAsColor(category_int);
-              throw new ArgumentOutOfRangeException();
+          if (!this._Replace_Untagged_Color) {
+            switch (this._segmentation_mode) {
+              case SegmentationMode.Tag_:
+                category_int = category_name.GetHashCode();
+                color = ColorEncoding.EncodeTagHashCodeAsColor(category_int);
+                //color = ColorEncoding.EncodeIdAsColor(category_int);
+                break;
+              case SegmentationMode.Layer_:
+                color = ColorEncoding.EncodeLayerAsColor(category_int);
+                break;
+              default:
+                //color = ColorEncoding.EncodeIdAsColor(category_int);
+                throw new ArgumentOutOfRangeException();
+            }
+          } else {
+            color = this._Untagged_Color;
           }
 
           this.ColorsDictGameObject.Add(category_name, color);

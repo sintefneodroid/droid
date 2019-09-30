@@ -267,7 +267,8 @@ namespace droid.Runtime.Messaging {
         this._byte_buffer = FbsStateUtilities.Serialise(environment_states,
                                                         do_serialise_unobservables :
                                                         do_serialise_unobservables,
-                                                        serialise_individual_observables:serialise_individual_observables,
+                                                        serialise_individual_observables :
+                                                        serialise_individual_observables,
                                                         simulator_configuration :
                                                         simulator_configuration_message,
                                                         do_serialise_observables : do_serialise_observables,

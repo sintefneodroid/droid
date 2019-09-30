@@ -29,8 +29,6 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
 
     [SerializeField] Boolean linear_space;
 
-
-
     /// <summary>
     ///
     /// </summary>
@@ -49,21 +47,20 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
         Debug.LogWarning($"RenderTexture target not available on {this.Identifier} not available, allocating a default!");
         #endif
         this._rt = new RenderTexture(NeodroidConstants._Default_Width,
-                               NeodroidConstants._Default_Height,
-                               0,
-                               RenderTextureFormat.ARGBFloat) {
-                                                                  filterMode = FilterMode.Point,
-                                                                  name = $"rt_{this.Identifier}",
-                                                                  enableRandomWrite = true
-                                                              };
+                                     NeodroidConstants._Default_Height,
+                                     0,
+                                     RenderTextureFormat.ARGBFloat) {
+                                                                        filterMode = FilterMode.Point,
+                                                                        name = $"rt_{this.Identifier}",
+                                                                        enableRandomWrite = true
+                                                                    };
         this._rt.Create();
         this._camera.targetTexture = this._rt;
         this._texture = new Texture2D(NeodroidConstants._Default_Width,
                                       NeodroidConstants._Default_Height,
                                       NeodroidConstants._Default_TextureFormat,
                                       false,
-                                      this.linear_space
-                                     );
+                                      this.linear_space);
       } else {
         this._texture = new Texture2D(target_texture.width,
                                       target_texture.height,
@@ -135,9 +132,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
     /// <summary>
     ///
     /// </summary>
-    public override IEnumerable<float> FloatEnumerable {
-      get { return new float[] {}; }
-    }
+    public override IEnumerable<float> FloatEnumerable { get { return new float[] { }; } }
 
     /// <summary>
     ///

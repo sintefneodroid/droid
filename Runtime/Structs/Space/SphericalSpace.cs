@@ -41,8 +41,8 @@ namespace droid.Runtime.Structs.Space {
                           float max_polar = (Mathf.PI * 2f),
                           float min_elevation = 0f,
                           float max_elevation = (Mathf.PI / 3f),
-                          bool loop_polar=true,
-                          bool loop_elevation=false) {
+                          bool loop_polar = true,
+                          bool loop_elevation = false) {
       this._min_radius = min_radius;
       this._max_radius = max_radius;
       this._min_polar = min_polar;
@@ -63,13 +63,10 @@ namespace droid.Runtime.Structs.Space {
                                     this._min_elevation,
                                     this._max_elevation,
                                     loop_elevation);
-
     }
 
     static float LoopOrClamp(float v, float min, float max, bool loop) {
-      return loop
-                 ? Mathf.Repeat(v, max - min)
-                 : Mathf.Clamp(v, min, max);
+      return loop ? Mathf.Repeat(v, max - min) : Mathf.Clamp(v, min, max);
     }
 
     public Single Elevation {
@@ -92,7 +89,7 @@ namespace droid.Runtime.Structs.Space {
                                   this._min_polar,
                                   this._max_polar,
                                   this._LoopPolar);
-            ;
+        ;
       }
     }
 
@@ -107,9 +104,10 @@ namespace droid.Runtime.Structs.Space {
     /// <summary>
     /// Return a 2d vector of the polar and elevation coordinate
     /// </summary>
-    public Vector2 ToVector2 { get{return new Vector2(this._polar,this._elevation);} }
+    public Vector2 ToVector2 { get { return new Vector2(this._polar, this._elevation); } }
 
-    public Vector3 ToVector3 { get{return new Vector3(this._polar,this._elevation,this._radius);} }
+    public Vector3 ToVector3 { get { return new Vector3(this._polar, this._elevation, this._radius); } }
+
     /// <summary>
     ///
     /// </summary>
@@ -132,7 +130,6 @@ namespace droid.Runtime.Structs.Space {
     /// <param name="max_elevation"></param>
     /// <returns></returns>
     public SphericalSpace UpdateFromCartesian(Vector3 cartesian_coordinate) {
-
       if (Math.Abs(cartesian_coordinate.x) < float.Epsilon) {
         cartesian_coordinate.x = Mathf.Epsilon;
       }

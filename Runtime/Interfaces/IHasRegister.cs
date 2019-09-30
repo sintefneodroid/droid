@@ -22,8 +22,17 @@
     /// <param name="identifier"></param>
     void Register(T obj, string identifier);
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="obj"></param>
     void UnRegister(T obj);
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="t"></param>
+    /// <param name="obj"></param>
     void UnRegister(T t, string obj);
   }
 }

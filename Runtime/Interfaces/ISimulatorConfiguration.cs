@@ -7,7 +7,6 @@ namespace droid.Runtime.Interfaces {
   ///
   /// </summary>
   public interface ISimulatorConfiguration {
-
     /// <summary>
     ///
     /// </summary>

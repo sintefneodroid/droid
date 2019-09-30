@@ -21,7 +21,8 @@ namespace droid.Runtime.Environments {
     /// <summary>
     ///
     /// </summary>
-    [SerializeField] protected Reaction _LastReaction;
+    [SerializeField]
+    protected Reaction _LastReaction;
 
     /// <summary>
     /// </summary>
@@ -69,7 +70,6 @@ namespace droid.Runtime.Environments {
     /// <summary>
     /// </summary>
     protected bool _ReplyWithDescriptionThisStep;
-
 
     /// <inheritdoc />
     /// <summary>

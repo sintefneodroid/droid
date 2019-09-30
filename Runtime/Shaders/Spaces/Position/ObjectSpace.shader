@@ -63,7 +63,7 @@ Shader "Neodroid/Spaces/ObjectSpace" {
                      out float4 pos : SV_POSITION,
                      out float4 col : TEXCOORD0){
             pos =  UnityObjectToClipPos(vertexPos);
-            col = vertexPos; //+ float4(0.5, 0.5, 0.5, 0.0);
+            col = vertexPos + float4(0.5, 0.5, 0.5, 0.0);
             return;
          }
 
@@ -71,7 +71,6 @@ Shader "Neodroid/Spaces/ObjectSpace" {
 
          float4 frag(float4 pos : SV_POSITION,
                      float4 col : TEXCOORD0) : COLOR {
-            //return float4(col.xyz*_Scalar,col.w);
             return col;
          }
 

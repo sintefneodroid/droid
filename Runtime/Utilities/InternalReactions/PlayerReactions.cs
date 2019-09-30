@@ -65,7 +65,7 @@ namespace droid.Runtime.Utilities.InternalReactions {
           if (this.terminated && this._auto_reset) {
             var reset_reaction_parameters = new ReactionParameters(StepResetObserve.Reset_);
             this._Manager.SendToEnvironments(new[] {new Reaction(reset_reaction_parameters, "all")});
-            this.terminated = this._Manager.CollectStates().Any(e=>e.Terminated);
+            this.terminated = this._Manager.CollectStates().Any(e => e.Terminated);
           } else {
             var parameters = new ReactionParameters(StepResetObserve.Step_, true, episode_count : true);
             var reaction = new Reaction(parameters,
@@ -76,7 +76,7 @@ namespace droid.Runtime.Utilities.InternalReactions {
                                         "",
                                         reaction_source : "PlayerReactions");
             this._Manager.SendToEnvironments(new[] {reaction});
-            this.terminated = this._Manager.CollectStates().Any(e=>e.Terminated);
+            this.terminated = this._Manager.CollectStates().Any(e => e.Terminated);
           }
         }
       } else {
@@ -89,5 +89,3 @@ namespace droid.Runtime.Utilities.InternalReactions {
     }
   }
 }
-
-

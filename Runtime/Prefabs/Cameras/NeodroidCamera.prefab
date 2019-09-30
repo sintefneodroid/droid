@@ -1,5 +1,113 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &174572608
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 174572609}
+  - component: {fileID: 174572612}
+  - component: {fileID: 174572611}
+  - component: {fileID: 174572610}
+  m_Layer: 0
+  m_Name: ViewSpace
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &174572609
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174572608}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8956998344135301341}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &174572612
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174572608}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 8400000, guid: affb45a7139438dc0a18c7848e9c59d0, type: 2}
+  m_TargetDisplay: 1
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!114 &174572611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174572608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fce5be366194edf81ec206b319817d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Custom_Name: ViewSpace
+  _disables_children: 0
+  _unregister_at_disable: 0
+  _environment: {fileID: 0}
+  _camera: {fileID: 174572612}
+  linear_space: 0
+--- !u!114 &174572610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174572608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2773a5ee782b3475e9f2cac8306134fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _replace_render_type: 
+  _replacement_shader: {fileID: 4800000, guid: 501f6fba7e4e464caa1fc0a8491a2ddd, type: 3}
 --- !u!1 &555281772644808486
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,7 +295,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _unregister_at_disable: 0
   _environment: {fileID: 0}
@@ -284,24 +391,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 9067738700087649343}
-  - {fileID: 9067071972556815189}
-  - {fileID: 9067298761308153321}
-  - {fileID: 9067285070418787319}
-  - {fileID: 8953912316825990511}
-  - {fileID: 8953912316051221156}
-  - {fileID: 8953912316005417433}
-  - {fileID: 8953912315943398172}
-  - {fileID: 8953912315871983417}
-  - {fileID: 8953912315460739086}
-  - {fileID: 7297530299699051104}
-  - {fileID: 4093526257781573322}
-  - {fileID: 7782879719068724104}
-  - {fileID: 7497737142805118209}
-  - {fileID: 1528727058868257043}
-  - {fileID: 5858083470835474262}
-  - {fileID: 9067191241328514203}
   - {fileID: 9067738391014373859}
+  - {fileID: 5858083470835474262}
+  - {fileID: 1528727058868257043}
+  - {fileID: 7497737142805118209}
+  - {fileID: 7782879719068724104}
+  - {fileID: 4093526257781573322}
+  - {fileID: 7297530299699051104}
+  - {fileID: 8953912315460739086}
+  - {fileID: 8953912315871983417}
+  - {fileID: 8953912315943398172}
+  - {fileID: 8953912316005417433}
+  - {fileID: 8953912316051221156}
+  - {fileID: 8953912316825990511}
+  - {fileID: 9067285070418787319}
+  - {fileID: 9067298761308153321}
+  - {fileID: 9067071972556815189}
+  - {fileID: 9067738700087649343}
+  - {fileID: 9067191241328514203}
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -359,7 +466,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _unregister_at_disable: 0
   _environment: {fileID: 0}
@@ -409,7 +515,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -455,24 +561,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 9067738700087649343}
-  - {fileID: 9067071972556815189}
-  - {fileID: 9067298761308153321}
-  - {fileID: 9067285070418787319}
-  - {fileID: 8953912316825990511}
-  - {fileID: 8953912316051221156}
-  - {fileID: 8953912316005417433}
-  - {fileID: 8953912315943398172}
-  - {fileID: 8953912315871983417}
-  - {fileID: 8953912315460739086}
-  - {fileID: 7297530299699051104}
-  - {fileID: 4093526257781573322}
-  - {fileID: 7782879719068724104}
-  - {fileID: 7497737142805118209}
-  - {fileID: 1528727058868257043}
-  - {fileID: 5858083470835474262}
-  - {fileID: 9067191241328514203}
   - {fileID: 9067738391014373859}
+  - {fileID: 5858083470835474262}
+  - {fileID: 1528727058868257043}
+  - {fileID: 7497737142805118209}
+  - {fileID: 7782879719068724104}
+  - {fileID: 4093526257781573322}
+  - {fileID: 7297530299699051104}
+  - {fileID: 8953912315460739086}
+  - {fileID: 8953912315871983417}
+  - {fileID: 8953912315943398172}
+  - {fileID: 8953912316005417433}
+  - {fileID: 8953912316051221156}
+  - {fileID: 8953912316825990511}
+  - {fileID: 9067285070418787319}
+  - {fileID: 9067298761308153321}
+  - {fileID: 9067071972556815189}
+  - {fileID: 9067738700087649343}
+  - {fileID: 9067191241328514203}
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -520,7 +626,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _unregister_at_disable: 0
   _environment: {fileID: 0}
@@ -649,24 +754,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 9067738700087649343}
-  - {fileID: 9067071972556815189}
-  - {fileID: 9067298761308153321}
-  - {fileID: 9067285070418787319}
-  - {fileID: 8953912316825990511}
-  - {fileID: 8953912316051221156}
-  - {fileID: 8953912316005417433}
-  - {fileID: 8953912315943398172}
-  - {fileID: 8953912315871983417}
-  - {fileID: 8953912315460739086}
-  - {fileID: 7297530299699051104}
-  - {fileID: 4093526257781573322}
-  - {fileID: 7782879719068724104}
-  - {fileID: 7497737142805118209}
-  - {fileID: 1528727058868257043}
-  - {fileID: 5858083470835474262}
-  - {fileID: 9067191241328514203}
   - {fileID: 9067738391014373859}
+  - {fileID: 5858083470835474262}
+  - {fileID: 1528727058868257043}
+  - {fileID: 7497737142805118209}
+  - {fileID: 7782879719068724104}
+  - {fileID: 4093526257781573322}
+  - {fileID: 7297530299699051104}
+  - {fileID: 8953912315460739086}
+  - {fileID: 8953912315871983417}
+  - {fileID: 8953912315943398172}
+  - {fileID: 8953912316005417433}
+  - {fileID: 8953912316051221156}
+  - {fileID: 8953912316825990511}
+  - {fileID: 9067285070418787319}
+  - {fileID: 9067298761308153321}
+  - {fileID: 9067071972556815189}
+  - {fileID: 9067738700087649343}
+  - {fileID: 9067191241328514203}
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 0
@@ -724,7 +829,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _unregister_at_disable: 0
   _environment: {fileID: 0}
@@ -821,24 +925,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 9067738700087649343}
-  - {fileID: 9067071972556815189}
-  - {fileID: 9067298761308153321}
-  - {fileID: 9067285070418787319}
-  - {fileID: 8953912316825990511}
-  - {fileID: 8953912316051221156}
-  - {fileID: 8953912316005417433}
-  - {fileID: 8953912315943398172}
-  - {fileID: 8953912315871983417}
-  - {fileID: 8953912315460739086}
-  - {fileID: 7297530299699051104}
-  - {fileID: 4093526257781573322}
-  - {fileID: 7782879719068724104}
-  - {fileID: 7497737142805118209}
-  - {fileID: 1528727058868257043}
-  - {fileID: 5858083470835474262}
-  - {fileID: 9067191241328514203}
   - {fileID: 9067738391014373859}
+  - {fileID: 5858083470835474262}
+  - {fileID: 1528727058868257043}
+  - {fileID: 7497737142805118209}
+  - {fileID: 7782879719068724104}
+  - {fileID: 4093526257781573322}
+  - {fileID: 7297530299699051104}
+  - {fileID: 8953912315460739086}
+  - {fileID: 8953912315871983417}
+  - {fileID: 8953912315943398172}
+  - {fileID: 8953912316005417433}
+  - {fileID: 8953912316051221156}
+  - {fileID: 8953912316825990511}
+  - {fileID: 9067285070418787319}
+  - {fileID: 9067298761308153321}
+  - {fileID: 9067071972556815189}
+  - {fileID: 9067738700087649343}
+  - {fileID: 9067191241328514203}
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -896,7 +1000,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _unregister_at_disable: 0
   _environment: {fileID: 0}
@@ -1055,7 +1158,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _unregister_at_disable: 0
   _environment: {fileID: 0}
@@ -1235,7 +1337,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _unregister_at_disable: 0
   _environment: {fileID: 0}
@@ -1332,24 +1433,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 9067738700087649343}
-  - {fileID: 9067071972556815189}
-  - {fileID: 9067298761308153321}
-  - {fileID: 9067285070418787319}
-  - {fileID: 8953912316825990511}
-  - {fileID: 8953912316051221156}
-  - {fileID: 8953912316005417433}
-  - {fileID: 8953912315943398172}
-  - {fileID: 8953912315871983417}
-  - {fileID: 8953912315460739086}
-  - {fileID: 7297530299699051104}
-  - {fileID: 4093526257781573322}
-  - {fileID: 7782879719068724104}
-  - {fileID: 7497737142805118209}
-  - {fileID: 1528727058868257043}
-  - {fileID: 5858083470835474262}
-  - {fileID: 9067191241328514203}
   - {fileID: 9067738391014373859}
+  - {fileID: 5858083470835474262}
+  - {fileID: 1528727058868257043}
+  - {fileID: 7497737142805118209}
+  - {fileID: 7782879719068724104}
+  - {fileID: 4093526257781573322}
+  - {fileID: 7297530299699051104}
+  - {fileID: 8953912315460739086}
+  - {fileID: 8953912315871983417}
+  - {fileID: 8953912315943398172}
+  - {fileID: 8953912316005417433}
+  - {fileID: 8953912316051221156}
+  - {fileID: 8953912316825990511}
+  - {fileID: 9067285070418787319}
+  - {fileID: 9067298761308153321}
+  - {fileID: 9067071972556815189}
+  - {fileID: 9067738700087649343}
+  - {fileID: 9067191241328514203}
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -1407,7 +1508,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _unregister_at_disable: 0
   _environment: {fileID: 0}
@@ -1457,7 +1557,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1503,24 +1603,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 9067738700087649343}
-  - {fileID: 9067071972556815189}
-  - {fileID: 9067298761308153321}
-  - {fileID: 9067285070418787319}
-  - {fileID: 8953912316825990511}
-  - {fileID: 8953912316051221156}
-  - {fileID: 8953912316005417433}
-  - {fileID: 8953912315943398172}
-  - {fileID: 8953912315871983417}
-  - {fileID: 8953912315460739086}
-  - {fileID: 7297530299699051104}
-  - {fileID: 4093526257781573322}
-  - {fileID: 7782879719068724104}
-  - {fileID: 7497737142805118209}
-  - {fileID: 1528727058868257043}
-  - {fileID: 5858083470835474262}
-  - {fileID: 9067191241328514203}
   - {fileID: 9067738391014373859}
+  - {fileID: 5858083470835474262}
+  - {fileID: 1528727058868257043}
+  - {fileID: 7497737142805118209}
+  - {fileID: 7782879719068724104}
+  - {fileID: 4093526257781573322}
+  - {fileID: 7297530299699051104}
+  - {fileID: 8953912315460739086}
+  - {fileID: 8953912315871983417}
+  - {fileID: 8953912315943398172}
+  - {fileID: 8953912316005417433}
+  - {fileID: 8953912316051221156}
+  - {fileID: 8953912316825990511}
+  - {fileID: 9067285070418787319}
+  - {fileID: 9067298761308153321}
+  - {fileID: 9067071972556815189}
+  - {fileID: 9067738700087649343}
+  - {fileID: 9067191241328514203}
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -1568,7 +1668,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _unregister_at_disable: 0
   _environment: {fileID: 0}
@@ -1710,6 +1809,7 @@ Transform:
   - {fileID: 8953912315460739085}
   - {fileID: 8956624866575340015}
   - {fileID: 1528727058868257047}
+  - {fileID: 174572609}
   m_Father: {fileID: 8956537991453593153}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1803,24 +1903,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 9067738700087649343}
-  - {fileID: 9067071972556815189}
-  - {fileID: 9067298761308153321}
-  - {fileID: 9067285070418787319}
-  - {fileID: 8953912316825990511}
-  - {fileID: 8953912316051221156}
-  - {fileID: 8953912316005417433}
-  - {fileID: 8953912315943398172}
-  - {fileID: 8953912315871983417}
-  - {fileID: 8953912315460739086}
-  - {fileID: 7297530299699051104}
-  - {fileID: 4093526257781573322}
-  - {fileID: 7782879719068724104}
-  - {fileID: 7497737142805118209}
-  - {fileID: 1528727058868257043}
-  - {fileID: 5858083470835474262}
-  - {fileID: 9067191241328514203}
   - {fileID: 9067738391014373859}
+  - {fileID: 5858083470835474262}
+  - {fileID: 1528727058868257043}
+  - {fileID: 7497737142805118209}
+  - {fileID: 7782879719068724104}
+  - {fileID: 4093526257781573322}
+  - {fileID: 7297530299699051104}
+  - {fileID: 8953912315460739086}
+  - {fileID: 8953912315871983417}
+  - {fileID: 8953912315943398172}
+  - {fileID: 8953912316005417433}
+  - {fileID: 8953912316051221156}
+  - {fileID: 8953912316825990511}
+  - {fileID: 9067285070418787319}
+  - {fileID: 9067298761308153321}
+  - {fileID: 9067071972556815189}
+  - {fileID: 9067738700087649343}
+  - {fileID: 9067191241328514203}
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -1862,7 +1962,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _unregister_at_disable: 0
   _environment: {fileID: 0}
@@ -1959,24 +2058,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 9067738700087649343}
-  - {fileID: 9067071972556815189}
-  - {fileID: 9067298761308153321}
-  - {fileID: 9067285070418787319}
-  - {fileID: 8953912316825990511}
-  - {fileID: 8953912316051221156}
-  - {fileID: 8953912316005417433}
-  - {fileID: 8953912315943398172}
-  - {fileID: 8953912315871983417}
-  - {fileID: 8953912315460739086}
-  - {fileID: 7297530299699051104}
-  - {fileID: 4093526257781573322}
-  - {fileID: 7782879719068724104}
-  - {fileID: 7497737142805118209}
-  - {fileID: 1528727058868257043}
-  - {fileID: 5858083470835474262}
-  - {fileID: 9067191241328514203}
   - {fileID: 9067738391014373859}
+  - {fileID: 5858083470835474262}
+  - {fileID: 1528727058868257043}
+  - {fileID: 7497737142805118209}
+  - {fileID: 7782879719068724104}
+  - {fileID: 4093526257781573322}
+  - {fileID: 7297530299699051104}
+  - {fileID: 8953912315460739086}
+  - {fileID: 8953912315871983417}
+  - {fileID: 8953912315943398172}
+  - {fileID: 8953912316005417433}
+  - {fileID: 8953912316051221156}
+  - {fileID: 8953912316825990511}
+  - {fileID: 9067285070418787319}
+  - {fileID: 9067298761308153321}
+  - {fileID: 9067071972556815189}
+  - {fileID: 9067738700087649343}
+  - {fileID: 9067191241328514203}
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -2034,7 +2133,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _unregister_at_disable: 0
   _environment: {fileID: 0}
@@ -2084,7 +2182,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2130,24 +2228,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 9067738700087649343}
-  - {fileID: 9067071972556815189}
-  - {fileID: 9067298761308153321}
-  - {fileID: 9067285070418787319}
-  - {fileID: 8953912316825990511}
-  - {fileID: 8953912316051221156}
-  - {fileID: 8953912316005417433}
-  - {fileID: 8953912315943398172}
-  - {fileID: 8953912315871983417}
-  - {fileID: 8953912315460739086}
-  - {fileID: 7297530299699051104}
-  - {fileID: 4093526257781573322}
-  - {fileID: 7782879719068724104}
-  - {fileID: 7497737142805118209}
-  - {fileID: 1528727058868257043}
-  - {fileID: 5858083470835474262}
-  - {fileID: 9067191241328514203}
   - {fileID: 9067738391014373859}
+  - {fileID: 5858083470835474262}
+  - {fileID: 1528727058868257043}
+  - {fileID: 7497737142805118209}
+  - {fileID: 7782879719068724104}
+  - {fileID: 4093526257781573322}
+  - {fileID: 7297530299699051104}
+  - {fileID: 8953912315460739086}
+  - {fileID: 8953912315871983417}
+  - {fileID: 8953912315943398172}
+  - {fileID: 8953912316005417433}
+  - {fileID: 8953912316051221156}
+  - {fileID: 8953912316825990511}
+  - {fileID: 9067285070418787319}
+  - {fileID: 9067298761308153321}
+  - {fileID: 9067071972556815189}
+  - {fileID: 9067738700087649343}
+  - {fileID: 9067191241328514203}
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -2189,7 +2287,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _unregister_at_disable: 0
   _environment: {fileID: 0}
@@ -2239,7 +2336,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2299,24 +2396,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 9067738700087649343}
-  - {fileID: 9067071972556815189}
-  - {fileID: 9067298761308153321}
-  - {fileID: 9067285070418787319}
-  - {fileID: 8953912316825990511}
-  - {fileID: 8953912316051221156}
-  - {fileID: 8953912316005417433}
-  - {fileID: 8953912315943398172}
-  - {fileID: 8953912315871983417}
-  - {fileID: 8953912315460739086}
-  - {fileID: 7297530299699051104}
-  - {fileID: 4093526257781573322}
-  - {fileID: 7782879719068724104}
-  - {fileID: 7497737142805118209}
-  - {fileID: 1528727058868257043}
-  - {fileID: 5858083470835474262}
-  - {fileID: 9067191241328514203}
   - {fileID: 9067738391014373859}
+  - {fileID: 5858083470835474262}
+  - {fileID: 1528727058868257043}
+  - {fileID: 7497737142805118209}
+  - {fileID: 7782879719068724104}
+  - {fileID: 4093526257781573322}
+  - {fileID: 7297530299699051104}
+  - {fileID: 8953912315460739086}
+  - {fileID: 8953912315871983417}
+  - {fileID: 8953912315943398172}
+  - {fileID: 8953912316005417433}
+  - {fileID: 8953912316051221156}
+  - {fileID: 8953912316825990511}
+  - {fileID: 9067285070418787319}
+  - {fileID: 9067298761308153321}
+  - {fileID: 9067071972556815189}
+  - {fileID: 9067738700087649343}
+  - {fileID: 9067191241328514203}
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -2344,7 +2441,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _unregister_at_disable: 0
   _environment: {fileID: 0}
@@ -2441,24 +2537,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 9067738700087649343}
-  - {fileID: 9067071972556815189}
-  - {fileID: 9067298761308153321}
-  - {fileID: 9067285070418787319}
-  - {fileID: 8953912316825990511}
-  - {fileID: 8953912316051221156}
-  - {fileID: 8953912316005417433}
-  - {fileID: 8953912315943398172}
-  - {fileID: 8953912315871983417}
-  - {fileID: 8953912315460739086}
-  - {fileID: 7297530299699051104}
-  - {fileID: 4093526257781573322}
-  - {fileID: 7782879719068724104}
-  - {fileID: 7497737142805118209}
-  - {fileID: 1528727058868257043}
-  - {fileID: 5858083470835474262}
-  - {fileID: 9067191241328514203}
   - {fileID: 9067738391014373859}
+  - {fileID: 5858083470835474262}
+  - {fileID: 1528727058868257043}
+  - {fileID: 7497737142805118209}
+  - {fileID: 7782879719068724104}
+  - {fileID: 4093526257781573322}
+  - {fileID: 7297530299699051104}
+  - {fileID: 8953912315460739086}
+  - {fileID: 8953912315871983417}
+  - {fileID: 8953912315943398172}
+  - {fileID: 8953912316005417433}
+  - {fileID: 8953912316051221156}
+  - {fileID: 8953912316825990511}
+  - {fileID: 9067285070418787319}
+  - {fileID: 9067298761308153321}
+  - {fileID: 9067071972556815189}
+  - {fileID: 9067738700087649343}
+  - {fileID: 9067191241328514203}
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -2516,7 +2612,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _unregister_at_disable: 0
   _environment: {fileID: 0}
@@ -2613,24 +2708,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 9067738700087649343}
-  - {fileID: 9067071972556815189}
-  - {fileID: 9067298761308153321}
-  - {fileID: 9067285070418787319}
-  - {fileID: 8953912316825990511}
-  - {fileID: 8953912316051221156}
-  - {fileID: 8953912316005417433}
-  - {fileID: 8953912315943398172}
-  - {fileID: 8953912315871983417}
-  - {fileID: 8953912315460739086}
-  - {fileID: 7297530299699051104}
-  - {fileID: 4093526257781573322}
-  - {fileID: 7782879719068724104}
-  - {fileID: 7497737142805118209}
-  - {fileID: 1528727058868257043}
-  - {fileID: 5858083470835474262}
-  - {fileID: 9067191241328514203}
   - {fileID: 9067738391014373859}
+  - {fileID: 5858083470835474262}
+  - {fileID: 1528727058868257043}
+  - {fileID: 7497737142805118209}
+  - {fileID: 7782879719068724104}
+  - {fileID: 4093526257781573322}
+  - {fileID: 7297530299699051104}
+  - {fileID: 8953912315460739086}
+  - {fileID: 8953912315871983417}
+  - {fileID: 8953912315943398172}
+  - {fileID: 8953912316005417433}
+  - {fileID: 8953912316051221156}
+  - {fileID: 8953912316825990511}
+  - {fileID: 9067285070418787319}
+  - {fileID: 9067298761308153321}
+  - {fileID: 9067071972556815189}
+  - {fileID: 9067738700087649343}
+  - {fileID: 9067191241328514203}
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -2688,7 +2783,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _unregister_at_disable: 0
   _environment: {fileID: 0}
@@ -2796,24 +2890,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 9067738700087649343}
-  - {fileID: 9067071972556815189}
-  - {fileID: 9067298761308153321}
-  - {fileID: 9067285070418787319}
-  - {fileID: 8953912316825990511}
-  - {fileID: 8953912316051221156}
-  - {fileID: 8953912316005417433}
-  - {fileID: 8953912315943398172}
-  - {fileID: 8953912315871983417}
-  - {fileID: 8953912315460739086}
-  - {fileID: 7297530299699051104}
-  - {fileID: 4093526257781573322}
-  - {fileID: 7782879719068724104}
-  - {fileID: 7497737142805118209}
-  - {fileID: 1528727058868257043}
-  - {fileID: 5858083470835474262}
-  - {fileID: 9067191241328514203}
   - {fileID: 9067738391014373859}
+  - {fileID: 5858083470835474262}
+  - {fileID: 1528727058868257043}
+  - {fileID: 7497737142805118209}
+  - {fileID: 7782879719068724104}
+  - {fileID: 4093526257781573322}
+  - {fileID: 7297530299699051104}
+  - {fileID: 8953912315460739086}
+  - {fileID: 8953912315871983417}
+  - {fileID: 8953912315943398172}
+  - {fileID: 8953912316005417433}
+  - {fileID: 8953912316051221156}
+  - {fileID: 8953912316825990511}
+  - {fileID: 9067285070418787319}
+  - {fileID: 9067298761308153321}
+  - {fileID: 9067071972556815189}
+  - {fileID: 9067738700087649343}
+  - {fileID: 9067191241328514203}
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 0
@@ -2865,44 +2959,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 8936617034565571487}
-  - {fileID: 8938224487570478979}
-  - {fileID: 8938380326639234969}
-  - {fileID: 8938351030468096833}
-  - {fileID: 8953912316825990513}
-  - {fileID: 8953912316051221160}
-  - {fileID: 8953912316005417435}
-  - {fileID: 8953912315943398174}
-  - {fileID: 8953912315871983419}
-  - {fileID: 8953912315460739089}
-  - {fileID: 3184323363079609984}
-  - {fileID: 5914161206378883145}
-  - {fileID: 5051394489787786987}
-  - {fileID: 4074453690729210485}
-  - {fileID: 1528727058868257042}
-  - {fileID: 4343724218787345760}
-  - {fileID: 8936678778679500885}
   - {fileID: 8937616187162310363}
+  - {fileID: 4343724218787345760}
+  - {fileID: 1528727058868257042}
+  - {fileID: 4074453690729210485}
+  - {fileID: 5051394489787786987}
+  - {fileID: 5914161206378883145}
+  - {fileID: 3184323363079609984}
+  - {fileID: 8953912315460739089}
+  - {fileID: 8953912315871983419}
+  - {fileID: 8953912315943398174}
+  - {fileID: 8953912316005417435}
+  - {fileID: 8953912316051221160}
+  - {fileID: 8953912316825990513}
+  - {fileID: 8938351030468096833}
+  - {fileID: 8938380326639234969}
+  - {fileID: 8938224487570478979}
+  - {fileID: 8936617034565571487}
+  - {fileID: 8936678778679500885}
+  - {fileID: 174572612}
+  - {fileID: 0}
+  - {fileID: 0}
   _filter_mode: 0
   _size: {x: 128, y: 128}
   _textures:
-  - {fileID: 8400000, guid: 5d9eca522a1944267b89beea11ffc58c, type: 2}
-  - {fileID: 8400000, guid: 63f7bf9c3a80b4d169b394696cbbd9ab, type: 2}
-  - {fileID: 8400000, guid: b22ce111b5af44afe8b8f2f085799a5f, type: 2}
-  - {fileID: 8400000, guid: afc5604d79d0849129803e463fc07bca, type: 2}
-  - {fileID: 8400000, guid: 0a204b96270826992a5c81c531ea5dcf, type: 2}
-  - {fileID: 8400000, guid: a2ed3a19ee4cfe303b28c87fca44a286, type: 2}
-  - {fileID: 8400000, guid: 280476064a32df4848434f9b38c2d744, type: 2}
-  - {fileID: 8400000, guid: e52a2f56c9ffa187abf5021f3338228e, type: 2}
-  - {fileID: 8400000, guid: 142c9eceec4ee3060b3550e1b2a64cbf, type: 2}
-  - {fileID: 8400000, guid: 65d4c1ba790a0b02b827d1bca779fd3d, type: 2}
-  - {fileID: 8400000, guid: 29bfbe75d2faa72cdbf597b2763205ab, type: 2}
-  - {fileID: 8400000, guid: 43f8b57e2bee2bd6eb1df24b6c88ba79, type: 2}
-  - {fileID: 8400000, guid: 7355ca23a1b57891dafa75b44c2c5cc8, type: 2}
-  - {fileID: 8400000, guid: 7ce5712ecfb6c0929a81d56be34c2333, type: 2}
-  - {fileID: 8400000, guid: 741d32efcc5cb8896b9ea9bce98ba404, type: 2}
-  - {fileID: 8400000, guid: 7ce5d7425e7fa3af69f9bdd316de2208, type: 2}
   - {fileID: 8400000, guid: 4c7dcaf7e8ef74c11bd8ad06365ea216, type: 2}
+  - {fileID: 8400000, guid: 7ce5d7425e7fa3af69f9bdd316de2208, type: 2}
+  - {fileID: 8400000, guid: 741d32efcc5cb8896b9ea9bce98ba404, type: 2}
+  - {fileID: 8400000, guid: 7ce5712ecfb6c0929a81d56be34c2333, type: 2}
+  - {fileID: 8400000, guid: 7355ca23a1b57891dafa75b44c2c5cc8, type: 2}
+  - {fileID: 8400000, guid: 43f8b57e2bee2bd6eb1df24b6c88ba79, type: 2}
+  - {fileID: 8400000, guid: 29bfbe75d2faa72cdbf597b2763205ab, type: 2}
+  - {fileID: 8400000, guid: 65d4c1ba790a0b02b827d1bca779fd3d, type: 2}
+  - {fileID: 8400000, guid: 142c9eceec4ee3060b3550e1b2a64cbf, type: 2}
+  - {fileID: 8400000, guid: e52a2f56c9ffa187abf5021f3338228e, type: 2}
+  - {fileID: 8400000, guid: 280476064a32df4848434f9b38c2d744, type: 2}
+  - {fileID: 8400000, guid: a2ed3a19ee4cfe303b28c87fca44a286, type: 2}
+  - {fileID: 8400000, guid: 0a204b96270826992a5c81c531ea5dcf, type: 2}
+  - {fileID: 8400000, guid: afc5604d79d0849129803e463fc07bca, type: 2}
+  - {fileID: 8400000, guid: b22ce111b5af44afe8b8f2f085799a5f, type: 2}
+  - {fileID: 8400000, guid: 63f7bf9c3a80b4d169b394696cbbd9ab, type: 2}
+  - {fileID: 8400000, guid: 5d9eca522a1944267b89beea11ffc58c, type: 2}
+  - {fileID: 8400000, guid: affb45a7139438dc0a18c7848e9c59d0, type: 2}
+  - {fileID: 8400000, guid: 6fc1bf8a49b9c8d3da3821bd57705285, type: 2}
   _wrap_mode: 1
 --- !u!114 &8953912316822445883
 MonoBehaviour:
@@ -2932,8 +3031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _draw_label: 1
-  bounding_boxes:
-  - {fileID: 0}
+  bounding_boxes: []
   _cache_bounding_boxes: 1
   gui_style: {fileID: 11400000, guid: 45b8b02736ca4fc5b88b554edf8576ad, type: 2}
   _draw_coords: 1
@@ -2950,7 +3048,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: CameraRandom
-  _debugging: 0
   _disables_children: 0
   _unregister_at_disable: 0
   _environment: {fileID: 0}
@@ -3127,24 +3224,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 9067738700087649343}
-  - {fileID: 9067071972556815189}
-  - {fileID: 9067298761308153321}
-  - {fileID: 9067285070418787319}
-  - {fileID: 8953912316825990511}
-  - {fileID: 8953912316051221156}
-  - {fileID: 8953912316005417433}
-  - {fileID: 8953912315943398172}
-  - {fileID: 8953912315871983417}
-  - {fileID: 8953912315460739086}
-  - {fileID: 7297530299699051104}
-  - {fileID: 4093526257781573322}
-  - {fileID: 7782879719068724104}
-  - {fileID: 7497737142805118209}
-  - {fileID: 1528727058868257043}
-  - {fileID: 5858083470835474262}
-  - {fileID: 9067191241328514203}
   - {fileID: 9067738391014373859}
+  - {fileID: 5858083470835474262}
+  - {fileID: 1528727058868257043}
+  - {fileID: 7497737142805118209}
+  - {fileID: 7782879719068724104}
+  - {fileID: 4093526257781573322}
+  - {fileID: 7297530299699051104}
+  - {fileID: 8953912315460739086}
+  - {fileID: 8953912315871983417}
+  - {fileID: 8953912315943398172}
+  - {fileID: 8953912316005417433}
+  - {fileID: 8953912316051221156}
+  - {fileID: 8953912316825990511}
+  - {fileID: 9067285070418787319}
+  - {fileID: 9067298761308153321}
+  - {fileID: 9067071972556815189}
+  - {fileID: 9067738700087649343}
+  - {fileID: 9067191241328514203}
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -3218,7 +3315,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _unregister_at_disable: 0
   _environment: {fileID: 0}
@@ -3347,24 +3443,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 9067738700087649343}
-  - {fileID: 9067071972556815189}
-  - {fileID: 9067298761308153321}
-  - {fileID: 9067285070418787319}
-  - {fileID: 8953912316825990511}
-  - {fileID: 8953912316051221156}
-  - {fileID: 8953912316005417433}
-  - {fileID: 8953912315943398172}
-  - {fileID: 8953912315871983417}
-  - {fileID: 8953912315460739086}
-  - {fileID: 7297530299699051104}
-  - {fileID: 4093526257781573322}
-  - {fileID: 7782879719068724104}
-  - {fileID: 7497737142805118209}
-  - {fileID: 1528727058868257043}
-  - {fileID: 5858083470835474262}
-  - {fileID: 9067191241328514203}
   - {fileID: 9067738391014373859}
+  - {fileID: 5858083470835474262}
+  - {fileID: 1528727058868257043}
+  - {fileID: 7497737142805118209}
+  - {fileID: 7782879719068724104}
+  - {fileID: 4093526257781573322}
+  - {fileID: 7297530299699051104}
+  - {fileID: 8953912315460739086}
+  - {fileID: 8953912315871983417}
+  - {fileID: 8953912315943398172}
+  - {fileID: 8953912316005417433}
+  - {fileID: 8953912316051221156}
+  - {fileID: 8953912316825990511}
+  - {fileID: 9067285070418787319}
+  - {fileID: 9067298761308153321}
+  - {fileID: 9067071972556815189}
+  - {fileID: 9067738700087649343}
+  - {fileID: 9067191241328514203}
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -3395,6 +3491,7 @@ MonoBehaviour:
   _ignore_infrared_if_empty: 0
   _lights_to_ignore:
   - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &8798055995797976012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3408,7 +3505,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _unregister_at_disable: 0
   _environment: {fileID: 0}
@@ -3596,24 +3692,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 9067738700087649343}
-  - {fileID: 9067071972556815189}
-  - {fileID: 9067298761308153321}
-  - {fileID: 9067285070418787319}
-  - {fileID: 8953912316825990511}
-  - {fileID: 8953912316051221156}
-  - {fileID: 8953912316005417433}
-  - {fileID: 8953912315943398172}
-  - {fileID: 8953912315871983417}
-  - {fileID: 8953912315460739086}
-  - {fileID: 7297530299699051104}
-  - {fileID: 4093526257781573322}
-  - {fileID: 7782879719068724104}
-  - {fileID: 7497737142805118209}
-  - {fileID: 1528727058868257043}
-  - {fileID: 5858083470835474262}
-  - {fileID: 9067191241328514203}
   - {fileID: 9067738391014373859}
+  - {fileID: 5858083470835474262}
+  - {fileID: 1528727058868257043}
+  - {fileID: 7497737142805118209}
+  - {fileID: 7782879719068724104}
+  - {fileID: 4093526257781573322}
+  - {fileID: 7297530299699051104}
+  - {fileID: 8953912315460739086}
+  - {fileID: 8953912315871983417}
+  - {fileID: 8953912315943398172}
+  - {fileID: 8953912316005417433}
+  - {fileID: 8953912316051221156}
+  - {fileID: 8953912316825990511}
+  - {fileID: 9067285070418787319}
+  - {fileID: 9067298761308153321}
+  - {fileID: 9067071972556815189}
+  - {fileID: 9067738700087649343}
+  - {fileID: 9067191241328514203}
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -3655,7 +3751,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _unregister_at_disable: 0
   _environment: {fileID: 0}
@@ -3844,24 +3939,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 9067738700087649343}
-  - {fileID: 9067071972556815189}
-  - {fileID: 9067298761308153321}
-  - {fileID: 9067285070418787319}
-  - {fileID: 8953912316825990511}
-  - {fileID: 8953912316051221156}
-  - {fileID: 8953912316005417433}
-  - {fileID: 8953912315943398172}
-  - {fileID: 8953912315871983417}
-  - {fileID: 8953912315460739086}
-  - {fileID: 7297530299699051104}
-  - {fileID: 4093526257781573322}
-  - {fileID: 7782879719068724104}
-  - {fileID: 7497737142805118209}
-  - {fileID: 1528727058868257043}
-  - {fileID: 5858083470835474262}
-  - {fileID: 9067191241328514203}
   - {fileID: 9067738391014373859}
+  - {fileID: 5858083470835474262}
+  - {fileID: 1528727058868257043}
+  - {fileID: 7497737142805118209}
+  - {fileID: 7782879719068724104}
+  - {fileID: 4093526257781573322}
+  - {fileID: 7297530299699051104}
+  - {fileID: 8953912315460739086}
+  - {fileID: 8953912315871983417}
+  - {fileID: 8953912315943398172}
+  - {fileID: 8953912316005417433}
+  - {fileID: 8953912316051221156}
+  - {fileID: 8953912316825990511}
+  - {fileID: 9067285070418787319}
+  - {fileID: 9067298761308153321}
+  - {fileID: 9067071972556815189}
+  - {fileID: 9067738700087649343}
+  - {fileID: 9067191241328514203}
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -3905,7 +4000,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: RGB
-  _debugging: 1
   _disables_children: 0
   _unregister_at_disable: 0
   _environment: {fileID: 0}
@@ -4093,7 +4187,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _unregister_at_disable: 0
   _environment: {fileID: 0}
@@ -4189,24 +4282,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 9067738700087649343}
-  - {fileID: 9067071972556815189}
-  - {fileID: 9067298761308153321}
-  - {fileID: 9067285070418787319}
-  - {fileID: 8953912316825990511}
-  - {fileID: 8953912316051221156}
-  - {fileID: 8953912316005417433}
-  - {fileID: 8953912315943398172}
-  - {fileID: 8953912315871983417}
-  - {fileID: 8953912315460739086}
-  - {fileID: 7297530299699051104}
-  - {fileID: 4093526257781573322}
-  - {fileID: 7782879719068724104}
-  - {fileID: 7497737142805118209}
-  - {fileID: 1528727058868257043}
-  - {fileID: 5858083470835474262}
-  - {fileID: 9067191241328514203}
   - {fileID: 9067738391014373859}
+  - {fileID: 5858083470835474262}
+  - {fileID: 1528727058868257043}
+  - {fileID: 7497737142805118209}
+  - {fileID: 7782879719068724104}
+  - {fileID: 4093526257781573322}
+  - {fileID: 7297530299699051104}
+  - {fileID: 8953912315460739086}
+  - {fileID: 8953912315871983417}
+  - {fileID: 8953912315943398172}
+  - {fileID: 8953912316005417433}
+  - {fileID: 8953912316051221156}
+  - {fileID: 8953912316825990511}
+  - {fileID: 9067285070418787319}
+  - {fileID: 9067298761308153321}
+  - {fileID: 9067071972556815189}
+  - {fileID: 9067738700087649343}
+  - {fileID: 9067191241328514203}
   _run_only_in_edit_mode: 1
   _only_run_on_awake: 0
   _sync_culling_mask: 1
@@ -4248,7 +4341,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Custom_Name: 
-  _debugging: 0
   _disables_children: 0
   _unregister_at_disable: 0
   _environment: {fileID: 0}

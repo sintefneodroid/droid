@@ -293,7 +293,6 @@ namespace droid.Runtime.Managers {
     /// </summary>
     public ISimulatorConfiguration SimulatorConfiguration { get { return this._configuration; } }
 
-
     /// <summary>
     /// </summary>
     public bool ShouldResume { get { return this._executing_step; } }
@@ -553,15 +552,12 @@ namespace droid.Runtime.Managers {
       foreach (var environment in this._Environments.Values) {
         environment.PostStep();
       }
-
     }
 
     /// <summary>
     /// </summary>
     void ExecuteStep() {
-
-        this.SendToEnvironments(this.CurrentReactions);
-
+      this.SendToEnvironments(this.CurrentReactions);
 
       if (this.AwaitingReply) {
         var states = this.CollectStates();
@@ -596,7 +592,6 @@ namespace droid.Runtime.Managers {
     /// <param name="states"></param>
     protected void PostReact(EnvironmentState[] states) {
       lock (this._send_lock) {
-
         if (this._skip_frame_i >= this.Configuration.FrameSkips) {
           #if NEODROID_DEBUG
           if (this.Debugging) {
@@ -665,10 +660,10 @@ namespace droid.Runtime.Managers {
       }
     }
 
-
     #endregion
 
     #region PublicMethods
+
     /// <summary>
     /// </summary>
     /// <param name="reactions"></param>
@@ -740,11 +735,8 @@ namespace droid.Runtime.Managers {
         }
         #endif
         this._executing_step = false;
-
       }
     }
-
-
 
     public void SetTesting(bool arg0) { this.TestActuators = arg0; }
 
@@ -756,13 +748,14 @@ namespace droid.Runtime.Managers {
         var a = environment.Value.Identifier;
 
         reactions.Add(new Reaction(new ReactionParameters(StepResetObserve.Reset_, false, true),
-                     null,
-                     null,
-                     null,
-                     null,
-                     "",
-                     recipient_environment : a));
+                                   null,
+                                   null,
+                                   null,
+                                   null,
+                                   "",
+                                   recipient_environment : a));
       }
+
       this.SendToEnvironments(reactions.ToArray());
     }
 
