@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using droid.Runtime.Enums;
+using droid.Runtime.GameObjects.NeodroidCamera.Experimental;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Managers;
 using droid.Runtime.Utilities;
@@ -26,7 +27,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
     [Header("Specific", order = 102)]
     [SerializeField]
     UnityEngine.Camera _camera = null;
-
+    Byte[] _bytes = {};
     [SerializeField] Boolean linear_space;
 
     /// <summary>
@@ -39,6 +40,10 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
 
       if (this._camera == null) {
         this._camera = this.GetComponent<UnityEngine.Camera>();
+      }
+
+      if(_texture) {
+        UnityHelpers.Destroy(this._texture);
       }
 
       var target_texture = this._camera.targetTexture;
@@ -160,11 +165,18 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
       return rep;
     }
 
+
     /// <summary>
     ///
     /// </summary>
-    public Byte[] Bytes { get; private set; }
-
+    public Byte[] Bytes {
+      get { return this._bytes; }
+      private set {
+        if (value != null) {
+          this._bytes = value;
+        }
+      }
+    }
     /// <summary>
     ///
     /// </summary>

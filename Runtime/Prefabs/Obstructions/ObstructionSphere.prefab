@@ -58,10 +58,11 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b9dcb64b3e517a15e8f0e9570158b7bf, type: 2}
+  - {fileID: 2100000, guid: e7bc9ae29014cf4c9aa3e8a67cbb43da, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -69,6 +70,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -95,37 +97,59 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Custom_Name: 
   _disables_children: 0
-  _editor_reregistering: 1
   _unregister_at_disable: 0
   _environment: {fileID: 0}
-  _relative_to_existing_value: 0
-  _sampleRandom: 0
-  on_tick: 0
+  random_sampling_mode: 3
   _tiling_space:
-    _Min_Values: {x: 0, y: 0}
-    _Max_Values: {x: 1, y: 1}
-    _decimal_granularity: 1
-    normalised: 0
+    _space:
+      _min_: {x: 0.2, y: 0.2}
+      _max_: {x: 0.8, y: 0.8}
+      _decimal_granularity: 1
+      normalised: 0
+    _distribution_sampler:
+      _Direction: 0
+      _factor: 0
+      _de: 0
   _offset_space:
-    _Min_Values: {x: 0, y: 0}
-    _Max_Values: {x: 1, y: 1}
-    _decimal_granularity: 1
-    normalised: 0
+    _space:
+      _min_: {x: 0.2, y: 0.2}
+      _max_: {x: 0.8, y: 0.8}
+      _decimal_granularity: 1
+      normalised: 0
+    _distribution_sampler:
+      _Direction: 0
+      _factor: 0
+      _de: 0
   _color_space:
-    _Min_Values: {x: 0, y: 0, z: 0, w: 0}
-    _Max_Values: {x: 1, y: 1, z: 1, w: 1}
-    _decimal_granularity: 1
-    normalised: 0
+    _space:
+      _min_: {x: 0.2, y: 0.2, z: 0.2, w: 0.2}
+      _max_: {x: 0.8, y: 0.8, z: 0.8, w: 0.8}
+      _decimal_granularity: 1
+      normalised: 0
+    _distribution_sampler:
+      _Direction: 0
+      _factor: 0
+      _de: 0
   _smoothness_space:
-    _Decimal_Granularity: 1
-    _Min_Value: 0
-    _Max_Value: 1
-    normalised: 0
+    _space:
+      _min_: 0.2
+      _max_: 0.8
+      _decimal_granularity: 1
+      normalised: 0
+    _distribution_sampler:
+      _Direction: 0
+      _factor: 0
+      _de: 0
   _reflection_space:
-    _Decimal_Granularity: 1
-    _Min_Value: 0
-    _Max_Value: 1
-    normalised: 0
+    _space:
+      _min_: 0.2
+      _max_: 0.8
+      _decimal_granularity: 1
+      normalised: 0
+    _distribution_sampler:
+      _Direction: 0
+      _factor: 0
+      _de: 0
   _use_shared: 0
 --- !u!114 &2302102554894629342
 MonoBehaviour:
@@ -141,17 +165,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Custom_Name: 
   _disables_children: 0
-  _editor_reregistering: 1
   _unregister_at_disable: 0
   _environment: {fileID: 0}
-  _relative_to_existing_value: 0
-  _sampleRandom: 0
-  on_tick: 0
+  random_sampling_mode: 3
   _space:
-    _Min_Values: {x: 0, y: 0, z: 0}
-    _Max_Values: {x: 1, y: 1, z: 1}
-    _decimal_granularity: 1
-    normalised: 0
+    _space:
+      _min_: {x: 0, y: 0, z: 0}
+      _max_: {x: 1, y: 1, z: 1}
+      _decimal_granularity: 0
+      normalised: 0
+    _distribution_sampler:
+      _Direction: 0
+      _factor: 0
+      _de: 0
 --- !u!114 &2302102554894629332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,12 +192,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Custom_Name: 
   _disables_children: 0
-  _editor_reregistering: 1
   _unregister_at_disable: 0
   _environment: {fileID: 0}
-  _relative_to_existing_value: 0
-  _sampleRandom: 0
-  on_tick: 0
+  random_sampling_mode: 3
   _textures:
   - {fileID: 2800000, guid: 5f599c75d7d2d3f2397e633a0a2cad10, type: 3}
   - {fileID: 2800000, guid: 35997aa1fb9073cd5956b28c2f1733f1, type: 3}
@@ -614,7 +637,6 @@ MonoBehaviour:
   _texture: {fileID: 0}
   _renderer: {fileID: 2302102554894629329}
   use_shared: 0
-  _mat: {fileID: 0}
   _last_sample: 0
   load_path: Textures
 --- !u!135 &7992057885548089325

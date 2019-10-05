@@ -14,6 +14,7 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
     [SerializeField] RawImage raw_image;
     [SerializeField] Texture2D texture2D;
     [SerializeField] WebCamTexture webcam_texture;
+    Byte[] _bytes = {};
 
     /// <summary>
     ///
@@ -73,7 +74,14 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
     /// <summary>
     ///
     /// </summary>
-    public Byte[] Bytes { get; private set; }
+    public Byte[] Bytes {
+      get { return this._bytes; }
+      private set {
+        if (value != null) {
+          this._bytes = value;
+        }
+      }
+    }
 
     /// <summary>
     ///
