@@ -29,7 +29,9 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     public Vector3 ObservationValue {
       get { return this._position; }
       set {
-        this._position = this._scale_space.NormalisedBool ? this._scale_space.ClipNormaliseRound(value) : value;
+        this._position = this._scale_space.NormalisedBool
+                             ? this._scale_space.ClipNormaliseRound(value)
+                             : value;
       }
     }
 

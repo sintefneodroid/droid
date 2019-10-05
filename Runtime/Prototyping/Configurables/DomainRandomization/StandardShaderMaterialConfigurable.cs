@@ -276,11 +276,13 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
       }
 
       foreach (var mat in materials) {
-        mat.color = this._color_space.Sample();
-        mat.SetTextureScale(_main_tex, this._tiling_space.Sample());
-        mat.SetTextureOffset(_main_tex, this._offset_space.Sample());
-        mat.SetFloat(_glossiness, this._smoothness_space.Sample());
-        mat.SetFloat(_glossy_reflections, this._reflection_space.Sample());
+        if (mat) {
+          mat.color = this._color_space.Sample();
+          mat.SetTextureScale(_main_tex, this._tiling_space.Sample());
+          mat.SetTextureOffset(_main_tex, this._offset_space.Sample());
+          mat.SetFloat(_glossiness, this._smoothness_space.Sample());
+          mat.SetFloat(_glossy_reflections, this._reflection_space.Sample());
+        }
       }
     }
 

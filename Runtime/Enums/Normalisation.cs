@@ -7,10 +7,12 @@ namespace droid.Runtime.Enums {
     /// No normalisation
     /// </summary>
     None_,
+
     /// <summary>
     /// Between 0 and 1
     /// </summary>
     Zero_one_,
+
     /// <summary>
     /// Between -1 and 1
     /// </summary>

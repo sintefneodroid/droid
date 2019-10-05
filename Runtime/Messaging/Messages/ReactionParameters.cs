@@ -52,7 +52,6 @@
     /// </summary>
     public ExecutionPhase Phase { get; set; } = ExecutionPhase.Middle_;
 
-
     /// <summary>
     /// </summary>
     public bool Terminable { get; }

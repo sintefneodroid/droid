@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using droid.Runtime.Enums;
+using droid.Runtime.GameObjects.NeodroidCamera.Experimental;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Managers;
 using droid.Runtime.Utilities;
@@ -26,10 +27,8 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
     [Header("Specific", order = 102)]
     [SerializeField]
     UnityEngine.Camera _camera = null;
-
+    Byte[] _bytes = {};
     [SerializeField] Boolean linear_space;
-
-
 
     /// <summary>
     ///
@@ -43,27 +42,30 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
         this._camera = this.GetComponent<UnityEngine.Camera>();
       }
 
+      if(_texture) {
+        UnityHelpers.Destroy(this._texture);
+      }
+
       var target_texture = this._camera.targetTexture;
       if (!target_texture) {
         #if NEODROID_DEBUG
         Debug.LogWarning($"RenderTexture target not available on {this.Identifier} not available, allocating a default!");
         #endif
         this._rt = new RenderTexture(NeodroidConstants._Default_Width,
-                               NeodroidConstants._Default_Height,
-                               0,
-                               RenderTextureFormat.ARGBFloat) {
-                                                                  filterMode = FilterMode.Point,
-                                                                  name = $"rt_{this.Identifier}",
-                                                                  enableRandomWrite = true
-                                                              };
+                                     NeodroidConstants._Default_Height,
+                                     0,
+                                     RenderTextureFormat.ARGBFloat) {
+                                                                        filterMode = FilterMode.Point,
+                                                                        name = $"rt_{this.Identifier}",
+                                                                        enableRandomWrite = true
+                                                                    };
         this._rt.Create();
         this._camera.targetTexture = this._rt;
         this._texture = new Texture2D(NeodroidConstants._Default_Width,
                                       NeodroidConstants._Default_Height,
                                       NeodroidConstants._Default_TextureFormat,
                                       false,
-                                      this.linear_space
-                                     );
+                                      this.linear_space);
       } else {
         this._texture = new Texture2D(target_texture.width,
                                       target_texture.height,
@@ -135,9 +137,7 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
     /// <summary>
     ///
     /// </summary>
-    public override IEnumerable<float> FloatEnumerable {
-      get { return new float[] {}; }
-    }
+    public override IEnumerable<float> FloatEnumerable { get { return new float[] { }; } }
 
     /// <summary>
     ///
@@ -165,11 +165,18 @@ namespace droid.Runtime.Prototyping.Sensors.Camera {
       return rep;
     }
 
+
     /// <summary>
     ///
     /// </summary>
-    public Byte[] Bytes { get; private set; }
-
+    public Byte[] Bytes {
+      get { return this._bytes; }
+      private set {
+        if (value != null) {
+          this._bytes = value;
+        }
+      }
+    }
     /// <summary>
     ///
     /// </summary>

@@ -54,9 +54,13 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
         return;
       }
 
-      if (this.active) {
+      /*if (this.active) {
         this.active.SetActive(false);
+      }*/
+      foreach (var c in this.children) {
+        c.SetActive(false);
       }
+
 
       if (this.children != null && (int)configuration.ConfigurableValue < this.len) {
         this.CurrentCategoryValue = (int)configuration.ConfigurableValue;

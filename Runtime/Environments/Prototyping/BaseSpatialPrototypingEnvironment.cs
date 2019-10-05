@@ -12,7 +12,6 @@ using droid.Runtime.Utilities;
 using droid.Runtime.Utilities.Extensions;
 using UnityEngine;
 
-
 namespace droid.Runtime.Environments.Prototyping {
   /// <inheritdoc cref="PrototypingGameObject" />
   /// <summary>
@@ -127,8 +126,6 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     float[] _reset_animation_times;
 
-
-
     #endregion
 
     #region Events
@@ -176,7 +173,7 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     public override void Tick() {
       if (this._Resetting) {
-        _Resetting = false;
+        this._Resetting = false;
         this.EnvironmentReset();
 
         this.UpdateConfigurableValues();
@@ -437,12 +434,11 @@ namespace droid.Runtime.Environments.Prototyping {
       this._objective_function?.EnvironmentReset();
 
       SetEnvironmentTransforms(ref this._tracked_game_objects,
-                            ref this._reset_positions,
-                            ref this._reset_rotations,ref this._reset_scales);
+                               ref this._reset_positions,
+                               ref this._reset_rotations,
+                               ref this._reset_scales);
 
-      SetBodies(ref this._Tracked_Rigid_Bodies,
-                             ref this._reset_velocities,
-                             ref this._reset_angulars);
+      this.SetBodies(ref this._Tracked_Rigid_Bodies, ref this._reset_velocities, ref this._reset_angulars);
 
       this.ResetRegisteredObjects();
       this.Reconfigure();
@@ -493,7 +489,10 @@ namespace droid.Runtime.Environments.Prototyping {
           scales[i] = this._reset_scales[i]; //TODO: this._received_poses[i].scale;
         }
 
-        SetEnvironmentTransforms(ref this._tracked_game_objects, ref positions, ref rotations, ref scales);
+        SetEnvironmentTransforms(ref this._tracked_game_objects,
+                                 ref positions,
+                                 ref rotations,
+                                 ref scales);
       }
 
       if (this._received_bodies != null) {
@@ -504,7 +503,7 @@ namespace droid.Runtime.Environments.Prototyping {
           angulars[i] = this._received_bodies[i].AngularVelocity;
         }
 
-        SetBodies(ref this._Tracked_Rigid_Bodies, ref velocities, ref angulars);
+        this.SetBodies(ref this._Tracked_Rigid_Bodies, ref velocities, ref angulars);
       }
 
       if (this._last_configuration != null) {
@@ -577,9 +576,9 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <param name="positions"></param>
     /// <param name="rotations"></param>
     static void SetEnvironmentTransforms(ref GameObject[] child_game_objects,
-                                      ref Vector3[] positions,
-                                      ref Quaternion[] rotations,
-                                      ref Vector3[] scales) {
+                                         ref Vector3[] positions,
+                                         ref Quaternion[] rotations,
+                                         ref Vector3[] scales) {
       for (var i = 0; i < child_game_objects.Length; i++) {
         if (child_game_objects[i] != null && i < positions.Length && i < rotations.Length) {
           var rigid_body = child_game_objects[i].GetComponent<Rigidbody>();
@@ -616,14 +615,12 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <param name="velocities"></param>
     /// <param name="angulars"></param>
     /// <param name="debugging"></param>
-    void SetBodies(ref Rigidbody[] bodies,
-                                       ref Vector3[] velocities,
-                                       ref Vector3[] angulars) {
+    void SetBodies(ref Rigidbody[] bodies, ref Vector3[] velocities, ref Vector3[] angulars) {
       if (bodies != null && bodies.Length > 0) {
         for (var i = 0; i < bodies.Length; i++) {
           if (i < bodies.Length && bodies[i] != null && i < velocities.Length && i < angulars.Length) {
             #if NEODROID_DEBUG
-            if (Debugging) {
+            if (this.Debugging) {
               Debug.Log($"Setting {bodies[i].name}, velocity to {velocities[i]} and angular velocity to {angulars[i]}");
             }
 

@@ -147,7 +147,10 @@ namespace droid.Runtime.Structs.Space {
     /// <summary>
     ///
     /// </summary>
-    public Boolean NormalisedBool { get { return this.normalised == Normalisation.Zero_one_; } set { this.normalised = value?Normalisation.Zero_one_:Normalisation.None_; } }
+    public Boolean NormalisedBool {
+      get { return this.normalised == Normalisation.Zero_one_; }
+      set { this.normalised = value ? Normalisation.Zero_one_ : Normalisation.None_; }
+    }
 
     /// <summary>
     ///

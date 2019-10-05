@@ -1,7 +1,7 @@
-Shader "Neodroid/Spaces/WorldSpace" {
+Shader "Neodroid/Spaces/ViewSpace" {
 
 	Properties {
-        _from_center_span ("_from_center_span", Vector) = (10,10,10)
+
 	}
 
     SubShader {
@@ -13,26 +13,24 @@ Shader "Neodroid/Spaces/WorldSpace" {
          #pragma vertex vert
          #pragma fragment frag
 
-         float3 _from_center_span;
-
          struct vertexInput {
             float4 vertex : POSITION;
          };
          struct vertexOutput {
             float4 pos : SV_POSITION;
-            float4 position_in_world_space : TEXCOORD0;
+            float4 position_in_view_space : TEXCOORD0;
          };
 
          vertexOutput vert(vertexInput input) {
             vertexOutput output;
 
-            output.pos = UnityObjectToClipPos(input.vertex);
-            output.position_in_world_space = mul(unity_ObjectToWorld, input.vertex); // transformation of input.vertex from object coordinates to world coordinates;
+            output.pos = UnityObjectToClipPos(input.vertex); // Transformation all the way to clip space
+            output.position_in_view_space = mul(UNITY_MATRIX_V,mul(unity_ObjectToWorld, input.vertex)); // transformation of input.vertex from object to world to view coordinates;
             return output;
          }
 
          float4 frag(vertexOutput input) : COLOR          {
-                return float4(input.position_in_world_space.xyz, 1.0);
+                return float4((input.position_in_view_space.xyz* .5 + 1.0) , 1.0);
          }
 
          ENDCG

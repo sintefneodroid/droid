@@ -110,7 +110,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
         }
 
         if (this.ParentEnvironment) {
-          switch (_axis_of_configuration) {
+          switch (this._axis_of_configuration) {
             case Axis.X_:
               this.SingleSpace =
                   Space1.FromCenterExtents(this.ParentEnvironment.PlayableArea.Bounds.extents.x,

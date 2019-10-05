@@ -50,8 +50,8 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
 
     [SerializeField] GameObject[] _prefabs = null;
     List<GameObject> _spawned = new List<GameObject>();
-    bool _fsafas = true;
-    [SerializeField] int num_obstructions = 10;
+    bool _once_pre_setup = true;
+    [SerializeField] int num_occlusions = 10;
 
     /// <inheritdoc />
     /// <summary>
@@ -64,9 +64,9 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
 
       var s = new SampleSpace1 {_space = Space1.ZeroOne};
 
-      if (Application.isPlaying && this._fsafas) {
+      if (Application.isPlaying && this._once_pre_setup) {
         if (this._prefabs != null && this._prefabs.Length > 0 && this._camera) {
-          for (var i = 0; i < this.num_obstructions; i++) {
+          for (var i = 0; i < this.num_occlusions; i++) {
             var prefab = this._prefabs[(int)(s.Sample() * this._prefabs.Length)];
 
             var xy = this.xy_space2.Sample();
@@ -92,7 +92,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
           }
         }
 
-        this._fsafas = false;
+        this._once_pre_setup = false;
       }
     }
 

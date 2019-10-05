@@ -53,8 +53,10 @@ namespace droid.Runtime.Utilities {
     /// <returns></returns>
     public static T RecursiveFirstSelfSiblingParentGetComponent<T>(Transform child) where T : Component {
       var a = child.GetComponent<T>();
-      if (a != null)
+      if (a != null) {
         return a;
+      }
+
       if (child.parent) {
         foreach (Transform go in child.parent) {
           a = go.GetComponent<T>();

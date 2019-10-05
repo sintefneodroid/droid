@@ -677,7 +677,6 @@ namespace droid.Runtime.Managers.Experimental {
       }
     }
 
-
     #endregion
 
     #region PublicMethods

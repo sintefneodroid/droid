@@ -23,8 +23,7 @@ namespace droid.Runtime.Prototyping.Unobservables {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void Clear() {
-    }
+    protected override void Clear() { }
 
     /// <summary>
     /// </summary>

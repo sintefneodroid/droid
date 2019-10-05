@@ -1,11 +1,30 @@
 using droid.Runtime.Structs.Space;
 
 namespace droid.Runtime.Interfaces {
+  /// <summary>
+  ///
+  /// </summary>
   public interface IActuator : IRegisterable {
+    /// <summary>
+    ///
+    /// </summary>
     Space1 MotionSpace { get; set; }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
     float Sample();
-    float GetEnergySpend();
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="motion"></param>
     void ApplyMotion(IMotion motion);
+
+    /// <summary>
+    ///
+    /// </summary>
     void EnvironmentReset();
   }
 }

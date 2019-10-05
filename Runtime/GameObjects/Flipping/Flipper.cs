@@ -25,9 +25,9 @@ namespace droid.Runtime.GameObjects.Flipping {
       this._shader.SetInt("width", my_texture.width);
       this._shader.SetInt("height", my_texture.height);
       this._shader.Dispatch(kernel_handle,
-                       my_texture.width / 8,
-                       my_texture.height / 8,
-                       1);
+                            my_texture.width / 8,
+                            my_texture.height / 8,
+                            1);
 
       RenderTexture.active = tex;
       result.ReadPixels(new Rect(0,
