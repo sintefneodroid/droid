@@ -14,7 +14,7 @@ namespace droid.Runtime.Prototyping.Displayers.GridWorld {
   public class GridWorldVectorFieldDisplayer : Displayer {
     /// <summary>
     /// </summary>
-    protected override void Setup() { }
+    public override void Setup() { }
 
     /// <summary>
     ///

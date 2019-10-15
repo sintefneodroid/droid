@@ -21,13 +21,13 @@ namespace droid.Runtime.Prototyping.Sensors.BoundingBox {
     public override string PrototypingTypeName { get { return "BoundingBox"; } }
 
     GameObjects.BoundingBoxes.BoundingBox _bounding_box = null;
-    [SerializeField] UnityEngine.Camera _camera = null;
+    [SerializeField] Camera _camera = null;
     [SerializeField] Rect _out_rect = new Rect();
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
+    public override void PreSetup() {
       this._bounding_box = this.GetComponent<GameObjects.BoundingBoxes.BoundingBox>();
     }
 

@@ -22,16 +22,6 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// </summary>
     public IHasRegister<Actuator> Parent { get { return this._parent; } set { this._parent = value; } }
 
-    /// <summary>
-    /// </summary>
-    public float EnergySpendSinceReset {
-      get { return this._energy_spend_since_reset; }
-      set { this._energy_spend_since_reset = value; }
-    }
-
-    /// <summary>
-    /// </summary>
-    public float EnergyCost { get { return this._energy_cost; } set { this._energy_cost = value; } }
 
     /// <summary>
     /// </summary>
@@ -57,17 +47,7 @@ namespace droid.Runtime.Prototyping.Actuators {
       }
 
       this.InnerApplyMotion(motion);
-      this.EnergySpendSinceReset += Mathf.Abs(this.EnergyCost * motion.Strength);
     }
-
-    /// <summary>
-    /// </summary>
-    /// <returns></returns>
-    public virtual float GetEnergySpend() { return this._energy_spend_since_reset; }
-
-    /// <summary>
-    /// </summary>
-    public void EnvironmentReset() { this._energy_spend_since_reset = 0; }
 
     public Space1 MotionSpace {
       get { return this._motion_value_space._space; }
@@ -124,9 +104,7 @@ namespace droid.Runtime.Prototyping.Actuators {
     [SerializeField]
     SampleSpace1 _motion_value_space = new SampleSpace1 {_space = Space1.DiscreteMinusOneOne};
 
-    [SerializeField] float _energy_spend_since_reset;
 
-    [SerializeField] float _energy_cost;
     bool _overriden = false;
 
     #endregion

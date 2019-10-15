@@ -13,7 +13,7 @@ namespace droid.Runtime.Interfaces {
     /// <summary>
     ///
     /// </summary>
-    int step_i { get; }
+    int StepI { get; }
 
     /// <summary>
     ///

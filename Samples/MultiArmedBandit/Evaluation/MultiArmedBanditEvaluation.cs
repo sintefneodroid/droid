@@ -21,7 +21,7 @@ namespace droid.Samples.MultiArmedBandit.Evaluation {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PostSetup() {
+    public override void RemotePostSetup() {
       if (this._arms == null) {
         this._arms = FindObjectOfType<MultiArmedBanditActuator>();
       }

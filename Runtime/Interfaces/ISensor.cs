@@ -13,8 +13,6 @@ namespace droid.Runtime.Interfaces {
     /// </summary>
     void UpdateObservation();
 
-    /// <summary>
-    /// </summary>
-    void EnvironmentReset();
+
   }
 }

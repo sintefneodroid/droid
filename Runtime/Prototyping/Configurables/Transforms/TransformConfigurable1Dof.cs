@@ -102,7 +102,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
 
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
+    public override void PreSetup() {
       if (this.normalised_overwrite_space_if_env_bounds) {
         var dec_gran = 4;
         if (this._single_value_space.Space != null && this.ParentEnvironment.PlayableArea) {
@@ -113,17 +113,17 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
           switch (this._axis_of_configuration) {
             case Axis.X_:
               this.SingleSpace =
-                  Space1.FromCenterExtents(this.ParentEnvironment.PlayableArea.Bounds.extents.x,
+                  Space1.FromCenterExtent(this.ParentEnvironment.PlayableArea.Bounds.extents.x,
                                            decimal_granularity : dec_gran);
               break;
             case Axis.Y_:
               this.SingleSpace =
-                  Space1.FromCenterExtents(this.ParentEnvironment.PlayableArea.Bounds.extents.y,
+                  Space1.FromCenterExtent(this.ParentEnvironment.PlayableArea.Bounds.extents.y,
                                            decimal_granularity : dec_gran);
               break;
             case Axis.Z_:
               this.SingleSpace =
-                  Space1.FromCenterExtents(this.ParentEnvironment.PlayableArea.Bounds.extents.z,
+                  Space1.FromCenterExtent(this.ParentEnvironment.PlayableArea.Bounds.extents.z,
                                            decimal_granularity : dec_gran);
               break;
           }

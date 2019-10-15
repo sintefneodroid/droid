@@ -48,7 +48,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
+    public override void PreSetup() {
       this._x = this.Identifier + "X_";
       this._y = this.Identifier + "Y_";
       this._z = this.Identifier + "Z_";
@@ -91,6 +91,9 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       this.ParentEnvironment.UnRegister(this, this._w);
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override ISamplable ConfigurableValueSpace { get { return this._quad_space; } }
 
     /// <inheritdoc />

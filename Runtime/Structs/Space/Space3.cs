@@ -46,13 +46,32 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     public Vector3 Span { get { return this._max_ - this._min_; } }
 
-    public Vector3 Clip(Vector3 v, Vector3 min, Vector3 max) {
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <param name="min"></param>
+    /// <param name="max"></param>
+    /// <returns></returns>
+    public static Vector3 Clip(Vector3 v, Vector3 min, Vector3 max) {
       return new Vector3(Mathf.Clamp(v.x, min.x, max.x),
                          Mathf.Clamp(v.y, min.y, max.y),
                          Mathf.Clamp(v.z, min.z, max.z));
     }
 
-    public Vector3 Clip(Vector3 v) { return this.Clip(v, this._min_, this._max_); }
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    public Vector3 Clip(Vector3 v) { return Clip(v, this._min_, this._max_); }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    public Vector3 ClipRound(Vector3 v) { return this.Clip(this.Round(v)); }
 
     public dynamic ClipRoundDenormaliseClip(dynamic configuration_configurable_value) {
       return this.Clip(this.Round(this.Denormalise01(Clip(configuration_configurable_value,
@@ -111,6 +130,17 @@ namespace droid.Runtime.Structs.Space {
     /// <param name="v"></param>
     /// <returns></returns>
     public float Round(float v) { return (float)Math.Round(v, this.DecimalGranularity); }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    public Vector3 Round(Vector3 v) { return new Vector3(Xspace.Round(v.x),
+                                                         Yspace.Round(v.y),
+                                                         Zspace.Round(v.z)
+                                                        ); }
+
 
     /// <summary>
     ///

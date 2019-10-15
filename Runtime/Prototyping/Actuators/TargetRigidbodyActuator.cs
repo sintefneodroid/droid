@@ -15,10 +15,10 @@ namespace droid.Runtime.Prototyping.Actuators {
                     + "TargetRigidbody"
                     + ActuatorComponentMenuPath._Postfix)]
   [RequireComponent(typeof(Rigidbody))]
-  public class TargetRigidbodyActuator : Actuator,
-                                         IUnobservable {
+  public class TargetRigidbodyActuator : Actuator
+                                          {
     string _movement;
-    BaseSpatialPrototypingEnvironment _parent_environment;
+    AbstractSpatialPrototypingEnvironment _parent_environment;
 
     /// <summary>
     /// </summary>
@@ -45,22 +45,13 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <summary>
     ///
     /// </summary>
-    public void PreStep() { }
+    public override void Tick() { this.OnStep(); }
 
-    /// <summary>
-    ///
-    /// </summary>
-    public void Step() { this.OnStep(); }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public void PostStep() { }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void Setup() {
+    public override void Setup() {
       this._Rigidbody = this.GetComponent<Rigidbody>();
 
       this._movement = this.Identifier + "Movement_";
@@ -81,15 +72,6 @@ namespace droid.Runtime.Prototyping.Actuators {
           NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
                                                           (Actuator)this,
                                                           this._turn);
-
-      this._parent_environment =
-          NeodroidRegistrationUtilities.RegisterComponent(this._parent_environment, this);
-
-      if (this._parent_environment != null) {
-        this._parent_environment.PreStepEvent += this.PreStep;
-        this._parent_environment.StepEvent += this.Step;
-        this._parent_environment.PostStepEvent += this.PostStep;
-      }
     }
 
     /// <inheritdoc />

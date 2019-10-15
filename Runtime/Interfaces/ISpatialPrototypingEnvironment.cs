@@ -71,7 +71,7 @@ namespace droid.Runtime.Interfaces {
     /// <summary>
     ///
     /// </summary>
-    IObjectiveFunction ObjectiveFunction { get; }
+    IEpisodicObjectiveFunction ObjectiveFunction { get; }
 
     /// <summary>
     ///

@@ -23,7 +23,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Synthesis {
     public static int SparsifyBits(byte value, int sparse) {
       var ret_val = 0;
       for (var bits = 0; bits < 8; bits++, value >>= 1) {
-        ret_val |= (value & 1);
+        ret_val |= value & 1;
         ret_val <<= sparse;
       }
 
@@ -43,12 +43,12 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Synthesis {
 
       var sid = (SparsifyBits((byte)(uid >> 16), 3) << 2)
                 | (SparsifyBits((byte)(uid >> 8), 3) << 1)
-                | SparsifyBits((byte)(uid), 3);
+                | SparsifyBits((byte)uid, 3);
       //Debug.Log(uid + " >>> " + System.Convert.ToString(sid, 2).PadLeft(24, '0'));
 
       var r = (byte)(sid >> 8);
       var g = (byte)(sid >> 16);
-      var b = (byte)(sid);
+      var b = (byte)sid;
 
       //Debug.Log(r + " " + g + " " + b);
       return new Color32(r,
@@ -67,7 +67,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Synthesis {
       //var a = (byte)(hash >> 24);
       var r = (byte)(hash >> 16);
       var g = (byte)(hash >> 8);
-      var b = (byte)(hash);
+      var b = (byte)hash;
       return new Color32(r,
                          g,
                          b,

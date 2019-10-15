@@ -101,11 +101,6 @@ namespace droid.Runtime.Environments {
     public abstract void PostStep();
 
     /// <summary>
-    ///
-    /// </summary>
-    protected abstract void EnvironmentReset();
-
-    /// <summary>
     /// </summary>
     /// <returns></returns>
     public abstract Reaction SampleReaction();
@@ -130,9 +125,6 @@ namespace droid.Runtime.Environments {
     /// <returns></returns>
     public abstract void React(Reaction reaction);
 
-    /// <summary>
-    /// </summary>
-    public abstract void Tick();
 
     /// <summary>
     /// </summary>
@@ -158,8 +150,9 @@ namespace droid.Runtime.Environments {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void Setup() {
+    public override void Setup() {
       this.PreSetup();
+
       if (this._Simulation_Manager == null) {
         this._Simulation_Manager = FindObjectOfType<AbstractNeodroidManager>();
       }
@@ -195,10 +188,6 @@ namespace droid.Runtime.Environments {
 
     /// <summary>
     /// </summary>
-    protected virtual void PreSetup() { }
-
-    /// <summary>
-    /// </summary>
     /// <returns></returns>
     public abstract void ObservationsString(DataPoller recipient);
 
@@ -207,7 +196,7 @@ namespace droid.Runtime.Environments {
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public void FrameString(DataPoller recipient) { recipient.PollData($"{this.step_i}"); }
+    public void FrameString(DataPoller recipient) { recipient.PollData($"{this.StepI}"); }
 
     #endregion
 
@@ -215,9 +204,9 @@ namespace droid.Runtime.Environments {
 
     /// <summary>
     /// </summary>
-    public int step_i {
+    public int StepI {
       get { return this._current_frame_number; }
-      set { this._current_frame_number = value; }
+      internal set { this._current_frame_number = value; }
     }
 
     #endregion

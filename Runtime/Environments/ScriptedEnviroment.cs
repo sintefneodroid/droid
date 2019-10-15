@@ -66,6 +66,15 @@ namespace droid.Runtime.Environments {
     [SerializeField]
     int _width = 0;
 
+    public override void RemotePostSetup() {
+      #if NEODROID_DEBUG
+      if (this.Debugging) {
+        Debug.Log("PostSetup");
+      }
+      #endif
+
+    }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>
@@ -102,7 +111,7 @@ namespace droid.Runtime.Environments {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void Setup() {
+    public override void Setup() {
       this._grid = new int[this._width, this._height];
 
       var k = 0;
@@ -203,6 +212,6 @@ namespace droid.Runtime.Environments {
       recipient.PollData(this.CollectState().ToString());
     }
 
-    protected override void EnvironmentReset() { }
+    public override void PrototypingReset() { }
   }
 }

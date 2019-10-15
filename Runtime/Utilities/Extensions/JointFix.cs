@@ -123,7 +123,7 @@ namespace droid.Runtime.Utilities.Extensions {
 
     void Update() {
       if (this._frames_counted >= this.resetAfterFrames) {
-        this.Reset();
+        this.JointReset();
         this._frames_counted = 0;
       }
 
@@ -140,7 +140,7 @@ namespace droid.Runtime.Utilities.Extensions {
 
     /// <summary>
     /// </summary>
-    public void Reset() {
+    public void JointReset() {
       if (this._joints == null) {
         this.Setup();
       }

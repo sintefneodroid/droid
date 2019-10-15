@@ -186,7 +186,7 @@ namespace droid.Editor.Utilities.Git {
     }
 
     public static string GetVersionText(string version, string current = null) {
-      return (current == null || current != version) ? version : version + " - current";
+      return current == null || current != version ? version : version + " - current";
     }
 
     void PopupVersions() {

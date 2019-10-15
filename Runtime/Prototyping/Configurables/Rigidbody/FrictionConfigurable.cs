@@ -50,7 +50,7 @@ namespace droid.Runtime.Prototyping.Configurables.Rigidbody {
 
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
+    public override void PreSetup() {
       this._rigidbody = this.GetComponent<UnityEngine.Rigidbody>();
       this._vel_x = this.Identifier + "VelX";
     }

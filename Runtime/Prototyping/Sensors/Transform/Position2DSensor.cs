@@ -88,7 +88,7 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
+    public override void PreSetup() {
       if (this.normalised_overwrite_space_if_env_bounds) {
         if (this.ParentEnvironment && this.ParentEnvironment.PlayableArea != null) {
           var ex = this.ParentEnvironment.PlayableArea.Bounds.extents;

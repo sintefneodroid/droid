@@ -74,9 +74,6 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    protected override void PreSetup() { }
+
   }
 }

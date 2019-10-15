@@ -20,7 +20,7 @@ namespace droid.Runtime.Sampling {
 
     void Setup(float value, out int b0, out int b1, out float r0, out float r1) {
       var t = value + _n;
-      b0 = ((int)t) & _bm;
+      b0 = (int)t & _bm;
       b1 = (b0 + 1) & _bm;
       r0 = t - (int)t;
       r1 = r0 - 1.0F;
@@ -41,7 +41,7 @@ namespace droid.Runtime.Sampling {
       u = rx0 * this._g1[this._p[bx0]];
       v = rx1 * this._g1[this._p[bx1]];
 
-      return (this.Lerp(sx, u, v));
+      return this.Lerp(sx, u, v);
     }
 
     public float Noise(float x, float y) {

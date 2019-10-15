@@ -13,7 +13,7 @@ namespace droid.Runtime.Environments.Prototyping {
   ///   Environment to be used with the prototyping components.
   /// </summary>
   [AddComponentMenu("Neodroid/Environments/PrototypingEnvironment")]
-  public class PrototypingEnvironment : BaseSpatialPrototypingEnvironment,
+  public class PrototypingEnvironment : AbstractSpatialPrototypingEnvironment,
                                         IPrototypingEnvironment {
     #region NeodroidCallbacks
 
@@ -198,7 +198,7 @@ namespace droid.Runtime.Environments.Prototyping {
         var time = Time.time - this._LastResetTime;
 
         var state = new EnvironmentState(this.Identifier,
-                                         this.step_i,
+                                         this.StepI,
                                          time,
                                          signal,
                                          this._Terminated,
@@ -215,6 +215,29 @@ namespace droid.Runtime.Environments.Prototyping {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    public override void RemotePostSetup() {
+      #if NEODROID_DEBUG
+      if (this.Debugging) {
+        Debug.Log("PostSetup");
+      }
+      #endif
+
+      foreach (var configurable in this.Configurables.Values) {
+        configurable?.RemotePostSetup();
+      }
+
+      foreach (var actuator in this.Actuators.Values) {
+        actuator?.RemotePostSetup();
+      }
+
+      foreach (var sensor in this.Sensors.Values) {
+        sensor?.RemotePostSetup();
+      }
+    }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>
@@ -223,11 +246,6 @@ namespace droid.Runtime.Environments.Prototyping {
       recipient.PollData(string.Join("\n\n",
                                      this.Sensors.Values.Select(e => $"{e.Identifier}:\n{e.ToString()}")));
     }
-
-    /// <summary>
-    /// </summary>
-    /// <param name="reaction"></param>
-    protected override void Setup() { base.Setup(); }
 
     protected override void SendToActors(Reaction reaction) {
       if (reaction.Motions != null && reaction.Motions.Length > 0) {
@@ -256,7 +274,7 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     protected override void InnerResetRegisteredObjects() {
       foreach (var actuator in this.Actuators.Values) {
-        actuator?.EnvironmentReset();
+        actuator?.PrototypingReset();
       }
     }
 

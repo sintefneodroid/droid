@@ -98,7 +98,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
       }
     }
 
-    protected override void PreSetup() { }
+    public override void PreSetup() { }
 
     GameObject FindNearest() {
       var candidates = FindObjectsOfType<GameObject>();

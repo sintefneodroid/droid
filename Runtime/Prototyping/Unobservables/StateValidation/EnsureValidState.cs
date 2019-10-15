@@ -11,7 +11,7 @@ namespace droid.Runtime.Prototyping.Unobservables.StateValidation {
   public class EnsureValidState : Unobservable {
     [SerializeField] Actor _actor;
 
-    [SerializeField] BaseSpatialPrototypingEnvironment _environment;
+    [SerializeField] AbstractSpatialPrototypingEnvironment _environment;
     [SerializeField] Transform _goal;
 
     [SerializeField] Obstruction[] _obstructions;
@@ -37,7 +37,7 @@ namespace droid.Runtime.Prototyping.Unobservables.StateValidation {
       }
 
       if (!this._environment) {
-        this._environment = FindObjectOfType<BaseSpatialPrototypingEnvironment>();
+        this._environment = FindObjectOfType<AbstractSpatialPrototypingEnvironment>();
       }
 
       if (this._obstructions.Length <= 0) {
@@ -52,7 +52,7 @@ namespace droid.Runtime.Prototyping.Unobservables.StateValidation {
     /// <summary>
     /// </summary>
     void ValidateState() {
-      if (this._only_initial_state && this._environment.step_i != 0) {
+      if (this._only_initial_state && this._environment.StepI != 0) {
         return;
       }
 
@@ -79,7 +79,7 @@ namespace droid.Runtime.Prototyping.Unobservables.StateValidation {
       }
     }
 
-    public override void EnvironmentReset() { }
+    public override void PrototypingReset() { }
 
     /// <inheritdoc />
     /// <summary>

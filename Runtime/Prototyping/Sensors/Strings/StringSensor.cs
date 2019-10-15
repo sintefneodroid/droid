@@ -32,7 +32,7 @@ namespace droid.Runtime.Prototyping.Sensors.Strings {
     ///
     /// </summary>
     public override void UpdateObservation() {
-      this._observation_value = this.ParentEnvironment.step_i.ToString();
+      this._observation_value = this.ParentEnvironment.StepI.ToString();
     }
   }
 }

@@ -8,7 +8,6 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
   [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
                     + "Spatial"
                     + ConfigurableComponentMenuPath._Postfix)]
-  [ExecuteInEditMode]
   public abstract class SpatialConfigurable : Configurable {
     /// <summary>
     /// </summary>

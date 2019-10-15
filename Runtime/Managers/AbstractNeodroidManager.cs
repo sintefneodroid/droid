@@ -249,7 +249,7 @@ namespace droid.Runtime.Managers {
 
     /// <summary>
     /// </summary>
-    public bool HasStepped { get { return this._has_stepped; } set { this._has_stepped = value; } }
+    public bool HasStepped { get { return this._has_stepped; } private set { this._has_stepped = value; } }
 
     /// <summary>
     /// </summary>
@@ -374,13 +374,11 @@ namespace droid.Runtime.Managers {
       if (this.Configuration.SimulationType == SimulationType.Physics_dependent_) {
         this.EarlyFixedUpdateEvent += this.OnPreTick;
         this.FixedUpdateEvent += this.OnTick;
-        this.FixedUpdateEvent += this.Tick;
         this.LateFixedUpdateEvent += this.OnPostTick;
         this.StartCoroutine(this.LateFixedUpdateEventGenerator());
       } else {
         this.EarlyUpdateEvent += this.OnPreTick;
         this.UpdateEvent += this.OnTick;
-        this.UpdateEvent += this.Tick;
         switch (this.Configuration.FrameFinishes) {
           case FrameFinishes.Late_update_:
             this.LateUpdateEvent += this.OnPostTick;
@@ -531,8 +529,18 @@ namespace droid.Runtime.Managers {
         Debug.Log("OnTick");
       }
       #endif
+
       if (this.Configuration.StepExecutionPhase == ExecutionPhase.Middle_) {
         this.ExecuteStep();
+      }
+
+      if (this.TestActuators) {
+        this.SendToEnvironments(this.SampleRandomReactions());
+        this.CollectStates();
+      }
+
+      foreach (var environment in this._Environments.Values) {
+        environment.Tick();
       }
     }
 
@@ -557,34 +565,17 @@ namespace droid.Runtime.Managers {
     /// <summary>
     /// </summary>
     void ExecuteStep() {
-      this.SendToEnvironments(this.CurrentReactions);
+      if (!this.HasStepped) {
+        this.SendToEnvironments(this.CurrentReactions);
 
-      if (this.AwaitingReply) {
-        var states = this.CollectStates();
-        this.PostReact(states);
+        if (this.AwaitingReply) {
+          var states = this.CollectStates();
+          this.PostReact(states);
+        }
+
+        this.HasStepped = true;
+        this.CurrentReactions = new Reaction[] { };
       }
-
-      this.HasStepped = true;
-      this.CurrentReactions = new Reaction[] { };
-    }
-
-    /// <summary>
-    /// </summary>
-    protected void Tick() {
-      if (this.TestActuators) {
-        this.SendToEnvironments(this.SampleRandomReactions());
-        this.CollectStates();
-      }
-
-      foreach (var environment in this._Environments.Values) {
-        environment.Tick();
-      }
-
-      #if NEODROID_DEBUG
-      if (this.Debugging) {
-        Debug.Log("Tick");
-      }
-      #endif
     }
 
     /// <summary>
@@ -834,7 +825,11 @@ namespace droid.Runtime.Managers {
       lock (this._send_lock) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Received: {reactions.Select(r => r.ToString()).Aggregate((current, next) => $"{current}, {next}")}");
+          if(reactions.Length>0) {
+            Debug.Log($"Received: {reactions.Select(r => r.ToString()).Aggregate((current, next) => $"{current}, {next}")}");
+          } else {
+            Debug.Log($"Received empty reaction sequence");
+          }
         }
         #endif
 
@@ -889,7 +884,7 @@ namespace droid.Runtime.Managers {
     /// <param name="error"></param>
     void OnDebugCallback(string error) {
       #if NEODROID_DEBUG
-      if (this.Debugging) {
+      if (this.Debugging && false) {
         Debug.Log("DebugCallback: " + error);
       }
       #endif

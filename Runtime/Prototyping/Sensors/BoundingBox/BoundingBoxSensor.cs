@@ -24,7 +24,7 @@ namespace droid.Runtime.Prototyping.Sensors.BoundingBox {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
+    public override void PreSetup() {
       this._bounding_box = this.GetComponent<GameObjects.BoundingBoxes.BoundingBox>();
     }
 

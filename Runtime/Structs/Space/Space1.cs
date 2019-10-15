@@ -48,8 +48,27 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     public float Span { get { return this._max_ - this._min_; } }
 
-    public float Clip(float v, float min, float max) { return Mathf.Clamp(v, min, max); }
-    public float Clip(float v) { return this.Clip(v, this._min_, this._max_); }
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <param name="min"></param>
+    /// <param name="max"></param>
+    /// <returns></returns>
+    public static float Clip(float v, float min, float max) { return Mathf.Clamp(v, min, max); }
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    public float Clip(float v) { return Clip(v, this._min_, this._max_); }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    public float ClipRound(float v) { return this.Clip(this.Round(v)); }
 
     /// <summary>
     ///
@@ -129,12 +148,17 @@ namespace droid.Runtime.Structs.Space {
     /// <summary>
     ///
     /// </summary>
-    public static Space1 TwentyEighty { get { return new Space1(1) {_min_ = 0.2f, _max_ = 0.8f}; } }
+    public static Space1 TwentyEighty { get { return new Space1(2) {_min_ = 0.2f, _max_ = 0.8f}; } }
 
     /// <summary>
     ///
     /// </summary>
-    public static Space1 ZeroOne { get { return new Space1(1) {_min_ = 0, _max_ = 1}; } }
+    public static Space1 ZeroOne { get { return new Space1(2) {_min_ = 0, _max_ = 1}; } }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public static Space1 MinusOneOne { get { return new Space1(2) {_min_ = -1, _max_ = 1}; } }
 
     /// <summary>
     ///
@@ -161,6 +185,11 @@ namespace droid.Runtime.Structs.Space {
     ///
     /// </summary>
     public static Space1 DiscreteZeroOne { get { return new Space1(0) {_min_ = 0, _max_ = 1}; } }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public dynamic Precision { get { return 1.0f / (this._decimal_granularity + 1.0f); } }
 
     /// <summary>
     ///
@@ -199,16 +228,16 @@ namespace droid.Runtime.Structs.Space {
     /// <summary>
     ///
     /// </summary>
-    /// <param name="bounds_extents"></param>
+    /// <param name="extent"></param>
     /// <param name="normalised"></param>
     /// <param name="decimal_granularity"></param>
     /// <returns></returns>
-    public static Space1 FromCenterExtents(float bounds_extents,
+    public static Space1 FromCenterExtent(float extent,
                                            bool normalised = true,
                                            int decimal_granularity = 4) {
       return new Space1 {
-                            _min_ = -bounds_extents,
-                            Max = bounds_extents,
+                            _min_ = -extent,
+                            Max = extent,
                             NormalisedBool = normalised,
                             DecimalGranularity = decimal_granularity
                         };

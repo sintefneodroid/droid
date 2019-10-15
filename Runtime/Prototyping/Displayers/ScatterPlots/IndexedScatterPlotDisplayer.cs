@@ -18,7 +18,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void Setup() { }
+    public override void Setup() { }
 
     /// <summary>
     ///

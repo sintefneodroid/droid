@@ -138,11 +138,29 @@ namespace droid.Runtime.GameObjects {
 
     /// <summary>
     /// </summary>
-    protected virtual void Setup() { }
+    public virtual void Setup() { this.PreSetup(); }
+
+    /// <summary>
+    /// </summary>
+    public virtual void PreSetup() { }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public virtual void RemotePostSetup() {  }
 
     /// <summary>
     /// </summary>
     protected virtual void Clear() { }
+
+    /// <summary>
+    /// </summary>
+    public virtual void Tick() { }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public virtual void PrototypingReset() {  }
 
     #if UNITY_EDITOR
     /// <summary>

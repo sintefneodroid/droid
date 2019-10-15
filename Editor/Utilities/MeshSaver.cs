@@ -55,7 +55,7 @@ namespace droid.Editor.Utilities {
 
       path = FileUtil.GetProjectRelativePath(path);
 
-      var mesh_to_save = (make_new_instance) ? Object.Instantiate(mesh) : mesh;
+      var mesh_to_save = make_new_instance ? Object.Instantiate(mesh) : mesh;
 
       if (optimize_mesh) {
         MeshUtility.Optimize(mesh_to_save);

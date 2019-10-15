@@ -40,7 +40,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
+    public override void PreSetup() {
       this._shadow_strength = this.Identifier + "ShadowStrength";
       this._color_r = this.Identifier + "ColorR";
       this._color_g = this.Identifier + "ColorG";

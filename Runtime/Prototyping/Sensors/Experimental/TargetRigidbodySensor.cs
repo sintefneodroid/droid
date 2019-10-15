@@ -30,7 +30,7 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
+    public override void PreSetup() {
       base.PreSetup();
       if (!this._actuator) {
         this._actuator = this.GetComponent<TargetRigidbodyActuator>();

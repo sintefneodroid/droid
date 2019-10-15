@@ -21,7 +21,7 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
     /// <summary>
     ///
     /// </summary>
-    public override void PostEnvironmentSetup() {
+    public override void RemotePostSetup() {
       if (!Application.isPlaying) {
         return;
       }

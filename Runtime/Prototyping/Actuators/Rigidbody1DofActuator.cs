@@ -43,7 +43,7 @@ namespace droid.Runtime.Prototyping.Actuators {
 
     /// <summary>
     /// </summary>
-    protected override void Setup() { this._Rigidbody = this.GetComponent<Rigidbody>(); }
+    public override void Setup() { this._Rigidbody = this.GetComponent<Rigidbody>(); }
 
     /// <summary>
     /// </summary>

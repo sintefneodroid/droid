@@ -33,7 +33,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void Setup() {
+    public override void Setup() {
       this._particle_system = this.GetComponent<ParticleSystem>();
       var em = this._particle_system.emission;
       em.enabled = false;

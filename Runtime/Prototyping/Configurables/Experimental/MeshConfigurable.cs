@@ -33,7 +33,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
+    public override void PreSetup() {
       this._mesh_str = this.Identifier + "Mesh";
       this._mesh_filter = this.GetComponent<MeshFilter>();
       if (Application.isPlaying) {

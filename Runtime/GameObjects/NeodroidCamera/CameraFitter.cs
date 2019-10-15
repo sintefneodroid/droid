@@ -111,7 +111,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
 
     public static Vector3 ProjectPointOnPlane(Vector3 plane_normal, Vector3 plane_point, Vector3 point) {
       plane_normal.Normalize();
-      var distance = -Vector3.Dot(plane_normal.normalized, (point - plane_point));
+      var distance = -Vector3.Dot(plane_normal.normalized, point - plane_point);
       return point + plane_normal * distance;
     }
   }

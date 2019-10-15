@@ -81,7 +81,7 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() { }
+    public override void PreSetup() { }
 
     public override IEnumerable<float> FloatEnumerable {
       get { return new[] {this.Position.x, this.Position.z}; }

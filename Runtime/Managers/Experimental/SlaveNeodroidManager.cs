@@ -559,16 +559,18 @@ namespace droid.Runtime.Managers.Experimental {
     /// <summary>
     /// </summary>
     void ExecuteStep() {
-      if (!this._syncing_environments) {
-        this.React(this.CurrentReactions);
-      }
+      if (!this.HasStepped) {
+        if (!this._syncing_environments) {
+          this.React(this.CurrentReactions);
+        }
 
-      if (this.AwaitingReply) {
-        var states = this.CollectStates();
-        this.PostReact(states);
-      }
+        if (this.AwaitingReply) {
+          var states = this.CollectStates();
+          this.PostReact(states);
+        }
 
-      this.HasStepped = true;
+        this.HasStepped = true;
+      }
     }
 
     /// <summary>

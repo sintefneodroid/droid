@@ -11,7 +11,7 @@ namespace droid.Runtime.Environments.Prototyping {
   ///   Environment to be used with the prototyping components.
   /// </summary>
   [AddComponentMenu("Neodroid/Environments/ActorisedPrototypingEnvironment")]
-  public class ActorisedPrototypingEnvironment : BaseSpatialPrototypingEnvironment,
+  public class ActorisedPrototypingEnvironment : AbstractSpatialPrototypingEnvironment,
                                                  IActorisedPrototypingEnvironment {
     #region NeodroidCallbacks
 
@@ -188,7 +188,7 @@ namespace droid.Runtime.Environments.Prototyping {
         var time = Time.time - this._LastResetTime;
 
         var state = new EnvironmentState(this.Identifier,
-                                         this.step_i,
+                                         this.StepI,
                                          time,
                                          signal,
                                          this._Terminated,
@@ -212,6 +212,29 @@ namespace droid.Runtime.Environments.Prototyping {
     public override void ObservationsString(DataPoller recipient) {
       recipient.PollData(string.Join("\n\n",
                                      this.Sensors.Values.Select(e => $"{e.Identifier}:\n{e.ToString()}")));
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public override void RemotePostSetup() {
+      #if NEODROID_DEBUG
+      if (this.Debugging) {
+        Debug.Log("PostSetup");
+      }
+      #endif
+
+      foreach (var configurable in this.Configurables.Values) {
+        configurable?.RemotePostSetup();
+      }
+
+      foreach (var actor in this.Actors.Values) {
+        actor?.RemotePostSetup();
+      }
+
+      foreach (var sensor in this.Sensors.Values) {
+        sensor?.RemotePostSetup();
+      }
     }
 
     /// <summary>
@@ -269,7 +292,7 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     protected override void InnerResetRegisteredObjects() {
       foreach (var actor in this.Actors.Values) {
-        actor?.EnvironmentReset();
+        actor?.PrototypingReset();
       }
     }
 

@@ -19,7 +19,7 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
     /// <summary>
     ///
     /// </summary>
-    protected override void PreSetup() {
+    public override void PreSetup() {
       if (this.raw_image == null) {
         this.raw_image = this.GetComponent<RawImage>();
       }

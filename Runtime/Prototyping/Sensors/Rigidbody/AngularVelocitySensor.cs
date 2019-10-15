@@ -24,12 +24,18 @@ namespace droid.Runtime.Prototyping.Sensors.Rigidbody {
 
     public Space3 TripleSpace { get { return this._angular_velocity_space; } }
 
-    protected override void PreSetup() { this._rigidbody = this.GetComponent<UnityEngine.Rigidbody>(); }
+    /// <summary>
+    ///
+    /// </summary>
+    public override void PreSetup() { this._rigidbody = this.GetComponent<UnityEngine.Rigidbody>(); }
 
     public override IEnumerable<float> FloatEnumerable {
       get { return new[] {this.ObservationValue.x, this.ObservationValue.y, this.ObservationValue.z}; }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override void UpdateObservation() { this.ObservationValue = this._rigidbody.angularVelocity; }
   }
 }

@@ -19,7 +19,7 @@ namespace droid.Runtime.Prototyping.Displayers {
                                     IDisplayer {
     /// <summary>
     /// </summary>
-    BaseSpatialPrototypingEnvironment _environment = null;
+    AbstractSpatialPrototypingEnvironment _environment = null;
 
     /// <summary>
     ///
@@ -47,7 +47,7 @@ namespace droid.Runtime.Prototyping.Displayers {
 
     /// <summary>
     /// </summary>
-    public BaseSpatialPrototypingEnvironment ParentEnvironment {
+    public AbstractSpatialPrototypingEnvironment ParentEnvironment {
       get { return this._environment; }
       set { this._environment = value; }
     }

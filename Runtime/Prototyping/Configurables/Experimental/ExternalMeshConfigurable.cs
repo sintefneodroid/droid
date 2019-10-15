@@ -24,7 +24,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() { this._texture_str = this.Identifier + "Texture"; }
+    public override void PreSetup() { this._texture_str = this.Identifier + "Texture"; }
 
     /// <inheritdoc />
     /// <summary>

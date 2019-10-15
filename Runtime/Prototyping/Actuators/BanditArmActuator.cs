@@ -19,7 +19,7 @@ namespace droid.Runtime.Prototyping.Actuators {
 
     /// <summary>
     /// </summary>
-    protected override void Setup() {
+    public override void Setup() {
       var renderr = this.GetComponent<Renderer>();
       if (renderr) {
         this._material = renderr.sharedMaterial;

@@ -1,9 +1,21 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Structs.Space;
+using droid.Runtime.Utilities;
 using UnityEngine;
+using Object = System.Object;
 
 namespace droid.Runtime.Prototyping.Sensors.Occupancy {
+
+  /// <summary>
+  ///
+  /// </summary>
+  enum IntersectionType {
+    Cone_sphere_,
+    Sphere_sphere_
+  }
+
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
@@ -18,6 +30,8 @@ namespace droid.Runtime.Prototyping.Sensors.Occupancy {
     Vector3[] _observation_value;
 
     [SerializeField] Space1 _observation_value_space = Space1.ZeroOne;
+    Light _light;
+    IEnumerable<UnityEngine.Transform> _transforms;
 
     /// <summary>
     ///
@@ -36,7 +50,10 @@ namespace droid.Runtime.Prototyping.Sensors.Occupancy {
       }
     }
 
-    protected override void PreSetup() { }
+    public override void PreSetup() {
+      this._light = this.GetComponent<Light>();
+      this._transforms = FindObjectsOfType<MeshFilter>().Select(o => o.transform);
+    }
 
     public override IEnumerable<float> FloatEnumerable {
       get {
@@ -51,7 +68,14 @@ namespace droid.Runtime.Prototyping.Sensors.Occupancy {
       }
     }
 
-    public override void UpdateObservation() { ; }
+    public override void UpdateObservation() {
+      foreach (var transform1 in this._transforms) {
+        if (IntersectionUtilities.ConeSphereIntersection(this._light, transform1)) {
+          //Debug.Log("Intersect");
+        }
+      }
+    }
+
     public Space1[] ObservationSpace { get; } = new Space1[1];
   }
 }

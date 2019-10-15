@@ -202,7 +202,7 @@ namespace droid.Editor.Utilities.Git {
 
     public static string GetRequestCache(string url) {
       var path = GetRequestCachePath(url);
-      return File.Exists(path) && ((DateTime.UtcNow - File.GetLastWriteTimeUtc(path)).TotalSeconds < 300)
+      return File.Exists(path) && (DateTime.UtcNow - File.GetLastWriteTimeUtc(path)).TotalSeconds < 300
                  ? File.ReadAllText(path)
                  : null;
     }

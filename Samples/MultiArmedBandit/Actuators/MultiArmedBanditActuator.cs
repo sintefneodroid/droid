@@ -56,7 +56,7 @@ namespace droid.Samples.MultiArmedBandit.Actuators {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void Setup() {
+    public override void Setup() {
       var mvs = this.MotionSpace;
       mvs.Min = 0;
       mvs.Max = 2;

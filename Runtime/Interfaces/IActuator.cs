@@ -21,10 +21,5 @@ namespace droid.Runtime.Interfaces {
     /// </summary>
     /// <param name="motion"></param>
     void ApplyMotion(IMotion motion);
-
-    /// <summary>
-    ///
-    /// </summary>
-    void EnvironmentReset();
   }
 }

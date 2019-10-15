@@ -38,9 +38,9 @@ namespace droid.Runtime.Structs.Space {
                           float min_radius = 1f,
                           float max_radius = 20f,
                           float min_polar = 0f,
-                          float max_polar = (Mathf.PI * 2f),
+                          float max_polar = Mathf.PI * 2f,
                           float min_elevation = 0f,
-                          float max_elevation = (Mathf.PI / 3f),
+                          float max_elevation = Mathf.PI / 3f,
                           bool loop_polar = true,
                           bool loop_elevation = false) {
       this._min_radius = min_radius;
@@ -162,9 +162,9 @@ namespace droid.Runtime.Structs.Space {
                                                float min_radius = 1f,
                                                float max_radius = 20f,
                                                float min_polar = 0f,
-                                               float max_polar = (Mathf.PI * 2f),
+                                               float max_polar = Mathf.PI * 2f,
                                                float min_elevation = 0f,
-                                               float max_elevation = (Mathf.PI / 3f)) {
+                                               float max_elevation = Mathf.PI / 3f) {
       var spherical = new SphericalSpace {
                                              _min_radius = min_radius,
                                              _max_radius = max_radius,
@@ -206,9 +206,9 @@ namespace droid.Runtime.Structs.Space {
                                                float min_radius = 1f,
                                                float max_radius = 20f,
                                                float min_polar = 0f,
-                                               float max_polar = (Mathf.PI * 2f),
+                                               float max_polar = Mathf.PI * 2f,
                                                float min_elevation = 0f,
-                                               float max_elevation = (Mathf.PI / 3f)) {
+                                               float max_elevation = Mathf.PI / 3f) {
       return FromCartesian(T.position,
                            min_radius,
                            max_radius,

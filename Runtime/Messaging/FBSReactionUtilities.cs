@@ -116,10 +116,10 @@ namespace droid.Runtime.Messaging {
     static ReactionParameters deserialise_parameters(FReaction reaction) {
       if (reaction.Parameters.HasValue) {
         var s = StepResetObserve.Observe_;
-        if (reaction.Parameters.Value.Step) {
-          s = StepResetObserve.Step_;
-        } else if (reaction.Parameters.Value.Reset) {
+        if (reaction.Parameters.Value.Reset) {
           s = StepResetObserve.Reset_;
+        }else if (reaction.Parameters.Value.Step) {
+          s = StepResetObserve.Step_;
         }
 
         return new ReactionParameters(s,
@@ -129,6 +129,8 @@ namespace droid.Runtime.Messaging {
                                       reaction.Parameters.Value.EpisodeCount);
       }
 
+
+      Debug.LogWarning("NULL PARAMETERS");
       return _null_reaction_parameters;
     }
 

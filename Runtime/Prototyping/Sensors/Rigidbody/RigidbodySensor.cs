@@ -128,6 +128,6 @@ namespace droid.Runtime.Prototyping.Sensors.Rigidbody {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() { this._rigidbody = this.GetComponent<UnityEngine.Rigidbody>(); }
+    public override void PreSetup() { this._rigidbody = this.GetComponent<UnityEngine.Rigidbody>(); }
   }
 }

@@ -214,6 +214,9 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
     /// </summary>
     public Vector3[] Points { get { return this._points; } }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Color EditorPreviewLineColor {
       get { return this.editorPreviewLineColor; }
       set { this.editorPreviewLineColor = value; }
@@ -307,7 +310,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
 
     /// <summary>
     /// </summary>
-    void Reset() {
+    void BoundingBoxReset() {
       this.Awake();
       this.Start();
     }
@@ -328,7 +331,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
       }
 
       if (this.environment == null) {
-        this.environment = FindObjectOfType<BaseSpatialPrototypingEnvironment>();
+        this.environment = FindObjectOfType<AbstractSpatialPrototypingEnvironment>();
       }
 
       if (!this._bb_transform) {
@@ -375,11 +378,11 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
 
       if (this.includeChildren && !this.cacheChildren) {
         if (this._children_meshes != this.GetComponentsInChildren<MeshFilter>()) {
-          this.Reset();
+          this.BoundingBoxReset();
         }
 
         if (this._children_colliders != this.GetComponentsInChildren<Collider>()) {
-          this.Reset();
+          this.BoundingBoxReset();
         }
       } else {
         this.CalculateBoundingBox();

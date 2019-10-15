@@ -37,7 +37,7 @@ namespace droid.Editor.Windows {
     /// </summary>
     const bool _refresh_enabled = false;
 
-    BaseSpatialPrototypingEnvironment[] _environments;
+    PrototypingEnvironment[] _environments;
     Texture _icon;
     Texture _neodroid_icon;
 
@@ -129,7 +129,7 @@ namespace droid.Editor.Windows {
         EditorGUILayout.EndHorizontal();
 
         this._environments =
-            NeodroidSceneUtilities.FindAllObjectsOfTypeInScene<BaseSpatialPrototypingEnvironment>();
+            NeodroidSceneUtilities.FindAllObjectsOfTypeInScene<PrototypingEnvironment>();
         if (this._show_environment_properties.Length != this._environments.Length) {
           this.Setup();
         }
@@ -180,14 +180,14 @@ namespace droid.Editor.Windows {
                   EditorGUI.EndDisabledGroup();
                   if (this._environments[i].ObjectiveFunction != null) {
                     this._environments[i].ObjectiveFunction =
-                        (ObjectiveFunction)EditorGUILayout.ObjectField("Objective function",
-                                                                       (ObjectiveFunction)this
+                        (EpisodicObjective)EditorGUILayout.ObjectField("Objective function",
+                                                                       (EpisodicObjective)this
                                                                                           ._environments[i]
                                                                                           .ObjectiveFunction,
-                                                                       typeof(ObjectiveFunction),
+                                                                       typeof(EpisodicObjective),
                                                                        true);
                     EditorGUILayout.LabelField("Signal: "
-                                               + this._environments[i].ObjectiveFunction.Evaluate());
+                                               + ((EpisodicObjective)this._environments[i].ObjectiveFunction).LastSignal);
                     this._environments[i].ObjectiveFunction.SignalSpace
                         .FromVector3(EditorGUILayout.Vector3Field(Space1.Vector3Description(),
                                                                   this._environments[i].ObjectiveFunction
@@ -209,7 +209,7 @@ namespace droid.Editor.Windows {
                   EditorGUI.EndDisabledGroup();
                 }
 
-                var s = this._environments[i] as ActorisedPrototypingEnvironment;
+                var s = this._environments[i] as AbstractSpatialPrototypingEnvironment as ActorisedPrototypingEnvironment;
                 if (s) {
                   var actors = s.Actors;
                   this.DrawActors(actors);

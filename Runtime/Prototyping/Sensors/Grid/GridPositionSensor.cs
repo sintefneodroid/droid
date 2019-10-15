@@ -45,7 +45,7 @@ namespace droid.Runtime.Prototyping.Sensors.Grid {
 
     public Space1 SingleSpace { get { return this._observation_value_space; } }
 
-    protected override void PreSetup() {
+    public override void PreSetup() {
       this._grid = new int[this._width, this._height];
 
       var k = 0;

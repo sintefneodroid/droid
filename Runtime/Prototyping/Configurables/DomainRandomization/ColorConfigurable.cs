@@ -50,7 +50,7 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
+    public override void PreSetup() {
       this._r_id = this.Identifier + _r;
       this._b_id = this.Identifier + _b;
       this._g_id = this.Identifier + _g;
@@ -65,19 +65,19 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
     protected override void RegisterComponent() {
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          this,
                                                           this._r_id);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          this,
                                                           this._g_id);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          this,
                                                           this._b_id);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          this,
                                                           this._a_id);
     }
 

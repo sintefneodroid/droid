@@ -50,7 +50,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
     /// <summary>
     ///
     /// </summary>
-    protected override void PreSetup() { }
+    public override void PreSetup() { }
 
     /// <summary>
     ///

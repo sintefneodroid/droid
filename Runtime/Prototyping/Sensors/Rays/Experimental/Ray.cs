@@ -20,7 +20,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays.Experimental {
     /// <param name="ray_distance">Radius of rays</param>
     /// <param name="ray_angles">Anlges of rays (starting from (1,0) on unit circle).</param>
     /// <param name="detectable_objects">List of tags which correspond to object types agent can see</param>
-    /// <param name="start_offset">Starting heigh offset of ray from center of agent.</param>
+    /// <param name="start_offset">Starting height offset of ray from center of agent.</param>
     /// <param name="end_offset">Ending height offset of ray from center of agent.</param>
     public List<float> Perceive(float ray_distance,
                                 IEnumerable<Single> ray_angles,

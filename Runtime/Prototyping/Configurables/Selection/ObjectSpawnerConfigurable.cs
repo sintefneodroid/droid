@@ -27,7 +27,7 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
     /// </summary>
     public override string PrototypingTypeName { get { return "ObjectSpawnerConfigurable"; } }
 
-    protected override void PreSetup() {
+    public override void PreSetup() {
       this.DestroyObjects();
       this._spawned_objects = new List<GameObject>();
       this.SpawnObjects();

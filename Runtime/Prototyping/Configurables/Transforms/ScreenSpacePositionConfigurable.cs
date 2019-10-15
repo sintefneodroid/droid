@@ -31,7 +31,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
+    public override void PreSetup() {
       this._x = this.Identifier + "X";
       this._y = this.Identifier + "Y";
       this._z = this.Identifier + "Z";

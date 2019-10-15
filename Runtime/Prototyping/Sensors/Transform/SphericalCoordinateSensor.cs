@@ -15,7 +15,7 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
 
     [SerializeField] SphericalSpace sc;
 
-    void Reset() {
+    public override void PrototypingReset() {
       this.sc = SphericalSpace.FromCartesian(this.transform.position,
                                              3f,
                                              10f,
@@ -26,7 +26,7 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
     }
 
     public override IEnumerable<Single> FloatEnumerable {
-      get { return new[] {ObservationValue.x, ObservationValue.y}; }
+      get { return new[] {this.ObservationValue.x, this.ObservationValue.y}; }
     }
 
     public override void UpdateObservation() { this.sc.UpdateFromCartesian(this.transform.position); }

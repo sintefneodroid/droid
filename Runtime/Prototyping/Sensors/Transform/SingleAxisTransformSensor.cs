@@ -13,18 +13,40 @@ namespace droid.Runtime.Prototyping.Sensors.Transform {
                     + "SingleAxisTransform"
                     + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
-  public class SingleAxisTransformSensor : ValueSensor {
+  public class SingleAxisTransformSensor : SingleValueSensor {
     [SerializeField] [SearchableEnum] Axis _dim = Axis.X_;
 
     [SerializeField] bool normalised_overwrite_space_if_env_bounds = true;
 
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
-      if (this.normalised_overwrite_space_if_env_bounds) {
-        if (this.ParentEnvironment) {
-          this._observation_value_space =
-              Space1.FromCenterExtents(this.ParentEnvironment.PlayableArea.Bounds.extents.x);
+    public override string PrototypingTypeName { get { return "SingleAxisTransform" + this._dim; } }
+
+    /// <summary>
+    /// </summary>
+    public override void RemotePostSetup() {
+    if(this.normalised_overwrite_space_if_env_bounds) {
+        switch (this._dim) {
+          case Axis.X_:
+            if (this.ParentEnvironment) {
+              this._observation_value_space =
+                  Space1.FromCenterExtent(this.ParentEnvironment.PlayableArea.Bounds.extents.x);
+            }
+
+            break;
+          case Axis.Y_:
+            if (this.ParentEnvironment) {
+              this._observation_value_space =
+                  Space1.FromCenterExtent(this.ParentEnvironment.PlayableArea.Bounds.extents.y);
+            }
+
+            break;
+          case Axis.Z_:
+            if (this.ParentEnvironment) {
+              this._observation_value_space =
+                  Space1.FromCenterExtent(this.ParentEnvironment.PlayableArea.Bounds.extents.z);
+            }
+            break;
         }
       }
     }

@@ -34,7 +34,7 @@ namespace droid.Runtime.Prototyping.Sensors.Rays {
 
     public Space1 SingleSpace { get { return this._observation_value_space; } }
 
-    protected override void PreSetup() { }
+    public override void PreSetup() { }
 
     public override IEnumerable<float> FloatEnumerable { get { return new[] {this.ObservationValue}; } }
 

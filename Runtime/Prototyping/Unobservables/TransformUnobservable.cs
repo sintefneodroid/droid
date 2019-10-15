@@ -24,14 +24,14 @@ namespace droid.Runtime.Prototyping.Unobservables {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override void EnvironmentReset() {
+    public override void PrototypingReset() {
       this.transform.position = this._original_position;
       this.transform.rotation = this._original_rotation;
     }
 
     /// <summary>
     /// </summary>
-    protected override void Setup() {
+    public override void Setup() {
       this._original_position = this.transform.position;
       this._original_rotation = this.transform.rotation;
     }

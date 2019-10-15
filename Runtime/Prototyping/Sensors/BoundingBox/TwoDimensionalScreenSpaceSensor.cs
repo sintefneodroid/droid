@@ -9,7 +9,7 @@ namespace droid.Runtime.Prototyping.Sensors.BoundingBox {
     [SerializeField] Vector2 _observation_value = Vector2.zero;
     [SerializeField] Space2 _observation_space2_d = Space2.ZeroOne;
 
-    [SerializeField] UnityEngine.Camera _reference_camera = null;
+    [SerializeField] Camera _reference_camera = null;
 
     [SerializeField] bool _use_viewport = true; // Already normalised between 0 and 1
 

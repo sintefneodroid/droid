@@ -28,7 +28,7 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
 
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
+    public override void PreSetup() {
       this._quality_level = this.Identifier + "QualityLevel";
       this._target_frame_rate = this.Identifier + "TargetFrameRate";
       this._time_scale = this.Identifier + "TimeScale";

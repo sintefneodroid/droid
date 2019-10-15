@@ -72,7 +72,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
+    public override void PreSetup() {
       this._fov_str = this.Identifier + "Fov";
       this._focal_str = this.Identifier + "Focal";
       this._sensor_width_str = this.Identifier + "SensorWidth";

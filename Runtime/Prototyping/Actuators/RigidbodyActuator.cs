@@ -45,7 +45,7 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void Setup() {
+    public override void Setup() {
       this._Rigidbody = this.GetComponent<Rigidbody>();
 
       this._x = this.Identifier + "X_";
