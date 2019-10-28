@@ -91,5 +91,6 @@ namespace droid.Runtime.Managers.Experimental {
       }
     }
     #endif
+    public override void Setup() { throw new NotImplementedException(); }
   }
 }

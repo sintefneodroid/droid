@@ -1,6 +1,4 @@
-﻿using System;
-using NUnit.Framework;
-using UnityEngine;
+﻿using NUnit.Framework;
 
 namespace droid.Tests.Runtime {
   /// <summary>

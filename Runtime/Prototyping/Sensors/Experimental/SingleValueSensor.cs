@@ -28,9 +28,7 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
     public float ObservationValue {
       get { return this._observation_value; }
       set {
-        this._observation_value = this.SingleSpace.NormalisedBool
-                                      ? this._observation_value_space.ClipNormaliseRound(value)
-                                      : value;
+        this._observation_value = this.SingleSpace.Project(value);
       }
     }
 

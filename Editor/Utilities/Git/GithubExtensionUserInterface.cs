@@ -1,14 +1,14 @@
-﻿#if UNITY_2019_1_OR_NEWER && UNITY_EDITOR && USE_GITHUB_EXTENSION
-using UnityEditor.PackageManager.UI;
+﻿
 using System.Collections.Generic;
-using System.Linq;
-using droid.Runtime;
 using UnityEditor;
 using UnityEditor.PackageManager;
-//using UnityEditor.PackageManager.UI;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
-using UnityEngine.UIElements;
 using PackageInfo = UnityEditor.PackageManager.PackageInfo;
+#if UNITY_2019_1_OR_NEWER && UNITY_EDITOR && USE_GITHUB_EXTENSION
+using System.Linq;
+using UnityEngine.UIElements;
+//using UnityEditor.PackageManager.UI;
 
 namespace droid.Editor.Utilities.Git {
   /// <inheritdoc cref="IPackageManagerExtension" />

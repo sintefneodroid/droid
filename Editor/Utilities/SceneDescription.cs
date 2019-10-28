@@ -1,11 +1,11 @@
 ﻿using System.IO;
 using droid.Runtime.Managers;
 using Newtonsoft.Json;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 #if UNITY_EDITOR
 using System.Linq;
+using UnityEditor;
 
 namespace droid.Editor.Utilities {
   /// <inheritdoc />

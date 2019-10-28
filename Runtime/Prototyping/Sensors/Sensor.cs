@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using droid.Runtime.Environments;
 using droid.Runtime.Environments.Prototyping;
 using droid.Runtime.GameObjects;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
 namespace droid.Runtime.Prototyping.Sensors {
   /// <inheritdoc cref="PrototypingGameObject" />

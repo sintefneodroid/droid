@@ -1,7 +1,7 @@
 ﻿using droid.Editor.Windows;
-using droid.Runtime.ScriptableObjects.Deprecated;
 using UnityEngine;
 #if UNITY_EDITOR
+using droid.Runtime.ScriptableObjects.Deprecated;
 using UnityEditor;
 
 namespace droid.Editor.ScriptableObjects {

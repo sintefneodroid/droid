@@ -1,4 +1,5 @@
 ﻿using System;
+using droid.Runtime.Enums;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Sampling;
 using UnityEngine;
@@ -36,6 +37,8 @@ namespace droid.Runtime.Structs.Space.Sample {
       this._distribution_sampler = new DistributionSampler();
     }
 
+
+
     /// <summary>
     ///
     /// </summary>
@@ -44,14 +47,23 @@ namespace droid.Runtime.Structs.Space.Sample {
       Single x;
       Single y;
       Single z;
-      if (!this._space.normalised) {
-        x = this.DistributionSampler.Range(this._space._min_.x, this._space._max_.x);
-        y = this.DistributionSampler.Range(this._space._min_.y, this._space._max_.y);
-        z = this.DistributionSampler.Range(this._space._min_.z, this._space._max_.z);
-      } else {
-        x = this.DistributionSampler.Range(0, 1);
-        y = this.DistributionSampler.Range(0, 1);
-        z = this.DistributionSampler.Range(0, 1);
+      switch(this._space.Normalised) {
+        case Normalisation.None_:
+          x = this._space.Round(this.DistributionSampler.Range(this._space.Min.x, this._space.Max.x));
+          y = this._space.Round(this.DistributionSampler.Range(this._space.Min.y, this._space.Max.y));
+          z = this._space.Round(this.DistributionSampler.Range(this._space.Min.z, this._space.Max.z));
+          break;
+        case Normalisation.Zero_one_:
+          x = this.DistributionSampler.Range(0, 1);
+          y = this.DistributionSampler.Range(0, 1);
+          z = this.DistributionSampler.Range(0, 1);
+          break;
+        case Normalisation.Minus_one_one_:
+          x = this.DistributionSampler.Range(-1, 1);
+          y = this.DistributionSampler.Range(-1, 1);
+          z = this.DistributionSampler.Range(-1, 1);
+          break;
+        default: throw new ArgumentOutOfRangeException();
       }
 
       return new Vector3(x, y, z);

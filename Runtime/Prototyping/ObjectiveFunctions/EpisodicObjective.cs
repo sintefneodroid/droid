@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Globalization;
-using droid.Runtime.Environments.Prototyping;
-using droid.Runtime.GameObjects;
-using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
+using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients;
 using droid.Runtime.Interfaces;
-using droid.Runtime.Structs.Space;
-using droid.Runtime.Utilities;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.ObjectiveFunctions {
@@ -16,29 +12,6 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions {
   public abstract class EpisodicObjective : ObjectiveFunction,
                                             //IHasRegister<Term>,
                                             IEpisodicObjectiveFunction {
-
-    /// <summary>
-    /// </summary>
-    [SerializeField]
-    protected float _solved_reward = 1.0f;
-
-    /// <summary>
-    /// </summary>
-    [SerializeField]
-    protected float _failed_reward = -1.0f;
-
-    /// <summary>
-    /// </summary>
-    [SerializeField]
-    protected float _default_reward = -0.001f;
-
-    /// <summary>
-    /// </summary>
-    [SerializeField]
-    protected float _Episode_Return;
-
-
-
     /// <inheritdoc />
     /// <summary>
     /// </summary>
@@ -47,16 +20,16 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions {
       var signal = 0.0f;
       signal += this.InternalEvaluate();
 
-      if (this.EpisodeLength > 0 && this._environment.StepI >= this.EpisodeLength) {
+      if (this.EpisodeLength > 0 && this.ParentEnvironment.StepI >= this.EpisodeLength) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Maximum episode length reached, Length {this._environment.StepI}");
+          Debug.Log($"Maximum episode length reached, Length {this.ParentEnvironment.StepI}");
         }
         #endif
 
-        signal = this._failed_reward;
+        signal = this.FailedSignal;
 
-        this._environment.Terminate("Maximum episode length reached");
+        this.ParentEnvironment.Terminate("Maximum episode length reached");
       }
 
       #if NEODROID_DEBUG
@@ -65,9 +38,9 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions {
       }
       #endif
 
-      this._last_signal = signal;
+      this.LastSignal = signal;
 
-      this._Episode_Return += signal;
+      this.EpisodeReturn += signal;
 
       return signal;
     }
@@ -76,8 +49,8 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions {
     /// <summary>
     /// </summary>
     public new void PrototypingReset() {
-      this._last_signal = 0;
-      this._Episode_Return = 0;
+      this.LastSignal = 0;
+      this.EpisodeReturn = 0;
       this.InternalReset();
     }
 
@@ -85,22 +58,40 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions {
     /// </summary>
     /// <returns></returns>
     public new void SignalString(DataPoller recipient) {
-      recipient.PollData($"{this.LastSignal.ToString(CultureInfo.InvariantCulture)}, {this._Episode_Return}");
+      recipient.PollData($"{this.LastSignal.ToString(CultureInfo.InvariantCulture)}, {this.EpisodeReturn}");
     }
 
     /// <summary>
     /// </summary>
-    [SerializeField]
-    int _episode_length = 1000;
-
+    /// <returns></returns>
+    public new void EpisodeLengthString(DataPoller recipient) {
+      recipient.PollData($"{this.EpisodeLength.ToString(CultureInfo.InvariantCulture)}");
+    }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public int EpisodeLength { get { return this._episode_length; } set { this._episode_length = value; } }
+    [field : SerializeField]
+    public int EpisodeLength { get; set; } = 1000;
 
     /// <summary>
     /// </summary>
-    public Single EpisodeReturn { get { return this._Episode_Return; } }
+    [field : SerializeField]
+    public Single EpisodeReturn { get; protected set; } = 0;
+
+    /// <summary>
+    /// </summary>
+    [field : SerializeField]
+    protected Single SolvedSignal { get; set; } = 1.0f;
+
+    /// <summary>
+    /// </summary>
+    [field : SerializeField]
+    protected Single FailedSignal { get; set; } = -1.0f;
+
+    /// <summary>
+    /// </summary>
+    [field : SerializeField]
+    protected Single DefaultSignal { get; set; } = -0.001f;
   }
 }

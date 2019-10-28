@@ -1,7 +1,6 @@
-﻿using droid.Editor.Utilities;
-using droid.Runtime.GameObjects.NeodroidCamera;
-using UnityEngine;
+﻿using UnityEngine;
 #if UNITY_EDITOR
+using droid.Runtime.GameObjects.NeodroidCamera;
 using UnityEditor;
 
 namespace droid.Editor.Windows {

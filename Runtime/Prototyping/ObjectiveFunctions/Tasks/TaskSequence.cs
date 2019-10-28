@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using droid.Runtime.Prototyping.Sensors.Grid;
+using droid.Runtime.Prototyping.Sensors.Spatial.Grid;
 using droid.Runtime.ScriptableObjects.Deprecated;
 using UnityEngine;
 

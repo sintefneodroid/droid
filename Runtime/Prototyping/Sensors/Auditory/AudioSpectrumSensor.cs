@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Structs.Space;
-using droid.Runtime.Utilities;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Auditory {
@@ -19,7 +17,7 @@ namespace droid.Runtime.Prototyping.Sensors.Auditory {
                                      IHasFloatArray {
     #if NEODROID_DEBUG
     void LateUpdate() {
-      if (Debugging) {
+      if (this.Debugging) {
         var spectrum = new float[256];
         AudioListener.GetSpectrumData(spectrum, 0, FFTWindow.Rectangular);
 

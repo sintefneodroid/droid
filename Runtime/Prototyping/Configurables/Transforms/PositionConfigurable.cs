@@ -135,23 +135,15 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       }
 
       float v;
-      if (this._pos_space._space.normalised) {
+
         if (simulator_configuration.ConfigurableName == this._x) {
-          v = this._pos_space._space.Xspace.ClipRoundDenormaliseClip(simulator_configuration.ConfigurableValue);
+          v = this._pos_space._space.Xspace.Project(simulator_configuration.ConfigurableValue);
         } else if (simulator_configuration.ConfigurableName == this._y) {
-          v = this._pos_space._space.Yspace.ClipRoundDenormaliseClip(simulator_configuration.ConfigurableValue);
+          v = this._pos_space._space.Yspace.Project(simulator_configuration.ConfigurableValue);
         } else {
-          v = this._pos_space._space.Zspace.ClipRoundDenormaliseClip(simulator_configuration.ConfigurableValue);
+          v = this._pos_space._space.Zspace.Project(simulator_configuration.ConfigurableValue);
         }
-      } else {
-        if (simulator_configuration.ConfigurableName == this._x) {
-          v = this._pos_space._space.Xspace.ClipRound(simulator_configuration.ConfigurableValue);
-        } else if (simulator_configuration.ConfigurableName == this._y) {
-          v = this._pos_space._space.Yspace.ClipRound(simulator_configuration.ConfigurableValue);
-        } else {
-          v = this._pos_space._space.Zspace.ClipRound(simulator_configuration.ConfigurableValue);
-        }
-      }
+
 
       #if NEODROID_DEBUG
       if (this.Debugging) {

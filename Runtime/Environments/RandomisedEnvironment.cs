@@ -30,15 +30,15 @@ namespace droid.Runtime.Environments {
     /// <summary>
     /// </summary>
     public override void PostStep() {
-      if (this._Terminated) {
-        this._Terminated = false;
+      if (this.Terminated) {
+        this.Terminated = false;
         this.PrototypingReset();
 
         this.RandomiseEnvironment();
       }
 
-      if (this._Configure) {
-        this._Configure = false;
+      if (this.Configure) {
+        this.Configure = false;
         this.Reconfigure();
       }
 

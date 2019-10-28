@@ -1,7 +1,4 @@
-﻿using System;
-using droid.Runtime.Utilities;
-using UnityEngine;
-using Object = System.Object;
+﻿using UnityEngine;
 
 namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
   /// <summary>

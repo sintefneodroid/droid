@@ -28,6 +28,7 @@ namespace droid.Runtime.Prototyping.Sensors.Visual {
     Camera _camera = null;
     Byte[] _bytes = {};
     [SerializeField] Boolean linear_space;
+    [SerializeField] Camera disable_camera_when_unused;
 
     /// <summary>
     ///
@@ -43,6 +44,12 @@ namespace droid.Runtime.Prototyping.Sensors.Visual {
 
       if(this._texture) {
         UnityHelpers.Destroy(this._texture);
+      }
+
+      if (this._manager?.SimulatorConfiguration?.SimulationType != SimulationType.Frame_dependent_) {
+        if(this.disable_camera_when_unused) {
+          this._camera.enabled = false;
+        }
       }
 
       var target_texture = this._camera.targetTexture;

@@ -1,9 +1,9 @@
 ﻿using droid.Editor.Windows;
+using droid.Runtime.Prototyping.Actuators;
 using droid.Runtime.ScriptableObjects;
 using UnityEngine;
-using droid.Runtime.Prototyping.Actuators;
-using droid.Runtime.Prototyping.Actors;
 #if UNITY_EDITOR
+using droid.Runtime.Prototyping.Actors;
 using UnityEditor;
 
 namespace droid.Editor.ScriptableObjects {
@@ -67,7 +67,7 @@ namespace droid.Editor.ScriptableObjects {
         foreach (var actor in this.actors) {
           foreach (var actuator in actor.Actuators) {
             for (int j = 0; j < ((Actuator)actuator.Value).InnerMotionNames.Length; j++, i++) {
-              asset._Motions[i] = new PlayerMotion() {
+              asset._Motions[i] = new PlayerMotion {
                                                          _Actor = actor.Identifier,
                                                          _Actuator = ((Actuator)actuator.Value)
                                                              .InnerMotionNames[j]

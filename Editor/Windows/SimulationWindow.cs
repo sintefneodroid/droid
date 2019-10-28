@@ -44,7 +44,6 @@ namespace droid.Editor.Windows {
 
     void OnGUI() {
       EditorGUILayout.ObjectField(this._simulation_manager, typeof(AbstractNeodroidManager), true);
-
       EditorGUI.BeginDisabledGroup(!Application.isPlaying);
 
       if (GUILayout.Button("Step")) {

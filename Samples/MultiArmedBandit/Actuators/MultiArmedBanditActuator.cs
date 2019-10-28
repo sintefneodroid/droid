@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
+using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Prototyping.Actuators;
 using UnityEngine;

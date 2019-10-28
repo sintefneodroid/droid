@@ -34,7 +34,7 @@ namespace droid.Runtime.Interfaces {
     ///
     /// </summary>
     /// <returns></returns>
-    EnvironmentState CollectState();
+    EnvironmentSnapshot Snapshot();
 
     /// <summary>
     ///
@@ -45,20 +45,8 @@ namespace droid.Runtime.Interfaces {
     /// <summary>
     ///
     /// </summary>
-    /// <param name="reaction"></param>
-    /// <returns></returns>
-    EnvironmentState ReactAndCollectState(Reaction reaction);
-
-    /// <summary>
-    ///
-    /// </summary>
     /// <returns></returns>
     Reaction SampleReaction();
-
-    /// <summary>
-    ///
-    /// </summary>
-    void Tick();
 
     /// <summary>
     ///

@@ -1,5 +1,4 @@
-﻿using System;
-using droid.Runtime.Interfaces;
+﻿using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Structs.Space;
 using droid.Runtime.Structs.Space.Sample;
@@ -33,7 +32,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
 
     [SerializeField]
     SampleSpace3 _spherical_space = new SampleSpace3 {
-                                                         _space = new Space3(4) {
+                                                         _space = new Space3 {
                                                                                     Min = new Vector3(0,
                                                                                                       Mathf.PI
                                                                                                       * 0.01f,

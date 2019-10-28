@@ -1,14 +1,12 @@
-﻿using droid.Runtime.Environments;
-using droid.Runtime.Environments.Prototyping;
+﻿using droid.Runtime.Environments.Prototyping;
 using droid.Runtime.GameObjects.BoundingBoxes;
 using droid.Runtime.Managers;
 using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Prototyping.Actuators;
-using droid.Runtime.Prototyping.Configurables;
 using droid.Runtime.Prototyping.Configurables.Transforms;
-using droid.Runtime.Prototyping.Sensors.Transform;
-using UnityEditor;
+using droid.Runtime.Prototyping.Sensors.Spatial.Transform;
 #if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
 
 namespace droid.Editor.GameObjects {

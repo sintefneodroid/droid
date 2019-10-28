@@ -1,6 +1,4 @@
-﻿using System;
-using droid.Runtime.Interfaces;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Actuators.Discrete {
   /// <summary>
@@ -29,7 +27,7 @@ namespace droid.Runtime.Prototyping.Actuators.Discrete {
       var layer_mask = 1 << LayerMask.NameToLayer(this._Layer_Mask);
       if (this._No_Collisions) {
         if (!Physics.Raycast(this.transform.position,
-                             transform.TransformDirection(vec.normalized),
+                             this.transform.TransformDirection(vec.normalized),
                              Mathf.Abs(vec.magnitude),
                              layer_mask)) {
           this.transform.Translate(vec, this._Relative_To);
@@ -42,32 +40,32 @@ namespace droid.Runtime.Prototyping.Actuators.Discrete {
     /// <summary>
     /// Self explanatory
     /// </summary>
-    public void TranslateUnitForward() { CheckCollisionTranslate(Vector3.forward * this.translation_unit); }
+    public void TranslateUnitForward() { this.CheckCollisionTranslate(Vector3.forward * this.translation_unit); }
 
     /// <summary>
     /// Self explanatory
     /// </summary>
-    public void TranslateUnitBackward() { CheckCollisionTranslate(Vector3.back * this.translation_unit); }
+    public void TranslateUnitBackward() { this.CheckCollisionTranslate(Vector3.back * this.translation_unit); }
 
     /// <summary>
     /// Self explanatory
     /// </summary>
-    public void TranslateUnitLeft() { CheckCollisionTranslate(Vector3.left * this.translation_unit); }
+    public void TranslateUnitLeft() { this.CheckCollisionTranslate(Vector3.left * this.translation_unit); }
 
     /// <summary>
     /// Self explanatory
     /// </summary>
-    public void TranslateUnitRight() { CheckCollisionTranslate(Vector3.right * this.translation_unit); }
+    public void TranslateUnitRight() { this.CheckCollisionTranslate(Vector3.right * this.translation_unit); }
 
     /// <summary>
     /// Self explanatory
     /// </summary>
-    public void TranslateUnitUp() { CheckCollisionTranslate(Vector3.up * this.translation_unit); }
+    public void TranslateUnitUp() { this.CheckCollisionTranslate(Vector3.up * this.translation_unit); }
 
     /// <summary>
     /// Self explanatory
     /// </summary>
-    public void TranslateUnitDown() { CheckCollisionTranslate(Vector3.down * this.translation_unit); }
+    public void TranslateUnitDown() { this.CheckCollisionTranslate(Vector3.down * this.translation_unit); }
 
     /// <summary>
     /// Self explanatory

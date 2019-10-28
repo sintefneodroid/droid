@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using droid.Runtime.Environments;
 using droid.Runtime.Environments.Prototyping;
 using droid.Runtime.GameObjects;
 using droid.Runtime.GameObjects.Plotting;
@@ -9,7 +8,6 @@ using droid.Runtime.Structs;
 using droid.Runtime.Utilities;
 using UnityEditor;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
 namespace droid.Runtime.Prototyping.Displayers {
   /// <inheritdoc cref="PrototypingGameObject" />

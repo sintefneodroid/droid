@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using droid.Runtime.Environments;
 using droid.Runtime.Environments.Prototyping;
 using droid.Runtime.GameObjects;
 using droid.Runtime.GameObjects.BoundingBoxes.Experimental;
@@ -7,7 +6,6 @@ using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities;
 using UnityEditor;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
 namespace droid.Runtime.Prototyping.Actors {
   /// <inheritdoc cref="PrototypingGameObject" />

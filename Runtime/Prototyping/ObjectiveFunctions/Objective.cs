@@ -2,7 +2,7 @@
 using System.Globalization;
 using droid.Runtime.Environments.Prototyping;
 using droid.Runtime.GameObjects;
-using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
+using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities;
@@ -17,12 +17,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions {
                                             IObjectiveFunction {
 
 
-    /// <summary>
-    /// </summary>
-    public IPrototypingEnvironment ParentEnvironment {
-      get { return this._environment; }
-      set { this._environment = value; }
-    }
+
 
     /// <inheritdoc />
     /// <summary>
@@ -38,7 +33,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions {
       }
       #endif
 
-      this._last_signal = signal;
+      this.LastSignal = signal;
 
       return signal;
     }
@@ -47,7 +42,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions {
     /// <summary>
     /// </summary>
     public override void PrototypingReset() {
-      this._last_signal = 0;
+      this.LastSignal = 0;
       this.InternalReset();
     }
 
@@ -59,7 +54,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions {
 
       if (this.ParentEnvironment == null) {
         this.ParentEnvironment = NeodroidSceneUtilities
-            .RecursiveFirstSelfSiblingParentGetComponent<PrototypingEnvironment>(this.transform);
+            .RecursiveFirstSelfSiblingParentGetComponent<AbstractSpatialPrototypingEnvironment>(this.transform);
       }
 
       this.RemotePostSetup();
@@ -70,7 +65,14 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions {
     /// </summary>
     /// <returns></returns>
     public void SignalString(DataPoller recipient) {
-      recipient.PollData($"{this._last_signal.ToString(CultureInfo.InvariantCulture)}");
+      recipient.PollData($"{this.LastSignal.ToString(CultureInfo.InvariantCulture)}");
+    }
+
+    /// <summary>
+    /// </summary>
+    /// <returns></returns>
+    public void EpisodeLengthString(DataPoller recipient) {
+      recipient.PollData($"");
     }
 
     /// <inheritdoc />
@@ -95,30 +97,25 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions {
     #region Fields
 
     /// <summary>
-    ///
     /// </summary>
-    [Header("References", order = 100)]
-    [SerializeField]
-    protected IPrototypingEnvironment _environment = null;
+    [field : Header("References", order = 100)]
+    [field : SerializeField]
+    public ISpatialPrototypingEnvironment ParentEnvironment { get; set; } = null;
 
     /// <summary>
     ///
     /// </summary>
-    [Header("General", order = 101)]
-    [SerializeField]
-    protected float _last_signal = 0f;
+    [field : Header("General", order = 101)]
+    [field : SerializeField]
+    public float LastSignal { get; protected set; } = 0f;
 
-    /// <summary>
-    ///
-    /// </summary>
-    public float LastSignal { get { return this._last_signal; } }
 
-    [SerializeField] Space1 _signal_space;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public Space1 SignalSpace { get { return this._signal_space; } set { this._signal_space = value; } }
+   [field : SerializeField]
+    public Space1 SignalSpace { get; set; }
 
     #endregion
   }

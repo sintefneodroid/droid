@@ -1,6 +1,6 @@
 ﻿using System;
+using droid.Runtime.Enums;
 using droid.Runtime.Interfaces;
-using droid.Runtime.Sampling;
 using droid.Runtime.Utilities.Extensions;
 using UnityEngine;
 
@@ -10,19 +10,19 @@ namespace droid.Runtime.Structs.Space {
   [Serializable]
   public struct Space4 : ISpace {
     #region Fields
-
+    public Normalisation Normalised { get { return this.normalised; }      set { this.normalised = value; } }
     /// <summary>
     ///
     /// </summary>
     [Header("Space", order = 103)]
     [SerializeField]
-    internal Vector4 _min_;
+     Vector4 _min_;
 
     /// <summary>
     ///
     /// </summary>
     [SerializeField]
-    internal Vector4 _max_;
+     Vector4 _max_;
 
     /// <summary>
     ///
@@ -31,15 +31,11 @@ namespace droid.Runtime.Structs.Space {
     [SerializeField]
     int _decimal_granularity;
 
-    [SerializeField] internal bool normalised;
+    [SerializeField]  Normalisation normalised;
 
     #endregion
 
-    public Space4(int decimal_granularity = 2) : this() {
-      this._decimal_granularity = decimal_granularity;
-      this._min_ = Vector4.negativeInfinity;
-      this._max_ = Vector4.positiveInfinity;
-    }
+
 
     /// <summary>
     ///
@@ -49,7 +45,39 @@ namespace droid.Runtime.Structs.Space {
     /// <summary>
     ///
     /// </summary>
-    public bool NormalisedBool { get { return this.normalised; } set { this.normalised = value; } }
+    /// <param name="v"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    public dynamic Project(dynamic v) {
+      switch (this.Normalised) {
+        case Normalisation.None_:
+          return ClipRound(v);
+        case Normalisation.Zero_one_:
+          return ClipNormalise01Round(v);
+        case Normalisation.Minus_one_one_:
+          return ClipNormalise01Round(v); //return ClipNormaliseMinusOneOneRound(v);
+        default: throw new ArgumentOutOfRangeException();
+      }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    public dynamic Reproject(dynamic v) {
+      switch (this.Normalised) {
+        case Normalisation.None_:
+          return ClipRound(v);
+        case Normalisation.Zero_one_:
+          return ClipRoundDenormalise01Clip(v);
+        case Normalisation.Minus_one_one_:
+          return ClipRoundDenormalise01Clip(v); // return ClipRoundDenormaliseMinusOneOneClip(v);
+        default: throw new ArgumentOutOfRangeException();
+      }
+    }
+
 
     /// <inheritdoc />
     /// <summary>
@@ -63,28 +91,28 @@ namespace droid.Runtime.Structs.Space {
     ///
     /// </summary>
     public Space1 Xspace {
-      get { return new Space1(this.DecimalGranularity) {Min = this._min_.x, Max = this._max_.x}; }
+      get { return new Space1 {Min = this._min_.x, Max = this._max_.x,DecimalGranularity = this.DecimalGranularity}; }
     }
 
     /// <summary>
     ///
     /// </summary>
     public Space1 Yspace {
-      get { return new Space1(this.DecimalGranularity) {Min = this._min_.y, Max = this._max_.y}; }
+      get { return new Space1 {Min = this._min_.y, Max = this._max_.y,DecimalGranularity = this.DecimalGranularity}; }
     }
 
     /// <summary>
     ///
     /// </summary>
     public Space1 Zspace {
-      get { return new Space1(this.DecimalGranularity) {Min = this._min_.z, Max = this._max_.z}; }
+      get { return new Space1 {Min = this._min_.z, Max = this._max_.z,DecimalGranularity = this.DecimalGranularity}; }
     }
 
     /// <summary>
     ///
     /// </summary>
     public Space1 Wspace {
-      get { return new Space1(this.DecimalGranularity) {Min = this._min_.w, Max = this._max_.w}; }
+      get { return new Space1 {Min = this._min_.w, Max = this._max_.w,DecimalGranularity = this.DecimalGranularity}; }
     }
 
     public Vector4 Clip(Vector4 v, Vector4 min, Vector4 max) {
@@ -96,7 +124,27 @@ namespace droid.Runtime.Structs.Space {
 
     public Vector4 Clip(Vector4 v) { return this.Clip(v, this._min_, this._max_); }
 
-    public dynamic ClipRoundDenormaliseClip(dynamic configuration_configurable_value) {
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    Vector4 ClipRound(Vector4 v) { return this.Clip(this.Round(v)); }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    public Vector4 Round(Vector4 v) {
+      v.x = this.Round(v.x);
+      v.y = this.Round(v.y);
+      v.w = this.Round(v.z);
+      v.z = this.Round(v.w);
+      return v;
+    }
+
+     dynamic ClipRoundDenormalise01Clip(dynamic configuration_configurable_value) {
       return this.Clip(this.Round(this.Denormalise01(Clip(configuration_configurable_value,
                                                           Vector4.zero,
                                                           Vector4.one))));
@@ -107,7 +155,7 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-    public dynamic ClipNormaliseRound(dynamic v) {
+     dynamic ClipNormalise01Round(dynamic v) {
       if (v.x > this._max_.x) {
         v.x = this._max_.x;
       } else if (v.x < this._min_.x) {
@@ -169,20 +217,29 @@ namespace droid.Runtime.Structs.Space {
     /// <summary>
     ///
     /// </summary>
-    public static Space4 ZeroOne { get { return new Space4(1) {_min_ = Vector4.zero, Max = Vector4.one}; } }
+    public static Space4 ZeroOne { get { return new Space4 {_min_ = Vector4.zero, Max = Vector4.one,
+                                                               DecimalGranularity = 4,
+                                                               Normalised = Normalisation.Zero_one_
+                                                           }; } }
 
     /// <summary>
     ///
     /// </summary>
     public static Space4 TwentyEighty {
-      get { return new Space4(1) {_min_ = Vector4.one * 0.2f, Max = Vector4.one * 0.8f}; }
+      get { return new Space4 {_min_ = Vector4.one * 0.2f, Max = Vector4.one * 0.8f,
+                                  DecimalGranularity = 4,
+                                  Normalised = Normalisation.Zero_one_
+                              }; }
     }
 
     /// <summary>
     ///
     /// </summary>
     public static Space4 MinusOneOne {
-      get { return new Space4(2) {_min_ = -Vector4.one, Max = Vector4.one}; }
+      get { return new Space4 {_min_ = -Vector4.one, Max = Vector4.one,
+                                  DecimalGranularity = 4,
+                                  Normalised = Normalisation.Zero_one_
+                              }; }
     }
 
     /// <summary>
@@ -200,13 +257,25 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-    public Vector4 Denormalise01(Vector4 v) { return v.Multiply(this.Span) + this._min_; }
+     Vector4 Denormalise01(Vector4 v) { return v.Multiply(this.Span) + this._min_; }
 
     /// <summary>
     ///
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-    public Vector4 Normalise01(Vector4 v) { return (v - this._min_).Divide(this.Span); }
+     Vector4 Normalise01(Vector4 v) { return (v - this._min_).Divide(this.Span); }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="a"></param>
+    /// <param name="b"></param>
+    /// <returns></returns>
+    public static Space4 operator*(Space4 a, float b) {
+      a.Max *= b;
+      a.Min *= b;
+      return a;
+    }
   }
 }

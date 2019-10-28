@@ -28,8 +28,9 @@ namespace droid.Runtime.Messaging {
     /// </summary>
     Thread _polling_thread;
     #if NEODROID_DEBUG
+    [SerializeField]
     int _last_send_frame_number;
-
+    [SerializeField]
     float _last_send_time;
     #endif
 
@@ -79,6 +80,8 @@ namespace droid.Runtime.Messaging {
     /// <summary>
     /// </summary>
     Double _wait_time_seconds;
+
+    Reaction[] _last_received_reactions;
 
     #endregion
 
@@ -182,7 +185,8 @@ namespace droid.Runtime.Messaging {
           if (!this._waiting_for_main_loop_to_send) {
             var reactions = this.Receive(TimeSpan.FromSeconds(this._wait_time_seconds));
             if (reactions != null) {
-              receive_callback(reactions);
+              _last_received_reactions = reactions;
+              receive_callback(this._last_received_reactions);
               this._waiting_for_main_loop_to_send = true;
             }
           } else {
@@ -224,7 +228,7 @@ namespace droid.Runtime.Messaging {
     /// <param name="do_serialise_observables"></param>
     /// <param name="simulator_configuration_message"></param>
     /// <param name="api_version"></param>
-    public void SendStates(EnvironmentState[] environment_states,
+    public void SendStates(EnvironmentSnapshot[] environment_states,
                            bool do_serialise_unobservables = false,
                            bool serialise_individual_observables = false,
                            bool do_serialise_observables = false,
@@ -238,16 +242,18 @@ namespace droid.Runtime.Messaging {
             if (environment_state[0] != null) {
               var frame_number = environment_state[0].FrameNumber;
               var time = environment_state[0].Time;
-              var frame_number_duplicate = this._last_send_frame_number == frame_number;
-              if (frame_number_duplicate && frame_number > 0) {
-                Debug.LogWarning($"Sending duplicate frame! Frame number: {frame_number}");
-              }
+              var episode_count = this._last_received_reactions[0].Parameters.EpisodeCount;
+              var stepped = this._last_received_reactions[0].Parameters.StepResetObserveEnu == StepResetObserve
+              .Step_;
 
               if (frame_number <= this._last_send_frame_number) {
                 Debug.LogWarning($"The current frame number {frame_number} is less or equal the last {this._last_send_frame_number}, SINCE AWAKE ({Time.frameCount})");
+                if (this._last_send_frame_number == frame_number && frame_number > 0 && episode_count) {
+                  Debug.LogWarning($"Sending duplicate frame! Frame number: {frame_number}");
+                }
               }
 
-              if (time <= this._last_send_time) {
+              if (time <= this._last_send_time && stepped) {
                 Debug.LogWarning($"The current time {time} is less or equal the last {this._last_send_time}");
               }
 

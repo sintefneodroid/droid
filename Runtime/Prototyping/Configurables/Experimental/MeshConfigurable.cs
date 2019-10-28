@@ -5,7 +5,6 @@ using droid.Runtime.Structs.Space;
 using droid.Runtime.Structs.Space.Sample;
 using droid.Runtime.Utilities;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
 namespace droid.Runtime.Prototyping.Configurables.Experimental {
   /// <inheritdoc cref="Configurable" />

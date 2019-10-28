@@ -1,7 +1,7 @@
 ﻿using System;
-using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
+using UnityEngine;
 
 namespace droid.Editor.Utilities {
   /// <inheritdoc />

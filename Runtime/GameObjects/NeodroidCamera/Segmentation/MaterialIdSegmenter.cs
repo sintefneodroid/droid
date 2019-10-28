@@ -55,8 +55,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Segmentation {
                                                                                                   _Name =
                                                                                                       "_material_id",
                                                                                                   _ReplacementMode
-                                                                                                      = SynthesisUtilities
-                                                                                                        .ReplacementModes
+                                                                                                      = SynthesisUtilities.ReplacementModes
                                                                                                         .Material_id_,
                                                                                                   _SupportsAntialiasing
                                                                                                       = false

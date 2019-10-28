@@ -1,15 +1,15 @@
-﻿#if UNITY_POST_PROCESSING_STACK_V2
+﻿
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
+#if UNITY_POST_PROCESSING_STACK_V2
 using System;
-using UnityEditor;
+using UnityEngine.Rendering.PostProcessing;
 
 namespace droid.Runtime.Utilities.PostProcessesEffects {
   /// <summary>
   ///
   /// </summary>
   [Serializable]
-  [UnityEngine.Rendering.PostProcessing.PostProcess(typeof(FlipperRenderer),
+  [PostProcess(typeof(FlipperRenderer),
       PostProcessEvent.AfterStack,
       "Neodroid/Flip")]
   public sealed class Flipper : PostProcessEffectSettings {
@@ -38,6 +38,5 @@ namespace droid.Runtime.Utilities.PostProcessesEffects {
                                              0);
     }
   }
-
-  #endif
 }
+#endif

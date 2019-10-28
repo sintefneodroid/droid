@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using droid.Editor.Utilities;
 using droid.Runtime.Enums;
 using droid.Runtime.Environments;
-using droid.Runtime.Environments.Prototyping;
 using droid.Runtime.GameObjects;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Managers;
@@ -19,8 +18,8 @@ using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities;
 using droid.Runtime.Utilities.InternalReactions;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 #if UNITY_EDITOR
+using droid.Runtime.Environments.Prototyping;
 using UnityEditor;
 
 namespace droid.Editor.Windows {

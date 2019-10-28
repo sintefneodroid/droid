@@ -6,5 +6,7 @@ namespace droid.Runtime.Interfaces {
     /// <summary>
     /// </summary>
     ISimulatorConfiguration SimulatorConfiguration { get; }
+
+    void Setup();
   }
 }

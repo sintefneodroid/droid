@@ -1,8 +1,6 @@
 ﻿using droid.Runtime.Interfaces;
-using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Utilities;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
 namespace droid.Runtime.Prototyping.Actuators {
   /// <inheritdoc />

@@ -2,7 +2,6 @@
 using droid.Runtime.Messaging.FBS;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Prototyping.Actors;
-using droid.Runtime.Prototyping.Configurables;
 using droid.Runtime.Prototyping.Configurables.Transforms;
 using FlatBuffers;
 using UnityEngine;
@@ -25,7 +24,7 @@ namespace droid.Runtime.Messaging {
     /// <param name="do_serialise_observables"></param>
     /// <param name="api_version"></param>
     /// <returns></returns>
-    public static byte[] Serialise(EnvironmentState[] states,
+    public static byte[] Serialise(EnvironmentSnapshot[] states,
                                    SimulatorConfigurationMessage simulator_configuration = null,
                                    bool do_serialise_unobservables = false,
                                    bool serialise_individual_observables = false,
@@ -90,26 +89,26 @@ namespace droid.Runtime.Messaging {
     /// <summary>
     /// </summary>
     /// <param name="b"></param>
-    /// <param name="state"></param>
+    /// <param name="snapshot"></param>
     /// <param name="serialise_individual_observables"></param>
     /// <param name="do_serialise_unobservables"></param>
     /// <param name="do_serialise_aggregated_float_array"></param>
     /// <returns></returns>
     static Offset<FState> SerialiseState(FlatBufferBuilder b,
-                                         EnvironmentState state,
+                                         EnvironmentSnapshot snapshot,
                                          bool do_serialise_unobservables = false,
                                          bool do_serialise_aggregated_float_array = false,
                                          bool serialise_individual_observables = false) {
-      var n = b.CreateString(state.EnvironmentName);
+      var n = b.CreateString(snapshot.EnvironmentName);
 
       var observables_vector = _null_vector_offset;
       if (do_serialise_aggregated_float_array) {
-        observables_vector = FState.CreateObservablesVector(b, state.Observables);
+        observables_vector = FState.CreateObservablesVector(b, snapshot.Observables);
       }
 
       var unobservables = _null_unobservables_offset;
       if (do_serialise_unobservables) {
-        var state_unobservables = state.Unobservables;
+        var state_unobservables = snapshot.Unobservables;
         if (state_unobservables != null) {
           var bodies = state_unobservables.Bodies;
 
@@ -154,21 +153,21 @@ namespace droid.Runtime.Messaging {
       }
 
       var description_offset = new Offset<FEnvironmentDescription>();
-      if (state.Description != null) {
-        description_offset = Serialise(b, state);
+      if (snapshot.Description != null) {
+        description_offset = Serialise(b, snapshot);
       }
 
       var d = new StringOffset();
-      if (state.DebugMessage != "") {
-        d = b.CreateString(state.DebugMessage);
+      if (snapshot.DebugMessage != "") {
+        d = b.CreateString(snapshot.DebugMessage);
       }
 
-      var t = b.CreateString(state.TerminationReason);
+      var t = b.CreateString(snapshot.TerminationReason);
 
       FState.StartFState(b);
       FState.AddEnvironmentName(b, n);
 
-      FState.AddFrameNumber(b, state.FrameNumber);
+      FState.AddFrameNumber(b, snapshot.FrameNumber);
       if (do_serialise_aggregated_float_array) {
         FState.AddObservables(b, observables_vector);
       }
@@ -177,16 +176,16 @@ namespace droid.Runtime.Messaging {
         FState.AddUnobservables(b, unobservables);
       }
 
-      FState.AddSignal(b, state.Signal);
+      FState.AddSignal(b, snapshot.Signal);
 
-      FState.AddTerminated(b, state.Terminated);
+      FState.AddTerminated(b, snapshot.Terminated);
       FState.AddTerminationReason(b, t);
 
-      if (state.Description != null) {
+      if (snapshot.Description != null) {
         FState.AddEnvironmentDescription(b, description_offset);
       }
 
-      if (state.DebugMessage != "") {
+      if (snapshot.DebugMessage != "") {
         FState.AddExtraSerialisedMessage(b, d);
       }
 
@@ -542,10 +541,10 @@ namespace droid.Runtime.Messaging {
       return FSensor.EndFSensor(b);
     }
 
-    static Offset<FEnvironmentDescription> Serialise(FlatBufferBuilder b, EnvironmentState state) {
-      var actors_offsets = new Offset<FActor>[state.Description.Actors.Values.Count];
+    static Offset<FEnvironmentDescription> Serialise(FlatBufferBuilder b, EnvironmentSnapshot snapshot) {
+      var actors_offsets = new Offset<FActor>[snapshot.Description.Actors.Values.Count];
       var j = 0;
-      foreach (var actor in state.Description.Actors) {
+      foreach (var actor in snapshot.Description.Actors) {
         var actuators_offsets = new Offset<FActuator>[actor.Value.Actuators.Values.Count];
         var i = 0;
         foreach (var actuator in actor.Value.Actuators) {
@@ -560,20 +559,20 @@ namespace droid.Runtime.Messaging {
 
       var actors_vector_offset = FEnvironmentDescription.CreateActorsVector(b, actors_offsets);
 
-      var configurables_offsets = new Offset<FConfigurable>[state.Description.Configurables.Values.Count];
+      var configurables_offsets = new Offset<FConfigurable>[snapshot.Description.Configurables.Values.Count];
       var k = 0;
-      foreach (var configurable in state.Description.Configurables) {
+      foreach (var configurable in snapshot.Description.Configurables) {
         configurables_offsets[k++] = Serialise(b, configurable.Value, configurable.Key);
       }
 
       var configurables_vector_offset =
           FEnvironmentDescription.CreateConfigurablesVector(b, configurables_offsets);
 
-      var objective_offset = Serialise(b, state.Description);
+      var objective_offset = Serialise(b, snapshot.Description);
 
-      var sensors = new Offset<FSensor>[state.Description.Sensors.Values.Count];
+      var sensors = new Offset<FSensor>[snapshot.Description.Sensors.Values.Count];
       var js = 0;
-      foreach (var sensor in state.Description.Sensors) {
+      foreach (var sensor in snapshot.Description.Sensors) {
         sensors[js++] = Serialise(b, sensor.Key, sensor.Value);
       }
 

@@ -1,8 +1,7 @@
-﻿using droid.Editor.Utilities;
-using droid.Runtime.Prototyping.ObjectiveFunctions.Tasks;
-using UnityEngine;
+﻿using droid.Runtime.Prototyping.ObjectiveFunctions.Tasks;
 #if UNITY_EDITOR
 using UnityEditor;
+using UnityEngine;
 
 namespace droid.Editor.Windows {
   public class TaskWindow : EditorWindow {

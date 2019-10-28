@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using droid.Runtime.Enums;
-using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
+using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging;
 using droid.Runtime.Messaging.Messages;
@@ -79,6 +79,7 @@ namespace droid.Runtime.Managers {
 
     /// <summary>
     /// </summary>
+    // ReSharper disable once EventNeverSubscribedTo.Global
     public event Action OnReceiveEvent;
 
     /// <summary>
@@ -174,11 +175,6 @@ namespace droid.Runtime.Managers {
     /// </summary>
     Object _send_lock = new Object();
 
-    /// <summary>
-    /// </summary>
-    [SerializeField]
-    bool _testing_Actuators;
-
     #if UNITY_EDITOR
     /// <summary>
     /// </summary>
@@ -194,14 +190,7 @@ namespace droid.Runtime.Managers {
     /// <summary>
     /// </summary>
     [SerializeField]
-    int _skip_frame_i;
-
-    /// <summary>
-    /// </summary>
-    [SerializeField]
     bool _awaiting_reply;
-
-    [SerializeField] bool _executing_step;
 
     WaitForEndOfFrame _wait_for_end_of_frame = new WaitForEndOfFrame();
     WaitForFixedUpdate _wait_for_fixed_update = new WaitForFixedUpdate();
@@ -233,7 +222,7 @@ namespace droid.Runtime.Managers {
       set {
         #if UNITY_EDITOR
         Time.timeScale = Math.Min(value, 99);
-        this._last_simulation_time = Math.Min(value, 99);
+        this.LastSimulationTime = Math.Min(value, 99);
         #else
         Time.timeScale = value;
         this._last_simulation_time = value;
@@ -245,18 +234,15 @@ namespace droid.Runtime.Managers {
       }
     }
 
-    [SerializeField] float _last_simulation_time;
+    /// <summary>
+    /// </summary>
+    [field : SerializeField]
+    public bool HasStepped { get; private set; }
 
     /// <summary>
     /// </summary>
-    public bool HasStepped { get { return this._has_stepped; } private set { this._has_stepped = value; } }
-
-    /// <summary>
-    /// </summary>
-    public bool TestActuators {
-      get { return this._testing_Actuators; }
-      set { this._testing_Actuators = value; }
-    }
+    [field : SerializeField]
+    public bool TestActuators { get; set; }
 
     #if NEODROID_DEBUG
     /// <summary>
@@ -294,8 +280,52 @@ namespace droid.Runtime.Managers {
     public ISimulatorConfiguration SimulatorConfiguration { get { return this._configuration; } }
 
     /// <summary>
+    ///
     /// </summary>
-    public bool ShouldResume { get { return this._executing_step; } }
+    public abstract void Setup();
+
+    /// <summary>
+    /// </summary>
+
+    public bool ShouldResume {
+      get { return this._shouldResume; }
+      set {
+        if (value != this._shouldResume) {
+          if (value) {
+            #if NEODROID_DEBUG
+            if (this.Debugging) {
+              Debug.Log("Should Resume Now");
+            }
+            #endif
+          } else {
+            #if NEODROID_DEBUG
+            if (this.Debugging) {
+              Debug.Log("Should Not Resume");
+            }
+            #endif
+          }
+        }else {
+          #if NEODROID_DEBUG
+          if (this.Debugging) {
+            Debug.Log($"ShouldResume did not change: {value}");
+          }
+          #endif
+        }
+
+        this._shouldResume = value;
+      }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    [field : SerializeField]
+    public float LastSimulationTime { get; private set; }
+
+    /// <summary>
+    /// </summary>
+    [field : SerializeField]
+    public int SkipFrameI { get; set; }
 
     #endregion
 
@@ -311,13 +341,14 @@ namespace droid.Runtime.Managers {
 
     /// <summary>
     /// </summary>
+    [SerializeField]
     protected MessageServer _Message_Server;
 
     /// <summary>
     /// </summary>
     protected Reaction[] _Current_Reactions = { };
 
-    [SerializeField] bool _has_stepped;
+    [SerializeField] Boolean _shouldResume;
 
     #endregion
 
@@ -354,11 +385,6 @@ namespace droid.Runtime.Managers {
       }
       #endif
     }
-
-    /// <summary>
-    ///
-    /// </summary>
-    protected virtual void Setup() { }
 
     /// <summary>
     /// </summary>
@@ -417,7 +443,7 @@ namespace droid.Runtime.Managers {
       Application.targetFrameRate = configuration.TargetFrameRate;
 
       if (this._configuration.OptimiseWindowForSpeed) {
-        Screen.SetResolution(1, 1, false);
+        Screen.SetResolution(2, 2, false);
       }
       #if !UNITY_EDITOR
       else if( configuration.ApplyResolutionSettings ){
@@ -536,7 +562,7 @@ namespace droid.Runtime.Managers {
 
       if (this.TestActuators) {
         this.SendToEnvironments(this.SampleRandomReactions());
-        this.CollectStates();
+        this.GatherSnapshots();
       }
 
       foreach (var environment in this._Environments.Values) {
@@ -565,25 +591,33 @@ namespace droid.Runtime.Managers {
     /// <summary>
     /// </summary>
     void ExecuteStep() {
+
+      lock (this._send_lock) {
+
+
       if (!this.HasStepped) {
+        this.HasStepped = true;
+
         this.SendToEnvironments(this.CurrentReactions);
 
         if (this.AwaitingReply) {
-          var states = this.CollectStates();
+          var states = this.GatherSnapshots();
           this.PostReact(states);
         }
 
-        this.HasStepped = true;
+
+        this.ShouldResume = false;
         this.CurrentReactions = new Reaction[] { };
+      }
       }
     }
 
     /// <summary>
     /// </summary>
     /// <param name="states"></param>
-    protected void PostReact(EnvironmentState[] states) {
+    protected void PostReact(EnvironmentSnapshot[] states) {
       lock (this._send_lock) {
-        if (this._skip_frame_i >= this.Configuration.FrameSkips) {
+        if (this.SkipFrameI >= this.Configuration.FrameSkips) {
           #if NEODROID_DEBUG
           if (this.Debugging) {
             Debug.Log("Not skipping frame, replying...");
@@ -592,12 +626,12 @@ namespace droid.Runtime.Managers {
 
           this.Reply(states);
           this.AwaitingReply = false;
-          this._skip_frame_i = 0;
+          this.SkipFrameI = 0;
         } else {
-          this._skip_frame_i += 1;
+          this.SkipFrameI += 1;
           #if NEODROID_DEBUG
           if (this.Debugging) {
-            Debug.Log($"Skipping frame, {this._skip_frame_i}/{this.Configuration.FrameSkips}");
+            Debug.Log($"Skipping frame, {this.SkipFrameI}/{this.Configuration.FrameSkips}");
           }
           #endif
           if (this.Configuration.ReplayReactionInSkips) { }
@@ -621,7 +655,7 @@ namespace droid.Runtime.Managers {
     /// <summary>
     /// </summary>
     /// <param name="states"></param>
-    void Reply(EnvironmentState[] states) {
+    void Reply(EnvironmentSnapshot[] states) {
       lock (this._send_lock) {
         var configuration_message = new SimulatorConfigurationMessage(this.Configuration);
         var describe = false;
@@ -687,49 +721,50 @@ namespace droid.Runtime.Managers {
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public EnvironmentState[] CollectStates() {
+    public EnvironmentSnapshot[] GatherSnapshots() {
       var environments = this._Environments.Values;
-      var states = new EnvironmentState[environments.Count];
+      var states = new EnvironmentSnapshot[environments.Count];
       var i = 0;
       foreach (var environment in environments) {
-        states[i++] = environment.CollectState();
+        states[i++] = environment.Snapshot();
       }
 
       return states;
     }
 
-    void SetStepping(IEnumerable<Reaction> reactions) {
-      if (reactions.Any(reaction => reaction.Parameters.StepResetObserveEnu == StepResetObserve.Step_)) {
-        this.SetStepping(true);
-      }
-    }
-
-    void SetStepping(Reaction reaction) {
-      if (reaction.Parameters.StepResetObserveEnu == StepResetObserve.Step_) {
-        this.SetStepping(true);
-      }
-    }
-
-    void SetStepping(bool step) {
-      if (step) {
+    void SetStepping(Reaction[] reactions) {
+      var any = false;
+      if (reactions.Length == 0) {
         #if NEODROID_DEBUG
-        if (this.Debugging) {
-          Debug.Log("Stepping from Reaction");
+        if (this._debugging) {
+          Debug.LogWarning($"Received no reaction!");
         }
         #endif
+      }
+      foreach (var reaction in reactions) {
+        #if NEODROID_DEBUG
+        if (this._debugging && false) {
+          Debug.LogWarning($"Reaction StepResetObserveEnu Parameter: {reaction.Parameters.StepResetObserveEnu}");
+        }
+        #endif
+        if (reaction.Parameters.StepResetObserveEnu == StepResetObserve.Step_) {
+          any = true;
+          break;
+        }
+      }
 
-        this._executing_step = true;
+      if (any) {
+        this.ShouldResume = true;
       } else {
-        #if NEODROID_DEBUG
-        if (this.Debugging) {
-          Debug.Log("Not stepping from Reaction");
-        }
-        #endif
-        this._executing_step = false;
+        this.ShouldResume = false;
       }
     }
 
-    public void SetTesting(bool arg0) { this.TestActuators = arg0; }
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    public void SetTesting(bool v) { this.TestActuators = v; }
 
     /// <summary>
     /// </summary>
@@ -825,7 +860,7 @@ namespace droid.Runtime.Managers {
       lock (this._send_lock) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          if(reactions.Length>0) {
+          if (reactions.Length > 0) {
             Debug.Log($"Received: {reactions.Select(r => r.ToString()).Aggregate((current, next) => $"{current}, {next}")}");
           } else {
             Debug.Log($"Received empty reaction sequence");

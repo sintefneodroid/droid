@@ -11,48 +11,16 @@ using droid.Runtime.Prototyping.ObjectiveFunctions;
 using droid.Runtime.Utilities;
 using droid.Runtime.Utilities.Extensions;
 using UnityEngine;
+using Object = System.Object;
 
 namespace droid.Runtime.Environments.Prototyping {
   /// <inheritdoc cref="PrototypingGameObject" />
   /// <summary>
   /// </summary>
+  [RequireComponent(typeof(Transform))]
   public abstract class AbstractSpatialPrototypingEnvironment : NeodroidEnvironment,
-                                                            ISpatialPrototypingEnvironment {
+                                                                ISpatialPrototypingEnvironment {
     #region Fields
-
-    /// <summary>
-    /// </summary>
-    [Header("References", order = 20)]
-    [SerializeField]
-    protected EpisodicObjective _objective_function;
-
-    /// <summary>
-    /// </summary>
-    [Header("General", order = 30)]
-    [SerializeField]
-    protected Transform _coordinate_reference_point;
-
-    /// <summary>
-    /// </summary>
-    [SerializeField]
-    protected bool _track_only_children = true;
-
-    /// <summary>
-    /// </summary>
-    [SerializeField]
-    protected CoordinateSystem _coordinate_system = CoordinateSystem.Local_coordinates_;
-
-    /// <summary>
-    /// </summary>
-    [Header("(Optional)", order = 80)]
-    [SerializeField]
-    protected BoundingBox _playable_area;
-
-    /// <summary>
-    ///
-    /// </summary>
-    [SerializeField]
-    protected bool update_observations_with_every_tick = true;
 
     #endregion
 
@@ -60,7 +28,7 @@ namespace droid.Runtime.Environments.Prototyping {
 
     /// <summary>
     /// </summary>
-    protected System.Object _Reaction_Lock = new System.Object();
+    protected Object _Reaction_Lock = new Object();
 
     /// <summary>
     ///
@@ -155,25 +123,24 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <param name="reason"></param>
     public void Terminate(string reason = "None") {
       lock (this._Reaction_Lock) {
-        if (this._Terminable) {
+        if (this.Terminable) {
           #if NEODROID_DEBUG
           if (this.Debugging) {
             Debug.LogWarning($"Environment {this.Identifier} as terminated because {reason}");
           }
           #endif
 
-          this._Terminated = true;
-          this._LastTerminationReason = reason;
+          this.Terminated = true;
+          this.LastTerminationReason = reason;
         }
       }
     }
 
-    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void Tick() {
-      if (this._Resetting) {
-        this._Resetting = false;
+      if (this.IsResetting) {
+
         this.PrototypingReset();
 
         this.LoopConfigurables();
@@ -184,9 +151,11 @@ namespace droid.Runtime.Environments.Prototyping {
           Debug.Log("Reset");
         }
         #endif
+
+        this.IsResetting = false;
       } else {
-        this.LoopConfigurables(this.update_observations_with_every_tick);
-        this.LoopSensors(this.update_observations_with_every_tick);
+        this.LoopConfigurables(this.UpdateObservationsWithEveryTick);
+        this.LoopSensors(this.UpdateObservationsWithEveryTick);
       }
 
       #if NEODROID_DEBUG
@@ -195,7 +164,7 @@ namespace droid.Runtime.Environments.Prototyping {
       }
       #endif
 
-      LoopListeners();
+      this.LoopListeners();
     }
 
     /// <summary>
@@ -230,7 +199,7 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     void SaveInitialPoses() {
       var ignored_layer = LayerMask.NameToLayer($"IgnoredByNeodroid");
-      if (this._track_only_children) {
+      if (this.TrackOnlyChildren) {
         this._tracked_game_objects =
             NeodroidSceneUtilities.RecursiveChildGameObjectsExceptLayer(this.transform, ignored_layer);
       } else {
@@ -314,14 +283,13 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <summary>
     /// </summary>
     public override void PreSetup() {
-      if (this._objective_function == null) {
-        this._objective_function = this.GetComponent<EpisodicObjective>();
+      if (this.ObjectiveFunction == null) {
+        this.ObjectiveFunction = this.GetComponent<EpisodicObjective>();
       }
 
       if (!this.PlayableArea) {
         this.PlayableArea = this.GetComponent<BoundingBox>();
       }
-
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
@@ -334,7 +302,6 @@ namespace droid.Runtime.Environments.Prototyping {
         this.SaveInitialAnimations();
         this.StartCoroutine(this.SaveInitialBodiesIe());
       }
-
     }
 
     /// <summary>
@@ -376,6 +343,10 @@ namespace droid.Runtime.Environments.Prototyping {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="reaction"></param>
     protected abstract void SendToActors(Reaction reaction);
 
     /// <inheritdoc />
@@ -384,37 +355,35 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <param name="reaction"></param>
     /// <returns></returns>
     public override void React(Reaction reaction) {
-      lock (this._Reaction_Lock) {
-        this.LastReaction = reaction;
-        this._Terminable = reaction.Parameters.Terminable;
+      this.LastReaction = reaction;
+      this.Terminable = reaction.Parameters.Terminable;
 
-        this._last_configuration = reaction.Configurations;
+      this._last_configuration = reaction.Configurations;
 
-        this._ReplyWithDescriptionThisStep = reaction.Parameters.Describe;
+      this.ReplyWithDescriptionThisStep = reaction.Parameters.Describe;
 
-        if (reaction.Parameters.Configure && reaction.Unobservables != null) {
-          this._received_poses = reaction.Unobservables.Poses;
-          this._received_bodies = reaction.Unobservables.Bodies;
+      if (reaction.Parameters.Configure && reaction.Unobservables != null) {
+        this._received_poses = reaction.Unobservables.Poses;
+        this._received_bodies = reaction.Unobservables.Bodies;
+      }
+
+      this.SendToDisplayers(reaction);
+
+      if (reaction.Parameters.StepResetObserveEnu == StepResetObserve.Reset_) {
+        #if NEODROID_DEBUG
+        if (this.Debugging) {
+          Debug.Log($"Resetting environment({this.Identifier})");
         }
-
-        this.SendToDisplayers(reaction);
-
-        if (reaction.Parameters.StepResetObserveEnu == StepResetObserve.Reset_) {
-          #if NEODROID_DEBUG
-          if (this.Debugging) {
-            Debug.Log($"Resetting environment({this.Identifier})");
-          }
-          #endif
-          this.Terminate($"Reaction caused a reset");
-          this._Resetting = true;
-        } else if (reaction.Parameters.StepResetObserveEnu == StepResetObserve.Step_) {
-          #if NEODROID_DEBUG
-          if (this.Debugging) {
-            Debug.Log($"Stepping in environment({this.Identifier})");
-          }
-          #endif
-          this.Step(reaction);
+        #endif
+        this.Terminate($"Reaction caused a reset");
+        this.IsResetting = true;
+      } else if (reaction.Parameters.StepResetObserveEnu == StepResetObserve.Step_) {
+        #if NEODROID_DEBUG
+        if (this.Debugging) {
+          Debug.Log($"Stepping in environment({this.Identifier})");
         }
+        #endif
+        this.Step(reaction);
       }
     }
 
@@ -423,25 +392,25 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     public override void PostStep() {
       this.PostStepEvent?.Invoke();
-      if (this._Configure) {
+      if (this.Configure) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log("Configuring");
         }
         #endif
-        this._Configure = false;
+        this.Configure = false;
         this.Reconfigure();
       }
 
-      this._ReplyWithDescriptionThisStep = false;
+      this.ReplyWithDescriptionThisStep = false;
     }
 
     /// <summary>
     /// </summary>
     public override void PrototypingReset() {
-      this._LastResetTime = Time.time;
+      this.LastResetTime = Time.realtimeSinceStartup;
       this.StepI = 0;
-      this._objective_function?.PrototypingReset();
+      this.ObjectiveFunction?.PrototypingReset();
 
       SetEnvironmentTransforms(ref this._tracked_game_objects,
                                ref this._reset_positions,
@@ -459,7 +428,7 @@ namespace droid.Runtime.Environments.Prototyping {
       }
       #endif
 
-      this._Terminated = false;
+      this.Terminated = false;
     }
 
     /// <summary>
@@ -654,9 +623,9 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <param name="point"></param>
     /// <returns></returns>
     public Vector3 TransformPoint(Vector3 point) {
-      switch (this._coordinate_system) {
-        case CoordinateSystem.Relative_to_reference_point_ when this._coordinate_reference_point:
-          return this._coordinate_reference_point.transform.InverseTransformPoint(point);
+      switch (this.CoordinateSystem) {
+        case CoordinateSystem.Relative_to_reference_point_ when this.CoordinateReferencePoint:
+          return this.CoordinateReferencePoint.transform.InverseTransformPoint(point);
         case CoordinateSystem.Local_coordinates_:
           return this.transform.InverseTransformPoint(point);
         //return point - this.transform.position;
@@ -670,10 +639,14 @@ namespace droid.Runtime.Environments.Prototyping {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="point"></param>
     public void TransformPoint(ref Vector3 point) {
-      switch (this._coordinate_system) {
-        case CoordinateSystem.Relative_to_reference_point_ when this._coordinate_reference_point:
-          point = this._coordinate_reference_point.transform.InverseTransformPoint(point);
+      switch (this.CoordinateSystem) {
+        case CoordinateSystem.Relative_to_reference_point_ when this.CoordinateReferencePoint:
+          point = this.CoordinateReferencePoint.transform.InverseTransformPoint(point);
           break;
         case CoordinateSystem.Local_coordinates_:
           //point = point - this.transform.position;
@@ -694,9 +667,9 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <param name="point"></param>
     /// <returns></returns>
     public Vector3 InverseTransformPoint(Vector3 point) {
-      switch (this._coordinate_system) {
-        case CoordinateSystem.Relative_to_reference_point_ when this._coordinate_reference_point:
-          return this._coordinate_reference_point.transform.TransformPoint(point);
+      switch (this.CoordinateSystem) {
+        case CoordinateSystem.Relative_to_reference_point_ when this.CoordinateReferencePoint:
+          return this.CoordinateReferencePoint.transform.TransformPoint(point);
         case CoordinateSystem.Local_coordinates_:
           //return point - this.transform.position;
           return this.transform.TransformPoint(point);
@@ -715,9 +688,9 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     /// <param name="point"></param>
     public void InverseTransformPoint(ref Vector3 point) {
-      switch (this._coordinate_system) {
-        case CoordinateSystem.Relative_to_reference_point_ when this._coordinate_reference_point:
-          point = this._coordinate_reference_point.transform.TransformPoint(point);
+      switch (this.CoordinateSystem) {
+        case CoordinateSystem.Relative_to_reference_point_ when this.CoordinateReferencePoint:
+          point = this.CoordinateReferencePoint.transform.TransformPoint(point);
           break;
         case CoordinateSystem.Local_coordinates_:
           //point = point - this.transform.position;
@@ -738,9 +711,9 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <param name="direction"></param>
     /// <returns></returns>
     public Vector3 TransformDirection(Vector3 direction) {
-      switch (this._coordinate_system) {
-        case CoordinateSystem.Relative_to_reference_point_ when this._coordinate_reference_point:
-          return this._coordinate_reference_point.transform.InverseTransformDirection(direction);
+      switch (this.CoordinateSystem) {
+        case CoordinateSystem.Relative_to_reference_point_ when this.CoordinateReferencePoint:
+          return this.CoordinateReferencePoint.transform.InverseTransformDirection(direction);
         case CoordinateSystem.Local_coordinates_:
           return this.transform.InverseTransformDirection(direction);
         default:
@@ -758,9 +731,9 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     /// <param name="direction"></param>
     public void TransformDirection(ref Vector3 direction) {
-      switch (this._coordinate_system) {
-        case CoordinateSystem.Relative_to_reference_point_ when this._coordinate_reference_point:
-          direction = this._coordinate_reference_point.transform.InverseTransformDirection(direction);
+      switch (this.CoordinateSystem) {
+        case CoordinateSystem.Relative_to_reference_point_ when this.CoordinateReferencePoint:
+          direction = this.CoordinateReferencePoint.transform.InverseTransformDirection(direction);
           break;
         case CoordinateSystem.Local_coordinates_:
           direction = this.transform.InverseTransformDirection(direction);
@@ -781,9 +754,9 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <param name="direction"></param>
     /// <returns></returns>
     public Vector3 InverseTransformDirection(Vector3 direction) {
-      switch (this._coordinate_system) {
-        case CoordinateSystem.Relative_to_reference_point_ when this._coordinate_reference_point:
-          return this._coordinate_reference_point.transform.TransformDirection(direction);
+      switch (this.CoordinateSystem) {
+        case CoordinateSystem.Relative_to_reference_point_ when this.CoordinateReferencePoint:
+          return this.CoordinateReferencePoint.transform.TransformDirection(direction);
         case CoordinateSystem.Local_coordinates_:
           return this.transform.TransformDirection(direction);
 
@@ -798,9 +771,9 @@ namespace droid.Runtime.Environments.Prototyping {
     }
 
     public void InverseTransformDirection(ref Vector3 direction) {
-      switch (this._coordinate_system) {
-        case CoordinateSystem.Relative_to_reference_point_ when this._coordinate_reference_point:
-          direction = this._coordinate_reference_point.transform.TransformDirection(direction);
+      switch (this.CoordinateSystem) {
+        case CoordinateSystem.Relative_to_reference_point_ when this.CoordinateReferencePoint:
+          direction = this.CoordinateReferencePoint.transform.TransformDirection(direction);
           break;
         case CoordinateSystem.Local_coordinates_:
           direction = this.transform.TransformDirection(direction);
@@ -820,14 +793,14 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <param name="quaternion"></param>
     /// <returns></returns>
     public Quaternion TransformRotation(Quaternion quaternion) {
-      if (this._coordinate_system == CoordinateSystem.Relative_to_reference_point_) {
-        if (this._coordinate_reference_point) {
-          return Quaternion.Inverse(this._coordinate_reference_point.rotation) * quaternion;
+      if (this.CoordinateSystem == CoordinateSystem.Relative_to_reference_point_) {
+        if (this.CoordinateReferencePoint) {
+          return Quaternion.Inverse(this.CoordinateReferencePoint.rotation) * quaternion;
         }
 
         //Quaternion.Euler(this._coordinate_reference_point.transform.TransformDirection(quaternion.forward));
-      } else if (this._coordinate_system == CoordinateSystem.Local_coordinates_) {
-        if (this._coordinate_reference_point) {
+      } else if (this.CoordinateSystem == CoordinateSystem.Local_coordinates_) {
+        if (this.CoordinateReferencePoint) {
           return Quaternion.Inverse(this.Transform.rotation) * quaternion;
         }
       }
@@ -840,28 +813,28 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     /// <param name="quaternion"></param>
     public void TransformRotation(ref Quaternion quaternion) {
-      if (this._coordinate_system == CoordinateSystem.Relative_to_reference_point_) {
-        if (this._coordinate_reference_point) {
-          quaternion = Quaternion.Inverse(this._coordinate_reference_point.rotation) * quaternion;
+      if (this.CoordinateSystem == CoordinateSystem.Relative_to_reference_point_) {
+        if (this.CoordinateReferencePoint) {
+          quaternion = Quaternion.Inverse(this.CoordinateReferencePoint.rotation) * quaternion;
         }
 
         //Quaternion.Euler(this._coordinate_reference_point.transform.TransformDirection(quaternion.forward));
-      } else if (this._coordinate_system == CoordinateSystem.Local_coordinates_) {
-        if (this._coordinate_reference_point) {
+      } else if (this.CoordinateSystem == CoordinateSystem.Local_coordinates_) {
+        if (this.CoordinateReferencePoint) {
           quaternion = Quaternion.Inverse(this.Transform.rotation) * quaternion;
         }
       }
     }
 
     public Quaternion InverseTransformRotation(Quaternion quaternion) {
-      if (this._coordinate_system == CoordinateSystem.Relative_to_reference_point_) {
-        if (this._coordinate_reference_point) {
-          return this._coordinate_reference_point.rotation * quaternion;
+      if (this.CoordinateSystem == CoordinateSystem.Relative_to_reference_point_) {
+        if (this.CoordinateReferencePoint) {
+          return this.CoordinateReferencePoint.rotation * quaternion;
         }
 
         //Quaternion.Euler(this._coordinate_reference_point.transform.TransformDirection(quaternion.forward));
-      } else if (this._coordinate_system == CoordinateSystem.Local_coordinates_) {
-        if (this._coordinate_reference_point) {
+      } else if (this.CoordinateSystem == CoordinateSystem.Local_coordinates_) {
+        if (this.CoordinateReferencePoint) {
           return this.Transform.rotation * quaternion;
         }
       }
@@ -870,11 +843,11 @@ namespace droid.Runtime.Environments.Prototyping {
     }
 
     public void InverseTransformRotation(ref Quaternion quaternion) {
-      if (this._coordinate_system == CoordinateSystem.Relative_to_reference_point_) {
-        if (this._coordinate_reference_point) {
-          quaternion = this._coordinate_reference_point.rotation * quaternion;
-        } else if (this._coordinate_system == CoordinateSystem.Local_coordinates_) {
-          if (this._coordinate_reference_point) {
+      if (this.CoordinateSystem == CoordinateSystem.Relative_to_reference_point_) {
+        if (this.CoordinateReferencePoint) {
+          quaternion = this.CoordinateReferencePoint.rotation * quaternion;
+        } else if (this.CoordinateSystem == CoordinateSystem.Local_coordinates_) {
+          if (this.CoordinateReferencePoint) {
             quaternion = this.Transform.rotation * quaternion;
           }
         }
@@ -913,10 +886,9 @@ namespace droid.Runtime.Environments.Prototyping {
 
     /// <summary>
     /// </summary>
-    public IEpisodicObjectiveFunction ObjectiveFunction {
-      get { return this._objective_function; }
-      set { this._objective_function = (EpisodicObjective)value; }
-    }
+    [field : Header("References", order = 20)]
+    [field : SerializeField]
+    public IEpisodicObjectiveFunction ObjectiveFunction { get; set; }
 
     /// <summary>
     /// </summary>
@@ -924,28 +896,35 @@ namespace droid.Runtime.Environments.Prototyping {
 
     /// <summary>
     /// </summary>
-    public BoundingBox PlayableArea {
-      get { return this._playable_area; }
-      set { this._playable_area = value; }
-    }
+    [field : Header("(Optional)", order = 80)]
+    [field : SerializeField]
+    public BoundingBox PlayableArea { get; set; }
 
     /// <summary>
     /// </summary>
-    public Transform CoordinateReferencePoint {
-      get { return this._coordinate_reference_point; }
-      set { this._coordinate_reference_point = value; }
-    }
+    [field : Header("General", order = 30)]
+    [field : SerializeField]
+    public Transform CoordinateReferencePoint { get; set; }
 
     /// <summary>
     /// </summary>
-    public CoordinateSystem CoordinateSystem {
-      get { return this._coordinate_system; }
-      set { this._coordinate_system = value; }
-    }
+    [field : SerializeField]
+    public CoordinateSystem CoordinateSystem { get; set; } = CoordinateSystem.Local_coordinates_;
 
     /// <summary>
     /// </summary>
     protected Rigidbody[] TrackedRigidBodies { get { return this._Tracked_Rigid_Bodies; } }
+
+    /// <summary>
+    /// </summary>
+    [field : SerializeField]
+    protected Boolean TrackOnlyChildren { get; set; } = true;
+
+    /// <summary>
+    ///
+    /// </summary>
+    [field : SerializeField]
+    protected Boolean UpdateObservationsWithEveryTick { get; set; } = true;
 
     #endregion
 

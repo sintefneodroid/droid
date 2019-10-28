@@ -16,7 +16,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
     /// </summary>
     /// <returns></returns>
     public override float InternalEvaluate() {
-      var signal = this._default_reward;
+      var signal = this.DefaultSignal;
 
       /*if (this._playable_area != null && !this._playable_area.Bounds.Intersects(this._actor_transform.ActorBounds)) {
         #if NEODROID_DEBUG
@@ -63,7 +63,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
         }
         #endif
 
-        signal += this._solved_reward;
+        signal += this.SolvedSignal;
         if (this._terminate_on_goal_reached) {
           this.ParentEnvironment?.Terminate("Within range of goal");
         }
@@ -154,26 +154,20 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
 
     [Header("Specific", order = 102)]
     [SerializeField]
-    float _peak_reward;
+    float _peak_reward = 0;
 
     [SerializeField] [Range(0.1f, 10f)] float _distance_base = 2f;
     [SerializeField] [Range(0.1f, 10f)] float _distance_nominator = 5f;
     [SerializeField] [Range(0.1f, 10f)] float _angle_base = 6f;
     [SerializeField] [Range(0.1f, 10f)] float _angle_nominator = 3f;
-
     [SerializeField] bool _sparse = true;
     [SerializeField] bool _inverse = false;
     [SerializeField] Transform _goal = null;
-
     [SerializeField] Transform _actor_transform = null;
-
     [SerializeField] BoundingBox _playable_area = null;
-
     [SerializeField] Obstruction[] _obstructions = null;
-
     [SerializeField] bool _state_full = false;
     [SerializeField] float _goal_reached_radius = 0.01f; // Equivalent to 1 cm.
-
     [SerializeField] bool _terminate_on_obstruction_collision = true; //TODO: implement
     [SerializeField] bool _has_collided = false;
     [SerializeField] bool _terminate_on_goal_reached = true;

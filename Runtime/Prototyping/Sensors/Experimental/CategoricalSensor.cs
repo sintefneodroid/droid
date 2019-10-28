@@ -16,12 +16,9 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
     [SerializeField] PrototypingGameObject _categoryProvider = null;
     [SerializeField] float _observationValue = 0;
 
-    //void OneHotEncoding() { }
-
-    /*public override string PrototypingTypeName {
-      get { return "CategoricalSensor"; }
-    }*/
-
+    /// <summary>
+    ///
+    /// </summary>
     public override IEnumerable<float> FloatEnumerable { get { return new[] {this.ObservationValue}; } }
 
     /// <inheritdoc />
@@ -33,6 +30,9 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public float ObservationValue {
       get { return this._observationValue; }
       private set { this._observationValue = value; }

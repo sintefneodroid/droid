@@ -6,17 +6,19 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
   /// <summary>
   /// </summary>
   public abstract class SpatialObjective : EpisodicObjective {
-    /// <summary>
-    /// </summary>
-    [SerializeField]
-    protected Transform[] terminatingTransforms;
 
-    // TODO: Look at how to simplify a way to describe which objects should be in this list
+
     /// <summary>
     ///
     /// </summary>
-    [SerializeField]
-    protected BoundingBox boundingBox;
+    [field : SerializeField]
+    protected BoundingBox Box { get; set; }
+
+    /// <summary>
+    ///     // TODO: Look at how to simplify a way to describe which objects should be in this list
+    /// </summary>
+    [field : SerializeField]
+    protected Transform[] TerminatingTransforms { get; set; }
 
     /// <summary>
     ///
@@ -24,11 +26,11 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
     public override void RemotePostSetup() {
       base.RemotePostSetup();
 
-      if (this.boundingBox == null) {
+      if (this.Box == null) {
         if (this.ParentEnvironment.PlayableArea) {
-          this.boundingBox = this.ParentEnvironment.PlayableArea;
+          this.Box = this.ParentEnvironment.PlayableArea;
         } else {
-          this.boundingBox = this.gameObject.GetComponent<BoundingBox>();
+          this.Box = this.gameObject.GetComponent<BoundingBox>();
         }
       }
     }
@@ -41,31 +43,31 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
       var signal = 0.0f;
       signal += this.InternalEvaluate();
 
-      if (this.EpisodeLength > 0 && this._environment.StepI >= this.EpisodeLength) {
+      if (this.EpisodeLength > 0 && this.ParentEnvironment?.StepI >= this.EpisodeLength) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Maximum episode length reached, Length {this._environment.StepI}");
+          Debug.Log($"Maximum episode length reached, Length {this.ParentEnvironment.StepI}");
         }
         #endif
 
-        signal = this._failed_reward;
+        signal = this.FailedSignal;
 
-        this._environment.Terminate("Maximum episode length reached");
+        this.ParentEnvironment.Terminate("Maximum episode length reached");
       }
 
-      if (this.boundingBox) {
-        foreach (var t in this.terminatingTransforms) {
-          if (!this.boundingBox.Bounds.Contains(t.position)) {
-            signal = this._failed_reward;
+      if (this.Box) {
+        foreach (var t in this.TerminatingTransforms) {
+          if (!this.Box.Bounds.Contains(t.position)) {
+            signal = this.FailedSignal;
 
             #if NEODROID_DEBUG
             if (this.Debugging) {
-              Debug.Log($"The transform {t} outside bounds, terminating {this._environment}");
+              Debug.Log($"The transform {t} outside bounds, terminating {this.ParentEnvironment}");
             }
             #endif
 
-            this._environment
-                .Terminate($"The transform {t} is not inside {this.boundingBox.gameObject} bounds");
+            this.ParentEnvironment
+                ?.Terminate($"The transform {t} is not inside {this.Box.gameObject} bounds");
           }
         }
       }
@@ -76,9 +78,9 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
       }
       #endif
 
-      this._last_signal = signal;
+      this.LastSignal = signal;
 
-      this._Episode_Return = this.EpisodeReturn + signal;
+      this.EpisodeReturn += signal;
 
       return signal;
     }

@@ -6,7 +6,6 @@ using droid.Runtime.Structs.Space;
 using droid.Runtime.Structs.Space.Sample;
 using droid.Runtime.Utilities;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 using Random = UnityEngine.Random;
 
 namespace droid.Runtime.Prototyping.Configurables.Experimental {
@@ -54,11 +53,11 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
 
     [SerializeField]
     SampleSpace2 _sensor_size_space =
-        new SampleSpace2 {_space = new Space2(2) {Min = new Vector2(2.5f, 2.5f), Max = new Vector2(5, 5)}};
+        new SampleSpace2 {_space = new Space2 {Min = new Vector2(2.5f, 2.5f), Max = new Vector2(5, 5)}};
 
     [SerializeField]
     SampleSpace2 _lens_shift_space = new SampleSpace2 {
-                                                          _space = new Space2(3) {
+                                                          _space = new Space2 {
                                                                                      Min = new Vector2(-0.1f,
                                                                                                        -0.1f),
                                                                                      Max = new Vector2(0.1f,
@@ -67,7 +66,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
                                                       };
 
     [SerializeField]
-    SampleSpace1 _gate_fit_space = new SampleSpace1 {_space = new Space1(0) {Min = 0f, Max = 4f}};
+    SampleSpace1 _gate_fit_space = new SampleSpace1 {_space = Space1.DiscreteZeroOne*4};
 
     /// <inheritdoc />
     /// <summary>

@@ -1,5 +1,3 @@
-using System;
-
 namespace droid.Editor {
   /// <summary>
   ///

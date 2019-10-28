@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using droid.Runtime.Enums.BoundingBox;
-using droid.Runtime.Environments;
 using droid.Runtime.Environments.Prototyping;
 using droid.Runtime.GameObjects.BoundingBoxes.Experimental;
 using droid.Runtime.Interfaces;
@@ -129,7 +128,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
     /// <summary>
     /// </summary>
     [SerializeField]
-    bool OnAwakeSetup = false;
+    bool OnAwakeSetup = true;
 
     /// <summary>
     /// </summary>

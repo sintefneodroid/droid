@@ -1,11 +1,11 @@
 ﻿using System.IO;
 using UnityEditor;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 using Directory = UnityEngine.Windows.Directory;
 using File = UnityEngine.Windows.File;
 #if UNITY_EDITOR
 using System.Linq;
+using UnityEngine;
 
 namespace droid.Editor.Utilities {
   /// <inheritdoc />

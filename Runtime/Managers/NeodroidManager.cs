@@ -11,12 +11,6 @@ namespace droid.Runtime.Managers {
     #region Fields
 
     #if UNITY_EDITOR
-    /// <summary>
-    /// </summary>
-    [Header("Warning! Will block editor requiring a restart, if not terminated while receiving.",
-        order = 120)]
-    [SerializeField]
-    bool _allow_in_editor_blockage = false;
     #endif
 
     #endregion
@@ -25,13 +19,13 @@ namespace droid.Runtime.Managers {
 
     /// <summary>
     /// </summary>
-    protected override void Setup() {
+    public override void Setup() {
       if (this.Configuration.SimulationType == SimulationType.Frame_dependent_) {
         this.EarlyUpdateEvent += this.Pause;
         this.UpdateEvent += this.Resume;
       } else if (this.Configuration.SimulationType == SimulationType.Physics_dependent_) {
         #if UNITY_EDITOR
-        if (this._allow_in_editor_blockage) {
+        if (this.AllowInEditorBlockage) {
           this.EarlyFixedUpdateEvent +=
               this.Receive; // Receive blocks the main thread and therefore also the unity editor.
         } else {
@@ -69,7 +63,7 @@ namespace droid.Runtime.Managers {
       } else {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log("Not resuming simulation because of stepping");
+          Debug.Log("Not resuming simulation");
         }
         #endif
       }
@@ -78,6 +72,13 @@ namespace droid.Runtime.Managers {
     /// <summary>
     /// </summary>
     public bool IsSimulationPaused { get { return !(this.SimulationTimeScale > 0); } }
+
+    /// <summary>
+    /// </summary>
+    [field : Header("Warning! Will block editor requiring a restart, if not terminated while receiving.",
+        order = 120)]
+    [field : SerializeField]
+    public Boolean AllowInEditorBlockage { get; set; } = false;
 
     /// <summary>
     /// </summary>

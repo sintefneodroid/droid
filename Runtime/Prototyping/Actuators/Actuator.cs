@@ -1,14 +1,10 @@
 ﻿using System;
-using droid.Runtime.Environments;
 using droid.Runtime.GameObjects;
 using droid.Runtime.Interfaces;
-using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Structs.Space;
 using droid.Runtime.Structs.Space.Sample;
 using droid.Runtime.Utilities;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
-using Object = System.Object;
 
 namespace droid.Runtime.Prototyping.Actuators {
   /// <inheritdoc cref="PrototypingGameObject" />
@@ -37,14 +33,7 @@ namespace droid.Runtime.Prototyping.Actuators {
       }
       #endif
 
-      if (this._motion_value_space._space.NormalisedBool) {
-        motion.Strength = this._motion_value_space._space.ClipRoundDenormaliseClip(motion.Strength);
-      } else if (motion.Strength < this._motion_value_space._space.Min
-                 || motion.Strength > this._motion_value_space._space.Max) {
-        Debug.LogWarning($"It does not accept input {motion.Strength}, outside the allowed range from {this._motion_value_space._space.Min} to {this._motion_value_space._space.Max}, rounding to be inside space.");
-        motion.Strength =
-            this._motion_value_space._space.Round(this._motion_value_space._space.Clip(motion.Strength));
-      }
+      motion.Strength = this._motion_value_space._space.Reproject(motion.Strength);
 
       this.InnerApplyMotion(motion);
     }

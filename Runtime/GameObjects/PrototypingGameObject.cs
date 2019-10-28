@@ -9,27 +9,14 @@ namespace droid.Runtime.GameObjects {
   /// </summary>
   public abstract class PrototypingGameObject : MonoBehaviour,
                                                 IRegisterable {
-    /// <summary>
-    /// </summary>
-    [SerializeField]
-    [Header("Naming", order = 10)]
-    protected string _Custom_Name = "";
-    #if NEODROID_DEBUG
-    [SerializeField] bool _debugging;
-    #endif
-    /// <summary>
-    /// </summary>
-    [Header("Development", order = 90)]
-    [SerializeField]
-    bool _disables_children = false;
-
-    [SerializeField] bool _unregister_at_disable = false;
-
     #if NEODROID_DEBUG
     /// <summary>
     /// </summary>
-    public bool Debugging { get { return this._debugging; } set { this._debugging = value; } }
+
+    [field : SerializeField]
+    public bool Debugging { get; set; }
     #endif
+
     ///
     public virtual string PrototypingTypeName { get { return this.GetType().Name; } }
 
@@ -38,13 +25,27 @@ namespace droid.Runtime.GameObjects {
     /// </summary>
     public string Identifier {
       get {
-        if (!string.IsNullOrWhiteSpace(this._Custom_Name)) {
-          return this._Custom_Name.Trim();
+        if (!string.IsNullOrWhiteSpace(this.CustomName)) {
+          return this.CustomName.Trim();
         }
 
         return this.name + this.PrototypingTypeName;
       }
     }
+
+    /// <summary>
+    /// </summary>
+    [field : Header("Development", order = 90)]
+    [field : SerializeField]
+    public Boolean DisablesChildren { get; set; } = false;
+
+    [field : SerializeField]
+    public Boolean UnregisterAtDisable { get; set; } = false;
+
+    /// <summary>
+    /// </summary>
+    [field : SerializeField]
+    protected String CustomName { get; set; } = "";
 
     /// <summary>
     /// </summary>
@@ -77,7 +78,7 @@ namespace droid.Runtime.GameObjects {
     /// <summary>
     /// </summary>
     void OnDisable() {
-      if (this._disables_children) {
+      if (this.DisablesChildren) {
         var children = this.GetComponentsInChildren<PrototypingGameObject>();
         foreach (var child in children) {
           if (child.gameObject != this.gameObject) {
@@ -94,7 +95,7 @@ namespace droid.Runtime.GameObjects {
         }
       }
 
-      if (this._unregister_at_disable) {
+      if (this.UnregisterAtDisable) {
         this.UnRegisterComponent();
       }
     }
@@ -110,7 +111,7 @@ namespace droid.Runtime.GameObjects {
     /// <summary>
     /// </summary>
     void OnEnable() {
-      if (this._disables_children) {
+      if (this.DisablesChildren) {
         foreach (Transform child in this.transform) {
           if (child != this.transform) {
             child.gameObject.SetActive(true);

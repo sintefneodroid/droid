@@ -1,7 +1,7 @@
 ﻿using droid.Runtime.Prototyping.Sensors;
-using droid.Runtime.Prototyping.Sensors.Transform;
-using UnityEditor;
+using droid.Runtime.Prototyping.Sensors.Spatial.Transform;
 #if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
 
 namespace droid.Editor.GameObjects {

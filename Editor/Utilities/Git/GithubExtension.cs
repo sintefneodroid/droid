@@ -1,13 +1,14 @@
-﻿#if UNITY_2019_1_OR_NEWER && UNITY_EDITOR && USE_GITHUB_EXTENSION
+﻿
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text.RegularExpressions;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Networking;
+#if UNITY_2019_1_OR_NEWER && UNITY_EDITOR && USE_GITHUB_EXTENSION
+using System.Linq;
 using UnityEngine.UIElements;
-using PackageInfo = UnityEditor.PackageManager.PackageInfo;
 
 namespace droid.Editor.Utilities.Git {
   /// <summary>
