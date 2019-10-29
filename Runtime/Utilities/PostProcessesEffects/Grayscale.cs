@@ -36,5 +36,5 @@ namespace droid.Runtime.Utilities.PostProcessesEffects {
     }
   }
 
-  #endif
 }
+#endif
