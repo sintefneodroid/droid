@@ -76,7 +76,7 @@ namespace droid.Runtime.Prototyping.Actors {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public virtual void PrototypingReset() {
+    public override void PrototypingReset() {
       if (this._Actuators != null) {
         foreach (var actuator in this._Actuators.Values) {
           actuator?.PrototypingReset();

@@ -26,7 +26,8 @@ namespace droid.Runtime.Prototyping.Sensors.Visual {
     [Header("Specific", order = 102)]
     [SerializeField]
     Camera _camera = null;
-    Byte[] _bytes = {};
+
+    Byte[] _bytes = { };
     [SerializeField] Boolean linear_space;
     [SerializeField] Camera disable_camera_when_unused;
 
@@ -42,12 +43,12 @@ namespace droid.Runtime.Prototyping.Sensors.Visual {
         this._camera = this.GetComponent<Camera>();
       }
 
-      if(this._texture) {
+      if (this._texture) {
         UnityHelpers.Destroy(this._texture);
       }
 
       if (this._manager?.SimulatorConfiguration?.SimulationType != SimulationType.Frame_dependent_) {
-        if(this.disable_camera_when_unused) {
+        if (this.disable_camera_when_unused) {
           this._camera.enabled = false;
         }
       }
@@ -164,13 +165,17 @@ namespace droid.Runtime.Prototyping.Sensors.Visual {
     /// </summary>
     /// <returns></returns>
     public override string ToString() {
-      var rep = $"Byte Array (Length: {this.Bytes.Length}), "
-                + $"Sample [{this.Bytes[0]}.."
-                + $"{this.Bytes[this.Bytes.Length - 1]}]";
+      if (this.Bytes != null) {
+        var rep = $"Byte Array (Length: {this.Bytes.Length}), ";
+        if (this.Bytes.Length > 1) {
+          rep += $"Sample [{this.Bytes[0]}.." + $"{this.Bytes[this.Bytes.Length - 1]}]";
+        }
 
-      return rep;
+        return rep;
+      }
+
+      return "No data";
     }
-
 
     /// <summary>
     ///
@@ -183,6 +188,7 @@ namespace droid.Runtime.Prototyping.Sensors.Visual {
         }
       }
     }
+
     /// <summary>
     ///
     /// </summary>

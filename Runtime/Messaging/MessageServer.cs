@@ -185,7 +185,7 @@ namespace droid.Runtime.Messaging {
           if (!this._waiting_for_main_loop_to_send) {
             var reactions = this.Receive(TimeSpan.FromSeconds(this._wait_time_seconds));
             if (reactions != null) {
-              _last_received_reactions = reactions;
+              this._last_received_reactions = reactions;
               receive_callback(this._last_received_reactions);
               this._waiting_for_main_loop_to_send = true;
             }
