@@ -1,8 +1,8 @@
 ﻿using System;
 using droid.Runtime.Utilities;
-using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
+using UnityEngine;
 
 namespace droid.Editor.Utilities.SearchableEnum {
   /// <inheritdoc />

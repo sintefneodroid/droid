@@ -1,6 +1,6 @@
 ﻿using droid.Runtime.Prototyping.Actuators;
-using UnityEditor;
 #if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
 
 namespace droid.Editor.GameObjects {

@@ -1,10 +1,8 @@
 ﻿using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
-using droid.Runtime.Structs.Space;
 using droid.Runtime.Structs.Space.Sample;
 using droid.Runtime.Utilities;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
 namespace droid.Runtime.Prototyping.Configurables.Experimental {
   /// <inheritdoc />
@@ -24,7 +22,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() { this._texture_str = this.Identifier + "Texture"; }
+    public override void PreSetup() { this._texture_str = this.Identifier + "Texture"; }
 
     /// <inheritdoc />
     /// <summary>

@@ -1,14 +1,10 @@
 ﻿using System;
-using droid.Runtime.Environments;
 using droid.Runtime.GameObjects;
 using droid.Runtime.Interfaces;
-using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Structs.Space;
 using droid.Runtime.Structs.Space.Sample;
 using droid.Runtime.Utilities;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
-using Object = System.Object;
 
 namespace droid.Runtime.Prototyping.Actuators {
   /// <inheritdoc cref="PrototypingGameObject" />
@@ -22,16 +18,6 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// </summary>
     public IHasRegister<Actuator> Parent { get { return this._parent; } set { this._parent = value; } }
 
-    /// <summary>
-    /// </summary>
-    public float EnergySpendSinceReset {
-      get { return this._energy_spend_since_reset; }
-      set { this._energy_spend_since_reset = value; }
-    }
-
-    /// <summary>
-    /// </summary>
-    public float EnergyCost { get { return this._energy_cost; } set { this._energy_cost = value; } }
 
     /// <summary>
     /// </summary>
@@ -47,27 +33,10 @@ namespace droid.Runtime.Prototyping.Actuators {
       }
       #endif
 
-      if (this._motion_value_space._space.NormalisedBool) {
-        motion.Strength = this._motion_value_space._space.ClipRoundDenormaliseClip(motion.Strength);
-      } else if (motion.Strength < this._motion_value_space._space.Min
-                 || motion.Strength > this._motion_value_space._space.Max) {
-        Debug.LogWarning($"It does not accept input {motion.Strength}, outside the allowed range from {this._motion_value_space._space.Min} to {this._motion_value_space._space.Max}, rounding to be inside space.");
-        motion.Strength =
-            this._motion_value_space._space.Round(this._motion_value_space._space.Clip(motion.Strength));
-      }
+      motion.Strength = this._motion_value_space._space.Reproject(motion.Strength);
 
       this.InnerApplyMotion(motion);
-      this.EnergySpendSinceReset += Mathf.Abs(this.EnergyCost * motion.Strength);
     }
-
-    /// <summary>
-    /// </summary>
-    /// <returns></returns>
-    public virtual float GetEnergySpend() { return this._energy_spend_since_reset; }
-
-    /// <summary>
-    /// </summary>
-    public void EnvironmentReset() { this._energy_spend_since_reset = 0; }
 
     public Space1 MotionSpace {
       get { return this._motion_value_space._space; }
@@ -124,9 +93,7 @@ namespace droid.Runtime.Prototyping.Actuators {
     [SerializeField]
     SampleSpace1 _motion_value_space = new SampleSpace1 {_space = Space1.DiscreteMinusOneOne};
 
-    [SerializeField] float _energy_spend_since_reset;
 
-    [SerializeField] float _energy_cost;
     bool _overriden = false;
 
     #endregion

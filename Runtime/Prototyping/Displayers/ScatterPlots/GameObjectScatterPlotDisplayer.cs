@@ -24,7 +24,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
 
     List<float> _vs = new List<float>();
 
-    protected override void Setup() {
+    public override void Setup() {
       this._particle_system = this.GetComponent<ParticleSystem>();
       var em = this._particle_system.emission;
       em.enabled = false;

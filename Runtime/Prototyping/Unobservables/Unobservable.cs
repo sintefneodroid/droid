@@ -12,16 +12,12 @@ namespace droid.Runtime.Prototyping.Unobservables {
                                        IUnobservable {
     /// <summary>
     /// </summary>
-    public BaseSpatialPrototypingEnvironment _Parent_Environment;
+    public AbstractSpatialPrototypingEnvironment _Parent_Environment;
 
     /// <summary>
     /// </summary>
     public abstract override String PrototypingTypeName { get; }
 
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public abstract void EnvironmentReset();
 
     /// <summary>
     ///

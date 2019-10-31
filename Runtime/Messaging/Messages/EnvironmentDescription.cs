@@ -6,7 +6,7 @@ namespace droid.Runtime.Messaging.Messages {
   /// <summary>
   /// </summary>
   public class EnvironmentDescription {
-    public EnvironmentDescription(IObjectiveFunction objective_function_function,
+    public EnvironmentDescription(IEpisodicObjectiveFunction objective_function_function,
                                   SortedDictionary<string, IActor> actors,
                                   SortedDictionary<string, IConfigurable> configurables,
                                   SortedDictionary<string, ISensor> sensors,
@@ -29,7 +29,7 @@ namespace droid.Runtime.Messaging.Messages {
     /// <summary>
     ///
     /// </summary>
-    public IObjectiveFunction ObjectiveFunction { get; }
+    public IEpisodicObjectiveFunction ObjectiveFunction { get; }
 
     /// <summary>
     /// </summary>

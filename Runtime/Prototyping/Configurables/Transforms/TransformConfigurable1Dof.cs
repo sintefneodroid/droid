@@ -1,6 +1,5 @@
 ﻿using System;
 using droid.Runtime.Enums;
-using droid.Runtime.GameObjects.BoundingBoxes;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Structs.Space;
 using droid.Runtime.Structs.Space.Sample;
@@ -102,7 +101,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
 
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
+    public override void RemotePostSetup() {
       if (this.normalised_overwrite_space_if_env_bounds) {
         var dec_gran = 4;
         if (this._single_value_space.Space != null && this.ParentEnvironment.PlayableArea) {
@@ -113,17 +112,17 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
           switch (this._axis_of_configuration) {
             case Axis.X_:
               this.SingleSpace =
-                  Space1.FromCenterExtents(this.ParentEnvironment.PlayableArea.Bounds.extents.x,
+                  Space1.FromCenterExtent(this.ParentEnvironment.PlayableArea.Bounds.extents.x,
                                            decimal_granularity : dec_gran);
               break;
             case Axis.Y_:
               this.SingleSpace =
-                  Space1.FromCenterExtents(this.ParentEnvironment.PlayableArea.Bounds.extents.y,
+                  Space1.FromCenterExtent(this.ParentEnvironment.PlayableArea.Bounds.extents.y,
                                            decimal_granularity : dec_gran);
               break;
             case Axis.Z_:
               this.SingleSpace =
-                  Space1.FromCenterExtents(this.ParentEnvironment.PlayableArea.Bounds.extents.z,
+                  Space1.FromCenterExtent(this.ParentEnvironment.PlayableArea.Bounds.extents.z,
                                            decimal_granularity : dec_gran);
               break;
           }
@@ -142,18 +141,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// <param name="simulator_configuration"></param>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
     public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration) {
-      float cv;
-      if (this._single_value_space._space.NormalisedBool) {
-        cv = this.SingleSpace.ClipRoundDenormaliseClip(simulator_configuration.ConfigurableValue);
-      } else {
-        if (simulator_configuration.ConfigurableValue < this.SingleSpace.Min
-            || simulator_configuration.ConfigurableValue > this.SingleSpace.Max) {
-          Debug.Log($"It does not accept input, outside allowed range {this.SingleSpace.Min} to {this.SingleSpace.Max}");
-          return; // Do nothing
-        }
-
-        cv = simulator_configuration.ConfigurableValue;
-      }
+      float cv= this.SingleSpace.Reproject(simulator_configuration.ConfigurableValue);
 
       #if NEODROID_DEBUG
       if (this.Debugging) {

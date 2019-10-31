@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using droid.Editor.Utilities;
-using UnityEngine;
 #if UNITY_EDITOR
 using UnityEditor;
+using UnityEngine;
 
 namespace droid.Editor.Windows {
   /// <summary>

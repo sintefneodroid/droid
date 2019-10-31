@@ -1,7 +1,7 @@
 ﻿using System;
-using UnityEditor;
 using UnityEngine.SceneManagement;
 #if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
 
 namespace droid.Editor.Utilities {

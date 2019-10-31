@@ -119,8 +119,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Segmentation {
                                            new SynthesisUtilities.CapturePass {
                                                                                   _Name = "_tag_id",
                                                                                   _ReplacementMode =
-                                                                                      SynthesisUtilities
-                                                                                          .ReplacementModes
+                                                                                      SynthesisUtilities.ReplacementModes
                                                                                           .Tag_id_,
                                                                                   _SupportsAntialiasing =
                                                                                       false
@@ -132,8 +131,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Segmentation {
                                            new SynthesisUtilities.CapturePass {
                                                                                   _Name = "_layer_id",
                                                                                   _ReplacementMode =
-                                                                                      SynthesisUtilities
-                                                                                          .ReplacementModes
+                                                                                      SynthesisUtilities.ReplacementModes
                                                                                           .Layer_id_,
                                                                                   _SupportsAntialiasing =
                                                                                       false

@@ -23,7 +23,7 @@ namespace droid.Samples.MultiArmedBandit.Displayers {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override void EnvironmentReset() {
+    public override void PrototypingReset() {
       var canvas_bar_displayers = this._canvas_bars;
       if (canvas_bar_displayers != null) {
         foreach (var bar in canvas_bar_displayers) {

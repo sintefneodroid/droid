@@ -1,4 +1,5 @@
-﻿using droid.Runtime.Interfaces;
+﻿using System;
+using droid.Runtime.Interfaces;
 using droid.Runtime.Structs.Space;
 using UnityEngine;
 
@@ -14,19 +15,14 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
 
     [SerializeField] Quaternion _rotation;
 
-    [SerializeField] string _pos_x = "pos_x";
-    [SerializeField] string _pos_y = "pos_y";
-    [SerializeField] string _pos_z = "pos_z";
+     string _pos_x = "pos_x";
+    string _pos_y = "pos_y";
+    string _pos_z = "pos_z";
 
-    [SerializeField] string _rot_w = "row_w";
-    [SerializeField] string _rot_x = "rot_x";
-    [SerializeField] string _rot_y = "rot_y";
-    [SerializeField] string _rot_z = "rot_z";
-
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "QuaternionTransformConfigurable"; } }
+    string _rot_w = "row_w";
+    string _rot_x = "rot_x";
+    string _rot_y = "rot_y";
+    string _rot_z = "rot_z";
 
     /// <summary>
     /// </summary>
@@ -42,7 +38,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// <summary>
     ///
     /// </summary>
-    protected override void PreSetup() {
+    public override void PreSetup() {
       //TODO: use envs bound extent if available for space
 
       this._pos_x = this.Identifier + "pos_x";
@@ -55,7 +51,19 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       this._rot_w = this.Identifier + "row_w";
     }
 
-    void Reset() {
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    protected override void RegisterComponent() { throw new NotImplementedException();}
+
+
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    protected override void UnRegisterComponent() { throw new NotImplementedException();}
+
+    public override void PrototypingReset() {
+      base.PrototypingReset();
       var transform1 = this.transform;
       transform1.position = this._position;
       transform1.rotation = this._rotation;
@@ -86,7 +94,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
         this._rotation.w = obj.ConfigurableValue;
       }
 
-      this.Reset();
+      this.PrototypingReset();
     }
   }
 }

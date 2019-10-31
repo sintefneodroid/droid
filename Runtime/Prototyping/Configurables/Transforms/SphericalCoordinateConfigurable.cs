@@ -1,5 +1,4 @@
-﻿using System;
-using droid.Runtime.Interfaces;
+﻿using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Structs.Space;
 using droid.Runtime.Structs.Space.Sample;
@@ -33,7 +32,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
 
     [SerializeField]
     SampleSpace3 _spherical_space = new SampleSpace3 {
-                                                         _space = new Space3(4) {
+                                                         _space = new Space3 {
                                                                                     Min = new Vector3(0,
                                                                                                       Mathf.PI
                                                                                                       * 0.01f,
@@ -56,7 +55,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
+    public override void PreSetup() {
       this._x = this.Identifier + "Polar_";
       this._y = this.Identifier + "Elevation_";
       this._z = this.Identifier + "Radius_";
@@ -67,12 +66,12 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       }
 
       this.sc = SphericalSpace.FromCartesian(reference_point,
-                                             _spherical_space.Space.Min.z,
-                                             _spherical_space.Space.Max.z,
-                                             _spherical_space.Space.Min.x,
-                                             _spherical_space.Space.Max.x,
-                                             _spherical_space.Space.Min.y,
-                                             _spherical_space.Space.Max.y);
+                                             this._spherical_space.Space.Min.z,
+                                             this._spherical_space.Space.Max.z,
+                                             this._spherical_space.Space.Min.x,
+                                             this._spherical_space.Space.Max.x,
+                                             this._spherical_space.Space.Min.y,
+                                             this._spherical_space.Space.Max.y);
     }
 
     /// <inheritdoc />

@@ -30,7 +30,7 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void Setup() { this._image = this.GetComponent<Image>(); }
+    public override void Setup() { this._image = this.GetComponent<Image>(); }
 
     /// <summary>
     /// </summary>

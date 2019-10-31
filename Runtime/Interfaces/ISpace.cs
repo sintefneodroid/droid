@@ -1,5 +1,4 @@
-using System;
-using UnityEngine.Profiling;
+using droid.Runtime.Enums;
 
 namespace droid.Runtime.Interfaces {
   /// <summary>
@@ -11,10 +10,7 @@ namespace droid.Runtime.Interfaces {
     /// </summary>
     int DecimalGranularity { get; }
 
-    /// <summary>
-    ///
-    /// </summary>
-    bool NormalisedBool { get; }
+
 
     /// <summary>
     ///
@@ -29,15 +25,20 @@ namespace droid.Runtime.Interfaces {
     /// <summary>
     ///
     /// </summary>
-    /// <param name="configuration_configurable_value"></param>
-    /// <returns></returns>
-    dynamic ClipRoundDenormaliseClip(dynamic configuration_configurable_value);
+    Normalisation Normalised { get; }
 
     /// <summary>
     ///
     /// </summary>
     /// <param name="configuration_configurable_value"></param>
     /// <returns></returns>
-    dynamic ClipNormaliseRound(dynamic configuration_configurable_value);
+    dynamic Reproject(dynamic configuration_configurable_value);
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="configuration_configurable_value"></param>
+    /// <returns></returns>
+    dynamic Project(dynamic configuration_configurable_value);
   }
 }

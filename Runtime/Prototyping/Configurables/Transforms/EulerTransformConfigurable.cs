@@ -54,9 +54,9 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// </summary>
     public Vector3 Rotation { get { return this._rotation; } set { this._rotation = value; } }
 
-    ISamplable pos_space = new SampleSpace3();
-    ISamplable dir_space = new SampleSpace3();
-    ISamplable rot_space = new SampleSpace3();
+    [SerializeField]SampleSpace3 pos_space = new SampleSpace3();
+    [SerializeField]SampleSpace3 dir_space = new SampleSpace3();
+    [SerializeField]SampleSpace3 rot_space = new SampleSpace3();
 
     /// <summary>
     ///
@@ -73,6 +73,9 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// </summary>
     public Space3 RotationSpace { get { return (Space3)this.rot_space.Space; } }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override ISamplable ConfigurableValueSpace {
       get {
         return this.pos_space;
@@ -100,49 +103,47 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this);
-      this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          this,
                                                           this._x);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          this,
                                                           this._y);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          this,
                                                           this._z);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          this,
                                                           this._dir_x);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          this,
                                                           this._dir_y);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          this,
                                                           this._dir_z);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          this,
                                                           this._rot_x);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          this,
                                                           this._rot_y);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          this,
                                                           this._rot_z);
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
+    public override void PreSetup() {
       //TODO: use envs bound extent if available for space
 
       this._x = this.Identifier + "X_";
@@ -273,7 +274,16 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// </summary>
     /// <returns></returns>
     public override Configuration[] SampleConfigurations() {
-      return new[] {new Configuration(this._rot_x, this.ConfigurableValueSpace.Sample())};
+      var sample = this.pos_space.Sample();
+      var sample1 = this.rot_space.Sample();
+      return new[] {
+                       new Configuration(this._x, sample.x),
+                       new Configuration(this._y, sample.y),
+                       new Configuration(this._z, sample.z),
+                       new Configuration(this._rot_x, sample1.x),
+                       new Configuration(this._rot_y, sample1.y),
+                       new Configuration(this._rot_z, sample1.z)
+                   };
     }
   }
 }

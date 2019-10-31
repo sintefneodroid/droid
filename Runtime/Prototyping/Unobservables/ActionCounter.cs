@@ -36,7 +36,7 @@ namespace droid.Runtime.Prototyping.Unobservables {
     /// <summary>
     ///
     /// </summary>
-    public override void EnvironmentReset() { }
+    public override void PrototypingReset() { }
 
     /// <inheritdoc />
     /// <summary>

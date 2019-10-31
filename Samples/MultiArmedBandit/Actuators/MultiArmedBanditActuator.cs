@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
+using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Prototyping.Actuators;
 using UnityEngine;
@@ -56,7 +56,7 @@ namespace droid.Samples.MultiArmedBandit.Actuators {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void Setup() {
+    public override void Setup() {
       var mvs = this.MotionSpace;
       mvs.Min = 0;
       mvs.Max = 2;

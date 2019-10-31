@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEditor;
 using UnityEditor.SceneManagement;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 #if UNITY_EDITOR
 using System.Linq;
+using UnityEngine;
 
 namespace droid.Editor.Utilities.UnityDebug {
   /// <inheritdoc />

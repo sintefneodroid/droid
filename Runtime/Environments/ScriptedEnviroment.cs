@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
+using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Managers;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Utilities;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 using Random = UnityEngine.Random;
 
 namespace droid.Runtime.Environments {
@@ -66,6 +65,15 @@ namespace droid.Runtime.Environments {
     [SerializeField]
     int _width = 0;
 
+    public override void RemotePostSetup() {
+      #if NEODROID_DEBUG
+      if (this.Debugging) {
+        Debug.Log("PostSetup");
+      }
+      #endif
+
+    }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>
@@ -102,7 +110,7 @@ namespace droid.Runtime.Environments {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void Setup() {
+    public override void Setup() {
       this._grid = new int[this._width, this._height];
 
       var k = 0;
@@ -117,6 +125,7 @@ namespace droid.Runtime.Environments {
                                                               ._time_simulation_manager,
                                                           this);
     }
+
 
     /// <inheritdoc />
     /// <summary>
@@ -176,18 +185,18 @@ namespace droid.Runtime.Environments {
     /// </summary>
     public override void Tick() { }
 
-    public override EnvironmentState CollectState() {
+    public override EnvironmentSnapshot Snapshot() {
       var actor_idx = this._grid[this.ActorX, this.ActorY];
       var goal_idx = this._grid[this.GoalX, this.GoalY];
 
       var terminated = actor_idx == goal_idx;
       var signal = terminated ? 1 : 0;
 
-      var time = Time.time - this._LastResetTime;
+      var time = Time.realtimeSinceStartup - this.LastResetTime;
 
       var observables = new float[] {actor_idx};
 
-      return new EnvironmentState(this.Identifier,
+      return new EnvironmentSnapshot(this.Identifier,
                                   0,
                                   time,
                                   signal,
@@ -200,9 +209,9 @@ namespace droid.Runtime.Environments {
     /// </summary>
     /// <param name="recipient"></param>
     public override void ObservationsString(DataPoller recipient) {
-      recipient.PollData(this.CollectState().ToString());
+      recipient.PollData(this.Snapshot().ToString());
     }
 
-    protected override void EnvironmentReset() { }
+    public override void PrototypingReset() { }
   }
 }

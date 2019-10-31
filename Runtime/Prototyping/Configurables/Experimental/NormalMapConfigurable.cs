@@ -27,7 +27,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
+    public override void PreSetup() {
       this._renderer = this.GetComponent<Renderer>();
       if (Application.isPlaying) {
         if (this.use_shared) {

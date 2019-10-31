@@ -39,7 +39,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
 
     [SerializeField]
     SampleSpace3 _euler_space = new SampleSpace3 {
-                                                     _space = new Space3(4) {
+                                                     _space = new Space3 {
                                                                                 Min = Vector3.zero,
                                                                                 Max = new Vector3(360f,
                                                                                                   360f,
@@ -55,7 +55,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
+    public override void PreSetup() {
       this._x = this.Identifier + "X_";
       this._y = this.Identifier + "Y_";
       this._z = this.Identifier + "Z_";

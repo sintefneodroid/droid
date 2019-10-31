@@ -21,7 +21,7 @@ namespace droid.Runtime.Environments {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
+    public override void PreSetup() {
       base.PreSetup();
       this.RandomiseEnvironment();
     }
@@ -30,20 +30,20 @@ namespace droid.Runtime.Environments {
     /// <summary>
     /// </summary>
     public override void PostStep() {
-      if (this._Terminated) {
-        this._Terminated = false;
-        this.EnvironmentReset();
+      if (this.Terminated) {
+        this.Terminated = false;
+        this.PrototypingReset();
 
         this.RandomiseEnvironment();
       }
 
-      if (this._Configure) {
-        this._Configure = false;
+      if (this.Configure) {
+        this.Configure = false;
         this.Reconfigure();
       }
 
-      this.UpdateConfigurableValues();
-      this.UpdateSensorsData();
+      this.LoopConfigurables();
+      this.LoopSensors();
     }
   }
 }

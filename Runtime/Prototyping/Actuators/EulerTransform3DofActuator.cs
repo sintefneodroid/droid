@@ -1,5 +1,4 @@
 ﻿using droid.Runtime.Interfaces;
-using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Utilities;
 using UnityEngine;
 #if UNITY_EDITOR
@@ -61,7 +60,7 @@ namespace droid.Runtime.Prototyping.Actuators {
 
     /// <summary>
     /// </summary>
-    protected override void Setup() {
+    public override void Setup() {
       if (!this._angular_Actuators) {
         this._x = this.Identifier + "X_";
         this._y = this.Identifier + "Y_";

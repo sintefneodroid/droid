@@ -31,7 +31,7 @@ namespace droid.Runtime.Prototyping.Actuators.Particles {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void Setup() {
+    public override void Setup() {
       this._Rigidbody = this.GetComponent<Rigidbody>();
       this._Particle_System = this.GetComponent<ParticleSystem>();
       var valid_input = this.MotionSpace;

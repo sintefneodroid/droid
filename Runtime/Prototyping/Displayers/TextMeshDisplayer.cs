@@ -81,7 +81,7 @@ namespace droid.Runtime.Prototyping.Displayers {
   [AddComponentMenu("Neodroid/Displayers/TextMesh")]
   public class TextMeshDisplayer : Displayer {
     /// <inheritdoc />
-    protected override void Setup() {
+    public override void Setup() {
       Debug.Log("TextMeshPro is not defined in project, add 'TEXT_MESH_PRO_EXISTS' to your unity projects 'define symbols' under the player settings or '-define:TEXT_MESH_PRO_EXISTS' in mcs.rsp to enable TextMeshPro displayer integration");
     }
 

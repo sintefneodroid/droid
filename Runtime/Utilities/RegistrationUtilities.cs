@@ -1,5 +1,4 @@
-﻿using droid.Runtime.Environments;
-using droid.Runtime.Environments.Prototyping;
+﻿using droid.Runtime.Environments.Prototyping;
 using droid.Runtime.GameObjects.ChildSensors;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Prototyping.Actors;
@@ -261,7 +260,7 @@ namespace droid.Runtime.Utilities {
       } else {
         #if NEODROID_DEBUG
         if (debug) {
-          Debug.Log($"Could not find a {typeof(TRecipient)} recipient during registeration");
+          Debug.Log($"Could not find a {typeof(TRecipient)} recipient during registration");
         }
 
         #endif

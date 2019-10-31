@@ -14,7 +14,7 @@ namespace droid.Runtime.Prototyping.Displayers.Cells {
   public class QuadCellDisplayer : Displayer {
     /// <summary>
     /// </summary>
-    protected override void Setup() { }
+    public override void Setup() { }
 
     /// <summary>
     /// 

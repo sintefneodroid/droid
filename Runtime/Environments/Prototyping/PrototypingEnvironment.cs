@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
+using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Prototyping.Actors;
@@ -13,7 +13,7 @@ namespace droid.Runtime.Environments.Prototyping {
   ///   Environment to be used with the prototyping components.
   /// </summary>
   [AddComponentMenu("Neodroid/Environments/PrototypingEnvironment")]
-  public class PrototypingEnvironment : BaseSpatialPrototypingEnvironment,
+  public class PrototypingEnvironment : AbstractSpatialPrototypingEnvironment,
                                         IPrototypingEnvironment {
     #region NeodroidCallbacks
 
@@ -33,7 +33,7 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     /// <returns></returns>
     public override Reaction SampleReaction() {
-      if (this._Terminated) {
+      if (this.Terminated) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log("SampleReaction resetting environment");
@@ -145,17 +145,17 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public override EnvironmentState CollectState() {
+    public override EnvironmentSnapshot Snapshot() {
       lock (this._Reaction_Lock) {
         var signal = 0f;
 
-        if (this._objective_function != null) {
-          signal = this._objective_function.Evaluate();
+        if (this.ObjectiveFunction != null) {
+          signal = this.ObjectiveFunction.Evaluate();
         }
 
         EnvironmentDescription description = null;
-        if (this._ReplyWithDescriptionThisStep
-            || this._Simulation_Manager.SimulatorConfiguration.AlwaysSerialiseIndividualObservables) {
+        if (this.ReplyWithDescriptionThisStep
+            || this.SimulationManager.SimulatorConfiguration.AlwaysSerialiseIndividualObservables) {
           #if NEODROID_DEBUG
           if (this.Debugging) {
             Debug.Log("Describing Environment");
@@ -195,23 +195,46 @@ namespace droid.Runtime.Environments.Prototyping {
 
         var obs = this._Observables.ToArray();
 
-        var time = Time.time - this._LastResetTime;
+        var time = Time.realtimeSinceStartup - this.LastResetTime;
 
-        var state = new EnvironmentState(this.Identifier,
-                                         this.step_i,
+        var state = new EnvironmentSnapshot(this.Identifier,
+                                         this.StepI,
                                          time,
                                          signal,
-                                         this._Terminated,
+                                         this.Terminated,
                                          ref obs,
                                          this.LastTerminationReason,
                                          description);
 
-        if (this._Simulation_Manager.SimulatorConfiguration.AlwaysSerialiseUnobservables
-            || this._ReplyWithDescriptionThisStep) {
+        if (this.SimulationManager.SimulatorConfiguration.AlwaysSerialiseUnobservables
+            || this.ReplyWithDescriptionThisStep) {
           state.Unobservables = new Unobservables(ref this._Tracked_Rigid_Bodies, ref this._Poses);
         }
 
         return state;
+      }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public override void RemotePostSetup() {
+      #if NEODROID_DEBUG
+      if (this.Debugging) {
+        Debug.Log("PostSetup");
+      }
+      #endif
+
+      foreach (var configurable in this.Configurables.Values) {
+        configurable?.RemotePostSetup();
+      }
+
+      foreach (var actuator in this.Actuators.Values) {
+        actuator?.RemotePostSetup();
+      }
+
+      foreach (var sensor in this.Sensors.Values) {
+        sensor?.RemotePostSetup();
       }
     }
 
@@ -223,11 +246,6 @@ namespace droid.Runtime.Environments.Prototyping {
       recipient.PollData(string.Join("\n\n",
                                      this.Sensors.Values.Select(e => $"{e.Identifier}:\n{e.ToString()}")));
     }
-
-    /// <summary>
-    /// </summary>
-    /// <param name="reaction"></param>
-    protected override void Setup() { base.Setup(); }
 
     protected override void SendToActors(Reaction reaction) {
       if (reaction.Motions != null && reaction.Motions.Length > 0) {
@@ -256,7 +274,7 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     protected override void InnerResetRegisteredObjects() {
       foreach (var actuator in this.Actuators.Values) {
-        actuator?.EnvironmentReset();
+        actuator?.PrototypingReset();
       }
     }
 

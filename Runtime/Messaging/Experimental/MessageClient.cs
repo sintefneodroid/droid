@@ -13,7 +13,6 @@ using NetMQ.Sockets;
 using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.UI;
-using Object = System.Object;
 
 namespace droid.Runtime.Messaging.Experimental {
   /// <summary>
@@ -230,7 +229,7 @@ namespace droid.Runtime.Messaging.Experimental {
     /// <param name="do_serialise_observables"></param>
     /// <param name="simulator_configuration_message"></param>
     /// <param name="api_version"></param>
-    public void SendStates(EnvironmentState[] environment_states,
+    public void SendStates(EnvironmentSnapshot[] environment_states,
                            bool do_serialise_unobservables = false,
                            bool serialise_individual_observables = false,
                            bool do_serialise_observables = false,

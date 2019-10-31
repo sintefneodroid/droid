@@ -1,5 +1,4 @@
-﻿using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace droid.Runtime.GameObjects.StatusDisplayer.EventRecipients {

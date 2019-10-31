@@ -1,13 +1,13 @@
-﻿using droid.Runtime.Environments;
+﻿
 using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients;
-using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
 using droid.Runtime.Managers;
 using droid.Runtime.Prototyping.ObjectiveFunctions;
-using UnityEngine;
+using UnityEditor.Events;
 using UnityEngine.Events;
 using UnityEngine.UI;
 #if UNITY_EDITOR
-using UnityEditor.Events;
+using droid.Runtime.Environments;
+using UnityEngine;
 
 namespace droid.Runtime.GameObjects.StatusDisplayer {
   /// <inheritdoc />
@@ -26,6 +26,7 @@ namespace droid.Runtime.GameObjects.StatusDisplayer {
     [SerializeField] AbstractNeodroidManager _manager = null;
     [SerializeField] Button _reset_button = null;
     [SerializeField] TextUpdater _signal = null;
+    [SerializeField] TextUpdater _episode_length = null;
     [SerializeField] TextUpdater _status_text = null;
     [SerializeField] ToggleUpdater _terminated = null;
     [SerializeField] Toggle _testing_toggle = null;
@@ -132,6 +133,8 @@ namespace droid.Runtime.GameObjects.StatusDisplayer {
       var evaluation_function = this._evaluation_function;
       if (evaluation_function != null) {
         this.TryRegister(this._signal, evaluation_function.SignalString);
+        this.TryRegister(this._episode_length, evaluation_function.EpisodeLengthString);
+
       }
 
       if (!this._manager) {

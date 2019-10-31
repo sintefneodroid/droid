@@ -44,7 +44,7 @@ namespace droid.Runtime.Structs.Space.Sample {
     public dynamic Sample() {
       switch (this._space.Normalised) {
         case Normalisation.None_:
-          return this.DistributionSampler.Range(this._space._min_, this._space._max_);
+          return this._space.Round(this.DistributionSampler.Range(this._space.Min, this._space.Max));
         case Normalisation.Zero_one_:
           return this.DistributionSampler.Range(0, 1);
         case Normalisation.Minus_one_one_:
@@ -53,6 +53,9 @@ namespace droid.Runtime.Structs.Space.Sample {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public ISpace Space { get { return this._space; } set { this._space = (Space1)value; } }
   }
 }

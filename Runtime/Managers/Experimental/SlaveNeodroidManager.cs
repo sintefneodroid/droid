@@ -3,17 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using droid.Runtime.Enums;
-using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
+using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Experimental;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Structs;
-using UnityEditor;
 using UnityEngine;
 using Object = System.Object;
-
 #if UNITY_EDITOR
-
+using UnityEditor;
 #endif
 
 namespace droid.Runtime.Managers.Experimental {
@@ -358,7 +356,7 @@ namespace droid.Runtime.Managers.Experimental {
       #endif
     }
 
-    protected virtual void Setup() { }
+    public virtual void Setup() { }
 
     /// <summary>
     /// </summary>
@@ -559,16 +557,18 @@ namespace droid.Runtime.Managers.Experimental {
     /// <summary>
     /// </summary>
     void ExecuteStep() {
-      if (!this._syncing_environments) {
-        this.React(this.CurrentReactions);
-      }
+      if (!this.HasStepped) {
+        if (!this._syncing_environments) {
+          this.React(this.CurrentReactions);
+        }
 
-      if (this.AwaitingReply) {
-        var states = this.CollectStates();
-        this.PostReact(states);
-      }
+        if (this.AwaitingReply) {
+          var states = this.CollectStates();
+          this.PostReact(states);
+        }
 
-      this.HasStepped = true;
+        this.HasStepped = true;
+      }
     }
 
     /// <summary>
@@ -593,7 +593,7 @@ namespace droid.Runtime.Managers.Experimental {
     /// <summary>
     /// </summary>
     /// <param name="states"></param>
-    protected void PostReact(EnvironmentState[] states) {
+    protected void PostReact(EnvironmentSnapshot[] states) {
       lock (this._send_lock) {
         foreach (var env in this._Environments.Values) {
           if (env.IsResetting) {
@@ -647,7 +647,7 @@ namespace droid.Runtime.Managers.Experimental {
     /// <summary>
     /// </summary>
     /// <param name="states"></param>
-    void Reply(EnvironmentState[] states) {
+    void Reply(EnvironmentSnapshot[] states) {
       lock (this._send_lock) {
         var configuration_message = new SimulatorConfigurationMessage(this.Configuration);
         var describe = false;
@@ -680,44 +680,6 @@ namespace droid.Runtime.Managers.Experimental {
     #endregion
 
     #region PublicMethods
-
-    /// <summary>
-    /// </summary>
-    /// <param name="reaction"></param>
-    /// <returns></returns>
-    public EnvironmentState[] ReactAndCollectStates(Reaction reaction) {
-      this.SetStepping(new[] {reaction});
-      var states = new EnvironmentState[this._Environments.Values.Count];
-      var i = 0;
-      foreach (var environment in this._Environments.Values) {
-        if (reaction.RecipientEnvironment != "all") {
-          #if NEODROID_DEBUG
-          if (this.Debugging) {
-            Debug.Log($"Applying reaction to {reaction.RecipientEnvironment} environment");
-          }
-          #endif
-          if (this._Environments.ContainsKey(reaction.RecipientEnvironment)) {
-            states[i++] = this._Environments[reaction.RecipientEnvironment].ReactAndCollectState(reaction);
-          }
-          #if NEODROID_DEBUG
-          else {
-            if (this.Debugging) {
-              Debug.Log($"Could not find environment: {reaction.RecipientEnvironment}");
-            }
-          }
-          #endif
-        } else {
-          #if NEODROID_DEBUG
-          if (this.Debugging) {
-            Debug.Log("Applying reaction to all environments");
-          }
-          #endif
-          states[i++] = environment.ReactAndCollectState(reaction);
-        }
-      }
-
-      return states;
-    }
 
     /// <summary>
     /// </summary>
@@ -757,12 +719,12 @@ namespace droid.Runtime.Managers.Experimental {
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public EnvironmentState[] CollectStates() {
+    public EnvironmentSnapshot[] CollectStates() {
       var environments = this._Environments.Values;
-      var states = new EnvironmentState[environments.Count];
+      var states = new EnvironmentSnapshot[environments.Count];
       var i = 0;
       foreach (var environment in environments) {
-        states[i++] = environment.CollectState();
+        states[i++] = environment.Snapshot();
       }
 
       return states;

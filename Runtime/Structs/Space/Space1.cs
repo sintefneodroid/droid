@@ -1,7 +1,6 @@
 ﻿using System;
 using droid.Runtime.Enums;
 using droid.Runtime.Interfaces;
-using droid.Runtime.Sampling;
 using UnityEngine;
 
 namespace droid.Runtime.Structs.Space {
@@ -17,13 +16,13 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     [Header("Space", order = 103)]
     [SerializeField]
-    internal float _min_;
+    float _min_;
 
     /// <summary>
     ///
     /// </summary>
     [SerializeField]
-    internal float _max_;
+    float _max_;
 
     /// <summary>
     ///
@@ -37,33 +36,109 @@ namespace droid.Runtime.Structs.Space {
 
     #endregion
 
-    public Space1(int decimal_granularity = 2) : this() {
-      this._decimal_granularity = decimal_granularity;
-      this._min_ = -1f; //float.NegativeInfinity;
-      this._max_ = 1f; //float.PositiveInfinity;
-    }
-
     /// <summary>
     ///
     /// </summary>
     public float Span { get { return this._max_ - this._min_; } }
 
-    public float Clip(float v, float min, float max) { return Mathf.Clamp(v, min, max); }
-    public float Clip(float v) { return this.Clip(v, this._min_, this._max_); }
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <param name="min"></param>
+    /// <param name="max"></param>
+    /// <returns></returns>
+    static float Clip(float v, float min, float max) { return Mathf.Clamp(v, min, max); }
 
     /// <summary>
     ///
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-    public dynamic ClipNormaliseRound(dynamic v) { return this.Round(this.Normalise01(this.Clip(v))); }
+    float Clip(float v) { return Clip(v, this._min_, this._max_); }
 
     /// <summary>
     ///
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-    public float Normalise01(float v) {
+    float ClipRound(float v) { return this.Clip(this.Round(v)); }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    dynamic ClipNormalise01Round(dynamic v) { return this.Round(this.Normalise01(this.Clip(v))); }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    dynamic ClipNormaliseMinusOneOneRound(dynamic v) {
+      return this.Round(this.NormaliseMinusOneOne(this.Clip(v)));
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    public dynamic Project(dynamic v) {
+      switch (this.Normalised) {
+        case Normalisation.None_:
+          return ClipRound(v);
+        case Normalisation.Zero_one_:
+          return ClipNormalise01Round(v);
+        case Normalisation.Minus_one_one_:
+          return ClipNormaliseMinusOneOneRound(v);
+        default: throw new ArgumentOutOfRangeException();
+      }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    public dynamic Reproject(dynamic v) {
+      switch (this.Normalised) {
+        case Normalisation.None_:
+          return ClipRound(v);
+        case Normalisation.Zero_one_:
+          return ClipRoundDenormalise01Clip(v);
+        case Normalisation.Minus_one_one_:
+          return ClipRoundDenormaliseMinusOneOneClip(v);
+        default: throw new ArgumentOutOfRangeException();
+      }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    float Normalise01(float v) {
+      if (v > this._max_ || v < this._min_) {
+        throw new ArgumentException();
+      }
+
+      if (this.Span <= 0) {
+        return 0;
+      }
+
+      return (v - this._min_) / this.Span;
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    float NormaliseMinusOneOne(float v) {
       if (v > this._max_ || v < this._min_) {
         throw new ArgumentException();
       }
@@ -92,7 +167,7 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-    public float Denormalise01(float v) {
+    float Denormalise01(float v) {
       if (v > 1 || v < 0) {
         throw new ArgumentException();
       }
@@ -109,8 +184,34 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-    public dynamic ClipRoundDenormaliseClip(dynamic v) {
+    float DenormaliseMinusOneOne(float v) {
+      if (v > 1 || v < 0) {
+        throw new ArgumentException();
+      }
+
+      if (this.Span <= 0) {
+        return 0;
+      }
+
+      return v * this.Span + this._min_;
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    dynamic ClipRoundDenormalise01Clip(dynamic v) {
       return this.Clip(this.Round(this.Denormalise01(Clip(v, 0, 1))));
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    dynamic ClipRoundDenormaliseMinusOneOneClip(dynamic v) {
+      return this.Clip(this.Round(this.DenormaliseMinusOneOne(Clip(v, 0, 1))));
     }
 
     /// <summary>
@@ -129,12 +230,44 @@ namespace droid.Runtime.Structs.Space {
     /// <summary>
     ///
     /// </summary>
-    public static Space1 TwentyEighty { get { return new Space1(1) {_min_ = 0.2f, _max_ = 0.8f}; } }
+    public static Space1 TwentyEighty {
+      get {
+        return new Space1 {
+                              _min_ = 0.2f,
+                              _max_ = 0.8f,
+                              DecimalGranularity = 4,
+                              Normalised = Normalisation.Zero_one_
+                          };
+      }
+    }
 
     /// <summary>
     ///
     /// </summary>
-    public static Space1 ZeroOne { get { return new Space1(1) {_min_ = 0, _max_ = 1}; } }
+    public static Space1 ZeroOne {
+      get {
+        return new Space1 {
+                              _min_ = 0,
+                              _max_ = 1,
+                              DecimalGranularity = 4,
+                              Normalised = Normalisation.Zero_one_
+                          };
+      }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public static Space1 MinusOneOne {
+      get {
+        return new Space1 {
+                              _min_ = -1,
+                              _max_ = 1,
+                              DecimalGranularity = 4,
+                              Normalised = Normalisation.Zero_one_
+                          };
+      }
+    }
 
     /// <summary>
     ///
@@ -155,12 +288,25 @@ namespace droid.Runtime.Structs.Space {
     /// <summary>
     ///
     /// </summary>
-    public static Space1 DiscreteMinusOneOne { get { return new Space1(0) {_min_ = -1, _max_ = 1}; } }
+    public static Space1 DiscreteMinusOneOne {
+      get {
+        return new Space1 {_min_ = -1, _max_ = 1, DecimalGranularity = 0, Normalised = Normalisation.None_};
+      }
+    }
 
     /// <summary>
     ///
     /// </summary>
-    public static Space1 DiscreteZeroOne { get { return new Space1(0) {_min_ = 0, _max_ = 1}; } }
+    public static Space1 DiscreteZeroOne {
+      get {
+        return new Space1 {_min_ = 0, _max_ = 1, DecimalGranularity = 0, Normalised = Normalisation.None_};
+      }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public dynamic Precision { get { return 1.0f / (this._decimal_granularity + 1.0f); } }
 
     /// <summary>
     ///
@@ -172,7 +318,10 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     public dynamic Max { get { return this._max_; } set { this._max_ = value; } }
 
-    public Normalisation Normalised { get { return this.normalised; } }
+    /// <summary>
+    ///
+    /// </summary>
+    public Normalisation Normalised { get { return this.normalised; } set { this.normalised = value; } }
 
     /// <summary>
     ///
@@ -199,17 +348,17 @@ namespace droid.Runtime.Structs.Space {
     /// <summary>
     ///
     /// </summary>
-    /// <param name="bounds_extents"></param>
-    /// <param name="normalised"></param>
+    /// <param name="extent"></param>
+    /// <param name="normalisation"></param>
     /// <param name="decimal_granularity"></param>
     /// <returns></returns>
-    public static Space1 FromCenterExtents(float bounds_extents,
-                                           bool normalised = true,
-                                           int decimal_granularity = 4) {
+    public static Space1 FromCenterExtent(float extent,
+                                          Normalisation normalisation = Normalisation.Zero_one_,
+                                          int decimal_granularity = 4) {
       return new Space1 {
-                            _min_ = -bounds_extents,
-                            Max = bounds_extents,
-                            NormalisedBool = normalised,
+                            _min_ = -extent,
+                            Max = extent,
+                            normalised = normalisation,
                             DecimalGranularity = decimal_granularity
                         };
     }

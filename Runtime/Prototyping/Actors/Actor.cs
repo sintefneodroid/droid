@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using droid.Runtime.Environments;
 using droid.Runtime.Environments.Prototyping;
 using droid.Runtime.GameObjects;
 using droid.Runtime.GameObjects.BoundingBoxes.Experimental;
@@ -7,7 +6,6 @@ using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities;
 using UnityEditor;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
 namespace droid.Runtime.Prototyping.Actors {
   /// <inheritdoc cref="PrototypingGameObject" />
@@ -78,10 +76,10 @@ namespace droid.Runtime.Prototyping.Actors {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public virtual void EnvironmentReset() {
+    public override void PrototypingReset() {
       if (this._Actuators != null) {
         foreach (var actuator in this._Actuators.Values) {
-          actuator?.EnvironmentReset();
+          actuator?.PrototypingReset();
         }
       }
     }
@@ -104,6 +102,8 @@ namespace droid.Runtime.Prototyping.Actors {
       }
     }
 
+
+
     /// <summary>
     /// </summary>
     /// <param name="actuator"></param>
@@ -112,7 +112,7 @@ namespace droid.Runtime.Prototyping.Actors {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void Setup() {
+    public override void Setup() {
       #if UNITY_EDITOR
       if (!Application.isPlaying) {
         var manager_script = MonoScript.FromMonoBehaviour(this);

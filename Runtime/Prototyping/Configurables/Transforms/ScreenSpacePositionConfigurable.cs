@@ -31,7 +31,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
+    public override void PreSetup() {
       this._x = this.Identifier + "X";
       this._y = this.Identifier + "Y";
       this._z = this.Identifier + "Z";
@@ -102,20 +102,10 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// </summary>
     /// <param name="configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
-      float cv;
-      if (this._configurable_value_space.Space.NormalisedBool) {
-        cv = this._configurable_value_space.Space.ClipRoundDenormaliseClip(configuration.ConfigurableValue);
-      } else {
-        if (configuration.ConfigurableValue < this._configurable_value_space.Space.Min
-            || configuration.ConfigurableValue > this._configurable_value_space.Space.Max) {
-          Debug.Log($"It does not accept input, outside allowed range {this._configurable_value_space.Space.Min} to {this._configurable_value_space.Space.Max}");
-          return; // Do nothing
-        }
 
-        cv = configuration.ConfigurableValue;
-      }
+       var  cv = this._configurable_value_space.Space.Reproject(configuration.ConfigurableValue);
 
-      //TODO: Denormalize configuration if space is marked as normalised
+
 
       #if NEODROID_DEBUG
       if (this.Debugging) {

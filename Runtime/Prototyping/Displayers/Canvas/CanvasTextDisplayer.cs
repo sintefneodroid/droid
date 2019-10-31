@@ -20,7 +20,7 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void Setup() { this._text_component = this.GetComponent<Text>(); }
+    public override void Setup() { this._text_component = this.GetComponent<Text>(); }
 
     //public override void Display(Object o) { throw new NotImplementedException(); }
 

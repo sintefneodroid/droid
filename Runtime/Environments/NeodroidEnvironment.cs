@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Globalization;
 using droid.Runtime.GameObjects;
-using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients.droid.Neodroid.Utilities.Unsorted;
+using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Managers;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Utilities;
 using UnityEditor;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
 namespace droid.Runtime.Environments {
   /// <inheritdoc cref="PrototypingGameObject" />
@@ -18,92 +16,21 @@ namespace droid.Runtime.Environments {
                                               IEnvironment {
     #region Fields
 
-    /// <summary>
-    ///
-    /// </summary>
-    [SerializeField]
-    protected Reaction _LastReaction;
-
-    /// <summary>
-    /// </summary>
-    [SerializeField]
-    protected float _LastResetTime;
-
-    /// <summary>
-    /// </summary>
-    [SerializeField]
-    protected string _LastTerminationReason = "None";
-
-    /// <summary>
-    /// </summary>
-    [SerializeField]
-    protected bool _Resetting;
-
-    /// <summary>
-    /// </summary>
-    [Header("Environment", order = 100)]
-    [SerializeField]
-    protected IManager _Simulation_Manager;
-
-    /// <summary>
-    /// </summary>
-    [SerializeField]
-    protected bool _Terminable = true;
-
-    /// <summary>
-    /// </summary>
-    [SerializeField]
-    protected bool _Terminated;
-
-    [SerializeField] protected int _current_frame_number;
-
     #endregion
 
     #if UNITY_EDITOR
     const int _script_execution_order = -20;
     #endif
 
-    /// <summary>
-    /// </summary>
-    protected bool _Configure;
-
-    /// <summary>
-    /// </summary>
-    protected bool _ReplyWithDescriptionThisStep;
-
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     public abstract override String PrototypingTypeName { get; }
 
-    /// <summary>
-    /// </summary>
-    public bool Terminated { get { return this._Terminated; } set { this._Terminated = value; } }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public Reaction LastReaction { get { return this._LastReaction; } set { this._LastReaction = value; } }
-
-    /// <summary>
-    /// </summary>
-    public bool IsResetting { get { return this._Resetting; } }
-
-    /// <summary>
-    /// </summary>
-    public String LastTerminationReason {
-      get { return this._LastTerminationReason; }
-      set { this._LastTerminationReason = value; }
-    }
 
     /// <summary>
     /// </summary>
     public abstract void PostStep();
-
-    /// <summary>
-    ///
-    /// </summary>
-    protected abstract void EnvironmentReset();
 
     /// <summary>
     /// </summary>
@@ -114,30 +41,13 @@ namespace droid.Runtime.Environments {
     /// </summary>
     /// <param name="reaction"></param>
     /// <returns></returns>
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    /// <param name="reaction"></param>
-    /// <returns></returns>
-    public EnvironmentState ReactAndCollectState(Reaction reaction) {
-      this.React(reaction);
-      return this.CollectState();
-    }
-
-    /// <summary>
-    /// </summary>
-    /// <param name="reaction"></param>
-    /// <returns></returns>
     public abstract void React(Reaction reaction);
 
-    /// <summary>
-    /// </summary>
-    public abstract void Tick();
 
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public abstract EnvironmentState CollectState();
+    public abstract EnvironmentSnapshot Snapshot();
 
     /// <summary>
     /// </summary>
@@ -148,7 +58,7 @@ namespace droid.Runtime.Environments {
     /// </summary>
     /// <returns></returns>
     public void TerminatedBoolean(DataPoller recipient) {
-      if (this._Terminated) {
+      if (this.Terminated) {
         recipient.PollData(true);
       }
 
@@ -158,10 +68,11 @@ namespace droid.Runtime.Environments {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void Setup() {
+    public override void Setup() {
       this.PreSetup();
-      if (this._Simulation_Manager == null) {
-        this._Simulation_Manager = FindObjectOfType<AbstractNeodroidManager>();
+
+      if (this.SimulationManager == null) {
+        this.SimulationManager = FindObjectOfType<AbstractNeodroidManager>();
       }
 
       #if UNITY_EDITOR
@@ -182,20 +93,16 @@ namespace droid.Runtime.Environments {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      if (this._Simulation_Manager != null) {
-        this._Simulation_Manager =
-            NeodroidRegistrationUtilities.RegisterComponent((NeodroidManager)this._Simulation_Manager, this);
+      if (this.SimulationManager != null) {
+        this.SimulationManager =
+            NeodroidRegistrationUtilities.RegisterComponent((NeodroidManager)this.SimulationManager, this);
       }
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void UnRegisterComponent() { this._Simulation_Manager?.UnRegister(this); }
-
-    /// <summary>
-    /// </summary>
-    protected virtual void PreSetup() { }
+    protected override void UnRegisterComponent() { this.SimulationManager?.UnRegister(this); }
 
     /// <summary>
     /// </summary>
@@ -207,7 +114,7 @@ namespace droid.Runtime.Environments {
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public void FrameString(DataPoller recipient) { recipient.PollData($"{this.step_i}"); }
+    public void FrameString(DataPoller recipient) { recipient.PollData($"{this.StepI}"); }
 
     #endregion
 
@@ -215,10 +122,55 @@ namespace droid.Runtime.Environments {
 
     /// <summary>
     /// </summary>
-    public int step_i {
-      get { return this._current_frame_number; }
-      set { this._current_frame_number = value; }
-    }
+    [field : SerializeField]
+    public int StepI { get; protected internal set; }
+
+    /// <summary>
+    /// </summary>
+    [field : SerializeField]
+    protected Single LastResetTime { get; set; }
+
+    /// <summary>
+    /// </summary>
+    [field : SerializeField]
+    protected Boolean Terminable { get; set; } = true;
+
+    /// <summary>
+    /// </summary>
+    [field : SerializeField]
+    public bool Terminated { get; set; } = false;
+
+    /// <summary>
+    ///
+    /// </summary>
+    [field : SerializeField]
+    public Reaction LastReaction { get; set; }
+
+    /// <summary>
+    /// </summary>
+    [field : SerializeField]
+    public bool IsResetting { get; set; }
+
+    /// <summary>
+    /// </summary>
+    [field : SerializeField]
+    public String LastTerminationReason { get; set; } = "None";
+
+    /// <summary>
+    /// </summary>
+    [field : SerializeField]
+    protected Boolean Configure { get; set; }
+
+    /// <summary>
+    /// </summary>
+    [field : SerializeField]
+    protected Boolean ReplyWithDescriptionThisStep { get; set; }
+
+    /// <summary>
+    /// </summary>
+    [field : Header("Environment", order = 100)]
+    [field : SerializeField]
+    protected IManager SimulationManager { get; set; }
 
     #endregion
   }

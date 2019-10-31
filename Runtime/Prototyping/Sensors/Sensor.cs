@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using droid.Runtime.Environments;
 using droid.Runtime.Environments.Prototyping;
 using droid.Runtime.GameObjects;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
 namespace droid.Runtime.Prototyping.Sensors {
   /// <inheritdoc cref="PrototypingGameObject" />
@@ -19,7 +17,7 @@ namespace droid.Runtime.Prototyping.Sensors {
                                  ISensor {
     /// <summary>
     /// </summary>
-    public BaseSpatialPrototypingEnvironment ParentEnvironment {
+    public AbstractSpatialPrototypingEnvironment ParentEnvironment {
       get { return this._environment; }
       set { this._environment = value; }
     }
@@ -34,22 +32,6 @@ namespace droid.Runtime.Prototyping.Sensors {
     /// </summary>
     public abstract void UpdateObservation();
 
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public void EnvironmentReset() { }
-
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    protected sealed override void Setup() {
-      this.PreSetup();
-      this.UpdateObservation();
-    }
-
-    /// <summary>
-    /// </summary>
-    protected virtual void PreSetup() { }
 
     /// <inheritdoc />
     /// <summary>
@@ -89,7 +71,7 @@ namespace droid.Runtime.Prototyping.Sensors {
 
     [Header("References", order = 99)]
     [SerializeField]
-    BaseSpatialPrototypingEnvironment _environment;
+    AbstractSpatialPrototypingEnvironment _environment;
 
     #endregion
   }

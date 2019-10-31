@@ -20,7 +20,7 @@ namespace droid.Runtime.Prototyping.Actuators.WheelColliderActuator {
 
     /// <summary>
     /// </summary>
-    protected override void Setup() { this._wheel_collider = this.GetComponent<WheelCollider>(); }
+    public override void Setup() { this._wheel_collider = this.GetComponent<WheelCollider>(); }
 
     /// <summary>
     /// </summary>

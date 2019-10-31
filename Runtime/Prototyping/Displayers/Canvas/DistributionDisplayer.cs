@@ -28,7 +28,7 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void Setup() {
+    public override void Setup() {
       if (this._images == null || this._images.Length == 0) {
         this._images = this.GetComponentsInChildren<Image>();
       }

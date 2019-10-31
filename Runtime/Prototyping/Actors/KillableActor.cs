@@ -35,8 +35,11 @@ namespace droid.Runtime.Prototyping.Actors {
       }
     }
 
-    public override void EnvironmentReset() {
-      base.EnvironmentReset();
+    /// <summary>
+    ///
+    /// </summary>
+    public override void PrototypingReset() {
+      base.PrototypingReset();
 
       this._is_alive = true;
     }

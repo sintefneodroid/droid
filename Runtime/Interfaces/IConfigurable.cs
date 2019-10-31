@@ -17,10 +17,6 @@ namespace droid.Runtime.Interfaces {
     /// <param name="configuration"></param>
     void ApplyConfiguration(IConfigurableConfiguration configuration);
 
-    /// <summary>
-    ///
-    /// </summary>
-    void EnvironmentReset();
 
     /// <summary>
     ///
@@ -33,14 +29,5 @@ namespace droid.Runtime.Interfaces {
     /// </summary>
     RandomSamplingMode RandomSamplingMode { get; set; }
 
-    /// <summary>
-    ///
-    /// </summary>
-    void PostEnvironmentSetup();
-
-    /// <summary>
-    ///
-    /// </summary>
-    void Tick();
   }
 }

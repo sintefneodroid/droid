@@ -1,8 +1,6 @@
 ﻿using droid.Runtime.Interfaces;
-using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Utilities;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 #if UNITY_EDITOR
 using UnityEditor;
 
@@ -45,7 +43,7 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void Setup() {
+    public override void Setup() {
       this._Rigidbody = this.GetComponent<Rigidbody>();
 
       this._x = this.Identifier + "X_";

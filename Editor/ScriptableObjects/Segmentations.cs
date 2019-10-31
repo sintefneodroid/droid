@@ -1,7 +1,7 @@
 ﻿using droid.Editor.Windows;
-using droid.Runtime.ScriptableObjects;
 using UnityEngine;
 #if UNITY_EDITOR
+using droid.Runtime.ScriptableObjects;
 using UnityEditor;
 
 namespace droid.Editor.ScriptableObjects {

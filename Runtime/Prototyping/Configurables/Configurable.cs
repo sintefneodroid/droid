@@ -1,5 +1,4 @@
 ﻿using droid.Runtime.Enums;
-using droid.Runtime.Environments;
 using droid.Runtime.Environments.Prototyping;
 using droid.Runtime.GameObjects;
 using droid.Runtime.Interfaces;
@@ -11,9 +10,6 @@ namespace droid.Runtime.Prototyping.Configurables {
   /// <inheritdoc cref="PrototypingGameObject" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
-                    + "Vanilla"
-                    + ConfigurableComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   public abstract class Configurable : PrototypingGameObject,
                                        IConfigurable {
@@ -24,7 +20,11 @@ namespace droid.Runtime.Prototyping.Configurables {
 
     /// <summary>
     /// </summary>
-    public BaseSpatialPrototypingEnvironment ParentEnvironment {
+    public override string PrototypingTypeName { get { return "Configurable"; } }
+
+    /// <summary>
+    /// </summary>
+    public AbstractSpatialPrototypingEnvironment ParentEnvironment {
       get { return this._environment; }
       set { this._environment = value; }
     }
@@ -49,7 +49,7 @@ namespace droid.Runtime.Prototyping.Configurables {
 
     /// <summary>
     /// </summary>
-    public void EnvironmentReset() {
+    public override void PrototypingReset() {
       if (this.random_sampling_mode == RandomSamplingMode.On_reset_ && Application.isPlaying) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
@@ -63,7 +63,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     ///
     /// </summary>
-    public virtual void PostEnvironmentSetup() { this.UpdateCurrentConfiguration(); }
+    public override void RemotePostSetup() { this.UpdateCurrentConfiguration(); }
 
     /// <summary>
     /// </summary>
@@ -76,15 +76,6 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected sealed override void Setup() { this.PreSetup(); }
-
-    /// <summary>
-    /// </summary>
-    protected virtual void PreSetup() { }
-
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment = NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, this);
     }
@@ -92,7 +83,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     ///
     /// </summary>
-    public virtual void Tick() {
+    public override void Tick() {
       if (this.RandomSamplingMode == RandomSamplingMode.On_tick_ && Application.isPlaying) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
@@ -134,7 +125,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// </summary>
     [Header("References", order = 20)]
     [SerializeField]
-    BaseSpatialPrototypingEnvironment _environment = null;
+    AbstractSpatialPrototypingEnvironment _environment = null;
 
     [SerializeField] RandomSamplingMode random_sampling_mode = RandomSamplingMode.Disabled_;
 

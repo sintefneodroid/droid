@@ -6,7 +6,6 @@ using droid.Runtime.Managers;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.ScriptableObjects;
 using UnityEngine;
-using Object = System.Object;
 
 namespace droid.Runtime.Utilities.InternalReactions {
   /// <inheritdoc />
@@ -65,8 +64,8 @@ namespace droid.Runtime.Utilities.InternalReactions {
           if (this.terminated && this._auto_reset) {
             var reset_reaction_parameters = new ReactionParameters(StepResetObserve.Reset_);
             this._Manager.SendToEnvironments(new[] {new Reaction(reset_reaction_parameters, "all")});
-            this.terminated = this._Manager.CollectStates().Any(e => e.Terminated);
-          } else {
+            this.terminated = this._Manager.GatherSnapshots().Any(e => e.Terminated);
+          } else if (motions.Count > 0) {
             var parameters = new ReactionParameters(StepResetObserve.Step_, true, episode_count : true);
             var reaction = new Reaction(parameters,
                                         motions.ToArray(),
@@ -76,7 +75,8 @@ namespace droid.Runtime.Utilities.InternalReactions {
                                         "",
                                         reaction_source : "PlayerReactions");
             this._Manager.SendToEnvironments(new[] {reaction});
-            this.terminated = this._Manager.CollectStates().Any(e => e.Terminated);
+            this.terminated = this._Manager.GatherSnapshots().Any(e => e.Terminated);
+            motions.Clear();
           }
         }
       } else {

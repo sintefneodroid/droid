@@ -1,8 +1,6 @@
 ﻿using droid.Runtime.Interfaces;
-using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Utilities;
 using UnityEngine;
-using NeodroidUtilities = droid.Runtime.Utilities.Extensions.NeodroidUtilities;
 
 namespace droid.Runtime.Prototyping.Actuators {
   /// <inheritdoc />
@@ -32,7 +30,7 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void Setup() {
+    public override void Setup() {
       this._rot_x = this.Identifier + "RotX";
       this._rot_y = this.Identifier + "RotY";
       this._rot_z = this.Identifier + "RotZ";

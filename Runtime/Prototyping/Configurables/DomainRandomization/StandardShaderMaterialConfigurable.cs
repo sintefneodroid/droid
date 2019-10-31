@@ -47,7 +47,7 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void PreSetup() {
+    public override void PreSetup() {
       this._r = this.Identifier + "R";
       this._g = this.Identifier + "G";
       this._b = this.Identifier + "B";

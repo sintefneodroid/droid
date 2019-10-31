@@ -45,7 +45,7 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void Setup() {
+    public override void Setup() {
       this._x = this.Identifier + "X_";
       this._y = this.Identifier + "Y_";
       this._z = this.Identifier + "Z_";
