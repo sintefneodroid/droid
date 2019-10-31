@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using droid.Runtime.Enums;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Structs.Space;
 using UnityEngine;
@@ -22,7 +23,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
 
     [Header("Specific", order = 102)]
     [SerializeField]
-    ObservationSpace _space = ObservationSpace.Environment_;
+    CoordinateSpace _space = CoordinateSpace.Environment_;
 
     [SerializeField] bool normalised_overwrite_space_if_env_bounds = true;
 
@@ -63,9 +64,9 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     /// <summary>
     /// </summary>
     public override void UpdateObservation() {
-      if (this.ParentEnvironment != null && this._space == ObservationSpace.Environment_) {
+      if (this.ParentEnvironment != null && this._space == CoordinateSpace.Environment_) {
         this.ObservationValue = this.ParentEnvironment.TransformPoint(this.transform.position);
-      } else if (this._space == ObservationSpace.Local_) {
+      } else if (this._space == CoordinateSpace.Local_) {
         this.ObservationValue = this.transform.localPosition;
       } else {
         this.ObservationValue = this.transform.position;

@@ -1,4 +1,5 @@
 ﻿using System;
+using droid.Runtime.Enums;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Structs.Space;
@@ -19,7 +20,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     [SerializeField]
     Quaternion _euler_rotation = Quaternion.identity;
 
-    [SerializeField] bool _use_environments_space = false;
+
 
     /// <summary>
     /// </summary>
@@ -110,10 +111,15 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     ///
     /// </summary>
     public override void UpdateCurrentConfiguration() {
-      if (this._use_environments_space && this.ParentEnvironment != null) {
-        this._euler_rotation = this.ParentEnvironment.TransformRotation(this.transform.rotation);
-      } else {
+      switch (this.coordinate_space) {
+        case CoordinateSpace.Environment_ when this.ParentEnvironment != null: this._euler_rotation = this.ParentEnvironment.TransformRotation(this.transform.rotation);
+          break;
+        case CoordinateSpace.Global_:
         this._euler_rotation = this.transform.rotation;
+          break;
+        case CoordinateSpace.Local_:
+          this._euler_rotation = this.transform.localRotation;
+          break;
       }
     }
 
@@ -122,8 +128,14 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// </summary>
     /// <param name="simulator_configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration) {
-      var rot = this.transform.rotation;
-      if (this._use_environments_space) {
+      Quaternion rot;
+      if(this.coordinate_space==CoordinateSpace.Local_) {
+        rot = this.transform.localRotation;
+      } else {
+        rot = this.transform.rotation;
+      }
+
+      if (this.coordinate_space == CoordinateSpace.Environment_) {
         rot = this.ParentEnvironment.TransformRotation(this.transform.rotation);
       }
 
@@ -166,11 +178,16 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
         }
       }
 
-      if (this._use_environments_space) {
+      if (this.coordinate_space == CoordinateSpace.Environment_) {
         rot = this.ParentEnvironment.InverseTransformRotation(rot);
       }
 
-      this.transform.rotation = rot;
+      if(this.coordinate_space==CoordinateSpace.Local_)
+        this.transform.localRotation = rot;
+      else {
+        this.transform.rotation = rot;
+      }
+
     }
 
     /// <inheritdoc />

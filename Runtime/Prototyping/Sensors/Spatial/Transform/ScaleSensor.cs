@@ -25,7 +25,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
 
     /// <summary>
     /// </summary>
-    public Vector3 ObservationValue {
+    public Vector3 ObservationValue {//TODO: IMPLEMENT LOCAL SPACE
       get { return this._position; }
       set {
         this._position = this._scale_space.Project(value);

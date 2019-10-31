@@ -623,10 +623,10 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <param name="point"></param>
     /// <returns></returns>
     public Vector3 TransformPoint(Vector3 point) {
-      switch (this.CoordinateSystem) {
-        case CoordinateSystem.Relative_to_reference_point_ when this.CoordinateReferencePoint:
+      switch (this.CoordinateSpace) {
+        case CoordinateSpace.Environment_ when this.CoordinateReferencePoint:
           return this.CoordinateReferencePoint.transform.InverseTransformPoint(point);
-        case CoordinateSystem.Local_coordinates_:
+        case CoordinateSpace.Local_:
           return this.transform.InverseTransformPoint(point);
         //return point - this.transform.position;
         default:
@@ -644,11 +644,11 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     /// <param name="point"></param>
     public void TransformPoint(ref Vector3 point) {
-      switch (this.CoordinateSystem) {
-        case CoordinateSystem.Relative_to_reference_point_ when this.CoordinateReferencePoint:
+      switch (this.CoordinateSpace) {
+        case CoordinateSpace.Environment_ when this.CoordinateReferencePoint:
           point = this.CoordinateReferencePoint.transform.InverseTransformPoint(point);
           break;
-        case CoordinateSystem.Local_coordinates_:
+        case CoordinateSpace.Local_:
           //point = point - this.transform.position;
           point = this.transform.InverseTransformPoint(point);
           break;
@@ -667,10 +667,10 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <param name="point"></param>
     /// <returns></returns>
     public Vector3 InverseTransformPoint(Vector3 point) {
-      switch (this.CoordinateSystem) {
-        case CoordinateSystem.Relative_to_reference_point_ when this.CoordinateReferencePoint:
+      switch (this.CoordinateSpace) {
+        case CoordinateSpace.Environment_ when this.CoordinateReferencePoint:
           return this.CoordinateReferencePoint.transform.TransformPoint(point);
-        case CoordinateSystem.Local_coordinates_:
+        case CoordinateSpace.Local_:
           //return point - this.transform.position;
           return this.transform.TransformPoint(point);
         default:
@@ -688,11 +688,11 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     /// <param name="point"></param>
     public void InverseTransformPoint(ref Vector3 point) {
-      switch (this.CoordinateSystem) {
-        case CoordinateSystem.Relative_to_reference_point_ when this.CoordinateReferencePoint:
+      switch (this.CoordinateSpace) {
+        case CoordinateSpace.Environment_ when this.CoordinateReferencePoint:
           point = this.CoordinateReferencePoint.transform.TransformPoint(point);
           break;
-        case CoordinateSystem.Local_coordinates_:
+        case CoordinateSpace.Local_:
           //point = point - this.transform.position;
           point = this.transform.TransformPoint(point);
           break;
@@ -711,10 +711,10 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <param name="direction"></param>
     /// <returns></returns>
     public Vector3 TransformDirection(Vector3 direction) {
-      switch (this.CoordinateSystem) {
-        case CoordinateSystem.Relative_to_reference_point_ when this.CoordinateReferencePoint:
+      switch (this.CoordinateSpace) {
+        case CoordinateSpace.Environment_ when this.CoordinateReferencePoint:
           return this.CoordinateReferencePoint.transform.InverseTransformDirection(direction);
-        case CoordinateSystem.Local_coordinates_:
+        case CoordinateSpace.Local_:
           return this.transform.InverseTransformDirection(direction);
         default:
           #if NEODROID_DEBUG
@@ -731,14 +731,14 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     /// <param name="direction"></param>
     public void TransformDirection(ref Vector3 direction) {
-      switch (this.CoordinateSystem) {
-        case CoordinateSystem.Relative_to_reference_point_ when this.CoordinateReferencePoint:
+      switch (this.CoordinateSpace) {
+        case CoordinateSpace.Environment_ when this.CoordinateReferencePoint:
           direction = this.CoordinateReferencePoint.transform.InverseTransformDirection(direction);
           break;
-        case CoordinateSystem.Local_coordinates_:
+        case CoordinateSpace.Local_:
           direction = this.transform.InverseTransformDirection(direction);
           break;
-        case CoordinateSystem.Global_coordinates_:
+        case CoordinateSpace.Global_:
         default:
           #if NEODROID_DEBUG
           if (this.Debugging) {
@@ -754,10 +754,10 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <param name="direction"></param>
     /// <returns></returns>
     public Vector3 InverseTransformDirection(Vector3 direction) {
-      switch (this.CoordinateSystem) {
-        case CoordinateSystem.Relative_to_reference_point_ when this.CoordinateReferencePoint:
+      switch (this.CoordinateSpace) {
+        case CoordinateSpace.Environment_ when this.CoordinateReferencePoint:
           return this.CoordinateReferencePoint.transform.TransformDirection(direction);
-        case CoordinateSystem.Local_coordinates_:
+        case CoordinateSpace.Local_:
           return this.transform.TransformDirection(direction);
 
         default:
@@ -771,11 +771,11 @@ namespace droid.Runtime.Environments.Prototyping {
     }
 
     public void InverseTransformDirection(ref Vector3 direction) {
-      switch (this.CoordinateSystem) {
-        case CoordinateSystem.Relative_to_reference_point_ when this.CoordinateReferencePoint:
+      switch (this.CoordinateSpace) {
+        case CoordinateSpace.Environment_ when this.CoordinateReferencePoint:
           direction = this.CoordinateReferencePoint.transform.TransformDirection(direction);
           break;
-        case CoordinateSystem.Local_coordinates_:
+        case CoordinateSpace.Local_:
           direction = this.transform.TransformDirection(direction);
           break;
         default:
@@ -793,13 +793,13 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <param name="quaternion"></param>
     /// <returns></returns>
     public Quaternion TransformRotation(Quaternion quaternion) {
-      if (this.CoordinateSystem == CoordinateSystem.Relative_to_reference_point_) {
+      if (this.CoordinateSpace == CoordinateSpace.Environment_) {
         if (this.CoordinateReferencePoint) {
           return Quaternion.Inverse(this.CoordinateReferencePoint.rotation) * quaternion;
         }
 
         //Quaternion.Euler(this._coordinate_reference_point.transform.TransformDirection(quaternion.forward));
-      } else if (this.CoordinateSystem == CoordinateSystem.Local_coordinates_) {
+      } else if (this.CoordinateSpace == CoordinateSpace.Local_) {
         if (this.CoordinateReferencePoint) {
           return Quaternion.Inverse(this.Transform.rotation) * quaternion;
         }
@@ -813,13 +813,13 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     /// <param name="quaternion"></param>
     public void TransformRotation(ref Quaternion quaternion) {
-      if (this.CoordinateSystem == CoordinateSystem.Relative_to_reference_point_) {
+      if (this.CoordinateSpace == CoordinateSpace.Environment_) {
         if (this.CoordinateReferencePoint) {
           quaternion = Quaternion.Inverse(this.CoordinateReferencePoint.rotation) * quaternion;
         }
 
         //Quaternion.Euler(this._coordinate_reference_point.transform.TransformDirection(quaternion.forward));
-      } else if (this.CoordinateSystem == CoordinateSystem.Local_coordinates_) {
+      } else if (this.CoordinateSpace == CoordinateSpace.Local_) {
         if (this.CoordinateReferencePoint) {
           quaternion = Quaternion.Inverse(this.Transform.rotation) * quaternion;
         }
@@ -827,13 +827,13 @@ namespace droid.Runtime.Environments.Prototyping {
     }
 
     public Quaternion InverseTransformRotation(Quaternion quaternion) {
-      if (this.CoordinateSystem == CoordinateSystem.Relative_to_reference_point_) {
+      if (this.CoordinateSpace == CoordinateSpace.Environment_) {
         if (this.CoordinateReferencePoint) {
           return this.CoordinateReferencePoint.rotation * quaternion;
         }
 
         //Quaternion.Euler(this._coordinate_reference_point.transform.TransformDirection(quaternion.forward));
-      } else if (this.CoordinateSystem == CoordinateSystem.Local_coordinates_) {
+      } else if (this.CoordinateSpace == CoordinateSpace.Local_) {
         if (this.CoordinateReferencePoint) {
           return this.Transform.rotation * quaternion;
         }
@@ -843,10 +843,10 @@ namespace droid.Runtime.Environments.Prototyping {
     }
 
     public void InverseTransformRotation(ref Quaternion quaternion) {
-      if (this.CoordinateSystem == CoordinateSystem.Relative_to_reference_point_) {
+      if (this.CoordinateSpace == CoordinateSpace.Environment_) {
         if (this.CoordinateReferencePoint) {
           quaternion = this.CoordinateReferencePoint.rotation * quaternion;
-        } else if (this.CoordinateSystem == CoordinateSystem.Local_coordinates_) {
+        } else if (this.CoordinateSpace == CoordinateSpace.Local_) {
           if (this.CoordinateReferencePoint) {
             quaternion = this.Transform.rotation * quaternion;
           }
@@ -909,7 +909,7 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <summary>
     /// </summary>
     [field : SerializeField]
-    public CoordinateSystem CoordinateSystem { get; set; } = CoordinateSystem.Local_coordinates_;
+    public CoordinateSpace CoordinateSpace { get; set; } = CoordinateSpace.Local_;
 
     /// <summary>
     /// </summary>

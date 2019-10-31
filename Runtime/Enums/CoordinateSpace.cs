@@ -1,17 +1,17 @@
 ﻿namespace droid.Runtime.Enums {
   /// <summary>
   /// </summary>
-  public enum CoordinateSystem {
+  public enum CoordinateSpace {
     /// <summary>
     /// </summary>
-    Global_coordinates_,
+    Global_,
 
     /// <summary>
     /// </summary>
-    Local_coordinates_,
+    Local_,
 
     /// <summary>
     /// </summary>
-    Relative_to_reference_point_
+    Environment_
   }
 }

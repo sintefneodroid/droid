@@ -18,7 +18,6 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
 
     [SerializeField] Axis _axis_of_configuration = Axis.X_;
     [SerializeField] float _observation_value = 0;
-    [SerializeField] bool _use_environments_space = false;
     [SerializeField] SampleSpace1 _single_value_space = new SampleSpace1 {_space = Space1.ZeroOne};
     [SerializeField] bool normalised_overwrite_space_if_env_bounds = true;
 
@@ -53,10 +52,16 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// <exception cref="ArgumentOutOfRangeException"></exception>
     public override void UpdateCurrentConfiguration() {
       var transform1 = this.transform;
-      var pos = transform1.position;
+      Vector3 pos;
+      if (this.coordinate_space == CoordinateSpace.Local_) {
+        pos = transform1.localPosition;
+      }else{
+        pos = transform1.position;
+        }
       var dir = transform1.forward;
       var rot = transform1.up;
-      if (this._use_environments_space) {
+
+      if (this.coordinate_space == CoordinateSpace.Environment_) {
         if (this.ParentEnvironment != null) {
           pos = this.ParentEnvironment.TransformPoint(pos);
           dir = this.ParentEnvironment.TransformDirection(dir);
@@ -150,10 +155,15 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       #endif
 
       var transform1 = this.transform;
-      var pos = transform1.position;
+      Vector3 pos;
+      if (this.coordinate_space == CoordinateSpace.Local_) {
+        pos = transform1.localPosition;
+      }else{
+        pos = transform1.position;
+      }
       var dir = transform1.forward;
       var rot = transform1.up;
-      if (this._use_environments_space) {
+      if (this.coordinate_space == CoordinateSpace.Environment_) {
         if (this.ParentEnvironment != null) {
           this.ParentEnvironment.TransformPoint(ref pos);
           this.ParentEnvironment.TransformDirection(ref dir);
@@ -243,7 +253,9 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       var inv_pos = pos;
       var inv_dir = dir;
       var inv_rot = rot;
-      if (this._use_environments_space) {
+
+
+      if (this.coordinate_space == CoordinateSpace.Environment_) {
         if (this.ParentEnvironment != null) {
           this.ParentEnvironment.InverseTransformPoint(ref inv_pos);
           this.ParentEnvironment.InverseTransformDirection(ref inv_dir);
@@ -253,7 +265,14 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
         }
       }
 
-      this.transform.position = inv_pos;
+
+      if (this.coordinate_space == CoordinateSpace.Local_) {
+        transform1.localPosition = inv_pos;
+      }else{
+        this.transform.position = inv_pos;
+      }
+
+
       this.transform.rotation = Quaternion.identity;
       this.transform.rotation = Quaternion.LookRotation(inv_dir, inv_rot);
     }

@@ -1,4 +1,6 @@
-﻿using droid.Runtime.Interfaces;
+﻿using System;
+using droid.Runtime.Enums;
+using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Structs.Space;
 using droid.Runtime.Structs.Space.Sample;
@@ -17,8 +19,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     #region Fields
 
     [SerializeField] Vector3 _position = Vector3.zero;
-    [SerializeField] bool normalised_overwrite_space_if_env_bounds = true;
-    [SerializeField] bool _use_environments_space = false;
+    [SerializeField] bool fetch_env_bounds = true;
     [SerializeField] SampleSpace3 _pos_space = new SampleSpace3 {Space = Space3.ZeroOne};
 
     #endregion
@@ -49,7 +50,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     ///
     /// </summary>
     public override void RemotePostSetup() {
-      if (this.normalised_overwrite_space_if_env_bounds) {
+      if (this.fetch_env_bounds) {
         if (this.ParentEnvironment?.PlayableArea) {
           var dec_gran = 4;
           if (this._pos_space.Space != null) {
@@ -57,7 +58,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
           }
 
           this._pos_space.Space = Space3.FromCenterExtents(this.ParentEnvironment.PlayableArea.Bounds.extents,
-                                                       decimal_granularity : dec_gran);
+                                                           decimal_granularity : dec_gran);
         }
       }
     }
@@ -82,17 +83,11 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
-                                                          this,
-                                                          this._x);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, this, this._x);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
-                                                          this,
-                                                          this._y);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, this, this._y);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
-                                                          this,
-                                                          this._z);
+          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, this, this._z);
     }
 
     /// <summary>
@@ -117,10 +112,14 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     ///
     /// </summary>
     public override void UpdateCurrentConfiguration() {
-      if (this._use_environments_space) {
-        this._position = this.ParentEnvironment.TransformPoint(this.transform.position);
-      } else {
-        this._position = this.transform.position;
+      switch(this.coordinate_space){
+        case CoordinateSpace.Environment_:         this._position = this.ParentEnvironment.TransformPoint(this.transform
+        .position);
+          break;;
+        case CoordinateSpace.Global_:         this._position = this.transform.position;
+          break;;
+        case CoordinateSpace.Local_:         this._position = this.transform.localPosition;
+          break;;
       }
     }
 
@@ -128,22 +127,27 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     ///
     /// </summary>
     /// <param name="simulator_configuration"></param>
-    public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration) {
-      var pos = this.transform.position;
-      if (this._use_environments_space) {
+    public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration) { //TODO: IMPLEMENT LOCAL SPACE
+      Vector3 pos;
+      if (this.coordinate_space == CoordinateSpace.Local_) {
+        pos = this.transform.localPosition;
+      } else {
+        pos = this.transform.position;
+      }
+
+      if (this.coordinate_space==CoordinateSpace.Environment_) {
         pos = this.ParentEnvironment.TransformPoint(this.transform.position);
       }
 
       float v;
 
-        if (simulator_configuration.ConfigurableName == this._x) {
-          v = this._pos_space._space.Xspace.Project(simulator_configuration.ConfigurableValue);
-        } else if (simulator_configuration.ConfigurableName == this._y) {
-          v = this._pos_space._space.Yspace.Project(simulator_configuration.ConfigurableValue);
-        } else {
-          v = this._pos_space._space.Zspace.Project(simulator_configuration.ConfigurableValue);
-        }
-
+      if (simulator_configuration.ConfigurableName == this._x) {
+        v = this._pos_space._space.Xspace.Project(simulator_configuration.ConfigurableValue);
+      } else if (simulator_configuration.ConfigurableName == this._y) {
+        v = this._pos_space._space.Yspace.Project(simulator_configuration.ConfigurableValue);
+      } else {
+        v = this._pos_space._space.Zspace.Project(simulator_configuration.ConfigurableValue);
+      }
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
@@ -170,7 +174,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       }
 
       var inv_pos = pos;
-      if (this._use_environments_space) {
+      if (this.coordinate_space==CoordinateSpace.Environment_) {
         inv_pos = this.ParentEnvironment.InverseTransformPoint(inv_pos);
       }
 
@@ -180,7 +184,13 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       }
       #endif
 
-      this.transform.position = inv_pos;
+      if (this.coordinate_space == CoordinateSpace.Local_) {
+         this.transform.localPosition=inv_pos;
+      } else {
+        this.transform.position = inv_pos;
+      }
+
+
     }
 
     /// <summary>

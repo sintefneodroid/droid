@@ -166,11 +166,11 @@ namespace droid.Editor.Windows {
                 EditorGUILayout.ObjectField(this._environments[i], typeof(PrototypingEnvironment), true);
 
                 if (this._show_detailed_descriptions) {
-                  this._environments[i].CoordinateSystem =
-                      (CoordinateSystem)EditorGUILayout.EnumPopup("Coordinate system",
-                                                                  this._environments[i].CoordinateSystem);
-                  EditorGUI.BeginDisabledGroup(this._environments[i].CoordinateSystem
-                                               != CoordinateSystem.Relative_to_reference_point_);
+                  this._environments[i].CoordinateSpace =
+                      (CoordinateSpace)EditorGUILayout.EnumPopup("Coordinate system",
+                                                                  this._environments[i].CoordinateSpace);
+                  EditorGUI.BeginDisabledGroup(this._environments[i].CoordinateSpace
+                                               != CoordinateSpace.Environment_);
                   this._environments[i].CoordinateReferencePoint =
                       (Transform)EditorGUILayout.ObjectField("Reference point",
                                                              this._environments[i].CoordinateReferencePoint,
