@@ -41,7 +41,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Segmentation {
 
     /// <summary>
     /// </summary>
-    public Color _Untagged_Color = Color.black;
+    public Color _Untagged_Color = new Color(0.0f,0.0f,0.0f,0.0f);
 
     /// <summary>
     /// </summary>

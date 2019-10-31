@@ -15,7 +15,13 @@ MonoBehaviour:
   _color_by_categories:
   - _Category_Name: Player
     _Color: {r: 1, g: 0, b: 0, a: 1}
-  - _Category_Name: 
+  - _Category_Name: d
     _Color: {r: 1, g: 1, b: 1, a: 0}
-  - _Category_Name: 
+  - _Category_Name: e
     _Color: {r: 0, g: 0, b: 0, a: 0}
+  - _Category_Name: a
+    _Color: {r: 1, g: 0, b: 0, a: 1}
+  - _Category_Name: b
+    _Color: {r: 0, g: 1, b: 0, a: 1}
+  - _Category_Name: c
+    _Color: {r: 0, g: 0, b: 1, a: 1}
