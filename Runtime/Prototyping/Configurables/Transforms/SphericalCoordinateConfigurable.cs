@@ -1,4 +1,5 @@
-﻿using droid.Runtime.Interfaces;
+﻿using droid.Runtime.Enums;
+using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Structs.Space;
 using droid.Runtime.Structs.Space.Sample;
@@ -15,8 +16,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
   public class SphericalCoordinateConfigurable : SpatialConfigurable,
                                                  IHasTriple {
     [Header("Observation", order = 103)]
-    [SerializeField]
-    bool _use_environments_space = false;
+
 
     /// <summary>
     /// </summary>
@@ -61,7 +61,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       this._z = this.Identifier + "Radius_";
 
       var reference_point = this.transform.position;
-      if (this._use_environments_space) {
+      if (this.coordinate_space == CoordinateSpace.Environment_) {
         reference_point = this.ParentEnvironment.TransformPoint(reference_point);
       }
 
@@ -117,7 +117,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     ///
     /// </summary>
     /// <param name="simulator_configuration"></param>
-    public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration) {
+    public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration) { //TODO: IMPLEMENT LOCAL SPACE
       if (simulator_configuration.ConfigurableName == this._x) {
         this.sc.Polar = simulator_configuration.ConfigurableValue;
       } else if (simulator_configuration.ConfigurableName == this._y) {
@@ -128,7 +128,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
 
       var reference_point = this.sc.ToCartesian();
 
-      if (this._use_environments_space) {
+      if (this.coordinate_space == CoordinateSpace.Environment_) {
         reference_point = this.ParentEnvironment.InverseTransformPoint(reference_point);
       }
 

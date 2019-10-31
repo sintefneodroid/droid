@@ -1,4 +1,5 @@
-﻿using droid.Runtime.GameObjects;
+﻿using droid.Runtime.Enums;
+using droid.Runtime.GameObjects;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Configurables.Transforms {
@@ -21,6 +22,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     [SerializeField]
     bool _relative_to_existing_value = false;
 
+    [SerializeField] protected CoordinateSpace coordinate_space = CoordinateSpace.Environment_;
     #endregion
   }
 }

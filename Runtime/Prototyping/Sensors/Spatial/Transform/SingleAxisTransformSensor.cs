@@ -55,7 +55,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     ///
     /// </summary>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public override void UpdateObservation() {
+    public override void UpdateObservation() { //TODO: IMPLEMENT LOCAL SPACE
       switch (this._dim) {
         case Axis.X_:
           this.ObservationValue = this.transform.position.x;

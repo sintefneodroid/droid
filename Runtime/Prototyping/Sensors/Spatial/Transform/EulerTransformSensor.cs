@@ -7,21 +7,7 @@ using droid.Runtime.Utilities;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
-  /// <summary>
-  /// </summary>
-  public enum ObservationSpace {
-    /// <summary>
-    /// </summary>
-    Local_,
 
-    /// <summary>
-    /// </summary>
-    Global_,
-
-    /// <summary>
-    /// </summary>
-    Environment_
-  }
 
   /// <inheritdoc cref="Sensor" />
   /// <summary>
@@ -48,7 +34,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     [Header("Specific", order = 102)]
     [SerializeField]
     [SearchableEnum]
-    ObservationSpace _space = ObservationSpace.Environment_;
+    CoordinateSpace _space = CoordinateSpace.Environment_;
 
     [SerializeField] bool normalised_overwrite_space_if_env_bounds = true;
 
@@ -119,11 +105,11 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     /// </summary>
     public override void UpdateObservation() {
       var transform1 = this.transform;
-      if (this.ParentEnvironment != null && this._space == ObservationSpace.Environment_) {
+      if (this.ParentEnvironment != null && this._space == CoordinateSpace.Environment_) {
         this.Position = this.ParentEnvironment.TransformPoint(transform1.position);
         this.Direction = this.ParentEnvironment.TransformDirection(transform1.forward);
         this.Rotation = this.ParentEnvironment.TransformDirection(transform1.up);
-      } else if (this._space == ObservationSpace.Local_) {
+      } else if (this._space == CoordinateSpace.Local_) {
         this.Position = transform1.localPosition;
         this.Direction = transform1.forward;
         this.Rotation = transform1.up;

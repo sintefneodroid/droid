@@ -1,4 +1,5 @@
 ﻿using System;
+using droid.Runtime.Enums;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Structs.Space;
@@ -33,7 +34,6 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
 
     [SerializeField] Vector3 _direction;
     [SerializeField] Vector3 _rotation;
-    [SerializeField] bool _use_environments_space = false;
 
     /// <inheritdoc />
     /// <summary>
@@ -86,8 +86,8 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
 
     /// <summary>
     /// </summary>
-    public override void UpdateCurrentConfiguration() {
-      if (this._use_environments_space) {
+    public override void UpdateCurrentConfiguration() { //TODO: IMPLEMENT LOCAL SPACE
+      if (this.coordinate_space == CoordinateSpace.Environment_) {
         this.Position = this.ParentEnvironment.TransformPoint(this.transform.position);
         this.Direction = this.ParentEnvironment.TransformDirection(this.transform.forward);
         this.Rotation = this.ParentEnvironment.TransformDirection(this.transform.up);
@@ -186,7 +186,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       var pos = transform1.position;
       var dir = transform1.forward;
       var rot = transform1.up;
-      if (this._use_environments_space) {
+      if (this.coordinate_space == CoordinateSpace.Environment_) {
         pos = this.ParentEnvironment.TransformPoint(pos);
         dir = this.ParentEnvironment.TransformDirection(dir);
         rot = this.ParentEnvironment.TransformDirection(rot);
@@ -258,7 +258,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       var inv_pos = pos;
       var inv_dir = dir;
       var inv_rot = rot;
-      if (this._use_environments_space) {
+      if (this.coordinate_space == CoordinateSpace.Environment_) {
         inv_pos = this.ParentEnvironment.InverseTransformPoint(pos);
         inv_dir = this.ParentEnvironment.InverseTransformDirection(dir);
         inv_rot = this.ParentEnvironment.InverseTransformDirection(rot);

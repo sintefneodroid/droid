@@ -27,7 +27,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
 
     [Header("Specific", order = 102)]
     [SerializeField]
-    ObservationSpace observation_space = ObservationSpace.Environment_;
+    CoordinateSpace _coordinate_space = CoordinateSpace.Environment_;
 
     [SerializeField] bool normalised_overwrite_space_if_env_bounds = true;
 
@@ -75,9 +75,9 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     ///
     /// </summary>
     public override void UpdateObservation() {
-      if (this.ParentEnvironment != null && this.observation_space == ObservationSpace.Environment_) {
+      if (this.ParentEnvironment != null && this._coordinate_space == CoordinateSpace.Environment_) {
         this.SetPosition(this.ParentEnvironment.TransformPoint(this.transform.position));
-      } else if (this.observation_space == ObservationSpace.Local_) {
+      } else if (this._coordinate_space == CoordinateSpace.Local_) {
         this.SetPosition(this.transform.localPosition);
       } else {
         this.SetPosition(this.transform.position);
