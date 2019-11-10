@@ -33,11 +33,6 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <summary>
     ///
     /// </summary>
-    protected WaitForFixedUpdate _Wait_For_Fixed_Update = new WaitForFixedUpdate();
-
-    /// <summary>
-    ///
-    /// </summary>
     protected List<float> _Observables = new List<float>();
 
     /// <summary>
@@ -310,7 +305,6 @@ namespace droid.Runtime.Environments.Prototyping {
     IEnumerator SaveInitialBodiesIe() {
       yield return this._Wait_For_Fixed_Update;
       this.SaveInitialBodies();
-      this.RemotePostSetup();
     }
 
     /// <summary>

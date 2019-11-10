@@ -27,6 +27,8 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
     public override void UpdateObservation() {
       if (this._categoryProvider is ICategoryProvider provider) {
         this.ObservationValue = provider.CurrentCategoryValue;
+      } else {
+        Debug.LogWarning($"{this._categoryProvider} does not implement ICategoryProvider, and will not provide at categorical value");
       }
     }
 

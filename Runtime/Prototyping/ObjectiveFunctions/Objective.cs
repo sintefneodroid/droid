@@ -56,8 +56,6 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions {
         this.ParentEnvironment = NeodroidSceneUtilities
             .RecursiveFirstSelfSiblingParentGetComponent<AbstractSpatialPrototypingEnvironment>(this.transform);
       }
-
-      this.RemotePostSetup();
     }
 
 

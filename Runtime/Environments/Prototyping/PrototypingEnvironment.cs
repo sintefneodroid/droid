@@ -225,10 +225,6 @@ namespace droid.Runtime.Environments.Prototyping {
       }
       #endif
 
-      foreach (var configurable in this.Configurables.Values) {
-        configurable?.RemotePostSetup();
-      }
-
       foreach (var actuator in this.Actuators.Values) {
         actuator?.RemotePostSetup();
       }
@@ -236,6 +232,16 @@ namespace droid.Runtime.Environments.Prototyping {
       foreach (var sensor in this.Sensors.Values) {
         sensor?.RemotePostSetup();
       }
+
+      foreach (var configurable in this.Configurables.Values) {
+        configurable?.RemotePostSetup();
+      }
+
+      foreach (var displayer in this.Displayers.Values) {
+        displayer?.RemotePostSetup();
+      }
+
+      this.ObjectiveFunction?.RemotePostSetup();
     }
 
     /// <inheritdoc />
@@ -247,6 +253,10 @@ namespace droid.Runtime.Environments.Prototyping {
                                      this.Sensors.Values.Select(e => $"{e.Identifier}:\n{e.ToString()}")));
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="reaction"></param>
     protected override void SendToActors(Reaction reaction) {
       if (reaction.Motions != null && reaction.Motions.Length > 0) {
         foreach (var motion in reaction.Motions) {

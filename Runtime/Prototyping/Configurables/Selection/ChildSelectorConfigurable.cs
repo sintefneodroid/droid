@@ -41,8 +41,14 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
       if (this.active) {
         this.active.SetActive(true);
       }
+
+      this._configurable_value_space._space.DecimalGranularity = 0;
+      this._configurable_value_space._space.Max = this.len-1;
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override ISamplable ConfigurableValueSpace { get { return this._configurable_value_space; } }
 
     /// <summary>
@@ -61,7 +67,6 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
         c.SetActive(false);
       }
 
-
       if (this.children != null && (int)configuration.ConfigurableValue < this.len) {
         this.CurrentCategoryValue = (int)configuration.ConfigurableValue;
         this.active = this.children[this.CurrentCategoryValue];
@@ -72,10 +77,17 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
     public override Configuration[] SampleConfigurations() {
-      return new[] {new Configuration(this.Identifier, int.Parse(Random.Range(0, this.len).ToString()))};
+      return new[] {new Configuration(this.Identifier, this._configurable_value_space.Sample())};
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public int CurrentCategoryValue { get; set; }
   }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using droid.Runtime.GameObjects;
 using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients;
 using droid.Runtime.Interfaces;
@@ -14,9 +15,10 @@ namespace droid.Runtime.Environments {
   /// </summary>
   public abstract class NeodroidEnvironment : PrototypingGameObject,
                                               IEnvironment {
-    #region Fields
-
-    #endregion
+    /// <summary>
+    ///
+    /// </summary>
+    protected WaitForFixedUpdate _Wait_For_Fixed_Update = new WaitForFixedUpdate();
 
     #if UNITY_EDITOR
     const int _script_execution_order = -20;
@@ -87,7 +89,19 @@ namespace droid.Runtime.Environments {
         }
       }
       #endif
+
+      this.StartCoroutine(this.RemotePostSetupIe());
     }
+
+
+    /// <summary>
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator RemotePostSetupIe() {
+      yield return this._Wait_For_Fixed_Update;
+      this.RemotePostSetup();
+    }
+
 
     /// <inheritdoc />
     /// <summary>
