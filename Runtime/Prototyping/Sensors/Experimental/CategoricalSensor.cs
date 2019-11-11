@@ -32,6 +32,13 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
       }
     }
 
+    public override void RemotePostSetup() {
+      base.RemotePostSetup();
+      if (this._categoryProvider is ICategoryProvider provider) {
+        SingleSpace = provider.Space1;
+      }
+    }
+
     /// <summary>
     ///
     /// </summary>
@@ -40,6 +47,10 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
       private set { this._observationValue = value; }
     }
 
-    public Space1 SingleSpace { get; }
+    /// <summary>
+    ///
+    /// </summary>
+    [field : SerializeField]
+    public Space1 SingleSpace { get; set; }
   }
 }

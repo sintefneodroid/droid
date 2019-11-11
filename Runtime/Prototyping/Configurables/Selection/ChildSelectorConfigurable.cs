@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
+using droid.Runtime.Structs.Space;
 using droid.Runtime.Structs.Space.Sample;
 using UnityEngine;
 
@@ -89,5 +90,7 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
     ///
     /// </summary>
     public int CurrentCategoryValue { get; set; }
+
+    public Space1 Space1 { get { return this._configurable_value_space._space; } }
   }
 }
