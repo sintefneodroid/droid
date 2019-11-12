@@ -21,10 +21,6 @@ namespace droid.Runtime.Prototyping.Actuators {
 
     /// <summary>
     /// </summary>
-    public override String PrototypingTypeName { get { return "Actuator"; } }
-
-    /// <summary>
-    /// </summary>
     /// <param name="motion"></param>
     public void ApplyMotion(IMotion motion) {
       #if NEODROID_DEBUG

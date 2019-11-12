@@ -91,7 +91,6 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Lidar {
 
     #if UNITY_EDITOR
     [SerializeField] Color _color = Color.green;
-    [SerializeField] Single _observation_value;
 
     void OnDrawGizmosSelected() {
       if (this.enabled) {
@@ -105,10 +104,8 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Lidar {
     /// <summary>
     ///
     /// </summary>
-    public Single ObservationValue {
-      get { return this._observation_value; }
-      set { this._observation_value = value; }
-    }
+    [field : SerializeField]
+    public Single ObservationValue { get; set; }
 
     public Space1 SingleSpace { get { return this._ray_space; } }
   }

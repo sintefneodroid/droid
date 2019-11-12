@@ -220,13 +220,9 @@ namespace droid.Runtime.Managers {
     public float SimulationTimeScale {
       get { return Time.timeScale; }
       set {
-        #if UNITY_EDITOR
         Time.timeScale = Math.Min(value, 99);
         this.LastSimulationTime = Math.Min(value, 99);
-        #else
-        Time.timeScale = value;
-        this._last_simulation_time = value;
-        #endif
+
 
         if (this.Configuration.UpdateFixedTimeScale) {
           Time.fixedDeltaTime = 0.02F * Time.timeScale;

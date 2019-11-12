@@ -44,7 +44,9 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       }
     }
 
-    public override ISamplable ConfigurableValueSpace { get { return new SampleSpace1(); } }
+    public  ISamplable ConfigurableValueSpace { get { return new SampleSpace1(); } }
+
+    public override void UpdateCurrentConfiguration() {  }
 
     /// <summary>
     /// </summary>

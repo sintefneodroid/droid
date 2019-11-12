@@ -1,5 +1,6 @@
 ﻿using System;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Structs.Space;
 using UnityEngine;
 
@@ -69,7 +70,12 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       transform1.rotation = this._rotation;
     }
 
-    public override ISamplable ConfigurableValueSpace { get; }
+    public override void UpdateCurrentConfiguration() {  }
+
+    public ISamplable ConfigurableValueSpace { get; }
+
+    public override Configuration[] SampleConfigurations() { return new Configuration[]{this
+                                                                                        .ConfigurableValueSpace.Sample()};}
 
     /// <summary>
     ///

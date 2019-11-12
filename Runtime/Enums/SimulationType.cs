@@ -7,7 +7,7 @@ namespace droid.Runtime.Enums {
     ///   Waiting for frame instead means stable physics(Multiple fixed updates) and camera has updated their
     ///   rendertextures. Pauses the game after every reaction until next reaction is received.
     /// </summary>
-    Frame_dependent_, // TODO: Sometimes some frame seems to be dropped with the frame dependent configuration at high frame rates.
+    Frame_dependent_, // TODO: Sometimes some frame seems to be dropped with the frame dependent configuration at high frame rates. // BROKEN NOT SYNCED!!
 
     /// <summary>
     ///   Camera sensors should be manually rendered to ensure validity and freshness with camera.Render()

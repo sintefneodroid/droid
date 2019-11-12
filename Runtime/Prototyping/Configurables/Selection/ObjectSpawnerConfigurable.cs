@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using droid.Runtime.Enums;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Structs.Space;
 using droid.Runtime.Structs.Space.Sample;
 using UnityEngine;
@@ -66,7 +67,16 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
 
     void OnApplicationQuit() { this.DestroyObjects(); }
 
-    public override ISamplable ConfigurableValueSpace { get { return this._configurable_value_space; } }
+    /// <summary>
+    ///
+    /// </summary>
+    public ISamplable ConfigurableValueSpace { get { return this._configurable_value_space; } }
+
+    public override Configuration[] SampleConfigurations() {
+      return new Configuration[] {this.ConfigurableValueSpace.Sample()};
+    }
+
+    public override void UpdateCurrentConfiguration() { }
 
     public override void ApplyConfiguration(IConfigurableConfiguration obj) {
       if (this._spawned_objects.Count < obj.ConfigurableValue) {

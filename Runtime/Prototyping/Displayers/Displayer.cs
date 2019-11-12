@@ -50,10 +50,6 @@ namespace droid.Runtime.Prototyping.Displayers {
       set { this._environment = value; }
     }
 
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "Displayer"; } }
 
     /// <inheritdoc />
     /// <summary>

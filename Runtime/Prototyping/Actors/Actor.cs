@@ -207,10 +207,6 @@ namespace droid.Runtime.Prototyping.Actors {
 
     #region Getters
 
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "Actor"; } }
 
     /// <summary>
     /// </summary>

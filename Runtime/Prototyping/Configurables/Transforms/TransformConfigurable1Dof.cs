@@ -1,6 +1,7 @@
 ﻿using System;
 using droid.Runtime.Enums;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Structs.Space;
 using droid.Runtime.Structs.Space.Sample;
 using UnityEngine;
@@ -138,7 +139,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// <summary>
     ///
     /// </summary>
-    public override ISamplable ConfigurableValueSpace { get { return this._single_value_space; } }
+    public ISamplable ConfigurableValueSpace { get { return this._single_value_space; } }
 
     /// <summary>
     ///
@@ -276,5 +277,8 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       this.transform.rotation = Quaternion.identity;
       this.transform.rotation = Quaternion.LookRotation(inv_dir, inv_rot);
     }
+
+    public override Configuration[] SampleConfigurations() { return new Configuration[]{this
+    ._single_value_space.Sample()};}
   }
 }

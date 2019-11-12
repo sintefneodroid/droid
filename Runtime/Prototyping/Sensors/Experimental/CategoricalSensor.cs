@@ -14,12 +14,19 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
   public class CategoricalSensor : Sensor,
                                    IHasSingle {
     [SerializeField] PrototypingGameObject _categoryProvider = null;
-    [SerializeField] float _observationValue = 0;
 
     /// <summary>
     ///
     /// </summary>
     public override IEnumerable<float> FloatEnumerable { get { return new[] {this.ObservationValue}; } }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public override void Tick() {
+      base.Tick();
+      UpdateObservation();
+    }
 
     /// <inheritdoc />
     /// <summary>
@@ -32,6 +39,9 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override void RemotePostSetup() {
       base.RemotePostSetup();
       if (this._categoryProvider is ICategoryProvider provider) {
@@ -42,10 +52,8 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
     /// <summary>
     ///
     /// </summary>
-    public float ObservationValue {
-      get { return this._observationValue; }
-      private set { this._observationValue = value; }
-    }
+    [field : SerializeField]
+    public float ObservationValue { get; private set; }
 
     /// <summary>
     ///

@@ -94,7 +94,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// <summary>
     ///
     /// </summary>
-    public override ISamplable ConfigurableValueSpace { get { return this._quad_space; } }
+    public ISamplable ConfigurableValueSpace { get { return this._quad_space; } }
 
     /// <inheritdoc />
     ///  <summary>

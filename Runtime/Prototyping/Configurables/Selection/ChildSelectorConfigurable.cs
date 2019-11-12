@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Messaging.Messages;
 using droid.Runtime.Structs.Space;
@@ -14,43 +15,47 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
                     + ConfigurableComponentMenuPath._Postfix)]
   public class ChildSelectorConfigurable : Configurable,
                                            ICategoryProvider {
-    [SerializeField] GameObject active;
-    [SerializeField] GameObject[] children;
+    [SerializeField] Renderer active;
+    [SerializeField] Renderer[] children;
     [SerializeField] int len;
     [SerializeField] SampleSpace1 _configurable_value_space = new SampleSpace1();
 
     /// <summary>
     ///
     /// </summary>
-    public override void RemotePostSetup() {
+    public override void Setup() {
+      base.Setup();
+
       if (!Application.isPlaying) {
         return;
       }
 
-      var la = new List<GameObject>();
+      var la = new List<Renderer>();
       foreach (Transform child in this.transform) {
-        var o = child.gameObject;
-        o.SetActive(false);
+        var o = child.gameObject.GetComponent<Renderer>();
+        o.enabled = false;
         this.active = o;
         la.Add(o);
       }
 
       this.children = la.ToArray();
 
-      this.len = this.transform.childCount;
+      this.len = this.children.Length;
 
       if (this.active) {
-        this.active.SetActive(true);
+        this.active.enabled = true;
       }
 
       this._configurable_value_space._space.DecimalGranularity = 0;
-      this._configurable_value_space._space.Max = this.len-1;
+      this._configurable_value_space._space.Max = this.len - 1;
     }
 
     /// <summary>
     ///
     /// </summary>
-    public override ISamplable ConfigurableValueSpace { get { return this._configurable_value_space; } }
+    public ISamplable ConfigurableValueSpace { get { return this._configurable_value_space; } }
+
+    public override void UpdateCurrentConfiguration() { }
 
     /// <summary>
     ///
@@ -61,20 +66,17 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
         return;
       }
 
-      /*if (this.active) {
-        this.active.SetActive(false);
-      }*/
       foreach (var c in this.children) {
-        c.SetActive(false);
+        c.enabled = false;
       }
 
       if (this.children != null && (int)configuration.ConfigurableValue < this.len) {
-        this.CurrentCategoryValue = (int)configuration.ConfigurableValue;
+        this.CurrentCategoryValue = Mathf.RoundToInt(configuration.ConfigurableValue);
         this.active = this.children[this.CurrentCategoryValue];
       }
 
       if (this.active) {
-        this.active.SetActive(true);
+        this.active.enabled = true;
       }
     }
 
@@ -89,8 +91,12 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
     /// <summary>
     ///
     /// </summary>
+    [field : SerializeField]
     public int CurrentCategoryValue { get; set; }
 
+    /// <summary>
+    ///
+    /// </summary>
     public Space1 Space1 { get { return this._configurable_value_space._space; } }
   }
 }

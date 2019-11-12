@@ -131,7 +131,9 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       this.ParentEnvironment.UnRegister(this, this._a);
     }
 
-    public override ISamplable ConfigurableValueSpace { get { return new SampleSpace1(); } }
+    public ISamplable ConfigurableValueSpace { get { return new SampleSpace1(); } }
+
+    public override void UpdateCurrentConfiguration() {  }
 
     /// <summary>
     /// </summary>

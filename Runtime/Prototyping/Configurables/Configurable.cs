@@ -13,33 +13,30 @@ namespace droid.Runtime.Prototyping.Configurables {
   [ExecuteInEditMode]
   public abstract class Configurable : PrototypingGameObject,
                                        IConfigurable {
-    /// <summary>
-    ///
-    /// </summary>
-    public abstract ISamplable ConfigurableValueSpace { get; }
+
 
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName { get { return "Configurable"; } }
-
-    /// <summary>
-    /// </summary>
-    public AbstractSpatialPrototypingEnvironment ParentEnvironment {
-      get { return this._environment; }
-      set { this._environment = value; }
-    }
+    [field : Header("References", order = 20)]
+    [field : SerializeField]
+    public AbstractSpatialPrototypingEnvironment ParentEnvironment { get; set; } = null;
 
     /// <summary>
     ///
     /// </summary>
-    public RandomSamplingMode RandomSamplingMode {
-      get { return this.random_sampling_mode; }
-      set { this.random_sampling_mode = value; }
-    }
+    [field : SerializeField]
+    public RandomSamplingMode RandomSamplingMode { get; set; } = RandomSamplingMode.Disabled_;
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
+    public abstract Configuration[] SampleConfigurations();
+
 
     /// <summary>
     /// </summary>
-    public virtual void UpdateCurrentConfiguration() { }
+    public abstract void UpdateCurrentConfiguration();
 
     /// <summary>
     ///
@@ -50,7 +47,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     public override void PrototypingReset() {
-      if (this.random_sampling_mode == RandomSamplingMode.On_reset_ && Application.isPlaying) {
+      if (this.RandomSamplingMode == RandomSamplingMode.On_reset_ && Application.isPlaying) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log($"Random reconfiguring {this} Reset");
@@ -64,14 +61,6 @@ namespace droid.Runtime.Prototyping.Configurables {
     ///
     /// </summary>
     public override void RemotePostSetup() { this.UpdateCurrentConfiguration(); }
-
-    /// <summary>
-    /// </summary>
-    /// <returns></returns>
-    /// <exception cref="System.NotImplementedException"></exception>
-    public virtual Configuration[] SampleConfigurations() {
-      return new[] {new Configuration(this.Identifier, this.ConfigurableValueSpace.Sample())};
-    }
 
     /// <inheritdoc />
     /// <summary>
@@ -120,14 +109,6 @@ namespace droid.Runtime.Prototyping.Configurables {
     protected override void UnRegisterComponent() { this.ParentEnvironment?.UnRegister(this); }
 
     #region Fields
-
-    /// <summary>
-    /// </summary>
-    [Header("References", order = 20)]
-    [SerializeField]
-    AbstractSpatialPrototypingEnvironment _environment = null;
-
-    [SerializeField] RandomSamplingMode random_sampling_mode = RandomSamplingMode.Disabled_;
 
     #endregion
   }

@@ -1,11 +1,12 @@
-﻿
+﻿#if UNITY_EDITOR
 using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients;
 using droid.Runtime.Managers;
 using droid.Runtime.Prototyping.ObjectiveFunctions;
-using UnityEditor.Events;
+
 using UnityEngine.Events;
 using UnityEngine.UI;
-#if UNITY_EDITOR
+
+using UnityEditor.Events;
 using droid.Runtime.Environments;
 using UnityEngine;
 

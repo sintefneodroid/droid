@@ -105,7 +105,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// <summary>
     ///
     /// </summary>
-    public override ISamplable ConfigurableValueSpace { get { return this._euler_space; } }
+    public ISamplable ConfigurableValueSpace { get { return this._euler_space; } }
 
     /// <summary>
     ///

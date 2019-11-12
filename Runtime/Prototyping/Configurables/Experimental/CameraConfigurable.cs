@@ -141,7 +141,9 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       }
     }
 
-    public override ISamplable ConfigurableValueSpace { get { return this._sensor_size_space; } }
+    public ISamplable ConfigurableValueSpace { get { return this._sensor_size_space; } }
+
+    public override void UpdateCurrentConfiguration() {  }
 
     /// <summary>
     /// </summary>

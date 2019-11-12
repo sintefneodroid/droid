@@ -81,7 +81,9 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
       this.ParentEnvironment.UnRegister(this, this._fullscreen);
     }
 
-    public override ISamplable ConfigurableValueSpace { get; }
+    public ISamplable ConfigurableValueSpace { get; }
+
+    public override void UpdateCurrentConfiguration() {  }
 
     /// <summary>
     ///

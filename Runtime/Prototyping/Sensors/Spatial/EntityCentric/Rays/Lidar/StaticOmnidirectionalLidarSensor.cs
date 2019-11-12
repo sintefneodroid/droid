@@ -16,10 +16,6 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Lidar {
 
     [SerializeField] bool _is_2_d = false;
 
-    [Header("Observation", order = 103)]
-    [SerializeField]
-    float[] _obs_array;
-
     [SerializeField] Space1 _space = new Space1 {Min = 0, Max = 5f};
 
     [SerializeField] bool ignore_rotation = false;
@@ -35,10 +31,9 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Lidar {
 
     /// <summary>
     /// </summary>
-    public float[] ObservationArray {
-      get { return this._obs_array; }
-      private set { this._obs_array = value; }
-    }
+    [field : Header("Observation", order = 103)]
+    [field : SerializeField]
+    public float[] ObservationArray { get; private set; }
 
     /// <summary>
     ///

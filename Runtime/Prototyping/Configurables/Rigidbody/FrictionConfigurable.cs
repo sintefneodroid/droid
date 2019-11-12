@@ -40,7 +40,7 @@ namespace droid.Runtime.Prototyping.Configurables.Rigidbody {
     /// </summary>
     public Space1 SingleSpace { get { return (Space1)this._friction_space.Space; } }
 
-    public override ISamplable ConfigurableValueSpace { get; }
+    public ISamplable ConfigurableValueSpace { get; }
 
     /// <summary>
     /// </summary>

@@ -14,12 +14,11 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Lidar {
     [SerializeField] [Range(1, 90)] int RaysToShoot = 30;
     [SerializeField] Space1 _observation_space = new Space1 {Max = 30 };
     [SerializeField] Axis axis = Axis.Y_;
-    [SerializeField] Single[] _observation_array;
 
     /// <summary>
     ///
     /// </summary>
-    public override IEnumerable<Single> FloatEnumerable { get { return this._observation_array; } }
+    public override IEnumerable<Single> FloatEnumerable { get { return this.ObservationArray; } }
 
     /// <summary>
     ///
@@ -58,10 +57,8 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Lidar {
     /// <summary>
     ///
     /// </summary>
-    public Single[] ObservationArray {
-      get { return this._observation_array; }
-      set { this._observation_array = value; }
-    }
+    [field : SerializeField]
+    public Single[] ObservationArray { get; set; }
 
     /// <summary>
     ///

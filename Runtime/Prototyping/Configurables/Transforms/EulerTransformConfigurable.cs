@@ -35,11 +35,6 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     [SerializeField] Vector3 _direction;
     [SerializeField] Vector3 _rotation;
 
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "EulerTransformConfigurable"; } }
-
     /// <summary>
     /// </summary>
     public Vector3 Position { get { return this._position; } set { this._position = value; } }
@@ -76,7 +71,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// <summary>
     ///
     /// </summary>
-    public override ISamplable ConfigurableValueSpace {
+    public ISamplable ConfigurableValueSpace {
       get {
         return this.pos_space;
         //return DirectionSpace;

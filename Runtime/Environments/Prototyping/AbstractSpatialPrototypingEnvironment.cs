@@ -89,6 +89,8 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     float[] _reset_animation_times;
 
+    [SerializeField] bool keep_last_configuration = false;
+
     #endregion
 
     #region Events
@@ -173,6 +175,9 @@ namespace droid.Runtime.Environments.Prototyping {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     protected void LoopListeners() {
       foreach (var obs in this.Listeners.Values) {
         obs?.Tick();
@@ -292,11 +297,10 @@ namespace droid.Runtime.Environments.Prototyping {
       }
       #endif
 
-      if (this._tracked_game_objects == null || this._tracked_game_objects.Length == 0) {
-        this.SaveInitialPoses();
-        this.SaveInitialAnimations();
-        this.StartCoroutine(this.SaveInitialBodiesIe());
-      }
+
+      this.SaveInitialPoses();
+      this.SaveInitialAnimations();
+      this.StartCoroutine(this.SaveInitialBodiesIe());
     }
 
     /// <summary>
@@ -397,6 +401,12 @@ namespace droid.Runtime.Environments.Prototyping {
       }
 
       this.ReplyWithDescriptionThisStep = false;
+
+      if (! this.keep_last_configuration) {
+        this._last_configuration = null;
+
+      }
+      //this.LastReaction = null;
     }
 
     /// <summary>
@@ -552,31 +562,33 @@ namespace droid.Runtime.Environments.Prototyping {
                                          ref Vector3[] positions,
                                          ref Quaternion[] rotations,
                                          ref Vector3[] scales) {
-      for (var i = 0; i < child_game_objects.Length; i++) {
-        if (child_game_objects[i] != null && i < positions.Length && i < rotations.Length) {
-          var rigid_body = child_game_objects[i].GetComponent<Rigidbody>();
-          if (rigid_body) {
-            rigid_body.Sleep();
-          }
+      if(child_game_objects!=null) {
+        for (var i = 0; i < child_game_objects.Length; i++) {
+          if (child_game_objects[i] != null && i < positions.Length && i < rotations.Length) {
+            var rigid_body = child_game_objects[i].GetComponent<Rigidbody>();
+            if (rigid_body) {
+              rigid_body.Sleep();
+            }
 
-          child_game_objects[i].transform.position = positions[i];
-          child_game_objects[i].transform.rotation = rotations[i];
-          child_game_objects[i].transform.localScale = scales[i];
-          if (rigid_body) {
-            rigid_body.WakeUp();
-          }
+            child_game_objects[i].transform.position = positions[i];
+            child_game_objects[i].transform.rotation = rotations[i];
+            child_game_objects[i].transform.localScale = scales[i];
+            if (rigid_body) {
+              rigid_body.WakeUp();
+            }
 
-          var joint_fix = child_game_objects[i].GetComponent<JointFix>();
-          if (joint_fix) {
-            joint_fix.JointReset();
-          }
+            var joint_fix = child_game_objects[i].GetComponent<JointFix>();
+            if (joint_fix) {
+              joint_fix.JointReset();
+            }
 
-          var anim = child_game_objects[i].GetComponent<Animation>();
-          if (anim) {
-            anim.Rewind();
-            anim.Play();
-            anim.Sample();
-            anim.Stop();
+            var anim = child_game_objects[i].GetComponent<Animation>();
+            if (anim) {
+              anim.Rewind();
+              anim.Play();
+              anim.Sample();
+              anim.Stop();
+            }
           }
         }
       }

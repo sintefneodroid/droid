@@ -71,7 +71,7 @@ namespace droid.Runtime.Environments {
     /// <summary>
     /// </summary>
     public override void Setup() {
-      this.PreSetup();
+      base.Setup();
 
       if (this.SimulationManager == null) {
         this.SimulationManager = FindObjectOfType<AbstractNeodroidManager>();

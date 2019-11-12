@@ -71,7 +71,9 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       this.ParentEnvironment.UnRegister(this, this._z);
     }
 
-    public override ISamplable ConfigurableValueSpace { get { return this._space; } }
+    public ISamplable ConfigurableValueSpace { get { return this._space; } }
+
+    public override void UpdateCurrentConfiguration() {  }
 
     /// <summary>
     /// </summary>

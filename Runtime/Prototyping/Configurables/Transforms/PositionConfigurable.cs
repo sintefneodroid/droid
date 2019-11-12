@@ -106,7 +106,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// <summary>
     ///
     /// </summary>
-    public override ISamplable ConfigurableValueSpace { get { return this._pos_space; } }
+    public ISamplable ConfigurableValueSpace { get { return this._pos_space; } }
 
     /// <summary>
     ///
@@ -115,11 +115,11 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       switch(this.coordinate_space){
         case CoordinateSpace.Environment_:         this._position = this.ParentEnvironment.TransformPoint(this.transform
         .position);
-          break;;
+          break;
         case CoordinateSpace.Global_:         this._position = this.transform.position;
-          break;;
+          break;
         case CoordinateSpace.Local_:         this._position = this.transform.localPosition;
-          break;;
+          break;
       }
     }
 

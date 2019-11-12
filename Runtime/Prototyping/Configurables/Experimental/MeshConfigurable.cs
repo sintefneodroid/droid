@@ -64,7 +64,9 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       this.ParentEnvironment?.UnRegister(this, this._mesh_str);
     }
 
-    public override ISamplable ConfigurableValueSpace { get { return this._deformation_space; } }
+    public ISamplable ConfigurableValueSpace { get { return this._deformation_space; } }
+
+    public override void UpdateCurrentConfiguration() {  }
 
     /// <summary>
     /// </summary>

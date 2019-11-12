@@ -112,7 +112,12 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
     /// <summary>
     ///
     /// </summary>
-    public override ISamplable ConfigurableValueSpace { get { return this._color_space; } }
+    public ISamplable ConfigurableValueSpace { get { return this._color_space; } }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public override void UpdateCurrentConfiguration() {  }
 
     /// <summary>
     /// </summary>

@@ -1,5 +1,6 @@
 ﻿using System;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Messaging.Messages;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Configurables.Selection {
@@ -12,7 +13,9 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
     /// </summary>
     public override string PrototypingTypeName { get { return "DifficultyConfigurable"; } }
 
-    public override ISamplable ConfigurableValueSpace { get; }
+    public ISamplable ConfigurableValueSpace { get; }
+
+    public override void UpdateCurrentConfiguration() {  }
 
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
       if (Math.Abs(configuration.ConfigurableValue - 1) < double.Epsilon) {
@@ -21,5 +24,8 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
         //print ("Decreased Difficulty");
       }
     }
+
+    public override Configuration[] SampleConfigurations() { return new Configuration[]{this
+                                                                                        .ConfigurableValueSpace.Sample()};}
   }
 }

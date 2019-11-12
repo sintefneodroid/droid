@@ -84,7 +84,7 @@ namespace droid.Runtime.Prototyping.Configurables.Rigidbody {
     public Space3 VelocitySpace { get { return this._velocity_space._space; } }
     public Space3 AngularSpace { get { return this._angular_velocity_space._space; } }
 
-    public override ISamplable ConfigurableValueSpace { get; }
+    public ISamplable ConfigurableValueSpace { get; }
 
     /// <summary>
     /// </summary>
