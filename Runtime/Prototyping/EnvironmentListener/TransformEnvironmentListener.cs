@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 
-namespace droid.Runtime.Prototyping.Unobservables {
+namespace droid.Runtime.Prototyping.EnvironmentListener {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ObservablesComponentMenuPath._ComponentMenuPath
+  [AddComponentMenu(EnvironmentListenerComponentMenuPath._ComponentMenuPath
                     + "Transform"
-                    + ObservablesComponentMenuPath._Postfix)]
-  public class TransformUnobservable : Unobservable {
+                    + EnvironmentListenerComponentMenuPath._Postfix)]
+  public class TransformEnvironmentListener : EnvironmentListener {
     /// <summary>
     /// </summary>
     Vector3 _original_position;
@@ -16,10 +16,7 @@ namespace droid.Runtime.Prototyping.Unobservables {
     /// </summary>
     Quaternion _original_rotation;
 
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "Transform"; } }
+
 
     /// <inheritdoc />
     /// <summary>

@@ -4,15 +4,15 @@
   public enum ExecutionPhase {
     /// <summary>
     /// </summary>
-    Before_,
+    Before_Tick_,
 
     /// <summary>
     /// </summary>
-    Middle_,
+    On_Tick_,
 
     /// <summary>
     /// </summary>
-    After_
+    After_Tick_
   }
 
   public enum StepResetObserve {
@@ -50,7 +50,7 @@
 
     /// <summary>
     /// </summary>
-    public ExecutionPhase Phase { get; set; } = ExecutionPhase.Middle_;
+    public ExecutionPhase Phase { get; set; } = ExecutionPhase.On_Tick_;
 
     /// <summary>
     /// </summary>

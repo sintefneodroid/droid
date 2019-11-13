@@ -1,5 +1,5 @@
-﻿using droid.Runtime.Prototyping.ObjectiveFunctions;
-using droid.Runtime.Prototyping.Unobservables;
+﻿using droid.Runtime.Prototyping.EnvironmentListener;
+using droid.Runtime.Prototyping.ObjectiveFunctions;
 #if UNITY_EDITOR && NEODROID_DEBUG
 using droid.Runtime.Utilities.InternalReactions;
 using droid.Runtime.Environments;
@@ -30,7 +30,7 @@ namespace droid.Editor.Windows {
 
     Texture _icon;
 
-    Unobservable[] _listeners;
+    EnvironmentListener[] _listeners;
 
     AbstractNeodroidManager _manager;
 
@@ -82,7 +82,7 @@ namespace droid.Editor.Windows {
       this._configurables = FindObjectsOfType<Configurable>();
       this._objective_functions_function = FindObjectsOfType<ObjectiveFunction>();
       this._displayers = FindObjectsOfType<Displayer>();
-      this._listeners = FindObjectsOfType<Unobservable>();
+      this._listeners = FindObjectsOfType<EnvironmentListener>();
       this._player_reactions = FindObjectOfType<PlayerReactions>();
     }
 

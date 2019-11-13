@@ -4,6 +4,7 @@ using droid.Runtime.Enums.BoundingBox;
 using droid.Runtime.Environments.Prototyping;
 using droid.Runtime.GameObjects.BoundingBoxes.Experimental;
 using droid.Runtime.Interfaces;
+using droid.Runtime.Prototyping.EnvironmentListener;
 using droid.Runtime.Utilities;
 using UnityEditor;
 using UnityEngine;
@@ -17,7 +18,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
   /// <summary>
   /// </summary>
   [ExecuteInEditMode]
-  public class BoundingBox : MonoBehaviour {
+  public class BoundingBox : EnvironmentListener {
     /// <summary>
     /// </summary>
     Transform _bb_transform = null;
@@ -314,40 +315,20 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
       this.Start();
     }
 
-    /// <summary>
-    /// </summary>
-    void Start() {
-      if (!this.OnAwakeSetup) {
-        this.Setup();
-      }
-    }
 
     /// <summary>
     /// </summary>
-    void Awake() {
+    public override void PreSetup() {
+      base.PreSetup();
       if (!this.enabled) {
+        return;
+      }
+      if (!this.RunInEditModeSetup && !Application.isPlaying) {
         return;
       }
 
       if (this.environment == null) {
         this.environment = FindObjectOfType<AbstractSpatialPrototypingEnvironment>();
-      }
-
-      if (!this._bb_transform) {
-        this._empty_go = new GameObject {hideFlags = HideFlags.HideAndDontSave};
-        this._bb_transform = this._empty_go.transform;
-      }
-
-      if (this.OnAwakeSetup) {
-        this.Setup();
-      }
-    }
-
-    /// <summary>
-    /// </summary>
-    void Setup() {
-      if (!this.RunInEditModeSetup && !Application.isPlaying) {
-        return;
       }
 
       if (!this._bb_transform) {
@@ -368,9 +349,32 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
       this.CalculateBoundingBox();
     }
 
+
     /// <summary>
     /// </summary>
-    void LateUpdate() {
+    public void FixedUpdate() {
+      if (this.freezeAfterFirstCalculation) {
+        return;
+      }
+
+      if (this.includeChildren && !this.cacheChildren) {
+        if (this._children_meshes != this.GetComponentsInChildren<MeshFilter>()) {
+          this.BoundingBoxReset();
+        }
+
+        if (this._children_colliders != this.GetComponentsInChildren<Collider>()) {
+          this.BoundingBoxReset();
+        }
+      } else {
+        this.CalculateBoundingBox();
+      }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public override void Tick() {
+      base.Tick();
       if (this.freezeAfterFirstCalculation) {
         return;
       }

@@ -1,7 +1,7 @@
 ﻿using System;
 using droid.Runtime.Prototyping.Displayers;
 using droid.Runtime.Prototyping.Displayers.Canvas;
-using droid.Runtime.Prototyping.Unobservables;
+using droid.Runtime.Prototyping.EnvironmentListener;
 using UnityEngine;
 
 namespace droid.Samples.MultiArmedBandit.Displayers {
@@ -11,7 +11,7 @@ namespace droid.Samples.MultiArmedBandit.Displayers {
   [AddComponentMenu(DisplayerComponentMenuPath._ComponentMenuPath
                     + "TextBarPlot"
                     + DisplayerComponentMenuPath._Postfix)]
-  public class TextBarPlotDisplayer : Unobservable {
+  public class TextBarPlotDisplayer : EnvironmentListener {
     [SerializeField] CanvasBarDisplayer[] _canvas_bars = { };
     [SerializeField] CanvasTextDisplayer[] _canvas_text = { };
 

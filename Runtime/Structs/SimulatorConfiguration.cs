@@ -87,8 +87,8 @@ namespace droid.Runtime.Structs {
     /// <summary>
     /// </summary>
     [SerializeField]
-    [SearchableEnum]
-    ExecutionPhase _step_execution_phase = ExecutionPhase.Middle_;
+    //[SearchableEnum]
+    ExecutionPhase _step_execution_phase = ExecutionPhase.On_Tick_;
 
     /// <summary>
     ///   Target frame rate = -1 means that no waiting/v-syncing is done and the simulation can run as fast as

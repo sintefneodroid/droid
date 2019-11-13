@@ -19,7 +19,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
       foreach (var configurable in this._all_configurables) {
         if (configurable.enabled) {
           var button = Instantiate(this._sample_toggle_button_prefab, this.transform);
-          button.isOn = configurable.RandomSamplingMode == RandomSamplingMode.On_tick_;
+          button.isOn = configurable.RandomSamplingPhase == RandomSamplingPhase.On_tick_;
           button.onValueChanged.AddListener(value => Set(configurable, value));
           var text = button.GetComponentInChildren<Text>();
           button.name = configurable.Identifier;
@@ -29,18 +29,18 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
     }
 
     void Toggle(IConfigurable configurable) {
-      if (configurable.RandomSamplingMode != RandomSamplingMode.Disabled_) {
-        configurable.RandomSamplingMode = RandomSamplingMode.Disabled_;
+      if (configurable.RandomSamplingPhase != RandomSamplingPhase.Disabled_) {
+        configurable.RandomSamplingPhase = RandomSamplingPhase.Disabled_;
       } else {
-        configurable.RandomSamplingMode = RandomSamplingMode.On_tick_;
+        configurable.RandomSamplingPhase = RandomSamplingPhase.On_tick_;
       }
     }
 
     static void Set(IConfigurable configurable, bool value) {
       if (value) {
-        configurable.RandomSamplingMode = RandomSamplingMode.On_tick_;
+        configurable.RandomSamplingPhase = RandomSamplingPhase.On_tick_;
       } else {
-        configurable.RandomSamplingMode = RandomSamplingMode.Disabled_;
+        configurable.RandomSamplingPhase = RandomSamplingPhase.Disabled_;
       }
     }
   }

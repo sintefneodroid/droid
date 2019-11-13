@@ -182,9 +182,9 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
         rot = this.ParentEnvironment.InverseTransformRotation(rot);
       }
 
-      if(this.coordinate_space==CoordinateSpace.Local_)
+      if(this.coordinate_space==CoordinateSpace.Local_) {
         this.transform.localRotation = rot;
-      else {
+      } else {
         this.transform.rotation = rot;
       }
 

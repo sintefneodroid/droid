@@ -30,7 +30,7 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
                                                                       },
                                                        _distribution_sampler =
                                                            new DistributionSampler(DistributionEnum.Linear_) {
-                                                                                                                 _factor
+                                                                                                                 DistributionFactor
                                                                                                                      = -1
                                                                                                              }
                                                    };

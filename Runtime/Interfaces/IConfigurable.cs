@@ -27,7 +27,7 @@ namespace droid.Runtime.Interfaces {
     /// <summary>
     ///
     /// </summary>
-    RandomSamplingMode RandomSamplingMode { get; set; }
+    RandomSamplingPhase RandomSamplingPhase { get; set; }
 
   }
 }

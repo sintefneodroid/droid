@@ -2,7 +2,7 @@ namespace droid.Runtime.Enums {
   /// <summary>
   ///
   /// </summary>
-  public enum RandomSamplingMode {
+  public enum RandomSamplingPhase {
     /// <summary>
     ///
     /// </summary>
@@ -11,7 +11,17 @@ namespace droid.Runtime.Enums {
     /// <summary>
     ///
     /// </summary>
+    On_pre_tick_,
+
+    /// <summary>
+    ///
+    /// </summary>
     On_tick_,
+
+    /// <summary>
+    ///
+    /// </summary>
+    On_post_tick_,
 
     /// <summary>
     ///

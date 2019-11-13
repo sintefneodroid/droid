@@ -516,7 +516,7 @@ namespace droid.Runtime.Managers.Experimental {
       }
       #endif
 
-      if (this.Configuration.StepExecutionPhase == ExecutionPhase.Before_) {
+      if (this.Configuration.StepExecutionPhase == ExecutionPhase.Before_Tick_) {
         this.ExecuteStep();
       }
     }
@@ -529,7 +529,7 @@ namespace droid.Runtime.Managers.Experimental {
         Debug.Log("OnTick");
       }
       #endif
-      if (this.Configuration.StepExecutionPhase == ExecutionPhase.Middle_) {
+      if (this.Configuration.StepExecutionPhase == ExecutionPhase.On_Tick_) {
         this.ExecuteStep();
       }
     }
@@ -543,11 +543,13 @@ namespace droid.Runtime.Managers.Experimental {
       }
       #endif
 
+
+
       foreach (var environment in this._Environments.Values) {
         environment.PostStep();
       }
 
-      if (this.Configuration.StepExecutionPhase == ExecutionPhase.After_) {
+      if (this.Configuration.StepExecutionPhase == ExecutionPhase.After_Tick_) {
         this.ExecuteStep();
       }
 

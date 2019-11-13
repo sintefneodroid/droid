@@ -4,11 +4,11 @@ using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Utilities.Extensions;
 using UnityEngine;
 
-namespace droid.Runtime.Prototyping.Unobservables.StateValidation {
+namespace droid.Runtime.Prototyping.EnvironmentListener.StateValidation {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  public class EnsureValidState : Unobservable {
+  public class EnsureValidState : EnvironmentListener {
     [SerializeField] Actor _actor;
 
     [SerializeField] AbstractSpatialPrototypingEnvironment _environment;
@@ -19,10 +19,6 @@ namespace droid.Runtime.Prototyping.Unobservables.StateValidation {
 
     [SerializeField] BoundingBox _playable_area;
 
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "ValidityChecker"; } }
 
     /// <inheritdoc />
     /// <summary>

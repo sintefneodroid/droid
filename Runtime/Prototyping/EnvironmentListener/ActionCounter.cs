@@ -1,11 +1,11 @@
 ﻿using droid.Runtime.Interfaces;
 using UnityEngine;
 
-namespace droid.Runtime.Prototyping.Unobservables {
+namespace droid.Runtime.Prototyping.EnvironmentListener {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  public class ActionCounter : Unobservable {
+  public class ActionCounter : EnvironmentListener {
     [SerializeField] ISpatialPrototypingEnvironment _environment;
 
     /// <summary>
@@ -15,10 +15,7 @@ namespace droid.Runtime.Prototyping.Unobservables {
       set { this._environment = value; }
     }
 
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "ActionCounter"; } }
+
 
     /// <inheritdoc />
     /// <summary>

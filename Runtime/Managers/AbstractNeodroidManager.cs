@@ -82,6 +82,7 @@ namespace droid.Runtime.Managers {
     // ReSharper disable once EventNeverSubscribedTo.Global
     public event Action OnReceiveEvent;
 
+
     /// <summary>
     /// </summary>
     void FetchCommandLineArguments() {
@@ -346,6 +347,8 @@ namespace droid.Runtime.Managers {
 
     [SerializeField] Boolean _shouldResume;
 
+
+
     #endregion
 
     #region UnityCallbacks
@@ -538,7 +541,7 @@ namespace droid.Runtime.Managers {
       }
       #endif
 
-      if (this.Configuration.StepExecutionPhase == ExecutionPhase.Before_) {
+      if (this.Configuration.StepExecutionPhase == ExecutionPhase.Before_Tick_) {
         this.ExecuteStep();
       }
     }
@@ -552,7 +555,7 @@ namespace droid.Runtime.Managers {
       }
       #endif
 
-      if (this.Configuration.StepExecutionPhase == ExecutionPhase.Middle_) {
+      if (this.Configuration.StepExecutionPhase == ExecutionPhase.On_Tick_) {
         this.ExecuteStep();
       }
 
@@ -575,7 +578,9 @@ namespace droid.Runtime.Managers {
       }
       #endif
 
-      if (this.Configuration.StepExecutionPhase == ExecutionPhase.After_) {
+
+
+      if (this.Configuration.StepExecutionPhase == ExecutionPhase.After_Tick_) {
         this.ExecuteStep();
       }
 

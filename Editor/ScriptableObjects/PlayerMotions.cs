@@ -54,7 +54,7 @@ namespace droid.Editor.ScriptableObjects {
 
       private void OnWizardCreate() {
         var asset = CreateInstance<PlayerMotions>();
-        int motionCount = 0;
+        var motionCount = 0;
 
         foreach (var actor in this.actors) {
           foreach (var actuator in actor.Actuators) {
@@ -63,10 +63,10 @@ namespace droid.Editor.ScriptableObjects {
         }
 
         asset._Motions = new PlayerMotion[motionCount];
-        int i = 0;
+        var i = 0;
         foreach (var actor in this.actors) {
           foreach (var actuator in actor.Actuators) {
-            for (int j = 0; j < ((Actuator)actuator.Value).InnerMotionNames.Length; j++, i++) {
+            for (var j = 0; j < ((Actuator)actuator.Value).InnerMotionNames.Length; j++, i++) {
               asset._Motions[i] = new PlayerMotion {
                                                          _Actor = actor.Identifier,
                                                          _Actuator = ((Actuator)actuator.Value)

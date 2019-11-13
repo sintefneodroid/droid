@@ -109,6 +109,16 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     public event Action PostStepEvent;
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public event Action PostTickEvent;
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public event Action     PreTickEvent;
+
+
     #endregion
 
     #region Private Methods
@@ -136,6 +146,8 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <summary>
     /// </summary>
     public override void Tick() {
+      PreTickEvent?.Invoke();
+
       if (this.IsResetting) {
 
         this.PrototypingReset();
@@ -162,6 +174,8 @@ namespace droid.Runtime.Environments.Prototyping {
       #endif
 
       this.LoopListeners();
+
+      PostTickEvent?.Invoke();
     }
 
     /// <summary>

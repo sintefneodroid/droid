@@ -13,8 +13,6 @@ namespace droid.Runtime.Prototyping.Configurables {
   [ExecuteInEditMode]
   public abstract class Configurable : PrototypingGameObject,
                                        IConfigurable {
-
-
     /// <summary>
     /// </summary>
     [field : Header("References", order = 20)]
@@ -25,14 +23,13 @@ namespace droid.Runtime.Prototyping.Configurables {
     ///
     /// </summary>
     [field : SerializeField]
-    public RandomSamplingMode RandomSamplingMode { get; set; } = RandomSamplingMode.Disabled_;
+    public RandomSamplingPhase RandomSamplingPhase { get; set; } = RandomSamplingPhase.Disabled_;
 
     /// <summary>
     ///
     /// </summary>
     /// <returns></returns>
     public abstract Configuration[] SampleConfigurations();
-
 
     /// <summary>
     /// </summary>
@@ -47,7 +44,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     public override void PrototypingReset() {
-      if (this.RandomSamplingMode == RandomSamplingMode.On_reset_ && Application.isPlaying) {
+      if (this.RandomSamplingPhase == RandomSamplingPhase.On_reset_ && Application.isPlaying) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log($"Random reconfiguring {this} Reset");
@@ -60,7 +57,14 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     ///
     /// </summary>
-    public override void RemotePostSetup() { this.UpdateCurrentConfiguration(); }
+    public override void RemotePostSetup() {
+      this.UpdateCurrentConfiguration();
+
+      if (this.ParentEnvironment != null) {
+        this.ParentEnvironment.PreTickEvent += this.PreTick;
+        this.ParentEnvironment.PostTickEvent += this.PostTick;
+      }
+    }
 
     /// <inheritdoc />
     /// <summary>
@@ -69,11 +73,33 @@ namespace droid.Runtime.Prototyping.Configurables {
       this.ParentEnvironment = NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, this);
     }
 
+    void PostTick() {
+      if (this.RandomSamplingPhase == RandomSamplingPhase.On_post_tick_ && Application.isPlaying) {
+        #if NEODROID_DEBUG
+        if (this.Debugging) {
+          Debug.Log($"Random reconfiguring {this} Tick");
+        }
+        #endif
+        this.Randomise();
+      }
+    }
+
+    void PreTick() {
+      if (this.RandomSamplingPhase == RandomSamplingPhase.On_pre_tick_ && Application.isPlaying) {
+        #if NEODROID_DEBUG
+        if (this.Debugging) {
+          Debug.Log($"Random reconfiguring {this} Tick");
+        }
+        #endif
+        this.Randomise();
+      }
+    }
+
     /// <summary>
     ///
     /// </summary>
     public override void Tick() {
-      if (this.RandomSamplingMode == RandomSamplingMode.On_tick_ && Application.isPlaying) {
+      if (this.RandomSamplingPhase == RandomSamplingPhase.On_tick_ && Application.isPlaying) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log($"Random reconfiguring {this} Tick");
@@ -84,7 +110,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     }
 
     void Update() {
-      if (this.RandomSamplingMode == RandomSamplingMode.On_update_ && Application.isPlaying) {
+      if (this.RandomSamplingPhase == RandomSamplingPhase.On_update_ && Application.isPlaying) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log($"Random reconfiguring {this} Update");

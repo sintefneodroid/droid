@@ -10,9 +10,9 @@ using droid.Runtime.Prototyping.Actors;
 using droid.Runtime.Prototyping.Actuators;
 using droid.Runtime.Prototyping.Configurables;
 using droid.Runtime.Prototyping.Displayers;
+using droid.Runtime.Prototyping.EnvironmentListener;
 using droid.Runtime.Prototyping.ObjectiveFunctions;
 using droid.Runtime.Prototyping.Sensors;
-using droid.Runtime.Prototyping.Unobservables;
 using droid.Runtime.Structs;
 using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities;
@@ -258,14 +258,14 @@ namespace droid.Editor.Windows {
 
       GUILayout.Label("Listeners");
       foreach (var resetable in listeners) {
-        var resetable_value = (Unobservable)resetable.Value;
+        var resetable_value = (EnvironmentListener)resetable.Value;
         if (resetable_value != null) {
           EditorGUILayout.BeginVertical("Box");
           resetable_value.enabled =
               EditorGUILayout.BeginToggleGroup(resetable.Key,
                                                resetable_value.enabled
                                                && resetable_value.gameObject.activeSelf);
-          EditorGUILayout.ObjectField(resetable_value, typeof(Unobservable), true);
+          EditorGUILayout.ObjectField(resetable_value, typeof(EnvironmentListener), true);
           if (this._show_detailed_descriptions) {
             //EditorGUILayout.BeginHorizontal("Box");
             #if NEODROID_DEBUG

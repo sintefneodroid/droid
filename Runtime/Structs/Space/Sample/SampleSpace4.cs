@@ -43,10 +43,10 @@ namespace droid.Runtime.Structs.Space.Sample {
       Single w;
       switch(this._space.Normalised) {
         case Normalisation.None_:
-          x = this._space.Round(this.DistributionSampler.Range(this._space.Min.x, this._space.Max.x));
-          y = this._space.Round(this.DistributionSampler.Range(this._space.Min.y, this._space.Max.y));
-          z = this._space.Round(this.DistributionSampler.Range(this._space.Min.z, this._space.Max.z));
-          w = this._space.Round(this.DistributionSampler.Range(this._space.Min.w, this._space.Max.w));
+          x = this._space.Round(this.DistributionSampler.Range(this._space.Min.x, this._space.Max.x,this._space.DecimalGranularity));
+          y = this._space.Round(this.DistributionSampler.Range(this._space.Min.y, this._space.Max.y,this._space.DecimalGranularity));
+          z = this._space.Round(this.DistributionSampler.Range(this._space.Min.z, this._space.Max.z,this._space.DecimalGranularity));
+          w = this._space.Round(this.DistributionSampler.Range(this._space.Min.w, this._space.Max.w,this._space.DecimalGranularity));
           break;
         case Normalisation.Zero_one_:
           x = this.DistributionSampler.Range(0, 1);

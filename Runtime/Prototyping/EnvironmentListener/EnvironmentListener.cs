@@ -1,22 +1,17 @@
-﻿using System;
-using droid.Runtime.Environments.Prototyping;
+﻿using droid.Runtime.Environments.Prototyping;
 using droid.Runtime.GameObjects;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Utilities;
 
-namespace droid.Runtime.Prototyping.Unobservables {
+namespace droid.Runtime.Prototyping.EnvironmentListener {
   /// <inheritdoc cref="PrototypingGameObject" />
   /// <summary>
   /// </summary>
-  public abstract class Unobservable : PrototypingGameObject,
+  public abstract class EnvironmentListener : PrototypingGameObject,
                                        IUnobservable {
     /// <summary>
     /// </summary>
     public AbstractSpatialPrototypingEnvironment _Parent_Environment;
-
-    /// <summary>
-    /// </summary>
-    public abstract override String PrototypingTypeName { get; }
 
 
     /// <summary>
@@ -34,6 +29,9 @@ namespace droid.Runtime.Prototyping.Unobservables {
     /// </summary>
     public virtual void PostStep() { }
 
+    public virtual void PreTick() {  }
+    public virtual void PostTick() {  }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>
@@ -42,9 +40,11 @@ namespace droid.Runtime.Prototyping.Unobservables {
           NeodroidRegistrationUtilities.RegisterComponent(this._Parent_Environment, this);
 
       if (this._Parent_Environment != null) {
+        this._Parent_Environment.PreTickEvent += this.PreTick;
         this._Parent_Environment.PreStepEvent += this.PreStep;
         this._Parent_Environment.StepEvent += this.Step;
         this._Parent_Environment.PostStepEvent += this.PostStep;
+        this._Parent_Environment.PostTickEvent += this.PostTick;
       }
     }
 

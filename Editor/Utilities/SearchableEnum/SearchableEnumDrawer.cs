@@ -26,7 +26,7 @@ namespace droid.Editor.Utilities.SearchableEnum {
     /// <param name="property"></param>
     /// <param name="label"></param>
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
-      // If this is not used on an eunum, show an error
+      // If this is not used on an enum, show an error
       if (property.type != "Enum") {
         GUIStyle error_style = "CN EntryErrorIconSmall";
         var r = new Rect(position) {width = error_style.fixedWidth};
@@ -50,15 +50,15 @@ namespace droid.Editor.Utilities.SearchableEnum {
 
       var button_text = new GUIContent(property.enumDisplayNames[property.enumValueIndex]);
       if (DropdownButton(id, position, button_text)) {
-        Action<int> on_select = i => {
-                                  property.enumValueIndex = i;
-                                  property.serializedObject.ApplyModifiedProperties();
-                                };
+        void OnSelect(Int32 i) {
+          property.enumValueIndex = i;
+          property.serializedObject.ApplyModifiedProperties();
+        }
 
         SearchablePopup.Show(position,
                              property.enumDisplayNames,
                              property.enumValueIndex,
-                             on_select);
+                             OnSelect);
       }
 
       EditorGUI.EndProperty();

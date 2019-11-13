@@ -1,21 +1,46 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using droid.Runtime.GameObjects.BoundingBoxes;
 using droid.Runtime.GameObjects.BoundingBoxes.Experimental.Unused;
 using UnityEngine;
 
-namespace droid.Runtime.GameObjects.NeodroidCamera {
+namespace droid.Runtime.Prototyping.EnvironmentListener {
   /// <inheritdoc />
   ///  <summary>
   ///  </summary>
   [RequireComponent(typeof(Camera))]
-  public class CameraFitter : MonoBehaviour {
+  public class CameraFitter : EnvironmentListener {
+
+    /// <summary>
+    ///
+    /// </summary>
+    enum FitModeEnum {
+      Zoom_,
+      Move_
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    enum SourceEnum {
+      BB,
+      Collider
+    }
+
     [SerializeField] BoundingBox bb;
+    [SerializeField] Collider collider;
+    [SerializeField] SourceEnum _source_enum = SourceEnum.Collider;
     [SerializeField] float margin = 0f;
+    [SerializeField] FitModeEnum _fit_mode_enum = FitModeEnum.Zoom_;
     Camera _camera;
 
-    void Start() {
+    public override void PreSetup() { base.PreSetup();
       if (!this.bb) {
         this.bb = FindObjectOfType<BoundingBox>();
+      }
+
+      if (!this.collider) {
+        this.collider = FindObjectOfType<Collider>();
       }
 
       if (!this._camera) {
@@ -23,24 +48,63 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
       }
     }
 
-    void OnPreRender() {
-      if (this.bb) {
-        this._camera.transform.LookAt(this.bb.transform);
-        var radius = this.bb.Bounds.extents.MaxDim();
-        this._camera.MoveToDisplayInstant(radius, this.bb.transform.position, this.margin);
+    /// <summary>
+    ///
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    public override void PostTick() {
+      base.PostTick();
+      switch (this._source_enum) {
+        case SourceEnum.BB:
+          if (this.bb) {
+            this._camera.transform.LookAt(this.bb.transform);
+            var radius = this.bb.Bounds.extents.MaxDim();
+            switch (this._fit_mode_enum) {
+              case FitModeEnum.Zoom_:
+                this._camera.LookAtZoomToInstant(radius, this.bb.transform.position, this.margin);
+                break;
+              case FitModeEnum.Move_:
+                this._camera.MoveToInstant(radius, this.bb.transform.position, this.margin);
+                break;
+              default: throw new ArgumentOutOfRangeException();
+            }
+
+          }
+
+          break;
+        case SourceEnum.Collider:
+          if (this.collider) {
+            this._camera.transform.LookAt(this.bb.transform);
+            var radius = this.collider.bounds.extents.MaxDim();
+            switch (this._fit_mode_enum) {
+              case FitModeEnum.Zoom_:
+                this._camera.LookAtZoomToInstant(radius, this.collider.transform.position, this.margin);
+                break;
+              case FitModeEnum.Move_:
+                this._camera.MoveToInstant(radius, this.collider.transform.position, this.margin);
+                break;
+              default: throw new ArgumentOutOfRangeException();
+            }
+
+          }
+
+          break;
+        default: throw new ArgumentOutOfRangeException();
       }
     }
+
   }
 
   /// <summary>
   ///
   /// </summary>
-  public static class Utils {
+  public static class CameraFittingUtilities {
+
     // cam - camera to use
     // center - screen pixel center
     // pixelHeight - height of the rectangle in pixels
     // time - time to take zooming
-    static IEnumerator ZoomToDisplay(this Camera cam, Vector3 center, float pixel_height, float time) {
+    static IEnumerator ZoomToLerp(this Camera cam, Vector3 center, float pixel_height, float time) {
       var cam_tran = cam.transform;
       var ray = cam.ScreenPointToRay(center);
       var end_rotation = Quaternion.LookRotation(ray.direction);
@@ -72,7 +136,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
     // cam - camera to use
     // center - screen pixel center
     // pixelHeight - height of the rectangle in pixels
-    public static void ZoomToDisplayInstant(this Camera cam, Vector2 center, float pixel_height) {
+    public static void ZoomToInstant(this Camera cam, Vector2 center, float pixel_height) {
       var cam_tran = cam.transform;
       var ray = cam.ScreenPointToRay(center);
       var end_rotation = Quaternion.LookRotation(ray.direction);
@@ -87,6 +151,19 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
       cam.fieldOfView = end_fov;
     }
 
+    public static void LookAtZoomToInstant(this Camera cam,
+                                           float radius,
+                                           Vector3 center,
+                                           float margin = 1f) {
+
+      cam.transform.LookAt(center,Vector3.up);
+      var bound_sphere_radius = radius + margin;
+      var distance = Vector3.Distance(center,cam.transform.position);
+      var end_fov = Mathf.Atan((bound_sphere_radius * 0.5f)/distance) * 2.0f * Mathf.Rad2Deg;
+
+      cam.fieldOfView = end_fov;
+    }
+
     // cam - camera to use
     // center - screen pixel center
     // pixelHeight - height of the rectangle in pixels
@@ -97,7 +174,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
     /// <param name="rect"></param>
     /// <param name="bb_position"></param>
     /// <param name="margin"></param>
-    public static void MoveToDisplayInstant(this Camera cam,
+    public static void MoveToInstant(this Camera cam,
                                             float radius,
                                             Vector3 bb_position,
                                             float margin = 1f) {

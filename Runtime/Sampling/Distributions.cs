@@ -40,9 +40,6 @@ namespace droid.Runtime.Sampling {
   [Serializable]
   public struct DistributionSampler {
     Distributions.ConfidenceLevel _conf_level;
-    public Distributions.DirectionE _Direction;
-
-    public float _factor;
 
     [SerializeField] DistributionEnum _de;
 
@@ -50,50 +47,69 @@ namespace droid.Runtime.Sampling {
                                Distributions.DirectionE d = Distributions.DirectionE.Left_) {
       this._de = distribution_enum;
       this._conf_level = Distributions.ConfidenceLevel._95;
-      this._Direction = d;
-      this._factor = 1.267291f;
+      this.Direction = d;
+      this.DistributionFactor = 1.267291f;
     }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public Single DistributionFactor { get; set; }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public Distributions.DirectionE Direction { get; set; }
 
     /// <summary>
     ///
     /// </summary>
     /// <param name="min"></param>
     /// <param name="max"></param>
+    /// <param name="granularity"></param>
     /// <returns></returns>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public float Range(float min, float max) {
+    public float Range(float min, float max, int granularity = 0) {
       switch (this._de) {
         case DistributionEnum.Uniform_:
-          return Random.Range(min, max);
+          if(granularity==0) {
+            return Random.Range((int)min, (int)max+1);
+          } else {
+            return Random.Range(min, max);
+          }
         case DistributionEnum.Normal_:
           return Distributions.RandomRangeNormalDistribution(min, max, this._conf_level);
         case DistributionEnum.Sloped_:
           return Distributions.RandomRangeSlope(min,
                                                 max,
-                                                this._factor,
-                                                this._Direction);
+                                                this.DistributionFactor,
+                                                this.Direction);
         case DistributionEnum.Exponential_:
           return Distributions.RandomRangeExponential(min,
                                                       max,
-                                                      this._factor,
-                                                      this._Direction);
-        case DistributionEnum.Linear_:
-          return Distributions.RandomLinear(this._factor);
+                                                      this.DistributionFactor,
+                                                      this.Direction);
+        case DistributionEnum.Linear_: return Distributions.RandomLinear(this.DistributionFactor);
         default:
-          return Random.Range(min, max);
+          if(granularity==0) {
+            return Random.Range((int)min, (int)max+1);
+          } else {
+            return Random.Range(min, max);
+          }
       }
-
-      //
     }
   }
 
+  /// <summary>
+  ///
+  /// </summary>
   public static class Distributions {
     //--------------------------------------------------------------------------------------------
     // Normal Distribution
     //--------------------------------------------------------------------------------------------
 
     public enum ConfidenceLevel {
-      _60 = 0,
+      _60,
       _80,
       _90,
       _95,
@@ -110,7 +126,13 @@ namespace droid.Runtime.Sampling {
     /// <summary>
     /// </summary>
     public enum DirectionE {
+      /// <summary>
+      ///
+      /// </summary>
       Right_,
+      /// <summary>
+      ///
+      /// </summary>
       Left_
     }
 
