@@ -87,7 +87,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override void PreSetup() {
+    public override void RemotePostSetup() { base.RemotePostSetup();
       if (this.normalised_overwrite_space_if_env_bounds) {
         if (this.ParentEnvironment && this.ParentEnvironment.PlayableArea != null) {
           var ex = this.ParentEnvironment.PlayableArea.Bounds.extents;

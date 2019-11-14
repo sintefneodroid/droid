@@ -68,7 +68,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
       var transform1 = this.transform;
       if (this.ParentEnvironment != null && this._space == CoordinateSpace.Environment_) {
         this._position = this.ParentEnvironment.TransformPoint(transform1.position);
-        this._rotation = Quaternion.Euler(this.ParentEnvironment.TransformDirection(transform1.forward));
+        this._rotation = Quaternion.Euler(this.ParentEnvironment.TransformDirection(transform1.up));
       } else {
         this._position = transform1.position;
         this._rotation = transform1.rotation;

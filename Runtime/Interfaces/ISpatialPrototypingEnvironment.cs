@@ -1,5 +1,6 @@
 using System;
 using droid.Runtime.GameObjects.BoundingBoxes;
+using droid.Runtime.Prototyping.ObjectiveFunctions;
 using UnityEngine;
 
 namespace droid.Runtime.Interfaces {
@@ -71,7 +72,7 @@ namespace droid.Runtime.Interfaces {
     /// <summary>
     ///
     /// </summary>
-    IEpisodicObjectiveFunction ObjectiveFunction { get; }
+    EpisodicObjective ObjectiveFunction { get; }
 
     /// <summary>
     ///

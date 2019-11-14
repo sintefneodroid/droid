@@ -113,11 +113,11 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <summary>
     /// </summary>
     public event Action PostTickEvent;
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public event Action     PreTickEvent;
-
+    public event Action PreTickEvent;
 
     #endregion
 
@@ -149,10 +149,10 @@ namespace droid.Runtime.Environments.Prototyping {
       PreTickEvent?.Invoke();
 
       if (this.IsResetting) {
-
         this.PrototypingReset();
 
         this.LoopConfigurables();
+        this.LoopListeners();
         this.LoopSensors();
 
         #if NEODROID_DEBUG
@@ -164,6 +164,7 @@ namespace droid.Runtime.Environments.Prototyping {
         this.IsResetting = false;
       } else {
         this.LoopConfigurables(this.UpdateObservationsWithEveryTick);
+        this.LoopListeners();
         this.LoopSensors(this.UpdateObservationsWithEveryTick);
       }
 
@@ -172,8 +173,6 @@ namespace droid.Runtime.Environments.Prototyping {
         Debug.Log("Tick");
       }
       #endif
-
-      this.LoopListeners();
 
       PostTickEvent?.Invoke();
     }
@@ -311,7 +310,6 @@ namespace droid.Runtime.Environments.Prototyping {
       }
       #endif
 
-
       this.SaveInitialPoses();
       this.SaveInitialAnimations();
       this.StartCoroutine(this.SaveInitialBodiesIe());
@@ -350,6 +348,7 @@ namespace droid.Runtime.Environments.Prototyping {
         this.SendToActors(reaction);
 
         this.StepEvent?.Invoke();
+        this.LoopListeners();
 
         this.LoopSensors();
       }
@@ -416,10 +415,10 @@ namespace droid.Runtime.Environments.Prototyping {
 
       this.ReplyWithDescriptionThisStep = false;
 
-      if (! this.keep_last_configuration) {
+      if (!this.keep_last_configuration) {
         this._last_configuration = null;
-
       }
+
       //this.LastReaction = null;
     }
 
@@ -576,7 +575,7 @@ namespace droid.Runtime.Environments.Prototyping {
                                          ref Vector3[] positions,
                                          ref Quaternion[] rotations,
                                          ref Vector3[] scales) {
-      if(child_game_objects!=null) {
+      if (child_game_objects != null) {
         for (var i = 0; i < child_game_objects.Length; i++) {
           if (child_game_objects[i] != null && i < positions.Length && i < rotations.Length) {
             var rigid_body = child_game_objects[i].GetComponent<Rigidbody>();
@@ -790,6 +789,10 @@ namespace droid.Runtime.Environments.Prototyping {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="direction"></param>
     public void InverseTransformDirection(ref Vector3 direction) {
       switch (this.CoordinateSpace) {
         case CoordinateSpace.Environment_ when this.CoordinateReferencePoint:
@@ -846,6 +849,11 @@ namespace droid.Runtime.Environments.Prototyping {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="quaternion"></param>
+    /// <returns></returns>
     public Quaternion InverseTransformRotation(Quaternion quaternion) {
       if (this.CoordinateSpace == CoordinateSpace.Environment_) {
         if (this.CoordinateReferencePoint) {
@@ -862,6 +870,10 @@ namespace droid.Runtime.Environments.Prototyping {
       return quaternion;
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="quaternion"></param>
     public void InverseTransformRotation(ref Quaternion quaternion) {
       if (this.CoordinateSpace == CoordinateSpace.Environment_) {
         if (this.CoordinateReferencePoint) {
@@ -908,7 +920,7 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     [field : Header("References", order = 20)]
     [field : SerializeField]
-    public IEpisodicObjectiveFunction ObjectiveFunction { get; set; }
+    public EpisodicObjective ObjectiveFunction { get; set; }
 
     /// <summary>
     /// </summary>

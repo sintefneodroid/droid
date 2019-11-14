@@ -74,8 +74,9 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
 
     public ISamplable ConfigurableValueSpace { get; }
 
-    public override Configuration[] SampleConfigurations() { return new Configuration[]{this
-                                                                                        .ConfigurableValueSpace.Sample()};}
+    public override Configuration[] SampleConfigurations() { return new[]{new Configuration
+    (this.Identifier, this
+                                                                                        .ConfigurableValueSpace.Sample())};}
 
     /// <summary>
     ///

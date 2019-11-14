@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _always_serialise_unobservables: 0
   _always_serialise_individual_observables: 1
-  _always_serialise_aggregated_float_array: 0
+  _always_serialise_aggregated_float_array: 1
   _apply_resolution_settings: 0
   _optimiseWindow_for_speed: 0
   _apply_quality_settings: 0

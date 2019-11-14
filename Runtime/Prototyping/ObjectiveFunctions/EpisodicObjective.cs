@@ -27,7 +27,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions {
         }
         #endif
 
-        signal = this.FailedSignal;
+        signal += this.FailedSignal;
 
         this.ParentEnvironment.Terminate("Maximum episode length reached");
       }

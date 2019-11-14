@@ -315,10 +315,9 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
       this.Start();
     }
 
-
     /// <summary>
     /// </summary>
-    public override void PreSetup() {
+    public override void Setup() { base.Setup();
       base.PreSetup();
       if (!this.enabled) {
         return;
@@ -725,13 +724,6 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
       }
     }
 
-    /// <summary>
-    /// </summary>
-    void OnMouseDown() {
-      //if (_permanent)
-      //  return;
-      //this.enabled = !this.enabled;
-    }
 
     #if UNITY_EDITOR
     /// <summary>

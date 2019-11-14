@@ -25,7 +25,8 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
       }
     }
 
-    public override Configuration[] SampleConfigurations() { return new Configuration[]{this
-                                                                                        .ConfigurableValueSpace.Sample()};}
+    public override Configuration[] SampleConfigurations() { return new Configuration[]{new Configuration
+    (this.Identifier, this
+                                                                                        .ConfigurableValueSpace.Sample())};}
   }
 }

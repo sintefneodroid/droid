@@ -278,7 +278,8 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       this.transform.rotation = Quaternion.LookRotation(inv_dir, inv_rot);
     }
 
-    public override Configuration[] SampleConfigurations() { return new Configuration[]{this
-    ._single_value_space.Sample()};}
+    public override Configuration[] SampleConfigurations() { return new[]{new Configuration
+    (this.Identifier, this
+    ._single_value_space.Sample())};}
   }
 }
