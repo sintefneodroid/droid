@@ -1,7 +1,6 @@
-using droid.Runtime.Environments.Prototyping;
 using UnityEngine;
 
-namespace droid.Runtime.Environments {
+namespace droid.Runtime.Environments.Prototyping {
   /// <inheritdoc />
   /// <summary>
   /// </summary>

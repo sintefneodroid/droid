@@ -33,12 +33,12 @@ namespace droid.Editor.ScriptableObjects {
       const float WINDOW_WIDTH = 260, WINDOW_HEIGHT = 500;
 
       [MenuItem(EditorScriptableObjectMenuPath._ScriptableObjectMenuPath + "PlayerMotions (Wizard)")]
-      private static void Init() {
+      static void Init() {
         var window = CreateWindow<CreatePlayerMotionsWizard>("Create Player Motions...");
         window.Show();
       }
 
-      private void Awake() {
+      void Awake() {
         var icon =
             AssetDatabase.LoadAssetAtPath<Texture2D>(NeodroidSettings.Current.NeodroidImportLocationProp
                                                      + "Gizmos/Icons/table.png");
@@ -52,7 +52,7 @@ namespace droid.Editor.ScriptableObjects {
       [Header("Actuators to generate motions for")]
       public Actor[] actors;
 
-      private void OnWizardCreate() {
+      void OnWizardCreate() {
         var asset = CreateInstance<PlayerMotions>();
         var motionCount = 0;
 

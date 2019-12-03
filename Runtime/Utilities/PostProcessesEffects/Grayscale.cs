@@ -25,9 +25,14 @@ namespace droid.Runtime.Utilities.PostProcessesEffects {
   /// </summary>
   public sealed class GrayscaleRenderer : PostProcessEffectRenderer<Grayscale> {
     static readonly Int32 _blend = Shader.PropertyToID("_Blend");
+    static readonly Shader _s = Shader.Find("Neodroid/PostProcessing/Grayscale");
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="context"></param>
     public override void Render(PostProcessRenderContext context) {
-      var sheet = context.propertySheets.Get(Shader.Find("Neodroid/PostProcessing/Grayscale"));
+      var sheet = context.propertySheets.Get(_s);
       sheet.properties.SetFloat(_blend, this.settings.blend);
       context.command.BlitFullscreenTriangle(context.source,
                                              context.destination,

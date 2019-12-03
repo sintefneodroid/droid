@@ -146,7 +146,7 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <summary>
     /// </summary>
     public override void Tick() {
-      PreTickEvent?.Invoke();
+      this.PreTickEvent?.Invoke();
 
       if (this.IsResetting) {
         this.PrototypingReset();
@@ -174,7 +174,7 @@ namespace droid.Runtime.Environments.Prototyping {
       }
       #endif
 
-      PostTickEvent?.Invoke();
+      this.PostTickEvent?.Invoke();
     }
 
     /// <summary>

@@ -25,7 +25,7 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
     /// </summary>
     public override void Tick() {
       base.Tick();
-      UpdateObservation();
+      this.UpdateObservation();
     }
 
     /// <inheritdoc />
@@ -45,7 +45,7 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
     public override void RemotePostSetup() {
       base.RemotePostSetup();
       if (this._categoryProvider is ICategoryProvider provider) {
-        SingleSpace = provider.Space1;
+        this.SingleSpace = provider.Space1;
       }
     }
 
