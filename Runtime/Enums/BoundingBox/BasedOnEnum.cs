@@ -1,5 +1,5 @@
 namespace droid.Runtime.Enums.BoundingBox {
-  public enum BasedOn {
+  public enum BasedOnEnum {
     /// <summary>
     /// Base the bounding box on colliders
     /// </summary>

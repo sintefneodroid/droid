@@ -11,22 +11,22 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental.Unused {
     public static void DrawBoxFromCenter(Vector3 p, float r, Color c) {
       // p is pos.yition of the center, r is "radius" and c is the color of the box
       //Bottom lines
-      Debug.DrawLine(new Vector3(-r + p.x, -r + p.y, -r + p.z), new Vector3(r + p.x, -r + p.y, -r + p.z), c);
-      Debug.DrawLine(new Vector3(-r + p.x, -r + p.y, -r + p.z), new Vector3(-r + p.x, -r + p.y, r + p.z), c);
-      Debug.DrawLine(new Vector3(r + p.x, -r + p.y, r + p.z), new Vector3(-r + p.x, -r + p.y, r + p.z), c);
-      Debug.DrawLine(new Vector3(r + p.x, -r + p.y, r + p.z), new Vector3(r + p.x, -r + p.y, -r + p.z), c);
+      Debug.DrawLine(new Vector3(-r + p.x, -r + p.y, -r + p.z), new Vector3(r + p.x, -r + p.y, -r + p.z), color : c);
+      Debug.DrawLine(new Vector3(-r + p.x, -r + p.y, -r + p.z), new Vector3(-r + p.x, -r + p.y, r + p.z), color : c);
+      Debug.DrawLine(new Vector3(r + p.x, -r + p.y, r + p.z), new Vector3(-r + p.x, -r + p.y, r + p.z), color : c);
+      Debug.DrawLine(new Vector3(r + p.x, -r + p.y, r + p.z), new Vector3(r + p.x, -r + p.y, -r + p.z), color : c);
 
       //Vertical lines
-      Debug.DrawLine(new Vector3(-r + p.x, r + p.y, -r + p.z), new Vector3(r + p.x, r + p.y, -r + p.z), c);
-      Debug.DrawLine(new Vector3(-r + p.x, r + p.y, -r + p.z), new Vector3(-r + p.x, r + p.y, r + p.z), c);
-      Debug.DrawLine(new Vector3(r + p.x, r + p.y, r + p.z), new Vector3(-r + p.x, r + p.y, r + p.z), c);
-      Debug.DrawLine(new Vector3(r + p.x, r + p.y, r + p.z), new Vector3(r + p.x, r + p.y, -r + p.z), c);
+      Debug.DrawLine(new Vector3(-r + p.x, r + p.y, -r + p.z), new Vector3(r + p.x, r + p.y, -r + p.z), color : c);
+      Debug.DrawLine(new Vector3(-r + p.x, r + p.y, -r + p.z), new Vector3(-r + p.x, r + p.y, r + p.z), color : c);
+      Debug.DrawLine(new Vector3(r + p.x, r + p.y, r + p.z), new Vector3(-r + p.x, r + p.y, r + p.z), color : c);
+      Debug.DrawLine(new Vector3(r + p.x, r + p.y, r + p.z), new Vector3(r + p.x, r + p.y, -r + p.z), color : c);
 
       //Top lines
-      Debug.DrawLine(new Vector3(-r + p.x, -r + p.y, -r + p.z), new Vector3(-r + p.x, r + p.y, -r + p.z), c);
-      Debug.DrawLine(new Vector3(-r + p.x, -r + p.y, r + p.z), new Vector3(-r + p.x, r + p.y, r + p.z), c);
-      Debug.DrawLine(new Vector3(r + p.x, -r + p.y, -r + p.z), new Vector3(r + p.x, r + p.y, -r + p.z), c);
-      Debug.DrawLine(new Vector3(r + p.x, -r + p.y, r + p.z), new Vector3(r + p.x, r + p.y, r + p.z), c);
+      Debug.DrawLine(new Vector3(-r + p.x, -r + p.y, -r + p.z), new Vector3(-r + p.x, r + p.y, -r + p.z), color : c);
+      Debug.DrawLine(new Vector3(-r + p.x, -r + p.y, r + p.z), new Vector3(-r + p.x, r + p.y, r + p.z), color : c);
+      Debug.DrawLine(new Vector3(r + p.x, -r + p.y, -r + p.z), new Vector3(r + p.x, r + p.y, -r + p.z), color : c);
+      Debug.DrawLine(new Vector3(r + p.x, -r + p.y, r + p.z), new Vector3(r + p.x, r + p.y, r + p.z), color : c);
     }
 
     /// <summary>
@@ -45,44 +45,44 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental.Unused {
       //Vertical lines
       Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, -z + pos.z),
                      new Vector3(-x + pos.x, y + pos.y, -z + pos.z),
-                     color);
+                     color : color);
       Debug.DrawLine(new Vector3(x + pos.x, -y + pos.y, -z + pos.z),
                      new Vector3(x + pos.x, y + pos.y, -z + pos.z),
-                     color);
+                     color : color);
       Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, z + pos.z),
                      new Vector3(-x + pos.x, y + pos.y, z + pos.z),
-                     color);
+                     color : color);
       Debug.DrawLine(new Vector3(x + pos.x, -y + pos.y, z + pos.z),
                      new Vector3(x + pos.x, y + pos.y, z + pos.z),
-                     color);
+                     color : color);
 
       //Horizontal top
       Debug.DrawLine(new Vector3(-x + pos.x, y + pos.y, -z + pos.z),
                      new Vector3(x + pos.x, y + pos.y, -z + pos.z),
-                     color);
+                     color : color);
       Debug.DrawLine(new Vector3(-x + pos.x, y + pos.y, z + pos.z),
                      new Vector3(x + pos.x, y + pos.y, z + pos.z),
-                     color);
+                     color : color);
       Debug.DrawLine(new Vector3(-x + pos.x, y + pos.y, -z + pos.z),
                      new Vector3(-x + pos.x, y + pos.y, z + pos.z),
-                     color);
+                     color : color);
       Debug.DrawLine(new Vector3(x + pos.x, y + pos.y, -z + pos.z),
                      new Vector3(x + pos.x, y + pos.y, z + pos.z),
-                     color);
+                     color : color);
 
       //Horizontal bottom
       Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, -z + pos.z),
                      new Vector3(x + pos.x, -y + pos.y, -z + pos.z),
-                     color);
+                     color : color);
       Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, z + pos.z),
                      new Vector3(x + pos.x, -y + pos.y, z + pos.z),
-                     color);
+                     color : color);
       Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, -z + pos.z),
                      new Vector3(-x + pos.x, -y + pos.y, z + pos.z),
-                     color);
+                     color : color);
       Debug.DrawLine(new Vector3(x + pos.x, -y + pos.y, -z + pos.z),
                      new Vector3(x + pos.x, -y + pos.y, z + pos.z),
-                     color);
+                     color : color);
     }
 
     /// <summary>
@@ -99,7 +99,8 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental.Unused {
       }
 
       var i = 0;
-      foreach (var old in old_transforms) {
+      for (var index = 0; index < old_transforms.Length; index++) {
+        var old = old_transforms[index];
         if (old.position != newly_acquired_transforms[i].position
             || old.rotation != newly_acquired_transforms[i].rotation) {
           return true;
@@ -122,9 +123,9 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental.Unused {
       var result = mesh_filter != null ? mesh_filter.mesh.bounds : new Bounds();
 
       foreach (Transform transform in object_transform) {
-        var bounds = GetTotalMeshFilterBounds(transform);
-        result.Encapsulate(bounds.min);
-        result.Encapsulate(bounds.max);
+        var bounds = GetTotalMeshFilterBounds(object_transform : transform);
+        result.Encapsulate(point : bounds.min);
+        result.Encapsulate(point : bounds.max);
       }
 
       /*var bounds1 = GetTotalColliderBounds(objectTransform);
@@ -140,10 +141,10 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental.Unused {
             */
       var scaled_min = result.min;
       var local_scale = object_transform.localScale;
-      scaled_min.Scale(local_scale);
+      scaled_min.Scale(scale : local_scale);
       result.min = scaled_min;
       var scaled_max = result.max;
-      scaled_max.Scale(local_scale);
+      scaled_max.Scale(scale : local_scale);
       result.max = scaled_max;
       return result;
     }
@@ -158,17 +159,17 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental.Unused {
       var result = mesh_filter != null ? mesh_filter.bounds : new Bounds();
 
       foreach (Transform transform in object_transform) {
-        var bounds = GetTotalColliderBounds(transform);
-        result.Encapsulate(bounds.min);
-        result.Encapsulate(bounds.max);
+        var bounds = GetTotalColliderBounds(object_transform : transform);
+        result.Encapsulate(point : bounds.min);
+        result.Encapsulate(point : bounds.max);
       }
 
       var scaled_min = result.min;
       var local_scale = object_transform.localScale;
-      scaled_min.Scale(local_scale);
+      scaled_min.Scale(scale : local_scale);
       result.min = scaled_min;
       var scaled_max = result.max;
-      scaled_max.Scale(local_scale);
+      scaled_max.Scale(scale : local_scale);
       result.max = scaled_max;
       return result;
     }
@@ -178,9 +179,9 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental.Unused {
     /// <param name="g"></param>
     /// <returns></returns>
     public static Bounds GetMaxBounds(GameObject g) {
-      var b = new Bounds(g.transform.position, Vector3.zero);
+      var b = new Bounds(center : g.transform.position, size : Vector3.zero);
       foreach (var r in g.GetComponentsInChildren<Renderer>()) {
-        b.Encapsulate(r.bounds);
+        b.Encapsulate(bounds : r.bounds);
       }
 
       return b;
@@ -202,21 +203,21 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental.Unused {
       var screen_pos = new Vector3[8];
 
       var b = bounds; // reference object ex Simple
-      points[0] = new Vector3(b.min.x, b.min.y, b.min.z);
-      points[1] = new Vector3(b.max.x, b.min.y, b.min.z);
-      points[2] = new Vector3(b.max.x, b.max.y, b.min.z);
-      points[3] = new Vector3(b.min.x, b.max.y, b.min.z);
-      points[4] = new Vector3(b.min.x, b.min.y, b.max.z);
-      points[5] = new Vector3(b.max.x, b.min.y, b.max.z);
-      points[6] = new Vector3(b.max.x, b.max.y, b.max.z);
-      points[7] = new Vector3(b.min.x, b.max.y, b.max.z);
+      points[0] = new Vector3(x : b.min.x, y : b.min.y, z : b.min.z);
+      points[1] = new Vector3(x : b.max.x, y : b.min.y, z : b.min.z);
+      points[2] = new Vector3(x : b.max.x, y : b.max.y, z : b.min.z);
+      points[3] = new Vector3(x : b.min.x, y : b.max.y, z : b.min.z);
+      points[4] = new Vector3(x : b.min.x, y : b.min.y, z : b.max.z);
+      points[5] = new Vector3(x : b.max.x, y : b.min.y, z : b.max.z);
+      points[6] = new Vector3(x : b.max.x, y : b.max.y, z : b.max.z);
+      points[7] = new Vector3(x : b.min.x, y : b.max.y, z : b.max.z);
 
       var screen_bounds = new Bounds();
       for (var i = 0; i < 8; i++) {
         screen_pos[i] = cam.WorldToScreenPoint(points[i]);
 
         if (i == 0) {
-          screen_bounds = new Bounds(screen_pos[0], Vector3.zero);
+          screen_bounds = new Bounds(screen_pos[0], size : Vector3.zero);
         }
 
         screen_bounds.Encapsulate(screen_pos[i]);
@@ -293,13 +294,13 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental.Unused {
       var angle = a_cam.fieldOfView * Mathf.Deg2Rad * 0.5f;
 
       // half the size of the viewing frustum at a distance of "1" from the camera
-      var tan = Vector2.one * Mathf.Tan(angle);
+      var tan = Vector2.one * Mathf.Tan(f : angle);
       tan.x *= a_cam.aspect;
 
       // the center point of the area and it's extents
       // the center point is taken from the bottom center of the bounding box
       var dim = a_area.extents;
-      var center = a_area.center - new Vector3(0, a_area.extents.y, 0);
+      var center = a_area.center - new Vector3(0, y : a_area.extents.y, 0);
 
       // the maximum distance the camera can be above the area plane for each direction
       var max_dist = new Vector2(dim.x / tan.x, dim.z / tan.y);
@@ -312,7 +313,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental.Unused {
       dim.z *= 1f - dist / max_dist.y;
 
       // maximum world space y coordinate the camera can be moved to
-      a_max_height = center.y + Mathf.Min(max_dist.x, max_dist.y);
+      a_max_height = center.y + Mathf.Min(a : max_dist.x, b : max_dist.y);
 
       // the min and max x and z coordinates the camera can be at the current distance.
       a_limits = new Rect(center.x - dim.x,
@@ -324,9 +325,9 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental.Unused {
     public static bool CullToFrustum(Mesh mesh, Camera cam, Transform trans, bool update_position) {
       var fov = cam.fieldOfView;
       cam.fieldOfView = fov * 0.97f;
-      var planes = GeometryUtility.CalculateFrustumPlanes(cam);
+      var planes = GeometryUtility.CalculateFrustumPlanes(camera : cam);
       cam.fieldOfView = fov;
-      if (GeometryUtility.TestPlanesAABB(planes, mesh.bounds)) {
+      if (GeometryUtility.TestPlanesAABB(planes : planes, bounds : mesh.bounds)) {
         return true;
       }
 
@@ -353,37 +354,37 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental.Unused {
       var y_max = cen.y + ext.y;
       var z_max = cen.z + ext.z;
 
-      Vector2 min = cam.WorldToScreenPoint(new Vector3(x_min, y_min, z_min));
+      Vector2 min = cam.WorldToScreenPoint(new Vector3(x : x_min, y : y_min, z : z_min));
       var max = min;
 
       var point = min;
-      point.GetMinMax(ref min, ref max);
+      point.GetMinMax(min : ref min, max : ref max);
 
-      point = cam.WorldToScreenPoint(new Vector3(x_max, y_max, z_max));
-      point.GetMinMax(ref min, ref max);
+      point = cam.WorldToScreenPoint(new Vector3(x : x_max, y : y_max, z : z_max));
+      point.GetMinMax(min : ref min, max : ref max);
 
-      point = cam.WorldToScreenPoint(new Vector3(x_max, y_min, z_min));
-      point.GetMinMax(ref min, ref max);
+      point = cam.WorldToScreenPoint(new Vector3(x : x_max, y : y_min, z : z_min));
+      point.GetMinMax(min : ref min, max : ref max);
 
-      point = cam.WorldToScreenPoint(new Vector3(x_min, y_max, z_min));
-      point.GetMinMax(ref min, ref max);
+      point = cam.WorldToScreenPoint(new Vector3(x : x_min, y : y_max, z : z_min));
+      point.GetMinMax(min : ref min, max : ref max);
 
-      point = cam.WorldToScreenPoint(new Vector3(x_min, y_min, z_max));
-      point.GetMinMax(ref min, ref max);
+      point = cam.WorldToScreenPoint(new Vector3(x : x_min, y : y_min, z : z_max));
+      point.GetMinMax(min : ref min, max : ref max);
 
-      point = cam.WorldToScreenPoint(new Vector3(x_max, y_min, z_max));
-      point.GetMinMax(ref min, ref max);
+      point = cam.WorldToScreenPoint(new Vector3(x : x_max, y : y_min, z : z_max));
+      point.GetMinMax(min : ref min, max : ref max);
 
-      point = cam.WorldToScreenPoint(new Vector3(x_max, y_max, z_min));
-      point.GetMinMax(ref min, ref max);
+      point = cam.WorldToScreenPoint(new Vector3(x : x_max, y : y_max, z : z_min));
+      point.GetMinMax(min : ref min, max : ref max);
 
-      point = cam.WorldToScreenPoint(new Vector3(x_min, y_max, z_max));
-      point.GetMinMax(ref min, ref max);
+      point = cam.WorldToScreenPoint(new Vector3(x : x_min, y : y_max, z : z_max));
+      point.GetMinMax(min : ref min, max : ref max);
 
-      var r = Rect.MinMaxRect(min.x,
-                              min.y,
-                              max.x,
-                              max.y);
+      var r = Rect.MinMaxRect(xmin : min.x,
+                              ymin : min.y,
+                              xmax : max.x,
+                              ymax : max.y);
       r.xMin -= margin;
       r.xMax += margin;
       r.yMin -= margin;
@@ -393,14 +394,14 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental.Unused {
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <param name="vec"></param>
     /// <returns></returns>
     public static float MaxDim(this Vector3 vec) { return Mathf.Max(vec.x, vec.y, vec.z); }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <param name="vec"></param>
     /// <returns></returns>
@@ -414,7 +415,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental.Unused {
     /// <param name="cam"></param>
     /// <returns></returns>
     public static Vector3[] GetMinMaxPoints(this MeshCollider mesh, Transform t, Camera cam) {
-      return mesh.sharedMesh.GetCameraMinMaxPoints(t, cam);
+      return mesh.sharedMesh.GetCameraMinMaxPoints(t : t, cam : cam);
     }
   }
 }

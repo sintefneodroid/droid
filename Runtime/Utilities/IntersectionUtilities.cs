@@ -15,7 +15,7 @@ namespace droid.Runtime.Utilities {
       var u = transform.position - offset * forward; // Assumes unit length forward.
       var d = dynamic_object.transform.position - u;
 
-      var distance = Vector3.Dot(forward, d); // Assumes unit length forward.
+      var distance = Vector3.Dot(lhs : forward, rhs : d); // Assumes unit length forward.
 
       return distance >= d.magnitude * cos && distance <= offset + spot_light.range + boundingSphereRadius;
     }

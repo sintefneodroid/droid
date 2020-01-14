@@ -28,7 +28,7 @@ namespace droid.Editor.Windows {
           (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidSettings.Current.NeodroidImportLocationProp
                                                    + "Gizmos/Icons/clock.png",
                                                    typeof(Texture2D));
-      this.titleContent = new GUIContent("Neo:Sim", this._icon, "Window for controlling simulation");
+      this.titleContent = new GUIContent("Neo:Sim", image : this._icon, "Window for controlling simulation");
     }
 
     void OnFocus() { this.Setup(); }
@@ -43,14 +43,14 @@ namespace droid.Editor.Windows {
     }
 
     void OnGUI() {
-      EditorGUILayout.ObjectField(this._simulation_manager, typeof(AbstractNeodroidManager), true);
-      EditorGUI.BeginDisabledGroup(!Application.isPlaying);
+      EditorGUILayout.ObjectField(obj : this._simulation_manager, typeof(AbstractNeodroidManager), true);
+      EditorGUI.BeginDisabledGroup(disabled : !Application.isPlaying);
 
       if (GUILayout.Button("Step")) {
         this._simulation_manager?.SendToEnvironments(new[] {
                                                                new
                                                                    Reaction(new
-                                                                                ReactionParameters(StepResetObserve
+                                                                                ReactionParameters(reaction_type : ReactionTypeEnum
                                                                                                        .Step_,
                                                                                                    true,
                                                                                                    configure :
@@ -69,7 +69,7 @@ namespace droid.Editor.Windows {
 
       if (this._simulation_manager) {
         this._simulation_manager.TestActuators =
-            EditorGUILayout.Toggle("Test Actuators", this._simulation_manager.TestActuators);
+            EditorGUILayout.Toggle("Test Actuators", value : this._simulation_manager.TestActuators);
       }
 
       EditorGUI.EndDisabledGroup();

@@ -17,7 +17,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
                                            IHasSingle {
     #region Fields
 
-    [SerializeField] Axis _axis_of_configuration = Axis.X_;
+    [SerializeField] AxisEnum _axisEnum_of_configuration = AxisEnum.X_;
     [SerializeField] float _observation_value = 0;
     [SerializeField] SampleSpace1 _single_value_space = new SampleSpace1 {_space = Space1.ZeroOne};
     [SerializeField] bool normalised_overwrite_space_if_env_bounds = true;
@@ -28,7 +28,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// <summary>
     /// </summary>
     public override string PrototypingTypeName {
-      get { return "Transform" + this._axis_of_configuration + "Configurable"; }
+      get { return "Transform" + this._axisEnum_of_configuration + "Configurable"; }
     }
 
     /// <summary>
@@ -54,7 +54,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     public override void UpdateCurrentConfiguration() {
       var transform1 = this.transform;
       Vector3 pos;
-      if (this.coordinate_space == CoordinateSpace.Local_) {
+      if (this._coordinate_spaceEnum == CoordinateSpaceEnum.Local_) {
         pos = transform1.localPosition;
       }else{
         pos = transform1.position;
@@ -62,42 +62,42 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       var dir = transform1.forward;
       var rot = transform1.up;
 
-      if (this.coordinate_space == CoordinateSpace.Environment_) {
+      if (this._coordinate_spaceEnum == CoordinateSpaceEnum.Environment_) {
         if (this.ParentEnvironment != null) {
-          pos = this.ParentEnvironment.TransformPoint(pos);
-          dir = this.ParentEnvironment.TransformDirection(dir);
-          rot = this.ParentEnvironment.TransformDirection(rot);
+          pos = this.ParentEnvironment.TransformPoint(point : pos);
+          dir = this.ParentEnvironment.TransformDirection(direction : dir);
+          rot = this.ParentEnvironment.TransformDirection(direction : rot);
         } else {
           Debug.LogWarning("ParentEnvironment not found!");
         }
       }
 
-      switch (this._axis_of_configuration) {
-        case Axis.X_:
+      switch (this._axisEnum_of_configuration) {
+        case AxisEnum.X_:
           this._observation_value = pos.x;
           break;
-        case Axis.Y_:
+        case AxisEnum.Y_:
           this._observation_value = pos.y;
           break;
-        case Axis.Z_:
+        case AxisEnum.Z_:
           this._observation_value = pos.z;
           break;
-        case Axis.Dir_x_:
+        case AxisEnum.Dir_x_:
           this._observation_value = dir.x;
           break;
-        case Axis.Dir_y_:
+        case AxisEnum.Dir_y_:
           this._observation_value = dir.y;
           break;
-        case Axis.Dir_z_:
+        case AxisEnum.Dir_z_:
           this._observation_value = dir.z;
           break;
-        case Axis.Rot_x_:
+        case AxisEnum.Rot_x_:
           this._observation_value = rot.x;
           break;
-        case Axis.Rot_y_:
+        case AxisEnum.Rot_y_:
           this._observation_value = rot.y;
           break;
-        case Axis.Rot_z_:
+        case AxisEnum.Rot_z_:
           this._observation_value = rot.z;
           break;
         default:
@@ -115,20 +115,20 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
         }
 
         if (this.ParentEnvironment) {
-          switch (this._axis_of_configuration) {
-            case Axis.X_:
+          switch (this._axisEnum_of_configuration) {
+            case AxisEnum.X_:
               this.SingleSpace =
-                  Space1.FromCenterExtent(this.ParentEnvironment.PlayableArea.Bounds.extents.x,
+                  Space1.FromCenterExtent(extent : this.ParentEnvironment.PlayableArea.Bounds.extents.x,
                                            decimal_granularity : dec_gran);
               break;
-            case Axis.Y_:
+            case AxisEnum.Y_:
               this.SingleSpace =
-                  Space1.FromCenterExtent(this.ParentEnvironment.PlayableArea.Bounds.extents.y,
+                  Space1.FromCenterExtent(extent : this.ParentEnvironment.PlayableArea.Bounds.extents.y,
                                            decimal_granularity : dec_gran);
               break;
-            case Axis.Z_:
+            case AxisEnum.Z_:
               this.SingleSpace =
-                  Space1.FromCenterExtent(this.ParentEnvironment.PlayableArea.Bounds.extents.z,
+                  Space1.FromCenterExtent(extent : this.ParentEnvironment.PlayableArea.Bounds.extents.z,
                                            decimal_granularity : dec_gran);
               break;
           }
@@ -147,7 +147,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// <param name="simulator_configuration"></param>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
     public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration) {
-      float cv= this.SingleSpace.Reproject(simulator_configuration.ConfigurableValue);
+      float cv= this.SingleSpace.Reproject(v : simulator_configuration.ConfigurableValue);
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
@@ -157,93 +157,93 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
 
       var transform1 = this.transform;
       Vector3 pos;
-      if (this.coordinate_space == CoordinateSpace.Local_) {
+      if (this._coordinate_spaceEnum == CoordinateSpaceEnum.Local_) {
         pos = transform1.localPosition;
       }else{
         pos = transform1.position;
       }
       var dir = transform1.forward;
       var rot = transform1.up;
-      if (this.coordinate_space == CoordinateSpace.Environment_) {
+      if (this._coordinate_spaceEnum == CoordinateSpaceEnum.Environment_) {
         if (this.ParentEnvironment != null) {
-          this.ParentEnvironment.TransformPoint(ref pos);
-          this.ParentEnvironment.TransformDirection(ref dir);
-          this.ParentEnvironment.TransformDirection(ref rot);
+          this.ParentEnvironment.TransformPoint(point : ref pos);
+          this.ParentEnvironment.TransformDirection(direction : ref dir);
+          this.ParentEnvironment.TransformDirection(direction : ref rot);
         } else {
           Debug.LogWarning("ParentEnvironment not found!");
         }
       }
 
-      switch (this._axis_of_configuration) {
-        case Axis.X_:
+      switch (this._axisEnum_of_configuration) {
+        case AxisEnum.X_:
           if (this.RelativeToExistingValue) {
-            pos.Set(cv + pos.x, pos.y, pos.z);
+            pos.Set(cv + pos.x, newY : pos.y, newZ : pos.z);
           } else {
-            pos.Set(cv, pos.y, pos.z);
+            pos.Set(newX : cv, newY : pos.y, newZ : pos.z);
           }
 
           break;
-        case Axis.Y_:
+        case AxisEnum.Y_:
           if (this.RelativeToExistingValue) {
-            pos.Set(pos.x, cv + pos.y, pos.z);
+            pos.Set(newX : pos.x, cv + pos.y, newZ : pos.z);
           } else {
-            pos.Set(pos.x, cv, pos.z);
+            pos.Set(newX : pos.x, newY : cv, newZ : pos.z);
           }
 
           break;
-        case Axis.Z_:
+        case AxisEnum.Z_:
           if (this.RelativeToExistingValue) {
-            pos.Set(pos.x, pos.y, cv + pos.z);
+            pos.Set(newX : pos.x, newY : pos.y, cv + pos.z);
           } else {
-            pos.Set(pos.x, pos.y, cv);
+            pos.Set(newX : pos.x, newY : pos.y, newZ : cv);
           }
 
           break;
-        case Axis.Dir_x_:
+        case AxisEnum.Dir_x_:
           if (this.RelativeToExistingValue) {
-            dir.Set(cv + dir.x, dir.y, dir.z);
+            dir.Set(cv + dir.x, newY : dir.y, newZ : dir.z);
           } else {
-            dir.Set(cv, dir.y, dir.z);
+            dir.Set(newX : cv, newY : dir.y, newZ : dir.z);
           }
 
           break;
-        case Axis.Dir_y_:
+        case AxisEnum.Dir_y_:
           if (this.RelativeToExistingValue) {
-            dir.Set(dir.x, cv + dir.y, dir.z);
+            dir.Set(newX : dir.x, cv + dir.y, newZ : dir.z);
           } else {
-            dir.Set(dir.x, cv, dir.z);
+            dir.Set(newX : dir.x, newY : cv, newZ : dir.z);
           }
 
           break;
-        case Axis.Dir_z_:
+        case AxisEnum.Dir_z_:
           if (this.RelativeToExistingValue) {
-            dir.Set(dir.x, dir.y, cv + dir.z);
+            dir.Set(newX : dir.x, newY : dir.y, cv + dir.z);
           } else {
-            dir.Set(dir.x, dir.y, cv);
+            dir.Set(newX : dir.x, newY : dir.y, newZ : cv);
           }
 
           break;
-        case Axis.Rot_x_:
+        case AxisEnum.Rot_x_:
           if (this.RelativeToExistingValue) {
-            rot.Set(cv + rot.x, rot.y, rot.z);
+            rot.Set(cv + rot.x, newY : rot.y, newZ : rot.z);
           } else {
-            rot.Set(cv, rot.y, rot.z);
+            rot.Set(newX : cv, newY : rot.y, newZ : rot.z);
           }
 
           break;
-        case Axis.Rot_y_:
+        case AxisEnum.Rot_y_:
           if (this.RelativeToExistingValue) {
-            rot.Set(rot.x, cv + rot.y, rot.z);
+            rot.Set(newX : rot.x, cv + rot.y, newZ : rot.z);
           } else {
-            rot.Set(rot.x, cv, rot.z);
+            rot.Set(newX : rot.x, newY : cv, newZ : rot.z);
           }
 
           break;
-        case Axis.Rot_z_:
+        case AxisEnum.Rot_z_:
           if (this.RelativeToExistingValue) {
-            rot.Set(rot.x, rot.y, cv + rot.z);
+            rot.Set(newX : rot.x, newY : rot.y, cv + rot.z);
           } else {
-            rot.Set(rot.x, rot.y, cv);
+            rot.Set(newX : rot.x, newY : rot.y, newZ : cv);
           }
 
           break;
@@ -256,18 +256,18 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       var inv_rot = rot;
 
 
-      if (this.coordinate_space == CoordinateSpace.Environment_) {
+      if (this._coordinate_spaceEnum == CoordinateSpaceEnum.Environment_) {
         if (this.ParentEnvironment != null) {
-          this.ParentEnvironment.InverseTransformPoint(ref inv_pos);
-          this.ParentEnvironment.InverseTransformDirection(ref inv_dir);
-          this.ParentEnvironment.InverseTransformDirection(ref inv_rot);
+          this.ParentEnvironment.InverseTransformPoint(point : ref inv_pos);
+          this.ParentEnvironment.InverseTransformDirection(direction : ref inv_dir);
+          this.ParentEnvironment.InverseTransformDirection(direction : ref inv_rot);
         } else {
           Debug.LogWarning("ParentEnvironment not found!");
         }
       }
 
 
-      if (this.coordinate_space == CoordinateSpace.Local_) {
+      if (this._coordinate_spaceEnum == CoordinateSpaceEnum.Local_) {
         transform1.localPosition = inv_pos;
       }else{
         this.transform.position = inv_pos;
@@ -275,11 +275,11 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
 
 
       this.transform.rotation = Quaternion.identity;
-      this.transform.rotation = Quaternion.LookRotation(inv_dir, inv_rot);
+      this.transform.rotation = Quaternion.LookRotation(forward : inv_dir, upwards : inv_rot);
     }
 
     public override Configuration[] SampleConfigurations() { return new[]{new Configuration
-    (this.Identifier, this
+    (configurable_name : this.Identifier,configurable_value: this
     ._single_value_space.Sample())};}
   }
 }

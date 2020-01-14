@@ -38,7 +38,7 @@ namespace droid.Runtime.Utilities {
       var game_objects = new List<GameObject>();
       foreach (var go in goa) {
         if (go.layer != layer) {
-          game_objects.Add(go);
+          game_objects.Add(item : go);
         }
       }
 
@@ -70,7 +70,7 @@ namespace droid.Runtime.Utilities {
           return a;
         }
 
-        return RecursiveFirstSelfSiblingParentGetComponent<T>(child.parent);
+        return RecursiveFirstSelfSiblingParentGetComponent<T>(child : child.parent);
       }
 
       return null;
@@ -86,10 +86,10 @@ namespace droid.Runtime.Utilities {
       foreach (Transform go in parent) {
         if (go) {
           if (go.gameObject.layer != layer) {
-            game_objects.Add(go.gameObject);
-            var children = RecursiveChildGameObjectsExceptLayer(go, layer);
+            game_objects.Add(item : go.gameObject);
+            var children = RecursiveChildGameObjectsExceptLayer(parent : go, layer : layer);
             if (children != null && children.Length > 0) {
-              game_objects.AddRange(children);
+              game_objects.AddRange(collection : children);
             }
           }
         }
@@ -104,7 +104,7 @@ namespace droid.Runtime.Utilities {
       //(Scene scene) {
       var results = new List<T>();
       for (var i = 0; i < SceneManager.sceneCount; i++) {
-        var s = SceneManager.GetSceneAt(i); // maybe EditorSceneManager
+        var s = SceneManager.GetSceneAt(index : i); // maybe EditorSceneManager
         if (!s.isLoaded) {
           continue;
         }

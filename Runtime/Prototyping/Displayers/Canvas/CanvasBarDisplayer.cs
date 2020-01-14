@@ -23,7 +23,7 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
       get { return this._value; }
       set {
         this._value = value;
-        this.SetFillAmount(value);
+        this.SetFillAmount(amount : value);
       }
     }
 
@@ -48,10 +48,10 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
     /// </summary>
     public override void Display(float value) {
       #if NEODROID_DEBUG
-      DebugPrinting.DisplayPrint(value, this.Identifier, this.Debugging);
+      DebugPrinting.DisplayPrint(value : value, identifier : this.Identifier, debugging : this.Debugging);
       #endif
 
-      this.SetFillAmount(value);
+      this.SetFillAmount(amount : value);
     }
 
     /// <inheritdoc />
@@ -59,7 +59,7 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
     /// </summary>
     public override void Display(Double value) {
       #if NEODROID_DEBUG
-      DebugPrinting.DisplayPrint(value, this.Identifier, this.Debugging);
+      DebugPrinting.DisplayPrint(value : value, identifier : this.Identifier, debugging : this.Debugging);
       #endif
 
       this.SetFillAmount((float)value);
@@ -70,7 +70,7 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
     /// </summary>
     public override void Display(float[] values) {
       #if NEODROID_DEBUG
-      DebugPrinting.DisplayPrint(values[0], this.Identifier, this.Debugging);
+      DebugPrinting.DisplayPrint(values[0], identifier : this.Identifier, debugging : this.Debugging);
       #endif
 
       this.SetFillAmount(values[0]);

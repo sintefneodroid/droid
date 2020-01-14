@@ -10,7 +10,6 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions {
   /// </summary>
   [Serializable]
   public abstract class EpisodicObjective : ObjectiveFunction,
-                                            //IHasRegister<Term>,
                                             IEpisodicObjectiveFunction {
     /// <inheritdoc />
     /// <summary>
@@ -20,7 +19,8 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions {
       var signal = 0.0f;
       signal += this.InternalEvaluate();
 
-      if (this.EpisodeLength > 0 && this.ParentEnvironment.StepI >= this.EpisodeLength) {
+      if (this.EpisodeLength > 0 && this.ParentEnvironment.StepI >= this.EpisodeLength && !this
+      .ParentEnvironment.Terminated) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log($"Maximum episode length reached, Length {this.ParentEnvironment.StepI}");
@@ -58,14 +58,14 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions {
     /// </summary>
     /// <returns></returns>
     public new void SignalString(DataPoller recipient) {
-      recipient.PollData($"{this.LastSignal.ToString(CultureInfo.InvariantCulture)}, {this.EpisodeReturn}");
+      recipient.PollData($"{this.LastSignal.ToString(provider : CultureInfo.InvariantCulture)}, {this.EpisodeReturn}");
     }
 
     /// <summary>
     /// </summary>
     /// <returns></returns>
     public new void EpisodeLengthString(DataPoller recipient) {
-      recipient.PollData($"{this.EpisodeLength.ToString(CultureInfo.InvariantCulture)}");
+      recipient.PollData($"{this.EpisodeLength.ToString(provider : CultureInfo.InvariantCulture)}");
     }
 
     /// <inheritdoc />

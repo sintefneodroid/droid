@@ -27,15 +27,15 @@ namespace droid.Runtime.Prototyping.Sensors.Auditory {
     void LateUpdate() {
       if (this.Debugging) {
         var samples = new float[256];
-        AudioListener.GetOutputData(samples, 0);
+        AudioListener.GetOutputData(samples : samples, 0);
 
         for (var i = 1; i < samples.Length - 1; i++) {
           var prev = samples[i - 1]* 3;
           var cur = samples[i] * 3;
           var next = samples[i + 1]* 3;
-          Debug.DrawLine(new Vector3(i - 1,  cur, 0),
-                         new Vector3(i, next, 0),
-                         Color.red);
+          Debug.DrawLine(new Vector3(i - 1,  y : cur, 0),
+                         new Vector3(x : i, y : next, 0),
+                         color : Color.red);
         }
       }
     }
@@ -46,7 +46,7 @@ namespace droid.Runtime.Prototyping.Sensors.Auditory {
     /// </summary>
     public override void UpdateObservation() {
       var samples = new float[256];
-      AudioListener.GetOutputData(samples, 0);
+      AudioListener.GetOutputData(samples : samples, 0);
       this.ObservationArray = samples;
     }
 

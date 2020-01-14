@@ -1,41 +1,36 @@
-﻿namespace droid.Runtime.Enums {
+namespace droid.Runtime.Enums {
   /// <summary>
+  ///
   /// </summary>
-  public enum Axis {
+  public enum RandomSamplingPhaseEnum {
     /// <summary>
+    ///
     /// </summary>
-    X_,
+    On_update_,
 
     /// <summary>
+    ///
     /// </summary>
-    Y_,
+    On_pre_tick_,
 
     /// <summary>
+    ///
     /// </summary>
-    Z_,
+    On_tick_,
 
     /// <summary>
+    ///
     /// </summary>
-    Rot_x_,
+    On_post_tick_,
 
     /// <summary>
+    ///
     /// </summary>
-    Rot_y_,
+    On_reset_,
 
     /// <summary>
+    ///
     /// </summary>
-    Rot_z_,
-
-    /// <summary>
-    /// </summary>
-    Dir_x_,
-
-    /// <summary>
-    /// </summary>
-    Dir_y_,
-
-    /// <summary>
-    /// </summary>
-    Dir_z_
+    Disabled_
   }
 }

@@ -94,34 +94,34 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     protected override void RegisterComponent() {
       if (!this._camera.usePhysicalProperties) {
         this.ParentEnvironment =
-            NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+            NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                             (Configurable)this,
-                                                            this._fov_str);
+                                                            identifier : this._fov_str);
       } else {
         this.ParentEnvironment =
-            NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+            NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                             (Configurable)this,
-                                                            this._focal_str);
+                                                            identifier : this._focal_str);
         this.ParentEnvironment =
-            NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+            NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                             (Configurable)this,
-                                                            this._sensor_width_str);
+                                                            identifier : this._sensor_width_str);
         this.ParentEnvironment =
-            NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+            NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                             (Configurable)this,
-                                                            this._sensor_height_str);
+                                                            identifier : this._sensor_height_str);
         this.ParentEnvironment =
-            NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+            NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                             (Configurable)this,
-                                                            this._lens_shift_x_str);
+                                                            identifier : this._lens_shift_x_str);
         this.ParentEnvironment =
-            NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+            NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                             (Configurable)this,
-                                                            this._lens_shift_y_str);
+                                                            identifier : this._lens_shift_y_str);
         this.ParentEnvironment =
-            NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+            NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                             (Configurable)this,
-                                                            this._gate_fit_str);
+                                                            identifier : this._gate_fit_str);
       }
     }
 
@@ -130,14 +130,14 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>n
     protected override void UnRegisterComponent() {
       if (!this._camera.usePhysicalProperties) {
-        this.ParentEnvironment?.UnRegister(this, this._fov_str);
+        this.ParentEnvironment?.UnRegister(this, identifier : this._fov_str);
       } else {
-        this.ParentEnvironment?.UnRegister(this, this._focal_str);
-        this.ParentEnvironment?.UnRegister(this, this._sensor_width_str);
-        this.ParentEnvironment?.UnRegister(this, this._sensor_height_str);
-        this.ParentEnvironment?.UnRegister(this, this._lens_shift_x_str);
-        this.ParentEnvironment?.UnRegister(this, this._lens_shift_y_str);
-        this.ParentEnvironment?.UnRegister(this, this._gate_fit_str);
+        this.ParentEnvironment?.UnRegister(this, identifier : this._focal_str);
+        this.ParentEnvironment?.UnRegister(this, identifier : this._sensor_width_str);
+        this.ParentEnvironment?.UnRegister(this, identifier : this._sensor_height_str);
+        this.ParentEnvironment?.UnRegister(this, identifier : this._lens_shift_x_str);
+        this.ParentEnvironment?.UnRegister(this, identifier : this._lens_shift_y_str);
+        this.ParentEnvironment?.UnRegister(this, identifier : this._gate_fit_str);
       }
     }
 
@@ -151,7 +151,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        DebugPrinting.ApplyPrint(this.Debugging, configuration, this.Identifier);
+        DebugPrinting.ApplyPrint(debugging : this.Debugging, configuration : configuration, identifier : this.Identifier);
       }
       #endif
 
@@ -186,11 +186,11 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <returns></returns>
-    /// <exception cref="IndexOutOfRangeException"></exception>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <returns></returns>
+    ///  <exception cref="T:System.IndexOutOfRangeException"></exception>
     public override Configuration[] SampleConfigurations() {
       if (!this._camera.usePhysicalProperties) {
         return new[] {new Configuration(this._fov_str, this._fov_space.Sample())};
@@ -201,16 +201,16 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
         case 0:
           return new[] {new Configuration(this._focal_str, this._focal_space.Sample())};
         case 1:
-          return new[] {new Configuration(this._sensor_width_str, this._sensor_size_space.Sample().x)};
+          return new[] {new Configuration(configurable_name : this._sensor_width_str, configurable_value : this._sensor_size_space.Sample().x)};
 
         case 2:
-          return new[] {new Configuration(this._sensor_height_str, this._sensor_size_space.Sample().y)};
+          return new[] {new Configuration(configurable_name : this._sensor_height_str, configurable_value : this._sensor_size_space.Sample().y)};
 
         case 3:
-          return new[] {new Configuration(this._lens_shift_x_str, this._lens_shift_space.Sample().x)};
+          return new[] {new Configuration(configurable_name : this._lens_shift_x_str, configurable_value : this._lens_shift_space.Sample().x)};
 
         case 4:
-          return new[] {new Configuration(this._lens_shift_y_str, this._lens_shift_space.Sample().y)};
+          return new[] {new Configuration(configurable_name : this._lens_shift_y_str, configurable_value : this._lens_shift_space.Sample().y)};
 
         case 5:
           return new[] {new Configuration(this._gate_fit_str, this._gate_fit_space.Sample())};

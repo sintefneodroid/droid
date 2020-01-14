@@ -52,16 +52,16 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._mesh_str);
+                                                          identifier : this._mesh_str);
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>n
     protected override void UnRegisterComponent() {
-      this.ParentEnvironment?.UnRegister(this, this._mesh_str);
+      this.ParentEnvironment?.UnRegister(this, identifier : this._mesh_str);
     }
 
     public ISamplable ConfigurableValueSpace { get { return this._deformation_space; } }
@@ -73,7 +73,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// <param name="configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
       #if NEODROID_DEBUG
-      DebugPrinting.ApplyPrint(this.Debugging, configuration, this.Identifier);
+      DebugPrinting.ApplyPrint(debugging : this.Debugging, configuration : configuration, identifier : this.Identifier);
       #endif
 
       if (configuration.ConfigurableName == this._mesh_str) {
@@ -114,7 +114,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     /// <returns></returns>
     public override Configuration[] SampleConfigurations() {
-      return new[] {new Configuration(this._mesh_str, this._deformation_space.Sample())};
+      return new[] {new Configuration(configurable_name : this._mesh_str, configurable_value:this._deformation_space.Sample())};
     }
   }
 }

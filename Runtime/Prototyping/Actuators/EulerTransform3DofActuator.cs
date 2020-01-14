@@ -80,76 +80,76 @@ namespace droid.Runtime.Prototyping.Actuators {
       this.Parent =
           NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
                                                           this,
-                                                          this._x);
+                                                          identifier : this._x);
       this.Parent =
           NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
                                                           this,
-                                                          this._y);
+                                                          identifier : this._y);
       this.Parent =
           NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
                                                           this,
-                                                          this._z);
+                                                          identifier : this._z);
     }
 
     /// <summary>
     ///
     /// </summary>
     protected override void UnRegisterComponent() {
-      this.Parent?.UnRegister(this, this._x);
-      this.Parent?.UnRegister(this, this._y);
-      this.Parent?.UnRegister(this, this._z);
+      this.Parent?.UnRegister(this, obj : this._x);
+      this.Parent?.UnRegister(this, obj : this._y);
+      this.Parent?.UnRegister(this, obj : this._z);
     }
 
     /// <summary>
     /// </summary>
     /// <param name="motion"></param>
     protected override void InnerApplyMotion(IMotion motion) {
-      var layer_mask = 1 << LayerMask.NameToLayer(this._Layer_Mask);
+      var layer_mask = 1 << LayerMask.NameToLayer(layerName : this._Layer_Mask);
       if (!this._angular_Actuators) {
         if (motion.ActuatorName == this._x) {
           var vec = Vector3.right * motion.Strength;
           if (this._No_Collisions) {
-            if (!Physics.Raycast(this.transform.position,
-                                 vec,
-                                 Mathf.Abs(motion.Strength),
-                                 layer_mask)) {
-              this.transform.Translate(vec, this._Relative_To);
+            if (!Physics.Raycast(origin : this.transform.position,
+                                 direction : vec,
+                                 Mathf.Abs(f : motion.Strength),
+                                 layerMask : layer_mask)) {
+              this.transform.Translate(translation : vec, relativeTo : this._Relative_To);
             }
           } else {
-            this.transform.Translate(vec, this._Relative_To);
+            this.transform.Translate(translation : vec, relativeTo : this._Relative_To);
           }
         } else if (motion.ActuatorName == this._y) {
           var vec = -Vector3.up * motion.Strength;
           if (this._No_Collisions) {
-            if (!Physics.Raycast(this.transform.position,
-                                 vec,
-                                 Mathf.Abs(motion.Strength),
-                                 layer_mask)) {
-              this.transform.Translate(vec, this._Relative_To);
+            if (!Physics.Raycast(origin : this.transform.position,
+                                 direction : vec,
+                                 Mathf.Abs(f : motion.Strength),
+                                 layerMask : layer_mask)) {
+              this.transform.Translate(translation : vec, relativeTo : this._Relative_To);
             }
           } else {
-            this.transform.Translate(vec, this._Relative_To);
+            this.transform.Translate(translation : vec, relativeTo : this._Relative_To);
           }
         } else if (motion.ActuatorName == this._z) {
           var vec = -Vector3.forward * motion.Strength;
           if (this._No_Collisions) {
-            if (!Physics.Raycast(this.transform.position,
-                                 vec,
-                                 Mathf.Abs(motion.Strength),
-                                 layer_mask)) {
-              this.transform.Translate(vec, this._Relative_To);
+            if (!Physics.Raycast(origin : this.transform.position,
+                                 direction : vec,
+                                 Mathf.Abs(f : motion.Strength),
+                                 layerMask : layer_mask)) {
+              this.transform.Translate(translation : vec, relativeTo : this._Relative_To);
             }
           } else {
-            this.transform.Translate(vec, this._Relative_To);
+            this.transform.Translate(translation : vec, relativeTo : this._Relative_To);
           }
         }
       } else {
         if (motion.ActuatorName == this._x) {
-          this.transform.Rotate(Vector3.right, motion.Strength, this._Relative_To);
+          this.transform.Rotate(axis : Vector3.right, angle : motion.Strength, relativeTo : this._Relative_To);
         } else if (motion.ActuatorName == this._y) {
-          this.transform.Rotate(Vector3.up, motion.Strength, this._Relative_To);
+          this.transform.Rotate(axis : Vector3.up, angle : motion.Strength, relativeTo : this._Relative_To);
         } else if (motion.ActuatorName == this._z) {
-          this.transform.Rotate(Vector3.forward, motion.Strength, this._Relative_To);
+          this.transform.Rotate(axis : Vector3.forward, angle : motion.Strength, relativeTo : this._Relative_To);
         }
       }
     }
@@ -159,25 +159,25 @@ namespace droid.Runtime.Prototyping.Actuators {
       if (this.enabled) {
         var position = this.transform.position;
         if (this._angular_Actuators) {
-          Handles.DrawWireArc(this.transform.position,
-                              this.transform.right,
-                              -this.transform.forward,
+          Handles.DrawWireArc(center : this.transform.position,
+                              normal : this.transform.right,
+                              @from : -this.transform.forward,
                               180,
                               2);
-          Handles.DrawWireArc(this.transform.position,
-                              this.transform.up,
-                              -this.transform.right,
+          Handles.DrawWireArc(center : this.transform.position,
+                              normal : this.transform.up,
+                              @from : -this.transform.right,
                               180,
                               2);
-          Handles.DrawWireArc(this.transform.position,
-                              this.transform.forward,
-                              -this.transform.right,
+          Handles.DrawWireArc(center : this.transform.position,
+                              normal : this.transform.forward,
+                              @from : -this.transform.right,
                               180,
                               2);
         } else {
-          Debug.DrawLine(position, position + Vector3.up * 2, Color.green);
-          Debug.DrawLine(position, position + Vector3.forward * 2, Color.green);
-          Debug.DrawLine(position, position + Vector3.right * 2, Color.green);
+          Debug.DrawLine(start : position, position + Vector3.up * 2, color : Color.green);
+          Debug.DrawLine(start : position, position + Vector3.forward * 2, color : Color.green);
+          Debug.DrawLine(start : position, position + Vector3.right * 2, color : Color.green);
         }
       }
     }

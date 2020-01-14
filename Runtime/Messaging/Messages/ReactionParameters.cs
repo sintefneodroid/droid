@@ -1,21 +1,24 @@
 ﻿namespace droid.Runtime.Messaging.Messages {
   /// <summary>
   /// </summary>
-  public enum ExecutionPhase {
+  public enum ExecutionPhaseEnum {
     /// <summary>
     /// </summary>
-    Before_Tick_,
+    Before_tick_,
 
     /// <summary>
     /// </summary>
-    On_Tick_,
+    On_tick_,
 
     /// <summary>
     /// </summary>
-    After_Tick_
+    After_tick_
   }
 
-  public enum StepResetObserve {
+  /// <summary>
+  ///
+  /// </summary>
+  public enum ReactionTypeEnum {
     /// <summary>
     /// </summary>
     Step_,
@@ -32,13 +35,13 @@
   /// <summary>
   /// </summary>
   public class ReactionParameters {
-    public ReactionParameters(StepResetObserve sro = StepResetObserve.Observe_,
+    public ReactionParameters(ReactionTypeEnum reaction_type,
                               bool terminable = false,
                               bool configure = false,
-                              bool describe = false,
-                              bool episode_count = true) {
+                              bool episode_count = false,
+    bool describe = true) {
       this.Terminable = terminable;
-      this.StepResetObserveEnu = sro;
+      this.ReactionType = reaction_type;
       this.Configure = configure;
       this.Describe = describe;
       this.EpisodeCount = episode_count;
@@ -50,7 +53,7 @@
 
     /// <summary>
     /// </summary>
-    public ExecutionPhase Phase { get; set; } = ExecutionPhase.On_Tick_;
+    public ExecutionPhaseEnum PhaseEnum { get; set; } = ExecutionPhaseEnum.On_tick_;
 
     /// <summary>
     /// </summary>
@@ -60,7 +63,10 @@
     /// </summary>
     public bool Describe { get; }
 
-    public StepResetObserve StepResetObserveEnu { get; }
+    /// <summary>
+    ///
+    /// </summary>
+    public ReactionTypeEnum ReactionType { get; }
 
     /// <summary>
     /// </summary>
@@ -72,7 +78,7 @@
     public override string ToString() {
       return "<ReactionParameters>\n "
              + $"Terminable:{this.Terminable},\n"
-             + $"StepResetObserveEnu:{this.StepResetObserveEnu},\n"
+             + $"StepResetObserveEnu:{this.ReactionType},\n"
              + $"Configure:{this.Configure},\n"
              + $"Describe:{this.Describe}\n"
              + $"EpisodeCount:{this.EpisodeCount}"

@@ -25,7 +25,7 @@ namespace droid.Runtime.Prototyping.Actors {
 
     public override void ApplyMotion(IMotion motion) {
       if (this._is_alive) {
-        base.ApplyMotion(motion);
+        base.ApplyMotion(motion : motion);
       } else {
         #if NEODROID_DEBUG
         if (this.Debugging) {

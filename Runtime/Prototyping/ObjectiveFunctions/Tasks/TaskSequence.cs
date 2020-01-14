@@ -23,11 +23,11 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Tasks {
     void Start() {
       if (this._sequence == null || this._sequence.Length == 0) {
         this._sequence = FindObjectsOfType<GoalCellSensor>();
-        Array.Sort(this._sequence, (g1, g2) => g1.OrderIndex.CompareTo(g2.OrderIndex));
+        Array.Sort(array : this._sequence, (g1, g2) => g1.OrderIndex.CompareTo(value : g2.OrderIndex));
       }
 
-      Array.Reverse(this._sequence);
-      this._goal_stack = new Stack<GoalCellSensor>(this._sequence);
+      Array.Reverse(array : this._sequence);
+      this._goal_stack = new Stack<GoalCellSensor>(collection : this._sequence);
       this.CurrentGoalCell = this.PopGoal();
     }
 

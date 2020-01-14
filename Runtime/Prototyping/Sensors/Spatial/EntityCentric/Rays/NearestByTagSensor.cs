@@ -4,9 +4,9 @@ using droid.Runtime.Structs.Space;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays {
-  /// <summary>
-  ///
-  /// </summary>
+  /// <inheritdoc cref="Sensor" />
+  ///  <summary>
+  ///  </summary>
   [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
                     + "NearestByTag"
                     + SensorComponentMenuPath._Postfix)]
@@ -28,24 +28,24 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays {
     [SerializeField] Space3 _rotation_space = Space3.ZeroOne;
     [SerializeField] string _tag = "";
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override string PrototypingTypeName { get { return "Nearest" + this._tag; } }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public Vector3 Position {
       get { return this._position; }
       set {
-        this._position = this._position_space.Project(value);
+        this._position = this._position_space.Project(v : value);
       }
     }
 
     public Vector3 Rotation {
       get { return this._rotation; }
-      set { this._rotation = this._rotation_space.Project(value); }
+      set { this._rotation = this._rotation_space.Project(v : value); }
     }
 
     public Space3 PositionSpace { get { return this._position_space; } }
@@ -55,7 +55,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays {
     public Vector3 Direction {
       get { return this._direction; }
       set {
-        this._direction = this._direction_space.Project(value);
+        this._direction = this._direction_space.Project(v : value);
       }
     }
 
@@ -79,9 +79,9 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays {
       this._nearest_object = this.FindNearest();
 
       if (this.ParentEnvironment != null) {
-        this.Position = this.ParentEnvironment.TransformPoint(this._nearest_object.transform.position);
-        this.Direction = this.ParentEnvironment.TransformDirection(this._nearest_object.transform.forward);
-        this.Rotation = this.ParentEnvironment.TransformDirection(this._nearest_object.transform.up);
+        this.Position = this.ParentEnvironment.TransformPoint(point : this._nearest_object.transform.position);
+        this.Direction = this.ParentEnvironment.TransformDirection(direction : this._nearest_object.transform.forward);
+        this.Rotation = this.ParentEnvironment.TransformDirection(direction : this._nearest_object.transform.up);
       } else {
         this.Position = this._nearest_object.transform.position;
         this.Direction = this._nearest_object.transform.forward;
@@ -94,9 +94,10 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays {
       var candidates = FindObjectsOfType<GameObject>();
       var nearest_object = this.gameObject;
       var nearest_distance = -1.0;
-      foreach (var candidate in candidates) {
-        if (candidate.CompareTag(this._tag)) {
-          var dist = Vector3.Distance(this.transform.position, candidate.transform.position);
+      for (var index = 0; index < candidates.Length; index++) {
+        var candidate = candidates[index];
+        if (candidate.CompareTag(tag : this._tag)) {
+          var dist = Vector3.Distance(a : this.transform.position, b : candidate.transform.position);
           if (nearest_distance > dist || nearest_distance < 0) {
             nearest_distance = dist;
             nearest_object = candidate;

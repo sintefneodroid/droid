@@ -83,28 +83,28 @@ namespace droid.Runtime.Environments {
     /// </summary>
     public int ActorX {
       get { return this._actor_x; }
-      set { this._actor_x = Mathf.Max(0, Mathf.Min(this._width - 1, value)); }
+      set { this._actor_x = Mathf.Max(0, Mathf.Min(this._width - 1, b : value)); }
     }
 
     /// <summary>
     /// </summary>
     public int ActorY {
       get { return this._actor_y; }
-      set { this._actor_y = Mathf.Max(0, Mathf.Min(this._height - 1, value)); }
+      set { this._actor_y = Mathf.Max(0, Mathf.Min(this._height - 1, b : value)); }
     }
 
     /// <summary>
     /// </summary>
     public int GoalX {
       get { return this._goal_x; }
-      set { this._goal_x = Mathf.Max(0, Mathf.Min(this._width - 1, value)); }
+      set { this._goal_x = Mathf.Max(0, Mathf.Min(this._width - 1, b : value)); }
     }
 
     /// <summary>
     /// </summary>
     public int GoalY {
       get { return this._goal_y; }
-      set { this._goal_y = Mathf.Max(0, Mathf.Min(this._height - 1, value)); }
+      set { this._goal_y = Mathf.Max(0, Mathf.Min(this._height - 1, b : value)); }
     }
 
     /// <inheritdoc />
@@ -132,11 +132,11 @@ namespace droid.Runtime.Environments {
     /// </summary>
     public override void PostStep() {
       if (this._goal_renderer) {
-        this._goal_renderer.transform.position = new Vector3(this.GoalX, 0, this.GoalY);
+        this._goal_renderer.transform.position = new Vector3(x : this.GoalX, 0, z : this.GoalY);
       }
 
       if (this._actor_renderer) {
-        this._actor_renderer.transform.position = new Vector3(this.ActorX, 0, this.ActorY);
+        this._actor_renderer.transform.position = new Vector3(x : this.ActorX, 0, z : this.ActorY);
       }
     }
 
@@ -148,10 +148,10 @@ namespace droid.Runtime.Environments {
       this._motions.Clear();
 
       var strength = Random.Range(0, 4);
-      this._motions.Add(new ActuatorMotion("", "", strength));
+      this._motions.Add(new ActuatorMotion("", "", strength : strength));
 
-      var rp = new ReactionParameters(StepResetObserve.Step_, true, episode_count : true);
-      return new Reaction(rp,
+      var rp = new ReactionParameters(reaction_type : ReactionTypeEnum.Step_, true, episode_count : true);
+      return new Reaction(parameters : rp,
                           this._motions.ToArray(),
                           null,
                           null,
@@ -185,6 +185,10 @@ namespace droid.Runtime.Environments {
     /// </summary>
     public override void Tick() { }
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    /// <returns></returns>
     public override EnvironmentSnapshot Snapshot() {
       var actor_idx = this._grid[this.ActorX, this.ActorY];
       var goal_idx = this._grid[this.GoalX, this.GoalY];
@@ -196,12 +200,12 @@ namespace droid.Runtime.Environments {
 
       var observables = new float[] {actor_idx};
 
-      return new EnvironmentSnapshot(this.Identifier,
+      return new EnvironmentSnapshot(environment_name : this.Identifier,
                                   0,
-                                  time,
-                                  signal,
-                                  terminated,
-                                  ref observables);
+                                  time : time,
+                                  signal : signal,
+                                  terminated : terminated,
+                                  observables : ref observables);
     }
 
     /// <inheritdoc />

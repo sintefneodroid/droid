@@ -29,10 +29,10 @@ namespace droid.Editor.Utilities.SearchableEnum {
       // If this is not used on an enum, show an error
       if (property.type != "Enum") {
         GUIStyle error_style = "CN EntryErrorIconSmall";
-        var r = new Rect(position) {width = error_style.fixedWidth};
+        var r = new Rect(source : position) {width = error_style.fixedWidth};
         position.xMin = r.xMax;
-        GUI.Label(r, "", error_style);
-        GUI.Label(position, _type_error);
+        GUI.Label(position : r, "", style : error_style);
+        GUI.Label(position : position, text : _type_error);
         return;
       }
 
@@ -43,22 +43,22 @@ namespace droid.Editor.Utilities.SearchableEnum {
         this._id_hash = "SearchableEnumDrawer".GetHashCode();
       }
 
-      var id = GUIUtility.GetControlID(this._id_hash, FocusType.Keyboard, position);
+      var id = GUIUtility.GetControlID(hint : this._id_hash, focusType : FocusType.Keyboard, rect : position);
 
-      label = EditorGUI.BeginProperty(position, label, property);
-      position = EditorGUI.PrefixLabel(position, id, label);
+      label = EditorGUI.BeginProperty(totalPosition : position, label : label, property : property);
+      position = EditorGUI.PrefixLabel(totalPosition : position, id : id, label : label);
 
       var button_text = new GUIContent(property.enumDisplayNames[property.enumValueIndex]);
-      if (DropdownButton(id, position, button_text)) {
+      if (DropdownButton(id : id, position : position, content : button_text)) {
         void OnSelect(Int32 i) {
           property.enumValueIndex = i;
           property.serializedObject.ApplyModifiedProperties();
         }
 
-        SearchablePopup.Show(position,
-                             property.enumDisplayNames,
-                             property.enumValueIndex,
-                             OnSelect);
+        SearchablePopup.Show(activator_rect : position,
+                             options : property.enumDisplayNames,
+                             current : property.enumValueIndex,
+                             on_selection_made : OnSelect);
       }
 
       EditorGUI.EndProperty();
@@ -73,7 +73,7 @@ namespace droid.Editor.Utilities.SearchableEnum {
       var current = Event.current;
       switch (current.type) {
         case EventType.MouseDown:
-          if (position.Contains(current.mousePosition) && current.button == 0) {
+          if (position.Contains(point : current.mousePosition) && current.button == 0) {
             Event.current.Use();
             return true;
           }
@@ -87,9 +87,9 @@ namespace droid.Editor.Utilities.SearchableEnum {
 
           break;
         case EventType.Repaint:
-          EditorStyles.popup.Draw(position,
-                                  content,
-                                  id,
+          EditorStyles.popup.Draw(position : position,
+                                  content : content,
+                                  controlID : id,
                                   false);
           break;
       }

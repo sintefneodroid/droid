@@ -39,7 +39,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.BoundingBox {
     /// </summary>
     public override void UpdateObservation() {
       if (this._camera) {
-        var rect = this._bounding_box.ScreenSpaceBoundingRect(this._camera);
+        var rect = this._bounding_box.ScreenSpaceBoundingRect(a_camera : this._camera);
 
         if (this.NormaliseObservation) {
           float w;
@@ -55,7 +55,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.BoundingBox {
             h = r.height;
           }
 
-          this._out_rect = rect.Normalise(w, h);
+          this._out_rect = rect.Normalise(width : w, height : h);
         } else {
           this._out_rect = rect;
         }

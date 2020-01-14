@@ -51,7 +51,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
       var aspect = (float)h / w;
       w = _texture_wh.Item1;
       h = (int)(w * aspect);
-      return new Tuple<int, int>(w, h);
+      return new Tuple<int, int>(item1 : w, item2 : h);
     }
 
     void Update() {
@@ -65,10 +65,10 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
       var x = Screen.width / 2 - xw / 2;
       var y = Screen.height / 2 - yh / 2;
 
-      this._camera.pixelRect = new Rect(x,
-                                        y,
-                                        xw,
-                                        yh);
+      this._camera.pixelRect = new Rect(x : x,
+                                        y : y,
+                                        width : xw,
+                                        height : yh);
     }
 
     void Awake() {
@@ -77,7 +77,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
       }
 
       if (!this._copy_material) {
-        this._copy_material = new Material(this.copy_shader);
+        this._copy_material = new Material(shader : this.copy_shader);
       }
 
       if (!this._quad_mesh) {
@@ -93,10 +93,10 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
       if (this._fb_rts == null || this._fb_rts.Length != 2) {
         this._fb_rts = new RenderTexture[2];
         for (var i = 0; i < this._fb_rts.Length; ++i) {
-          this._fb_rts[i] = new RenderTexture(_texture_wh.Item1,
-                                              _texture_wh.Item2,
+          this._fb_rts[i] = new RenderTexture(width : _texture_wh.Item1,
+                                              height : _texture_wh.Item2,
                                               0,
-                                              RenderTextureFormat.ARGBHalf) {
+                                              format : RenderTextureFormat.ARGBHalf) {
                                                                                 filterMode = FilterMode.Point,
                                                                                 name = $"rt_fb{i}"
                                                                             };
@@ -128,10 +128,10 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
                           };
         this._gb_rts = new RenderTexture[8];
         for (var i = 0; i < this._gb_rts.Length; ++i) {
-          this._gb_rts[i] = new RenderTexture(_texture_wh.Item1,
-                                              _texture_wh.Item2,
+          this._gb_rts[i] = new RenderTexture(width : _texture_wh.Item1,
+                                              height : _texture_wh.Item2,
                                               0,
-                                              RenderTextureFormat.ARGBHalf) {
+                                              format : RenderTextureFormat.ARGBHalf) {
                                                                                 filterMode = FilterMode.Point,
                                                                                 name = $"{names[i]}"
                                                                             };
@@ -194,55 +194,55 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
       }
 
       this._copy_fb_cb = new CommandBuffer {name = "Copy FrameBuffer"};
-      this._copy_fb_cb.GetTemporaryRT(this._tmp_texture_id,
+      this._copy_fb_cb.GetTemporaryRT(nameID : this._tmp_texture_id,
                                       -1,
                                       -1,
                                       0,
-                                      FilterMode.Point);
-      this._copy_fb_cb.Blit(BuiltinRenderTextureType.CurrentActive, this._tmp_texture_id);
-      this._copy_fb_cb.SetRenderTarget(this._m_rt_gb_ids, this._fb_rts[0]);
-      this._copy_fb_cb.DrawMesh(this._quad_mesh,
-                                Matrix4x4.identity,
-                                this._copy_material,
+                                      filter : FilterMode.Point);
+      this._copy_fb_cb.Blit(source : BuiltinRenderTextureType.CurrentActive, dest : this._tmp_texture_id);
+      this._copy_fb_cb.SetRenderTarget(colors : this._m_rt_gb_ids, this._fb_rts[0]);
+      this._copy_fb_cb.DrawMesh(mesh : this._quad_mesh,
+                                matrix : Matrix4x4.identity,
+                                material : this._copy_material,
                                 0,
                                 0);
-      this._copy_fb_cb.ReleaseTemporaryRT(this._tmp_texture_id);
-      this._camera.AddCommandBuffer(CameraEvent.AfterEverything, this._copy_fb_cb);
+      this._copy_fb_cb.ReleaseTemporaryRT(nameID : this._tmp_texture_id);
+      this._camera.AddCommandBuffer(evt : CameraEvent.AfterEverything, buffer : this._copy_fb_cb);
 
       this._clear_gb_cb = new CommandBuffer {
                                                 name = "Cleanup GBuffer"
                                             }; // clear gbuffer (Unity doesn't clear emission buffer - it is not needed usually)
       if (this._camera.allowHDR) {
-        this._clear_gb_cb.SetRenderTarget(BuiltinRenderTextureType.CameraTarget);
+        this._clear_gb_cb.SetRenderTarget(rt : BuiltinRenderTextureType.CameraTarget);
       } else {
-        this._clear_gb_cb.SetRenderTarget(BuiltinRenderTextureType.GBuffer3);
+        this._clear_gb_cb.SetRenderTarget(rt : BuiltinRenderTextureType.GBuffer3);
       }
 
-      this._clear_gb_cb.DrawMesh(this._quad_mesh,
-                                 Matrix4x4.identity,
-                                 this._copy_material,
+      this._clear_gb_cb.DrawMesh(mesh : this._quad_mesh,
+                                 matrix : Matrix4x4.identity,
+                                 material : this._copy_material,
                                  0,
                                  3);
-      this._copy_material.SetColor(_clear_color, this._camera.backgroundColor);
+      this._copy_material.SetColor(nameID : _clear_color, value : this._camera.backgroundColor);
 
       this._copy_gb_cb = new CommandBuffer {name = "Copy GBuffer"}; // copy gbuffer
-      this._copy_gb_cb.SetRenderTarget(this._m_rt_fb_ids, this._gb_rts[0]);
-      this._copy_gb_cb.DrawMesh(this._quad_mesh,
-                                Matrix4x4.identity,
-                                this._copy_material,
+      this._copy_gb_cb.SetRenderTarget(colors : this._m_rt_fb_ids, this._gb_rts[0]);
+      this._copy_gb_cb.DrawMesh(mesh : this._quad_mesh,
+                                matrix : Matrix4x4.identity,
+                                material : this._copy_material,
                                 0,
                                 2);
-      this._camera.AddCommandBuffer(CameraEvent.BeforeGBuffer, this._clear_gb_cb);
-      this._camera.AddCommandBuffer(CameraEvent.BeforeLighting, this._copy_gb_cb);
+      this._camera.AddCommandBuffer(evt : CameraEvent.BeforeGBuffer, buffer : this._clear_gb_cb);
+      this._camera.AddCommandBuffer(evt : CameraEvent.BeforeLighting, buffer : this._copy_gb_cb);
 
       this._copy_velocity_cb = new CommandBuffer {name = "Copy Velocity"};
       this._copy_velocity_cb.SetRenderTarget(this._gb_rts[7]);
-      this._copy_velocity_cb.DrawMesh(this._quad_mesh,
-                                      Matrix4x4.identity,
-                                      this._copy_material,
+      this._copy_velocity_cb.DrawMesh(mesh : this._quad_mesh,
+                                      matrix : Matrix4x4.identity,
+                                      material : this._copy_material,
                                       0,
                                       4);
-      this._camera.AddCommandBuffer(CameraEvent.BeforeImageEffectsOpaque, this._copy_velocity_cb);
+      this._camera.AddCommandBuffer(evt : CameraEvent.BeforeImageEffectsOpaque, buffer : this._copy_velocity_cb);
       this._camera.depthTextureMode = DepthTextureMode.Depth | DepthTextureMode.MotionVectors;
 
       this._copy_cbs = new[] {
@@ -258,34 +258,36 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
         var index = 0;
 
         if (this._gb_rts != null) {
-          foreach (var pass in this._gb_rts) {
+          for (var i = 0; i < this._gb_rts.Length; i++) {
+            var pass = this._gb_rts[i];
             var xi = (_preview_size + _preview_margin) * index++;
             var x = xi % (Screen.width - _preview_size);
             var y = (_preview_size + _preview_margin) * (xi / (Screen.width - _preview_size));
             var r = new Rect(_preview_margin + x,
                              _preview_margin + y,
-                             _preview_size,
-                             _preview_size);
+                             width : _preview_size,
+                             height : _preview_size);
             //this._asf?.Flip(pass._RenderTexture);
 
-            GUI.DrawTexture(r, pass, ScaleMode.ScaleToFit);
-            GUI.TextField(r, pass.name, this.gui_style.box);
+            GUI.DrawTexture(position : r, image : pass, scaleMode : ScaleMode.ScaleToFit);
+            GUI.TextField(position : r, text : pass.name, style : this.gui_style.box);
           }
         }
 
         if (this._fb_rts != null) {
-          foreach (var pass in this._fb_rts) {
+          for (var i = 0; i < this._fb_rts.Length; i++) {
+            var pass = this._fb_rts[i];
             var xi = (_preview_size + _preview_margin) * index++;
             var x = xi % (Screen.width - _preview_size);
             var y = (_preview_size + _preview_margin) * (xi / (Screen.width - _preview_size));
             var r = new Rect(_preview_margin + x,
                              _preview_margin + y,
-                             _preview_size,
-                             _preview_size);
+                             width : _preview_size,
+                             height : _preview_size);
             //this._asf?.Flip(pass._RenderTexture);
 
-            GUI.DrawTexture(r, pass, ScaleMode.ScaleToFit);
-            GUI.TextField(r, pass.name, this.gui_style.box);
+            GUI.DrawTexture(position : r, image : pass, scaleMode : ScaleMode.ScaleToFit);
+            GUI.TextField(position : r, text : pass.name, style : this.gui_style.box);
           }
         }
       }
@@ -299,31 +301,32 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
       this._camera.RemoveAllCommandBuffers(); // cleanup capturing camera
 
       if (this._copy_fb_cb != null) {
-        this._camera.RemoveCommandBuffer(CameraEvent.AfterEverything, this._copy_fb_cb);
+        this._camera.RemoveCommandBuffer(evt : CameraEvent.AfterEverything, buffer : this._copy_fb_cb);
         this._copy_fb_cb.Release();
         this._copy_fb_cb = null;
       }
 
       if (this._clear_gb_cb != null) {
-        this._camera.RemoveCommandBuffer(CameraEvent.BeforeGBuffer, this._clear_gb_cb);
+        this._camera.RemoveCommandBuffer(evt : CameraEvent.BeforeGBuffer, buffer : this._clear_gb_cb);
         this._clear_gb_cb.Release();
         this._clear_gb_cb = null;
       }
 
       if (this._copy_gb_cb != null) {
-        this._camera.RemoveCommandBuffer(CameraEvent.BeforeLighting, this._copy_gb_cb);
+        this._camera.RemoveCommandBuffer(evt : CameraEvent.BeforeLighting, buffer : this._copy_gb_cb);
         this._copy_gb_cb.Release();
         this._copy_gb_cb = null;
       }
 
       if (this._copy_velocity_cb != null) {
-        this._camera.RemoveCommandBuffer(CameraEvent.BeforeImageEffectsOpaque, this._copy_velocity_cb);
+        this._camera.RemoveCommandBuffer(evt : CameraEvent.BeforeImageEffectsOpaque, buffer : this._copy_velocity_cb);
         this._copy_velocity_cb.Release();
         this._copy_velocity_cb = null;
       }
 
       if (this._fb_rts != null) {
-        foreach (var rt in this._fb_rts) {
+        for (var index = 0; index < this._fb_rts.Length; index++) {
+          var rt = this._fb_rts[index];
           rt.Release();
         }
 
@@ -331,7 +334,8 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
       }
 
       if (this._gb_rts != null) {
-        foreach (var rt in this._gb_rts) {
+        for (var index = 0; index < this._gb_rts.Length; index++) {
+          var rt = this._gb_rts[index];
           rt.Release();
         }
 

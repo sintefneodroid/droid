@@ -23,7 +23,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric {
     ///
     /// </summary>
     public override void UpdateObservation() {
-      this.ObservationValue = Vector3.Distance(this.t1.position, this.t2.position);
+      this.ObservationValue = Vector3.Distance(a : this.t1.position, b : this.t2.position);
     }
 
     /// <summary>
@@ -31,7 +31,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric {
     /// </summary>
     public float ObservationValue {
       get { return this._observationValue; }
-      private set { this._observationValue = this._single_space.Project(value); }
+      private set { this._observationValue = this._single_space.Project(v : value); }
     }
 
     /// <summary>

@@ -11,7 +11,7 @@ namespace droid.Runtime.Prototyping.EnvironmentListener.StateValidation {
   public class EnsureValidState : EnvironmentListener {
     [SerializeField] Actor _actor;
 
-    [SerializeField] AbstractSpatialPrototypingEnvironment _environment;
+    [SerializeField] AbstractPrototypingEnvironment _environment;
     [SerializeField] Transform _goal;
 
     [SerializeField] Obstruction[] _obstructions;
@@ -33,7 +33,7 @@ namespace droid.Runtime.Prototyping.EnvironmentListener.StateValidation {
       }
 
       if (!this._environment) {
-        this._environment = FindObjectOfType<AbstractSpatialPrototypingEnvironment>();
+        this._environment = FindObjectOfType<AbstractPrototypingEnvironment>();
       }
 
       if (this._obstructions.Length <= 0) {
@@ -52,24 +52,25 @@ namespace droid.Runtime.Prototyping.EnvironmentListener.StateValidation {
         return;
       }
 
-      if (this._playable_area != null && !this._playable_area.Bounds.Intersects(this._actor.ActorBounds)) {
+      if (this._playable_area != null && !this._playable_area.Bounds.Intersects(bounds : this._actor.ActorBounds)) {
         this._environment.Terminate("Actor outside playable area");
       }
 
       if (this._playable_area != null
-          && !this._playable_area.Bounds.Intersects(this._goal.GetComponent<Collider>().bounds)) {
+          && !this._playable_area.Bounds.Intersects(bounds : this._goal.GetComponent<Collider>().bounds)) {
         this._environment.Terminate("Goal outside playable area");
       }
 
-      foreach (var obstruction in this._obstructions) {
+      for (var index = 0; index < this._obstructions.Length; index++) {
+        var obstruction = this._obstructions[index];
         if (obstruction != null
-            && obstruction.GetComponent<Collider>().bounds.Intersects(this._actor.ActorBounds)) {
+            && obstruction.GetComponent<Collider>().bounds.Intersects(bounds : this._actor.ActorBounds)) {
           this._environment.Terminate("Actor overlapping obstruction");
         }
 
         if (obstruction != null
             && obstruction.GetComponent<Collider>().bounds
-                          .Intersects(this._goal.GetComponent<Collider>().bounds)) {
+                          .Intersects(bounds : this._goal.GetComponent<Collider>().bounds)) {
           this._environment.Terminate("Goal overlapping obstruction");
         }
       }

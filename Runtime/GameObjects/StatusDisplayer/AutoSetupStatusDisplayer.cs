@@ -44,17 +44,17 @@ namespace droid.Runtime.GameObjects.StatusDisplayer {
         if (this._clean_empty_no_target_events && count > 0) {
           //poller.PollEvent.RemoveAllListeners(); // Only non-persistant listeners.
           for (var i = 0; i < count; i++) {
-            if (poller.PollEvent.GetPersistentTarget(i) == null
-                || poller.PollEvent.GetPersistentMethodName(i) == null) {
-              UnityEventTools.RemovePersistentListener(poller.PollEvent, i);
+            if (poller.PollEvent.GetPersistentTarget(index : i) == null
+                || poller.PollEvent.GetPersistentMethodName(index : i) == null) {
+              UnityEventTools.RemovePersistentListener(unityEvent : poller.PollEvent, index : i);
             }
           }
         }
 
         count = poller.PollEvent.GetPersistentEventCount();
         if (count == 0) {
-          UnityEventTools.AddObjectPersistentListener(poller.PollEvent, f, poller);
-          poller.PollEvent.SetPersistentListenerState(0, this._unity_event_call_state);
+          UnityEventTools.AddObjectPersistentListener(unityEvent : poller.PollEvent, call : f, argument : poller);
+          poller.PollEvent.SetPersistentListenerState(0, state : this._unity_event_call_state);
         } else if (count > 0 && poller.PollEvent.GetPersistentTarget(0) != poller) {
           #if NEODROID_DEBUG
           if (this.Debugging) {
@@ -70,16 +70,16 @@ namespace droid.Runtime.GameObjects.StatusDisplayer {
       if (this._clean_empty_no_target_events && count > 0) {
         //poller.PollEvent.RemoveAllListeners(); // Only non-persistant listeners.
         for (var i = 0; i < count; i++) {
-          if (poller.GetPersistentTarget(i) == null || poller.GetPersistentMethodName(i) == null) {
-            UnityEventTools.RemovePersistentListener(poller, i);
+          if (poller.GetPersistentTarget(index : i) == null || poller.GetPersistentMethodName(index : i) == null) {
+            UnityEventTools.RemovePersistentListener(unityEvent : poller, index : i);
           }
         }
       }
 
       count = poller.GetPersistentEventCount();
       if (count == 0) {
-        UnityEventTools.AddVoidPersistentListener(poller, f);
-        poller.SetPersistentListenerState(0, this._unity_event_call_state);
+        UnityEventTools.AddVoidPersistentListener(unityEvent : poller, call : f);
+        poller.SetPersistentListenerState(0, state : this._unity_event_call_state);
       } else if (count > 0) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
@@ -94,16 +94,16 @@ namespace droid.Runtime.GameObjects.StatusDisplayer {
       if (this._clean_empty_no_target_events && count > 0) {
         //poller.PollEvent.RemoveAllListeners(); // Only non-persistent listeners.
         for (var i = 0; i < count; i++) {
-          if (poller.GetPersistentTarget(i) == null || poller.GetPersistentMethodName(i) == null) {
-            UnityEventTools.RemovePersistentListener(poller, i);
+          if (poller.GetPersistentTarget(index : i) == null || poller.GetPersistentMethodName(index : i) == null) {
+            UnityEventTools.RemovePersistentListener(unityEvent : poller, index : i);
           }
         }
       }
 
       count = poller.GetPersistentEventCount();
       if (count == 0) {
-        UnityEventTools.AddPersistentListener(poller, f);
-        poller.SetPersistentListenerState(0, this._unity_event_call_state);
+        UnityEventTools.AddPersistentListener(unityEvent : poller, call : f);
+        poller.SetPersistentListenerState(0, state : this._unity_event_call_state);
       } else if (count > 0) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
@@ -121,10 +121,10 @@ namespace droid.Runtime.GameObjects.StatusDisplayer {
       var neodroid_environment = this._environment;
 
       if (neodroid_environment != null) {
-        this.TryRegister(this._environment_text, neodroid_environment.IdentifierString);
-        this.TryRegister(this._environment_frame, neodroid_environment.FrameString);
-        this.TryRegister(this._environment_obs, neodroid_environment.ObservationsString);
-        this.TryRegister(this._terminated, neodroid_environment.TerminatedBoolean);
+        this.TryRegister(poller : this._environment_text, f : neodroid_environment.IdentifierString);
+        this.TryRegister(poller : this._environment_frame, f : neodroid_environment.FrameString);
+        this.TryRegister(poller : this._environment_obs, f : neodroid_environment.ObservationsString);
+        this.TryRegister(poller : this._terminated, f : neodroid_environment.TerminatedBoolean);
       }
 
       if (!this._evaluation_function) {
@@ -133,8 +133,8 @@ namespace droid.Runtime.GameObjects.StatusDisplayer {
 
       var evaluation_function = this._evaluation_function;
       if (evaluation_function != null) {
-        this.TryRegister(this._signal, evaluation_function.SignalString);
-        this.TryRegister(this._episode_length, evaluation_function.EpisodeLengthString);
+        this.TryRegister(poller : this._signal, f : evaluation_function.SignalString);
+        this.TryRegister(poller : this._episode_length, f : evaluation_function.EpisodeLengthString);
 
       }
 
@@ -144,16 +144,16 @@ namespace droid.Runtime.GameObjects.StatusDisplayer {
 
       if (this._manager) {
         if (this._status_text) {
-          this.TryRegister(this._status_text, this._manager.StatusString);
+          this.TryRegister(poller : this._status_text, f : this._manager.StatusString);
         }
 
         if (this._testing_toggle) {
-          this.TryRegisterProperty(this._testing_toggle.onValueChanged, this._manager.SetTesting);
+          this.TryRegisterProperty(poller : this._testing_toggle.onValueChanged, f : this._manager.SetTesting);
         }
       }
 
       if (this._reset_button) {
-        this.TryRegisterVoid(this._reset_button.onClick, this._manager.ResetAllEnvironments);
+        this.TryRegisterVoid(poller : this._reset_button.onClick, f : this._manager.ResetAllEnvironments);
       }
     }
   }

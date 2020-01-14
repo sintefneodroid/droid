@@ -25,15 +25,15 @@ namespace droid.Runtime.GameObjects.Plotting {
       vertices[vert++] = new Vector3(0f, 0f, 0f);
       while (vert <= nb_sides) {
         var rad = (float)vert / nb_sides * _2_pi;
-        vertices[vert] = new Vector3(Mathf.Cos(rad) * bottom_radius, 0f, Mathf.Sin(rad) * bottom_radius);
+        vertices[vert] = new Vector3(Mathf.Cos(f : rad) * bottom_radius, 0f, Mathf.Sin(f : rad) * bottom_radius);
         vert++;
       }
 
 // Top cap
-      vertices[vert++] = new Vector3(0f, height, 0f);
+      vertices[vert++] = new Vector3(0f, y : height, 0f);
       while (vert <= nb_sides * 2 + 1) {
         var rad = (float)(vert - nb_sides - 1) / nb_sides * _2_pi;
-        vertices[vert] = new Vector3(Mathf.Cos(rad) * top_radius, height, Mathf.Sin(rad) * top_radius);
+        vertices[vert] = new Vector3(Mathf.Cos(f : rad) * top_radius, y : height, Mathf.Sin(f : rad) * top_radius);
         vert++;
       }
 
@@ -41,8 +41,8 @@ namespace droid.Runtime.GameObjects.Plotting {
       var v = 0;
       while (vert <= vertices.Length - 4) {
         var rad = (float)v / nb_sides * _2_pi;
-        vertices[vert] = new Vector3(Mathf.Cos(rad) * top_radius, height, Mathf.Sin(rad) * top_radius);
-        vertices[vert + 1] = new Vector3(Mathf.Cos(rad) * bottom_radius, 0, Mathf.Sin(rad) * bottom_radius);
+        vertices[vert] = new Vector3(Mathf.Cos(f : rad) * top_radius, y : height, Mathf.Sin(f : rad) * top_radius);
+        vertices[vert + 1] = new Vector3(Mathf.Cos(f : rad) * bottom_radius, 0, Mathf.Sin(f : rad) * bottom_radius);
         vert += 2;
         v++;
       }
@@ -72,10 +72,10 @@ namespace droid.Runtime.GameObjects.Plotting {
       v = 0;
       while (vert <= vertices.Length - 4) {
         var rad = (float)v / nb_sides * _2_pi;
-        var cos = Mathf.Cos(rad);
-        var sin = Mathf.Sin(rad);
+        var cos = Mathf.Cos(f : rad);
+        var sin = Mathf.Sin(f : rad);
 
-        normales[vert] = new Vector3(cos, 0f, sin);
+        normales[vert] = new Vector3(x : cos, 0f, z : sin);
         normales[vert + 1] = normales[vert];
 
         vert += 2;
@@ -96,7 +96,7 @@ namespace droid.Runtime.GameObjects.Plotting {
       uvs[u++] = new Vector2(0.5f, 0.5f);
       while (u <= nb_sides) {
         var rad = (float)u / nb_sides * _2_pi;
-        uvs[u] = new Vector2(Mathf.Cos(rad) * .5f + .5f, Mathf.Sin(rad) * .5f + .5f);
+        uvs[u] = new Vector2(Mathf.Cos(f : rad) * .5f + .5f, Mathf.Sin(f : rad) * .5f + .5f);
         u++;
       }
 
@@ -104,7 +104,7 @@ namespace droid.Runtime.GameObjects.Plotting {
       uvs[u++] = new Vector2(0.5f, 0.5f);
       while (u <= nb_sides * 2 + 1) {
         var rad = (float)u / nb_sides * _2_pi;
-        uvs[u] = new Vector2(Mathf.Cos(rad) * .5f + .5f, Mathf.Sin(rad) * .5f + .5f);
+        uvs[u] = new Vector2(Mathf.Cos(f : rad) * .5f + .5f, Mathf.Sin(f : rad) * .5f + .5f);
         u++;
       }
 
@@ -112,8 +112,8 @@ namespace droid.Runtime.GameObjects.Plotting {
       var u_sides = 0;
       while (u <= uvs.Length - 4) {
         var t = (float)u_sides / nb_sides;
-        uvs[u] = new Vector3(t, 1f);
-        uvs[u + 1] = new Vector3(t, 0f);
+        uvs[u] = new Vector3(x : t, 1f);
+        uvs[u + 1] = new Vector3(x : t, 0f);
         u += 2;
         u_sides++;
       }
@@ -209,15 +209,15 @@ namespace droid.Runtime.GameObjects.Plotting {
       vertices[0] = Vector3.up * radius;
       for (var lat = 0; lat < nb_lat; lat++) {
         var a1 = pi * (lat + 1) / (nb_lat + 1);
-        var sin1 = Mathf.Sin(a1);
-        var cos1 = Mathf.Cos(a1);
+        var sin1 = Mathf.Sin(f : a1);
+        var cos1 = Mathf.Cos(f : a1);
 
         for (var lon = 0; lon <= nb_long; lon++) {
           var a2 = _2_pi * (lon == nb_long ? 0 : lon) / nb_long;
-          var sin2 = Mathf.Sin(a2);
-          var cos2 = Mathf.Cos(a2);
+          var sin2 = Mathf.Sin(f : a2);
+          var cos2 = Mathf.Cos(f : a2);
 
-          vertices[lon + lat * (nb_long + 1) + 1] = new Vector3(sin1 * cos2, cos1, sin1 * sin2) * radius;
+          vertices[lon + lat * (nb_long + 1) + 1] = new Vector3(sin1 * cos2, y : cos1, sin1 * sin2) * radius;
         }
       }
 

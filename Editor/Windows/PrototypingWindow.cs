@@ -69,7 +69,7 @@ namespace droid.Editor.Windows {
           (Texture)AssetDatabase.LoadAssetAtPath(NeodroidSettings.Current.NeodroidImportLocationProp
                                                  + "Gizmos/Icons/neodroid_favicon_cut.png",
                                                  typeof(Texture));
-      this.titleContent = new GUIContent("Neo:Env", this._icon, "Window for configuring environments");
+      this.titleContent = new GUIContent("Neo:Env", image : this._icon, "Window for configuring environments");
       this.Setup();
     }
 
@@ -90,18 +90,18 @@ namespace droid.Editor.Windows {
         EditorGUILayout.BeginHorizontal();
 
         EditorGUILayout.BeginVertical();
-        GUILayout.Label(this._neodroid_icon,
-                        GUILayout.Width(_logo_image_size),
-                        GUILayout.Height(_logo_image_size));
+        GUILayout.Label(image : this._neodroid_icon,
+                        GUILayout.Width(width : _logo_image_size),
+                        GUILayout.Height(height : _logo_image_size));
 
-        if (NeodroidEditorUtilities.LinkLabel(new GUIContent(_neodroid_url_text))) {
-          Application.OpenURL(_neodroid_url);
+        if (NeodroidEditorUtilities.LinkLabel(new GUIContent(text : _neodroid_url_text))) {
+          Application.OpenURL(url : _neodroid_url);
         }
 
         EditorGUILayout.EndVertical();
 
         EditorGUILayout.BeginVertical();
-        EditorGUILayout.ObjectField(this._simulation_manager, typeof(AbstractNeodroidManager), true);
+        EditorGUILayout.ObjectField(obj : this._simulation_manager, typeof(AbstractNeodroidManager), true);
 
         this._simulation_manager.Configuration =
             (SimulatorConfiguration)
@@ -110,18 +110,18 @@ namespace droid.Editor.Windows {
                                         true);
 
         this._simulation_manager.Configuration.FrameSkips =
-            EditorGUILayout.IntField("Frame Skips", this._simulation_manager.Configuration.FrameSkips);
+            EditorGUILayout.IntField("Frame Skips", value : this._simulation_manager.Configuration.FrameSkips);
 
         this._simulation_manager.Configuration.SimulationType =
-            (SimulationType)EditorGUILayout.EnumPopup("Simulation Type",
-                                                      this._simulation_manager.Configuration.SimulationType);
+            (SimulationTypeEnum)EditorGUILayout.EnumPopup("Simulation Type",
+                                                      selected : this._simulation_manager.Configuration.SimulationType);
 
 
         this._player_reactions = FindObjectOfType<PlayerReactions>();
-        EditorGUILayout.ObjectField(this._player_reactions, typeof(PlayerReactions), true);
+        EditorGUILayout.ObjectField(obj : this._player_reactions, typeof(PlayerReactions), true);
 
         this._show_detailed_descriptions =
-            EditorGUILayout.Toggle("Show Details", this._show_detailed_descriptions);
+            EditorGUILayout.Toggle("Show Details", value : this._show_detailed_descriptions);
 
         EditorGUILayout.EndVertical();
 
@@ -133,7 +133,7 @@ namespace droid.Editor.Windows {
           this.Setup();
         }
 
-        this._scroll_position = EditorGUILayout.BeginScrollView(this._scroll_position);
+        this._scroll_position = EditorGUILayout.BeginScrollView(scrollPosition : this._scroll_position);
 
         EditorGUILayout.BeginVertical("Box");
         var num_active_environments = this._environments.Length;
@@ -159,21 +159,21 @@ namespace droid.Editor.Windows {
 
                 EditorGUILayout.BeginVertical("Box");
                 this._environments[i].enabled =
-                    EditorGUILayout.BeginToggleGroup(this._environments[i].Identifier,
+                    EditorGUILayout.BeginToggleGroup(label : this._environments[i].Identifier,
                                                      this._environments[i].enabled
                                                      && this._environments[i].gameObject.activeSelf);
 
                 EditorGUILayout.ObjectField(this._environments[i], typeof(PrototypingEnvironment), true);
 
                 if (this._show_detailed_descriptions) {
-                  this._environments[i].CoordinateSpace =
-                      (CoordinateSpace)EditorGUILayout.EnumPopup("Coordinate system",
-                                                                  this._environments[i].CoordinateSpace);
-                  EditorGUI.BeginDisabledGroup(this._environments[i].CoordinateSpace
-                                               != CoordinateSpace.Environment_);
+                  this._environments[i].CoordinateSpaceEnum =
+                      (CoordinateSpaceEnum)EditorGUILayout.EnumPopup("Coordinate system",
+                                                                  selected : this._environments[i].CoordinateSpaceEnum);
+                  EditorGUI.BeginDisabledGroup(this._environments[i].CoordinateSpaceEnum
+                                               != CoordinateSpaceEnum.Environment_);
                   this._environments[i].CoordinateReferencePoint =
                       (Transform)EditorGUILayout.ObjectField("Reference point",
-                                                             this._environments[i].CoordinateReferencePoint,
+                                                             obj : this._environments[i].CoordinateReferencePoint,
                                                              typeof(Transform),
                                                              true);
                   EditorGUI.EndDisabledGroup();
@@ -193,39 +193,39 @@ namespace droid.Editor.Windows {
                                                                       .SignalSpace.ToVector3()));
                     this._environments[i].ObjectiveFunction.EpisodeLength =
                         EditorGUILayout.IntField("Episode Length",
-                                                 this._environments[i].ObjectiveFunction.EpisodeLength);
+                                                 value : this._environments[i].ObjectiveFunction.EpisodeLength);
                   }
                   //EditorGUILayout.BeginHorizontal("Box");
                   #if NEODROID_DEBUG
                   this._environments[i].Debugging =
-                      EditorGUILayout.Toggle("Debugging", this._environments[i].Debugging);
+                      EditorGUILayout.Toggle("Debugging", value : this._environments[i].Debugging);
                   #endif
                   //EditorGUILayout.EndHorizontal();
 
                   EditorGUI.BeginDisabledGroup(true);
                   EditorGUILayout.LabelField("Info:");
-                  EditorGUILayout.Toggle("Terminated", this._environments[i].Terminated);
+                  EditorGUILayout.Toggle("Terminated", value : this._environments[i].Terminated);
                   EditorGUI.EndDisabledGroup();
                 }
 
-                var s = this._environments[i] as AbstractSpatialPrototypingEnvironment as ActorisedPrototypingEnvironment;
+                var s = this._environments[i] as AbstractPrototypingEnvironment as ActorisedPrototypingEnvironment;
                 if (s) {
                   var actors = s.Actors;
-                  this.DrawActors(actors);
+                  this.DrawActors(actors : actors);
                 } else {
                   var c = this._environments[i] as PrototypingEnvironment;
                   if (c) {
-                    this.DrawActuators(c.Actuators);
+                    this.DrawActuators(actuators : c.Actuators);
                   }
                 }
 
-                this.DrawSensors(sensors);
+                this.DrawSensors(sensors : sensors);
 
-                this.DrawConfigurables(configurables);
+                this.DrawConfigurables(configurables : configurables);
 
-                this.DrawDisplayers(displayers);
+                this.DrawDisplayers(displayers : displayers);
 
-                this.DrawListeners(listeners);
+                this.DrawListeners(listeners : listeners);
 
                 EditorGUILayout.EndToggleGroup();
                 EditorGUILayout.EndVertical();
@@ -262,14 +262,14 @@ namespace droid.Editor.Windows {
         if (resetable_value != null) {
           EditorGUILayout.BeginVertical("Box");
           resetable_value.enabled =
-              EditorGUILayout.BeginToggleGroup(resetable.Key,
+              EditorGUILayout.BeginToggleGroup(label : resetable.Key,
                                                resetable_value.enabled
                                                && resetable_value.gameObject.activeSelf);
-          EditorGUILayout.ObjectField(resetable_value, typeof(EnvironmentListener), true);
+          EditorGUILayout.ObjectField(obj : resetable_value, typeof(EnvironmentListener), true);
           if (this._show_detailed_descriptions) {
             //EditorGUILayout.BeginHorizontal("Box");
             #if NEODROID_DEBUG
-            resetable_value.Debugging = EditorGUILayout.Toggle("Debugging", resetable_value.Debugging);
+            resetable_value.Debugging = EditorGUILayout.Toggle("Debugging", value : resetable_value.Debugging);
             #endif
             //EditorGUILayout.EndHorizontal();
           }
@@ -293,18 +293,18 @@ namespace droid.Editor.Windows {
           EditorGUILayout.BeginVertical("Box");
 
           actor_value.enabled =
-              EditorGUILayout.BeginToggleGroup(actor.Key,
+              EditorGUILayout.BeginToggleGroup(label : actor.Key,
                                                actor_value.enabled && actor_value.gameObject.activeSelf);
-          EditorGUILayout.ObjectField(actor_value, typeof(Actor), true);
+          EditorGUILayout.ObjectField(obj : actor_value, typeof(Actor), true);
           if (this._show_detailed_descriptions) {
             //EditorGUILayout.BeginHorizontal("Box");
             #if NEODROID_DEBUG
-            actor_value.Debugging = EditorGUILayout.Toggle("Debugging", actor_value.Debugging);
+            actor_value.Debugging = EditorGUILayout.Toggle("Debugging", value : actor_value.Debugging);
             #endif
             //EditorGUILayout.EndHorizontal();
           }
 
-          this.DrawActuators(actuators);
+          this.DrawActuators(actuators : actuators);
 
           EditorGUILayout.EndToggleGroup();
 
@@ -323,13 +323,13 @@ namespace droid.Editor.Windows {
         if (sensor_value != null) {
           EditorGUILayout.BeginVertical("Box");
           sensor_value.enabled =
-              EditorGUILayout.BeginToggleGroup(sensor.Key,
+              EditorGUILayout.BeginToggleGroup(label : sensor.Key,
                                                sensor_value.enabled && sensor_value.gameObject.activeSelf);
-          EditorGUILayout.ObjectField(sensor_value, typeof(Sensor), true);
+          EditorGUILayout.ObjectField(obj : sensor_value, typeof(Sensor), true);
           if (this._show_detailed_descriptions) {
             //EditorGUILayout.BeginHorizontal("Box");
             #if NEODROID_DEBUG
-            sensor_value.Debugging = EditorGUILayout.Toggle("Debugging", sensor_value.Debugging);
+            sensor_value.Debugging = EditorGUILayout.Toggle("Debugging", value : sensor_value.Debugging);
             EditorGUILayout.LabelField("Observables: [" + sensor_value.ToString() + "]");
             #endif
             //EditorGUILayout.EndHorizontal();
@@ -351,14 +351,14 @@ namespace droid.Editor.Windows {
         if (displayer_value != null) {
           EditorGUILayout.BeginVertical("Box");
           displayer_value.enabled =
-              EditorGUILayout.BeginToggleGroup(displayer.Key,
+              EditorGUILayout.BeginToggleGroup(label : displayer.Key,
                                                displayer_value.enabled
                                                && displayer_value.gameObject.activeSelf);
-          EditorGUILayout.ObjectField(displayer_value, typeof(Displayer), true);
+          EditorGUILayout.ObjectField(obj : displayer_value, typeof(Displayer), true);
           if (this._show_detailed_descriptions) {
             //EditorGUILayout.BeginHorizontal("Box");
             #if NEODROID_DEBUG
-            displayer_value.Debugging = EditorGUILayout.Toggle("Debugging", displayer_value.Debugging);
+            displayer_value.Debugging = EditorGUILayout.Toggle("Debugging", value : displayer_value.Debugging);
             #endif
             //EditorGUILayout.EndHorizontal();
           }
@@ -378,15 +378,15 @@ namespace droid.Editor.Windows {
         var configurable_value = (Configurable)configurable.Value;
         if (configurable_value != null) {
           EditorGUILayout.BeginVertical("Box");
-          configurable_value.enabled = EditorGUILayout.BeginToggleGroup(configurable.Key,
+          configurable_value.enabled = EditorGUILayout.BeginToggleGroup(label : configurable.Key,
                                                                         configurable_value.enabled
                                                                         && configurable_value
                                                                            .gameObject.activeSelf);
-          EditorGUILayout.ObjectField(configurable_value, typeof(Configurable), true);
+          EditorGUILayout.ObjectField(obj : configurable_value, typeof(Configurable), true);
           if (this._show_detailed_descriptions) {
             //EditorGUILayout.BeginHorizontal("Box");
             #if NEODROID_DEBUG
-            configurable_value.Debugging = EditorGUILayout.Toggle("Debugging", configurable_value.Debugging);
+            configurable_value.Debugging = EditorGUILayout.Toggle("Debugging", value : configurable_value.Debugging);
             #endif
             //EditorGUILayout.EndHorizontal();
           }
@@ -407,10 +407,10 @@ namespace droid.Editor.Windows {
         if (actuator_value != null) {
           EditorGUILayout.BeginVertical("Box");
           actuator_value.enabled =
-              EditorGUILayout.BeginToggleGroup(actuator.Key,
+              EditorGUILayout.BeginToggleGroup(label : actuator.Key,
                                                actuator_value.enabled
                                                && actuator_value.gameObject.activeSelf);
-          EditorGUILayout.ObjectField(actuator_value, typeof(Actuator), true);
+          EditorGUILayout.ObjectField(obj : actuator_value, typeof(Actuator), true);
 
           if (this._show_detailed_descriptions) {
             actuator_value.MotionSpace.FromVector3(EditorGUILayout.Vector3Field(Space1.Vector3Description(),
@@ -419,7 +419,7 @@ namespace droid.Editor.Windows {
                                                                                     .ToVector3()));
             //EditorGUILayout.BeginHorizontal("Box");
             #if NEODROID_DEBUG
-            actuator_value.Debugging = EditorGUILayout.Toggle("Debugging", actuator_value.Debugging);
+            actuator_value.Debugging = EditorGUILayout.Toggle("Debugging", value : actuator_value.Debugging);
             #endif
             //EditorGUILayout.EndHorizontal();
           }

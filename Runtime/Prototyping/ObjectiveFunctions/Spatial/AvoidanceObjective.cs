@@ -24,7 +24,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
     public override void RemotePostSetup() {
       this.ResetHits();
 
-      var tagged_gos = GameObject.FindGameObjectsWithTag(this._avoid_tag);
+      var tagged_gos = GameObject.FindGameObjectsWithTag(tag : this._avoid_tag);
 
       foreach (var ball in tagged_gos) {
         if (ball) {
@@ -46,7 +46,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log(this._hits);
+        Debug.Log(message : this._hits);
       }
       #endif
     }

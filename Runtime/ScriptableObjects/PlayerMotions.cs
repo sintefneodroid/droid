@@ -30,12 +30,12 @@ namespace droid.Runtime.ScriptableObjects {
         for (var i = 0; i < copy.Length; i++) {
           var actor = copy[i]._Actor;
           if (actor != null) {
-            copy[i]._Actor = Regex.Replace(actor, "[^\\w\\._]", "");
+            copy[i]._Actor = Regex.Replace(input : actor, "[^\\w\\._]", "");
           }
 
           var actuator = copy[i]._Actuator;
           if (actuator != null) {
-            copy[i]._Actuator = Regex.Replace(actuator, "[^\\w\\._]", "");
+            copy[i]._Actuator = Regex.Replace(input : actuator, "[^\\w\\._]", "");
           }
         }
       }

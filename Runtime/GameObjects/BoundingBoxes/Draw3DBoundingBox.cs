@@ -25,7 +25,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
     void Awake() {
       if (!this._line_material) {
         var shader = Shader.Find("Unlit/Color");
-        this._line_material = new Material(shader);
+        this._line_material = new Material(shader : shader);
       }
 
       //GUI.skin = this._gui_skin;
@@ -42,12 +42,12 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
         this._line_material.SetPass(0);
       }
 
-      GL.Begin(GL.LINES);
+      GL.Begin(mode : GL.LINES);
       for (var j = 0; j < this._outlines.Count; j++) {
-        GL.Color(this._colors[j]);
-        for (var i = 0; i < this._outlines[j].GetLength(0); i++) {
-          GL.Vertex(this._outlines[j][i, 0]);
-          GL.Vertex(this._outlines[j][i, 1]);
+        GL.Color(this._colors[index : j]);
+        for (var i = 0; i < this._outlines[index : j].GetLength(0); i++) {
+          GL.Vertex(this._outlines[index : j][i, 0]);
+          GL.Vertex(this._outlines[index : j][i, 1]);
         }
       }
 
@@ -83,9 +83,9 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
       }
 
       if (new_outlines.GetLength(0) > 0) {
-        this._outlines.Add(new_outlines);
-        this._colors.Add(new_color);
-        this._names.Add(game_object);
+        this._outlines.Add(item : new_outlines);
+        this._colors.Add(item : new_color);
+        this._names.Add(item : game_object);
       }
     }
 /*
@@ -120,9 +120,10 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
         this._bounding_boxes = FindObjectsOfType<BoundingBox>();
       }
 
-      foreach (var bb in this._bounding_boxes) {
+      for (var index = 0; index < this._bounding_boxes.Length; index++) {
+        var bb = this._bounding_boxes[index];
         if (bb) {
-          this.SetOutlines(bb.Lines, bb.EditorPreviewLineColor, bb.gameObject);
+          this.SetOutlines(new_outlines : bb.Lines, new_color : bb.EditorPreviewLineColor, game_object : bb.gameObject);
         }
       }
     }
@@ -132,21 +133,22 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
     void OnGUI() {
       if (this._draw_label) {
         var i = 0;
-        foreach (var t in this._outlines) {
+        for (var index = 0; index < this._outlines.Count; index++) {
+          var t = this._outlines[index : index];
           var point = t[0, 0];
-          var box_position = this._camera.WorldToScreenPoint(point);
+          var box_position = this._camera.WorldToScreenPoint(position : point);
           box_position.y = Screen.height - box_position.y;
 
-          var text = this._names[i].name;
+          var text = this._names[index : i].name;
 
-          var content = GUI.skin.box.CalcSize(new GUIContent(text));
+          var content = GUI.skin.box.CalcSize(new GUIContent(text : text));
           content.x = content.x + _padding;
           content.y = content.y + _padding;
           var rect = new Rect(box_position.x - content.x / 2,
                               box_position.y - content.y / 2,
-                              content.x,
-                              content.y);
-          GUI.Box(rect, text);
+                              width : content.x,
+                              height : content.y);
+          GUI.Box(position : rect, text : text);
           //GUI.Label(this._rect, text);
           i++;
         }

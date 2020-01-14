@@ -60,7 +60,7 @@ namespace droid.Runtime.Utilities.Procedural {
           default: throw new ArgumentOutOfRangeException();
         }
 
-        out_vectors[i] = new Vector3(x, 0, y);
+        out_vectors[i] = new Vector3(x : x, 0, z : y);
       }
 
       return out_vectors;

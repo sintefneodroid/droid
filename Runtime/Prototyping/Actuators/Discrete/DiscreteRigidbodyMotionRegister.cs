@@ -26,10 +26,10 @@ namespace droid.Runtime.Prototyping.Actuators.Discrete {
       if (this._rb) {
         switch (this._Relative_To) {
           case Space.World:
-            this._rb.AddForce(vec, this._force_mode);
+            this._rb.AddForce(force : vec, mode : this._force_mode);
             break;
           case Space.Self:
-            this._rb.AddRelativeForce(vec, this._force_mode);
+            this._rb.AddRelativeForce(force : vec, mode : this._force_mode);
             break;
           default: throw new ArgumentOutOfRangeException();
         }
@@ -40,10 +40,10 @@ namespace droid.Runtime.Prototyping.Actuators.Discrete {
       if (this._rb) {
         switch (this._Relative_To) {
           case Space.World:
-            this._rb.AddTorque(vec, this._force_mode);
+            this._rb.AddTorque(torque : vec, mode : this._force_mode);
             break;
           case Space.Self:
-            this._rb.AddRelativeTorque(vec, this._force_mode);
+            this._rb.AddRelativeTorque(torque : vec, mode : this._force_mode);
             break;
           default: throw new ArgumentOutOfRangeException();
         }

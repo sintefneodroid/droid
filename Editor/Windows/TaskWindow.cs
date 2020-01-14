@@ -21,7 +21,7 @@ namespace droid.Editor.Windows {
           (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidSettings.Current.NeodroidImportLocationProp
                                                    + "Gizmos/Icons/script.png",
                                                    typeof(Texture2D));
-      this.titleContent = new GUIContent("Neo:Task", this._icon, "Window for task descriptions");
+      this.titleContent = new GUIContent("Neo:Task", image : this._icon, "Window for task descriptions");
       if (!this._task_sequence) {
         this._task_sequence = FindObjectOfType<TaskSequence>();
       }
@@ -33,10 +33,10 @@ namespace droid.Editor.Windows {
     public void OnInspectorUpdate() { this.Repaint(); }
 
     void OnGUI() {
-      GUILayout.Label("Task list", EditorStyles.boldLabel);
+      GUILayout.Label("Task list", style : EditorStyles.boldLabel);
       this._task_sequence = FindObjectOfType<TaskSequence>();
       if (this._task_sequence != null) {
-        this._scroll_position = EditorGUILayout.BeginScrollView(this._scroll_position);
+        this._scroll_position = EditorGUILayout.BeginScrollView(scrollPosition : this._scroll_position);
         EditorGUILayout.BeginVertical("Box");
 
         var seq = this._task_sequence.GetSequence();
@@ -45,9 +45,9 @@ namespace droid.Editor.Windows {
             if (g != null) {
               if (this._task_sequence.CurrentGoalCell != null
                   && this._task_sequence.CurrentGoalCell.name == g.name) {
-                GUILayout.Label(g.name, EditorStyles.whiteLabel);
+                GUILayout.Label(text : g.name, style : EditorStyles.whiteLabel);
               } else {
-                GUILayout.Label(g.name);
+                GUILayout.Label(text : g.name);
               }
             }
           }

@@ -13,6 +13,6 @@ namespace droid.Runtime.Utilities.Orientation {
 
     /// <summary>
     /// </summary>
-    void Update() { this.transform.rotation = Quaternion.LookRotation(this._direction); }
+    void Update() { this.transform.rotation = Quaternion.LookRotation(forward : this._direction); }
   }
 }

@@ -267,7 +267,8 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
             if (Math.Abs(this._old_orthographic_size - orthographic_size)
                 > NeodroidConstants._Double_Tolerance) {
               this.OrtSize = orthographic_size;
-              foreach (var cam in this._cameras) {
+              for (var index = 0; index < this._cameras.Length; index++) {
+                var cam = this._cameras[index];
                 if (cam != this && cam != null) {
                   cam.OrtSize = orthographic_size;
                 }
@@ -279,7 +280,8 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
             var near_clip_plane = this._camera.nearClipPlane;
             if (Math.Abs(this._old_near_clip_plane - near_clip_plane) > NeodroidConstants._Double_Tolerance) {
               this._old_near_clip_plane = near_clip_plane;
-              foreach (var cam in this._cameras) {
+              for (var index = 0; index < this._cameras.Length; index++) {
+                var cam = this._cameras[index];
                 if (cam != this && cam != null) {
                   cam.Near = near_clip_plane;
                 }
@@ -291,7 +293,8 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
             var far_clip_plane = this._camera.farClipPlane;
             if (Math.Abs(this._old_far_clip_plane - far_clip_plane) > NeodroidConstants._Double_Tolerance) {
               this._old_far_clip_plane = far_clip_plane;
-              foreach (var cam in this._cameras) {
+              for (var index = 0; index < this._cameras.Length; index++) {
+                var cam = this._cameras[index];
                 if (cam != this && cam != null) {
                   cam.Far = far_clip_plane;
                 }
@@ -303,7 +306,8 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
             var culling_mask = this._camera.cullingMask;
             if (this._old_culling_mask != culling_mask) {
               this._old_culling_mask = culling_mask;
-              foreach (var cam in this._cameras) {
+              for (var index = 0; index < this._cameras.Length; index++) {
+                var cam = this._cameras[index];
                 if (cam != this && cam != null) {
                   cam.Mask = culling_mask;
                 }
@@ -314,7 +318,8 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
               var orthographic = this._camera.orthographic;
               if (this._old_orthographic_projection != orthographic) {
                 this._old_orthographic_projection = orthographic;
-                foreach (var cam in this._cameras) {
+                for (var index = 0; index < this._cameras.Length; index++) {
+                  var cam = this._cameras[index];
                   if (cam != this && cam != null) {
                     cam.Ort = orthographic;
                   }
@@ -327,7 +332,8 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
             var fov = this._camera.fieldOfView;
             if (Math.Abs(this._old_fov - fov) > NeodroidConstants._Double_Tolerance) {
               this._old_fov = fov;
-              foreach (var cam in this._cameras) {
+              for (var index = 0; index < this._cameras.Length; index++) {
+                var cam = this._cameras[index];
                 if (cam != this && cam != null) {
                   cam.Fov = fov;
                 }
@@ -339,7 +345,8 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
             var foc = this._camera.focalLength;
             if (Math.Abs(this._old_foc - foc) > NeodroidConstants._Double_Tolerance) {
               this._old_foc = foc;
-              foreach (var cam in this._cameras) {
+              for (var index = 0; index < this._cameras.Length; index++) {
+                var cam = this._cameras[index];
                 if (cam != this && cam != null) {
                   cam.Foc = foc;
                 }
@@ -351,7 +358,8 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
             var physicality = this._camera.usePhysicalProperties;
             if (this._old_physicality != physicality) {
               this._old_physicality = physicality;
-              foreach (var cam in this._cameras) {
+              for (var index = 0; index < this._cameras.Length; index++) {
+                var cam = this._cameras[index];
                 if (cam != this && cam != null) {
                   cam.Physicality = physicality;
                 }
@@ -363,7 +371,8 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
             var a = this._camera.sensorSize;
             if (this._old_sensor_size != a) {
               this._old_sensor_size = a;
-              foreach (var cam in this._cameras) {
+              for (var index = 0; index < this._cameras.Length; index++) {
+                var cam = this._cameras[index];
                 if (cam != this && cam != null) {
                   cam.SensSize = a;
                 }
@@ -375,7 +384,8 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
             var a = this._camera.lensShift;
             if (this._old_lens_shift != a) {
               this._old_lens_shift = a;
-              foreach (var cam in this._cameras) {
+              for (var index = 0; index < this._cameras.Length; index++) {
+                var cam = this._cameras[index];
                 if (cam != this && cam != null) {
                   cam.Shift = a;
                 }
@@ -387,7 +397,8 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
             var a = this._camera.gateFit;
             if (this._old_gate_fit != a) {
               this._old_gate_fit = a;
-              foreach (var cam in this._cameras) {
+              for (var index = 0; index < this._cameras.Length; index++) {
+                var cam = this._cameras[index];
                 if (cam != this && cam != null) {
                   cam.Gate = a;
                 }

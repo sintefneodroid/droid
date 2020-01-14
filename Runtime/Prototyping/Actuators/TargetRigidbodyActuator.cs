@@ -15,7 +15,7 @@ namespace droid.Runtime.Prototyping.Actuators {
   public class TargetRigidbodyActuator : Actuator
                                           {
     string _movement;
-    AbstractSpatialPrototypingEnvironment _parent_environment;
+    AbstractPrototypingEnvironment _parent_environment;
 
     /// <summary>
     /// </summary>
@@ -64,11 +64,11 @@ namespace droid.Runtime.Prototyping.Actuators {
       this.Parent =
           NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
                                                           (Actuator)this,
-                                                          this._movement);
+                                                          identifier : this._movement);
       this.Parent =
           NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
                                                           (Actuator)this,
-                                                          this._turn);
+                                                          identifier : this._turn);
     }
 
     /// <inheritdoc />
@@ -77,9 +77,9 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <param name="motion"></param>
     protected override void InnerApplyMotion(IMotion motion) {
       if (motion.ActuatorName == this._movement) {
-        this.ApplyMovement(motion.Strength);
+        this.ApplyMovement(movement_change : motion.Strength);
       } else if (motion.ActuatorName == this._turn) {
-        this.ApplyRotation(motion.Strength);
+        this.ApplyRotation(rotation_change : motion.Strength);
       }
     }
 
@@ -97,7 +97,7 @@ namespace droid.Runtime.Prototyping.Actuators {
 
       // Turn
       var turn = this.RotationSpeed * Time.deltaTime;
-      var turn_rotation = Quaternion.Euler(0f, turn, 0f);
+      var turn_rotation = Quaternion.Euler(0f, y : turn, 0f);
       this._Rigidbody.MoveRotation(this._Rigidbody.rotation * turn_rotation);
     }
   }

@@ -33,14 +33,14 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
                                              v3_center.y - v3_extents.y,
                                              v3_center.z + v3_extents.z); // Back bottom right corner
       if (reference_transform) {
-        v3_front_top_left = reference_transform.TransformPoint(v3_front_top_left);
-        v3_front_top_right = reference_transform.TransformPoint(v3_front_top_right);
-        v3_front_bottom_left = reference_transform.TransformPoint(v3_front_bottom_left);
-        v3_front_bottom_right = reference_transform.TransformPoint(v3_front_bottom_right);
-        v3_back_top_left = reference_transform.TransformPoint(v3_back_top_left);
-        v3_back_top_right = reference_transform.TransformPoint(v3_back_top_right);
-        v3_back_bottom_left = reference_transform.TransformPoint(v3_back_bottom_left);
-        v3_back_bottom_right = reference_transform.TransformPoint(v3_back_bottom_right);
+        v3_front_top_left = reference_transform.TransformPoint(position : v3_front_top_left);
+        v3_front_top_right = reference_transform.TransformPoint(position : v3_front_top_right);
+        v3_front_bottom_left = reference_transform.TransformPoint(position : v3_front_bottom_left);
+        v3_front_bottom_right = reference_transform.TransformPoint(position : v3_front_bottom_right);
+        v3_back_top_left = reference_transform.TransformPoint(position : v3_back_top_left);
+        v3_back_top_right = reference_transform.TransformPoint(position : v3_back_top_right);
+        v3_back_bottom_left = reference_transform.TransformPoint(position : v3_back_bottom_left);
+        v3_back_bottom_right = reference_transform.TransformPoint(position : v3_back_bottom_right);
       }
 
       return new[] {
@@ -75,20 +75,20 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
                                Vector3 v3_back_bottom_left,
                                Vector3 v3_back_bottom_right,
                                Color color) {
-      Debug.DrawLine(v3_front_top_left, v3_front_top_right, color);
-      Debug.DrawLine(v3_front_top_right, v3_front_bottom_right, color);
-      Debug.DrawLine(v3_front_bottom_right, v3_front_bottom_left, color);
-      Debug.DrawLine(v3_front_bottom_left, v3_front_top_left, color);
+      Debug.DrawLine(start : v3_front_top_left, end : v3_front_top_right, color : color);
+      Debug.DrawLine(start : v3_front_top_right, end : v3_front_bottom_right, color : color);
+      Debug.DrawLine(start : v3_front_bottom_right, end : v3_front_bottom_left, color : color);
+      Debug.DrawLine(start : v3_front_bottom_left, end : v3_front_top_left, color : color);
 
-      Debug.DrawLine(v3_back_top_left, v3_back_top_right, color);
-      Debug.DrawLine(v3_back_top_right, v3_back_bottom_right, color);
-      Debug.DrawLine(v3_back_bottom_right, v3_back_bottom_left, color);
-      Debug.DrawLine(v3_back_bottom_left, v3_back_top_left, color);
+      Debug.DrawLine(start : v3_back_top_left, end : v3_back_top_right, color : color);
+      Debug.DrawLine(start : v3_back_top_right, end : v3_back_bottom_right, color : color);
+      Debug.DrawLine(start : v3_back_bottom_right, end : v3_back_bottom_left, color : color);
+      Debug.DrawLine(start : v3_back_bottom_left, end : v3_back_top_left, color : color);
 
-      Debug.DrawLine(v3_front_top_left, v3_back_top_left, color);
-      Debug.DrawLine(v3_front_top_right, v3_back_top_right, color);
-      Debug.DrawLine(v3_front_bottom_right, v3_back_bottom_right, color);
-      Debug.DrawLine(v3_front_bottom_left, v3_back_bottom_left, color);
+      Debug.DrawLine(start : v3_front_top_left, end : v3_back_top_left, color : color);
+      Debug.DrawLine(start : v3_front_top_right, end : v3_back_top_right, color : color);
+      Debug.DrawLine(start : v3_front_bottom_right, end : v3_back_bottom_right, color : color);
+      Debug.DrawLine(start : v3_front_bottom_left, end : v3_back_bottom_left, color : color);
     }
 
     /// <summary>
@@ -104,16 +104,16 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
                                   Color color,
                                   float num_segments = 40,
                                   float duration = 0.01f) {
-      var rot_quaternion = Quaternion.AngleAxis(360.0f / num_segments, Vector3.forward);
-      var vertex_start = new Vector2(radius, 0.0f);
+      var rot_quaternion = Quaternion.AngleAxis(360.0f / num_segments, axis : Vector3.forward);
+      var vertex_start = new Vector2(x : radius, 0.0f);
       for (var i = 0; i < num_segments; i++) {
         Vector2 rotated_point = rot_quaternion * vertex_start;
 
         // Draw the segment, shifted by the center
         Debug.DrawLine(center + vertex_start,
                        center + rotated_point,
-                       color,
-                       duration);
+                       color : color,
+                       duration : duration);
 
         vertex_start = rotated_point;
       }
@@ -130,25 +130,25 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
                                Vector2 world_bottom_right,
                                Color color,
                                float duration = 0.01f) {
-      var world_top_right = new Vector2(world_bottom_right.x, world_top_left.y);
-      var world_bottom_left = new Vector2(world_top_left.x, world_bottom_right.y);
+      var world_top_right = new Vector2(x : world_bottom_right.x, y : world_top_left.y);
+      var world_bottom_left = new Vector2(x : world_top_left.x, y : world_bottom_right.y);
 
-      Debug.DrawLine(world_top_left,
-                     world_bottom_left,
-                     color,
-                     duration);
-      Debug.DrawLine(world_bottom_left,
-                     world_bottom_right,
-                     color,
-                     duration);
-      Debug.DrawLine(world_bottom_right,
-                     world_top_right,
-                     color,
-                     duration);
-      Debug.DrawLine(world_top_right,
-                     world_top_left,
-                     color,
-                     duration);
+      Debug.DrawLine(start : world_top_left,
+                     end : world_bottom_left,
+                     color : color,
+                     duration : duration);
+      Debug.DrawLine(start : world_bottom_left,
+                     end : world_bottom_right,
+                     color : color,
+                     duration : duration);
+      Debug.DrawLine(start : world_bottom_right,
+                     end : world_top_right,
+                     color : color,
+                     duration : duration);
+      Debug.DrawLine(start : world_top_right,
+                     end : world_top_left,
+                     color : color,
+                     duration : duration);
     }
 
     /// <summary>
@@ -162,10 +162,10 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
       for (var i = 0; i < world_points.Length - 1; i++) {
         Vector3 next_point = world_points[i + 1];
         Vector3 current_point = world_points[i];
-        Debug.DrawLine(current_point,
-                       next_point,
-                       color,
-                       duration);
+        Debug.DrawLine(start : current_point,
+                       end : next_point,
+                       color : color,
+                       duration : duration);
       }
     }
 
@@ -176,14 +176,14 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
     /// <param name="color">Color for Debug.Draw.</param>
     /// <param name="duration">Duration to show the polygon.</param>
     public static void DrawPolygon(Vector2[] world_points, Color color, float duration = 0.01f) {
-      DrawEdges(world_points, color, duration);
+      DrawEdges(world_points : world_points, color : color, duration : duration);
 
       // Polygons are just edges with the first and last points connected
       if (world_points.Length > 1) {
         Debug.DrawLine(world_points[world_points.Length - 1],
                        world_points[0],
-                       color,
-                       duration);
+                       color : color,
+                       duration : duration);
       }
     }
 
@@ -196,18 +196,18 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
     /// <param name="duration">Duration to show the arrow.</param>
     public static void DrawArrow(Vector2 origin, Vector2 endpoint, Color color, float duration = 0.01f) {
       // Draw the line that makes up the body of the arrow
-      Debug.DrawLine(origin,
-                     endpoint,
-                     color,
+      Debug.DrawLine(start : origin,
+                     end : endpoint,
+                     color : color,
                      0.01f);
 
       // Draw arrowhead so we can see direction
       var arrow_direction = endpoint - origin;
-      DebugDrawArrowhead(endpoint,
-                         arrow_direction.normalized,
-                         GetArrowSizeForLine(arrow_direction),
-                         color,
-                         duration);
+      DebugDrawArrowhead(origin : endpoint,
+                         direction : arrow_direction.normalized,
+                         GetArrowSizeForLine(line : arrow_direction),
+                         color : color,
+                         duration : duration);
     }
 
     static float GetArrowSizeForLine(Vector2 line) {
@@ -224,19 +224,19 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
       // Theta angle is the acute angle of the arrow, so flip direction or else arrow will be pointing "backwards"
       var arrowhead_handle = -direction * size;
 
-      var arrow_rotation_r = Quaternion.AngleAxis(theta, Vector3.forward);
+      var arrow_rotation_r = Quaternion.AngleAxis(angle : theta, axis : Vector3.forward);
       Vector2 arrowhead_r = arrow_rotation_r * arrowhead_handle;
-      Debug.DrawLine(origin,
+      Debug.DrawLine(start : origin,
                      origin + arrowhead_r,
-                     color,
-                     duration);
+                     color : color,
+                     duration : duration);
 
-      var arrow_rotation_l = Quaternion.AngleAxis(-theta, Vector3.forward);
+      var arrow_rotation_l = Quaternion.AngleAxis(angle : -theta, axis : Vector3.forward);
       Vector2 arrowhead_l = arrow_rotation_l * arrowhead_handle;
-      Debug.DrawLine(origin,
+      Debug.DrawLine(start : origin,
                      origin + arrowhead_l,
-                     color,
-                     duration);
+                     color : color,
+                     duration : duration);
     }
   }
 }

@@ -10,31 +10,31 @@ namespace droid.Runtime.Shaders.Experimental.Skybox_Shaders.Editor {
       if (this.isVisible) {
         EditorGUI.BeginChangeCheck();
 
-        this.ColorProperty(GetMaterialProperty(this.targets, "_Color2"), "Top Color");
-        this.ColorProperty(GetMaterialProperty(this.targets, "_Color1"), "Bottom Color");
-        this.FloatProperty(GetMaterialProperty(this.targets, "_Intensity"), "Intensity");
-        this.FloatProperty(GetMaterialProperty(this.targets, "_Exponent"), "Exponent");
+        this.ColorProperty(GetMaterialProperty(mats : this.targets, "_Color2"), "Top Color");
+        this.ColorProperty(GetMaterialProperty(mats : this.targets, "_Color1"), "Bottom Color");
+        this.FloatProperty(GetMaterialProperty(mats : this.targets, "_Intensity"), "Intensity");
+        this.FloatProperty(GetMaterialProperty(mats : this.targets, "_Exponent"), "Exponent");
 
-        var dp = GetMaterialProperty(this.targets, "_UpVectorPitch");
-        var dy = GetMaterialProperty(this.targets, "_UpVectorYaw");
+        var dp = GetMaterialProperty(mats : this.targets, "_UpVectorPitch");
+        var dy = GetMaterialProperty(mats : this.targets, "_UpVectorYaw");
 
         if (dp.hasMixedValue || dy.hasMixedValue) {
           EditorGUILayout.HelpBox("Editing angles is disabled because they have mixed values.",
-                                  MessageType.Warning);
+                                  type : MessageType.Warning);
         } else {
-          this.FloatProperty(dp, "Pitch");
-          this.FloatProperty(dy, "Yaw");
+          this.FloatProperty(prop : dp, "Pitch");
+          this.FloatProperty(prop : dy, "Yaw");
         }
 
         if (EditorGUI.EndChangeCheck()) {
           var rp = dp.floatValue * Mathf.Deg2Rad;
           var ry = dy.floatValue * Mathf.Deg2Rad;
 
-          var up_vector = new Vector4(Mathf.Sin(rp) * Mathf.Sin(ry),
-                                      Mathf.Cos(rp),
-                                      Mathf.Sin(rp) * Mathf.Cos(ry),
+          var up_vector = new Vector4(Mathf.Sin(f : rp) * Mathf.Sin(f : ry),
+                                      Mathf.Cos(f : rp),
+                                      Mathf.Sin(f : rp) * Mathf.Cos(f : ry),
                                       0.0f);
-          GetMaterialProperty(this.targets, "_UpVector").vectorValue = up_vector;
+          GetMaterialProperty(mats : this.targets, "_UpVector").vectorValue = up_vector;
 
           this.PropertiesChanged();
         }

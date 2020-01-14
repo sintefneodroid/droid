@@ -13,7 +13,6 @@ namespace droid.Runtime.Messaging.Messages {
                                   SortedDictionary<string, IDisplayer> displayers) {
       this.Configurables = configurables;
       this.Actors = actors;
-      ;
       this.Sensors = sensors;
 
       this.Displayers = displayers;
@@ -42,5 +41,11 @@ namespace droid.Runtime.Messaging.Messages {
     /// <summary>
     /// </summary>
     public SortedDictionary<string, ISensor> Sensors { get; }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
+    public override String ToString() { return $"{Sensors.Count},{Actors.Count}"; }
   }
 }

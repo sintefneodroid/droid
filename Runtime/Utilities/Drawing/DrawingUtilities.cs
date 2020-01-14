@@ -17,13 +17,13 @@ namespace droid.Runtime.Utilities.Drawing {
                                 Color color,
                                 float arrow_head_length = 0.25f,
                                 float arrow_head_angle = 20.0f) {
-      Gizmos.DrawRay(pos, direction);
+      Gizmos.DrawRay(@from : pos, direction : direction);
       NeodroidDrawingUtilitiesEnd(true,
-                                  pos,
-                                  direction,
-                                  color,
-                                  arrow_head_length,
-                                  arrow_head_angle);
+                                  pos : pos,
+                                  direction : direction,
+                                  color : color,
+                                  arrow_head_length : arrow_head_length,
+                                  arrow_head_angle : arrow_head_angle);
     }
 
     /// <summary>
@@ -41,21 +41,21 @@ namespace droid.Runtime.Utilities.Drawing {
                                 float arrow_head_angle = 20.0f,
                                 float ray_duration = 0f) {
       if (ray_duration > 0) {
-        Debug.DrawRay(pos,
-                      direction,
-                      color,
-                      ray_duration);
+        Debug.DrawRay(start : pos,
+                      dir : direction,
+                      color : color,
+                      duration : ray_duration);
       } else {
-        Debug.DrawRay(pos, direction, color);
+        Debug.DrawRay(start : pos, dir : direction, color : color);
       }
 
       NeodroidDrawingUtilitiesEnd(false,
-                                  pos,
-                                  direction,
-                                  color,
-                                  arrow_head_length,
-                                  arrow_head_angle,
-                                  ray_duration);
+                                  pos : pos,
+                                  direction : direction,
+                                  color : color,
+                                  arrow_head_length : arrow_head_length,
+                                  arrow_head_angle : arrow_head_angle,
+                                  ray_duration : ray_duration);
     }
 
     static void NeodroidDrawingUtilitiesEnd(bool gizmos,
@@ -65,15 +65,15 @@ namespace droid.Runtime.Utilities.Drawing {
                                             float arrow_head_length = 0.25f,
                                             float arrow_head_angle = 20.0f,
                                             float ray_duration = 0f) {
-      var right = Quaternion.LookRotation(direction)
-                  * Quaternion.Euler(arrow_head_angle, 0, 0)
+      var right = Quaternion.LookRotation(forward : direction)
+                  * Quaternion.Euler(x : arrow_head_angle, 0, 0)
                   * Vector3.back;
-      var left = Quaternion.LookRotation(direction)
-                 * Quaternion.Euler(-arrow_head_angle, 0, 0)
+      var left = Quaternion.LookRotation(forward : direction)
+                 * Quaternion.Euler(x : -arrow_head_angle, 0, 0)
                  * Vector3.back;
-      var up = Quaternion.LookRotation(direction) * Quaternion.Euler(0, arrow_head_angle, 0) * Vector3.back;
-      var down = Quaternion.LookRotation(direction)
-                 * Quaternion.Euler(0, -arrow_head_angle, 0)
+      var up = Quaternion.LookRotation(forward : direction) * Quaternion.Euler(0, y : arrow_head_angle, 0) * Vector3.back;
+      var down = Quaternion.LookRotation(forward : direction)
+                 * Quaternion.Euler(0, y : -arrow_head_angle, 0)
                  * Vector3.back;
       if (gizmos) {
         Gizmos.color = color;
@@ -85,25 +85,25 @@ namespace droid.Runtime.Utilities.Drawing {
         if (ray_duration > 0) {
           Debug.DrawRay(pos + direction,
                         right * arrow_head_length,
-                        color,
-                        ray_duration);
+                        color : color,
+                        duration : ray_duration);
           Debug.DrawRay(pos + direction,
                         left * arrow_head_length,
-                        color,
-                        ray_duration);
+                        color : color,
+                        duration : ray_duration);
           Debug.DrawRay(pos + direction,
                         up * arrow_head_length,
-                        color,
-                        ray_duration);
+                        color : color,
+                        duration : ray_duration);
           Debug.DrawRay(pos + direction,
                         down * arrow_head_length,
-                        color,
-                        ray_duration);
+                        color : color,
+                        duration : ray_duration);
         } else {
-          Debug.DrawRay(pos + direction, right * arrow_head_length, color);
-          Debug.DrawRay(pos + direction, left * arrow_head_length, color);
-          Debug.DrawRay(pos + direction, up * arrow_head_length, color);
-          Debug.DrawRay(pos + direction, down * arrow_head_length, color);
+          Debug.DrawRay(pos + direction, right * arrow_head_length, color : color);
+          Debug.DrawRay(pos + direction, left * arrow_head_length, color : color);
+          Debug.DrawRay(pos + direction, up * arrow_head_length, color : color);
+          Debug.DrawRay(pos + direction, down * arrow_head_length, color : color);
         }
       }
 
@@ -122,7 +122,7 @@ namespace droid.Runtime.Utilities.Drawing {
       return
           0.5f
           * rb.mass
-          * Mathf.Pow(rb.velocity.magnitude,
+          * Mathf.Pow(f : rb.velocity.magnitude,
                       2); // mass in kg, velocity in meters per second, result is joules
     }
 
@@ -132,9 +132,9 @@ namespace droid.Runtime.Utilities.Drawing {
     /// <param name="p2"></param>
     /// <param name="width"></param>
     public static void DrawLine(Vector3 p1, Vector3 p2, float width) {
-      var count = Mathf.CeilToInt(width); // how many lines are needed.
+      var count = Mathf.CeilToInt(f : width); // how many lines are needed.
       if (count == 1) {
-        Gizmos.DrawLine(p1, p2);
+        Gizmos.DrawLine(@from : p1, to : p2);
       } else {
         var c = Camera.current;
         if (c == null) {
@@ -144,7 +144,7 @@ namespace droid.Runtime.Utilities.Drawing {
 
         var v1 = (p2 - p1).normalized; // line direction
         var v2 = (c.transform.position - p1).normalized; // direction to camera
-        var n = Vector3.Cross(v1, v2); // normal vector
+        var n = Vector3.Cross(lhs : v1, rhs : v2); // normal vector
         for (var i = 0; i < count; i++) {
           //Vector3 o = n * width ((float)i / (count - 1) - 0.5f);
           var o = width * ((float)i / (count - 1) - 0.5f) * n;
@@ -164,11 +164,11 @@ namespace droid.Runtime.Utilities.Drawing {
       RenderTexture.active = camera.targetTexture;
       camera.Render();
       var target_texture = camera.targetTexture;
-      var texture = new Texture2D(target_texture.width, target_texture.height);
+      var texture = new Texture2D(width : target_texture.width, height : target_texture.height);
       texture.ReadPixels(new Rect(0,
                                   0,
-                                  target_texture.width,
-                                  target_texture.height),
+                                  width : target_texture.width,
+                                  height : target_texture.height),
                          0,
                          0);
       texture.Apply();

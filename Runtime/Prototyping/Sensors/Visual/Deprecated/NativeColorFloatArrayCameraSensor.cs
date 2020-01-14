@@ -56,9 +56,9 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
         #if NEODROID_DEBUG
         Debug.LogWarning("Texture not available!");
         #endif
-        this._texture = new Texture2D(NeodroidConstants._Default_Width,
-                                      NeodroidConstants._Default_Height,
-                                      NeodroidConstants._Default_TextureFormat,
+        this._texture = new Texture2D(width : NeodroidConstants._Default_Width,
+                                      height : NeodroidConstants._Default_Height,
+                                      textureFormat : NeodroidConstants._Default_TextureFormat,
                                       false);
         this.ObservationArray = new float[this._texture.width * this._texture.height * 4];
       }
@@ -102,8 +102,8 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
             && this._camera.targetTexture.height == this._texture.height) {
           this._texture.ReadPixels(new Rect(0,
                                             0,
-                                            this._texture.width,
-                                            this._texture.height),
+                                            width : this._texture.width,
+                                            height : this._texture.height),
                                    0,
                                    0);
           //this._texture.Apply();
@@ -111,9 +111,9 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
           #if NEODROID_DEBUG
           Debug.LogWarning("Texture not available!");
           #endif
-          this._texture = new Texture2D(this._camera.targetTexture.width,
-                                        this._camera.targetTexture.height,
-                                        NeodroidConstants._Default_TextureFormat,
+          this._texture = new Texture2D(width : this._camera.targetTexture.width,
+                                        height : this._camera.targetTexture.height,
+                                        textureFormat : NeodroidConstants._Default_TextureFormat,
                                         false);
           this.ObservationArray = new float[this._texture.width * this._texture.height * 4];
         }
@@ -141,7 +141,7 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
         }
 */
         for (var index = 0; index < a.Length; index++) {
-          var b = a[index];
+          var b = a[index : index];
           //i = index*4;
           this.ObservationArray[i] = b.r;
           this.ObservationArray[i + 1] = b.g;
@@ -189,7 +189,7 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
     /// </summary>
     public override void UpdateObservation() {
       this._grab = true;
-      if (this._manager?.SimulatorConfiguration?.SimulationType != SimulationType.Frame_dependent_) {
+      if (this._manager?.SimulatorConfiguration?.SimulationType != SimulationTypeEnum.Frame_dependent_) {
         if (Application.isPlaying) {
           this._camera.Render();
         }

@@ -125,7 +125,7 @@ namespace droid.Runtime.Prototyping.Displayers {
         Debug.Log("Applying " + value + " To " + this.name);
       }
       #endif
-      this.SetText(value);
+      this.SetText(text : value);
     }
 
     public override void Display(Vector3 value) { throw new NotImplementedException(); }

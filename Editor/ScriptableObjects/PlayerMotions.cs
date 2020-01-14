@@ -18,7 +18,7 @@ namespace droid.Editor.ScriptableObjects {
     public static void CreatePlayerMotionsAsset() {
       var asset = ScriptableObject.CreateInstance<PlayerMotions>();
 
-      AssetDatabase.CreateAsset(asset, EditorWindowMenuPath._NewAssetPath + "NewPlayerMotions.asset");
+      AssetDatabase.CreateAsset(asset : asset, EditorWindowMenuPath._NewAssetPath + "NewPlayerMotions.asset");
       AssetDatabase.SaveAssets();
 
       EditorUtility.FocusProjectWindow();
@@ -42,8 +42,8 @@ namespace droid.Editor.ScriptableObjects {
         var icon =
             AssetDatabase.LoadAssetAtPath<Texture2D>(NeodroidSettings.Current.NeodroidImportLocationProp
                                                      + "Gizmos/Icons/table.png");
-        this.minSize = this.maxSize = new Vector2(WINDOW_WIDTH, WINDOW_HEIGHT);
-        this.titleContent = new GUIContent(this.titleContent.text, icon);
+        this.minSize = this.maxSize = new Vector2(x : WINDOW_WIDTH, y : WINDOW_HEIGHT);
+        this.titleContent = new GUIContent(text : this.titleContent.text, image : icon);
       }
 
       /// <summary>
@@ -76,7 +76,7 @@ namespace droid.Editor.ScriptableObjects {
           }
         }
 
-        AssetDatabase.CreateAsset(asset, EditorWindowMenuPath._NewAssetPath + "NewPlayerMotions.asset");
+        AssetDatabase.CreateAsset(asset : asset, EditorWindowMenuPath._NewAssetPath + "NewPlayerMotions.asset");
         AssetDatabase.SaveAssets();
 
         EditorUtility.FocusProjectWindow();

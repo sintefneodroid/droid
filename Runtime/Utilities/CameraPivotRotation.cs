@@ -27,7 +27,7 @@ namespace droid.Runtime.Utilities {
     public SphericalSpace _sphericalSpace;
 
     void Start() {
-      this._sphericalSpace = SphericalSpace.FromCartesian(this.transform.position,
+      this._sphericalSpace = SphericalSpace.FromCartesian(cartesian_coordinate : this.transform.position,
                                                           3f,
                                                           10f,
                                                           0f,
@@ -63,7 +63,7 @@ namespace droid.Runtime.Utilities {
             + this.pivot.position;
       }
 
-      this.transform.LookAt(this.pivot.position);
+      this.transform.LookAt(worldPosition : this.pivot.position);
     }
   }
 }

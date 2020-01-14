@@ -10,7 +10,7 @@ namespace droid.Runtime.Utilities.PostProcessesEffects {
   /// </summary>
   [Serializable]
   [PostProcess(typeof(FlipperRenderer),
-      PostProcessEvent.AfterStack,
+      eventType : PostProcessEvent.AfterStack,
       "Neodroid/Flip")]
   public sealed class Flipper : PostProcessEffectSettings {
     /// <summary>
@@ -34,12 +34,12 @@ namespace droid.Runtime.Utilities.PostProcessesEffects {
     /// </summary>
     /// <param name="context"></param>
     public override void Render(PostProcessRenderContext context) {
-      var sheet = context.propertySheets.Get(_s);
-      sheet.properties.SetFloat(_flip_x, this.settings.flip_x ? -1.0f : 1.0f);
-      sheet.properties.SetFloat(_flip_y, this.settings.flip_y ? -1.0f : 1.0f);
-      context.command.BlitFullscreenTriangle(context.source,
-                                             context.destination,
-                                             sheet,
+      var sheet = context.propertySheets.Get(shader : _s);
+      sheet.properties.SetFloat(nameID : _flip_x, this.settings.flip_x ? -1.0f : 1.0f);
+      sheet.properties.SetFloat(nameID : _flip_y, this.settings.flip_y ? -1.0f : 1.0f);
+      context.command.BlitFullscreenTriangle(source : context.source,
+                                             destination : context.destination,
+                                             propertySheet : sheet,
                                              0);
     }
   }

@@ -13,7 +13,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Lidar {
                                    IHasFloatArray {
     [SerializeField] [Range(1, 90)] int RaysToShoot = 30;
     [SerializeField] Space1 _observation_space = new Space1 {Max = 30 };
-    [SerializeField] Axis axis = Axis.Y_;
+    [SerializeField] AxisEnum _axisEnum = AxisEnum.Y_;
 
     /// <summary>
     ///
@@ -27,25 +27,25 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Lidar {
       var res = new float[this.RaysToShoot];
       float angle = 0;
       for (var i = 0; i < this.RaysToShoot; i++) {
-        var x = Mathf.Sin(angle);
-        var y = Mathf.Cos(angle);
+        var x = Mathf.Sin(f : angle);
+        var y = Mathf.Cos(f : angle);
         angle += 2 * Mathf.PI / this.RaysToShoot;
 
         var position = this.transform.position;
 
         var dir = new Vector3(position.x + x, position.y + y, 0);
-        if (this.axis == Axis.Y_) {
+        if (this._axisEnum == AxisEnum.Y_) {
           dir = new Vector3(position.x + x, 0, position.z + y);
-        } else if (this.axis == Axis.X_) {
+        } else if (this._axisEnum == AxisEnum.X_) {
           dir = new Vector3(0, position.y + y, position.z + x);
         }
 
-        Debug.DrawLine(position, dir, Color.red);
-        if (Physics.Raycast(this.transform.position,
-                            dir,
+        Debug.DrawLine(start : position, end : dir, color : Color.red);
+        if (Physics.Raycast(origin : this.transform.position,
+                            direction : dir,
                             out var a,
                             (float)this._observation_space.Max)) {
-          res[i] = this._observation_space.Project(a.distance);
+          res[i] = this._observation_space.Project(v : a.distance);
         } else {
           res[i] = this._observation_space.Max;
         }
@@ -68,20 +68,20 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Lidar {
     void OnDrawGizmosSelected() {
       float angle = 0;
       for (var i = 0; i < this.RaysToShoot; i++) {
-        var x = Mathf.Sin(angle) * this._observation_space.Max;
-        var y = Mathf.Cos(angle) * this._observation_space.Max;
+        var x = Mathf.Sin(f : angle) * this._observation_space.Max;
+        var y = Mathf.Cos(f : angle) * this._observation_space.Max;
 
         angle += 2 * Mathf.PI / this.RaysToShoot;
 
         var position = this.transform.position;
         var dir = new Vector3(position.x + x, position.y + y, 0);
-        if (this.axis == Axis.Y_) {
+        if (this._axisEnum == AxisEnum.Y_) {
           dir = new Vector3(position.x + x, 0, position.z + y);
-        } else if (this.axis == Axis.X_) {
+        } else if (this._axisEnum == AxisEnum.X_) {
           dir = new Vector3(0, position.y + y, position.z + x);
         }
 
-        Debug.DrawLine(position, dir, Color.red);
+        Debug.DrawLine(start : position, end : dir, color : Color.red);
       }
     }
   }

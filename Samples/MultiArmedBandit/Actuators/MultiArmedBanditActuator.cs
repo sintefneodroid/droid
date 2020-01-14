@@ -77,9 +77,9 @@ namespace droid.Samples.MultiArmedBandit.Actuators {
       }
     }
 
-    public void UpdatePayoutArm1(Text amount) { this.UpdatePayoutArm(0, float.Parse(amount.text)); }
-    public void UpdatePayoutArm2(Text amount) { this.UpdatePayoutArm(1, float.Parse(amount.text)); }
-    public void UpdatePayoutArm3(Text amount) { this.UpdatePayoutArm(2, float.Parse(amount.text)); }
+    public void UpdatePayoutArm1(Text amount) { this.UpdatePayoutArm(0, float.Parse(s : amount.text)); }
+    public void UpdatePayoutArm2(Text amount) { this.UpdatePayoutArm(1, float.Parse(s : amount.text)); }
+    public void UpdatePayoutArm3(Text amount) { this.UpdatePayoutArm(2, float.Parse(s : amount.text)); }
 
     public void GetPayoutArm1(DataPoller recipient) { recipient.PollData(this.GetPayoutArm(0)); }
     public void GetPayoutArm2(DataPoller recipient) { recipient.PollData(this.GetPayoutArm(1)); }
@@ -89,9 +89,9 @@ namespace droid.Samples.MultiArmedBandit.Actuators {
     public void GetPctArm2(DataPoller recipient) { recipient.PollData(this.GetPctArm(1)); }
     public void GetPctArm3(DataPoller recipient) { recipient.PollData(this.GetPctArm(2)); }
 
-    public void UpdatePercentageArm1(Text amount) { this.UpdatePercentageArm(0, float.Parse(amount.text)); }
-    public void UpdatePercentageArm2(Text amount) { this.UpdatePercentageArm(1, float.Parse(amount.text)); }
-    public void UpdatePercentageArm3(Text amount) { this.UpdatePercentageArm(2, float.Parse(amount.text)); }
+    public void UpdatePercentageArm1(Text amount) { this.UpdatePercentageArm(0, float.Parse(s : amount.text)); }
+    public void UpdatePercentageArm2(Text amount) { this.UpdatePercentageArm(1, float.Parse(s : amount.text)); }
+    public void UpdatePercentageArm3(Text amount) { this.UpdatePercentageArm(2, float.Parse(s : amount.text)); }
 
     void UpdatePayoutArm(int index, float amount) { this._Win_Amounts[index] = amount; }
 

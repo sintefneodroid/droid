@@ -12,7 +12,7 @@ namespace droid.Runtime.Messaging.Messages {
           /*if (rigidbodies[i] != null) { //TODO: Proper way to construct unobservables in case somethings with destroyed but if this is the case then reinitialisation of a state wont work anyway and lets just crash.
             this.Bodies[i] = new Body(rigidbodies[i].velocity, rigidbodies[i].angularVelocity);
           }*/
-          this.Bodies[i] = new Body(rigidbodies[i].velocity, rigidbodies[i].angularVelocity);
+          this.Bodies[i] = new Body(vel : rigidbodies[index : i].velocity, ang : rigidbodies[index : i].angularVelocity);
         }
       }
 
@@ -22,7 +22,7 @@ namespace droid.Runtime.Messaging.Messages {
           /*if (transforms[i] != null) { //TODO: Proper way to construct unobservables in case somethings with destroyed but if this is the case then reinitialisation of a state wont work anyway and lets just crash.
             this.Poses[i] = new Pose(transforms[i].position, transforms[i].rotation);
           }*/
-          this.Poses[i] = new Pose(transforms[i].position, transforms[i].rotation);
+          this.Poses[i] = new Pose(position : transforms[index : i].position, rotation : transforms[index : i].rotation);
         }
       }
     }
@@ -38,7 +38,7 @@ namespace droid.Runtime.Messaging.Messages {
       if (rigidbodies != null) {
         this.Bodies = new Body[rigidbodies.Length];
         for (var i = 0; i < this.Bodies.Length; i++) {
-          this.Bodies[i] = new Body(rigidbodies[i].velocity, rigidbodies[i].angularVelocity);
+          this.Bodies[i] = new Body(vel : rigidbodies[i].velocity, ang : rigidbodies[i].angularVelocity);
         }
       }
 
@@ -48,7 +48,7 @@ namespace droid.Runtime.Messaging.Messages {
           /*if (transforms[i] != null) { //TODO: Proper way to construct unobservables in case somethings with destroyed but if this is the case then reinitialisation of a state wont work anyway and lets just crash.
             this.Poses[i] = new Pose(transforms[i].position, transforms[i].rotation);
           }*/
-          this.Poses[i] = new Pose(transforms[i].position, transforms[i].rotation);
+          this.Poses[i] = new Pose(position : transforms[i].position, rotation : transforms[i].rotation);
         }
       }
     }

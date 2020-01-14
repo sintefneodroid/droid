@@ -52,29 +52,29 @@ namespace droid.Runtime.Prototyping.Actuators {
       this.Parent =
           NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
                                                           (Actuator)this,
-                                                          this._rot_x);
+                                                          identifier : this._rot_x);
       this.Parent =
           NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
                                                           (Actuator)this,
-                                                          this._rot_y);
+                                                          identifier : this._rot_y);
       this.Parent =
           NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
                                                           (Actuator)this,
-                                                          this._rot_z);
+                                                          identifier : this._rot_z);
       this.Parent =
           NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
                                                           (Actuator)this,
-                                                          this._rot_w);
+                                                          identifier : this._rot_w);
     }
 
     /// <summary>
     ///
     /// </summary>
     protected override void UnRegisterComponent() {
-      this.Parent?.UnRegister(this, this._rot_x);
-      this.Parent?.UnRegister(this, this._rot_y);
-      this.Parent?.UnRegister(this, this._rot_z);
-      this.Parent?.UnRegister(this, this._rot_w);
+      this.Parent?.UnRegister(this, obj : this._rot_x);
+      this.Parent?.UnRegister(this, obj : this._rot_y);
+      this.Parent?.UnRegister(this, obj : this._rot_z);
+      this.Parent?.UnRegister(this, obj : this._rot_w);
     }
 
     /// <inheritdoc />

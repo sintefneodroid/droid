@@ -24,7 +24,6 @@ namespace droid.Runtime.Messaging {
                                                   null,
                                                   "");
 
-    static ReactionParameters _null_reaction_parameters = new ReactionParameters();
     static List<Reaction> _out_reactions = new List<Reaction>();
 
     /// <summary>
@@ -42,13 +41,13 @@ namespace droid.Runtime.Messaging {
       if (reactions.HasValue) {
         var rs = reactions.Value;
         for (var i = 0; i < rs.ReactionsLength; i++) {
-          _out_reactions.Add(deserialise_reaction(rs.Reactions(i)));
+          _out_reactions.Add(deserialise_reaction(rs.Reactions(j : i)));
         }
 
         close = rs.Close;
         api_version = rs.ApiVersion;
         if (rs.SimulatorConfiguration.HasValue) {
-          simulator_configuration.FbsParse(rs.SimulatorConfiguration.Value);
+          simulator_configuration.FbsParse(flat_simulator_configuration : rs.SimulatorConfiguration.Value);
         }
       }
 
@@ -57,9 +56,9 @@ namespace droid.Runtime.Messaging {
       }
 
       return new Tuple<Reaction[], bool, String, SimulatorConfigurationMessage>(_out_reactions.ToArray(),
-                                                                                close,
-                                                                                api_version,
-                                                                                simulator_configuration);
+                                                                                item2 : close,
+                                                                                item3 : api_version,
+                                                                                item4 : simulator_configuration);
     }
 
     /// <summary>
@@ -69,20 +68,20 @@ namespace droid.Runtime.Messaging {
     public static Reaction deserialise_reaction(FReaction? reaction) {
       if (reaction.HasValue) {
         var r = reaction.Value;
-        var motions = deserialise_motions(r);
-        var configurations = deserialise_configurations(r);
-        var displayables = deserialise_displayables(r);
-        var unobservables = deserialise_unobservables(r);
-        var parameters = deserialise_parameters(r);
-        var serialised_message = deserialise_serialised_message(r);
+        var motions = deserialise_motions(reaction : r);
+        var configurations = deserialise_configurations(reaction : r);
+        var displayables = deserialise_displayables(reaction : r);
+        var unobservables = deserialise_unobservables(reaction : r);
+        var parameters = deserialise_parameters(reaction : r);
+        var serialised_message = deserialise_serialised_message(reaction_value : r);
 
-        return new Reaction(parameters,
-                            motions,
-                            configurations,
-                            unobservables,
-                            displayables,
-                            serialised_message,
-                            r.EnvironmentName);
+        return new Reaction(parameters : parameters,
+                            motions : motions,
+                            configurations : configurations,
+                            unobservables : unobservables,
+                            displayables : displayables,
+                            serialised_message : serialised_message,
+                            recipient_environment : r.EnvironmentName);
       }
 
       Debug.LogWarning("Empty reaction received");
@@ -103,11 +102,11 @@ namespace droid.Runtime.Messaging {
 
     static Unobservables deserialise_unobservables(FReaction reaction) {
       if (reaction.Unobservables.HasValue) {
-        var bodies = deserialise_bodies(reaction.Unobservables.Value);
+        var bodies = deserialise_bodies(unobservables : reaction.Unobservables.Value);
 
-        var poses = deserialise_poses(reaction.Unobservables.Value);
+        var poses = deserialise_poses(unobservables : reaction.Unobservables.Value);
 
-        return new Unobservables(ref bodies, ref poses);
+        return new Unobservables(bodies : ref bodies, poses : ref poses);
       }
 
       return new Unobservables();
@@ -115,30 +114,29 @@ namespace droid.Runtime.Messaging {
 
     static ReactionParameters deserialise_parameters(FReaction reaction) {
       if (reaction.Parameters.HasValue) {
-        var s = StepResetObserve.Observe_;
+        var s = ReactionTypeEnum.Observe_;
         if (reaction.Parameters.Value.Reset) {
-          s = StepResetObserve.Reset_;
-        }else if (reaction.Parameters.Value.Step) {
-          s = StepResetObserve.Step_;
+          s = ReactionTypeEnum.Reset_;
+        } else if (reaction.Parameters.Value.Step) {
+          s = ReactionTypeEnum.Step_;
         }
 
-        return new ReactionParameters(s,
-                                      reaction.Parameters.Value.Terminable,
-                                      reaction.Parameters.Value.Configure,
-                                      reaction.Parameters.Value.Describe,
-                                      reaction.Parameters.Value.EpisodeCount);
+        return new ReactionParameters(reaction_type : s,
+                                      terminable : reaction.Parameters.Value.Terminable,
+                                      configure : reaction.Parameters.Value.Configure,
+                                      episode_count : reaction.Parameters.Value.EpisodeCount,
+                                      describe : reaction.Parameters.Value.Describe);
       }
 
-
-      Debug.LogWarning("NULL PARAMETERS");
-      return _null_reaction_parameters;
+      Debug.LogError("NULL PARAMETERS");
+      return null;
     }
 
     static Configuration[] deserialise_configurations(FReaction reaction) {
       var l = reaction.ConfigurationsLength;
       var configurations = new Configuration[l];
       for (var i = 0; i < l; i++) {
-        configurations[i] = deserialise_configuration(reaction.Configurations(i));
+        configurations[i] = deserialise_configuration(reaction.Configurations(j : i));
       }
 
       return configurations;
@@ -148,7 +146,7 @@ namespace droid.Runtime.Messaging {
       var l = reaction.DisplayablesLength;
       var configurations = new Displayable[l];
       for (var i = 0; i < l; i++) {
-        configurations[i] = deserialise_displayable(reaction.Displayables(i));
+        configurations[i] = deserialise_displayable(reaction.Displayables(j : i));
       }
 
       return configurations;
@@ -162,43 +160,43 @@ namespace droid.Runtime.Messaging {
           case FDisplayableValue.NONE: break;
 
           case FDisplayableValue.FValue:
-            return new DisplayableFloat(d.DisplayableName, d.DisplayableValue<FValue>()?.Val);
+            return new DisplayableFloat(displayable_name : d.DisplayableName, displayable_value : d.DisplayableValue<FValue>()?.Val);
 
           case FDisplayableValue.FValues:
             var v3 = d.DisplayableValue<FValues>().GetValueOrDefault();
             _float_out.Clear();
             for (var i = 0; i < v3.ValsLength; i++) {
-              _float_out.Add((float)v3.Vals(i));
+              _float_out.Add((float)v3.Vals(j : i));
             }
 
-            return new DisplayableValues(d.DisplayableName, _float_out.ToArray());
+            return new DisplayableValues(displayable_name : d.DisplayableName, _float_out.ToArray());
 
           case FDisplayableValue.FVector3s:
             var v2 = d.DisplayableValue<FVector3s>().GetValueOrDefault();
             _vector_out.Clear();
             for (var i = 0; i < v2.PointsLength; i++) {
-              var p = v2.Points(i).GetValueOrDefault();
+              var p = v2.Points(j : i).GetValueOrDefault();
               var v = new Vector3((float)p.X, (float)p.Y, (float)p.Z);
-              _vector_out.Add(v);
+              _vector_out.Add(item : v);
             }
 
-            return new DisplayableVector3S(d.DisplayableName, _vector_out.ToArray());
+            return new DisplayableVector3S(displayable_name : d.DisplayableName, _vector_out.ToArray());
 
           case FDisplayableValue.FValuedVector3s:
             var flat_fvec3 = d.DisplayableValue<FValuedVector3s>().GetValueOrDefault();
             _output.Clear();
 
             for (var i = 0; i < flat_fvec3.PointsLength; i++) {
-              var val = (float)flat_fvec3.Vals(i);
-              var p = flat_fvec3.Points(i).GetValueOrDefault();
-              var v = new Points.ValuePoint(new Vector3((float)p.X, (float)p.Y, (float)p.Z), val, 1);
-              _output.Add(v);
+              var val = (float)flat_fvec3.Vals(j : i);
+              var p = flat_fvec3.Points(j : i).GetValueOrDefault();
+              var v = new Points.ValuePoint(new Vector3((float)p.X, (float)p.Y, (float)p.Z), val : val, 1);
+              _output.Add(item : v);
             }
 
-            return new DisplayableValuedVector3S(d.DisplayableName, _output.ToArray());
+            return new DisplayableValuedVector3S(displayable_name : d.DisplayableName, _output.ToArray());
 
           case FDisplayableValue.FString:
-            return new DisplayableString(d.DisplayableName, d.DisplayableValue<FString>()?.Str);
+            return new DisplayableString(displayable_name : d.DisplayableName, displayable_value : d.DisplayableValue<FString>()?.Str);
 
           case FDisplayableValue.FByteArray: break;
           default: throw new ArgumentOutOfRangeException();
@@ -212,7 +210,7 @@ namespace droid.Runtime.Messaging {
       var l = reaction.MotionsLength;
       var motions = new IMotion[l];
       for (var i = 0; i < l; i++) {
-        motions[i] = deserialise_motion(reaction.Motions(i));
+        motions[i] = deserialise_motion(reaction.Motions(j : i));
       }
 
       return motions;
@@ -222,7 +220,7 @@ namespace droid.Runtime.Messaging {
       if (configuration.HasValue) {
         var c = configuration.Value;
         var sample_random = false; //TODO: c.SampleRandom;
-        return new Configuration(c.ConfigurableName, (float)c.ConfigurableValue, sample_random);
+        return new Configuration(configurable_name : c.ConfigurableName, (float)c.ConfigurableValue, sample_random : sample_random);
       }
 
       return null;
@@ -230,8 +228,8 @@ namespace droid.Runtime.Messaging {
 
     static ActuatorMotion deserialise_motion(FMotion? motion) {
       if (motion.HasValue) {
-        return new ActuatorMotion(motion.Value.ActorName,
-                                  motion.Value.ActuatorName,
+        return new ActuatorMotion(actor_name : motion.Value.ActorName,
+                                  actuator_name : motion.Value.ActuatorName,
                                   (float)motion.Value.Strength);
       }
 
@@ -242,7 +240,7 @@ namespace droid.Runtime.Messaging {
       var l = unobservables.PosesLength;
       var poses = new Pose[l];
       for (var i = 0; i < l; i++) {
-        poses[i] = deserialise_pose(unobservables.Poses(i));
+        poses[i] = deserialise_pose(unobservables.Poses(j : i));
       }
 
       return poses;
@@ -252,7 +250,7 @@ namespace droid.Runtime.Messaging {
       var l = unobservables.BodiesLength;
       var bodies = new Body[l];
       for (var i = 0; i < l; i++) {
-        bodies[i] = deserialise_body(unobservables.Bodies(i));
+        bodies[i] = deserialise_body(unobservables.Bodies(j : i));
       }
 
       return bodies;
@@ -267,7 +265,7 @@ namespace droid.Runtime.Messaging {
                                       (float)rotation.Y,
                                       (float)rotation.Z,
                                       (float)rotation.W);
-        return new Pose(vec3_pos, quat_rot);
+        return new Pose(position : vec3_pos, rotation : quat_rot);
       }
 
       return new Pose();
@@ -279,7 +277,7 @@ namespace droid.Runtime.Messaging {
         var ang = body.Value.AngularVelocity;
         var vec3_vel = new Vector3((float)vel.X, (float)vel.Y, (float)vel.Z);
         var vec3_ang = new Vector3((float)ang.X, (float)ang.Y, (float)ang.Z);
-        return new Body(vec3_vel, vec3_ang);
+        return new Body(vel : vec3_vel, ang : vec3_ang);
       }
 
       return null;

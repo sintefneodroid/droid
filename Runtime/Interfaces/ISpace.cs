@@ -1,4 +1,6 @@
+using System;
 using droid.Runtime.Enums;
+using UnityEngine;
 
 namespace droid.Runtime.Interfaces {
   /// <summary>
@@ -25,7 +27,9 @@ namespace droid.Runtime.Interfaces {
     /// <summary>
     ///
     /// </summary>
-    Normalisation Normalised { get; }
+    NormalisationEnum Normalised { get; }
+
+    dynamic Mean { get; }
 
     /// <summary>
     ///

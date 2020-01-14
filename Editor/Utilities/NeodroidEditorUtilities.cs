@@ -10,7 +10,7 @@ namespace droid.Editor.Utilities {
                                          0xDA / 255f,
                                          1f);
 
-    static GUIStyle _default_link_style = new GUIStyle(EditorStyles.label) {
+    static GUIStyle _default_link_style = new GUIStyle(other : EditorStyles.label) {
                                                                                fontSize = 14,
                                                                                wordWrap = false,
                                                                                normal = {
@@ -33,18 +33,18 @@ namespace droid.Editor.Utilities {
         link_style = _default_link_style;
       }
 
-      var position = GUILayoutUtility.GetRect(label, link_style, options);
+      var position = GUILayoutUtility.GetRect(content : label, style : link_style, options : options);
 
       Handles.BeginGUI();
 
       Handles.color = link_style.normal.textColor;
-      Handles.DrawLine(new Vector3(position.xMin, position.yMax), new Vector3(position.xMax, position.yMax));
+      Handles.DrawLine(new Vector3(x : position.xMin, y : position.yMax), new Vector3(x : position.xMax, y : position.yMax));
       Handles.color = Color.white;
       Handles.EndGUI();
 
-      EditorGUIUtility.AddCursorRect(position, MouseCursor.Link);
+      EditorGUIUtility.AddCursorRect(position : position, mouse : MouseCursor.Link);
 
-      return GUI.Button(position, label, link_style);
+      return GUI.Button(position : position, content : label, style : link_style);
     }
   }
 }

@@ -44,8 +44,8 @@ Important Notes:
               continue;
             }
 
-            if (MonoImporter.GetExecutionOrder(mono_script) != 9990) {
-              MonoImporter.SetExecutionOrder(mono_script, 9990);
+            if (MonoImporter.GetExecutionOrder(script : mono_script) != 9990) {
+              MonoImporter.SetExecutionOrder(script : mono_script, 9990);
               return;
             }
           }
@@ -88,14 +88,14 @@ Important Notes:
       /// <param name="color">Color of the line.</param>
       /// <param name="duration">How long the line should be visible for.</param>
       /// <param name="depth_test">Should the line be obscured by objects closer to the camera?</param>
-      [Conditional(_conditional_flag)]
+      [Conditional(conditionString : _conditional_flag)]
       public static void DrawLine(Vector3 start, Vector3 end, Color color, float duration, bool depth_test) {
         CheckAndBuildHiddenRtDrawObject();
-        _rt_draw.RegisterLine(start,
-                              end,
-                              color,
-                              duration,
-                              !depth_test);
+        _rt_draw.RegisterLine(start : start,
+                              end : end,
+                              color : color,
+                              timer : duration,
+                              no_z_test : !depth_test);
       }
 
       /// <summary>
@@ -106,14 +106,14 @@ Important Notes:
       /// <param name="color">Color of the drawn line.</param>
       /// <param name="duration">How long the line will be visible for (in seconds).</param>
       /// <param name="depth_test">Should the line be obscured by other objects closer to the camera?</param>
-      [Conditional(_conditional_flag)]
+      [Conditional(conditionString : _conditional_flag)]
       public static void DrawRay(Vector3 start, Vector3 dir, Color color, float duration, bool depth_test) {
         CheckAndBuildHiddenRtDrawObject();
-        _rt_draw.RegisterLine(start,
+        _rt_draw.RegisterLine(start : start,
                               start + dir,
-                              color,
-                              duration,
-                              !depth_test);
+                              color : color,
+                              timer : duration,
+                              no_z_test : !depth_test);
       }
 
       /// <summary>
@@ -128,7 +128,7 @@ Important Notes:
       ///   Set to true to let the text moving up, so multiple texts at the same position can be
       ///   visible.
       /// </param>
-      [Conditional(_conditional_flag)]
+      [Conditional(conditionString : _conditional_flag)]
       public static void DrawText(Vector3 pos,
                                   string text,
                                   Color color,
@@ -136,12 +136,12 @@ Important Notes:
                                   float duration,
                                   bool pop_up = false) {
         CheckAndBuildHiddenRtDrawObject();
-        _rt_draw.RegisterDrawText(pos,
-                                  text,
-                                  color,
-                                  size,
-                                  duration,
-                                  pop_up);
+        _rt_draw.RegisterDrawText(anchor : pos,
+                                  text : text,
+                                  color : color,
+                                  size : size,
+                                  timer : duration,
+                                  pop_up : pop_up);
       }
 
       /// <summary>
@@ -152,18 +152,18 @@ Important Notes:
       /// <param name="offset">Text attach offset to transform position.</param>
       /// <param name="color">Color for the text.</param>
       /// <param name="size">Font size for the text.</param>
-      [Conditional(_conditional_flag)]
+      [Conditional(conditionString : _conditional_flag)]
       public static void AttachText(Transform transform,
                                     Func<string> str_func,
                                     Vector3 offset,
                                     Color color,
                                     int size) {
         CheckAndBuildHiddenRtDrawObject();
-        _rt_draw.RegisterAttachText(transform,
-                                    str_func,
-                                    offset,
-                                    color,
-                                    size);
+        _rt_draw.RegisterAttachText(target : transform,
+                                    str_func : str_func,
+                                    offset : offset,
+                                    color : color,
+                                    size : size);
       }
 
       #endregion
@@ -193,14 +193,14 @@ Important Notes:
 
         //	instantiate an hidden game_object w/ RuntimeDebugDraw attached.
         //	hardcode an GUID in the name so one won't accidentally get this by name.
-        var go = new GameObject(_hidden_go_name);
-        var child_go = new GameObject(_hidden_go_name);
+        var go = new GameObject(name : _hidden_go_name);
+        var child_go = new GameObject(name : _hidden_go_name);
         child_go.transform.parent = go.transform;
         _rt_draw = child_go.AddComponent<RuntimeDebugDraw.Internal.RuntimeDebugDraw>();
         //	hack to only hide outer go, so that RuntimeDebugDraw's OnGizmos will work properly.
         go.hideFlags = HideFlags.HideAndDontSave;
         if (Application.isPlaying) {
-          Object.DontDestroyOnLoad(go);
+          Object.DontDestroyOnLoad(target : go);
         }
       }
 
@@ -287,7 +287,7 @@ Important Notes:
 
             //	relying on a builtin shader, but it shouldn't change that much.
             this._Mat = new Material(Shader.Find("Hidden/Internal-Colored"));
-            this._Mat.SetInt(_z_test,
+            this._Mat.SetInt(nameID : _z_test,
                              depth_test
                                  ? 4 // LEqual
                                  : 0 // Always
@@ -299,15 +299,15 @@ Important Notes:
           }
 
           public void Dispose() {
-            DestroyImmediate(this._Mesh);
-            DestroyImmediate(this._Mat);
+            DestroyImmediate(obj : this._Mesh);
+            DestroyImmediate(obj : this._Mat);
           }
 
           public void AddLine(Vector3 from, Vector3 to, Color color) {
-            this._vertices.Add(from);
-            this._vertices.Add(to);
-            this._colors.Add(color);
-            this._colors.Add(color);
+            this._vertices.Add(item : from);
+            this._vertices.Add(item : to);
+            this._colors.Add(item : color);
+            this._colors.Add(item : color);
             var vertice_count = this._vertices.Count;
             this._indices.Add(vertice_count - 2);
             this._indices.Add(vertice_count - 1);
@@ -321,10 +321,10 @@ Important Notes:
           }
 
           public void BuildBatch() {
-            this._Mesh.SetVertices(this._vertices);
-            this._Mesh.SetColors(this._colors);
+            this._Mesh.SetVertices(inVertices : this._vertices);
+            this._Mesh.SetColors(inColors : this._colors);
             this._Mesh.SetIndices(this._indices.ToArray(),
-                                  MeshTopology.Lines,
+                                  topology : MeshTopology.Lines,
                                   0); // cant get rid of this alloc for now
           }
         }
@@ -346,7 +346,7 @@ Important Notes:
 
           if (entry == null) {
             entry = new DrawLineEntry();
-            this._line_entries.Add(entry);
+            this._line_entries.Add(item : entry);
           }
 
           entry._Occupied = true;
@@ -362,15 +362,16 @@ Important Notes:
           this._z_test_batch.Clear();
           this._always_batch.Clear();
 
-          foreach (var entry in this._line_entries) {
+          for (var index = 0; index < this._line_entries.Count; index++) {
+            var entry = this._line_entries[index : index];
             if (!entry._Occupied) {
               continue;
             }
 
             if (entry._NoZTest) {
-              this._always_batch.AddLine(entry._Start, entry._End, entry._Color);
+              this._always_batch.AddLine(@from : entry._Start, to : entry._End, color : entry._Color);
             } else {
-              this._z_test_batch.AddLine(entry._Start, entry._End, entry._Color);
+              this._z_test_batch.AddLine(@from : entry._Start, to : entry._End, color : entry._Color);
             }
           }
 
@@ -385,21 +386,21 @@ Important Notes:
           }
 
           //	draw on UI layer which should bypass most postFX setups
-          Graphics.DrawMesh(this._always_batch._Mesh,
-                            Vector3.zero,
-                            Quaternion.identity,
-                            this._always_batch._Mat,
-                            Draw._DrawLineLayer,
+          Graphics.DrawMesh(mesh : this._always_batch._Mesh,
+                            position : Vector3.zero,
+                            rotation : Quaternion.identity,
+                            material : this._always_batch._Mat,
+                            layer : Draw._DrawLineLayer,
                             null,
                             0,
                             null,
                             false,
                             false);
-          Graphics.DrawMesh(this._z_test_batch._Mesh,
-                            Vector3.zero,
-                            Quaternion.identity,
-                            this._z_test_batch._Mat,
-                            Draw._DrawLineLayer,
+          Graphics.DrawMesh(mesh : this._z_test_batch._Mesh,
+                            position : Vector3.zero,
+                            rotation : Quaternion.identity,
+                            material : this._z_test_batch._Mat,
+                            layer : Draw._DrawLineLayer,
                             null,
                             0,
                             null,
@@ -489,7 +490,7 @@ Important Notes:
 
           if (entry == null) {
             entry = new DrawTextEntry();
-            this._draw_text_entries.Add(entry);
+            this._draw_text_entries.Add(item : entry);
           }
 
           entry._Occupied = true;
@@ -524,7 +525,7 @@ Important Notes:
 
           if (entry == null) {
             entry = new AttachTextEntry();
-            this._attach_text_entries.Add(entry);
+            this._attach_text_entries.Add(item : entry);
           }
 
           entry._Occupied = true;
@@ -592,7 +593,7 @@ Important Notes:
               continue;
             }
 
-            this.GuiDrawTextEntry(this_camera, entry);
+            this.GuiDrawTextEntry(n_camera : this_camera, entry : entry);
             entry._Flag |= DrawFlag.Drawn_gui_;
           }
 
@@ -601,14 +602,14 @@ Important Notes:
               continue;
             }
 
-            this.GuiAttachTextEntry(this_camera, entry);
+            this.GuiAttachTextEntry(n_camera : this_camera, entry : entry);
             entry._Flag |= DrawFlag.Drawn_gui_;
           }
         }
 
         void GuiDrawTextEntry(Camera n_camera, DrawTextEntry entry) {
           var world_pos = entry._Anchor;
-          var screen_pos = n_camera.WorldToScreenPoint(world_pos);
+          var screen_pos = n_camera.WorldToScreenPoint(position : world_pos);
           screen_pos.y = Screen.height - screen_pos.y;
 
           if (entry._PopUp) {
@@ -618,8 +619,8 @@ Important Notes:
 
           this._text_style.normal.textColor = entry._Color;
           this._text_style.fontSize = entry._Size;
-          var rect = new Rect(screen_pos, this._text_style.CalcSize(entry._Content));
-          GUI.Label(rect, entry._Content, this._text_style);
+          var rect = new Rect(position : screen_pos, this._text_style.CalcSize(content : entry._Content));
+          GUI.Label(position : rect, content : entry._Content, style : this._text_style);
         }
 
         void GuiAttachTextEntry(Camera n_camera, AttachTextEntry entry) {
@@ -628,13 +629,13 @@ Important Notes:
           }
 
           var world_pos = entry._Transform.position + entry._Offset;
-          var screen_pos = n_camera.WorldToScreenPoint(world_pos);
+          var screen_pos = n_camera.WorldToScreenPoint(position : world_pos);
           screen_pos.y = Screen.height - screen_pos.y;
 
           this._text_style.normal.textColor = entry._Color;
           this._text_style.fontSize = entry._Size;
-          var rect = new Rect(screen_pos, this._text_style.CalcSize(entry._Content));
-          GUI.Label(rect, entry._Content, this._text_style);
+          var rect = new Rect(position : screen_pos, this._text_style.CalcSize(content : entry._Content));
+          GUI.Label(position : rect, content : entry._Content, style : this._text_style);
         }
 
         #if UNITY_EDITOR
@@ -655,7 +656,7 @@ Important Notes:
               continue;
             }
 
-            this.GuiDrawTextEntry(n_camera, entry);
+            this.GuiDrawTextEntry(n_camera : n_camera, entry : entry);
             entry._Flag |= DrawFlag.Drawn_gizmo_;
           }
 
@@ -664,7 +665,7 @@ Important Notes:
               continue;
             }
 
-            this.GuiAttachTextEntry(n_camera, entry);
+            this.GuiAttachTextEntry(n_camera : n_camera, entry : entry);
             entry._Flag |= DrawFlag.Drawn_gizmo_;
           }
 

@@ -5,32 +5,26 @@ using Random = UnityEngine.Random;
 
 namespace droid.Runtime.Sampling {
   /// <summary>
-  ///
   /// </summary>
   [Serializable]
   public enum DistributionEnum {
     /// <summary>
-    ///
     /// </summary>
     Uniform_,
 
     /// <summary>
-    ///
     /// </summary>
     Normal_,
 
     /// <summary>
-    ///
     /// </summary>
     Sloped_,
 
     /// <summary>
-    ///
     /// </summary>
     Exponential_,
 
     /// <summary>
-    ///
     /// </summary>
     Linear_
   }
@@ -48,21 +42,18 @@ namespace droid.Runtime.Sampling {
       this._de = distribution_enum;
       this._conf_level = Distributions.ConfidenceLevel._95;
       this.Direction = d;
-      this.DistributionFactor = 1.267291f;
+      this.DistributionParameter = 1.267291f;
     }
 
     /// <summary>
-    ///
     /// </summary>
-    public Single DistributionFactor { get; set; }
+    public Single DistributionParameter { get; set; }
 
     /// <summary>
-    ///
     /// </summary>
     public Distributions.DirectionE Direction { get; set; }
 
     /// <summary>
-    ///
     /// </summary>
     /// <param name="min"></param>
     /// <param name="max"></param>
@@ -72,38 +63,40 @@ namespace droid.Runtime.Sampling {
     public float Range(float min, float max, int granularity = 0) {
       switch (this._de) {
         case DistributionEnum.Uniform_:
-          if(granularity==0) {
-            return Random.Range((int)min, (int)max+1);
+          if (granularity == 0) {
+            return Random.Range((int)min, (int)max + 1);
           } else {
-            return Random.Range(min, max);
+            return Random.Range(min : min, max : max);
           }
         case DistributionEnum.Normal_:
-          return Distributions.RandomRangeNormalDistribution(min, max, this._conf_level);
+          return Distributions.RandomRangeNormalDistribution(min : min, max : max,
+                                                             confidence_level_cutoff : this._conf_level);
         case DistributionEnum.Sloped_:
-          return Distributions.RandomRangeSlope(min,
-                                                max,
-                                                this.DistributionFactor,
-                                                this.Direction);
+          return Distributions.RandomRangeSlope(min : min,
+                                                max : max,
+                                                skew : this.DistributionParameter,
+                                                direction : this.Direction);
         case DistributionEnum.Exponential_:
-          return Distributions.RandomRangeExponential(min,
-                                                      max,
-                                                      this.DistributionFactor,
-                                                      this.Direction);
-        case DistributionEnum.Linear_: return Distributions.RandomLinear(this.DistributionFactor);
+          return Distributions.RandomRangeExponential(min : min,
+                                                      max : max,
+                                                      exponent : this.DistributionParameter,
+                                                      direction : this.Direction);
+        case DistributionEnum.Linear_: return Distributions.RandomLinear(slope : this.DistributionParameter);
         default:
-          if(granularity==0) {
-            return Random.Range((int)min, (int)max+1);
+          if (granularity == 0) {
+            return Random.Range((int)min, (int)max + 1);
           } else {
-            return Random.Range(min, max);
+            return Random.Range(min : min, max : max);
           }
       }
     }
   }
 
   /// <summary>
-  ///
   /// </summary>
   public static class Distributions {
+    #region ConfidenceLevel enum
+
     //--------------------------------------------------------------------------------------------
     // Normal Distribution
     //--------------------------------------------------------------------------------------------
@@ -119,6 +112,10 @@ namespace droid.Runtime.Sampling {
       _999
     }
 
+    #endregion
+
+    #region DirectionE enum
+
     //--------------------------------------------------------------------------------------------
     // Sloped Distribution (sec^2 distribution)
     //--------------------------------------------------------------------------------------------
@@ -127,14 +124,15 @@ namespace droid.Runtime.Sampling {
     /// </summary>
     public enum DirectionE {
       /// <summary>
-      ///
       /// </summary>
       Right_,
+
       /// <summary>
-      ///
       /// </summary>
       Left_
     }
+
+    #endregion
 
     static float[] _confidence_to_z_score = {
                                                 0.84162123f,
@@ -184,7 +182,7 @@ namespace droid.Runtime.Sampling {
       // Get random normal from Normal Distribution that's within the confidence level cutoff requested
       float random_normal_num;
       do {
-        random_normal_num = RandomNormalDistribution(mean, sigma);
+        random_normal_num = RandomNormalDistribution(mean : mean, std_dev : sigma);
       } while (random_normal_num > max || random_normal_num < min);
 
       // now you have a number selected from a bell curve stretching from min to max!
@@ -251,7 +249,7 @@ namespace droid.Runtime.Sampling {
       }
 
       // create normally distributed number.
-      var z = seed * Mathf.Sqrt(-2.0f * Mathf.Log(s) / s);
+      var z = seed * Mathf.Sqrt(-2.0f * Mathf.Log(f : s) / s);
 
       return z;
     }
@@ -260,9 +258,12 @@ namespace droid.Runtime.Sampling {
     ///   Returns a random number in range [min,max] from a curved slope following sec^2(x).
     /// </summary>
     /// <returns>Random in range [min,max] from a curved left slope.</returns>
+    /// <param name="max"></param>
     /// <param name="skew">The difference in height between max and min of curve.</param>
+    /// <param name="min"></param>
+    /// <param name="direction"></param>
     public static float RandomRangeSlope(float min, float max, float skew, DirectionE direction) {
-      return min + RandomFromSlopedDistribution(skew, direction) * (max - min);
+      return min + RandomFromSlopedDistribution(skew : skew, direction : direction) * (max - min);
     }
 
     /// <summary>
@@ -270,17 +271,18 @@ namespace droid.Runtime.Sampling {
     /// </summary>
     /// <returns>Random in range [0,1] from a curved right slope.</returns>
     /// <param name="skew">The difference in height between max and min of curve.</param>
+    /// <param name="direction"></param>
     public static float RandomFromSlopedDistribution(float skew, DirectionE direction) {
       // the difference in scale is just the same as the max y-value..
       var max_y = skew;
 
       // our curve will go from 0 to max_x.
-      var max_x = Inverse_Sec_Sqrd(max_y);
+      var max_x = Inverse_Sec_Squared(y : max_y);
 
-      var max_cdf = Sec_Sqrd_CumulativeDistribution(max_x);
+      var max_cdf = Sec_Squared_CumulativeDistribution(x : max_x);
 
-      var u = Random.Range(0.0f, max_cdf);
-      var x_val = Sec_Sqrd_InverseCumulativeDistribution(u);
+      var u = Random.Range(0.0f, max : max_cdf);
+      var x_val = Sec_Squared_InverseCumulativeDistribution(x : u);
 
       // scale to [0,1]
       var value = x_val / max_x;
@@ -295,29 +297,30 @@ namespace droid.Runtime.Sampling {
     /// <summary>
     ///   The inverse of the sec^2 function.
     /// </summary>
-    /// <param name="y">The y coordinate. if y
+    /// <param name="y">
+    ///   The y coordinate. if y
     ///   < 1, returns NaN.
     /// </param>
-    static float Inverse_Sec_Sqrd(float y) {
+    static float Inverse_Sec_Squared(float y) {
       // Note: arcsec(x) = arccos(1/x)
 
       // return arcsec(sqrt(y))
-      return Mathf.Acos(1.0f / Mathf.Sqrt(y));
+      return Mathf.Acos(1.0f / Mathf.Sqrt(f : y));
     }
 
     // The integral of sec^2
-    static float Sec_Sqrd_CumulativeDistribution(float x) {
+    static float Sec_Squared_CumulativeDistribution(float x) {
       // The cumulative distribution function for sec^2 is just the definite integral of sec^2(x) = tan(x) - tan(0) = tan(x)
 
-      return Mathf.Tan(x);
+      return Mathf.Tan(f : x);
     }
 
     // The inverse of the integral of sec^2
-    static float Sec_Sqrd_InverseCumulativeDistribution(float x) {
+    static float Sec_Squared_InverseCumulativeDistribution(float x) {
       // The cumulative distribution function for sec^2 is just the definite integral of sec^2(x) = tan(x) - tan(0) = tan(x)
       // Then the Inverse cumulative distribution function is just atan(x)
 
-      return Mathf.Atan(x);
+      return Mathf.Atan(f : x);
     }
 
     //--------------------------------------------------------------------------------------------
@@ -327,17 +330,17 @@ namespace droid.Runtime.Sampling {
     // Returns random in range [min, max] with linear distribution of given slope.
     public static float RandomRangeLinear(float min, float max, float slope) {
       if (slope == 0) {
-        return Random.Range(min, max);
+        return Random.Range(min : min, max : max);
       }
 
-      var val = RandomLinear(slope);
+      var val = RandomLinear(slope : slope);
 
       return min + (max - min) * val;
     }
 
     // Returns random in range [0,1] with linear distribution of given slope.
     public static float RandomLinear(float slope) {
-      var abs_value = RandomFromLinearWithPositiveSlope(Mathf.Abs(slope));
+      var abs_value = RandomFromLinearWithPositiveSlope(Mathf.Abs(f : slope));
       if (slope < 0) {
         return 1 - abs_value;
       }
@@ -379,7 +382,7 @@ namespace droid.Runtime.Sampling {
     /// </param>
     /// <param name="direction">The direction for the curve (right/left).</param>
     public static float RandomRangeExponential(float min, float max, float exponent, DirectionE direction) {
-      return min + RandomFromExponentialDistribution(exponent, direction) * (max - min);
+      return min + RandomFromExponentialDistribution(exponent : exponent, direction : direction) * (max - min);
     }
 
     /// <summary>
@@ -393,10 +396,10 @@ namespace droid.Runtime.Sampling {
     /// <param name="direction">The direction for the curve (right/left).</param>
     public static float RandomFromExponentialDistribution(float exponent, DirectionE direction) {
       // our curve will go from 0 to 1.
-      var max_cdf = ExponentialRightCdf(1.0f, exponent);
+      var max_cdf = ExponentialRightCdf(1.0f, exponent : exponent);
 
-      var u = Random.Range(0.0f, max_cdf);
-      var x_val = EponentialRightInverseCdf(u, exponent);
+      var u = Random.Range(0.0f, max : max_cdf);
+      var x_val = ExponentialRightInverseCdf(x : u, exponent : exponent);
 
       if (direction == DirectionE.Left_) {
         x_val = 1.0f - x_val;
@@ -406,16 +409,16 @@ namespace droid.Runtime.Sampling {
     }
 
     // The inverse of the curve.
-    static float ExponentialRightInverse(float y, float exponent) { return Mathf.Pow(y, 1.0f / exponent); }
+    static float ExponentialRightInverse(float y, float exponent) { return Mathf.Pow(f : y, 1.0f / exponent); }
 
     // The integral of the exponent curve.
     static float ExponentialRightCdf(float x, float exponent) {
       var integral_exp = exponent + 1.0f;
-      return Mathf.Pow(x, integral_exp) / integral_exp;
+      return Mathf.Pow(f : x, p : integral_exp) / integral_exp;
     }
 
     // The inverse of the integral of the exponent curve.
-    static float EponentialRightInverseCdf(float x, float exponent) {
+    static float ExponentialRightInverseCdf(float x, float exponent) {
       var integral_exp = exponent + 1.0f;
       return Mathf.Pow(integral_exp * x, 1.0f / integral_exp);
     }
@@ -438,13 +441,13 @@ namespace droid.Runtime.Sampling {
       var cdf = new float[probabilities.Count];
       float sum = 0;
       for (var i = 0; i < probabilities.Count; ++i) {
-        cdf[i] = sum + probabilities[i];
+        cdf[i] = sum + probabilities[index : i];
         sum = cdf[i];
       }
 
       // Choose from CDF:
       var cdf_value = Random.Range(0.0f, cdf[probabilities.Count - 1]);
-      var index = Array.BinarySearch(cdf, cdf_value);
+      var index = Array.BinarySearch(array : cdf, value : cdf_value);
 
       if (index < 0) {
         index = ~index; // if not found (probably won't be) BinarySearch returns bitwise complement of next-highest index.

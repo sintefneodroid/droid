@@ -28,9 +28,9 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
       }*/
 
       var distance =
-          Mathf.Abs(Vector3.Distance(this._goal.transform.position,
-                                     this._actor_transform.transform.position));
-      var angle = Quaternion.Angle(this._goal.transform.rotation, this._actor_transform.transform.rotation);
+          Mathf.Abs(Vector3.Distance(a : this._goal.transform.position,
+                                     b : this._actor_transform.transform.position));
+      var angle = Quaternion.Angle(a : this._goal.transform.rotation, b : this._actor_transform.transform.rotation);
       #if NEODROID_DEBUG
       if (this.Debugging) {
         Debug.Log($"Distance: {distance}");
@@ -40,11 +40,11 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
 
       if (!this._sparse) {
         if (this._inverse) {
-          signal -= Mathf.Pow(this._distance_base, distance);
-          signal -= Mathf.Pow(this._angle_base, angle);
+          signal -=  distance;
+          signal -=  angle;
         } else {
-          signal += this._distance_nominator / (Mathf.Pow(this._distance_base, distance) + float.Epsilon);
-          signal += this._angle_nominator / (Mathf.Pow(this._angle_base, angle) + float.Epsilon);
+          signal += 1 / (distance + 1);
+          signal += 1 / (angle + 1);
 
           if (this._state_full) {
             if (signal <= this._peak_reward) {

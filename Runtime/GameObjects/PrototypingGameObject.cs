@@ -25,7 +25,7 @@ namespace droid.Runtime.GameObjects {
     /// </summary>
     public string Identifier {
       get {
-        if (!string.IsNullOrWhiteSpace(this.CustomName)) {
+        if (!string.IsNullOrWhiteSpace(value : this.CustomName)) {
           return this.CustomName.Trim();
         }
 
@@ -62,7 +62,7 @@ namespace droid.Runtime.GameObjects {
           this.RegisterComponent();
         }
       } catch (ArgumentNullException e) {
-        Debug.LogWarning(e);
+        Debug.LogWarning(message : e);
         Debug.Log($"You must override RegisterComponent and UnRegisterComponent for component {this.GetType()} for gameobject {this.Identifier} in order to Re-register component on every 'OnValidate' while in edit-mode");
       }
     }
@@ -80,7 +80,8 @@ namespace droid.Runtime.GameObjects {
     void OnDisable() {
       if (this.DisablesChildren) {
         var children = this.GetComponentsInChildren<PrototypingGameObject>();
-        foreach (var child in children) {
+        for (var index = 0; index < children.Length; index++) {
+          var child = children[index];
           if (child.gameObject != this.gameObject) {
             child.enabled = false;
             child.gameObject.SetActive(false);
@@ -120,7 +121,8 @@ namespace droid.Runtime.GameObjects {
         }
 
         var children = this.GetComponentsInChildren<PrototypingGameObject>();
-        foreach (var child in children) {
+        for (var index = 0; index < children.Length; index++) {
+          var child = children[index];
           if (child.gameObject != this.gameObject) {
             child.enabled = true;
             child.gameObject.SetActive(true);

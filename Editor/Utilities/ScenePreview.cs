@@ -21,9 +21,9 @@ namespace droid.Editor.Utilities {
     [RuntimeInitializeOnLoadMethod]
     public static void CaptureScreenShot() {
       if (NeodroidSettings.Current.NeodroidGeneratePreviewsProp) {
-        var preview_path = GetPreviewPath(SceneManager.GetActiveScene().name);
+        var preview_path = GetPreviewPath(scene_name : SceneManager.GetActiveScene().name);
         Debug.Log($"Saving scene preview at {preview_path}");
-        TakeScreenshot(preview_path);
+        TakeScreenshot(name : preview_path);
       }
     }
 
@@ -32,10 +32,10 @@ namespace droid.Editor.Utilities {
     /// </summary>
     /// <param name="name"></param>
     public static void TakeScreenshot(string name) {
-      var path = Path.GetDirectoryName(name);
-      Directory.CreateDirectory(path);
+      var path = Path.GetDirectoryName(path : name);
+      Directory.CreateDirectory(path : path);
       // Take the screenshot
-      ScreenCapture.CaptureScreenshot(name); // TODO: VERY broken, unitys fault
+      ScreenCapture.CaptureScreenshot(filename : name); // TODO: VERY broken, unitys fault
 
 /*
       //Wait for 4 frames
@@ -91,10 +91,10 @@ namespace droid.Editor.Utilities {
             / previews_count;
 
         for (var i = 0; i < scene_names.Length; i++) {
-          DrawPreview(i,
+          DrawPreview(index : i,
                       scene_names[i],
-                      preview_width,
-                      preview_height);
+                      width : preview_width,
+                      height : preview_height);
         }
       }
     }
@@ -107,10 +107,10 @@ namespace droid.Editor.Utilities {
     /// <param name="width"></param>
     /// <param name="height"></param>
     public static void DrawPreview(int index, string scene_name, float width, float height) {
-      var preview_path = GetPreviewPath(scene_name);
+      var preview_path = GetPreviewPath(scene_name : scene_name);
       //var ob = Resources.Load(scene_name);
       //var preview = ob as RenderTexture;
-      var preview = LoadPng(preview_path);
+      var preview = LoadPng(file_path : preview_path);
 
       if (preview != null) { // TODO: Is broken
         /*
@@ -120,18 +120,18 @@ NeodroidEditorConstants._Preview_Margin), width, height),
                 preview
                );
 */
-        GUI.DrawTexture(new Rect(index,
+        GUI.DrawTexture(new Rect(x : index,
                                  NeodroidEditorConstants._Editor_Margin
                                  + index * (height + NeodroidEditorConstants._Preview_Margin),
-                                 width,
-                                 height),
-                        preview,
-                        ScaleMode.ScaleToFit);
+                                 width : width,
+                                 height : height),
+                        image : preview,
+                        scaleMode : ScaleMode.ScaleToFit);
       } else {
         EditorGUILayout.HelpBox($"There is no image preview for scene {scene_name} at {preview_path}."
                                 + $" Please play the scene on editor and image preview will be captured automatically"
                                 + $" or create the missing path: {preview_path}.",
-                                MessageType.Info);
+                                type : MessageType.Info);
       }
     }
 
@@ -148,10 +148,10 @@ NeodroidEditorConstants._Preview_Margin), width, height),
     public static Texture2D LoadPng(string file_path) {
       Texture2D tex = null;
 
-      if (File.Exists(file_path)) {
-        var file_data = File.ReadAllBytes(file_path);
+      if (File.Exists(path : file_path)) {
+        var file_data = File.ReadAllBytes(path : file_path);
         tex = new Texture2D(2, 2);
-        tex.LoadImage(file_data); //..this will auto-resize the texture dimensions.
+        tex.LoadImage(data : file_data); //..this will auto-resize the texture dimensions.
       }
 
       return tex;

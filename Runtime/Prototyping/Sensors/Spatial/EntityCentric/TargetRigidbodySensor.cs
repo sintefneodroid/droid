@@ -18,7 +18,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric {
     /// <summary>
     /// </summary>
     public Vector2 ObservationValue {
-      get { return new Vector2(this._actuator.MovementSpeed, this._actuator.RotationSpeed); }
+      get { return new Vector2(x : this._actuator.MovementSpeed, y : this._actuator.RotationSpeed); }
     }
 
     /// <inheritdoc />

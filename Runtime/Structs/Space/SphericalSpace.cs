@@ -52,21 +52,21 @@ namespace droid.Runtime.Structs.Space {
       this._LoopPolar = loop_polar;
       this._LoopElevation = loop_elevation;
 
-      this._radius = Mathf.Clamp(radius, this._min_radius, this._max_radius);
+      this._radius = Mathf.Clamp(value : radius, min : this._min_radius, max : this._max_radius);
 
-      this._polar = LoopOrClamp(polar,
-                                this._min_polar,
-                                this._max_polar,
-                                loop_polar);
+      this._polar = LoopOrClamp(v : polar,
+                                min : this._min_polar,
+                                max : this._max_polar,
+                                loop : loop_polar);
 
-      this._elevation = LoopOrClamp(elevation,
-                                    this._min_elevation,
-                                    this._max_elevation,
-                                    loop_elevation);
+      this._elevation = LoopOrClamp(v : elevation,
+                                    min : this._min_elevation,
+                                    max : this._max_elevation,
+                                    loop : loop_elevation);
     }
 
     static float LoopOrClamp(float v, float min, float max, bool loop) {
-      return loop ? Mathf.Repeat(v, max - min) : Mathf.Clamp(v, min, max);
+      return loop ? Mathf.Repeat(t : v, max - min) : Mathf.Clamp(value : v, min : min, max : max);
     }
 
     /// <summary>
@@ -75,10 +75,10 @@ namespace droid.Runtime.Structs.Space {
     public Single Elevation {
       get { return this._elevation; }
       set {
-        this._elevation = LoopOrClamp(value,
-                                      this._min_elevation,
-                                      this._max_elevation,
-                                      this._LoopElevation);
+        this._elevation = LoopOrClamp(v : value,
+                                      min : this._min_elevation,
+                                      max : this._max_elevation,
+                                      loop : this._LoopElevation);
       }
     }
 
@@ -88,10 +88,10 @@ namespace droid.Runtime.Structs.Space {
     public Single Polar {
       get { return this._polar; }
       set {
-        this._polar = LoopOrClamp(value,
-                                  this._min_polar,
-                                  this._max_polar,
-                                  this._LoopPolar);
+        this._polar = LoopOrClamp(v : value,
+                                  min : this._min_polar,
+                                  max : this._max_polar,
+                                  loop : this._LoopPolar);
         ;
       }
     }
@@ -101,24 +101,24 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     public Single Radius {
       get { return this._radius; }
-      set { this._radius = Mathf.Clamp(value, this._min_radius, this._max_radius); }
+      set { this._radius = Mathf.Clamp(value : value, min : this._min_radius, max : this._max_radius); }
     }
 
     /// <summary>
     /// Return a 2d vector of the polar and elevation coordinate
     /// </summary>
-    public Vector2 ToVector2 { get { return new Vector2(this._polar, this._elevation); } }
+    public Vector2 ToVector2 { get { return new Vector2(x : this._polar, y : this._elevation); } }
 
-    public Vector3 ToVector3 { get { return new Vector3(this._polar, this._elevation, this._radius); } }
+    public Vector3 ToVector3 { get { return new Vector3(x : this._polar, y : this._elevation, z : this._radius); } }
 
     /// <summary>
     ///
     /// </summary>
     public Vector3 ToCartesian() {
-      var a = this._radius * Mathf.Cos(this._elevation);
-      return new Vector3(a * Mathf.Cos(this._polar),
-                         this._radius * Mathf.Sin(this._elevation),
-                         a * Mathf.Sin(this._polar));
+      var a = this._radius * Mathf.Cos(f : this._elevation);
+      return new Vector3(a * Mathf.Cos(f : this._polar),
+                         this._radius * Mathf.Sin(f : this._elevation),
+                         a * Mathf.Sin(f : this._polar));
     }
 
     /// <summary>
@@ -127,7 +127,7 @@ namespace droid.Runtime.Structs.Space {
     /// <param name="cartesian_coordinate"></param>
     /// <returns></returns>
     public SphericalSpace UpdateFromCartesian(Vector3 cartesian_coordinate) {
-      if (Math.Abs(cartesian_coordinate.x) < float.Epsilon) {
+      if (Math.Abs(value : cartesian_coordinate.x) < float.Epsilon) {
         cartesian_coordinate.x = Mathf.Epsilon;
       }
 
@@ -171,7 +171,7 @@ namespace droid.Runtime.Structs.Space {
                                              _max_elevation = max_elevation
                                          };
 
-      if (Math.Abs(cartesian_coordinate.x) < float.Epsilon) {
+      if (Math.Abs(value : cartesian_coordinate.x) < float.Epsilon) {
         cartesian_coordinate.x = Mathf.Epsilon;
       }
 
@@ -206,13 +206,13 @@ namespace droid.Runtime.Structs.Space {
                                                float max_polar = Mathf.PI * 2f,
                                                float min_elevation = 0f,
                                                float max_elevation = Mathf.PI / 3f) {
-      return FromCartesian(T.position,
-                           min_radius,
-                           max_radius,
-                           min_polar,
-                           max_polar,
-                           min_elevation,
-                           max_elevation);
+      return FromCartesian(cartesian_coordinate : T.position,
+                           min_radius : min_radius,
+                           max_radius : max_radius,
+                           min_polar : min_polar,
+                           max_polar : max_polar,
+                           min_elevation : min_elevation,
+                           max_elevation : max_elevation);
     }
 
     /// <summary>

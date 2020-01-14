@@ -34,7 +34,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     [Header("Specific", order = 102)]
     [SerializeField]
     [SearchableEnum]
-    CoordinateSpace _space = CoordinateSpace.Environment_;
+    CoordinateSpaceEnum _spaceEnum = CoordinateSpaceEnum.Environment_;
 
     [SerializeField] bool normalised_overwrite_space_if_env_bounds = true;
 
@@ -48,7 +48,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     /// </summary>
     public Vector3 Position {
       get { return this._position; }
-      set { this._position = this._position_space.Project(value); }
+      set { this._position = this._position_space.Project(v : value); }
     }
 
     /// <summary>
@@ -56,7 +56,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     /// </summary>
     public Vector3 Rotation {
       get { return this._rotation; }
-      set { this._rotation = this._rotation_space.Project(value); }
+      set { this._rotation = this._rotation_space.Project(v : value); }
     }
 
     /// <summary>
@@ -79,7 +79,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     /// </summary>
     public Vector3 Direction {
       get { return this._direction; }
-      set { this._direction = this._direction_space.Project(value); }
+      set { this._direction = this._direction_space.Project(v : value); }
     }
 
     /// <summary>
@@ -105,11 +105,11 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     /// </summary>
     public override void UpdateObservation() {
       var transform1 = this.transform;
-      if (this.ParentEnvironment != null && this._space == CoordinateSpace.Environment_) {
-        this.Position = this.ParentEnvironment.TransformPoint(transform1.position);
-        this.Direction = this.ParentEnvironment.TransformDirection(transform1.forward);
-        this.Rotation = this.ParentEnvironment.TransformDirection(transform1.up);
-      } else if (this._space == CoordinateSpace.Local_) {
+      if (this.ParentEnvironment != null && this._spaceEnum == CoordinateSpaceEnum.Environment_) {
+        this.Position = this.ParentEnvironment.TransformPoint(point : transform1.position);
+        this.Direction = this.ParentEnvironment.TransformDirection(direction : transform1.forward);
+        this.Rotation = this.ParentEnvironment.TransformDirection(direction : transform1.up);
+      } else if (this._spaceEnum == CoordinateSpaceEnum.Local_) {
         this.Position = transform1.localPosition;
         this.Direction = transform1.forward;
         this.Rotation = transform1.up;
@@ -126,7 +126,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     public override void RemotePostSetup() {
       if (this.normalised_overwrite_space_if_env_bounds) {
         if (this.ParentEnvironment) {
-          this._position_space = Space3.FromCenterExtents(this.ParentEnvironment.PlayableArea.Bounds
+          this._position_space = Space3.FromCenterExtents(bounds_extents : this.ParentEnvironment.PlayableArea.Bounds
           .extents);
         }
       }

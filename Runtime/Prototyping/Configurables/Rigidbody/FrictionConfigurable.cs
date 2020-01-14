@@ -59,9 +59,9 @@ namespace droid.Runtime.Prototyping.Configurables.Rigidbody {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._vel_x);
+                                                          identifier : this._vel_x);
     }
 
     /// <summary>
@@ -71,7 +71,7 @@ namespace droid.Runtime.Prototyping.Configurables.Rigidbody {
         return;
       }
 
-      this.ParentEnvironment.UnRegister(this, this._vel_x);
+      this.ParentEnvironment.UnRegister(this, identifier : this._vel_x);
     }
 
     /// <summary>
@@ -82,7 +82,7 @@ namespace droid.Runtime.Prototyping.Configurables.Rigidbody {
 
       var v = simulator_configuration.ConfigurableValue;
       if (this.SingleSpace.DecimalGranularity >= 0) {
-        v = (int)Math.Round(v, this.SingleSpace.DecimalGranularity);
+        v = (int)Math.Round(value : v, digits : this.SingleSpace.DecimalGranularity);
       }
 
       if (this.SingleSpace.Min.CompareTo(this.SingleSpace.Max) != 0) {
@@ -121,7 +121,7 @@ namespace droid.Runtime.Prototyping.Configurables.Rigidbody {
     /// <returns></returns>
     /// <exception cref="T:System.NotImplementedException"></exception>
     public override Configuration[] SampleConfigurations() {
-      return new[] {new Configuration(this._vel_x, this._friction_space.Sample())};
+      return new[] {new Configuration(configurable_name : this._vel_x, configurable_value:this._friction_space.Sample())};
     }
   }
 }

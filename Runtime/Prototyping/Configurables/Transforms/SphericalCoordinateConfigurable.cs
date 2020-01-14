@@ -61,17 +61,17 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       this._z = this.Identifier + "Radius_";
 
       var reference_point = this.transform.position;
-      if (this.coordinate_space == CoordinateSpace.Environment_) {
-        reference_point = this.ParentEnvironment.TransformPoint(reference_point);
+      if (this._coordinate_spaceEnum == CoordinateSpaceEnum.Environment_ && this.ParentEnvironment) {
+        reference_point = this.ParentEnvironment.TransformPoint(point : reference_point);
       }
 
-      this.sc = SphericalSpace.FromCartesian(reference_point,
-                                             this._spherical_space.Space.Min.z,
-                                             this._spherical_space.Space.Max.z,
-                                             this._spherical_space.Space.Min.x,
-                                             this._spherical_space.Space.Max.x,
-                                             this._spherical_space.Space.Min.y,
-                                             this._spherical_space.Space.Max.y);
+      this.sc = SphericalSpace.FromCartesian(cartesian_coordinate : reference_point,
+                                             min_radius : this._spherical_space.Space.Min.z,
+                                             max_radius : this._spherical_space.Space.Max.z,
+                                             min_polar : this._spherical_space.Space.Min.x,
+                                             max_polar : this._spherical_space.Space.Max.x,
+                                             min_elevation : this._spherical_space.Space.Min.y,
+                                             max_elevation : this._spherical_space.Space.Max.y);
     }
 
     /// <inheritdoc />
@@ -79,19 +79,19 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, (Configurable)this);
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment, (Configurable)this);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._x);
+                                                          identifier : this._x);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._y);
+                                                          identifier : this._y);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._z);
+                                                          identifier : this._z);
     }
 
     /// <inheritdoc />
@@ -103,9 +103,9 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       }
 
       this.ParentEnvironment.UnRegister(this);
-      this.ParentEnvironment.UnRegister(this, this._x);
-      this.ParentEnvironment.UnRegister(this, this._y);
-      this.ParentEnvironment.UnRegister(this, this._z);
+      this.ParentEnvironment.UnRegister(this, identifier : this._x);
+      this.ParentEnvironment.UnRegister(this, identifier : this._y);
+      this.ParentEnvironment.UnRegister(this, identifier : this._z);
     }
 
     /// <summary>
@@ -130,13 +130,13 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
 
       var reference_point = this.sc.ToCartesian();
 
-      if (this.coordinate_space == CoordinateSpace.Environment_) {
-        reference_point = this.ParentEnvironment.InverseTransformPoint(reference_point);
+      if (this._coordinate_spaceEnum == CoordinateSpaceEnum.Environment_) {
+        reference_point = this.ParentEnvironment.InverseTransformPoint(point : reference_point);
       }
 
       this.transform.position = reference_point;
 
-      this.transform.LookAt(this.ParentEnvironment.CoordinateReferencePoint);
+      this.transform.LookAt(target : this.ParentEnvironment.CoordinateReferencePoint);
     }
 
     /// <inheritdoc />
@@ -147,9 +147,9 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       var sample = this._spherical_space.Sample();
 
       return new[] {
-                       new Configuration(this._x, sample.x),
-                       new Configuration(this._y, sample.y),
-                       new Configuration(this._z, sample.z)
+                       new Configuration(configurable_name : this._x, configurable_value : sample.x),
+                       new Configuration(configurable_name : this._y, configurable_value : sample.y),
+                       new Configuration(configurable_name : this._z, configurable_value : sample.z)
                    };
     }
 

@@ -51,9 +51,9 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Synthesis {
       var b = (byte)sid;
 
       //Debug.Log(r + " " + g + " " + b);
-      return new Color32(r,
-                         g,
-                         b,
+      return new Color32(r : r,
+                         g : g,
+                         b : b,
                          255);
     }
 
@@ -68,9 +68,9 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Synthesis {
       var r = (byte)(hash >> 16);
       var g = (byte)(hash >> 8);
       var b = (byte)hash;
-      return new Color32(r,
-                         g,
-                         b,
+      return new Color32(r : r,
+                         g : g,
+                         b : b,
                          255);
     }
 
@@ -93,33 +93,33 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Synthesis {
                                               1,
                                               1,
                                               1),
-                                    new Color(z,
-                                              z,
-                                              z,
+                                    new Color(r : z,
+                                              g : z,
+                                              b : z,
                                               1), // 0
                                     new Color(1,
                                               1,
-                                              z,
+                                              b : z,
                                               1),
                                     new Color(1,
-                                              z,
+                                              g : z,
                                               1,
                                               1),
-                                    new Color(z,
+                                    new Color(r : z,
                                               1,
                                               1,
                                               1), //
                                     new Color(1,
-                                              z,
+                                              g : z,
                                               0,
                                               1),
-                                    new Color(z,
+                                    new Color(r : z,
                                               0,
                                               1,
                                               1),
                                     new Color(0,
                                               1,
-                                              z,
+                                              b : z,
                                               1), // 7
 
                                     new Color(1,
@@ -147,12 +147,12 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Synthesis {
                                               1,
                                               1), //
                                     new Color(1,
-                                              z,
-                                              z,
+                                              g : z,
+                                              b : z,
                                               1),
-                                    new Color(z,
+                                    new Color(r : z,
                                               1,
-                                              z,
+                                              b : z,
                                               1) // 15
                                 };
 

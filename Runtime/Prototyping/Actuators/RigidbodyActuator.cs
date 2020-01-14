@@ -72,40 +72,40 @@ namespace droid.Runtime.Prototyping.Actuators {
       this.Parent =
           NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
                                                           (Actuator)this,
-                                                          this._x);
+                                                          identifier : this._x);
       this.Parent =
           NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
                                                           (Actuator)this,
-                                                          this._y);
+                                                          identifier : this._y);
       this.Parent =
           NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
                                                           (Actuator)this,
-                                                          this._z);
+                                                          identifier : this._z);
       this.Parent =
           NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
                                                           (Actuator)this,
-                                                          this._rot_x);
+                                                          identifier : this._rot_x);
       this.Parent =
           NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
                                                           (Actuator)this,
-                                                          this._rot_y);
+                                                          identifier : this._rot_y);
       this.Parent =
           NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
                                                           (Actuator)this,
-                                                          this._rot_z);
+                                                          identifier : this._rot_z);
     }
 
     /// <summary>
     ///
     /// </summary>
     protected override void UnRegisterComponent() {
-      this.Parent?.UnRegister(this, this._x);
-      this.Parent?.UnRegister(this, this._y);
-      this.Parent?.UnRegister(this, this._z);
+      this.Parent?.UnRegister(this, obj : this._x);
+      this.Parent?.UnRegister(this, obj : this._y);
+      this.Parent?.UnRegister(this, obj : this._z);
 
-      this.Parent?.UnRegister(this, this._rot_x);
-      this.Parent?.UnRegister(this, this._rot_y);
-      this.Parent?.UnRegister(this, this._rot_z);
+      this.Parent?.UnRegister(this, obj : this._rot_x);
+      this.Parent?.UnRegister(this, obj : this._rot_y);
+      this.Parent?.UnRegister(this, obj : this._rot_z);
     }
 
     /// <summary>
@@ -114,31 +114,31 @@ namespace droid.Runtime.Prototyping.Actuators {
     protected override void InnerApplyMotion(IMotion motion) {
       if (this._Relative_To == Space.World) {
         if (motion.ActuatorName == this._x) {
-          this._Rigidbody.AddForce(Vector3.right * motion.Strength, this._ForceMode);
+          this._Rigidbody.AddForce(Vector3.right * motion.Strength, mode : this._ForceMode);
         } else if (motion.ActuatorName == this._y) {
-          this._Rigidbody.AddForce(Vector3.up * motion.Strength, this._ForceMode);
+          this._Rigidbody.AddForce(Vector3.up * motion.Strength, mode : this._ForceMode);
         } else if (motion.ActuatorName == this._z) {
-          this._Rigidbody.AddForce(Vector3.forward * motion.Strength, this._ForceMode);
+          this._Rigidbody.AddForce(Vector3.forward * motion.Strength, mode : this._ForceMode);
         } else if (motion.ActuatorName == this._rot_x) {
-          this._Rigidbody.AddTorque(Vector3.right * motion.Strength, this._ForceMode);
+          this._Rigidbody.AddTorque(Vector3.right * motion.Strength, mode : this._ForceMode);
         } else if (motion.ActuatorName == this._rot_y) {
-          this._Rigidbody.AddTorque(Vector3.up * motion.Strength, this._ForceMode);
+          this._Rigidbody.AddTorque(Vector3.up * motion.Strength, mode : this._ForceMode);
         } else if (motion.ActuatorName == this._rot_z) {
-          this._Rigidbody.AddTorque(Vector3.forward * motion.Strength, this._ForceMode);
+          this._Rigidbody.AddTorque(Vector3.forward * motion.Strength, mode : this._ForceMode);
         }
       } else if (this._Relative_To == Space.Self) {
         if (motion.ActuatorName == this._x) {
-          this._Rigidbody.AddRelativeForce(Vector3.right * motion.Strength, this._ForceMode);
+          this._Rigidbody.AddRelativeForce(Vector3.right * motion.Strength, mode : this._ForceMode);
         } else if (motion.ActuatorName == this._y) {
-          this._Rigidbody.AddRelativeForce(Vector3.up * motion.Strength, this._ForceMode);
+          this._Rigidbody.AddRelativeForce(Vector3.up * motion.Strength, mode : this._ForceMode);
         } else if (motion.ActuatorName == this._z) {
-          this._Rigidbody.AddRelativeForce(Vector3.forward * motion.Strength, this._ForceMode);
+          this._Rigidbody.AddRelativeForce(Vector3.forward * motion.Strength, mode : this._ForceMode);
         } else if (motion.ActuatorName == this._rot_x) {
-          this._Rigidbody.AddRelativeTorque(Vector3.right * motion.Strength, this._ForceMode);
+          this._Rigidbody.AddRelativeTorque(Vector3.right * motion.Strength, mode : this._ForceMode);
         } else if (motion.ActuatorName == this._rot_y) {
-          this._Rigidbody.AddRelativeTorque(Vector3.up * motion.Strength, this._ForceMode);
+          this._Rigidbody.AddRelativeTorque(Vector3.up * motion.Strength, mode : this._ForceMode);
         } else if (motion.ActuatorName == this._rot_z) {
-          this._Rigidbody.AddRelativeTorque(Vector3.forward * motion.Strength, this._ForceMode);
+          this._Rigidbody.AddRelativeTorque(Vector3.forward * motion.Strength, mode : this._ForceMode);
         }
       } else {
         Debug.LogWarning($"Not applying force in space {this._Relative_To}");
@@ -150,29 +150,29 @@ namespace droid.Runtime.Prototyping.Actuators {
       if (this.enabled) {
         var position = this.transform.position;
 
-        Handles.DrawWireArc(this.transform.position,
-                            this.transform.right,
-                            -this.transform.forward,
+        Handles.DrawWireArc(center : this.transform.position,
+                            normal : this.transform.right,
+                            @from : -this.transform.forward,
                             180,
                             2);
 
-        Handles.DrawWireArc(this.transform.position,
-                            this.transform.up,
-                            -this.transform.right,
+        Handles.DrawWireArc(center : this.transform.position,
+                            normal : this.transform.up,
+                            @from : -this.transform.right,
                             180,
                             2);
 
-        Handles.DrawWireArc(this.transform.position,
-                            this.transform.forward,
-                            -this.transform.right,
+        Handles.DrawWireArc(center : this.transform.position,
+                            normal : this.transform.forward,
+                            @from : -this.transform.right,
                             180,
                             2);
 
-        Debug.DrawLine(position, position + Vector3.right * 2, Color.green);
+        Debug.DrawLine(start : position, position + Vector3.right * 2, color : Color.green);
 
-        Debug.DrawLine(position, position + Vector3.forward * 2, Color.green);
+        Debug.DrawLine(start : position, position + Vector3.forward * 2, color : Color.green);
 
-        Debug.DrawLine(position, position + Vector3.up * 2, Color.green);
+        Debug.DrawLine(start : position, position + Vector3.up * 2, color : Color.green);
       }
     }
     #endif

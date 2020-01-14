@@ -82,10 +82,10 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// <summary>
     /// </summary>
     public override void UpdateCurrentConfiguration() { //TODO: IMPLEMENT LOCAL SPACE
-      if (this.coordinate_space == CoordinateSpace.Environment_) {
-        this.Position = this.ParentEnvironment.TransformPoint(this.transform.position);
-        this.Direction = this.ParentEnvironment.TransformDirection(this.transform.forward);
-        this.Rotation = this.ParentEnvironment.TransformDirection(this.transform.up);
+      if (this._coordinate_spaceEnum == CoordinateSpaceEnum.Environment_) {
+        this.Position = this.ParentEnvironment.TransformPoint(point : this.transform.position);
+        this.Direction = this.ParentEnvironment.TransformDirection(direction : this.transform.forward);
+        this.Rotation = this.ParentEnvironment.TransformDirection(direction : this.transform.up);
       } else {
         var transform1 = this.transform;
         this.Position = transform1.position;
@@ -98,41 +98,41 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           this,
-                                                          this._x);
+                                                          identifier : this._x);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           this,
-                                                          this._y);
+                                                          identifier : this._y);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           this,
-                                                          this._z);
+                                                          identifier : this._z);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           this,
-                                                          this._dir_x);
+                                                          identifier : this._dir_x);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           this,
-                                                          this._dir_y);
+                                                          identifier : this._dir_y);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           this,
-                                                          this._dir_z);
+                                                          identifier : this._dir_z);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           this,
-                                                          this._rot_x);
+                                                          identifier : this._rot_x);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           this,
-                                                          this._rot_y);
+                                                          identifier : this._rot_y);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           this,
-                                                          this._rot_z);
+                                                          identifier : this._rot_z);
     }
 
     /// <inheritdoc />
@@ -160,15 +160,15 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
         return;
       }
 
-      this.ParentEnvironment.UnRegister(this, this._x);
-      this.ParentEnvironment.UnRegister(this, this._y);
-      this.ParentEnvironment.UnRegister(this, this._z);
-      this.ParentEnvironment.UnRegister(this, this._dir_x);
-      this.ParentEnvironment.UnRegister(this, this._dir_y);
-      this.ParentEnvironment.UnRegister(this, this._dir_z);
-      this.ParentEnvironment.UnRegister(this, this._rot_x);
-      this.ParentEnvironment.UnRegister(this, this._rot_y);
-      this.ParentEnvironment.UnRegister(this, this._rot_z);
+      this.ParentEnvironment.UnRegister(this, identifier : this._x);
+      this.ParentEnvironment.UnRegister(this, identifier : this._y);
+      this.ParentEnvironment.UnRegister(this, identifier : this._z);
+      this.ParentEnvironment.UnRegister(this, identifier : this._dir_x);
+      this.ParentEnvironment.UnRegister(this, identifier : this._dir_y);
+      this.ParentEnvironment.UnRegister(this, identifier : this._dir_z);
+      this.ParentEnvironment.UnRegister(this, identifier : this._rot_x);
+      this.ParentEnvironment.UnRegister(this, identifier : this._rot_y);
+      this.ParentEnvironment.UnRegister(this, identifier : this._rot_z);
     }
 
     /// <inheritdoc />
@@ -181,15 +181,15 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       var pos = transform1.position;
       var dir = transform1.forward;
       var rot = transform1.up;
-      if (this.coordinate_space == CoordinateSpace.Environment_) {
-        pos = this.ParentEnvironment.TransformPoint(pos);
-        dir = this.ParentEnvironment.TransformDirection(dir);
-        rot = this.ParentEnvironment.TransformDirection(rot);
+      if (this._coordinate_spaceEnum == CoordinateSpaceEnum.Environment_) {
+        pos = this.ParentEnvironment.TransformPoint(point : pos);
+        dir = this.ParentEnvironment.TransformDirection(direction : dir);
+        rot = this.ParentEnvironment.TransformDirection(direction : rot);
       }
 
       var v = configuration.ConfigurableValue;
       if (this.PositionSpace.DecimalGranularity >= 0) {
-        v = (int)Math.Round(v, this.PositionSpace.DecimalGranularity);
+        v = (int)Math.Round(value : v, digits : this.PositionSpace.DecimalGranularity);
       }
 
       if (this.PositionSpace.Min[0].CompareTo(this.PositionSpace.Max[0]) != 0) {
@@ -210,58 +210,58 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       #endif
       if (this.RelativeToExistingValue) {
         if (configuration.ConfigurableName == this._x) {
-          pos.Set(v - pos.x, pos.y, pos.z);
+          pos.Set(v - pos.x, newY : pos.y, newZ : pos.z);
         } else if (configuration.ConfigurableName == this._y) {
-          pos.Set(pos.x, v - pos.y, pos.z);
+          pos.Set(newX : pos.x, v - pos.y, newZ : pos.z);
         } else if (configuration.ConfigurableName == this._z) {
-          pos.Set(pos.x, pos.y, v - pos.z);
+          pos.Set(newX : pos.x, newY : pos.y, v - pos.z);
         } else if (configuration.ConfigurableName == this._dir_x) {
-          dir.Set(v - dir.x, dir.y, dir.z);
+          dir.Set(v - dir.x, newY : dir.y, newZ : dir.z);
         } else if (configuration.ConfigurableName == this._dir_y) {
-          dir.Set(dir.x, v - dir.y, dir.z);
+          dir.Set(newX : dir.x, v - dir.y, newZ : dir.z);
         } else if (configuration.ConfigurableName == this._dir_z) {
-          dir.Set(dir.x, dir.y, v - dir.z);
+          dir.Set(newX : dir.x, newY : dir.y, v - dir.z);
         } else if (configuration.ConfigurableName == this._rot_x) {
-          rot.Set(v - rot.x, rot.y, rot.z);
+          rot.Set(v - rot.x, newY : rot.y, newZ : rot.z);
         } else if (configuration.ConfigurableName == this._rot_y) {
-          rot.Set(rot.x, v - rot.y, rot.z);
+          rot.Set(newX : rot.x, v - rot.y, newZ : rot.z);
         } else if (configuration.ConfigurableName == this._rot_z) {
-          rot.Set(rot.x, rot.y, v - rot.z);
+          rot.Set(newX : rot.x, newY : rot.y, v - rot.z);
         }
       } else {
         if (configuration.ConfigurableName == this._x) {
-          pos.Set(v, pos.y, pos.z);
+          pos.Set(newX : v, newY : pos.y, newZ : pos.z);
         } else if (configuration.ConfigurableName == this._y) {
-          pos.Set(pos.x, v, pos.z);
+          pos.Set(newX : pos.x, newY : v, newZ : pos.z);
         } else if (configuration.ConfigurableName == this._z) {
-          pos.Set(pos.x, pos.y, v);
+          pos.Set(newX : pos.x, newY : pos.y, newZ : v);
         } else if (configuration.ConfigurableName == this._dir_x) {
-          dir.Set(v, dir.y, dir.z);
+          dir.Set(newX : v, newY : dir.y, newZ : dir.z);
         } else if (configuration.ConfigurableName == this._dir_y) {
-          dir.Set(dir.x, v, dir.z);
+          dir.Set(newX : dir.x, newY : v, newZ : dir.z);
         } else if (configuration.ConfigurableName == this._dir_z) {
-          dir.Set(dir.x, dir.y, v);
+          dir.Set(newX : dir.x, newY : dir.y, newZ : v);
         } else if (configuration.ConfigurableName == this._rot_x) {
-          rot.Set(v, rot.y, rot.z);
+          rot.Set(newX : v, newY : rot.y, newZ : rot.z);
         } else if (configuration.ConfigurableName == this._rot_y) {
-          rot.Set(rot.x, v, rot.z);
+          rot.Set(newX : rot.x, newY : v, newZ : rot.z);
         } else if (configuration.ConfigurableName == this._rot_z) {
-          rot.Set(rot.x, rot.y, v);
+          rot.Set(newX : rot.x, newY : rot.y, newZ : v);
         }
       }
 
       var inv_pos = pos;
       var inv_dir = dir;
       var inv_rot = rot;
-      if (this.coordinate_space == CoordinateSpace.Environment_) {
-        inv_pos = this.ParentEnvironment.InverseTransformPoint(pos);
-        inv_dir = this.ParentEnvironment.InverseTransformDirection(dir);
-        inv_rot = this.ParentEnvironment.InverseTransformDirection(rot);
+      if (this._coordinate_spaceEnum == CoordinateSpaceEnum.Environment_) {
+        inv_pos = this.ParentEnvironment.InverseTransformPoint(point : pos);
+        inv_dir = this.ParentEnvironment.InverseTransformDirection(direction : dir);
+        inv_rot = this.ParentEnvironment.InverseTransformDirection(direction : rot);
       }
 
       this.transform.position = inv_pos;
       this.transform.rotation = Quaternion.identity;
-      this.transform.rotation = Quaternion.LookRotation(inv_dir, inv_rot);
+      this.transform.rotation = Quaternion.LookRotation(forward : inv_dir, upwards : inv_rot);
     }
 
     /// <inheritdoc />
@@ -272,12 +272,12 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       var sample = this.pos_space.Sample();
       var sample1 = this.rot_space.Sample();
       return new[] {
-                       new Configuration(this._x, sample.x),
-                       new Configuration(this._y, sample.y),
-                       new Configuration(this._z, sample.z),
-                       new Configuration(this._rot_x, sample1.x),
-                       new Configuration(this._rot_y, sample1.y),
-                       new Configuration(this._rot_z, sample1.z)
+                       new Configuration(configurable_name : this._x, configurable_value : sample.x),
+                       new Configuration(configurable_name : this._y, configurable_value : sample.y),
+                       new Configuration(configurable_name : this._z, configurable_value : sample.z),
+                       new Configuration(configurable_name : this._rot_x, configurable_value : sample1.x),
+                       new Configuration(configurable_name : this._rot_y, configurable_value : sample1.y),
+                       new Configuration(configurable_name : this._rot_z, configurable_value : sample1.z)
                    };
     }
   }

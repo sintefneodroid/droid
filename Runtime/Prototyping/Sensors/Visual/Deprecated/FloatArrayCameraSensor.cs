@@ -51,7 +51,7 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
 
       var target_texture = this._camera.targetTexture;
       if (target_texture) {
-        this._texture = new Texture2D(target_texture.width, target_texture.height);
+        this._texture = new Texture2D(width : target_texture.width, height : target_texture.height);
         if (this._black_white) {
           this.ObservationArray = new float[this._texture.width * this._texture.height * 1]; // *1 for clarity
         } else {
@@ -87,8 +87,8 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
 
       this._texture.ReadPixels(new Rect(0,
                                         0,
-                                        target_texture.width,
-                                        target_texture.height),
+                                        width : target_texture.width,
+                                        height : target_texture.height),
                                0,
                                0);
       this._texture.Apply();
@@ -96,7 +96,7 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
       if (!this._black_white) {
         for (var w = 0; w < this._texture.width; w++) {
           for (var h = 0; h < this._texture.height; h++) {
-            var c = this._texture.GetPixel(w, h);
+            var c = this._texture.GetPixel(x : w, y : h);
             this.ObservationArray[this._texture.width * w + h * 3] = c.r;
             this.ObservationArray[this._texture.width * w + h * 3 + 1] = c.g;
             this.ObservationArray[this._texture.width * w + h * 3 + 2] = c.b;
@@ -105,7 +105,7 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
       } else {
         for (var w = 0; w < this._texture.width; w++) {
           for (var h = 0; h < this._texture.height; h++) {
-            var c = this._texture.GetPixel(w, h);
+            var c = this._texture.GetPixel(x : w, y : h);
             this.ObservationArray[this._texture.width * w + h] = (c.r + c.g + c.b) / 3;
           }
         }
@@ -126,7 +126,7 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
       #if NEODROID_DEBUG
       if (this.Debugging) {
         if (this._manager?.SimulatorConfiguration != null) {
-          if (this._manager.SimulatorConfiguration.SimulationType != SimulationType.Frame_dependent_) {
+          if (this._manager.SimulatorConfiguration.SimulationType != SimulationTypeEnum.Frame_dependent_) {
             Debug.LogWarning("WARNING! Camera Observations may be out of sync other data");
           }
         }
@@ -136,7 +136,7 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
       this._grab = true;
       var manager = this._manager;
       if (manager != null
-          && manager.SimulatorConfiguration.SimulationType != SimulationType.Frame_dependent_) {
+          && manager.SimulatorConfiguration.SimulationType != SimulationTypeEnum.Frame_dependent_) {
         this.UpdateArray();
       }
     }

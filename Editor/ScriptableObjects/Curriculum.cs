@@ -16,7 +16,7 @@ namespace droid.Editor.ScriptableObjects {
     public static void CreateCurriculumAsset() {
       var asset = ScriptableObject.CreateInstance<Curriculum>();
 
-      AssetDatabase.CreateAsset(asset, EditorWindowMenuPath._NewAssetPath + "Assets/NewCurriculum.asset");
+      AssetDatabase.CreateAsset(asset : asset, EditorWindowMenuPath._NewAssetPath + "Assets/NewCurriculum.asset");
       AssetDatabase.SaveAssets();
 
       EditorUtility.FocusProjectWindow();

@@ -12,22 +12,22 @@ namespace droid.Runtime.Utilities.Grasping {
     public static void DrawBoxFromCenter(Vector3 p, float r, Color c) {
       // p is pos.yition of the center, r is "radius" and c is the color of the box
       //Bottom lines
-      Debug.DrawLine(new Vector3(-r + p.x, -r + p.y, -r + p.z), new Vector3(r + p.x, -r + p.y, -r + p.z), c);
-      Debug.DrawLine(new Vector3(-r + p.x, -r + p.y, -r + p.z), new Vector3(-r + p.x, -r + p.y, r + p.z), c);
-      Debug.DrawLine(new Vector3(r + p.x, -r + p.y, r + p.z), new Vector3(-r + p.x, -r + p.y, r + p.z), c);
-      Debug.DrawLine(new Vector3(r + p.x, -r + p.y, r + p.z), new Vector3(r + p.x, -r + p.y, -r + p.z), c);
+      Debug.DrawLine(new Vector3(-r + p.x, -r + p.y, -r + p.z), new Vector3(r + p.x, -r + p.y, -r + p.z), color : c);
+      Debug.DrawLine(new Vector3(-r + p.x, -r + p.y, -r + p.z), new Vector3(-r + p.x, -r + p.y, r + p.z), color : c);
+      Debug.DrawLine(new Vector3(r + p.x, -r + p.y, r + p.z), new Vector3(-r + p.x, -r + p.y, r + p.z), color : c);
+      Debug.DrawLine(new Vector3(r + p.x, -r + p.y, r + p.z), new Vector3(r + p.x, -r + p.y, -r + p.z), color : c);
 
       //Vertical lines
-      Debug.DrawLine(new Vector3(-r + p.x, r + p.y, -r + p.z), new Vector3(r + p.x, r + p.y, -r + p.z), c);
-      Debug.DrawLine(new Vector3(-r + p.x, r + p.y, -r + p.z), new Vector3(-r + p.x, r + p.y, r + p.z), c);
-      Debug.DrawLine(new Vector3(r + p.x, r + p.y, r + p.z), new Vector3(-r + p.x, r + p.y, r + p.z), c);
-      Debug.DrawLine(new Vector3(r + p.x, r + p.y, r + p.z), new Vector3(r + p.x, r + p.y, -r + p.z), c);
+      Debug.DrawLine(new Vector3(-r + p.x, r + p.y, -r + p.z), new Vector3(r + p.x, r + p.y, -r + p.z), color : c);
+      Debug.DrawLine(new Vector3(-r + p.x, r + p.y, -r + p.z), new Vector3(-r + p.x, r + p.y, r + p.z), color : c);
+      Debug.DrawLine(new Vector3(r + p.x, r + p.y, r + p.z), new Vector3(-r + p.x, r + p.y, r + p.z), color : c);
+      Debug.DrawLine(new Vector3(r + p.x, r + p.y, r + p.z), new Vector3(r + p.x, r + p.y, -r + p.z), color : c);
 
       //Top lines
-      Debug.DrawLine(new Vector3(-r + p.x, -r + p.y, -r + p.z), new Vector3(-r + p.x, r + p.y, -r + p.z), c);
-      Debug.DrawLine(new Vector3(-r + p.x, -r + p.y, r + p.z), new Vector3(-r + p.x, r + p.y, r + p.z), c);
-      Debug.DrawLine(new Vector3(r + p.x, -r + p.y, -r + p.z), new Vector3(r + p.x, r + p.y, -r + p.z), c);
-      Debug.DrawLine(new Vector3(r + p.x, -r + p.y, r + p.z), new Vector3(r + p.x, r + p.y, r + p.z), c);
+      Debug.DrawLine(new Vector3(-r + p.x, -r + p.y, -r + p.z), new Vector3(-r + p.x, r + p.y, -r + p.z), color : c);
+      Debug.DrawLine(new Vector3(-r + p.x, -r + p.y, r + p.z), new Vector3(-r + p.x, r + p.y, r + p.z), color : c);
+      Debug.DrawLine(new Vector3(r + p.x, -r + p.y, -r + p.z), new Vector3(r + p.x, r + p.y, -r + p.z), color : c);
+      Debug.DrawLine(new Vector3(r + p.x, -r + p.y, r + p.z), new Vector3(r + p.x, r + p.y, r + p.z), color : c);
     }
 
     /// <summary>
@@ -45,44 +45,44 @@ namespace droid.Runtime.Utilities.Grasping {
       //Vertical lines
       Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, -z + pos.z),
                      new Vector3(-x + pos.x, y + pos.y, -z + pos.z),
-                     color);
+                     color : color);
       Debug.DrawLine(new Vector3(x + pos.x, -y + pos.y, -z + pos.z),
                      new Vector3(x + pos.x, y + pos.y, -z + pos.z),
-                     color);
+                     color : color);
       Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, z + pos.z),
                      new Vector3(-x + pos.x, y + pos.y, z + pos.z),
-                     color);
+                     color : color);
       Debug.DrawLine(new Vector3(x + pos.x, -y + pos.y, z + pos.z),
                      new Vector3(x + pos.x, y + pos.y, z + pos.z),
-                     color);
+                     color : color);
 
       //Horizontal top
       Debug.DrawLine(new Vector3(-x + pos.x, y + pos.y, -z + pos.z),
                      new Vector3(x + pos.x, y + pos.y, -z + pos.z),
-                     color);
+                     color : color);
       Debug.DrawLine(new Vector3(-x + pos.x, y + pos.y, z + pos.z),
                      new Vector3(x + pos.x, y + pos.y, z + pos.z),
-                     color);
+                     color : color);
       Debug.DrawLine(new Vector3(-x + pos.x, y + pos.y, -z + pos.z),
                      new Vector3(-x + pos.x, y + pos.y, z + pos.z),
-                     color);
+                     color : color);
       Debug.DrawLine(new Vector3(x + pos.x, y + pos.y, -z + pos.z),
                      new Vector3(x + pos.x, y + pos.y, z + pos.z),
-                     color);
+                     color : color);
 
       //Horizontal bottom
       Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, -z + pos.z),
                      new Vector3(x + pos.x, -y + pos.y, -z + pos.z),
-                     color);
+                     color : color);
       Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, z + pos.z),
                      new Vector3(x + pos.x, -y + pos.y, z + pos.z),
-                     color);
+                     color : color);
       Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, -z + pos.z),
                      new Vector3(-x + pos.x, -y + pos.y, z + pos.z),
-                     color);
+                     color : color);
       Debug.DrawLine(new Vector3(x + pos.x, -y + pos.y, -z + pos.z),
                      new Vector3(x + pos.x, -y + pos.y, z + pos.z),
-                     color);
+                     color : color);
     }
 
     /// <summary>
@@ -98,7 +98,8 @@ namespace droid.Runtime.Utilities.Grasping {
       }
 
       var i = 0;
-      foreach (var old in old_transforms) {
+      for (var index = 0; index < old_transforms.Length; index++) {
+        var old = old_transforms[index];
         if (old.position != newly_acquired_transforms[i].position
             || old.rotation != newly_acquired_transforms[i].rotation) {
           return true;
@@ -120,9 +121,9 @@ namespace droid.Runtime.Utilities.Grasping {
       var result = mesh_filter != null ? mesh_filter.mesh.bounds : new Bounds();
 
       foreach (Transform transform in object_transform) {
-        var bounds = GetTotalMeshFilterBounds(transform);
-        result.Encapsulate(bounds.min);
-        result.Encapsulate(bounds.max);
+        var bounds = GetTotalMeshFilterBounds(object_transform : transform);
+        result.Encapsulate(point : bounds.min);
+        result.Encapsulate(point : bounds.max);
       }
 
       /*var bounds1 = GetTotalColliderBounds(objectTransform);
@@ -137,10 +138,10 @@ namespace droid.Runtime.Utilities.Grasping {
             }
             */
       var scaled_min = result.min;
-      scaled_min.Scale(object_transform.localScale);
+      scaled_min.Scale(scale : object_transform.localScale);
       result.min = scaled_min;
       var scaled_max = result.max;
-      scaled_max.Scale(object_transform.localScale);
+      scaled_max.Scale(scale : object_transform.localScale);
       result.max = scaled_max;
       return result;
     }
@@ -155,16 +156,16 @@ namespace droid.Runtime.Utilities.Grasping {
       var result = mesh_filter != null ? mesh_filter.bounds : new Bounds();
 
       foreach (Transform transform in object_transform) {
-        var bounds = GetTotalColliderBounds(transform);
-        result.Encapsulate(bounds.min);
-        result.Encapsulate(bounds.max);
+        var bounds = GetTotalColliderBounds(object_transform : transform);
+        result.Encapsulate(point : bounds.min);
+        result.Encapsulate(point : bounds.max);
       }
 
       var scaled_min = result.min;
-      scaled_min.Scale(object_transform.localScale);
+      scaled_min.Scale(scale : object_transform.localScale);
       result.min = scaled_min;
       var scaled_max = result.max;
-      scaled_max.Scale(object_transform.localScale);
+      scaled_max.Scale(scale : object_transform.localScale);
       result.max = scaled_max;
       return result;
     }
@@ -174,9 +175,11 @@ namespace droid.Runtime.Utilities.Grasping {
     /// <param name="g"></param>
     /// <returns></returns>
     public static Bounds GetMaxBounds(GameObject g) {
-      var b = new Bounds(g.transform.position, Vector3.zero);
-      foreach (var r in g.GetComponentsInChildren<Renderer>()) {
-        b.Encapsulate(r.bounds);
+      var b = new Bounds(center : g.transform.position, size : Vector3.zero);
+      var rs = g.GetComponentsInChildren<Renderer>();
+      for (var index = 0; index < rs.Length; index++) {
+        var r = rs[index];
+        b.Encapsulate(bounds : r.bounds);
       }
 
       return b;

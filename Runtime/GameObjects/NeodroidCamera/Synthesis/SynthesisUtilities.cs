@@ -146,53 +146,53 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Synthesis {
                                               Material optical_flow_material,
                                               float optical_flow_sensitivity,
                                               ref CapturePass[] capture_passes) {
-      SetupHiddenCapturePassCameras(camera, ref capture_passes);
-      CleanRefreshPassCameras(camera, ref capture_passes);
+      SetupHiddenCapturePassCameras(camera : camera, capture_passes : ref capture_passes);
+      CleanRefreshPassCameras(camera : camera, capture_passes : ref capture_passes);
 
       // cache materials and setup material properties
       if (!optical_flow_material || optical_flow_material.shader != optical_flow_shader) {
-        optical_flow_material = new Material(optical_flow_shader);
+        optical_flow_material = new Material(shader : optical_flow_shader);
       }
 
-      optical_flow_material.SetFloat(_sensitivity, optical_flow_sensitivity);
+      optical_flow_material.SetFloat(nameID : _sensitivity, value : optical_flow_sensitivity);
 
       // setup command buffers and replacement shaders
-      AddReplacementShaderCommandBufferOnCamera(capture_passes[1]._Camera,
-                                                replacement_shader,
-                                                capture_passes[1]._ReplacementMode);
-      AddReplacementShaderCommandBufferOnCamera(capture_passes[2]._Camera,
-                                                replacement_shader,
-                                                capture_passes[2]._ReplacementMode);
-      AddReplacementShaderCommandBufferOnCamera(capture_passes[6]._Camera,
-                                                replacement_shader,
-                                                capture_passes[6]._ReplacementMode);
+      AddReplacementShaderCommandBufferOnCamera(cam : capture_passes[1]._Camera,
+                                                shader : replacement_shader,
+                                                mode : capture_passes[1]._ReplacementMode);
+      AddReplacementShaderCommandBufferOnCamera(cam : capture_passes[2]._Camera,
+                                                shader : replacement_shader,
+                                                mode : capture_passes[2]._ReplacementMode);
+      AddReplacementShaderCommandBufferOnCamera(cam : capture_passes[6]._Camera,
+                                                shader : replacement_shader,
+                                                mode : capture_passes[6]._ReplacementMode);
 
-      AddReplacementShaderCommandBufferOnCamera(capture_passes[5]._Camera,
-                                                replacement_shader,
-                                                capture_passes[5]._ReplacementMode);
+      AddReplacementShaderCommandBufferOnCamera(cam : capture_passes[5]._Camera,
+                                                shader : replacement_shader,
+                                                mode : capture_passes[5]._ReplacementMode);
 
-      AddReplacementShaderCommandBufferOnCamera(capture_passes[3]._Camera,
-                                                replacement_shader,
-                                                capture_passes[3]._ReplacementMode,
-                                                Color.white);
-      AddReplacementShaderCommandBufferOnCamera(capture_passes[4]._Camera,
-                                                replacement_shader,
-                                                capture_passes[4]._ReplacementMode);
-      SetupCameraWithPostShader(capture_passes[8]._Camera,
-                                optical_flow_material,
+      AddReplacementShaderCommandBufferOnCamera(camera : capture_passes[3]._Camera,
+                                                shader : replacement_shader,
+                                                mode : capture_passes[3]._ReplacementMode,
+                                                clear_color : Color.white);
+      AddReplacementShaderCommandBufferOnCamera(cam : capture_passes[4]._Camera,
+                                                shader : replacement_shader,
+                                                mode : capture_passes[4]._ReplacementMode);
+      SetupCameraWithPostShader(cam : capture_passes[8]._Camera,
+                                material : optical_flow_material,
                                 DepthTextureMode.Depth | DepthTextureMode.MotionVectors);
     }
 
     public static void SetupCapturePassesReplacementShader(Camera camera,
                                                            Shader replacement_shader,
                                                            ref CapturePass[] capture_passes) {
-      SetupHiddenCapturePassCameras(camera, ref capture_passes);
-      CleanRefreshPassCameras(camera, ref capture_passes);
+      SetupHiddenCapturePassCameras(camera : camera, capture_passes : ref capture_passes);
+      CleanRefreshPassCameras(camera : camera, capture_passes : ref capture_passes);
 
       foreach (var capture_pass in capture_passes) {
-        AddReplacementShaderCommandBufferOnCamera(capture_pass._Camera,
-                                                  replacement_shader,
-                                                  capture_pass._ReplacementMode);
+        AddReplacementShaderCommandBufferOnCamera(cam : capture_pass._Camera,
+                                                  shader : replacement_shader,
+                                                  mode : capture_pass._ReplacementMode);
       }
     }
 
@@ -204,17 +204,17 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Synthesis {
         }
 
         pass._Camera.RemoveAllCommandBuffers(); // cleanup capturing camera
-        pass._Camera.CopyFrom(camera); // copy all "main" camera parameters into capturing camera
+        pass._Camera.CopyFrom(other : camera); // copy all "main" camera parameters into capturing camera
         pass._Camera.targetDisplay =
             target_display++; // set targetDisplay here since it gets overriden by CopyFrom()
       }
     }
 
     static void AddReplacementShaderCommandBufferOnCamera(Camera cam, Shader shader, ReplacementModes mode) {
-      AddReplacementShaderCommandBufferOnCamera(cam,
-                                                shader,
-                                                mode,
-                                                Color.black);
+      AddReplacementShaderCommandBufferOnCamera(camera : cam,
+                                                shader : shader,
+                                                mode : mode,
+                                                clear_color : Color.black);
     }
 
     static void AddReplacementShaderCommandBufferOnCamera(Camera camera,
@@ -222,10 +222,10 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Synthesis {
                                                           ReplacementModes mode,
                                                           Color clear_color) {
       var cb = new CommandBuffer {name = mode.ToString()};
-      cb.SetGlobalInt(_Shader_OutputMode_Name, (int)mode);
-      camera.AddCommandBuffer(CameraEvent.BeforeForwardOpaque, cb);
-      camera.AddCommandBuffer(CameraEvent.BeforeFinalPass, cb);
-      camera.SetReplacementShader(shader, "");
+      cb.SetGlobalInt(name : _Shader_OutputMode_Name, (int)mode);
+      camera.AddCommandBuffer(evt : CameraEvent.BeforeForwardOpaque, buffer : cb);
+      camera.AddCommandBuffer(evt : CameraEvent.BeforeFinalPass, buffer : cb);
+      camera.SetReplacementShader(shader : shader, "");
       camera.backgroundColor = clear_color;
       camera.clearFlags = CameraClearFlags.SolidColor;
     }
@@ -234,8 +234,8 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Synthesis {
                                           Material material,
                                           DepthTextureMode depth_texture_mode = DepthTextureMode.None) {
       var cb = new CommandBuffer {name = cam.name};
-      cb.Blit(null, BuiltinRenderTextureType.CurrentActive, material);
-      cam.AddCommandBuffer(CameraEvent.AfterEverything, cb);
+      cb.Blit(null, dest : BuiltinRenderTextureType.CurrentActive, mat : material);
+      cam.AddCommandBuffer(evt : CameraEvent.AfterEverything, buffer : cb);
       cam.depthTextureMode = depth_texture_mode;
     }
 
@@ -247,12 +247,12 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Synthesis {
     static void SetupHiddenCapturePassCameras(Camera camera, ref CapturePass[] capture_passes) {
       capture_passes[0]._Camera = camera;
       for (var q = 1; q < capture_passes.Length; q++) {
-        capture_passes[q]._Camera = CreateHiddenCamera(capture_passes[q]._Name, camera.transform);
+        capture_passes[q]._Camera = CreateHiddenCamera(cam_name : capture_passes[q]._Name, parent : camera.transform);
       }
     }
 
     static Camera CreateHiddenCamera(string cam_name, Transform parent) {
-      var go = new GameObject(cam_name, typeof(Camera)) {hideFlags = HideFlags.HideAndDontSave};
+      var go = new GameObject(name : cam_name, typeof(Camera)) {hideFlags = HideFlags.HideAndDontSave};
       go.transform.parent = parent;
 
       var new_camera = go.GetComponent<Camera>();

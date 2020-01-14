@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using droid.Runtime.Enums;
 using droid.Runtime.GameObjects;
 using droid.Runtime.GameObjects.BoundingBoxes;
@@ -18,8 +17,8 @@ namespace droid.Runtime.Environments.Prototyping {
   /// <summary>
   /// </summary>
   [RequireComponent(typeof(Transform))]
-  public abstract class AbstractSpatialPrototypingEnvironment : NeodroidEnvironment,
-                                                                ISpatialPrototypingEnvironment {
+  public abstract class AbstractPrototypingEnvironment : NeodroidEnvironment,
+                                                                IAbstractPrototypingEnvironment {
     #region Fields
 
     #endregion
@@ -95,6 +94,7 @@ namespace droid.Runtime.Environments.Prototyping {
 
     #region Events
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public event Action PreStepEvent;
@@ -109,12 +109,12 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     public event Action PostStepEvent;
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="Environment" />
     /// <summary>
     /// </summary>
     public event Action PostTickEvent;
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="Environment" />
     /// <summary>
     /// </summary>
     public event Action PreTickEvent;
@@ -123,13 +123,14 @@ namespace droid.Runtime.Environments.Prototyping {
 
     #region Private Methods
 
+    /// <inheritdoc />
     /// <summary>
     ///   Termination of an episode, can be supplied with a reason for various purposes debugging or clarification
     ///   for a learner.
     /// </summary>
     /// <param name="reason"></param>
     public void Terminate(string reason = "None") {
-      lock (this._Reaction_Lock) {
+
         if (this.Terminable) {
           #if NEODROID_DEBUG
           if (this.Debugging) {
@@ -140,9 +141,10 @@ namespace droid.Runtime.Environments.Prototyping {
           this.Terminated = true;
           this.LastTerminationReason = reason;
         }
-      }
+
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void Tick() {
@@ -163,9 +165,9 @@ namespace droid.Runtime.Environments.Prototyping {
 
         this.IsResetting = false;
       } else {
-        this.LoopConfigurables(this.UpdateObservationsWithEveryTick);
+        this.LoopConfigurables(update : this.UpdateObservationsWithEveryTick);
         this.LoopListeners();
-        this.LoopSensors(this.UpdateObservationsWithEveryTick);
+        this.LoopSensors(update : this.UpdateObservationsWithEveryTick);
       }
 
       #if NEODROID_DEBUG
@@ -214,9 +216,9 @@ namespace droid.Runtime.Environments.Prototyping {
       var ignored_layer = LayerMask.NameToLayer($"IgnoredByNeodroid");
       if (this.TrackOnlyChildren) {
         this._tracked_game_objects =
-            NeodroidSceneUtilities.RecursiveChildGameObjectsExceptLayer(this.transform, ignored_layer);
+            NeodroidSceneUtilities.RecursiveChildGameObjectsExceptLayer(parent : this.transform, layer : ignored_layer);
       } else {
-        this._tracked_game_objects = NeodroidSceneUtilities.FindAllGameObjectsExceptLayer(ignored_layer);
+        this._tracked_game_objects = NeodroidSceneUtilities.FindAllGameObjectsExceptLayer(layer : ignored_layer);
       }
 
       var length = this._tracked_game_objects.Length;
@@ -262,8 +264,16 @@ namespace droid.Runtime.Environments.Prototyping {
             this._bodies = body_list.ToArray();
       */ //Should be equivalent to the line below, but kept as a reference in case of confusion
 
-      this._Tracked_Rigid_Bodies = this._tracked_game_objects.Where(go => go != null)
-                                       .Select(go => go.GetComponent<Rigidbody>()).Where(body => body)
+      var list = new List<Rigidbody>();
+      for (var index = 0; index < this._tracked_game_objects.Length; index++) {
+        var go = this._tracked_game_objects[index];
+        if (go != null) {
+          var body = go.GetComponent<Rigidbody>();
+          if (body) list.Add(item : body);
+        }
+      }
+
+      this._Tracked_Rigid_Bodies = list
                                        .ToArray();
 
       this._reset_velocities = new Vector3[this._Tracked_Rigid_Bodies.Length];
@@ -277,14 +287,22 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <summary>
     /// </summary>
     void SaveInitialAnimations() {
-      this._animations = this._tracked_game_objects.Where(go => go != null)
-                             .Select(go => go.GetComponent<Animation>()).Where(anim => anim).ToArray();
+      var list = new List<Animation>();
+      for (var index = 0; index < this._tracked_game_objects.Length; index++) {
+        var go = this._tracked_game_objects[index];
+        if (go != null) {
+          var anim = go.GetComponent<Animation>();
+          if (anim) list.Add(item : anim);
+        }
+      }
+
+      this._animations = list.ToArray();
       this._reset_animation_times = new float[this._animations.Length];
       for (var i = 0; i < this._animations.Length; i++) {
         if (this._animations[i]) {
           if (this._animations[i].clip) {
             this._reset_animation_times[i] =
-                this._animations[i].CrossFadeQueued(this._animations[i].clip.name)
+                this._animations[i].CrossFadeQueued(animation : this._animations[i].clip.name)
                     .time; //TODO: IS NOT USED AS RIGHT NOW and should use animations clips instead the legacy "clip.name".
             //TODO: DOES NOT WORK
           }
@@ -327,7 +345,7 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     /// <param name="reaction"></param>
     void Step(Reaction reaction) {
-      lock (this._Reaction_Lock) {
+
         this.PreStepEvent?.Invoke();
 
         if (reaction.Parameters.EpisodeCount) {
@@ -345,13 +363,13 @@ namespace droid.Runtime.Environments.Prototyping {
           #endif
         }
 
-        this.SendToActors(reaction);
+        this.SendToActors(reaction : reaction);
 
         this.StepEvent?.Invoke();
         this.LoopListeners();
 
         this.LoopSensors();
-      }
+
     }
 
     /// <summary>
@@ -371,16 +389,16 @@ namespace droid.Runtime.Environments.Prototyping {
 
       this._last_configuration = reaction.Configurations;
 
-      this.ReplyWithDescriptionThisStep = reaction.Parameters.Describe;
+      this.ProvideFullDescription = reaction.Parameters.Describe;
 
       if (reaction.Parameters.Configure && reaction.Unobservables != null) {
         this._received_poses = reaction.Unobservables.Poses;
         this._received_bodies = reaction.Unobservables.Bodies;
       }
 
-      this.SendToDisplayers(reaction);
+      this.SendToDisplayers(reaction : reaction);
 
-      if (reaction.Parameters.StepResetObserveEnu == StepResetObserve.Reset_) {
+      if (reaction.Parameters.ReactionType == ReactionTypeEnum.Reset_) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log($"Resetting environment({this.Identifier})");
@@ -388,13 +406,13 @@ namespace droid.Runtime.Environments.Prototyping {
         #endif
         this.Terminate($"Reaction caused a reset");
         this.IsResetting = true;
-      } else if (reaction.Parameters.StepResetObserveEnu == StepResetObserve.Step_) {
+      } else if (reaction.Parameters.ReactionType == ReactionTypeEnum.Step_) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log($"Stepping in environment({this.Identifier})");
         }
         #endif
-        this.Step(reaction);
+        this.Step(reaction : reaction);
       }
     }
 
@@ -413,8 +431,6 @@ namespace droid.Runtime.Environments.Prototyping {
         this.Reconfigure();
       }
 
-      this.ReplyWithDescriptionThisStep = false;
-
       if (!this.keep_last_configuration) {
         this._last_configuration = null;
       }
@@ -422,6 +438,7 @@ namespace droid.Runtime.Environments.Prototyping {
       //this.LastReaction = null;
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void PrototypingReset() {
@@ -429,12 +446,12 @@ namespace droid.Runtime.Environments.Prototyping {
       this.StepI = 0;
       this.ObjectiveFunction?.PrototypingReset();
 
-      SetEnvironmentTransforms(ref this._tracked_game_objects,
-                               ref this._reset_positions,
-                               ref this._reset_rotations,
-                               ref this._reset_scales);
+      SetEnvironmentTransforms(child_game_objects : ref this._tracked_game_objects,
+                               positions : ref this._reset_positions,
+                               rotations : ref this._reset_rotations,
+                               scales : ref this._reset_scales);
 
-      this.SetBodies(ref this._Tracked_Rigid_Bodies, ref this._reset_velocities, ref this._reset_angulars);
+      this.SetBodies(bodies : ref this._Tracked_Rigid_Bodies, velocities : ref this._reset_velocities, angulars : ref this._reset_angulars);
 
       this.ResetRegisteredObjects();
       this.Reconfigure();
@@ -485,10 +502,10 @@ namespace droid.Runtime.Environments.Prototyping {
           scales[i] = this._reset_scales[i]; //TODO: this._received_poses[i].scale;
         }
 
-        SetEnvironmentTransforms(ref this._tracked_game_objects,
-                                 ref positions,
-                                 ref rotations,
-                                 ref scales);
+        SetEnvironmentTransforms(child_game_objects : ref this._tracked_game_objects,
+                                 positions : ref positions,
+                                 rotations : ref rotations,
+                                 scales : ref scales);
       }
 
       if (this._received_bodies != null) {
@@ -499,7 +516,9 @@ namespace droid.Runtime.Environments.Prototyping {
           angulars[i] = this._received_bodies[i].AngularVelocity;
         }
 
-        this.SetBodies(ref this._Tracked_Rigid_Bodies, ref velocities, ref angulars);
+        this.SetBodies(bodies : ref this._Tracked_Rigid_Bodies,
+                       velocities : ref velocities,
+                       angulars : ref angulars);
       }
 
       if (this._last_configuration != null) {
@@ -508,14 +527,15 @@ namespace droid.Runtime.Environments.Prototyping {
           Debug.Log($"Configuration length: {this._last_configuration.Length}");
         }
         #endif
-        foreach (var configuration in this._last_configuration) {
+        for (var index = 0; index < this._last_configuration.Length; index++) {
+          var configuration = this._last_configuration[index];
           #if NEODROID_DEBUG
           if (this.Debugging) {
             Debug.Log("Configuring configurable with the specified name: " + configuration.ConfigurableName);
           }
           #endif
-          if (this.Configurables.ContainsKey(configuration.ConfigurableName)) {
-            this.Configurables[configuration.ConfigurableName].ApplyConfiguration(configuration);
+          if (this.Configurables.ContainsKey(key : configuration.ConfigurableName)) {
+            this.Configurables[key : configuration.ConfigurableName].ApplyConfiguration(configuration : configuration);
           } else {
             #if NEODROID_DEBUG
             if (this.Debugging) {
@@ -541,16 +561,17 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <param name="reaction"></param>
     void SendToDisplayers(Reaction reaction) {
       if (reaction.Displayables != null && reaction.Displayables.Length > 0) {
-        foreach (var displayable in reaction.Displayables) {
+        for (var index = 0; index < reaction.Displayables.Length; index++) {
+          var displayable = reaction.Displayables[index];
           #if NEODROID_DEBUG
           if (this.Debugging) {
             Debug.Log("Applying " + displayable + " To " + this.name + "'s displayers");
           }
           #endif
           var displayable_name = displayable.DisplayableName;
-          if (this.Displayers.ContainsKey(displayable_name) && this.Displayers[displayable_name] != null) {
+          if (this.Displayers.ContainsKey(key : displayable_name) && this.Displayers[key : displayable_name] != null) {
             var v = displayable.DisplayableValue;
-            this.Displayers[displayable_name].Display(v);
+            this.Displayers[key : displayable_name].Display(v);
           } else {
             #if NEODROID_DEBUG
             if (this.Debugging) {
@@ -571,6 +592,7 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <param name="child_game_objects"></param>
     /// <param name="positions"></param>
     /// <param name="rotations"></param>
+    /// <param name="scales"></param>
     static void SetEnvironmentTransforms(ref GameObject[] child_game_objects,
                                          ref Vector3[] positions,
                                          ref Quaternion[] rotations,
@@ -612,7 +634,6 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <param name="bodies"></param>
     /// <param name="velocities"></param>
     /// <param name="angulars"></param>
-    /// <param name="debugging"></param>
     void SetBodies(ref Rigidbody[] bodies, ref Vector3[] velocities, ref Vector3[] angulars) {
       if (bodies != null && bodies.Length > 0) {
         for (var i = 0; i < bodies.Length; i++) {
@@ -637,16 +658,17 @@ namespace droid.Runtime.Environments.Prototyping {
 
     #region Transformations
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <param name="point"></param>
     /// <returns></returns>
     public Vector3 TransformPoint(Vector3 point) {
-      switch (this.CoordinateSpace) {
-        case CoordinateSpace.Environment_ when this.CoordinateReferencePoint:
-          return this.CoordinateReferencePoint.transform.InverseTransformPoint(point);
-        case CoordinateSpace.Local_:
-          return this.transform.InverseTransformPoint(point);
+      switch (this.CoordinateSpaceEnum) {
+        case CoordinateSpaceEnum.Environment_ when this.CoordinateReferencePoint:
+          return this.CoordinateReferencePoint.transform.InverseTransformPoint(position : point);
+        case CoordinateSpaceEnum.Local_:
+          return this.transform.InverseTransformPoint(position : point);
         //return point - this.transform.position;
         default:
           #if NEODROID_DEBUG
@@ -663,13 +685,13 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     /// <param name="point"></param>
     public void TransformPoint(ref Vector3 point) {
-      switch (this.CoordinateSpace) {
-        case CoordinateSpace.Environment_ when this.CoordinateReferencePoint:
-          point = this.CoordinateReferencePoint.transform.InverseTransformPoint(point);
+      switch (this.CoordinateSpaceEnum) {
+        case CoordinateSpaceEnum.Environment_ when this.CoordinateReferencePoint:
+          point = this.CoordinateReferencePoint.transform.InverseTransformPoint(position : point);
           break;
-        case CoordinateSpace.Local_:
+        case CoordinateSpaceEnum.Local_:
           //point = point - this.transform.position;
-          point = this.transform.InverseTransformPoint(point);
+          point = this.transform.InverseTransformPoint(position : point);
           break;
         default:
           #if NEODROID_DEBUG
@@ -681,17 +703,18 @@ namespace droid.Runtime.Environments.Prototyping {
       }
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <param name="point"></param>
     /// <returns></returns>
     public Vector3 InverseTransformPoint(Vector3 point) {
-      switch (this.CoordinateSpace) {
-        case CoordinateSpace.Environment_ when this.CoordinateReferencePoint:
-          return this.CoordinateReferencePoint.transform.TransformPoint(point);
-        case CoordinateSpace.Local_:
+      switch (this.CoordinateSpaceEnum) {
+        case CoordinateSpaceEnum.Environment_ when this.CoordinateReferencePoint:
+          return this.CoordinateReferencePoint.transform.TransformPoint(position : point);
+        case CoordinateSpaceEnum.Local_:
           //return point - this.transform.position;
-          return this.transform.TransformPoint(point);
+          return this.transform.TransformPoint(position : point);
         default:
           #if NEODROID_DEBUG
           if (this.Debugging) {
@@ -707,13 +730,13 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     /// <param name="point"></param>
     public void InverseTransformPoint(ref Vector3 point) {
-      switch (this.CoordinateSpace) {
-        case CoordinateSpace.Environment_ when this.CoordinateReferencePoint:
-          point = this.CoordinateReferencePoint.transform.TransformPoint(point);
+      switch (this.CoordinateSpaceEnum) {
+        case CoordinateSpaceEnum.Environment_ when this.CoordinateReferencePoint:
+          point = this.CoordinateReferencePoint.transform.TransformPoint(position : point);
           break;
-        case CoordinateSpace.Local_:
+        case CoordinateSpaceEnum.Local_:
           //point = point - this.transform.position;
-          point = this.transform.TransformPoint(point);
+          point = this.transform.TransformPoint(position : point);
           break;
         default:
           #if NEODROID_DEBUG
@@ -725,16 +748,17 @@ namespace droid.Runtime.Environments.Prototyping {
       }
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <param name="direction"></param>
     /// <returns></returns>
     public Vector3 TransformDirection(Vector3 direction) {
-      switch (this.CoordinateSpace) {
-        case CoordinateSpace.Environment_ when this.CoordinateReferencePoint:
-          return this.CoordinateReferencePoint.transform.InverseTransformDirection(direction);
-        case CoordinateSpace.Local_:
-          return this.transform.InverseTransformDirection(direction);
+      switch (this.CoordinateSpaceEnum) {
+        case CoordinateSpaceEnum.Environment_ when this.CoordinateReferencePoint:
+          return this.CoordinateReferencePoint.transform.InverseTransformDirection(direction : direction);
+        case CoordinateSpaceEnum.Local_:
+          return this.transform.InverseTransformDirection(direction : direction);
         default:
           #if NEODROID_DEBUG
           if (this.Debugging) {
@@ -750,14 +774,14 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     /// <param name="direction"></param>
     public void TransformDirection(ref Vector3 direction) {
-      switch (this.CoordinateSpace) {
-        case CoordinateSpace.Environment_ when this.CoordinateReferencePoint:
-          direction = this.CoordinateReferencePoint.transform.InverseTransformDirection(direction);
+      switch (this.CoordinateSpaceEnum) {
+        case CoordinateSpaceEnum.Environment_ when this.CoordinateReferencePoint:
+          direction = this.CoordinateReferencePoint.transform.InverseTransformDirection(direction : direction);
           break;
-        case CoordinateSpace.Local_:
-          direction = this.transform.InverseTransformDirection(direction);
+        case CoordinateSpaceEnum.Local_:
+          direction = this.transform.InverseTransformDirection(direction : direction);
           break;
-        case CoordinateSpace.Global_:
+        case CoordinateSpaceEnum.Global_:
         default:
           #if NEODROID_DEBUG
           if (this.Debugging) {
@@ -768,16 +792,17 @@ namespace droid.Runtime.Environments.Prototyping {
       }
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <param name="direction"></param>
     /// <returns></returns>
     public Vector3 InverseTransformDirection(Vector3 direction) {
-      switch (this.CoordinateSpace) {
-        case CoordinateSpace.Environment_ when this.CoordinateReferencePoint:
-          return this.CoordinateReferencePoint.transform.TransformDirection(direction);
-        case CoordinateSpace.Local_:
-          return this.transform.TransformDirection(direction);
+      switch (this.CoordinateSpaceEnum) {
+        case CoordinateSpaceEnum.Environment_ when this.CoordinateReferencePoint:
+          return this.CoordinateReferencePoint.transform.TransformDirection(direction : direction);
+        case CoordinateSpaceEnum.Local_:
+          return this.transform.TransformDirection(direction : direction);
 
         default:
           #if NEODROID_DEBUG
@@ -794,12 +819,12 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     /// <param name="direction"></param>
     public void InverseTransformDirection(ref Vector3 direction) {
-      switch (this.CoordinateSpace) {
-        case CoordinateSpace.Environment_ when this.CoordinateReferencePoint:
-          direction = this.CoordinateReferencePoint.transform.TransformDirection(direction);
+      switch (this.CoordinateSpaceEnum) {
+        case CoordinateSpaceEnum.Environment_ when this.CoordinateReferencePoint:
+          direction = this.CoordinateReferencePoint.transform.TransformDirection(direction : direction);
           break;
-        case CoordinateSpace.Local_:
-          direction = this.transform.TransformDirection(direction);
+        case CoordinateSpaceEnum.Local_:
+          direction = this.transform.TransformDirection(direction : direction);
           break;
         default:
           #if NEODROID_DEBUG
@@ -811,20 +836,21 @@ namespace droid.Runtime.Environments.Prototyping {
       }
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <param name="quaternion"></param>
     /// <returns></returns>
     public Quaternion TransformRotation(Quaternion quaternion) {
-      if (this.CoordinateSpace == CoordinateSpace.Environment_) {
+      if (this.CoordinateSpaceEnum == CoordinateSpaceEnum.Environment_) {
         if (this.CoordinateReferencePoint) {
-          return Quaternion.Inverse(this.CoordinateReferencePoint.rotation) * quaternion;
+          return Quaternion.Inverse(rotation : this.CoordinateReferencePoint.rotation) * quaternion;
         }
 
         //Quaternion.Euler(this._coordinate_reference_point.transform.TransformDirection(quaternion.forward));
-      } else if (this.CoordinateSpace == CoordinateSpace.Local_) {
+      } else if (this.CoordinateSpaceEnum == CoordinateSpaceEnum.Local_) {
         if (this.CoordinateReferencePoint) {
-          return Quaternion.Inverse(this.Transform.rotation) * quaternion;
+          return Quaternion.Inverse(rotation : this.Transform.rotation) * quaternion;
         }
       }
 
@@ -836,32 +862,32 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     /// <param name="quaternion"></param>
     public void TransformRotation(ref Quaternion quaternion) {
-      if (this.CoordinateSpace == CoordinateSpace.Environment_) {
+      if (this.CoordinateSpaceEnum == CoordinateSpaceEnum.Environment_) {
         if (this.CoordinateReferencePoint) {
-          quaternion = Quaternion.Inverse(this.CoordinateReferencePoint.rotation) * quaternion;
+          quaternion = Quaternion.Inverse(rotation : this.CoordinateReferencePoint.rotation) * quaternion;
         }
 
         //Quaternion.Euler(this._coordinate_reference_point.transform.TransformDirection(quaternion.forward));
-      } else if (this.CoordinateSpace == CoordinateSpace.Local_) {
+      } else if (this.CoordinateSpaceEnum == CoordinateSpaceEnum.Local_) {
         if (this.CoordinateReferencePoint) {
-          quaternion = Quaternion.Inverse(this.Transform.rotation) * quaternion;
+          quaternion = Quaternion.Inverse(rotation : this.Transform.rotation) * quaternion;
         }
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="quaternion"></param>
-    /// <returns></returns>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <param name="quaternion"></param>
+    ///  <returns></returns>
     public Quaternion InverseTransformRotation(Quaternion quaternion) {
-      if (this.CoordinateSpace == CoordinateSpace.Environment_) {
+      if (this.CoordinateSpaceEnum == CoordinateSpaceEnum.Environment_) {
         if (this.CoordinateReferencePoint) {
           return this.CoordinateReferencePoint.rotation * quaternion;
         }
 
         //Quaternion.Euler(this._coordinate_reference_point.transform.TransformDirection(quaternion.forward));
-      } else if (this.CoordinateSpace == CoordinateSpace.Local_) {
+      } else if (this.CoordinateSpaceEnum == CoordinateSpaceEnum.Local_) {
         if (this.CoordinateReferencePoint) {
           return this.Transform.rotation * quaternion;
         }
@@ -875,10 +901,10 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     /// <param name="quaternion"></param>
     public void InverseTransformRotation(ref Quaternion quaternion) {
-      if (this.CoordinateSpace == CoordinateSpace.Environment_) {
+      if (this.CoordinateSpaceEnum == CoordinateSpaceEnum.Environment_) {
         if (this.CoordinateReferencePoint) {
           quaternion = this.CoordinateReferencePoint.rotation * quaternion;
-        } else if (this.CoordinateSpace == CoordinateSpace.Local_) {
+        } else if (this.CoordinateSpaceEnum == CoordinateSpaceEnum.Local_) {
           if (this.CoordinateReferencePoint) {
             quaternion = this.Transform.rotation * quaternion;
           }
@@ -941,7 +967,7 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <summary>
     /// </summary>
     [field : SerializeField]
-    public CoordinateSpace CoordinateSpace { get; set; } = CoordinateSpace.Local_;
+    public CoordinateSpaceEnum CoordinateSpaceEnum { get; set; } = CoordinateSpaceEnum.Local_;
 
     /// <summary>
     /// </summary>
@@ -965,7 +991,7 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public void Register(IDisplayer displayer) { this.Register(displayer, displayer.Identifier); }
+    public void Register(IDisplayer displayer) { this.Register(obj : displayer, identifier : displayer.Identifier); }
 
     /// <inheritdoc />
     /// <summary>
@@ -973,13 +999,13 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <param name="obj"></param>
     /// <param name="identifier"></param>
     public void Register(IDisplayer obj, string identifier) {
-      if (!this.Displayers.ContainsKey(identifier)) {
+      if (!this.Displayers.ContainsKey(key : identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log($"Environment {this.name} has registered displayer {identifier}");
         }
         #endif
-        this.Displayers.Add(identifier, obj);
+        this.Displayers.Add(key : identifier, value : obj);
       } else {
         Debug.LogWarning($"WARNING! Please check for duplicates, Environment {this.name} already has displayer {identifier} registered");
       }
@@ -989,7 +1015,7 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <summary>
     /// </summary>
     /// <param name="sensor"></param>
-    public void Register(ISensor sensor) { this.Register(sensor, sensor.Identifier); }
+    public void Register(ISensor sensor) { this.Register(sensor : sensor, identifier : sensor.Identifier); }
 
     /// <inheritdoc />
     /// ///
@@ -998,14 +1024,14 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <param name="sensor"></param>
     /// <param name="identifier"></param>
     public void Register(ISensor sensor, string identifier) {
-      if (!this.Sensors.ContainsKey(identifier)) {
+      if (!this.Sensors.ContainsKey(key : identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log($"Environment {this.name} has registered sensor {identifier}");
         }
         #endif
 
-        this.Sensors.Add(identifier, sensor);
+        this.Sensors.Add(key : identifier, value : sensor);
       } else {
         Debug.LogWarning($"WARNING! Please check for duplicates, Environment {this.name} already has observer {identifier} registered");
       }
@@ -1015,7 +1041,7 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <summary>
     /// </summary>
     /// <param name="configurable"></param>
-    public void Register(IConfigurable configurable) { this.Register(configurable, configurable.Identifier); }
+    public void Register(IConfigurable configurable) { this.Register(configurable : configurable, identifier : configurable.Identifier); }
 
     /// <inheritdoc />
     /// <summary>
@@ -1023,25 +1049,25 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <param name="configurable"></param>
     /// <param name="identifier"></param>
     public void Register(IConfigurable configurable, string identifier) {
-      if (!this.Configurables.ContainsKey(identifier)) {
+      if (!this.Configurables.ContainsKey(key : identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log($"Environment {this.name} has registered configurable {identifier}");
         }
         #endif
 
-        this.Configurables.Add(identifier, configurable);
+        this.Configurables.Add(key : identifier, value : configurable);
       } else {
         Debug.LogWarning($"WARNING! Please check for duplicates, Environment {this.name} already has configurable {identifier} registered");
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="environment_listener"></param>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <param name="environment_listener"></param>
     public void Register(IUnobservable environment_listener) {
-      this.Register(environment_listener, environment_listener.Identifier);
+      this.Register(environment_listener : environment_listener, identifier : environment_listener.Identifier);
     }
 
     /// <inheritdoc />
@@ -1050,103 +1076,107 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <param name="environment_listener"></param>
     /// <param name="identifier"></param>
     public void Register(IUnobservable environment_listener, string identifier) {
-      if (!this.Listeners.ContainsKey(identifier)) {
+      if (!this.Listeners.ContainsKey(key : identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log($"Environment {this.name} has registered resetable {identifier}");
         }
         #endif
-        this.Listeners.Add(identifier, environment_listener);
+        this.Listeners.Add(key : identifier, value : environment_listener);
       } else {
         Debug.LogWarning($"WARNING! Please check for duplicates, Environment {this.name} already has resetable {identifier} registered");
       }
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <param name="sensor"></param>
-    public void UnRegister(ISensor sensor) { this.UnRegister(sensor, sensor.Identifier); }
+    public void UnRegister(ISensor sensor) { this.UnRegister(t : sensor, identifier : sensor.Identifier); }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="t"></param>
-    /// <param name="identifier"></param>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <param name="t"></param>
+    ///  <param name="identifier"></param>
     public void UnRegister(ISensor t, string identifier) {
-      if (this.Sensors.ContainsKey(identifier)) {
+      if (this.Sensors.ContainsKey(key : identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log($"Environment {this.name} unregistered sensor {identifier}");
         }
         #endif
-        this.Sensors.Remove(identifier);
+        this.Sensors.Remove(key : identifier);
       }
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <param name="configurable"></param>
     public void UnRegister(IConfigurable configurable) {
-      this.UnRegister(configurable, configurable.Identifier);
+      this.UnRegister(t : configurable, identifier : configurable.Identifier);
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="t"></param>
-    /// <param name="identifier"></param>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <param name="t"></param>
+    ///  <param name="identifier"></param>
     public void UnRegister(IConfigurable t, string identifier) {
-      if (this.Configurables.ContainsKey(identifier)) {
+      if (this.Configurables.ContainsKey(key : identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log($"Environment {this.name} unregistered configurable {identifier}");
         }
         #endif
-        this.Configurables.Remove(identifier);
+        this.Configurables.Remove(key : identifier);
       }
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <param name="displayer"></param>
-    public void UnRegister(IDisplayer displayer) { this.UnRegister(displayer, displayer.Identifier); }
+    public void UnRegister(IDisplayer displayer) { this.UnRegister(t : displayer, identifier : displayer.Identifier); }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="t"></param>
-    /// <param name="identifier"></param>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <param name="t"></param>
+    ///  <param name="identifier"></param>
     public void UnRegister(IDisplayer t, string identifier) {
-      if (this.Displayers.ContainsKey(identifier)) {
+      if (this.Displayers.ContainsKey(key : identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log($"Environment {this.name} unregistered configurable {identifier}");
         }
         #endif
-        this.Displayers.Remove(identifier);
+        this.Displayers.Remove(key : identifier);
       }
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <param name="environment_listener"></param>
     public void UnRegister(IUnobservable environment_listener) {
-      this.UnRegister(environment_listener, environment_listener.Identifier);
+      this.UnRegister(t : environment_listener, identifier : environment_listener.Identifier);
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="t"></param>
-    /// <param name="identifier"></param>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <param name="t"></param>
+    ///  <param name="identifier"></param>
     public void UnRegister(IUnobservable t, string identifier) {
-      if (this.Listeners.ContainsKey(identifier)) {
+      if (this.Listeners.ContainsKey(key : identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log($"Environment {this.name} unregistered resetable {identifier}");
         }
         #endif
-        this.Listeners.Remove(identifier);
+        this.Listeners.Remove(key : identifier);
       }
     }
 
@@ -1157,6 +1187,10 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     protected abstract void InnerResetRegisteredObjects();
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    /// <returns></returns>
     public override String ToString() {
       var e = " - ";
 

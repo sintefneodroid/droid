@@ -9,7 +9,7 @@ namespace droid.Runtime.Utilities.Drawing {
     static NeodroidUtilities() {
       _s_line_tex = new Texture2D(1,
                                   3,
-                                  TextureFormat.ARGB32,
+                                  textureFormat : TextureFormat.ARGB32,
                                   true);
       _s_line_tex.SetPixel(0,
                            0,
@@ -17,7 +17,7 @@ namespace droid.Runtime.Utilities.Drawing {
                                      1,
                                      1,
                                      0));
-      _s_line_tex.SetPixel(0, 1, Color.white);
+      _s_line_tex.SetPixel(0, 1, color : Color.white);
       _s_line_tex.SetPixel(0,
                            2,
                            new Color(1,
@@ -38,11 +38,11 @@ namespace droid.Runtime.Utilities.Drawing {
       var save_color = GUI.color;
 
       var delta = p_point_b - p_point_a;
-      GUIUtility.ScaleAroundPivot(new Vector2(delta.magnitude, p_width), Vector2.zero);
-      GUIUtility.RotateAroundPivot(Vector2.Angle(delta, Vector2.right) * Mathf.Sign(delta.y), Vector2.zero);
-      GUI.matrix = Matrix4x4.TRS(p_point_a, Quaternion.identity, Vector3.one) * GUI.matrix;
+      GUIUtility.ScaleAroundPivot(new Vector2(x : delta.magnitude, y : p_width), pivotPoint : Vector2.zero);
+      GUIUtility.RotateAroundPivot(Vector2.Angle(@from : delta, to : Vector2.right) * Mathf.Sign(f : delta.y), pivotPoint : Vector2.zero);
+      GUI.matrix = Matrix4x4.TRS(pos : p_point_a, q : Quaternion.identity, s : Vector3.one) * GUI.matrix;
 
-      GUI.DrawTexture(new Rect(Vector2.zero, Vector2.one), _s_line_tex);
+      GUI.DrawTexture(new Rect(position : Vector2.zero, size : Vector2.one), image : _s_line_tex);
 
       GUI.matrix = save_matrix;
       GUI.color = save_color;

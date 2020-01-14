@@ -22,7 +22,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     [SerializeField]
     bool _relative_to_existing_value = false;
 
-    [SerializeField] protected CoordinateSpace coordinate_space = CoordinateSpace.Environment_;
+    [SerializeField] protected CoordinateSpaceEnum _coordinate_spaceEnum = CoordinateSpaceEnum.Environment_;
     #endregion
   }
 }

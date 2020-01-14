@@ -17,17 +17,18 @@ namespace droid.Runtime.Managers {
 
     #region UnityCallbacks
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void Setup() {
-      if (this.Configuration.SimulationType == SimulationType.Frame_dependent_) {
+      if (this.Configuration.SimulationType == SimulationTypeEnum.Frame_dependent_) {
         this.EarlyUpdateEvent += this.Pause;
         this.UpdateEvent += this.Resume;
-      } else if (this.Configuration.SimulationType == SimulationType.Physics_dependent_) {
+      } else if (this.Configuration.SimulationType == SimulationTypeEnum.Physics_dependent_) {
         #if UNITY_EDITOR
         if (this.AllowInEditorBlockage) {
-          this.EarlyFixedUpdateEvent +=
-              this.Receive; // Receive blocks the main thread and therefore also the unity editor.
+          // Receive blocks the main thread and therefore also the unity editor.
+          this.EarlyFixedUpdateEvent += this.Receive;
         } else {
           Debug.LogWarning("Physics dependent blocking in editor is not enabled and is therefore not receiving or sending anything.");
         }
@@ -51,7 +52,7 @@ namespace droid.Runtime.Managers {
         }
         #endif
 
-        this.ResumeSimulation(this.Configuration.TimeScale);
+        this.ResumeSimulation(simulation_time_scale : this.Configuration.TimeScale);
       } else if (this.TestActuators) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
@@ -59,7 +60,7 @@ namespace droid.Runtime.Managers {
         }
         #endif
 
-        this.ResumeSimulation(this.Configuration.TimeScale);
+        this.ResumeSimulation(simulation_time_scale : this.Configuration.TimeScale);
       } else {
         #if NEODROID_DEBUG
         if (this.Debugging) {
@@ -113,8 +114,8 @@ namespace droid.Runtime.Managers {
     /// <summary>
     /// </summary>
     void Receive() {
-      var reaction = this._Message_Server.Receive(TimeSpan.Zero);
-      this.SetReactions(reaction);
+      var reaction = this._Message_Server.Receive(wait_time : TimeSpan.Zero);
+      this.SetReactions(reactions : reaction);
     }
 
     #endregion

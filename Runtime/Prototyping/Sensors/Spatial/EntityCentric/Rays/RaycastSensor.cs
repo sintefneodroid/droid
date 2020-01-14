@@ -40,7 +40,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays {
     /// </summary>
     public float ObservationValue {
       get { return this._observation_value; }
-      private set { this._observation_value = this.SingleSpace.Project(value); }
+      private set { this._observation_value = this.SingleSpace.Project(v : value); }
     }
 
 
@@ -54,10 +54,10 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays {
     ///
     /// </summary>
     public override void UpdateObservation() {
-      if (Physics.Raycast(this.transform.position,
-                          this.transform.TransformDirection(this._direction),
-                          out this._hit,
-                          this._observation_space.Max)) {
+      if (Physics.Raycast( this.transform.position,
+                          this.transform.TransformDirection(direction : this._direction),
+                          hitInfo : out this._hit,
+                          maxDistance : this._observation_space.Max)) {
         this.ObservationValue = this._hit.distance;
       } else {
         this.ObservationValue = this._observation_space.Max;
@@ -75,10 +75,10 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays {
     void OnDrawGizmosSelected() {
       if (this.enabled) {
         var position = this.transform.position;
-        Debug.DrawLine(position,
+        Debug.DrawLine( position,
                        position
-                       + this.transform.TransformDirection(this._direction) * this._observation_space.Max,
-                       this._color);
+                       + this.transform.TransformDirection(direction : this._direction) * this._observation_space.Max,
+                       color : this._color);
       }
     }
     #endif

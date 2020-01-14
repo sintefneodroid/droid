@@ -16,8 +16,8 @@ namespace droid.Editor.Utilities.PostProcessing {
         }
 
         public override void OnInspectorGUI(){
-            this.PropertyField(this._m_flip_x);
-            this.PropertyField(this._m_flip_y);
+            this.PropertyField(property : this._m_flip_x);
+            this.PropertyField(property : this._m_flip_y);
         }
     }
 }

@@ -82,24 +82,24 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
       this._all_renders = FindObjectsOfType<Renderer>();
       if (this._capture_passes == null || this._capture_passes.Length == 0 || this.always_re) {
         this._capture_passes = new[] {
-                                         new CapturePassMaterial(CameraEvent.AfterDepthTexture,
-                                                                 BuiltinRenderTextureType.Depth) {
+                                         new CapturePassMaterial(when : CameraEvent.AfterDepthTexture,
+                                                                 source : BuiltinRenderTextureType.Depth) {
                                                                                                      _SupportsAntialiasing
                                                                                                          = false,
                                                                                                      _RenderTexture
                                                                                                          = this
                                                                                                              .depthRenderTexture
                                                                                                  },
-                                         new CapturePassMaterial(CameraEvent.AfterForwardAlpha,
-                                                                 BuiltinRenderTextureType.MotionVectors) {
+                                         new CapturePassMaterial(when : CameraEvent.AfterForwardAlpha,
+                                                                 source : BuiltinRenderTextureType.MotionVectors) {
                                                                                                              _SupportsAntialiasing
                                                                                                                  = false,
                                                                                                              _RenderTexture
                                                                                                                  = this
                                                                                                                      .flowRenderTexture
                                                                                                          },
-                                         new CapturePassMaterial(CameraEvent.AfterForwardAlpha,
-                                                                 BuiltinRenderTextureType.None) {
+                                         new CapturePassMaterial(when : CameraEvent.AfterForwardAlpha,
+                                                                 source : BuiltinRenderTextureType.None) {
                                                                                                     _SupportsAntialiasing
                                                                                                         = false,
                                                                                                     _RenderTexture
@@ -109,8 +109,8 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
                                                                                                         = Shader
                                                                                                             .PropertyToID("_TmpFrameBuffer")
                                                                                                 },
-                                         new CapturePassMaterial(CameraEvent.AfterDepthTexture,
-                                                                 BuiltinRenderTextureType.None) {
+                                         new CapturePassMaterial(when : CameraEvent.AfterDepthTexture,
+                                                                 source : BuiltinRenderTextureType.None) {
                                                                                                     _SupportsAntialiasing
                                                                                                         = false,
                                                                                                     _RenderTexture
@@ -140,38 +140,38 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
         cb.Clear();
 
         if (capture_pass._Material) {
-          cb.GetTemporaryRT(capture_pass._TextureId,
+          cb.GetTemporaryRT(nameID : capture_pass._TextureId,
                             -1,
                             -1,
                             0,
-                            FilterMode.Point);
+                            filter : FilterMode.Point);
           //cb.Blit(capture_pass.Source, capture_pass._RenderTexture, capture_pass._Material);
-          cb.Blit(capture_pass.Source, capture_pass._TextureId);
+          cb.Blit(source : capture_pass.Source, dest : capture_pass._TextureId);
           cb.SetRenderTarget(new RenderTargetIdentifier[] {capture_pass._RenderTexture},
-                             capture_pass._RenderTexture);
-          cb.DrawMesh(this.m_quad,
-                      Matrix4x4.identity,
-                      capture_pass._Material,
+                             depth : capture_pass._RenderTexture);
+          cb.DrawMesh(mesh : this.m_quad,
+                      matrix : Matrix4x4.identity,
+                      material : capture_pass._Material,
                       0,
                       0);
-          cb.ReleaseTemporaryRT(capture_pass._TextureId);
+          cb.ReleaseTemporaryRT(nameID : capture_pass._TextureId);
         } else {
-          cb.Blit(capture_pass.Source, capture_pass._RenderTexture);
+          cb.Blit(source : capture_pass.Source, dest : capture_pass._RenderTexture);
         }
 
-        this._camera.AddCommandBuffer(capture_pass.When, cb);
+        this._camera.AddCommandBuffer(evt : capture_pass.When, buffer : cb);
       }
 
       this.CheckBlock();
       foreach (var r in this._all_renders) {
-        r.GetPropertyBlock(this._block);
+        r.GetPropertyBlock(properties : this._block);
         var sm = r.sharedMaterial;
         if (sm) {
           var id = sm.GetInstanceID();
-          var color = ColorEncoding.EncodeIdAsColor(id);
+          var color = ColorEncoding.EncodeIdAsColor(instance_id : id);
 
-          this._block.SetColor(SynthesisUtilities._Shader_MaterialId_Color_Name, color);
-          r.SetPropertyBlock(this._block);
+          this._block.SetColor(name : SynthesisUtilities._Shader_MaterialId_Color_Name, value : color);
+          r.SetPropertyBlock(properties : this._block);
         }
       }
     }
@@ -189,12 +189,12 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
           var y = (_size + _margin) * (xi / (Screen.width - _size));
           var r = new Rect(_margin + x,
                            _margin + y,
-                           _size,
-                           _size);
+                           width : _size,
+                           height : _size);
           //this._asf?.Flip(pass._RenderTexture);
 
-          GUI.DrawTexture(r, pass._RenderTexture, ScaleMode.ScaleToFit);
-          GUI.TextField(r, pass.Source.ToString(), this.gui_style.box);
+          GUI.DrawTexture(position : r, image : pass._RenderTexture, scaleMode : ScaleMode.ScaleToFit);
+          GUI.TextField(position : r, pass.Source.ToString(), style : this.gui_style.box);
         }
       }
     }
@@ -235,7 +235,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
     public TextureFlipper() {
       this._m_sh_v_flip = Shader.Find("Neodroid/Experimental/VerticalFlipper");
       if (this._m_sh_v_flip) {
-        this._m_vf_lip_material = new Material(this._m_sh_v_flip);
+        this._m_vf_lip_material = new Material(shader : this._m_sh_v_flip);
       }
     }
 
@@ -243,25 +243,25 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
       if (this._m_work_texture == null
           || this._m_work_texture.width != target.width
           || this._m_work_texture.height != target.height) {
-        UnityHelpers.Destroy(this._m_work_texture);
-        this._m_work_texture = new RenderTexture(target.width,
-                                                 target.height,
-                                                 target.depth,
-                                                 target.format,
-                                                 RenderTextureReadWrite.Linear);
+        UnityHelpers.Destroy(obj : this._m_work_texture);
+        this._m_work_texture = new RenderTexture(width : target.width,
+                                                 height : target.height,
+                                                 depth : target.depth,
+                                                 format : target.format,
+                                                 readWrite : RenderTextureReadWrite.Linear);
       }
 
       if (this._m_vf_lip_material) {
-        Graphics.Blit(target, this._m_work_texture, this._m_vf_lip_material);
-        Graphics.Blit(this._m_work_texture, target);
+        Graphics.Blit(source : target, dest : this._m_work_texture, mat : this._m_vf_lip_material);
+        Graphics.Blit(source : this._m_work_texture, dest : target);
       }
     }
 
     public void Dispose() {
-      UnityHelpers.Destroy(this._m_work_texture);
+      UnityHelpers.Destroy(obj : this._m_work_texture);
       this._m_work_texture = null;
       if (this._m_vf_lip_material) {
-        UnityHelpers.Destroy(this._m_vf_lip_material);
+        UnityHelpers.Destroy(obj : this._m_vf_lip_material);
         this._m_vf_lip_material = null;
       }
     }
@@ -279,9 +279,9 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
       }
       #if UNITY_EDITOR
       if (EditorApplication.isPlaying) {
-        Object.Destroy(obj);
+        Object.Destroy(obj : obj);
       } else {
-        Object.DestroyImmediate(obj, allow_destroying_assets);
+        Object.DestroyImmediate(obj : obj, allowDestroyingAssets : allow_destroying_assets);
       }
       #else
             Object.Destroy(obj);

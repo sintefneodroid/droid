@@ -30,13 +30,13 @@ namespace droid.Editor.Windows {
           (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidSettings.Current.NeodroidImportLocationProp
                                                    + "Gizmos/Icons/color_wheel.png",
                                                    typeof(Texture2D));
-      this.titleContent = new GUIContent("Neo:Seg", this._icon, "Window for segmentation");
+      this.titleContent = new GUIContent("Neo:Seg", image : this._icon, "Window for segmentation");
     }
 
     void OnGUI() {
-      GUILayout.Label("Segmentation Colors", EditorStyles.boldLabel);
+      GUILayout.Label("Segmentation Colors", style : EditorStyles.boldLabel);
       var serialised_object = new SerializedObject(this);
-      this._scroll_position = EditorGUILayout.BeginScrollView(this._scroll_position);
+      this._scroll_position = EditorGUILayout.BeginScrollView(scrollPosition : this._scroll_position);
       EditorGUILayout.BeginVertical("Box");
       GUILayout.Label("By Tag");
       var material_changers_by_tag = FindObjectsOfType<ChangeMaterialOnRenderByTag>();
@@ -44,14 +44,14 @@ namespace droid.Editor.Windows {
         this._colorsByCategory = material_changer_by_tag.ColorsByCategory;
         if (this._colorsByCategory != null) {
           var tag_colors_property = serialised_object.FindProperty("_segmentation_colors_by_tag");
-          EditorGUILayout.PropertyField(tag_colors_property,
-                                        new GUIContent(material_changer_by_tag.name),
+          EditorGUILayout.PropertyField(property : tag_colors_property,
+                                        new GUIContent(text : material_changer_by_tag.name),
                                         true); // True means show children
           material_changer_by_tag._Replace_Untagged_Color =
               EditorGUILayout.Toggle("  -  Replace untagged colors",
-                                     material_changer_by_tag._Replace_Untagged_Color);
+                                     value : material_changer_by_tag._Replace_Untagged_Color);
           material_changer_by_tag._Untagged_Color =
-              EditorGUILayout.ColorField("  -  Untagged color", material_changer_by_tag._Untagged_Color);
+              EditorGUILayout.ColorField("  -  Untagged color", value : material_changer_by_tag._Untagged_Color);
         }
       }
 
@@ -70,8 +70,8 @@ namespace droid.Editor.Windows {
         this.colorsByInstance = material_changer_by_instance.InstanceColors;
         if (this.colorsByInstance != null) {
           var instance_colors_property = serialised_object.FindProperty("_segmentation_colors_by_instance");
-          EditorGUILayout.PropertyField(instance_colors_property,
-                                        new GUIContent(material_changer_by_instance.name),
+          EditorGUILayout.PropertyField(property : instance_colors_property,
+                                        new GUIContent(text : material_changer_by_instance.name),
                                         true); // True means show children
         }
       }

@@ -75,9 +75,9 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Grid {
     void OnDrawGizmosSelected() {
       if (this.DrawNames) {
         if (this._current_goal) {
-          NeodroidUtilities.DrawString(this._current_goal.name,
-                                       this._current_goal.transform.position,
-                                       Color.green);
+          NeodroidUtilities.DrawString(text : this._current_goal.name,
+                                       world_pos : this._current_goal.transform.position,
+                                       color : Color.green);
         }
       }
     }

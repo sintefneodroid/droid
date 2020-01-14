@@ -24,7 +24,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
 
     [Header("Specific", order = 102)]
     [SerializeField]
-    CoordinateSpace _space = CoordinateSpace.Environment_;
+    CoordinateSpaceEnum _spaceEnum = CoordinateSpaceEnum.Environment_;
 
     /// <summary>
     ///
@@ -66,9 +66,9 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     /// </summary>
     public override void UpdateObservation() {
       var transform1 = this.transform;
-      if (this.ParentEnvironment != null && this._space == CoordinateSpace.Environment_) {
-        this._position = this.ParentEnvironment.TransformPoint(transform1.position);
-        this._rotation = Quaternion.Euler(this.ParentEnvironment.TransformDirection(transform1.up));
+      if (this.ParentEnvironment != null && this._spaceEnum == CoordinateSpaceEnum.Environment_) {
+        this._position = this.ParentEnvironment.TransformPoint(point : transform1.position);
+        this._rotation = Quaternion.Euler(this.ParentEnvironment.TransformDirection(direction : transform1.up));
       } else {
         this._position = transform1.position;
         this._rotation = transform1.rotation;

@@ -55,29 +55,29 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._shadow_strength);
+                                                          identifier : this._shadow_strength);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._color_r);
+                                                          identifier : this._color_r);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._color_b);
+                                                          identifier : this._color_b);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._color_g);
+                                                          identifier : this._color_g);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._intensity);
+                                                          identifier : this._intensity);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._indirect_multiplier);
+                                                          identifier : this._indirect_multiplier);
     }
 
     /// <inheritdoc />
@@ -88,12 +88,12 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
         return;
       }
 
-      this.ParentEnvironment.UnRegister(this, this._shadow_strength);
-      this.ParentEnvironment.UnRegister(this, this._color_r);
-      this.ParentEnvironment.UnRegister(this, this._color_g);
-      this.ParentEnvironment.UnRegister(this, this._color_b);
-      this.ParentEnvironment.UnRegister(this, this._intensity);
-      this.ParentEnvironment.UnRegister(this, this._indirect_multiplier);
+      this.ParentEnvironment.UnRegister(this, identifier : this._shadow_strength);
+      this.ParentEnvironment.UnRegister(this, identifier : this._color_r);
+      this.ParentEnvironment.UnRegister(this, identifier : this._color_g);
+      this.ParentEnvironment.UnRegister(this, identifier : this._color_b);
+      this.ParentEnvironment.UnRegister(this, identifier : this._intensity);
+      this.ParentEnvironment.UnRegister(this, identifier : this._indirect_multiplier);
     }
 
     public ISamplable ConfigurableValueSpace { get { return this._color_space; } }
@@ -106,7 +106,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        DebugPrinting.ApplyPrint(this.Debugging, configuration, this.Identifier);
+        DebugPrinting.ApplyPrint(debugging : this.Debugging, configuration : configuration, identifier : this.Identifier);
       }
       #endif
 
@@ -140,12 +140,12 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       var v = this._color_space.Sample();
 
       return new[] {
-                       new Configuration(this._color_r, v.x),
-                       new Configuration(this._color_g, v.y),
-                       new Configuration(this._color_b, v.z),
-                       new Configuration(this._intensity, o.x),
-                       new Configuration(this._indirect_multiplier, o.y),
-                       new Configuration(this._shadow_strength, o.z)
+                       new Configuration(configurable_name : this._color_r, configurable_value : v.x),
+                       new Configuration(configurable_name : this._color_g, configurable_value : v.y),
+                       new Configuration(configurable_name : this._color_b, configurable_value : v.z),
+                       new Configuration(configurable_name : this._intensity, configurable_value : o.x),
+                       new Configuration(configurable_name : this._indirect_multiplier, configurable_value : o.y),
+                       new Configuration(configurable_name : this._shadow_strength, configurable_value : o.z)
                    };
     }
   }

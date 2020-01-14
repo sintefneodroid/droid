@@ -25,22 +25,22 @@ namespace droid.Editor.Utilities.ObjectDropdown {
              || e.type == EventType.DragExited
              || e.type == EventType.DragUpdated
              || e.type == EventType.Repaint)
-            && position.Contains(e.mousePosition)
+            && position.Contains(point : e.mousePosition)
             && e.shift) {
           if (DragAndDrop.objectReferences != null) {
             this._m_list.Clear();
             foreach (var o in DragAndDrop.objectReferences) {
-              this._m_list.Add(o);
+              this._m_list.Add(item : o);
               var go = o as GameObject;
               if (go == null && o is Component) {
                 go = ((Component)o).gameObject;
-                this._m_list.Add(go);
+                this._m_list.Add(item : go);
               }
 
               if (go != null) {
                 foreach (var c in go.GetComponents<Component>()) {
                   if (c != o) {
-                    this._m_list.Add(c);
+                    this._m_list.Add(item : c);
                   }
                 }
               }
@@ -50,8 +50,8 @@ namespace droid.Editor.Utilities.ObjectDropdown {
             if (field_info != null) {
               var type = field_info.FieldType;
               for (var i = this._m_list.Count - 1; i >= 0; i--) {
-                if (this._m_list[i] == null || !type.IsAssignableFrom(this._m_list[i].GetType())) {
-                  this._m_list.RemoveAt(i);
+                if (this._m_list[index : i] == null || !type.IsAssignableFrom(this._m_list[index : i].GetType())) {
+                  this._m_list.RemoveAt(index : i);
                 }
               }
             }
@@ -59,8 +59,8 @@ namespace droid.Editor.Utilities.ObjectDropdown {
             if (this.attribute is ObjectDropdownFilterAttribute att) {
               var type = att._FilterType;
               for (var i = this._m_list.Count - 1; i >= 0; i--) {
-                if (!type.IsAssignableFrom(this._m_list[i].GetType())) {
-                  this._m_list.RemoveAt(i);
+                if (!type.IsAssignableFrom(this._m_list[index : i].GetType())) {
+                  this._m_list.RemoveAt(index : i);
                 }
               }
             }
@@ -78,8 +78,8 @@ namespace droid.Editor.Utilities.ObjectDropdown {
                 foreach (var item in this._m_list) {
                   gm.AddItem(new GUIContent(item.name + "(" + item.GetType().Name + ")"),
                              false,
-                             func,
-                             item);
+                             func : func,
+                             userData : item);
                 }
 
                 gm.ShowAsContext();
@@ -91,9 +91,9 @@ namespace droid.Editor.Utilities.ObjectDropdown {
           }
         }
 
-        EditorGUI.ObjectField(position, property, label);
+        EditorGUI.ObjectField(position : position, property : property, label : label);
       } else {
-        EditorGUI.PropertyField(position, property, label);
+        EditorGUI.PropertyField(position : position, property : property, label : label);
       }
     }
   }
@@ -111,8 +111,9 @@ namespace droid.Editor.Utilities.ObjectDropdown {
       var current_type = a_property.serializedObject.targetObject.GetType();
       FieldInfo fi = null;
       var parts = a_property.propertyPath.Split('.');
-      foreach (var field_name in parts) {
-        fi = current_type.GetField(field_name,
+      for (var index = 0; index < parts.Length; index++) {
+        var field_name = parts[index];
+        fi = current_type.GetField(name : field_name,
                                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
         if (fi == null) {
           return null;

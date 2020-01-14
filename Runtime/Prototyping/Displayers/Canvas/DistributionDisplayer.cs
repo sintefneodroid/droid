@@ -21,7 +21,7 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
       get { return this._value; }
       set {
         this._value = value;
-        this.SetFillAmount(value);
+        this.SetFillAmount(amount : value);
       }
     }
 
@@ -63,7 +63,7 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
 
       this.Value = value;
 
-      this.SetFillAmount(value);
+      this.SetFillAmount(amount : value);
     }
 
     /// <inheritdoc />

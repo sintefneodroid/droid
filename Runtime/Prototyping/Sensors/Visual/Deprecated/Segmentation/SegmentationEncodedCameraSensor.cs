@@ -23,7 +23,7 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated.Segmentation {
     public override void UpdateObservation() {
       base.UpdateObservation();
 
-      Debug.LogWarning(JsonUtility.ToJson(this._segmenter.ColorsDict));
+      Debug.LogWarning(JsonUtility.ToJson(obj : this._segmenter.ColorsDict));
       this.serialised_string = this._segmenter != null
                                    ? this._segmenter.ColorsDict.Select(c => $"{c.Key}: {c.Value.ToString()}")
                                          .Aggregate("", (current, next) => $"{current}, {next}")

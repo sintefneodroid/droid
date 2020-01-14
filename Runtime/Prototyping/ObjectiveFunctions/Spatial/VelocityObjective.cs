@@ -32,7 +32,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
       if (this.ParentEnvironment.PlayableArea && this._rigidbody) {
         var env_bounds = this.ParentEnvironment.PlayableArea.Bounds;
         var rb_bounds = this._rigidbody.GetComponent<Collider>().bounds;
-        var intersects = env_bounds.Intersects(rb_bounds);
+        var intersects = env_bounds.Intersects(bounds : rb_bounds);
 
         #if NEODROID_DEBUG
         if (this.Debugging) {

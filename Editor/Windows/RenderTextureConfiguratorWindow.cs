@@ -34,7 +34,7 @@ namespace droid.Editor.Windows {
           (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidSettings.Current.NeodroidImportLocationProp
                                                    + "Gizmos/Icons/images.png",
                                                    typeof(Texture2D));
-      this.titleContent = new GUIContent("Neo:Tex", this._icon, "Window for RenderTexture configuration");
+      this.titleContent = new GUIContent("Neo:Tex", image : this._icon, "Window for RenderTexture configuration");
     }
 
     void OnGUI() {
@@ -42,30 +42,30 @@ namespace droid.Editor.Windows {
       var cameras = FindObjectsOfType<Camera>();
       foreach (var camera in cameras) {
         if (camera.targetTexture != null) {
-          this._render_textures.Add(camera.targetTexture);
+          this._render_textures.Add(item : camera.targetTexture);
         }
       }
 
-      this._scroll_position = EditorGUILayout.BeginScrollView(this._scroll_position);
+      this._scroll_position = EditorGUILayout.BeginScrollView(scrollPosition : this._scroll_position);
       foreach (var render_texture in this._render_textures) {
         EditorGUILayout.BeginVertical("Box");
         EditorGUILayout.BeginHorizontal();
         GUILayout.FlexibleSpace();
-        GUILayout.Label(render_texture.name);
+        GUILayout.Label(text : render_texture.name);
         GUILayout.FlexibleSpace();
         EditorGUILayout.EndHorizontal();
         EditorGUILayout.BeginHorizontal();
         GUILayout.FlexibleSpace();
-        var rect = GUILayoutUtility.GetRect(_preview_image_size, _preview_image_size);
-        EditorGUI.DrawPreviewTexture(rect, render_texture);
-        this._texture_size = new Vector2(render_texture.width, render_texture.height);
+        var rect = GUILayoutUtility.GetRect(width : _preview_image_size, height : _preview_image_size);
+        EditorGUI.DrawPreviewTexture(position : rect, image : render_texture);
+        this._texture_size = new Vector2(x : render_texture.width, y : render_texture.height);
         GUILayout.FlexibleSpace();
         EditorGUILayout.EndHorizontal();
         EditorGUILayout.EndVertical();
       }
 
       EditorGUILayout.EndScrollView();
-      this._texture_size = EditorGUILayout.Vector2Field("Set All Render Texture Sizes:", this._texture_size);
+      this._texture_size = EditorGUILayout.Vector2Field("Set All Render Texture Sizes:", value : this._texture_size);
       if (GUILayout.Button("Apply(Does not work yet)")) {
         // ReSharper disable once UnusedVariable
         foreach (var render_texture in this._render_textures) {

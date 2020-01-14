@@ -23,10 +23,10 @@ namespace droid.Runtime.Utilities.Extensions {
         var inclination = Mathf.Acos(1 - 2 * t);
         var azimuth = _angle_increment * i;
 
-        var x = Mathf.Sin(inclination) * Mathf.Cos(azimuth);
-        var y = Mathf.Sin(inclination) * Mathf.Sin(azimuth);
-        var z = Mathf.Cos(inclination);
-        _Directions[i] = new Vector3(x, y, z);
+        var x = Mathf.Sin(f : inclination) * Mathf.Cos(f : azimuth);
+        var y = Mathf.Sin(f : inclination) * Mathf.Sin(f : azimuth);
+        var z = Mathf.Cos(f : inclination);
+        _Directions[i] = new Vector3(x : x, y : y, z : z);
       }
     }
 

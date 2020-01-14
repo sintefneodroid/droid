@@ -23,18 +23,17 @@ MonoBehaviour:
   _quality_level: 1
   _v_sync_count: 0
   _full_screen: 0
-  _resizable_window: 1
-  _color_space: 1
-  _frame_finishes: 1
+  _resizable_window: 0
+  _unityColor_space: 1
+  _frame_finishes: 0
   _frame_skips: 0
   _ip_address: localhost
   _max_reply_interval: 0
   _num_of_environments: 0
   _port: 6969
   _replay_reaction_in_skips: 0
-  _reset_iterations: 1
   _simulation_type: 1
   _step_execution_phase: 1
-  _target_frame_rate: 1
-  _time_scale: 60
+  _target_frame_rate: 5
+  _time_scale: 6
   _update_fixed_time_scale: 0

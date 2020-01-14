@@ -25,15 +25,15 @@ namespace droid.Runtime.Sampling {
     }
 
     void SpawnRandomProjectile() {
-      var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+      var cube = GameObject.CreatePrimitive(type : PrimitiveType.Cube);
       cube.tag = this._assigned_tag;
       cube.transform.position = this._target.transform.position + Random.onUnitSphere * this._spawn_radius;
       cube.transform.rotation = Random.rotation;
       cube.transform.localScale = (Vector3.one - Random.insideUnitSphere) / 2 * this._scale_modifier;
       var rb = cube.AddComponent<Rigidbody>();
       rb.AddForce((this._target.position - cube.transform.position) * this._projectile_multiplier);
-      rb.AddTorque(Random.insideUnitSphere);
-      rb.mass = Random.Range(this._mass_range.x, this._mass_range.y);
+      rb.AddTorque(torque : Random.insideUnitSphere);
+      rb.mass = Random.Range(min : this._mass_range.x, max : this._mass_range.y);
       var sf = cube.AddComponent<SelfDestruct>();
       sf.LifeTime = this._life_time;
     }

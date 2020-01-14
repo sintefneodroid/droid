@@ -47,8 +47,8 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric {
     public Vector3 Position {
       get { return this._position; }
       set {
-        this._position = this._position_space.Project(value);
-        this._2_d_position = new Vector2(this._position.x, this._position.z);
+        this._position = this._position_space.Project(v : value);
+        this._2_d_position = new Vector2(x : this._position.x, y : this._position.z);
       }
     }
 
@@ -59,13 +59,13 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric {
       get {
         return new Space2 {
                                                                        Max =
-                                                                           new Vector2(this._position_space
+                                                                           new Vector2(x : this._position_space
                                                                                            .Max.x,
-                                                                                       this._position_space
+                                                                                       y : this._position_space
                                                                                            .Max.y),
-                                                                       Min = new Vector2(this._position_space
+                                                                       Min = new Vector2(x : this._position_space
                                                                                              .Min.x,
-                                                                                         this._position_space
+                                                                                         y : this._position_space
                                                                                              .Min.y)
                                                                        ,DecimalGranularity = this._position_space.DecimalGranularity
                                                                    };

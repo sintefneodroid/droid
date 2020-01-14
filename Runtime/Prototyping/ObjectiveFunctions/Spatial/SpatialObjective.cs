@@ -20,9 +20,9 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
     [field : SerializeField]
     protected Transform[] TerminatingTransforms { get; set; }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override void RemotePostSetup() {
       base.RemotePostSetup();
 
@@ -41,7 +41,10 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
     /// <returns></returns>
     public override float Evaluate() {
       var signal = 0.0f;
-      signal += this.InternalEvaluate();
+
+      if(!ParentEnvironment.Terminated) {
+        signal += this.InternalEvaluate();
+      }
 
       if (this.EpisodeLength > 0 && this.ParentEnvironment?.StepI >= this.EpisodeLength) {
         #if NEODROID_DEBUG
@@ -57,7 +60,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
 
       if (this.Box) {
         foreach (var t in this.TerminatingTransforms) {
-          if (!this.Box.Bounds.Contains(t.position)) {
+          if (!this.Box.Bounds.Contains(point : t.position)) {
             signal = this.FailedSignal;
 
             #if NEODROID_DEBUG
@@ -74,7 +77,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log(signal);
+        Debug.Log(message : signal);
       }
       #endif
 
@@ -85,6 +88,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
       return signal;
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public abstract override void InternalReset();

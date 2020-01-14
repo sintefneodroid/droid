@@ -50,7 +50,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Rigidbody {
     public Vector3 Velocity {
       get { return this._velocity; }
       set {
-        this._velocity = this._velocity_space.Project(value);
+        this._velocity = this._velocity_space.Project(v : value);
       }
     }
 
@@ -60,7 +60,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Rigidbody {
     public Vector3 AngularVelocity {
       get { return this._angular_velocity; }
       set {
-        this._angular_velocity = this._angular_space.Project(value);
+        this._angular_velocity = this._angular_space.Project(v : value);
       }
     }
 

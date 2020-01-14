@@ -21,7 +21,7 @@ namespace droid.Editor.Utilities.UnityDebug {
           (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidSettings.Current.NeodroidImportLocationProp
                                                    + "Gizmos/Icons/information.png",
                                                    typeof(Texture2D));
-      this.titleContent = new GUIContent("Unity:Debug", this.icon, "Window for debugging Unity");
+      this.titleContent = new GUIContent("Unity:Debug", image : this.icon, "Window for debugging Unity");
     }
 
     /// <summary>
@@ -38,7 +38,7 @@ namespace droid.Editor.Utilities.UnityDebug {
       _components_count = 0;
       _missing_count = 0;
       foreach (var g in game_objects) {
-        SearchInGameObject(g);
+        SearchInGameObject(game_object : g);
       }
 
       Debug.Log($"Searched {_game_object_count} GameObjects, {_components_count} components, found {_missing_count} missing");
@@ -59,13 +59,13 @@ namespace droid.Editor.Utilities.UnityDebug {
             parent = parent1;
           }
 
-          Debug.Log(name + " has an empty script attached in position: " + i, game_object);
+          Debug.Log(name + " has an empty script attached in position: " + i, context : game_object);
         }
       }
 
       // Now recurse through each child GameObject (if there are any):
       foreach (Transform child in game_object.transform) {
-        SearchInGameObject(child.gameObject);
+        SearchInGameObject(game_object : child.gameObject);
       }
     }
   }

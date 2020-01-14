@@ -14,20 +14,20 @@ namespace droid.Runtime.Messaging.Messages {
     public override string ToString() {
       var motions_str = "";
       if (this.Motions != null) {
-        motions_str = this.Motions.Aggregate(motions_str, (current, motion) => current + (motion + "\n"));
+        motions_str = this.Motions.Aggregate(seed : motions_str, (current, motion) => current + (motion + "\n"));
       }
 
       var configurations_str = "";
       if (this.Configurations != null) {
         configurations_str =
-            this.Configurations.Aggregate(configurations_str,
+            this.Configurations.Aggregate(seed : configurations_str,
                                           (current, configuration) => current + (configuration + "\n"));
       }
 
       var displayables_str = "";
       if (this.Displayables != null) {
         displayables_str =
-            this.Displayables.Aggregate(displayables_str,
+            this.Displayables.Aggregate(seed : displayables_str,
                                         (current, displayable) => current + (displayable + "\n"));
       }
 
@@ -94,7 +94,7 @@ namespace droid.Runtime.Messaging.Messages {
 
     /// <summary>
     /// </summary>
-    public ReactionParameters Parameters { get; } = new ReactionParameters();
+    public ReactionParameters Parameters { get; }
 
     /// <summary>
     /// </summary>

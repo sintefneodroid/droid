@@ -23,7 +23,7 @@ namespace droid.Editor.GameObjects {
       var bounding_box = go.AddComponent<BoundingBox>();
       env.PlayableArea = bounding_box;
 
-      var plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
+      var plane = GameObject.CreatePrimitive(type : PrimitiveType.Plane);
       plane.transform.parent = go.transform;
 
       var actor = new GameObject("Actor");
@@ -33,15 +33,15 @@ namespace droid.Editor.GameObjects {
       actor.AddComponent<PositionConfigurable>();
       actor.transform.parent = go.transform;
 
-      var capsule = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+      var capsule = GameObject.CreatePrimitive(type : PrimitiveType.Capsule);
       capsule.transform.parent = actor.transform;
       capsule.transform.localPosition = Vector3.up;
 
-      GameObjectUtility.SetParentAndAlign(go,
+      GameObjectUtility.SetParentAndAlign(child : go,
                                           menu_command
                                                   .context as
                                               GameObject); // Ensure it gets reparented if this was a context click (otherwise does nothing)
-      Undo.RegisterCreatedObjectUndo(go, "Create " + go.name); // Register the creation in the undo system
+      Undo.RegisterCreatedObjectUndo(objectToUndo : go, "Create " + go.name); // Register the creation in the undo system
       Selection.activeObject = go;
     }
   }

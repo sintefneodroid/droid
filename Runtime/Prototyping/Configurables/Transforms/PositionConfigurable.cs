@@ -41,14 +41,14 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// </summary>
     public Vector3 ObservationValue { get { return this._position; } }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public Space3 TripleSpace { get { return this._pos_space._space; } }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override void RemotePostSetup() {
       if (this.fetch_env_bounds) {
         if (this.ParentEnvironment?.PlayableArea) {
@@ -57,7 +57,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
             dec_gran = this._pos_space.Space.DecimalGranularity;
           }
 
-          this._pos_space.Space = Space3.FromCenterExtents(this.ParentEnvironment.PlayableArea.Bounds.extents,
+          this._pos_space.Space = Space3.FromCenterExtents(bounds_extents : this.ParentEnvironment.PlayableArea.Bounds.extents,
                                                            decimal_granularity : dec_gran);
         }
       }
@@ -83,24 +83,24 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, this, this._x);
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment, this, identifier : this._x);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, this, this._y);
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment, this, identifier : this._y);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, this, this._z);
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment, this, identifier : this._z);
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     protected override void UnRegisterComponent() {
       if (this.ParentEnvironment == null) {
         return;
       }
 
-      this.ParentEnvironment.UnRegister(this, this._x);
-      this.ParentEnvironment.UnRegister(this, this._y);
-      this.ParentEnvironment.UnRegister(this, this._z);
+      this.ParentEnvironment.UnRegister(this, identifier : this._x);
+      this.ParentEnvironment.UnRegister(this, identifier : this._y);
+      this.ParentEnvironment.UnRegister(this, identifier : this._z);
     }
 
     /// <summary>
@@ -108,45 +108,45 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// </summary>
     public ISamplable ConfigurableValueSpace { get { return this._pos_space; } }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override void UpdateCurrentConfiguration() {
-      switch(this.coordinate_space){
-        case CoordinateSpace.Environment_:         this._position = this.ParentEnvironment.TransformPoint(this.transform
+      switch(this._coordinate_spaceEnum){
+        case CoordinateSpaceEnum.Environment_:         this._position = this.ParentEnvironment.TransformPoint(point : this.transform
         .position);
           break;
-        case CoordinateSpace.Global_:         this._position = this.transform.position;
+        case CoordinateSpaceEnum.Global_:         this._position = this.transform.position;
           break;
-        case CoordinateSpace.Local_:         this._position = this.transform.localPosition;
+        case CoordinateSpaceEnum.Local_:         this._position = this.transform.localPosition;
           break;
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="simulator_configuration"></param>
-    public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration) { //TODO: IMPLEMENT LOCAL SPACE
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <param name="simulator_configuration"></param>
+    public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration) {
       Vector3 pos;
-      if (this.coordinate_space == CoordinateSpace.Local_) {
+      if (this._coordinate_spaceEnum == CoordinateSpaceEnum.Local_) {
         pos = this.transform.localPosition;
       } else {
         pos = this.transform.position;
       }
 
-      if (this.coordinate_space==CoordinateSpace.Environment_) {
-        pos = this.ParentEnvironment.TransformPoint(this.transform.position);
+      if (this._coordinate_spaceEnum==CoordinateSpaceEnum.Environment_) {
+        pos = this.ParentEnvironment.TransformPoint(point : this.transform.position);
       }
 
       float v;
 
       if (simulator_configuration.ConfigurableName == this._x) {
-        v = this._pos_space._space.Xspace.Project(simulator_configuration.ConfigurableValue);
+        v = this._pos_space._space.Xspace.Reproject(v : simulator_configuration.ConfigurableValue);
       } else if (simulator_configuration.ConfigurableName == this._y) {
-        v = this._pos_space._space.Yspace.Project(simulator_configuration.ConfigurableValue);
+        v = this._pos_space._space.Yspace.Reproject(v : simulator_configuration.ConfigurableValue);
       } else {
-        v = this._pos_space._space.Zspace.Project(simulator_configuration.ConfigurableValue);
+        v = this._pos_space._space.Zspace.Reproject(v : simulator_configuration.ConfigurableValue);
       }
 
       #if NEODROID_DEBUG
@@ -157,25 +157,25 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
 
       if (this.RelativeToExistingValue) {
         if (simulator_configuration.ConfigurableName == this._x) {
-          pos.Set(v + pos.x, pos.y, pos.z);
+          pos.Set(v + pos.x, newY : pos.y, newZ : pos.z);
         } else if (simulator_configuration.ConfigurableName == this._y) {
-          pos.Set(pos.x, v + pos.y, pos.z);
+          pos.Set(newX : pos.x, v + pos.y, newZ : pos.z);
         } else if (simulator_configuration.ConfigurableName == this._z) {
-          pos.Set(pos.x, pos.y, v + pos.z);
+          pos.Set(newX : pos.x, newY : pos.y, v + pos.z);
         }
       } else {
         if (simulator_configuration.ConfigurableName == this._x) {
-          pos.Set(v, pos.y, pos.z);
+          pos.Set(newX : v, newY : pos.y, newZ : pos.z);
         } else if (simulator_configuration.ConfigurableName == this._y) {
-          pos.Set(pos.x, v, pos.z);
+          pos.Set(newX : pos.x, newY : v, newZ : pos.z);
         } else if (simulator_configuration.ConfigurableName == this._z) {
-          pos.Set(pos.x, pos.y, v);
+          pos.Set(newX : pos.x, newY : pos.y, newZ : v);
         }
       }
 
       var inv_pos = pos;
-      if (this.coordinate_space==CoordinateSpace.Environment_) {
-        inv_pos = this.ParentEnvironment.InverseTransformPoint(inv_pos);
+      if (this._coordinate_spaceEnum==CoordinateSpaceEnum.Environment_) {
+        inv_pos = this.ParentEnvironment.InverseTransformPoint(point : inv_pos);
       }
 
       #if NEODROID_DEBUG
@@ -184,7 +184,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       }
       #endif
 
-      if (this.coordinate_space == CoordinateSpace.Local_) {
+      if (this._coordinate_spaceEnum == CoordinateSpaceEnum.Local_) {
          this.transform.localPosition=inv_pos;
       } else {
         this.transform.position = inv_pos;
@@ -193,16 +193,16 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
 
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <returns></returns>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <returns></returns>
     public override Configuration[] SampleConfigurations() {
       var sample = this._pos_space.Sample();
       return new[] {
-                       new Configuration(this._x, sample.x),
-                       new Configuration(this._y, sample.y),
-                       new Configuration(this._z, sample.z)
+                       new Configuration(configurable_name : this._x, configurable_value : sample.x),
+                       new Configuration(configurable_name : this._y, configurable_value : sample.y),
+                       new Configuration(configurable_name : this._z, configurable_value : sample.z)
                    };
     }
   }

@@ -32,7 +32,7 @@ namespace droid.Editor.Windows {
                                                    + "Gizmos/Icons/arrow_refresh.png",
                                                    typeof(Texture2D));
       this.titleContent =
-          new GUIContent("Neo:Sync", this._icon, "Window for controlling synchronisation of cameras");
+          new GUIContent("Neo:Sync", image : this._icon, "Window for controlling synchronisation of cameras");
     }
 
     /// <summary>
@@ -50,11 +50,11 @@ namespace droid.Editor.Windows {
       this._cameras = FindObjectsOfType<SynchroniseCameraProperties>();
       if (this._cameras.Length > 0) {
         var serialised_object = new SerializedObject(this);
-        this._scroll_position = EditorGUILayout.BeginScrollView(this._scroll_position);
+        this._scroll_position = EditorGUILayout.BeginScrollView(scrollPosition : this._scroll_position);
         if (this._show_camera_properties != null) {
           for (var i = 0; i < this._show_camera_properties.Length; i++) {
             this._show_camera_properties[i] =
-                EditorGUILayout.Foldout(this._show_camera_properties[i], this._cameras[i].name);
+                EditorGUILayout.Foldout(this._show_camera_properties[i], content : this._cameras[i].name);
             if (this._show_camera_properties[i]) {
               EditorGUILayout.BeginVertical("Box");
               /*

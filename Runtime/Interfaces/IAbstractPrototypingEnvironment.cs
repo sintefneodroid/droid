@@ -7,7 +7,7 @@ namespace droid.Runtime.Interfaces {
   /// <inheritdoc cref="IEnvironment" />
   /// <summary>
   /// </summary>
-  public interface ISpatialPrototypingEnvironment : IEnvironment,
+  public interface IAbstractPrototypingEnvironment : IEnvironment,
                                                     IHasRegister<ISensor>,
                                                     IHasRegister<IConfigurable>,
                                                     IHasRegister<IUnobservable>,

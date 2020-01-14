@@ -18,19 +18,18 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
     public override float InternalEvaluate() {
       var signal = this.DefaultSignal;
 
-      var distance =Vector3.Dot(this.target_direction.transform.up,
-                                     this._actor_transform.transform.up);
+      var angle = Vector3.Dot(lhs : this.target_direction.transform.up,
+                                     rhs : this._actor_transform.transform.up);
        #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log($"Distance: {distance}");
+        Debug.Log($"Distance: {angle}");
       }
       #endif
 
-
       if (this._inverse) {
-        signal -= distance;
+        signal -= angle;
       } else {
-        signal += distance;
+        signal += angle;
       }
 
       if (this._has_collided) {
@@ -43,7 +42,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
                   + $"Terminated: {this.ParentEnvironment?.Terminated}, "
                   + $"Last Reason: {this.ParentEnvironment?.LastTerminationReason}, "
                   + $"Internal Feedback Signal: {signal}, "
-                  + $"Distance: {distance}");
+                  + $"Distance: {angle}");
       }
       #endif
 

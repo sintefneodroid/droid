@@ -39,16 +39,16 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
       if (this._material == null) {
         var shader = this._shader;
         if (shader != null) {
-          this._material = new Material(shader) {hideFlags = HideFlags.DontSave};
+          this._material = new Material(shader : shader) {hideFlags = HideFlags.DontSave};
         }
       }
 
       var material = this._material;
       if (material != null) {
-        material.SetColor("_BackgroundColor", this._background_color);
-        material.SetFloat("_Blending", this._blending);
-        material.SetFloat("_Amplitude", this._overlay_amplitude);
-        Graphics.Blit(source, destination, material);
+        material.SetColor("_BackgroundColor", value : this._background_color);
+        material.SetFloat("_Blending", value : this._blending);
+        material.SetFloat("_Amplitude", value : this._overlay_amplitude);
+        Graphics.Blit(source : source, dest : destination, mat : material);
       }
     }
 

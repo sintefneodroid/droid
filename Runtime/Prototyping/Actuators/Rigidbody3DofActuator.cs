@@ -72,24 +72,24 @@ namespace droid.Runtime.Prototyping.Actuators {
       this.Parent =
           NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
                                                           this,
-                                                          this._x);
+                                                          identifier : this._x);
       this.Parent =
           NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
                                                           this,
-                                                          this._y);
+                                                          identifier : this._y);
       this.Parent =
           NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
                                                           this,
-                                                          this._z);
+                                                          identifier : this._z);
     }
 
     /// <summary>
     ///
     /// </summary>
     protected override void UnRegisterComponent() {
-      this.Parent?.UnRegister(this, this._x);
-      this.Parent?.UnRegister(this, this._y);
-      this.Parent?.UnRegister(this, this._z);
+      this.Parent?.UnRegister(this, obj : this._x);
+      this.Parent?.UnRegister(this, obj : this._y);
+      this.Parent?.UnRegister(this, obj : this._z);
     }
 
     public override string[] InnerMotionNames => new[] {this._x, this._y, this._z};
@@ -102,41 +102,41 @@ namespace droid.Runtime.Prototyping.Actuators {
       if (!this._Angular_Actuators) {
         if (motion.ActuatorName == this._x) {
           if (this._Relative_To == Space.World) {
-            this._Rigidbody.AddForce(Vector3.right * motion.Strength, this._ForceMode);
+            this._Rigidbody.AddForce(Vector3.right * motion.Strength, mode : this._ForceMode);
           } else {
-            this._Rigidbody.AddRelativeForce(Vector3.right * motion.Strength, this._ForceMode);
+            this._Rigidbody.AddRelativeForce(Vector3.right * motion.Strength, mode : this._ForceMode);
           }
         } else if (motion.ActuatorName == this._y) {
           if (this._Relative_To == Space.World) {
-            this._Rigidbody.AddForce(Vector3.up * motion.Strength, this._ForceMode);
+            this._Rigidbody.AddForce(Vector3.up * motion.Strength, mode : this._ForceMode);
           } else {
-            this._Rigidbody.AddRelativeForce(Vector3.up * motion.Strength, this._ForceMode);
+            this._Rigidbody.AddRelativeForce(Vector3.up * motion.Strength, mode : this._ForceMode);
           }
         } else if (motion.ActuatorName == this._z) {
           if (this._Relative_To == Space.World) {
-            this._Rigidbody.AddForce(Vector3.forward * motion.Strength, this._ForceMode);
+            this._Rigidbody.AddForce(Vector3.forward * motion.Strength, mode : this._ForceMode);
           } else {
-            this._Rigidbody.AddRelativeForce(Vector3.forward * motion.Strength, this._ForceMode);
+            this._Rigidbody.AddRelativeForce(Vector3.forward * motion.Strength, mode : this._ForceMode);
           }
         }
       } else {
         if (motion.ActuatorName == this._x) {
           if (this._Relative_To == Space.World) {
-            this._Rigidbody.AddTorque(Vector3.right * motion.Strength, this._ForceMode);
+            this._Rigidbody.AddTorque(Vector3.right * motion.Strength, mode : this._ForceMode);
           } else {
-            this._Rigidbody.AddRelativeTorque(Vector3.right * motion.Strength, this._ForceMode);
+            this._Rigidbody.AddRelativeTorque(Vector3.right * motion.Strength, mode : this._ForceMode);
           }
         } else if (motion.ActuatorName == this._y) {
           if (this._Relative_To == Space.World) {
-            this._Rigidbody.AddTorque(Vector3.up * motion.Strength, this._ForceMode);
+            this._Rigidbody.AddTorque(Vector3.up * motion.Strength, mode : this._ForceMode);
           } else {
-            this._Rigidbody.AddRelativeTorque(Vector3.up * motion.Strength, this._ForceMode);
+            this._Rigidbody.AddRelativeTorque(Vector3.up * motion.Strength, mode : this._ForceMode);
           }
         } else if (motion.ActuatorName == this._z) {
           if (this._Relative_To == Space.World) {
-            this._Rigidbody.AddTorque(Vector3.forward * motion.Strength, this._ForceMode);
+            this._Rigidbody.AddTorque(Vector3.forward * motion.Strength, mode : this._ForceMode);
           } else {
-            this._Rigidbody.AddRelativeTorque(Vector3.forward * motion.Strength, this._ForceMode);
+            this._Rigidbody.AddRelativeTorque(Vector3.forward * motion.Strength, mode : this._ForceMode);
           }
         }
       }
@@ -147,29 +147,29 @@ namespace droid.Runtime.Prototyping.Actuators {
       if (this.enabled) {
         var position = this.transform.position;
         if (this._Angular_Actuators) {
-          Handles.DrawWireArc(this.transform.position,
-                              this.transform.right,
-                              -this.transform.forward,
+          Handles.DrawWireArc(center : this.transform.position,
+                              normal : this.transform.right,
+                              @from : -this.transform.forward,
                               180,
                               2);
 
-          Handles.DrawWireArc(this.transform.position,
-                              this.transform.up,
-                              -this.transform.right,
+          Handles.DrawWireArc(center : this.transform.position,
+                              normal : this.transform.up,
+                              @from : -this.transform.right,
                               180,
                               2);
 
-          Handles.DrawWireArc(this.transform.position,
-                              this.transform.forward,
-                              -this.transform.right,
+          Handles.DrawWireArc(center : this.transform.position,
+                              normal : this.transform.forward,
+                              @from : -this.transform.right,
                               180,
                               2);
         } else {
-          Debug.DrawLine(position, position + Vector3.right * 2, Color.green);
+          Debug.DrawLine(start : position, position + Vector3.right * 2, color : Color.green);
 
-          Debug.DrawLine(position, position + Vector3.forward * 2, Color.green);
+          Debug.DrawLine(start : position, position + Vector3.forward * 2, color : Color.green);
 
-          Debug.DrawLine(position, position + Vector3.up * 2, Color.green);
+          Debug.DrawLine(start : position, position + Vector3.up * 2, color : Color.green);
         }
       }
     }

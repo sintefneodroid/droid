@@ -12,7 +12,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
     /// <param name="point"></param>
     /// <param name="min"></param>
     /// <param name="max"></param>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [MethodImpl(methodImplOptions : MethodImplOptions.AggressiveInlining)]
     public static void GetMinMax(this Vector2 point, ref Vector2 min, ref Vector2 max) {
       min = new Vector2(min.x >= point.x ? point.x : min.x, min.y >= point.y ? point.y : min.y);
       max = new Vector2(max.x <= point.x ? point.x : max.x, max.y <= point.y ? point.y : max.y);
@@ -24,7 +24,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
     /// <param name="point"></param>
     /// <param name="min"></param>
     /// <param name="max"></param>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [MethodImpl(methodImplOptions : MethodImplOptions.AggressiveInlining)]
     public static void GetMinMax(this Vector3 point, ref Vector3 min, ref Vector3 max) {
       min = new Vector3(min.x >= point.x ? point.x : min.x,
                         min.y >= point.y ? point.y : min.y,

@@ -25,10 +25,10 @@ namespace droid.Runtime.GameObjects.Plotting {
       _points.Clear();
       for (var j = 0; j < size; j++) {
         var point = s.Sample() * max_val;
-        var vp = new Points.ValuePoint(point,
-                                       Random.Range(min_val, max_val),
-                                       Random.Range(particle_size_min, particle_size_max));
-        _points.Add(vp);
+        var vp = new Points.ValuePoint(pos : point,
+                                       val:Random.Range(min : min_val, max : max_val),
+                                       size:Random.Range(min : particle_size_min, max : particle_size_max));
+        _points.Add(item : vp);
       }
 
       var points = _points.ToArray();

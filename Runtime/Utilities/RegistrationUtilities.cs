@@ -45,10 +45,12 @@ namespace droid.Runtime.Utilities {
 
       //TODO add check and warning for not all callbacks = null
 
-      foreach (var child in children_with_colliders) {
+      for (var index = 0; index < children_with_colliders.Length; index++) {
+        var child = children_with_colliders[index];
         var child_sensors = child.GetComponents<TChildColliderSensor>();
         ChildColliderSensor<TCollider, TCollision> collider_sensor = null;
-        foreach (var child_sensor in child_sensors) {
+        for (var i = 0; i < child_sensors.Length; i++) {
+          var child_sensor = child_sensors[i];
           if (child_sensor.Caller != null && child_sensor.Caller == caller) {
             collider_sensor = child_sensor;
             break;
@@ -180,7 +182,7 @@ namespace droid.Runtime.Utilities {
       }
 
       if (component != null) {
-        component.Register((IActuator)c, identifier);
+        component.Register((IActuator)c, identifier : identifier);
       } else {
         #if NEODROID_DEBUG
         if (debug) {
@@ -217,7 +219,7 @@ namespace droid.Runtime.Utilities {
       }
 
       if (component != null) {
-        component.Register(c);
+        component.Register(obj : c);
       } else {
         #if NEODROID_DEBUG
         if (debug) {
@@ -256,7 +258,7 @@ namespace droid.Runtime.Utilities {
       }
 
       if (component != null) {
-        component.Register(c, identifier);
+        component.Register(obj : c, identifier : identifier);
       } else {
         #if NEODROID_DEBUG
         if (debug) {

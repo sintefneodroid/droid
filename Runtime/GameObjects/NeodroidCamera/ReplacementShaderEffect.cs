@@ -12,13 +12,13 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
 
     void Start() {
       if (this._replacement_shader != null) {
-        this.GetComponent<Camera>().SetReplacementShader(this._replacement_shader, this._replace_render_type);
+        this.GetComponent<Camera>().SetReplacementShader(shader : this._replacement_shader, replacementTag : this._replace_render_type);
       }
     }
 
     void OnEnable() {
       if (this._replacement_shader != null) {
-        this.GetComponent<Camera>().SetReplacementShader(this._replacement_shader, this._replace_render_type);
+        this.GetComponent<Camera>().SetReplacementShader(shader : this._replacement_shader, replacementTag : this._replace_render_type);
       }
     }
 

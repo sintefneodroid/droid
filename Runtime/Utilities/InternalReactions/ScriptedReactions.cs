@@ -44,9 +44,9 @@ namespace droid.Runtime.Utilities.InternalReactions {
       #if UNITY_EDITOR
       if (!Application.isPlaying) {
         var manager_script = MonoScript.FromMonoBehaviour(this);
-        if (MonoImporter.GetExecutionOrder(manager_script) != _script_execution_order) {
-          MonoImporter.SetExecutionOrder(manager_script,
-                                         _script_execution_order); // Ensures that PreStep is called first, before all other scripts.
+        if (MonoImporter.GetExecutionOrder(script : manager_script) != _script_execution_order) {
+          MonoImporter.SetExecutionOrder(script : manager_script,
+                                         order : _script_execution_order); // Ensures that PreStep is called first, before all other scripts.
           Debug.LogWarning("Execution Order changed, you will need to press play again to make everything function correctly!");
           EditorApplication.isPlaying = false;
           //TODO: UnityEngine.Experimental.LowLevel.PlayerLoop.SetPlayerLoop(new UnityEngine.Experimental.LowLevel.PlayerLoopSystem());

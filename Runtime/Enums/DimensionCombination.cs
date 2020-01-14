@@ -1,7 +1,7 @@
 ﻿namespace droid.Runtime.Enums {
   /// <summary>
   /// </summary>
-  public enum Dimension2DCombination {
+  public enum Dimension2DCombinationEnum {
     /// <summary>
     /// </summary>
     Xy_,
@@ -17,7 +17,7 @@
 
   /// <summary>
   /// </summary>
-  public enum Dimension3DCombination {
+  public enum Dimension3DCombinationEnum {
     /// <summary>
     /// </summary>
     Xyz_,

@@ -37,7 +37,7 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
 
       if (this.load_from_resources_if_empty) {
         if (this._textures == null || this._textures.Length == 0) {
-          this._textures = Resources.LoadAll<Texture>(this.load_path);
+          this._textures = Resources.LoadAll<Texture>(path : this.load_path);
         }
       }
     }
@@ -52,22 +52,22 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        DebugPrinting.ApplyPrint(this.Debugging, configuration, this.Identifier);
+        DebugPrinting.ApplyPrint(debugging : this.Debugging, configuration : configuration, identifier : this.Identifier);
       }
       #endif
 
       this._texture = this._textures[(int)configuration.ConfigurableValue];
 
-      this._mat.SetTexture(_main_tex, this._texture);
+      this._mat.SetTexture(nameID : _main_tex, value : this._texture);
     }
 
     /// <summary>
     ///
     /// </summary>
     protected override void Randomise() {
-      this._texture = this._textures[Random.Range(0, this._textures.Length)];
+      this._texture = this._textures[Random.Range(0, max : this._textures.Length)];
 
-      this._mat.SetTexture(_main_tex, this._texture);
+      this._mat.SetTexture(nameID : _main_tex, value : this._texture);
     }
 
     /// <inheritdoc />
@@ -75,9 +75,9 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
     /// </summary>
     /// <returns></returns>
     public override Configuration[] SampleConfigurations() {
-      this._last_sample = Random.Range(0, this._textures.Length);
+      this._last_sample = Random.Range(0, max : this._textures.Length);
 
-      return new[] {new Configuration(this.Identifier, this._last_sample)};
+      return new[] {new Configuration(configurable_name : this.Identifier, configurable_value : this._last_sample)};
     }
   }
 }

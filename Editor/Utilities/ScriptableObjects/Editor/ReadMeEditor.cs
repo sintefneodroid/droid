@@ -16,7 +16,7 @@ namespace droid.Editor.Utilities.ScriptableObjects.Editor {
     public const string _NewAssetPath = "Assets/";
 
     const string _scriptable_object_menu_path = "Tools/ReadMe/";
-    [SerializeField] GUIStyle bodyStyle = new GUIStyle(EditorStyles.label) {wordWrap = true, fontSize = 14};
+    [SerializeField] GUIStyle bodyStyle = new GUIStyle(other : EditorStyles.label) {wordWrap = true, fontSize = 14};
     [SerializeField] GUIStyle headingStyle;
     [SerializeField] GUIStyle linkStyle;
 
@@ -32,9 +32,9 @@ namespace droid.Editor.Utilities.ScriptableObjects.Editor {
     GUIStyle BodyStyle { get { return this.bodyStyle; } }
 
     static void SelectReadmeAutomatically() {
-      if (!SessionState.GetBool(_showed_readme_session_state_name, false)) {
+      if (!SessionState.GetBool(key : _showed_readme_session_state_name, false)) {
         var readme = SelectReadme();
-        SessionState.SetBool(_showed_readme_session_state_name, true);
+        SessionState.SetBool(key : _showed_readme_session_state_name, true);
 
         if (readme && !readme.loadedLayout) {
           LoadLayout();
@@ -50,7 +50,7 @@ namespace droid.Editor.Utilities.ScriptableObjects.Editor {
           window_layout_type.GetMethod("LoadWindowLayout", BindingFlags.Public | BindingFlags.Static);
       method?.Invoke(null,
                      new object[] {
-                                      Path.Combine(Application.dataPath, "Excluded/Common/ReadMe/Layout.wlt"),
+                                      Path.Combine(path1 : Application.dataPath, "Excluded/Common/ReadMe/Layout.wlt"),
                                       false
                                   });
     }
@@ -76,7 +76,7 @@ namespace droid.Editor.Utilities.ScriptableObjects.Editor {
     public static void CreateReadMeAsset() {
       var asset = CreateInstance<ReadMe>();
 
-      AssetDatabase.CreateAsset(asset, _NewAssetPath + "NewReadMe.asset");
+      AssetDatabase.CreateAsset(asset : asset, _NewAssetPath + "NewReadMe.asset");
       AssetDatabase.SaveAssets();
 
       EditorUtility.FocusProjectWindow();
@@ -94,8 +94,8 @@ namespace droid.Editor.Utilities.ScriptableObjects.Editor {
 
       GUILayout.BeginHorizontal("In BigTitle");
       {
-        GUILayout.Label(readme.icon, GUILayout.Width(icon_width), GUILayout.Height(icon_width));
-        GUILayout.Label(readme.title, this.TitleStyle);
+        GUILayout.Label(image : readme.icon, GUILayout.Width(width : icon_width), GUILayout.Height(height : icon_width));
+        GUILayout.Label(text : readme.title, style : this.TitleStyle);
       }
       GUILayout.EndHorizontal();
     }
@@ -109,21 +109,21 @@ namespace droid.Editor.Utilities.ScriptableObjects.Editor {
 
       if (readme.sections != null) {
         foreach (var section in readme.sections) {
-          if (!string.IsNullOrEmpty(section.heading)) {
-            GUILayout.Label(section.heading, this.HeadingStyle);
+          if (!string.IsNullOrEmpty(value : section.heading)) {
+            GUILayout.Label(text : section.heading, style : this.HeadingStyle);
           }
 
-          if (!string.IsNullOrEmpty(section.text)) {
-            GUILayout.Label(section.text, this.BodyStyle);
+          if (!string.IsNullOrEmpty(value : section.text)) {
+            GUILayout.Label(text : section.text, style : this.BodyStyle);
           }
 
-          if (!string.IsNullOrEmpty(section.linkText)) {
-            if (NeodroidEditorUtilities.LinkLabel(new GUIContent(section.linkText), this.LinkStyle)) {
-              Application.OpenURL(section.url);
+          if (!string.IsNullOrEmpty(value : section.linkText)) {
+            if (NeodroidEditorUtilities.LinkLabel(new GUIContent(text : section.linkText), link_style : this.LinkStyle)) {
+              Application.OpenURL(url : section.url);
             }
           }
 
-          GUILayout.Space(_space);
+          GUILayout.Space(pixels : _space);
         }
       }
     }
@@ -133,11 +133,11 @@ namespace droid.Editor.Utilities.ScriptableObjects.Editor {
         return;
       }
 
-      this.titleStyle = new GUIStyle(this.bodyStyle) {fontSize = 26};
+      this.titleStyle = new GUIStyle(other : this.bodyStyle) {fontSize = 26};
 
-      this.headingStyle = new GUIStyle(this.bodyStyle) {fontSize = 18};
+      this.headingStyle = new GUIStyle(other : this.bodyStyle) {fontSize = 18};
 
-      this.linkStyle = new GUIStyle(this.bodyStyle) {
+      this.linkStyle = new GUIStyle(other : this.bodyStyle) {
                                                         wordWrap = false,
                                                         normal = {
                                                                      textColor =

@@ -24,16 +24,16 @@ namespace droid.Runtime.Prototyping.Actuators.Discrete {
     protected Space _Relative_To = Space.Self;
 
     void CheckCollisionTranslate(Vector3 vec) {
-      var layer_mask = 1 << LayerMask.NameToLayer(this._Layer_Mask);
+      var layer_mask = 1 << LayerMask.NameToLayer(layerName : this._Layer_Mask);
       if (this._No_Collisions) {
-        if (!Physics.Raycast(this.transform.position,
-                             this.transform.TransformDirection(vec.normalized),
-                             Mathf.Abs(vec.magnitude),
-                             layer_mask)) {
-          this.transform.Translate(vec, this._Relative_To);
+        if (!Physics.Raycast(origin : this.transform.position,
+                             this.transform.TransformDirection(direction : vec.normalized),
+                             Mathf.Abs(f : vec.magnitude),
+                             layerMask : layer_mask)) {
+          this.transform.Translate(translation : vec, relativeTo : this._Relative_To);
         }
       } else {
-        this.transform.Translate(vec, this._Relative_To);
+        this.transform.Translate(translation : vec, relativeTo : this._Relative_To);
       }
     }
 
@@ -70,31 +70,31 @@ namespace droid.Runtime.Prototyping.Actuators.Discrete {
     /// <summary>
     /// Self explanatory
     /// </summary>
-    public void RotateUnitYClockWise() { this.transform.Rotate(Vector3.up, this.rotation_unit); }
+    public void RotateUnitYClockWise() { this.transform.Rotate(axis : Vector3.up, angle : this.rotation_unit); }
 
     /// <summary>
     /// Self explanatory
     /// </summary>
-    public void RotateUnitYAntiClockWise() { this.transform.Rotate(Vector3.up, -this.rotation_unit); }
+    public void RotateUnitYAntiClockWise() { this.transform.Rotate(axis : Vector3.up, angle : -this.rotation_unit); }
 
     /// <summary>
     /// Self explanatory
     /// </summary>
-    public void RotateUnitXClockWise() { this.transform.Rotate(Vector3.left, this.rotation_unit); }
+    public void RotateUnitXClockWise() { this.transform.Rotate(axis : Vector3.left, angle : this.rotation_unit); }
 
     /// <summary>
     /// Self explanatory
     /// </summary>
-    public void RotateUnitXAntiClockWise() { this.transform.Rotate(Vector3.left, -this.rotation_unit); }
+    public void RotateUnitXAntiClockWise() { this.transform.Rotate(axis : Vector3.left, angle : -this.rotation_unit); }
 
     /// <summary>
     /// Self explanatory
     /// </summary>
-    public void RotateUnitZClockWise() { this.transform.Rotate(Vector3.forward, -this.rotation_unit); }
+    public void RotateUnitZClockWise() { this.transform.Rotate(axis : Vector3.forward, angle : -this.rotation_unit); }
 
     /// <summary>
     /// Self explanatory
     /// </summary>
-    public void RotateUnitZAntiClockWise() { this.transform.Rotate(Vector3.forward, this.rotation_unit); }
+    public void RotateUnitZAntiClockWise() { this.transform.Rotate(axis : Vector3.forward, angle : this.rotation_unit); }
   }
 }

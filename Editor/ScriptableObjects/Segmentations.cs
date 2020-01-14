@@ -10,7 +10,7 @@ namespace droid.Editor.ScriptableObjects {
     public static void CreateSegmentationsAsset() {
       var asset = ScriptableObject.CreateInstance<Segmentation>();
 
-      AssetDatabase.CreateAsset(asset, EditorWindowMenuPath._NewAssetPath + "Assets/NewSegmentations.asset");
+      AssetDatabase.CreateAsset(asset : asset, EditorWindowMenuPath._NewAssetPath + "Assets/NewSegmentations.asset");
       AssetDatabase.SaveAssets();
 
       EditorUtility.FocusProjectWindow();

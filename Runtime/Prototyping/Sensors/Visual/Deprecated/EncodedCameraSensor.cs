@@ -147,15 +147,15 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
         if (!target_texture) {
           Debug.LogWarning($"No targetTexture defaulting to a texture of size ({NeodroidConstants._Default_Width}, {NeodroidConstants._Default_Height})");
 
-          this._texture = new Texture2D(NeodroidConstants._Default_Width, NeodroidConstants._Default_Height);
+          this._texture = new Texture2D(width : NeodroidConstants._Default_Width, height : NeodroidConstants._Default_Height);
         } else {
           var texture_format_str = target_texture.format.ToString();
-          if (Enum.TryParse(texture_format_str, out TextureFormat texture_format)) {
-            this._texture = new Texture2D(target_texture.width,
-                                          target_texture.height,
-                                          texture_format,
-                                          target_texture.useMipMap,
-                                          !target_texture.sRGB);
+          if (Enum.TryParse(value : texture_format_str, out TextureFormat texture_format)) {
+            this._texture = new Texture2D(width : target_texture.width,
+                                          height : target_texture.height,
+                                          textureFormat : texture_format,
+                                          mipChain : target_texture.useMipMap,
+                                          linear : !target_texture.sRGB);
           } else {
             #if NEODROID_DEBUG
             Debug.LogWarning($"Texture format {texture_format_str} is not a valid TextureFormat for Texture2D for sensor {this.Identifier}");
@@ -165,7 +165,7 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
       }
       #if NEODROID_DEBUG
       if (this._Manager?.SimulatorConfiguration != null) {
-        if (this._Manager.SimulatorConfiguration.SimulationType != SimulationType.Frame_dependent_
+        if (this._Manager.SimulatorConfiguration.SimulationType != SimulationTypeEnum.Frame_dependent_
             && Application.isEditor) {
           //Debug.Log("Notice that camera observations may be out of sync with other observation data, because simulation configuration is not frame dependent");
         }
@@ -194,8 +194,8 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
         if (this._texture) {
           this._texture.ReadPixels(new Rect(0,
                                             0,
-                                            this._texture.width,
-                                            this._texture.height),
+                                            width : this._texture.width,
+                                            height : this._texture.height),
                                    0,
                                    0);
           this._texture.Apply();
@@ -204,16 +204,16 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
           Debug.LogWarning("Texture not available!");
           #endif
           var target_texture = this._Camera.targetTexture;
-          this._texture = new Texture2D(target_texture.width,
-                                        target_texture.height,
-                                        NeodroidConstants._Default_TextureFormat,
+          this._texture = new Texture2D(width : target_texture.width,
+                                        height : target_texture.height,
+                                        textureFormat : NeodroidConstants._Default_TextureFormat,
                                         false);
         }
 
         if (!this.disable_encoding) {
           switch (this.imageFormat) {
             case ImageFormat.Jpg_:
-              this.Bytes = this._texture.EncodeToJPG(this.jpegQuality);
+              this.Bytes = this._texture.EncodeToJPG(quality : this.jpegQuality);
               break;
             case ImageFormat.Png_:
               this.Bytes = this._texture.EncodeToPNG();
@@ -263,7 +263,7 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
     /// </summary>
     public override void UpdateObservation() {
       this._Grab = true;
-      if (this._Manager?.SimulatorConfiguration?.SimulationType != SimulationType.Frame_dependent_) {
+      if (this._Manager?.SimulatorConfiguration?.SimulationType != SimulationTypeEnum.Frame_dependent_) {
         if (Application.isPlaying) {
           this._Camera.Render();
         }

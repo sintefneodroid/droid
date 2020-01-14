@@ -132,7 +132,7 @@ namespace droid.Runtime.Messaging {
 
           if (wait_time > TimeSpan.Zero) {
             #if NEODROID_DEBUG
-            var received = this._socket.TryReceiveFrameBytes(wait_time, out msg);
+            var received = this._socket.TryReceiveFrameBytes(timeout : wait_time, bytes : out msg);
             if (this.Debugging) {
               if (received) {
                 Debug.Log("Received frame bytes");
@@ -148,13 +148,13 @@ namespace droid.Runtime.Messaging {
               msg = this._socket.ReceiveFrameBytes();
             } catch (ArgumentNullException e) {
               msg = null;
-              Debug.Log(e);
+              Debug.Log(message : e);
             }
           }
 
           if (msg != null) { //&& msg.Length >= 4) {
-            var flat_reaction = FReactions.GetRootAsFReactions(new ByteBuffer(msg));
-            var tuple = FbsReactionUtilities.deserialise_reactions(flat_reaction);
+            var flat_reaction = FReactions.GetRootAsFReactions(new ByteBuffer(buffer : msg));
+            var tuple = FbsReactionUtilities.deserialise_reactions(reactions : flat_reaction);
             reactions = tuple.Item1; //TODO: Change tuple to the Reactions class
             var close = tuple.Item2;
             var api_version = tuple.Item3;
@@ -165,7 +165,7 @@ namespace droid.Runtime.Messaging {
             return reactions;
           }
 
-          Debug.Log(exception);
+          Debug.Log(message : exception);
         }
       }
 
@@ -183,10 +183,10 @@ namespace droid.Runtime.Messaging {
       while (this._stop_thread == false) {
         lock (this._thread_lock) {
           if (!this._waiting_for_main_loop_to_send) {
-            var reactions = this.Receive(TimeSpan.FromSeconds(this._wait_time_seconds));
+            var reactions = this.Receive(TimeSpan.FromSeconds(value : this._wait_time_seconds));
             if (reactions != null) {
               this._last_received_reactions = reactions;
-              receive_callback(this._last_received_reactions);
+              receive_callback(obj : this._last_received_reactions);
               this._waiting_for_main_loop_to_send = true;
             }
           } else {
@@ -237,13 +237,12 @@ namespace droid.Runtime.Messaging {
       lock (this._thread_lock) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          var environment_state = environment_states.ToArray();
-          if (environment_state.Length > 0) {
-            if (environment_state[0] != null) {
-              var frame_number = environment_state[0].FrameNumber;
-              var time = environment_state[0].Time;
+          if (environment_states.Length > 0) {
+            if (environment_states[0] != null) {
+              var frame_number = environment_states[0].FrameNumber;
+              var time = environment_states[0].Time;
               var episode_count = this._last_received_reactions[0].Parameters.EpisodeCount;
-              var stepped = this._last_received_reactions[0].Parameters.StepResetObserveEnu == StepResetObserve
+              var stepped = this._last_received_reactions[0].Parameters.ReactionType == ReactionTypeEnum
               .Step_;
 
               if (frame_number <= this._last_send_frame_number) {
@@ -257,8 +256,8 @@ namespace droid.Runtime.Messaging {
                 Debug.LogWarning($"The current time {time} is less or equal the last {this._last_send_time}");
               }
 
-              if (environment_state[0].Description != null) {
-                Debug.Log($"State has description: {environment_state[0].Description}");
+              if (environment_states[0].Description != null) {
+                Debug.Log($"State has description: {environment_states[0].Description}");
               }
 
               this._last_send_frame_number = frame_number;
@@ -270,7 +269,7 @@ namespace droid.Runtime.Messaging {
         }
         #endif
 
-        this._byte_buffer = FbsStateUtilities.Serialise(environment_states,
+        this._byte_buffer = FbsStateUtilities.Serialise(states : environment_states,
                                                         do_serialise_unobservables :
                                                         do_serialise_unobservables,
                                                         serialise_individual_observables :
@@ -279,7 +278,7 @@ namespace droid.Runtime.Messaging {
                                                         simulator_configuration_message,
                                                         do_serialise_observables : do_serialise_observables,
                                                         api_version : api_version);
-        this._socket.SendFrame(this._byte_buffer);
+        this._socket.SendFrame(data : this._byte_buffer);
         this._waiting_for_main_loop_to_send = false;
       }
     }
@@ -288,7 +287,7 @@ namespace droid.Runtime.Messaging {
     /// </summary>
     /// <param name="debug_callback"></param>
     public void ListenForClientToConnect(Action<string> debug_callback) {
-      this.BindSocket(null, debug_callback);
+      this.BindSocket(null, debug_callback : debug_callback);
     }
 
     /// <summary>
@@ -297,7 +296,7 @@ namespace droid.Runtime.Messaging {
     /// <param name="debug_callback"></param>
     public void ListenForClientToConnect(Action callback, Action<string> debug_callback) {
       this._wait_for_client_thread =
-          new Thread(unused_param => this.BindSocket(callback, debug_callback)) {IsBackground = true};
+          new Thread(unused_param => this.BindSocket(callback : callback, debug_callback : debug_callback)) {IsBackground = true};
       // Is terminated with foreground threads, when they terminate
       this._wait_for_client_thread.Start();
     }
@@ -311,7 +310,7 @@ namespace droid.Runtime.Messaging {
                                Action disconnect_callback,
                                Action<string> debug_callback) {
       this._polling_thread =
-          new Thread(unused_param => this.PollingThread(cmd_callback, disconnect_callback, debug_callback)) {
+          new Thread(unused_param => this.PollingThread(receive_callback : cmd_callback, disconnect_callback : disconnect_callback, debug_callback : debug_callback)) {
                                                                                                                 IsBackground
                                                                                                                     = true
                                                                                                             };
@@ -348,7 +347,7 @@ namespace droid.Runtime.Messaging {
     public MessageServer(bool debug = false) : this("127.0.0.1",
                                                     6969,
                                                     false,
-                                                    debug) { }
+                                                    debug : debug) { }
 
     #endregion
 

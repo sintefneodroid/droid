@@ -16,7 +16,7 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
   public class ObjectSpawnerConfigurable : Configurable {
     [SerializeField] int _amount = 0;
 
-    [SerializeField] Axis _axis = Axis.X_;
+    [SerializeField] AxisEnum _axisEnum = AxisEnum.X_;
 
     [SerializeField] GameObject _object_to_spawn = null;
 
@@ -37,30 +37,30 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
     void DestroyObjects() {
       if (this._spawned_objects != null) {
         foreach (var o in this._spawned_objects) {
-          Destroy(o);
+          Destroy(obj : o);
         }
       }
 
       foreach (Transform c in this.transform) {
-        Destroy(c.gameObject);
+        Destroy(obj : c.gameObject);
       }
     }
 
     void SpawnObjects() {
       if (this._object_to_spawn) {
         var dir = Vector3.up;
-        if (this._axis == Axis.X_) {
+        if (this._axisEnum == AxisEnum.X_) {
           dir = Vector3.right;
-        } else if (this._axis == Axis.Z_) {
+        } else if (this._axisEnum == AxisEnum.Z_) {
           dir = Vector3.forward;
         }
 
         var transform1 = this.transform;
         for (var i = 0; i < this._amount; i++) {
-          this._spawned_objects.Add(Instantiate(this._object_to_spawn,
+          this._spawned_objects.Add(Instantiate(original : this._object_to_spawn,
                                                 transform1.position + dir * i,
-                                                Random.rotation,
-                                                transform1));
+                                                rotation : Random.rotation,
+                                                parent : transform1));
         }
       }
     }
@@ -80,8 +80,8 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
 
     public override void ApplyConfiguration(IConfigurableConfiguration obj) {
       if (this._spawned_objects.Count < obj.ConfigurableValue) {
-        var go = Instantiate(this._object_to_spawn, this.transform);
-        this._spawned_objects.Add(go);
+        var go = Instantiate(original : this._object_to_spawn, parent : this.transform);
+        this._spawned_objects.Add(item : go);
       } else if (this._spawned_objects.Count > obj.ConfigurableValue) {
         if (this._spawned_objects.Count > 0) {
           this._spawned_objects.RemoveAt(this._spawned_objects.Count - 1);

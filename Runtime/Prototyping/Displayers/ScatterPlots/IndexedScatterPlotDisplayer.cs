@@ -31,7 +31,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
     public override void Display(String values) { }
 
     public override void Display(Vector3 value) { throw new NotImplementedException(); }
-    public override void Display(Vector3[] value) { this.ScatterPlot(value); }
+    public override void Display(Vector3[] value) { this.ScatterPlot(points : value); }
 
     public override void Display(Points.ValuePoint points) { this.PlotSeries(new[] {points}); }
 
@@ -46,18 +46,18 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
     void Update() {
       if (this._RetainLastPlot) {
         if (this._Values != null) {
-          PlotSeries(this._Values);
+          PlotSeries(points : this._Values);
         }
       }
     }
 
     void SpawnDesign(GameObject design, Vector3 position, Quaternion rotation) {
       //var go = Instantiate(design, position, rotation,this.transform);
-      var go = Instantiate(design,
-                           position,
-                           design.transform.rotation,
-                           this.transform);
-      this._instances.Add(go);
+      var go = Instantiate(original : design,
+                           position : position,
+                           rotation : design.transform.rotation,
+                           parent : this.transform);
+      this._instances.Add(item : go);
     }
 
     /// <inheritdoc />
@@ -66,9 +66,15 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
     ///  <param name="immediately"></param>
     protected override void Clean() {
       if (Application.isPlaying) {
-        this._instances.ForEach(Destroy);
+        for (var index = 0; index < this._instances.Count; index++) {
+          var game_object = this._instances[index : index];
+          Destroy(obj : game_object);
+        }
       } else {
-        this._instances.ForEach(DestroyImmediate);
+        for (var index = 0; index < this._instances.Count; index++) {
+          var game_object = this._instances[index : index];
+          DestroyImmediate(obj : game_object);
+        }
       }
 
       this._instances.Clear();
@@ -98,13 +104,14 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
       this._Values = points;
       this.Clean();
 
-      foreach (var point in points) {
+      for (var index = 0; index < points.Length; index++) {
+        var point = points[index];
         var game_objects = this._designs;
         if (game_objects != null && point._Val >= game_objects.Length) {
           continue;
         }
 
-        this.SpawnDesign(this._designs[(int)point._Val], point._Pos, Quaternion.identity);
+        this.SpawnDesign(this._designs[(int)point._Val], position : point._Pos, rotation : Quaternion.identity);
       }
     }
   }

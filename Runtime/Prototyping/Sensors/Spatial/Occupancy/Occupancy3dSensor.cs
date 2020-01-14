@@ -37,12 +37,12 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Occupancy {
     /// </summary>
     public Space1 SingleSpace { get { return this._observation_value_space; } }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public Vector3[] ObservationArray {
       get { return this._observation_value; }
-      set { this._observation_value = this.SingleSpace.Project(value); }
+      set { this._observation_value = this.SingleSpace.Project(v : value); }
     }
 
     public override void PreSetup() {
@@ -63,9 +63,12 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Occupancy {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override void UpdateObservation() {
       foreach (var transform1 in this._transforms) {
-        if (IntersectionUtilities.ConeSphereIntersection(this._light, transform1)) {
+        if (IntersectionUtilities.ConeSphereIntersection(spot_light : this._light, dynamic_object : transform1)) {
           //Debug.Log("Intersect");
         }
       }

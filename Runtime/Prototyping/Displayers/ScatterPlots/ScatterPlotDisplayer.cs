@@ -76,7 +76,8 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
       #if NEODROID_DEBUG
       if (this.Debugging) {
         var s = "";
-        foreach (var value in values) {
+        for (var index = 0; index < values.Length; index++) {
+          var value = values[index];
           s += $"{value},";
         }
 
@@ -84,7 +85,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
       }
       #endif
       this._Values = values;
-      this.PlotSeries(values);
+      this.PlotSeries(points : values);
     }
 
     public override void Display(String values) {
@@ -95,8 +96,9 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
       #endif
 
       this._vs.Clear();
-      foreach (var value in values.Split(',')) {
-        this._vs.Add(float.Parse(value));
+      for (var index = 0; index < values.Split(',').Length; index++) {
+        var value = values.Split(',')[index];
+        this._vs.Add(float.Parse(s : value));
       }
 
       this._Values = this._vs.ToArray();
@@ -104,7 +106,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
     }
 
     public override void Display(Vector3 value) { throw new NotImplementedException(); }
-    public override void Display(Vector3[] value) { this.ScatterPlot(value); }
+    public override void Display(Vector3[] value) { this.ScatterPlot(points : value); }
 
     public override void Display(Points.ValuePoint points) { this.PlotSeries(new[] {points}); }
 
@@ -125,17 +127,18 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
       #endif
 
       var i = 0;
-      foreach (var point in points) {
+      for (var index = 0; index < points.Length; index++) {
+        var point = points[index];
         this._particles[i].remainingLifetime = 100000;
         this._particles[i].position = point._Pos;
-        var clamped = Math.Min(Math.Max(0.0f, point._Val), 1.0f);
-        this._particles[i].startColor = this._gradient.Evaluate(clamped);
+        var clamped = Math.Min(Math.Max(0.0f, val2 : point._Val), 1.0f);
+        this._particles[i].startColor = this._gradient.Evaluate(time : clamped);
         this._particles[i].startSize = point._Size;
         this._particles[i].startSize3D = this._default_start_size.BroadcastVector3();
         i++;
       }
 
-      this._particle_system.SetParticles(this._particles, points.Length);
+      this._particle_system.SetParticles(particles : this._particles, size : points.Length);
     }
 
     public override void Display(Points.StringPoint point) { throw new NotImplementedException(); }
@@ -175,17 +178,18 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
 
       var i = 0;
       var l = (float)points.Length;
-      foreach (var point in points) {
+      for (var index = 0; index < points.Length; index++) {
+        var point = points[index];
         this._particles[i].remainingLifetime = 100000;
         this._particles[i].position = point;
         var clamped = Math.Min(Math.Max(0.0f, i / l), 1.0f);
-        this._particles[i].startColor = this._gradient.Evaluate(clamped);
+        this._particles[i].startColor = this._gradient.Evaluate(time : clamped);
         this._particles[i].startSize = this._default_start_size;
         this._particles[i].startSize3D = this._default_start_size.BroadcastVector3();
         i++;
       }
 
-      this._particle_system.SetParticles(this._particles, points.Length);
+      this._particle_system.SetParticles(particles : this._particles, size : points.Length);
     }
 
     public void PlotSeries(float[] points) {
@@ -204,17 +208,18 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
       #endif
 
       var i = 0;
-      foreach (var point in points) {
+      for (var index = 0; index < points.Length; index++) {
+        var point = points[index];
         this._particles[i].remainingLifetime = 100000;
         this._particles[i].position = Vector3.one * i;
-        var clamped = Math.Min(Math.Max(0.0f, point), 1.0f);
-        this._particles[i].startColor = this._gradient.Evaluate(clamped);
+        var clamped = Math.Min(Math.Max(0.0f, val2 : point), 1.0f);
+        this._particles[i].startColor = this._gradient.Evaluate(time : clamped);
         this._particles[i].startSize = this._default_start_size;
         this._particles[i].startSize3D = this._default_start_size.BroadcastVector3();
         i++;
       }
 
-      this._particle_system.SetParticles(this._particles, points.Length);
+      this._particle_system.SetParticles(particles : this._particles, size : points.Length);
     }
 
     /// <inheritdoc />
@@ -247,22 +252,23 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
       }
       #endif
 
-      var alive = this._particle_system.GetParticles(this._particles);
+      var alive = this._particle_system.GetParticles(particles : this._particles);
       if (alive < points.Length) {
         this._particles = new ParticleSystem.Particle[points.Length];
       }
 
       var i = 0;
-      foreach (var point in points) {
+      for (var index = 0; index < points.Length; index++) {
+        var point = points[index];
         this._particles[i].remainingLifetime = 100000;
         this._particles[i].position = point._Pos;
-        this._particles[i].startColor = this._gradient.Evaluate(point._Val);
+        this._particles[i].startColor = this._gradient.Evaluate(time : point._Val);
         this._particles[i].startSize = point._Size;
         this._particles[i].startSize3D = point._Size.BroadcastVector3();
         i++;
       }
 
-      this._particle_system.SetParticles(this._particles, points.Length);
+      this._particle_system.SetParticles(particles : this._particles, size : points.Length);
     }
   }
 }

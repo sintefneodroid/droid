@@ -70,7 +70,7 @@ namespace droid.Editor.Windows {
           (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidSettings.Current.NeodroidImportLocationProp
                                                    + "Gizmos/Icons/information.png",
                                                    typeof(Texture2D));
-      this.titleContent = new GUIContent("Neo:Debug", this._icon, "Window for controlling debug messages");
+      this.titleContent = new GUIContent("Neo:Debug", image : this._icon, "Window for controlling debug messages");
     }
 
     void FindObjects() {
@@ -133,7 +133,7 @@ namespace droid.Editor.Windows {
       this.FindObjects();
 
       var prev_debug_all = this._debug_all;
-      this._debug_all = EditorGUILayout.Toggle("Debug everything", this._debug_all);
+      this._debug_all = EditorGUILayout.Toggle("Debug everything", value : this._debug_all);
       if (this._debug_all != prev_debug_all) {
         if (this._debug_all) {
           this.EnableAll();
@@ -144,25 +144,25 @@ namespace droid.Editor.Windows {
 
       EditorGUILayout.Separator();
 
-      this._scroll_position = EditorGUILayout.BeginScrollView(this._scroll_position);
+      this._scroll_position = EditorGUILayout.BeginScrollView(scrollPosition : this._scroll_position);
       EditorGUILayout.BeginVertical("Box");
 
       this._show_simulation_manager_debug =
-          EditorGUILayout.Toggle("Debug simulation manager", this._show_simulation_manager_debug);
+          EditorGUILayout.Toggle("Debug simulation manager", value : this._show_simulation_manager_debug);
       this._show_player_reactions_debug =
-          EditorGUILayout.Toggle("Debug player reactions", this._show_player_reactions_debug);
+          EditorGUILayout.Toggle("Debug player reactions", value : this._show_player_reactions_debug);
       this._show_environments_debug =
-          EditorGUILayout.Toggle("Debug all environments", this._show_environments_debug);
-      this._show_actors_debug = EditorGUILayout.Toggle("Debug all actors", this._show_actors_debug);
-      this._show_actuators_debug = EditorGUILayout.Toggle("Debug all Actuators", this._show_actuators_debug);
-      this._show_sensors_debug = EditorGUILayout.Toggle("Debug all sensors", this._show_sensors_debug);
+          EditorGUILayout.Toggle("Debug all environments", value : this._show_environments_debug);
+      this._show_actors_debug = EditorGUILayout.Toggle("Debug all actors", value : this._show_actors_debug);
+      this._show_actuators_debug = EditorGUILayout.Toggle("Debug all Actuators", value : this._show_actuators_debug);
+      this._show_sensors_debug = EditorGUILayout.Toggle("Debug all sensors", value : this._show_sensors_debug);
       this._show_configurables_debug =
-          EditorGUILayout.Toggle("Debug all configurables", this._show_configurables_debug);
+          EditorGUILayout.Toggle("Debug all configurables", value : this._show_configurables_debug);
       this._show_objective_functions_debug =
-          EditorGUILayout.Toggle("Debug all objective functions", this._show_objective_functions_debug);
+          EditorGUILayout.Toggle("Debug all objective functions", value : this._show_objective_functions_debug);
       this._show_displayers_debug =
-          EditorGUILayout.Toggle("Debug all displayers", this._show_displayers_debug);
-      this._show_listeners_debug = EditorGUILayout.Toggle("Debug all listeners", this._show_listeners_debug);
+          EditorGUILayout.Toggle("Debug all displayers", value : this._show_displayers_debug);
+      this._show_listeners_debug = EditorGUILayout.Toggle("Debug all listeners", value : this._show_listeners_debug);
 
       EditorGUILayout.EndVertical();
 

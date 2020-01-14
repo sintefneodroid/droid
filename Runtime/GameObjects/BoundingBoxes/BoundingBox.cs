@@ -76,7 +76,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
     /// <summary>
     /// </summary>
     [SearchableEnum]
-    public BasedOn basedOn = BasedOn.Geometry_;
+    public BasedOnEnum _basedOnEnum = BasedOnEnum.Geometry_;
 
     /// <summary>
     /// </summary>
@@ -86,7 +86,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
     /// <summary>
     /// </summary>
     [SerializeField]
-    BoundingBoxOrientation BbAligning = BoundingBoxOrientation.Axis_aligned_;
+    BoundingBoxOrientationEnum BbAligning = BoundingBoxOrientationEnum.Axis_aligned_;
 
     /// <summary>
     /// </summary>
@@ -104,7 +104,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
     /// <summary>
     /// </summary>
     [SerializeField]
-    ISpatialPrototypingEnvironment environment = null;
+    IAbstractPrototypingEnvironment environment = null;
 
     /// <summary>
     /// </summary>
@@ -230,20 +230,21 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
     /// <param name="margin"></param>
     /// <returns></returns>
     public Rect ScreenSpaceBoundingRect(Camera a_camera, float margin = 0f) {
-      if (this.basedOn == BasedOn.Collider_) {
+      if (this._basedOnEnum == BasedOnEnum.Collider_) {
         var a = this._local_collider as MeshCollider;
         if (a) {
-          return a.sharedMesh.GetCameraMinMaxRect(this.transform, a_camera, this.bb_margin - margin);
+          return a.sharedMesh.GetCameraMinMaxRect(t : this.transform, cam : a_camera, this.bb_margin - margin);
         }
       }
 
       if (this._local_mesh) {
         if (this._use_shared_mesh || !Application.isPlaying) {
-          var a = this._local_mesh.sharedMesh.GetCameraMinMaxPoints(this.transform, a_camera);
+          var a = this._local_mesh.sharedMesh.GetCameraMinMaxPoints(t : this.transform, cam : a_camera);
           if (this.includeChildren) {
-            foreach (var children_mesh in this._children_meshes) {
-              a = children_mesh.sharedMesh.GetCameraMinMaxPoints(children_mesh.transform,
-                                                                 a_camera,
+            for (var index = 0; index < this._children_meshes.Length; index++) {
+              var children_mesh = this._children_meshes[index];
+              a = children_mesh.sharedMesh.GetCameraMinMaxPoints(t : children_mesh.transform,
+                                                                 cam : a_camera,
                                                                  a[0],
                                                                  a[1]);
             }
@@ -251,11 +252,12 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
             return BoundingBoxUtilities.GetMinMaxRect(a[0], a[1], this.bb_margin - margin);
           }
         } else {
-          var a = this._local_mesh.mesh.GetCameraMinMaxPoints(this.transform, a_camera);
+          var a = this._local_mesh.mesh.GetCameraMinMaxPoints(t : this.transform, cam : a_camera);
           if (this.includeChildren) {
-            foreach (var children_mesh in this._children_meshes) {
-              a = children_mesh.mesh.GetCameraMinMaxPoints(children_mesh.transform,
-                                                           a_camera,
+            for (var index = 0; index < this._children_meshes.Length; index++) {
+              var children_mesh = this._children_meshes[index];
+              a = children_mesh.mesh.GetCameraMinMaxPoints(t : children_mesh.transform,
+                                                           cam : a_camera,
                                                            a[0],
                                                            a[1]);
             }
@@ -267,12 +269,12 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
         if (this._use_shared_mesh || !Application.isPlaying) {
           if (this._children_meshes != null && this._children_meshes.Length > 0) {
             var a = this._children_meshes[0].sharedMesh
-                        .GetCameraMinMaxPoints(this._children_meshes[0].transform, a_camera);
+                        .GetCameraMinMaxPoints(t : this._children_meshes[0].transform, cam : a_camera);
             if (this.includeChildren) {
               for (var index = 1; index < this._children_meshes.Length; index++) {
                 var children_mesh = this._children_meshes[index];
-                a = children_mesh.sharedMesh.GetCameraMinMaxPoints(children_mesh.transform,
-                                                                   a_camera,
+                a = children_mesh.sharedMesh.GetCameraMinMaxPoints(t : children_mesh.transform,
+                                                                   cam : a_camera,
                                                                    a[0],
                                                                    a[1]);
               }
@@ -283,12 +285,12 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
         } else {
           if (this._children_meshes != null && this._children_meshes.Length > 0) {
             var a = this._children_meshes[0].mesh
-                        .GetCameraMinMaxPoints(this._children_meshes[0].transform, a_camera);
+                        .GetCameraMinMaxPoints(t : this._children_meshes[0].transform, cam : a_camera);
             if (this.includeChildren) {
               for (var index = 1; index < this._children_meshes.Length; index++) {
                 var children_mesh = this._children_meshes[index];
-                a = children_mesh.mesh.GetCameraMinMaxPoints(children_mesh.transform,
-                                                             a_camera,
+                a = children_mesh.mesh.GetCameraMinMaxPoints(t : children_mesh.transform,
+                                                             cam : a_camera,
                                                              a[0],
                                                              a[1]);
               }
@@ -327,7 +329,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
       }
 
       if (this.environment == null) {
-        this.environment = FindObjectOfType<AbstractSpatialPrototypingEnvironment>();
+        this.environment = FindObjectOfType<AbstractPrototypingEnvironment>();
       }
 
       if (!this._bb_transform) {
@@ -398,7 +400,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
       this._bb_transform.rotation = transform1.rotation;
       this._bb_transform.position = transform1.position;
 
-      var bounds = new Bounds(this._bb_transform.position, Vector3.zero);
+      var bounds = new Bounds(center : this._bb_transform.position, size : Vector3.zero);
 
       if (this.includeSelf && this._local_collider) {
         this._bb_transform.position = this._local_collider.bounds.center;
@@ -406,7 +408,8 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
       }
 
       if (this.includeChildren && this._children_colliders != null) {
-        foreach (var a_collider in this._children_colliders) {
+        for (var index = 0; index < this._children_colliders.Length; index++) {
+          var a_collider = this._children_colliders[index];
           if (a_collider && a_collider != this._local_collider) {
             if (this._only_active_children) {
               if (a_collider.gameObject.activeInHierarchy
@@ -417,7 +420,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
                   this._bb_transform.position = a_collider.bounds.center;
                   bounds = a_collider.bounds;
                 } else {
-                  bounds.Encapsulate(a_collider.bounds);
+                  bounds.Encapsulate(bounds : a_collider.bounds);
                 }
               }
             } else {
@@ -426,7 +429,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
                 this._bb_transform.position = a_collider.bounds.center;
                 bounds = a_collider.bounds;
               } else {
-                bounds.Encapsulate(a_collider.bounds);
+                bounds.Encapsulate(bounds : a_collider.bounds);
               }
             }
           }
@@ -445,7 +448,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
       this._bb_transform.position = position;
       this._bb_transform.rotation = transform1.rotation;
 
-      var bounds = new Bounds(position, Vector3.zero);
+      var bounds = new Bounds(center : position, size : Vector3.zero);
 
       if (this.includeSelf && this._local_mesh) {
         Mesh a_mesh;
@@ -467,7 +470,8 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
       }
 
       if (this.includeChildren && this._children_meshes != null) {
-        foreach (var t in this._children_meshes) {
+        for (var index = 0; index < this._children_meshes.Length; index++) {
+          var t = this._children_meshes[index];
           if (t) {
             if (this._only_active_children) {
               if (t.gameObject.activeInHierarchy && t.gameObject.activeSelf) {
@@ -476,7 +480,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
                   position = transform2.position;
                   this._bb_transform.position = position;
                   this._bb_transform.rotation = transform2.rotation;
-                  bounds = new Bounds(position, Vector3.zero);
+                  bounds = new Bounds(center : position, size : Vector3.zero);
                 }
 
                 Mesh a_mesh;
@@ -500,7 +504,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
               }
             } else {
               if (bounds.size == Vector3.zero) {
-                bounds = new Bounds(t.transform.position, Vector3.zero);
+                bounds = new Bounds(center : t.transform.position, size : Vector3.zero);
               }
 
               Mesh a_mesh;
@@ -533,32 +537,32 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
         return;
       }
 
-      if (this.basedOn == BasedOn.Collider_) {
+      if (this._basedOnEnum == BasedOnEnum.Collider_) {
         switch (this.BbAligning) {
-          case BoundingBoxOrientation.Axis_aligned_:
+          case BoundingBoxOrientationEnum.Axis_aligned_:
             this.FitCollidersAabb();
             this.RecalculatePoints();
             this.RecalculateLines();
             break;
-          case BoundingBoxOrientation.Object_oriented_:
+          case BoundingBoxOrientationEnum.Object_oriented_:
             this.FitCollidersOobb();
             break;
-          case BoundingBoxOrientation.Camera_oriented_:
+          case BoundingBoxOrientationEnum.Camera_oriented_:
             this.FitRenderersCabb();
             break;
           default: throw new ArgumentOutOfRangeException();
         }
       } else {
         switch (this.BbAligning) {
-          case BoundingBoxOrientation.Axis_aligned_:
+          case BoundingBoxOrientationEnum.Axis_aligned_:
             this.FitRenderersAabb();
             this.RecalculatePoints();
             this.RecalculateLines();
             break;
-          case BoundingBoxOrientation.Object_oriented_:
+          case BoundingBoxOrientationEnum.Object_oriented_:
             this.FitRenderersOobb();
             break;
-          case BoundingBoxOrientation.Camera_oriented_:
+          case BoundingBoxOrientationEnum.Camera_oriented_:
             this.FitRenderersCabb();
 
             break;
@@ -657,21 +661,21 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
     /// </summary>
     void RecalculatePoints() {
       this._point_tfr = this._Bounds_Offset
-                        + Vector3.Scale(this._Bounds.extents, BoundingBoxUtilities._Top_Front_Right);
+                        + Vector3.Scale(a : this._Bounds.extents, b : BoundingBoxUtilities._Top_Front_Right);
       this._point_tfl = this._Bounds_Offset
-                        + Vector3.Scale(this._Bounds.extents, BoundingBoxUtilities._Top_Front_Left);
+                        + Vector3.Scale(a : this._Bounds.extents, b : BoundingBoxUtilities._Top_Front_Left);
       this._point_tbl = this._Bounds_Offset
-                        + Vector3.Scale(this._Bounds.extents, BoundingBoxUtilities._Top_Back_Left);
+                        + Vector3.Scale(a : this._Bounds.extents, b : BoundingBoxUtilities._Top_Back_Left);
       this._point_tbr = this._Bounds_Offset
-                        + Vector3.Scale(this._Bounds.extents, BoundingBoxUtilities._Top_Back_Right);
+                        + Vector3.Scale(a : this._Bounds.extents, b : BoundingBoxUtilities._Top_Back_Right);
       this._point_bfr = this._Bounds_Offset
-                        + Vector3.Scale(this._Bounds.extents, BoundingBoxUtilities._Bottom_Front_Right);
+                        + Vector3.Scale(a : this._Bounds.extents, b : BoundingBoxUtilities._Bottom_Front_Right);
       this._point_bfl = this._Bounds_Offset
-                        + Vector3.Scale(this._Bounds.extents, BoundingBoxUtilities._Bottom_Front_Left);
+                        + Vector3.Scale(a : this._Bounds.extents, b : BoundingBoxUtilities._Bottom_Front_Left);
       this._point_bbl = this._Bounds_Offset
-                        + Vector3.Scale(this._Bounds.extents, BoundingBoxUtilities._Bottom_Back_Left);
+                        + Vector3.Scale(a : this._Bounds.extents, b : BoundingBoxUtilities._Bottom_Back_Left);
       this._point_bbr = this._Bounds_Offset
-                        + Vector3.Scale(this._Bounds.extents, BoundingBoxUtilities._Bottom_Back_Right);
+                        + Vector3.Scale(a : this._Bounds.extents, b : BoundingBoxUtilities._Bottom_Back_Right);
 
       this._points = new[] {
                                this._point_tfr,
@@ -706,21 +710,21 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
       for (var i = 0; i < 4; i++) {
         //width
         var line = new[] {rot * this.Points[2 * i] + pos, rot * this.Points[2 * i + 1] + pos};
-        this._lines_list.Add(line);
+        this._lines_list.Add(item : line);
 
         //height
         line = new[] {rot * this.Points[i] + pos, rot * this.Points[i + 4] + pos};
-        this._lines_list.Add(line);
+        this._lines_list.Add(item : line);
 
         //depth
         line = new[] {rot * this.Points[2 * i] + pos, rot * this.Points[2 * i + 3 - 4 * (i % 2)] + pos};
-        this._lines_list.Add(line);
+        this._lines_list.Add(item : line);
       }
 
       this._lines = new Vector3[BoundingBoxUtilities._Num_Lines, BoundingBoxUtilities._Num_Points_Per_Line];
       for (var j = 0; j < BoundingBoxUtilities._Num_Lines; j++) {
-        this.Lines[j, 0] = this._lines_list[j][0];
-        this.Lines[j, 1] = this._lines_list[j][1];
+        this.Lines[j, 0] = this._lines_list[index : j][0];
+        this.Lines[j, 1] = this._lines_list[index : j][1];
       }
     }
 
@@ -751,13 +755,13 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
             Gizmos.DrawLine(this.Lines[i, 0], this.Lines[i, 1]);
           }
         } else {
-          Gizmos.DrawWireCube(this.Bounds.center, this.Bounds.size);
+          Gizmos.DrawWireCube(center : this.Bounds.center, size : this.Bounds.size);
         }
 
         if (this._bb_transform) {
-          Handles.Label(this._bb_transform.position, this.name);
+          Handles.Label(position : this._bb_transform.position, text : this.name);
         } else {
-          Handles.Label(this.transform.position, this.name);
+          Handles.Label(position : this.transform.position, text : this.name);
         }
       }
     }

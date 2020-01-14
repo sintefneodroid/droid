@@ -14,7 +14,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
                     + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   public class SingleAxisTransformSensor : SingleValueSensor {
-    [SerializeField] [SearchableEnum] Axis _dim = Axis.X_;
+    [SerializeField] [SearchableEnum] AxisEnum _dim = AxisEnum.X_;
 
     [SerializeField] bool normalised_overwrite_space_if_env_bounds = true;
 
@@ -27,61 +27,61 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     public override void RemotePostSetup() {
     if(this.normalised_overwrite_space_if_env_bounds) {
         switch (this._dim) {
-          case Axis.X_:
+          case AxisEnum.X_:
             if (this.ParentEnvironment) {
               this._observation_value_space =
-                  Space1.FromCenterExtent(this.ParentEnvironment.PlayableArea.Bounds.extents.x);
+                  Space1.FromCenterExtent(extent : this.ParentEnvironment.PlayableArea.Bounds.extents.x);
             }
 
             break;
-          case Axis.Y_:
+          case AxisEnum.Y_:
             if (this.ParentEnvironment) {
               this._observation_value_space =
-                  Space1.FromCenterExtent(this.ParentEnvironment.PlayableArea.Bounds.extents.y);
+                  Space1.FromCenterExtent(extent : this.ParentEnvironment.PlayableArea.Bounds.extents.y);
             }
 
             break;
-          case Axis.Z_:
+          case AxisEnum.Z_:
             if (this.ParentEnvironment) {
               this._observation_value_space =
-                  Space1.FromCenterExtent(this.ParentEnvironment.PlayableArea.Bounds.extents.z);
+                  Space1.FromCenterExtent(extent : this.ParentEnvironment.PlayableArea.Bounds.extents.z);
             }
             break;
         }
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <exception cref="T:System.ArgumentOutOfRangeException"></exception>
     public override void UpdateObservation() { //TODO: IMPLEMENT LOCAL SPACE
       switch (this._dim) {
-        case Axis.X_:
+        case AxisEnum.X_:
           this.ObservationValue = this.transform.position.x;
           break;
-        case Axis.Y_:
+        case AxisEnum.Y_:
           this.ObservationValue = this.transform.position.y;
           break;
-        case Axis.Z_:
+        case AxisEnum.Z_:
           this.ObservationValue = this.transform.position.z;
           break;
-        case Axis.Rot_x_:
+        case AxisEnum.Rot_x_:
           this.ObservationValue = this.transform.rotation.eulerAngles.x;
           break;
-        case Axis.Rot_y_:
+        case AxisEnum.Rot_y_:
           this.ObservationValue = this.transform.rotation.eulerAngles.y;
           break;
-        case Axis.Rot_z_:
+        case AxisEnum.Rot_z_:
           this.ObservationValue = this.transform.rotation.eulerAngles.z;
           break;
-        case Axis.Dir_x_:
+        case AxisEnum.Dir_x_:
           this.ObservationValue = this.transform.forward.x;
           break;
-        case Axis.Dir_y_:
+        case AxisEnum.Dir_y_:
           this.ObservationValue = this.transform.forward.y;
           break;
-        case Axis.Dir_z_:
+        case AxisEnum.Dir_z_:
           this.ObservationValue = this.transform.forward.z;
           break;
         default: throw new ArgumentOutOfRangeException();
@@ -92,25 +92,25 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
       if (this.enabled) {
         var position = this.transform.position;
         switch (this._dim) {
-          case Axis.Rot_x_:
-          case Axis.X_:
+          case AxisEnum.Rot_x_:
+          case AxisEnum.X_:
 
-            Debug.DrawLine(position, position + Vector3.right * 2, Color.green);
+            Debug.DrawLine(start : position, position + Vector3.right * 2, color : Color.green);
             break;
-          case Axis.Rot_y_:
-          case Axis.Y_:
+          case AxisEnum.Rot_y_:
+          case AxisEnum.Y_:
 
-            Debug.DrawLine(position, position + Vector3.up * 2, Color.green);
+            Debug.DrawLine(start : position, position + Vector3.up * 2, color : Color.green);
             break;
-          case Axis.Rot_z_:
-          case Axis.Z_:
-            Debug.DrawLine(position, position + Vector3.forward * 2, Color.green);
+          case AxisEnum.Rot_z_:
+          case AxisEnum.Z_:
+            Debug.DrawLine(start : position, position + Vector3.forward * 2, color : Color.green);
             break;
-          case Axis.Dir_x_: break;
-          case Axis.Dir_y_: break;
-          case Axis.Dir_z_: break;
+          case AxisEnum.Dir_x_: break;
+          case AxisEnum.Dir_y_: break;
+          case AxisEnum.Dir_z_: break;
           default: //TODO add the Direction cases
-            Gizmos.DrawIcon(position, "console.warnicon", true);
+            Gizmos.DrawIcon(center : position, "console.warnicon", true);
             break;
         }
       }

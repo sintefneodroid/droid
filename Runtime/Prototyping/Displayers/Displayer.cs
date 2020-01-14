@@ -17,7 +17,7 @@ namespace droid.Runtime.Prototyping.Displayers {
                                     IDisplayer {
     /// <summary>
     /// </summary>
-    AbstractSpatialPrototypingEnvironment _environment = null;
+    AbstractPrototypingEnvironment _environment = null;
 
     /// <summary>
     ///
@@ -45,7 +45,7 @@ namespace droid.Runtime.Prototyping.Displayers {
 
     /// <summary>
     /// </summary>
-    public AbstractSpatialPrototypingEnvironment ParentEnvironment {
+    public AbstractPrototypingEnvironment ParentEnvironment {
       get { return this._environment; }
       set { this._environment = value; }
     }
@@ -55,7 +55,7 @@ namespace droid.Runtime.Prototyping.Displayers {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, this);
+      this.ParentEnvironment = NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment, this);
     }
 
     /// <inheritdoc />
@@ -72,7 +72,7 @@ namespace droid.Runtime.Prototyping.Displayers {
         }
 
         if (this._Values != null) {
-          PlotSeries(this._Values);
+          PlotSeries(points : this._Values);
         }
       }
     }
@@ -89,7 +89,7 @@ namespace droid.Runtime.Prototyping.Displayers {
             this.Clean();
             var vs = PlotFunctions.SampleRandomSeries(9);
             this._Values = vs.Select(v => v._Val).ToArray();
-            this.PlotSeries(vs);
+            this.PlotSeries(points : vs);
           }
         }
       } else {
@@ -106,9 +106,9 @@ namespace droid.Runtime.Prototyping.Displayers {
       if (this.clean_all_children) {
         foreach (Transform child in this.transform) {
           if (Application.isPlaying) {
-            Destroy(child.gameObject);
+            Destroy(obj : child.gameObject);
           } else {
-            DestroyImmediate(child.gameObject);
+            DestroyImmediate(obj : child.gameObject);
           }
         }
       }

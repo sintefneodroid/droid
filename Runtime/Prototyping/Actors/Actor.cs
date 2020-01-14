@@ -30,15 +30,17 @@ namespace droid.Runtime.Prototyping.Actors {
     public Bounds ActorBounds {
       get {
         var col = this.GetComponent<BoxCollider>();
-        this._bounds = new Bounds(this.transform.position, Vector3.zero); // position and size
+        this._bounds = new Bounds(center : this.transform.position, size : Vector3.zero); // position and size
 
         if (col) {
-          this._bounds.Encapsulate(col.bounds);
+          this._bounds.Encapsulate(bounds : col.bounds);
         }
 
-        foreach (var child_col in this.GetComponentsInChildren<Collider>()) {
+        var cols = this.GetComponentsInChildren<Collider>();
+        for (var index = 0; index < cols.Length; index++) {
+          var child_col = cols[index];
           if (child_col != col) {
-            this._bounds.Encapsulate(child_col.bounds);
+            this._bounds.Encapsulate(bounds : child_col.bounds);
           }
         }
 
@@ -50,6 +52,7 @@ namespace droid.Runtime.Prototyping.Actors {
 
     public Transform Transform { get { return this.transform; } }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <param name="motion"></param>
@@ -61,9 +64,9 @@ namespace droid.Runtime.Prototyping.Actors {
       #endif
 
       var motion_actuator_name = motion.ActuatorName;
-      if (this._Actuators.ContainsKey(motion_actuator_name)
-          && this._Actuators[motion_actuator_name] != null) {
-        this._Actuators[motion_actuator_name].ApplyMotion(motion);
+      if (this._Actuators.ContainsKey(key : motion_actuator_name)
+          && this._Actuators[key : motion_actuator_name] != null) {
+        this._Actuators[key : motion_actuator_name].ApplyMotion(motion : motion);
       } else {
         #if NEODROID_DEBUG
         if (this.Debugging) {
@@ -84,30 +87,32 @@ namespace droid.Runtime.Prototyping.Actors {
       }
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <param name="actuator"></param>
     /// <param name="identifier"></param>
     public void UnRegister(IActuator actuator, string identifier) {
       if (this._Actuators != null) {
-        if (this._Actuators.ContainsKey(identifier)) {
+        if (this._Actuators.ContainsKey(key : identifier)) {
           #if NEODROID_DEBUG
           if (this.Debugging) {
             Debug.Log($"Actor {this.name} unregistered Actuator {identifier}");
           }
           #endif
 
-          this._Actuators.Remove(identifier);
+          this._Actuators.Remove(key : identifier);
         }
       }
     }
 
 
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <param name="actuator"></param>
-    public void UnRegister(IActuator actuator) { this.UnRegister(actuator, actuator.Identifier); }
+    public void UnRegister(IActuator actuator) { this.UnRegister(actuator : actuator, identifier : actuator.Identifier); }
 
     /// <inheritdoc />
     /// <summary>
@@ -116,9 +121,9 @@ namespace droid.Runtime.Prototyping.Actors {
       #if UNITY_EDITOR
       if (!Application.isPlaying) {
         var manager_script = MonoScript.FromMonoBehaviour(this);
-        if (MonoImporter.GetExecutionOrder(manager_script) != _script_execution_order) {
-          MonoImporter.SetExecutionOrder(manager_script,
-                                         _script_execution_order); // Ensures that PreStep is called first, before all other scripts.
+        if (MonoImporter.GetExecutionOrder(script : manager_script) != _script_execution_order) {
+          MonoImporter.SetExecutionOrder(script : manager_script,
+                                         order : _script_execution_order); // Ensures that PreStep is called first, before all other scripts.
           Debug.LogWarning("Execution Order changed, you will need to press play again to make everything function correctly!");
           EditorApplication.isPlaying = false;
           //TODO: UnityEngine.Experimental.LowLevel.PlayerLoop.SetPlayerLoop(new UnityEngine.Experimental.LowLevel.PlayerLoopSystem());
@@ -136,7 +141,7 @@ namespace droid.Runtime.Prototyping.Actors {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, this);
+      this.ParentEnvironment = NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment, this);
     }
 
     /// <inheritdoc />
@@ -149,7 +154,7 @@ namespace droid.Runtime.Prototyping.Actors {
     void Update() {
       if (this._draw_bounds) {
         var corners =
-            Corners.ExtractCorners(this.ActorBounds.center, this.ActorBounds.extents, this.transform);
+            Corners.ExtractCorners(v3_center : this.ActorBounds.center, v3_extents : this.ActorBounds.extents, reference_transform : this.transform);
 
         Corners.DrawBox(corners[0],
                         corners[1],
@@ -159,7 +164,7 @@ namespace droid.Runtime.Prototyping.Actors {
                         corners[5],
                         corners[6],
                         corners[7],
-                        Color.gray);
+                        color : Color.gray);
       }
     }
 
@@ -174,8 +179,8 @@ namespace droid.Runtime.Prototyping.Actors {
       }
       #endif
 
-      if (!this._Actuators.ContainsKey(identifier)) {
-        this._Actuators.Add(identifier, actuator);
+      if (!this._Actuators.ContainsKey(key : identifier)) {
+        this._Actuators.Add(key : identifier, value : actuator);
       } else {
         #if NEODROID_DEBUG
         if (this.Debugging) {
@@ -211,7 +216,7 @@ namespace droid.Runtime.Prototyping.Actors {
     /// <summary>
     /// </summary>
     /// <param name="actuator"></param>
-    public void Register(IActuator actuator) { this.RegisterActuator(actuator, actuator.Identifier); }
+    public void Register(IActuator actuator) { this.RegisterActuator(actuator : actuator, identifier : actuator.Identifier); }
 
     /// <inheritdoc />
     /// <summary>
@@ -219,7 +224,7 @@ namespace droid.Runtime.Prototyping.Actors {
     /// <param name="actuator"></param>
     /// <param name="identifier"></param>
     public void Register(IActuator actuator, string identifier) {
-      this.RegisterActuator(actuator, identifier);
+      this.RegisterActuator(actuator : actuator, identifier : identifier);
     }
 
     /// <summary>

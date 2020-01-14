@@ -1,7 +1,7 @@
 ﻿namespace droid.Runtime.Enums {
   /// <summary>
   /// </summary>
-  public enum CoordinateSpace {
+  public enum CoordinateSpaceEnum {
     /// <summary>
     /// </summary>
     Global_,

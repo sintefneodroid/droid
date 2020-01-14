@@ -30,8 +30,8 @@ namespace droid.Runtime.Utilities.InternalReactions {
     void Start() {
       this._Manager = FindObjectOfType<AbstractNeodroidManager>();
       if (Application.isPlaying) {
-        var reset_reaction = new ReactionParameters(StepResetObserve.Reset_);
-        this._Manager.SendToEnvironments(new[] {new Reaction(reset_reaction, "all")});
+        var reset_reaction = new ReactionParameters(reaction_type : ReactionTypeEnum.Reset_);
+        this._Manager.SendToEnvironments(new[] {new Reaction(reaction_parameters : reset_reaction, "all")});
       }
     }
 
@@ -40,8 +40,9 @@ namespace droid.Runtime.Utilities.InternalReactions {
         if (this._player_motions != null) {
           var motions = new List<IMotion>();
           if (this._player_motions._Motions != null) {
-            foreach (var player_motion in this._player_motions._Motions) {
-              if (Input.GetKey(player_motion._Key)) {
+            for (var index = 0; index < this._player_motions._Motions.Length; index++) {
+              var player_motion = this._player_motions._Motions[index];
+              if (Input.GetKey(key : player_motion._Key)) {
                 #if NEODROID_DEBUG
                 if (this.Debugging) {
                   Debug.Log($"{player_motion._Actor} {player_motion._Actuator} {player_motion._Strength}");
@@ -53,21 +54,31 @@ namespace droid.Runtime.Utilities.InternalReactions {
                   break;
                 }
 
-                var motion = new ActuatorMotion(player_motion._Actor,
-                                                player_motion._Actuator,
-                                                player_motion._Strength);
-                motions.Add(motion);
+                var motion = new ActuatorMotion(actor_name : player_motion._Actor,
+                                                actuator_name : player_motion._Actuator,
+                                                strength : player_motion._Strength);
+                motions.Add(item : motion);
               }
             }
           }
 
           if (this.terminated && this._auto_reset) {
-            var reset_reaction_parameters = new ReactionParameters(StepResetObserve.Reset_);
-            this._Manager.SendToEnvironments(new[] {new Reaction(reset_reaction_parameters, "all")});
-            this.terminated = this._Manager.GatherSnapshots().Any(e => e.Terminated);
+            var reset_reaction_parameters = new ReactionParameters(reaction_type : ReactionTypeEnum.Reset_);
+            this._Manager.SendToEnvironments(new[] {new Reaction(reaction_parameters : reset_reaction_parameters, "all")});
+            var any = false;
+            var es = this._Manager.GatherSnapshots();
+            for (var index = 0; index < es.Length; index++) {
+              var e = es[index];
+              if (e.Terminated) {
+                any = true;
+                break;
+              }
+            }
+
+            this.terminated = any;
           } else if (motions.Count > 0) {
-            var parameters = new ReactionParameters(StepResetObserve.Step_, true, episode_count : true);
-            var reaction = new Reaction(parameters,
+            var parameters = new ReactionParameters(reaction_type : ReactionTypeEnum.Step_, true, episode_count : true);
+            var reaction = new Reaction(parameters : parameters,
                                         motions.ToArray(),
                                         null,
                                         null,
@@ -75,7 +86,17 @@ namespace droid.Runtime.Utilities.InternalReactions {
                                         "",
                                         reaction_source : "PlayerReactions");
             this._Manager.SendToEnvironments(new[] {reaction});
-            this.terminated = this._Manager.GatherSnapshots().Any(e => e.Terminated);
+            var any = false;
+            var es = this._Manager.GatherSnapshots();
+            for (var index = 0; index < es.Length; index++) {
+              var e = es[index];
+              if (e.Terminated) {
+                any = true;
+                break;
+              }
+            }
+
+            this.terminated = any;
             motions.Clear();
           }
         }

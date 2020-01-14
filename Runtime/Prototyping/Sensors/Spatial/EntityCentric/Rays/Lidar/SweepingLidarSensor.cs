@@ -25,7 +25,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Lidar {
     Space1 _sweeping_space =
         new Space1 {Min = -180, Max = 180, DecimalGranularity = 5};
 
-    [SerializeField] Axis sweeping_axis = Axis.Rot_y_;
+    [SerializeField] AxisEnum _sweeping_axisEnum = AxisEnum.Rot_y_;
     [SerializeField] int tick_i;
     [Range(0.001f,999)][SerializeField] float speed = 1;
 
@@ -57,15 +57,15 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Lidar {
       var c = Vector3.forward;
       float a = this._sweeping_space.Precision * this.tick_i * this.speed;
       if (!this.loop) {
-        a = this._sweeping_space.Reproject(Mathf.Cos(a) * .5f + .5f);
+        a = this._sweeping_space.Reproject(Mathf.Cos(f : a) * .5f + .5f);
       }
 
-      switch (this.sweeping_axis) {
-        case Axis.Rot_x_:
-          c = Quaternion.Euler(a, 0, 0) * c;
+      switch (this._sweeping_axisEnum) {
+        case AxisEnum.Rot_x_:
+          c = Quaternion.Euler(x : a, 0, 0) * c;
           break;
-        case Axis.Rot_y_:
-          c = Quaternion.Euler(0, a, 0) * c;
+        case AxisEnum.Rot_y_:
+          c = Quaternion.Euler(0, y : a, 0) * c;
           break;
 
         default: throw new ArgumentOutOfRangeException();
@@ -80,10 +80,10 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Lidar {
     /// </summary>
     public override void UpdateObservation() {
       if (Physics.Raycast(this.transform.position + this._ray_space.Min * this.current_direction,
-                          this.transform.TransformDirection(this.current_direction),
-                          out this._hit,
-                          this._ray_space.Max)) {
-        this.ObservationValue = this._ray_space.Project(this._hit.distance);
+                          this.transform.TransformDirection(direction : this.current_direction),
+                          hitInfo : out this._hit,
+                          maxDistance : this._ray_space.Max)) {
+        this.ObservationValue = this._ray_space.Project(v : this._hit.distance);
       } else {
         this.ObservationValue = this._ray_space.Max;
       }
@@ -95,9 +95,9 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Lidar {
     void OnDrawGizmosSelected() {
       if (this.enabled) {
         var position = this.transform.position;
-        Debug.DrawLine(position,
-                       position + this.transform.TransformDirection(this.current_direction) * this._ray_space.Max,
-                       this._color);
+        Debug.DrawLine( position,
+                       position + this.transform.TransformDirection(direction : this.current_direction) * this._ray_space.Max,
+                       color : this._color);
       }
     }
     #endif

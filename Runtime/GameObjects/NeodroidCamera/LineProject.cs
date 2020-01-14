@@ -30,10 +30,10 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
 
     void Project() {
       var position = this.transform.position;
-      if (Physics.Raycast(position,
-                          this._direction,
+      if (Physics.Raycast(origin : position,
+                          direction : this._direction,
                           out var ray,
-                          this._length)) {
+                          maxDistance : this._length)) {
         this._line_renderer.SetPositions(new[] {position, ray.point});
       }
     }

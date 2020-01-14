@@ -34,8 +34,8 @@ namespace droid.Editor.Utilities {
     public void OnBeforeSerialize() {
       #if UNITY_EDITOR
       if (this.scene != null) {
-        var scene_asset_path = AssetDatabase.GetAssetPath(this.scene);
-        var scene_asset_guid = AssetDatabase.AssetPathToGUID(scene_asset_path);
+        var scene_asset_path = AssetDatabase.GetAssetPath(assetObject : this.scene);
+        var scene_asset_guid = AssetDatabase.AssetPathToGUID(path : scene_asset_path);
 
         var scenes = EditorBuildSettings.scenes;
 
@@ -63,7 +63,7 @@ namespace droid.Editor.Utilities {
     public void OnAfterDeserialize() { }
 
     void ValidateScene() {
-      if (string.IsNullOrEmpty(this.sceneName)) {
+      if (string.IsNullOrEmpty(value : this.sceneName)) {
         throw new SceneLoadException("No scene specified.");
       }
 
@@ -81,7 +81,7 @@ namespace droid.Editor.Utilities {
     /// <param name="mode"></param>
     public void LoadScene(LoadSceneMode mode = LoadSceneMode.Single) {
       this.ValidateScene();
-      SceneManager.LoadScene(this.sceneName, mode);
+      SceneManager.LoadScene(sceneName : this.sceneName, mode : mode);
     }
 
     /// <summary>
@@ -89,7 +89,7 @@ namespace droid.Editor.Utilities {
     ///   loading a scene reference.
     /// </summary>
     public class SceneLoadException : Exception {
-      public SceneLoadException(string message) : base(message) { }
+      public SceneLoadException(string message) : base(message : message) { }
     }
   }
 }

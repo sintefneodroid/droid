@@ -29,16 +29,16 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._texture_str);
+                                                          identifier : this._texture_str);
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>n
     protected override void UnRegisterComponent() {
-      this.ParentEnvironment?.UnRegister(this, this._texture_str);
+      this.ParentEnvironment?.UnRegister(this, identifier : this._texture_str);
     }
 
     public ISamplable ConfigurableValueSpace { get { return new SampleSpace1(); } }
@@ -51,7 +51,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        DebugPrinting.ApplyPrint(this.Debugging, configuration, this.Identifier);
+        DebugPrinting.ApplyPrint(debugging : this.Debugging, configuration : configuration, identifier : this.Identifier);
       }
       #endif
 
@@ -67,7 +67,8 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     /// <returns></returns>
     public override Configuration[] SampleConfigurations() {
-      return new[] {new Configuration(this._texture_str, this.ConfigurableValueSpace.Sample())};
+      return new[] {new Configuration(configurable_name : this._texture_str,configurable_value: this.ConfigurableValueSpace
+      .Sample())};
     }
   }
 }

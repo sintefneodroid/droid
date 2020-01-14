@@ -13,14 +13,14 @@ namespace droid.Editor.Utilities {
     ///
     /// </summary>
     /// <param name="menu_command"></param>
-    [MenuItem(_menu_path)]
+    [MenuItem(itemName : _menu_path)]
     public static void SaveMeshInPlace(MenuCommand menu_command) {
       var mf = menu_command.context as MeshFilter;
 
       if (mf != null) {
         var m = mf.sharedMesh;
-        SaveMesh(m,
-                 m.name,
+        SaveMesh(mesh : m,
+                 name : m.name,
                  false,
                  true);
       }
@@ -36,8 +36,8 @@ namespace droid.Editor.Utilities {
 
       if (mf != null) {
         var m = mf.sharedMesh;
-        SaveMesh(m,
-                 m.name,
+        SaveMesh(mesh : m,
+                 name : m.name,
                  true,
                  true);
       }
@@ -46,22 +46,22 @@ namespace droid.Editor.Utilities {
     public static void SaveMesh(Mesh mesh, string name, bool make_new_instance, bool optimize_mesh) {
       var path = EditorUtility.SaveFilePanel("Save Separate Mesh Asset",
                                              "Neodroid/Runtime/Meshes",
-                                             name,
+                                             defaultName : name,
                                              "asset");
       Debug.Log($"Trying to save mesh to {path}");
-      if (string.IsNullOrEmpty(path)) {
+      if (string.IsNullOrEmpty(value : path)) {
         return;
       }
 
-      path = FileUtil.GetProjectRelativePath(path);
+      path = FileUtil.GetProjectRelativePath(path : path);
 
-      var mesh_to_save = make_new_instance ? Object.Instantiate(mesh) : mesh;
+      var mesh_to_save = make_new_instance ? Object.Instantiate(original : mesh) : mesh;
 
       if (optimize_mesh) {
-        MeshUtility.Optimize(mesh_to_save);
+        MeshUtility.Optimize(mesh : mesh_to_save);
       }
 
-      AssetDatabase.CreateAsset(mesh_to_save, path);
+      AssetDatabase.CreateAsset(asset : mesh_to_save, path : path);
       AssetDatabase.SaveAssets();
     }
   }

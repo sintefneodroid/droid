@@ -9,6 +9,7 @@ using droid.Runtime.Utilities;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.ObjectiveFunctions {
+  /// <inheritdoc />
   /// <summary>
   /// </summary>
   [Serializable]
@@ -54,7 +55,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions {
 
       if (this.ParentEnvironment == null) {
         this.ParentEnvironment = NeodroidSceneUtilities
-            .RecursiveFirstSelfSiblingParentGetComponent<AbstractSpatialPrototypingEnvironment>(this.transform);
+            .RecursiveFirstSelfSiblingParentGetComponent<AbstractPrototypingEnvironment>(child : this.transform);
       }
     }
 
@@ -63,7 +64,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions {
     /// </summary>
     /// <returns></returns>
     public void SignalString(DataPoller recipient) {
-      recipient.PollData($"{this.LastSignal.ToString(CultureInfo.InvariantCulture)}");
+      recipient.PollData($"{this.LastSignal.ToString(provider : CultureInfo.InvariantCulture)}");
     }
 
     /// <summary>
@@ -98,7 +99,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions {
     /// </summary>
     [field : Header("References", order = 100)]
     [field : SerializeField]
-    public ISpatialPrototypingEnvironment ParentEnvironment { get; set; } = null;
+    public IAbstractPrototypingEnvironment ParentEnvironment { get; set; } = null;
 
     /// <summary>
     ///

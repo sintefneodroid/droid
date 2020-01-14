@@ -36,7 +36,7 @@ for (var i = 0; i < this._arms.WinAmounts.Length; i++) {
   this._normalised_values[i] = this._arms.WinAmounts[i] / sum;
 }*/
 
-      var values = this._arms.WinAmounts.Zip(this._arms.WinLikelihoods, (f, f1) => f * f1).ToArray();
+      var values = this._arms.WinAmounts.Zip(second : this._arms.WinLikelihoods, resultSelector : (f, f1) => f * f1).ToArray();
       var values_sum = values.Sum();
 
       this._normalised_values = new Single[values.Length];
@@ -44,7 +44,7 @@ for (var i = 0; i < this._arms.WinAmounts.Length; i++) {
         this._normalised_values[i] = values[i] / values_sum;
       }
 
-      this._text_bar_plot_displayer.Display(this._normalised_values);
+      this._text_bar_plot_displayer.Display(values : this._normalised_values);
     }
 
     /// <inheritdoc />

@@ -37,25 +37,25 @@ namespace droid.Runtime.Structs.Space.Sample {
       this._distribution_sampler = new DistributionSampler();
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <returns></returns>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <returns></returns>
     public dynamic Sample() {
       switch (this._space.Normalised) {
-        case Normalisation.None_:
-          return this._space.Round(this.DistributionSampler.Range(this._space.Min, this._space.Max,this._space.DecimalGranularity));
-        case Normalisation.Zero_one_:
+        case NormalisationEnum.None_:
+          return this._space.Round(this.DistributionSampler.Range(min : this._space.Min, max : this._space.Max,granularity : this._space.DecimalGranularity));
+        case NormalisationEnum.Zero_one_:
           return this.DistributionSampler.Range(0, 1);
-        case Normalisation.Minus_one_one_:
+        case NormalisationEnum.Minus_one_one_:
           return this.DistributionSampler.Range(-1, 1);
         default: throw new ArgumentOutOfRangeException();
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public ISpace Space { get { return this._space; } set { this._space = (Space1)value; } }
   }
 }

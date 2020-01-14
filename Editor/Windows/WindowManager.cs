@@ -27,16 +27,16 @@ namespace droid.Editor.Windows {
     [MenuItem(EditorWindowMenuPath._ToolMenuPath + "ShowAllWindows")]
     public static void ShowWindow() {
       //Show existing window instance. If one doesn't exist, make one.
-      GetWindow<RenderTextureConfiguratorWindow>(_desired_dock_next_toos);
-      GetWindow<CameraSynchronisationWindow>(_desired_dock_next_toos);
+      GetWindow<RenderTextureConfiguratorWindow>(desiredDockNextTo : _desired_dock_next_toos);
+      GetWindow<CameraSynchronisationWindow>(desiredDockNextTo : _desired_dock_next_toos);
       #if NEODROID_DEBUG
-      GetWindow<DebugWindow>(_desired_dock_next_toos);
+      GetWindow<DebugWindow>(desiredDockNextTo : _desired_dock_next_toos);
       #endif
-      GetWindow<SegmentationWindow>(_desired_dock_next_toos);
-      GetWindow<PrototypingWindow>(_desired_dock_next_toos);
-      GetWindow<TaskWindow>(_desired_dock_next_toos);
-      GetWindow<DemonstrationWindow>(_desired_dock_next_toos);
-      GetWindow<SimulationWindow>(_desired_dock_next_toos);
+      GetWindow<SegmentationWindow>(desiredDockNextTo : _desired_dock_next_toos);
+      GetWindow<PrototypingWindow>(desiredDockNextTo : _desired_dock_next_toos);
+      GetWindow<TaskWindow>(desiredDockNextTo : _desired_dock_next_toos);
+      GetWindow<DemonstrationWindow>(desiredDockNextTo : _desired_dock_next_toos);
+      GetWindow<SimulationWindow>(desiredDockNextTo : _desired_dock_next_toos);
     }
   }
 }

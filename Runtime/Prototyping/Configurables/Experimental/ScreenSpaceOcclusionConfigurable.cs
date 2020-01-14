@@ -71,23 +71,23 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
             var xy = this.xy_space2.Sample();
             var z = this._camera.nearClipPlane + this.depth_space1.Sample() * this._camera.farClipPlane;
 
-            var a = new Vector3(xy.x, xy.y, z);
+            var a = new Vector3(x : xy.x, y : xy.y, z : z);
 
-            var c = this._camera.ViewportToWorldPoint(a);
+            var c = this._camera.ViewportToWorldPoint(position : a);
 
             var rot = this.rot_space.Sample();
-            var b = new Quaternion(rot.x,
-                                   rot.y,
-                                   rot.z,
-                                   rot.w);
+            var b = new Quaternion(x : rot.x,
+                                   y : rot.y,
+                                   z : rot.z,
+                                   w : rot.w);
 
-            var d = Instantiate(prefab,
-                                c,
-                                b,
-                                this.transform);
+            var d = Instantiate(original : prefab,
+                                position : c,
+                                rotation : b,
+                                parent : this.transform);
             d.transform.localScale = this.size_space.Sample();
 
-            this._spawned.Add(d);
+            this._spawned.Add(item : d);
           }
         }
 
@@ -100,21 +100,21 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._r);
+                                                          identifier : this._r);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._g);
+                                                          identifier : this._g);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._b);
+                                                          identifier : this._b);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._a);
+                                                          identifier : this._a);
     }
 
     /// <inheritdoc />
@@ -125,34 +125,36 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
         return;
       }
 
-      this.ParentEnvironment.UnRegister(this, this._r);
-      this.ParentEnvironment.UnRegister(this, this._g);
-      this.ParentEnvironment.UnRegister(this, this._b);
-      this.ParentEnvironment.UnRegister(this, this._a);
+      this.ParentEnvironment.UnRegister(this, identifier : this._r);
+      this.ParentEnvironment.UnRegister(this, identifier : this._g);
+      this.ParentEnvironment.UnRegister(this, identifier : this._b);
+      this.ParentEnvironment.UnRegister(this, identifier : this._a);
     }
 
     public ISamplable ConfigurableValueSpace { get { return new SampleSpace1(); } }
 
     public override void UpdateCurrentConfiguration() {  }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <param name="configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
-      var aa = Random.Range(0, this._spawned.Count);
-      foreach (var bb in this._spawned) {
+      var aa = Random.Range(0, max : this._spawned.Count);
+      for (var index = 0; index < this._spawned.Count; index++) {
+        var bb = this._spawned[index : index];
         var xy = this.xy_space2.Sample();
         var z = this._camera.nearClipPlane + this.depth_space1.Sample() * this._camera.farClipPlane;
 
-        var a = new Vector3(xy.x, xy.y, z);
+        var a = new Vector3(x : xy.x, y : xy.y, z : z);
 
-        var c = this._camera.ViewportToWorldPoint(a);
+        var c = this._camera.ViewportToWorldPoint(position : a);
 
         var rot = this.rot_space.Sample();
-        var b = new Quaternion(rot.x,
-                               rot.y,
-                               rot.z,
-                               rot.w);
+        var b = new Quaternion(x : rot.x,
+                               y : rot.y,
+                               z : rot.z,
+                               w : rot.w);
 
         bb.transform.localScale = this.size_space.Sample();
 
@@ -162,7 +164,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       }
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        DebugPrinting.ApplyPrint(this.Debugging, configuration, this.Identifier);
+        DebugPrinting.ApplyPrint(debugging : this.Debugging, configuration : configuration, identifier : this.Identifier);
       }
       #endif
     }
@@ -175,9 +177,9 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       var s = this.size_space.Sample();
 
       return new[] {
-                       new Configuration(this._r, s.x),
-                       new Configuration(this._b, s.y),
-                       new Configuration(this._g, s.z)
+                       new Configuration(configurable_name : this._r, configurable_value : s.x),
+                       new Configuration(configurable_name : this._b, configurable_value : s.y),
+                       new Configuration(configurable_name : this._g, configurable_value : s.z)
                    };
     }
   }

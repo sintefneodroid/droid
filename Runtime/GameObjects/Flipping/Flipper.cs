@@ -17,14 +17,14 @@ namespace droid.Runtime.GameObjects.Flipping {
     /// <param name="result"></param>
     public void FlipImage(Texture my_texture, Texture2D result) {
       var kernel_handle = this._shader.FindKernel("Flip");
-      var tex = new RenderTexture(my_texture.width, my_texture.height, 24) {enableRandomWrite = true};
+      var tex = new RenderTexture(width : my_texture.width, height : my_texture.height, 24) {enableRandomWrite = true};
       tex.Create();
 
-      this._shader.SetTexture(kernel_handle, "Result", tex);
-      this._shader.SetTexture(kernel_handle, "ImageInput", my_texture);
-      this._shader.SetInt("width", my_texture.width);
-      this._shader.SetInt("height", my_texture.height);
-      this._shader.Dispatch(kernel_handle,
+      this._shader.SetTexture(kernelIndex : kernel_handle, "Result", texture : tex);
+      this._shader.SetTexture(kernelIndex : kernel_handle, "ImageInput", texture : my_texture);
+      this._shader.SetInt("width", val : my_texture.width);
+      this._shader.SetInt("height", val : my_texture.height);
+      this._shader.Dispatch(kernelIndex : kernel_handle,
                             my_texture.width / 8,
                             my_texture.height / 8,
                             1);
@@ -32,17 +32,17 @@ namespace droid.Runtime.GameObjects.Flipping {
       RenderTexture.active = tex;
       result.ReadPixels(new Rect(0,
                                  0,
-                                 tex.width,
-                                 tex.height),
+                                 width : tex.width,
+                                 height : tex.height),
                         0,
                         0);
       result.Apply();
     }
 
     void OnRenderImage(RenderTexture src, RenderTexture dest) {
-      this.FlipImage(src, this._texture_2d);
+      this.FlipImage(my_texture : src, result : this._texture_2d);
 
-      Graphics.Blit(this._texture_2d, dest);
+      Graphics.Blit(source : this._texture_2d, dest : dest);
     }
   }
 }

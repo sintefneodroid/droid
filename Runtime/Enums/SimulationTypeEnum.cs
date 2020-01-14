@@ -2,7 +2,7 @@ namespace droid.Runtime.Enums {
   /// <summary>
   ///   Determines the discrete timesteps of the simulation environment.
   /// </summary>
-  public enum SimulationType {
+  public enum SimulationTypeEnum {
     /// <summary>
     ///   Waiting for frame instead means stable physics(Multiple fixed updates) and camera has updated their
     ///   rendertextures. Pauses the game after every reaction until next reaction is received.

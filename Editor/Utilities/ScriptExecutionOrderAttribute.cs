@@ -3,7 +3,7 @@ using System;
 namespace droid.Editor.Utilities {
   /// <summary>
   /// </summary>
-  [AttributeUsage(AttributeTargets.Class)]
+  [AttributeUsage(validOn : AttributeTargets.Class)]
   public class ScriptExecutionOrderAttribute : Attribute {
     int _order;
 

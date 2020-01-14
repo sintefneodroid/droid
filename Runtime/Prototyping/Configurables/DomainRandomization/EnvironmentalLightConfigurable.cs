@@ -29,8 +29,8 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
                                                                           Max = Vector3.one * 1f
                                                                       },
                                                        _distribution_sampler =
-                                                           new DistributionSampler(DistributionEnum.Linear_) {
-                                                                                                                 DistributionFactor
+                                                           new DistributionSampler(distribution_enum : DistributionEnum.Linear_) {
+                                                                                                                 DistributionParameter
                                                                                                                      = -1
                                                                                                              }
                                                    };
@@ -59,25 +59,25 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._color_r);
+                                                          identifier : this._color_r);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._color_b);
+                                                          identifier : this._color_b);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._color_g);
+                                                          identifier : this._color_g);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._intensity);
+                                                          identifier : this._intensity);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._reflection_intensity);
+                                                          identifier : this._reflection_intensity);
     }
 
     /// <inheritdoc />
@@ -88,11 +88,11 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
         return;
       }
 
-      this.ParentEnvironment.UnRegister(this, this._color_r);
-      this.ParentEnvironment.UnRegister(this, this._color_g);
-      this.ParentEnvironment.UnRegister(this, this._color_b);
-      this.ParentEnvironment.UnRegister(this, this._intensity);
-      this.ParentEnvironment.UnRegister(this, this._reflection_intensity);
+      this.ParentEnvironment.UnRegister(this, identifier : this._color_r);
+      this.ParentEnvironment.UnRegister(this, identifier : this._color_g);
+      this.ParentEnvironment.UnRegister(this, identifier : this._color_b);
+      this.ParentEnvironment.UnRegister(this, identifier : this._intensity);
+      this.ParentEnvironment.UnRegister(this, identifier : this._reflection_intensity);
     }
 
     public ISamplable ConfigurableValueSpace { get; }
@@ -105,7 +105,7 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        DebugPrinting.ApplyPrint(this.Debugging, configuration, this.Identifier);
+        DebugPrinting.ApplyPrint(debugging : this.Debugging, configuration : configuration, identifier : this.Identifier);
       }
       #endif
       var c = RenderSettings.ambientLight;
@@ -118,7 +118,7 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
       } else if (configuration.ConfigurableName == this._intensity) {
         //c.a = configuration.ConfigurableValue;
         RenderSettings.ambientIntensity = configuration.ConfigurableValue;
-        RenderSettings.reflectionIntensity = Mathf.Clamp01(configuration.ConfigurableValue);
+        RenderSettings.reflectionIntensity = Mathf.Clamp01(value : configuration.ConfigurableValue);
         //RenderSettings.skybox.SetFloat("_Exposure", configuration.ConfigurableValue);
       } else if (configuration.ConfigurableName == this._reflection_intensity) {
         //c.a = configuration.ConfigurableValue;
@@ -139,11 +139,11 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
       var v = this._color_space.Sample();
 
       return new[] {
-                       new Configuration(this._color_r, v.x),
-                       new Configuration(this._color_g, v.y),
-                       new Configuration(this._color_b, v.z),
-                       new Configuration(this._intensity, o.x),
-                       new Configuration(this._reflection_intensity, o.y)
+                       new Configuration(configurable_name : this._color_r, configurable_value : v.x),
+                       new Configuration(configurable_name : this._color_g, configurable_value : v.y),
+                       new Configuration(configurable_name : this._color_b, configurable_value : v.z),
+                       new Configuration(configurable_name : this._intensity, configurable_value : o.x),
+                       new Configuration(configurable_name : this._reflection_intensity, configurable_value : o.y)
                    };
     }
   }

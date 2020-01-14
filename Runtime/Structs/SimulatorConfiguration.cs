@@ -38,14 +38,14 @@ namespace droid.Runtime.Structs {
     [SerializeField] [Range(0, 4)] int _v_sync_count = 0;
     [SerializeField] bool _full_screen = false;
     [SerializeField] bool _resizable_window = true;
-    [SerializeField] ColorSpace _color_space = ColorSpace.Linear;
+    [SerializeField] ColorSpace _unityColor_space = ColorSpace.Linear;
 
     /// <summary>
     /// </summary>
     [Header("Simulation")]
     [SerializeField]
     [SearchableEnum]
-    FrameFinishes _frame_finishes = FrameFinishes.On_post_render_;
+    FrameFinishesEnum _frame_finishes = FrameFinishesEnum.Late_update_;
 
     /// <summary>
     /// </summary>
@@ -82,13 +82,13 @@ namespace droid.Runtime.Structs {
     /// </summary>
     [SerializeField]
     [SearchableEnum]
-    SimulationType _simulation_type = SimulationType.Independent_;
+    SimulationTypeEnum _simulation_type = SimulationTypeEnum.Independent_;
 
     /// <summary>
     /// </summary>
     [SerializeField]
     //[SearchableEnum]
-    ExecutionPhase _step_execution_phase = ExecutionPhase.On_Tick_;
+    ExecutionPhaseEnum _step_execution_phase = ExecutionPhaseEnum.On_tick_;
 
     /// <summary>
     ///   Target frame rate = -1 means that no waiting/v-syncing is done and the simulation can run as fast as
@@ -122,18 +122,19 @@ namespace droid.Runtime.Structs {
       this.QualityLevel = 1;
       this.TimeScale = 1;
       this.TargetFrameRate = -1;
-      this.SimulationType = SimulationType.Frame_dependent_;
-      this.FrameFinishes = FrameFinishes.Late_update_;
+      this.SimulationType = SimulationTypeEnum.Frame_dependent_;
+      this.FrameFinishes = FrameFinishesEnum.Late_update_;
       this.FrameSkips = 0;
       this.MaxReplyInterval = 0;
       this.NumOfEnvironments = 1;
       this.ResizableWindow = true;
-      this.ColorSpace = ColorSpace.Linear;
+      this.UnityColorSpace = ColorSpace.Linear;
       this.VSyncCount = 0;
     }
 
     #region Getter Setters
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public int FrameSkips {
@@ -145,41 +146,42 @@ namespace droid.Runtime.Structs {
       }
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public SimulationType SimulationType {
+    public SimulationTypeEnum SimulationType {
       get { return this._simulation_type; }
       set { this._simulation_type = value; }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public bool ApplyResolutionSettings {
       get { return this._apply_resolution_settings; }
       set { this._apply_resolution_settings = value; }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public bool ApplyQualitySettings {
       get { return this._apply_quality_settings; }
       set { this._apply_quality_settings = value; }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public Boolean ResizableWindow {
       get { return this._resizable_window; }
       set { this._resizable_window = value; }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    public ColorSpace ColorSpace { get { return this._color_space; } set { this._color_space = value; } }
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    public ColorSpace UnityColorSpace { get { return this._unityColor_space; } set { this._unityColor_space = value; } }
 
     /// <summary>
     ///
@@ -261,14 +263,14 @@ namespace droid.Runtime.Structs {
 
     /// <summary>
     /// </summary>
-    public FrameFinishes FrameFinishes {
+    public FrameFinishesEnum FrameFinishes {
       get { return this._frame_finishes; }
       set { this._frame_finishes = value; }
     }
 
     /// <summary>
     /// </summary>
-    public ExecutionPhase StepExecutionPhase {
+    public ExecutionPhaseEnum StepExecutionPhase {
       get { return this._step_execution_phase; }
       set { this._step_execution_phase = value; }
     }
@@ -284,7 +286,7 @@ namespace droid.Runtime.Structs {
     /// <summary>
     ///
     /// </summary>
-    public Boolean AlwaysSerialiseAggregatedFloatArray {
+    public Boolean SerialiseAggregatedFloatArray {
       get { return this._always_serialise_aggregated_float_array; }
       set { this._always_serialise_aggregated_float_array = value; }
     }
@@ -292,7 +294,7 @@ namespace droid.Runtime.Structs {
     /// <summary>
     ///
     /// </summary>
-    public bool AlwaysSerialiseUnobservables {
+    public bool SerialiseUnobservables {
       get { return this._always_serialise_unobservables; }
       set { this._always_serialise_unobservables = value; }
     }
@@ -300,7 +302,7 @@ namespace droid.Runtime.Structs {
     /// <summary>
     ///
     /// </summary>
-    public bool AlwaysSerialiseIndividualObservables {
+    public bool SerialiseIndividualObservables {
       get { return this._always_serialise_individual_observables; }
       set { this._always_serialise_individual_observables = value; }
     }

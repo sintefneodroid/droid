@@ -23,23 +23,23 @@ namespace droid.Runtime.Managers.Experimental {
           if (level._Configurable_Entries != null && level._Configurable_Entries.Length > 0) {
             var frac = i++ / (float)len;
             foreach (var entry in level._Configurable_Entries) {
-              var configurable = GameObject.Find(entry._Configurable_Name);
+              var configurable = GameObject.Find(name : entry._Configurable_Name);
               if (configurable != null) {
-                Gizmos.color = new Color(frac,
+                Gizmos.color = new Color(r : frac,
                                          0,
                                          1 - frac,
                                          0.1F);
                 var position = configurable.transform.position;
-                Gizmos.DrawSphere(position, entry._Max_Value);
+                Gizmos.DrawSphere(center : position, radius : entry._Max_Value);
                 Gizmos.color = new Color(1,
                                          1,
                                          1,
                                          0.4F);
-                Gizmos.DrawWireSphere(position, entry._Max_Value);
+                Gizmos.DrawWireSphere(center : position, radius : entry._Max_Value);
                 var pos_up = position;
                 pos_up.y += entry._Max_Value;
                 NeodroidUtilities.DrawString(i.ToString(),
-                                             pos_up,
+                                             world_pos : pos_up,
                                              new Color(1,
                                                        1,
                                                        1,
@@ -47,7 +47,7 @@ namespace droid.Runtime.Managers.Experimental {
                 var pos_left = position;
                 pos_left.x += entry._Max_Value;
                 NeodroidUtilities.DrawString(i.ToString(),
-                                             pos_left,
+                                             world_pos : pos_left,
                                              new Color(1,
                                                        1,
                                                        1,
@@ -55,7 +55,7 @@ namespace droid.Runtime.Managers.Experimental {
                 var pos_forward = position;
                 pos_forward.z += entry._Max_Value;
                 NeodroidUtilities.DrawString(i.ToString(),
-                                             pos_forward,
+                                             world_pos : pos_forward,
                                              new Color(1,
                                                        1,
                                                        1,
@@ -63,7 +63,7 @@ namespace droid.Runtime.Managers.Experimental {
                 var pos_down = position;
                 pos_down.y -= entry._Max_Value;
                 NeodroidUtilities.DrawString(i.ToString(),
-                                             pos_down,
+                                             world_pos : pos_down,
                                              new Color(1,
                                                        1,
                                                        1,
@@ -71,7 +71,7 @@ namespace droid.Runtime.Managers.Experimental {
                 var pos_right = position;
                 pos_right.x -= entry._Max_Value;
                 NeodroidUtilities.DrawString(i.ToString(),
-                                             pos_right,
+                                             world_pos : pos_right,
                                              new Color(1,
                                                        1,
                                                        1,
@@ -79,7 +79,7 @@ namespace droid.Runtime.Managers.Experimental {
                 var pos_backward = position;
                 pos_backward.z -= entry._Max_Value;
                 NeodroidUtilities.DrawString(i.ToString(),
-                                             pos_backward,
+                                             world_pos : pos_backward,
                                              new Color(1,
                                                        1,
                                                        1,

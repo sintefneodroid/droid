@@ -9,9 +9,9 @@ namespace droid.Runtime.Structs.Vectors {
     [SerializeField] public int _Z;
 
     public IntVector3(Vector3 vec3) {
-      this._X = Mathf.RoundToInt(vec3.x);
-      this._Y = Mathf.RoundToInt(vec3.y);
-      this._Z = Mathf.RoundToInt(vec3.z);
+      this._X = Mathf.RoundToInt(f : vec3.x);
+      this._Y = Mathf.RoundToInt(f : vec3.y);
+      this._Z = Mathf.RoundToInt(f : vec3.z);
     }
 
     public static IntVector3 operator+(IntVector3 a, IntVector3 b) {

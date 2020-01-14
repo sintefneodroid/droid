@@ -64,21 +64,21 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           this,
-                                                          this._r_id);
+                                                          identifier : this._r_id);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           this,
-                                                          this._g_id);
+                                                          identifier : this._g_id);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           this,
-                                                          this._b_id);
+                                                          identifier : this._b_id);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           this,
-                                                          this._a_id);
+                                                          identifier : this._a_id);
     }
 
     /// <inheritdoc />
@@ -89,10 +89,10 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
         return;
       }
 
-      this.ParentEnvironment.UnRegister(this, this._r_id);
-      this.ParentEnvironment.UnRegister(this, this._b_id);
-      this.ParentEnvironment.UnRegister(this, this._g_id);
-      this.ParentEnvironment.UnRegister(this, this._a_id);
+      this.ParentEnvironment.UnRegister(this, identifier : this._r_id);
+      this.ParentEnvironment.UnRegister(this, identifier : this._b_id);
+      this.ParentEnvironment.UnRegister(this, identifier : this._g_id);
+      this.ParentEnvironment.UnRegister(this, identifier : this._a_id);
     }
 
     /// <summary>
@@ -102,18 +102,20 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
 
     public override void UpdateCurrentConfiguration() {  }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <param name="configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        DebugPrinting.ApplyPrint(this.Debugging, configuration, this.Identifier);
+        DebugPrinting.ApplyPrint(debugging : this.Debugging, configuration : configuration, identifier : this.Identifier);
       }
       #endif
 
       if (this.use_shared) {
-        foreach (var mat in this._renderer.sharedMaterials) {
+        for (var index = 0; index < this._renderer.sharedMaterials.Length; index++) {
+          var mat = this._renderer.sharedMaterials[index];
           var c = mat.color;
 
           switch (configuration.ConfigurableName[configuration.ConfigurableName.Length - 1]) {
@@ -134,7 +136,8 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
           mat.color = c;
         }
       } else {
-        foreach (var mat in this._renderer.materials) {
+        for (var index = 0; index < this._renderer.materials.Length; index++) {
+          var mat = this._renderer.materials[index];
           var c = mat.color;
 
           switch (configuration.ConfigurableName[configuration.ConfigurableName.Length - 1]) {
@@ -180,10 +183,10 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
       var v = this._space.Sample();
 
       return new[] {
-                       new Configuration(this._r_id, v.x),
-                       new Configuration(this._g_id, v.y),
-                       new Configuration(this._b_id, v.z),
-                       new Configuration(this._a_id, v.w)
+                       new Configuration(configurable_name : this._r_id, configurable_value : v.x),
+                       new Configuration(configurable_name : this._g_id, configurable_value : v.y),
+                       new Configuration(configurable_name : this._b_id, configurable_value : v.z),
+                       new Configuration(configurable_name : this._a_id, configurable_value : v.w)
                    };
     }
   }

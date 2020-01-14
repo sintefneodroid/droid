@@ -34,8 +34,9 @@ namespace droid.Runtime.GameObjects.StatusDisplayer {
                                                 };
 
       if (this.ListItemPrefab) {
-        foreach (CameraObservation animal in this._camera_observations) {
-          var r = Instantiate(this.ListItemPrefab, this.ContentPanel.transform, true);
+        for (var index = 0; index < this._camera_observations.Count; index++) {
+          var animal = (CameraObservation)this._camera_observations[index : index];
+          var r = Instantiate(original : this.ListItemPrefab, parent : this.ContentPanel.transform, true);
           var controller = r.GetComponent<RenderTextureListItem>();
           controller.Icon.sprite = animal._Icon;
           controller.Name.text = animal._Name;

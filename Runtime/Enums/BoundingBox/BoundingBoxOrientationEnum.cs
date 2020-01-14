@@ -2,7 +2,7 @@ namespace droid.Runtime.Enums.BoundingBox {
   /// <summary>
   ///
   /// </summary>
-  public enum BoundingBoxOrientation {
+  public enum BoundingBoxOrientationEnum {
     /// <summary>
     ///
     /// </summary>

@@ -27,7 +27,7 @@ namespace droid.Runtime.Prototyping.Displayers.Cells {
     public override void Display(String values) { }
 
     public override void Display(Vector3 value) { throw new NotImplementedException(); }
-    public override void Display(Vector3[] value) { this.ScatterPlot(value); }
+    public override void Display(Vector3[] value) { this.ScatterPlot(points : value); }
 
     public override void Display(Points.ValuePoint points) { this.PlotSeries(new[] {points}); }
 
@@ -64,22 +64,22 @@ namespace droid.Runtime.Prototyping.Displayers.Cells {
         //point._Size
         switch ((int)point._Val) {
           case 0:
-            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.forward, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(pos : point._Pos, direction : Vector3.forward, color : Color.cyan);
             break;
           case 1:
-            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.back, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(pos : point._Pos, direction : Vector3.back, color : Color.cyan);
             break;
           case 2:
-            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.up, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(pos : point._Pos, direction : Vector3.up, color : Color.cyan);
             break;
           case 3:
-            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.down, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(pos : point._Pos, direction : Vector3.down, color : Color.cyan);
             break;
           case 4:
-            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.left, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(pos : point._Pos, direction : Vector3.left, color : Color.cyan);
             break;
           case 5:
-            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.right, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(pos : point._Pos, direction : Vector3.right, color : Color.cyan);
             break;
         }
       }

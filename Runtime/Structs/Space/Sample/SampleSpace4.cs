@@ -5,6 +5,7 @@ using droid.Runtime.Sampling;
 using UnityEngine;
 
 namespace droid.Runtime.Structs.Space.Sample {
+  /// <inheritdoc />
   /// <summary>
   /// </summary>
   [Serializable]
@@ -32,29 +33,29 @@ namespace droid.Runtime.Structs.Space.Sample {
       this._distribution_sampler = new DistributionSampler();
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <returns></returns>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <returns></returns>
     public dynamic Sample() {
       Single x;
       Single y;
       Single z;
       Single w;
       switch(this._space.Normalised) {
-        case Normalisation.None_:
-          x = this._space.Round(this.DistributionSampler.Range(this._space.Min.x, this._space.Max.x,this._space.DecimalGranularity));
-          y = this._space.Round(this.DistributionSampler.Range(this._space.Min.y, this._space.Max.y,this._space.DecimalGranularity));
-          z = this._space.Round(this.DistributionSampler.Range(this._space.Min.z, this._space.Max.z,this._space.DecimalGranularity));
-          w = this._space.Round(this.DistributionSampler.Range(this._space.Min.w, this._space.Max.w,this._space.DecimalGranularity));
+        case NormalisationEnum.None_:
+          x = this._space.Round(this.DistributionSampler.Range(min : this._space.Min.x, max : this._space.Max.x,granularity : this._space.DecimalGranularity));
+          y = this._space.Round(this.DistributionSampler.Range(min : this._space.Min.y, max : this._space.Max.y,granularity : this._space.DecimalGranularity));
+          z = this._space.Round(this.DistributionSampler.Range(min : this._space.Min.z, max : this._space.Max.z,granularity : this._space.DecimalGranularity));
+          w = this._space.Round(this.DistributionSampler.Range(min : this._space.Min.w, max : this._space.Max.w,granularity : this._space.DecimalGranularity));
           break;
-        case Normalisation.Zero_one_:
+        case NormalisationEnum.Zero_one_:
           x = this.DistributionSampler.Range(0, 1);
           y = this.DistributionSampler.Range(0, 1);
           z = this.DistributionSampler.Range(0, 1);
           w = this.DistributionSampler.Range(0, 1);
           break;
-        case Normalisation.Minus_one_one_:
+        case NormalisationEnum.Minus_one_one_:
           x = this.DistributionSampler.Range(-1, 1);
           y = this.DistributionSampler.Range(-1, 1);
           z = this.DistributionSampler.Range(-1, 1);
@@ -63,10 +64,10 @@ namespace droid.Runtime.Structs.Space.Sample {
         default: throw new ArgumentOutOfRangeException();
       }
 
-      return new Vector4(x,
-                         y,
-                         z,
-                         w);
+      return new Vector4(x : x,
+                         y : y,
+                         z : z,
+                         w : w);
     }
 
     public ISpace Space { get { return this._space; } set { this._space = (Space4)value; } }

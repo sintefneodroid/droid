@@ -36,7 +36,7 @@ namespace droid.Runtime.Utilities.Drawing {
         // Offset the cylinder so that the pivot/origin is at the bottom in relation to the outer ring game_object.
         ring_offset_cylinder_mesh_object.transform.localPosition = new Vector3(0f, 1f, 0f);
         // Set the radius
-        ring_offset_cylinder_mesh_object.transform.localScale = new Vector3(this._Radius, 1f, this._Radius);
+        ring_offset_cylinder_mesh_object.transform.localScale = new Vector3(x : this._Radius, 1f, z : this._Radius);
 
         // Create the the Mesh and renderer to show the connecting ring
         var ring_mesh = ring_offset_cylinder_mesh_object.AddComponent<MeshFilter>();
@@ -55,15 +55,15 @@ namespace droid.Runtime.Utilities.Drawing {
 
         // Match the scale to the distance
         var cylinder_distance =
-            0.5f * Vector3.Distance(this._Points[i].transform.position, this._MainPoint.transform.position);
+            0.5f * Vector3.Distance(a : this._Points[i].transform.position, b : this._MainPoint.transform.position);
         this._ring_game_objects[i].transform.localScale =
-            new Vector3(this._ring_game_objects[i].transform.localScale.x,
-                        cylinder_distance,
-                        this._ring_game_objects[i].transform.localScale.z);
+            new Vector3(x : this._ring_game_objects[i].transform.localScale.x,
+                        y : cylinder_distance,
+                        z : this._ring_game_objects[i].transform.localScale.z);
 
         // Make the cylinder look at the main point.
         // Since the cylinder is pointing up(y) and the forward is z, we need to offset by 90 degrees.
-        this._ring_game_objects[i].transform.LookAt(this._MainPoint.transform, Vector3.up);
+        this._ring_game_objects[i].transform.LookAt(target : this._MainPoint.transform, worldUp : Vector3.up);
         this._ring_game_objects[i].transform.rotation *= Quaternion.Euler(90, 0, 0);
       }
     }
@@ -106,7 +106,7 @@ namespace droid.Runtime.Utilities.Drawing {
         // Offset the cube so that the pivot/origin is at the bottom in relation to the outer ring     game_object.
         ring_offset_cube_mesh_object.transform.localPosition = new Vector3(0f, 1f, 0f);
         // Set the radius
-        ring_offset_cube_mesh_object.transform.localScale = new Vector3(this._Radius, 1f, this._Radius);
+        ring_offset_cube_mesh_object.transform.localScale = new Vector3(x : this._Radius, 1f, z : this._Radius);
 
         // Create the the Mesh and renderer to show the connecting ring
         var ring_mesh = ring_offset_cube_mesh_object.AddComponent<MeshFilter>();
@@ -130,15 +130,15 @@ namespace droid.Runtime.Utilities.Drawing {
 
         // Match the scale to the distance
         var cube_distance =
-            Vector3.Distance(this._Points[i].transform.position, this._MainPoint.transform.position);
+            Vector3.Distance(a : this._Points[i].transform.position, b : this._MainPoint.transform.position);
         this._ring_game_objects[i].transform.localScale =
-            new Vector3(this._ring_game_objects[i].transform.localScale.x,
-                        cube_distance,
-                        this._ring_game_objects[i].transform.localScale.z);
+            new Vector3(x : this._ring_game_objects[i].transform.localScale.x,
+                        y : cube_distance,
+                        z : this._ring_game_objects[i].transform.localScale.z);
 
         // Make the cube look at the main point.
         // Since the cube is pointing up(y) and the forward is z, we need to offset by 90 degrees.
-        this._ring_game_objects[i].transform.LookAt(this._MainPoint.transform, Vector3.up);
+        this._ring_game_objects[i].transform.LookAt(target : this._MainPoint.transform, worldUp : Vector3.up);
         this._ring_game_objects[i].transform.rotation *= Quaternion.Euler(90, 0, 0);
       }
     }

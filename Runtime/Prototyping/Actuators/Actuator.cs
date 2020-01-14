@@ -29,9 +29,9 @@ namespace droid.Runtime.Prototyping.Actuators {
       }
       #endif
 
-      motion.Strength = this._motion_value_space._space.Reproject(motion.Strength);
+      motion.Strength = this._motion_value_space._space.Reproject(v : motion.Strength);
 
-      this.InnerApplyMotion(motion);
+      this.InnerApplyMotion(motion : motion);
     }
 
     public Space1 MotionSpace {

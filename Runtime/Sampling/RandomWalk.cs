@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace droid.Runtime.Sampling {
+  /// <summary>
+  ///
+  /// </summary>
   public class RandomWalk : MonoBehaviour //Self-Avoiding Random Walk algorithm
   {
     //How many steps do we want to take before we stop?
@@ -19,7 +22,7 @@ namespace droid.Runtime.Sampling {
                                                                };
 
     void Update() {
-      if (Input.GetKeyDown(KeyCode.Return)) {
+      if (Input.GetKeyDown(key : KeyCode.Return)) {
         this._random_walk_positions = this.GenerateSelfAvoidingRandomWalk();
 
         //Debug.Log(randomWalkPositions.Count);
@@ -28,16 +31,20 @@ namespace droid.Runtime.Sampling {
       //Display the path with lines
       if (this._random_walk_positions != null && this._random_walk_positions.Count > 1) {
         for (var i = 1; i < this._random_walk_positions.Count; i++) {
-          Debug.DrawLine(this._random_walk_positions[i - 1], this._random_walk_positions[i]);
+          Debug.DrawLine(this._random_walk_positions[i - 1], this._random_walk_positions[index : i]);
         }
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
     public List<Vector3> GenerateSelfAvoidingRandomWalk() {
       //Create the node we are starting from
       var start_pos = Vector3.zero;
 
-      var current_node = new WalkNode(start_pos, null, new List<Vector3>(this._all_possible_directions));
+      var current_node = new WalkNode(pos : start_pos, null, new List<Vector3>(collection : this._all_possible_directions));
 
       //How many steps have we taken, so we know when to stop the algorithm
       var steps_so_far = 0;
@@ -64,24 +71,24 @@ namespace droid.Runtime.Sampling {
         }
 
         //Walk in a random direction from this node
-        var random_dir_pos = Random.Range(0, current_node._PossibleDirections.Count);
+        var random_dir_pos = Random.Range(0, max : current_node._PossibleDirections.Count);
 
-        var random_dir = current_node._PossibleDirections[random_dir_pos];
+        var random_dir = current_node._PossibleDirections[index : random_dir_pos];
 
         //Remove this direction from the list of possible directions we can take from this node
-        current_node._PossibleDirections.RemoveAt(random_dir_pos);
+        current_node._PossibleDirections.RemoveAt(index : random_dir_pos);
 
         //Whats the position after we take a step in this direction
         var next_node_pos = current_node._Pos + random_dir;
 
         //Have we visited this position before?
-        if (!this.HasVisitedNode(next_node_pos, visited_nodes)) {
+        if (!HasVisitedNode(pos : next_node_pos, list_pos : visited_nodes)) {
           //Walk to this node
-          current_node = new WalkNode(next_node_pos,
-                                      current_node,
-                                      new List<Vector3>(this._all_possible_directions));
+          current_node = new WalkNode(pos : next_node_pos,
+                                      previous_node : current_node,
+                                      new List<Vector3>(collection : this._all_possible_directions));
 
-          visited_nodes.Add(next_node_pos);
+          visited_nodes.Add(item : next_node_pos);
 
           steps_so_far += 1;
         }
@@ -91,12 +98,12 @@ namespace droid.Runtime.Sampling {
       var random_walk_positions = new List<Vector3>();
 
       while (current_node._PreviousNode != null) {
-        random_walk_positions.Add(current_node._Pos);
+        random_walk_positions.Add(item : current_node._Pos);
 
         current_node = current_node._PreviousNode;
       }
 
-      random_walk_positions.Add(current_node._Pos);
+      random_walk_positions.Add(item : current_node._Pos);
 
       //Reverse the list so it begins at the step we started from
       random_walk_positions.Reverse();
@@ -105,7 +112,7 @@ namespace droid.Runtime.Sampling {
     }
 
     //Checks if a position is in a list of positions
-    bool HasVisitedNode(Vector3 pos, List<Vector3> list_pos) {
+    static bool HasVisitedNode(Vector3 pos, List<Vector3> list_pos) {
       var has_visited = false;
 
       foreach (var t in list_pos) {
@@ -123,6 +130,9 @@ namespace droid.Runtime.Sampling {
     }
 
     //Help class to keep track of the steps
+    /// <summary>
+    ///
+    /// </summary>
     class WalkNode {
       //The position of this node in the world
       public Vector3 _Pos;

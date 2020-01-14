@@ -41,18 +41,18 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, this, this.Identifier);
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment, this, identifier : this.Identifier);
 
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, this, this._colors);
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment, this, identifier : this._colors);
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     protected override void UnRegisterComponent() {
-      this.ParentEnvironment?.UnRegister(this, this.Identifier);
-      this.ParentEnvironment?.UnRegister(this, this._colors);
+      this.ParentEnvironment?.UnRegister(this, identifier : this.Identifier);
+      this.ParentEnvironment?.UnRegister(this, identifier : this._colors);
     }
 
     /// <inheritdoc />

@@ -9,7 +9,7 @@ namespace droid.Runtime.Sampling {
 
     void Update() {
       if (this._spawn_time + this.LifeTime < Time.time) {
-        Destroy(this.gameObject);
+        Destroy(obj : this.gameObject);
       }
     }
   }

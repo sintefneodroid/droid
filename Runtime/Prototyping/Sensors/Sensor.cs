@@ -17,7 +17,7 @@ namespace droid.Runtime.Prototyping.Sensors {
                                  ISensor {
     /// <summary>
     /// </summary>
-    public AbstractSpatialPrototypingEnvironment ParentEnvironment {
+    public AbstractPrototypingEnvironment ParentEnvironment {
       get { return this._environment; }
       set { this._environment = value; }
     }
@@ -37,7 +37,7 @@ namespace droid.Runtime.Prototyping.Sensors {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment, this);
+      this.ParentEnvironment = NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment, this);
     }
 
     /// <inheritdoc />
@@ -64,14 +64,20 @@ namespace droid.Runtime.Prototyping.Sensors {
     /// </summary>
     /// <returns></returns>
     public override string ToString() {
-      return this.FloatEnumerable.Any() ? string.Join(",", this.FloatEnumerable) : "Empty FloatEnumerable";
+      var any = false;
+      foreach (var f in this.FloatEnumerable) {
+        any = true;
+        break;
+      }
+
+      return any ? string.Join(",", values : this.FloatEnumerable) : "Empty FloatEnumerable";
     }
 
     #region Fields
 
     [Header("References", order = 99)]
     [SerializeField]
-    AbstractSpatialPrototypingEnvironment _environment;
+    AbstractPrototypingEnvironment _environment;
 
     #endregion
   }

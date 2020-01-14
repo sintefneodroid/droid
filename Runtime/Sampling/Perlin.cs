@@ -31,17 +31,17 @@ namespace droid.Runtime.Sampling {
 
     public float Noise(float arg) {
       float sx, u, v;
-      this.Setup(arg,
+      this.Setup(value : arg,
                  out var bx0,
                  out var bx1,
                  out var rx0,
                  out var rx1);
 
-      sx = this.s_curve(rx0);
+      sx = this.s_curve(t : rx0);
       u = rx0 * this._g1[this._p[bx0]];
       v = rx1 * this._g1[this._p[bx1]];
 
-      return this.Lerp(sx, u, v);
+      return this.Lerp(t : sx, a : u, b : v);
     }
 
     public float Noise(float x, float y) {
@@ -49,12 +49,12 @@ namespace droid.Runtime.Sampling {
       float sx, sy, a, b, u, v;
       int i, j;
 
-      this.Setup(x,
+      this.Setup(value : x,
                  out var bx0,
                  out var bx1,
                  out var rx0,
                  out var rx1);
-      this.Setup(y,
+      this.Setup(value : y,
                  out var by0,
                  out var by1,
                  out var ry0,
@@ -68,30 +68,30 @@ namespace droid.Runtime.Sampling {
       b01 = this._p[i + by1];
       b11 = this._p[j + by1];
 
-      sx = this.s_curve(rx0);
-      sy = this.s_curve(ry0);
+      sx = this.s_curve(t : rx0);
+      sy = this.s_curve(t : ry0);
 
-      u = this.At2(rx0,
-                   ry0,
+      u = this.At2(rx : rx0,
+                   ry : ry0,
                    this._g2[b00, 0],
                    this._g2[b00, 1]);
-      v = this.At2(rx1,
-                   ry0,
+      v = this.At2(rx : rx1,
+                   ry : ry0,
                    this._g2[b10, 0],
                    this._g2[b10, 1]);
-      a = this.Lerp(sx, u, v);
+      a = this.Lerp(t : sx, a : u, b : v);
 
-      u = this.At2(rx0,
-                   ry1,
+      u = this.At2(rx : rx0,
+                   ry : ry1,
                    this._g2[b01, 0],
                    this._g2[b01, 1]);
-      v = this.At2(rx1,
-                   ry1,
+      v = this.At2(rx : rx1,
+                   ry : ry1,
                    this._g2[b11, 0],
                    this._g2[b11, 1]);
-      b = this.Lerp(sx, u, v);
+      b = this.Lerp(t : sx, a : u, b : v);
 
-      return this.Lerp(sy, a, b);
+      return this.Lerp(t : sy, a : a, b : b);
     }
 
     public float Noise(float x, float y, float z) {
@@ -99,17 +99,17 @@ namespace droid.Runtime.Sampling {
       float sy, sz, a, b, c, d, t, u, v;
       int i, j;
 
-      this.Setup(x,
+      this.Setup(value : x,
                  out var bx0,
                  out var bx1,
                  out var rx0,
                  out var rx1);
-      this.Setup(y,
+      this.Setup(value : y,
                  out var by0,
                  out var by1,
                  out var ry0,
                  out var ry1);
-      this.Setup(z,
+      this.Setup(value : z,
                  out var bz0,
                  out var bz1,
                  out var rz0,
@@ -123,71 +123,71 @@ namespace droid.Runtime.Sampling {
       b01 = this._p[i + by1];
       b11 = this._p[j + by1];
 
-      t = this.s_curve(rx0);
-      sy = this.s_curve(ry0);
-      sz = this.s_curve(rz0);
+      t = this.s_curve(t : rx0);
+      sy = this.s_curve(t : ry0);
+      sz = this.s_curve(t : rz0);
 
-      u = this.At3(rx0,
-                   ry0,
-                   rz0,
+      u = this.At3(rx : rx0,
+                   ry : ry0,
+                   rz : rz0,
                    this._g3[b00 + bz0, 0],
                    this._g3[b00 + bz0, 1],
                    this._g3[b00 + bz0, 2]);
-      v = this.At3(rx1,
-                   ry0,
-                   rz0,
+      v = this.At3(rx : rx1,
+                   ry : ry0,
+                   rz : rz0,
                    this._g3[b10 + bz0, 0],
                    this._g3[b10 + bz0, 1],
                    this._g3[b10 + bz0, 2]);
-      a = this.Lerp(t, u, v);
+      a = this.Lerp(t : t, a : u, b : v);
 
-      u = this.At3(rx0,
-                   ry1,
-                   rz0,
+      u = this.At3(rx : rx0,
+                   ry : ry1,
+                   rz : rz0,
                    this._g3[b01 + bz0, 0],
                    this._g3[b01 + bz0, 1],
                    this._g3[b01 + bz0, 2]);
-      v = this.At3(rx1,
-                   ry1,
-                   rz0,
+      v = this.At3(rx : rx1,
+                   ry : ry1,
+                   rz : rz0,
                    this._g3[b11 + bz0, 0],
                    this._g3[b11 + bz0, 1],
                    this._g3[b11 + bz0, 2]);
-      b = this.Lerp(t, u, v);
+      b = this.Lerp(t : t, a : u, b : v);
 
-      c = this.Lerp(sy, a, b);
+      c = this.Lerp(t : sy, a : a, b : b);
 
-      u = this.At3(rx0,
-                   ry0,
-                   rz1,
+      u = this.At3(rx : rx0,
+                   ry : ry0,
+                   rz : rz1,
                    this._g3[b00 + bz1, 0],
                    this._g3[b00 + bz1, 2],
                    this._g3[b00 + bz1, 2]);
-      v = this.At3(rx1,
-                   ry0,
-                   rz1,
+      v = this.At3(rx : rx1,
+                   ry : ry0,
+                   rz : rz1,
                    this._g3[b10 + bz1, 0],
                    this._g3[b10 + bz1, 1],
                    this._g3[b10 + bz1, 2]);
-      a = this.Lerp(t, u, v);
+      a = this.Lerp(t : t, a : u, b : v);
 
-      u = this.At3(rx0,
-                   ry1,
-                   rz1,
+      u = this.At3(rx : rx0,
+                   ry : ry1,
+                   rz : rz1,
                    this._g3[b01 + bz1, 0],
                    this._g3[b01 + bz1, 1],
                    this._g3[b01 + bz1, 2]);
-      v = this.At3(rx1,
-                   ry1,
-                   rz1,
+      v = this.At3(rx : rx1,
+                   ry : ry1,
+                   rz : rz1,
                    this._g3[b11 + bz1, 0],
                    this._g3[b11 + bz1, 1],
                    this._g3[b11 + bz1, 2]);
-      b = this.Lerp(t, u, v);
+      b = this.Lerp(t : t, a : u, b : v);
 
-      d = this.Lerp(sy, a, b);
+      d = this.Lerp(t : sy, a : a, b : b);
 
-      return this.Lerp(sz, c, d);
+      return this.Lerp(t : sz, a : c, b : d);
     }
 
     static void Normalize2(ref float x, ref float y) {
@@ -210,7 +210,7 @@ namespace droid.Runtime.Sampling {
 
     public void SetSeed(int seed) {
       int i, j, k;
-      var rnd = new Random(seed);
+      var rnd = new Random(Seed : seed);
 
       for (i = 0; i < _b; i++) {
         this._p[i] = i;
@@ -231,7 +231,7 @@ namespace droid.Runtime.Sampling {
 
       while (--i != 0) {
         k = this._p[i];
-        this._p[i] = this._p[j = rnd.Next(_b)];
+        this._p[i] = this._p[j = rnd.Next(maxValue : _b)];
         this._p[j] = k;
       }
 

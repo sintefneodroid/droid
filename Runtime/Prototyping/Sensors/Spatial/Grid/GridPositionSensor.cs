@@ -36,7 +36,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Grid {
     /// </summary>
     public float ObservationValue {
       get { return this._observation_value; }
-      set { this._observation_value = this.SingleSpace.Project(value); }
+      set { this._observation_value = this.SingleSpace.Project(v : value); }
     }
 
     public Space1 SingleSpace { get { return this._observation_value_space; } }

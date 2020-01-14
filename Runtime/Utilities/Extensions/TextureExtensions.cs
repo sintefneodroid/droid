@@ -9,7 +9,7 @@ namespace droid.Runtime.Utilities.Extensions {
     /// <summary>
     ///
     /// </summary>
-    [StructLayout(LayoutKind.Explicit)]
+    [StructLayout(layoutKind : LayoutKind.Explicit)]
     public struct Color32Array {
       /// <summary>
       ///
@@ -31,9 +31,9 @@ namespace droid.Runtime.Utilities.Extensions {
     /// <returns></returns>
     public static Texture2D ToTexture2D(this WebCamTexture texture) {
       var color_array = new Color32Array {colors = new Color32[texture.width * texture.height]};
-      texture.GetPixels32(color_array.colors);
+      texture.GetPixels32(colors : color_array.colors);
       var tex = new Texture2D(2, 2);
-      tex.LoadRawTextureData(color_array.byteArray);
+      tex.LoadRawTextureData(data : color_array.byteArray);
       tex.Apply();
 
       return tex;

@@ -41,29 +41,29 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._quality_level);
+                                                          identifier : this._quality_level);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._target_frame_rate);
+                                                          identifier : this._target_frame_rate);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._width);
+                                                          identifier : this._width);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._height);
+                                                          identifier : this._height);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._fullscreen);
+                                                          identifier : this._fullscreen);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._time_scale);
+                                                          identifier : this._time_scale);
     }
 
     /// <summary>
@@ -73,12 +73,12 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
         return;
       }
 
-      this.ParentEnvironment.UnRegister(this, this._quality_level);
-      this.ParentEnvironment.UnRegister(this, this._target_frame_rate);
-      this.ParentEnvironment.UnRegister(this, this._time_scale);
-      this.ParentEnvironment.UnRegister(this, this._width);
-      this.ParentEnvironment.UnRegister(this, this._height);
-      this.ParentEnvironment.UnRegister(this, this._fullscreen);
+      this.ParentEnvironment.UnRegister(this, identifier : this._quality_level);
+      this.ParentEnvironment.UnRegister(this, identifier : this._target_frame_rate);
+      this.ParentEnvironment.UnRegister(this, identifier : this._time_scale);
+      this.ParentEnvironment.UnRegister(this, identifier : this._width);
+      this.ParentEnvironment.UnRegister(this, identifier : this._height);
+      this.ParentEnvironment.UnRegister(this, identifier : this._fullscreen);
     }
 
     public ISamplable ConfigurableValueSpace { get; }
@@ -103,12 +103,12 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
       } else if (simulator_configuration.ConfigurableName == this._target_frame_rate) {
         Application.targetFrameRate = (int)simulator_configuration.ConfigurableValue;
       } else if (simulator_configuration.ConfigurableName == this._width) {
-        Screen.SetResolution((int)simulator_configuration.ConfigurableValue, Screen.height, false);
+        Screen.SetResolution((int)simulator_configuration.ConfigurableValue, height : Screen.height, false);
       } else if (simulator_configuration.ConfigurableName == this._height) {
-        Screen.SetResolution(Screen.width, (int)simulator_configuration.ConfigurableValue, false);
+        Screen.SetResolution(width : Screen.width, (int)simulator_configuration.ConfigurableValue, false);
       } else if (simulator_configuration.ConfigurableName == this._fullscreen) {
-        Screen.SetResolution(Screen.width,
-                             Screen.height,
+        Screen.SetResolution(width : Screen.width,
+                             height : Screen.height,
                              (int)simulator_configuration.ConfigurableValue != 0);
       } else if (simulator_configuration.ConfigurableName == this._time_scale) {
         Time.timeScale = simulator_configuration.ConfigurableValue;
@@ -120,7 +120,7 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
     public override Configuration[] SampleConfigurations() {
-      return new[] {new Configuration(this._time_scale, this.ConfigurableValueSpace.Sample())};
+      return new[] {new Configuration(configurable_name : this._time_scale,configurable_value: this.ConfigurableValueSpace.Sample())};
     }
   }
 }

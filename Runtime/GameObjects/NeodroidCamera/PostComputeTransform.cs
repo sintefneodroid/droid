@@ -58,13 +58,13 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
 
 //      this._TransformationComputeShader.SetTexture(kernelHandle, "Result", target_texture);
 
-        this._transformation_command_buffer.SetComputeTextureParam(this._TransformationComputeShader,
-                                                                   kernel_id,
+        this._transformation_command_buffer.SetComputeTextureParam(computeShader : this._TransformationComputeShader,
+                                                                   kernelIndex : kernel_id,
                                                                    "Result",
-                                                                   this.MyRenderTexture);
+                                                                   rt : this.MyRenderTexture);
         //this._transformation_command_buffer.SetComputeBufferParam(this._TransformationComputeShader, kernel_id,"Result",this._transformation_compute_buffer);
-        this._transformation_command_buffer.DispatchCompute(this._TransformationComputeShader,
-                                                            kernel_id,
+        this._transformation_command_buffer.DispatchCompute(computeShader : this._TransformationComputeShader,
+                                                            kernelIndex : kernel_id,
                                                             256 / 32,
                                                             256 / 32,
                                                             1);
@@ -74,7 +74,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
 
     void Update() {
       if (this._TransformationComputeShader) {
-        this._TransformationComputeShader.SetTexture(0, "Result", this.MyRenderTexture);
+        this._TransformationComputeShader.SetTexture(0, "Result", texture : this.MyRenderTexture);
         //this._TransformationComputeShader.SetBuffer(0,"",this._transformation_compute_buffer);
         this._TransformationComputeShader.Dispatch(0,
                                                    256 / 32,
@@ -105,7 +105,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
 
     void Cleanup() {
       if (this._transformation_command_buffer != null) {
-        this._camera.RemoveCommandBuffer(CameraEvent.AfterEverything, this._transformation_command_buffer);
+        this._camera.RemoveCommandBuffer(evt : CameraEvent.AfterEverything, buffer : this._transformation_command_buffer);
       }
     }
 

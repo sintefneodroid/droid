@@ -2,6 +2,7 @@
 using droid.Runtime.Interfaces;
 
 namespace droid.Runtime.Messaging.Messages {
+  /// <inheritdoc />
   /// <summary>
   /// </summary>
   public class Configuration : IConfigurableConfiguration {

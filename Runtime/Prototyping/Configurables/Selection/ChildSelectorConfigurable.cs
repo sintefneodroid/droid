@@ -7,9 +7,9 @@ using droid.Runtime.Structs.Space.Sample;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Configurables.Selection {
-  /// <summary>
-  ///
-  /// </summary>
+  /// <inheritdoc cref="Configurable" />
+  ///  <summary>
+  ///  </summary>
   [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
                     + "ChildSelector"
                     + ConfigurableComponentMenuPath._Postfix)]
@@ -20,9 +20,9 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
     [SerializeField] int len;
     [SerializeField] SampleSpace1 _configurable_value_space = new SampleSpace1();
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override void Setup() {
       base.Setup();
 
@@ -35,7 +35,7 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
         var o = child.gameObject.GetComponent<Renderer>();
         o.enabled = false;
         this.active = o;
-        la.Add(o);
+        la.Add(item : o);
       }
 
       this.children = la.ToArray();
@@ -57,21 +57,22 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
 
     public override void UpdateCurrentConfiguration() { }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="configuration"></param>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <param name="configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
       if (!Application.isPlaying) {
         return;
       }
 
-      foreach (var c in this.children) {
+      for (var index = 0; index < this.children.Length; index++) {
+        var c = this.children[index];
         c.enabled = false;
       }
 
       if (this.children != null && (int)configuration.ConfigurableValue < this.len) {
-        this.CurrentCategoryValue = Mathf.RoundToInt(configuration.ConfigurableValue);
+        this.CurrentCategoryValue = Mathf.RoundToInt(f : configuration.ConfigurableValue);
         this.active = this.children[this.CurrentCategoryValue];
       }
 
@@ -80,17 +81,17 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <returns></returns>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <returns></returns>
     public override Configuration[] SampleConfigurations() {
-      return new[] {new Configuration(this.Identifier, this._configurable_value_space.Sample())};
+      return new[] {new Configuration(configurable_name : this.Identifier,configurable_value: this._configurable_value_space.Sample())};
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     [field : SerializeField]
     public int CurrentCategoryValue { get; set; }
 

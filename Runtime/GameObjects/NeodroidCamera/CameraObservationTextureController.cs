@@ -14,8 +14,8 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
     [SerializeField] FilterMode _filter_mode = FilterMode.Bilinear;
 
     [SerializeField]
-    Vector2Int _size = new Vector2Int(NeodroidConstants._Default_Observation_Texture_Xy_Size,
-                                      NeodroidConstants._Default_Observation_Texture_Xy_Size);
+    Vector2Int _size = new Vector2Int(x : NeodroidConstants._Default_Observation_Texture_Xy_Size,
+                                      y : NeodroidConstants._Default_Observation_Texture_Xy_Size);
     //[SerializeField] GraphicsFormat _texture_format = GraphicsFormat.R8G8B8A8_UNorm;
 
     [SerializeField] Texture[] _textures = null;
@@ -26,16 +26,18 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
 
       var textures = new List<Texture>();
 
-      foreach (var a_camera in this._cameras) {
+      for (var index = 0; index < this._cameras.Length; index++) {
+        var a_camera = this._cameras[index];
         var target = a_camera.targetTexture;
         if (target) {
-          textures.Add(target);
+          textures.Add(item : target);
         }
       }
 
       this._textures = textures.ToArray();
 
-      foreach (var texture in this._textures) {
+      for (var index = 0; index < this._textures.Length; index++) {
+        var texture = this._textures[index];
         if (texture) {
           //texture.height = this._size.y;
           //texture.width = this._size.x;

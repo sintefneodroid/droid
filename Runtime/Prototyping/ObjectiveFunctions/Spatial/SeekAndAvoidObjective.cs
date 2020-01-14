@@ -37,7 +37,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
       // The game ends if the number of good balls is 0, or if the robot is too far from start
       var actor = this._actor;
       if (actor != null) {
-        var dist = Vector3.Distance(this._initial_actor_position, actor.position);
+        var dist = Vector3.Distance(a : this._initial_actor_position, b : actor.position);
         var game_objects = this._collectibles;
         var is_over = game_objects != null && (game_objects.Count == 0 || dist > this._end_game_radius);
 
@@ -81,7 +81,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
     }
 
     void OnChildTriggerEnter(GameObject child_game_object, Collision collision) {
-      this.OnChildTriggerEnter(child_game_object, collision.collider);
+      this.OnChildTriggerEnter(child_game_object : child_game_object, collider1 : collision.collider);
     }
 
     void OnChildTriggerEnter(GameObject child_game_object, Collider collider1) {
@@ -92,17 +92,17 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
       #endif
 
       var collectible = this._collectible;
-      if (collectible != null && collider1.gameObject.name.Contains(collectible.name)) {
-        this._collectibles.Remove(collider1.gameObject);
-        Destroy(collider1.gameObject);
+      if (collectible != null && collider1.gameObject.name.Contains(value : collectible.name)) {
+        this._collectibles.Remove(item : collider1.gameObject);
+        Destroy(obj : collider1.gameObject);
         this._score += this._reward;
       }
 
       var game_object = this._avoidable;
-      if (game_object != null && collider1.gameObject.name.Contains(game_object.name)) {
-        this._avoidables.Remove(collider1.gameObject);
+      if (game_object != null && collider1.gameObject.name.Contains(value : game_object.name)) {
+        this._avoidables.Remove(item : collider1.gameObject);
         this._score += this._penalty;
-        Destroy(collider1.gameObject);
+        Destroy(obj : collider1.gameObject);
       }
     }
 
@@ -110,8 +110,8 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
       for (var i = 0; i < this._num_collectibles; i++) {
         var game_object = this._collectible;
         if (game_object != null) {
-          var collectible = this.RandomSpawn(this._collectible, this._initial_actor_position);
-          this._collectibles.Add(collectible);
+          var collectible = this.RandomSpawn(prefab : this._collectible, position : this._initial_actor_position);
+          this._collectibles.Add(item : collectible);
         }
       }
     }
@@ -120,30 +120,30 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
       for (var i = 0; i < this._num_avoidables; i++) {
         var game_object = this._avoidable;
         if (game_object != null) {
-          var avoidable = this.RandomSpawn(this._avoidable, this._initial_actor_position);
-          this._avoidables.Add(avoidable);
+          var avoidable = this.RandomSpawn(prefab : this._avoidable, position : this._initial_actor_position);
+          this._avoidables.Add(item : avoidable);
         }
       }
     }
 
     GameObject RandomSpawn(GameObject prefab, Vector3 position) {
-      this._spawned_locations.Add(position);
+      this._spawned_locations.Add(item : position);
 
       if (prefab != null) {
         Vector3 location;
         do {
           location = this._actor.transform.position;
-          location.x += Random.Range(-this._spawn_radius, this._spawn_radius);
+          location.x += Random.Range(min : -this._spawn_radius, max : this._spawn_radius);
           location.y = position.y + 1f;
-          location.z += Random.Range(-this._spawn_radius, this._spawn_radius);
-        } while (this._spawned_locations.Contains(location));
+          location.z += Random.Range(min : -this._spawn_radius, max : this._spawn_radius);
+        } while (this._spawned_locations.Contains(item : location));
 
-        this._spawned_locations.Add(location);
+        this._spawned_locations.Add(item : location);
 
-        return Instantiate(prefab,
-                           location,
-                           Quaternion.identity,
-                           this.ParentEnvironment.Transform);
+        return Instantiate(original : prefab,
+                           position : location,
+                           rotation : Quaternion.identity,
+                           parent : this.ParentEnvironment.Transform);
       }
 
       return null;
@@ -158,7 +158,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
 
       if (this._collectibles != null) {
         foreach (var obj in this._collectibles) {
-          Destroy(obj);
+          Destroy(obj : obj);
         }
 
         this._collectibles.Clear();
@@ -168,7 +168,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
 
       if (this._avoidables != null) {
         foreach (var obj in this._avoidables) {
-          Destroy(obj);
+          Destroy(obj : obj);
         }
 
         this._avoidables.Clear();

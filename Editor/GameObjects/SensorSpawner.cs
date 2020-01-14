@@ -13,11 +13,11 @@ namespace droid.Editor.GameObjects {
     static void CreateSensorGameObject(MenuCommand menu_command) {
       var go = new GameObject("Sensor");
       go.AddComponent<Sensor>();
-      GameObjectUtility.SetParentAndAlign(go,
+      GameObjectUtility.SetParentAndAlign(child : go,
                                           menu_command
                                                   .context as
                                               GameObject); // Ensure it gets reparented if this was a context click (otherwise does nothing)
-      Undo.RegisterCreatedObjectUndo(go, "Create " + go.name); // Register the creation in the undo system
+      Undo.RegisterCreatedObjectUndo(objectToUndo : go, "Create " + go.name); // Register the creation in the undo system
       Selection.activeObject = go;
     }
 
@@ -25,11 +25,11 @@ namespace droid.Editor.GameObjects {
     static void CreateEulerTransformSensorGameObject(MenuCommand menu_command) {
       var go = new GameObject("EulerTransformSensor");
       go.AddComponent<EulerTransformSensor>();
-      GameObjectUtility.SetParentAndAlign(go,
+      GameObjectUtility.SetParentAndAlign(child : go,
                                           menu_command
                                                   .context as
                                               GameObject); // Ensure it gets reparented if this was a context click (otherwise does nothing)
-      Undo.RegisterCreatedObjectUndo(go, "Create " + go.name); // Register the creation in the undo system
+      Undo.RegisterCreatedObjectUndo(objectToUndo : go, "Create " + go.name); // Register the creation in the undo system
       Selection.activeObject = go;
     }
   }

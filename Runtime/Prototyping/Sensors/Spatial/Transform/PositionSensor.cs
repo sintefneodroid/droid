@@ -23,7 +23,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
 
     [Header("Specific", order = 102)]
     [SerializeField]
-    CoordinateSpace _space = CoordinateSpace.Environment_;
+    CoordinateSpaceEnum _spaceEnum = CoordinateSpaceEnum.Environment_;
 
     [SerializeField] bool normalised_overwrite_space_if_env_bounds = true;
 
@@ -36,7 +36,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     public Vector3 ObservationValue {
       get { return this._position; }
       set {
-        this._position = this._position_space.Project(value);
+        this._position = this._position_space.Project(v : value);
       }
     }
 
@@ -49,7 +49,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     public override void RemotePostSetup() {
       if (this.normalised_overwrite_space_if_env_bounds) {
         if (this.ParentEnvironment) {
-          this._position_space = Space3.FromCenterExtents(this.ParentEnvironment.PlayableArea.Bounds.extents);
+          this._position_space = Space3.FromCenterExtents(bounds_extents : this.ParentEnvironment.PlayableArea.Bounds.extents);
         }
       }
     }
@@ -64,9 +64,9 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     /// <summary>
     /// </summary>
     public override void UpdateObservation() {
-      if (this.ParentEnvironment != null && this._space == CoordinateSpace.Environment_) {
-        this.ObservationValue = this.ParentEnvironment.TransformPoint(this.transform.position);
-      } else if (this._space == CoordinateSpace.Local_) {
+      if (this.ParentEnvironment != null && this._spaceEnum == CoordinateSpaceEnum.Environment_) {
+        this.ObservationValue = this.ParentEnvironment.TransformPoint(point : this.transform.position);
+      } else if (this._spaceEnum == CoordinateSpaceEnum.Local_) {
         this.ObservationValue = this.transform.localPosition;
       } else {
         this.ObservationValue = this.transform.position;

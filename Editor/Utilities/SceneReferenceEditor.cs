@@ -18,22 +18,22 @@ namespace droid.Editor.Utilities {
     /// <param name="property"></param>
     /// <param name="label"></param>
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
-      label = EditorGUI.BeginProperty(position, label, property);
-      position = EditorGUI.PrefixLabel(position, label);
+      label = EditorGUI.BeginProperty(totalPosition : position, label : label, property : property);
+      position = EditorGUI.PrefixLabel(totalPosition : position, label : label);
 
-      this.CacheProperties(property);
+      this.CacheProperties(property : property);
       this.UpdateSceneState();
 
-      position = this.DisplayErrorsIfNecessary(position);
+      position = this.DisplayErrorsIfNecessary(position : position);
 
       EditorGUI.BeginChangeCheck();
-      EditorGUI.PropertyField(position,
-                              this._scene,
-                              GUIContent.none,
+      EditorGUI.PropertyField(position : position,
+                              property : this._scene,
+                              label : GUIContent.none,
                               false);
       if (EditorGUI.EndChangeCheck()) {
         property.serializedObject.ApplyModifiedProperties();
-        this.CacheProperties(property);
+        this.CacheProperties(property : property);
         this.UpdateSceneState();
         this.Validate();
       }
@@ -55,9 +55,9 @@ namespace droid.Editor.Utilities {
       this._scene_asset = this._scene.objectReferenceValue as SceneAsset;
 
       if (this._scene_asset != null) {
-        this._scene_asset_path = AssetDatabase.GetAssetPath(this._scene.objectReferenceValue);
+        this._scene_asset_path = AssetDatabase.GetAssetPath(assetObject : this._scene.objectReferenceValue);
         if (this._scene_asset_path != null) {
-          this._scene_asset_guid = AssetDatabase.AssetPathToGUID(this._scene_asset_path);
+          this._scene_asset_guid = AssetDatabase.AssetPathToGUID(path : this._scene_asset_path);
         }
       } else {
         this._scene_asset_path = null;
@@ -105,7 +105,7 @@ namespace droid.Editor.Utilities {
       var scenes = EditorBuildSettings.scenes;
 
       var choice = EditorUtility.DisplayDialogComplex("Scene Not In Build",
-                                                      message,
+                                                      message : message,
                                                       "Yes",
                                                       "No",
                                                       "Open Build Settings");
@@ -113,10 +113,10 @@ namespace droid.Editor.Utilities {
       if (choice == 0) {
         var new_count = this._scene_index.intValue < 0 ? scenes.Length + 1 : scenes.Length;
         var new_scenes = new EditorBuildSettingsScene[new_count];
-        Array.Copy(scenes, new_scenes, scenes.Length);
+        Array.Copy(sourceArray : scenes, destinationArray : new_scenes, length : scenes.Length);
 
         if (this._scene_index.intValue < 0) {
-          new_scenes[scenes.Length] = new EditorBuildSettingsScene(this._scene_asset_path, true);
+          new_scenes[scenes.Length] = new EditorBuildSettingsScene(path : this._scene_asset_path, true);
           this._scene_index.intValue = scenes.Length;
         }
 
@@ -150,19 +150,19 @@ namespace droid.Editor.Utilities {
         return position;
       }
 
-      var warning_rect = new Rect(position) {width = this._error_style.fixedWidth + 4};
+      var warning_rect = new Rect(source : position) {width = this._error_style.fixedWidth + 4};
 
       if (this._scene_index.intValue < 0) {
         this._error_tooltip.tooltip = _tooltip_scene_missing;
         position.xMin = warning_rect.xMax;
-        if (GUI.Button(warning_rect, this._error_tooltip, this._error_style)) {
-          this.DisplaySceneErrorPrompt(_error_scene_missing);
+        if (GUI.Button(position : warning_rect, content : this._error_tooltip, style : this._error_style)) {
+          this.DisplaySceneErrorPrompt(message : _error_scene_missing);
         }
       } else if (!this._scene_enabled.boolValue) {
         this._error_tooltip.tooltip = _tooltip_scene_disabled;
         position.xMin = warning_rect.xMax;
-        if (GUI.Button(warning_rect, this._error_tooltip, this._error_style)) {
-          this.DisplaySceneErrorPrompt(_error_scene_disabled);
+        if (GUI.Button(position : warning_rect, content : this._error_tooltip, style : this._error_style)) {
+          this.DisplaySceneErrorPrompt(message : _error_scene_disabled);
         }
       }
 
@@ -197,9 +197,9 @@ namespace droid.Editor.Utilities {
         }
 
         if (this._scene_index.intValue >= 0) {
-          this.DisplaySceneErrorPrompt(_error_scene_disabled);
+          this.DisplaySceneErrorPrompt(message : _error_scene_disabled);
         } else {
-          this.DisplaySceneErrorPrompt(_error_scene_missing);
+          this.DisplaySceneErrorPrompt(message : _error_scene_missing);
         }
       } else {
         this._scene_name.stringValue = "";

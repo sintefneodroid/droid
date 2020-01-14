@@ -15,7 +15,7 @@ namespace droid.Editor.Utilities.PostProcessing {
         }
 
         public override void OnInspectorGUI(){
-            this.PropertyField(this._m_blend);
+            this.PropertyField(property : this._m_blend);
         }
     }
 }

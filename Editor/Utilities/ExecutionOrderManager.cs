@@ -21,8 +21,8 @@ namespace droid.Editor.Utilities {
         }
 
         var attribute = (ScriptExecutionOrderAttribute)attributes[0];
-        if (MonoImporter.GetExecutionOrder(mono_script) != attribute.GetOrder()) {
-          MonoImporter.SetExecutionOrder(mono_script, attribute.GetOrder());
+        if (MonoImporter.GetExecutionOrder(script : mono_script) != attribute.GetOrder()) {
+          MonoImporter.SetExecutionOrder(script : mono_script, attribute.GetOrder());
         }
       }
     }

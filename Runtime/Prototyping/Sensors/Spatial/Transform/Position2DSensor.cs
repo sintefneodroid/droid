@@ -21,13 +21,13 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     [SerializeField]
     Vector2 _2_d_position;
 
-    [SerializeField] [SearchableEnum] Dimension2DCombination _dim_combination = Dimension2DCombination.Xz_;
+    [SerializeField] [SearchableEnum] Dimension2DCombinationEnum _dim_combinationEnum = Dimension2DCombinationEnum.Xz_;
 
     [SerializeField] Space2 _position_space = Space2.ZeroOne;
 
     [Header("Specific", order = 102)]
     [SerializeField]
-    CoordinateSpace _coordinate_space = CoordinateSpace.Environment_;
+    CoordinateSpaceEnum _coordinate_spaceEnum = CoordinateSpaceEnum.Environment_;
 
     [SerializeField] bool normalised_overwrite_space_if_env_bounds = true;
 
@@ -47,20 +47,20 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     /// <exception cref="ArgumentOutOfRangeException"></exception>
     public void SetPosition(Vector3 position) {
       Vector2 vector2_pos;
-      switch (this._dim_combination) {
-        case Dimension2DCombination.Xy_:
-          vector2_pos = new Vector2(position.x, position.y);
+      switch (this._dim_combinationEnum) {
+        case Dimension2DCombinationEnum.Xy_:
+          vector2_pos = new Vector2(x : position.x, y : position.y);
           break;
-        case Dimension2DCombination.Xz_:
-          vector2_pos = new Vector2(position.x, position.z);
+        case Dimension2DCombinationEnum.Xz_:
+          vector2_pos = new Vector2(x : position.x, y : position.z);
           break;
-        case Dimension2DCombination.Yz_:
-          vector2_pos = new Vector2(position.y, position.z);
+        case Dimension2DCombinationEnum.Yz_:
+          vector2_pos = new Vector2(x : position.y, y : position.z);
           break;
         default: throw new ArgumentOutOfRangeException();
       }
 
-      this._2_d_position = this._position_space.Project(vector2_pos);
+      this._2_d_position = this._position_space.Project(v : vector2_pos);
 
     }
 
@@ -75,12 +75,12 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     ///
     /// </summary>
     public override void UpdateObservation() {
-      if (this.ParentEnvironment != null && this._coordinate_space == CoordinateSpace.Environment_) {
-        this.SetPosition(this.ParentEnvironment.TransformPoint(this.transform.position));
-      } else if (this._coordinate_space == CoordinateSpace.Local_) {
-        this.SetPosition(this.transform.localPosition);
+      if (this.ParentEnvironment != null && this._coordinate_spaceEnum == CoordinateSpaceEnum.Environment_) {
+        this.SetPosition(this.ParentEnvironment.TransformPoint(point : this.transform.position));
+      } else if (this._coordinate_spaceEnum == CoordinateSpaceEnum.Local_) {
+        this.SetPosition(position : this.transform.localPosition);
       } else {
-        this.SetPosition(this.transform.position);
+        this.SetPosition(position : this.transform.position);
       }
     }
 
@@ -91,15 +91,15 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
       if (this.normalised_overwrite_space_if_env_bounds) {
         if (this.ParentEnvironment && this.ParentEnvironment.PlayableArea != null) {
           var ex = this.ParentEnvironment.PlayableArea.Bounds.extents;
-          switch (this._dim_combination) {
-            case Dimension2DCombination.Xy_:
-              this._position_space = Space2.FromCenterExtents(new Vector2(ex.x, ex.y));
+          switch (this._dim_combinationEnum) {
+            case Dimension2DCombinationEnum.Xy_:
+              this._position_space = Space2.FromCenterExtents(new Vector2(x : ex.x, y : ex.y));
               break;
-            case Dimension2DCombination.Xz_:
-              this._position_space = Space2.FromCenterExtents(new Vector2(ex.x, ex.z));
+            case Dimension2DCombinationEnum.Xz_:
+              this._position_space = Space2.FromCenterExtents(new Vector2(x : ex.x, y : ex.z));
               break;
-            case Dimension2DCombination.Yz_:
-              this._position_space = Space2.FromCenterExtents(new Vector2(ex.y, ex.z));
+            case Dimension2DCombinationEnum.Yz_:
+              this._position_space = Space2.FromCenterExtents(new Vector2(x : ex.y, y : ex.z));
               break;
             default: throw new ArgumentOutOfRangeException();
           }
@@ -112,22 +112,22 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     void OnDrawGizmosSelected() {
       if (this.enabled) {
         var position = this.transform.position;
-        switch (this._dim_combination) {
-          case Dimension2DCombination.Xy_:
-            Debug.DrawLine(position, position + Vector3.right * 2, Color.green);
-            Debug.DrawLine(position, position + Vector3.up * 2, Color.red);
+        switch (this._dim_combinationEnum) {
+          case Dimension2DCombinationEnum.Xy_:
+            Debug.DrawLine(start : position, position + Vector3.right * 2, color : Color.green);
+            Debug.DrawLine(start : position, position + Vector3.up * 2, color : Color.red);
             break;
-          case Dimension2DCombination.Xz_:
-            Debug.DrawLine(position, position + Vector3.right * 2, Color.green);
-            Debug.DrawLine(position, position + Vector3.forward * 2, Color.red);
+          case Dimension2DCombinationEnum.Xz_:
+            Debug.DrawLine(start : position, position + Vector3.right * 2, color : Color.green);
+            Debug.DrawLine(start : position, position + Vector3.forward * 2, color : Color.red);
             break;
-          case Dimension2DCombination.Yz_:
+          case Dimension2DCombinationEnum.Yz_:
 
-            Debug.DrawLine(position, position + Vector3.up * 2, Color.green);
-            Debug.DrawLine(position, position + Vector3.forward * 2, Color.red);
+            Debug.DrawLine(start : position, position + Vector3.up * 2, color : Color.green);
+            Debug.DrawLine(start : position, position + Vector3.forward * 2, color : Color.red);
             break;
           default: //TODO add the Direction cases
-            Gizmos.DrawIcon(position, "console.warnicon", true);
+            Gizmos.DrawIcon(center : position, "console.warnicon", true);
             break;
         }
       }

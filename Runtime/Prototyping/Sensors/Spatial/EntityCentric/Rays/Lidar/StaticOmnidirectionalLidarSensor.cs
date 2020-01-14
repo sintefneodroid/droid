@@ -56,77 +56,77 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Lidar {
       if (this._is_2_d) {
         var vals = new float[8];
         if (Physics.Raycast(this.transform.position + this._space.Min * Vector3.forward,
-                            this.transform.TransformDirection(Vector3.forward),
-                            out this._hit,
-                            this._space.Max)) {
-          vals[0] = this._space.Project(this._hit.distance);
+                            this.transform.TransformDirection(direction : Vector3.forward),
+                            hitInfo : out this._hit,
+                            maxDistance : this._space.Max)) {
+          vals[0] = this._space.Project(v : this._hit.distance);
         } else {
           vals[0] = this._space.Max;
         }
 
         if (Physics.Raycast(this.transform.position + this._space.Min * Vector3.left,
-                            this.transform.TransformDirection(Vector3.left),
-                            out this._hit,
-                            this._space.Max)) {
-          vals[1] = this._space.Project(this._hit.distance);
+                            this.transform.TransformDirection(direction : Vector3.left),
+                            hitInfo : out this._hit,
+                            maxDistance : this._space.Max)) {
+          vals[1] = this._space.Project(v : this._hit.distance);
         } else {
           vals[1] = this._space.Max;
         }
 
         if (Physics.Raycast(this.transform.position + this._space.Min * Vector3.right,
-                            this.transform.TransformDirection(Vector3.right),
-                            out this._hit,
-                            this._space.Max)) {
-          vals[2] = this._space.Project(this._hit.distance);
+                            this.transform.TransformDirection(direction : Vector3.right),
+                            hitInfo : out this._hit,
+                            maxDistance : this._space.Max)) {
+          vals[2] = this._space.Project(v : this._hit.distance);
         } else {
           vals[2] = this._space.Max;
         }
 
         if (Physics.Raycast(this.transform.position + this._space.Min * Vector3.back,
-                            this.transform.TransformDirection(Vector3.back),
-                            out this._hit,
-                            this._space.Max)) {
-          vals[3] = this._space.Project(this._hit.distance);
+                            this.transform.TransformDirection(direction : Vector3.back),
+                            hitInfo : out this._hit,
+                            maxDistance : this._space.Max)) {
+          vals[3] = this._space.Project(v : this._hit.distance);
         } else {
           vals[3] = this._space.Max;
         }
 
         if (Physics.Raycast(this.transform.position
                             + this._space.Min * (Vector3.forward + Vector3.left).normalized,
-                            this.transform.TransformDirection((Vector3.forward + Vector3.left).normalized),
-                            out this._hit,
-                            this._space.Max)) {
-          vals[4] = this._space.Project(this._hit.distance);
+                            this.transform.TransformDirection(direction : (Vector3.forward + Vector3.left).normalized),
+                            hitInfo : out this._hit,
+                            maxDistance : this._space.Max)) {
+          vals[4] = this._space.Project(v : this._hit.distance);
         } else {
           vals[4] = this._space.Max;
         }
 
         if (Physics.Raycast(this.transform.position
                             + this._space.Min * (Vector3.forward + Vector3.right).normalized,
-                            this.transform.TransformDirection((Vector3.forward + Vector3.right).normalized),
-                            out this._hit,
-                            this._space.Max)) {
-          vals[5] = this._space.Project(this._hit.distance);
+                            this.transform.TransformDirection(direction : (Vector3.forward + Vector3.right).normalized),
+                            hitInfo : out this._hit,
+                            maxDistance : this._space.Max)) {
+          vals[5] = this._space.Project(v : this._hit.distance);
         } else {
           vals[5] = this._space.Max;
         }
 
         if (Physics.Raycast(this.transform.position
                             + this._space.Min * (Vector3.back + Vector3.left).normalized,
-                            this.transform.TransformDirection((Vector3.back + Vector3.left).normalized),
-                            out this._hit,
-                            this._space.Max)) {
-          vals[6] = this._space.Project(this._hit.distance);
+                            this.transform.TransformDirection(direction : (Vector3.back + Vector3.left).normalized),
+                            hitInfo : out this._hit,
+                            maxDistance : this._space.Max)) {
+          vals[6] = this._space.Project(v : this._hit.distance);
         } else {
           vals[6] = this._space.Max;
         }
 
         if (Physics.Raycast(this.transform.position
                             + this._space.Min * (Vector3.back + Vector3.right).normalized,
-                            this.transform.TransformDirection((Vector3.back + Vector3.right).normalized),
-                            out this._hit,
-                            this._space.Max)) {
-          vals[7] = this._space.Project(this._hit.distance);
+                            this.transform.TransformDirection(direction : (Vector3.back + Vector3.right).normalized),
+                            hitInfo : out this._hit,
+                            maxDistance : this._space.Max)) {
+          vals[7] = this._space.Project(v : this._hit.distance);
         } else {
           vals[7] = this._space.Max;
         }
@@ -135,77 +135,77 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Lidar {
       } else {
         var vals = new float[27];
         if (Physics.Raycast(this.transform.position + this._space.Min * Vector3.forward,
-                            this.transform.TransformDirection(Vector3.forward),
-                            out this._hit,
-                            this._space.Max)) {
-          vals[0] = this._space.Project(this._hit.distance);
+                            this.transform.TransformDirection(direction : Vector3.forward),
+                            hitInfo : out this._hit,
+                            maxDistance : this._space.Max)) {
+          vals[0] = this._space.Project(v : this._hit.distance);
         } else {
           vals[0] = this._space.Max;
         }
 
         if (Physics.Raycast(this.transform.position + this._space.Min * Vector3.left,
-                            this.transform.TransformDirection(Vector3.left),
-                            out this._hit,
-                            this._space.Max)) {
-          vals[1] = this._space.Project(this._hit.distance);
+                            this.transform.TransformDirection(direction : Vector3.left),
+                            hitInfo : out this._hit,
+                            maxDistance : this._space.Max)) {
+          vals[1] = this._space.Project(v : this._hit.distance);
         } else {
           vals[1] = this._space.Max;
         }
 
         if (Physics.Raycast(this.transform.position + this._space.Min * Vector3.right,
-                            this.transform.TransformDirection(Vector3.right),
-                            out this._hit,
-                            this._space.Max)) {
-          vals[2] = this._space.Project(this._hit.distance);
+                            this.transform.TransformDirection(direction : Vector3.right),
+                            hitInfo : out this._hit,
+                            maxDistance : this._space.Max)) {
+          vals[2] = this._space.Project(v : this._hit.distance);
         } else {
           vals[2] = this._space.Max;
         }
 
         if (Physics.Raycast(this.transform.position + this._space.Min * Vector3.back,
-                            this.transform.TransformDirection(Vector3.back),
-                            out this._hit,
-                            this._space.Max)) {
-          vals[3] = this._space.Project(this._hit.distance);
+                            this.transform.TransformDirection(direction : Vector3.back),
+                            hitInfo : out this._hit,
+                            maxDistance : this._space.Max)) {
+          vals[3] = this._space.Project(v : this._hit.distance);
         } else {
           vals[3] = this._space.Max;
         }
 
         if (Physics.Raycast(this.transform.position
                             + this._space.Min * (Vector3.forward + Vector3.left).normalized,
-                            this.transform.TransformDirection((Vector3.forward + Vector3.left).normalized),
-                            out this._hit,
-                            this._space.Max)) {
-          vals[4] = this._space.Project(this._hit.distance);
+                            this.transform.TransformDirection(direction : (Vector3.forward + Vector3.left).normalized),
+                            hitInfo : out this._hit,
+                            maxDistance : this._space.Max)) {
+          vals[4] = this._space.Project(v : this._hit.distance);
         } else {
           vals[4] = this._space.Max;
         }
 
         if (Physics.Raycast(this.transform.position
                             + this._space.Min * (Vector3.forward + Vector3.right).normalized,
-                            this.transform.TransformDirection((Vector3.forward + Vector3.right).normalized),
-                            out this._hit,
-                            this._space.Max)) {
-          vals[5] = this._space.Project(this._hit.distance);
+                            this.transform.TransformDirection(direction : (Vector3.forward + Vector3.right).normalized),
+                            hitInfo : out this._hit,
+                            maxDistance : this._space.Max)) {
+          vals[5] = this._space.Project(v : this._hit.distance);
         } else {
           vals[5] = this._space.Max;
         }
 
         if (Physics.Raycast(this.transform.position
                             + this._space.Min * (Vector3.back + Vector3.left).normalized,
-                            this.transform.TransformDirection((Vector3.back + Vector3.left).normalized),
-                            out this._hit,
-                            this._space.Max)) {
-          vals[6] = this._space.Project(this._hit.distance);
+                            this.transform.TransformDirection(direction : (Vector3.back + Vector3.left).normalized),
+                            hitInfo : out this._hit,
+                            maxDistance : this._space.Max)) {
+          vals[6] = this._space.Project(v : this._hit.distance);
         } else {
           vals[6] = this._space.Max;
         }
 
         if (Physics.Raycast(this.transform.position
                             + this._space.Min * (Vector3.back + Vector3.right).normalized,
-                            this.transform.TransformDirection((Vector3.back + Vector3.right).normalized),
-                            out this._hit,
-                            this._space.Max)) {
-          vals[7] = this._space.Project(this._hit.distance);
+                            this.transform.TransformDirection(direction : (Vector3.back + Vector3.right).normalized),
+                            hitInfo : out this._hit,
+                            maxDistance : this._space.Max)) {
+          vals[7] = this._space.Project(v : this._hit.distance);
         } else {
           vals[7] = this._space.Max;
         }
@@ -222,145 +222,145 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Lidar {
     void OnDrawGizmosSelected() {
       if (this.enabled) {
         var position = this.transform.position;
-        Debug.DrawLine(position,
+        Debug.DrawLine( position,
                        this.transform.TransformDirection(position - Vector3.forward * this._space.Max),
-                       this._color);
-        Debug.DrawLine(position,
+                       color : this._color);
+        Debug.DrawLine( position,
                        this.transform.TransformDirection(position - Vector3.left * this._space.Max),
-                       this._color);
-        Debug.DrawLine(position,
+                       color : this._color);
+        Debug.DrawLine( position,
                        this.transform.TransformDirection(position - Vector3.right * this._space.Max),
-                       this._color);
-        Debug.DrawLine(position,
+                       color : this._color);
+        Debug.DrawLine( position,
                        this.transform.TransformDirection(position - Vector3.back * this._space.Max),
-                       this._color);
-        Debug.DrawLine(position,
+                       color : this._color);
+        Debug.DrawLine( position,
                        this.transform.TransformDirection(position
                                                          - (Vector3.forward + Vector3.left).normalized
                                                          * this._space.Max),
-                       this._color);
-        Debug.DrawLine(position,
+                       color : this._color);
+        Debug.DrawLine( position,
                        this.transform.TransformDirection(position
                                                          - (Vector3.forward + Vector3.right).normalized
                                                          * this._space.Max),
-                       this._color);
-        Debug.DrawLine(position,
+                       color : this._color);
+        Debug.DrawLine( position,
                        this.transform.TransformDirection(position
                                                          - (Vector3.back + Vector3.left).normalized
                                                          * this._space.Max),
-                       this._color);
-        Debug.DrawLine(position,
+                       color : this._color);
+        Debug.DrawLine( position,
                        this.transform.TransformDirection(position
                                                          - (Vector3.back + Vector3.right).normalized
                                                          * this._space.Max),
-                       this._color);
+                       color : this._color);
         if (!this._is_2_d) {
           var position1 = this.transform.position;
-          Debug.DrawLine(position1,
+          Debug.DrawLine( position1,
                          this.transform.TransformDirection(position1 - Vector3.up * this._space.Max),
-                         this._color);
-          Debug.DrawLine(position1,
+                         color : this._color);
+          Debug.DrawLine( position1,
                          this.transform.TransformDirection(position1 - Vector3.down * this._space.Max),
-                         this._color);
+                         color : this._color);
 
-          Debug.DrawLine(position1,
+          Debug.DrawLine( position1,
                          this.transform.TransformDirection(position1
                                                            - (Vector3.up + Vector3.left).normalized
                                                            * this._space.Max),
-                         this._color);
-          Debug.DrawLine(position1,
+                         color : this._color);
+          Debug.DrawLine( position1,
                          this.transform.TransformDirection(position1
                                                            - (Vector3.up + Vector3.right).normalized
                                                            * this._space.Max),
-                         this._color);
-          Debug.DrawLine(position1,
+                         color : this._color);
+          Debug.DrawLine( position1,
                          this.transform.TransformDirection(position1
                                                            - (Vector3.up + Vector3.forward).normalized
                                                            * this._space.Max),
-                         this._color);
-          Debug.DrawLine(position1,
+                         color : this._color);
+          Debug.DrawLine( position1,
                          this.transform.TransformDirection(position1
                                                            - (Vector3.up + Vector3.back).normalized
                                                            * this._space.Max),
-                         this._color);
+                         color : this._color);
 
-          Debug.DrawLine(position1,
+          Debug.DrawLine( position1,
                          this.transform.TransformDirection(position1
                                                            - (Vector3.down + Vector3.left).normalized
                                                            * this._space.Max),
-                         this._color);
+                         color : this._color);
 
-          Debug.DrawLine(position1,
+          Debug.DrawLine( position1,
                          this.transform.TransformDirection(position1
                                                            - (Vector3.down + Vector3.right).normalized
                                                            * this._space.Max),
-                         this._color);
+                         color : this._color);
 
-          Debug.DrawLine(position1,
+          Debug.DrawLine( position1,
                          this.transform.TransformDirection(position1
                                                            - (Vector3.down + Vector3.forward).normalized
                                                            * this._space.Max),
-                         this._color);
+                         color : this._color);
 
-          Debug.DrawLine(position1,
+          Debug.DrawLine( position1,
                          this.transform.TransformDirection(position1
                                                            - (Vector3.down + Vector3.back).normalized
                                                            * this._space.Max),
-                         this._color);
+                         color : this._color);
 
-          Debug.DrawLine(position1,
+          Debug.DrawLine( position1,
                          this.transform.TransformDirection(position1
                                                            - (Vector3.down + Vector3.forward + Vector3.left)
                                                            .normalized
                                                            * this._space.Max),
-                         this._color);
+                         color : this._color);
 
-          Debug.DrawLine(position1,
+          Debug.DrawLine( position1,
                          this.transform.TransformDirection(position1
                                                            - (Vector3.down + Vector3.forward + Vector3.right)
                                                            .normalized
                                                            * this._space.Max),
-                         this._color);
-          Debug.DrawLine(position1,
+                         color : this._color);
+          Debug.DrawLine( position1,
                          this.transform.TransformDirection(position1
                                                            - (Vector3.down + Vector3.back + Vector3.left)
                                                            .normalized
                                                            * this._space.Max),
-                         this._color);
+                         color : this._color);
 
-          Debug.DrawLine(position1,
+          Debug.DrawLine( position1,
                          this.transform.TransformDirection(position1
                                                            - (Vector3.down + Vector3.back + Vector3.right)
                                                            .normalized
                                                            * this._space.Max),
-                         this._color);
+                         color : this._color);
 
-          Debug.DrawLine(position1,
+          Debug.DrawLine( position1,
                          this.transform.TransformDirection(position1
                                                            - (Vector3.up + Vector3.forward + Vector3.left)
                                                            .normalized
                                                            * this._space.Max),
-                         this._color);
+                         color : this._color);
 
-          Debug.DrawLine(position1,
+          Debug.DrawLine( position1,
                          this.transform.TransformDirection(position1
                                                            - (Vector3.up + Vector3.forward + Vector3.right)
                                                            .normalized
                                                            * this._space.Max),
-                         this._color);
-          Debug.DrawLine(position1,
+                         color : this._color);
+          Debug.DrawLine( position1,
                          this.transform.TransformDirection(position1
                                                            - (Vector3.up + Vector3.back + Vector3.left)
                                                            .normalized
                                                            * this._space.Max),
-                         this._color);
+                         color : this._color);
 
-          Debug.DrawLine(position1,
+          Debug.DrawLine( position1,
                          this.transform.TransformDirection(position1
                                                            - (Vector3.up + Vector3.back + Vector3.right)
                                                            .normalized
                                                            * this._space.Max),
-                         this._color);
+                         color : this._color);
         }
       }
     }

@@ -11,7 +11,8 @@ namespace droid.Runtime.Shaders.Experimental.Skybox_Shaders.Editor {
         var material = this.target as Material;
 
         var use_linear = false;
-        foreach (var keyword in material.shaderKeywords) {
+        for (var index = 0; index < material.shaderKeywords.Length; index++) {
+          var keyword = material.shaderKeywords[index];
           if (keyword == "USE_LINEAR") {
             use_linear = true;
             break;
@@ -20,7 +21,7 @@ namespace droid.Runtime.Shaders.Experimental.Skybox_Shaders.Editor {
 
         EditorGUI.BeginChangeCheck();
 
-        use_linear = EditorGUILayout.Toggle("Linear Space Lighting", use_linear);
+        use_linear = EditorGUILayout.Toggle("Linear Space Lighting", value : use_linear);
 
         if (EditorGUI.EndChangeCheck()) {
           if (use_linear) {
@@ -31,7 +32,7 @@ namespace droid.Runtime.Shaders.Experimental.Skybox_Shaders.Editor {
             material.EnableKeyword("USE_GAMMA");
           }
 
-          EditorUtility.SetDirty(this.target);
+          EditorUtility.SetDirty(target : this.target);
         }
       }
     }

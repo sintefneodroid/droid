@@ -2,7 +2,7 @@ namespace droid.Runtime.Enums {
   /// <summary>
   /// How should spaces be normalised
   /// </summary>
-  public enum Normalisation {
+  public enum NormalisationEnum {
     /// <summary>
     /// No normalisation
     /// </summary>

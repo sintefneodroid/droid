@@ -38,14 +38,14 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays {
     public override IEnumerable<float> FloatEnumerable { get { return new[] {this.ObservationValue}; } }
 
     public override void UpdateObservation() {
-      var distance = Vector3.Distance(this.transform.position, this._target.position);
-      if (Physics.Raycast(this.transform.position,
+      var distance = Vector3.Distance(a : this.transform.position, b : this._target.position);
+      if (Physics.Raycast(origin : this.transform.position,
                           this._target.position - this.transform.position,
-                          out this._hit,
-                          distance)) {
+                          hitInfo : out this._hit,
+                          maxDistance : distance)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log(this._hit.distance);
+          Debug.Log(message : this._hit.distance);
         }
         #endif
 

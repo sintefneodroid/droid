@@ -11,7 +11,7 @@ namespace droid.Runtime.Prototyping.EnvironmentListener {
                                        IUnobservable {
     /// <summary>
     /// </summary>
-    public AbstractSpatialPrototypingEnvironment _Parent_Environment;
+    public AbstractPrototypingEnvironment _Parent_Environment;
 
 
     /// <summary>
@@ -37,7 +37,7 @@ namespace droid.Runtime.Prototyping.EnvironmentListener {
     /// </summary>
     protected override void RegisterComponent() {
       this._Parent_Environment =
-          NeodroidRegistrationUtilities.RegisterComponent(this._Parent_Environment, this);
+          NeodroidRegistrationUtilities.RegisterComponent(r : this._Parent_Environment, this);
 
       if (this._Parent_Environment != null) {
         this._Parent_Environment.PreTickEvent += this.PreTick;

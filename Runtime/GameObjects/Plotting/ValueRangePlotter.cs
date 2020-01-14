@@ -8,33 +8,33 @@ namespace droid.Runtime.GameObjects.Plotting {
   public class ValueRangePlotter : MonoBehaviour {
     Material _material;
     [SerializeField] Shader _shader = null;
-    [SerializeField] Bounds _value_range = new Bounds(Vector3.zero, Vector3.one * 2);
+    [SerializeField] Bounds _value_range = new Bounds(center : Vector3.zero, Vector3.one * 2);
     static readonly Int32 _range = Shader.PropertyToID("_Range");
 
     void OnDestroy() {
       if (this._material != null) {
         if (Application.isPlaying) {
-          Destroy(this._material);
+          Destroy(obj : this._material);
         } else {
-          DestroyImmediate(this._material);
+          DestroyImmediate(obj : this._material);
         }
       }
     }
 
     public void OnRenderObject() {
       if (this._material == null) {
-        this._material = new Material(this._shader);
+        this._material = new Material(shader : this._shader);
         this._material.hideFlags = HideFlags.DontSave;
       }
 
-      this._material.SetVector(_range,
-                               new Vector4(this._value_range.min.x,
-                                           this._value_range.max.x,
-                                           this._value_range.center.y,
+      this._material.SetVector(nameID : _range,
+                               new Vector4(x : this._value_range.min.x,
+                                           y : this._value_range.max.x,
+                                           z : this._value_range.center.y,
                                            this._value_range.extents.y + this._value_range.center.y));
 
       this._material.SetPass(0);
-      Graphics.DrawProceduralNow(MeshTopology.LineStrip, 512);
+      Graphics.DrawProceduralNow(topology : MeshTopology.LineStrip, 512);
     }
   }
 }

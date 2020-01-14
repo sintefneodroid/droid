@@ -1,6 +1,9 @@
 ﻿using System;
 
 namespace droid.Runtime.Messaging.Messages {
+  /// <summary>
+  ///
+  /// </summary>
   [Serializable]
   public class EnvironmentSnapshot {
     public EnvironmentSnapshot(string environment_name,
@@ -23,10 +26,19 @@ namespace droid.Runtime.Messaging.Messages {
       this.Description = description;
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public float[] Observables { get; }
 
+    /// <summary>
+    /// The reason for termination
+    /// </summary>
     public String TerminationReason { get; }
 
+    /// <summary>
+    ///
+    /// </summary>
     public string EnvironmentName { get; }
 
     /// <summary>
@@ -56,5 +68,11 @@ namespace droid.Runtime.Messaging.Messages {
     /// <summary>
     /// </summary>
     public Unobservables Unobservables { get; set; }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
+    public override String ToString() { return $"SnapShot: {this.Description},Term.{Terminated}"; }
   }
 }

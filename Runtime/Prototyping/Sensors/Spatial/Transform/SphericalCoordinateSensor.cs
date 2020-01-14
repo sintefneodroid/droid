@@ -16,7 +16,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     [SerializeField] SphericalSpace sc;
 
     public override void PrototypingReset() {
-      this.sc = SphericalSpace.FromCartesian(this.transform.position,
+      this.sc = SphericalSpace.FromCartesian(cartesian_coordinate : this.transform.position,
                                              3f,
                                              10f,
                                              0f,
@@ -29,7 +29,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
       get { return new[] {this.ObservationValue.x, this.ObservationValue.y}; }
     }
 
-    public override void UpdateObservation() { this.sc.UpdateFromCartesian(this.transform.position); } //TODO: IMPLEMENT LOCAL SPACE
+    public override void UpdateObservation() { this.sc.UpdateFromCartesian(cartesian_coordinate : this.transform.position); } //TODO: IMPLEMENT LOCAL SPACE
     public Vector2 ObservationValue { get { return this.sc.ToVector2; } }
     public Space2 DoubleSpace { get { return this._spherical_space; } }
   }

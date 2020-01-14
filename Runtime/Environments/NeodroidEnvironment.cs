@@ -20,6 +20,7 @@ namespace droid.Runtime.Environments {
     /// </summary>
     protected WaitForFixedUpdate _Wait_For_Fixed_Update = new WaitForFixedUpdate();
 
+
     #if UNITY_EDITOR
     const int _script_execution_order = -20;
     #endif
@@ -30,15 +31,18 @@ namespace droid.Runtime.Environments {
     public abstract override String PrototypingTypeName { get; }
 
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public abstract void PostStep();
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <returns></returns>
     public abstract Reaction SampleReaction();
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <param name="reaction"></param>
@@ -46,6 +50,8 @@ namespace droid.Runtime.Environments {
     public abstract void React(Reaction reaction);
 
 
+
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <returns></returns>
@@ -54,7 +60,7 @@ namespace droid.Runtime.Environments {
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public void IdentifierString(DataPoller recipient) { recipient.PollData(this.Identifier); }
+    public void IdentifierString(DataPoller recipient) { recipient.PollData(data : this.Identifier); }
 
     /// <summary>
     /// </summary>
@@ -80,9 +86,9 @@ namespace droid.Runtime.Environments {
       #if UNITY_EDITOR
       if (!Application.isPlaying) {
         var manager_script = MonoScript.FromMonoBehaviour(this);
-        if (MonoImporter.GetExecutionOrder(manager_script) != _script_execution_order) {
-          MonoImporter.SetExecutionOrder(manager_script,
-                                         _script_execution_order); // Ensures that PreStep is called first, before all other scripts.
+        if (MonoImporter.GetExecutionOrder(script : manager_script) != _script_execution_order) {
+          MonoImporter.SetExecutionOrder(script : manager_script,
+                                         order : _script_execution_order); // Ensures that PreStep is called first, before all other scripts.
           Debug.LogWarning("Execution Order changed, you will need to press play again to make everything function correctly!");
           EditorApplication.isPlaying = false;
           //TODO: UnityEngine.Experimental.LowLevel.PlayerLoop.SetPlayerLoop(new UnityEngine.Experimental.LowLevel.PlayerLoopSystem());
@@ -134,6 +140,7 @@ namespace droid.Runtime.Environments {
 
     #region Properties
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     [field : SerializeField]
@@ -149,22 +156,31 @@ namespace droid.Runtime.Environments {
     [field : SerializeField]
     protected Boolean Terminable { get; set; } = true;
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     [field : SerializeField]
     public bool Terminated { get; set; } = false;
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     [field : SerializeField]
     public Reaction LastReaction { get; set; }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     [field : SerializeField]
     public bool IsResetting { get; set; }
 
+    /// <summary>
+    /// </summary>
+
+    [field : SerializeField]
+    public bool ProvideFullDescription { get; set; } = true;
+
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     [field : SerializeField]
@@ -175,10 +191,7 @@ namespace droid.Runtime.Environments {
     [field : SerializeField]
     protected Boolean Configure { get; set; }
 
-    /// <summary>
-    /// </summary>
-    [field : SerializeField]
-    protected Boolean ReplyWithDescriptionThisStep { get; set; }
+
 
     /// <summary>
     /// </summary>

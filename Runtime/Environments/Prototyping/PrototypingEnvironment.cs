@@ -13,7 +13,7 @@ namespace droid.Runtime.Environments.Prototyping {
   ///   Environment to be used with the prototyping components.
   /// </summary>
   [AddComponentMenu("Neodroid/Environments/PrototypingEnvironment")]
-  public class PrototypingEnvironment : AbstractSpatialPrototypingEnvironment,
+  public class PrototypingEnvironment : AbstractPrototypingEnvironment,
                                         IPrototypingEnvironment {
     #region NeodroidCallbacks
 
@@ -40,8 +40,8 @@ namespace droid.Runtime.Environments.Prototyping {
         }
         #endif
 
-        var reset_reaction = new ReactionParameters(StepResetObserve.Reset_, false, true);
-        return new Reaction(reset_reaction, this.Identifier);
+        var reset_reaction = new ReactionParameters(reaction_type : ReactionTypeEnum.Reset_, false, true);
+        return new Reaction(reaction_parameters : reset_reaction, recipient_environment : this.Identifier);
       }
 
       #if NEODROID_DEBUG
@@ -55,18 +55,18 @@ namespace droid.Runtime.Environments.Prototyping {
       foreach (var actuator in this.Actuators) {
         var actuator_value = actuator.Value;
         if (actuator_value != null) {
-          sample_motions.Add(new ActuatorMotion(actuator.Key, actuator.Key, actuator_value.Sample()));
+          sample_motions.Add(new ActuatorMotion(actor_name : actuator.Key, actuator_name : actuator.Key, actuator_value.Sample()));
         }
       }
 
-      var rp = new ReactionParameters(StepResetObserve.Step_, true, episode_count : true);
-      return new Reaction(rp,
+      var rp = new ReactionParameters(reaction_type : ReactionTypeEnum.Step_, true, episode_count : true);
+      return new Reaction(parameters : rp,
                           sample_motions.ToArray(),
                           null,
                           null,
                           null,
                           "",
-                          this.Identifier);
+                          recipient_environment : this.Identifier);
     }
 
     #endregion
@@ -79,59 +79,54 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     public SortedDictionary<string, IActuator> Actuators { get; } = new SortedDictionary<string, IActuator>();
 
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "PrototypingEnvironment"; } }
-
     #endregion
 
     #region Registration
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="obj"></param>
-    public void Register(IActuator obj) { this.Register(obj, obj.Identifier); }
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <param name="obj"></param>
+    public void Register(IActuator obj) { this.Register(obj : obj, identifier : obj.Identifier); }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="obj"></param>
-    /// <param name="identifier"></param>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <param name="obj"></param>
+    ///  <param name="identifier"></param>
     public void Register(IActuator obj, String identifier) {
-      if (!this.Actuators.ContainsKey(identifier)) {
+      if (!this.Actuators.ContainsKey(key : identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log($"Environment {this.name} has registered actuator {identifier}");
         }
         #endif
 
-        this.Actuators.Add(identifier, obj);
+        this.Actuators.Add(key : identifier, value : obj);
       } else {
         Debug.LogWarning($"WARNING! Please check for duplicates, Environment {this.name} already has actuator {identifier} registered");
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="obj"></param>
-    public void UnRegister(IActuator obj) { this.UnRegister(obj, obj.Identifier); }
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <param name="obj"></param>
+    public void UnRegister(IActuator obj) { this.UnRegister(t : obj, obj : obj.Identifier); }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="t"></param>
-    /// <param name="obj"></param>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <param name="t"></param>
+    ///  <param name="obj"></param>
     public void UnRegister(IActuator t, String obj) {
-      if (this.Actuators.ContainsKey(obj)) {
+      if (this.Actuators.ContainsKey(key : obj)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log($"Environment {this.name} unregistered actuator {obj}");
         }
         #endif
-        this.Actuators.Remove(obj);
+        this.Actuators.Remove(key : obj);
       }
     }
 
@@ -146,78 +141,81 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     /// <returns></returns>
     public override EnvironmentSnapshot Snapshot() {
-      lock (this._Reaction_Lock) {
+
         var signal = 0f;
 
         if (this.ObjectiveFunction != null) {
           signal = this.ObjectiveFunction.Evaluate();
         }
 
-        EnvironmentDescription description = null;
-        if (this.ReplyWithDescriptionThisStep
-            || this.SimulationManager.SimulatorConfiguration.AlwaysSerialiseIndividualObservables) {
-          #if NEODROID_DEBUG
-          if (this.Debugging) {
-            Debug.Log("Describing Environment");
-          }
-          #endif
-
-          var virtual_actors =
-              new SortedDictionary<String, IActor> {{"All", new VirtualActor(this.Actuators)}};
-
-          description = new EnvironmentDescription(this.ObjectiveFunction,
-                                                   virtual_actors,
-                                                   this.Configurables,
-                                                   this.Sensors,
-                                                   this.Displayers);
+        if (float.IsInfinity(f : signal)) {
+          signal = 0f;
         }
 
-        this._Observables.Clear();
-        foreach (var item in this.Sensors) {
-          if (item.Value != null) {
-            if (item.Value.FloatEnumerable != null) {
-              this._Observables.AddRange(item.Value.FloatEnumerable);
+        EnvironmentDescription description = null;
+        if ( this.SimulationManager.SimulatorConfiguration.SerialiseIndividualObservables || this.ProvideFullDescription) {
+
+          var virtual_actors =
+              new SortedDictionary<String, IActor> {{"All", new VirtualActor(actuators : this.Actuators)}};
+
+          description = new EnvironmentDescription(objective_function_function : this.ObjectiveFunction,
+                                                   actors : virtual_actors,
+                                                   configurables : this.Configurables,
+                                                   sensors : this.Sensors,
+                                                   displayers : this.Displayers);
+        }
+
+        var obs = new float[0];
+        if (this.SimulationManager.SimulatorConfiguration.SerialiseAggregatedFloatArray || this.ProvideFullDescription) {
+          this._Observables.Clear();
+          foreach (var item in this.Sensors) {
+            if (item.Value != null) {
+              if (item.Value.FloatEnumerable != null) {
+                this._Observables.AddRange(collection : item.Value.FloatEnumerable);
+              } else {
+                #if NEODROID_DEBUG
+                if (this.Debugging) {
+                  Debug.Log($"Sensor with key {item.Key} has a null FloatEnumerable value");
+                }
+                #endif
+              }
             } else {
               #if NEODROID_DEBUG
               if (this.Debugging) {
-                Debug.Log($"Sensor with key {item.Key} has a null FloatEnumerable value");
+                Debug.Log($"Sensor with key {item.Key} has a null value");
               }
               #endif
             }
-          } else {
-            #if NEODROID_DEBUG
-            if (this.Debugging) {
-              Debug.Log($"Sensor with key {item.Key} has a null value");
-            }
-            #endif
           }
-        }
 
-        var obs = this._Observables.ToArray();
+          obs = this._Observables.ToArray();
+        }
 
         var time = Time.realtimeSinceStartup - this.LastResetTime;
 
-        var state = new EnvironmentSnapshot(this.Identifier,
-                                         this.StepI,
-                                         time,
-                                         signal,
-                                         this.Terminated,
-                                         ref obs,
-                                         this.LastTerminationReason,
-                                         description);
+        var state = new EnvironmentSnapshot(environment_name : this.Identifier,
+                                            frame_number : this.StepI,
+                                            time : time,
+                                            signal : signal,
+                                            terminated : this.Terminated,
+                                            observables : ref obs,
+                                            termination_reason : this.LastTerminationReason,
+                                            description : description);
 
-        if (this.SimulationManager.SimulatorConfiguration.AlwaysSerialiseUnobservables
-            || this.ReplyWithDescriptionThisStep) {
-          state.Unobservables = new Unobservables(ref this._Tracked_Rigid_Bodies, ref this._Poses);
+        if (this.SimulationManager.SimulatorConfiguration.SerialiseUnobservables
+            || this.ProvideFullDescription) {
+          state.Unobservables = new Unobservables(rigidbodies : ref this._Tracked_Rigid_Bodies, transforms : ref this._Poses);
         }
 
+        //ProvideFullDescription = false;
+
         return state;
-      }
+
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override void RemotePostSetup() {
       #if NEODROID_DEBUG
       if (this.Debugging) {
@@ -253,22 +251,23 @@ namespace droid.Runtime.Environments.Prototyping {
                                      this.Sensors.Values.Select(e => $"{e.Identifier}:\n{e.ToString()}")));
     }
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="reaction"></param>
     protected override void SendToActors(Reaction reaction) {
       if (reaction.Motions != null && reaction.Motions.Length > 0) {
-        foreach (var motion in reaction.Motions) {
+        for (var index = 0; index < reaction.Motions.Length; index++) {
+          var motion = reaction.Motions[index];
           #if NEODROID_DEBUG
           if (this.Debugging) {
             Debug.Log("Applying " + motion + " To " + this.name + " actuator");
           }
           #endif
           var motion_actuator_name = motion.ActuatorName;
-          if (this.Actuators.ContainsKey(motion_actuator_name)
-              && this.Actuators[motion_actuator_name] != null) {
-            this.Actuators[motion_actuator_name].ApplyMotion(motion);
+          if (this.Actuators.ContainsKey(key : motion_actuator_name)
+              && this.Actuators[key : motion_actuator_name] != null) {
+            this.Actuators[key : motion_actuator_name].ApplyMotion(motion : motion);
           } else {
             #if NEODROID_DEBUG
             if (this.Debugging) {
@@ -280,6 +279,7 @@ namespace droid.Runtime.Environments.Prototyping {
       }
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     protected override void InnerResetRegisteredObjects() {

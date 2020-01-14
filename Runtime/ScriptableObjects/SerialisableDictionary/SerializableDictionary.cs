@@ -10,7 +10,7 @@ namespace droid.Runtime.ScriptableObjects.SerialisableDictionary {
 
     public void OnAfterDeserialize() {
       var c = this._keys.Length;
-      this._Dict = new Dictionary<TK, TV>(c);
+      this._Dict = new Dictionary<TK, TV>(capacity : c);
       for (var i = 0; i < c; i++) {
         this._Dict[this._keys[i]] = this._values[i];
       }

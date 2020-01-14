@@ -57,7 +57,7 @@ namespace droid.Runtime.Prototyping.EnvironmentListener {
       switch (this._source_enum) {
         case SourceEnum.BB:
           if (this.bb) {
-            this._camera.transform.LookAt(this.bb.transform);
+            this._camera.transform.LookAt(target : this.bb.transform);
             var radius = this.bb.Bounds.extents.MaxDim();
             switch (this._fit_mode_enum) {
               case FitModeEnum.Zoom_:
@@ -74,7 +74,7 @@ namespace droid.Runtime.Prototyping.EnvironmentListener {
           break;
         case SourceEnum.Collider:
           if (this.collider) {
-            this._camera.transform.LookAt(this.bb.transform);
+            this._camera.transform.LookAt(target : this.bb.transform);
             var radius = this.collider.bounds.extents.MaxDim();
             switch (this._fit_mode_enum) {
               case FitModeEnum.Zoom_:
@@ -106,13 +106,13 @@ namespace droid.Runtime.Prototyping.EnvironmentListener {
     // time - time to take zooming
     static IEnumerator ZoomToLerp(this Camera cam, Vector3 center, float pixel_height, float time) {
       var cam_tran = cam.transform;
-      var ray = cam.ScreenPointToRay(center);
-      var end_rotation = Quaternion.LookRotation(ray.direction);
+      var ray = cam.ScreenPointToRay(pos : center);
+      var end_rotation = Quaternion.LookRotation(forward : ray.direction);
       var position = cam_tran.position;
-      var end_position = ProjectPointOnPlane(cam_tran.forward, position, ray.origin);
+      var end_position = ProjectPointOnPlane(plane_normal : cam_tran.forward, plane_point : position, point : ray.origin);
       var opp = Mathf.Tan(cam.fieldOfView * 0.5f * Mathf.Deg2Rad);
       opp *= pixel_height / Screen.height;
-      var end_fov = Mathf.Atan(opp) * 2.0f * Mathf.Rad2Deg;
+      var end_fov = Mathf.Atan(f : opp) * 2.0f * Mathf.Rad2Deg;
 
       var timer = 0.0f;
       var start_rotation = cam_tran.rotation;
@@ -121,9 +121,9 @@ namespace droid.Runtime.Prototyping.EnvironmentListener {
 
       while (timer <= 1.0f) {
         var t = Mathf.Sin(timer * Mathf.PI * 0.5f);
-        cam_tran.rotation = Quaternion.Slerp(start_rotation, end_rotation, t);
-        cam_tran.position = Vector3.Lerp(start_position, end_position, t);
-        cam.fieldOfView = Mathf.Lerp(start_fov, end_fov, t);
+        cam_tran.rotation = Quaternion.Slerp(a : start_rotation, b : end_rotation, t : t);
+        cam_tran.position = Vector3.Lerp(a : start_position, b : end_position, t : t);
+        cam.fieldOfView = Mathf.Lerp(a : start_fov, b : end_fov, t : t);
         timer += Time.deltaTime / time;
         yield return null;
       }
@@ -138,13 +138,13 @@ namespace droid.Runtime.Prototyping.EnvironmentListener {
     // pixelHeight - height of the rectangle in pixels
     public static void ZoomToInstant(this Camera cam, Vector2 center, float pixel_height) {
       var cam_tran = cam.transform;
-      var ray = cam.ScreenPointToRay(center);
-      var end_rotation = Quaternion.LookRotation(ray.direction);
-      var end_position = ProjectPointOnPlane(cam_tran.forward, cam_tran.position, ray.origin);
+      var ray = cam.ScreenPointToRay(pos : center);
+      var end_rotation = Quaternion.LookRotation(forward : ray.direction);
+      var end_position = ProjectPointOnPlane(plane_normal : cam_tran.forward, plane_point : cam_tran.position, point : ray.origin);
 
       var opp = Mathf.Tan(cam.fieldOfView * 0.5f * Mathf.Deg2Rad);
       opp *= pixel_height / Screen.height;
-      var end_fov = Mathf.Atan(opp) * 2.0f * Mathf.Rad2Deg;
+      var end_fov = Mathf.Atan(f : opp) * 2.0f * Mathf.Rad2Deg;
 
       cam_tran.rotation = end_rotation;
       cam_tran.position = end_position;
@@ -156,9 +156,9 @@ namespace droid.Runtime.Prototyping.EnvironmentListener {
                                            Vector3 center,
                                            float margin = 1f) {
 
-      cam.transform.LookAt(center,Vector3.up);
+      cam.transform.LookAt(worldPosition : center,worldUp : Vector3.up);
       var bound_sphere_radius = radius + margin;
-      var distance = Vector3.Distance(center,cam.transform.position);
+      var distance = Vector3.Distance(a : center,b : cam.transform.position);
       var end_fov = Mathf.Atan((bound_sphere_radius * 0.5f)/distance) * 2.0f * Mathf.Rad2Deg;
 
       cam.fieldOfView = end_fov;
@@ -188,7 +188,7 @@ namespace droid.Runtime.Prototyping.EnvironmentListener {
 
     public static Vector3 ProjectPointOnPlane(Vector3 plane_normal, Vector3 plane_point, Vector3 point) {
       plane_normal.Normalize();
-      var distance = -Vector3.Dot(plane_normal.normalized, point - plane_point);
+      var distance = -Vector3.Dot(lhs : plane_normal.normalized, point - plane_point);
       return point + plane_normal * distance;
     }
   }

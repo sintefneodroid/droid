@@ -46,17 +46,17 @@ namespace droid.Editor.Utilities {
     /// </summary>
     public static void AddDefineSymbols() {
       var defines_string =
-          PlayerSettings.GetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup);
+          PlayerSettings.GetScriptingDefineSymbolsForGroup(targetGroup : EditorUserBuildSettings.selectedBuildTargetGroup);
       var all_defines = defines_string.Split(';').ToList();
-      all_defines.AddRange(_Symbols.Except(all_defines));
-      PlayerSettings.SetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup,
+      all_defines.AddRange(_Symbols.Except(second : all_defines));
+      PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup : EditorUserBuildSettings.selectedBuildTargetGroup,
                                                        string.Join(";", all_defines.ToArray()));
     }
 
     /// <summary>
     /// </summary>
     public static void AddDebugDefineSymbol() {
-      AddDefineSymbols(_Debug_Symbols);
+      AddDefineSymbols(symbols : _Debug_Symbols);
 
       Debug.LogWarning("Neodroid Debugging enabled");
     }
@@ -65,7 +65,7 @@ namespace droid.Editor.Utilities {
     ///
     /// </summary>
     public static void RemoveDebugDefineSymbols() {
-      RemoveDefineSymbols(_Debug_Symbols);
+      RemoveDefineSymbols(symbols : _Debug_Symbols);
 
       Debug.LogWarning("Neodroid Debugging disabled");
     }
@@ -74,7 +74,7 @@ namespace droid.Editor.Utilities {
     ///
     /// </summary>
     public static void AddGithubDefineSymbols() {
-      AddDefineSymbols(_Github_Symbols);
+      AddDefineSymbols(symbols : _Github_Symbols);
 
       Debug.LogWarning("Github Extension enabled");
     }
@@ -83,7 +83,7 @@ namespace droid.Editor.Utilities {
     ///
     /// </summary>
     public static void RemoveGithubDefineSymbols() {
-      RemoveDefineSymbols(_Github_Symbols);
+      RemoveDefineSymbols(symbols : _Github_Symbols);
 
       Debug.LogWarning("Github Extension disabled");
     }
@@ -92,7 +92,7 @@ namespace droid.Editor.Utilities {
     ///
     /// </summary>
     public static void AddIsPackageDefineSymbols() {
-      AddDefineSymbols(_IsPackage_Symbols);
+      AddDefineSymbols(symbols : _IsPackage_Symbols);
 
       Debug.LogWarning("Neodroid is assumed to be an imported asset");
     }
@@ -101,7 +101,7 @@ namespace droid.Editor.Utilities {
     ///
     /// </summary>
     public static void RemoveIsPackageDefineSymbols() {
-      RemoveDefineSymbols(_IsPackage_Symbols);
+      RemoveDefineSymbols(symbols : _IsPackage_Symbols);
       Debug.LogWarning("Neodroid is assumed to be an installed package");
     }
 
@@ -111,11 +111,11 @@ namespace droid.Editor.Utilities {
     /// <param name="symbols"></param>
     public static void AddDefineSymbols(string[] symbols) {
       var defines_string =
-          PlayerSettings.GetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup);
+          PlayerSettings.GetScriptingDefineSymbolsForGroup(targetGroup : EditorUserBuildSettings.selectedBuildTargetGroup);
       var all_defines = defines_string.Split(';').ToList();
-      all_defines.AddRange(symbols.Except(all_defines));
+      all_defines.AddRange(symbols.Except(second : all_defines));
 
-      PlayerSettings.SetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup,
+      PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup : EditorUserBuildSettings.selectedBuildTargetGroup,
                                                        string.Join(";", all_defines.ToArray()));
     }
 
@@ -123,14 +123,14 @@ namespace droid.Editor.Utilities {
     /// </summary>
     public static void RemoveDefineSymbols(string[] symbols) {
       var defines_string =
-          PlayerSettings.GetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup);
+          PlayerSettings.GetScriptingDefineSymbolsForGroup(targetGroup : EditorUserBuildSettings.selectedBuildTargetGroup);
       var all_defines = defines_string.Split(';').ToList();
       foreach (var b in symbols) {
         var res = all_defines.RemoveAll(c => c == b);
         Debug.LogWarning($"Removed define symbols {symbols.Aggregate((aa, bb) => aa + "," + bb)} : number of entries removed {res}");
       }
 
-      PlayerSettings.SetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup,
+      PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup : EditorUserBuildSettings.selectedBuildTargetGroup,
                                                        string.Join(";", all_defines.ToArray()));
     }
   }

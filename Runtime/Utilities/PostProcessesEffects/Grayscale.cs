@@ -10,7 +10,7 @@ namespace droid.Runtime.Utilities.PostProcessesEffects {
   /// </summary>
   [Serializable]
   [PostProcess(typeof(GrayscaleRenderer),
-      PostProcessEvent.AfterStack,
+      eventType : PostProcessEvent.AfterStack,
       "Neodroid/Grayscale")]
   public sealed class Grayscale : PostProcessEffectSettings {
     /// <summary>
@@ -32,11 +32,11 @@ namespace droid.Runtime.Utilities.PostProcessesEffects {
     /// </summary>
     /// <param name="context"></param>
     public override void Render(PostProcessRenderContext context) {
-      var sheet = context.propertySheets.Get(_s);
-      sheet.properties.SetFloat(_blend, this.settings.blend);
-      context.command.BlitFullscreenTriangle(context.source,
-                                             context.destination,
-                                             sheet,
+      var sheet = context.propertySheets.Get(shader : _s);
+      sheet.properties.SetFloat(nameID : _blend, value : this.settings.blend);
+      context.command.BlitFullscreenTriangle(source : context.source,
+                                             destination : context.destination,
+                                             propertySheet : sheet,
                                              0);
     }
   }

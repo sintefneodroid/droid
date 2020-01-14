@@ -31,22 +31,22 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Experimen
       // For each ray sublist stores categorial information on detected object
       // along with object distance.
       foreach (var angle in ray_angles) {
-        this._end_position = this.transform.TransformDirection(PolarToCartesian(ray_distance, angle));
+        this._end_position = this.transform.TransformDirection(PolarToCartesian(radius : ray_distance, angle : angle));
         this._end_position.y = end_offset;
         if (Application.isEditor) {
-          Debug.DrawRay(this.transform.position + new Vector3(0f, start_offset, 0f),
-                        this._end_position,
-                        Color.black,
+          Debug.DrawRay(this.transform.position + new Vector3(0f, y : start_offset, 0f),
+                        dir : this._end_position,
+                        color : Color.black,
                         0.01f,
                         true);
         }
 
         var sub_list = new float[detectable_objects.Length + 2];
-        if (Physics.SphereCast(this.transform.position + new Vector3(0f, start_offset, 0f),
+        if (Physics.SphereCast(this.transform.position + new Vector3(0f, y : start_offset, 0f),
                                0.5f,
-                               this._end_position,
-                               out this._hit,
-                               ray_distance)) {
+                               direction : this._end_position,
+                               hitInfo : out this._hit,
+                               maxDistance : ray_distance)) {
           for (var i = 0; i < detectable_objects.Length; i++) {
             if (this._hit.collider.gameObject.CompareTag(detectable_objects[i])) {
               sub_list[i] = 1;
@@ -58,7 +58,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Experimen
           sub_list[detectable_objects.Length] = 1f;
         }
 
-        this._perception_buffer.AddRange(sub_list);
+        this._perception_buffer.AddRange(collection : sub_list);
       }
 
       return this._perception_buffer;
@@ -68,9 +68,9 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Experimen
     /// Converts polar coordinate to cartesian coordinate.
     /// </summary>
     public static Vector3 PolarToCartesian(float radius, float angle) {
-      var x = radius * Mathf.Cos(DegreeToRadian(angle));
-      var z = radius * Mathf.Sin(DegreeToRadian(angle));
-      return new Vector3(x, 0f, z);
+      var x = radius * Mathf.Cos(DegreeToRadian(degree : angle));
+      var z = radius * Mathf.Sin(DegreeToRadian(degree : angle));
+      return new Vector3(x : x, 0f, z : z);
     }
 
     /// <summary>

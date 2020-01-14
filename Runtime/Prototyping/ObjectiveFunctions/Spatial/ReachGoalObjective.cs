@@ -27,7 +27,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
     /// <returns></returns>
     public override float InternalEvaluate() {
       var distance =
-          Mathf.Abs(Vector3.Distance(this._goal.transform.position, this._actor.transform.position));
+          Mathf.Abs(Vector3.Distance(a : this._goal.transform.position, b : this._actor.transform.position));
 
       if (this._overlapping == ActorOverlapping.Inside_area_ || distance < 0.5f) {
         this.ParentEnvironment.Terminate("Inside goal area");
@@ -69,22 +69,22 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
       if (this._goal) {
         NeodroidRegistrationUtilities
             .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider, Collision>(this,
-                                                                                                     this
+                                                                                                     parent : this
                                                                                                          ._goal
                                                                                                          .transform,
                                                                                                      null,
-                                                                                                     this
+                                                                                                     on_trigger_enter_child : this
                                                                                                          .OnTriggerEnterChild);
       }
 
       if (this._actor) {
         NeodroidRegistrationUtilities
             .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider, Collision>(this,
-                                                                                                     this
+                                                                                                     parent : this
                                                                                                          ._actor
                                                                                                          .transform,
                                                                                                      null,
-                                                                                                     this
+                                                                                                     on_trigger_enter_child : this
                                                                                                          .OnTriggerEnterChild);
       }
     }
@@ -93,7 +93,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
       Debug.Log("triggered");
       if (this._actor) {
         if (this._based_on_tags) {
-          if (other_game_object.CompareTag(this._actor.tag)) {
+          if (other_game_object.CompareTag(tag : this._actor.tag)) {
             #if NEODROID_DEBUG
             if (this.Debugging) {
               Debug.Log("Actor is inside area");

@@ -51,11 +51,11 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
       }
 
       if (!this._sparse) {
-        signal += 1 / Vector3.Distance(this._actor.transform.position, this._area.transform.position);
+        signal += 1 / Vector3.Distance(a : this._actor.transform.position, b : this._area.transform.position);
       }
 
       if (this._playable_area && this._actor) {
-        if (!this._playable_area.Bounds.Intersects(this._actor.GetComponent<Collider>().bounds)) {
+        if (!this._playable_area.Bounds.Intersects(bounds : this._actor.GetComponent<Collider>().bounds)) {
           this.ParentEnvironment.Terminate("Actor is outside playable area");
         }
       }
@@ -68,7 +68,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
     /// </summary>
     public override void InternalReset() {
       if (this._wait_for_resting != null) {
-        this.StopCoroutine(this._wait_for_resting);
+        this.StopCoroutine(routine : this._wait_for_resting);
       }
 
       this._is_resting = false;
@@ -102,34 +102,34 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
 
       NeodroidRegistrationUtilities
           .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider, Collision>(this,
-                                                                                                   this
+                                                                                                   parent : this
                                                                                                        ._area
                                                                                                        .transform,
                                                                                                    null,
-                                                                                                   this
+                                                                                                   on_trigger_enter_child : this
                                                                                                        .OnTriggerEnterChild,
                                                                                                    null,
-                                                                                                   this
+                                                                                                   on_trigger_exit_child : this
                                                                                                        .OnTriggerExitChild,
                                                                                                    null,
-                                                                                                   this
+                                                                                                   on_trigger_stay_child : this
                                                                                                        .OnTriggerStayChild);
 
       NeodroidRegistrationUtilities
           .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider, Collision>(this,
-                                                                                                   this
+                                                                                                   parent : this
                                                                                                        ._actor
                                                                                                        .transform,
                                                                                                    null,
-                                                                                                   this
+                                                                                                   on_trigger_enter_child : this
                                                                                                        .OnTriggerEnterChild,
                                                                                                    null,
-                                                                                                   this
+                                                                                                   on_trigger_exit_child : this
                                                                                                        .OnTriggerExitChild,
                                                                                                    null,
-                                                                                                   this
+                                                                                                   on_trigger_stay_child : this
                                                                                                        .OnTriggerStayChild);
-      this._wait_for_seconds = new WaitForSeconds(this._resting_time);
+      this._wait_for_seconds = new WaitForSeconds(seconds : this._resting_time);
     }
 
     void OnTriggerEnterChild(GameObject child_game_object, Collider other_game_object) {
@@ -144,7 +144,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
 
           this._overlapping = ActorOverlapping.Inside_area_;
           if (this._wait_for_resting != null) {
-            this.StopCoroutine(this._wait_for_resting);
+            this.StopCoroutine(routine : this._wait_for_resting);
           }
 
           this._wait_for_resting = this.StartCoroutine(this.WaitForResting());
@@ -179,7 +179,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
 
           this._overlapping = ActorOverlapping.Outside_area_;
           if (this._wait_for_resting != null) {
-            this.StopCoroutine(this._wait_for_resting);
+            this.StopCoroutine(routine : this._wait_for_resting);
           }
         }
       }

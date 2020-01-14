@@ -76,7 +76,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
       }
       #endif
       this._Values = values;
-      this.PlotSeries(values);
+      this.PlotSeries(points : values);
     }
 
     public override void Display(String values) {
@@ -88,7 +88,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
 
       this._vs.Clear();
       foreach (var value in values.Split(',')) {
-        this._vs.Add(float.Parse(value));
+        this._vs.Add(float.Parse(s : value));
       }
 
       this._Values = this._vs.ToArray();
@@ -96,7 +96,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
     }
 
     public override void Display(Vector3 value) { throw new NotImplementedException(); }
-    public override void Display(Vector3[] value) { this.ScatterPlot(value); }
+    public override void Display(Vector3[] value) { this.ScatterPlot(points : value); }
 
     public override void Display(Points.ValuePoint points) { this.PlotSeries(new[] {points}); }
 
@@ -120,13 +120,13 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
       foreach (var point in points) {
         this._particles[i].remainingLifetime = 100000;
         this._particles[i].position = point._Pos;
-        var clamped = Math.Min(Math.Max(0.0f, point._Val), 1.0f);
-        this._particles[i].startColor = this._gradient.Evaluate(clamped);
+        var clamped = Math.Min(Math.Max(0.0f, val2 : point._Val), 1.0f);
+        this._particles[i].startColor = this._gradient.Evaluate(time : clamped);
         this._particles[i].startSize = point._Size;
         i++;
       }
 
-      this._particle_system.SetParticles(this._particles, points.Length);
+      this._particle_system.SetParticles(particles : this._particles, size : points.Length);
     }
 
     public override void Display(Points.StringPoint point) { throw new NotImplementedException(); }
@@ -166,12 +166,12 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
         this._particles[i].remainingLifetime = 100000;
         this._particles[i].position = point;
         var clamped = Math.Min(Math.Max(0.0f, i / l), 1.0f);
-        this._particles[i].startColor = this._gradient.Evaluate(clamped);
+        this._particles[i].startColor = this._gradient.Evaluate(time : clamped);
         this._particles[i].startSize = this._size;
         i++;
       }
 
-      this._particle_system.SetParticles(this._particles, points.Length);
+      this._particle_system.SetParticles(particles : this._particles, size : points.Length);
     }
 
     public void PlotSeries(float[] points) {
@@ -189,20 +189,21 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
       foreach (var point in points) {
         this._particles[i].remainingLifetime = 100000;
         this._particles[i].position = Vector3.one * i;
-        var clamped = Math.Min(Math.Max(0.0f, point), 1.0f);
-        this._particles[i].startColor = this._gradient.Evaluate(clamped);
+        var clamped = Math.Min(Math.Max(0.0f, val2 : point), 1.0f);
+        this._particles[i].startColor = this._gradient.Evaluate(time : clamped);
         this._particles[i].startSize = this._size;
         i++;
       }
 
-      this._particle_system.SetParticles(this._particles, points.Length);
+      this._particle_system.SetParticles(particles : this._particles, size : points.Length);
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <param name="points"></param>
     public override void PlotSeries(Points.ValuePoint[] points) {
-      var alive = this._particle_system.GetParticles(this._particles);
+      var alive = this._particle_system.GetParticles(particles : this._particles);
       if (alive < points.Length) {
         this._particles = new ParticleSystem.Particle[points.Length];
       }
@@ -211,12 +212,12 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
       foreach (var point in points) {
         this._particles[i].remainingLifetime = 100000;
         this._particles[i].position = point._Pos;
-        this._particles[i].startColor = this._gradient.Evaluate(point._Val);
+        this._particles[i].startColor = this._gradient.Evaluate(time : point._Val);
         this._particles[i].startSize = point._Size;
         i++;
       }
 
-      this._particle_system.SetParticles(this._particles, points.Length);
+      this._particle_system.SetParticles(particles : this._particles, size : points.Length);
     }
   }
 }

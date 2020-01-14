@@ -16,7 +16,7 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <summary>
     /// </summary>
     [SerializeField]
-    protected Axis _Axis_Of_Motion;
+    protected AxisEnum _axisEnum_of_motion;
 
     /// <summary>
     ///
@@ -39,7 +39,7 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <summary>
     ///
     /// </summary>
-    public override string PrototypingTypeName { get { return "EulerTransform" + this._Axis_Of_Motion; } }
+    public override string PrototypingTypeName { get { return "EulerTransform" + this._axisEnum_of_motion; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -47,111 +47,111 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <param name="motion"></param>
     /// <exception cref="T:System.ArgumentOutOfRangeException"></exception>
     protected override void InnerApplyMotion(IMotion motion) {
-      var layer_mask = 1 << LayerMask.NameToLayer(this._Layer_Mask);
+      var layer_mask = 1 << LayerMask.NameToLayer(layerName : this._Layer_Mask);
       var vec = Vector3.zero;
-      switch (this._Axis_Of_Motion) {
-        case Axis.X_: // Translational
+      switch (this._axisEnum_of_motion) {
+        case AxisEnum.X_: // Translational
           vec = Vector3.right * motion.Strength;
           break;
-        case Axis.Y_: // Translational
+        case AxisEnum.Y_: // Translational
           vec = -Vector3.up * motion.Strength;
           break;
-        case Axis.Z_: // Translational
+        case AxisEnum.Z_: // Translational
           vec = -Vector3.forward * motion.Strength;
           break;
-        case Axis.Rot_x_: // Rotational
-          this.transform.Rotate(Vector3.right, motion.Strength, this._Relative_To);
+        case AxisEnum.Rot_x_: // Rotational
+          this.transform.Rotate(axis : Vector3.right, angle : motion.Strength, relativeTo : this._Relative_To);
           return;
-        case Axis.Rot_y_: // Rotational
-          this.transform.Rotate(Vector3.up, motion.Strength, this._Relative_To);
+        case AxisEnum.Rot_y_: // Rotational
+          this.transform.Rotate(axis : Vector3.up, angle : motion.Strength, relativeTo : this._Relative_To);
           return;
-        case Axis.Rot_z_: // Rotational
-          this.transform.Rotate(Vector3.forward, motion.Strength, this._Relative_To);
+        case AxisEnum.Rot_z_: // Rotational
+          this.transform.Rotate(axis : Vector3.forward, angle : motion.Strength, relativeTo : this._Relative_To);
           return;
-        case Axis.Dir_x_:
-          this.transform.Rotate(Vector3.forward, motion.Strength, this._Relative_To);
+        case AxisEnum.Dir_x_:
+          this.transform.Rotate(axis : Vector3.forward, angle : motion.Strength, relativeTo : this._Relative_To);
           return;
-        case Axis.Dir_y_:
-          this.transform.Rotate(Vector3.up, motion.Strength, this._Relative_To);
+        case AxisEnum.Dir_y_:
+          this.transform.Rotate(axis : Vector3.up, angle : motion.Strength, relativeTo : this._Relative_To);
           return;
-        case Axis.Dir_z_:
-          this.transform.Rotate(Vector3.right, motion.Strength, this._Relative_To);
+        case AxisEnum.Dir_z_:
+          this.transform.Rotate(axis : Vector3.right, angle : motion.Strength, relativeTo : this._Relative_To);
           return;
         default: throw new ArgumentOutOfRangeException();
       }
 
       if (this._No_Collisions) {
-        if (!Physics.Raycast(this.transform.position,
-                             vec,
-                             Mathf.Abs(motion.Strength),
-                             layer_mask)) {
-          this.transform.Translate(vec, this._Relative_To);
+        if (!Physics.Raycast(origin : this.transform.position,
+                             direction : vec,
+                             Mathf.Abs(f : motion.Strength),
+                             layerMask : layer_mask)) {
+          this.transform.Translate(translation : vec, relativeTo : this._Relative_To);
         }
       } else {
-        this.transform.Translate(vec, this._Relative_To);
+        this.transform.Translate(translation : vec, relativeTo : this._Relative_To);
       }
     }
     #if UNITY_EDITOR
     void OnDrawGizmosSelected() {
       if (this.enabled) {
         var position = this.transform.position;
-        switch (this._Axis_Of_Motion) {
-          case Axis.X_:
-            Debug.DrawLine(position, position + Vector3.right * 2, Color.green);
+        switch (this._axisEnum_of_motion) {
+          case AxisEnum.X_:
+            Debug.DrawLine(start : position, position + Vector3.right * 2, color : Color.green);
             break;
-          case Axis.Y_:
-            Debug.DrawLine(position, position + Vector3.up * 2, Color.green);
+          case AxisEnum.Y_:
+            Debug.DrawLine(start : position, position + Vector3.up * 2, color : Color.green);
             break;
-          case Axis.Z_:
-            Debug.DrawLine(position, position + Vector3.forward * 2, Color.green);
+          case AxisEnum.Z_:
+            Debug.DrawLine(start : position, position + Vector3.forward * 2, color : Color.green);
             break;
-          case Axis.Rot_x_:
+          case AxisEnum.Rot_x_:
             //Handles.DrawSolidArc
             //Handles.DrawSolidDisc
 
-            Handles.DrawWireArc(this.transform.position,
-                                this.transform.right,
-                                -this.transform.forward,
+            Handles.DrawWireArc(center : this.transform.position,
+                                normal : this.transform.right,
+                                @from : -this.transform.forward,
                                 180,
                                 2);
             break;
-          case Axis.Rot_y_:
-            Handles.DrawWireArc(this.transform.position,
-                                this.transform.up,
-                                -this.transform.right,
+          case AxisEnum.Rot_y_:
+            Handles.DrawWireArc(center : this.transform.position,
+                                normal : this.transform.up,
+                                @from : -this.transform.right,
                                 180,
                                 2);
             break;
-          case Axis.Rot_z_:
-            Handles.DrawWireArc(this.transform.position,
-                                this.transform.forward,
-                                -this.transform.right,
+          case AxisEnum.Rot_z_:
+            Handles.DrawWireArc(center : this.transform.position,
+                                normal : this.transform.forward,
+                                @from : -this.transform.right,
                                 180,
                                 2);
             break;
-          case Axis.Dir_x_:
-            Handles.DrawWireArc(this.transform.position,
-                                this.transform.forward,
-                                -this.transform.right,
+          case AxisEnum.Dir_x_:
+            Handles.DrawWireArc(center : this.transform.position,
+                                normal : this.transform.forward,
+                                @from : -this.transform.right,
                                 180,
                                 2);
             break;
-          case Axis.Dir_y_:
-            Handles.DrawWireArc(this.transform.position,
-                                this.transform.up,
-                                -this.transform.right,
+          case AxisEnum.Dir_y_:
+            Handles.DrawWireArc(center : this.transform.position,
+                                normal : this.transform.up,
+                                @from : -this.transform.right,
                                 180,
                                 2);
             break;
-          case Axis.Dir_z_:
-            Handles.DrawWireArc(this.transform.position,
-                                this.transform.right,
-                                -this.transform.forward,
+          case AxisEnum.Dir_z_:
+            Handles.DrawWireArc(center : this.transform.position,
+                                normal : this.transform.right,
+                                @from : -this.transform.forward,
                                 180,
                                 2);
             break;
           default:
-            Gizmos.DrawIcon(position, "console.warnicon", true);
+            Gizmos.DrawIcon(center : position, "console.warnicon", true);
             break;
         }
       }
@@ -162,6 +162,6 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <summary>
     ///
     /// </summary>
-    public override string[] InnerMotionNames { get { return new[] {this._Axis_Of_Motion.ToString()}; } }
+    public override string[] InnerMotionNames { get { return new[] {this._axisEnum_of_motion.ToString()}; } }
   }
 }

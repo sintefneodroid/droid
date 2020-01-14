@@ -39,15 +39,16 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
         this.bounding_boxes = FindObjectsOfType<BoundingBox>();
       }
 
-      foreach (var bb in this.bounding_boxes) {
-        if (this._camera.WorldToScreenPoint(bb.Bounds.center).z < 0) {
+      for (var index = 0; index < this.bounding_boxes.Length; index++) {
+        var bb = this.bounding_boxes[index];
+        if (this._camera.WorldToScreenPoint(position : bb.Bounds.center).z < 0) {
           return;
         }
 
-        var a = bb.ScreenSpaceBoundingRect(this._camera);
+        var a = bb.ScreenSpaceBoundingRect(a_camera : this._camera);
 
-        this._rects.Add(a);
-        this._names.Add(bb.name);
+        this._rects.Add(item : a);
+        this._names.Add(item : bb.name);
       }
     }
 
@@ -62,10 +63,11 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
     void Draw() {
       this.Compute();
       var i = 0;
-      foreach (var rect in this._rects) {
+      for (var index = 0; index < this._rects.Count; index++) {
+        var rect = this._rects[index : index];
         var text = "";
         if (this._draw_label) {
-          text += $"{this._names[i]}";
+          text += $"{this._names[index : i]}";
         }
 
         if (this._draw_coords) {
@@ -75,7 +77,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
         var a = rect;
         a.y = Screen.height - (a.y + a.height);
 
-        GUI.Box(a, text);
+        GUI.Box(position : a, text : text);
 
         i++;
       }

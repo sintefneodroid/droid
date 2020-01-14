@@ -30,9 +30,9 @@ namespace droid.Runtime.Sampling {
             }
 
             Debug.Log(total / MAX_CNT);
-            Debug.Log(a);
-            Debug.Log(b);
-            Debug.Log(c);
+            Debug.Log(message : a);
+            Debug.Log(message : b);
+            Debug.Log(message : c);
         }
     }
 }

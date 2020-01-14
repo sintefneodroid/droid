@@ -9,9 +9,9 @@ using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 
 namespace droid.Runtime.Prototyping.Sensors.Visual {
-  /// <summary>
-  ///
-  /// </summary>
+  /// <inheritdoc cref="Sensor" />
+  ///  <summary>
+  ///  </summary>
   [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
                     + "ByteArrayCamera"
                     + SensorComponentMenuPath._Postfix)]
@@ -44,10 +44,10 @@ namespace droid.Runtime.Prototyping.Sensors.Visual {
       }
 
       if (this._texture) {
-        UnityHelpers.Destroy(this._texture);
+        UnityHelpers.Destroy(obj : this._texture);
       }
 
-      if (this._manager?.SimulatorConfiguration?.SimulationType != SimulationType.Frame_dependent_) {
+      if (this._manager?.SimulatorConfiguration?.SimulationType != SimulationTypeEnum.Frame_dependent_) {
         if (this.disable_camera_when_unused) {
           this._camera.enabled = false;
         }
@@ -58,26 +58,26 @@ namespace droid.Runtime.Prototyping.Sensors.Visual {
         #if NEODROID_DEBUG
         Debug.LogWarning($"RenderTexture target not available on {this.Identifier} not available, allocating a default!");
         #endif
-        this._rt = new RenderTexture(NeodroidConstants._Default_Width,
-                                     NeodroidConstants._Default_Height,
+        this._rt = new RenderTexture(width : NeodroidConstants._Default_Width,
+                                     height : NeodroidConstants._Default_Height,
                                      0,
-                                     RenderTextureFormat.ARGBFloat) {
+                                     format : RenderTextureFormat.ARGBFloat) {
                                                                         filterMode = FilterMode.Point,
                                                                         name = $"rt_{this.Identifier}",
                                                                         enableRandomWrite = true
                                                                     };
         this._rt.Create();
         this._camera.targetTexture = this._rt;
-        this._texture = new Texture2D(NeodroidConstants._Default_Width,
-                                      NeodroidConstants._Default_Height,
-                                      NeodroidConstants._Default_TextureFormat,
+        this._texture = new Texture2D(width : NeodroidConstants._Default_Width,
+                                      height : NeodroidConstants._Default_Height,
+                                      textureFormat : NeodroidConstants._Default_TextureFormat,
                                       false,
-                                      this.linear_space);
+                                      linear : this.linear_space);
       } else {
-        this._texture = new Texture2D(target_texture.width,
-                                      target_texture.height,
-                                      target_texture.graphicsFormat,
-                                      _flags);
+        this._texture = new Texture2D(width : target_texture.width,
+                                      height : target_texture.height,
+                                      format : target_texture.graphicsFormat,
+                                      flags : _flags);
       }
     }
 
@@ -91,7 +91,7 @@ namespace droid.Runtime.Prototyping.Sensors.Visual {
     ///
     /// </summary>
     protected virtual void OnPostRender() {
-      if (this._manager?.SimulatorConfiguration?.SimulationType == SimulationType.Frame_dependent_) {
+      if (this._manager?.SimulatorConfiguration?.SimulationType == SimulationTypeEnum.Frame_dependent_) {
         this.UpdateArray();
       }
       #if NEODROID_DEBUG
@@ -124,8 +124,8 @@ namespace droid.Runtime.Prototyping.Sensors.Visual {
 
         this._texture.ReadPixels(new Rect(0,
                                           0,
-                                          this._texture.width,
-                                          this._texture.height),
+                                          width : this._texture.width,
+                                          height : this._texture.height),
                                  0,
                                  0,
                                  recalculateMipMaps : false);
@@ -151,7 +151,7 @@ namespace droid.Runtime.Prototyping.Sensors.Visual {
     /// </summary>
     public override void UpdateObservation() {
       this._grab = true;
-      if (this._manager?.SimulatorConfiguration?.SimulationType != SimulationType.Frame_dependent_) {
+      if (this._manager?.SimulatorConfiguration?.SimulationType != SimulationTypeEnum.Frame_dependent_) {
         if (Application.isPlaying) {
           this._camera.Render();
         }

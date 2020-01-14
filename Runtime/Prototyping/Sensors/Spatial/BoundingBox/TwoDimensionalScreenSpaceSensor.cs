@@ -22,9 +22,9 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.BoundingBox {
       if (this._reference_camera) {
         Vector3 point;
         if (this._use_viewport) {
-          point = this._reference_camera.WorldToViewportPoint(this.transform.position);
+          point = this._reference_camera.WorldToViewportPoint(position : this.transform.position);
         } else {
-          point = this._reference_camera.WorldToScreenPoint(this.transform.position);
+          point = this._reference_camera.WorldToScreenPoint(position : this.transform.position);
         }
 
         this._observation_value = point;

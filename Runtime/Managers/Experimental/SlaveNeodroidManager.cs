@@ -102,11 +102,11 @@ namespace droid.Runtime.Managers.Experimental {
     void CreateMessagingClient() {
       try {
         if (this.Configuration.IpAddress != "" || this.Configuration.Port != 0) {
-          this._Message_Client = new MessageClient(this.Configuration.IpAddress,
-                                                   this.Configuration.Port,
+          this._Message_Client = new MessageClient(ip_address : this.Configuration.IpAddress,
+                                                   port : this.Configuration.Port,
                                                    false,
                                                    #if NEODROID_DEBUG
-                                                   this.Debugging
+                                                   debug : this.Debugging
                                                    #else
                                                    false
                                                    #endif
@@ -114,14 +114,14 @@ namespace droid.Runtime.Managers.Experimental {
         } else {
           this._Message_Client = new MessageClient(
                                                    #if NEODROID_DEBUG
-                                                   this.Debugging
+                                                   debug : this.Debugging
                                                    #else
                                                    false
                                                    #endif
                                                   );
         }
       } catch (Exception exception) {
-        Debug.Log(exception);
+        Debug.Log(message : exception);
         throw;
 
         //TODO: close application is port is already in use.
@@ -132,7 +132,7 @@ namespace droid.Runtime.Managers.Experimental {
     /// </summary>
     /// <param name="threaded"></param>
     void StartMessagingServer(bool threaded = false) {
-      this._Message_Client.ListenForClientToConnect(this.OnDebugCallback);
+      this._Message_Client.ListenForClientToConnect(debug_callback : this.OnDebugCallback);
       #if NEODROID_DEBUG
       if (this.Debugging) {
         Debug.Log(" Messaging Server is listening for clients");
@@ -226,8 +226,8 @@ namespace droid.Runtime.Managers.Experimental {
       get { return Time.timeScale; }
       set {
         #if UNITY_EDITOR
-        Time.timeScale = Math.Min(value, 99);
-        this._last_simulation_time = Math.Min(value, 99);
+        Time.timeScale = Math.Min(val1 : value, 99);
+        this._last_simulation_time = Math.Min(val1 : value, 99);
         #else
         Time.timeScale = value;
         this._last_simulation_time = value;
@@ -345,9 +345,9 @@ namespace droid.Runtime.Managers.Experimental {
       #if UNITY_EDITOR
       if (!Application.isPlaying) {
         var manager_script = MonoScript.FromMonoBehaviour(this);
-        if (MonoImporter.GetExecutionOrder(manager_script) != _script_execution_order) {
-          MonoImporter.SetExecutionOrder(manager_script,
-                                         _script_execution_order); // Ensures that PreStep is called first, before all other scripts.
+        if (MonoImporter.GetExecutionOrder(script : manager_script) != _script_execution_order) {
+          MonoImporter.SetExecutionOrder(script : manager_script,
+                                         order : _script_execution_order); // Ensures that PreStep is called first, before all other scripts.
           Debug.LogWarning("Execution Order changed, you will need to press play again to make everything function correctly!");
           EditorApplication.isPlaying = false;
           //TODO: UnityEngine.Experimental.LowLevel.PlayerLoop.SetPlayerLoop(new UnityEngine.Experimental.LowLevel.PlayerLoopSystem());
@@ -367,9 +367,9 @@ namespace droid.Runtime.Managers.Experimental {
         this.Configuration = ScriptableObject.CreateInstance<SimulatorConfiguration>();
       }
 
-      this.ApplyConfigurationToUnity(this.Configuration);
+      this.ApplyConfigurationToUnity(configuration : this.Configuration);
 
-      if (this.Configuration.SimulationType == SimulationType.Physics_dependent_) {
+      if (this.Configuration.SimulationType == SimulationTypeEnum.Physics_dependent_) {
         this.EarlyFixedUpdateEvent += this.OnPreTick;
         this.FixedUpdateEvent += this.OnTick;
         this.FixedUpdateEvent += this.Tick;
@@ -380,16 +380,16 @@ namespace droid.Runtime.Managers.Experimental {
         this.UpdateEvent += this.OnTick;
         this.UpdateEvent += this.Tick;
         switch (this.Configuration.FrameFinishes) {
-          case FrameFinishes.Late_update_:
+          case FrameFinishesEnum.Late_update_:
             this.LateUpdateEvent += this.OnPostTick;
             break;
-          case FrameFinishes.On_post_render_:
+          case FrameFinishesEnum.On_post_render_:
             this.OnPostRenderEvent += this.OnPostTick;
             break;
-          case FrameFinishes.On_render_image_:
+          case FrameFinishesEnum.On_render_image_:
             this.OnRenderImageEvent += this.OnPostTick;
             break;
-          case FrameFinishes.End_of_frame_:
+          case FrameFinishesEnum.End_of_frame_:
             this.StartCoroutine(this.EndOfFrameEventGenerator());
             this.OnEndOfFrameEvent += this.OnPostTick;
             break;
@@ -398,7 +398,7 @@ namespace droid.Runtime.Managers.Experimental {
       }
 
       this.CreateMessagingClient();
-      if (this.Configuration.SimulationType == SimulationType.Physics_dependent_) {
+      if (this.Configuration.SimulationType == SimulationTypeEnum.Physics_dependent_) {
         this.StartMessagingServer(); // Remember to manually bind receive to an event in a derivation
       } else {
         this.StartMessagingServer(true);
@@ -409,7 +409,7 @@ namespace droid.Runtime.Managers.Experimental {
     /// </summary>
     public void ApplyConfigurationToUnity(ISimulatorConfiguration configuration) {
       if (configuration.ApplyQualitySettings) {
-        QualitySettings.SetQualityLevel(configuration.QualityLevel, true);
+        QualitySettings.SetQualityLevel(index : configuration.QualityLevel, true);
         QualitySettings.vSyncCount = configuration.VSyncCount;
       }
 
@@ -429,7 +429,7 @@ namespace droid.Runtime.Managers.Experimental {
       #else
 
       PlayerSettings.resizableWindow = configuration.ResizableWindow;
-      PlayerSettings.colorSpace = configuration.ColorSpace;
+      PlayerSettings.colorSpace = configuration.UnityColorSpace;
       PlayerSettings.displayResolutionDialog = ResolutionDialogSetting.Disabled;
       //PlayerSettings.use32BitDisplayBuffer
       #endif
@@ -516,7 +516,7 @@ namespace droid.Runtime.Managers.Experimental {
       }
       #endif
 
-      if (this.Configuration.StepExecutionPhase == ExecutionPhase.Before_Tick_) {
+      if (this.Configuration.StepExecutionPhase == ExecutionPhaseEnum.Before_tick_) {
         this.ExecuteStep();
       }
     }
@@ -529,7 +529,7 @@ namespace droid.Runtime.Managers.Experimental {
         Debug.Log("OnTick");
       }
       #endif
-      if (this.Configuration.StepExecutionPhase == ExecutionPhase.On_Tick_) {
+      if (this.Configuration.StepExecutionPhase == ExecutionPhaseEnum.On_tick_) {
         this.ExecuteStep();
       }
     }
@@ -549,7 +549,7 @@ namespace droid.Runtime.Managers.Experimental {
         environment.PostStep();
       }
 
-      if (this.Configuration.StepExecutionPhase == ExecutionPhase.After_Tick_) {
+      if (this.Configuration.StepExecutionPhase == ExecutionPhaseEnum.After_tick_) {
         this.ExecuteStep();
       }
 
@@ -561,12 +561,12 @@ namespace droid.Runtime.Managers.Experimental {
     void ExecuteStep() {
       if (!this.HasStepped) {
         if (!this._syncing_environments) {
-          this.React(this.CurrentReactions);
+          this.React(reactions : this.CurrentReactions);
         }
 
         if (this.AwaitingReply) {
           var states = this.CollectStates();
-          this.PostReact(states);
+          this.PostReact(states : states);
         }
 
         this.HasStepped = true;
@@ -618,7 +618,7 @@ namespace droid.Runtime.Managers.Experimental {
           }
           #endif
 
-          this.Reply(states);
+          this.Reply(states : states);
           this.AwaitingReply = false;
           this._skip_frame_i = 0;
         } else {
@@ -651,7 +651,7 @@ namespace droid.Runtime.Managers.Experimental {
     /// <param name="states"></param>
     void Reply(EnvironmentSnapshot[] states) {
       lock (this._send_lock) {
-        var configuration_message = new SimulatorConfigurationMessage(this.Configuration);
+        var configuration_message = new SimulatorConfigurationMessage(simulator_configuration : this.Configuration);
         var describe = false;
         if (this.CurrentReactions != null) {
           foreach (var reaction in this.CurrentReactions) {
@@ -661,15 +661,15 @@ namespace droid.Runtime.Managers.Experimental {
           }
         }
 
-        this._Message_Client.SendStates(states,
+        this._Message_Client.SendStates(environment_states : states,
                                         simulator_configuration_message : configuration_message,
                                         do_serialise_unobservables :
-                                        describe || this.Configuration.AlwaysSerialiseUnobservables,
+                                        describe || this.Configuration.SerialiseUnobservables,
                                         serialise_individual_observables :
-                                        describe || this.Configuration.AlwaysSerialiseIndividualObservables,
+                                        describe || this.Configuration.SerialiseIndividualObservables,
                                         do_serialise_observables : describe
                                                                    || this._configuration
-                                                                          .AlwaysSerialiseAggregatedFloatArray);
+                                                                          .SerialiseAggregatedFloatArray);
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log("Replying");
@@ -694,10 +694,10 @@ namespace droid.Runtime.Managers.Experimental {
     /// <param name="reactions"></param>
     /// <returns></returns>
     public void React(Reaction[] reactions) {
-      this.SetStepping(reactions);
+      this.SetStepping(reactions : reactions);
       foreach (var reaction in reactions) {
-        if (this._Environments.ContainsKey(reaction.RecipientEnvironment)) {
-          this._Environments[reaction.RecipientEnvironment].React(reaction);
+        if (this._Environments.ContainsKey(key : reaction.RecipientEnvironment)) {
+          this._Environments[key : reaction.RecipientEnvironment].React(reaction : reaction);
         } else if (reaction.RecipientEnvironment == "all") {
           #if NEODROID_DEBUG
           if (this.Debugging) {
@@ -706,7 +706,7 @@ namespace droid.Runtime.Managers.Experimental {
           #endif
 
           foreach (var environment in this._Environments.Values) {
-            environment.React(reaction);
+            environment.React(reaction : reaction);
           }
         } else {
           #if NEODROID_DEBUG
@@ -754,17 +754,25 @@ namespace droid.Runtime.Managers.Experimental {
     }
 
     void SetStepping(Reaction[] reactions) {
-      if (reactions.Any(reaction => reaction.Parameters.StepResetObserveEnu == StepResetObserve.Step_)) {
-        this.SetStepping(true);
+      for (var index = 0; index < reactions.Length; index++) {
+        var reaction = reactions[index];
+        if (reaction.Parameters.ReactionType == ReactionTypeEnum.Step_) {
+          this.SetStepping(true);
+          break;
+        }
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="arg0"></param>
     public void SetTesting(bool arg0) { this.TestActuators = arg0; }
 
     /// <summary>
     /// </summary>
     public void ResetAllEnvironments() {
-      this.React(new Reaction(new ReactionParameters(StepResetObserve.Reset_, false, true),
+      this.React(new Reaction(new ReactionParameters(reaction_type : ReactionTypeEnum.Reset_, false, true),
                               null,
                               null,
                               null,
@@ -791,7 +799,7 @@ namespace droid.Runtime.Managers.Experimental {
     /// <summary>
     /// </summary>
     /// <param name="environment"></param>
-    public void Register(IEnvironment environment) { this.Register(environment, environment.Identifier); }
+    public void Register(IEnvironment environment) { this.Register(environment : environment, identifier : environment.Identifier); }
 
     /// <inheritdoc />
     /// <summary>
@@ -799,14 +807,14 @@ namespace droid.Runtime.Managers.Experimental {
     /// <param name="environment"></param>
     /// <param name="identifier"></param>
     public void Register(IEnvironment environment, string identifier) {
-      if (!this._Environments.ContainsKey(identifier)) {
+      if (!this._Environments.ContainsKey(key : identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log($"Manager {this.name} already has an environment with the identifier: {identifier}");
         }
         #endif
 
-        this._Environments.Add(identifier, environment);
+        this._Environments.Add(key : identifier, value : environment);
       } else {
         Debug.LogWarning($"WARNING! Please check for duplicates, SimulationManager {this.name} "
                          + $"already has environment {identifier} registered");
@@ -818,14 +826,14 @@ namespace droid.Runtime.Managers.Experimental {
     /// <param name="environment"></param>
     /// <param name="identifier"></param>
     public void UnRegister(IEnvironment environment, string identifier) {
-      if (this._Environments.ContainsKey(identifier)) {
+      if (this._Environments.ContainsKey(key : identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log($"SimulationManager {this.name} unregistered Environment {identifier}");
         }
         #endif
 
-        this._Environments.Remove(identifier);
+        this._Environments.Remove(key : identifier);
       }
     }
 
@@ -833,7 +841,7 @@ namespace droid.Runtime.Managers.Experimental {
     /// </summary>
     /// <param name="neodroid_environment"></param>
     public void UnRegister(IEnvironment neodroid_environment) {
-      this.UnRegister(neodroid_environment, neodroid_environment.Identifier);
+      this.UnRegister(environment : neodroid_environment, identifier : neodroid_environment.Identifier);
     }
 
     #endregion
@@ -851,7 +859,7 @@ namespace droid.Runtime.Managers.Experimental {
         }
         #endif
 
-        this.SetReactionsFromExternalSource(reactions);
+        this.SetReactionsFromExternalSource(reactions : reactions);
 
         this.OnReceiveEvent?.Invoke();
       }
@@ -873,7 +881,7 @@ namespace droid.Runtime.Managers.Experimental {
 
           this.CurrentReactions = reactions;
 
-          this.Configuration.StepExecutionPhase = this.CurrentReactions[0].Parameters.Phase;
+          this.Configuration.StepExecutionPhase = this.CurrentReactions[0].Parameters.PhaseEnum;
           this.AwaitingReply = true;
           this.HasStepped = false;
         } else {
@@ -912,9 +920,9 @@ namespace droid.Runtime.Managers.Experimental {
       }
       #endif
 
-      this._Message_Client.StartReceiving(this.OnReceiveCallback,
-                                          this.OnDisconnectCallback,
-                                          this.OnDebugCallback);
+      this._Message_Client.StartReceiving(cmd_callback : this.OnReceiveCallback,
+                                          disconnect_callback : this.OnDisconnectCallback,
+                                          debug_callback : this.OnDebugCallback);
     }
 
     #endregion

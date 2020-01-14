@@ -2,7 +2,7 @@ namespace droid.Runtime.Enums {
   /// <summary>
   ///   Determines where in the monobehaviour cycle a frame/step is finished
   /// </summary>
-  public enum FrameFinishes {
+  public enum FrameFinishesEnum {
     /// <summary>
     ///   When ever all scripts has run their respective updates
     ///   NOTE: Not working as expected, does not seem to work with physics engine.

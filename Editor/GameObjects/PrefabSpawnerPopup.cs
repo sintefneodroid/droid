@@ -15,7 +15,7 @@ namespace droid.Editor.GameObjects {
     [MenuItem(EditorGameObjectMenuPath._GameObjectMenuPath + "SpawnPrefab", false, 10)]
     static void Init2() {
       try {
-        PopupWindow.Show(_rect, new PrefabsPopup());
+        PopupWindow.Show(activatorRect : _rect, new PrefabsPopup());
       } catch (ExitGUIException) {
         //Debug.Log(e);
       }
@@ -31,7 +31,7 @@ namespace droid.Editor.GameObjects {
     int _x_size = 300;
     int _y_size = 200;
 
-    public override Vector2 GetWindowSize() { return new Vector2(this._x_size, this._y_size); }
+    public override Vector2 GetWindowSize() { return new Vector2(x : this._x_size, y : this._y_size); }
 
     public override void OnGUI(Rect rect) {
       if (!this._updated_pos) {
@@ -43,7 +43,7 @@ namespace droid.Editor.GameObjects {
         this._updated_pos = true;
       }
 
-      GUILayout.Label("Spawn Prefab", EditorStyles.boldLabel);
+      GUILayout.Label("Spawn Prefab", style : EditorStyles.boldLabel);
 
       // Supports the following syntax:
       // 't:type' syntax (e.g 't:Texture2D' will show Texture2D objects)
@@ -55,15 +55,15 @@ namespace droid.Editor.GameObjects {
 
       var prefabs = AssetDatabase.FindAssets("t:Prefab a:all");
 
-      this._scroll_position = EditorGUILayout.BeginScrollView(this._scroll_position);
+      this._scroll_position = EditorGUILayout.BeginScrollView(scrollPosition : this._scroll_position);
       EditorGUILayout.BeginVertical();
       foreach (var prefab in prefabs) {
-        var path = AssetDatabase.GUIDToAssetPath(prefab);
+        var path = AssetDatabase.GUIDToAssetPath(guid : prefab);
         //Debug.Log(path);
-        var go = AssetDatabase.LoadAssetAtPath(path, typeof(GameObject));
+        var go = AssetDatabase.LoadAssetAtPath(assetPath : path, typeof(GameObject));
         if (path.Contains("Neodroid")) {
-          if (GUILayout.Button(go.name)) {
-            Object.Instantiate(go, Selection.activeTransform);
+          if (GUILayout.Button(text : go.name)) {
+            Object.Instantiate(original : go, parent : Selection.activeTransform);
           }
         }
       }

@@ -1,9 +1,10 @@
+using System;
 using droid.Runtime.Messaging.Messages;
 
 namespace droid.Runtime.Interfaces {
-  /// <summary>
-  ///
-  /// </summary>
+  /// <inheritdoc />
+  ///  <summary>
+  ///  </summary>
   public interface IEnvironment : IRegisterable {
     /// <summary>
     ///

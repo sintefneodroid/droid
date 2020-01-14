@@ -10,22 +10,22 @@ namespace droid.Runtime.Interfaces {
     /// <summary>
     ///
     /// </summary>
-    bool AlwaysSerialiseIndividualObservables { get; set; }
+    bool SerialiseIndividualObservables { get; set; }
 
     /// <summary>
     ///
     /// </summary>
-    bool AlwaysSerialiseAggregatedFloatArray { get; set; }
+    bool SerialiseAggregatedFloatArray { get; set; }
 
     /// <summary>
     ///
     /// </summary>
-    bool AlwaysSerialiseUnobservables { get; set; }
+    bool SerialiseUnobservables { get; set; }
 
     /// <summary>
     ///
     /// </summary>
-    SimulationType SimulationType { get; set; }
+    SimulationTypeEnum SimulationType { get; set; }
 
     /// <summary>
     ///
@@ -35,7 +35,7 @@ namespace droid.Runtime.Interfaces {
     /// <summary>
     ///
     /// </summary>
-    FrameFinishes FrameFinishes { get; set; }
+    FrameFinishesEnum FrameFinishes { get; set; }
 
     /// <summary>
     ///
@@ -75,7 +75,7 @@ namespace droid.Runtime.Interfaces {
     /// <summary>
     ///
     /// </summary>
-    ExecutionPhase StepExecutionPhase { get; set; }
+    ExecutionPhaseEnum StepExecutionPhase { get; set; }
 
     /// <summary>
     ///
@@ -115,7 +115,7 @@ namespace droid.Runtime.Interfaces {
     /// <summary>
     ///
     /// </summary>
-    ColorSpace ColorSpace { get; set; }
+    ColorSpace UnityColorSpace { get; set; }
 
     /// <summary>
     ///

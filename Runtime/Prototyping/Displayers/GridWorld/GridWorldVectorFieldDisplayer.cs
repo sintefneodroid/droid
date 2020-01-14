@@ -45,7 +45,7 @@ namespace droid.Runtime.Prototyping.Displayers.GridWorld {
     ///
     /// </summary>
     /// <param name="value"></param>
-    public override void Display(Vector3[] value) { this.ScatterPlot(value); }
+    public override void Display(Vector3[] value) { this.ScatterPlot(points : value); }
 
     /// <summary>
     ///
@@ -83,7 +83,7 @@ namespace droid.Runtime.Prototyping.Displayers.GridWorld {
     void Update() {
       if (this._RetainLastPlot) {
         if (this._Values != null) {
-          PlotSeries(this._Values);
+          PlotSeries(points : this._Values);
         }
       }
     }
@@ -113,22 +113,22 @@ namespace droid.Runtime.Prototyping.Displayers.GridWorld {
         //point._Size
         switch ((int)point._Val) {
           case 0:
-            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.forward, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(pos : point._Pos, direction : Vector3.forward, color : Color.cyan);
             break;
           case 1:
-            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.back, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(pos : point._Pos, direction : Vector3.back, color : Color.cyan);
             break;
           case 2:
-            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.up, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(pos : point._Pos, direction : Vector3.up, color : Color.cyan);
             break;
           case 3:
-            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.down, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(pos : point._Pos, direction : Vector3.down, color : Color.cyan);
             break;
           case 4:
-            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.left, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(pos : point._Pos, direction : Vector3.left, color : Color.cyan);
             break;
           case 5:
-            NeodroidDrawingUtilities.ForDebug(point._Pos, Vector3.right, Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(pos : point._Pos, direction : Vector3.right, color : Color.cyan);
             break;
         }
       }

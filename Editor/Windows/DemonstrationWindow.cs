@@ -31,7 +31,7 @@ namespace droid.Editor.Windows {
           (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidSettings.Current.NeodroidImportLocationProp
                                                    + "Gizmos/Icons/bullet_red.png",
                                                    typeof(Texture2D));
-      this.titleContent = new GUIContent("Neo:Rec", this._icon, "Window for recording demonstrations");
+      this.titleContent = new GUIContent("Neo:Rec", image : this._icon, "Window for recording demonstrations");
     }
 
     /// <summary>
@@ -40,9 +40,9 @@ namespace droid.Editor.Windows {
     public void OnInspectorUpdate() { this.Repaint(); }
 
     void OnGUI() {
-      this._file_name = EditorGUILayout.TextField("File Name:", this._file_name);
+      this._file_name = EditorGUILayout.TextField("File Name:", text : this._file_name);
 
-      if (GUILayout.Button(this._record_button)) {
+      if (GUILayout.Button(text : this._record_button)) {
         if (this._recording) {
           //recording
           this._status = "Idle...";
@@ -56,7 +56,7 @@ namespace droid.Editor.Windows {
         }
       }
 
-      EditorGUILayout.LabelField("Status: ", this._status);
+      EditorGUILayout.LabelField("Status: ", label2 : this._status);
     }
 
     void Update() {

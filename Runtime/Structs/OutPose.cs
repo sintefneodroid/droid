@@ -28,10 +28,12 @@ namespace droid.Runtime.Structs {
     }
 
     /// Constructor that takes a Vector3 and a Quaternion.
-    public OutPose(Vector3 position, Quaternion orientation) { this.Set(position, orientation); }
+    public OutPose(Vector3 position, Quaternion orientation) {
+      this.Set(position : position, orientation : orientation);
+    }
 
     /// Constructor that takes a Matrix4x4.
-    public OutPose(Matrix4x4 matrix) { this.Set(matrix); }
+    public OutPose(Matrix4x4 matrix) { this.Set(matrix : matrix); }
 
     /// <summary>
     ///
@@ -41,7 +43,7 @@ namespace droid.Runtime.Structs {
     protected void Set(Vector3 position, Quaternion orientation) {
       this.Position = position;
       this.Orientation = orientation;
-      this.Matrix = Matrix4x4.TRS(position, orientation, Vector3.one);
+      this.Matrix = Matrix4x4.TRS(pos : position, q : orientation, s : Vector3.one);
     }
 
     /// <summary>
@@ -60,10 +62,12 @@ namespace droid.Runtime.Structs {
   /// </summary>
   public class MutableOutPose : OutPose {
     /// Sets the position and orientation from a Vector3 + Quaternion.
-    public new void Set(Vector3 position, Quaternion orientation) { base.Set(position, orientation); }
+    public new void Set(Vector3 position, Quaternion orientation) {
+      base.Set(position : position, orientation : orientation);
+    }
 
     /// Sets the position and orientation from a Matrix4x4.
-    public new void Set(Matrix4x4 matrix) { base.Set(matrix); }
+    public new void Set(Matrix4x4 matrix) { base.Set(matrix : matrix); }
 
     /// Sets the position and orientation from a right-handed Matrix4x4.
     public void SetRightHanded(Matrix4x4 matrix) { this.Set(_FlipZ * matrix * _FlipZ); }

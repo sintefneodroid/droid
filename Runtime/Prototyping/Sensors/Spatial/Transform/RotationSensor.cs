@@ -17,11 +17,11 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
 
     [Header("Specific", order = 102)]
     [SerializeField]
-    CoordinateSpace _space = CoordinateSpace.Environment_;
+    CoordinateSpaceEnum _spaceEnum = CoordinateSpaceEnum.Environment_;
 
     /// <summary>
     /// </summary>
-    public CoordinateSpace Space { get { return this._space; } }
+    public CoordinateSpaceEnum SpaceEnum { get { return this._spaceEnum; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -51,9 +51,9 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     /// <summary>
     /// </summary>
     public override void UpdateObservation() {
-      if (this.ParentEnvironment != null && this._space == CoordinateSpace.Environment_) {
-        this.ObservationValue = this.ParentEnvironment.TransformRotation(this.transform.rotation);
-      } else if (this._space == CoordinateSpace.Local_) {
+      if (this.ParentEnvironment != null && this._spaceEnum == CoordinateSpaceEnum.Environment_) {
+        this.ObservationValue = this.ParentEnvironment.TransformRotation(quaternion : this.transform.rotation);
+      } else if (this._spaceEnum == CoordinateSpaceEnum.Local_) {
         this.ObservationValue = this.transform.localRotation;
       } else {
         this.ObservationValue = this.transform.rotation;

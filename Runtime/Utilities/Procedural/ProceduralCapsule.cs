@@ -97,7 +97,7 @@ namespace droid.Runtime.Utilities.Procedural {
 
           uv_x = 1f - step_x * x;
           uv_y = (vertices[ind].y + this._Height * 0.5f) / this._Height;
-          uvs[ind] = new Vector2(uv_x, uv_y);
+          uvs[ind] = new Vector2(x : uv_x, y : uv_y);
 
           ind++;
         }
@@ -113,7 +113,7 @@ namespace droid.Runtime.Utilities.Procedural {
 
           uv_x = 1f - step_x * x;
           uv_y = (vertices[ind].y + this._Height * 0.5f) / this._Height;
-          uvs[ind] = new Vector2(uv_x, uv_y);
+          uvs[ind] = new Vector2(x : uv_x, y : uv_y);
 
           ind++;
         }

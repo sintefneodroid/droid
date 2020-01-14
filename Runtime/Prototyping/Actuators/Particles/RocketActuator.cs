@@ -26,7 +26,7 @@ namespace droid.Runtime.Prototyping.Actuators.Particles {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName { get { return "Rocket" + this._Axis_Of_Motion; } }
+    public override string PrototypingTypeName { get { return "Rocket" + this._axisEnum_of_motion; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -63,8 +63,8 @@ namespace droid.Runtime.Prototyping.Actuators.Particles {
         return; // Do nothing
       }
 
-      switch (this._Axis_Of_Motion) {
-        case Axis.X_:
+      switch (this._axisEnum_of_motion) {
+        case AxisEnum.X_:
           if (this._Relative_To == Space.World) {
             this._Rigidbody.AddForce(Vector3.right * motion.Strength);
           } else {
@@ -72,7 +72,7 @@ namespace droid.Runtime.Prototyping.Actuators.Particles {
           }
 
           break;
-        case Axis.Y_:
+        case AxisEnum.Y_:
           if (this._Relative_To == Space.World) {
             this._Rigidbody.AddForce(Vector3.up * motion.Strength);
           } else {
@@ -80,7 +80,7 @@ namespace droid.Runtime.Prototyping.Actuators.Particles {
           }
 
           break;
-        case Axis.Z_:
+        case AxisEnum.Z_:
           if (this._Relative_To == Space.World) {
             this._Rigidbody.AddForce(Vector3.forward * motion.Strength);
           } else {
@@ -88,7 +88,7 @@ namespace droid.Runtime.Prototyping.Actuators.Particles {
           }
 
           break;
-        case Axis.Rot_x_:
+        case AxisEnum.Rot_x_:
           if (this._Relative_To == Space.World) {
             this._Rigidbody.AddTorque(Vector3.right * motion.Strength);
           } else {
@@ -96,7 +96,7 @@ namespace droid.Runtime.Prototyping.Actuators.Particles {
           }
 
           break;
-        case Axis.Rot_y_:
+        case AxisEnum.Rot_y_:
           if (this._Relative_To == Space.World) {
             this._Rigidbody.AddTorque(Vector3.up * motion.Strength);
           } else {
@@ -104,7 +104,7 @@ namespace droid.Runtime.Prototyping.Actuators.Particles {
           }
 
           break;
-        case Axis.Rot_z_:
+        case AxisEnum.Rot_z_:
           if (this._Relative_To == Space.World) {
             this._Rigidbody.AddTorque(Vector3.forward * motion.Strength);
           } else {
@@ -112,9 +112,9 @@ namespace droid.Runtime.Prototyping.Actuators.Particles {
           }
 
           break;
-        case Axis.Dir_x_: break;
-        case Axis.Dir_y_: break;
-        case Axis.Dir_z_: break;
+        case AxisEnum.Dir_x_: break;
+        case AxisEnum.Dir_y_: break;
+        case AxisEnum.Dir_z_: break;
         default: throw new ArgumentOutOfRangeException();
       }
 

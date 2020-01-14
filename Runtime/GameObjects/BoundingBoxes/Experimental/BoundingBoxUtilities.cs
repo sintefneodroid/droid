@@ -39,16 +39,16 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
                                                   bool use_view_port = false) {
       var a = mesh.vertices;
 
-      Vector3 point;
-
-      foreach (var t1 in a) {
+      for (var index = 0; index < a.Length; index++) {
+        var t1 = a[index];
+        Vector3 point;
         if (use_view_port) {
-          point = cam.WorldToViewportPoint(t.TransformPoint(t1));
+          point = cam.WorldToViewportPoint(t.TransformPoint(position : t1));
         } else {
-          point = cam.WorldToScreenPoint(t.TransformPoint(t1));
+          point = cam.WorldToScreenPoint(t.TransformPoint(position : t1));
         }
 
-        point.GetMinMax(ref min, ref max);
+        point.GetMinMax(min : ref min, max : ref max);
       }
 
       var size = max - min;
@@ -80,7 +80,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
       var max = min;
 
       var point = min;
-      point.GetMinMax(ref min, ref max);
+      point.GetMinMax(min : ref min, max : ref max);
 
       for (var i = 1; i < a.Length; i++) {
         if (use_view_port) {
@@ -89,7 +89,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
           point = cam.WorldToScreenPoint(t.TransformPoint(a[i]));
         }
 
-        point.GetMinMax(ref min, ref max);
+        point.GetMinMax(min : ref min, max : ref max);
       }
 
       var size = max - min;
@@ -110,14 +110,14 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
                                            Camera cam,
                                            float margin = 0,
                                            bool use_viewport = false) {
-      var cen = mesh.GetCameraMinMaxPoints(t, cam, use_viewport);
+      var cen = mesh.GetCameraMinMaxPoints(t : t, cam : cam, use_view_port : use_viewport);
       var min = cen[0];
       var max = cen[1];
 
-      var r = Rect.MinMaxRect(min.x,
-                              min.y,
-                              max.x,
-                              max.y);
+      var r = Rect.MinMaxRect(xmin : min.x,
+                              ymin : min.y,
+                              xmax : max.x,
+                              ymax : max.y);
       r.xMin -= margin;
       r.xMax += margin;
       r.yMin -= margin;
@@ -127,10 +127,10 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
     }
 
     public static Rect GetMinMaxRect(Vector3 min, Vector3 max, float margin = 0) {
-      var r = Rect.MinMaxRect(min.x,
-                              min.y,
-                              max.x,
-                              max.y);
+      var r = Rect.MinMaxRect(xmin : min.x,
+                              ymin : min.y,
+                              xmax : max.x,
+                              ymax : max.y);
       r.xMin -= margin;
       r.xMax += margin;
       r.yMin -= margin;
@@ -147,7 +147,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
     /// <param name="height"></param>
     /// <returns></returns>
     public static Rect Normalise(this Rect rect, float width, float height) {
-      if (width < float.Epsilon || Math.Abs(height) < float.Epsilon) {
+      if (width < float.Epsilon || Math.Abs(value : height) < float.Epsilon) {
         return new Rect();
       }
 
@@ -166,18 +166,18 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
     /// <param name="local_bounds"></param>
     /// <returns></returns>
     public static Bounds TransformBounds(this Transform transform, Bounds local_bounds) {
-      var center = transform.TransformPoint(local_bounds.center);
+      var center = transform.TransformPoint(position : local_bounds.center);
 
       // transform the local extents' axes
       var extents = local_bounds.extents;
-      var axis_x = transform.TransformVector(extents.x, 0, 0);
-      var axis_y = transform.TransformVector(0, extents.y, 0);
-      var axis_z = transform.TransformVector(0, 0, extents.z);
+      var axis_x = transform.TransformVector(x : extents.x, 0, 0);
+      var axis_y = transform.TransformVector(0, y : extents.y, 0);
+      var axis_z = transform.TransformVector(0, 0, z : extents.z);
 
       // sum their absolute value to get the world extents
-      extents.x = Mathf.Abs(axis_x.x) + Mathf.Abs(axis_y.x) + Mathf.Abs(axis_z.x);
-      extents.y = Mathf.Abs(axis_x.y) + Mathf.Abs(axis_y.y) + Mathf.Abs(axis_z.y);
-      extents.z = Mathf.Abs(axis_x.z) + Mathf.Abs(axis_y.z) + Mathf.Abs(axis_z.z);
+      extents.x = Mathf.Abs(f : axis_x.x) + Mathf.Abs(f : axis_y.x) + Mathf.Abs(f : axis_z.x);
+      extents.y = Mathf.Abs(f : axis_x.y) + Mathf.Abs(f : axis_y.y) + Mathf.Abs(f : axis_z.y);
+      extents.z = Mathf.Abs(f : axis_x.z) + Mathf.Abs(f : axis_y.z) + Mathf.Abs(f : axis_z.z);
 
       return new Bounds {center = center, extents = extents};
     }

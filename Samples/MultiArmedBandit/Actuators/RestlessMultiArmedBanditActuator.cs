@@ -48,7 +48,7 @@ namespace droid.Samples.MultiArmedBandit.Actuators {
 
     IEnumerator ExecuteAfterTime(float time) {
       while (true) {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(seconds : time);
 
         this.ReAssignValues();
       }

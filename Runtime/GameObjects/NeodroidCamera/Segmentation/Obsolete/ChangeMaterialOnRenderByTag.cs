@@ -55,9 +55,10 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Segmentation.Obsolete {
       this._tag_colors_dict.Clear();
       var colors_by_tag = this._colors_by_category;
       if (colors_by_tag != null && colors_by_tag.Length > 0) {
-        foreach (var tag_color in this._colors_by_category) {
-          if (!this._tag_colors_dict.ContainsKey(tag_color._Category_Name)) {
-            this._tag_colors_dict.Add(tag_color._Category_Name, tag_color._Color);
+        for (var index = 0; index < this._colors_by_category.Length; index++) {
+          var tag_color = this._colors_by_category[index];
+          if (!this._tag_colors_dict.ContainsKey(key : tag_color._Category_Name)) {
+            this._tag_colors_dict.Add(key : tag_color._Category_Name, value : tag_color._Color);
           }
         }
       }
@@ -65,9 +66,10 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Segmentation.Obsolete {
       if (this._segmentation) {
         var segmentation_color_by_tags = this._segmentation._color_by_categories;
         if (segmentation_color_by_tags != null) {
-          foreach (var tag_color in segmentation_color_by_tags) {
-            if (!this._tag_colors_dict.ContainsKey(tag_color._Category_Name)) {
-              this._tag_colors_dict.Add(tag_color._Category_Name, tag_color._Color);
+          for (var index = 0; index < segmentation_color_by_tags.Length; index++) {
+            var tag_color = segmentation_color_by_tags[index];
+            if (!this._tag_colors_dict.ContainsKey(key : tag_color._Category_Name)) {
+              this._tag_colors_dict.Add(key : tag_color._Category_Name, value : tag_color._Color);
             }
           }
         }
@@ -103,30 +105,32 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Segmentation.Obsolete {
       for (var i = 0; i < this._all_renders.Length; i++) {
         var c_renderer = this._all_renders[i];
         if (c_renderer) {
-          if (this._tag_colors_dict != null && this._tag_colors_dict.ContainsKey(this._all_renders[i].tag)) {
-            foreach (var mat in this._all_renders[i].sharedMaterials) {
-              if (mat != null && mat.HasProperty(this._Default_Color_Tag)) {
-                this._original_colors[i].AddFirst(mat.color);
+          if (this._tag_colors_dict != null && this._tag_colors_dict.ContainsKey(key : this._all_renders[i].tag)) {
+            for (var index = 0; index < this._all_renders[i].sharedMaterials.Length; index++) {
+              var mat = this._all_renders[i].sharedMaterials[index];
+              if (mat != null && mat.HasProperty(nameID : this._Default_Color_Tag)) {
+                this._original_colors[i].AddFirst(value : mat.color);
               }
 
-              this._block.SetColor(this._Segmentation_Color_Tag,
-                                   this._tag_colors_dict[this._all_renders[i].tag]);
+              this._block.SetColor(nameID : this._Segmentation_Color_Tag,
+                                   this._tag_colors_dict[key : this._all_renders[i].tag]);
 
-              this._block.SetColor(this._Outline_Color_Tag, this._Outline_Color);
-              this._block.SetFloat(this._Outline_Width_Factor_Tag, this._Outline_Width_Factor);
-              this._all_renders[i].SetPropertyBlock(this._block);
+              this._block.SetColor(nameID : this._Outline_Color_Tag, value : this._Outline_Color);
+              this._block.SetFloat(nameID : this._Outline_Width_Factor_Tag, value : this._Outline_Width_Factor);
+              this._all_renders[i].SetPropertyBlock(properties : this._block);
             }
           } else if (this._Replace_Untagged_Color) {
-            foreach (var mat in this._all_renders[i].sharedMaterials) {
-              if (mat != null && mat.HasProperty(this._Default_Color_Tag)) {
-                this._original_colors[i].AddFirst(mat.color);
+            for (var index = 0; index < this._all_renders[i].sharedMaterials.Length; index++) {
+              var mat = this._all_renders[i].sharedMaterials[index];
+              if (mat != null && mat.HasProperty(nameID : this._Default_Color_Tag)) {
+                this._original_colors[i].AddFirst(value : mat.color);
               }
 
-              this._block.SetColor(this._Segmentation_Color_Tag, this._Untagged_Color);
+              this._block.SetColor(nameID : this._Segmentation_Color_Tag, value : this._Untagged_Color);
 
-              this._block.SetColor(this._Outline_Color_Tag, this._Outline_Color);
-              this._block.SetFloat(this._Outline_Width_Factor_Tag, this._Outline_Width_Factor);
-              this._all_renders[i].SetPropertyBlock(this._block);
+              this._block.SetColor(nameID : this._Outline_Color_Tag, value : this._Outline_Color);
+              this._block.SetFloat(nameID : this._Outline_Width_Factor_Tag, value : this._Outline_Width_Factor);
+              this._all_renders[i].SetPropertyBlock(properties : this._block);
             }
           }
         }
@@ -146,15 +150,16 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Segmentation.Obsolete {
 
       for (var i = 0; i < this._all_renders.Length; i++) {
         if (this._all_renders[i]) {
-          foreach (var mat in this._all_renders[i].sharedMaterials) {
+          for (var index = 0; index < this._all_renders[i].sharedMaterials.Length; index++) {
+            var mat = this._all_renders[i].sharedMaterials[index];
             if (mat != null && this._original_colors != null && i < this._original_colors.Length) {
               var c = this._original_colors[i];
               var last = c?.Last;
               if (last != null) {
                 var last_val = last.Value;
-                this._block.SetColor(this._Default_Color_Tag, last_val);
+                this._block.SetColor(nameID : this._Default_Color_Tag, value : last_val);
                 this._original_colors[i].RemoveLast();
-                this._all_renders[i].SetPropertyBlock(this._block);
+                this._all_renders[i].SetPropertyBlock(properties : this._block);
               }
             }
           }

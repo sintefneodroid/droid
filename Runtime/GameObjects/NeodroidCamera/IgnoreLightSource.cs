@@ -19,7 +19,8 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
           || this._lights_to_ignore.Length == 0 && this._ignore_infrared_if_empty) {
         var infrared_light_sources = FindObjectsOfType<InfraredLightSource>();
         var lights = new List<Light>();
-        foreach (var ils in infrared_light_sources) {
+        for (var index = 0; index < infrared_light_sources.Length; index++) {
+          var ils = infrared_light_sources[index];
           lights.Add(ils.GetComponent<Light>());
         }
 
@@ -27,10 +28,11 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
       } else if (this._automatically_add_lights_without_infrared_component) {
         var lights = this._lights_to_ignore.ToList();
         var d = FindObjectsOfType<Light>();
-        foreach (var light1 in d) {
+        for (var index = 0; index < d.Length; index++) {
+          var light1 = d[index];
           if (!light1.gameObject.GetComponent<InfraredLightSource>()) {
             if (!lights.Exists(l => l != null && light1.GetHashCode() == l.GetHashCode())) {
-              lights.Add(light1);
+              lights.Add(item : light1);
             }
           }
         }
@@ -44,7 +46,8 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
 
     void OnPreCull() {
       if (this._lights_to_ignore != null) {
-        foreach (var l in this._lights_to_ignore) {
+        for (var index = 0; index < this._lights_to_ignore.Length; index++) {
+          var l = this._lights_to_ignore[index];
           if (l) {
             l.enabled = false;
           }
@@ -54,7 +57,8 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
 
     void OnPreRender() {
       if (this._lights_to_ignore != null) {
-        foreach (var l in this._lights_to_ignore) {
+        for (var index = 0; index < this._lights_to_ignore.Length; index++) {
+          var l = this._lights_to_ignore[index];
           if (l) {
             l.enabled = false;
           }
@@ -64,7 +68,8 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
 
     void OnPostRender() {
       if (this._lights_to_ignore != null) {
-        foreach (var l in this._lights_to_ignore) {
+        for (var index = 0; index < this._lights_to_ignore.Length; index++) {
+          var l = this._lights_to_ignore[index];
           if (l) {
             l.enabled = true;
           }

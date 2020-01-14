@@ -44,11 +44,11 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
         this.raw_image.material.mainTexture = this.webcam_texture;
         this.webcam_texture.Play();
 
-        this.texture2D = new Texture2D(this.webcam_texture.width,
-                                       this.webcam_texture.height,
-                                       GraphicsFormat.R8G8B8A8_UNorm,
+        this.texture2D = new Texture2D(width : this.webcam_texture.width,
+                                       height : this.webcam_texture.height,
+                                       format : GraphicsFormat.R8G8B8A8_UNorm,
                                        0,
-                                       TextureCreationFlags.None);
+                                       flags : TextureCreationFlags.None);
       }
     }
 

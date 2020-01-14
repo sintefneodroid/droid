@@ -20,7 +20,7 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// </summary>
     [Header("General", order = 101)]
     [SerializeField]
-    protected Axis _Axis_Of_Motion;
+    protected AxisEnum _axisEnum_of_motion;
 
     /// <summary>
     /// </summary>
@@ -39,7 +39,7 @@ namespace droid.Runtime.Prototyping.Actuators {
 
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName { get { return "Rigidbody" + this._Axis_Of_Motion; } }
+    public override string PrototypingTypeName { get { return "Rigidbody" + this._axisEnum_of_motion; } }
 
     /// <summary>
     /// </summary>
@@ -50,105 +50,105 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <param name="motion"></param>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
     protected override void InnerApplyMotion(IMotion motion) {
-      switch (this._Axis_Of_Motion) {
-        case Axis.X_:
+      switch (this._axisEnum_of_motion) {
+        case AxisEnum.X_:
           if (this._Relative_To == Space.World) {
-            this._Rigidbody.AddForce(Vector3.right * motion.Strength, this._ForceMode);
+            this._Rigidbody.AddForce(Vector3.right * motion.Strength, mode : this._ForceMode);
           } else {
-            this._Rigidbody.AddRelativeForce(Vector3.right * motion.Strength, this._ForceMode);
+            this._Rigidbody.AddRelativeForce(Vector3.right * motion.Strength, mode : this._ForceMode);
           }
 
           break;
-        case Axis.Y_:
+        case AxisEnum.Y_:
           if (this._Relative_To == Space.World) {
-            this._Rigidbody.AddForce(Vector3.up * motion.Strength, this._ForceMode);
+            this._Rigidbody.AddForce(Vector3.up * motion.Strength, mode : this._ForceMode);
           } else {
-            this._Rigidbody.AddRelativeForce(Vector3.up * motion.Strength, this._ForceMode);
+            this._Rigidbody.AddRelativeForce(Vector3.up * motion.Strength, mode : this._ForceMode);
           }
 
           break;
-        case Axis.Z_:
+        case AxisEnum.Z_:
           if (this._Relative_To == Space.World) {
-            this._Rigidbody.AddForce(Vector3.forward * motion.Strength, this._ForceMode);
+            this._Rigidbody.AddForce(Vector3.forward * motion.Strength, mode : this._ForceMode);
           } else {
-            this._Rigidbody.AddRelativeForce(Vector3.forward * motion.Strength, this._ForceMode);
+            this._Rigidbody.AddRelativeForce(Vector3.forward * motion.Strength, mode : this._ForceMode);
           }
 
           break;
-        case Axis.Rot_x_:
+        case AxisEnum.Rot_x_:
           if (this._Relative_To == Space.World) {
-            this._Rigidbody.AddTorque(Vector3.right * motion.Strength, this._ForceMode);
+            this._Rigidbody.AddTorque(Vector3.right * motion.Strength, mode : this._ForceMode);
           } else {
-            this._Rigidbody.AddRelativeTorque(Vector3.right * motion.Strength, this._ForceMode);
+            this._Rigidbody.AddRelativeTorque(Vector3.right * motion.Strength, mode : this._ForceMode);
           }
 
           break;
-        case Axis.Rot_y_:
+        case AxisEnum.Rot_y_:
           if (this._Relative_To == Space.World) {
-            this._Rigidbody.AddTorque(Vector3.up * motion.Strength, this._ForceMode);
+            this._Rigidbody.AddTorque(Vector3.up * motion.Strength, mode : this._ForceMode);
           } else {
-            this._Rigidbody.AddRelativeTorque(Vector3.up * motion.Strength, this._ForceMode);
+            this._Rigidbody.AddRelativeTorque(Vector3.up * motion.Strength, mode : this._ForceMode);
           }
 
           break;
-        case Axis.Rot_z_:
+        case AxisEnum.Rot_z_:
           if (this._Relative_To == Space.World) {
-            this._Rigidbody.AddTorque(Vector3.forward * motion.Strength, this._ForceMode);
+            this._Rigidbody.AddTorque(Vector3.forward * motion.Strength, mode : this._ForceMode);
           } else {
-            this._Rigidbody.AddRelativeTorque(Vector3.forward * motion.Strength, this._ForceMode);
+            this._Rigidbody.AddRelativeTorque(Vector3.forward * motion.Strength, mode : this._ForceMode);
           }
 
           break;
-        case Axis.Dir_x_: break;
-        case Axis.Dir_y_: break;
-        case Axis.Dir_z_: break;
+        case AxisEnum.Dir_x_: break;
+        case AxisEnum.Dir_y_: break;
+        case AxisEnum.Dir_z_: break;
         default:
           throw new ArgumentOutOfRangeException();
       }
     }
 
-    public override string[] InnerMotionNames => new[] {this._Axis_Of_Motion.ToString()};
+    public override string[] InnerMotionNames => new[] {this._axisEnum_of_motion.ToString()};
 
     #if UNITY_EDITOR
     void OnDrawGizmosSelected() {
       if (this.enabled) {
         var position = this.transform.position;
-        switch (this._Axis_Of_Motion) {
-          case Axis.X_:
-            Debug.DrawLine(position, position + Vector3.right * 2, Color.green);
+        switch (this._axisEnum_of_motion) {
+          case AxisEnum.X_:
+            Debug.DrawLine(start : position, position + Vector3.right * 2, color : Color.green);
             break;
-          case Axis.Y_:
-            Debug.DrawLine(position, position + Vector3.up * 2, Color.green);
+          case AxisEnum.Y_:
+            Debug.DrawLine(start : position, position + Vector3.up * 2, color : Color.green);
             break;
-          case Axis.Z_:
-            Debug.DrawLine(position, position + Vector3.forward * 2, Color.green);
+          case AxisEnum.Z_:
+            Debug.DrawLine(start : position, position + Vector3.forward * 2, color : Color.green);
             break;
-          case Axis.Rot_x_:
-            Handles.DrawWireArc(this.transform.position,
-                                this.transform.right,
-                                -this.transform.forward,
+          case AxisEnum.Rot_x_:
+            Handles.DrawWireArc(center : this.transform.position,
+                                normal : this.transform.right,
+                                @from : -this.transform.forward,
                                 180,
                                 2);
             break;
-          case Axis.Rot_y_:
-            Handles.DrawWireArc(this.transform.position,
-                                this.transform.up,
-                                -this.transform.right,
+          case AxisEnum.Rot_y_:
+            Handles.DrawWireArc(center : this.transform.position,
+                                normal : this.transform.up,
+                                @from : -this.transform.right,
                                 180,
                                 2);
             break;
-          case Axis.Rot_z_:
-            Handles.DrawWireArc(this.transform.position,
-                                this.transform.forward,
-                                -this.transform.right,
+          case AxisEnum.Rot_z_:
+            Handles.DrawWireArc(center : this.transform.position,
+                                normal : this.transform.forward,
+                                @from : -this.transform.right,
                                 180,
                                 2);
             break;
-          case Axis.Dir_x_: break;
-          case Axis.Dir_y_: break;
-          case Axis.Dir_z_: break;
+          case AxisEnum.Dir_x_: break;
+          case AxisEnum.Dir_y_: break;
+          case AxisEnum.Dir_z_: break;
           default: //TODO add the Direction cases
-            Gizmos.DrawIcon(position, "console.warnicon", true);
+            Gizmos.DrawIcon(center : position, "console.warnicon", true);
             break;
         }
       }

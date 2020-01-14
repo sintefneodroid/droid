@@ -43,11 +43,11 @@ namespace droid.Editor.Utilities {
       GUILayout.BeginVertical();
       {
         // Display options to import Essential resources
-        GUILayout.BeginVertical(EditorStyles.helpBox);
+        GUILayout.BeginVertical(style : EditorStyles.helpBox);
         {
-          GUILayout.Label("Neodroid Essentials", EditorStyles.boldLabel);
+          GUILayout.Label("Neodroid Essentials", style : EditorStyles.boldLabel);
           GUILayout.Label("This appears to be the first time you access TextMesh Pro, as such we need to add resources to your project that are essential for using TextMesh Pro. These new resources will be placed at the root of your project in the \"TextMesh Pro\" folder.",
-                          new GUIStyle(EditorStyles.label) {wordWrap = true});
+                          new GUIStyle(other : EditorStyles.label) {wordWrap = true});
           GUILayout.Space(5f);
 
           GUI.enabled = !this.kEssentialResourcesImported;
@@ -61,11 +61,11 @@ namespace droid.Editor.Utilities {
         GUILayout.EndVertical();
 
         // Display options to import Examples & Extras
-        GUILayout.BeginVertical(EditorStyles.helpBox);
+        GUILayout.BeginVertical(style : EditorStyles.helpBox);
         {
-          GUILayout.Label("TMP Examples & Extras", EditorStyles.boldLabel);
+          GUILayout.Label("TMP Examples & Extras", style : EditorStyles.boldLabel);
           GUILayout.Label("The Examples & Extras package contains addition resources and examples that will make discovering and learning about TextMesh Pro's powerful features easier. These additional resources will be placed in the same folder as the TMP essential resources.",
-                          new GUIStyle(EditorStyles.label) {wordWrap = true});
+                          new GUIStyle(other : EditorStyles.label) {wordWrap = true});
           GUILayout.Space(5f);
 
           GUI.enabled = this.kEssentialResourcesImported && !this.kExamplesAndExtrasResourcesImported;
@@ -140,12 +140,12 @@ namespace droid.Editor.Utilities {
     static string GetPackageFullPath() {
       // Check for potential UPM package
       var package_path = Path.GetFullPath("Packages/com.unity.textmeshpro");
-      if (Directory.Exists(package_path)) {
+      if (Directory.Exists(path : package_path)) {
         return package_path;
       }
 
       package_path = Path.GetFullPath("Assets/..");
-      if (Directory.Exists(package_path)) {
+      if (Directory.Exists(path : package_path)) {
         // Search default location for development package
         if (Directory.Exists(package_path + "/Assets/Packages/com.unity.TextMeshPro/Editor Resources")) {
           return package_path + "/Assets/Packages/com.unity.TextMeshPro";
@@ -158,8 +158,8 @@ namespace droid.Editor.Utilities {
 
         // Search for potential alternative locations in the user project
         var matching_paths =
-            Directory.GetDirectories(package_path, "TextMesh Pro", SearchOption.AllDirectories);
-        var path = ValidateLocation(matching_paths, package_path);
+            Directory.GetDirectories(path : package_path, "TextMesh Pro", searchOption : SearchOption.AllDirectories);
+        var path = ValidateLocation(paths : matching_paths, project_path : package_path);
         if (path != null) {
           return package_path + path;
         }
@@ -172,7 +172,7 @@ namespace droid.Editor.Utilities {
       for (var i = 0; i < paths.Length; i++) {
         // Check if the Editor Resources folder exists.
         if (Directory.Exists(paths[i] + "Editor/Resources")) {
-          var folder_path = paths[i].Replace(project_path, "");
+          var folder_path = paths[i].Replace(oldValue : project_path, "");
           folder_path = folder_path.TrimStart('\\', '/');
           return folder_path;
         }

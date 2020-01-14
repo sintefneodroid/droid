@@ -60,21 +60,21 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._x);
+                                                          identifier : this._x);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._y);
+                                                          identifier : this._y);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._z);
+                                                          identifier : this._z);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(this.ParentEnvironment,
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
                                                           (Configurable)this,
-                                                          this._w);
+                                                          identifier : this._w);
     }
 
     /// <inheritdoc />
@@ -85,10 +85,10 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
         return;
       }
 
-      this.ParentEnvironment.UnRegister(this, this._x);
-      this.ParentEnvironment.UnRegister(this, this._y);
-      this.ParentEnvironment.UnRegister(this, this._z);
-      this.ParentEnvironment.UnRegister(this, this._w);
+      this.ParentEnvironment.UnRegister(this, identifier : this._x);
+      this.ParentEnvironment.UnRegister(this, identifier : this._y);
+      this.ParentEnvironment.UnRegister(this, identifier : this._z);
+      this.ParentEnvironment.UnRegister(this, identifier : this._w);
     }
 
     /// <summary>
@@ -101,7 +101,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     ///  </summary>
     public override void UpdateCurrentConfiguration() {
       if (this._use_environments_space && this.ParentEnvironment != null) {
-        this.observation_value = this.ParentEnvironment.TransformRotation(this.transform.rotation);
+        this.observation_value = this.ParentEnvironment.TransformRotation(quaternion : this.transform.rotation);
       } else {
         this.observation_value = this.transform.rotation;
       }
@@ -116,12 +116,12 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
 
       var rot = this.transform.rotation;
       if (this.ParentEnvironment && this._use_environments_space) {
-        rot = this.ParentEnvironment.TransformRotation(this.transform.rotation);
+        rot = this.ParentEnvironment.TransformRotation(quaternion : this.transform.rotation);
       }
 
       var v = simulator_configuration.ConfigurableValue;
       if (this.QuadSpace.DecimalGranularity >= 0) {
-        v = (int)Math.Round(v, this.QuadSpace.DecimalGranularity);
+        v = (int)Math.Round(value : v, digits : this.QuadSpace.DecimalGranularity);
       }
 
       #if NEODROID_DEBUG
@@ -141,9 +141,9 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
           }
 
           rot.Set(rot.x - v,
-                  rot.y,
-                  rot.z,
-                  rot.w);
+                  newY : rot.y,
+                  newZ : rot.z,
+                  newW : rot.w);
         } else if (simulator_configuration.ConfigurableName == this._y) {
           if (this.QuadSpace.Min.y.CompareTo(this.QuadSpace.Max.y) != 0) {
             if (v < this.QuadSpace.Min.y || v > this.QuadSpace.Max.y) {
@@ -153,10 +153,10 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
             }
           }
 
-          rot.Set(rot.x,
+          rot.Set(newX : rot.x,
                   rot.y - v,
-                  rot.z,
-                  rot.w);
+                  newZ : rot.z,
+                  newW : rot.w);
         } else if (simulator_configuration.ConfigurableName == this._z) {
           if (this.QuadSpace.Min.z.CompareTo(this.QuadSpace.Max.z) != 0) {
             if (v < this.QuadSpace.Min.z || v > this.QuadSpace.Max.z) {
@@ -166,10 +166,10 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
             }
           }
 
-          rot.Set(rot.x,
-                  rot.y,
+          rot.Set(newX : rot.x,
+                  newY : rot.y,
                   rot.z - v,
-                  rot.w);
+                  newW : rot.w);
         } else if (simulator_configuration.ConfigurableName == this._w) {
           if (this.QuadSpace.Min.w.CompareTo(this.QuadSpace.Max.w) != 0) {
             if (v < this.QuadSpace.Min.w || v > this.QuadSpace.Max.w) {
@@ -179,9 +179,9 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
             }
           }
 
-          rot.Set(rot.x,
-                  rot.y,
-                  rot.z,
+          rot.Set(newX : rot.x,
+                  newY : rot.y,
+                  newZ : rot.z,
                   rot.w - v);
         }
       } else {
@@ -194,10 +194,10 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
             }
           }
 
-          rot.Set(v,
-                  rot.y,
-                  rot.z,
-                  rot.w);
+          rot.Set(newX : v,
+                  newY : rot.y,
+                  newZ : rot.z,
+                  newW : rot.w);
           //rot.x = v;
         } else if (simulator_configuration.ConfigurableName == this._y) {
           if (this.QuadSpace.Min.y.CompareTo(this.QuadSpace.Max.y) != 0) {
@@ -208,10 +208,10 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
             }
           }
 
-          rot.Set(rot.x,
-                  v,
-                  rot.z,
-                  rot.w);
+          rot.Set(newX : rot.x,
+                  newY : v,
+                  newZ : rot.z,
+                  newW : rot.w);
           //rot.y = v;
         } else if (simulator_configuration.ConfigurableName == this._z) {
           if (this.QuadSpace.Min.z.CompareTo(this.QuadSpace.Max.z) != 0) {
@@ -222,10 +222,10 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
             }
           }
 
-          rot.Set(rot.x,
-                  rot.y,
-                  v,
-                  rot.w);
+          rot.Set(newX : rot.x,
+                  newY : rot.y,
+                  newZ : v,
+                  newW : rot.w);
           //rot.z = v;
         } else if (simulator_configuration.ConfigurableName == this._w) {
           if (this.QuadSpace.Min.w.CompareTo(this.QuadSpace.Max.w) != 0) {
@@ -236,16 +236,16 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
             }
           }
 
-          rot.Set(rot.x,
-                  rot.y,
-                  rot.z,
-                  v);
+          rot.Set(newX : rot.x,
+                  newY : rot.y,
+                  newZ : rot.z,
+                  newW : v);
           //rot.w = v;
         }
       }
 
       if (this.ParentEnvironment && this._use_environments_space) {
-        rot = this.ParentEnvironment.InverseTransformRotation(rot);
+        rot = this.ParentEnvironment.InverseTransformRotation(quaternion : rot);
       }
 
       this.transform.rotation = rot;
@@ -258,10 +258,10 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     public override Configuration[] SampleConfigurations() {
       var sample = this._quad_space.Sample();
       return new[] {
-                       new Configuration(this._x, sample.x),
-                       new Configuration(this._y, sample.y),
-                       new Configuration(this._z, sample.z),
-                       new Configuration(this._w, sample.w)
+                       new Configuration(configurable_name : this._x, configurable_value : sample.x),
+                       new Configuration(configurable_name : this._y, configurable_value : sample.y),
+                       new Configuration(configurable_name : this._z, configurable_value : sample.z),
+                       new Configuration(configurable_name : this._w, configurable_value : sample.w)
                    };
     }
   }

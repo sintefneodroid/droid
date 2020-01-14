@@ -19,11 +19,11 @@ namespace droid.Editor.Utilities.NoteUtilities {
 
       if (note._Editing) {
         //DrawDefaultInspector();// Unity function
-        note._Text = EditorGUILayout.TextArea(note._Text);
+        note._Text = EditorGUILayout.TextArea(text : note._Text);
 
         EditorGUILayout.Separator();
 
-        this._note_type = (NoteType)EditorGUILayout.EnumPopup(this._note_type);
+        this._note_type = (NoteType)EditorGUILayout.EnumPopup(selected : this._note_type);
 
         if (GUILayout.Button("Done")) {
           note.EditToggle();
@@ -31,30 +31,30 @@ namespace droid.Editor.Utilities.NoteUtilities {
       } else {
         switch (this._note_type) {
           case NoteType.Text_area_:
-            EditorGUILayout.TextArea(note._Text);
+            EditorGUILayout.TextArea(text : note._Text);
             break;
           case NoteType.Text_field_:
-            EditorGUILayout.TextField(note._Text);
+            EditorGUILayout.TextField(text : note._Text);
             break;
           case NoteType.Label_:
-            EditorGUILayout.LabelField(note._Text);
+            EditorGUILayout.LabelField(label : note._Text);
             break;
           case NoteType.Box_text_:
-            EditorGUILayout.HelpBox(note._Text, MessageType.None);
+            EditorGUILayout.HelpBox(message : note._Text, type : MessageType.None);
             break;
           case NoteType.Box_info_:
-            EditorGUILayout.HelpBox(note._Text, MessageType.Info);
+            EditorGUILayout.HelpBox(message : note._Text, type : MessageType.Info);
             break;
           case NoteType.Box_warning_:
-            EditorGUILayout.HelpBox(note._Text, MessageType.Warning);
+            EditorGUILayout.HelpBox(message : note._Text, type : MessageType.Warning);
             break;
           case NoteType.Box_error_:
-            EditorGUILayout.HelpBox(note._Text, MessageType.Error);
+            EditorGUILayout.HelpBox(message : note._Text, type : MessageType.Error);
             break;
           case NoteType.Delayed_text_field_:
             break;
           default:
-            EditorGUILayout.HelpBox(note._Text, MessageType.Info);
+            EditorGUILayout.HelpBox(message : note._Text, type : MessageType.Info);
             break;
         }
 
