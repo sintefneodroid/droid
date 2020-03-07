@@ -16,10 +16,10 @@ namespace droid.Editor.Windows {
 
     /// <summary>
     /// </summary>
-    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "CameraSynchronisationWindow")]
-    [MenuItem(EditorWindowMenuPath._ToolMenuPath + "CameraSynchronisationWindow")]
+    [MenuItem(itemName : EditorWindowMenuPath._WindowMenuPath + "CameraSynchronisationWindow")]
+    [MenuItem(itemName : EditorWindowMenuPath._ToolMenuPath + "CameraSynchronisationWindow")]
     public static void ShowWindow() {
-      GetWindow(typeof(CameraSynchronisationWindow)); //Show existing window instance. If one doesn't exist, make one.
+      GetWindow(t : typeof(CameraSynchronisationWindow)); //Show existing window instance. If one doesn't exist, make one.
     }
 
     /// <summary>
@@ -28,11 +28,13 @@ namespace droid.Editor.Windows {
       this._cameras = FindObjectsOfType<SynchroniseCameraProperties>();
       this.Setup();
       this._icon =
-          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidSettings.Current.NeodroidImportLocationProp
+          (Texture2D)AssetDatabase.LoadAssetAtPath(assetPath :
+                                                   NeodroidSettings.Current.NeodroidImportLocationProp
                                                    + "Gizmos/Icons/arrow_refresh.png",
-                                                   typeof(Texture2D));
-      this.titleContent =
-          new GUIContent("Neo:Sync", image : this._icon, "Window for controlling synchronisation of cameras");
+                                                   type : typeof(Texture2D));
+      this.titleContent = new GUIContent("Neo:Sync",
+                                         image : this._icon,
+                                         "Window for controlling synchronisation of cameras");
     }
 
     /// <summary>
@@ -49,12 +51,13 @@ namespace droid.Editor.Windows {
     void OnGUI() {
       this._cameras = FindObjectsOfType<SynchroniseCameraProperties>();
       if (this._cameras.Length > 0) {
-        var serialised_object = new SerializedObject(this);
+        var serialised_object = new SerializedObject(obj : this);
         this._scroll_position = EditorGUILayout.BeginScrollView(scrollPosition : this._scroll_position);
         if (this._show_camera_properties != null) {
           for (var i = 0; i < this._show_camera_properties.Length; i++) {
             this._show_camera_properties[i] =
-                EditorGUILayout.Foldout(this._show_camera_properties[i], content : this._cameras[i].name);
+                EditorGUILayout.Foldout(foldout : this._show_camera_properties[i],
+                                        content : this._cameras[i].name);
             if (this._show_camera_properties[i]) {
               EditorGUILayout.BeginVertical("Box");
               /*

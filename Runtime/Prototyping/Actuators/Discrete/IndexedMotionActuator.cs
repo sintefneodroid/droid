@@ -5,22 +5,20 @@ using UnityEngine;
 using UnityEngine.Events;
 
 namespace droid.Runtime.Prototyping.Actuators.Discrete {
+  /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ActuatorComponentMenuPath._ComponentMenuPath
-                    + "IndexedMotion"
-                    + ActuatorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : ActuatorComponentMenuPath._ComponentMenuPath
+                               + "IndexedMotion"
+                               + ActuatorComponentMenuPath._Postfix)]
   public class IndexedMotionActuator : Actuator {
-
-
-
     [SerializeField] UnityEvent[] _events = { };
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="motion"></param>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <param name="motion"></param>
+    ///  <exception cref="T:System.ArgumentOutOfRangeException"></exception>
     protected override void InnerApplyMotion(IMotion motion) {
       var ind = (Int32)motion.Strength;
       if (ind >= this._events.Length) {
@@ -30,16 +28,11 @@ namespace droid.Runtime.Prototyping.Actuators.Discrete {
       this._events[ind].Invoke();
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override void Setup() {
-      this.MotionSpace = new Space1 {
-                                        Min = 0,
-                                        Max = this._events.Length-1,
-                                        DecimalGranularity = 0
-                                    };
-
+      this.MotionSpace = new Space1 {Min = 0, Max = this._events.Length - 1, DecimalGranularity = 0};
     }
 
     public override String[] InnerMotionNames { get; }

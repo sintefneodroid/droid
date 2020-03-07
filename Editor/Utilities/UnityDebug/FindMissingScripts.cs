@@ -14,13 +14,14 @@ namespace droid.Editor.Utilities.UnityDebug {
     /// </summary>
     [MenuItem("Tools/Debug/FindMissingScripts")]
     [MenuItem("Window/Debug/FindMissingScripts")]
-    public static void ShowWindow() { GetWindow(typeof(FindMissingScripts)); }
+    public static void ShowWindow() { GetWindow(t : typeof(FindMissingScripts)); }
 
     void OnEnable() {
       this.icon =
-          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidSettings.Current.NeodroidImportLocationProp
+          (Texture2D)AssetDatabase.LoadAssetAtPath(assetPath :
+                                                   NeodroidSettings.Current.NeodroidImportLocationProp
                                                    + "Gizmos/Icons/information.png",
-                                                   typeof(Texture2D));
+                                                   type : typeof(Texture2D));
       this.titleContent = new GUIContent("Unity:Debug", image : this.icon, "Window for debugging Unity");
     }
 
@@ -41,7 +42,8 @@ namespace droid.Editor.Utilities.UnityDebug {
         SearchInGameObject(game_object : g);
       }
 
-      Debug.Log($"Searched {_game_object_count} GameObjects, {_components_count} components, found {_missing_count} missing");
+      Debug.Log(message :
+                $"Searched {_game_object_count} GameObjects, {_components_count} components, found {_missing_count} missing");
     }
 
     static void SearchInGameObject(GameObject game_object) {
@@ -59,7 +61,8 @@ namespace droid.Editor.Utilities.UnityDebug {
             parent = parent1;
           }
 
-          Debug.Log(name + " has an empty script attached in position: " + i, context : game_object);
+          Debug.Log(message : name + " has an empty script attached in position: " + i,
+                    context : game_object);
         }
       }
 

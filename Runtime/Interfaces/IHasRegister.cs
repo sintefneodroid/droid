@@ -56,7 +56,5 @@
     /// <param name="t"></param>
     /// <param name="obj"></param>
     void UnRegister(T t, string obj);
-
-
   }
 }

@@ -11,9 +11,9 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
   /// <inheritdoc cref="Configurable" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
-                    + "Position"
-                    + ConfigurableComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : ConfigurableComponentMenuPath._ComponentMenuPath
+                               + "Position"
+                               + ConfigurableComponentMenuPath._Postfix)]
   public class PositionConfigurable : SpatialConfigurable,
                                       IHasTriple {
     #region Fields
@@ -57,8 +57,9 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
             dec_gran = this._pos_space.Space.DecimalGranularity;
           }
 
-          this._pos_space.Space = Space3.FromCenterExtents(bounds_extents : this.ParentEnvironment.PlayableArea.Bounds.extents,
-                                                           decimal_granularity : dec_gran);
+          this._pos_space.Space =
+              Space3.FromCenterExtents(bounds_extents : this.ParentEnvironment.PlayableArea.Bounds.extents,
+                                       decimal_granularity : dec_gran);
         }
       }
     }
@@ -83,11 +84,17 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment, this, identifier : this._x);
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
+                                                          c : this,
+                                                          identifier : this._x);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment, this, identifier : this._y);
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
+                                                          c : this,
+                                                          identifier : this._y);
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment, this, identifier : this._z);
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
+                                                          c : this,
+                                                          identifier : this._z);
     }
 
     /// <inheritdoc />
@@ -98,9 +105,9 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
         return;
       }
 
-      this.ParentEnvironment.UnRegister(this, identifier : this._x);
-      this.ParentEnvironment.UnRegister(this, identifier : this._y);
-      this.ParentEnvironment.UnRegister(this, identifier : this._z);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._x);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._y);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._z);
     }
 
     /// <summary>
@@ -112,13 +119,15 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     ///  <summary>
     ///  </summary>
     public override void UpdateCurrentConfiguration() {
-      switch(this._coordinate_spaceEnum){
-        case CoordinateSpaceEnum.Environment_:         this._position = this.ParentEnvironment.TransformPoint(point : this.transform
-        .position);
+      switch (this._coordinate_spaceEnum) {
+        case CoordinateSpaceEnum.Environment_:
+          this._position = this.ParentEnvironment.TransformPoint(point : this.transform.position);
           break;
-        case CoordinateSpaceEnum.Global_:         this._position = this.transform.position;
+        case CoordinateSpaceEnum.Global_:
+          this._position = this.transform.position;
           break;
-        case CoordinateSpaceEnum.Local_:         this._position = this.transform.localPosition;
+        case CoordinateSpaceEnum.Local_:
+          this._position = this.transform.localPosition;
           break;
       }
     }
@@ -135,7 +144,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
         pos = this.transform.position;
       }
 
-      if (this._coordinate_spaceEnum==CoordinateSpaceEnum.Environment_) {
+      if (this._coordinate_spaceEnum == CoordinateSpaceEnum.Environment_) {
         pos = this.ParentEnvironment.TransformPoint(point : this.transform.position);
       }
 
@@ -151,17 +160,17 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log($"Applying {v} to {simulator_configuration.ConfigurableName} configurable");
+        Debug.Log(message : $"Applying {v} to {simulator_configuration.ConfigurableName} configurable");
       }
       #endif
 
       if (this.RelativeToExistingValue) {
         if (simulator_configuration.ConfigurableName == this._x) {
-          pos.Set(v + pos.x, newY : pos.y, newZ : pos.z);
+          pos.Set(newX : v + pos.x, newY : pos.y, newZ : pos.z);
         } else if (simulator_configuration.ConfigurableName == this._y) {
-          pos.Set(newX : pos.x, v + pos.y, newZ : pos.z);
+          pos.Set(newX : pos.x, newY : v + pos.y, newZ : pos.z);
         } else if (simulator_configuration.ConfigurableName == this._z) {
-          pos.Set(newX : pos.x, newY : pos.y, v + pos.z);
+          pos.Set(newX : pos.x, newY : pos.y, newZ : v + pos.z);
         }
       } else {
         if (simulator_configuration.ConfigurableName == this._x) {
@@ -174,23 +183,22 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       }
 
       var inv_pos = pos;
-      if (this._coordinate_spaceEnum==CoordinateSpaceEnum.Environment_) {
+      if (this._coordinate_spaceEnum == CoordinateSpaceEnum.Environment_) {
         inv_pos = this.ParentEnvironment.InverseTransformPoint(point : inv_pos);
       }
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log($"Setting pos of {this} to {inv_pos}, from {pos} and r {simulator_configuration.ConfigurableValue}");
+        Debug.Log(message :
+                  $"Setting pos of {this} to {inv_pos}, from {pos} and r {simulator_configuration.ConfigurableValue}");
       }
       #endif
 
       if (this._coordinate_spaceEnum == CoordinateSpaceEnum.Local_) {
-         this.transform.localPosition=inv_pos;
+        this.transform.localPosition = inv_pos;
       } else {
         this.transform.position = inv_pos;
       }
-
-
     }
 
     /// <inheritdoc />

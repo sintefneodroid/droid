@@ -27,7 +27,7 @@ namespace droid.Runtime.Managers.Experimental {
               if (configurable != null) {
                 Gizmos.color = new Color(r : frac,
                                          0,
-                                         1 - frac,
+                                         b : 1 - frac,
                                          0.1F);
                 var position = configurable.transform.position;
                 Gizmos.DrawSphere(center : position, radius : entry._Max_Value);
@@ -38,52 +38,52 @@ namespace droid.Runtime.Managers.Experimental {
                 Gizmos.DrawWireSphere(center : position, radius : entry._Max_Value);
                 var pos_up = position;
                 pos_up.y += entry._Max_Value;
-                NeodroidUtilities.DrawString(i.ToString(),
+                NeodroidUtilities.DrawString(text : i.ToString(),
                                              world_pos : pos_up,
-                                             new Color(1,
-                                                       1,
-                                                       1,
-                                                       1));
+                                             color : new Color(1,
+                                                               1,
+                                                               1,
+                                                               1));
                 var pos_left = position;
                 pos_left.x += entry._Max_Value;
-                NeodroidUtilities.DrawString(i.ToString(),
+                NeodroidUtilities.DrawString(text : i.ToString(),
                                              world_pos : pos_left,
-                                             new Color(1,
-                                                       1,
-                                                       1,
-                                                       1));
+                                             color : new Color(1,
+                                                               1,
+                                                               1,
+                                                               1));
                 var pos_forward = position;
                 pos_forward.z += entry._Max_Value;
-                NeodroidUtilities.DrawString(i.ToString(),
+                NeodroidUtilities.DrawString(text : i.ToString(),
                                              world_pos : pos_forward,
-                                             new Color(1,
-                                                       1,
-                                                       1,
-                                                       1));
+                                             color : new Color(1,
+                                                               1,
+                                                               1,
+                                                               1));
                 var pos_down = position;
                 pos_down.y -= entry._Max_Value;
-                NeodroidUtilities.DrawString(i.ToString(),
+                NeodroidUtilities.DrawString(text : i.ToString(),
                                              world_pos : pos_down,
-                                             new Color(1,
-                                                       1,
-                                                       1,
-                                                       1));
+                                             color : new Color(1,
+                                                               1,
+                                                               1,
+                                                               1));
                 var pos_right = position;
                 pos_right.x -= entry._Max_Value;
-                NeodroidUtilities.DrawString(i.ToString(),
+                NeodroidUtilities.DrawString(text : i.ToString(),
                                              world_pos : pos_right,
-                                             new Color(1,
-                                                       1,
-                                                       1,
-                                                       1));
+                                             color : new Color(1,
+                                                               1,
+                                                               1,
+                                                               1));
                 var pos_backward = position;
                 pos_backward.z -= entry._Max_Value;
-                NeodroidUtilities.DrawString(i.ToString(),
+                NeodroidUtilities.DrawString(text : i.ToString(),
                                              world_pos : pos_backward,
-                                             new Color(1,
-                                                       1,
-                                                       1,
-                                                       1));
+                                             color : new Color(1,
+                                                               1,
+                                                               1,
+                                                               1));
               }
             }
           }

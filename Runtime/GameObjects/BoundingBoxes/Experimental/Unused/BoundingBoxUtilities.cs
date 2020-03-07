@@ -11,22 +11,46 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental.Unused {
     public static void DrawBoxFromCenter(Vector3 p, float r, Color c) {
       // p is pos.yition of the center, r is "radius" and c is the color of the box
       //Bottom lines
-      Debug.DrawLine(new Vector3(-r + p.x, -r + p.y, -r + p.z), new Vector3(r + p.x, -r + p.y, -r + p.z), color : c);
-      Debug.DrawLine(new Vector3(-r + p.x, -r + p.y, -r + p.z), new Vector3(-r + p.x, -r + p.y, r + p.z), color : c);
-      Debug.DrawLine(new Vector3(r + p.x, -r + p.y, r + p.z), new Vector3(-r + p.x, -r + p.y, r + p.z), color : c);
-      Debug.DrawLine(new Vector3(r + p.x, -r + p.y, r + p.z), new Vector3(r + p.x, -r + p.y, -r + p.z), color : c);
+      Debug.DrawLine(start : new Vector3(x : -r + p.x, y : -r + p.y, z : -r + p.z),
+                     end : new Vector3(x : r + p.x, y : -r + p.y, z : -r + p.z),
+                     color : c);
+      Debug.DrawLine(start : new Vector3(x : -r + p.x, y : -r + p.y, z : -r + p.z),
+                     end : new Vector3(x : -r + p.x, y : -r + p.y, z : r + p.z),
+                     color : c);
+      Debug.DrawLine(start : new Vector3(x : r + p.x, y : -r + p.y, z : r + p.z),
+                     end : new Vector3(x : -r + p.x, y : -r + p.y, z : r + p.z),
+                     color : c);
+      Debug.DrawLine(start : new Vector3(x : r + p.x, y : -r + p.y, z : r + p.z),
+                     end : new Vector3(x : r + p.x, y : -r + p.y, z : -r + p.z),
+                     color : c);
 
       //Vertical lines
-      Debug.DrawLine(new Vector3(-r + p.x, r + p.y, -r + p.z), new Vector3(r + p.x, r + p.y, -r + p.z), color : c);
-      Debug.DrawLine(new Vector3(-r + p.x, r + p.y, -r + p.z), new Vector3(-r + p.x, r + p.y, r + p.z), color : c);
-      Debug.DrawLine(new Vector3(r + p.x, r + p.y, r + p.z), new Vector3(-r + p.x, r + p.y, r + p.z), color : c);
-      Debug.DrawLine(new Vector3(r + p.x, r + p.y, r + p.z), new Vector3(r + p.x, r + p.y, -r + p.z), color : c);
+      Debug.DrawLine(start : new Vector3(x : -r + p.x, y : r + p.y, z : -r + p.z),
+                     end : new Vector3(x : r + p.x, y : r + p.y, z : -r + p.z),
+                     color : c);
+      Debug.DrawLine(start : new Vector3(x : -r + p.x, y : r + p.y, z : -r + p.z),
+                     end : new Vector3(x : -r + p.x, y : r + p.y, z : r + p.z),
+                     color : c);
+      Debug.DrawLine(start : new Vector3(x : r + p.x, y : r + p.y, z : r + p.z),
+                     end : new Vector3(x : -r + p.x, y : r + p.y, z : r + p.z),
+                     color : c);
+      Debug.DrawLine(start : new Vector3(x : r + p.x, y : r + p.y, z : r + p.z),
+                     end : new Vector3(x : r + p.x, y : r + p.y, z : -r + p.z),
+                     color : c);
 
       //Top lines
-      Debug.DrawLine(new Vector3(-r + p.x, -r + p.y, -r + p.z), new Vector3(-r + p.x, r + p.y, -r + p.z), color : c);
-      Debug.DrawLine(new Vector3(-r + p.x, -r + p.y, r + p.z), new Vector3(-r + p.x, r + p.y, r + p.z), color : c);
-      Debug.DrawLine(new Vector3(r + p.x, -r + p.y, -r + p.z), new Vector3(r + p.x, r + p.y, -r + p.z), color : c);
-      Debug.DrawLine(new Vector3(r + p.x, -r + p.y, r + p.z), new Vector3(r + p.x, r + p.y, r + p.z), color : c);
+      Debug.DrawLine(start : new Vector3(x : -r + p.x, y : -r + p.y, z : -r + p.z),
+                     end : new Vector3(x : -r + p.x, y : r + p.y, z : -r + p.z),
+                     color : c);
+      Debug.DrawLine(start : new Vector3(x : -r + p.x, y : -r + p.y, z : r + p.z),
+                     end : new Vector3(x : -r + p.x, y : r + p.y, z : r + p.z),
+                     color : c);
+      Debug.DrawLine(start : new Vector3(x : r + p.x, y : -r + p.y, z : -r + p.z),
+                     end : new Vector3(x : r + p.x, y : r + p.y, z : -r + p.z),
+                     color : c);
+      Debug.DrawLine(start : new Vector3(x : r + p.x, y : -r + p.y, z : r + p.z),
+                     end : new Vector3(x : r + p.x, y : r + p.y, z : r + p.z),
+                     color : c);
     }
 
     /// <summary>
@@ -43,45 +67,45 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental.Unused {
       var z = z_size / 2;
 
       //Vertical lines
-      Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, -z + pos.z),
-                     new Vector3(-x + pos.x, y + pos.y, -z + pos.z),
+      Debug.DrawLine(start : new Vector3(x : -x + pos.x, y : -y + pos.y, z : -z + pos.z),
+                     end : new Vector3(x : -x + pos.x, y : y + pos.y, z : -z + pos.z),
                      color : color);
-      Debug.DrawLine(new Vector3(x + pos.x, -y + pos.y, -z + pos.z),
-                     new Vector3(x + pos.x, y + pos.y, -z + pos.z),
+      Debug.DrawLine(start : new Vector3(x : x + pos.x, y : -y + pos.y, z : -z + pos.z),
+                     end : new Vector3(x : x + pos.x, y : y + pos.y, z : -z + pos.z),
                      color : color);
-      Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, z + pos.z),
-                     new Vector3(-x + pos.x, y + pos.y, z + pos.z),
+      Debug.DrawLine(start : new Vector3(x : -x + pos.x, y : -y + pos.y, z : z + pos.z),
+                     end : new Vector3(x : -x + pos.x, y : y + pos.y, z : z + pos.z),
                      color : color);
-      Debug.DrawLine(new Vector3(x + pos.x, -y + pos.y, z + pos.z),
-                     new Vector3(x + pos.x, y + pos.y, z + pos.z),
+      Debug.DrawLine(start : new Vector3(x : x + pos.x, y : -y + pos.y, z : z + pos.z),
+                     end : new Vector3(x : x + pos.x, y : y + pos.y, z : z + pos.z),
                      color : color);
 
       //Horizontal top
-      Debug.DrawLine(new Vector3(-x + pos.x, y + pos.y, -z + pos.z),
-                     new Vector3(x + pos.x, y + pos.y, -z + pos.z),
+      Debug.DrawLine(start : new Vector3(x : -x + pos.x, y : y + pos.y, z : -z + pos.z),
+                     end : new Vector3(x : x + pos.x, y : y + pos.y, z : -z + pos.z),
                      color : color);
-      Debug.DrawLine(new Vector3(-x + pos.x, y + pos.y, z + pos.z),
-                     new Vector3(x + pos.x, y + pos.y, z + pos.z),
+      Debug.DrawLine(start : new Vector3(x : -x + pos.x, y : y + pos.y, z : z + pos.z),
+                     end : new Vector3(x : x + pos.x, y : y + pos.y, z : z + pos.z),
                      color : color);
-      Debug.DrawLine(new Vector3(-x + pos.x, y + pos.y, -z + pos.z),
-                     new Vector3(-x + pos.x, y + pos.y, z + pos.z),
+      Debug.DrawLine(start : new Vector3(x : -x + pos.x, y : y + pos.y, z : -z + pos.z),
+                     end : new Vector3(x : -x + pos.x, y : y + pos.y, z : z + pos.z),
                      color : color);
-      Debug.DrawLine(new Vector3(x + pos.x, y + pos.y, -z + pos.z),
-                     new Vector3(x + pos.x, y + pos.y, z + pos.z),
+      Debug.DrawLine(start : new Vector3(x : x + pos.x, y : y + pos.y, z : -z + pos.z),
+                     end : new Vector3(x : x + pos.x, y : y + pos.y, z : z + pos.z),
                      color : color);
 
       //Horizontal bottom
-      Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, -z + pos.z),
-                     new Vector3(x + pos.x, -y + pos.y, -z + pos.z),
+      Debug.DrawLine(start : new Vector3(x : -x + pos.x, y : -y + pos.y, z : -z + pos.z),
+                     end : new Vector3(x : x + pos.x, y : -y + pos.y, z : -z + pos.z),
                      color : color);
-      Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, z + pos.z),
-                     new Vector3(x + pos.x, -y + pos.y, z + pos.z),
+      Debug.DrawLine(start : new Vector3(x : -x + pos.x, y : -y + pos.y, z : z + pos.z),
+                     end : new Vector3(x : x + pos.x, y : -y + pos.y, z : z + pos.z),
                      color : color);
-      Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, -z + pos.z),
-                     new Vector3(-x + pos.x, -y + pos.y, z + pos.z),
+      Debug.DrawLine(start : new Vector3(x : -x + pos.x, y : -y + pos.y, z : -z + pos.z),
+                     end : new Vector3(x : -x + pos.x, y : -y + pos.y, z : z + pos.z),
                      color : color);
-      Debug.DrawLine(new Vector3(x + pos.x, -y + pos.y, -z + pos.z),
-                     new Vector3(x + pos.x, -y + pos.y, z + pos.z),
+      Debug.DrawLine(start : new Vector3(x : x + pos.x, y : -y + pos.y, z : -z + pos.z),
+                     end : new Vector3(x : x + pos.x, y : -y + pos.y, z : z + pos.z),
                      color : color);
     }
 
@@ -214,13 +238,13 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental.Unused {
 
       var screen_bounds = new Bounds();
       for (var i = 0; i < 8; i++) {
-        screen_pos[i] = cam.WorldToScreenPoint(points[i]);
+        screen_pos[i] = cam.WorldToScreenPoint(position : points[i]);
 
         if (i == 0) {
-          screen_bounds = new Bounds(screen_pos[0], size : Vector3.zero);
+          screen_bounds = new Bounds(center : screen_pos[0], size : Vector3.zero);
         }
 
-        screen_bounds.Encapsulate(screen_pos[i]);
+        screen_bounds.Encapsulate(point : screen_pos[i]);
       }
 
       //Debug.Log(screen_bounds.ToString());
@@ -303,7 +327,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental.Unused {
       var center = a_area.center - new Vector3(0, y : a_area.extents.y, 0);
 
       // the maximum distance the camera can be above the area plane for each direction
-      var max_dist = new Vector2(dim.x / tan.x, dim.z / tan.y);
+      var max_dist = new Vector2(x : dim.x / tan.x, y : dim.z / tan.y);
 
       // actual distance of the camera above our plane
       var dist = a_cam.transform.position.y - center.y;
@@ -316,10 +340,10 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental.Unused {
       a_max_height = center.y + Mathf.Min(a : max_dist.x, b : max_dist.y);
 
       // the min and max x and z coordinates the camera can be at the current distance.
-      a_limits = new Rect(center.x - dim.x,
-                          center.z - dim.z,
-                          dim.x * 2,
-                          dim.z * 2);
+      a_limits = new Rect(x : center.x - dim.x,
+                          y : center.z - dim.z,
+                          width : dim.x * 2,
+                          height : dim.z * 2);
     }
 
     public static bool CullToFrustum(Mesh mesh, Camera cam, Transform trans, bool update_position) {
@@ -331,7 +355,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental.Unused {
         return true;
       }
 
-      Debug.Log("Culling :" + trans.name);
+      Debug.Log(message : "Culling :" + trans.name);
       return false;
     }
 
@@ -354,31 +378,31 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental.Unused {
       var y_max = cen.y + ext.y;
       var z_max = cen.z + ext.z;
 
-      Vector2 min = cam.WorldToScreenPoint(new Vector3(x : x_min, y : y_min, z : z_min));
+      Vector2 min = cam.WorldToScreenPoint(position : new Vector3(x : x_min, y : y_min, z : z_min));
       var max = min;
 
       var point = min;
       point.GetMinMax(min : ref min, max : ref max);
 
-      point = cam.WorldToScreenPoint(new Vector3(x : x_max, y : y_max, z : z_max));
+      point = cam.WorldToScreenPoint(position : new Vector3(x : x_max, y : y_max, z : z_max));
       point.GetMinMax(min : ref min, max : ref max);
 
-      point = cam.WorldToScreenPoint(new Vector3(x : x_max, y : y_min, z : z_min));
+      point = cam.WorldToScreenPoint(position : new Vector3(x : x_max, y : y_min, z : z_min));
       point.GetMinMax(min : ref min, max : ref max);
 
-      point = cam.WorldToScreenPoint(new Vector3(x : x_min, y : y_max, z : z_min));
+      point = cam.WorldToScreenPoint(position : new Vector3(x : x_min, y : y_max, z : z_min));
       point.GetMinMax(min : ref min, max : ref max);
 
-      point = cam.WorldToScreenPoint(new Vector3(x : x_min, y : y_min, z : z_max));
+      point = cam.WorldToScreenPoint(position : new Vector3(x : x_min, y : y_min, z : z_max));
       point.GetMinMax(min : ref min, max : ref max);
 
-      point = cam.WorldToScreenPoint(new Vector3(x : x_max, y : y_min, z : z_max));
+      point = cam.WorldToScreenPoint(position : new Vector3(x : x_max, y : y_min, z : z_max));
       point.GetMinMax(min : ref min, max : ref max);
 
-      point = cam.WorldToScreenPoint(new Vector3(x : x_max, y : y_max, z : z_min));
+      point = cam.WorldToScreenPoint(position : new Vector3(x : x_max, y : y_max, z : z_min));
       point.GetMinMax(min : ref min, max : ref max);
 
-      point = cam.WorldToScreenPoint(new Vector3(x : x_min, y : y_max, z : z_max));
+      point = cam.WorldToScreenPoint(position : new Vector3(x : x_min, y : y_max, z : z_max));
       point.GetMinMax(min : ref min, max : ref max);
 
       var r = Rect.MinMaxRect(xmin : min.x,

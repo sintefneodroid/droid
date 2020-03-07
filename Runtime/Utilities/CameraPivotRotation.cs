@@ -31,9 +31,9 @@ namespace droid.Runtime.Utilities {
                                                           3f,
                                                           10f,
                                                           0f,
-                                                          Mathf.PI * 2f,
+                                                          max_polar : Mathf.PI * 2f,
                                                           0f,
-                                                          Mathf.PI / 4f);
+                                                          max_elevation : Mathf.PI / 4f);
       // Initialize position
       this.transform.position = this._sphericalSpace.ToCartesian() + this.pivot.position;
     }
@@ -51,15 +51,16 @@ namespace droid.Runtime.Utilities {
 
       if (h * h > .1f || v * v > .1f) {
         this.transform.position =
-            this._sphericalSpace.Rotate(h * this.rotateSpeed * Time.deltaTime,
-                                        v * this.rotateSpeed * Time.deltaTime).ToCartesian()
+            this._sphericalSpace.Rotate(polar_delta : h * this.rotateSpeed * Time.deltaTime,
+                                        elevation_delta : v * this.rotateSpeed * Time.deltaTime).ToCartesian()
             + this.pivot.position;
       }
 
       var sw = -Input.GetAxis("Mouse ScrollWheel");
       if (sw * sw > Mathf.Epsilon) {
         this.transform.position =
-            this._sphericalSpace.TranslateRadius(sw * Time.deltaTime * this.scrollSpeed).ToCartesian()
+            this._sphericalSpace.TranslateRadius(scroll_speed : sw * Time.deltaTime * this.scrollSpeed)
+                .ToCartesian()
             + this.pivot.position;
       }
 

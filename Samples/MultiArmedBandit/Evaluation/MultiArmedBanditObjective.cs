@@ -9,9 +9,9 @@ namespace droid.Samples.MultiArmedBandit.Evaluation {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(EvaluationComponentMenuPath._ComponentMenuPath
-                    + "MultiArmedBandit"
-                    + EvaluationComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : EvaluationComponentMenuPath._ComponentMenuPath
+                               + "MultiArmedBandit"
+                               + EvaluationComponentMenuPath._Postfix)]
   public class MultiArmedBanditObjective : EpisodicObjective {
     [SerializeField] MultiArmedBanditActuator _arms;
     [SerializeField] float[] _normalised_values;
@@ -36,7 +36,9 @@ for (var i = 0; i < this._arms.WinAmounts.Length; i++) {
   this._normalised_values[i] = this._arms.WinAmounts[i] / sum;
 }*/
 
-      var values = this._arms.WinAmounts.Zip(second : this._arms.WinLikelihoods, resultSelector : (f, f1) => f * f1).ToArray();
+      var values = this._arms.WinAmounts
+                       .Zip(second : this._arms.WinLikelihoods, resultSelector : (f, f1) => f * f1)
+                       .ToArray();
       var values_sum = values.Sum();
 
       this._normalised_values = new Single[values.Length];

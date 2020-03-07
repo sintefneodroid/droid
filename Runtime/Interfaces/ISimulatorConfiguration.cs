@@ -1,6 +1,8 @@
+using System;
 using droid.Runtime.Enums;
 using droid.Runtime.Messaging.Messages;
 using UnityEngine;
+using Object = System.Object;
 
 namespace droid.Runtime.Interfaces {
   /// <summary>
@@ -121,5 +123,7 @@ namespace droid.Runtime.Interfaces {
     ///
     /// </summary>
     int VSyncCount { get; set; }
+
+    bool ManualRender { get; set; }
   }
 }

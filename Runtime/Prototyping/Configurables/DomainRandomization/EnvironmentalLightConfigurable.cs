@@ -10,9 +10,9 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
-                    + "EnvironmentalLight"
-                    + ConfigurableComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : ConfigurableComponentMenuPath._ComponentMenuPath
+                               + "EnvironmentalLight"
+                               + ConfigurableComponentMenuPath._Postfix)]
   [DisallowMultipleComponent]
   public class EnvironmentalLightConfigurable : Configurable {
     string _color_r;
@@ -29,7 +29,8 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
                                                                           Max = Vector3.one * 1f
                                                                       },
                                                        _distribution_sampler =
-                                                           new DistributionSampler(distribution_enum : DistributionEnum.Linear_) {
+                                                           new DistributionSampler(distribution_enum :
+                                                                                   DistributionEnum.Linear_) {
                                                                                                                  DistributionParameter
                                                                                                                      = -1
                                                                                                              }
@@ -60,23 +61,23 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
     protected override void RegisterComponent() {
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._color_r);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._color_b);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._color_g);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._intensity);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._reflection_intensity);
     }
 
@@ -88,16 +89,16 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
         return;
       }
 
-      this.ParentEnvironment.UnRegister(this, identifier : this._color_r);
-      this.ParentEnvironment.UnRegister(this, identifier : this._color_g);
-      this.ParentEnvironment.UnRegister(this, identifier : this._color_b);
-      this.ParentEnvironment.UnRegister(this, identifier : this._intensity);
-      this.ParentEnvironment.UnRegister(this, identifier : this._reflection_intensity);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._color_r);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._color_g);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._color_b);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._intensity);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._reflection_intensity);
     }
 
     public ISamplable ConfigurableValueSpace { get; }
 
-    public override void UpdateCurrentConfiguration() {  }
+    public override void UpdateCurrentConfiguration() { }
 
     /// <summary>
     /// </summary>
@@ -105,7 +106,9 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        DebugPrinting.ApplyPrint(debugging : this.Debugging, configuration : configuration, identifier : this.Identifier);
+        DebugPrinting.ApplyPrint(debugging : this.Debugging,
+                                 configuration : configuration,
+                                 identifier : this.Identifier);
       }
       #endif
       var c = RenderSettings.ambientLight;
@@ -143,7 +146,8 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
                        new Configuration(configurable_name : this._color_g, configurable_value : v.y),
                        new Configuration(configurable_name : this._color_b, configurable_value : v.z),
                        new Configuration(configurable_name : this._intensity, configurable_value : o.x),
-                       new Configuration(configurable_name : this._reflection_intensity, configurable_value : o.y)
+                       new Configuration(configurable_name : this._reflection_intensity,
+                                         configurable_value : o.y)
                    };
     }
   }

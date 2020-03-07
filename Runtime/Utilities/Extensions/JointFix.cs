@@ -5,7 +5,7 @@ namespace droid.Runtime.Utilities.Extensions {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [RequireComponent(typeof(Joint))]
+  [RequireComponent(requiredComponent : typeof(Joint))]
   public class JointFix : MonoBehaviour {
     JointDrive[] _angular_x_drive;
     Rigidbody[] _connected_bodies;
@@ -149,7 +149,7 @@ namespace droid.Runtime.Utilities.Extensions {
       this.transform.localPosition = this._initial_local_position;
       for (var i = 0; i < this._joints.Length; i++) {
         if (this._joints[i] == null) {
-          this._joints[i] = (Joint)this.gameObject.AddComponent(this._joint_types[i]);
+          this._joints[i] = (Joint)this.gameObject.AddComponent(componentType : this._joint_types[i]);
           this._joints[i].connectedBody = this._connected_bodies[i];
         }
 

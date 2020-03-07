@@ -10,9 +10,9 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
   /// <inheritdoc cref="Configurable" />
   ///  <summary>
   ///  </summary>
-  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
-                    + "ChildSelector"
-                    + ConfigurableComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : ConfigurableComponentMenuPath._ComponentMenuPath
+                               + "ChildSelector"
+                               + ConfigurableComponentMenuPath._Postfix)]
   public class ChildSelectorConfigurable : Configurable,
                                            ICategoryProvider {
     [SerializeField] Renderer active;
@@ -86,7 +86,10 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
     ///  </summary>
     ///  <returns></returns>
     public override Configuration[] SampleConfigurations() {
-      return new[] {new Configuration(configurable_name : this.Identifier,configurable_value: this._configurable_value_space.Sample())};
+      return new[] {
+                       new Configuration(configurable_name : this.Identifier,
+                                         configurable_value : this._configurable_value_space.Sample())
+                   };
     }
 
     /// <inheritdoc />

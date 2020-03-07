@@ -42,12 +42,20 @@ namespace droid.Runtime.Structs.Space.Sample {
       Single y;
       Single z;
       Single w;
-      switch(this._space.Normalised) {
+      switch (this._space.Normalised) {
         case NormalisationEnum.None_:
-          x = this._space.Round(this.DistributionSampler.Range(min : this._space.Min.x, max : this._space.Max.x,granularity : this._space.DecimalGranularity));
-          y = this._space.Round(this.DistributionSampler.Range(min : this._space.Min.y, max : this._space.Max.y,granularity : this._space.DecimalGranularity));
-          z = this._space.Round(this.DistributionSampler.Range(min : this._space.Min.z, max : this._space.Max.z,granularity : this._space.DecimalGranularity));
-          w = this._space.Round(this.DistributionSampler.Range(min : this._space.Min.w, max : this._space.Max.w,granularity : this._space.DecimalGranularity));
+          x = this._space.Round(this.DistributionSampler.Range(min : this._space.Min.x,
+                                                               max : this._space.Max.x,
+                                                               granularity : this._space.DecimalGranularity));
+          y = this._space.Round(this.DistributionSampler.Range(min : this._space.Min.y,
+                                                               max : this._space.Max.y,
+                                                               granularity : this._space.DecimalGranularity));
+          z = this._space.Round(this.DistributionSampler.Range(min : this._space.Min.z,
+                                                               max : this._space.Max.z,
+                                                               granularity : this._space.DecimalGranularity));
+          w = this._space.Round(this.DistributionSampler.Range(min : this._space.Min.w,
+                                                               max : this._space.Max.w,
+                                                               granularity : this._space.DecimalGranularity));
           break;
         case NormalisationEnum.Zero_one_:
           x = this.DistributionSampler.Range(0, 1);

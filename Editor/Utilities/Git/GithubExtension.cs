@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -78,7 +77,7 @@ namespace droid.Editor.Utilities.Git {
     /// <param name="package_info"></param>
     /// <returns></returns>
     public static string GetRepoUrl(PackageInfo package_info) {
-      return GetRepoUrl(package_info != null ? package_info.packageId : "");
+      return GetRepoUrl(package_id : package_info != null ? package_info.packageId : "");
     }
 
     /// <summary>
@@ -108,7 +107,7 @@ namespace droid.Editor.Utilities.Git {
     /// <param name="package_info"></param>
     /// <returns></returns>
     public static string GetRepoId(PackageInfo package_info) {
-      return GetRepoId(package_info != null ? package_info.packageId : "");
+      return GetRepoId(package_id : package_info != null ? package_info.packageId : "");
     }
 
     /// <summary>
@@ -117,7 +116,7 @@ namespace droid.Editor.Utilities.Git {
     /// <param name="package_id"></param>
     /// <returns></returns>
     public static string GetRepoId(string package_id) {
-      var m = Regex.Match(GetRepoUrl(package_id : package_id), "/([^/]+/[^/]+)$");
+      var m = Regex.Match(input : GetRepoUrl(package_id : package_id), "/([^/]+/[^/]+)$");
       if (m.Success) {
         return m.Groups[1].Value;
       }
@@ -141,21 +140,23 @@ namespace droid.Editor.Utilities.Git {
     }
 
     public static AsyncOperation RequestTags(string package_id, List<string> result) {
-      return Request(GetApiRequestUrl(package_id : package_id, "tags"), x => FillRefNamesFromResponse(res : x, result : result));
+      return Request(url : GetApiRequestUrl(package_id : package_id, "tags"),
+                     x => FillRefNamesFromResponse(res : x, result : result));
     }
 
     public static AsyncOperation RequestBranches(string package_id, List<string> result) {
-      return Request(GetApiRequestUrl(package_id : package_id, "branches"), x => FillRefNamesFromResponse(res : x, result : result));
+      return Request(url : GetApiRequestUrl(package_id : package_id, "branches"),
+                     x => FillRefNamesFromResponse(res : x, result : result));
     }
 
     public static void FillRefNamesFromResponse(string res, List<string> result) {
       result.Clear();
-      result.AddRange(Regex.Matches(input : res, "\\s*\"name\": \"(.+)\",").Cast<Match>()
-                           .Select(x => x.Groups[1].Value));
+      result.AddRange(collection : Regex.Matches(input : res, "\\s*\"name\": \"(.+)\",").Cast<Match>()
+                                        .Select(x => x.Groups[1].Value));
     }
 
     public static string GetRevisionHash(PackageInfo package_info) {
-      return GetRevisionHash(package_info != null ? package_info.resolvedPath : "");
+      return GetRevisionHash(resolved_path : package_info != null ? package_info.resolvedPath : "");
     }
 
     public static string GetRevisionHash(string resolved_path) {
@@ -169,7 +170,9 @@ namespace droid.Editor.Utilities.Git {
 
     public static string GetFileUrl(PackageInfo package_info, string file_path) {
       return package_info != null
-                 ? GetFileUrl(package_id : package_info.packageId, resolved_path : package_info.resolvedPath, file_path : file_path)
+                 ? GetFileUrl(package_id : package_info.packageId,
+                              resolved_path : package_info.resolvedPath,
+                              file_path : file_path)
                  : "";
     }
 
@@ -203,7 +206,8 @@ namespace droid.Editor.Utilities.Git {
 
     public static string GetRequestCache(string url) {
       var path = GetRequestCachePath(url : url);
-      return File.Exists(path : path) && (DateTime.UtcNow - File.GetLastWriteTimeUtc(path : path)).TotalSeconds < 300
+      return File.Exists(path : path)
+             && (DateTime.UtcNow - File.GetLastWriteTimeUtc(path : path)).TotalSeconds < 300
                  ? File.ReadAllText(path : path)
                  : null;
     }

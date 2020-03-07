@@ -50,18 +50,18 @@ namespace droid.Runtime.Prototyping.Displayers {
       set { this._environment = value; }
     }
 
-
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment, this);
+      this.ParentEnvironment =
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment, c : this);
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void UnRegisterComponent() { this.ParentEnvironment?.UnRegister(this); }
+    protected override void UnRegisterComponent() { this.ParentEnvironment?.UnRegister(displayer : this); }
 
     /// <summary>
     /// </summary>

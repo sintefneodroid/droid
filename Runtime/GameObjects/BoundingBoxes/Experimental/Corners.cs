@@ -8,30 +8,30 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
     public static Vector3[] ExtractCorners(Vector3 v3_center,
                                            Vector3 v3_extents,
                                            Transform reference_transform = null) {
-      var v3_front_top_left = new Vector3(v3_center.x - v3_extents.x,
-                                          v3_center.y + v3_extents.y,
-                                          v3_center.z - v3_extents.z); // Front top left corner
-      var v3_front_top_right = new Vector3(v3_center.x + v3_extents.x,
-                                           v3_center.y + v3_extents.y,
-                                           v3_center.z - v3_extents.z); // Front top right corner
-      var v3_front_bottom_left = new Vector3(v3_center.x - v3_extents.x,
-                                             v3_center.y - v3_extents.y,
-                                             v3_center.z - v3_extents.z); // Front bottom left corner
-      var v3_front_bottom_right = new Vector3(v3_center.x + v3_extents.x,
-                                              v3_center.y - v3_extents.y,
-                                              v3_center.z - v3_extents.z); // Front bottom right corner
-      var v3_back_top_left = new Vector3(v3_center.x - v3_extents.x,
-                                         v3_center.y + v3_extents.y,
-                                         v3_center.z + v3_extents.z); // Back top left corner
-      var v3_back_top_right = new Vector3(v3_center.x + v3_extents.x,
-                                          v3_center.y + v3_extents.y,
-                                          v3_center.z + v3_extents.z); // Back top right corner
-      var v3_back_bottom_left = new Vector3(v3_center.x - v3_extents.x,
-                                            v3_center.y - v3_extents.y,
-                                            v3_center.z + v3_extents.z); // Back bottom left corner
-      var v3_back_bottom_right = new Vector3(v3_center.x + v3_extents.x,
-                                             v3_center.y - v3_extents.y,
-                                             v3_center.z + v3_extents.z); // Back bottom right corner
+      var v3_front_top_left = new Vector3(x : v3_center.x - v3_extents.x,
+                                          y : v3_center.y + v3_extents.y,
+                                          z : v3_center.z - v3_extents.z); // Front top left corner
+      var v3_front_top_right = new Vector3(x : v3_center.x + v3_extents.x,
+                                           y : v3_center.y + v3_extents.y,
+                                           z : v3_center.z - v3_extents.z); // Front top right corner
+      var v3_front_bottom_left = new Vector3(x : v3_center.x - v3_extents.x,
+                                             y : v3_center.y - v3_extents.y,
+                                             z : v3_center.z - v3_extents.z); // Front bottom left corner
+      var v3_front_bottom_right = new Vector3(x : v3_center.x + v3_extents.x,
+                                              y : v3_center.y - v3_extents.y,
+                                              z : v3_center.z - v3_extents.z); // Front bottom right corner
+      var v3_back_top_left = new Vector3(x : v3_center.x - v3_extents.x,
+                                         y : v3_center.y + v3_extents.y,
+                                         z : v3_center.z + v3_extents.z); // Back top left corner
+      var v3_back_top_right = new Vector3(x : v3_center.x + v3_extents.x,
+                                          y : v3_center.y + v3_extents.y,
+                                          z : v3_center.z + v3_extents.z); // Back top right corner
+      var v3_back_bottom_left = new Vector3(x : v3_center.x - v3_extents.x,
+                                            y : v3_center.y - v3_extents.y,
+                                            z : v3_center.z + v3_extents.z); // Back bottom left corner
+      var v3_back_bottom_right = new Vector3(x : v3_center.x + v3_extents.x,
+                                             y : v3_center.y - v3_extents.y,
+                                             z : v3_center.z + v3_extents.z); // Back bottom right corner
       if (reference_transform) {
         v3_front_top_left = reference_transform.TransformPoint(position : v3_front_top_left);
         v3_front_top_right = reference_transform.TransformPoint(position : v3_front_top_right);
@@ -104,14 +104,14 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
                                   Color color,
                                   float num_segments = 40,
                                   float duration = 0.01f) {
-      var rot_quaternion = Quaternion.AngleAxis(360.0f / num_segments, axis : Vector3.forward);
+      var rot_quaternion = Quaternion.AngleAxis(angle : 360.0f / num_segments, axis : Vector3.forward);
       var vertex_start = new Vector2(x : radius, 0.0f);
       for (var i = 0; i < num_segments; i++) {
         Vector2 rotated_point = rot_quaternion * vertex_start;
 
         // Draw the segment, shifted by the center
-        Debug.DrawLine(center + vertex_start,
-                       center + rotated_point,
+        Debug.DrawLine(start : center + vertex_start,
+                       end : center + rotated_point,
                        color : color,
                        duration : duration);
 
@@ -180,8 +180,8 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
 
       // Polygons are just edges with the first and last points connected
       if (world_points.Length > 1) {
-        Debug.DrawLine(world_points[world_points.Length - 1],
-                       world_points[0],
+        Debug.DrawLine(start : world_points[world_points.Length - 1],
+                       end : world_points[0],
                        color : color,
                        duration : duration);
       }
@@ -205,7 +205,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
       var arrow_direction = endpoint - origin;
       DebugDrawArrowhead(origin : endpoint,
                          direction : arrow_direction.normalized,
-                         GetArrowSizeForLine(line : arrow_direction),
+                         size : GetArrowSizeForLine(line : arrow_direction),
                          color : color,
                          duration : duration);
     }
@@ -227,14 +227,14 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
       var arrow_rotation_r = Quaternion.AngleAxis(angle : theta, axis : Vector3.forward);
       Vector2 arrowhead_r = arrow_rotation_r * arrowhead_handle;
       Debug.DrawLine(start : origin,
-                     origin + arrowhead_r,
+                     end : origin + arrowhead_r,
                      color : color,
                      duration : duration);
 
       var arrow_rotation_l = Quaternion.AngleAxis(angle : -theta, axis : Vector3.forward);
       Vector2 arrowhead_l = arrow_rotation_l * arrowhead_handle;
       Debug.DrawLine(start : origin,
-                     origin + arrowhead_l,
+                     end : origin + arrowhead_l,
                      color : color,
                      duration : duration);
     }

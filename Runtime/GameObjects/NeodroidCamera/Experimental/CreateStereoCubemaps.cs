@@ -33,17 +33,25 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
 
       if (this.renderStereo) {
         this._cam.stereoSeparation = this.stereoSeparation;
-        this._cam.RenderToCubemap(cubemap : this.cubemapLeftEye, 63, stereoEye : Camera.MonoOrStereoscopicEye.Left);
-        this._cam.RenderToCubemap(cubemap : this.cubemapRightEye, 63, stereoEye : Camera.MonoOrStereoscopicEye.Right);
+        this._cam.RenderToCubemap(cubemap : this.cubemapLeftEye,
+                                  63,
+                                  stereoEye : Camera.MonoOrStereoscopicEye.Left);
+        this._cam.RenderToCubemap(cubemap : this.cubemapRightEye,
+                                  63,
+                                  stereoEye : Camera.MonoOrStereoscopicEye.Right);
       } else {
-        this._cam.RenderToCubemap(cubemap : this.cubemapLeftEye, 63, stereoEye : Camera.MonoOrStereoscopicEye.Mono);
+        this._cam.RenderToCubemap(cubemap : this.cubemapLeftEye,
+                                  63,
+                                  stereoEye : Camera.MonoOrStereoscopicEye.Mono);
       }
 
       //optional: convert cubemaps to equirect
       if (this.cubemapEquirect != null) {
         if (this.renderStereo) {
-          this.cubemapLeftEye.ConvertToEquirect(equirect : this.cubemapEquirect, eye : Camera.MonoOrStereoscopicEye.Left);
-          this.cubemapRightEye.ConvertToEquirect(equirect : this.cubemapEquirect, eye : Camera.MonoOrStereoscopicEye.Right);
+          this.cubemapLeftEye.ConvertToEquirect(equirect : this.cubemapEquirect,
+                                                eye : Camera.MonoOrStereoscopicEye.Left);
+          this.cubemapRightEye.ConvertToEquirect(equirect : this.cubemapEquirect,
+                                                 eye : Camera.MonoOrStereoscopicEye.Right);
         } else {
           this.cubemapLeftEye.ConvertToEquirect(equirect : this.cubemapEquirect);
         }

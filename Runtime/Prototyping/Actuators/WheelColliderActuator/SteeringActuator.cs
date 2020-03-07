@@ -2,22 +2,20 @@
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Actuators.WheelColliderActuator {
+  /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ActuatorComponentMenuPath._ComponentMenuPath
-                    + "WheelCollider/Steering"
-                    + ActuatorComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(WheelCollider))]
+  [AddComponentMenu(menuName : ActuatorComponentMenuPath._ComponentMenuPath
+                               + "WheelCollider/Steering"
+                               + ActuatorComponentMenuPath._Postfix)]
+  [RequireComponent(requiredComponent : typeof(WheelCollider))]
   public class SteeringActuator : Actuator {
     /// <summary>
     /// </summary>
     [SerializeField]
     WheelCollider _wheel_collider;
 
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "Steering"; } }
-
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void Setup() { this._wheel_collider = this.GetComponent<WheelCollider>(); }
@@ -26,6 +24,7 @@ namespace droid.Runtime.Prototyping.Actuators.WheelColliderActuator {
     /// </summary>
     void FixedUpdate() { ApplyLocalPositionToVisuals(col : this._wheel_collider); }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <param name="motion"></param>
@@ -45,7 +44,7 @@ namespace droid.Runtime.Prototyping.Actuators.WheelColliderActuator {
 
       var visual_wheel = col.transform.GetChild(0);
 
-      col.GetWorldPose(out var position, out var rotation);
+      col.GetWorldPose(pos : out var position, quat : out var rotation);
 
       visual_wheel.transform.position = position;
       visual_wheel.transform.rotation = rotation;

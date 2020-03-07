@@ -12,10 +12,10 @@ namespace droid.Editor.GameObjects {
                                  0,
                                  0);
 
-    [MenuItem(EditorGameObjectMenuPath._GameObjectMenuPath + "SpawnPrefab", false, 10)]
+    [MenuItem(itemName : EditorGameObjectMenuPath._GameObjectMenuPath + "SpawnPrefab", false, 10)]
     static void Init2() {
       try {
-        PopupWindow.Show(activatorRect : _rect, new PrefabsPopup());
+        PopupWindow.Show(activatorRect : _rect, windowContent : new PrefabsPopup());
       } catch (ExitGUIException) {
         //Debug.Log(e);
       }
@@ -60,7 +60,7 @@ namespace droid.Editor.GameObjects {
       foreach (var prefab in prefabs) {
         var path = AssetDatabase.GUIDToAssetPath(guid : prefab);
         //Debug.Log(path);
-        var go = AssetDatabase.LoadAssetAtPath(assetPath : path, typeof(GameObject));
+        var go = AssetDatabase.LoadAssetAtPath(assetPath : path, type : typeof(GameObject));
         if (path.Contains("Neodroid")) {
           if (GUILayout.Button(text : go.name)) {
             Object.Instantiate(original : go, parent : Selection.activeTransform);

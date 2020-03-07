@@ -6,7 +6,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [RequireComponent(typeof(Camera))]
+  [RequireComponent(requiredComponent : typeof(Camera))]
   [ExecuteInEditMode]
   public class DrawScreenSpaceBoundingBox : MonoBehaviour {
     List<string> _names = new List<string>();
@@ -14,7 +14,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
     Camera _camera = null;
 
     [SerializeField] bool _draw_label = true;
-    [SerializeField] BoundingBox[] bounding_boxes = null;
+    [SerializeField] NeodroidBoundingBox[] bounding_boxes = null;
     [SerializeField] bool _cache_bounding_boxes = false;
     [SerializeField] GUISkin gui_style = null;
     [SerializeField] bool _draw_coords = false;
@@ -28,7 +28,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
         this.gui_style = Resources.FindObjectsOfTypeAll<GUISkin>().First(a => a.name == "BoundingBox");
       }
 
-      this.bounding_boxes = FindObjectsOfType<BoundingBox>();
+      this.bounding_boxes = FindObjectsOfType<NeodroidBoundingBox>();
     }
 
     void Compute() {
@@ -36,7 +36,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
       this._names.Clear();
 
       if (!this._cache_bounding_boxes) {
-        this.bounding_boxes = FindObjectsOfType<BoundingBox>();
+        this.bounding_boxes = FindObjectsOfType<NeodroidBoundingBox>();
       }
 
       for (var index = 0; index < this.bounding_boxes.Length; index++) {

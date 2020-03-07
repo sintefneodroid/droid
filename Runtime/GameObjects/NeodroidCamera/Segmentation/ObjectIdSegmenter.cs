@@ -31,7 +31,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Segmentation {
       get {
         var colors = new Dictionary<String, Color>();
         foreach (var key_val in this.ColorsDictGameObject) {
-          colors.Add(key_val.Key.GetInstanceID().ToString(), value : key_val.Value);
+          colors.Add(key : key_val.Key.GetInstanceID().ToString(), value : key_val.Value);
         }
 
         return colors;
@@ -54,7 +54,8 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Segmentation {
                                                                                                   _Name =
                                                                                                       "_object_id",
                                                                                                   _ReplacementMode
-                                                                                                      = SynthesisUtilities.ReplacementModes
+                                                                                                      = SynthesisUtilities
+                                                                                                        .ReplacementModes
                                                                                                         .Object_id_,
                                                                                                   _SupportsAntialiasing
                                                                                                       = false
@@ -80,17 +81,18 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Segmentation {
         var go_tag = game_object.tag;
 
         if (!this.ColorsDictGameObject.ContainsKey(key : game_object)) {
-          this.ColorsDictGameObject.Add(key : game_object, ColorEncoding.EncodeIdAsColor(instance_id : id));
+          this.ColorsDictGameObject.Add(key : game_object,
+                                        value : ColorEncoding.EncodeIdAsColor(instance_id : id));
         } else {
           #if NEODROID_DEBUG
           if (true) {
-            Debug.LogWarning($"ColorDict Duplicate {game_object}");
+            Debug.LogWarning(message : $"ColorDict Duplicate {game_object}");
           }
           #endif
         }
 
         this._block.SetColor(name : SynthesisUtilities._Shader_ObjectId_Color_Name,
-                             ColorEncoding.EncodeIdAsColor(instance_id : id));
+                             value : ColorEncoding.EncodeIdAsColor(instance_id : id));
 /*
 this._block?.SetInt(SynthesisUtils._Shader_OutputMode_Name,(int) SynthesisUtils.ReplacementModes
                                                                           .Object_id_);

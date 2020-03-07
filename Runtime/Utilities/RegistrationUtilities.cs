@@ -94,7 +94,8 @@ namespace droid.Runtime.Utilities {
 
         #if NEODROID_DEBUG
         if (debug) {
-          Debug.Log($"{caller.name} has created {collider_sensor.name} on {child.name} under parent {parent.name}");
+          Debug.Log(message :
+                    $"{caller.name} has created {collider_sensor.name} on {child.name} under parent {parent.name}");
         }
         #endif
       }
@@ -134,11 +135,11 @@ namespace droid.Runtime.Utilities {
       }
 
       if (component != null) {
-        component.Register((IActuator)c);
+        component.Register(obj : (IActuator)c);
       } else {
         #if NEODROID_DEBUG
         if (debug) {
-          Debug.Log($"Could not find a IHasRegister<IActuator> recipient during registration");
+          Debug.Log(message : $"Could not find a IHasRegister<IActuator> recipient during registration");
         }
         #endif
       }
@@ -182,11 +183,11 @@ namespace droid.Runtime.Utilities {
       }
 
       if (component != null) {
-        component.Register((IActuator)c, identifier : identifier);
+        component.Register(obj : (IActuator)c, identifier : identifier);
       } else {
         #if NEODROID_DEBUG
         if (debug) {
-          Debug.Log($"Could not find a IHasRegister<IActuator> recipient during registration");
+          Debug.Log(message : $"Could not find a IHasRegister<IActuator> recipient during registration");
         }
         #endif
       }
@@ -223,7 +224,7 @@ namespace droid.Runtime.Utilities {
       } else {
         #if NEODROID_DEBUG
         if (debug) {
-          Debug.Log($"Could not find a {typeof(TRecipient)} recipient during registration");
+          Debug.Log(message : $"Could not find a {typeof(TRecipient)} recipient during registration");
         }
         #endif
       }
@@ -262,7 +263,7 @@ namespace droid.Runtime.Utilities {
       } else {
         #if NEODROID_DEBUG
         if (debug) {
-          Debug.Log($"Could not find a {typeof(TRecipient)} recipient during registration");
+          Debug.Log(message : $"Could not find a {typeof(TRecipient)} recipient during registration");
         }
 
         #endif

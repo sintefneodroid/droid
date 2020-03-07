@@ -12,22 +12,46 @@ namespace droid.Runtime.Utilities.Grasping {
     public static void DrawBoxFromCenter(Vector3 p, float r, Color c) {
       // p is pos.yition of the center, r is "radius" and c is the color of the box
       //Bottom lines
-      Debug.DrawLine(new Vector3(-r + p.x, -r + p.y, -r + p.z), new Vector3(r + p.x, -r + p.y, -r + p.z), color : c);
-      Debug.DrawLine(new Vector3(-r + p.x, -r + p.y, -r + p.z), new Vector3(-r + p.x, -r + p.y, r + p.z), color : c);
-      Debug.DrawLine(new Vector3(r + p.x, -r + p.y, r + p.z), new Vector3(-r + p.x, -r + p.y, r + p.z), color : c);
-      Debug.DrawLine(new Vector3(r + p.x, -r + p.y, r + p.z), new Vector3(r + p.x, -r + p.y, -r + p.z), color : c);
+      Debug.DrawLine(start : new Vector3(x : -r + p.x, y : -r + p.y, z : -r + p.z),
+                     end : new Vector3(x : r + p.x, y : -r + p.y, z : -r + p.z),
+                     color : c);
+      Debug.DrawLine(start : new Vector3(x : -r + p.x, y : -r + p.y, z : -r + p.z),
+                     end : new Vector3(x : -r + p.x, y : -r + p.y, z : r + p.z),
+                     color : c);
+      Debug.DrawLine(start : new Vector3(x : r + p.x, y : -r + p.y, z : r + p.z),
+                     end : new Vector3(x : -r + p.x, y : -r + p.y, z : r + p.z),
+                     color : c);
+      Debug.DrawLine(start : new Vector3(x : r + p.x, y : -r + p.y, z : r + p.z),
+                     end : new Vector3(x : r + p.x, y : -r + p.y, z : -r + p.z),
+                     color : c);
 
       //Vertical lines
-      Debug.DrawLine(new Vector3(-r + p.x, r + p.y, -r + p.z), new Vector3(r + p.x, r + p.y, -r + p.z), color : c);
-      Debug.DrawLine(new Vector3(-r + p.x, r + p.y, -r + p.z), new Vector3(-r + p.x, r + p.y, r + p.z), color : c);
-      Debug.DrawLine(new Vector3(r + p.x, r + p.y, r + p.z), new Vector3(-r + p.x, r + p.y, r + p.z), color : c);
-      Debug.DrawLine(new Vector3(r + p.x, r + p.y, r + p.z), new Vector3(r + p.x, r + p.y, -r + p.z), color : c);
+      Debug.DrawLine(start : new Vector3(x : -r + p.x, y : r + p.y, z : -r + p.z),
+                     end : new Vector3(x : r + p.x, y : r + p.y, z : -r + p.z),
+                     color : c);
+      Debug.DrawLine(start : new Vector3(x : -r + p.x, y : r + p.y, z : -r + p.z),
+                     end : new Vector3(x : -r + p.x, y : r + p.y, z : r + p.z),
+                     color : c);
+      Debug.DrawLine(start : new Vector3(x : r + p.x, y : r + p.y, z : r + p.z),
+                     end : new Vector3(x : -r + p.x, y : r + p.y, z : r + p.z),
+                     color : c);
+      Debug.DrawLine(start : new Vector3(x : r + p.x, y : r + p.y, z : r + p.z),
+                     end : new Vector3(x : r + p.x, y : r + p.y, z : -r + p.z),
+                     color : c);
 
       //Top lines
-      Debug.DrawLine(new Vector3(-r + p.x, -r + p.y, -r + p.z), new Vector3(-r + p.x, r + p.y, -r + p.z), color : c);
-      Debug.DrawLine(new Vector3(-r + p.x, -r + p.y, r + p.z), new Vector3(-r + p.x, r + p.y, r + p.z), color : c);
-      Debug.DrawLine(new Vector3(r + p.x, -r + p.y, -r + p.z), new Vector3(r + p.x, r + p.y, -r + p.z), color : c);
-      Debug.DrawLine(new Vector3(r + p.x, -r + p.y, r + p.z), new Vector3(r + p.x, r + p.y, r + p.z), color : c);
+      Debug.DrawLine(start : new Vector3(x : -r + p.x, y : -r + p.y, z : -r + p.z),
+                     end : new Vector3(x : -r + p.x, y : r + p.y, z : -r + p.z),
+                     color : c);
+      Debug.DrawLine(start : new Vector3(x : -r + p.x, y : -r + p.y, z : r + p.z),
+                     end : new Vector3(x : -r + p.x, y : r + p.y, z : r + p.z),
+                     color : c);
+      Debug.DrawLine(start : new Vector3(x : r + p.x, y : -r + p.y, z : -r + p.z),
+                     end : new Vector3(x : r + p.x, y : r + p.y, z : -r + p.z),
+                     color : c);
+      Debug.DrawLine(start : new Vector3(x : r + p.x, y : -r + p.y, z : r + p.z),
+                     end : new Vector3(x : r + p.x, y : r + p.y, z : r + p.z),
+                     color : c);
     }
 
     /// <summary>
@@ -43,45 +67,45 @@ namespace droid.Runtime.Utilities.Grasping {
       var z = z_size / 2;
 
       //Vertical lines
-      Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, -z + pos.z),
-                     new Vector3(-x + pos.x, y + pos.y, -z + pos.z),
+      Debug.DrawLine(start : new Vector3(x : -x + pos.x, y : -y + pos.y, z : -z + pos.z),
+                     end : new Vector3(x : -x + pos.x, y : y + pos.y, z : -z + pos.z),
                      color : color);
-      Debug.DrawLine(new Vector3(x + pos.x, -y + pos.y, -z + pos.z),
-                     new Vector3(x + pos.x, y + pos.y, -z + pos.z),
+      Debug.DrawLine(start : new Vector3(x : x + pos.x, y : -y + pos.y, z : -z + pos.z),
+                     end : new Vector3(x : x + pos.x, y : y + pos.y, z : -z + pos.z),
                      color : color);
-      Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, z + pos.z),
-                     new Vector3(-x + pos.x, y + pos.y, z + pos.z),
+      Debug.DrawLine(start : new Vector3(x : -x + pos.x, y : -y + pos.y, z : z + pos.z),
+                     end : new Vector3(x : -x + pos.x, y : y + pos.y, z : z + pos.z),
                      color : color);
-      Debug.DrawLine(new Vector3(x + pos.x, -y + pos.y, z + pos.z),
-                     new Vector3(x + pos.x, y + pos.y, z + pos.z),
+      Debug.DrawLine(start : new Vector3(x : x + pos.x, y : -y + pos.y, z : z + pos.z),
+                     end : new Vector3(x : x + pos.x, y : y + pos.y, z : z + pos.z),
                      color : color);
 
       //Horizontal top
-      Debug.DrawLine(new Vector3(-x + pos.x, y + pos.y, -z + pos.z),
-                     new Vector3(x + pos.x, y + pos.y, -z + pos.z),
+      Debug.DrawLine(start : new Vector3(x : -x + pos.x, y : y + pos.y, z : -z + pos.z),
+                     end : new Vector3(x : x + pos.x, y : y + pos.y, z : -z + pos.z),
                      color : color);
-      Debug.DrawLine(new Vector3(-x + pos.x, y + pos.y, z + pos.z),
-                     new Vector3(x + pos.x, y + pos.y, z + pos.z),
+      Debug.DrawLine(start : new Vector3(x : -x + pos.x, y : y + pos.y, z : z + pos.z),
+                     end : new Vector3(x : x + pos.x, y : y + pos.y, z : z + pos.z),
                      color : color);
-      Debug.DrawLine(new Vector3(-x + pos.x, y + pos.y, -z + pos.z),
-                     new Vector3(-x + pos.x, y + pos.y, z + pos.z),
+      Debug.DrawLine(start : new Vector3(x : -x + pos.x, y : y + pos.y, z : -z + pos.z),
+                     end : new Vector3(x : -x + pos.x, y : y + pos.y, z : z + pos.z),
                      color : color);
-      Debug.DrawLine(new Vector3(x + pos.x, y + pos.y, -z + pos.z),
-                     new Vector3(x + pos.x, y + pos.y, z + pos.z),
+      Debug.DrawLine(start : new Vector3(x : x + pos.x, y : y + pos.y, z : -z + pos.z),
+                     end : new Vector3(x : x + pos.x, y : y + pos.y, z : z + pos.z),
                      color : color);
 
       //Horizontal bottom
-      Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, -z + pos.z),
-                     new Vector3(x + pos.x, -y + pos.y, -z + pos.z),
+      Debug.DrawLine(start : new Vector3(x : -x + pos.x, y : -y + pos.y, z : -z + pos.z),
+                     end : new Vector3(x : x + pos.x, y : -y + pos.y, z : -z + pos.z),
                      color : color);
-      Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, z + pos.z),
-                     new Vector3(x + pos.x, -y + pos.y, z + pos.z),
+      Debug.DrawLine(start : new Vector3(x : -x + pos.x, y : -y + pos.y, z : z + pos.z),
+                     end : new Vector3(x : x + pos.x, y : -y + pos.y, z : z + pos.z),
                      color : color);
-      Debug.DrawLine(new Vector3(-x + pos.x, -y + pos.y, -z + pos.z),
-                     new Vector3(-x + pos.x, -y + pos.y, z + pos.z),
+      Debug.DrawLine(start : new Vector3(x : -x + pos.x, y : -y + pos.y, z : -z + pos.z),
+                     end : new Vector3(x : -x + pos.x, y : -y + pos.y, z : z + pos.z),
                      color : color);
-      Debug.DrawLine(new Vector3(x + pos.x, -y + pos.y, -z + pos.z),
-                     new Vector3(x + pos.x, -y + pos.y, z + pos.z),
+      Debug.DrawLine(start : new Vector3(x : x + pos.x, y : -y + pos.y, z : -z + pos.z),
+                     end : new Vector3(x : x + pos.x, y : -y + pos.y, z : z + pos.z),
                      color : color);
     }
 

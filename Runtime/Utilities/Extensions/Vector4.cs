@@ -12,10 +12,10 @@ namespace droid.Runtime.Utilities.Extensions {
     /// <param name="b"></param>
     /// <returns></returns>
     public static Vector4 Divide(this Vector4 a, Vector4 b) {
-      return new Vector4(a.x / b.x,
-                         a.y / b.y,
-                         a.z / b.z,
-                         a.w / b.w);
+      return new Vector4(x : a.x / b.x,
+                         y : a.y / b.y,
+                         z : a.z / b.z,
+                         w : a.w / b.w);
     }
 
     /// <summary>
@@ -25,10 +25,10 @@ namespace droid.Runtime.Utilities.Extensions {
     /// <param name="b"></param>
     /// <returns></returns>
     public static Vector4 Multiply(this Vector4 a, Vector4 b) {
-      return new Vector4(a.x * b.x,
-                         a.y * b.y,
-                         a.z * b.z,
-                         a.w * b.w);
+      return new Vector4(x : a.x * b.x,
+                         y : a.y * b.y,
+                         z : a.z * b.z,
+                         w : a.w * b.w);
     }
   }
 }

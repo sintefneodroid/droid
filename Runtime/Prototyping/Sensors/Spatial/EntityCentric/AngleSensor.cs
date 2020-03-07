@@ -1,11 +1,13 @@
 ﻿using droid.Runtime.Prototyping.Sensors.Experimental;
 using UnityEngine;
 
-namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
+namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath + "Angle" + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : SensorComponentMenuPath._ComponentMenuPath
+                               + "Angle"
+                               + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   public class AngleSensor : SingleValueSensor {
     [SerializeField] Vector3 reference = Vector3.up;
@@ -18,7 +20,8 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     public override void UpdateObservation() {
       float val;
       if (false) {
-        val = Vector3.Dot(this.transform.TransformVector(vector : this.reference), rhs : this.reference);
+        val = Vector3.Dot(lhs : this.transform.TransformVector(vector : this.reference),
+                          rhs : this.reference);
       } else {
         var t = this.transform.TransformDirection(direction : this.reference);
         //var axis = Vector3.Cross(t, this.reference);

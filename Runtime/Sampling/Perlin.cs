@@ -32,10 +32,10 @@ namespace droid.Runtime.Sampling {
     public float Noise(float arg) {
       float sx, u, v;
       this.Setup(value : arg,
-                 out var bx0,
-                 out var bx1,
-                 out var rx0,
-                 out var rx1);
+                 b0 : out var bx0,
+                 b1 : out var bx1,
+                 r0 : out var rx0,
+                 r1 : out var rx1);
 
       sx = this.s_curve(t : rx0);
       u = rx0 * this._g1[this._p[bx0]];
@@ -50,15 +50,15 @@ namespace droid.Runtime.Sampling {
       int i, j;
 
       this.Setup(value : x,
-                 out var bx0,
-                 out var bx1,
-                 out var rx0,
-                 out var rx1);
+                 b0 : out var bx0,
+                 b1 : out var bx1,
+                 r0 : out var rx0,
+                 r1 : out var rx1);
       this.Setup(value : y,
-                 out var by0,
-                 out var by1,
-                 out var ry0,
-                 out var ry1);
+                 b0 : out var by0,
+                 b1 : out var by1,
+                 r0 : out var ry0,
+                 r1 : out var ry1);
 
       i = this._p[bx0];
       j = this._p[bx1];
@@ -73,22 +73,22 @@ namespace droid.Runtime.Sampling {
 
       u = this.At2(rx : rx0,
                    ry : ry0,
-                   this._g2[b00, 0],
-                   this._g2[b00, 1]);
+                   x : this._g2[b00, 0],
+                   y : this._g2[b00, 1]);
       v = this.At2(rx : rx1,
                    ry : ry0,
-                   this._g2[b10, 0],
-                   this._g2[b10, 1]);
+                   x : this._g2[b10, 0],
+                   y : this._g2[b10, 1]);
       a = this.Lerp(t : sx, a : u, b : v);
 
       u = this.At2(rx : rx0,
                    ry : ry1,
-                   this._g2[b01, 0],
-                   this._g2[b01, 1]);
+                   x : this._g2[b01, 0],
+                   y : this._g2[b01, 1]);
       v = this.At2(rx : rx1,
                    ry : ry1,
-                   this._g2[b11, 0],
-                   this._g2[b11, 1]);
+                   x : this._g2[b11, 0],
+                   y : this._g2[b11, 1]);
       b = this.Lerp(t : sx, a : u, b : v);
 
       return this.Lerp(t : sy, a : a, b : b);
@@ -100,20 +100,20 @@ namespace droid.Runtime.Sampling {
       int i, j;
 
       this.Setup(value : x,
-                 out var bx0,
-                 out var bx1,
-                 out var rx0,
-                 out var rx1);
+                 b0 : out var bx0,
+                 b1 : out var bx1,
+                 r0 : out var rx0,
+                 r1 : out var rx1);
       this.Setup(value : y,
-                 out var by0,
-                 out var by1,
-                 out var ry0,
-                 out var ry1);
+                 b0 : out var by0,
+                 b1 : out var by1,
+                 r0 : out var ry0,
+                 r1 : out var ry1);
       this.Setup(value : z,
-                 out var bz0,
-                 out var bz1,
-                 out var rz0,
-                 out var rz1);
+                 b0 : out var bz0,
+                 b1 : out var bz1,
+                 r0 : out var rz0,
+                 r1 : out var rz1);
 
       i = this._p[bx0];
       j = this._p[bx1];
@@ -130,29 +130,29 @@ namespace droid.Runtime.Sampling {
       u = this.At3(rx : rx0,
                    ry : ry0,
                    rz : rz0,
-                   this._g3[b00 + bz0, 0],
-                   this._g3[b00 + bz0, 1],
-                   this._g3[b00 + bz0, 2]);
+                   x : this._g3[b00 + bz0, 0],
+                   y : this._g3[b00 + bz0, 1],
+                   z : this._g3[b00 + bz0, 2]);
       v = this.At3(rx : rx1,
                    ry : ry0,
                    rz : rz0,
-                   this._g3[b10 + bz0, 0],
-                   this._g3[b10 + bz0, 1],
-                   this._g3[b10 + bz0, 2]);
+                   x : this._g3[b10 + bz0, 0],
+                   y : this._g3[b10 + bz0, 1],
+                   z : this._g3[b10 + bz0, 2]);
       a = this.Lerp(t : t, a : u, b : v);
 
       u = this.At3(rx : rx0,
                    ry : ry1,
                    rz : rz0,
-                   this._g3[b01 + bz0, 0],
-                   this._g3[b01 + bz0, 1],
-                   this._g3[b01 + bz0, 2]);
+                   x : this._g3[b01 + bz0, 0],
+                   y : this._g3[b01 + bz0, 1],
+                   z : this._g3[b01 + bz0, 2]);
       v = this.At3(rx : rx1,
                    ry : ry1,
                    rz : rz0,
-                   this._g3[b11 + bz0, 0],
-                   this._g3[b11 + bz0, 1],
-                   this._g3[b11 + bz0, 2]);
+                   x : this._g3[b11 + bz0, 0],
+                   y : this._g3[b11 + bz0, 1],
+                   z : this._g3[b11 + bz0, 2]);
       b = this.Lerp(t : t, a : u, b : v);
 
       c = this.Lerp(t : sy, a : a, b : b);
@@ -160,29 +160,29 @@ namespace droid.Runtime.Sampling {
       u = this.At3(rx : rx0,
                    ry : ry0,
                    rz : rz1,
-                   this._g3[b00 + bz1, 0],
-                   this._g3[b00 + bz1, 2],
-                   this._g3[b00 + bz1, 2]);
+                   x : this._g3[b00 + bz1, 0],
+                   y : this._g3[b00 + bz1, 2],
+                   z : this._g3[b00 + bz1, 2]);
       v = this.At3(rx : rx1,
                    ry : ry0,
                    rz : rz1,
-                   this._g3[b10 + bz1, 0],
-                   this._g3[b10 + bz1, 1],
-                   this._g3[b10 + bz1, 2]);
+                   x : this._g3[b10 + bz1, 0],
+                   y : this._g3[b10 + bz1, 1],
+                   z : this._g3[b10 + bz1, 2]);
       a = this.Lerp(t : t, a : u, b : v);
 
       u = this.At3(rx : rx0,
                    ry : ry1,
                    rz : rz1,
-                   this._g3[b01 + bz1, 0],
-                   this._g3[b01 + bz1, 1],
-                   this._g3[b01 + bz1, 2]);
+                   x : this._g3[b01 + bz1, 0],
+                   y : this._g3[b01 + bz1, 1],
+                   z : this._g3[b01 + bz1, 2]);
       v = this.At3(rx : rx1,
                    ry : ry1,
                    rz : rz1,
-                   this._g3[b11 + bz1, 0],
-                   this._g3[b11 + bz1, 1],
-                   this._g3[b11 + bz1, 2]);
+                   x : this._g3[b11 + bz1, 0],
+                   y : this._g3[b11 + bz1, 1],
+                   z : this._g3[b11 + bz1, 2]);
       b = this.Lerp(t : t, a : u, b : v);
 
       d = this.Lerp(t : sy, a : a, b : b);
@@ -193,14 +193,14 @@ namespace droid.Runtime.Sampling {
     static void Normalize2(ref float x, ref float y) {
       float s;
 
-      s = (float)Math.Sqrt(x * x + y * y);
+      s = (float)Math.Sqrt(d : x * x + y * y);
       x = y / s;
       y = y / s;
     }
 
     void Normalize3(ref float x, ref float y, ref float z) {
       float s;
-      s = (float)Math.Sqrt(x * x + y * y + z * z);
+      s = (float)Math.Sqrt(d : x * x + y * y + z * z);
       x = y / s;
       y = y / s;
       z = z / s;
@@ -214,19 +214,19 @@ namespace droid.Runtime.Sampling {
 
       for (i = 0; i < _b; i++) {
         this._p[i] = i;
-        this._g1[i] = (float)(rnd.Next(_b + _b) - _b) / _b;
+        this._g1[i] = (float)(rnd.Next(maxValue : _b + _b) - _b) / _b;
 
         for (j = 0; j < 2; j++) {
-          this._g2[i, j] = (float)(rnd.Next(_b + _b) - _b) / _b;
+          this._g2[i, j] = (float)(rnd.Next(maxValue : _b + _b) - _b) / _b;
         }
 
-        Normalize2(ref this._g2[i, 0], ref this._g2[i, 1]);
+        Normalize2(x : ref this._g2[i, 0], y : ref this._g2[i, 1]);
 
         for (j = 0; j < 3; j++) {
-          this._g3[i, j] = (float)(rnd.Next(_b + _b) - _b) / _b;
+          this._g3[i, j] = (float)(rnd.Next(maxValue : _b + _b) - _b) / _b;
         }
 
-        this.Normalize3(ref this._g3[i, 0], ref this._g3[i, 1], ref this._g3[i, 2]);
+        this.Normalize3(x : ref this._g3[i, 0], y : ref this._g3[i, 1], z : ref this._g3[i, 2]);
       }
 
       while (--i != 0) {

@@ -68,11 +68,13 @@ namespace droid.Editor.Utilities {
       }
 
       if (this.sceneIndex < 0) {
-        throw new SceneLoadException("Scene " + this.sceneName + " is not in the build settings");
+        throw new SceneLoadException(message : "Scene " + this.sceneName + " is not in the build settings");
       }
 
       if (!this.sceneEnabled) {
-        throw new SceneLoadException("Scene " + this.sceneName + " is not enabled in the build settings");
+        throw new SceneLoadException(message : "Scene "
+                                               + this.sceneName
+                                               + " is not enabled in the build settings");
       }
     }
 

@@ -6,13 +6,11 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
   /// <summary>
   /// </summary>
   public abstract class SpatialObjective : EpisodicObjective {
-
-
     /// <summary>
     ///
     /// </summary>
     [field : SerializeField]
-    protected BoundingBox Box { get; set; }
+    protected NeodroidBoundingBox Box { get; set; }
 
     /// <summary>
     ///     // TODO: Look at how to simplify a way to describe which objects should be in this list
@@ -30,7 +28,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
         if (this.ParentEnvironment.PlayableArea) {
           this.Box = this.ParentEnvironment.PlayableArea;
         } else {
-          this.Box = this.gameObject.GetComponent<BoundingBox>();
+          this.Box = this.gameObject.GetComponent<NeodroidBoundingBox>();
         }
       }
     }
@@ -42,14 +40,14 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
     public override float Evaluate() {
       var signal = 0.0f;
 
-      if(!ParentEnvironment.Terminated) {
+      if (!this.ParentEnvironment.Terminated) {
         signal += this.InternalEvaluate();
       }
 
       if (this.EpisodeLength > 0 && this.ParentEnvironment?.StepI >= this.EpisodeLength) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Maximum episode length reached, Length {this.ParentEnvironment.StepI}");
+          Debug.Log(message : $"Maximum episode length reached, Length {this.ParentEnvironment.StepI}");
         }
         #endif
 
@@ -65,12 +63,13 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
 
             #if NEODROID_DEBUG
             if (this.Debugging) {
-              Debug.Log($"The transform {t} outside bounds, terminating {this.ParentEnvironment}");
+              Debug.Log(message : $"The transform {t} outside bounds, terminating {this.ParentEnvironment}");
             }
             #endif
 
-            this.ParentEnvironment
-                ?.Terminate($"The transform {t} is not inside {this.Box.gameObject} bounds");
+            this.ParentEnvironment?.Terminate(reason :
+                                              $"The transform {t} is not inside {this.Box.gameObject} bounds");
+            break;
           }
         }
       }

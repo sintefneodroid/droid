@@ -3,9 +3,9 @@ using System;
 using UnityEditor;
 
 namespace droid.Editor.Windows {
-  /// <summary>
-  ///
-  /// </summary>
+  /// <inheritdoc />
+  ///  <summary>
+  ///  </summary>
   public class WindowManager : EditorWindow {
     static Type[] _desired_dock_next_toos = {
                                                 typeof(RenderTextureConfiguratorWindow),
@@ -23,8 +23,8 @@ namespace droid.Editor.Windows {
     /// <summary>
     ///
     /// </summary>
-    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "ShowAllWindows")]
-    [MenuItem(EditorWindowMenuPath._ToolMenuPath + "ShowAllWindows")]
+    [MenuItem(itemName : EditorWindowMenuPath._WindowMenuPath + "ShowAllWindows")]
+    [MenuItem(itemName : EditorWindowMenuPath._ToolMenuPath + "ShowAllWindows")]
     public static void ShowWindow() {
       //Show existing window instance. If one doesn't exist, make one.
       GetWindow<RenderTextureConfiguratorWindow>(desiredDockNextTo : _desired_dock_next_toos);

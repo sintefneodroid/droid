@@ -12,6 +12,7 @@ using UnityEngine;
 using Object = System.Object;
 #if UNITY_EDITOR
 using UnityEditor;
+
 #endif
 
 namespace droid.Runtime.Managers.Experimental {
@@ -92,7 +93,7 @@ namespace droid.Runtime.Managers.Experimental {
         }
 
         if (arguments[i] == "-port") {
-          this.Configuration.Port = int.Parse(arguments[i + 1]);
+          this.Configuration.Port = int.Parse(s : arguments[i + 1]);
         }
       }
     }
@@ -150,7 +151,7 @@ namespace droid.Runtime.Managers.Experimental {
     ///
     /// </summary>
     /// <param name="recipient"></param>
-    public void StatusString(DataPoller recipient) { recipient.PollData(this.GetStatus()); }
+    public void StatusString(DataPoller recipient) { recipient.PollData(data : this.GetStatus()); }
 
     #region PrivateFields
 
@@ -282,9 +283,9 @@ namespace droid.Runtime.Managers.Experimental {
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public ISimulatorConfiguration SimulatorConfiguration { get { return this._configuration; } }
 
     /// <summary>
@@ -332,22 +333,23 @@ namespace droid.Runtime.Managers.Experimental {
       } else if (Instance == this) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log("Using " + Instance);
+          Debug.Log(message : "Using " + Instance);
         }
         #endif
       } else {
-        Debug.LogWarning("WARNING! There are multiple SimulationManagers in the scene! Only using "
-                         + Instance);
+        Debug.LogWarning(message : "WARNING! There are multiple SimulationManagers in the scene! Only using "
+                                   + Instance);
       }
 
       this.Setup();
 
       #if UNITY_EDITOR
       if (!Application.isPlaying) {
-        var manager_script = MonoScript.FromMonoBehaviour(this);
+        var manager_script = MonoScript.FromMonoBehaviour(behaviour : this);
         if (MonoImporter.GetExecutionOrder(script : manager_script) != _script_execution_order) {
           MonoImporter.SetExecutionOrder(script : manager_script,
-                                         order : _script_execution_order); // Ensures that PreStep is called first, before all other scripts.
+                                         order :
+                                         _script_execution_order); // Ensures that PreStep is called first, before all other scripts.
           Debug.LogWarning("Execution Order changed, you will need to press play again to make everything function correctly!");
           EditorApplication.isPlaying = false;
           //TODO: UnityEngine.Experimental.LowLevel.PlayerLoop.SetPlayerLoop(new UnityEngine.Experimental.LowLevel.PlayerLoopSystem());
@@ -374,7 +376,7 @@ namespace droid.Runtime.Managers.Experimental {
         this.FixedUpdateEvent += this.OnTick;
         this.FixedUpdateEvent += this.Tick;
         this.LateFixedUpdateEvent += this.OnPostTick;
-        this.StartCoroutine(this.LateFixedUpdateEventGenerator());
+        this.StartCoroutine(routine : this.LateFixedUpdateEventGenerator());
       } else {
         this.EarlyUpdateEvent += this.OnPreTick;
         this.UpdateEvent += this.OnTick;
@@ -387,10 +389,14 @@ namespace droid.Runtime.Managers.Experimental {
             this.OnPostRenderEvent += this.OnPostTick;
             break;
           case FrameFinishesEnum.On_render_image_:
+            if (!this.GetComponent<Camera>()) {
+              throw new MissingComponentException("Missing a camera component on Managers gameobject");
+            }
+
             this.OnRenderImageEvent += this.OnPostTick;
             break;
           case FrameFinishesEnum.End_of_frame_:
-            this.StartCoroutine(this.EndOfFrameEventGenerator());
+            this.StartCoroutine(routine : this.EndOfFrameEventGenerator());
             this.OnEndOfFrameEvent += this.OnPostTick;
             break;
           default: throw new ArgumentOutOfRangeException();
@@ -543,8 +549,6 @@ namespace droid.Runtime.Managers.Experimental {
       }
       #endif
 
-
-
       foreach (var environment in this._Environments.Values) {
         environment.PostStep();
       }
@@ -577,7 +581,7 @@ namespace droid.Runtime.Managers.Experimental {
     /// </summary>
     protected void Tick() {
       if (this.TestActuators) {
-        this.React(this.SampleRandomReactions());
+        this.React(reactions : this.SampleRandomReactions());
         this.CollectStates();
       }
 
@@ -601,7 +605,7 @@ namespace droid.Runtime.Managers.Experimental {
           if (env.IsResetting) {
             #if NEODROID_DEBUG
             if (this.Debugging) {
-              Debug.Log($"Environment {env} is resetting");
+              Debug.Log(message : $"Environment {env} is resetting");
             }
             #endif
 
@@ -625,7 +629,7 @@ namespace droid.Runtime.Managers.Experimental {
           this._skip_frame_i += 1;
           #if NEODROID_DEBUG
           if (this.Debugging) {
-            Debug.Log($"Skipping frame, {this._skip_frame_i}/{this.Configuration.FrameSkips}");
+            Debug.Log(message : $"Skipping frame, {this._skip_frame_i}/{this.Configuration.FrameSkips}");
           }
           #endif
           if (this.Configuration.ReplayReactionInSkips) { }
@@ -639,7 +643,7 @@ namespace droid.Runtime.Managers.Experimental {
     protected Reaction[] SampleRandomReactions() {
       var sample_reactions = new List<Reaction>();
       foreach (var environment in this._Environments.Values) {
-        sample_reactions.Add(environment.SampleReaction());
+        sample_reactions.Add(item : environment.SampleReaction());
       }
 
       return sample_reactions.ToArray();
@@ -651,7 +655,8 @@ namespace droid.Runtime.Managers.Experimental {
     /// <param name="states"></param>
     void Reply(EnvironmentSnapshot[] states) {
       lock (this._send_lock) {
-        var configuration_message = new SimulatorConfigurationMessage(simulator_configuration : this.Configuration);
+        var configuration_message =
+            new SimulatorConfigurationMessage(simulator_configuration : this.Configuration);
         var describe = false;
         if (this.CurrentReactions != null) {
           foreach (var reaction in this.CurrentReactions) {
@@ -687,7 +692,7 @@ namespace droid.Runtime.Managers.Experimental {
     /// </summary>
     /// <param name="reaction"></param>
     /// <returns></returns>
-    public void React(Reaction reaction) { this.React(new[] {reaction}); }
+    public void React(Reaction reaction) { this.React(reactions : new[] {reaction}); }
 
     /// <summary>
     /// </summary>
@@ -697,7 +702,7 @@ namespace droid.Runtime.Managers.Experimental {
       this.SetStepping(reactions : reactions);
       foreach (var reaction in reactions) {
         if (this._Environments.ContainsKey(key : reaction.RecipientEnvironment)) {
-          this._Environments[key : reaction.RecipientEnvironment].React(reaction : reaction);
+          this._Environments[key : reaction.RecipientEnvironment].Step(reaction : reaction);
         } else if (reaction.RecipientEnvironment == "all") {
           #if NEODROID_DEBUG
           if (this.Debugging) {
@@ -706,12 +711,13 @@ namespace droid.Runtime.Managers.Experimental {
           #endif
 
           foreach (var environment in this._Environments.Values) {
-            environment.React(reaction : reaction);
+            environment.Step(reaction : reaction);
           }
         } else {
           #if NEODROID_DEBUG
           if (this.Debugging) {
-            Debug.Log($"Could not find an environment with the identifier: {reaction.RecipientEnvironment}");
+            Debug.Log(message :
+                      $"Could not find an environment with the identifier: {reaction.RecipientEnvironment}");
           }
           #endif
         }
@@ -772,12 +778,15 @@ namespace droid.Runtime.Managers.Experimental {
     /// <summary>
     /// </summary>
     public void ResetAllEnvironments() {
-      this.React(new Reaction(new ReactionParameters(reaction_type : ReactionTypeEnum.Reset_, false, true),
-                              null,
-                              null,
-                              null,
-                              null,
-                              ""));
+      this.React(reaction : new Reaction(parameters :
+                                         new ReactionParameters(reaction_type : ReactionTypeEnum.Reset_,
+                                                                false,
+                                                                true),
+                                         motions : null,
+                                         configurations : null,
+                                         unobservables : null,
+                                         displayables : null,
+                                         ""));
     }
 
     /// <summary>
@@ -799,7 +808,9 @@ namespace droid.Runtime.Managers.Experimental {
     /// <summary>
     /// </summary>
     /// <param name="environment"></param>
-    public void Register(IEnvironment environment) { this.Register(environment : environment, identifier : environment.Identifier); }
+    public void Register(IEnvironment environment) {
+      this.Register(environment : environment, identifier : environment.Identifier);
+    }
 
     /// <inheritdoc />
     /// <summary>
@@ -810,14 +821,15 @@ namespace droid.Runtime.Managers.Experimental {
       if (!this._Environments.ContainsKey(key : identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Manager {this.name} already has an environment with the identifier: {identifier}");
+          Debug.Log(message :
+                    $"Manager {this.name} already has an environment with the identifier: {identifier}");
         }
         #endif
 
         this._Environments.Add(key : identifier, value : environment);
       } else {
-        Debug.LogWarning($"WARNING! Please check for duplicates, SimulationManager {this.name} "
-                         + $"already has environment {identifier} registered");
+        Debug.LogWarning(message : $"WARNING! Please check for duplicates, SimulationManager {this.name} "
+                                   + $"already has environment {identifier} registered");
       }
     }
 
@@ -829,7 +841,7 @@ namespace droid.Runtime.Managers.Experimental {
       if (this._Environments.ContainsKey(key : identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"SimulationManager {this.name} unregistered Environment {identifier}");
+          Debug.Log(message : $"SimulationManager {this.name} unregistered Environment {identifier}");
         }
         #endif
 
@@ -855,7 +867,8 @@ namespace droid.Runtime.Managers.Experimental {
       lock (this._send_lock) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Received: {reactions.Select(r => r.ToString()).Aggregate((current, next) => $"{current}, {next}")}");
+          Debug.Log(message :
+                    $"Received: {reactions.Select(r => r.ToString()).Aggregate((current, next) => $"{current}, {next}")}");
         }
         #endif
 
@@ -874,7 +887,8 @@ namespace droid.Runtime.Managers.Experimental {
           if (this.AwaitingReply || !this.HasStepped) {
             #if NEODROID_DEBUG
             if (this.Debugging) {
-              Debug.Log($"Got new reaction while not having stepped({!this.HasStepped}) or replied({this.AwaitingReply})");
+              Debug.Log(message :
+                        $"Got new reaction while not having stepped({!this.HasStepped}) or replied({this.AwaitingReply})");
             }
             #endif
           }
@@ -906,7 +920,7 @@ namespace droid.Runtime.Managers.Experimental {
     void OnDebugCallback(string error) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log("DebugCallback: " + error);
+        Debug.Log(message : "DebugCallback: " + error);
       }
       #endif
     }

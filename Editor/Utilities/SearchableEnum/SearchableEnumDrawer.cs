@@ -10,7 +10,7 @@ namespace droid.Editor.Utilities.SearchableEnum {
   ///   Draws the custom enum selector popup for enum fileds using the
   ///   SearchableEnumAttribute.
   /// </summary>
-  [CustomPropertyDrawer(typeof(SearchableEnumAttribute))]
+  [CustomPropertyDrawer(type : typeof(SearchableEnumAttribute))]
   public class SearchableEnumDrawer : PropertyDrawer {
     const string _type_error = "SearchableEnum can only be used on enum fields.";
 
@@ -48,7 +48,7 @@ namespace droid.Editor.Utilities.SearchableEnum {
       label = EditorGUI.BeginProperty(totalPosition : position, label : label, property : property);
       position = EditorGUI.PrefixLabel(totalPosition : position, id : id, label : label);
 
-      var button_text = new GUIContent(property.enumDisplayNames[property.enumValueIndex]);
+      var button_text = new GUIContent(text : property.enumDisplayNames[property.enumValueIndex]);
       if (DropdownButton(id : id, position : position, content : button_text)) {
         void OnSelect(Int32 i) {
           property.enumValueIndex = i;

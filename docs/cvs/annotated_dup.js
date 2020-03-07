@@ -1,4 +1,4 @@
 var annotated_dup =
-[
-    [ "droid", "namespacedroid.html", "namespacedroid" ]
-];
+    [
+        ["droid", "namespacedroid.html", "namespacedroid"]
+    ];

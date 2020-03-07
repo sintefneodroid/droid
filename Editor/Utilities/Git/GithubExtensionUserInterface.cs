@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.PackageManager;
 using UnityEditor.PackageManager.UI;
@@ -8,6 +7,7 @@ using PackageInfo = UnityEditor.PackageManager.PackageInfo;
 #if UNITY_2019_1_OR_NEWER && UNITY_EDITOR && USE_GITHUB_EXTENSION
 using System.Linq;
 using UnityEngine.UIElements;
+
 //using UnityEditor.PackageManager.UI;
 
 namespace droid.Editor.Utilities.Git {
@@ -71,7 +71,7 @@ namespace droid.Editor.Utilities.Git {
 
       GithubExtension.SetElementDisplay(element : this._git_detail_actoins, value : is_git);
       GithubExtension.SetElementDisplay(element : this._original_detail_actions, value : !is_git);
-      GithubExtension.SetElementDisplay(this._detail_controls.Q("", "popupField"), value : !is_git);
+      GithubExtension.SetElementDisplay(element : this._detail_controls.Q("", "popupField"), value : !is_git);
       GithubExtension.SetElementDisplay(element : this._update_button, value : is_git);
       GithubExtension.SetElementDisplay(element : this._version_popup, value : is_git);
 
@@ -139,38 +139,43 @@ namespace droid.Editor.Utilities.Git {
 
       var asset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(assetPath : _template_path);
       if (!asset) {
-        Debug.Log($"Asset {_template_path} was not found");
+        Debug.Log(message : $"Asset {_template_path} was not found");
         return;
       }
 
       this._git_detail_actoins = asset.CloneTree().Q("detailActions");
-      this._git_detail_actoins.styleSheets.Add(EditorGUIUtility.Load(path : _style_path) as StyleSheet);
+      this._git_detail_actoins.styleSheets.Add(styleSheet :
+                                               EditorGUIUtility.Load(path : _style_path) as StyleSheet);
 
       // Add callbacks
       this.HostingIcon.clickable.clicked +=
-          () => Application.OpenURL(GithubExtension.GetRepoUrl(package_info : this._package_info));
+          () => Application.OpenURL(url : GithubExtension.GetRepoUrl(package_info : this._package_info));
       this.ViewDocumentation.clickable.clicked +=
-          () => Application.OpenURL(GithubExtension.GetFileUrl(package_info : this._package_info, "README.md"));
+          () => Application.OpenURL(url : GithubExtension.GetFileUrl(package_info : this._package_info,
+                                                                     "README.md"));
       this.ViewChangelog.clickable.clicked +=
-          () => Application.OpenURL(GithubExtension.GetFileUrl(package_info : this._package_info, "CHANGELOG.md"));
+          () => Application.OpenURL(url : GithubExtension.GetFileUrl(package_info : this._package_info,
+                                                                     "CHANGELOG.md"));
       this.ViewLicense.clickable.clicked +=
-          () => Application.OpenURL(GithubExtension.GetFileUrl(package_info : this._package_info, "LICENSE.md"));
+          () => Application.OpenURL(url : GithubExtension.GetFileUrl(package_info : this._package_info,
+                                                                     "LICENSE.md"));
 
       this._documentation_container = package_manager_element.Q("documentationContainer");
       this._original_detail_actions = this._documentation_container.Q("detailActions");
       this._documentation_container.Add(child : this._git_detail_actoins);
 
-      this._update_button = new Button(clickEvent : this.AddOrUpdatePackage) {name = "update", text = "Up to date"};
+      this._update_button =
+          new Button(clickEvent : this.AddOrUpdatePackage) {name = "update", text = "Up to date"};
       this._update_button.AddToClassList("action");
       this._version_popup = new Button(clickEvent : this.PopupVersions) {
-                                                               text = "hoge",
-                                                               style = {
-                                                                           marginLeft = -4,
-                                                                           marginRight = -3,
-                                                                           marginTop = -3,
-                                                                           marginBottom = -3,
-                                                                       },
-                                                           };
+                                                                            text = "hoge",
+                                                                            style = {
+                                                                                        marginLeft = -4,
+                                                                                        marginRight = -3,
+                                                                                        marginTop = -3,
+                                                                                        marginBottom = -3,
+                                                                                    },
+                                                                        };
       this._version_popup.AddToClassList("popup");
       this._version_popup.AddToClassList("popupField");
       this._version_popup.AddToClassList("versions");
@@ -193,34 +198,35 @@ namespace droid.Editor.Utilities.Git {
       var menu = new GenericMenu();
       var current = this._package_info.version;
 
-      menu.AddItem(new GUIContent(current + " - current"),
-                   this._version_popup.text == current,
+      menu.AddItem(content : new GUIContent(text : current + " - current"),
+                   @on : this._version_popup.text == current,
                    func : this.SetVersion,
                    userData : current);
 
       foreach (var t in this._tags.OrderByDescending(x => x)) {
         var tag = t;
-        var text = new GUIContent("All Tags/" + (current == tag ? tag + " - current" : tag));
+        var text = new GUIContent(text : "All Tags/" + (current == tag ? tag + " - current" : tag));
         menu.AddItem(content : text,
-                     this._version_popup.text == tag,
+                     @on : this._version_popup.text == tag,
                      func : this.SetVersion,
                      userData : tag);
       }
 
-      menu.AddItem(new GUIContent("All Branches/(default)"),
+      menu.AddItem(content : new GUIContent("All Branches/(default)"),
                    false,
                    func : this.SetVersion,
                    "(default)");
       foreach (var t in this._branches.OrderBy(x => x)) {
         var tag = t;
-        var text = new GUIContent("All Branches/" + (current == tag ? tag + " - current" : tag));
+        var text = new GUIContent(text : "All Branches/" + (current == tag ? tag + " - current" : tag));
         menu.AddItem(content : text,
-                     this._version_popup.text == tag,
+                     @on : this._version_popup.text == tag,
                      func : this.SetVersion,
                      userData : tag);
       }
 
-      menu.DropDown(new Rect(this._version_popup.LocalToWorld(new Vector2(0, 10)), size : Vector2.zero));
+      menu.DropDown(position : new Rect(position : this._version_popup.LocalToWorld(p : new Vector2(0, 10)),
+                                        size : Vector2.zero));
     }
 
     void SetVersion(object version) {

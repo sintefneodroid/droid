@@ -20,7 +20,7 @@ namespace droid.Runtime.Utilities.Extensions {
 
       for (var i = 0; i < _num_view_directions; i++) {
         var t = (float)i / _num_view_directions;
-        var inclination = Mathf.Acos(1 - 2 * t);
+        var inclination = Mathf.Acos(f : 1 - 2 * t);
         var azimuth = _angle_increment * i;
 
         var x = Mathf.Sin(f : inclination) * Mathf.Cos(f : azimuth);

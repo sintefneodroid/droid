@@ -13,17 +13,17 @@ namespace droid.Runtime.Utilities.Drawing {
                                   true);
       _s_line_tex.SetPixel(0,
                            0,
-                           new Color(1,
-                                     1,
-                                     1,
-                                     0));
+                           color : new Color(1,
+                                             1,
+                                             1,
+                                             0));
       _s_line_tex.SetPixel(0, 1, color : Color.white);
       _s_line_tex.SetPixel(0,
                            2,
-                           new Color(1,
-                                     1,
-                                     1,
-                                     0));
+                           color : new Color(1,
+                                             1,
+                                             1,
+                                             0));
       _s_line_tex.Apply();
     }
 
@@ -38,11 +38,14 @@ namespace droid.Runtime.Utilities.Drawing {
       var save_color = GUI.color;
 
       var delta = p_point_b - p_point_a;
-      GUIUtility.ScaleAroundPivot(new Vector2(x : delta.magnitude, y : p_width), pivotPoint : Vector2.zero);
-      GUIUtility.RotateAroundPivot(Vector2.Angle(@from : delta, to : Vector2.right) * Mathf.Sign(f : delta.y), pivotPoint : Vector2.zero);
+      GUIUtility.ScaleAroundPivot(scale : new Vector2(x : delta.magnitude, y : p_width),
+                                  pivotPoint : Vector2.zero);
+      GUIUtility.RotateAroundPivot(angle : Vector2.Angle(@from : delta, to : Vector2.right)
+                                           * Mathf.Sign(f : delta.y),
+                                   pivotPoint : Vector2.zero);
       GUI.matrix = Matrix4x4.TRS(pos : p_point_a, q : Quaternion.identity, s : Vector3.one) * GUI.matrix;
 
-      GUI.DrawTexture(new Rect(position : Vector2.zero, size : Vector2.one), image : _s_line_tex);
+      GUI.DrawTexture(position : new Rect(position : Vector2.zero, size : Vector2.one), image : _s_line_tex);
 
       GUI.matrix = save_matrix;
       GUI.color = save_color;

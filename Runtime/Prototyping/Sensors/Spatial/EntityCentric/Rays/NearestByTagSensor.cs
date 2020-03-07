@@ -7,9 +7,9 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays {
   /// <inheritdoc cref="Sensor" />
   ///  <summary>
   ///  </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
-                    + "NearestByTag"
-                    + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : SensorComponentMenuPath._ComponentMenuPath
+                               + "NearestByTag"
+                               + SensorComponentMenuPath._Postfix)]
   public class NearestByTagSensor : Sensor,
                                     IHasEulerTransform {
     [SerializeField] Vector3 _direction;
@@ -31,16 +31,14 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays {
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public override string PrototypingTypeName { get { return "Nearest" + this._tag; } }
+    public override string PrototypingTypeName { get { return base.PrototypingTypeName + this._tag; } }
 
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
     public Vector3 Position {
       get { return this._position; }
-      set {
-        this._position = this._position_space.Project(v : value);
-      }
+      set { this._position = this._position_space.Project(v : value); }
     }
 
     public Vector3 Rotation {
@@ -54,9 +52,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays {
 
     public Vector3 Direction {
       get { return this._direction; }
-      set {
-        this._direction = this._direction_space.Project(v : value);
-      }
+      set { this._direction = this._direction_space.Project(v : value); }
     }
 
     public override IEnumerable<float> FloatEnumerable {
@@ -79,16 +75,18 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays {
       this._nearest_object = this.FindNearest();
 
       if (this.ParentEnvironment != null) {
-        this.Position = this.ParentEnvironment.TransformPoint(point : this._nearest_object.transform.position);
-        this.Direction = this.ParentEnvironment.TransformDirection(direction : this._nearest_object.transform.forward);
-        this.Rotation = this.ParentEnvironment.TransformDirection(direction : this._nearest_object.transform.up);
+        this.Position =
+            this.ParentEnvironment.TransformPoint(point : this._nearest_object.transform.position);
+        this.Direction =
+            this.ParentEnvironment.TransformDirection(direction : this._nearest_object.transform.forward);
+        this.Rotation =
+            this.ParentEnvironment.TransformDirection(direction : this._nearest_object.transform.up);
       } else {
         this.Position = this._nearest_object.transform.position;
         this.Direction = this._nearest_object.transform.forward;
         this.Rotation = this._nearest_object.transform.up;
       }
     }
-
 
     GameObject FindNearest() {
       var candidates = FindObjectsOfType<GameObject>();

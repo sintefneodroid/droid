@@ -19,22 +19,23 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions {
       var signal = 0.0f;
       signal += this.InternalEvaluate();
 
-      if (this.EpisodeLength > 0 && this.ParentEnvironment.StepI >= this.EpisodeLength && !this
-      .ParentEnvironment.Terminated) {
+      if (this.EpisodeLength > 0
+          && this.ParentEnvironment.StepI >= this.EpisodeLength
+          && !this.ParentEnvironment.Terminated) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Maximum episode length reached, Length {this.ParentEnvironment.StepI}");
+          Debug.Log(message : $"Maximum episode length reached, Length {this.ParentEnvironment.StepI}");
         }
         #endif
 
-        signal += this.FailedSignal;
+        signal = this.FailedSignal;
 
         this.ParentEnvironment.Terminate("Maximum episode length reached");
       }
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log($"Signal for this step: {signal}");
+        Debug.Log(message : $"Signal for this step: {signal}");
       }
       #endif
 
@@ -58,14 +59,15 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions {
     /// </summary>
     /// <returns></returns>
     public new void SignalString(DataPoller recipient) {
-      recipient.PollData($"{this.LastSignal.ToString(provider : CultureInfo.InvariantCulture)}, {this.EpisodeReturn}");
+      recipient.PollData(data :
+                         $"{this.LastSignal.ToString(provider : CultureInfo.InvariantCulture)}, {this.EpisodeReturn}");
     }
 
     /// <summary>
     /// </summary>
     /// <returns></returns>
     public new void EpisodeLengthString(DataPoller recipient) {
-      recipient.PollData($"{this.EpisodeLength.ToString(provider : CultureInfo.InvariantCulture)}");
+      recipient.PollData(data : $"{this.EpisodeLength.ToString(provider : CultureInfo.InvariantCulture)}");
     }
 
     /// <inheritdoc />

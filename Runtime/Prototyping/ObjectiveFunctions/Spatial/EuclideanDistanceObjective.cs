@@ -7,9 +7,9 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
   /// <inheritdoc />
   ///  <summary>
   ///  </summary>
-  [AddComponentMenu(EvaluationComponentMenuPath._ComponentMenuPath
-                    + "EuclideanDistance"
-                    + EvaluationComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : EvaluationComponentMenuPath._ComponentMenuPath
+                               + "EuclideanDistance"
+                               + EvaluationComponentMenuPath._Postfix)]
   class EuclideanDistanceObjective : SpatialObjective {
     [SerializeField] Transform _g1;
     [SerializeField] Transform _g2;

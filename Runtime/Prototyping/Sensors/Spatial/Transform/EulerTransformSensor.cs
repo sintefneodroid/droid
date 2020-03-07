@@ -7,14 +7,12 @@ using droid.Runtime.Utilities;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
-
-
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
-                    + "EulerTransform"
-                    + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : SensorComponentMenuPath._ComponentMenuPath
+                               + "EulerTransform"
+                               + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [Serializable]
   public class EulerTransformSensor : Sensor,
@@ -37,11 +35,6 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     CoordinateSpaceEnum _spaceEnum = CoordinateSpaceEnum.Environment_;
 
     [SerializeField] bool normalised_overwrite_space_if_env_bounds = true;
-
-    /// <summary>
-    ///
-    /// </summary>
-    public override string PrototypingTypeName { get { return "EulerTransform"; } }
 
     /// <summary>
     ///
@@ -126,8 +119,8 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     public override void RemotePostSetup() {
       if (this.normalised_overwrite_space_if_env_bounds) {
         if (this.ParentEnvironment) {
-          this._position_space = Space3.FromCenterExtents(bounds_extents : this.ParentEnvironment.PlayableArea.Bounds
-          .extents);
+          this._position_space =
+              Space3.FromCenterExtents(bounds_extents : this.ParentEnvironment.PlayableArea.Bounds.extents);
         }
       }
     }

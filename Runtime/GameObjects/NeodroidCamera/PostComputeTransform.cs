@@ -5,7 +5,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
   /// <summary>
   ///
   /// </summary>
-  [RequireComponent(typeof(Camera))]
+  [RequireComponent(requiredComponent : typeof(Camera))]
   [ExecuteInEditMode]
   public class PostComputeTransform : MonoBehaviour {
     /// <summary>
@@ -58,15 +58,16 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
 
 //      this._TransformationComputeShader.SetTexture(kernelHandle, "Result", target_texture);
 
-        this._transformation_command_buffer.SetComputeTextureParam(computeShader : this._TransformationComputeShader,
+        this._transformation_command_buffer.SetComputeTextureParam(computeShader :
+                                                                   this._TransformationComputeShader,
                                                                    kernelIndex : kernel_id,
                                                                    "Result",
                                                                    rt : this.MyRenderTexture);
         //this._transformation_command_buffer.SetComputeBufferParam(this._TransformationComputeShader, kernel_id,"Result",this._transformation_compute_buffer);
         this._transformation_command_buffer.DispatchCompute(computeShader : this._TransformationComputeShader,
                                                             kernelIndex : kernel_id,
-                                                            256 / 32,
-                                                            256 / 32,
+                                                            threadGroupsX : 256 / 32,
+                                                            threadGroupsY : 256 / 32,
                                                             1);
         //this._camera.AddCommandBuffer(CameraEvent.AfterEverything, this._transformation_command_buffer);
       }
@@ -77,9 +78,9 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
         this._TransformationComputeShader.SetTexture(0, "Result", texture : this.MyRenderTexture);
         //this._TransformationComputeShader.SetBuffer(0,"",this._transformation_compute_buffer);
         this._TransformationComputeShader.Dispatch(0,
-                                                   256 / 32,
-                                                   256 / 32,
-                                                   1);
+                                                   threadGroupsX : 256 / 32,
+                                                   threadGroupsY : 256 / 32,
+                                                   threadGroupsZ : 1);
       }
     }
 
@@ -105,7 +106,8 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
 
     void Cleanup() {
       if (this._transformation_command_buffer != null) {
-        this._camera.RemoveCommandBuffer(evt : CameraEvent.AfterEverything, buffer : this._transformation_command_buffer);
+        this._camera.RemoveCommandBuffer(evt : CameraEvent.AfterEverything,
+                                         buffer : this._transformation_command_buffer);
       }
     }
 

@@ -38,15 +38,16 @@ namespace droid.Runtime.Utilities.InternalReactions {
       if (Instance == null) {
         Instance = this;
       } else {
-        Debug.LogWarning("WARNING! Multiple PlayerReactions in the scene! Only using " + Instance);
+        Debug.LogWarning(message : "WARNING! Multiple PlayerReactions in the scene! Only using " + Instance);
       }
 
       #if UNITY_EDITOR
       if (!Application.isPlaying) {
-        var manager_script = MonoScript.FromMonoBehaviour(this);
+        var manager_script = MonoScript.FromMonoBehaviour(behaviour : this);
         if (MonoImporter.GetExecutionOrder(script : manager_script) != _script_execution_order) {
           MonoImporter.SetExecutionOrder(script : manager_script,
-                                         order : _script_execution_order); // Ensures that PreStep is called first, before all other scripts.
+                                         order :
+                                         _script_execution_order); // Ensures that PreStep is called first, before all other scripts.
           Debug.LogWarning("Execution Order changed, you will need to press play again to make everything function correctly!");
           EditorApplication.isPlaying = false;
           //TODO: UnityEngine.Experimental.LowLevel.PlayerLoop.SetPlayerLoop(new UnityEngine.Experimental.LowLevel.PlayerLoopSystem());

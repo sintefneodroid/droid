@@ -8,11 +8,11 @@ namespace droid.Runtime.Prototyping.Sensors.Auditory {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
-                    + "AudioSpectrum"
-                    + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : SensorComponentMenuPath._ComponentMenuPath
+                               + "AudioSpectrum"
+                               + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
-  [RequireComponent(typeof(AudioListener))]
+  [RequireComponent(requiredComponent : typeof(AudioListener))]
   public class AudioSpectrumSensor : Sensor,
                                      IHasFloatArray {
     #if NEODROID_DEBUG
@@ -25,35 +25,47 @@ namespace droid.Runtime.Prototyping.Sensors.Auditory {
           var prev = spectrum[i - 1];
           var cur = spectrum[i];
           var next = spectrum[i + 1];
-          Debug.DrawLine(new Vector3(i - 1,  cur + 10, 0),
-                         new Vector3(x : i, next + 10, 0),
+          Debug.DrawLine(start : new Vector3(x : i - 1, y : cur + 10, z : 0),
+                         end : new Vector3(x : i, y : next + 10, 0),
                          color : Color.red);
-          Debug.DrawLine(new Vector3(i - 1, Mathf.Log(f : prev) + 10, 2),
-                         new Vector3(x : i, Mathf.Log(f : cur) + 10, 2),
+          Debug.DrawLine(start : new Vector3(x : i - 1, y : Mathf.Log(f : prev) + 10, z : 2),
+                         end : new Vector3(x : i, y : Mathf.Log(f : cur) + 10, 2),
                          color : Color.cyan);
-          Debug.DrawLine(new Vector3(Mathf.Log(i - 1), prev- 10, 1),
-                         new Vector3(Mathf.Log(f : i), cur - 10, 1),
+          Debug.DrawLine(start : new Vector3(x : Mathf.Log(f : i - 1), y : prev - 10, z : 1),
+                         end : new Vector3(x : Mathf.Log(f : i), y : cur - 10, z : 1),
                          color : Color.green);
-          Debug.DrawLine(new Vector3(Mathf.Log(i - 1), Mathf.Log(f : prev), 3),
-                         new Vector3(Mathf.Log(f : i), Mathf.Log(f : cur), 3),
+          Debug.DrawLine(start : new Vector3(x : Mathf.Log(f : i - 1), y : Mathf.Log(f : prev), z : 3),
+                         end : new Vector3(x : Mathf.Log(f : i), y : Mathf.Log(f : cur), z : 3),
                          color : Color.blue);
         }
       }
     }
     #endif
 
-    /// <summary>
-    ///
-    /// </summary>
+    FFTWindow _fft_window = FFTWindow.Rectangular;
+
+    [SerializeField] readonly Single[] _observation_array = new float[256];
+
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override IEnumerable<float> FloatEnumerable { get { return this.ObservationArray; } }
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
     public override void UpdateObservation() {
-      var spectrum = new float[256];
-      AudioListener.GetSpectrumData(samples : spectrum, 0, window : FFTWindow.Rectangular);
-      this.ObservationArray = spectrum;
+      AudioListener.GetSpectrumData(samples : this._observation_array, 0, window : _fft_window);
     }
 
-    public Single[] ObservationArray { get; set; }
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public Single[] ObservationArray { get { return this._observation_array; } }
+
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
     public Space1[] ObservationSpace { get; } = new Space1[1];
   }
 }

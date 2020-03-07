@@ -25,7 +25,9 @@ namespace droid.Runtime.GameObjects.Plotting {
       vertices[vert++] = new Vector3(0f, 0f, 0f);
       while (vert <= nb_sides) {
         var rad = (float)vert / nb_sides * _2_pi;
-        vertices[vert] = new Vector3(Mathf.Cos(f : rad) * bottom_radius, 0f, Mathf.Sin(f : rad) * bottom_radius);
+        vertices[vert] = new Vector3(x : Mathf.Cos(f : rad) * bottom_radius,
+                                     y : 0f,
+                                     z : Mathf.Sin(f : rad) * bottom_radius);
         vert++;
       }
 
@@ -33,7 +35,9 @@ namespace droid.Runtime.GameObjects.Plotting {
       vertices[vert++] = new Vector3(0f, y : height, 0f);
       while (vert <= nb_sides * 2 + 1) {
         var rad = (float)(vert - nb_sides - 1) / nb_sides * _2_pi;
-        vertices[vert] = new Vector3(Mathf.Cos(f : rad) * top_radius, y : height, Mathf.Sin(f : rad) * top_radius);
+        vertices[vert] = new Vector3(x : Mathf.Cos(f : rad) * top_radius,
+                                     y : height,
+                                     z : Mathf.Sin(f : rad) * top_radius);
         vert++;
       }
 
@@ -41,8 +45,12 @@ namespace droid.Runtime.GameObjects.Plotting {
       var v = 0;
       while (vert <= vertices.Length - 4) {
         var rad = (float)v / nb_sides * _2_pi;
-        vertices[vert] = new Vector3(Mathf.Cos(f : rad) * top_radius, y : height, Mathf.Sin(f : rad) * top_radius);
-        vertices[vert + 1] = new Vector3(Mathf.Cos(f : rad) * bottom_radius, 0, Mathf.Sin(f : rad) * bottom_radius);
+        vertices[vert] = new Vector3(x : Mathf.Cos(f : rad) * top_radius,
+                                     y : height,
+                                     z : Mathf.Sin(f : rad) * top_radius);
+        vertices[vert + 1] = new Vector3(x : Mathf.Cos(f : rad) * bottom_radius,
+                                         y : 0,
+                                         z : Mathf.Sin(f : rad) * bottom_radius);
         vert += 2;
         v++;
       }
@@ -96,7 +104,7 @@ namespace droid.Runtime.GameObjects.Plotting {
       uvs[u++] = new Vector2(0.5f, 0.5f);
       while (u <= nb_sides) {
         var rad = (float)u / nb_sides * _2_pi;
-        uvs[u] = new Vector2(Mathf.Cos(f : rad) * .5f + .5f, Mathf.Sin(f : rad) * .5f + .5f);
+        uvs[u] = new Vector2(x : Mathf.Cos(f : rad) * .5f + .5f, y : Mathf.Sin(f : rad) * .5f + .5f);
         u++;
       }
 
@@ -104,7 +112,7 @@ namespace droid.Runtime.GameObjects.Plotting {
       uvs[u++] = new Vector2(0.5f, 0.5f);
       while (u <= nb_sides * 2 + 1) {
         var rad = (float)u / nb_sides * _2_pi;
-        uvs[u] = new Vector2(Mathf.Cos(f : rad) * .5f + .5f, Mathf.Sin(f : rad) * .5f + .5f);
+        uvs[u] = new Vector2(x : Mathf.Cos(f : rad) * .5f + .5f, y : Mathf.Sin(f : rad) * .5f + .5f);
         u++;
       }
 
@@ -217,7 +225,8 @@ namespace droid.Runtime.GameObjects.Plotting {
           var sin2 = Mathf.Sin(f : a2);
           var cos2 = Mathf.Cos(f : a2);
 
-          vertices[lon + lat * (nb_long + 1) + 1] = new Vector3(sin1 * cos2, y : cos1, sin1 * sin2) * radius;
+          vertices[lon + lat * (nb_long + 1) + 1] =
+              new Vector3(x : sin1 * cos2, y : cos1, z : sin1 * sin2) * radius;
         }
       }
 
@@ -242,7 +251,7 @@ namespace droid.Runtime.GameObjects.Plotting {
       for (var lat = 0; lat < nb_lat; lat++) {
         for (var lon = 0; lon <= nb_long; lon++) {
           uvs[lon + lat * (nb_long + 1) + 1] =
-              new Vector2((float)lon / nb_long, 1f - (float)(lat + 1) / (nb_lat + 1));
+              new Vector2(x : (float)lon / nb_long, y : 1f - (float)(lat + 1) / (nb_lat + 1));
         }
       }
 

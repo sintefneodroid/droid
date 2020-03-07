@@ -10,9 +10,9 @@ namespace droid.Runtime.Prototyping.Actuators {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ActuatorComponentMenuPath._ComponentMenuPath
-                    + "EulerTransform"
-                    + ActuatorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : ActuatorComponentMenuPath._ComponentMenuPath
+                               + "EulerTransform"
+                               + ActuatorComponentMenuPath._Postfix)]
   public class EulerTransformActuator : Actuator {
     /// <summary>
     /// </summary>
@@ -36,11 +36,6 @@ namespace droid.Runtime.Prototyping.Actuators {
     string _x;
     string _y;
     string _z;
-
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "EulerTransform"; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -69,41 +64,38 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// </summary>
     protected override void RegisterComponent() {
       this.Parent =
-          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
-                                                          (Actuator)this,
+          NeodroidRegistrationUtilities.RegisterComponent(r : (IHasRegister<IActuator>)this.Parent,
+                                                          c : (Actuator)this,
                                                           identifier : this._x);
       this.Parent =
-          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
-                                                          (Actuator)this,
+          NeodroidRegistrationUtilities.RegisterComponent(r : (IHasRegister<IActuator>)this.Parent,
+                                                          c : (Actuator)this,
                                                           identifier : this._y);
       this.Parent =
-          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
-                                                          (Actuator)this,
+          NeodroidRegistrationUtilities.RegisterComponent(r : (IHasRegister<IActuator>)this.Parent,
+                                                          c : (Actuator)this,
                                                           identifier : this._z);
-      this.Parent =
-          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
-                                                          (Actuator)this,
-                                                          identifier : this._rot_x);
-      this.Parent =
-          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
-                                                          (Actuator)this,
-                                                          identifier : this._rot_y);
-      this.Parent =
-          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
-                                                          (Actuator)this,
-                                                          identifier : this._rot_z);
+      this.Parent = NeodroidRegistrationUtilities.RegisterComponent(r : (IHasRegister<IActuator>)this.Parent,
+                                                                    c : (Actuator)this,
+                                                                    identifier : this._rot_x);
+      this.Parent = NeodroidRegistrationUtilities.RegisterComponent(r : (IHasRegister<IActuator>)this.Parent,
+                                                                    c : (Actuator)this,
+                                                                    identifier : this._rot_y);
+      this.Parent = NeodroidRegistrationUtilities.RegisterComponent(r : (IHasRegister<IActuator>)this.Parent,
+                                                                    c : (Actuator)this,
+                                                                    identifier : this._rot_z);
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     protected override void UnRegisterComponent() {
-      this.Parent?.UnRegister(this, obj : this._x);
-      this.Parent?.UnRegister(this, obj : this._y);
-      this.Parent?.UnRegister(this, obj : this._z);
-      this.Parent?.UnRegister(this, obj : this._rot_x);
-      this.Parent?.UnRegister(this, obj : this._rot_y);
-      this.Parent?.UnRegister(this, obj : this._rot_z);
+      this.Parent?.UnRegister(t : this, obj : this._x);
+      this.Parent?.UnRegister(t : this, obj : this._y);
+      this.Parent?.UnRegister(t : this, obj : this._z);
+      this.Parent?.UnRegister(t : this, obj : this._rot_x);
+      this.Parent?.UnRegister(t : this, obj : this._rot_y);
+      this.Parent?.UnRegister(t : this, obj : this._rot_z);
     }
 
     /// <inheritdoc />
@@ -112,17 +104,21 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <param name="motion"></param>
     protected override void InnerApplyMotion(IMotion motion) {
       if (motion.ActuatorName == this._x) {
-        this.transform.Translate(Vector3.right * motion.Strength, relativeTo : this._Relative_To);
+        this.transform.Translate(translation : Vector3.right * motion.Strength,
+                                 relativeTo : this._Relative_To);
       } else if (motion.ActuatorName == this._y) {
-        this.transform.Translate(-Vector3.up * motion.Strength, relativeTo : this._Relative_To);
+        this.transform.Translate(translation : -Vector3.up * motion.Strength, relativeTo : this._Relative_To);
       } else if (motion.ActuatorName == this._z) {
-        this.transform.Translate(-Vector3.forward * motion.Strength, relativeTo : this._Relative_To);
+        this.transform.Translate(translation : -Vector3.forward * motion.Strength,
+                                 relativeTo : this._Relative_To);
       } else if (motion.ActuatorName == this._rot_x) {
         this.transform.Rotate(axis : Vector3.right, angle : motion.Strength, relativeTo : this._Relative_To);
       } else if (motion.ActuatorName == this._rot_y) {
         this.transform.Rotate(axis : Vector3.up, angle : motion.Strength, relativeTo : this._Relative_To);
       } else if (motion.ActuatorName == this._rot_z) {
-        this.transform.Rotate(axis : Vector3.forward, angle : motion.Strength, relativeTo : this._Relative_To);
+        this.transform.Rotate(axis : Vector3.forward,
+                              angle : motion.Strength,
+                              relativeTo : this._Relative_To);
       }
     }
 
@@ -149,11 +145,11 @@ namespace droid.Runtime.Prototyping.Actuators {
                             180,
                             2);
 
-        Debug.DrawLine(start : position, position + Vector3.right * 2, color : Color.green);
+        Debug.DrawLine(start : position, end : position + Vector3.right * 2, color : Color.green);
 
-        Debug.DrawLine(start : position, position + Vector3.forward * 2, color : Color.green);
+        Debug.DrawLine(start : position, end : position + Vector3.forward * 2, color : Color.green);
 
-        Debug.DrawLine(start : position, position + Vector3.up * 2, color : Color.green);
+        Debug.DrawLine(start : position, end : position + Vector3.up * 2, color : Color.green);
       }
     }
     #endif

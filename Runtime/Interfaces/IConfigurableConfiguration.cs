@@ -7,6 +7,7 @@ namespace droid.Runtime.Interfaces {
     ///
     /// </summary>
     float ConfigurableValue { get; }
+
     /// <summary>
     ///
     /// </summary>

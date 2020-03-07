@@ -1,4 +1,4 @@
 var namespaces =
-[
-    [ "droid", "namespacedroid.html", "namespacedroid" ]
-];
+    [
+        ["droid", "namespacedroid.html", "namespacedroid"]
+    ];

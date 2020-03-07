@@ -3,7 +3,6 @@
   /// <summary>
   /// </summary>
   public interface IUnobservable : IRegisterable {
-
     /// <summary>
     /// </summary>
     void PreStep();
@@ -15,6 +14,5 @@
     /// <summary>
     /// </summary>
     void PostStep();
-
   }
 }

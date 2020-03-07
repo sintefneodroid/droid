@@ -2,9 +2,12 @@
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Actors {
+  /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ActorComponentMenuPath._ComponentMenuPath + "Killable" + ActorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : ActorComponentMenuPath._ComponentMenuPath
+                               + "Killable"
+                               + ActorComponentMenuPath._Postfix)]
   public class KillableActor : Actor {
     [SerializeField] bool _is_alive = true;
 
@@ -13,9 +16,9 @@ namespace droid.Runtime.Prototyping.Actors {
     /// </summary>
     public bool IsAlive { get { return this._is_alive; } }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override string PrototypingTypeName { get { return "KillableActor"; } }
 
     /// <summary>
@@ -35,9 +38,9 @@ namespace droid.Runtime.Prototyping.Actors {
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override void PrototypingReset() {
       base.PrototypingReset();
 

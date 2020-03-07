@@ -1,4 +1,6 @@
-﻿namespace droid.Runtime.Messaging.Messages {
+﻿using System;
+
+namespace droid.Runtime.Messaging.Messages {
   /// <summary>
   /// </summary>
   public enum ExecutionPhaseEnum {
@@ -39,13 +41,17 @@
                               bool terminable = false,
                               bool configure = false,
                               bool episode_count = false,
-    bool describe = true) {
+                              bool render = false,
+                              bool describe = true) {
       this.Terminable = terminable;
       this.ReactionType = reaction_type;
       this.Configure = configure;
       this.Describe = describe;
+      this.Render = render;
       this.EpisodeCount = episode_count;
     }
+
+    public bool Render { get; }
 
     /// <summary>
     /// </summary>
@@ -81,6 +87,7 @@
              + $"StepResetObserveEnu:{this.ReactionType},\n"
              + $"Configure:{this.Configure},\n"
              + $"Describe:{this.Describe}\n"
+             + $"Describe:{this.Render}\n"
              + $"EpisodeCount:{this.EpisodeCount}"
              + "\n</ReactionParameters>\n";
     }

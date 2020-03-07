@@ -9,10 +9,9 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Rigidbody {
   /// <summary>
   /// </summary>
   public class SingleVelocitySensor : Sensor,
-                                       IHasSingle {
-
+                                      IHasSingle {
     [SerializeField] UnityEngine.Rigidbody _rigidbody;
-    [SerializeField] Space1 _single_space = Space1.MinusOneOne*10;
+    [SerializeField] Space1 _single_space = Space1.MinusOneOne * 10;
     [SerializeField] Single _observation_value;
 
     /// <summary>
@@ -32,7 +31,9 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Rigidbody {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName { get { return "SingleVelocity" + this._velocity_axis; } }
+    public override string PrototypingTypeName {
+      get { return base.PrototypingTypeName + this._velocity_axis; }
+    }
 
     public Space1 SingleSpace { get { return this._single_space; } }
 
@@ -44,9 +45,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Rigidbody {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override IEnumerable<float> FloatEnumerable {
-      get { return new[] {this._observation_value}; }
-    }
+    public override IEnumerable<float> FloatEnumerable { get { return new[] {this._observation_value}; } }
 
     /// <inheritdoc />
     ///  <summary>
@@ -74,14 +73,11 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Rigidbody {
           break;
         default:
           throw new ArgumentOutOfRangeException();
-
       }
 
       this._observation_value = this._single_space.Project(v : val);
     }
 
-    Single IHasSingle.ObservationValue {
-      get { return this._observation_value; }
-    }
+    Single IHasSingle.ObservationValue { get { return this._observation_value; } }
   }
 }

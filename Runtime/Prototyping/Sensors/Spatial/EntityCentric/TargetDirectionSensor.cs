@@ -8,13 +8,13 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
-                    + "Compass"
-                    + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : SensorComponentMenuPath._ComponentMenuPath
+                               + "Compass"
+                               + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [Serializable]
   public class TargetDirectionSensor : Sensor,
-                               IHasDouble {
+                                       IHasDouble {
     /// <summary>
     /// </summary>
     [SerializeField]
@@ -37,11 +37,6 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric {
     [SerializeField]
     UnityEngine.Transform _target = null;
 
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "Compass"; } }
-
     /// <summary>
     /// </summary>
     public Vector3 Position {
@@ -58,17 +53,12 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric {
     public Space2 DoubleSpace {
       get {
         return new Space2 {
-                                                                       Max =
-                                                                           new Vector2(x : this._position_space
-                                                                                           .Max.x,
-                                                                                       y : this._position_space
-                                                                                           .Max.y),
-                                                                       Min = new Vector2(x : this._position_space
-                                                                                             .Min.x,
-                                                                                         y : this._position_space
-                                                                                             .Min.y)
-                                                                       ,DecimalGranularity = this._position_space.DecimalGranularity
-                                                                   };
+                              Max = new Vector2(x : this._position_space.Max.x,
+                                                y : this._position_space.Max.y),
+                              Min = new Vector2(x : this._position_space.Min.x,
+                                                y : this._position_space.Min.y),
+                              DecimalGranularity = this._position_space.DecimalGranularity
+                          };
       }
     }
 
@@ -76,7 +66,6 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric {
     /// <summary>
     /// </summary>
     public Vector2 ObservationValue { get { return this._2_d_position; } set { this._2_d_position = value; } }
-
 
     public override IEnumerable<float> FloatEnumerable {
       get { return new[] {this.Position.x, this.Position.z}; }
@@ -86,8 +75,9 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric {
     /// <summary>
     /// </summary>
     public override void UpdateObservation() {
-      this.Position = this.transform.InverseTransformVector(this.transform.position - this._target.position)
-                          .normalized;
+      this.Position =
+          this.transform.InverseTransformVector(vector : this.transform.position - this._target.position)
+              .normalized;
     }
   }
 }

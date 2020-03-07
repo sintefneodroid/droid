@@ -29,7 +29,6 @@ namespace droid.Runtime.Structs.Space {
     [Range(0, 15)] [SerializeField] int _decimal_granularity;
     [SerializeField] NormalisationEnum normalised;
 
-
     #endregion
 
     /// <summary>
@@ -71,10 +70,23 @@ namespace droid.Runtime.Structs.Space {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <param name="min"></param>
+    /// <param name="max"></param>
+    /// <returns></returns>
     public Vector2 Clip(Vector2 v, Vector2 min, Vector2 max) {
-      return new Vector2(Mathf.Clamp(value : v.x, min : min.x, max : max.x), Mathf.Clamp(value : v.y, min : min.y, max : max.y));
+      return new Vector2(x : Mathf.Clamp(value : v.x, min : min.x, max : max.x),
+                         y : Mathf.Clamp(value : v.y, min : min.y, max : max.y));
     }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
     public Vector2 Clip(Vector2 v) { return this.Clip(v : v, min : this._min_, max : this._max_); }
 
     /// <summary>
@@ -82,12 +94,12 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-    Vector2 ClipRound(Vector2 v) { return this.Clip(this.Round(v : v)); }
+    Vector2 ClipRound(Vector2 v) { return this.Clip(v : this.Round(v : v)); }
 
     dynamic ClipRoundDenormalise01Clip(dynamic configuration_configurable_value) {
-      return this.Clip(this.Round(this.Denormalise01(Clip(v : configuration_configurable_value,
-                                                          min : Vector2.zero,
-                                                          max : Vector2.one))));
+      return this.Clip(v : this.Round(this.Denormalise01(v : Clip(v : configuration_configurable_value,
+                                                                  min : Vector2.zero,
+                                                                  max : Vector2.one))));
     }
 
     /// <inheritdoc />
@@ -121,7 +133,9 @@ namespace droid.Runtime.Structs.Space {
         case NormalisationEnum.Zero_one_:
           return ClipRoundDenormalise01Clip(configuration_configurable_value : v);
         case NormalisationEnum.Minus_one_one_:
-          return ClipRoundDenormalise01Clip(configuration_configurable_value : v); // return ClipRoundDenormaliseMinusOneOneClip(v);
+          return
+              ClipRoundDenormalise01Clip(configuration_configurable_value :
+                                         v); // return ClipRoundDenormaliseMinusOneOneClip(v);
         default: throw new ArgumentOutOfRangeException();
       }
     }
@@ -204,6 +218,9 @@ namespace droid.Runtime.Structs.Space {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public static Space2 MinusOneOne {
       get {
         return new Space2 {
@@ -225,6 +242,9 @@ namespace droid.Runtime.Structs.Space {
     ///  </summary>
     public dynamic Max { get { return this._max_; } set { this._max_ = value; } }
 
+    /// <summary>
+    ///
+    /// </summary>
     public dynamic Mean { get { return (this.Max + this.Min) * 0.5f; } }
 
     /// <summary>

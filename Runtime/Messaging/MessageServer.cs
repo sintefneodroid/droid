@@ -28,10 +28,8 @@ namespace droid.Runtime.Messaging {
     /// </summary>
     Thread _polling_thread;
     #if NEODROID_DEBUG
-    [SerializeField]
-    int _last_send_frame_number;
-    [SerializeField]
-    float _last_send_time;
+    [SerializeField] int _last_send_frame_number;
+    [SerializeField] float _last_send_time;
     #endif
 
     /// <summary>
@@ -102,7 +100,7 @@ namespace droid.Runtime.Messaging {
         if (this._use_inter_process_communication) {
           this._socket.Bind("ipc:///tmp/neodroid/messages");
         } else {
-          this._socket.Bind("tcp://" + this._ip_address + ":" + this._port);
+          this._socket.Bind(address : "tcp://" + this._ip_address + ":" + this._port);
         }
 
         callback?.Invoke();
@@ -113,7 +111,7 @@ namespace droid.Runtime.Messaging {
         this._Listening_For_Clients = true;
       } catch (Exception exception) {
         if (this._debugging) {
-          debug_callback?.Invoke($"BindSocket threw exception: {exception}");
+          debug_callback?.Invoke(obj : $"BindSocket threw exception: {exception}");
         }
       }
     }
@@ -137,7 +135,7 @@ namespace droid.Runtime.Messaging {
               if (received) {
                 Debug.Log("Received frame bytes");
               } else {
-                Debug.Log($"Received nothing in {wait_time} seconds");
+                Debug.Log(message : $"Received nothing in {wait_time} seconds");
               }
             }
             #else
@@ -153,7 +151,7 @@ namespace droid.Runtime.Messaging {
           }
 
           if (msg != null) { //&& msg.Length >= 4) {
-            var flat_reaction = FReactions.GetRootAsFReactions(new ByteBuffer(buffer : msg));
+            var flat_reaction = FReactions.GetRootAsFReactions(_bb : new ByteBuffer(buffer : msg));
             var tuple = FbsReactionUtilities.deserialise_reactions(reactions : flat_reaction);
             reactions = tuple.Item1; //TODO: Change tuple to the Reactions class
             var close = tuple.Item2;
@@ -183,7 +181,7 @@ namespace droid.Runtime.Messaging {
       while (this._stop_thread == false) {
         lock (this._thread_lock) {
           if (!this._waiting_for_main_loop_to_send) {
-            var reactions = this.Receive(TimeSpan.FromSeconds(value : this._wait_time_seconds));
+            var reactions = this.Receive(wait_time : TimeSpan.FromSeconds(value : this._wait_time_seconds));
             if (reactions != null) {
               this._last_received_reactions = reactions;
               receive_callback(obj : this._last_received_reactions);
@@ -202,7 +200,7 @@ namespace droid.Runtime.Messaging {
         if (this._use_inter_process_communication) {
           this._socket.Disconnect("inproc://neodroid");
         } else {
-          this._socket.Disconnect("tcp://" + this._ip_address + ":" + this._port);
+          this._socket.Disconnect(address : "tcp://" + this._ip_address + ":" + this._port);
         }
       }
 
@@ -242,22 +240,24 @@ namespace droid.Runtime.Messaging {
               var frame_number = environment_states[0].FrameNumber;
               var time = environment_states[0].Time;
               var episode_count = this._last_received_reactions[0].Parameters.EpisodeCount;
-              var stepped = this._last_received_reactions[0].Parameters.ReactionType == ReactionTypeEnum
-              .Step_;
+              var stepped = this._last_received_reactions[0].Parameters.ReactionType
+                            == ReactionTypeEnum.Step_;
 
               if (frame_number <= this._last_send_frame_number) {
-                Debug.LogWarning($"The current frame number {frame_number} is less or equal the last {this._last_send_frame_number}, SINCE AWAKE ({Time.frameCount})");
+                Debug.LogWarning(message :
+                                 $"The current frame number {frame_number} is less or equal the last {this._last_send_frame_number}, SINCE AWAKE ({Time.frameCount})");
                 if (this._last_send_frame_number == frame_number && frame_number > 0 && episode_count) {
-                  Debug.LogWarning($"Sending duplicate frame! Frame number: {frame_number}");
+                  Debug.LogWarning(message : $"Sending duplicate frame! Frame number: {frame_number}");
                 }
               }
 
               if (time <= this._last_send_time && stepped) {
-                Debug.LogWarning($"The current time {time} is less or equal the last {this._last_send_time}");
+                Debug.LogWarning(message :
+                                 $"The current time {time} is less or equal the last {this._last_send_time}");
               }
 
               if (environment_states[0].Description != null) {
-                Debug.Log($"State has description: {environment_states[0].Description}");
+                Debug.Log(message : $"State has description: {environment_states[0].Description}");
               }
 
               this._last_send_frame_number = frame_number;
@@ -296,7 +296,11 @@ namespace droid.Runtime.Messaging {
     /// <param name="debug_callback"></param>
     public void ListenForClientToConnect(Action callback, Action<string> debug_callback) {
       this._wait_for_client_thread =
-          new Thread(unused_param => this.BindSocket(callback : callback, debug_callback : debug_callback)) {IsBackground = true};
+          new Thread(unused_param =>
+                         this.BindSocket(callback : callback, debug_callback : debug_callback)) {
+                                                                                                    IsBackground
+                                                                                                        = true
+                                                                                                };
       // Is terminated with foreground threads, when they terminate
       this._wait_for_client_thread.Start();
     }
@@ -310,10 +314,12 @@ namespace droid.Runtime.Messaging {
                                Action disconnect_callback,
                                Action<string> debug_callback) {
       this._polling_thread =
-          new Thread(unused_param => this.PollingThread(receive_callback : cmd_callback, disconnect_callback : disconnect_callback, debug_callback : debug_callback)) {
-                                                                                                                IsBackground
-                                                                                                                    = true
-                                                                                                            };
+          new Thread(unused_param => this.PollingThread(receive_callback : cmd_callback,
+                                                        disconnect_callback : disconnect_callback,
+                                                        debug_callback : debug_callback)) {
+                                                                                              IsBackground =
+                                                                                                  true
+                                                                                          };
       // Is terminated with foreground threads, when they terminate
       this._polling_thread.Start();
     }
@@ -333,7 +339,7 @@ namespace droid.Runtime.Messaging {
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log($"Starting a message server at address:port {ip_address}:{port}");
+        Debug.Log(message : $"Starting a message server at address:port {ip_address}:{port}");
       }
       #endif
 
@@ -378,7 +384,7 @@ namespace droid.Runtime.Messaging {
         if (this._use_inter_process_communication) {
           this._socket.Disconnect("ipc:///tmp/neodroid/messages");
         } else {
-          this._socket.Disconnect("tcp://" + this._ip_address + ":" + this._port);
+          this._socket.Disconnect(address : "tcp://" + this._ip_address + ":" + this._port);
         }
 
         try {

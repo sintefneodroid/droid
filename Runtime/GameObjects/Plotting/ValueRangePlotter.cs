@@ -8,7 +8,7 @@ namespace droid.Runtime.GameObjects.Plotting {
   public class ValueRangePlotter : MonoBehaviour {
     Material _material;
     [SerializeField] Shader _shader = null;
-    [SerializeField] Bounds _value_range = new Bounds(center : Vector3.zero, Vector3.one * 2);
+    [SerializeField] Bounds _value_range = new Bounds(center : Vector3.zero, size : Vector3.one * 2);
     static readonly Int32 _range = Shader.PropertyToID("_Range");
 
     void OnDestroy() {
@@ -28,10 +28,11 @@ namespace droid.Runtime.GameObjects.Plotting {
       }
 
       this._material.SetVector(nameID : _range,
-                               new Vector4(x : this._value_range.min.x,
-                                           y : this._value_range.max.x,
-                                           z : this._value_range.center.y,
-                                           this._value_range.extents.y + this._value_range.center.y));
+                               value : new Vector4(x : this._value_range.min.x,
+                                                   y : this._value_range.max.x,
+                                                   z : this._value_range.center.y,
+                                                   w : this._value_range.extents.y
+                                                       + this._value_range.center.y));
 
       this._material.SetPass(0);
       Graphics.DrawProceduralNow(topology : MeshTopology.LineStrip, 512);

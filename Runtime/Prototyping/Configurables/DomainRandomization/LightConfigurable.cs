@@ -10,10 +10,10 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
-                    + "Light"
-                    + ConfigurableComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(Light))]
+  [AddComponentMenu(menuName : ConfigurableComponentMenuPath._ComponentMenuPath
+                               + "Light"
+                               + ConfigurableComponentMenuPath._Postfix)]
+  [RequireComponent(requiredComponent : typeof(Light))]
   public class LightConfigurable : Configurable {
     string _color_r;
     string _color_g;
@@ -26,28 +26,29 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
 
     [SerializeField]
     SampleSpace3 _color_space = new SampleSpace3 {
-                                                   _space = new Space3 {
-                                                                           DecimalGranularity = 2,
-                                                                           Min = Vector3.one * 0.7f,
-                                                                           Max = Vector3.one * 1f
-                                                                       }
-                                               };
+                                                     _space = new Space3 {
+                                                                             DecimalGranularity = 2,
+                                                                             Min = Vector3.one * 0.7f,
+                                                                             Max = Vector3.one * 1f
+                                                                         }
+                                                 };
 
     [SerializeField]
     SampleSpace3 _int_ind_sha_space = new SampleSpace3 {
-                                                         _space =
-                                                             new Space3 {
-                                                                            DecimalGranularity = 2,
-                                                                            Min = Vector3.one * 0.7f,
-                                                                            Max = Vector3.one * 1f,
-                                                                        },
-                                                         DistributionSampler =
-                                                             new DistributionSampler(distribution_enum : DistributionEnum
-                                                                                         .Linear_) {
-                                                                                                       DistributionParameter
-                                                                                                           = -1
-                                                                                                   }
-                                                     };
+                                                           _space =
+                                                               new Space3 {
+                                                                              DecimalGranularity = 2,
+                                                                              Min = Vector3.one * 0.7f,
+                                                                              Max = Vector3.one * 1f,
+                                                                          },
+                                                           DistributionSampler =
+                                                               new DistributionSampler(distribution_enum :
+                                                                                       DistributionEnum
+                                                                                           .Linear_) {
+                                                                                                         DistributionParameter
+                                                                                                             = -1
+                                                                                                     }
+                                                       };
 
     /// <inheritdoc />
     /// <summary>
@@ -69,27 +70,27 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
     protected override void RegisterComponent() {
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._shadow_strength);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._color_r);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._color_b);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._color_g);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._intensity);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._indirect_multiplier);
     }
 
@@ -101,12 +102,12 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
         return;
       }
 
-      this.ParentEnvironment.UnRegister(this, identifier : this._shadow_strength);
-      this.ParentEnvironment.UnRegister(this, identifier : this._color_r);
-      this.ParentEnvironment.UnRegister(this, identifier : this._color_g);
-      this.ParentEnvironment.UnRegister(this, identifier : this._color_b);
-      this.ParentEnvironment.UnRegister(this, identifier : this._intensity);
-      this.ParentEnvironment.UnRegister(this, identifier : this._indirect_multiplier);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._shadow_strength);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._color_r);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._color_g);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._color_b);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._intensity);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._indirect_multiplier);
     }
 
     /// <summary>
@@ -117,7 +118,7 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
     /// <summary>
     ///
     /// </summary>
-    public override void UpdateCurrentConfiguration() {  }
+    public override void UpdateCurrentConfiguration() { }
 
     /// <summary>
     /// </summary>
@@ -125,7 +126,9 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        DebugPrinting.ApplyPrint(debugging : this.Debugging, configuration : configuration, identifier : this.Identifier);
+        DebugPrinting.ApplyPrint(debugging : this.Debugging,
+                                 configuration : configuration,
+                                 identifier : this.Identifier);
       }
       #endif
 
@@ -163,7 +166,8 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
                        new Configuration(configurable_name : this._color_g, configurable_value : v.y),
                        new Configuration(configurable_name : this._color_b, configurable_value : v.z),
                        new Configuration(configurable_name : this._intensity, configurable_value : o.x),
-                       new Configuration(configurable_name : this._indirect_multiplier, configurable_value : o.y),
+                       new Configuration(configurable_name : this._indirect_multiplier,
+                                         configurable_value : o.y),
                        new Configuration(configurable_name : this._shadow_strength, configurable_value : o.z)
                    };
     }

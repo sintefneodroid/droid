@@ -4,7 +4,7 @@ using UnityEngine;
 #if UNITY_EDITOR
 
 namespace droid.Runtime.ScriptableObjects.SerialisableDictionary {
-  [CustomPropertyDrawer(typeof(StringIntDictionary))]
+  [CustomPropertyDrawer(type : typeof(StringIntDictionary))]
   public class StringIntDictionaryDrawer : SerializableDictionaryDrawer<string, int> {
     protected override SerializableKeyValueTemplate<string, int> GetTemplate() {
       return this.GetGenericTemplate<SerializableStringIntTemplate>();
@@ -13,7 +13,7 @@ namespace droid.Runtime.ScriptableObjects.SerialisableDictionary {
 
   class SerializableStringIntTemplate : SerializableKeyValueTemplate<string, int> { }
 
-  [CustomPropertyDrawer(typeof(GameObjectFloatDictionary))]
+  [CustomPropertyDrawer(type : typeof(GameObjectFloatDictionary))]
   public class GameObjectFloatDictionaryDrawer : SerializableDictionaryDrawer<GameObject, float> {
     protected override SerializableKeyValueTemplate<GameObject, float> GetTemplate() {
       return this.GetGenericTemplate<SerializableGameObjectFloatTemplate>();
@@ -22,7 +22,7 @@ namespace droid.Runtime.ScriptableObjects.SerialisableDictionary {
 
   class SerializableGameObjectFloatTemplate : SerializableKeyValueTemplate<GameObject, float> { }
 
-  [CustomPropertyDrawer(typeof(StringGameObjectDictionary))]
+  [CustomPropertyDrawer(type : typeof(StringGameObjectDictionary))]
   public class StringGameObjectDictionaryDrawer : SerializableDictionaryDrawer<string, GameObject> {
     protected override SerializableKeyValueTemplate<string, GameObject> GetTemplate() {
       return this.GetGenericTemplate<SerializableStringGameObjectTemplate>();

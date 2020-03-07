@@ -4,7 +4,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
   /// <summary>
   ///
   /// </summary>
-  [RequireComponent(typeof(LineRenderer))]
+  [RequireComponent(requiredComponent : typeof(LineRenderer))]
   [ExecuteInEditMode]
   public class LineProject : MonoBehaviour {
     LineRenderer _line_renderer = null;
@@ -32,9 +32,9 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
       var position = this.transform.position;
       if (Physics.Raycast(origin : position,
                           direction : this._direction,
-                          out var ray,
+                          hitInfo : out var ray,
                           maxDistance : this._length)) {
-        this._line_renderer.SetPositions(new[] {position, ray.point});
+        this._line_renderer.SetPositions(positions : new[] {position, ray.point});
       }
     }
   }

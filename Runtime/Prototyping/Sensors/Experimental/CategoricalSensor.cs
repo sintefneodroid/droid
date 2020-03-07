@@ -8,21 +8,21 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
-                    + "Categorical"
-                    + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : SensorComponentMenuPath._ComponentMenuPath
+                               + "Categorical"
+                               + SensorComponentMenuPath._Postfix)]
   public class CategoricalSensor : Sensor,
                                    IHasSingle {
     [SerializeField] PrototypingGameObject _categoryProvider = null;
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override IEnumerable<float> FloatEnumerable { get { return new[] {this.ObservationValue}; } }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override void Tick() {
       base.Tick();
       this.UpdateObservation();
@@ -35,13 +35,14 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
       if (this._categoryProvider is ICategoryProvider provider) {
         this.ObservationValue = provider.CurrentCategoryValue;
       } else {
-        Debug.LogWarning($"{this._categoryProvider} does not implement ICategoryProvider, and will not provide at categorical value");
+        Debug.LogWarning(message :
+                         $"{this._categoryProvider} does not implement ICategoryProvider, and will not provide at categorical value");
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override void RemotePostSetup() {
       base.RemotePostSetup();
       if (this._categoryProvider is ICategoryProvider provider) {
@@ -49,15 +50,15 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     [field : SerializeField]
     public float ObservationValue { get; private set; }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     [field : SerializeField]
     public Space1 SingleSpace { get; set; }
   }

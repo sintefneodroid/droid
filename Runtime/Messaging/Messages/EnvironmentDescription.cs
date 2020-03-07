@@ -46,6 +46,6 @@ namespace droid.Runtime.Messaging.Messages {
     ///
     /// </summary>
     /// <returns></returns>
-    public override String ToString() { return $"{Sensors.Count},{Actors.Count}"; }
+    public override String ToString() { return $"{this.Sensors.Count},{this.Actors.Count}"; }
   }
 }

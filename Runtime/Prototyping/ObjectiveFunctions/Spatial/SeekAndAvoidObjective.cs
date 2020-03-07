@@ -42,7 +42,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
         var is_over = game_objects != null && (game_objects.Count == 0 || dist > this._end_game_radius);
 
         if (is_over) {
-          this.ParentEnvironment.Terminate($"Ending Game: Dist {dist} radius {this._spawn_radius}");
+          this.ParentEnvironment.Terminate(reason : $"Ending Game: Dist {dist} radius {this._spawn_radius}");
         }
       }
 
@@ -87,7 +87,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
     void OnChildTriggerEnter(GameObject child_game_object, Collider collider1) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        print($"{child_game_object} is colliding with {collider1}");
+        print(message : $"{child_game_object} is colliding with {collider1}");
       }
       #endif
 
@@ -110,7 +110,8 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
       for (var i = 0; i < this._num_collectibles; i++) {
         var game_object = this._collectible;
         if (game_object != null) {
-          var collectible = this.RandomSpawn(prefab : this._collectible, position : this._initial_actor_position);
+          var collectible =
+              this.RandomSpawn(prefab : this._collectible, position : this._initial_actor_position);
           this._collectibles.Add(item : collectible);
         }
       }

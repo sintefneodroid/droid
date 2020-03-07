@@ -8,76 +8,77 @@ namespace droid.Runtime.Prototyping.Displayers.GridWorld {
   /// <summary>
   /// </summary>
   [ExecuteInEditMode]
-  [AddComponentMenu(DisplayerComponentMenuPath._ComponentMenuPath
-                    + "GridWorldVectorField"
-                    + DisplayerComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : DisplayerComponentMenuPath._ComponentMenuPath
+                               + "GridWorldVectorField"
+                               + DisplayerComponentMenuPath._Postfix)]
   public class GridWorldVectorFieldDisplayer : Displayer {
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void Setup() { }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="value"></param>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <param name="value"></param>
     public override void Display(Double value) { }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="values"></param>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <param name="values"></param>
     public override void Display(float[] values) { }
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="values"></param>
     public override void Display(String values) { }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="value"></param>
-    /// <exception cref="NotImplementedException"></exception>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <param name="value"></param>
+    ///  <exception cref="T:System.NotImplementedException"></exception>
     public override void Display(Vector3 value) { throw new NotImplementedException(); }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="value"></param>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <param name="value"></param>
     public override void Display(Vector3[] value) { this.ScatterPlot(points : value); }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="points"></param>
-    public override void Display(Points.ValuePoint points) { this.PlotSeries(new[] {points}); }
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <param name="points"></param>
+    public override void Display(Points.ValuePoint points) { this.PlotSeries(points : new[] {points}); }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="points"></param>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <param name="points"></param>
     public override void Display(Points.ValuePoint[] points) { }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="point"></param>
-    /// <exception cref="NotImplementedException"></exception>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <param name="point"></param>
+    ///  <exception cref="T:System.NotImplementedException"></exception>
     public override void Display(Points.StringPoint point) { throw new NotImplementedException(); }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="points"></param>
-    /// <exception cref="NotImplementedException"></exception>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <param name="points"></param>
+    ///  <exception cref="T:System.NotImplementedException"></exception>
     public override void Display(Points.StringPoint[] points) { throw new NotImplementedException(); }
 
     //public override void Display(Object o) { throw new NotImplementedException(); }
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="values"></param>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <param name="values"></param>
     public override void Display(float values) { }
 
     void Update() {
@@ -113,7 +114,9 @@ namespace droid.Runtime.Prototyping.Displayers.GridWorld {
         //point._Size
         switch ((int)point._Val) {
           case 0:
-            NeodroidDrawingUtilities.ForDebug(pos : point._Pos, direction : Vector3.forward, color : Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(pos : point._Pos,
+                                              direction : Vector3.forward,
+                                              color : Color.cyan);
             break;
           case 1:
             NeodroidDrawingUtilities.ForDebug(pos : point._Pos, direction : Vector3.back, color : Color.cyan);
@@ -128,7 +131,9 @@ namespace droid.Runtime.Prototyping.Displayers.GridWorld {
             NeodroidDrawingUtilities.ForDebug(pos : point._Pos, direction : Vector3.left, color : Color.cyan);
             break;
           case 5:
-            NeodroidDrawingUtilities.ForDebug(pos : point._Pos, direction : Vector3.right, color : Color.cyan);
+            NeodroidDrawingUtilities.ForDebug(pos : point._Pos,
+                                              direction : Vector3.right,
+                                              color : Color.cyan);
             break;
         }
       }

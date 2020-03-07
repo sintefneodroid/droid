@@ -8,9 +8,9 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
   /// <summary>
   /// </summary>
   [ExecuteInEditMode]
-  [AddComponentMenu(DisplayerComponentMenuPath._ComponentMenuPath
-                    + "IndexedScatterPlot"
-                    + DisplayerComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : DisplayerComponentMenuPath._ComponentMenuPath
+                               + "IndexedScatterPlot"
+                               + DisplayerComponentMenuPath._Postfix)]
   public class IndexedScatterPlotDisplayer : Displayer {
     [SerializeField] GameObject[] _designs = null;
     [SerializeField] List<GameObject> _instances = null;
@@ -33,7 +33,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
     public override void Display(Vector3 value) { throw new NotImplementedException(); }
     public override void Display(Vector3[] value) { this.ScatterPlot(points : value); }
 
-    public override void Display(Points.ValuePoint points) { this.PlotSeries(new[] {points}); }
+    public override void Display(Points.ValuePoint points) { this.PlotSeries(points : new[] {points}); }
 
     public override void Display(Points.ValuePoint[] points) { }
 
@@ -111,7 +111,9 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
           continue;
         }
 
-        this.SpawnDesign(this._designs[(int)point._Val], position : point._Pos, rotation : Quaternion.identity);
+        this.SpawnDesign(design : this._designs[(int)point._Val],
+                         position : point._Pos,
+                         rotation : Quaternion.identity);
       }
     }
   }

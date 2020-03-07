@@ -44,7 +44,11 @@ namespace droid.Runtime.Structs.Space.Sample {
     public dynamic Sample() {
       switch (this._space.Normalised) {
         case NormalisationEnum.None_:
-          return this._space.Round(this.DistributionSampler.Range(min : this._space.Min, max : this._space.Max,granularity : this._space.DecimalGranularity));
+          return this._space.Round(v : this.DistributionSampler.Range(min : this._space.Min,
+                                                                      max : this._space.Max,
+                                                                      granularity : this
+                                                                                    ._space
+                                                                                    .DecimalGranularity));
         case NormalisationEnum.Zero_one_:
           return this.DistributionSampler.Range(0, 1);
         case NormalisationEnum.Minus_one_one_:

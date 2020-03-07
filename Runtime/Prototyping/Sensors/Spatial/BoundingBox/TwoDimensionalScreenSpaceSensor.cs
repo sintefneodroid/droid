@@ -31,14 +31,14 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.BoundingBox {
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public Vector2 ObservationValue { get { return this._observation_value; } }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public Space2 DoubleSpace { get { return this._observation_space2_d; } }
   }
 }

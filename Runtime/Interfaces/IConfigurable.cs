@@ -17,7 +17,6 @@ namespace droid.Runtime.Interfaces {
     /// <param name="configuration"></param>
     void ApplyConfiguration(IConfigurableConfiguration configuration);
 
-
     /// <summary>
     ///
     /// </summary>
@@ -28,6 +27,5 @@ namespace droid.Runtime.Interfaces {
     ///
     /// </summary>
     RandomSamplingPhaseEnum RandomSamplingPhaseEnum { get; set; }
-
   }
 }

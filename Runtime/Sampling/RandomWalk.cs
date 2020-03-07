@@ -31,7 +31,8 @@ namespace droid.Runtime.Sampling {
       //Display the path with lines
       if (this._random_walk_positions != null && this._random_walk_positions.Count > 1) {
         for (var i = 1; i < this._random_walk_positions.Count; i++) {
-          Debug.DrawLine(this._random_walk_positions[i - 1], this._random_walk_positions[index : i]);
+          Debug.DrawLine(start : this._random_walk_positions[index : i - 1],
+                         end : this._random_walk_positions[index : i]);
         }
       }
     }
@@ -44,7 +45,10 @@ namespace droid.Runtime.Sampling {
       //Create the node we are starting from
       var start_pos = Vector3.zero;
 
-      var current_node = new WalkNode(pos : start_pos, null, new List<Vector3>(collection : this._all_possible_directions));
+      var current_node = new WalkNode(pos : start_pos,
+                                      null,
+                                      possible_directions : new List<Vector3>(collection : this
+                                                                                  ._all_possible_directions));
 
       //How many steps have we taken, so we know when to stop the algorithm
       var steps_so_far = 0;
@@ -86,7 +90,8 @@ namespace droid.Runtime.Sampling {
           //Walk to this node
           current_node = new WalkNode(pos : next_node_pos,
                                       previous_node : current_node,
-                                      new List<Vector3>(collection : this._all_possible_directions));
+                                      possible_directions : new List<Vector3>(collection : this
+                                                                                  ._all_possible_directions));
 
           visited_nodes.Add(item : next_node_pos);
 
@@ -116,7 +121,7 @@ namespace droid.Runtime.Sampling {
       var has_visited = false;
 
       foreach (var t in list_pos) {
-        var dist_sqr = Vector3.SqrMagnitude(pos - t);
+        var dist_sqr = Vector3.SqrMagnitude(vector : pos - t);
 
         //Cant compare exactly because of floating point precisions
         if (dist_sqr < 0.001f) {

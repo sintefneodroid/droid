@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using droid.Runtime.GameObjects.BoundingBoxes;
 using droid.Runtime.Interfaces;
 using UnityEngine;
 
@@ -6,26 +7,21 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.BoundingBox {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
-                    + "Experimental/BoundingBox"
-                    + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : SensorComponentMenuPath._ComponentMenuPath
+                               + "Experimental/BoundingBox"
+                               + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
-  [RequireComponent(typeof(GameObjects.BoundingBoxes.BoundingBox))]
+  [RequireComponent(requiredComponent : typeof(NeodroidBoundingBox))]
   public class BoundingBoxSensor : Sensor,
                                    IHasString {
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "BoundingBox"; } }
-
-    GameObjects.BoundingBoxes.BoundingBox _bounding_box;
+    NeodroidBoundingBox _neodroid_bounding_box;
     [SerializeField] string _observationValue;
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void PreSetup() {
-      this._bounding_box = this.GetComponent<GameObjects.BoundingBoxes.BoundingBox>();
+      this._neodroid_bounding_box = this.GetComponent<NeodroidBoundingBox>();
     }
 
     /// <inheritdoc />
@@ -37,7 +33,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.BoundingBox {
     /// <summary>
     /// </summary>
     public override void UpdateObservation() {
-      this.ObservationValue = this._bounding_box.BoundingBoxCoordinatesWorldSpaceAsJson;
+      this.ObservationValue = this._neodroid_bounding_box.BoundingBoxCoordinatesWorldSpaceAsJson;
     }
 
     /// <summary>
@@ -48,6 +44,10 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.BoundingBox {
       set { this._observationValue = value; }
     }
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    /// <returns></returns>
     public override string ToString() { return this.ObservationValue; }
   }
 }

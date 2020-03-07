@@ -53,19 +53,21 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
           var v3_center = bounds.center;
           var v3_extents = bounds.extents;
 
-          var corners = Corners.ExtractCorners(v3_center : v3_center, v3_extents : v3_extents, reference_transform : mesh_filter_object.transform);
+          var corners = Corners.ExtractCorners(v3_center : v3_center,
+                                               v3_extents : v3_extents,
+                                               reference_transform : mesh_filter_object.transform);
 
-          liner.GetComponent<LineRenderer>().SetPosition(0, corners[4]);
-          liner.GetComponent<LineRenderer>().SetPosition(1, corners[5]);
+          liner.GetComponent<LineRenderer>().SetPosition(0, position : corners[4]);
+          liner.GetComponent<LineRenderer>().SetPosition(1, position : corners[5]);
 
-          Corners.DrawBox(corners[0],
-                          corners[1],
-                          corners[2],
-                          corners[3],
-                          corners[4],
-                          corners[5],
-                          corners[6],
-                          corners[7],
+          Corners.DrawBox(v3_front_top_left : corners[0],
+                          v3_front_top_right : corners[1],
+                          v3_front_bottom_left : corners[2],
+                          v3_front_bottom_right : corners[3],
+                          v3_back_top_left : corners[4],
+                          v3_back_top_right : corners[5],
+                          v3_back_bottom_left : corners[6],
+                          v3_back_bottom_right : corners[7],
                           color : this._Color);
         }
       }

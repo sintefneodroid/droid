@@ -10,10 +10,10 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
   /// <inheritdoc cref="Configurable" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
-                    + "StandardShaderMaterial"
-                    + ConfigurableComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(Renderer))]
+  [AddComponentMenu(menuName : ConfigurableComponentMenuPath._ComponentMenuPath
+                               + "StandardShaderMaterial"
+                               + ConfigurableComponentMenuPath._Postfix)]
+  [RequireComponent(requiredComponent : typeof(Renderer))]
   public class StandardShaderMaterialConfigurable : Configurable,
                                                     IHasTArray {
     string _reflection;
@@ -68,43 +68,43 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
     protected override void RegisterComponent() {
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._r);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._g);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._b);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._a);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._reflection);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._smoothness);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._offset_x);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._offset_y);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._tiling_x);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._tiling_y);
     }
 
@@ -116,16 +116,16 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
         return;
       }
 
-      this.ParentEnvironment.UnRegister(this, identifier : this._r);
-      this.ParentEnvironment.UnRegister(this, identifier : this._g);
-      this.ParentEnvironment.UnRegister(this, identifier : this._b);
-      this.ParentEnvironment.UnRegister(this, identifier : this._a);
-      this.ParentEnvironment.UnRegister(this, identifier : this._reflection);
-      this.ParentEnvironment.UnRegister(this, identifier : this._smoothness);
-      this.ParentEnvironment.UnRegister(this, identifier : this._offset_x);
-      this.ParentEnvironment.UnRegister(this, identifier : this._offset_y);
-      this.ParentEnvironment.UnRegister(this, identifier : this._tiling_x);
-      this.ParentEnvironment.UnRegister(this, identifier : this._tiling_y);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._r);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._g);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._b);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._a);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._reflection);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._smoothness);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._offset_x);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._offset_y);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._tiling_x);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._tiling_y);
     }
 
     /// <summary>
@@ -133,7 +133,7 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
     /// </summary>
     public ISamplable ConfigurableValueSpace { get { return this._tiling_space; } }
 
-    public override void UpdateCurrentConfiguration() {  }
+    public override void UpdateCurrentConfiguration() { }
 
     /// <summary>
     /// </summary>
@@ -141,7 +141,9 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        DebugPrinting.ApplyPrint(debugging : this.Debugging, configuration : configuration, identifier : this.Identifier);
+        DebugPrinting.ApplyPrint(debugging : this.Debugging,
+                                 configuration : configuration,
+                                 identifier : this.Identifier);
       }
       #endif
 
@@ -150,13 +152,20 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
           var mat = this._renderer.materials[index];
           var c = mat.color;
 
-          if (configuration.ConfigurableName.Equals(value : this._r, comparisonType : StringComparison.Ordinal)) {
+          if (configuration.ConfigurableName.Equals(value : this._r,
+                                                    comparisonType : StringComparison.Ordinal)) {
             c.r = configuration.ConfigurableValue;
-          } else if (string.Equals(a : configuration.ConfigurableName, b : this._g, comparisonType : StringComparison.Ordinal)) {
+          } else if (string.Equals(a : configuration.ConfigurableName,
+                                   b : this._g,
+                                   comparisonType : StringComparison.Ordinal)) {
             c.g = configuration.ConfigurableValue;
-          } else if (string.Equals(a : configuration.ConfigurableName, b : this._b, comparisonType : StringComparison.Ordinal)) {
+          } else if (string.Equals(a : configuration.ConfigurableName,
+                                   b : this._b,
+                                   comparisonType : StringComparison.Ordinal)) {
             c.b = configuration.ConfigurableValue;
-          } else if (string.Equals(a : configuration.ConfigurableName, b : this._a, comparisonType : StringComparison.Ordinal)) {
+          } else if (string.Equals(a : configuration.ConfigurableName,
+                                   b : this._a,
+                                   comparisonType : StringComparison.Ordinal)) {
             c.a = configuration.ConfigurableValue;
           } else if (string.Equals(a : configuration.ConfigurableName,
                                    b : this._smoothness,
@@ -198,13 +207,21 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
         foreach (var mat in this._renderer.sharedMaterials) {
           var c = mat.color;
 
-          if (string.Equals(a : configuration.ConfigurableName, b : this._r, comparisonType : StringComparison.Ordinal)) {
+          if (string.Equals(a : configuration.ConfigurableName,
+                            b : this._r,
+                            comparisonType : StringComparison.Ordinal)) {
             c.r = configuration.ConfigurableValue;
-          } else if (string.Equals(a : configuration.ConfigurableName, b : this._g, comparisonType : StringComparison.Ordinal)) {
+          } else if (string.Equals(a : configuration.ConfigurableName,
+                                   b : this._g,
+                                   comparisonType : StringComparison.Ordinal)) {
             c.g = configuration.ConfigurableValue;
-          } else if (string.Equals(a : configuration.ConfigurableName, b : this._b, comparisonType : StringComparison.Ordinal)) {
+          } else if (string.Equals(a : configuration.ConfigurableName,
+                                   b : this._b,
+                                   comparisonType : StringComparison.Ordinal)) {
             c.b = configuration.ConfigurableValue;
-          } else if (string.Equals(a : configuration.ConfigurableName, b : this._a, comparisonType : StringComparison.Ordinal)) {
+          } else if (string.Equals(a : configuration.ConfigurableName,
+                                   b : this._a,
+                                   comparisonType : StringComparison.Ordinal)) {
             c.a = configuration.ConfigurableValue;
           } else if (string.Equals(a : configuration.ConfigurableName,
                                    b : this._smoothness,
@@ -258,8 +275,10 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
                        new Configuration(configurable_name : this._g, configurable_value : cs1.y),
                        new Configuration(configurable_name : this._b, configurable_value : cs1.z),
                        new Configuration(configurable_name : this._a, configurable_value : cs1.w),
-                       new Configuration( this._reflection, this._reflection_space.Sample()),
-                       new Configuration( this._smoothness, this._smoothness_space.Sample()),
+                       new Configuration(configurable_name : this._reflection,
+                                         configurable_value : this._reflection_space.Sample()),
+                       new Configuration(configurable_name : this._smoothness,
+                                         configurable_value : this._smoothness_space.Sample()),
                        new Configuration(configurable_name : this._tiling_x, configurable_value : tl1.x),
                        new Configuration(configurable_name : this._tiling_y, configurable_value : tl1.y),
                        new Configuration(configurable_name : this._offset_x, configurable_value : os1.x),
@@ -281,10 +300,10 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
       foreach (var mat in materials) {
         if (mat) {
           mat.color = this._color_space.Sample();
-          mat.SetTextureScale( _main_tex, this._tiling_space.Sample());
-          mat.SetTextureOffset( _main_tex, this._offset_space.Sample());
-          mat.SetFloat( _glossiness, this._smoothness_space.Sample());
-          mat.SetFloat( _glossy_reflections, this._reflection_space.Sample());
+          mat.SetTextureScale(nameID : _main_tex, value : this._tiling_space.Sample());
+          mat.SetTextureOffset(nameID : _main_tex, value : this._offset_space.Sample());
+          mat.SetFloat(nameID : _glossiness, value : this._smoothness_space.Sample());
+          mat.SetFloat(nameID : _glossy_reflections, value : this._reflection_space.Sample());
         }
       }
     }

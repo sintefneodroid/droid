@@ -6,19 +6,19 @@ using UnityEngine.Experimental.Rendering;
 using UnityEngine.UI;
 
 namespace droid.Runtime.Prototyping.Sensors.Experimental {
-  /// <summary>
-  ///
-  /// </summary>
+  /// <inheritdoc cref="Sensor" />
+  ///  <summary>
+  ///  </summary>
   public class ByteArrayRawImageSensor : Sensor,
                                          IHasByteArray {
     [SerializeField] RawImage raw_image;
     [SerializeField] Texture2D texture2D;
     [SerializeField] WebCamTexture webcam_texture;
-    Byte[] _bytes = {};
+    Byte[] _bytes = { };
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override void PreSetup() {
       if (this.raw_image == null) {
         this.raw_image = this.GetComponent<RawImage>();
@@ -52,17 +52,17 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override IEnumerable<Single> FloatEnumerable { get { return new List<Single>(); } }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override void UpdateObservation() {
       if (this.webcam_texture && this.webcam_texture.isPlaying) {
-        this.texture2D.SetPixels(this.webcam_texture.GetPixels());
+        this.texture2D.SetPixels(colors : this.webcam_texture.GetPixels());
         this.texture2D.Apply();
         //this.texture2D.UpdateExternalTexture(this.webcam_texture.GetNativeTexturePtr());
         this.Bytes = this.texture2D.GetRawTextureData();
@@ -71,9 +71,9 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public Byte[] Bytes {
       get { return this._bytes; }
       private set {
@@ -83,9 +83,9 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public Int32[] Shape {
       get {
         int channels;
@@ -107,9 +107,9 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public String ArrayEncoding {
       get {
         var s = "Unknown";
@@ -137,10 +137,10 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <returns></returns>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <returns></returns>
     public override string ToString() {
       var rep = $"Byte Array (Length: {this.Bytes.Length}), "
                 + $"Sample [{this.Bytes[0]}.."

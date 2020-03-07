@@ -8,9 +8,9 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
   /// <summary>
   /// </summary>
   [ExecuteInEditMode]
-  [AddComponentMenu(DisplayerComponentMenuPath._ComponentMenuPath
-                    + "Canvas/CanvasBar"
-                    + DisplayerComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : DisplayerComponentMenuPath._ComponentMenuPath
+                               + "Canvas/CanvasBar"
+                               + DisplayerComponentMenuPath._Postfix)]
   public class DistributionDisplayer : Displayer {
     [SerializeField] Image[] _images;
     [SerializeField] [Range(0.0f, 1.0f)] float _value;
@@ -40,7 +40,7 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
     public void SetFillAmount(float amount) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log($"Setting amount to {amount}");
+        Debug.Log(message : $"Setting amount to {amount}");
       }
       #endif
 
@@ -57,7 +57,7 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
     public override void Display(float value) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log("Applying " + value + " To " + this.name);
+        Debug.Log(message : "Applying " + value + " To " + this.name);
       }
       #endif
 
@@ -72,13 +72,13 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
     public override void Display(Double value) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log("Applying " + value + " To " + this.name);
+        Debug.Log(message : "Applying " + value + " To " + this.name);
       }
       #endif
 
       this.Value = (float)value;
 
-      this.SetFillAmount((float)value);
+      this.SetFillAmount(amount : (float)value);
     }
 
     /// <inheritdoc />

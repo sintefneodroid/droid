@@ -64,12 +64,13 @@ namespace droid.Runtime.Sampling {
       switch (this._de) {
         case DistributionEnum.Uniform_:
           if (granularity == 0) {
-            return Random.Range((int)min, (int)max + 1);
+            return Random.Range(min : (int)min, max : (int)max + 1);
           } else {
             return Random.Range(min : min, max : max);
           }
         case DistributionEnum.Normal_:
-          return Distributions.RandomRangeNormalDistribution(min : min, max : max,
+          return Distributions.RandomRangeNormalDistribution(min : min,
+                                                             max : max,
                                                              confidence_level_cutoff : this._conf_level);
         case DistributionEnum.Sloped_:
           return Distributions.RandomRangeSlope(min : min,
@@ -84,7 +85,7 @@ namespace droid.Runtime.Sampling {
         case DistributionEnum.Linear_: return Distributions.RandomLinear(slope : this.DistributionParameter);
         default:
           if (granularity == 0) {
-            return Random.Range((int)min, (int)max + 1);
+            return Random.Range(min : (int)min, max : (int)max + 1);
           } else {
             return Random.Range(min : min, max : max);
           }
@@ -249,7 +250,7 @@ namespace droid.Runtime.Sampling {
       }
 
       // create normally distributed number.
-      var z = seed * Mathf.Sqrt(-2.0f * Mathf.Log(f : s) / s);
+      var z = seed * Mathf.Sqrt(f : -2.0f * Mathf.Log(f : s) / s);
 
       return z;
     }
@@ -305,7 +306,7 @@ namespace droid.Runtime.Sampling {
       // Note: arcsec(x) = arccos(1/x)
 
       // return arcsec(sqrt(y))
-      return Mathf.Acos(1.0f / Mathf.Sqrt(f : y));
+      return Mathf.Acos(f : 1.0f / Mathf.Sqrt(f : y));
     }
 
     // The integral of sec^2
@@ -340,7 +341,7 @@ namespace droid.Runtime.Sampling {
 
     // Returns random in range [0,1] with linear distribution of given slope.
     public static float RandomLinear(float slope) {
-      var abs_value = RandomFromLinearWithPositiveSlope(Mathf.Abs(f : slope));
+      var abs_value = RandomFromLinearWithPositiveSlope(slope : Mathf.Abs(f : slope));
       if (slope < 0) {
         return 1 - abs_value;
       }
@@ -382,7 +383,8 @@ namespace droid.Runtime.Sampling {
     /// </param>
     /// <param name="direction">The direction for the curve (right/left).</param>
     public static float RandomRangeExponential(float min, float max, float exponent, DirectionE direction) {
-      return min + RandomFromExponentialDistribution(exponent : exponent, direction : direction) * (max - min);
+      return min
+             + RandomFromExponentialDistribution(exponent : exponent, direction : direction) * (max - min);
     }
 
     /// <summary>
@@ -409,7 +411,9 @@ namespace droid.Runtime.Sampling {
     }
 
     // The inverse of the curve.
-    static float ExponentialRightInverse(float y, float exponent) { return Mathf.Pow(f : y, 1.0f / exponent); }
+    static float ExponentialRightInverse(float y, float exponent) {
+      return Mathf.Pow(f : y, p : 1.0f / exponent);
+    }
 
     // The integral of the exponent curve.
     static float ExponentialRightCdf(float x, float exponent) {
@@ -420,7 +424,7 @@ namespace droid.Runtime.Sampling {
     // The inverse of the integral of the exponent curve.
     static float ExponentialRightInverseCdf(float x, float exponent) {
       var integral_exp = exponent + 1.0f;
-      return Mathf.Pow(integral_exp * x, 1.0f / integral_exp);
+      return Mathf.Pow(f : integral_exp * x, p : 1.0f / integral_exp);
     }
 
     //--------------------------------------------------------------------------------------------
@@ -446,7 +450,7 @@ namespace droid.Runtime.Sampling {
       }
 
       // Choose from CDF:
-      var cdf_value = Random.Range(0.0f, cdf[probabilities.Count - 1]);
+      var cdf_value = Random.Range(0.0f, max : cdf[probabilities.Count - 1]);
       var index = Array.BinarySearch(array : cdf, value : cdf_value);
 
       if (index < 0) {

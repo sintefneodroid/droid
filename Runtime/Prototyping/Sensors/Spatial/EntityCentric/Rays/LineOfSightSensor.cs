@@ -8,9 +8,9 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
-                    + "LineOfSight"
-                    + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : SensorComponentMenuPath._ComponentMenuPath
+                               + "LineOfSight"
+                               + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [Serializable]
   public class LineOfSightSensor : Sensor,
@@ -28,19 +28,16 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays {
     [SerializeField]
     UnityEngine.Transform _target = null;
 
-    public override string PrototypingTypeName { get { return "LineOfSight"; } }
-
     public float ObservationValue { get { return this._obs_value; } private set { this._obs_value = value; } }
 
     public Space1 SingleSpace { get { return this._observation_value_space; } }
-
 
     public override IEnumerable<float> FloatEnumerable { get { return new[] {this.ObservationValue}; } }
 
     public override void UpdateObservation() {
       var distance = Vector3.Distance(a : this.transform.position, b : this._target.position);
       if (Physics.Raycast(origin : this.transform.position,
-                          this._target.position - this.transform.position,
+                          direction : this._target.position - this.transform.position,
                           hitInfo : out this._hit,
                           maxDistance : distance)) {
         #if NEODROID_DEBUG

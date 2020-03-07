@@ -10,7 +10,7 @@ namespace droid.Runtime.Utilities.Procedural {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
+  [RequireComponent(requiredComponent : typeof(MeshFilter), requiredComponent2 : typeof(MeshRenderer))]
   [ExecuteInEditMode]
   public class ProceduralCapsule : MonoBehaviour {
     /// <summary>
@@ -61,10 +61,10 @@ namespace droid.Runtime.Utilities.Procedural {
       var calc_v = 0f;
 
       for (var i = 0; i < points; i++) {
-        p_x[i] = Mathf.Sin(calc_h * Mathf.Deg2Rad);
-        p_z[i] = Mathf.Cos(calc_h * Mathf.Deg2Rad);
-        p_y[i] = Mathf.Cos(calc_v * Mathf.Deg2Rad);
-        p_r[i] = Mathf.Sin(calc_v * Mathf.Deg2Rad);
+        p_x[i] = Mathf.Sin(f : calc_h * Mathf.Deg2Rad);
+        p_z[i] = Mathf.Cos(f : calc_h * Mathf.Deg2Rad);
+        p_y[i] = Mathf.Cos(f : calc_v * Mathf.Deg2Rad);
+        p_r[i] = Mathf.Sin(f : calc_v * Mathf.Deg2Rad);
 
         calc_h += 360f / this._Segments;
         calc_v += 180f / this._Segments;
@@ -88,11 +88,11 @@ namespace droid.Runtime.Utilities.Procedural {
       float uv_x, uv_y;
 
       // Top Hemisphere
-      var top = Mathf.CeilToInt(points * 0.5f);
+      var top = Mathf.CeilToInt(f : points * 0.5f);
 
       for (var y = 0; y < top; y++) {
         for (var x = 0; x < points; x++) {
-          vertices[ind] = new Vector3(p_x[x] * p_r[y], p_y[y], p_z[x] * p_r[y]) * this._Radius;
+          vertices[ind] = new Vector3(x : p_x[x] * p_r[y], y : p_y[y], z : p_z[x] * p_r[y]) * this._Radius;
           vertices[ind].y = y_off + vertices[ind].y;
 
           uv_x = 1f - step_x * x;
@@ -104,11 +104,11 @@ namespace droid.Runtime.Utilities.Procedural {
       }
 
       // Bottom Hemisphere
-      var btm = Mathf.FloorToInt(points * 0.5f);
+      var btm = Mathf.FloorToInt(f : points * 0.5f);
 
       for (var y = btm; y < points; y++) {
         for (var x = 0; x < points; x++) {
-          vertices[ind] = new Vector3(p_x[x] * p_r[y], p_y[y], p_z[x] * p_r[y]) * this._Radius;
+          vertices[ind] = new Vector3(x : p_x[x] * p_r[y], y : p_y[y], z : p_z[x] * p_r[y]) * this._Radius;
           vertices[ind].y = -y_off + vertices[ind].y;
 
           uv_x = 1f - step_x * x;

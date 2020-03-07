@@ -44,7 +44,7 @@ namespace droid.Runtime.Environments.Prototyping {
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log($"Sampling a reaction for environment {this.Identifier}");
+        Debug.Log(message : $"Sampling a reaction for environment {this.Identifier}");
       }
       #endif
 
@@ -56,7 +56,9 @@ namespace droid.Runtime.Environments.Prototyping {
           foreach (var actuator in actor_value.Actuators) {
             var actuator_value = actuator.Value;
             if (actuator_value != null) {
-              sample_motions.Add(new ActuatorMotion(actor_name : actor.Key, actuator_name : actuator.Key, actuator_value.Sample()));
+              sample_motions.Add(item : new ActuatorMotion(actor_name : actor.Key,
+                                                           actuator_name : actuator.Key,
+                                                           strength : actuator_value.Sample()));
             }
           }
         }
@@ -64,7 +66,7 @@ namespace droid.Runtime.Environments.Prototyping {
 
       var rp = new ReactionParameters(reaction_type : ReactionTypeEnum.Step_, true, episode_count : true);
       return new Reaction(parameters : rp,
-                          sample_motions.ToArray(),
+                          motions : sample_motions.ToArray(),
                           null,
                           null,
                           null,
@@ -101,13 +103,14 @@ namespace droid.Runtime.Environments.Prototyping {
       if (!this.Actors.ContainsKey(key : identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Environment {this.name} has registered actor {identifier}");
+          Debug.Log(message : $"Environment {this.name} has registered actor {identifier}");
         }
         #endif
 
         this.Actors.Add(key : identifier, value : actor);
       } else {
-        Debug.LogWarning($"WARNING! Please check for duplicates, Environment {this.name} already has actor {identifier} registered");
+        Debug.LogWarning(message :
+                         $"WARNING! Please check for duplicates, Environment {this.name} already has actor {identifier} registered");
       }
     }
 
@@ -126,7 +129,7 @@ namespace droid.Runtime.Environments.Prototyping {
       if (this.Actors.ContainsKey(key : obj)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Environment {this.name} unregistered actor {obj}");
+          Debug.Log(message : $"Environment {this.name} unregistered actor {obj}");
         }
         #endif
         this.Actors.Remove(key : obj);
@@ -178,14 +181,14 @@ namespace droid.Runtime.Environments.Prototyping {
             } else {
               #if NEODROID_DEBUG
               if (this.Debugging) {
-                Debug.Log($"Sensor with key {item.Key} has a null FloatEnumerable value");
+                Debug.Log(message : $"Sensor with key {item.Key} has a null FloatEnumerable value");
               }
               #endif
             }
           } else {
             #if NEODROID_DEBUG
             if (this.Debugging) {
-              Debug.Log($"Sensor with key {item.Key} has a null value");
+              Debug.Log(message : $"Sensor with key {item.Key} has a null value");
             }
             #endif
           }
@@ -207,7 +210,8 @@ namespace droid.Runtime.Environments.Prototyping {
 
       if (this.SimulationManager.SimulatorConfiguration.SerialiseUnobservables
           || this.ProvideFullDescription) {
-        state.Unobservables = new Unobservables(rigidbodies : ref this._Tracked_Rigid_Bodies, transforms : ref this._Poses);
+        state.Unobservables =
+            new Unobservables(rigidbodies : ref this._Tracked_Rigid_Bodies, transforms : ref this._Poses);
       }
 
       this.ProvideFullDescription = false;
@@ -220,8 +224,10 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     /// <param name="recipient"></param>
     public override void ObservationsString(DataPoller recipient) {
-      recipient.PollData(string.Join("\n\n",
-                                     this.Sensors.Values.Select(e => $"{e.Identifier}:\n{e.ToString()}")));
+      recipient.PollData(data : string.Join("\n\n",
+                                            values :
+                                            this.Sensors.Values.Select(e =>
+                                                                           $"{e.Identifier}:\n{e.ToString()}")));
     }
 
     /// <inheritdoc />
@@ -255,17 +261,18 @@ namespace droid.Runtime.Environments.Prototyping {
         foreach (var displayable in reaction.Displayables) {
           #if NEODROID_DEBUG
           if (this.Debugging) {
-            Debug.Log("Applying " + displayable + " To " + this.name + "'s displayers");
+            Debug.Log(message : "Applying " + displayable + " To " + this.name + "'s displayers");
           }
           #endif
           var displayable_name = displayable.DisplayableName;
-          if (this.Displayers.ContainsKey(key : displayable_name) && this.Displayers[key : displayable_name] != null) {
+          if (this.Displayers.ContainsKey(key : displayable_name)
+              && this.Displayers[key : displayable_name] != null) {
             var v = displayable.DisplayableValue;
             this.Displayers[key : displayable_name].Display(v);
           } else {
             #if NEODROID_DEBUG
             if (this.Debugging) {
-              Debug.Log("Could find not displayer with the specified name: " + displayable_name);
+              Debug.Log(message : "Could find not displayer with the specified name: " + displayable_name);
             }
             #endif
           }
@@ -281,16 +288,17 @@ namespace droid.Runtime.Environments.Prototyping {
         foreach (var motion in reaction.Motions) {
           #if NEODROID_DEBUG
           if (this.Debugging) {
-            Debug.Log("Applying " + motion + " To " + this.name + "'s actors");
+            Debug.Log(message : "Applying " + motion + " To " + this.name + "'s actors");
           }
           #endif
           var motion_actor_name = motion.ActorName;
-          if (this.Actors.ContainsKey(key : motion_actor_name) && this.Actors[key : motion_actor_name] != null) {
+          if (this.Actors.ContainsKey(key : motion_actor_name)
+              && this.Actors[key : motion_actor_name] != null) {
             this.Actors[key : motion_actor_name].ApplyMotion(motion : motion);
           } else {
             #if NEODROID_DEBUG
             if (this.Debugging) {
-              Debug.Log("Could find not actor with the specified name: " + motion_actor_name);
+              Debug.Log(message : "Could find not actor with the specified name: " + motion_actor_name);
             }
             #endif
           }

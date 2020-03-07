@@ -11,17 +11,18 @@ namespace droid.Runtime.Structs.Space {
   [Serializable]
   public struct Space3 : ISpace {
     #region Fields
-    public NormalisationEnum Normalised { get { return this.normalised; }      set { this.normalised = value; } }
+
+    public NormalisationEnum Normalised { get { return this.normalised; } set { this.normalised = value; } }
+
     [Header("Space", order = 103)]
     [SerializeField]
-     Vector3 _min_;
+    Vector3 _min_;
 
-    [SerializeField]  Vector3 _max_;
+    [SerializeField] Vector3 _max_;
     [Range(0, 15)] [SerializeField] int _decimal_granularity;
-    [SerializeField]  NormalisationEnum normalised;
+    [SerializeField] NormalisationEnum normalised;
 
     #endregion
-
 
     /// <inheritdoc />
     ///  <summary>
@@ -31,12 +32,10 @@ namespace droid.Runtime.Structs.Space {
       set { this._decimal_granularity = value; }
     }
 
-
     /// <summary>
     ///
     /// </summary>
     public Vector3 Span { get { return this._max_ - this._min_; } }
-
 
     /// <inheritdoc />
     ///  <summary>
@@ -69,11 +68,12 @@ namespace droid.Runtime.Structs.Space {
         case NormalisationEnum.Zero_one_:
           return ClipRoundDenormalise01Clip(configuration_configurable_value : v);
         case NormalisationEnum.Minus_one_one_:
-          return ClipRoundDenormalise01Clip(configuration_configurable_value : v); // return ClipRoundDenormaliseMinusOneOneClip(v);
+          return
+              ClipRoundDenormalise01Clip(configuration_configurable_value :
+                                         v); // return ClipRoundDenormaliseMinusOneOneClip(v);
         default: throw new ArgumentOutOfRangeException();
       }
     }
-
 
     /// <summary>
     ///
@@ -83,9 +83,9 @@ namespace droid.Runtime.Structs.Space {
     /// <param name="max"></param>
     /// <returns></returns>
     public static Vector3 Clip(Vector3 v, Vector3 min, Vector3 max) {
-      return new Vector3(Mathf.Clamp(value : v.x, min : min.x, max : max.x),
-                         Mathf.Clamp(value : v.y, min : min.y, max : max.y),
-                         Mathf.Clamp(value : v.z, min : min.z, max : max.z));
+      return new Vector3(x : Mathf.Clamp(value : v.x, min : min.x, max : max.x),
+                         y : Mathf.Clamp(value : v.y, min : min.y, max : max.y),
+                         z : Mathf.Clamp(value : v.z, min : min.z, max : max.z));
     }
 
     /// <summary>
@@ -100,22 +100,22 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-     Vector3 ClipRound(Vector3 v) { return this.Clip(this.Round(v : v)); }
+    Vector3 ClipRound(Vector3 v) { return this.Clip(v : this.Round(v : v)); }
 
-     dynamic ClipRoundDenormalise01Clip(dynamic configuration_configurable_value) {
-      return this.Clip(this.Round(this.Denormalise01(Clip(v : configuration_configurable_value,
-                                                          min : Vector3.zero,
-                                                          max : Vector3.one))));
+    dynamic ClipRoundDenormalise01Clip(dynamic configuration_configurable_value) {
+      return this.Clip(v : this.Round(this.Denormalise01(v : Clip(v : configuration_configurable_value,
+                                                                  min : Vector3.zero,
+                                                                  max : Vector3.one))));
     }
 
-     public dynamic Mean { get { return (this.Max + this.Min) * 0.5f; } }
+    public dynamic Mean { get { return (this.Max + this.Min) * 0.5f; } }
 
     /// <summary>
     ///
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-     dynamic ClipNormalise01Round(dynamic v) {
+    dynamic ClipNormalise01Round(dynamic v) {
       if (v.x > this._max_.x) {
         v.x = this._max_.x;
       } else if (v.x < this._min_.x) {
@@ -174,26 +174,43 @@ namespace droid.Runtime.Structs.Space {
       return v;
     }
 
-
     /// <summary>
     ///
     /// </summary>
     public Space1 Xspace {
-      get { return new Space1 {Min = this._min_.x, Max = this._max_.x,DecimalGranularity = this.DecimalGranularity}; }
+      get {
+        return new Space1 {
+                              Min = this._min_.x,
+                              Max = this._max_.x,
+                              DecimalGranularity = this.DecimalGranularity
+                          };
+      }
     }
 
     /// <summary>
     ///
     /// </summary>
     public Space1 Yspace {
-      get { return new Space1 {Min = this._min_.y, Max = this._max_.y,DecimalGranularity = this.DecimalGranularity}; }
+      get {
+        return new Space1 {
+                              Min = this._min_.y,
+                              Max = this._max_.y,
+                              DecimalGranularity = this.DecimalGranularity
+                          };
+      }
     }
 
     /// <summary>
     ///
     /// </summary>
     public Space1 Zspace {
-      get { return new Space1 {Min = this._min_.z, Max = this._max_.z,DecimalGranularity = this.DecimalGranularity}; }
+      get {
+        return new Space1 {
+                              Min = this._min_.z,
+                              Max = this._max_.z,
+                              DecimalGranularity = this.DecimalGranularity
+                          };
+      }
     }
 
     /// <summary>
@@ -260,30 +277,44 @@ namespace droid.Runtime.Structs.Space {
     ///
     /// </summary>
     /// <returns></returns>
-    public static Space3 ZeroOne { get { return new Space3 {_min_ = Vector3.zero, Max = Vector3.one,
-                                                               DecimalGranularity = 4,
-                                                               Normalised = NormalisationEnum.Zero_one_
-                                                           }; } }
-
-    /// <summary>
-    ///
-    /// </summary>
-    public static Space3 TwentyEighty {
-      get { return new Space3 {Min = Vector3.one * 0.2f, _max_ = Vector3.one * 0.8f,
-                                  DecimalGranularity = 4,
-                                  Normalised = NormalisationEnum.Zero_one_
-                              }; }
+    public static Space3 ZeroOne {
+      get {
+        return new Space3 {
+                              _min_ = Vector3.zero,
+                              Max = Vector3.one,
+                              DecimalGranularity = 4,
+                              Normalised = NormalisationEnum.Zero_one_
+                          };
+      }
     }
 
     /// <summary>
     ///
     /// </summary>
-    public static Space3 MinusOneOne { get { return new Space3 {_min_ = -Vector3.one, Max = Vector3.one,
-                                                                   DecimalGranularity = 4,
-                                                                   Normalised = NormalisationEnum.Zero_one_
-                                                               }; } }
+    public static Space3 TwentyEighty {
+      get {
+        return new Space3 {
+                              Min = Vector3.one * 0.2f,
+                              _max_ = Vector3.one * 0.8f,
+                              DecimalGranularity = 4,
+                              Normalised = NormalisationEnum.Zero_one_
+                          };
+      }
+    }
 
-
+    /// <summary>
+    ///
+    /// </summary>
+    public static Space3 MinusOneOne {
+      get {
+        return new Space3 {
+                              _min_ = -Vector3.one,
+                              Max = Vector3.one,
+                              DecimalGranularity = 4,
+                              Normalised = NormalisationEnum.Zero_one_
+                          };
+      }
+    }
 
     /// <inheritdoc />
     ///  <summary>
@@ -316,8 +347,9 @@ namespace droid.Runtime.Structs.Space {
     /// <param name="normalised"></param>
     /// <param name="decimal_granularity"></param>
     /// <returns></returns>
-    public static Space3
-        FromCenterExtents(Vector3 bounds_extents, NormalisationEnum normalised=NormalisationEnum.Zero_one_, int decimal_granularity = 4) {
+    public static Space3 FromCenterExtents(Vector3 bounds_extents,
+                                           NormalisationEnum normalised = NormalisationEnum.Zero_one_,
+                                           int decimal_granularity = 4) {
       return new Space3 {
                             _min_ = -bounds_extents,
                             Max = bounds_extents,

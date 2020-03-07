@@ -12,7 +12,5 @@ namespace droid.Runtime.Interfaces {
     /// <summary>
     /// </summary>
     void UpdateObservation();
-
-
   }
 }

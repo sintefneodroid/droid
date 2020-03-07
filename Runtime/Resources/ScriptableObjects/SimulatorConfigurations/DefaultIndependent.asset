@@ -37,3 +37,4 @@ MonoBehaviour:
   _target_frame_rate: -1
   _time_scale: 1
   _update_fixed_time_scale: 0
+  _manual_render: 0

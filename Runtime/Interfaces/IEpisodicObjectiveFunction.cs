@@ -3,11 +3,9 @@ namespace droid.Runtime.Interfaces {
   /// <summary>
   /// </summary>
   public interface IEpisodicObjectiveFunction : IObjectiveFunction {
-
     /// <summary>
     /// The length of an episode
     /// </summary>
     int EpisodeLength { get; set; }
-
   }
 }

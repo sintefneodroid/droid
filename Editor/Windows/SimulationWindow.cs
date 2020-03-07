@@ -11,10 +11,10 @@ namespace droid.Editor.Windows {
     /// <summary>
     ///
     /// </summary>
-    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "SimulationWindow")]
-    [MenuItem(EditorWindowMenuPath._ToolMenuPath + "SimulationWindow")]
+    [MenuItem(itemName : EditorWindowMenuPath._WindowMenuPath + "SimulationWindow")]
+    [MenuItem(itemName : EditorWindowMenuPath._ToolMenuPath + "SimulationWindow")]
     public static void ShowWindow() {
-      GetWindow(typeof(SimulationWindow)); //Show existing window instance. If one doesn't exist, make one.
+      GetWindow(t : typeof(SimulationWindow)); //Show existing window instance. If one doesn't exist, make one.
       //window.Show();
     }
 
@@ -25,16 +25,17 @@ namespace droid.Editor.Windows {
     /// </summary>
     void OnEnable() {
       this._icon =
-          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidSettings.Current.NeodroidImportLocationProp
+          (Texture2D)AssetDatabase.LoadAssetAtPath(assetPath :
+                                                   NeodroidSettings.Current.NeodroidImportLocationProp
                                                    + "Gizmos/Icons/clock.png",
-                                                   typeof(Texture2D));
+                                                   type : typeof(Texture2D));
       this.titleContent = new GUIContent("Neo:Sim", image : this._icon, "Window for controlling simulation");
     }
 
     void OnFocus() { this.Setup(); }
 
     void Setup() {
-      var serialised_object = new SerializedObject(this);
+      var serialised_object = new SerializedObject(obj : this);
       if (this._simulation_manager == null) {
         this._simulation_manager = FindObjectOfType<NeodroidManager>();
       }
@@ -43,24 +44,27 @@ namespace droid.Editor.Windows {
     }
 
     void OnGUI() {
-      EditorGUILayout.ObjectField(obj : this._simulation_manager, typeof(AbstractNeodroidManager), true);
+      EditorGUILayout.ObjectField(obj : this._simulation_manager,
+                                  objType : typeof(AbstractNeodroidManager),
+                                  true);
       EditorGUI.BeginDisabledGroup(disabled : !Application.isPlaying);
 
       if (GUILayout.Button("Step")) {
-        this._simulation_manager?.SendToEnvironments(new[] {
-                                                               new
-                                                                   Reaction(new
-                                                                                ReactionParameters(reaction_type : ReactionTypeEnum
-                                                                                                       .Step_,
-                                                                                                   true,
-                                                                                                   configure :
-                                                                                                   true),
-                                                                            null,
-                                                                            null,
-                                                                            null,
-                                                                            null,
-                                                                            "")
-                                                           });
+        this._simulation_manager?.DelegateReactions(reactions : new[] {
+                                                                          new Reaction(parameters :
+                                                                                       new
+                                                                                           ReactionParameters(reaction_type
+                                                                                                              : ReactionTypeEnum
+                                                                                                                  .Step_,
+                                                                                                              true,
+                                                                                                              configure
+                                                                                                              : true),
+                                                                                       null,
+                                                                                       null,
+                                                                                       null,
+                                                                                       null,
+                                                                                       "")
+                                                                      });
       }
 
       if (GUILayout.Button("Reset")) {

@@ -9,27 +9,29 @@ namespace droid.Editor.GameObjects {
   ///
   /// </summary>
   public class SensorSpawner : MonoBehaviour {
-    [MenuItem(EditorGameObjectMenuPath._GameObjectMenuPath + "Sensors/Base", false, 10)]
+    [MenuItem(itemName : EditorGameObjectMenuPath._GameObjectMenuPath + "Sensors/Base", false, 10)]
     static void CreateSensorGameObject(MenuCommand menu_command) {
       var go = new GameObject("Sensor");
       go.AddComponent<Sensor>();
       GameObjectUtility.SetParentAndAlign(child : go,
-                                          menu_command
-                                                  .context as
-                                              GameObject); // Ensure it gets reparented if this was a context click (otherwise does nothing)
-      Undo.RegisterCreatedObjectUndo(objectToUndo : go, "Create " + go.name); // Register the creation in the undo system
+                                          parent : menu_command
+                                                           .context as
+                                                       GameObject); // Ensure it gets reparented if this was a context click (otherwise does nothing)
+      Undo.RegisterCreatedObjectUndo(objectToUndo : go,
+                                     name : "Create " + go.name); // Register the creation in the undo system
       Selection.activeObject = go;
     }
 
-    [MenuItem(EditorGameObjectMenuPath._GameObjectMenuPath + "Sensors/EulerTransform", false, 10)]
+    [MenuItem(itemName : EditorGameObjectMenuPath._GameObjectMenuPath + "Sensors/EulerTransform", false, 10)]
     static void CreateEulerTransformSensorGameObject(MenuCommand menu_command) {
       var go = new GameObject("EulerTransformSensor");
       go.AddComponent<EulerTransformSensor>();
       GameObjectUtility.SetParentAndAlign(child : go,
-                                          menu_command
-                                                  .context as
-                                              GameObject); // Ensure it gets reparented if this was a context click (otherwise does nothing)
-      Undo.RegisterCreatedObjectUndo(objectToUndo : go, "Create " + go.name); // Register the creation in the undo system
+                                          parent : menu_command
+                                                           .context as
+                                                       GameObject); // Ensure it gets reparented if this was a context click (otherwise does nothing)
+      Undo.RegisterCreatedObjectUndo(objectToUndo : go,
+                                     name : "Create " + go.name); // Register the creation in the undo system
       Selection.activeObject = go;
     }
   }

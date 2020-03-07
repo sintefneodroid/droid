@@ -5,20 +5,20 @@ namespace droid.Editor.Utilities {
   /// <summary>
   /// </summary>
   public static class NeodroidEditorUtilities {
-    static Color _link_color = new Color(0x00 / 255f,
-                                         0x78 / 255f,
-                                         0xDA / 255f,
+    static Color _link_color = new Color(r : 0x00 / 255f,
+                                         g : 0x78 / 255f,
+                                         b : 0xDA / 255f,
                                          1f);
 
     static GUIStyle _default_link_style = new GUIStyle(other : EditorStyles.label) {
-                                                                               fontSize = 14,
-                                                                               wordWrap = false,
-                                                                               normal = {
-                                                                                            textColor =
-                                                                                                _link_color
-                                                                                        },
-                                                                               stretchWidth = false
-                                                                           };
+                                                                                       fontSize = 14,
+                                                                                       wordWrap = false,
+                                                                                       normal = {
+                                                                                                    textColor
+                                                                                                        = _link_color
+                                                                                                },
+                                                                                       stretchWidth = false
+                                                                                   };
 
     /// <summary>
     /// </summary>
@@ -38,7 +38,8 @@ namespace droid.Editor.Utilities {
       Handles.BeginGUI();
 
       Handles.color = link_style.normal.textColor;
-      Handles.DrawLine(new Vector3(x : position.xMin, y : position.yMax), new Vector3(x : position.xMax, y : position.yMax));
+      Handles.DrawLine(p1 : new Vector3(x : position.xMin, y : position.yMax),
+                       p2 : new Vector3(x : position.xMax, y : position.yMax));
       Handles.color = Color.white;
       Handles.EndGUI();
 

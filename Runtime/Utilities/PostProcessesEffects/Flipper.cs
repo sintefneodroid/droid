@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 #if UNITY_POST_PROCESSING_STACK_V2
 using System;
 using UnityEngine.Rendering.PostProcessing;
@@ -9,9 +8,7 @@ namespace droid.Runtime.Utilities.PostProcessesEffects {
   ///
   /// </summary>
   [Serializable]
-  [PostProcess(typeof(FlipperRenderer),
-      eventType : PostProcessEvent.AfterStack,
-      "Neodroid/Flip")]
+  [PostProcess(renderer : typeof(FlipperRenderer), eventType : PostProcessEvent.AfterStack, "Neodroid/Flip")]
   public sealed class Flipper : PostProcessEffectSettings {
     /// <summary>
     ///
@@ -35,8 +32,8 @@ namespace droid.Runtime.Utilities.PostProcessesEffects {
     /// <param name="context"></param>
     public override void Render(PostProcessRenderContext context) {
       var sheet = context.propertySheets.Get(shader : _s);
-      sheet.properties.SetFloat(nameID : _flip_x, this.settings.flip_x ? -1.0f : 1.0f);
-      sheet.properties.SetFloat(nameID : _flip_y, this.settings.flip_y ? -1.0f : 1.0f);
+      sheet.properties.SetFloat(nameID : _flip_x, value : this.settings.flip_x ? -1.0f : 1.0f);
+      sheet.properties.SetFloat(nameID : _flip_y, value : this.settings.flip_y ? -1.0f : 1.0f);
       context.command.BlitFullscreenTriangle(source : context.source,
                                              destination : context.destination,
                                              propertySheet : sheet,

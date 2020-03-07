@@ -11,9 +11,9 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
   /// <inheritdoc cref="Configurable" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
-                    + "EulerTransform"
-                    + ConfigurableComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : ConfigurableComponentMenuPath._ComponentMenuPath
+                               + "EulerTransform"
+                               + ConfigurableComponentMenuPath._Postfix)]
   public class EulerTransformConfigurable : SpatialConfigurable,
                                             IHasEulerTransform {
     string _dir_x;
@@ -49,9 +49,9 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// </summary>
     public Vector3 Rotation { get { return this._rotation; } set { this._rotation = value; } }
 
-    [SerializeField]SampleSpace3 pos_space = new SampleSpace3();
-    [SerializeField]SampleSpace3 dir_space = new SampleSpace3();
-    [SerializeField]SampleSpace3 rot_space = new SampleSpace3();
+    [SerializeField] SampleSpace3 pos_space = new SampleSpace3();
+    [SerializeField] SampleSpace3 dir_space = new SampleSpace3();
+    [SerializeField] SampleSpace3 rot_space = new SampleSpace3();
 
     /// <summary>
     ///
@@ -99,39 +99,39 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     protected override void RegisterComponent() {
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          this,
+                                                          c : this,
                                                           identifier : this._x);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          this,
+                                                          c : this,
                                                           identifier : this._y);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          this,
+                                                          c : this,
                                                           identifier : this._z);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          this,
+                                                          c : this,
                                                           identifier : this._dir_x);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          this,
+                                                          c : this,
                                                           identifier : this._dir_y);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          this,
+                                                          c : this,
                                                           identifier : this._dir_z);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          this,
+                                                          c : this,
                                                           identifier : this._rot_x);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          this,
+                                                          c : this,
                                                           identifier : this._rot_y);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          this,
+                                                          c : this,
                                                           identifier : this._rot_z);
     }
 
@@ -160,15 +160,15 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
         return;
       }
 
-      this.ParentEnvironment.UnRegister(this, identifier : this._x);
-      this.ParentEnvironment.UnRegister(this, identifier : this._y);
-      this.ParentEnvironment.UnRegister(this, identifier : this._z);
-      this.ParentEnvironment.UnRegister(this, identifier : this._dir_x);
-      this.ParentEnvironment.UnRegister(this, identifier : this._dir_y);
-      this.ParentEnvironment.UnRegister(this, identifier : this._dir_z);
-      this.ParentEnvironment.UnRegister(this, identifier : this._rot_x);
-      this.ParentEnvironment.UnRegister(this, identifier : this._rot_y);
-      this.ParentEnvironment.UnRegister(this, identifier : this._rot_z);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._x);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._y);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._z);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._dir_x);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._dir_y);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._dir_z);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._rot_x);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._rot_y);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._rot_z);
     }
 
     /// <inheritdoc />
@@ -195,7 +195,8 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       if (this.PositionSpace.Min[0].CompareTo(this.PositionSpace.Max[0]) != 0) {
         //TODO NOT IMPLEMENTED CORRECTLY VelocitySpace should not be index but should check all pairwise values, PositionSpace.MinValues == PositionSpace.MaxValues, and use other space aswell!
         if (v < this.PositionSpace.Min[0] || v > this.PositionSpace.Max[0]) {
-          Debug.Log(string.Format("Configurable does not accept input{2}, outside allowed range {0} to {1}",
+          Debug.Log(message :
+                    string.Format("Configurable does not accept input{2}, outside allowed range {0} to {1}",
                                   this.PositionSpace.Min[0],
                                   this.PositionSpace.Max[0],
                                   v));
@@ -205,28 +206,28 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log("Applying " + v + " To " + this.Identifier);
+        Debug.Log(message : "Applying " + v + " To " + this.Identifier);
       }
       #endif
       if (this.RelativeToExistingValue) {
         if (configuration.ConfigurableName == this._x) {
-          pos.Set(v - pos.x, newY : pos.y, newZ : pos.z);
+          pos.Set(newX : v - pos.x, newY : pos.y, newZ : pos.z);
         } else if (configuration.ConfigurableName == this._y) {
-          pos.Set(newX : pos.x, v - pos.y, newZ : pos.z);
+          pos.Set(newX : pos.x, newY : v - pos.y, newZ : pos.z);
         } else if (configuration.ConfigurableName == this._z) {
-          pos.Set(newX : pos.x, newY : pos.y, v - pos.z);
+          pos.Set(newX : pos.x, newY : pos.y, newZ : v - pos.z);
         } else if (configuration.ConfigurableName == this._dir_x) {
-          dir.Set(v - dir.x, newY : dir.y, newZ : dir.z);
+          dir.Set(newX : v - dir.x, newY : dir.y, newZ : dir.z);
         } else if (configuration.ConfigurableName == this._dir_y) {
-          dir.Set(newX : dir.x, v - dir.y, newZ : dir.z);
+          dir.Set(newX : dir.x, newY : v - dir.y, newZ : dir.z);
         } else if (configuration.ConfigurableName == this._dir_z) {
-          dir.Set(newX : dir.x, newY : dir.y, v - dir.z);
+          dir.Set(newX : dir.x, newY : dir.y, newZ : v - dir.z);
         } else if (configuration.ConfigurableName == this._rot_x) {
-          rot.Set(v - rot.x, newY : rot.y, newZ : rot.z);
+          rot.Set(newX : v - rot.x, newY : rot.y, newZ : rot.z);
         } else if (configuration.ConfigurableName == this._rot_y) {
-          rot.Set(newX : rot.x, v - rot.y, newZ : rot.z);
+          rot.Set(newX : rot.x, newY : v - rot.y, newZ : rot.z);
         } else if (configuration.ConfigurableName == this._rot_z) {
-          rot.Set(newX : rot.x, newY : rot.y, v - rot.z);
+          rot.Set(newX : rot.x, newY : rot.y, newZ : v - rot.z);
         }
       } else {
         if (configuration.ConfigurableName == this._x) {

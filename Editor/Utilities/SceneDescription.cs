@@ -13,7 +13,7 @@ namespace droid.Editor.Utilities {
   ///   Scene preview.
   ///   https://diegogiacomelli.com.br/unity3d-scenepreview-inspector/
   /// </summary>
-  [CustomEditor(typeof(SceneAsset))]
+  [CustomEditor(inspectedType : typeof(SceneAsset))]
   [CanEditMultipleObjects]
   public class SceneDescription : UnityEditor.Editor {
     /// <summary>
@@ -23,7 +23,7 @@ namespace droid.Editor.Utilities {
       if (NeodroidSettings.Current.NeodroidGenerateDescriptionsProp) {
         var preview_path = GetDescriptionPath(scene_name : SceneManager.GetActiveScene().name);
         #if NEODROID_DEBUG
-        Debug.Log($"Saving scene preview at {preview_path}");
+        Debug.Log(message : $"Saving scene preview at {preview_path}");
         #endif
         MakeDescription(name : preview_path);
       }
@@ -42,7 +42,7 @@ namespace droid.Editor.Utilities {
 
       using (var sw = new StreamWriter(path : name)) {
         using (JsonWriter writer = new JsonTextWriter(textWriter : sw)) {
-          serializer.Serialize(jsonWriter : writer, simulation_manager.ToString());
+          serializer.Serialize(jsonWriter : writer, value : simulation_manager.ToString());
         }
       }
     }
@@ -65,7 +65,7 @@ namespace droid.Editor.Utilities {
 
         for (var i = 0; i < scene_names.Length; i++) {
           ScenePreview.DrawPreview(index : i,
-                                   scene_names[i],
+                                   scene_name : scene_names[i],
                                    width : preview_width,
                                    height : preview_height);
         }
@@ -75,7 +75,7 @@ namespace droid.Editor.Utilities {
         var scene_names = this.targets.Select(t => ((SceneAsset)t).name).OrderBy(n => n).ToArray();
 
         for (var i = 0; i < scene_names.Length; i++) {
-          PrintDescription(index : i, scene_names[i]);
+          PrintDescription(index : i, scene_name : scene_names[i]);
         }
       }
     }
@@ -87,9 +87,9 @@ namespace droid.Editor.Utilities {
       if (preview != null) {
         EditorGUILayout.HelpBox(message : preview, type : MessageType.Info);
       } else {
-        EditorGUILayout
-            .HelpBox($"There is no image preview for scene {scene_name} at {preview_path}. Please play the scene on editor and image preview will be captured automatically or create the missing path: {NeodroidSettings.Current.NeodroidPreviewsLocationProp}.",
-                     type : MessageType.Info);
+        EditorGUILayout.HelpBox(message :
+                                $"There is no image preview for scene {scene_name} at {preview_path}. Please play the scene on editor and image preview will be captured automatically or create the missing path: {NeodroidSettings.Current.NeodroidPreviewsLocationProp}.",
+                                type : MessageType.Info);
       }
     }
 

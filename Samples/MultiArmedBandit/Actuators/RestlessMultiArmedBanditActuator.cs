@@ -8,9 +8,9 @@ namespace droid.Samples.MultiArmedBandit.Actuators {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ActuatorComponentMenuPath._ComponentMenuPath
-                    + "RestlessMultiArmedBandit"
-                    + ActuatorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : ActuatorComponentMenuPath._ComponentMenuPath
+                               + "RestlessMultiArmedBandit"
+                               + ActuatorComponentMenuPath._Postfix)]
   public class RestlessMultiArmedBanditActuator : MultiArmedBanditActuator {
     /// <inheritdoc />
     /// <summary>
@@ -22,7 +22,7 @@ namespace droid.Samples.MultiArmedBandit.Actuators {
       this.MotionSpace = mvs;
 
       this.ReAssignValues();
-      this.StartCoroutine(this.ExecuteAfterTime(2));
+      this.StartCoroutine(routine : this.ExecuteAfterTime(2));
     }
 
     protected void ReAssignValues() {

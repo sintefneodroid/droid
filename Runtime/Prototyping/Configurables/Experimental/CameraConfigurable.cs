@@ -12,10 +12,10 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
-                    + "Camera"
-                    + ConfigurableComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(Camera))]
+  [AddComponentMenu(menuName : ConfigurableComponentMenuPath._ComponentMenuPath
+                               + "Camera"
+                               + ConfigurableComponentMenuPath._Postfix)]
+  [RequireComponent(requiredComponent : typeof(Camera))]
   public class CameraConfigurable : Configurable {
     /// <summary>
     ///   Red
@@ -58,15 +58,14 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     [SerializeField]
     SampleSpace2 _lens_shift_space = new SampleSpace2 {
                                                           _space = new Space2 {
-                                                                                     Min = new Vector2(-0.1f,
-                                                                                                       -0.1f),
-                                                                                     Max = new Vector2(0.1f,
-                                                                                                       0.1f)
-                                                                                 }
+                                                                                  Min = new Vector2(-0.1f,
+                                                                                                    -0.1f),
+                                                                                  Max = new Vector2(0.1f,
+                                                                                                    0.1f)
+                                                                              }
                                                       };
 
-    [SerializeField]
-    SampleSpace1 _gate_fit_space = new SampleSpace1 {_space = Space1.DiscreteZeroOne*4};
+    [SerializeField] SampleSpace1 _gate_fit_space = new SampleSpace1 {_space = Space1.DiscreteZeroOne * 4};
 
     /// <inheritdoc />
     /// <summary>
@@ -95,32 +94,32 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       if (!this._camera.usePhysicalProperties) {
         this.ParentEnvironment =
             NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                            (Configurable)this,
+                                                            c : (Configurable)this,
                                                             identifier : this._fov_str);
       } else {
         this.ParentEnvironment =
             NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                            (Configurable)this,
+                                                            c : (Configurable)this,
                                                             identifier : this._focal_str);
         this.ParentEnvironment =
             NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                            (Configurable)this,
+                                                            c : (Configurable)this,
                                                             identifier : this._sensor_width_str);
         this.ParentEnvironment =
             NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                            (Configurable)this,
+                                                            c : (Configurable)this,
                                                             identifier : this._sensor_height_str);
         this.ParentEnvironment =
             NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                            (Configurable)this,
+                                                            c : (Configurable)this,
                                                             identifier : this._lens_shift_x_str);
         this.ParentEnvironment =
             NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                            (Configurable)this,
+                                                            c : (Configurable)this,
                                                             identifier : this._lens_shift_y_str);
         this.ParentEnvironment =
             NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                            (Configurable)this,
+                                                            c : (Configurable)this,
                                                             identifier : this._gate_fit_str);
       }
     }
@@ -130,28 +129,34 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>n
     protected override void UnRegisterComponent() {
       if (!this._camera.usePhysicalProperties) {
-        this.ParentEnvironment?.UnRegister(this, identifier : this._fov_str);
+        this.ParentEnvironment?.UnRegister(t : this, identifier : this._fov_str);
       } else {
-        this.ParentEnvironment?.UnRegister(this, identifier : this._focal_str);
-        this.ParentEnvironment?.UnRegister(this, identifier : this._sensor_width_str);
-        this.ParentEnvironment?.UnRegister(this, identifier : this._sensor_height_str);
-        this.ParentEnvironment?.UnRegister(this, identifier : this._lens_shift_x_str);
-        this.ParentEnvironment?.UnRegister(this, identifier : this._lens_shift_y_str);
-        this.ParentEnvironment?.UnRegister(this, identifier : this._gate_fit_str);
+        this.ParentEnvironment?.UnRegister(t : this, identifier : this._focal_str);
+        this.ParentEnvironment?.UnRegister(t : this, identifier : this._sensor_width_str);
+        this.ParentEnvironment?.UnRegister(t : this, identifier : this._sensor_height_str);
+        this.ParentEnvironment?.UnRegister(t : this, identifier : this._lens_shift_x_str);
+        this.ParentEnvironment?.UnRegister(t : this, identifier : this._lens_shift_y_str);
+        this.ParentEnvironment?.UnRegister(t : this, identifier : this._gate_fit_str);
       }
     }
 
     public ISamplable ConfigurableValueSpace { get { return this._sensor_size_space; } }
 
-    public override void UpdateCurrentConfiguration() {  }
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    public override void UpdateCurrentConfiguration() { }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <param name="configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        DebugPrinting.ApplyPrint(debugging : this.Debugging, configuration : configuration, identifier : this.Identifier);
+        DebugPrinting.ApplyPrint(debugging : this.Debugging,
+                                 configuration : configuration,
+                                 identifier : this.Identifier);
       }
       #endif
 
@@ -176,8 +181,8 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
         a.y = configuration.ConfigurableValue;
         this._camera.lensShift = a;
       } else if (configuration.ConfigurableName == this._gate_fit_str) {
-        Enum.TryParse(((int)configuration.ConfigurableValue).ToString(),
-                      out Camera.GateFitMode gate_fit_mode);
+        Enum.TryParse(value : ((int)configuration.ConfigurableValue).ToString(),
+                      result : out Camera.GateFitMode gate_fit_mode);
         this._camera.gateFit = gate_fit_mode;
       }
 
@@ -193,29 +198,45 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     ///  <exception cref="T:System.IndexOutOfRangeException"></exception>
     public override Configuration[] SampleConfigurations() {
       if (!this._camera.usePhysicalProperties) {
-        return new[] {new Configuration(this._fov_str, this._fov_space.Sample())};
+        return new[] {
+                         new Configuration(configurable_name : this._fov_str,
+                                           configurable_value : this._fov_space.Sample())
+                     };
       }
 
       var r = Random.Range(0, 6);
       switch (r) {
         case 0:
-          return new[] {new Configuration(this._focal_str, this._focal_space.Sample())};
+          return new[] {
+                           new Configuration(configurable_name : this._focal_str,
+                                             configurable_value : this._focal_space.Sample())
+                       };
         case 1:
-          return new[] {new Configuration(configurable_name : this._sensor_width_str, configurable_value : this._sensor_size_space.Sample().x)};
-
+          return new[] {
+                           new Configuration(configurable_name : this._sensor_width_str,
+                                             configurable_value : this._sensor_size_space.Sample().x)
+                       };
         case 2:
-          return new[] {new Configuration(configurable_name : this._sensor_height_str, configurable_value : this._sensor_size_space.Sample().y)};
-
+          return new[] {
+                           new Configuration(configurable_name : this._sensor_height_str,
+                                             configurable_value : this._sensor_size_space.Sample().y)
+                       };
         case 3:
-          return new[] {new Configuration(configurable_name : this._lens_shift_x_str, configurable_value : this._lens_shift_space.Sample().x)};
-
+          return new[] {
+                           new Configuration(configurable_name : this._lens_shift_x_str,
+                                             configurable_value : this._lens_shift_space.Sample().x)
+                       };
         case 4:
-          return new[] {new Configuration(configurable_name : this._lens_shift_y_str, configurable_value : this._lens_shift_space.Sample().y)};
-
+          return new[] {
+                           new Configuration(configurable_name : this._lens_shift_y_str,
+                                             configurable_value : this._lens_shift_space.Sample().y)
+                       };
         case 5:
-          return new[] {new Configuration(this._gate_fit_str, this._gate_fit_space.Sample())};
-        default:
-          throw new IndexOutOfRangeException();
+          return new[] {
+                           new Configuration(configurable_name : this._gate_fit_str,
+                                             configurable_value : this._gate_fit_space.Sample())
+                       };
+        default: throw new IndexOutOfRangeException();
       }
     }
   }

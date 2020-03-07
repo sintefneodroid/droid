@@ -1,4 +1,4 @@
-var searchData=
-[
-  ['waiton_2ecs',['WaitOn.cs',['../_wait_on_8cs.html',1,'']]]
-];
+var searchData =
+    [
+        ['waiton_2ecs', ['WaitOn.cs', ['../_wait_on_8cs.html', 1, '']]]
+    ];

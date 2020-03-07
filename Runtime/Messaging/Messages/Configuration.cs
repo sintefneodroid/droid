@@ -12,15 +12,17 @@ namespace droid.Runtime.Messaging.Messages {
       this.SampleRandom = sample_random;
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public string ConfigurableName { get; set; }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public Boolean SampleRandom { get; set; }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public float ConfigurableValue { get; set; }

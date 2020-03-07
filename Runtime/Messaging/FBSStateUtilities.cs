@@ -43,17 +43,20 @@ namespace droid.Runtime.Messaging {
                                             serialise_individual_observables);
       }
 
-      var states_vector_offset = FStates.CreateStatesVector(b, data : state_offsets);
+      var states_vector_offset = FStates.CreateStatesVector(builder : b, data : state_offsets);
 
       var api_version_offset = b.CreateString(s : api_version);
 
-      FStates.StartFStates(b);
-      FStates.AddStates(b, statesOffset : states_vector_offset);
-      FStates.AddApiVersion(b, apiVersionOffset : api_version_offset);
-      FStates.AddSimulatorConfiguration(b, Serialise(b : b, configuration : simulator_configuration));
-      var states_offset = FStates.EndFStates(b);
+      FStates.StartFStates(builder : b);
+      FStates.AddStates(builder : b, statesOffset : states_vector_offset);
+      FStates.AddApiVersion(builder : b, apiVersionOffset : api_version_offset);
+      FStates.AddSimulatorConfiguration(builder : b,
+                                        simulatorConfigurationOffset : Serialise(b : b,
+                                                                                 configuration :
+                                                                                 simulator_configuration));
+      var states_offset = FStates.EndFStates(builder : b);
 
-      FStates.FinishFStatesBuffer(b, offset : states_offset);
+      FStates.FinishFStatesBuffer(builder : b, offset : states_offset);
 
       return b.SizedByteArray();
     }
@@ -69,20 +72,25 @@ namespace droid.Runtime.Messaging {
     /// <returns></returns>
     static Offset<FSimulatorConfiguration>
         Serialise(FlatBufferBuilder b, SimulatorConfigurationMessage configuration) {
-      return FSimulatorConfiguration.CreateFSimulatorConfiguration(b,
+      return FSimulatorConfiguration.CreateFSimulatorConfiguration(builder : b,
                                                                    Width : configuration.Width,
                                                                    Height : configuration.Height,
                                                                    FullScreen : configuration.FullScreen,
                                                                    QualityLevel : configuration.QualityLevel,
                                                                    TimeScale : configuration.TimeScale,
-                                                                   TargetFrameRate : configuration.TargetFrameRate,
+                                                                   TargetFrameRate :
+                                                                   configuration.TargetFrameRate,
+                                                                   SimulationType :
                                                                    (FSimulationType)configuration
                                                                        .SimulationType,
                                                                    FrameSkips : configuration.FrameSkips,
                                                                    0, //TODO: Remove
-                                                                   NumOfEnvironments : configuration.NumOfEnvironments,
-                                                                   DoSerialiseIndividualSensors : configuration.DoSerialiseIndividualSensors,
-                                                                   DoSerialiseUnobservables : configuration.DoSerialiseUnobservables
+                                                                   NumOfEnvironments :
+                                                                   configuration.NumOfEnvironments,
+                                                                   DoSerialiseIndividualSensors :
+                                                                   configuration.DoSerialiseIndividualSensors,
+                                                                   DoSerialiseUnobservables : configuration
+                                                                       .DoSerialiseUnobservables
                                                                    //TODO: ,configuration.DoSerialiseAggregatedFloatArray
                                                                   );
     }
@@ -104,7 +112,7 @@ namespace droid.Runtime.Messaging {
 
       var observables_vector = _null_vector_offset;
       if (do_serialise_aggregated_float_array) {
-        observables_vector = FState.CreateObservablesVector(b, data : snapshot.Observables);
+        observables_vector = FState.CreateObservablesVector(builder : b, data : snapshot.Observables);
       }
 
       var unobservables = _null_unobservables_offset;
@@ -113,12 +121,12 @@ namespace droid.Runtime.Messaging {
         if (state_unobservables != null) {
           var bodies = state_unobservables.Bodies;
 
-          FUnobservables.StartBodiesVector(b, numElems : bodies.Length);
+          FUnobservables.StartBodiesVector(builder : b, numElems : bodies.Length);
           for (var index = 0; index < bodies.Length; index++) {
             var rig = bodies[index];
             var vel = rig.Velocity;
             var ang = rig.AngularVelocity;
-            FBody.CreateFBody(b,
+            FBody.CreateFBody(builder : b,
                               velocity_X : vel.x,
                               velocity_Y : vel.y,
                               velocity_Z : vel.z,
@@ -131,12 +139,12 @@ namespace droid.Runtime.Messaging {
 
           var poses = state_unobservables.Poses;
 
-          FUnobservables.StartPosesVector(b, numElems : poses.Length);
+          FUnobservables.StartPosesVector(builder : b, numElems : poses.Length);
           for (var index = 0; index < poses.Length; index++) {
             var tra = poses[index];
             var pos = tra.position;
             var rot = tra.rotation;
-            FQuaternionTransform.CreateFQuaternionTransform(b,
+            FQuaternionTransform.CreateFQuaternionTransform(builder : b,
                                                             position_X : pos.x,
                                                             position_Y : pos.y,
                                                             position_Z : pos.z,
@@ -148,10 +156,10 @@ namespace droid.Runtime.Messaging {
 
           var poses_vector = b.EndVector();
 
-          FUnobservables.StartFUnobservables(b);
-          FUnobservables.AddPoses(b, posesOffset : poses_vector);
-          FUnobservables.AddBodies(b, bodiesOffset : bodies_vector);
-          unobservables = FUnobservables.EndFUnobservables(b);
+          FUnobservables.StartFUnobservables(builder : b);
+          FUnobservables.AddPoses(builder : b, posesOffset : poses_vector);
+          FUnobservables.AddBodies(builder : b, bodiesOffset : bodies_vector);
+          unobservables = FUnobservables.EndFUnobservables(builder : b);
         }
       }
 
@@ -167,45 +175,51 @@ namespace droid.Runtime.Messaging {
 
       var t = b.CreateString(s : snapshot.TerminationReason);
 
-      FState.StartFState(b);
-      FState.AddEnvironmentName(b, environmentNameOffset : n);
+      FState.StartFState(builder : b);
+      FState.AddEnvironmentName(builder : b, environmentNameOffset : n);
 
-      FState.AddFrameNumber(b, frameNumber : snapshot.FrameNumber);
+      FState.AddFrameNumber(builder : b, frameNumber : snapshot.FrameNumber);
       if (do_serialise_aggregated_float_array) {
-        FState.AddObservables(b, observablesOffset : observables_vector);
+        FState.AddObservables(builder : b, observablesOffset : observables_vector);
       }
 
       if (do_serialise_unobservables) {
-        FState.AddUnobservables(b, unobservablesOffset : unobservables);
+        FState.AddUnobservables(builder : b, unobservablesOffset : unobservables);
       }
 
-      FState.AddSignal(b, signal : snapshot.Signal);
+      FState.AddSignal(builder : b, signal : snapshot.Signal);
 
-      FState.AddTerminated(b, terminated : snapshot.Terminated);
-      FState.AddTerminationReason(b, terminationReasonOffset : t);
+      FState.AddTerminated(builder : b, terminated : snapshot.Terminated);
+      FState.AddTerminationReason(builder : b, terminationReasonOffset : t);
 
       if (snapshot.Description != null) {
-        FState.AddEnvironmentDescription(b, environmentDescriptionOffset : description_offset);
+        FState.AddEnvironmentDescription(builder : b, environmentDescriptionOffset : description_offset);
       }
 
       if (snapshot.DebugMessage != "") {
-        FState.AddExtraSerialisedMessage(b, extraSerialisedMessageOffset : d);
+        FState.AddExtraSerialisedMessage(builder : b, extraSerialisedMessageOffset : d);
       }
 
-      return FState.EndFState(b);
+      return FState.EndFState(builder : b);
     }
 
     static Offset<FActuator> Serialise(FlatBufferBuilder b, IActuator actuator, string identifier) {
       var n = b.CreateString(s : identifier);
-      FActuator.StartFActuator(b);
-      FActuator.AddActuatorName(b, actuatorNameOffset : n);
-      FActuator.AddActuatorRange( b,
-                                 FRange.CreateFRange(b,
-                                                     DecimalGranularity : actuator.MotionSpace.DecimalGranularity,
-                                                     MaxValue : actuator.MotionSpace.Max,
-                                                     MinValue : actuator.MotionSpace.Min,
-                                                     Normalised : actuator.MotionSpace.NormalisedBool));
-      return FActuator.EndFActuator(b);
+      FActuator.StartFActuator(builder : b);
+      FActuator.AddActuatorName(builder : b, actuatorNameOffset : n);
+      FActuator.AddActuatorRange(builder : b,
+                                 actuatorRangeOffset : FRange.CreateFRange(builder : b,
+                                                                           DecimalGranularity :
+                                                                           actuator.MotionSpace
+                                                                                   .DecimalGranularity,
+                                                                           MaxValue :
+                                                                           actuator.MotionSpace.Max,
+                                                                           MinValue :
+                                                                           actuator.MotionSpace.Min,
+                                                                           Normalised : actuator
+                                                                                        .MotionSpace
+                                                                                        .NormalisedBool));
+      return FActuator.EndFActuator(builder : b);
     }
 
     /// <summary>
@@ -214,21 +228,21 @@ namespace droid.Runtime.Messaging {
     /// <param name="sensor"></param>
     /// <returns></returns>
     static Offset<FETObs> Serialise(FlatBufferBuilder b, IHasEulerTransform sensor) {
-      FETObs.StartFETObs(b);
+      FETObs.StartFETObs(builder : b);
       Vector3 pos = sensor.Position, rot = sensor.Rotation, dir = sensor.Direction;
-      FETObs.AddTransform(b,
-                          FEulerTransform.CreateFEulerTransform(b,
-                                                                position_X : pos.x,
-                                                                position_Y : pos.y,
-                                                                position_Z : pos.z,
-                                                                rotation_X : rot.x,
-                                                                rotation_Y : rot.y,
-                                                                rotation_Z : rot.z,
-                                                                direction_X : dir.x,
-                                                                direction_Y : dir.y,
-                                                                direction_Z : dir.z));
+      FETObs.AddTransform(builder : b,
+                          transformOffset : FEulerTransform.CreateFEulerTransform(builder : b,
+                                                                                  position_X : pos.x,
+                                                                                  position_Y : pos.y,
+                                                                                  position_Z : pos.z,
+                                                                                  rotation_X : rot.x,
+                                                                                  rotation_Y : rot.y,
+                                                                                  rotation_Z : rot.z,
+                                                                                  direction_X : dir.x,
+                                                                                  direction_Y : dir.y,
+                                                                                  direction_Z : dir.z));
 
-      return FETObs.EndFETObs(b);
+      return FETObs.EndFETObs(builder : b);
     }
 
     /// <summary>
@@ -241,34 +255,43 @@ namespace droid.Runtime.Messaging {
       var rot = sensor.Rotation;
       var pos_range = sensor.PositionSpace;
       var rot_range = sensor.RotationSpace;
-      FQTObs.StartFQTObs(b);
-      FQTObs.AddPosRange(b,
-                         FRange.CreateFRange(b,
-                                             DecimalGranularity : pos_range.DecimalGranularity,
-                                             MaxValue : pos_range.Max,
-                                             MinValue : pos_range.Min,
-                                             Normalised : pos_range.NormalisedBool));
-      FQTObs.AddRotRange(b,
-                         FRange.CreateFRange(b,
-                                             DecimalGranularity : rot_range.DecimalGranularity,
-                                             MaxValue : rot_range.Max,
-                                             MinValue : rot_range.Min,
-                                             Normalised : rot_range.NormalisedBool));
-      FQTObs.AddTransform(b,
-                          FQuaternionTransform.CreateFQuaternionTransform(b,
-                                                                          position_X : pos.x,
-                                                                          position_Y : pos.y,
-                                                                          position_Z : pos.z,
-                                                                          rotation_X : rot.x,
-                                                                          rotation_Y : rot.y,
-                                                                          rotation_Z : rot.z,
-                                                                          rotation_W : rot.w));
+      FQTObs.StartFQTObs(builder : b);
+      FQTObs.AddPosRange(builder : b,
+                         posRangeOffset : FRange.CreateFRange(builder : b,
+                                                              DecimalGranularity :
+                                                              pos_range.DecimalGranularity,
+                                                              MaxValue : pos_range.Max,
+                                                              MinValue : pos_range.Min,
+                                                              Normalised : pos_range.NormalisedBool));
+      FQTObs.AddRotRange(builder : b,
+                         rotRangeOffset : FRange.CreateFRange(builder : b,
+                                                              DecimalGranularity :
+                                                              rot_range.DecimalGranularity,
+                                                              MaxValue : rot_range.Max,
+                                                              MinValue : rot_range.Min,
+                                                              Normalised : rot_range.NormalisedBool));
+      FQTObs.AddTransform(builder : b,
+                          transformOffset : FQuaternionTransform.CreateFQuaternionTransform(builder : b,
+                                                                                            position_X :
+                                                                                            pos.x,
+                                                                                            position_Y :
+                                                                                            pos.y,
+                                                                                            position_Z :
+                                                                                            pos.z,
+                                                                                            rotation_X :
+                                                                                            rot.x,
+                                                                                            rotation_Y :
+                                                                                            rot.y,
+                                                                                            rotation_Z :
+                                                                                            rot.z,
+                                                                                            rotation_W :
+                                                                                            rot.w));
 
-      return FQTObs.EndFQTObs(b);
+      return FQTObs.EndFQTObs(builder : b);
     }
 
     static Offset<FByteArray> Serialise(FlatBufferBuilder b, IHasByteArray sensor) {
-      var v_offset = FByteArray.CreateBytesVectorBlock(b, data : sensor.Bytes);
+      var v_offset = FByteArray.CreateBytesVectorBlock(builder : b, data : sensor.Bytes);
       //var v_offset = CustomFlatBufferImplementation.CreateByteVector(b, camera.Bytes);
       FByteDataType a;
       switch (sensor.ArrayEncoding) {
@@ -292,23 +315,23 @@ namespace droid.Runtime.Messaging {
           break;
       }
 
-      var c = FByteArray.CreateShapeVector(b, data : sensor.Shape);
+      var c = FByteArray.CreateShapeVector(builder : b, data : sensor.Shape);
 
-      FByteArray.StartFByteArray(b);
-      FByteArray.AddType(b, type : a);
-      FByteArray.AddShape(b, shapeOffset : c);
-      FByteArray.AddBytes(b, bytesOffset : v_offset);
-      return FByteArray.EndFByteArray(b);
+      FByteArray.StartFByteArray(builder : b);
+      FByteArray.AddType(builder : b, type : a);
+      FByteArray.AddShape(builder : b, shapeOffset : c);
+      FByteArray.AddBytes(builder : b, bytesOffset : v_offset);
+      return FByteArray.EndFByteArray(builder : b);
     }
 
     static Offset<FArray> Serialise(FlatBufferBuilder b, IHasFloatArray float_a) {
-      var v_offset = FArray.CreateArrayVectorBlock(b, data : float_a.ObservationArray);
+      var v_offset = FArray.CreateArrayVectorBlock(builder : b, data : float_a.ObservationArray);
       //var v_offset = CustomFlatBufferImplementation.CreateFloatVector(b, float_a.ObservationArray);
 
-      FArray.StartRangesVector(b, numElems : float_a.ObservationSpace.Length);
+      FArray.StartRangesVector(builder : b, numElems : float_a.ObservationSpace.Length);
       for (var index = 0; index < float_a.ObservationSpace.Length; index++) {
         var tra = float_a.ObservationSpace[index];
-        FRange.CreateFRange(b,
+        FRange.CreateFRange(builder : b,
                             DecimalGranularity : tra.DecimalGranularity,
                             MaxValue : tra.Max,
                             MinValue : tra.Min,
@@ -317,155 +340,154 @@ namespace droid.Runtime.Messaging {
 
       var ranges_vector = b.EndVector();
 
-      FArray.StartFArray(b);
-      FArray.AddArray(b, arrayOffset : v_offset);
+      FArray.StartFArray(builder : b);
+      FArray.AddArray(builder : b, arrayOffset : v_offset);
 
-      FArray.AddRanges(b, rangesOffset : ranges_vector);
+      FArray.AddRanges(builder : b, rangesOffset : ranges_vector);
 
-      return FArray.EndFArray(b);
+      return FArray.EndFArray(builder : b);
     }
 
     /// <summary>
     /// </summary>
     /// <param name="b"></param>
-    /// <param name="vel"></param>
-    /// <param name="ang"></param>
+    /// <param name="rigidbody"></param>
     /// <returns></returns>
     static Offset<FRBObs> Serialise(FlatBufferBuilder b, IHasRigidbody rigidbody) {
-      FRBObs.StartFRBObs(b);
+      FRBObs.StartFRBObs(builder : b);
       var a = rigidbody.Velocity;
       var c = rigidbody.AngularVelocity;
 
-      FRBObs.AddBody(b,
-                     FBody.CreateFBody(b,
-                                       velocity_X : a.x,
-                                       velocity_Y : a.y,
-                                       velocity_Z : a.z,
-                                       angular_velocity_X : c.x,
-                                       angular_velocity_Y : c.y,
-                                       angular_velocity_Z : c.z));
-      return FRBObs.EndFRBObs(b);
+      FRBObs.AddBody(builder : b,
+                     bodyOffset : FBody.CreateFBody(builder : b,
+                                                    velocity_X : a.x,
+                                                    velocity_Y : a.y,
+                                                    velocity_Z : a.z,
+                                                    angular_velocity_X : c.x,
+                                                    angular_velocity_Y : c.y,
+                                                    angular_velocity_Z : c.z));
+      return FRBObs.EndFRBObs(builder : b);
     }
 
     static Offset<FSingle> Serialise(FlatBufferBuilder b, IHasSingle numeral) {
-      FSingle.StartFSingle(b);
-      FSingle.AddValue(b, value : numeral.ObservationValue);
+      FSingle.StartFSingle(builder : b);
+      FSingle.AddValue(builder : b, value : numeral.ObservationValue);
 
-      var range_offset = FRange.CreateFRange(b,
+      var range_offset = FRange.CreateFRange(builder : b,
                                              DecimalGranularity : numeral.SingleSpace.DecimalGranularity,
                                              MaxValue : numeral.SingleSpace.Max,
                                              MinValue : numeral.SingleSpace.Min,
                                              Normalised : numeral.SingleSpace.NormalisedBool);
-      FSingle.AddRange(b, rangeOffset : range_offset);
-      return FSingle.EndFSingle(b);
+      FSingle.AddRange(builder : b, rangeOffset : range_offset);
+      return FSingle.EndFSingle(builder : b);
     }
 
     static Offset<FDouble> Serialise(FlatBufferBuilder b, IHasDouble numeral) {
-      FDouble.StartFDouble(b);
+      FDouble.StartFDouble(builder : b);
       var vec2 = numeral.ObservationValue;
 
       var granularity = numeral.DoubleSpace.DecimalGranularity;
       var xs = numeral.DoubleSpace.Xspace;
       var ys = numeral.DoubleSpace.Yspace;
 
-      FDouble.AddXRange(b,
-                        FRange.CreateFRange(b,
-                                            DecimalGranularity : granularity,
-                                            MaxValue : xs.Max,
-                                            MinValue : xs.Min,
-                                            Normalised : xs.NormalisedBool));
-      FDouble.AddYRange(b,
-                        FRange.CreateFRange(b,
-                                            DecimalGranularity : granularity,
-                                            MaxValue : ys.Max,
-                                            MinValue : ys.Min,
-                                            Normalised : ys.NormalisedBool));
-      FDouble.AddVec2(b, FVector2.CreateFVector2(b, X : vec2.x, Y : vec2.y));
+      FDouble.AddXRange(builder : b,
+                        xRangeOffset : FRange.CreateFRange(builder : b,
+                                                           DecimalGranularity : granularity,
+                                                           MaxValue : xs.Max,
+                                                           MinValue : xs.Min,
+                                                           Normalised : xs.NormalisedBool));
+      FDouble.AddYRange(builder : b,
+                        yRangeOffset : FRange.CreateFRange(builder : b,
+                                                           DecimalGranularity : granularity,
+                                                           MaxValue : ys.Max,
+                                                           MinValue : ys.Min,
+                                                           Normalised : ys.NormalisedBool));
+      FDouble.AddVec2(builder : b, vec2Offset : FVector2.CreateFVector2(builder : b, X : vec2.x, Y : vec2.y));
 
-      return FDouble.EndFDouble(b);
+      return FDouble.EndFDouble(builder : b);
     }
 
     static Offset<FTriple> Serialise(FlatBufferBuilder b, IHasTriple numeral) {
-      FTriple.StartFTriple(b);
+      FTriple.StartFTriple(builder : b);
       var vec3 = numeral.ObservationValue;
 
-      FTriple.AddVec3(b,
-                      FVector3.CreateFVector3(b,
-                                              X : vec3.x,
-                                              Y : vec3.y,
-                                              Z : vec3.z));
+      FTriple.AddVec3(builder : b,
+                      vec3Offset : FVector3.CreateFVector3(builder : b,
+                                                           X : vec3.x,
+                                                           Y : vec3.y,
+                                                           Z : vec3.z));
       var granularity = numeral.TripleSpace.DecimalGranularity;
       var xs = numeral.TripleSpace.Xspace;
       var ys = numeral.TripleSpace.Yspace;
       var zs = numeral.TripleSpace.Zspace;
-      FTriple.AddXRange(b,
-                        FRange.CreateFRange(b,
-                                            DecimalGranularity : granularity,
-                                            MaxValue : xs.Max,
-                                            MinValue : xs.Min,
-                                            Normalised : xs.NormalisedBool));
-      FTriple.AddYRange(b,
-                        FRange.CreateFRange(b,
-                                            DecimalGranularity : granularity,
-                                            MaxValue : ys.Max,
-                                            MinValue : ys.Min,
-                                            Normalised : ys.NormalisedBool));
-      FTriple.AddZRange(b,
-                        FRange.CreateFRange(b,
-                                            DecimalGranularity : granularity,
-                                            MaxValue : zs.Max,
-                                            MinValue : zs.Min,
-                                            Normalised : zs.NormalisedBool));
-      return FTriple.EndFTriple(b);
+      FTriple.AddXRange(builder : b,
+                        xRangeOffset : FRange.CreateFRange(builder : b,
+                                                           DecimalGranularity : granularity,
+                                                           MaxValue : xs.Max,
+                                                           MinValue : xs.Min,
+                                                           Normalised : xs.NormalisedBool));
+      FTriple.AddYRange(builder : b,
+                        yRangeOffset : FRange.CreateFRange(builder : b,
+                                                           DecimalGranularity : granularity,
+                                                           MaxValue : ys.Max,
+                                                           MinValue : ys.Min,
+                                                           Normalised : ys.NormalisedBool));
+      FTriple.AddZRange(builder : b,
+                        zRangeOffset : FRange.CreateFRange(builder : b,
+                                                           DecimalGranularity : granularity,
+                                                           MaxValue : zs.Max,
+                                                           MinValue : zs.Min,
+                                                           Normalised : zs.NormalisedBool));
+      return FTriple.EndFTriple(builder : b);
     }
 
     static Offset<FQuadruple> Serialise(FlatBufferBuilder b, IHasQuadruple numeral) {
-      FQuadruple.StartFQuadruple(b);
+      FQuadruple.StartFQuadruple(builder : b);
       var quad = numeral.ObservationValue;
-      FQuadruple.AddQuat(b,
-                         FQuaternion.CreateFQuaternion(b,
-                                                       X : quad.x,
-                                                       Y : quad.y,
-                                                       Z : quad.z,
-                                                       W : quad.z));
+      FQuadruple.AddQuat(builder : b,
+                         quatOffset : FQuaternion.CreateFQuaternion(builder : b,
+                                                                    X : quad.x,
+                                                                    Y : quad.y,
+                                                                    Z : quad.z,
+                                                                    W : quad.z));
       var granularity = numeral.QuadSpace.DecimalGranularity;
       var xs = numeral.QuadSpace.Xspace;
       var ys = numeral.QuadSpace.Yspace;
       var zs = numeral.QuadSpace.Zspace;
       var ws = numeral.QuadSpace.Wspace;
-      FQuadruple.AddXRange(b,
-                           FRange.CreateFRange(b,
-                                               DecimalGranularity : granularity,
-                                               MaxValue : xs.Max,
-                                               MinValue : xs.Min,
-                                               Normalised : xs.NormalisedBool));
-      FQuadruple.AddYRange(b,
-                           FRange.CreateFRange(b,
-                                               DecimalGranularity : granularity,
-                                               MaxValue : ys.Max,
-                                               MinValue : ys.Min,
-                                               Normalised : ys.NormalisedBool));
-      FQuadruple.AddZRange(b,
-                           FRange.CreateFRange(b,
-                                               DecimalGranularity : granularity,
-                                               MaxValue : zs.Max,
-                                               MinValue : zs.Min,
-                                               Normalised : zs.NormalisedBool));
-      FQuadruple.AddWRange(b,
-                           FRange.CreateFRange(b,
-                                               DecimalGranularity : granularity,
-                                               MaxValue : ws.Max,
-                                               MinValue : ws.Min,
-                                               Normalised : ws.NormalisedBool));
-      return FQuadruple.EndFQuadruple(b);
+      FQuadruple.AddXRange(builder : b,
+                           xRangeOffset : FRange.CreateFRange(builder : b,
+                                                              DecimalGranularity : granularity,
+                                                              MaxValue : xs.Max,
+                                                              MinValue : xs.Min,
+                                                              Normalised : xs.NormalisedBool));
+      FQuadruple.AddYRange(builder : b,
+                           yRangeOffset : FRange.CreateFRange(builder : b,
+                                                              DecimalGranularity : granularity,
+                                                              MaxValue : ys.Max,
+                                                              MinValue : ys.Min,
+                                                              Normalised : ys.NormalisedBool));
+      FQuadruple.AddZRange(builder : b,
+                           zRangeOffset : FRange.CreateFRange(builder : b,
+                                                              DecimalGranularity : granularity,
+                                                              MaxValue : zs.Max,
+                                                              MinValue : zs.Min,
+                                                              Normalised : zs.NormalisedBool));
+      FQuadruple.AddWRange(builder : b,
+                           wRangeOffset : FRange.CreateFRange(builder : b,
+                                                              DecimalGranularity : granularity,
+                                                              MaxValue : ws.Max,
+                                                              MinValue : ws.Min,
+                                                              Normalised : ws.NormalisedBool));
+      return FQuadruple.EndFQuadruple(builder : b);
     }
 
     static Offset<FString> Serialise(FlatBufferBuilder b, IHasString numeral) {
       var string_offset = b.CreateString(s : numeral.ObservationValue);
-      FString.StartFString(b);
-      FString.AddStr(b, strOffset : string_offset);
+      FString.StartFString(builder : b);
+      FString.AddStr(builder : b, strOffset : string_offset);
 
-      return FString.EndFString(b);
+      return FString.EndFString(builder : b);
     }
 
     static Offset<FActor> Serialise(FlatBufferBuilder b,
@@ -473,17 +495,17 @@ namespace droid.Runtime.Messaging {
                                     IActor actor,
                                     string identifier) {
       var n = b.CreateString(s : identifier);
-      var actuator_vector = FActor.CreateActuatorsVector(b, data : actuators);
-      FActor.StartFActor(b);
+      var actuator_vector = FActor.CreateActuatorsVector(builder : b, data : actuators);
+      FActor.StartFActor(builder : b);
       if (actor is KillableActor) {
-        FActor.AddAlive(b, alive : ((KillableActor)actor).IsAlive);
+        FActor.AddAlive(builder : b, alive : ((KillableActor)actor).IsAlive);
       } else {
-        FActor.AddAlive(b, true);
+        FActor.AddAlive(builder : b, true);
       }
 
-      FActor.AddActorName(b, actorNameOffset : n);
-      FActor.AddActuators(b, actuatorsOffset : actuator_vector);
-      return FActor.EndFActor(b);
+      FActor.AddActorName(builder : b, actorNameOffset : n);
+      FActor.AddActuators(builder : b, actuatorsOffset : actuator_vector);
+      return FActor.EndFActor(builder : b);
     }
 
     static Offset<FSensor> Serialise(FlatBufferBuilder b, string identifier, ISensor sensor) {
@@ -533,14 +555,14 @@ namespace droid.Runtime.Messaging {
           observation_type = FObservation.FByteArray;
           break;
         default:
-          return FSensor.CreateFSensor(b, sensor_nameOffset : n);
+          return FSensor.CreateFSensor(builder : b, sensor_nameOffset : n);
       }
 
-      FSensor.StartFSensor(b);
-      FSensor.AddSensorName(b, sensorNameOffset : n);
-      FSensor.AddSensorValueType(b, sensorValueType : observation_type);
-      FSensor.AddSensorValue(b, sensorValueOffset : observation_offset);
-      return FSensor.EndFSensor(b);
+      FSensor.StartFSensor(builder : b);
+      FSensor.AddSensorName(builder : b, sensorNameOffset : n);
+      FSensor.AddSensorValueType(builder : b, sensorValueType : observation_type);
+      FSensor.AddSensorValue(builder : b, sensorValueOffset : observation_offset);
+      return FSensor.EndFSensor(builder : b);
     }
 
     static Offset<FEnvironmentDescription> Serialise(FlatBufferBuilder b, EnvironmentSnapshot snapshot) {
@@ -559,16 +581,18 @@ namespace droid.Runtime.Messaging {
                                         identifier : actor.Key);
       }
 
-      var actors_vector_offset = FEnvironmentDescription.CreateActorsVector(b, data : actors_offsets);
+      var actors_vector_offset =
+          FEnvironmentDescription.CreateActorsVector(builder : b, data : actors_offsets);
 
       var configurables_offsets = new Offset<FConfigurable>[snapshot.Description.Configurables.Values.Count];
       var k = 0;
       foreach (var configurable in snapshot.Description.Configurables) {
-        configurables_offsets[k++] = Serialise(b : b, configurable : configurable.Value, identifier : configurable.Key);
+        configurables_offsets[k++] =
+            Serialise(b : b, configurable : configurable.Value, identifier : configurable.Key);
       }
 
       var configurables_vector_offset =
-          FEnvironmentDescription.CreateConfigurablesVector(b, data : configurables_offsets);
+          FEnvironmentDescription.CreateConfigurablesVector(builder : b, data : configurables_offsets);
 
       var objective_offset = Serialise(b : b, description : snapshot.Description);
 
@@ -578,16 +602,17 @@ namespace droid.Runtime.Messaging {
         sensors[js++] = Serialise(b : b, identifier : sensor.Key, sensor : sensor.Value);
       }
 
-      var sensors_vector = FEnvironmentDescription.CreateSensorsVector(b, data : sensors);
+      var sensors_vector = FEnvironmentDescription.CreateSensorsVector(builder : b, data : sensors);
 
-      FEnvironmentDescription.StartFEnvironmentDescription(b);
+      FEnvironmentDescription.StartFEnvironmentDescription(builder : b);
 
-      FEnvironmentDescription.AddObjective(b, objectiveOffset : objective_offset);
-      FEnvironmentDescription.AddActors(b, actorsOffset : actors_vector_offset);
-      FEnvironmentDescription.AddConfigurables(b, configurablesOffset : configurables_vector_offset);
-      FEnvironmentDescription.AddSensors(b, sensorsOffset : sensors_vector);
+      FEnvironmentDescription.AddObjective(builder : b, objectiveOffset : objective_offset);
+      FEnvironmentDescription.AddActors(builder : b, actorsOffset : actors_vector_offset);
+      FEnvironmentDescription.AddConfigurables(builder : b,
+                                               configurablesOffset : configurables_vector_offset);
+      FEnvironmentDescription.AddSensors(builder : b, sensorsOffset : sensors_vector);
 
-      return FEnvironmentDescription.EndFEnvironmentDescription(b);
+      return FEnvironmentDescription.EndFEnvironmentDescription(builder : b);
     }
 
     static Offset<FObjective> Serialise(FlatBufferBuilder b, EnvironmentDescription description) {
@@ -607,27 +632,27 @@ namespace droid.Runtime.Messaging {
       }
 
       var objective_name_offset = b.CreateString(s : ob_name);
-      FObjective.StartFObjective(b);
-      FObjective.AddMaxEpisodeLength(b, maxEpisodeLength : ep_len);
-      FObjective.AddSignalSpace(b,
-                                FRange.CreateFRange(b,
-                                                    DecimalGranularity : a,
-                                                    MaxValue : f,
-                                                    MinValue : c,
-                                                    Normalised : d));
-      FObjective.AddObjectiveName(b, objectiveNameOffset : objective_name_offset);
-      return FObjective.EndFObjective(b);
+      FObjective.StartFObjective(builder : b);
+      FObjective.AddMaxEpisodeLength(builder : b, maxEpisodeLength : ep_len);
+      FObjective.AddSignalSpace(builder : b,
+                                signalSpaceOffset : FRange.CreateFRange(builder : b,
+                                                                        DecimalGranularity : a,
+                                                                        MaxValue : f,
+                                                                        MinValue : c,
+                                                                        Normalised : d));
+      FObjective.AddObjectiveName(builder : b, objectiveNameOffset : objective_name_offset);
+      return FObjective.EndFObjective(builder : b);
     }
 
     static Offset<FTriple> Serialise(FlatBufferBuilder b, PositionConfigurable sensor) {
       var pos = sensor.ObservationValue;
-      FTriple.StartFTriple(b);
-      FTriple.AddVec3(b,
-                      FVector3.CreateFVector3(b,
-                                              X : pos.x,
-                                              Y : pos.y,
-                                              Z : pos.z));
-      return FTriple.EndFTriple(b);
+      FTriple.StartFTriple(builder : b);
+      FTriple.AddVec3(builder : b,
+                      vec3Offset : FVector3.CreateFVector3(builder : b,
+                                                           X : pos.x,
+                                                           Y : pos.y,
+                                                           Z : pos.z));
+      return FTriple.EndFTriple(builder : b);
     }
 
     static Offset<FConfigurable> Serialise(
@@ -640,39 +665,39 @@ namespace droid.Runtime.Messaging {
       FObservation observation_type;
 
       if (configurable is IHasQuaternionTransform) {
-        observation_offset = Serialise(b : b, (IHasQuaternionTransform)configurable).Value;
+        observation_offset = Serialise(b : b, sensor : (IHasQuaternionTransform)configurable).Value;
         observation_type = FObservation.FQTObs;
       } else if (configurable is PositionConfigurable) {
-        observation_offset = Serialise(b : b, (PositionConfigurable)configurable).Value;
+        observation_offset = Serialise(b : b, sensor : (PositionConfigurable)configurable).Value;
         observation_type = FObservation.FTriple;
       } else if (configurable is IHasSingle) {
-        observation_offset = Serialise(b : b, (IHasSingle)configurable).Value;
+        observation_offset = Serialise(b : b, numeral : (IHasSingle)configurable).Value;
         observation_type = FObservation.FSingle;
         // ReSharper disable once SuspiciousTypeConversion.Global
       } else if (configurable is IHasDouble) {
         // ReSharper disable once SuspiciousTypeConversion.Global
-        observation_offset = Serialise(b : b, (IHasDouble)configurable).Value;
+        observation_offset = Serialise(b : b, numeral : (IHasDouble)configurable).Value;
         observation_type = FObservation.FDouble;
       } else if (configurable is EulerTransformConfigurable) {
-        observation_offset = Serialise(b : b, (IHasEulerTransform)configurable).Value;
+        observation_offset = Serialise(b : b, sensor : (IHasEulerTransform)configurable).Value;
         observation_type = FObservation.FETObs;
       } else {
-        FConfigurable.StartFConfigurable(b);
-        FConfigurable.AddConfigurableName(b, configurableNameOffset : n);
-        return FConfigurable.EndFConfigurable(b);
+        FConfigurable.StartFConfigurable(builder : b);
+        FConfigurable.AddConfigurableName(builder : b, configurableNameOffset : n);
+        return FConfigurable.EndFConfigurable(builder : b);
       }
 
-      FConfigurable.StartFConfigurable(b);
-      FConfigurable.AddConfigurableName(b, configurableNameOffset : n);
-      FConfigurable.AddConfigurableValue(b, configurableValueOffset : observation_offset);
-      FConfigurable.AddConfigurableValueType(b, configurableValueType : observation_type);
-      FConfigurable.AddConfigurableRange(b,
-                                         FRange.CreateFRange(b,
-                                                             0,
-                                                             0,
-                                                             0,
-                                                             false));
-      return FConfigurable.EndFConfigurable(b);
+      FConfigurable.StartFConfigurable(builder : b);
+      FConfigurable.AddConfigurableName(builder : b, configurableNameOffset : n);
+      FConfigurable.AddConfigurableValue(builder : b, configurableValueOffset : observation_offset);
+      FConfigurable.AddConfigurableValueType(builder : b, configurableValueType : observation_type);
+      FConfigurable.AddConfigurableRange(builder : b,
+                                         configurableRangeOffset : FRange.CreateFRange(builder : b,
+                                                                                       0,
+                                                                                       0,
+                                                                                       0,
+                                                                                       false));
+      return FConfigurable.EndFConfigurable(builder : b);
     }
 
     #endregion

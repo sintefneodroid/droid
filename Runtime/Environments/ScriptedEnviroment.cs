@@ -71,7 +71,6 @@ namespace droid.Runtime.Environments {
         Debug.Log("PostSetup");
       }
       #endif
-
     }
 
     /// <inheritdoc />
@@ -83,28 +82,28 @@ namespace droid.Runtime.Environments {
     /// </summary>
     public int ActorX {
       get { return this._actor_x; }
-      set { this._actor_x = Mathf.Max(0, Mathf.Min(this._width - 1, b : value)); }
+      set { this._actor_x = Mathf.Max(0, b : Mathf.Min(a : this._width - 1, b : value)); }
     }
 
     /// <summary>
     /// </summary>
     public int ActorY {
       get { return this._actor_y; }
-      set { this._actor_y = Mathf.Max(0, Mathf.Min(this._height - 1, b : value)); }
+      set { this._actor_y = Mathf.Max(0, b : Mathf.Min(a : this._height - 1, b : value)); }
     }
 
     /// <summary>
     /// </summary>
     public int GoalX {
       get { return this._goal_x; }
-      set { this._goal_x = Mathf.Max(0, Mathf.Min(this._width - 1, b : value)); }
+      set { this._goal_x = Mathf.Max(0, b : Mathf.Min(a : this._width - 1, b : value)); }
     }
 
     /// <summary>
     /// </summary>
     public int GoalY {
       get { return this._goal_y; }
-      set { this._goal_y = Mathf.Max(0, Mathf.Min(this._height - 1, b : value)); }
+      set { this._goal_y = Mathf.Max(0, b : Mathf.Min(a : this._height - 1, b : value)); }
     }
 
     /// <inheritdoc />
@@ -121,11 +120,10 @@ namespace droid.Runtime.Environments {
       }
 
       this._time_simulation_manager =
-          NeodroidRegistrationUtilities.RegisterComponent((AbstractNeodroidManager)this
+          NeodroidRegistrationUtilities.RegisterComponent(r : (AbstractNeodroidManager)this
                                                               ._time_simulation_manager,
-                                                          this);
+                                                          c : this);
     }
-
 
     /// <inheritdoc />
     /// <summary>
@@ -148,18 +146,18 @@ namespace droid.Runtime.Environments {
       this._motions.Clear();
 
       var strength = Random.Range(0, 4);
-      this._motions.Add(new ActuatorMotion("", "", strength : strength));
+      this._motions.Add(item : new ActuatorMotion("", "", strength : strength));
 
       var rp = new ReactionParameters(reaction_type : ReactionTypeEnum.Step_, true, episode_count : true);
       return new Reaction(parameters : rp,
-                          this._motions.ToArray(),
+                          motions : this._motions.ToArray(),
                           null,
                           null,
                           null,
                           "");
     }
 
-    public override void React(Reaction reaction) {
+    public override void Step(Reaction reaction) {
       foreach (var motion in reaction.Motions) {
         switch ((int)motion.Strength) {
           case 0:
@@ -179,6 +177,9 @@ namespace droid.Runtime.Environments {
         }
       }
     }
+
+    public override void Reset() { throw new NotImplementedException(); }
+    public override void Configure(Reaction reaction) { throw new NotImplementedException(); }
 
     /// <inheritdoc />
     /// <summary>
@@ -201,11 +202,11 @@ namespace droid.Runtime.Environments {
       var observables = new float[] {actor_idx};
 
       return new EnvironmentSnapshot(environment_name : this.Identifier,
-                                  0,
-                                  time : time,
-                                  signal : signal,
-                                  terminated : terminated,
-                                  observables : ref observables);
+                                     0,
+                                     time : time,
+                                     signal : signal,
+                                     terminated : terminated,
+                                     observables : ref observables);
     }
 
     /// <inheritdoc />
@@ -213,7 +214,7 @@ namespace droid.Runtime.Environments {
     /// </summary>
     /// <param name="recipient"></param>
     public override void ObservationsString(DataPoller recipient) {
-      recipient.PollData(this.Snapshot().ToString());
+      recipient.PollData(data : this.Snapshot().ToString());
     }
 
     public override void PrototypingReset() { }

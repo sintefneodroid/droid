@@ -9,11 +9,11 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated.Segmentation {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
-                    + "Segmentation"
-                    + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : SensorComponentMenuPath._ComponentMenuPath
+                               + "Segmentation"
+                               + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
-  [RequireComponent(typeof(Segmenter))]
+  [RequireComponent(requiredComponent : typeof(Segmenter))]
   public class SegmentationSensor : StringSensor {
     /// <summary>
     /// </summary>

@@ -24,7 +24,7 @@ namespace droid.Runtime.Utilities.Procedural {
         var clone_coords = NeodroidUtilities.SnakeSpaceFillingGenerator(length : this._num_clones);
         foreach (var c in clone_coords) {
           var go = Instantiate(original : this._prefab,
-                               this._initial_offset + Vector3.Scale(a : this._offset, b : c),
+                               position : this._initial_offset + Vector3.Scale(a : this._offset, b : c),
                                rotation : Quaternion.identity,
                                parent : this.transform);
           go.name = $"{go.name}{clone_id}";

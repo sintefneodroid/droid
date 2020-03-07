@@ -14,7 +14,8 @@ namespace droid.Editor.Utilities {
           continue;
         }
 
-        var attributes = type.GetCustomAttributes(typeof(ScriptExecutionOrderAttribute), true);
+        var attributes =
+            type.GetCustomAttributes(attributeType : typeof(ScriptExecutionOrderAttribute), true);
 
         if (attributes.Length == 0) {
           continue;
@@ -22,7 +23,7 @@ namespace droid.Editor.Utilities {
 
         var attribute = (ScriptExecutionOrderAttribute)attributes[0];
         if (MonoImporter.GetExecutionOrder(script : mono_script) != attribute.GetOrder()) {
-          MonoImporter.SetExecutionOrder(script : mono_script, attribute.GetOrder());
+          MonoImporter.SetExecutionOrder(script : mono_script, order : attribute.GetOrder());
         }
       }
     }

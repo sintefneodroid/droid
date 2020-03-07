@@ -35,7 +35,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Segmentation.Obsolete {
       get {
         var colors = new Dictionary<String, Color>();
         foreach (var key_val in this.ColorsDictGameObject) {
-          colors.Add(key_val.Key.GetInstanceID().ToString(), value : key_val.Value);
+          colors.Add(key : key_val.Key.GetInstanceID().ToString(), value : key_val.Value);
         }
 
         return colors;
@@ -109,7 +109,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Segmentation.Obsolete {
       for (var index = 0; index < this._all_renders.Length; index++) {
         var rend = this._all_renders[index];
         if (rend) {
-          this.ColorsDictGameObject.Add(key : rend.gameObject, Random.ColorHSV());
+          this.ColorsDictGameObject.Add(key : rend.gameObject, value : Random.ColorHSV());
         }
       }
     }
@@ -137,7 +137,8 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Segmentation.Obsolete {
               var val = this.ColorsDictGameObject[key : c_renderer.gameObject];
               this._block.SetColor(nameID : this._Segmentation_Color_Tag, value : val);
               this._block.SetColor(nameID : this._Outline_Color_Tag, value : this._Outline_Color);
-              this._block.SetFloat(nameID : this._Outline_Width_Factor_Tag, value : this._Outline_Width_Factor);
+              this._block.SetFloat(nameID : this._Outline_Width_Factor_Tag,
+                                   value : this._Outline_Width_Factor);
             }
 
             c_renderer.SetPropertyBlock(properties : this._block);

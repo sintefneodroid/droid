@@ -21,7 +21,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
         var lights = new List<Light>();
         for (var index = 0; index < infrared_light_sources.Length; index++) {
           var ils = infrared_light_sources[index];
-          lights.Add(ils.GetComponent<Light>());
+          lights.Add(item : ils.GetComponent<Light>());
         }
 
         this._lights_to_ignore = lights.ToArray();

@@ -5,7 +5,7 @@ namespace droid.Runtime.Structs {
     /// Encapsulates a rotation and a translation.  This is a convenience class that allows
     /// construction and value access either by Matrix4x4 or Quaternion + Vector3 types.
     /// Right-handed to left-handed matrix converter (and vice versa).
-    protected static readonly Matrix4x4 _FlipZ = Matrix4x4.Scale(new Vector3(1, 1, -1));
+    protected static readonly Matrix4x4 _FlipZ = Matrix4x4.Scale(vector : new Vector3(1, 1, -1));
 
     /// The translation component of the pose.
     public Vector3 Position { get; protected set; }
@@ -53,7 +53,8 @@ namespace droid.Runtime.Structs {
     protected void Set(Matrix4x4 matrix) {
       this.Matrix = matrix;
       this.Position = matrix.GetColumn(3);
-      this.Orientation = Quaternion.LookRotation(matrix.GetColumn(2), matrix.GetColumn(1));
+      this.Orientation =
+          Quaternion.LookRotation(forward : matrix.GetColumn(2), upwards : matrix.GetColumn(1));
     }
   }
 
@@ -70,6 +71,6 @@ namespace droid.Runtime.Structs {
     public new void Set(Matrix4x4 matrix) { base.Set(matrix : matrix); }
 
     /// Sets the position and orientation from a right-handed Matrix4x4.
-    public void SetRightHanded(Matrix4x4 matrix) { this.Set(_FlipZ * matrix * _FlipZ); }
+    public void SetRightHanded(Matrix4x4 matrix) { this.Set(matrix : _FlipZ * matrix * _FlipZ); }
   }
 }

@@ -48,10 +48,10 @@ namespace droid.Runtime.ScriptableObjects.SerialisableDictionary {
       if (left.propertyType == SerializedPropertyType.Float) {
         if (left.type == right.type) {
           if (left.type == "float") {
-            return Math.Abs(left.floatValue - right.floatValue) < double.Epsilon;
+            return Math.Abs(value : left.floatValue - right.floatValue) < double.Epsilon;
           }
 
-          return Math.Abs(left.doubleValue - right.doubleValue) < double.Epsilon;
+          return Math.Abs(value : left.doubleValue - right.doubleValue) < double.Epsilon;
         }
 
         return false;

@@ -11,9 +11,9 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(EvaluationComponentMenuPath._ComponentMenuPath
-                    + "RestInArea"
-                    + EvaluationComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : EvaluationComponentMenuPath._ComponentMenuPath
+                               + "RestInArea"
+                               + EvaluationComponentMenuPath._Postfix)]
   public class RestInAreaObjective : SpatialObjective {
     [SerializeField] Actor _actor = null;
 
@@ -25,7 +25,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
     //Used for.. if outside playable area then reset
     [SerializeField] ActorOverlapping _overlapping = ActorOverlapping.Outside_area_;
 
-    [SerializeField] BoundingBox _playable_area = null;
+    [SerializeField] NeodroidBoundingBox _playable_area = null;
     [SerializeField] float _resting_time = 3f;
     [SerializeField] bool _sparse = false;
     [SerializeField] Coroutine _wait_for_resting = null;
@@ -97,38 +97,30 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
       }
 
       if (!this._playable_area) {
-        this._playable_area = FindObjectOfType<BoundingBox>();
+        this._playable_area = FindObjectOfType<NeodroidBoundingBox>();
       }
 
       NeodroidRegistrationUtilities
-          .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider, Collision>(this,
-                                                                                                   parent : this
-                                                                                                       ._area
-                                                                                                       .transform,
-                                                                                                   null,
-                                                                                                   on_trigger_enter_child : this
-                                                                                                       .OnTriggerEnterChild,
-                                                                                                   null,
-                                                                                                   on_trigger_exit_child : this
-                                                                                                       .OnTriggerExitChild,
-                                                                                                   null,
-                                                                                                   on_trigger_stay_child : this
-                                                                                                       .OnTriggerStayChild);
+          .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider, Collision
+          >(caller : this,
+            parent : this._area.transform,
+            null,
+            on_trigger_enter_child : this.OnTriggerEnterChild,
+            null,
+            on_trigger_exit_child : this.OnTriggerExitChild,
+            null,
+            on_trigger_stay_child : this.OnTriggerStayChild);
 
       NeodroidRegistrationUtilities
-          .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider, Collision>(this,
-                                                                                                   parent : this
-                                                                                                       ._actor
-                                                                                                       .transform,
-                                                                                                   null,
-                                                                                                   on_trigger_enter_child : this
-                                                                                                       .OnTriggerEnterChild,
-                                                                                                   null,
-                                                                                                   on_trigger_exit_child : this
-                                                                                                       .OnTriggerExitChild,
-                                                                                                   null,
-                                                                                                   on_trigger_stay_child : this
-                                                                                                       .OnTriggerStayChild);
+          .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider, Collision
+          >(caller : this,
+            parent : this._actor.transform,
+            null,
+            on_trigger_enter_child : this.OnTriggerEnterChild,
+            null,
+            on_trigger_exit_child : this.OnTriggerExitChild,
+            null,
+            on_trigger_stay_child : this.OnTriggerStayChild);
       this._wait_for_seconds = new WaitForSeconds(seconds : this._resting_time);
     }
 
@@ -147,7 +139,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
             this.StopCoroutine(routine : this._wait_for_resting);
           }
 
-          this._wait_for_resting = this.StartCoroutine(this.WaitForResting());
+          this._wait_for_resting = this.StartCoroutine(routine : this.WaitForResting());
         }
       }
     }

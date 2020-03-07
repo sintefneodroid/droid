@@ -10,10 +10,10 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
-                    + "NormalMap"
-                    + ConfigurableComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(Renderer))]
+  [AddComponentMenu(menuName : ConfigurableComponentMenuPath._ComponentMenuPath
+                               + "NormalMap"
+                               + ConfigurableComponentMenuPath._Postfix)]
+  [RequireComponent(requiredComponent : typeof(Renderer))]
   public class NormalMapConfigurable : Configurable {
     [SerializeField] Texture[] _textures = null;
     [SerializeField] bool load_from_resources_if_empty = true;
@@ -44,17 +44,23 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       }
     }
 
-    public  ISamplable ConfigurableValueSpace { get { return new SampleSpace1(); } }
+    public ISamplable ConfigurableValueSpace { get { return new SampleSpace1(); } }
 
-    public override void UpdateCurrentConfiguration() {  }
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public override void UpdateCurrentConfiguration() { }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <param name="configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        DebugPrinting.ApplyPrint(debugging : this.Debugging, configuration : configuration, identifier : this.Identifier);
+        DebugPrinting.ApplyPrint(debugging : this.Debugging,
+                                 configuration : configuration,
+                                 identifier : this.Identifier);
       }
       #endif
 
@@ -68,9 +74,12 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     /// <returns></returns>
     public override Configuration[] SampleConfigurations() {
-      this._last_sample = int.Parse(Random.Range(0, max : this._textures.Length).ToString());
+      this._last_sample = int.Parse(s : Random.Range(0, max : this._textures.Length).ToString());
 
-      return new[] {new Configuration(configurable_name : this.Identifier, configurable_value : this._last_sample)};
+      return new[] {
+                       new Configuration(configurable_name : this.Identifier,
+                                         configurable_value : this._last_sample)
+                   };
     }
   }
 }

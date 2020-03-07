@@ -7,7 +7,9 @@ namespace droid.Runtime.Prototyping.Sensors.Strings {
   /// <summary>
   ///
   /// </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath + "String" + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : SensorComponentMenuPath._ComponentMenuPath
+                               + "String"
+                               + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   public class StringSensor : Sensor,
                               IHasString {

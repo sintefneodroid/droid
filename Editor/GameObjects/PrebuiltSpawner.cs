@@ -14,13 +14,15 @@ namespace droid.Editor.GameObjects {
     /// <summary>
     /// </summary>
     /// <param name="menu_command"></param>
-    [MenuItem(EditorGameObjectMenuPath._GameObjectMenuPath + "Prebuilt/SimpleEnvironment", false, 10)]
+    [MenuItem(itemName : EditorGameObjectMenuPath._GameObjectMenuPath + "Prebuilt/SimpleEnvironment",
+              false,
+              10)]
     static void CreateSingleEnvironmentGameObject(MenuCommand menu_command) {
       var go = new GameObject("SimpleEnvironment");
       go.AddComponent<NeodroidManager>();
       var env = go.AddComponent<PrototypingEnvironment>();
       go.AddComponent<BoxCollider>();
-      var bounding_box = go.AddComponent<BoundingBox>();
+      var bounding_box = go.AddComponent<NeodroidBoundingBox>();
       env.PlayableArea = bounding_box;
 
       var plane = GameObject.CreatePrimitive(type : PrimitiveType.Plane);
@@ -38,10 +40,11 @@ namespace droid.Editor.GameObjects {
       capsule.transform.localPosition = Vector3.up;
 
       GameObjectUtility.SetParentAndAlign(child : go,
-                                          menu_command
-                                                  .context as
-                                              GameObject); // Ensure it gets reparented if this was a context click (otherwise does nothing)
-      Undo.RegisterCreatedObjectUndo(objectToUndo : go, "Create " + go.name); // Register the creation in the undo system
+                                          parent : menu_command
+                                                           .context as
+                                                       GameObject); // Ensure it gets reparented if this was a context click (otherwise does nothing)
+      Undo.RegisterCreatedObjectUndo(objectToUndo : go,
+                                     name : "Create " + go.name); // Register the creation in the undo system
       Selection.activeObject = go;
     }
   }

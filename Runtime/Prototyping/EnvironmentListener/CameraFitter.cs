@@ -8,9 +8,8 @@ namespace droid.Runtime.Prototyping.EnvironmentListener {
   /// <inheritdoc />
   ///  <summary>
   ///  </summary>
-  [RequireComponent(typeof(Camera))]
+  [RequireComponent(requiredComponent : typeof(Camera))]
   public class CameraFitter : EnvironmentListener {
-
     /// <summary>
     ///
     /// </summary>
@@ -23,24 +22,25 @@ namespace droid.Runtime.Prototyping.EnvironmentListener {
     ///
     /// </summary>
     enum SourceEnum {
-      BB,
-      Collider
+      Bb_,
+      Collider_
     }
 
-    [SerializeField] BoundingBox bb;
-    [SerializeField] Collider collider;
-    [SerializeField] SourceEnum _source_enum = SourceEnum.Collider;
+    [SerializeField] NeodroidBoundingBox bb;
+    [SerializeField] Collider _collider;
+    [SerializeField] SourceEnum _source_enum = SourceEnum.Collider_;
     [SerializeField] float margin = 0f;
     [SerializeField] FitModeEnum _fit_mode_enum = FitModeEnum.Zoom_;
     Camera _camera;
 
-    public override void PreSetup() { base.PreSetup();
+    public override void PreSetup() {
+      base.PreSetup();
       if (!this.bb) {
-        this.bb = FindObjectOfType<BoundingBox>();
+        this.bb = FindObjectOfType<NeodroidBoundingBox>();
       }
 
-      if (!this.collider) {
-        this.collider = FindObjectOfType<Collider>();
+      if (!this._collider) {
+        this._collider = FindObjectOfType<Collider>();
       }
 
       if (!this._camera) {
@@ -55,7 +55,7 @@ namespace droid.Runtime.Prototyping.EnvironmentListener {
     public override void PostTick() {
       base.PostTick();
       switch (this._source_enum) {
-        case SourceEnum.BB:
+        case SourceEnum.Bb_:
           if (this.bb) {
             this._camera.transform.LookAt(target : this.bb.transform);
             var radius = this.bb.Bounds.extents.MaxDim();
@@ -68,38 +68,34 @@ namespace droid.Runtime.Prototyping.EnvironmentListener {
                 break;
               default: throw new ArgumentOutOfRangeException();
             }
-
           }
 
           break;
-        case SourceEnum.Collider:
-          if (this.collider) {
+        case SourceEnum.Collider_:
+          if (this._collider) {
             this._camera.transform.LookAt(target : this.bb.transform);
-            var radius = this.collider.bounds.extents.MaxDim();
+            var radius = this._collider.bounds.extents.MaxDim();
             switch (this._fit_mode_enum) {
               case FitModeEnum.Zoom_:
-                this._camera.LookAtZoomToInstant(radius, this.collider.transform.position, this.margin);
+                this._camera.LookAtZoomToInstant(radius, this._collider.transform.position, this.margin);
                 break;
               case FitModeEnum.Move_:
-                this._camera.MoveToInstant(radius, this.collider.transform.position, this.margin);
+                this._camera.MoveToInstant(radius, this._collider.transform.position, this.margin);
                 break;
               default: throw new ArgumentOutOfRangeException();
             }
-
           }
 
           break;
         default: throw new ArgumentOutOfRangeException();
       }
     }
-
   }
 
   /// <summary>
   ///
   /// </summary>
   public static class CameraFittingUtilities {
-
     // cam - camera to use
     // center - screen pixel center
     // pixelHeight - height of the rectangle in pixels
@@ -109,8 +105,10 @@ namespace droid.Runtime.Prototyping.EnvironmentListener {
       var ray = cam.ScreenPointToRay(pos : center);
       var end_rotation = Quaternion.LookRotation(forward : ray.direction);
       var position = cam_tran.position;
-      var end_position = ProjectPointOnPlane(plane_normal : cam_tran.forward, plane_point : position, point : ray.origin);
-      var opp = Mathf.Tan(cam.fieldOfView * 0.5f * Mathf.Deg2Rad);
+      var end_position = ProjectPointOnPlane(plane_normal : cam_tran.forward,
+                                             plane_point : position,
+                                             point : ray.origin);
+      var opp = Mathf.Tan(f : cam.fieldOfView * 0.5f * Mathf.Deg2Rad);
       opp *= pixel_height / Screen.height;
       var end_fov = Mathf.Atan(f : opp) * 2.0f * Mathf.Rad2Deg;
 
@@ -120,7 +118,7 @@ namespace droid.Runtime.Prototyping.EnvironmentListener {
       var start_position = position;
 
       while (timer <= 1.0f) {
-        var t = Mathf.Sin(timer * Mathf.PI * 0.5f);
+        var t = Mathf.Sin(f : timer * Mathf.PI * 0.5f);
         cam_tran.rotation = Quaternion.Slerp(a : start_rotation, b : end_rotation, t : t);
         cam_tran.position = Vector3.Lerp(a : start_position, b : end_position, t : t);
         cam.fieldOfView = Mathf.Lerp(a : start_fov, b : end_fov, t : t);
@@ -140,9 +138,11 @@ namespace droid.Runtime.Prototyping.EnvironmentListener {
       var cam_tran = cam.transform;
       var ray = cam.ScreenPointToRay(pos : center);
       var end_rotation = Quaternion.LookRotation(forward : ray.direction);
-      var end_position = ProjectPointOnPlane(plane_normal : cam_tran.forward, plane_point : cam_tran.position, point : ray.origin);
+      var end_position = ProjectPointOnPlane(plane_normal : cam_tran.forward,
+                                             plane_point : cam_tran.position,
+                                             point : ray.origin);
 
-      var opp = Mathf.Tan(cam.fieldOfView * 0.5f * Mathf.Deg2Rad);
+      var opp = Mathf.Tan(f : cam.fieldOfView * 0.5f * Mathf.Deg2Rad);
       opp *= pixel_height / Screen.height;
       var end_fov = Mathf.Atan(f : opp) * 2.0f * Mathf.Rad2Deg;
 
@@ -151,15 +151,11 @@ namespace droid.Runtime.Prototyping.EnvironmentListener {
       cam.fieldOfView = end_fov;
     }
 
-    public static void LookAtZoomToInstant(this Camera cam,
-                                           float radius,
-                                           Vector3 center,
-                                           float margin = 1f) {
-
-      cam.transform.LookAt(worldPosition : center,worldUp : Vector3.up);
+    public static void LookAtZoomToInstant(this Camera cam, float radius, Vector3 center, float margin = 1f) {
+      cam.transform.LookAt(worldPosition : center, worldUp : Vector3.up);
       var bound_sphere_radius = radius + margin;
-      var distance = Vector3.Distance(a : center,b : cam.transform.position);
-      var end_fov = Mathf.Atan((bound_sphere_radius * 0.5f)/distance) * 2.0f * Mathf.Rad2Deg;
+      var distance = Vector3.Distance(a : center, b : cam.transform.position);
+      var end_fov = Mathf.Atan(f : bound_sphere_radius * 0.5f / distance) * 2.0f * Mathf.Rad2Deg;
 
       cam.fieldOfView = end_fov;
     }
@@ -174,13 +170,10 @@ namespace droid.Runtime.Prototyping.EnvironmentListener {
     /// <param name="rect"></param>
     /// <param name="bb_position"></param>
     /// <param name="margin"></param>
-    public static void MoveToInstant(this Camera cam,
-                                            float radius,
-                                            Vector3 bb_position,
-                                            float margin = 1f) {
+    public static void MoveToInstant(this Camera cam, float radius, Vector3 bb_position, float margin = 1f) {
       var bound_sphere_radius = radius + margin;
       var fov = Mathf.Deg2Rad * cam.fieldOfView;
-      var cam_distance = bound_sphere_radius * .5f / Mathf.Tan(fov * .5f);
+      var cam_distance = bound_sphere_radius * .5f / Mathf.Tan(f : fov * .5f);
 
       var transform = cam.transform;
       transform.position = bb_position - transform.forward * cam_distance;

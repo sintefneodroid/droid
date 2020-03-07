@@ -35,12 +35,12 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
-                    + "EncodedCamera"
-                    + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : SensorComponentMenuPath._ComponentMenuPath
+                               + "EncodedCamera"
+                               + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [DisallowMultipleComponent]
-  [RequireComponent(typeof(Camera))]
+  [RequireComponent(requiredComponent : typeof(Camera))]
   public class EncodedCameraSensor : Sensor,
                                      IHasByteArray {
     /// <summary>
@@ -145,12 +145,14 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
       if (this._Camera) {
         var target_texture = this._Camera.targetTexture;
         if (!target_texture) {
-          Debug.LogWarning($"No targetTexture defaulting to a texture of size ({NeodroidConstants._Default_Width}, {NeodroidConstants._Default_Height})");
+          Debug.LogWarning(message :
+                           $"No targetTexture defaulting to a texture of size ({NeodroidConstants._Default_Width}, {NeodroidConstants._Default_Height})");
 
-          this._texture = new Texture2D(width : NeodroidConstants._Default_Width, height : NeodroidConstants._Default_Height);
+          this._texture = new Texture2D(width : NeodroidConstants._Default_Width,
+                                        height : NeodroidConstants._Default_Height);
         } else {
           var texture_format_str = target_texture.format.ToString();
-          if (Enum.TryParse(value : texture_format_str, out TextureFormat texture_format)) {
+          if (Enum.TryParse(value : texture_format_str, result : out TextureFormat texture_format)) {
             this._texture = new Texture2D(width : target_texture.width,
                                           height : target_texture.height,
                                           textureFormat : texture_format,
@@ -158,7 +160,8 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
                                           linear : !target_texture.sRGB);
           } else {
             #if NEODROID_DEBUG
-            Debug.LogWarning($"Texture format {texture_format_str} is not a valid TextureFormat for Texture2D for sensor {this.Identifier}");
+            Debug.LogWarning(message :
+                             $"Texture format {texture_format_str} is not a valid TextureFormat for Texture2D for sensor {this.Identifier}");
             #endif
           }
         }
@@ -192,12 +195,12 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
         RenderTexture.active = this._Camera.targetTexture;
 
         if (this._texture) {
-          this._texture.ReadPixels(new Rect(0,
-                                            0,
-                                            width : this._texture.width,
-                                            height : this._texture.height),
-                                   0,
-                                   0);
+          this._texture.ReadPixels(source : new Rect(0,
+                                                     0,
+                                                     width : this._texture.width,
+                                                     height : this._texture.height),
+                                   destX : 0,
+                                   destY : 0);
           this._texture.Apply();
         } else {
           #if NEODROID_DEBUG
@@ -249,7 +252,7 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
 
         RenderTexture.active = current_render_texture;
       } else {
-        Debug.LogWarning($"No camera found on {this}");
+        Debug.LogWarning(message : $"No camera found on {this}");
       }
     }
 

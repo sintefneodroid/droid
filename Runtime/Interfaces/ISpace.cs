@@ -12,8 +12,6 @@ namespace droid.Runtime.Interfaces {
     /// </summary>
     int DecimalGranularity { get; }
 
-
-
     /// <summary>
     ///
     /// </summary>
@@ -29,6 +27,9 @@ namespace droid.Runtime.Interfaces {
     /// </summary>
     NormalisationEnum Normalised { get; }
 
+    /// <summary>
+    ///
+    /// </summary>
     dynamic Mean { get; }
 
     /// <summary>

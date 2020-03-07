@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace droid.Runtime.ScriptableObjects.Deprecated {
   [CreateAssetMenu(fileName = "Curriculum",
-      menuName = ScriptableObjectMenuPath._ScriptableObjectMenuPath + "Curriculum",
-      order = 1)]
+                   menuName = ScriptableObjectMenuPath._ScriptableObjectMenuPath + "Curriculum",
+                   order = 1)]
   public class Curriculum : ScriptableObject {
     public Level[] _Levels;
   }

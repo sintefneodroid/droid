@@ -9,9 +9,9 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
   /// <summary>
   ///
   /// </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
-                    + "QuaternionTransform"
-                    + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : SensorComponentMenuPath._ComponentMenuPath
+                               + "QuaternionTransform"
+                               + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [Serializable]
   public class QuaternionTransformSensor : Sensor,
@@ -25,11 +25,6 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     [Header("Specific", order = 102)]
     [SerializeField]
     CoordinateSpaceEnum _spaceEnum = CoordinateSpaceEnum.Environment_;
-
-    /// <summary>
-    ///
-    /// </summary>
-    public override string PrototypingTypeName { get { return "QuaternionTransform"; } }
 
     /// <summary>
     ///
@@ -68,13 +63,12 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
       var transform1 = this.transform;
       if (this.ParentEnvironment != null && this._spaceEnum == CoordinateSpaceEnum.Environment_) {
         this._position = this.ParentEnvironment.TransformPoint(point : transform1.position);
-        this._rotation = Quaternion.Euler(this.ParentEnvironment.TransformDirection(direction : transform1.up));
+        this._rotation =
+            Quaternion.Euler(euler : this.ParentEnvironment.TransformDirection(direction : transform1.up));
       } else {
         this._position = transform1.position;
         this._rotation = transform1.rotation;
       }
     }
-
-
   }
 }

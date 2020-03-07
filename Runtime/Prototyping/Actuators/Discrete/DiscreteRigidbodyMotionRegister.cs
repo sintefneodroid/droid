@@ -2,11 +2,12 @@
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Actuators.Discrete {
+  /// <inheritdoc />
   /// <summary>
-  /// A register of functionality to performed on Rigidbodi
+  /// A register of functionality to performed on Rigidbody
   /// es
   /// </summary>
-  [RequireComponent(typeof(Rigidbody))]
+  [RequireComponent(requiredComponent : typeof(Rigidbody))]
   public class DiscreteRigidbodyMotionRegister : MonoBehaviour {
     [SerializeField] float force_unit = 1;
     [SerializeField] float torque_unit = 90;
@@ -16,7 +17,11 @@ namespace droid.Runtime.Prototyping.Actuators.Discrete {
     [SerializeField]
     protected Space _Relative_To = Space.Self;
 
-    [SerializeField] protected ForceMode _force_mode = ForceMode.Acceleration;
+    /// <summary>
+    ///
+    /// </summary>
+    [SerializeField]
+    protected ForceMode _force_mode = ForceMode.Acceleration;
 
     Rigidbody _rb;
 
@@ -53,61 +58,61 @@ namespace droid.Runtime.Prototyping.Actuators.Discrete {
     /// <summary>
     /// Self explanatory
     /// </summary>
-    public void AddUnitForceForward() { this.AddForce(Vector3.forward * this.force_unit); }
+    public void AddUnitForceForward() { this.AddForce(vec : Vector3.forward * this.force_unit); }
 
     /// <summary>
     /// Self explanatory
     /// </summary>
-    public void AddUnitForceBackward() { this.AddForce(Vector3.back * this.force_unit); }
+    public void AddUnitForceBackward() { this.AddForce(vec : Vector3.back * this.force_unit); }
 
     /// <summary>
     /// Self explanatory
     /// </summary>
-    public void AddUnitForceLeft() { this.AddForce(Vector3.left * this.force_unit); }
+    public void AddUnitForceLeft() { this.AddForce(vec : Vector3.left * this.force_unit); }
 
     /// <summary>
     /// Self explanatory
     /// </summary>
-    public void AddUnitForceRight() { this.AddForce(Vector3.right * this.force_unit); }
+    public void AddUnitForceRight() { this.AddForce(vec : Vector3.right * this.force_unit); }
 
     /// <summary>
     /// Self explanatory
     /// </summary>
-    public void AddUnitForceUp() { this.AddForce(Vector3.up * this.force_unit); }
+    public void AddUnitForceUp() { this.AddForce(vec : Vector3.up * this.force_unit); }
 
     /// <summary>
     /// Self explanatory
     /// </summary>
-    public void AddUnitForceDown() { this.AddForce(Vector3.down * this.force_unit); }
+    public void AddUnitForceDown() { this.AddForce(vec : Vector3.down * this.force_unit); }
 
     /// <summary>
     /// Self explanatory
     /// </summary>
-    public void AddUnitTorqueYClockWise() { this.AddTorque(Vector3.up * this.torque_unit); }
+    public void AddUnitTorqueYClockWise() { this.AddTorque(vec : Vector3.up * this.torque_unit); }
 
     /// <summary>
     /// Self explanatory
     /// </summary>
-    public void AddUnitTorqueYAntiClockWise() { this.AddTorque(Vector3.up * -this.torque_unit); }
+    public void AddUnitTorqueYAntiClockWise() { this.AddTorque(vec : Vector3.up * -this.torque_unit); }
 
     /// <summary>
     /// Self explanatory
     /// </summary>
-    public void AddUnitTorqueXClockWise() { this.AddTorque(Vector3.left * this.torque_unit); }
+    public void AddUnitTorqueXClockWise() { this.AddTorque(vec : Vector3.left * this.torque_unit); }
 
     /// <summary>
     /// Self explanatory
     /// </summary>
-    public void AddUnitTorqueXAntiClockWise() { this.AddTorque(Vector3.left * -this.torque_unit); }
+    public void AddUnitTorqueXAntiClockWise() { this.AddTorque(vec : Vector3.left * -this.torque_unit); }
 
     /// <summary>
     /// Self explanatory
     /// </summary>
-    public void AddUnitTorqueZClockWise() { this.AddTorque(Vector3.forward * -this.torque_unit); }
+    public void AddUnitTorqueZClockWise() { this.AddTorque(vec : Vector3.forward * -this.torque_unit); }
 
     /// <summary>
     /// Self explanatory
     /// </summary>
-    public void AddUnitTorqueZAntiClockWise() { this.AddTorque(Vector3.forward * this.torque_unit); }
+    public void AddUnitTorqueZAntiClockWise() { this.AddTorque(vec : Vector3.forward * this.torque_unit); }
   }
 }

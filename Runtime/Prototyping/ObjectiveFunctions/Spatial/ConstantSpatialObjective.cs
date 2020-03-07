@@ -7,13 +7,11 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(EvaluationComponentMenuPath._ComponentMenuPath
-                    + "ConstantSpatial"
-                    + EvaluationComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : EvaluationComponentMenuPath._ComponentMenuPath
+                               + "ConstantSpatial"
+                               + EvaluationComponentMenuPath._Postfix)]
   public class ConstantSpatialObjective : SpatialObjective {
-    public override void InternalReset() {
-
-    }
+    public override void InternalReset() { }
 
     /// <inheritdoc />
     /// <summary>

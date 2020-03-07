@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 #if UNITY_POST_PROCESSING_STACK_V2
 using System;
 using UnityEngine.Rendering.PostProcessing;
@@ -9,9 +8,9 @@ namespace droid.Runtime.Utilities.PostProcessesEffects {
   ///
   /// </summary>
   [Serializable]
-  [PostProcess(typeof(GrayscaleRenderer),
-      eventType : PostProcessEvent.AfterStack,
-      "Neodroid/Grayscale")]
+  [PostProcess(renderer : typeof(GrayscaleRenderer),
+               eventType : PostProcessEvent.AfterStack,
+               "Neodroid/Grayscale")]
   public sealed class Grayscale : PostProcessEffectSettings {
     /// <summary>
     ///

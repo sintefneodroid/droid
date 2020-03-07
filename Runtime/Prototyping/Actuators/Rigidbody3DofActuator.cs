@@ -10,10 +10,10 @@ namespace droid.Runtime.Prototyping.Actuators {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ActuatorComponentMenuPath._ComponentMenuPath
-                    + "Rigidbody3DofActuator"
-                    + ActuatorComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(Rigidbody))]
+  [AddComponentMenu(menuName : ActuatorComponentMenuPath._ComponentMenuPath
+                               + "Rigidbody3DofActuator"
+                               + ActuatorComponentMenuPath._Postfix)]
+  [RequireComponent(requiredComponent : typeof(Rigidbody))]
   public class Rigidbody3DofActuator : Actuator {
     /// <summary>
     /// </summary>
@@ -47,10 +47,6 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// </summary>
     string _z;
 
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "Rigidbody"; } }
-
     /// <inheritdoc />
     /// <summary>
     /// </summary>
@@ -70,16 +66,16 @@ namespace droid.Runtime.Prototyping.Actuators {
       }
 
       this.Parent =
-          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
-                                                          this,
+          NeodroidRegistrationUtilities.RegisterComponent(r : (IHasRegister<IActuator>)this.Parent,
+                                                          c : this,
                                                           identifier : this._x);
       this.Parent =
-          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
-                                                          this,
+          NeodroidRegistrationUtilities.RegisterComponent(r : (IHasRegister<IActuator>)this.Parent,
+                                                          c : this,
                                                           identifier : this._y);
       this.Parent =
-          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
-                                                          this,
+          NeodroidRegistrationUtilities.RegisterComponent(r : (IHasRegister<IActuator>)this.Parent,
+                                                          c : this,
                                                           identifier : this._z);
     }
 
@@ -87,9 +83,9 @@ namespace droid.Runtime.Prototyping.Actuators {
     ///
     /// </summary>
     protected override void UnRegisterComponent() {
-      this.Parent?.UnRegister(this, obj : this._x);
-      this.Parent?.UnRegister(this, obj : this._y);
-      this.Parent?.UnRegister(this, obj : this._z);
+      this.Parent?.UnRegister(t : this, obj : this._x);
+      this.Parent?.UnRegister(t : this, obj : this._y);
+      this.Parent?.UnRegister(t : this, obj : this._z);
     }
 
     public override string[] InnerMotionNames => new[] {this._x, this._y, this._z};
@@ -102,41 +98,44 @@ namespace droid.Runtime.Prototyping.Actuators {
       if (!this._Angular_Actuators) {
         if (motion.ActuatorName == this._x) {
           if (this._Relative_To == Space.World) {
-            this._Rigidbody.AddForce(Vector3.right * motion.Strength, mode : this._ForceMode);
+            this._Rigidbody.AddForce(force : Vector3.right * motion.Strength, mode : this._ForceMode);
           } else {
-            this._Rigidbody.AddRelativeForce(Vector3.right * motion.Strength, mode : this._ForceMode);
+            this._Rigidbody.AddRelativeForce(force : Vector3.right * motion.Strength, mode : this._ForceMode);
           }
         } else if (motion.ActuatorName == this._y) {
           if (this._Relative_To == Space.World) {
-            this._Rigidbody.AddForce(Vector3.up * motion.Strength, mode : this._ForceMode);
+            this._Rigidbody.AddForce(force : Vector3.up * motion.Strength, mode : this._ForceMode);
           } else {
-            this._Rigidbody.AddRelativeForce(Vector3.up * motion.Strength, mode : this._ForceMode);
+            this._Rigidbody.AddRelativeForce(force : Vector3.up * motion.Strength, mode : this._ForceMode);
           }
         } else if (motion.ActuatorName == this._z) {
           if (this._Relative_To == Space.World) {
-            this._Rigidbody.AddForce(Vector3.forward * motion.Strength, mode : this._ForceMode);
+            this._Rigidbody.AddForce(force : Vector3.forward * motion.Strength, mode : this._ForceMode);
           } else {
-            this._Rigidbody.AddRelativeForce(Vector3.forward * motion.Strength, mode : this._ForceMode);
+            this._Rigidbody.AddRelativeForce(force : Vector3.forward * motion.Strength,
+                                             mode : this._ForceMode);
           }
         }
       } else {
         if (motion.ActuatorName == this._x) {
           if (this._Relative_To == Space.World) {
-            this._Rigidbody.AddTorque(Vector3.right * motion.Strength, mode : this._ForceMode);
+            this._Rigidbody.AddTorque(torque : Vector3.right * motion.Strength, mode : this._ForceMode);
           } else {
-            this._Rigidbody.AddRelativeTorque(Vector3.right * motion.Strength, mode : this._ForceMode);
+            this._Rigidbody.AddRelativeTorque(torque : Vector3.right * motion.Strength,
+                                              mode : this._ForceMode);
           }
         } else if (motion.ActuatorName == this._y) {
           if (this._Relative_To == Space.World) {
-            this._Rigidbody.AddTorque(Vector3.up * motion.Strength, mode : this._ForceMode);
+            this._Rigidbody.AddTorque(torque : Vector3.up * motion.Strength, mode : this._ForceMode);
           } else {
-            this._Rigidbody.AddRelativeTorque(Vector3.up * motion.Strength, mode : this._ForceMode);
+            this._Rigidbody.AddRelativeTorque(torque : Vector3.up * motion.Strength, mode : this._ForceMode);
           }
         } else if (motion.ActuatorName == this._z) {
           if (this._Relative_To == Space.World) {
-            this._Rigidbody.AddTorque(Vector3.forward * motion.Strength, mode : this._ForceMode);
+            this._Rigidbody.AddTorque(torque : Vector3.forward * motion.Strength, mode : this._ForceMode);
           } else {
-            this._Rigidbody.AddRelativeTorque(Vector3.forward * motion.Strength, mode : this._ForceMode);
+            this._Rigidbody.AddRelativeTorque(torque : Vector3.forward * motion.Strength,
+                                              mode : this._ForceMode);
           }
         }
       }
@@ -165,11 +164,11 @@ namespace droid.Runtime.Prototyping.Actuators {
                               180,
                               2);
         } else {
-          Debug.DrawLine(start : position, position + Vector3.right * 2, color : Color.green);
+          Debug.DrawLine(start : position, end : position + Vector3.right * 2, color : Color.green);
 
-          Debug.DrawLine(start : position, position + Vector3.forward * 2, color : Color.green);
+          Debug.DrawLine(start : position, end : position + Vector3.forward * 2, color : Color.green);
 
-          Debug.DrawLine(start : position, position + Vector3.up * 2, color : Color.green);
+          Debug.DrawLine(start : position, end : position + Vector3.up * 2, color : Color.green);
         }
       }
     }

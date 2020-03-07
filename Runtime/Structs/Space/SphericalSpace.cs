@@ -66,7 +66,7 @@ namespace droid.Runtime.Structs.Space {
     }
 
     static float LoopOrClamp(float v, float min, float max, bool loop) {
-      return loop ? Mathf.Repeat(t : v, max - min) : Mathf.Clamp(value : v, min : min, max : max);
+      return loop ? Mathf.Repeat(t : v, length : max - min) : Mathf.Clamp(value : v, min : min, max : max);
     }
 
     /// <summary>
@@ -109,16 +109,18 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     public Vector2 ToVector2 { get { return new Vector2(x : this._polar, y : this._elevation); } }
 
-    public Vector3 ToVector3 { get { return new Vector3(x : this._polar, y : this._elevation, z : this._radius); } }
+    public Vector3 ToVector3 {
+      get { return new Vector3(x : this._polar, y : this._elevation, z : this._radius); }
+    }
 
     /// <summary>
     ///
     /// </summary>
     public Vector3 ToCartesian() {
       var a = this._radius * Mathf.Cos(f : this._elevation);
-      return new Vector3(a * Mathf.Cos(f : this._polar),
-                         this._radius * Mathf.Sin(f : this._elevation),
-                         a * Mathf.Sin(f : this._polar));
+      return new Vector3(x : a * Mathf.Cos(f : this._polar),
+                         y : this._radius * Mathf.Sin(f : this._elevation),
+                         z : a * Mathf.Sin(f : this._polar));
     }
 
     /// <summary>
@@ -133,13 +135,13 @@ namespace droid.Runtime.Structs.Space {
 
       this._radius = cartesian_coordinate.magnitude;
 
-      this._polar = Mathf.Atan(cartesian_coordinate.z / cartesian_coordinate.x);
+      this._polar = Mathf.Atan(f : cartesian_coordinate.z / cartesian_coordinate.x);
 
       if (cartesian_coordinate.x < 0f) {
         this._polar += Mathf.PI;
       }
 
-      this._elevation = Mathf.Asin(cartesian_coordinate.y / this._radius);
+      this._elevation = Mathf.Asin(f : cartesian_coordinate.y / this._radius);
 
       return this;
     }
@@ -177,13 +179,13 @@ namespace droid.Runtime.Structs.Space {
 
       spherical._radius = cartesian_coordinate.magnitude;
 
-      spherical._polar = Mathf.Atan(cartesian_coordinate.z / cartesian_coordinate.x);
+      spherical._polar = Mathf.Atan(f : cartesian_coordinate.z / cartesian_coordinate.x);
 
       if (cartesian_coordinate.x < 0f) {
         spherical._polar += Mathf.PI;
       }
 
-      spherical._elevation = Mathf.Asin(cartesian_coordinate.y / spherical._radius);
+      spherical._elevation = Mathf.Asin(f : cartesian_coordinate.y / spherical._radius);
 
       return spherical;
     }

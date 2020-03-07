@@ -7,9 +7,9 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays {
   /// <summary>
   ///
   /// </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
-                    + "Raycast"
-                    + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : SensorComponentMenuPath._ComponentMenuPath
+                               + "Raycast"
+                               + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   public class RaycastSensor : Sensor,
                                IHasSingle {
@@ -43,19 +43,17 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays {
       private set { this._observation_value = this.SingleSpace.Project(v : value); }
     }
 
-
-
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override IEnumerable<float> FloatEnumerable { get { return new[] {this.ObservationValue}; } }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override void UpdateObservation() {
-      if (Physics.Raycast( this.transform.position,
-                          this.transform.TransformDirection(direction : this._direction),
+      if (Physics.Raycast(origin : this.transform.position,
+                          direction : this.transform.TransformDirection(direction : this._direction),
                           hitInfo : out this._hit,
                           maxDistance : this._observation_space.Max)) {
         this.ObservationValue = this._hit.distance;
@@ -64,7 +62,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays {
       }
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log($"Raycast hit at distance {this._hit.distance}");
+        Debug.Log(message : $"Raycast hit at distance {this._hit.distance}");
       }
       #endif
     }
@@ -75,9 +73,10 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays {
     void OnDrawGizmosSelected() {
       if (this.enabled) {
         var position = this.transform.position;
-        Debug.DrawLine( position,
-                       position
-                       + this.transform.TransformDirection(direction : this._direction) * this._observation_space.Max,
+        Debug.DrawLine(start : position,
+                       end : position
+                             + this.transform.TransformDirection(direction : this._direction)
+                             * this._observation_space.Max,
                        color : this._color);
       }
     }

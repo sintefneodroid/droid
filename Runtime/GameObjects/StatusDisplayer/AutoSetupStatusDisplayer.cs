@@ -2,10 +2,8 @@
 using droid.Runtime.GameObjects.StatusDisplayer.EventRecipients;
 using droid.Runtime.Managers;
 using droid.Runtime.Prototyping.ObjectiveFunctions;
-
 using UnityEngine.Events;
 using UnityEngine.UI;
-
 using UnityEditor.Events;
 using droid.Runtime.Environments;
 using UnityEngine;
@@ -53,12 +51,14 @@ namespace droid.Runtime.GameObjects.StatusDisplayer {
 
         count = poller.PollEvent.GetPersistentEventCount();
         if (count == 0) {
-          UnityEventTools.AddObjectPersistentListener(unityEvent : poller.PollEvent, call : f, argument : poller);
+          UnityEventTools.AddObjectPersistentListener(unityEvent : poller.PollEvent,
+                                                      call : f,
+                                                      argument : poller);
           poller.PollEvent.SetPersistentListenerState(0, state : this._unity_event_call_state);
         } else if (count > 0 && poller.PollEvent.GetPersistentTarget(0) != poller) {
           #if NEODROID_DEBUG
           if (this.Debugging) {
-            Debug.Log($"PollEvent on {poller} already has a listeners");
+            Debug.Log(message : $"PollEvent on {poller} already has a listeners");
           }
           #endif
         }
@@ -70,7 +70,8 @@ namespace droid.Runtime.GameObjects.StatusDisplayer {
       if (this._clean_empty_no_target_events && count > 0) {
         //poller.PollEvent.RemoveAllListeners(); // Only non-persistant listeners.
         for (var i = 0; i < count; i++) {
-          if (poller.GetPersistentTarget(index : i) == null || poller.GetPersistentMethodName(index : i) == null) {
+          if (poller.GetPersistentTarget(index : i) == null
+              || poller.GetPersistentMethodName(index : i) == null) {
             UnityEventTools.RemovePersistentListener(unityEvent : poller, index : i);
           }
         }
@@ -83,7 +84,7 @@ namespace droid.Runtime.GameObjects.StatusDisplayer {
       } else if (count > 0) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"PollEvent on {poller} already has a listeners");
+          Debug.Log(message : $"PollEvent on {poller} already has a listeners");
         }
         #endif
       }
@@ -94,7 +95,8 @@ namespace droid.Runtime.GameObjects.StatusDisplayer {
       if (this._clean_empty_no_target_events && count > 0) {
         //poller.PollEvent.RemoveAllListeners(); // Only non-persistent listeners.
         for (var i = 0; i < count; i++) {
-          if (poller.GetPersistentTarget(index : i) == null || poller.GetPersistentMethodName(index : i) == null) {
+          if (poller.GetPersistentTarget(index : i) == null
+              || poller.GetPersistentMethodName(index : i) == null) {
             UnityEventTools.RemovePersistentListener(unityEvent : poller, index : i);
           }
         }
@@ -107,7 +109,7 @@ namespace droid.Runtime.GameObjects.StatusDisplayer {
       } else if (count > 0) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"PollEvent on {poller} already has a listeners");
+          Debug.Log(message : $"PollEvent on {poller} already has a listeners");
         }
         #endif
       }
@@ -135,7 +137,6 @@ namespace droid.Runtime.GameObjects.StatusDisplayer {
       if (evaluation_function != null) {
         this.TryRegister(poller : this._signal, f : evaluation_function.SignalString);
         this.TryRegister(poller : this._episode_length, f : evaluation_function.EpisodeLengthString);
-
       }
 
       if (!this._manager) {
@@ -148,7 +149,8 @@ namespace droid.Runtime.GameObjects.StatusDisplayer {
         }
 
         if (this._testing_toggle) {
-          this.TryRegisterProperty(poller : this._testing_toggle.onValueChanged, f : this._manager.SetTesting);
+          this.TryRegisterProperty(poller : this._testing_toggle.onValueChanged,
+                                   f : this._manager.SetTesting);
         }
       }
 

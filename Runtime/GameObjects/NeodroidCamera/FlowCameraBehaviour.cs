@@ -5,7 +5,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
   /// <summary>
   /// </summary>
   [ExecuteInEditMode]
-  [RequireComponent(typeof(Camera))]
+  [RequireComponent(requiredComponent : typeof(Camera))]
   public class FlowCameraBehaviour : MonoBehaviour {
     /// <summary>
     /// </summary>

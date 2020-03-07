@@ -15,7 +15,8 @@ namespace droid.Runtime.Utilities.Orientation {
       if (this.targetPose) {
         this.rot = this.targetPose.rotation;
 
-        var projection_on_plane = Vector3.ProjectOnPlane(vector : this.targetPose.up, planeNormal : Vector3.up);
+        var projection_on_plane =
+            Vector3.ProjectOnPlane(vector : this.targetPose.up, planeNormal : Vector3.up);
 
         var rot = this.transform.rotation;
         var normalised_proj = projection_on_plane.normalized;

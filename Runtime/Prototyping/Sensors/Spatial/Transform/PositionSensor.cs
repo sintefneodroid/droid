@@ -9,8 +9,9 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(
-      SensorComponentMenuPath._ComponentMenuPath + "Position" + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : SensorComponentMenuPath._ComponentMenuPath
+                               + "Position"
+                               + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [Serializable]
   public class PositionSensor : Sensor,
@@ -29,15 +30,9 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
 
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName { get { return "Position"; } }
-
-    /// <summary>
-    /// </summary>
     public Vector3 ObservationValue {
       get { return this._position; }
-      set {
-        this._position = this._position_space.Project(v : value);
-      }
+      set { this._position = this._position_space.Project(v : value); }
     }
 
     /// <summary>
@@ -49,7 +44,8 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     public override void RemotePostSetup() {
       if (this.normalised_overwrite_space_if_env_bounds) {
         if (this.ParentEnvironment) {
-          this._position_space = Space3.FromCenterExtents(bounds_extents : this.ParentEnvironment.PlayableArea.Bounds.extents);
+          this._position_space =
+              Space3.FromCenterExtents(bounds_extents : this.ParentEnvironment.PlayableArea.Bounds.extents);
         }
       }
     }

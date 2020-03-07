@@ -5,7 +5,8 @@
     /// <summary>
     ///
     /// </summary>
-    public const string _ComponentMenuPath = PrototypingComponentMenuPath._ComponentMenuPath + "ObjectiveFunctions/";
+    public const string _ComponentMenuPath =
+        PrototypingComponentMenuPath._ComponentMenuPath + "ObjectiveFunctions/";
 
     /// <summary>
     ///

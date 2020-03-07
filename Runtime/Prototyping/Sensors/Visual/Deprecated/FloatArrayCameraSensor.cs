@@ -9,9 +9,9 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
   /// <summary>
   ///
   /// </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
-                    + "FloatArrayCamera"
-                    + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : SensorComponentMenuPath._ComponentMenuPath
+                               + "FloatArrayCamera"
+                               + SensorComponentMenuPath._Postfix)]
   public class FloatArrayCameraSensor : Sensor,
                                         IHasFloatArray {
     [SerializeField] bool _black_white = false;
@@ -85,12 +85,12 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
       var target_texture = this._camera.targetTexture;
       RenderTexture.active = target_texture;
 
-      this._texture.ReadPixels(new Rect(0,
-                                        0,
-                                        width : target_texture.width,
-                                        height : target_texture.height),
-                               0,
-                               0);
+      this._texture.ReadPixels(source : new Rect(0,
+                                                 0,
+                                                 width : target_texture.width,
+                                                 height : target_texture.height),
+                               destX : 0,
+                               destY : 0);
       this._texture.Apply();
 
       if (!this._black_white) {

@@ -6,9 +6,9 @@ namespace droid.Runtime.Prototyping.Actuators {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ActuatorComponentMenuPath._ComponentMenuPath
-                    + "Rotation"
-                    + ActuatorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : ActuatorComponentMenuPath._ComponentMenuPath
+                               + "Rotation"
+                               + ActuatorComponentMenuPath._Postfix)]
   public class RotationActuator : Actuator {
     /// <summary>
     /// </summary>
@@ -21,11 +21,6 @@ namespace droid.Runtime.Prototyping.Actuators {
 
     string _rot_w = "RotW";
     //new Space1 MotionSpace = Space1.ZeroOne;
-
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "Rotation"; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -49,32 +44,28 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.Parent =
-          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
-                                                          (Actuator)this,
-                                                          identifier : this._rot_x);
-      this.Parent =
-          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
-                                                          (Actuator)this,
-                                                          identifier : this._rot_y);
-      this.Parent =
-          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
-                                                          (Actuator)this,
-                                                          identifier : this._rot_z);
-      this.Parent =
-          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
-                                                          (Actuator)this,
-                                                          identifier : this._rot_w);
+      this.Parent = NeodroidRegistrationUtilities.RegisterComponent(r : (IHasRegister<IActuator>)this.Parent,
+                                                                    c : (Actuator)this,
+                                                                    identifier : this._rot_x);
+      this.Parent = NeodroidRegistrationUtilities.RegisterComponent(r : (IHasRegister<IActuator>)this.Parent,
+                                                                    c : (Actuator)this,
+                                                                    identifier : this._rot_y);
+      this.Parent = NeodroidRegistrationUtilities.RegisterComponent(r : (IHasRegister<IActuator>)this.Parent,
+                                                                    c : (Actuator)this,
+                                                                    identifier : this._rot_z);
+      this.Parent = NeodroidRegistrationUtilities.RegisterComponent(r : (IHasRegister<IActuator>)this.Parent,
+                                                                    c : (Actuator)this,
+                                                                    identifier : this._rot_w);
     }
 
     /// <summary>
     ///
     /// </summary>
     protected override void UnRegisterComponent() {
-      this.Parent?.UnRegister(this, obj : this._rot_x);
-      this.Parent?.UnRegister(this, obj : this._rot_y);
-      this.Parent?.UnRegister(this, obj : this._rot_z);
-      this.Parent?.UnRegister(this, obj : this._rot_w);
+      this.Parent?.UnRegister(t : this, obj : this._rot_x);
+      this.Parent?.UnRegister(t : this, obj : this._rot_y);
+      this.Parent?.UnRegister(t : this, obj : this._rot_z);
+      this.Parent?.UnRegister(t : this, obj : this._rot_w);
     }
 
     /// <inheritdoc />

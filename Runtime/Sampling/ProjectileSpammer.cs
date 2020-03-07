@@ -31,7 +31,7 @@ namespace droid.Runtime.Sampling {
       cube.transform.rotation = Random.rotation;
       cube.transform.localScale = (Vector3.one - Random.insideUnitSphere) / 2 * this._scale_modifier;
       var rb = cube.AddComponent<Rigidbody>();
-      rb.AddForce((this._target.position - cube.transform.position) * this._projectile_multiplier);
+      rb.AddForce(force : (this._target.position - cube.transform.position) * this._projectile_multiplier);
       rb.AddTorque(torque : Random.insideUnitSphere);
       rb.mass = Random.Range(min : this._mass_range.x, max : this._mass_range.y);
       var sf = cube.AddComponent<SelfDestruct>();

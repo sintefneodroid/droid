@@ -6,7 +6,6 @@ using droid.Runtime.Utilities;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Spatial.Occupancy {
-
   /// <summary>
   ///
   /// </summary>
@@ -18,9 +17,9 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Occupancy {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
-                    + "Occupancy3d"
-                    + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : SensorComponentMenuPath._ComponentMenuPath
+                               + "Occupancy3d"
+                               + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   public class Occupancy3dSensor : Sensor,
                                    IHasTripleArray {
@@ -45,6 +44,9 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Occupancy {
       set { this._observation_value = this.SingleSpace.Project(v : value); }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override void PreSetup() {
       this._light = this.GetComponent<Light>();
       this._transforms = FindObjectsOfType<MeshFilter>().Select(o => o.transform);
@@ -63,12 +65,13 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Occupancy {
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override void UpdateObservation() {
       foreach (var transform1 in this._transforms) {
-        if (IntersectionUtilities.ConeSphereIntersection(spot_light : this._light, dynamic_object : transform1)) {
+        if (IntersectionUtilities.ConeSphereIntersection(spot_light : this._light,
+                                                         dynamic_object : transform1)) {
           //Debug.Log("Intersect");
         }
       }

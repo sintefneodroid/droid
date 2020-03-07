@@ -5,7 +5,7 @@ namespace droid.Runtime.GameObjects.StatusDisplayer.EventRecipients {
   /// <inheritdoc cref="DataPoller" />
   /// <summary>
   /// </summary>
-  [RequireComponent(typeof(Toggle))]
+  [RequireComponent(requiredComponent : typeof(Toggle))]
   [ExecuteInEditMode]
   public class ToggleUpdater : DataPoller {
     /// <summary>

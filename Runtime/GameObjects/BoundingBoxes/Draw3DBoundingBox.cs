@@ -5,7 +5,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [RequireComponent(typeof(Camera))]
+  [RequireComponent(requiredComponent : typeof(Camera))]
   [ExecuteInEditMode]
   public class Draw3DBoundingBox : MonoBehaviour {
     List<Color> _colors = new List<Color>();
@@ -19,7 +19,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
 
     Camera _camera;
     [SerializeField] bool _draw_label = true;
-    BoundingBox[] _bounding_boxes;
+    NeodroidBoundingBox[] _bounding_boxes;
     [SerializeField] bool _cacheBoundingBoxes = true;
 
     void Awake() {
@@ -44,10 +44,10 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
 
       GL.Begin(mode : GL.LINES);
       for (var j = 0; j < this._outlines.Count; j++) {
-        GL.Color(this._colors[index : j]);
+        GL.Color(c : this._colors[index : j]);
         for (var i = 0; i < this._outlines[index : j].GetLength(0); i++) {
-          GL.Vertex(this._outlines[index : j][i, 0]);
-          GL.Vertex(this._outlines[index : j][i, 1]);
+          GL.Vertex(v : this._outlines[index : j][i, 0]);
+          GL.Vertex(v : this._outlines[index : j][i, 1]);
         }
       }
 
@@ -117,13 +117,15 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
       this._names.Clear();
       //this._triangles.Clear();
       if (!this._cacheBoundingBoxes || this._bounding_boxes == null || this._bounding_boxes.Length == 0) {
-        this._bounding_boxes = FindObjectsOfType<BoundingBox>();
+        this._bounding_boxes = FindObjectsOfType<NeodroidBoundingBox>();
       }
 
       for (var index = 0; index < this._bounding_boxes.Length; index++) {
         var bb = this._bounding_boxes[index];
         if (bb) {
-          this.SetOutlines(new_outlines : bb.Lines, new_color : bb.EditorPreviewLineColor, game_object : bb.gameObject);
+          this.SetOutlines(new_outlines : bb.Lines,
+                           new_color : bb.EditorPreviewLineColor,
+                           game_object : bb.gameObject);
         }
       }
     }
@@ -141,11 +143,11 @@ namespace droid.Runtime.GameObjects.BoundingBoxes {
 
           var text = this._names[index : i].name;
 
-          var content = GUI.skin.box.CalcSize(new GUIContent(text : text));
+          var content = GUI.skin.box.CalcSize(content : new GUIContent(text : text));
           content.x = content.x + _padding;
           content.y = content.y + _padding;
-          var rect = new Rect(box_position.x - content.x / 2,
-                              box_position.y - content.y / 2,
+          var rect = new Rect(x : box_position.x - content.x / 2,
+                              y : box_position.y - content.y / 2,
                               width : content.x,
                               height : content.y);
           GUI.Box(position : rect, text : text);

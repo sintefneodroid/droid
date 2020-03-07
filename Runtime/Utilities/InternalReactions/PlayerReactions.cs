@@ -31,7 +31,11 @@ namespace droid.Runtime.Utilities.InternalReactions {
       this._Manager = FindObjectOfType<AbstractNeodroidManager>();
       if (Application.isPlaying) {
         var reset_reaction = new ReactionParameters(reaction_type : ReactionTypeEnum.Reset_);
-        this._Manager.SendToEnvironments(new[] {new Reaction(reaction_parameters : reset_reaction, "all")});
+        this._Manager.DelegateReactions(reactions : new[] {
+                                                              new Reaction(reaction_parameters :
+                                                                           reset_reaction,
+                                                                           "all")
+                                                          });
       }
     }
 
@@ -45,7 +49,8 @@ namespace droid.Runtime.Utilities.InternalReactions {
               if (Input.GetKey(key : player_motion._Key)) {
                 #if NEODROID_DEBUG
                 if (this.Debugging) {
-                  Debug.Log($"{player_motion._Actor} {player_motion._Actuator} {player_motion._Strength}");
+                  Debug.Log(message :
+                            $"{player_motion._Actor} {player_motion._Actuator} {player_motion._Strength}");
                 }
                 #endif
 
@@ -64,7 +69,11 @@ namespace droid.Runtime.Utilities.InternalReactions {
 
           if (this.terminated && this._auto_reset) {
             var reset_reaction_parameters = new ReactionParameters(reaction_type : ReactionTypeEnum.Reset_);
-            this._Manager.SendToEnvironments(new[] {new Reaction(reaction_parameters : reset_reaction_parameters, "all")});
+            this._Manager.DelegateReactions(reactions : new[] {
+                                                                  new Reaction(reaction_parameters :
+                                                                               reset_reaction_parameters,
+                                                                               "all")
+                                                              });
             var any = false;
             var es = this._Manager.GatherSnapshots();
             for (var index = 0; index < es.Length; index++) {
@@ -77,15 +86,16 @@ namespace droid.Runtime.Utilities.InternalReactions {
 
             this.terminated = any;
           } else if (motions.Count > 0) {
-            var parameters = new ReactionParameters(reaction_type : ReactionTypeEnum.Step_, true, episode_count : true);
+            var parameters =
+                new ReactionParameters(reaction_type : ReactionTypeEnum.Step_, true, episode_count : true);
             var reaction = new Reaction(parameters : parameters,
-                                        motions.ToArray(),
+                                        motions : motions.ToArray(),
                                         null,
                                         null,
                                         null,
                                         "",
                                         reaction_source : "PlayerReactions");
-            this._Manager.SendToEnvironments(new[] {reaction});
+            this._Manager.DelegateReactions(reactions : new[] {reaction});
             var any = false;
             var es = this._Manager.GatherSnapshots();
             for (var index = 0; index < es.Length; index++) {

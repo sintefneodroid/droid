@@ -16,10 +16,6 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions {
   public abstract class ObjectiveFunction : PrototypingGameObject,
                                             //IHasRegister<Term>,
                                             IObjectiveFunction {
-
-
-
-
     /// <inheritdoc />
     /// <summary>
     /// </summary>
@@ -30,7 +26,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions {
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log($"Signal for this step: {signal}");
+        Debug.Log(message : $"Signal for this step: {signal}");
       }
       #endif
 
@@ -55,24 +51,22 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions {
 
       if (this.ParentEnvironment == null) {
         this.ParentEnvironment = NeodroidSceneUtilities
-            .RecursiveFirstSelfSiblingParentGetComponent<AbstractPrototypingEnvironment>(child : this.transform);
+            .RecursiveFirstSelfSiblingParentGetComponent<AbstractPrototypingEnvironment
+            >(child : this.transform);
       }
     }
-
 
     /// <summary>
     /// </summary>
     /// <returns></returns>
     public void SignalString(DataPoller recipient) {
-      recipient.PollData($"{this.LastSignal.ToString(provider : CultureInfo.InvariantCulture)}");
+      recipient.PollData(data : $"{this.LastSignal.ToString(provider : CultureInfo.InvariantCulture)}");
     }
 
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public void EpisodeLengthString(DataPoller recipient) {
-      recipient.PollData($"");
-    }
+    public void EpisodeLengthString(DataPoller recipient) { recipient.PollData(data : $""); }
 
     /// <inheritdoc />
     /// <summary>
@@ -108,12 +102,10 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions {
     [field : SerializeField]
     public float LastSignal { get; protected set; } = 0f;
 
-
-
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-   [field : SerializeField]
+    [field : SerializeField]
     public Space1 SignalSpace { get; set; }
 
     #endregion

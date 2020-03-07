@@ -6,8 +6,9 @@ using droid.Runtime.Utilities.Grid;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Spatial.Grid {
-  [AddComponentMenu(
-      SensorComponentMenuPath._ComponentMenuPath + "GoalCell" + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : SensorComponentMenuPath._ComponentMenuPath
+                               + "GoalCell"
+                               + SensorComponentMenuPath._Postfix)]
   public class GoalCellSensor : Sensor,
                                 IHasTriple {
     [SerializeField] EmptyCell _current_goal;
@@ -24,11 +25,6 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Grid {
     /// <summary>
     /// </summary>
     public bool DrawNames { get { return this._draw_names; } set { this._draw_names = value; } }
-
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "Goal"; } }
 
     /// <summary>
     /// </summary>

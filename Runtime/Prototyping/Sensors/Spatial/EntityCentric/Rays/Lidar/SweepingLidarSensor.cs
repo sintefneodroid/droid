@@ -9,9 +9,9 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Lidar {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
-                    + "SweepingLidar"
-                    + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : SensorComponentMenuPath._ComponentMenuPath
+                               + "SweepingLidar"
+                               + SensorComponentMenuPath._Postfix)]
   public class SweepingLidarSensor : Sensor,
                                      IHasSingle {
     [SerializeField] RaycastHit _hit;
@@ -21,22 +21,17 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Lidar {
     [SerializeField]
     Space1 _ray_space = new Space1 {Min = 0, Max = 5f, DecimalGranularity = 2};
 
-    [SerializeField]
-    Space1 _sweeping_space =
-        new Space1 {Min = -180, Max = 180, DecimalGranularity = 5};
+    [SerializeField] Space1 _sweeping_space = new Space1 {Min = -180, Max = 180, DecimalGranularity = 5};
 
     [SerializeField] AxisEnum _sweeping_axisEnum = AxisEnum.Rot_y_;
     [SerializeField] int tick_i;
-    [Range(0.001f,999)][SerializeField] float speed = 1;
+    [Range(0.001f, 999)] [SerializeField] float speed = 1;
 
     /// <summary>
     /// Does not use the defined sweep space
     /// </summary>
-    [SerializeField] bool loop = false;
-
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "SweepingLidar"; } }
+    [SerializeField]
+    bool loop = false;
 
     /// <summary>
     ///
@@ -57,7 +52,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Lidar {
       var c = Vector3.forward;
       float a = this._sweeping_space.Precision * this.tick_i * this.speed;
       if (!this.loop) {
-        a = this._sweeping_space.Reproject(Mathf.Cos(f : a) * .5f + .5f);
+        a = this._sweeping_space.Reproject(v : Mathf.Cos(f : a) * .5f + .5f);
       }
 
       switch (this._sweeping_axisEnum) {
@@ -79,8 +74,8 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Lidar {
     /// <summary>
     /// </summary>
     public override void UpdateObservation() {
-      if (Physics.Raycast(this.transform.position + this._ray_space.Min * this.current_direction,
-                          this.transform.TransformDirection(direction : this.current_direction),
+      if (Physics.Raycast(origin : this.transform.position + this._ray_space.Min * this.current_direction,
+                          direction : this.transform.TransformDirection(direction : this.current_direction),
                           hitInfo : out this._hit,
                           maxDistance : this._ray_space.Max)) {
         this.ObservationValue = this._ray_space.Project(v : this._hit.distance);
@@ -95,8 +90,10 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Lidar {
     void OnDrawGizmosSelected() {
       if (this.enabled) {
         var position = this.transform.position;
-        Debug.DrawLine( position,
-                       position + this.transform.TransformDirection(direction : this.current_direction) * this._ray_space.Max,
+        Debug.DrawLine(start : position,
+                       end : position
+                             + this.transform.TransformDirection(direction : this.current_direction)
+                             * this._ray_space.Max,
                        color : this._color);
       }
     }

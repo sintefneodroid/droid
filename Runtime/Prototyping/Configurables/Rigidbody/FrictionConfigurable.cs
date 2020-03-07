@@ -11,10 +11,10 @@ namespace droid.Runtime.Prototyping.Configurables.Rigidbody {
   /// <inheritdoc cref="Configurable" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
-                    + "Friction"
-                    + ConfigurableComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(UnityEngine.Rigidbody))]
+  [AddComponentMenu(menuName : ConfigurableComponentMenuPath._ComponentMenuPath
+                               + "Friction"
+                               + ConfigurableComponentMenuPath._Postfix)]
+  [RequireComponent(requiredComponent : typeof(UnityEngine.Rigidbody))]
   public class FrictionConfigurable : SpatialConfigurable,
                                       IHasSingle {
     /// <summary>
@@ -60,7 +60,7 @@ namespace droid.Runtime.Prototyping.Configurables.Rigidbody {
     protected override void RegisterComponent() {
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._vel_x);
     }
 
@@ -71,7 +71,7 @@ namespace droid.Runtime.Prototyping.Configurables.Rigidbody {
         return;
       }
 
-      this.ParentEnvironment.UnRegister(this, identifier : this._vel_x);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._vel_x);
     }
 
     /// <summary>
@@ -88,7 +88,8 @@ namespace droid.Runtime.Prototyping.Configurables.Rigidbody {
       if (this.SingleSpace.Min.CompareTo(this.SingleSpace.Max) != 0) {
         //TODO NOT IMPLEMENTED CORRECTLY VelocitySpace should not be index but should check all pairwise values, VelocitySpace.MinValues == VelocitySpace.MaxValues
         if (v < this.SingleSpace.Min || v > this.SingleSpace.Max) {
-          Debug.Log(string.Format("Configurable does not accept input{2}, outside allowed range {0} to {1}",
+          Debug.Log(message :
+                    string.Format("Configurable does not accept input{2}, outside allowed range {0} to {1}",
                                   this.SingleSpace.Min,
                                   this.SingleSpace.Max,
                                   v));
@@ -98,7 +99,7 @@ namespace droid.Runtime.Prototyping.Configurables.Rigidbody {
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log("Applying " + v + " To " + this.Identifier);
+        Debug.Log(message : "Applying " + v + " To " + this.Identifier);
       }
       #endif
 
@@ -121,7 +122,10 @@ namespace droid.Runtime.Prototyping.Configurables.Rigidbody {
     /// <returns></returns>
     /// <exception cref="T:System.NotImplementedException"></exception>
     public override Configuration[] SampleConfigurations() {
-      return new[] {new Configuration(configurable_name : this._vel_x, configurable_value:this._friction_space.Sample())};
+      return new[] {
+                       new Configuration(configurable_name : this._vel_x,
+                                         configurable_value : this._friction_space.Sample())
+                   };
     }
   }
 }

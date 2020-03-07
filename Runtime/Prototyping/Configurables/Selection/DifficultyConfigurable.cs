@@ -4,9 +4,9 @@ using droid.Runtime.Messaging.Messages;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Configurables.Selection {
-  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
-                    + "Difficulty"
-                    + ConfigurableComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : ConfigurableComponentMenuPath._ComponentMenuPath
+                               + "Difficulty"
+                               + ConfigurableComponentMenuPath._Postfix)]
   public class DifficultyConfigurable : Configurable {
     /// <inheritdoc />
     /// <summary>
@@ -15,18 +15,22 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
 
     public ISamplable ConfigurableValueSpace { get; }
 
-    public override void UpdateCurrentConfiguration() {  }
+    public override void UpdateCurrentConfiguration() { }
 
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
-      if (Math.Abs(configuration.ConfigurableValue - 1) < double.Epsilon) {
+      if (Math.Abs(value : configuration.ConfigurableValue - 1) < double.Epsilon) {
         //print ("Increased Difficulty");
-      } else if (Math.Abs(configuration.ConfigurableValue - -1) < double.Epsilon) {
+      } else if (Math.Abs(value : configuration.ConfigurableValue - -1) < double.Epsilon) {
         //print ("Decreased Difficulty");
       }
     }
 
-    public override Configuration[] SampleConfigurations() { return new Configuration[]{new Configuration
-    (configurable_name : this.Identifier, configurable_value:this
-                                          .ConfigurableValueSpace.Sample())};}
+    public override Configuration[] SampleConfigurations() {
+      return new Configuration[] {
+                                     new Configuration(configurable_name : this.Identifier,
+                                                       configurable_value :
+                                                       this.ConfigurableValueSpace.Sample())
+                                 };
+    }
   }
 }

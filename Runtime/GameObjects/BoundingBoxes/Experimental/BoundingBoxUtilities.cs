@@ -43,9 +43,9 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
         var t1 = a[index];
         Vector3 point;
         if (use_view_port) {
-          point = cam.WorldToViewportPoint(t.TransformPoint(position : t1));
+          point = cam.WorldToViewportPoint(position : t.TransformPoint(position : t1));
         } else {
-          point = cam.WorldToScreenPoint(t.TransformPoint(position : t1));
+          point = cam.WorldToScreenPoint(position : t.TransformPoint(position : t1));
         }
 
         point.GetMinMax(min : ref min, max : ref max);
@@ -72,9 +72,9 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
 
       Vector3 min;
       if (use_view_port) {
-        min = cam.WorldToViewportPoint(t.TransformPoint(a[0]));
+        min = cam.WorldToViewportPoint(position : t.TransformPoint(position : a[0]));
       } else {
-        min = cam.WorldToScreenPoint(t.TransformPoint(a[0]));
+        min = cam.WorldToScreenPoint(position : t.TransformPoint(position : a[0]));
       }
 
       var max = min;
@@ -84,9 +84,9 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
 
       for (var i = 1; i < a.Length; i++) {
         if (use_view_port) {
-          point = cam.WorldToViewportPoint(t.TransformPoint(a[i]));
+          point = cam.WorldToViewportPoint(position : t.TransformPoint(position : a[i]));
         } else {
-          point = cam.WorldToScreenPoint(t.TransformPoint(a[i]));
+          point = cam.WorldToScreenPoint(position : t.TransformPoint(position : a[i]));
         }
 
         point.GetMinMax(min : ref min, max : ref max);

@@ -6,8 +6,8 @@ namespace droid.Runtime.ScriptableObjects.SerialisableDictionary {
   /// <summary>
   /// </summary>
   [CreateAssetMenu(fileName = "Example Asset",
-      menuName = ScriptableObjectMenuPath._ScriptableObjectMenuPath + "Example Asset",
-      order = 1)]
+                   menuName = ScriptableObjectMenuPath._ScriptableObjectMenuPath + "Example Asset",
+                   order = 1)]
   public class Example : ScriptableObject {
     /// <summary>
     /// </summary>

@@ -9,9 +9,9 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
-                    + "SingleAxisTransform"
-                    + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : SensorComponentMenuPath._ComponentMenuPath
+                               + "SingleAxisTransform"
+                               + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   public class SingleAxisTransformSensor : SingleValueSensor {
     [SerializeField] [SearchableEnum] AxisEnum _dim = AxisEnum.X_;
@@ -20,12 +20,12 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
 
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName { get { return "SingleAxisTransform" + this._dim; } }
+    public override string PrototypingTypeName { get { return base.PrototypingTypeName + this._dim; } }
 
     /// <summary>
     /// </summary>
     public override void RemotePostSetup() {
-    if(this.normalised_overwrite_space_if_env_bounds) {
+      if (this.normalised_overwrite_space_if_env_bounds) {
         switch (this._dim) {
           case AxisEnum.X_:
             if (this.ParentEnvironment) {
@@ -46,6 +46,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
               this._observation_value_space =
                   Space1.FromCenterExtent(extent : this.ParentEnvironment.PlayableArea.Bounds.extents.z);
             }
+
             break;
         }
       }
@@ -95,16 +96,16 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
           case AxisEnum.Rot_x_:
           case AxisEnum.X_:
 
-            Debug.DrawLine(start : position, position + Vector3.right * 2, color : Color.green);
+            Debug.DrawLine(start : position, end : position + Vector3.right * 2, color : Color.green);
             break;
           case AxisEnum.Rot_y_:
           case AxisEnum.Y_:
 
-            Debug.DrawLine(start : position, position + Vector3.up * 2, color : Color.green);
+            Debug.DrawLine(start : position, end : position + Vector3.up * 2, color : Color.green);
             break;
           case AxisEnum.Rot_z_:
           case AxisEnum.Z_:
-            Debug.DrawLine(start : position, position + Vector3.forward * 2, color : Color.green);
+            Debug.DrawLine(start : position, end : position + Vector3.forward * 2, color : Color.green);
             break;
           case AxisEnum.Dir_x_: break;
           case AxisEnum.Dir_y_: break;

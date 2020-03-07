@@ -8,9 +8,9 @@ namespace droid.Samples.MultiArmedBandit.Displayers {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(DisplayerComponentMenuPath._ComponentMenuPath
-                    + "TextBarPlot"
-                    + DisplayerComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : DisplayerComponentMenuPath._ComponentMenuPath
+                               + "TextBarPlot"
+                               + DisplayerComponentMenuPath._Postfix)]
   public class TextBarPlotDisplayer : EnvironmentListener {
     [SerializeField] CanvasBarDisplayer[] _canvas_bars = { };
     [SerializeField] CanvasTextDisplayer[] _canvas_text = { };
@@ -46,7 +46,7 @@ namespace droid.Samples.MultiArmedBandit.Displayers {
     public void Display(float[] values) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log($"Displaying {values} at {this.Identifier}");
+        Debug.Log(message : $"Displaying {values} at {this.Identifier}");
       }
       #endif
 
@@ -57,11 +57,11 @@ namespace droid.Samples.MultiArmedBandit.Displayers {
         for (var i = 0; i < canvas_bar_displayers.Length; i++) {
           if (i < values.Length) {
             var bar = canvas_bar_displayers[i];
-            bar?.Display(values[i]);
+            bar?.Display(value : values[i]);
 
             if (canvas_text_displayers != null) {
               var text = canvas_text_displayers[i];
-              text?.Display(values[i]);
+              text?.Display(value : values[i]);
             }
           }
         }

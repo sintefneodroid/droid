@@ -7,25 +7,18 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Rigidbody {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [RequireComponent(typeof(UnityEngine.Rigidbody))]
+  [RequireComponent(requiredComponent : typeof(UnityEngine.Rigidbody))]
   public class VelocitySensor : Sensor,
                                 IHasTriple {
     [SerializeField] UnityEngine.Rigidbody _rigidbody;
     [SerializeField] Vector3 _velocity;
     [SerializeField] Space3 _velocity_space = Space3.ZeroOne;
 
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "Velocity"; } }
-
     /// <summary>
     /// </summary>
     public Vector3 ObservationValue {
       get { return this._velocity; }
-      set {
-        this._velocity = this._velocity_space.Project(v : value);
-      }
+      set { this._velocity = this._velocity_space.Project(v : value); }
     }
 
     /// <summary>

@@ -8,17 +8,17 @@ namespace droid.Runtime.Interfaces {
   /// <summary>
   /// </summary>
   public interface IAbstractPrototypingEnvironment : IEnvironment,
-                                                    IHasRegister<ISensor>,
-                                                    IHasRegister<IConfigurable>,
-                                                    IHasRegister<IUnobservable>,
-                                                    IHasRegister<IDisplayer> {
+                                                     IHasRegister<ISensor>,
+                                                     IHasRegister<IConfigurable>,
+                                                     IHasRegister<IUnobservable>,
+                                                     IHasRegister<IDisplayer> {
     /// <summary>
     /// </summary>
     Transform Transform { get; }
 
     /// <summary>
     /// </summary>
-    BoundingBox PlayableArea { get; }
+    NeodroidBoundingBox PlayableArea { get; }
 
     /// <summary>
     /// </summary>

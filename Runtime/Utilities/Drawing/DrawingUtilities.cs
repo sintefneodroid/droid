@@ -71,39 +71,41 @@ namespace droid.Runtime.Utilities.Drawing {
       var left = Quaternion.LookRotation(forward : direction)
                  * Quaternion.Euler(x : -arrow_head_angle, 0, 0)
                  * Vector3.back;
-      var up = Quaternion.LookRotation(forward : direction) * Quaternion.Euler(0, y : arrow_head_angle, 0) * Vector3.back;
+      var up = Quaternion.LookRotation(forward : direction)
+               * Quaternion.Euler(0, y : arrow_head_angle, 0)
+               * Vector3.back;
       var down = Quaternion.LookRotation(forward : direction)
                  * Quaternion.Euler(0, y : -arrow_head_angle, 0)
                  * Vector3.back;
       if (gizmos) {
         Gizmos.color = color;
-        Gizmos.DrawRay(pos + direction, right * arrow_head_length);
-        Gizmos.DrawRay(pos + direction, left * arrow_head_length);
-        Gizmos.DrawRay(pos + direction, up * arrow_head_length);
-        Gizmos.DrawRay(pos + direction, down * arrow_head_length);
+        Gizmos.DrawRay(@from : pos + direction, direction : right * arrow_head_length);
+        Gizmos.DrawRay(@from : pos + direction, direction : left * arrow_head_length);
+        Gizmos.DrawRay(@from : pos + direction, direction : up * arrow_head_length);
+        Gizmos.DrawRay(@from : pos + direction, direction : down * arrow_head_length);
       } else {
         if (ray_duration > 0) {
-          Debug.DrawRay(pos + direction,
-                        right * arrow_head_length,
+          Debug.DrawRay(start : pos + direction,
+                        dir : right * arrow_head_length,
                         color : color,
                         duration : ray_duration);
-          Debug.DrawRay(pos + direction,
-                        left * arrow_head_length,
+          Debug.DrawRay(start : pos + direction,
+                        dir : left * arrow_head_length,
                         color : color,
                         duration : ray_duration);
-          Debug.DrawRay(pos + direction,
-                        up * arrow_head_length,
+          Debug.DrawRay(start : pos + direction,
+                        dir : up * arrow_head_length,
                         color : color,
                         duration : ray_duration);
-          Debug.DrawRay(pos + direction,
-                        down * arrow_head_length,
+          Debug.DrawRay(start : pos + direction,
+                        dir : down * arrow_head_length,
                         color : color,
                         duration : ray_duration);
         } else {
-          Debug.DrawRay(pos + direction, right * arrow_head_length, color : color);
-          Debug.DrawRay(pos + direction, left * arrow_head_length, color : color);
-          Debug.DrawRay(pos + direction, up * arrow_head_length, color : color);
-          Debug.DrawRay(pos + direction, down * arrow_head_length, color : color);
+          Debug.DrawRay(start : pos + direction, dir : right * arrow_head_length, color : color);
+          Debug.DrawRay(start : pos + direction, dir : left * arrow_head_length, color : color);
+          Debug.DrawRay(start : pos + direction, dir : up * arrow_head_length, color : color);
+          Debug.DrawRay(start : pos + direction, dir : down * arrow_head_length, color : color);
         }
       }
 
@@ -148,7 +150,7 @@ namespace droid.Runtime.Utilities.Drawing {
         for (var i = 0; i < count; i++) {
           //Vector3 o = n * width ((float)i / (count - 1) - 0.5f);
           var o = width * ((float)i / (count - 1) - 0.5f) * n;
-          Gizmos.DrawLine(p1 + o, p2 + o);
+          Gizmos.DrawLine(@from : p1 + o, to : p2 + o);
         }
       }
     }
@@ -165,12 +167,12 @@ namespace droid.Runtime.Utilities.Drawing {
       camera.Render();
       var target_texture = camera.targetTexture;
       var texture = new Texture2D(width : target_texture.width, height : target_texture.height);
-      texture.ReadPixels(new Rect(0,
-                                  0,
-                                  width : target_texture.width,
-                                  height : target_texture.height),
-                         0,
-                         0);
+      texture.ReadPixels(source : new Rect(0,
+                                           0,
+                                           width : target_texture.width,
+                                           height : target_texture.height),
+                         destX : 0,
+                         destY : 0);
       texture.Apply();
       RenderTexture.active = current_render_texture;
       return texture;

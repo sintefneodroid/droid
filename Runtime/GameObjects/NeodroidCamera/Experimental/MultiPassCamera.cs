@@ -84,42 +84,43 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
         this._capture_passes = new[] {
                                          new CapturePassMaterial(when : CameraEvent.AfterDepthTexture,
                                                                  source : BuiltinRenderTextureType.Depth) {
-                                                                                                     _SupportsAntialiasing
-                                                                                                         = false,
-                                                                                                     _RenderTexture
-                                                                                                         = this
-                                                                                                             .depthRenderTexture
-                                                                                                 },
+                                                                                                              _SupportsAntialiasing
+                                                                                                                  = false,
+                                                                                                              _RenderTexture
+                                                                                                                  = this
+                                                                                                                      .depthRenderTexture
+                                                                                                          },
                                          new CapturePassMaterial(when : CameraEvent.AfterForwardAlpha,
-                                                                 source : BuiltinRenderTextureType.MotionVectors) {
+                                                                 source : BuiltinRenderTextureType
+                                                                     .MotionVectors) {
+                                                                                         _SupportsAntialiasing
+                                                                                             = false,
+                                                                                         _RenderTexture =
+                                                                                             this
+                                                                                                 .flowRenderTexture
+                                                                                     },
+                                         new CapturePassMaterial(when : CameraEvent.AfterForwardAlpha,
+                                                                 source : BuiltinRenderTextureType.None) {
                                                                                                              _SupportsAntialiasing
                                                                                                                  = false,
                                                                                                              _RenderTexture
                                                                                                                  = this
-                                                                                                                     .flowRenderTexture
+                                                                                                                     .objectIdRenderTexture,
+                                                                                                             _TextureId
+                                                                                                                 = Shader
+                                                                                                                     .PropertyToID("_TmpFrameBuffer")
                                                                                                          },
-                                         new CapturePassMaterial(when : CameraEvent.AfterForwardAlpha,
-                                                                 source : BuiltinRenderTextureType.None) {
-                                                                                                    _SupportsAntialiasing
-                                                                                                        = false,
-                                                                                                    _RenderTexture
-                                                                                                        = this
-                                                                                                            .objectIdRenderTexture,
-                                                                                                    _TextureId
-                                                                                                        = Shader
-                                                                                                            .PropertyToID("_TmpFrameBuffer")
-                                                                                                },
                                          new CapturePassMaterial(when : CameraEvent.AfterDepthTexture,
                                                                  source : BuiltinRenderTextureType.None) {
-                                                                                                    _SupportsAntialiasing
-                                                                                                        = false,
-                                                                                                    _RenderTexture
-                                                                                                        = this
-                                                                                                            .tagIdRenderTexture,
-                                                                                                    _TextureId
-                                                                                                        = Shader
-                                                                                                            .PropertyToID("_CameraDepthTexture")
-                                                                                                }
+                                                                                                             _SupportsAntialiasing
+                                                                                                                 = false,
+                                                                                                             _RenderTexture
+                                                                                                                 = this
+                                                                                                                     .tagIdRenderTexture,
+                                                                                                             _TextureId
+                                                                                                                 = Shader
+                                                                                                                     .PropertyToID("_CameraDepthTexture")
+                                                                                                         }
                                      };
       }
 
@@ -147,7 +148,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
                             filter : FilterMode.Point);
           //cb.Blit(capture_pass.Source, capture_pass._RenderTexture, capture_pass._Material);
           cb.Blit(source : capture_pass.Source, dest : capture_pass._TextureId);
-          cb.SetRenderTarget(new RenderTargetIdentifier[] {capture_pass._RenderTexture},
+          cb.SetRenderTarget(colors : new RenderTargetIdentifier[] {capture_pass._RenderTexture},
                              depth : capture_pass._RenderTexture);
           cb.DrawMesh(mesh : this.m_quad,
                       matrix : Matrix4x4.identity,
@@ -187,14 +188,14 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
           var xi = (_size + _margin) * index++;
           var x = xi % (Screen.width - _size);
           var y = (_size + _margin) * (xi / (Screen.width - _size));
-          var r = new Rect(_margin + x,
-                           _margin + y,
+          var r = new Rect(x : _margin + x,
+                           y : _margin + y,
                            width : _size,
                            height : _size);
           //this._asf?.Flip(pass._RenderTexture);
 
           GUI.DrawTexture(position : r, image : pass._RenderTexture, scaleMode : ScaleMode.ScaleToFit);
-          GUI.TextField(position : r, pass.Source.ToString(), style : this.gui_style.box);
+          GUI.TextField(position : r, text : pass.Source.ToString(), style : this.gui_style.box);
         }
       }
     }

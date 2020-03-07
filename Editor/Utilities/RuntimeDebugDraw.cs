@@ -110,7 +110,7 @@ Important Notes:
       public static void DrawRay(Vector3 start, Vector3 dir, Color color, float duration, bool depth_test) {
         CheckAndBuildHiddenRtDrawObject();
         _rt_draw.RegisterLine(start : start,
-                              start + dir,
+                              end : start + dir,
                               color : color,
                               timer : duration,
                               no_z_test : !depth_test);
@@ -286,11 +286,11 @@ Important Notes:
             this._Mesh.MarkDynamic();
 
             //	relying on a builtin shader, but it shouldn't change that much.
-            this._Mat = new Material(Shader.Find("Hidden/Internal-Colored"));
+            this._Mat = new Material(shader : Shader.Find("Hidden/Internal-Colored"));
             this._Mat.SetInt(nameID : _z_test,
-                             depth_test
-                                 ? 4 // LEqual
-                                 : 0 // Always
+                             value : depth_test
+                                         ? 4 // LEqual
+                                         : 0 // Always
                             );
 
             this._vertices = new List<Vector3>();
@@ -309,8 +309,8 @@ Important Notes:
             this._colors.Add(item : color);
             this._colors.Add(item : color);
             var vertice_count = this._vertices.Count;
-            this._indices.Add(vertice_count - 2);
-            this._indices.Add(vertice_count - 1);
+            this._indices.Add(item : vertice_count - 2);
+            this._indices.Add(item : vertice_count - 1);
           }
 
           public void Clear() {
@@ -323,7 +323,7 @@ Important Notes:
           public void BuildBatch() {
             this._Mesh.SetVertices(inVertices : this._vertices);
             this._Mesh.SetColors(inColors : this._colors);
-            this._Mesh.SetIndices(this._indices.ToArray(),
+            this._Mesh.SetIndices(indices : this._indices.ToArray(),
                                   topology : MeshTopology.Lines,
                                   0); // cant get rid of this alloc for now
           }
@@ -619,7 +619,8 @@ Important Notes:
 
           this._text_style.normal.textColor = entry._Color;
           this._text_style.fontSize = entry._Size;
-          var rect = new Rect(position : screen_pos, this._text_style.CalcSize(content : entry._Content));
+          var rect = new Rect(position : screen_pos,
+                              size : this._text_style.CalcSize(content : entry._Content));
           GUI.Label(position : rect, content : entry._Content, style : this._text_style);
         }
 
@@ -634,7 +635,8 @@ Important Notes:
 
           this._text_style.normal.textColor = entry._Color;
           this._text_style.fontSize = entry._Size;
-          var rect = new Rect(position : screen_pos, this._text_style.CalcSize(content : entry._Content));
+          var rect = new Rect(position : screen_pos,
+                              size : this._text_style.CalcSize(content : entry._Content));
           GUI.Label(position : rect, content : entry._Content, style : this._text_style);
         }
 

@@ -23,18 +23,20 @@ namespace droid.Editor.Windows {
     /// <summary>
     ///
     /// </summary>
-    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "RenderTextureConfiguratorWindow")]
-    [MenuItem(EditorWindowMenuPath._ToolMenuPath + "RenderTextureConfiguratorWindow")]
+    [MenuItem(itemName : EditorWindowMenuPath._WindowMenuPath + "RenderTextureConfiguratorWindow")]
+    [MenuItem(itemName : EditorWindowMenuPath._ToolMenuPath + "RenderTextureConfiguratorWindow")]
     public static void ShowWindow() {
-      GetWindow(typeof(RenderTextureConfiguratorWindow)); //Show existing window instance. If one doesn't exist, make one.
+      GetWindow(t : typeof(RenderTextureConfiguratorWindow)); //Show existing window instance. If one doesn't exist, make one.
     }
 
     void OnEnable() {
       this._icon =
-          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidSettings.Current.NeodroidImportLocationProp
+          (Texture2D)AssetDatabase.LoadAssetAtPath(assetPath :
+                                                   NeodroidSettings.Current.NeodroidImportLocationProp
                                                    + "Gizmos/Icons/images.png",
-                                                   typeof(Texture2D));
-      this.titleContent = new GUIContent("Neo:Tex", image : this._icon, "Window for RenderTexture configuration");
+                                                   type : typeof(Texture2D));
+      this.titleContent =
+          new GUIContent("Neo:Tex", image : this._icon, "Window for RenderTexture configuration");
     }
 
     void OnGUI() {
@@ -65,7 +67,8 @@ namespace droid.Editor.Windows {
       }
 
       EditorGUILayout.EndScrollView();
-      this._texture_size = EditorGUILayout.Vector2Field("Set All Render Texture Sizes:", value : this._texture_size);
+      this._texture_size =
+          EditorGUILayout.Vector2Field("Set All Render Texture Sizes:", value : this._texture_size);
       if (GUILayout.Button("Apply(Does not work yet)")) {
         // ReSharper disable once UnusedVariable
         foreach (var render_texture in this._render_textures) {

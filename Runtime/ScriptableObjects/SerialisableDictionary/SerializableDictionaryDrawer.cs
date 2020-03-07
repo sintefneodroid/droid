@@ -62,15 +62,20 @@ namespace droid.Runtime.ScriptableObjects.SerialisableDictionary {
         second_line_button.x += second_line_value.width;
         second_line_button.width = button_width;
 
-        var k_height = EditorGUI.GetPropertyHeight(this.GetTemplateKeyProp(main_prop : property));
-        var v_height = EditorGUI.GetPropertyHeight(this.GetTemplateValueProp(main_prop : property));
+        var k_height = EditorGUI.GetPropertyHeight(property : this.GetTemplateKeyProp(main_prop : property));
+        var v_height =
+            EditorGUI.GetPropertyHeight(property : this.GetTemplateValueProp(main_prop : property));
         var extra_height = Mathf.Max(a : k_height, b : v_height);
 
         second_line_key.height = k_height;
         second_line_value.height = v_height;
 
-        EditorGUI.PropertyField(position : second_line_key, this.GetTemplateKeyProp(main_prop : property), true);
-        EditorGUI.PropertyField(position : second_line_value, this.GetTemplateValueProp(main_prop : property), true);
+        EditorGUI.PropertyField(position : second_line_key,
+                                property : this.GetTemplateKeyProp(main_prop : property),
+                                true);
+        EditorGUI.PropertyField(position : second_line_value,
+                                property : this.GetTemplateValueProp(main_prop : property),
+                                true);
 
         var keys_prop = this.GetKeysProp(main_prop : property);
         var values_prop = this.GetValuesProp(main_prop : property);
@@ -82,10 +87,14 @@ namespace droid.Runtime.ScriptableObjects.SerialisableDictionary {
           for (var i = 0; i < num_lines; i++)
               // Try to replace existing value
           {
-            if (SerializedPropertyExtension.EqualBasics(this.GetIndexedItemProp(array_prop : keys_prop, index : i),
-                                                        this.GetTemplateKeyProp(main_prop : property))) {
-              SerializedPropertyExtension.CopyBasics(this.GetTemplateValueProp(main_prop : property),
-                                                     this.GetIndexedItemProp(array_prop : values_prop, index : i));
+            if (SerializedPropertyExtension.EqualBasics(left : this.GetIndexedItemProp(array_prop : keys_prop,
+                                                                                       index : i),
+                                                        right : this.GetTemplateKeyProp(main_prop : property))
+            ) {
+              SerializedPropertyExtension.CopyBasics(source : this.GetTemplateValueProp(main_prop : property),
+                                                     target : this.GetIndexedItemProp(array_prop :
+                                                                                      values_prop,
+                                                                                      index : i));
               assignment = true;
               break;
             }
@@ -95,10 +104,12 @@ namespace droid.Runtime.ScriptableObjects.SerialisableDictionary {
             // Create a new value
             keys_prop.arraySize += 1;
             values_prop.arraySize += 1;
-            SerializedPropertyExtension.CopyBasics(this.GetTemplateKeyProp(main_prop : property),
-                                                   this.GetIndexedItemProp(array_prop : keys_prop, index : num_lines));
-            SerializedPropertyExtension.CopyBasics(this.GetTemplateValueProp(main_prop : property),
-                                                   this.GetIndexedItemProp(array_prop : values_prop, index : num_lines));
+            SerializedPropertyExtension.CopyBasics(source : this.GetTemplateKeyProp(main_prop : property),
+                                                   target : this.GetIndexedItemProp(array_prop : keys_prop,
+                                                                                    index : num_lines));
+            SerializedPropertyExtension.CopyBasics(source : this.GetTemplateValueProp(main_prop : property),
+                                                   target : this.GetIndexedItemProp(array_prop : values_prop,
+                                                                                    index : num_lines));
           }
         }
 
@@ -107,15 +118,23 @@ namespace droid.Runtime.ScriptableObjects.SerialisableDictionary {
           second_line_value.y += extra_height;
           second_line_button.y += extra_height;
 
-          k_height = EditorGUI.GetPropertyHeight(this.GetIndexedItemProp(array_prop : keys_prop, index : i));
-          v_height = EditorGUI.GetPropertyHeight(this.GetIndexedItemProp(array_prop : values_prop, index : i));
+          k_height =
+              EditorGUI.GetPropertyHeight(property : this.GetIndexedItemProp(array_prop : keys_prop,
+                                                                             index : i));
+          v_height =
+              EditorGUI.GetPropertyHeight(property : this.GetIndexedItemProp(array_prop : values_prop,
+                                                                             index : i));
           extra_height = Mathf.Max(a : k_height, b : v_height);
 
           second_line_key.height = k_height;
           second_line_value.height = v_height;
 
-          EditorGUI.PropertyField(position : second_line_key, this.GetIndexedItemProp(array_prop : keys_prop, index : i), true);
-          EditorGUI.PropertyField(position : second_line_value, this.GetIndexedItemProp(array_prop : values_prop, index : i), true);
+          EditorGUI.PropertyField(position : second_line_key,
+                                  property : this.GetIndexedItemProp(array_prop : keys_prop, index : i),
+                                  true);
+          EditorGUI.PropertyField(position : second_line_value,
+                                  property : this.GetIndexedItemProp(array_prop : values_prop, index : i),
+                                  true);
 
           if (GUI.Button(position : second_line_button, "Remove")) {
             keys_prop.DeleteArrayElementAtIndex(index : i);
@@ -134,16 +153,20 @@ namespace droid.Runtime.ScriptableObjects.SerialisableDictionary {
 
       var total = EditorGUIUtility.singleLineHeight;
 
-      var k_height = EditorGUI.GetPropertyHeight(this.GetTemplateKeyProp(main_prop : property));
-      var v_height = EditorGUI.GetPropertyHeight(this.GetTemplateValueProp(main_prop : property));
+      var k_height = EditorGUI.GetPropertyHeight(property : this.GetTemplateKeyProp(main_prop : property));
+      var v_height = EditorGUI.GetPropertyHeight(property : this.GetTemplateValueProp(main_prop : property));
       total += Mathf.Max(a : k_height, b : v_height);
 
       var keys_prop = this.GetKeysProp(main_prop : property);
       var values_prop = this.GetValuesProp(main_prop : property);
       var num_lines = keys_prop.arraySize;
       for (var i = 0; i < num_lines; i++) {
-        k_height = EditorGUI.GetPropertyHeight(this.GetIndexedItemProp(array_prop : keys_prop, index : i));
-        v_height = EditorGUI.GetPropertyHeight(this.GetIndexedItemProp(array_prop : values_prop, index : i));
+        k_height =
+            EditorGUI.GetPropertyHeight(property : this.GetIndexedItemProp(array_prop : keys_prop,
+                                                                           index : i));
+        v_height =
+            EditorGUI.GetPropertyHeight(property : this.GetIndexedItemProp(array_prop : values_prop,
+                                                                           index : i));
         total += Mathf.Max(a : k_height, b : v_height);
       }
 
@@ -160,13 +183,13 @@ namespace droid.Runtime.ScriptableObjects.SerialisableDictionary {
 
     SerializedProperty GetTemplateProp(Dictionary<int, SerializedProperty> source,
                                        SerializedProperty main_prop) {
-      if (!source.TryGetValue(main_prop.GetObjectCode(), out var p)) {
+      if (!source.TryGetValue(key : main_prop.GetObjectCode(), value : out var p)) {
         var template_object = this.GetTemplate();
         var template_serialized_object = new SerializedObject(obj : template_object);
         var k_prop = template_serialized_object.FindProperty("key");
         var v_prop = template_serialized_object.FindProperty("value");
-        this._template_key_prop[main_prop.GetObjectCode()] = k_prop;
-        this._template_value_prop[main_prop.GetObjectCode()] = v_prop;
+        this._template_key_prop[key : main_prop.GetObjectCode()] = k_prop;
+        this._template_value_prop[key : main_prop.GetObjectCode()] = v_prop;
         p = source == this._template_key_prop ? k_prop : v_prop;
       }
 
@@ -185,21 +208,23 @@ namespace droid.Runtime.ScriptableObjects.SerialisableDictionary {
                                      string relative_property_name,
                                      Dictionary<int, SerializedProperty> source) {
       var object_code = main_prop.GetObjectCode();
-      if (!source.TryGetValue(key : object_code, out var p)) {
-        source[key : object_code] = p = main_prop.FindPropertyRelative(relativePropertyPath : relative_property_name);
+      if (!source.TryGetValue(key : object_code, value : out var p)) {
+        source[key : object_code] =
+            p = main_prop.FindPropertyRelative(relativePropertyPath : relative_property_name);
       }
 
       return p;
     }
 
     SerializedProperty GetIndexedItemProp(SerializedProperty array_prop, int index) {
-      if (!this._indexed_property_dicts.TryGetValue(array_prop.GetObjectCode(), out var d)) {
-        this._indexed_property_dicts[array_prop.GetObjectCode()] =
+      if (!this._indexed_property_dicts.TryGetValue(key : array_prop.GetObjectCode(), value : out var d)) {
+        this._indexed_property_dicts[key : array_prop.GetObjectCode()] =
             d = new Dictionary<int, SerializedProperty>();
       }
 
-      if (!d.TryGetValue(key : index, out var result)) {
-        d[key : index] = result = array_prop.FindPropertyRelative($"Array.data[{index}]");
+      if (!d.TryGetValue(key : index, value : out var result)) {
+        d[key : index] =
+            result = array_prop.FindPropertyRelative(relativePropertyPath : $"Array.data[{index}]");
       }
 
       return result;

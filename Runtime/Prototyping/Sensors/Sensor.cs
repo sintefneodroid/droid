@@ -32,18 +32,18 @@ namespace droid.Runtime.Prototyping.Sensors {
     /// </summary>
     public abstract void UpdateObservation();
 
-
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment, this);
+      this.ParentEnvironment =
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment, c : this);
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void UnRegisterComponent() { this.ParentEnvironment?.UnRegister(this); }
+    protected override void UnRegisterComponent() { this.ParentEnvironment?.UnRegister(sensor : this); }
 
     /// <summary>
     /// </summary>
@@ -52,7 +52,8 @@ namespace droid.Runtime.Prototyping.Sensors {
         if (this.FloatEnumerable == null) {
           #if NEODROID_DEBUG
           if (this.Debugging) {
-            Debug.LogWarning($"FloatEnumerable of {this.Identifier} is empty! Maybe you forget an assignment to it when updating observations");
+            Debug.LogWarning(message :
+                             $"FloatEnumerable of {this.Identifier} is empty! Maybe you forget an assignment to it when updating observations");
           }
           #endif
         }
@@ -65,9 +66,11 @@ namespace droid.Runtime.Prototyping.Sensors {
     /// <returns></returns>
     public override string ToString() {
       var any = false;
-      foreach (var f in this.FloatEnumerable) {
-        any = true;
-        break;
+      if (this.FloatEnumerable != null) {
+        foreach (var f in this.FloatEnumerable) {
+          any = true;
+          break;
+        }
       }
 
       return any ? string.Join(",", values : this.FloatEnumerable) : "Empty FloatEnumerable";

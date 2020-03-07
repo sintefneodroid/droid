@@ -7,9 +7,9 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(EvaluationComponentMenuPath._ComponentMenuPath
-                    + "DotProduct"
-                    + EvaluationComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : EvaluationComponentMenuPath._ComponentMenuPath
+                               + "DotProduct"
+                               + EvaluationComponentMenuPath._Postfix)]
   public class DotProductObjective : SpatialObjective {
     /// <inheritdoc />
     /// <summary>
@@ -19,10 +19,10 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
       var signal = this.DefaultSignal;
 
       var angle = Vector3.Dot(lhs : this.target_direction.transform.up,
-                                     rhs : this._actor_transform.transform.up);
-       #if NEODROID_DEBUG
+                              rhs : this._actor_transform.transform.up);
+      #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log($"Distance: {angle}");
+        Debug.Log(message : $"Distance: {angle}");
       }
       #endif
 
@@ -38,11 +38,11 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log($"Frame Number: {this.ParentEnvironment?.StepI}, "
-                  + $"Terminated: {this.ParentEnvironment?.Terminated}, "
-                  + $"Last Reason: {this.ParentEnvironment?.LastTerminationReason}, "
-                  + $"Internal Feedback Signal: {signal}, "
-                  + $"Distance: {angle}");
+        Debug.Log(message : $"Frame Number: {this.ParentEnvironment?.StepI}, "
+                            + $"Terminated: {this.ParentEnvironment?.Terminated}, "
+                            + $"Last Reason: {this.ParentEnvironment?.LastTerminationReason}, "
+                            + $"Internal Feedback Signal: {signal}, "
+                            + $"Distance: {angle}");
       }
       #endif
 
@@ -52,9 +52,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override void InternalReset() {
-      this._has_collided = false;
-    }
+    public override void InternalReset() { this._has_collided = false; }
 
     /// <inheritdoc />
     /// <summary>
@@ -88,7 +86,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
       }
 
       if (!this._playable_area) {
-        this._playable_area = FindObjectOfType<BoundingBox>();
+        this._playable_area = FindObjectOfType<NeodroidBoundingBox>();
       }
     }
 
@@ -115,10 +113,12 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
     #region Fields
 
     [Header("Specific", order = 102)]
-    [SerializeField] bool _inverse = false;
+    [SerializeField]
+    bool _inverse = false;
+
     [SerializeField] Transform target_direction = null;
     [SerializeField] Transform _actor_transform = null;
-    [SerializeField] BoundingBox _playable_area = null;
+    [SerializeField] NeodroidBoundingBox _playable_area = null;
     [SerializeField] Obstruction[] _obstructions = null;
     [SerializeField] bool _terminate_on_obstruction_collision = true;
     [SerializeField] bool _has_collided = false;

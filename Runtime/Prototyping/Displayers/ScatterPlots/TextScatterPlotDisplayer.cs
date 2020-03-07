@@ -9,10 +9,10 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
   /// <summary>
   /// </summary>
   [ExecuteInEditMode]
-  [AddComponentMenu(DisplayerComponentMenuPath._ComponentMenuPath
-                    + "ScatterPlot"
-                    + DisplayerComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(ParticleSystem))]
+  [AddComponentMenu(menuName : DisplayerComponentMenuPath._ComponentMenuPath
+                               + "ScatterPlot"
+                               + DisplayerComponentMenuPath._Postfix)]
+  [RequireComponent(requiredComponent : typeof(ParticleSystem))]
   public class TextScatterPlotDisplayer : Displayer {
     [SerializeField] Gradient _gradient;
     ParticleSystem _particle_system;
@@ -50,8 +50,10 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
       if (this._gradient == null) {
         this._gradient = new Gradient {
                                           colorKeys = new[] {
-                                                                new GradientColorKey(new Color(1, 0, 0), 0f),
-                                                                new GradientColorKey(new Color(0, 1, 0), 1f)
+                                                                new GradientColorKey(col : new Color(1, 0, 0),
+                                                                                     time : 0f),
+                                                                new GradientColorKey(col : new Color(0, 1, 0),
+                                                                                     time : 1f)
                                                             }
                                       };
       }
@@ -60,7 +62,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
     public override void Display(Double value) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log("Applying the double " + value + " To " + this.name);
+        Debug.Log(message : "Applying the double " + value + " To " + this.name);
       }
       #endif
 
@@ -76,7 +78,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
           s += $"{value},";
         }
 
-        Debug.Log("Applying the float array " + s + " To " + this.name);
+        Debug.Log(message : "Applying the float array " + s + " To " + this.name);
       }
       #endif
       this._Values = values.Select(v => v.ToString(provider : CultureInfo.InvariantCulture)).ToArray();
@@ -86,7 +88,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
     public override void Display(String values) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log("Applying the float array " + values + " To " + this.name);
+        Debug.Log(message : "Applying the float array " + values + " To " + this.name);
       }
       #endif
 
@@ -102,7 +104,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
     public override void Display(Vector3 value) { throw new NotImplementedException(); }
     public override void Display(Vector3[] value) { this.ScatterPlot(points : value); }
 
-    public override void Display(Points.ValuePoint points) { this.PlotSeries(new[] {points}); }
+    public override void Display(Points.ValuePoint points) { this.PlotSeries(points : new[] {points}); }
 
     public override void Display(Points.ValuePoint[] points) {
       if (this._particles == null || this._particles.Length != points.Length) {
@@ -116,7 +118,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
                                               current
                                               + $"({point._Pos.ToString()}, {point._Val},{point._Size})"
                                               + ", ");
-        Debug.Log("Applying the points " + points_str + " to " + this.name);
+        Debug.Log(message : "Applying the points " + points_str + " to " + this.name);
       }
       #endif
 
@@ -124,7 +126,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
       foreach (var point in points) {
         this._particles[i].remainingLifetime = 100000;
         this._particles[i].position = point._Pos;
-        var clamped = Math.Min(Math.Max(0.0f, val2 : point._Val), 1.0f);
+        var clamped = Math.Min(val1 : Math.Max(0.0f, val2 : point._Val), val2 : 1.0f);
         this._particles[i].startColor = this._gradient.Evaluate(time : clamped);
         this._particles[i].startSize = point._Size;
         i++;
@@ -141,7 +143,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
     public override void Display(float values) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log("Applying the float " + values + " To " + this.name);
+        Debug.Log(message : "Applying the float " + values + " To " + this.name);
       }
       #endif
 
@@ -160,7 +162,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
       #if NEODROID_DEBUG
       if (this.Debugging) {
         var points_str = points.Aggregate("", (current, point) => current + point.ToString() + ", ");
-        Debug.Log("Applying the points " + points_str + " To " + this.name);
+        Debug.Log(message : "Applying the points " + points_str + " To " + this.name);
       }
       #endif
 
@@ -170,7 +172,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
         var point = points[index];
         this._particles[i].remainingLifetime = 100000;
         this._particles[i].position = point;
-        var clamped = Math.Min(Math.Max(0.0f, i / l), 1.0f);
+        var clamped = Math.Min(val1 : Math.Max(0.0f, val2 : i / l), val2 : 1.0f);
         this._particles[i].startColor = this._gradient.Evaluate(time : clamped);
         this._particles[i].startSize = 1f;
         i++;
@@ -190,7 +192,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log("Applying the series " + points + " To " + this.name);
+        Debug.Log(message : "Applying the series " + points + " To " + this.name);
       }
       #endif
 
@@ -198,7 +200,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
       foreach (var point in points) {
         this._particles[i].remainingLifetime = 100000;
         this._particles[i].position = Vector3.one * i;
-        var clamped = Math.Min(Math.Max(0.0f, val2 : point), 1.0f);
+        var clamped = Math.Min(val1 : Math.Max(0.0f, val2 : point), val2 : 1.0f);
         this._particles[i].startColor = this._gradient.Evaluate(time : clamped);
         this._particles[i].startSize = 1f;
         i++;
@@ -214,7 +216,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log("Applying the series " + points + " To " + this.name);
+        Debug.Log(message : "Applying the series " + points + " To " + this.name);
       }
       #endif
 

@@ -4,9 +4,9 @@ using droid.Runtime.Structs.Space;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric {
-  /// <summary>
-  ///
-  /// </summary>
+  /// <inheritdoc cref="Sensor" />
+  ///  <summary>
+  ///  </summary>
   public class DistanceSensor : Sensor,
                                 IHasSingle {
     [SerializeField] UnityEngine.Transform t1 = null;
@@ -14,29 +14,29 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric {
     [SerializeField] float _observationValue = 0;
     [SerializeField] Space1 _single_space = Space1.MinusOneOne * 4;
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override IEnumerable<float> FloatEnumerable { get { return new[] {this.ObservationValue}; } }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override void UpdateObservation() {
       this.ObservationValue = Vector3.Distance(a : this.t1.position, b : this.t2.position);
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public float ObservationValue {
       get { return this._observationValue; }
       private set { this._observationValue = this._single_space.Project(v : value); }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public Space1 SingleSpace { get { return this._single_space; } }
   }
 }

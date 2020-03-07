@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
 namespace droid.Runtime.Structs {
+  /// <inheritdoc />
   /// <summary>
-  /// 
   /// </summary>
   public class Points : MonoBehaviour {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public struct StringPoint {
       /// <summary>
@@ -32,7 +32,7 @@ namespace droid.Runtime.Structs {
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public struct ValuePoint {
       /// <summary>

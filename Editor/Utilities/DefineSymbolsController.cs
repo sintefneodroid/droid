@@ -46,11 +46,14 @@ namespace droid.Editor.Utilities {
     /// </summary>
     public static void AddDefineSymbols() {
       var defines_string =
-          PlayerSettings.GetScriptingDefineSymbolsForGroup(targetGroup : EditorUserBuildSettings.selectedBuildTargetGroup);
+          PlayerSettings.GetScriptingDefineSymbolsForGroup(targetGroup : EditorUserBuildSettings
+                                                               .selectedBuildTargetGroup);
       var all_defines = defines_string.Split(';').ToList();
-      all_defines.AddRange(_Symbols.Except(second : all_defines));
-      PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup : EditorUserBuildSettings.selectedBuildTargetGroup,
-                                                       string.Join(";", all_defines.ToArray()));
+      all_defines.AddRange(collection : _Symbols.Except(second : all_defines));
+      PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup :
+                                                       EditorUserBuildSettings.selectedBuildTargetGroup,
+                                                       defines : string.Join(";",
+                                                                             value : all_defines.ToArray()));
     }
 
     /// <summary>
@@ -111,27 +114,34 @@ namespace droid.Editor.Utilities {
     /// <param name="symbols"></param>
     public static void AddDefineSymbols(string[] symbols) {
       var defines_string =
-          PlayerSettings.GetScriptingDefineSymbolsForGroup(targetGroup : EditorUserBuildSettings.selectedBuildTargetGroup);
+          PlayerSettings.GetScriptingDefineSymbolsForGroup(targetGroup : EditorUserBuildSettings
+                                                               .selectedBuildTargetGroup);
       var all_defines = defines_string.Split(';').ToList();
-      all_defines.AddRange(symbols.Except(second : all_defines));
+      all_defines.AddRange(collection : symbols.Except(second : all_defines));
 
-      PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup : EditorUserBuildSettings.selectedBuildTargetGroup,
-                                                       string.Join(";", all_defines.ToArray()));
+      PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup :
+                                                       EditorUserBuildSettings.selectedBuildTargetGroup,
+                                                       defines : string.Join(";",
+                                                                             value : all_defines.ToArray()));
     }
 
     /// <summary>
     /// </summary>
     public static void RemoveDefineSymbols(string[] symbols) {
       var defines_string =
-          PlayerSettings.GetScriptingDefineSymbolsForGroup(targetGroup : EditorUserBuildSettings.selectedBuildTargetGroup);
+          PlayerSettings.GetScriptingDefineSymbolsForGroup(targetGroup : EditorUserBuildSettings
+                                                               .selectedBuildTargetGroup);
       var all_defines = defines_string.Split(';').ToList();
       foreach (var b in symbols) {
         var res = all_defines.RemoveAll(c => c == b);
-        Debug.LogWarning($"Removed define symbols {symbols.Aggregate((aa, bb) => aa + "," + bb)} : number of entries removed {res}");
+        Debug.LogWarning(message :
+                         $"Removed define symbols {symbols.Aggregate((aa, bb) => aa + "," + bb)} : number of entries removed {res}");
       }
 
-      PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup : EditorUserBuildSettings.selectedBuildTargetGroup,
-                                                       string.Join(";", all_defines.ToArray()));
+      PlayerSettings.SetScriptingDefineSymbolsForGroup(targetGroup :
+                                                       EditorUserBuildSettings.selectedBuildTargetGroup,
+                                                       defines : string.Join(";",
+                                                                             value : all_defines.ToArray()));
     }
   }
 }

@@ -11,9 +11,9 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
   /// <summary>
   ///
   /// </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
-                    + "NativeColorArrayCamera"
-                    + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : SensorComponentMenuPath._ComponentMenuPath
+                               + "NativeColorArrayCamera"
+                               + SensorComponentMenuPath._Postfix)]
   public class NativeColorFloatArrayCameraSensor : Sensor,
                                                    IHasFloatArray {
     [Header("Specific", order = 102)]
@@ -100,12 +100,12 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
         if (this._texture
             && this._camera.targetTexture.width == this._texture.width
             && this._camera.targetTexture.height == this._texture.height) {
-          this._texture.ReadPixels(new Rect(0,
-                                            0,
-                                            width : this._texture.width,
-                                            height : this._texture.height),
-                                   0,
-                                   0);
+          this._texture.ReadPixels(source : new Rect(0,
+                                                     0,
+                                                     width : this._texture.width,
+                                                     height : this._texture.height),
+                                   destX : 0,
+                                   destY : 0);
           //this._texture.Apply();
         } else {
           #if NEODROID_DEBUG
@@ -151,27 +151,27 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
 
           #if NEODROID_DEBUG
           if (this.Debugging) {
-            max[0] = Mathf.Max(b[0], max[0]);
-            min[0] = Mathf.Min(b[0], min[0]);
-            max[1] = Mathf.Max(b[1], max[1]);
-            min[1] = Mathf.Min(b[1], min[1]);
-            max[2] = Mathf.Max(b[2], max[2]);
-            min[2] = Mathf.Min(b[2], min[2]);
-            max[3] = Mathf.Max(b[3], max[3]);
-            min[3] = Mathf.Min(b[3], min[3]);
+            max[0] = Mathf.Max(a : b[0], b : max[0]);
+            min[0] = Mathf.Min(a : b[0], b : min[0]);
+            max[1] = Mathf.Max(a : b[1], b : max[1]);
+            min[1] = Mathf.Min(a : b[1], b : min[1]);
+            max[2] = Mathf.Max(a : b[2], b : max[2]);
+            min[2] = Mathf.Min(a : b[2], b : min[2]);
+            max[3] = Mathf.Max(a : b[3], b : max[3]);
+            min[3] = Mathf.Min(a : b[3], b : min[3]);
           }
           #endif
         }
 
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"len(a):{a.Length}, min:{min}, max:{max}");
+          Debug.Log(message : $"len(a):{a.Length}, min:{min}, max:{max}");
         }
         #endif
 
         RenderTexture.active = current_render_texture;
       } else {
-        Debug.LogWarning($"No camera found on {this}");
+        Debug.LogWarning(message : $"No camera found on {this}");
       }
     }
 
@@ -204,8 +204,8 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
     /// <returns></returns>
     public override string ToString() {
       var rep = $"Float Array (Length: {this.ObservationArray.Length}), "
-                + $"Sample [{Mathf.Clamp01(this.ObservationArray[0])}.."
-                + $"{Mathf.Clamp01(this.ObservationArray[this.ObservationArray.Length - 1])}]";
+                + $"Sample [{Mathf.Clamp01(value : this.ObservationArray[0])}.."
+                + $"{Mathf.Clamp01(value : this.ObservationArray[this.ObservationArray.Length - 1])}]";
 
       return rep;
     }

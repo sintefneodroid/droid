@@ -19,7 +19,8 @@ namespace droid.Runtime.Utilities {
         return obj;
       }
 
-      throw new ArgumentException($"Found no UnityEngine.Object assignables from type {typeof(T).Name}");
+      throw new ArgumentException(message :
+                                  $"Found no UnityEngine.Object assignables from type {typeof(T).Name}");
     }
 
     /// <summary>
@@ -111,7 +112,7 @@ namespace droid.Runtime.Utilities {
 
         var all_game_objects = s.GetRootGameObjects();
         foreach (var go in all_game_objects) {
-          results.AddRange(go.GetComponentsInChildren<T>(true));
+          results.AddRange(collection : go.GetComponentsInChildren<T>(true));
         }
       }
 

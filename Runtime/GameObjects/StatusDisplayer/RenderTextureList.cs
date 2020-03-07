@@ -27,10 +27,10 @@ namespace droid.Runtime.GameObjects.StatusDisplayer {
     void Start() {
       // 1. Get the data to be displayed
       this._camera_observations = new ArrayList {
-                                                    new CameraObservation(this.AnimalImages[0], "A"),
-                                                    new CameraObservation(this.AnimalImages[1], "B"),
-                                                    new CameraObservation(this.AnimalImages[2], "C"),
-                                                    new CameraObservation(this.AnimalImages[3], "D")
+                                                    new CameraObservation(icon : this.AnimalImages[0], "A"),
+                                                    new CameraObservation(icon : this.AnimalImages[1], "B"),
+                                                    new CameraObservation(icon : this.AnimalImages[2], "C"),
+                                                    new CameraObservation(icon : this.AnimalImages[3], "D")
                                                 };
 
       if (this.ListItemPrefab) {

@@ -43,19 +43,19 @@ namespace droid.Runtime.Utilities.Drawing {
 
           GL.Begin(mode : GL.LINES);
           this._line_mat.SetPass(0);
-          GL.Color(new Color(r : this._line_mat.color.r,
-                             g : this._line_mat.color.g,
-                             b : this._line_mat.color.b,
-                             a : this._line_mat.color.a));
+          GL.Color(c : new Color(r : this._line_mat.color.r,
+                                 g : this._line_mat.color.g,
+                                 b : this._line_mat.color.b,
+                                 a : this._line_mat.color.a));
           GL.Vertex3(x : main_point_pos.x, y : main_point_pos.y, z : main_point_pos.z);
           GL.Vertex3(x : point_pos.x, y : point_pos.y, z : point_pos.z);
           //
-          GL.Vertex3(point_pos.x - this._offset, y : point_pos.y, z : point_pos.z);
-          GL.Vertex3(x : point_pos.x, point_pos.y - this._offset, z : point_pos.z);
-          GL.Vertex3(x : point_pos.x, y : point_pos.y, point_pos.z - this._offset);
-          GL.Vertex3(point_pos.x + this._offset, y : point_pos.y, z : point_pos.z);
-          GL.Vertex3(x : point_pos.x, point_pos.y + this._offset, z : point_pos.z);
-          GL.Vertex3(x : point_pos.x, y : point_pos.y, point_pos.z + this._offset);
+          GL.Vertex3(x : point_pos.x - this._offset, y : point_pos.y, z : point_pos.z);
+          GL.Vertex3(x : point_pos.x, y : point_pos.y - this._offset, z : point_pos.z);
+          GL.Vertex3(x : point_pos.x, y : point_pos.y, z : point_pos.z - this._offset);
+          GL.Vertex3(x : point_pos.x + this._offset, y : point_pos.y, z : point_pos.z);
+          GL.Vertex3(x : point_pos.x, y : point_pos.y + this._offset, z : point_pos.z);
+          GL.Vertex3(x : point_pos.x, y : point_pos.y, z : point_pos.z + this._offset);
           //
           GL.End();
         }
@@ -66,7 +66,8 @@ namespace droid.Runtime.Utilities.Drawing {
     void OnPostRender() {
       this._vec3_points = this._points.Select(v => v.transform.position).ToArray();
       var s = this._vec3_points
-                  .Select(v => new Tuple<Vector3, Vector3>(item1 : this._main_point.transform.position, item2 : v)).ToArray();
+                  .Select(v => new Tuple<Vector3, Vector3>(item1 : this._main_point.transform.position,
+                                                           item2 : v)).ToArray();
       this.DrawConnectingLines(vec_pairs : s);
     }
 
@@ -74,7 +75,8 @@ namespace droid.Runtime.Utilities.Drawing {
     void OnDrawGizmos() {
       this._vec3_points = this._points.Select(v => v.transform.position).ToArray();
       var s = this._vec3_points
-                  .Select(v => new Tuple<Vector3, Vector3>(item1 : this._main_point.transform.position, item2 : v)).ToArray();
+                  .Select(v => new Tuple<Vector3, Vector3>(item1 : this._main_point.transform.position,
+                                                           item2 : v)).ToArray();
       this.DrawConnectingLines(vec_pairs : s);
     }
   }

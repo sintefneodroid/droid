@@ -19,35 +19,38 @@ namespace droid.Runtime.Prototyping.Configurables {
     [field : SerializeField]
     public AbstractPrototypingEnvironment ParentEnvironment { get; set; } = null;
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     [field : SerializeField]
     public RandomSamplingPhaseEnum RandomSamplingPhaseEnum { get; set; } = RandomSamplingPhaseEnum.Disabled_;
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <returns></returns>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <returns></returns>
     public abstract Configuration[] SampleConfigurations();
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public abstract void UpdateCurrentConfiguration();
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="configuration"></param>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <param name="configuration"></param>
     public abstract void ApplyConfiguration(IConfigurableConfiguration configuration);
 
+    /// <inheritdoc />
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void PrototypingReset() {
       if (this.RandomSamplingPhaseEnum == RandomSamplingPhaseEnum.On_reset_ && Application.isPlaying) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Random reconfiguring {this} Reset");
+          Debug.Log(message : $"Random reconfiguring {this} Reset");
         }
         #endif
         this.Randomise();
@@ -70,14 +73,15 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment, this);
+      this.ParentEnvironment =
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment, c : this);
     }
 
     void PostTick() {
       if (this.RandomSamplingPhaseEnum == RandomSamplingPhaseEnum.On_post_tick_ && Application.isPlaying) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Random reconfiguring {this} Tick");
+          Debug.Log(message : $"Random reconfiguring {this} Tick");
         }
         #endif
         this.Randomise();
@@ -88,7 +92,7 @@ namespace droid.Runtime.Prototyping.Configurables {
       if (this.RandomSamplingPhaseEnum == RandomSamplingPhaseEnum.On_pre_tick_ && Application.isPlaying) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Random reconfiguring {this} Tick");
+          Debug.Log(message : $"Random reconfiguring {this} Tick");
         }
         #endif
         this.Randomise();
@@ -102,7 +106,7 @@ namespace droid.Runtime.Prototyping.Configurables {
       if (this.RandomSamplingPhaseEnum == RandomSamplingPhaseEnum.On_tick_ && Application.isPlaying) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Random reconfiguring {this} Tick");
+          Debug.Log(message : $"Random reconfiguring {this} Tick");
         }
         #endif
         this.Randomise();
@@ -113,7 +117,7 @@ namespace droid.Runtime.Prototyping.Configurables {
       if (this.RandomSamplingPhaseEnum == RandomSamplingPhaseEnum.On_update_ && Application.isPlaying) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Random reconfiguring {this} Update");
+          Debug.Log(message : $"Random reconfiguring {this} Update");
         }
         #endif
         this.Randomise();
@@ -134,7 +138,7 @@ namespace droid.Runtime.Prototyping.Configurables {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void UnRegisterComponent() { this.ParentEnvironment?.UnRegister(this); }
+    protected override void UnRegisterComponent() { this.ParentEnvironment?.UnRegister(configurable : this); }
 
     #region Fields
 

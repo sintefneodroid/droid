@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using droid.Runtime.GameObjects.BoundingBoxes;
 using droid.Runtime.GameObjects.BoundingBoxes.Experimental;
 using droid.Runtime.Interfaces;
 using UnityEngine;
@@ -7,20 +8,15 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.BoundingBox {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
-                    + "Experimental/ScreenSpaceBoundingBox"
-                    + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : SensorComponentMenuPath._ComponentMenuPath
+                               + "Experimental/ScreenSpaceBoundingBox"
+                               + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   //[ExecuteAlways]
-  [RequireComponent(typeof(GameObjects.BoundingBoxes.BoundingBox))]
+  [RequireComponent(requiredComponent : typeof(NeodroidBoundingBox))]
   public class ScreenSpaceBoundingBoxSensor : Sensor,
                                               IHasString {
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "BoundingBox"; } }
-
-    GameObjects.BoundingBoxes.BoundingBox _bounding_box = null;
+    NeodroidBoundingBox _neodroid_bounding_box = null;
     [SerializeField] Camera _camera = null;
     [SerializeField] Rect _out_rect = new Rect();
 
@@ -28,10 +24,14 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.BoundingBox {
     /// <summary>
     /// </summary>
     public override void PreSetup() {
-      this._bounding_box = this.GetComponent<GameObjects.BoundingBoxes.BoundingBox>();
+      this._neodroid_bounding_box = this.GetComponent<GameObjects.BoundingBoxes.NeodroidBoundingBox>();
     }
 
     [SerializeField] bool NormaliseObservation = true;
+
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
     public override IEnumerable<float> FloatEnumerable { get { return new List<float>(); } }
 
     /// <inheritdoc />
@@ -39,7 +39,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.BoundingBox {
     /// </summary>
     public override void UpdateObservation() {
       if (this._camera) {
-        var rect = this._bounding_box.ScreenSpaceBoundingRect(a_camera : this._camera);
+        var rect = this._neodroid_bounding_box.ScreenSpaceBoundingRect(a_camera : this._camera);
 
         if (this.NormaliseObservation) {
           float w;
@@ -72,6 +72,10 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.BoundingBox {
     /// </summary>
     public string ObservationValue { get; set; }
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    /// <returns></returns>
     public override string ToString() { return this.ObservationValue; }
   }
 }

@@ -29,7 +29,7 @@ namespace droid.Runtime.GameObjects {
           return this.CustomName.Trim();
         }
 
-        return this.name + this.PrototypingTypeName;
+        return $"{this.name}{this.PrototypingTypeName}{this.GetInstanceID()}";
       }
     }
 
@@ -39,8 +39,7 @@ namespace droid.Runtime.GameObjects {
     [field : SerializeField]
     public Boolean DisablesChildren { get; set; } = false;
 
-    [field : SerializeField]
-    public Boolean UnregisterAtDisable { get; set; } = false;
+    [field : SerializeField] public Boolean UnregisterAtDisable { get; set; } = false;
 
     /// <summary>
     /// </summary>
@@ -63,7 +62,8 @@ namespace droid.Runtime.GameObjects {
         }
       } catch (ArgumentNullException e) {
         Debug.LogWarning(message : e);
-        Debug.Log($"You must override RegisterComponent and UnRegisterComponent for component {this.GetType()} for gameobject {this.Identifier} in order to Re-register component on every 'OnValidate' while in edit-mode");
+        Debug.Log(message :
+                  $"You must override RegisterComponent and UnRegisterComponent for component {this.GetType()} for gameobject {this.Identifier} in order to Re-register component on every 'OnValidate' while in edit-mode");
       }
     }
 
@@ -150,7 +150,7 @@ namespace droid.Runtime.GameObjects {
     /// <summary>
     ///
     /// </summary>
-    public virtual void RemotePostSetup() {  }
+    public virtual void RemotePostSetup() { }
 
     /// <summary>
     /// </summary>
@@ -163,7 +163,7 @@ namespace droid.Runtime.GameObjects {
     /// <summary>
     ///
     /// </summary>
-    public virtual void PrototypingReset() {  }
+    public virtual void PrototypingReset() { }
 
     #if UNITY_EDITOR
     /// <summary>

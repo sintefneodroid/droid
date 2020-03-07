@@ -12,8 +12,8 @@ namespace droid.Runtime.Structs {
   ///   Contains everything relevant to configuring simulation environments engine specific settings
   /// </summary>
   [CreateAssetMenu(fileName = "SimulatorConfiguration",
-      menuName = ScriptableObjectMenuPath._ScriptableObjectMenuPath + "SimulatorConfiguration",
-      order = 1)]
+                   menuName = ScriptableObjectMenuPath._ScriptableObjectMenuPath + "SimulatorConfiguration",
+                   order = 1)]
   [Serializable]
   public class SimulatorConfiguration : ScriptableObject,
                                         ISimulatorConfiguration {
@@ -113,6 +113,8 @@ namespace droid.Runtime.Structs {
     [SerializeField]
     bool _update_fixed_time_scale = false;
 
+    [SerializeField] Boolean _manual_render = false;
+
     /// <summary>
     /// </summary>
     public void SetToDefault() {
@@ -173,7 +175,7 @@ namespace droid.Runtime.Structs {
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public Boolean ResizableWindow {
+    public bool ResizableWindow {
       get { return this._resizable_window; }
       set { this._resizable_window = value; }
     }
@@ -181,13 +183,19 @@ namespace droid.Runtime.Structs {
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public ColorSpace UnityColorSpace { get { return this._unityColor_space; } set { this._unityColor_space = value; } }
+    public ColorSpace UnityColorSpace {
+      get { return this._unityColor_space; }
+      set { this._unityColor_space = value; }
+    }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public int VSyncCount { get { return this._v_sync_count = 0; } set { this._v_sync_count = value; } }
 
+    public bool ManualRender { get { return this._manual_render; } set { this._manual_render = value; } }
+
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public int Width {
@@ -199,6 +207,7 @@ namespace droid.Runtime.Structs {
       }
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public int Height {
@@ -210,10 +219,12 @@ namespace droid.Runtime.Structs {
       }
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public bool FullScreen { get { return this._full_screen; } set { this._full_screen = value; } }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public int NumOfEnvironments {
@@ -221,6 +232,7 @@ namespace droid.Runtime.Structs {
       set { this._num_of_environments = value; }
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public int TargetFrameRate {
@@ -232,6 +244,7 @@ namespace droid.Runtime.Structs {
       }
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public int QualityLevel {
@@ -243,6 +256,7 @@ namespace droid.Runtime.Structs {
       }
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public float TimeScale {
@@ -261,6 +275,7 @@ namespace droid.Runtime.Structs {
       set { this._max_reply_interval = value; }
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public FrameFinishesEnum FrameFinishes {
@@ -268,6 +283,7 @@ namespace droid.Runtime.Structs {
       set { this._frame_finishes = value; }
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public ExecutionPhaseEnum StepExecutionPhase {
@@ -275,6 +291,7 @@ namespace droid.Runtime.Structs {
       set { this._step_execution_phase = value; }
     }
 
+    /// <inheritdoc />
     /// <summary>
     ///   WARNING When _update_fixed_time_scale is true, MAJOR slow downs due to PHYSX updates on change.
     /// </summary>
@@ -283,33 +300,33 @@ namespace droid.Runtime.Structs {
       set { this._update_fixed_time_scale = value; }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    public Boolean SerialiseAggregatedFloatArray {
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    public bool SerialiseAggregatedFloatArray {
       get { return this._always_serialise_aggregated_float_array; }
       set { this._always_serialise_aggregated_float_array = value; }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public bool SerialiseUnobservables {
       get { return this._always_serialise_unobservables; }
       set { this._always_serialise_unobservables = value; }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public bool SerialiseIndividualObservables {
       get { return this._always_serialise_individual_observables; }
       set { this._always_serialise_individual_observables = value; }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public bool ReplayReactionInSkips {
       get { return this._replay_reaction_in_skips; }
       set { this._replay_reaction_in_skips = value; }
@@ -320,6 +337,7 @@ namespace droid.Runtime.Structs {
     /// </summary>
     public Int32 Port { get { return this._port; } set { this._port = value; } }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public String IpAddress { get { return this._ip_address; } set { this._ip_address = value; } }
@@ -334,10 +352,10 @@ namespace droid.Runtime.Structs {
 
     #endregion
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <returns></returns>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <returns></returns>
     public override String ToString() {
       var e = "";
 

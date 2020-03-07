@@ -12,9 +12,9 @@ namespace droid.Runtime.Prototyping.Sensors.Visual {
   /// <inheritdoc cref="Sensor" />
   ///  <summary>
   ///  </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
-                    + "ByteArrayCamera"
-                    + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : SensorComponentMenuPath._ComponentMenuPath
+                               + "ByteArrayCamera"
+                               + SensorComponentMenuPath._Postfix)]
   public class ByteArrayCameraSensor : Sensor,
                                        IHasByteArray {
     const TextureCreationFlags _flags = TextureCreationFlags.None;
@@ -31,9 +31,9 @@ namespace droid.Runtime.Prototyping.Sensors.Visual {
     [SerializeField] Boolean linear_space;
     [SerializeField] Camera disable_camera_when_unused;
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override void PreSetup() {
       if (this._manager == null) {
         this._manager = FindObjectOfType<AbstractNeodroidManager>();
@@ -56,16 +56,19 @@ namespace droid.Runtime.Prototyping.Sensors.Visual {
       var target_texture = this._camera.targetTexture;
       if (!target_texture) {
         #if NEODROID_DEBUG
-        Debug.LogWarning($"RenderTexture target not available on {this.Identifier} not available, allocating a default!");
+        Debug.LogWarning(message :
+                         $"RenderTexture target not available on {this.Identifier} not available, allocating a default!");
         #endif
         this._rt = new RenderTexture(width : NeodroidConstants._Default_Width,
                                      height : NeodroidConstants._Default_Height,
                                      0,
                                      format : RenderTextureFormat.ARGBFloat) {
-                                                                        filterMode = FilterMode.Point,
-                                                                        name = $"rt_{this.Identifier}",
-                                                                        enableRandomWrite = true
-                                                                    };
+                                                                                 filterMode =
+                                                                                     FilterMode.Point,
+                                                                                 name =
+                                                                                     $"rt_{this.Identifier}",
+                                                                                 enableRandomWrite = true
+                                                                             };
         this._rt.Create();
         this._camera.targetTexture = this._rt;
         this._texture = new Texture2D(width : NeodroidConstants._Default_Width,
@@ -122,33 +125,28 @@ namespace droid.Runtime.Prototyping.Sensors.Visual {
         var texture = this._camera.targetTexture;
         RenderTexture.active = texture;
 
-        this._texture.ReadPixels(new Rect(0,
-                                          0,
-                                          width : this._texture.width,
-                                          height : this._texture.height),
-                                 0,
-                                 0,
+        this._texture.ReadPixels(source : new Rect(0,
+                                                   0,
+                                                   width : this._texture.width,
+                                                   height : this._texture.height),
+                                 destX : 0,
+                                 destY : 0,
                                  recalculateMipMaps : false);
         this.Bytes = this._texture.GetRawTextureData();
         RenderTexture.active = current_render_texture;
       } else {
-        Debug.LogWarning($"No camera found on {this}");
+        Debug.LogWarning(message : $"No camera found on {this}");
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    public override String PrototypingTypeName { get { return ""; } }
-
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override IEnumerable<float> FloatEnumerable { get { return new float[] { }; } }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override void UpdateObservation() {
       this._grab = true;
       if (this._manager?.SimulatorConfiguration?.SimulationType != SimulationTypeEnum.Frame_dependent_) {
@@ -160,10 +158,10 @@ namespace droid.Runtime.Prototyping.Sensors.Visual {
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <returns></returns>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <returns></returns>
     public override string ToString() {
       if (this.Bytes != null) {
         var rep = $"Byte Array (Length: {this.Bytes.Length}), ";
@@ -177,9 +175,9 @@ namespace droid.Runtime.Prototyping.Sensors.Visual {
       return "No data";
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public Byte[] Bytes {
       get { return this._bytes; }
       private set {
@@ -189,9 +187,9 @@ namespace droid.Runtime.Prototyping.Sensors.Visual {
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public Int32[] Shape {
       get {
         int channels;
@@ -213,9 +211,9 @@ namespace droid.Runtime.Prototyping.Sensors.Visual {
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public String ArrayEncoding {
       get {
         string s;

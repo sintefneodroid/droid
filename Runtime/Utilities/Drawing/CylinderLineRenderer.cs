@@ -36,7 +36,8 @@ namespace droid.Runtime.Utilities.Drawing {
         // Offset the cylinder so that the pivot/origin is at the bottom in relation to the outer ring game_object.
         ring_offset_cylinder_mesh_object.transform.localPosition = new Vector3(0f, 1f, 0f);
         // Set the radius
-        ring_offset_cylinder_mesh_object.transform.localScale = new Vector3(x : this._Radius, 1f, z : this._Radius);
+        ring_offset_cylinder_mesh_object.transform.localScale =
+            new Vector3(x : this._Radius, 1f, z : this._Radius);
 
         // Create the the Mesh and renderer to show the connecting ring
         var ring_mesh = ring_offset_cylinder_mesh_object.AddComponent<MeshFilter>();
@@ -55,7 +56,9 @@ namespace droid.Runtime.Utilities.Drawing {
 
         // Match the scale to the distance
         var cylinder_distance =
-            0.5f * Vector3.Distance(a : this._Points[i].transform.position, b : this._MainPoint.transform.position);
+            0.5f
+            * Vector3.Distance(a : this._Points[i].transform.position,
+                               b : this._MainPoint.transform.position);
         this._ring_game_objects[i].transform.localScale =
             new Vector3(x : this._ring_game_objects[i].transform.localScale.x,
                         y : cylinder_distance,
@@ -106,7 +109,8 @@ namespace droid.Runtime.Utilities.Drawing {
         // Offset the cube so that the pivot/origin is at the bottom in relation to the outer ring     game_object.
         ring_offset_cube_mesh_object.transform.localPosition = new Vector3(0f, 1f, 0f);
         // Set the radius
-        ring_offset_cube_mesh_object.transform.localScale = new Vector3(x : this._Radius, 1f, z : this._Radius);
+        ring_offset_cube_mesh_object.transform.localScale =
+            new Vector3(x : this._Radius, 1f, z : this._Radius);
 
         // Create the the Mesh and renderer to show the connecting ring
         var ring_mesh = ring_offset_cube_mesh_object.AddComponent<MeshFilter>();
@@ -129,8 +133,8 @@ namespace droid.Runtime.Utilities.Drawing {
         this._ring_game_objects[i].transform.position += delta;
 
         // Match the scale to the distance
-        var cube_distance =
-            Vector3.Distance(a : this._Points[i].transform.position, b : this._MainPoint.transform.position);
+        var cube_distance = Vector3.Distance(a : this._Points[i].transform.position,
+                                             b : this._MainPoint.transform.position);
         this._ring_game_objects[i].transform.localScale =
             new Vector3(x : this._ring_game_objects[i].transform.localScale.x,
                         y : cube_distance,

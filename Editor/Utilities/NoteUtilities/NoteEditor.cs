@@ -7,7 +7,7 @@ namespace droid.Editor.Utilities.NoteUtilities {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [CustomEditor(typeof(Note))]
+  [CustomEditor(inspectedType : typeof(Note))]
   public class NoteEditor : UnityEditor.Editor {
     NoteType _note_type = NoteType.Box_info_;
 

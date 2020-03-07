@@ -48,10 +48,10 @@ namespace droid.Editor {
 
     public static void ApplyDebug(bool value) {
       if (value) {
-        Debug.Log($"Neodroid Debugging enabled");
+        Debug.Log(message : $"Neodroid Debugging enabled");
         DefineSymbolsFunctionality.AddDebugDefineSymbol();
       } else {
-        Debug.Log($"Neodroid Debugging disabled");
+        Debug.Log(message : $"Neodroid Debugging disabled");
         DefineSymbolsFunctionality.RemoveDebugDefineSymbols();
       }
     }
@@ -70,10 +70,10 @@ namespace droid.Editor {
     public static void ApplyGithubExt(bool value) {
       if (value) {
         DefineSymbolsFunctionality.AddGithubDefineSymbols();
-        Debug.Log($"Neodroid GitHub Extension enabled");
+        Debug.Log(message : $"Neodroid GitHub Extension enabled");
       } else {
         DefineSymbolsFunctionality.RemoveGithubDefineSymbols();
-        Debug.Log($"Neodroid GitHub Extension disabled");
+        Debug.Log(message : $"Neodroid GitHub Extension disabled");
       }
     }
 
@@ -90,10 +90,10 @@ namespace droid.Editor {
     public static void ApplyIsPackage(bool value) {
       if (value) {
         DefineSymbolsFunctionality.AddIsPackageDefineSymbols();
-        Debug.Log($"Neodroid is set as an imported asset");
+        Debug.Log(message : $"Neodroid is set as an imported asset");
       } else {
         DefineSymbolsFunctionality.RemoveIsPackageDefineSymbols();
-        Debug.Log($"Neodroid is set as an package asset");
+        Debug.Log(message : $"Neodroid is set as an package asset");
       }
     }
 
@@ -102,7 +102,7 @@ namespace droid.Editor {
       set {
         if (value != this.NeodroidImportLocation || _force) {
           var new_path = PathTrim(value : value);
-          Debug.Log($"Setting Neodroid import location to: {new_path}");
+          Debug.Log(message : $"Setting Neodroid import location to: {new_path}");
 
           this.NeodroidImportLocation = new_path;
         }
@@ -119,7 +119,7 @@ namespace droid.Editor {
       set {
         if (value != this.NeodroidPreviewsLocation || _force) {
           var new_path = PathTrim(value : value);
-          Debug.Log($"Setting Neodroid ScenePreview location to: {new_path}");
+          Debug.Log(message : $"Setting Neodroid ScenePreview location to: {new_path}");
 
           this.NeodroidPreviewsLocation = new_path;
         }
@@ -136,7 +136,7 @@ namespace droid.Editor {
       set {
         if (value != this.NeodroidDescriptionLocation || _force) {
           var new_path = PathTrim(value : value);
-          Debug.Log($"Setting Neodroid SceneDescription location to: {new_path}");
+          Debug.Log(message : $"Setting Neodroid SceneDescription location to: {new_path}");
 
           this.NeodroidDescriptionLocation = new_path;
         }
@@ -168,7 +168,8 @@ namespace droid.Editor {
     internal static NeodroidSettings Current {
       get {
         var settings =
-            AssetDatabase.LoadAssetAtPath<NeodroidSettings>(assetPath : NeodroidEditorConstants._NeodroidSettingsPath);
+            AssetDatabase.LoadAssetAtPath<NeodroidSettings>(assetPath : NeodroidEditorConstants
+                                                                ._NeodroidSettingsPath);
         if (settings == null) {
           settings = Defaults();
 
@@ -207,6 +208,7 @@ namespace droid.Editor {
     }
   }
 
+  /// <inheritdoc />
   /// <summary>
   /// SettingsProvider for Neodroid
   /// </summary>
@@ -217,12 +219,14 @@ namespace droid.Editor {
     ///
     /// </summary>
     class Styles {
-      public static GUIContent _EnableNeodroidDebug = new GUIContent(text : NeodroidEditorConstants._Debug_Pref_Key);
+      public static GUIContent _EnableNeodroidDebug =
+          new GUIContent(text : NeodroidEditorConstants._Debug_Pref_Key);
 
       public static GUIContent _EnableGithubExtension =
           new GUIContent(text : NeodroidEditorConstants._Github_Extension_Pref_Key);
 
-      public static GUIContent _IsPackage = new GUIContent(text : NeodroidEditorConstants._IsPackage_Pref_Key);
+      public static GUIContent
+          _IsPackage = new GUIContent(text : NeodroidEditorConstants._IsPackage_Pref_Key);
 
       public static GUIContent _ImportLocation =
           new GUIContent(text : NeodroidEditorConstants._Import_Location_Pref_Key);
@@ -255,42 +259,56 @@ namespace droid.Editor {
     }
 
     public override void OnGUI(string search_context) {
-      EditorGUILayout.HelpBox($"Version {NeodroidRuntimeInfo._Version}", type : MessageType.Info);
+      EditorGUILayout.HelpBox(message : $"Version {NeodroidRuntimeInfo._Version}", type : MessageType.Info);
 
-      var is_package = this._neodroid_settings.FindProperty(propertyPath : NeodroidEditorConstants._IsPackage_Pref_Key);
+      var is_package =
+          this._neodroid_settings.FindProperty(propertyPath : NeodroidEditorConstants._IsPackage_Pref_Key);
       EditorGUILayout.PropertyField(property : is_package, label : Styles._IsPackage);
       if (!is_package.boolValue) {
         EditorGUILayout.HelpBox("Enter import path of Neodroid", type : MessageType.Info);
-        EditorGUILayout.PropertyField(this._neodroid_settings.FindProperty(propertyPath : NeodroidEditorConstants
+        EditorGUILayout.PropertyField(property :
+                                      this._neodroid_settings.FindProperty(propertyPath :
+                                                                           NeodroidEditorConstants
                                                                                ._Import_Location_Pref_Key),
                                       label : Styles._ImportLocation);
       }
 
       EditorGUILayout.HelpBox("Functionality", type : MessageType.Info);
 
-      EditorGUILayout.PropertyField(this._neodroid_settings.FindProperty(propertyPath : NeodroidEditorConstants
+      EditorGUILayout.PropertyField(property :
+                                    this._neodroid_settings.FindProperty(propertyPath :
+                                                                         NeodroidEditorConstants
                                                                              ._Debug_Pref_Key),
                                     label : Styles._EnableNeodroidDebug);
-      EditorGUILayout.PropertyField(this._neodroid_settings.FindProperty(propertyPath : NeodroidEditorConstants
+      EditorGUILayout.PropertyField(property :
+                                    this._neodroid_settings.FindProperty(propertyPath :
+                                                                         NeodroidEditorConstants
                                                                              ._Github_Extension_Pref_Key),
                                     label : Styles._EnableGithubExtension);
 
       var generate_scene_preview =
-          this._neodroid_settings.FindProperty(propertyPath : NeodroidEditorConstants._Generate_Previews_Pref_Key);
+          this._neodroid_settings.FindProperty(propertyPath : NeodroidEditorConstants
+                                                   ._Generate_Previews_Pref_Key);
       EditorGUILayout.PropertyField(property : generate_scene_preview, label : Styles._GenerateScenePreview);
       if (generate_scene_preview.boolValue) {
         EditorGUILayout.HelpBox("Enter path for scene preview storage", type : MessageType.Info);
-        EditorGUILayout.PropertyField(this._neodroid_settings.FindProperty(propertyPath : NeodroidEditorConstants
+        EditorGUILayout.PropertyField(property :
+                                      this._neodroid_settings.FindProperty(propertyPath :
+                                                                           NeodroidEditorConstants
                                                                                ._Generate_Previews_Loc_Pref_Key),
                                       label : Styles._ScenePreviewLocation);
       }
 
       var generate_scene_descriptions =
-          this._neodroid_settings.FindProperty(propertyPath : NeodroidEditorConstants._Generate_Descriptions_Pref_Key);
-      EditorGUILayout.PropertyField(property : generate_scene_descriptions, label : Styles._GenerateSceneDescription);
+          this._neodroid_settings.FindProperty(propertyPath : NeodroidEditorConstants
+                                                   ._Generate_Descriptions_Pref_Key);
+      EditorGUILayout.PropertyField(property : generate_scene_descriptions,
+                                    label : Styles._GenerateSceneDescription);
       if (generate_scene_descriptions.boolValue) {
         EditorGUILayout.HelpBox("Enter path for scene description storage", type : MessageType.Info);
-        EditorGUILayout.PropertyField(this._neodroid_settings.FindProperty(propertyPath : NeodroidEditorConstants
+        EditorGUILayout.PropertyField(property :
+                                      this._neodroid_settings.FindProperty(propertyPath :
+                                                                           NeodroidEditorConstants
                                                                                ._Generate_Descriptions_Loc_Pref_Key),
                                       label : Styles._SceneDescriptionLocation);
       }
@@ -310,10 +328,10 @@ namespace droid.Editor {
         var provider =
             new NeodroidSettingsProvider(path : NeodroidEditorConstants._Neodroid_Project_Settings_Menu_Path,
                                          scope : SettingsScope.Project) {
-                                                                    keywords =
-                                                                        GetSearchKeywordsFromGUIContentProperties
-                                                                            <Styles>()
-                                                                };
+                                                                            keywords =
+                                                                                GetSearchKeywordsFromGUIContentProperties
+                                                                                    <Styles>()
+                                                                        };
 
         //provider.keywords = GetSearchKeywordsFromPath(NeodroidEditorConstants._Neodroid_Project_Settings_Menu_Path);
 

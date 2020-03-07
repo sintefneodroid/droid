@@ -8,7 +8,9 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath + "Scale" + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : SensorComponentMenuPath._ComponentMenuPath
+                               + "Scale"
+                               + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   [Serializable]
   public class ScaleSensor : Sensor,
@@ -21,15 +23,9 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
 
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName { get { return "Scale"; } }
-
-    /// <summary>
-    /// </summary>
-    public Vector3 ObservationValue {//TODO: IMPLEMENT LOCAL SPACE
+    public Vector3 ObservationValue { //TODO: IMPLEMENT LOCAL SPACE
       get { return this._position; }
-      set {
-        this._position = this._scale_space.Project(v : value);
-      }
+      set { this._position = this._scale_space.Project(v : value); }
     }
 
     /// <summary>

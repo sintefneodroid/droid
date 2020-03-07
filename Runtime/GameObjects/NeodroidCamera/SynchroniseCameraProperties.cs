@@ -6,7 +6,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [RequireComponent(typeof(Camera))]
+  [RequireComponent(requiredComponent : typeof(Camera))]
   [ExecuteInEditMode]
   [Serializable]
   public class SynchroniseCameraProperties : MonoBehaviour {
@@ -264,7 +264,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
         if (this._camera) {
           if (this._sync_orthographic_size) {
             var orthographic_size = this.OrtSize;
-            if (Math.Abs(this._old_orthographic_size - orthographic_size)
+            if (Math.Abs(value : this._old_orthographic_size - orthographic_size)
                 > NeodroidConstants._Double_Tolerance) {
               this.OrtSize = orthographic_size;
               for (var index = 0; index < this._cameras.Length; index++) {
@@ -278,7 +278,8 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
 
           if (this._sync_near_clip_plane) {
             var near_clip_plane = this._camera.nearClipPlane;
-            if (Math.Abs(this._old_near_clip_plane - near_clip_plane) > NeodroidConstants._Double_Tolerance) {
+            if (Math.Abs(value : this._old_near_clip_plane - near_clip_plane)
+                > NeodroidConstants._Double_Tolerance) {
               this._old_near_clip_plane = near_clip_plane;
               for (var index = 0; index < this._cameras.Length; index++) {
                 var cam = this._cameras[index];
@@ -291,7 +292,8 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
 
           if (this._sync_far_clip_plane) {
             var far_clip_plane = this._camera.farClipPlane;
-            if (Math.Abs(this._old_far_clip_plane - far_clip_plane) > NeodroidConstants._Double_Tolerance) {
+            if (Math.Abs(value : this._old_far_clip_plane - far_clip_plane)
+                > NeodroidConstants._Double_Tolerance) {
               this._old_far_clip_plane = far_clip_plane;
               for (var index = 0; index < this._cameras.Length; index++) {
                 var cam = this._cameras[index];
@@ -330,7 +332,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
 
           if (this._sync_fov) {
             var fov = this._camera.fieldOfView;
-            if (Math.Abs(this._old_fov - fov) > NeodroidConstants._Double_Tolerance) {
+            if (Math.Abs(value : this._old_fov - fov) > NeodroidConstants._Double_Tolerance) {
               this._old_fov = fov;
               for (var index = 0; index < this._cameras.Length; index++) {
                 var cam = this._cameras[index];
@@ -343,7 +345,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
 
           if (this._sync_focal_length) {
             var foc = this._camera.focalLength;
-            if (Math.Abs(this._old_foc - foc) > NeodroidConstants._Double_Tolerance) {
+            if (Math.Abs(value : this._old_foc - foc) > NeodroidConstants._Double_Tolerance) {
               this._old_foc = foc;
               for (var index = 0; index < this._cameras.Length; index++) {
                 var cam = this._cameras[index];
@@ -407,7 +409,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera {
           }
         } else {
           #if NEODROID_DEBUG
-          Debug.Log($"No Camera component found on {this.name} GameObject");
+          Debug.Log(message : $"No Camera component found on {this.name} GameObject");
           #endif
         }
       } else {

@@ -20,7 +20,6 @@ namespace droid.Runtime.Environments {
     /// </summary>
     protected WaitForFixedUpdate _Wait_For_Fixed_Update = new WaitForFixedUpdate();
 
-
     #if UNITY_EDITOR
     const int _script_execution_order = -20;
     #endif
@@ -29,7 +28,6 @@ namespace droid.Runtime.Environments {
     /// <summary>
     /// </summary>
     public abstract override String PrototypingTypeName { get; }
-
 
     /// <inheritdoc />
     /// <summary>
@@ -47,9 +45,21 @@ namespace droid.Runtime.Environments {
     /// </summary>
     /// <param name="reaction"></param>
     /// <returns></returns>
-    public abstract void React(Reaction reaction);
+    public abstract void Step(Reaction reaction);
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    /// <param name="reaction"></param>
+    /// <returns></returns>
+    public abstract void Reset();
 
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    /// <param name="reaction"></param>
+    /// <returns></returns>
+    public abstract void Configure(Reaction reaction);
 
     /// <inheritdoc />
     /// <summary>
@@ -85,10 +95,11 @@ namespace droid.Runtime.Environments {
 
       #if UNITY_EDITOR
       if (!Application.isPlaying) {
-        var manager_script = MonoScript.FromMonoBehaviour(this);
+        var manager_script = MonoScript.FromMonoBehaviour(behaviour : this);
         if (MonoImporter.GetExecutionOrder(script : manager_script) != _script_execution_order) {
           MonoImporter.SetExecutionOrder(script : manager_script,
-                                         order : _script_execution_order); // Ensures that PreStep is called first, before all other scripts.
+                                         order :
+                                         _script_execution_order); // Ensures that PreStep is called first, before all other scripts.
           Debug.LogWarning("Execution Order changed, you will need to press play again to make everything function correctly!");
           EditorApplication.isPlaying = false;
           //TODO: UnityEngine.Experimental.LowLevel.PlayerLoop.SetPlayerLoop(new UnityEngine.Experimental.LowLevel.PlayerLoopSystem());
@@ -96,9 +107,8 @@ namespace droid.Runtime.Environments {
       }
       #endif
 
-      this.StartCoroutine(this.RemotePostSetupIe());
+      this.StartCoroutine(routine : this.RemotePostSetupIe());
     }
-
 
     /// <summary>
     /// </summary>
@@ -108,21 +118,21 @@ namespace droid.Runtime.Environments {
       this.RemotePostSetup();
     }
 
-
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
       if (this.SimulationManager != null) {
         this.SimulationManager =
-            NeodroidRegistrationUtilities.RegisterComponent((NeodroidManager)this.SimulationManager, this);
+            NeodroidRegistrationUtilities.RegisterComponent(r : (NeodroidManager)this.SimulationManager,
+                                                            c : this);
       }
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void UnRegisterComponent() { this.SimulationManager?.UnRegister(this); }
+    protected override void UnRegisterComponent() { this.SimulationManager?.UnRegister(obj : this); }
 
     /// <summary>
     /// </summary>
@@ -134,7 +144,7 @@ namespace droid.Runtime.Environments {
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public void FrameString(DataPoller recipient) { recipient.PollData($"{this.StepI}"); }
+    public void FrameString(DataPoller recipient) { recipient.PollData(data : $"{this.StepI}"); }
 
     #endregion
 
@@ -189,9 +199,7 @@ namespace droid.Runtime.Environments {
     /// <summary>
     /// </summary>
     [field : SerializeField]
-    protected Boolean Configure { get; set; }
-
-
+    protected Boolean ShouldConfigure { get; set; }
 
     /// <summary>
     /// </summary>

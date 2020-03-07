@@ -10,9 +10,9 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
   /// <inheritdoc cref="Configurable" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
-                    + "TransformConfigurable1Dof"
-                    + ConfigurableComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : ConfigurableComponentMenuPath._ComponentMenuPath
+                               + "TransformConfigurable1Dof"
+                               + ConfigurableComponentMenuPath._Postfix)]
   public class TransformConfigurable1Dof : SpatialConfigurable,
                                            IHasSingle {
     #region Fields
@@ -56,9 +56,10 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       Vector3 pos;
       if (this._coordinate_spaceEnum == CoordinateSpaceEnum.Local_) {
         pos = transform1.localPosition;
-      }else{
+      } else {
         pos = transform1.position;
-        }
+      }
+
       var dir = transform1.forward;
       var rot = transform1.up;
 
@@ -119,17 +120,17 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
             case AxisEnum.X_:
               this.SingleSpace =
                   Space1.FromCenterExtent(extent : this.ParentEnvironment.PlayableArea.Bounds.extents.x,
-                                           decimal_granularity : dec_gran);
+                                          decimal_granularity : dec_gran);
               break;
             case AxisEnum.Y_:
               this.SingleSpace =
                   Space1.FromCenterExtent(extent : this.ParentEnvironment.PlayableArea.Bounds.extents.y,
-                                           decimal_granularity : dec_gran);
+                                          decimal_granularity : dec_gran);
               break;
             case AxisEnum.Z_:
               this.SingleSpace =
                   Space1.FromCenterExtent(extent : this.ParentEnvironment.PlayableArea.Bounds.extents.z,
-                                           decimal_granularity : dec_gran);
+                                          decimal_granularity : dec_gran);
               break;
           }
         }
@@ -147,11 +148,11 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// <param name="simulator_configuration"></param>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
     public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration) {
-      float cv= this.SingleSpace.Reproject(v : simulator_configuration.ConfigurableValue);
+      float cv = this.SingleSpace.Reproject(v : simulator_configuration.ConfigurableValue);
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log("Applying " + simulator_configuration + " To " + this.Identifier);
+        Debug.Log(message : "Applying " + simulator_configuration + " To " + this.Identifier);
       }
       #endif
 
@@ -159,9 +160,10 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       Vector3 pos;
       if (this._coordinate_spaceEnum == CoordinateSpaceEnum.Local_) {
         pos = transform1.localPosition;
-      }else{
+      } else {
         pos = transform1.position;
       }
+
       var dir = transform1.forward;
       var rot = transform1.up;
       if (this._coordinate_spaceEnum == CoordinateSpaceEnum.Environment_) {
@@ -177,7 +179,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       switch (this._axisEnum_of_configuration) {
         case AxisEnum.X_:
           if (this.RelativeToExistingValue) {
-            pos.Set(cv + pos.x, newY : pos.y, newZ : pos.z);
+            pos.Set(newX : cv + pos.x, newY : pos.y, newZ : pos.z);
           } else {
             pos.Set(newX : cv, newY : pos.y, newZ : pos.z);
           }
@@ -185,7 +187,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
           break;
         case AxisEnum.Y_:
           if (this.RelativeToExistingValue) {
-            pos.Set(newX : pos.x, cv + pos.y, newZ : pos.z);
+            pos.Set(newX : pos.x, newY : cv + pos.y, newZ : pos.z);
           } else {
             pos.Set(newX : pos.x, newY : cv, newZ : pos.z);
           }
@@ -193,7 +195,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
           break;
         case AxisEnum.Z_:
           if (this.RelativeToExistingValue) {
-            pos.Set(newX : pos.x, newY : pos.y, cv + pos.z);
+            pos.Set(newX : pos.x, newY : pos.y, newZ : cv + pos.z);
           } else {
             pos.Set(newX : pos.x, newY : pos.y, newZ : cv);
           }
@@ -201,7 +203,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
           break;
         case AxisEnum.Dir_x_:
           if (this.RelativeToExistingValue) {
-            dir.Set(cv + dir.x, newY : dir.y, newZ : dir.z);
+            dir.Set(newX : cv + dir.x, newY : dir.y, newZ : dir.z);
           } else {
             dir.Set(newX : cv, newY : dir.y, newZ : dir.z);
           }
@@ -209,7 +211,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
           break;
         case AxisEnum.Dir_y_:
           if (this.RelativeToExistingValue) {
-            dir.Set(newX : dir.x, cv + dir.y, newZ : dir.z);
+            dir.Set(newX : dir.x, newY : cv + dir.y, newZ : dir.z);
           } else {
             dir.Set(newX : dir.x, newY : cv, newZ : dir.z);
           }
@@ -217,7 +219,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
           break;
         case AxisEnum.Dir_z_:
           if (this.RelativeToExistingValue) {
-            dir.Set(newX : dir.x, newY : dir.y, cv + dir.z);
+            dir.Set(newX : dir.x, newY : dir.y, newZ : cv + dir.z);
           } else {
             dir.Set(newX : dir.x, newY : dir.y, newZ : cv);
           }
@@ -225,7 +227,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
           break;
         case AxisEnum.Rot_x_:
           if (this.RelativeToExistingValue) {
-            rot.Set(cv + rot.x, newY : rot.y, newZ : rot.z);
+            rot.Set(newX : cv + rot.x, newY : rot.y, newZ : rot.z);
           } else {
             rot.Set(newX : cv, newY : rot.y, newZ : rot.z);
           }
@@ -233,7 +235,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
           break;
         case AxisEnum.Rot_y_:
           if (this.RelativeToExistingValue) {
-            rot.Set(newX : rot.x, cv + rot.y, newZ : rot.z);
+            rot.Set(newX : rot.x, newY : cv + rot.y, newZ : rot.z);
           } else {
             rot.Set(newX : rot.x, newY : cv, newZ : rot.z);
           }
@@ -241,7 +243,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
           break;
         case AxisEnum.Rot_z_:
           if (this.RelativeToExistingValue) {
-            rot.Set(newX : rot.x, newY : rot.y, cv + rot.z);
+            rot.Set(newX : rot.x, newY : rot.y, newZ : cv + rot.z);
           } else {
             rot.Set(newX : rot.x, newY : rot.y, newZ : cv);
           }
@@ -255,7 +257,6 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       var inv_dir = dir;
       var inv_rot = rot;
 
-
       if (this._coordinate_spaceEnum == CoordinateSpaceEnum.Environment_) {
         if (this.ParentEnvironment != null) {
           this.ParentEnvironment.InverseTransformPoint(point : ref inv_pos);
@@ -266,20 +267,21 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
         }
       }
 
-
       if (this._coordinate_spaceEnum == CoordinateSpaceEnum.Local_) {
         transform1.localPosition = inv_pos;
-      }else{
+      } else {
         this.transform.position = inv_pos;
       }
-
 
       this.transform.rotation = Quaternion.identity;
       this.transform.rotation = Quaternion.LookRotation(forward : inv_dir, upwards : inv_rot);
     }
 
-    public override Configuration[] SampleConfigurations() { return new[]{new Configuration
-    (configurable_name : this.Identifier,configurable_value: this
-    ._single_value_space.Sample())};}
+    public override Configuration[] SampleConfigurations() {
+      return new[] {
+                       new Configuration(configurable_name : this.Identifier,
+                                         configurable_value : this._single_value_space.Sample())
+                   };
+    }
   }
 }

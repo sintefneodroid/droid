@@ -3,9 +3,9 @@ using UnityEditor;
 using UnityEngine;
 
 namespace droid.Editor.Windows {
-  /// <summary>
-  ///
-  /// </summary>
+  /// <inheritdoc />
+  ///  <summary>
+  ///  </summary>
   public class DemonstrationWindow : EditorWindow {
     int _captured_frame;
 
@@ -20,18 +20,20 @@ namespace droid.Editor.Windows {
     /// <summary>
     ///
     /// </summary>
-    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "DemonstrationWindow")]
-    [MenuItem(EditorWindowMenuPath._ToolMenuPath + "DemonstrationWindow")]
+    [MenuItem(itemName : EditorWindowMenuPath._WindowMenuPath + "DemonstrationWindow")]
+    [MenuItem(itemName : EditorWindowMenuPath._ToolMenuPath + "DemonstrationWindow")]
     public static void ShowWindow() {
-      GetWindow(typeof(DemonstrationWindow)); //Show existing window instance. If one doesn't exist, make one.
+      GetWindow(t : typeof(DemonstrationWindow)); //Show existing window instance. If one doesn't exist, make one.
     }
 
     void OnEnable() {
       this._icon =
-          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidSettings.Current.NeodroidImportLocationProp
+          (Texture2D)AssetDatabase.LoadAssetAtPath(assetPath :
+                                                   NeodroidSettings.Current.NeodroidImportLocationProp
                                                    + "Gizmos/Icons/bullet_red.png",
-                                                   typeof(Texture2D));
-      this.titleContent = new GUIContent("Neo:Rec", image : this._icon, "Window for recording demonstrations");
+                                                   type : typeof(Texture2D));
+      this.titleContent =
+          new GUIContent("Neo:Rec", image : this._icon, "Window for recording demonstrations");
     }
 
     /// <summary>
@@ -74,7 +76,7 @@ namespace droid.Editor.Windows {
       if (this._last_frame_time < Time.time + 1 / 24f) {
         // 24fps
         this._status = "Captured frame" + this._captured_frame;
-        ScreenCapture.CaptureScreenshot(this._file_name + this._captured_frame + ".png");
+        ScreenCapture.CaptureScreenshot(filename : this._file_name + this._captured_frame + ".png");
         this._captured_frame++;
         this._last_frame_time = Time.time;
       }

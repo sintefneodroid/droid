@@ -15,8 +15,6 @@ namespace droid.Runtime.Prototyping.EnvironmentListener {
       set { this._environment = value; }
     }
 
-
-
     /// <inheritdoc />
     /// <summary>
     /// </summary>

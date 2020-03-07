@@ -14,11 +14,12 @@ namespace droid.Editor.ScriptableObjects {
     /// <summary>
     ///
     /// </summary>
-    [MenuItem(EditorScriptableObjectMenuPath._ScriptableObjectMenuPath + "PlayerMotions")]
+    [MenuItem(itemName : EditorScriptableObjectMenuPath._ScriptableObjectMenuPath + "PlayerMotions")]
     public static void CreatePlayerMotionsAsset() {
       var asset = ScriptableObject.CreateInstance<PlayerMotions>();
 
-      AssetDatabase.CreateAsset(asset : asset, EditorWindowMenuPath._NewAssetPath + "NewPlayerMotions.asset");
+      AssetDatabase.CreateAsset(asset : asset,
+                                path : EditorWindowMenuPath._NewAssetPath + "NewPlayerMotions.asset");
       AssetDatabase.SaveAssets();
 
       EditorUtility.FocusProjectWindow();
@@ -32,7 +33,8 @@ namespace droid.Editor.ScriptableObjects {
     public class CreatePlayerMotionsWizard : ScriptableWizard {
       const float WINDOW_WIDTH = 260, WINDOW_HEIGHT = 500;
 
-      [MenuItem(EditorScriptableObjectMenuPath._ScriptableObjectMenuPath + "PlayerMotions (Wizard)")]
+      [MenuItem(itemName : EditorScriptableObjectMenuPath._ScriptableObjectMenuPath
+                           + "PlayerMotions (Wizard)")]
       static void Init() {
         var window = CreateWindow<CreatePlayerMotionsWizard>("Create Player Motions...");
         window.Show();
@@ -40,8 +42,9 @@ namespace droid.Editor.ScriptableObjects {
 
       void Awake() {
         var icon =
-            AssetDatabase.LoadAssetAtPath<Texture2D>(NeodroidSettings.Current.NeodroidImportLocationProp
-                                                     + "Gizmos/Icons/table.png");
+            AssetDatabase.LoadAssetAtPath<Texture2D>(assetPath : NeodroidSettings
+                                                                 .Current.NeodroidImportLocationProp
+                                                                 + "Gizmos/Icons/table.png");
         this.minSize = this.maxSize = new Vector2(x : WINDOW_WIDTH, y : WINDOW_HEIGHT);
         this.titleContent = new GUIContent(text : this.titleContent.text, image : icon);
       }
@@ -68,15 +71,16 @@ namespace droid.Editor.ScriptableObjects {
           foreach (var actuator in actor.Actuators) {
             for (var j = 0; j < ((Actuator)actuator.Value).InnerMotionNames.Length; j++, i++) {
               asset._Motions[i] = new PlayerMotion {
-                                                         _Actor = actor.Identifier,
-                                                         _Actuator = ((Actuator)actuator.Value)
-                                                             .InnerMotionNames[j]
-                                                     };
+                                                       _Actor = actor.Identifier,
+                                                       _Actuator =
+                                                           ((Actuator)actuator.Value).InnerMotionNames[j]
+                                                   };
             }
           }
         }
 
-        AssetDatabase.CreateAsset(asset : asset, EditorWindowMenuPath._NewAssetPath + "NewPlayerMotions.asset");
+        AssetDatabase.CreateAsset(asset : asset,
+                                  path : EditorWindowMenuPath._NewAssetPath + "NewPlayerMotions.asset");
         AssetDatabase.SaveAssets();
 
         EditorUtility.FocusProjectWindow();

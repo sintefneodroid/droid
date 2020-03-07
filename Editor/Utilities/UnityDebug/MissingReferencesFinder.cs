@@ -17,7 +17,7 @@ namespace droid.Editor.Utilities.UnityDebug {
     /// <summary>
     ///   Finds all missing references to objects in the currently loaded scene.
     /// </summary>
-    [MenuItem(_menu_root + "Search in scene", false, 50)]
+    [MenuItem(itemName : _menu_root + "Search in scene", false, 50)]
     public static void FindMissingReferencesInCurrentScene() {
       var scene_objects = GetSceneObjects();
       FindMissingReferences(context : SceneManager.GetActiveScene().name, objects : scene_objects);
@@ -27,7 +27,7 @@ namespace droid.Editor.Utilities.UnityDebug {
     ///   Finds all missing references to objects in all enabled scenes in the project.
     ///   This works by loading the scenes one by one and checking for missing object references.
     /// </summary>
-    [MenuItem(_menu_root + "Search in all scenes", false, 51)]
+    [MenuItem(itemName : _menu_root + "Search in all scenes", false, 51)]
     public static void MissingSpritesInAllScenes() {
       foreach (var scene in EditorBuildSettings.scenes.Where(s => s.enabled)) {
         EditorSceneManager.OpenScene(scenePath : scene.path);
@@ -38,11 +38,12 @@ namespace droid.Editor.Utilities.UnityDebug {
     /// <summary>
     ///   Finds all missing references to objects in assets (objects from the project window).
     /// </summary>
-    [MenuItem(_menu_root + "Search in assets", false, 52)]
+    [MenuItem(itemName : _menu_root + "Search in assets", false, 52)]
     public static void MissingSpritesInAssets() {
       var all_assets = AssetDatabase.GetAllAssetPaths().Where(path => path.StartsWith("Assets/")).ToArray();
-      var objs = all_assets.Select(a => AssetDatabase.LoadAssetAtPath(assetPath : a, typeof(GameObject)) as GameObject)
-                           .Where(a => a != null).ToArray();
+      var objs = all_assets
+                 .Select(a => AssetDatabase.LoadAssetAtPath(assetPath : a, type : typeof(GameObject)) as
+                                  GameObject).Where(a => a != null).ToArray();
 
       FindMissingReferences("Project", objects : objs);
     }
@@ -54,7 +55,7 @@ namespace droid.Editor.Utilities.UnityDebug {
         foreach (var c in components) {
           // Missing components will be null, we can't find their type, etc.
           if (!c) {
-            Debug.LogError("Missing Component in GO: " + GetFullPath(go : go), context : go);
+            Debug.LogError(message : "Missing Component in GO: " + GetFullPath(go : go), context : go);
             continue;
           }
 
@@ -68,7 +69,7 @@ namespace droid.Editor.Utilities.UnityDebug {
                 ShowError(context : context,
                           go : go,
                           component_name : c.GetType().Name,
-                          ObjectNames.NicifyVariableName(name : sp.name));
+                          property_name : ObjectNames.NicifyVariableName(name : sp.name));
               }
             }
           }
@@ -79,18 +80,18 @@ namespace droid.Editor.Utilities.UnityDebug {
     static GameObject[] GetSceneObjects() {
       // Use this method since GameObject.FindObjectsOfType will not return disabled objects.
       return Resources.FindObjectsOfTypeAll<GameObject>()
-                      .Where(go => string.IsNullOrEmpty(AssetDatabase.GetAssetPath(assetObject : go))
+                      .Where(go => string.IsNullOrEmpty(value : AssetDatabase.GetAssetPath(assetObject : go))
                                    && go.hideFlags == HideFlags.None).ToArray();
     }
 
     static void ShowError(string context, GameObject go, string component_name, string property_name) {
       const String error_template = "Missing Ref in: [{3}]{0}. Component: {1}, Property: {2}";
 
-      Debug.LogError(string.Format(format : error_template,
-                                   GetFullPath(go : go),
-                                   component_name,
-                                   property_name,
-                                   context),
+      Debug.LogError(message : string.Format(format : error_template,
+                                             GetFullPath(go : go),
+                                             component_name,
+                                             property_name,
+                                             context),
                      context : go);
     }
 

@@ -10,10 +10,10 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
   /// <inheritdoc cref="Configurable" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
-                    + "Mesh"
-                    + ConfigurableComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(MeshFilter))]
+  [AddComponentMenu(menuName : ConfigurableComponentMenuPath._ComponentMenuPath
+                               + "Mesh"
+                               + ConfigurableComponentMenuPath._Postfix)]
+  [RequireComponent(requiredComponent : typeof(MeshFilter))]
   public class MeshConfigurable : Configurable {
     string _mesh_str;
 
@@ -53,7 +53,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     protected override void RegisterComponent() {
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._mesh_str);
     }
 
@@ -61,19 +61,25 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// <summary>
     /// </summary>n
     protected override void UnRegisterComponent() {
-      this.ParentEnvironment?.UnRegister(this, identifier : this._mesh_str);
+      this.ParentEnvironment?.UnRegister(t : this, identifier : this._mesh_str);
     }
 
     public ISamplable ConfigurableValueSpace { get { return this._deformation_space; } }
 
-    public override void UpdateCurrentConfiguration() {  }
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public override void UpdateCurrentConfiguration() { }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <param name="configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
       #if NEODROID_DEBUG
-      DebugPrinting.ApplyPrint(debugging : this.Debugging, configuration : configuration, identifier : this.Identifier);
+      DebugPrinting.ApplyPrint(debugging : this.Debugging,
+                               configuration : configuration,
+                               identifier : this.Identifier);
       #endif
 
       if (configuration.ConfigurableName == this._mesh_str) {
@@ -88,11 +94,11 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
               //orig.y = orig.y * (1+(float)Math.Cos(Time.deltaTime))*(configuration.ConfigurableValue);
               //orig.x = orig.x * (1+(float)Math.Sin(Time.deltaTime))*(configuration.ConfigurableValue);
 
-              orig.x += this._noise.Noise(time_x + orig.x, time_x + orig.y, time_x + orig.z)
+              orig.x += this._noise.Noise(x : time_x + orig.x, y : time_x + orig.y, z : time_x + orig.z)
                         * configuration.ConfigurableValue;
-              orig.y += this._noise.Noise(time_y + orig.x, time_y + orig.y, time_y + orig.z)
+              orig.y += this._noise.Noise(x : time_y + orig.x, y : time_y + orig.y, z : time_y + orig.z)
                         * configuration.ConfigurableValue;
-              orig.z += this._noise.Noise(time_z + orig.x, time_z + orig.y, time_z + orig.z)
+              orig.z += this._noise.Noise(x : time_z + orig.x, y : time_z + orig.y, z : time_z + orig.z)
                         * configuration.ConfigurableValue;
 
               this._displaced_vertices[i] = orig;
@@ -114,7 +120,10 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     /// <returns></returns>
     public override Configuration[] SampleConfigurations() {
-      return new[] {new Configuration(configurable_name : this._mesh_str, configurable_value:this._deformation_space.Sample())};
+      return new[] {
+                       new Configuration(configurable_name : this._mesh_str,
+                                         configurable_value : this._deformation_space.Sample())
+                   };
     }
   }
 }

@@ -10,9 +10,9 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
-                    + "ObjectSpawner"
-                    + ConfigurableComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : ConfigurableComponentMenuPath._ComponentMenuPath
+                               + "ObjectSpawner"
+                               + ConfigurableComponentMenuPath._Postfix)]
   public class ObjectSpawnerConfigurable : Configurable {
     [SerializeField] int _amount = 0;
 
@@ -57,10 +57,10 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
 
         var transform1 = this.transform;
         for (var i = 0; i < this._amount; i++) {
-          this._spawned_objects.Add(Instantiate(original : this._object_to_spawn,
-                                                transform1.position + dir * i,
-                                                rotation : Random.rotation,
-                                                parent : transform1));
+          this._spawned_objects.Add(item : Instantiate(original : this._object_to_spawn,
+                                                       position : transform1.position + dir * i,
+                                                       rotation : Random.rotation,
+                                                       parent : transform1));
         }
       }
     }
@@ -84,7 +84,7 @@ namespace droid.Runtime.Prototyping.Configurables.Selection {
         this._spawned_objects.Add(item : go);
       } else if (this._spawned_objects.Count > obj.ConfigurableValue) {
         if (this._spawned_objects.Count > 0) {
-          this._spawned_objects.RemoveAt(this._spawned_objects.Count - 1);
+          this._spawned_objects.RemoveAt(index : this._spawned_objects.Count - 1);
         }
       }
     }

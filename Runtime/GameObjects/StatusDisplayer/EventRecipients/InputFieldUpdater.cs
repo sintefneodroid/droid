@@ -5,7 +5,7 @@ namespace droid.Runtime.GameObjects.StatusDisplayer.EventRecipients {
   /// <inheritdoc cref="DataPoller" />
   /// <summary>
   /// </summary>
-  [RequireComponent(typeof(InputField))]
+  [RequireComponent(requiredComponent : typeof(InputField))]
   [ExecuteInEditMode]
   public class InputFieldUpdater : DataPoller {
     /// <summary>

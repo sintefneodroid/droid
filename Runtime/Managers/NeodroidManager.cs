@@ -1,6 +1,8 @@
 ﻿using System;
 using droid.Runtime.Enums;
+using droid.Runtime.GameObjects;
 using UnityEngine;
+using Object = System.Object;
 
 namespace droid.Runtime.Managers {
   /// <inheritdoc />
@@ -8,10 +10,23 @@ namespace droid.Runtime.Managers {
   /// </summary>
   [AddComponentMenu("Neodroid/Managers/NeodroidManager")]
   public class NeodroidManager : AbstractNeodroidManager {
+    [SerializeField] Animator[] animators;
+
     #region Fields
 
     #if UNITY_EDITOR
+    /// <summary>
+    /// </summary>
+    [field :
+        Header("Warning! Will block editor requiring a restart, if not terminated while receiving.",
+               order = 120)]
+    [field : SerializeField]
+    public Boolean AllowInEditorBlockage { get; set; } = false;
     #endif
+
+    /// <summary>
+    /// </summary>
+    public bool IsSimulationPaused { get { return !(this.SimulationTimeScale > 0); } }
 
     #endregion
 
@@ -72,17 +87,6 @@ namespace droid.Runtime.Managers {
 
     /// <summary>
     /// </summary>
-    public bool IsSimulationPaused { get { return !(this.SimulationTimeScale > 0); } }
-
-    /// <summary>
-    /// </summary>
-    [field : Header("Warning! Will block editor requiring a restart, if not terminated while receiving.",
-        order = 120)]
-    [field : SerializeField]
-    public Boolean AllowInEditorBlockage { get; set; } = false;
-
-    /// <summary>
-    /// </summary>
     void Pause() {
       #if NEODROID_DEBUG
       if (this.Debugging) {
@@ -104,9 +108,12 @@ namespace droid.Runtime.Managers {
       this.SimulationTimeScale = simulation_time_scale > 0 ? simulation_time_scale : 1;
     }
 
-    void SetAnimationSpeeds(float speed) {
-      var animators = FindObjectsOfType<Animator>();
-      foreach (var animator in animators) {
+    void SetAnimationSpeeds(float speed, bool recache_animators = false) {
+      if (this.animators == null || recache_animators) {
+        this.animators = FindObjectsOfType<Animator>();
+      }
+
+      foreach (var animator in this.animators) {
         animator.speed = speed;
       }
     }

@@ -16,9 +16,9 @@ namespace droid.Runtime.Environments.Prototyping {
   /// <inheritdoc cref="PrototypingGameObject" />
   /// <summary>
   /// </summary>
-  [RequireComponent(typeof(Transform))]
+  [RequireComponent(requiredComponent : typeof(Transform))]
   public abstract class AbstractPrototypingEnvironment : NeodroidEnvironment,
-                                                                IAbstractPrototypingEnvironment {
+                                                         IAbstractPrototypingEnvironment {
     #region Fields
 
     #endregion
@@ -130,18 +130,16 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     /// <param name="reason"></param>
     public void Terminate(string reason = "None") {
-
-        if (this.Terminable) {
-          #if NEODROID_DEBUG
-          if (this.Debugging) {
-            Debug.LogWarning($"Environment {this.Identifier} as terminated because {reason}");
-          }
-          #endif
-
-          this.Terminated = true;
-          this.LastTerminationReason = reason;
+      if (this.Terminable) {
+        #if NEODROID_DEBUG
+        if (this.Debugging) {
+          Debug.LogWarning(message : $"Environment {this.Identifier} as terminated because {reason}");
         }
+        #endif
 
+        this.Terminated = true;
+        this.LastTerminationReason = reason;
+      }
     }
 
     /// <inheritdoc />
@@ -213,12 +211,14 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <summary>
     /// </summary>
     void SaveInitialPoses() {
-      var ignored_layer = LayerMask.NameToLayer($"IgnoredByNeodroid");
+      var ignored_layer = LayerMask.NameToLayer(layerName : $"IgnoredByNeodroid");
       if (this.TrackOnlyChildren) {
         this._tracked_game_objects =
-            NeodroidSceneUtilities.RecursiveChildGameObjectsExceptLayer(parent : this.transform, layer : ignored_layer);
+            NeodroidSceneUtilities.RecursiveChildGameObjectsExceptLayer(parent : this.transform,
+                                                                        layer : ignored_layer);
       } else {
-        this._tracked_game_objects = NeodroidSceneUtilities.FindAllGameObjectsExceptLayer(layer : ignored_layer);
+        this._tracked_game_objects =
+            NeodroidSceneUtilities.FindAllGameObjectsExceptLayer(layer : ignored_layer);
       }
 
       var length = this._tracked_game_objects.Length;
@@ -243,7 +243,7 @@ namespace droid.Runtime.Environments.Prototyping {
           }
           #if NEODROID_DEBUG
           if (this.Debugging) {
-            Debug.Log($"Added a JointFix component to {maybe_joint_fix.name}");
+            Debug.Log(message : $"Added a JointFix component to {maybe_joint_fix.name}");
           }
           #endif
         }
@@ -269,12 +269,13 @@ namespace droid.Runtime.Environments.Prototyping {
         var go = this._tracked_game_objects[index];
         if (go != null) {
           var body = go.GetComponent<Rigidbody>();
-          if (body) list.Add(item : body);
+          if (body) {
+            list.Add(item : body);
+          }
         }
       }
 
-      this._Tracked_Rigid_Bodies = list
-                                       .ToArray();
+      this._Tracked_Rigid_Bodies = list.ToArray();
 
       this._reset_velocities = new Vector3[this._Tracked_Rigid_Bodies.Length];
       this._reset_angulars = new Vector3[this._Tracked_Rigid_Bodies.Length];
@@ -292,7 +293,9 @@ namespace droid.Runtime.Environments.Prototyping {
         var go = this._tracked_game_objects[index];
         if (go != null) {
           var anim = go.GetComponent<Animation>();
-          if (anim) list.Add(item : anim);
+          if (anim) {
+            list.Add(item : anim);
+          }
         }
       }
 
@@ -319,7 +322,7 @@ namespace droid.Runtime.Environments.Prototyping {
       }
 
       if (!this.PlayableArea) {
-        this.PlayableArea = this.GetComponent<BoundingBox>();
+        this.PlayableArea = this.GetComponent<NeodroidBoundingBox>();
       }
 
       #if NEODROID_DEBUG
@@ -330,7 +333,7 @@ namespace droid.Runtime.Environments.Prototyping {
 
       this.SaveInitialPoses();
       this.SaveInitialAnimations();
-      this.StartCoroutine(this.SaveInitialBodiesIe());
+      this.StartCoroutine(routine : this.SaveInitialBodiesIe());
     }
 
     /// <summary>
@@ -344,33 +347,35 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <summary>
     /// </summary>
     /// <param name="reaction"></param>
-    void Step(Reaction reaction) {
+    void StepInner(Reaction reaction) {
+      this.PreStepEvent?.Invoke();
 
-        this.PreStepEvent?.Invoke();
-
-        if (reaction.Parameters.EpisodeCount) {
-          this.StepI++;
-          #if NEODROID_DEBUG
-          if (this.Debugging) {
-            Debug.LogWarning("Step did count");
-          }
-          #endif
-        } else {
-          #if NEODROID_DEBUG
-          if (this.Debugging) {
-            Debug.LogWarning("Step did not count");
-          }
-          #endif
+      if (reaction.Parameters.EpisodeCount) {
+        this.StepI++;
+        #if NEODROID_DEBUG
+        if (this.Debugging) {
+          Debug.LogWarning("Step did count");
         }
+        #endif
+      } else {
+        #if NEODROID_DEBUG
+        if (this.Debugging) {
+          Debug.LogWarning("Step did not count");
+        }
+        #endif
+      }
 
-        this.SendToActors(reaction : reaction);
+      this.SendToActors(reaction : reaction);
 
-        this.StepEvent?.Invoke();
-        this.LoopListeners();
+      this.StepEvent?.Invoke();
+      this.LoopListeners();
 
-        this.LoopSensors();
-
+      this.LoopSensors();
     }
+
+    public override void Reset() { }
+
+    public override void Configure(Reaction reaction) { }
 
     /// <summary>
     ///
@@ -383,7 +388,7 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     /// <param name="reaction"></param>
     /// <returns></returns>
-    public override void React(Reaction reaction) {
+    public override void Step(Reaction reaction) {
       this.LastReaction = reaction;
       this.Terminable = reaction.Parameters.Terminable;
 
@@ -401,18 +406,18 @@ namespace droid.Runtime.Environments.Prototyping {
       if (reaction.Parameters.ReactionType == ReactionTypeEnum.Reset_) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Resetting environment({this.Identifier})");
+          Debug.Log(message : $"Resetting environment({this.Identifier})");
         }
         #endif
-        this.Terminate($"Reaction caused a reset");
+        //this.Terminate($"Reaction caused a reset");
         this.IsResetting = true;
       } else if (reaction.Parameters.ReactionType == ReactionTypeEnum.Step_) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Stepping in environment({this.Identifier})");
+          Debug.Log(message : $"Stepping in environment({this.Identifier})");
         }
         #endif
-        this.Step(reaction : reaction);
+        this.StepInner(reaction : reaction);
       }
     }
 
@@ -421,13 +426,13 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     public override void PostStep() {
       this.PostStepEvent?.Invoke();
-      if (this.Configure) {
+      if (this.ShouldConfigure) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
           Debug.Log("Configuring");
         }
         #endif
-        this.Configure = false;
+        this.ShouldConfigure = false;
         this.Reconfigure();
       }
 
@@ -451,14 +456,16 @@ namespace droid.Runtime.Environments.Prototyping {
                                rotations : ref this._reset_rotations,
                                scales : ref this._reset_scales);
 
-      this.SetBodies(bodies : ref this._Tracked_Rigid_Bodies, velocities : ref this._reset_velocities, angulars : ref this._reset_angulars);
+      this.SetBodies(bodies : ref this._Tracked_Rigid_Bodies,
+                     velocities : ref this._reset_velocities,
+                     angulars : ref this._reset_angulars);
 
       this.ResetRegisteredObjects();
       this.Reconfigure();
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log($"Reset called on environment {this.Identifier}");
+        Debug.Log(message : $"Reset called on environment {this.Identifier}");
       }
       #endif
 
@@ -524,22 +531,25 @@ namespace droid.Runtime.Environments.Prototyping {
       if (this._last_configuration != null) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Configuration length: {this._last_configuration.Length}");
+          Debug.Log(message : $"Configuration length: {this._last_configuration.Length}");
         }
         #endif
         for (var index = 0; index < this._last_configuration.Length; index++) {
           var configuration = this._last_configuration[index];
           #if NEODROID_DEBUG
           if (this.Debugging) {
-            Debug.Log("Configuring configurable with the specified name: " + configuration.ConfigurableName);
+            Debug.Log(message : "Configuring configurable with the specified name: "
+                                + configuration.ConfigurableName);
           }
           #endif
           if (this.Configurables.ContainsKey(key : configuration.ConfigurableName)) {
-            this.Configurables[key : configuration.ConfigurableName].ApplyConfiguration(configuration : configuration);
+            this.Configurables[key : configuration.ConfigurableName]
+                .ApplyConfiguration(configuration : configuration);
           } else {
             #if NEODROID_DEBUG
             if (this.Debugging) {
-              Debug.Log($"Could find not configurable with the specified name: {configuration.ConfigurableName}");
+              Debug.Log(message :
+                        $"Could find not configurable with the specified name: {configuration.ConfigurableName}");
             }
             #endif
           }
@@ -565,17 +575,18 @@ namespace droid.Runtime.Environments.Prototyping {
           var displayable = reaction.Displayables[index];
           #if NEODROID_DEBUG
           if (this.Debugging) {
-            Debug.Log("Applying " + displayable + " To " + this.name + "'s displayers");
+            Debug.Log(message : "Applying " + displayable + " To " + this.name + "'s displayers");
           }
           #endif
           var displayable_name = displayable.DisplayableName;
-          if (this.Displayers.ContainsKey(key : displayable_name) && this.Displayers[key : displayable_name] != null) {
+          if (this.Displayers.ContainsKey(key : displayable_name)
+              && this.Displayers[key : displayable_name] != null) {
             var v = displayable.DisplayableValue;
             this.Displayers[key : displayable_name].Display(v);
           } else {
             #if NEODROID_DEBUG
             if (this.Debugging) {
-              Debug.Log("Could find not displayer with the specified name: " + displayable_name);
+              Debug.Log(message : "Could find not displayer with the specified name: " + displayable_name);
             }
             #endif
           }
@@ -640,7 +651,8 @@ namespace droid.Runtime.Environments.Prototyping {
           if (i < bodies.Length && bodies[i] != null && i < velocities.Length && i < angulars.Length) {
             #if NEODROID_DEBUG
             if (this.Debugging) {
-              Debug.Log($"Setting {bodies[i].name}, velocity to {velocities[i]} and angular velocity to {angulars[i]}");
+              Debug.Log(message :
+                        $"Setting {bodies[i].name}, velocity to {velocities[i]} and angular velocity to {angulars[i]}");
             }
 
             #endif
@@ -776,7 +788,8 @@ namespace droid.Runtime.Environments.Prototyping {
     public void TransformDirection(ref Vector3 direction) {
       switch (this.CoordinateSpaceEnum) {
         case CoordinateSpaceEnum.Environment_ when this.CoordinateReferencePoint:
-          direction = this.CoordinateReferencePoint.transform.InverseTransformDirection(direction : direction);
+          direction =
+              this.CoordinateReferencePoint.transform.InverseTransformDirection(direction : direction);
           break;
         case CoordinateSpaceEnum.Local_:
           direction = this.transform.InverseTransformDirection(direction : direction);
@@ -956,7 +969,7 @@ namespace droid.Runtime.Environments.Prototyping {
     /// </summary>
     [field : Header("(Optional)", order = 80)]
     [field : SerializeField]
-    public BoundingBox PlayableArea { get; set; }
+    public NeodroidBoundingBox PlayableArea { get; set; }
 
     /// <summary>
     /// </summary>
@@ -991,7 +1004,9 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public void Register(IDisplayer displayer) { this.Register(obj : displayer, identifier : displayer.Identifier); }
+    public void Register(IDisplayer displayer) {
+      this.Register(obj : displayer, identifier : displayer.Identifier);
+    }
 
     /// <inheritdoc />
     /// <summary>
@@ -1002,12 +1017,13 @@ namespace droid.Runtime.Environments.Prototyping {
       if (!this.Displayers.ContainsKey(key : identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Environment {this.name} has registered displayer {identifier}");
+          Debug.Log(message : $"Environment {this.name} has registered displayer {identifier}");
         }
         #endif
         this.Displayers.Add(key : identifier, value : obj);
       } else {
-        Debug.LogWarning($"WARNING! Please check for duplicates, Environment {this.name} already has displayer {identifier} registered");
+        Debug.LogWarning(message :
+                         $"WARNING! Please check for duplicates, Environment {this.name} already has displayer {identifier} registered");
       }
     }
 
@@ -1027,13 +1043,14 @@ namespace droid.Runtime.Environments.Prototyping {
       if (!this.Sensors.ContainsKey(key : identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Environment {this.name} has registered sensor {identifier}");
+          Debug.Log(message : $"Environment {this.name} has registered sensor {identifier}");
         }
         #endif
 
         this.Sensors.Add(key : identifier, value : sensor);
       } else {
-        Debug.LogWarning($"WARNING! Please check for duplicates, Environment {this.name} already has observer {identifier} registered");
+        Debug.LogWarning(message :
+                         $"WARNING! Please check for duplicates, Environment {this.name} already has observer {identifier} registered");
       }
     }
 
@@ -1041,7 +1058,9 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <summary>
     /// </summary>
     /// <param name="configurable"></param>
-    public void Register(IConfigurable configurable) { this.Register(configurable : configurable, identifier : configurable.Identifier); }
+    public void Register(IConfigurable configurable) {
+      this.Register(configurable : configurable, identifier : configurable.Identifier);
+    }
 
     /// <inheritdoc />
     /// <summary>
@@ -1052,13 +1071,14 @@ namespace droid.Runtime.Environments.Prototyping {
       if (!this.Configurables.ContainsKey(key : identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Environment {this.name} has registered configurable {identifier}");
+          Debug.Log(message : $"Environment {this.name} has registered configurable {identifier}");
         }
         #endif
 
         this.Configurables.Add(key : identifier, value : configurable);
       } else {
-        Debug.LogWarning($"WARNING! Please check for duplicates, Environment {this.name} already has configurable {identifier} registered");
+        Debug.LogWarning(message :
+                         $"WARNING! Please check for duplicates, Environment {this.name} already has configurable {identifier} registered");
       }
     }
 
@@ -1067,7 +1087,8 @@ namespace droid.Runtime.Environments.Prototyping {
     ///  </summary>
     ///  <param name="environment_listener"></param>
     public void Register(IUnobservable environment_listener) {
-      this.Register(environment_listener : environment_listener, identifier : environment_listener.Identifier);
+      this.Register(environment_listener : environment_listener,
+                    identifier : environment_listener.Identifier);
     }
 
     /// <inheritdoc />
@@ -1079,12 +1100,13 @@ namespace droid.Runtime.Environments.Prototyping {
       if (!this.Listeners.ContainsKey(key : identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Environment {this.name} has registered resetable {identifier}");
+          Debug.Log(message : $"Environment {this.name} has registered resetable {identifier}");
         }
         #endif
         this.Listeners.Add(key : identifier, value : environment_listener);
       } else {
-        Debug.LogWarning($"WARNING! Please check for duplicates, Environment {this.name} already has resetable {identifier} registered");
+        Debug.LogWarning(message :
+                         $"WARNING! Please check for duplicates, Environment {this.name} already has resetable {identifier} registered");
       }
     }
 
@@ -1103,7 +1125,7 @@ namespace droid.Runtime.Environments.Prototyping {
       if (this.Sensors.ContainsKey(key : identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Environment {this.name} unregistered sensor {identifier}");
+          Debug.Log(message : $"Environment {this.name} unregistered sensor {identifier}");
         }
         #endif
         this.Sensors.Remove(key : identifier);
@@ -1127,7 +1149,7 @@ namespace droid.Runtime.Environments.Prototyping {
       if (this.Configurables.ContainsKey(key : identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Environment {this.name} unregistered configurable {identifier}");
+          Debug.Log(message : $"Environment {this.name} unregistered configurable {identifier}");
         }
         #endif
         this.Configurables.Remove(key : identifier);
@@ -1138,7 +1160,9 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <summary>
     /// </summary>
     /// <param name="displayer"></param>
-    public void UnRegister(IDisplayer displayer) { this.UnRegister(t : displayer, identifier : displayer.Identifier); }
+    public void UnRegister(IDisplayer displayer) {
+      this.UnRegister(t : displayer, identifier : displayer.Identifier);
+    }
 
     /// <inheritdoc />
     ///  <summary>
@@ -1149,7 +1173,7 @@ namespace droid.Runtime.Environments.Prototyping {
       if (this.Displayers.ContainsKey(key : identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Environment {this.name} unregistered configurable {identifier}");
+          Debug.Log(message : $"Environment {this.name} unregistered configurable {identifier}");
         }
         #endif
         this.Displayers.Remove(key : identifier);
@@ -1173,7 +1197,7 @@ namespace droid.Runtime.Environments.Prototyping {
       if (this.Listeners.ContainsKey(key : identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Environment {this.name} unregistered resetable {identifier}");
+          Debug.Log(message : $"Environment {this.name} unregistered resetable {identifier}");
         }
         #endif
         this.Listeners.Remove(key : identifier);

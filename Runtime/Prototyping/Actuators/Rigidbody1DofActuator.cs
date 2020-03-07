@@ -11,10 +11,10 @@ namespace droid.Runtime.Prototyping.Actuators {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ActuatorComponentMenuPath._ComponentMenuPath
-                    + "Rigidbody1DofActuator"
-                    + ActuatorComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(Rigidbody))]
+  [AddComponentMenu(menuName : ActuatorComponentMenuPath._ComponentMenuPath
+                               + "Rigidbody1DofActuator"
+                               + ActuatorComponentMenuPath._Postfix)]
+  [RequireComponent(requiredComponent : typeof(Rigidbody))]
   public class Rigidbody1DofActuator : Actuator {
     /// <summary>
     /// </summary>
@@ -37,65 +37,73 @@ namespace droid.Runtime.Prototyping.Actuators {
     [SerializeField]
     protected Rigidbody _Rigidbody;
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override string PrototypingTypeName { get { return "Rigidbody" + this._axisEnum_of_motion; } }
+    public override string PrototypingTypeName {
+      get { return base.PrototypingTypeName + this._axisEnum_of_motion; }
+    }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void Setup() { this._Rigidbody = this.GetComponent<Rigidbody>(); }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <param name="motion"></param>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    /// <exception cref="T:System.ArgumentOutOfRangeException"></exception>
     protected override void InnerApplyMotion(IMotion motion) {
       switch (this._axisEnum_of_motion) {
         case AxisEnum.X_:
           if (this._Relative_To == Space.World) {
-            this._Rigidbody.AddForce(Vector3.right * motion.Strength, mode : this._ForceMode);
+            this._Rigidbody.AddForce(force : Vector3.right * motion.Strength, mode : this._ForceMode);
           } else {
-            this._Rigidbody.AddRelativeForce(Vector3.right * motion.Strength, mode : this._ForceMode);
+            this._Rigidbody.AddRelativeForce(force : Vector3.right * motion.Strength, mode : this._ForceMode);
           }
 
           break;
         case AxisEnum.Y_:
           if (this._Relative_To == Space.World) {
-            this._Rigidbody.AddForce(Vector3.up * motion.Strength, mode : this._ForceMode);
+            this._Rigidbody.AddForce(force : Vector3.up * motion.Strength, mode : this._ForceMode);
           } else {
-            this._Rigidbody.AddRelativeForce(Vector3.up * motion.Strength, mode : this._ForceMode);
+            this._Rigidbody.AddRelativeForce(force : Vector3.up * motion.Strength, mode : this._ForceMode);
           }
 
           break;
         case AxisEnum.Z_:
           if (this._Relative_To == Space.World) {
-            this._Rigidbody.AddForce(Vector3.forward * motion.Strength, mode : this._ForceMode);
+            this._Rigidbody.AddForce(force : Vector3.forward * motion.Strength, mode : this._ForceMode);
           } else {
-            this._Rigidbody.AddRelativeForce(Vector3.forward * motion.Strength, mode : this._ForceMode);
+            this._Rigidbody.AddRelativeForce(force : Vector3.forward * motion.Strength,
+                                             mode : this._ForceMode);
           }
 
           break;
         case AxisEnum.Rot_x_:
           if (this._Relative_To == Space.World) {
-            this._Rigidbody.AddTorque(Vector3.right * motion.Strength, mode : this._ForceMode);
+            this._Rigidbody.AddTorque(torque : Vector3.right * motion.Strength, mode : this._ForceMode);
           } else {
-            this._Rigidbody.AddRelativeTorque(Vector3.right * motion.Strength, mode : this._ForceMode);
+            this._Rigidbody.AddRelativeTorque(torque : Vector3.right * motion.Strength,
+                                              mode : this._ForceMode);
           }
 
           break;
         case AxisEnum.Rot_y_:
           if (this._Relative_To == Space.World) {
-            this._Rigidbody.AddTorque(Vector3.up * motion.Strength, mode : this._ForceMode);
+            this._Rigidbody.AddTorque(torque : Vector3.up * motion.Strength, mode : this._ForceMode);
           } else {
-            this._Rigidbody.AddRelativeTorque(Vector3.up * motion.Strength, mode : this._ForceMode);
+            this._Rigidbody.AddRelativeTorque(torque : Vector3.up * motion.Strength, mode : this._ForceMode);
           }
 
           break;
         case AxisEnum.Rot_z_:
           if (this._Relative_To == Space.World) {
-            this._Rigidbody.AddTorque(Vector3.forward * motion.Strength, mode : this._ForceMode);
+            this._Rigidbody.AddTorque(torque : Vector3.forward * motion.Strength, mode : this._ForceMode);
           } else {
-            this._Rigidbody.AddRelativeTorque(Vector3.forward * motion.Strength, mode : this._ForceMode);
+            this._Rigidbody.AddRelativeTorque(torque : Vector3.forward * motion.Strength,
+                                              mode : this._ForceMode);
           }
 
           break;
@@ -115,13 +123,13 @@ namespace droid.Runtime.Prototyping.Actuators {
         var position = this.transform.position;
         switch (this._axisEnum_of_motion) {
           case AxisEnum.X_:
-            Debug.DrawLine(start : position, position + Vector3.right * 2, color : Color.green);
+            Debug.DrawLine(start : position, end : position + Vector3.right * 2, color : Color.green);
             break;
           case AxisEnum.Y_:
-            Debug.DrawLine(start : position, position + Vector3.up * 2, color : Color.green);
+            Debug.DrawLine(start : position, end : position + Vector3.up * 2, color : Color.green);
             break;
           case AxisEnum.Z_:
-            Debug.DrawLine(start : position, position + Vector3.forward * 2, color : Color.green);
+            Debug.DrawLine(start : position, end : position + Vector3.forward * 2, color : Color.green);
             break;
           case AxisEnum.Rot_x_:
             Handles.DrawWireArc(center : this.transform.position,

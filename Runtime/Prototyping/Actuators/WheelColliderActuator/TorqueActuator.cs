@@ -5,17 +5,12 @@ namespace droid.Runtime.Prototyping.Actuators.WheelColliderActuator {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ActuatorComponentMenuPath._ComponentMenuPath
-                    + "WheelCollider/Torque"
-                    + ActuatorComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(WheelCollider))]
+  [AddComponentMenu(menuName : ActuatorComponentMenuPath._ComponentMenuPath
+                               + "WheelCollider/Torque"
+                               + ActuatorComponentMenuPath._Postfix)]
+  [RequireComponent(requiredComponent : typeof(WheelCollider))]
   public class TorqueActuator : Actuator {
     [SerializeField] WheelCollider _wheel_collider;
-
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "Torque"; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -41,7 +36,7 @@ namespace droid.Runtime.Prototyping.Actuators.WheelColliderActuator {
 
       var visual_wheel = col.transform.GetChild(0);
 
-      col.GetWorldPose(out var position, out var rotation);
+      col.GetWorldPose(pos : out var position, quat : out var rotation);
 
       var transform1 = visual_wheel.transform;
       transform1.position = position;

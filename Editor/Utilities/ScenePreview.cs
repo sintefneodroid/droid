@@ -13,7 +13,7 @@ namespace droid.Editor.Utilities {
   ///   Scene preview.
   ///   https://diegogiacomelli.com.br/unity3d-scenepreview-inspector/
   /// </summary>
-  [CustomEditor(typeof(SceneAsset))]
+  [CustomEditor(inspectedType : typeof(SceneAsset))]
   [CanEditMultipleObjects]
   public class ScenePreview : UnityEditor.Editor {
     /// <summary>
@@ -22,7 +22,7 @@ namespace droid.Editor.Utilities {
     public static void CaptureScreenShot() {
       if (NeodroidSettings.Current.NeodroidGeneratePreviewsProp) {
         var preview_path = GetPreviewPath(scene_name : SceneManager.GetActiveScene().name);
-        Debug.Log($"Saving scene preview at {preview_path}");
+        Debug.Log(message : $"Saving scene preview at {preview_path}");
         TakeScreenshot(name : preview_path);
       }
     }
@@ -92,7 +92,7 @@ namespace droid.Editor.Utilities {
 
         for (var i = 0; i < scene_names.Length; i++) {
           DrawPreview(index : i,
-                      scene_names[i],
+                      scene_name : scene_names[i],
                       width : preview_width,
                       height : preview_height);
         }
@@ -120,15 +120,16 @@ NeodroidEditorConstants._Preview_Margin), width, height),
                 preview
                );
 */
-        GUI.DrawTexture(new Rect(x : index,
-                                 NeodroidEditorConstants._Editor_Margin
-                                 + index * (height + NeodroidEditorConstants._Preview_Margin),
-                                 width : width,
-                                 height : height),
+        GUI.DrawTexture(position : new Rect(x : index,
+                                            y : NeodroidEditorConstants._Editor_Margin
+                                                + index * (height + NeodroidEditorConstants._Preview_Margin),
+                                            width : width,
+                                            height : height),
                         image : preview,
                         scaleMode : ScaleMode.ScaleToFit);
       } else {
-        EditorGUILayout.HelpBox($"There is no image preview for scene {scene_name} at {preview_path}."
+        EditorGUILayout.HelpBox(message :
+                                $"There is no image preview for scene {scene_name} at {preview_path}."
                                 + $" Please play the scene on editor and image preview will be captured automatically"
                                 + $" or create the missing path: {preview_path}.",
                                 type : MessageType.Info);

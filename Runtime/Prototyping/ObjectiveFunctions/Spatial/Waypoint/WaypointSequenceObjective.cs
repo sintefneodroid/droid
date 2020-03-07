@@ -6,9 +6,9 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial.Waypoint {
   /// <inheritdoc />
   ///  <summary>
   ///  </summary>
-  [AddComponentMenu(EvaluationComponentMenuPath._ComponentMenuPath
-                    + "WaypointSequence"
-                    + EvaluationComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : EvaluationComponentMenuPath._ComponentMenuPath
+                               + "WaypointSequence"
+                               + EvaluationComponentMenuPath._Postfix)]
   class WaypointSequenceObjective : SpatialObjective {
     [SerializeField] Waypoint[] waypoints;
     [SerializeField] Waypoint last_waypoint;
@@ -23,8 +23,9 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial.Waypoint {
     [SerializeField] bool reward_for_smoothing_with_last;
 
     public override void InternalReset() {
-      if (this.waypoint_enumerator == null)
+      if (this.waypoint_enumerator == null) {
         this.waypoint_enumerator = this.waypoints.GetEnumerator();
+      }
 
       this.waypoint_enumerator.Reset();
 
@@ -50,10 +51,10 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial.Waypoint {
 
     public override float InternalEvaluate() {
       var signal = 0.0f;
-      var distance = Vector3.Distance(a : this.tracking_point.position, b : this.current_waypoint.transform
-      .position);
+      var distance = Vector3.Distance(a : this.tracking_point.position,
+                                      b : this.current_waypoint.transform.position);
 
-      if (distance <= this.margin) {
+      if (distance <= this.current_waypoint.Radius + this.margin) {
         this.MoveToNext();
         signal += this.SolvedSignal;
       } else {
@@ -65,12 +66,14 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial.Waypoint {
       }
 
       if (this.reward_for_accounting_for_next) {
-        signal += 1/Vector3.Distance(a : this.tracking_point.position, b : this.current_waypoint.transform.position);
-        signal += Vector3.Dot(this.tracking_point.forward, this.next_waypoint.transform.forward);
+        signal += 1
+                  / Vector3.Distance(a : this.tracking_point.position,
+                                     b : this.current_waypoint.transform.position);
+        signal += Vector3.Dot(lhs : this.tracking_point.forward, rhs : this.next_waypoint.transform.forward);
       }
 
       if (this.reward_for_smoothing_with_last) {
-        signal += Vector3.Dot(this.tracking_point.forward, this.next_waypoint.transform.forward);
+        signal += Vector3.Dot(lhs : this.tracking_point.forward, rhs : this.next_waypoint.transform.forward);
       }
 
       return signal;

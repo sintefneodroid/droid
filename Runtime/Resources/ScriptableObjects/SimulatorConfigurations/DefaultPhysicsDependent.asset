@@ -35,5 +35,6 @@ MonoBehaviour:
   _simulation_type: 1
   _step_execution_phase: 1
   _target_frame_rate: 5
-  _time_scale: 6
+  _time_scale: 3.8
   _update_fixed_time_scale: 0
+  _manual_render: 0

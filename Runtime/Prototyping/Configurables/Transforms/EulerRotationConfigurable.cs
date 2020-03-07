@@ -11,16 +11,14 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
   /// <inheritdoc cref="Configurable" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
-                    + "EulerRotation"
-                    + ConfigurableComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : ConfigurableComponentMenuPath._ComponentMenuPath
+                               + "EulerRotation"
+                               + ConfigurableComponentMenuPath._Postfix)]
   public class EulerRotationConfigurable : SpatialConfigurable,
                                            IHasTriple {
     [Header("Observation", order = 103)]
     [SerializeField]
     Quaternion _euler_rotation = Quaternion.identity;
-
-
 
     /// <summary>
     /// </summary>
@@ -41,11 +39,11 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     [SerializeField]
     SampleSpace3 _euler_space = new SampleSpace3 {
                                                      _space = new Space3 {
-                                                                                Min = Vector3.zero,
-                                                                                Max = new Vector3(360f,
-                                                                                                  360f,
-                                                                                                  360f)
-                                                                            }
+                                                                             Min = Vector3.zero,
+                                                                             Max = new Vector3(360f,
+                                                                                               360f,
+                                                                                               360f)
+                                                                         }
                                                  };
 
     /// <summary>
@@ -68,22 +66,22 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment, (Configurable)this);
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment, c : (Configurable)this);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._x);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._y);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._z);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._w);
     }
 
@@ -95,11 +93,11 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
         return;
       }
 
-      this.ParentEnvironment.UnRegister(this);
-      this.ParentEnvironment.UnRegister(this, identifier : this._x);
-      this.ParentEnvironment.UnRegister(this, identifier : this._y);
-      this.ParentEnvironment.UnRegister(this, identifier : this._z);
-      this.ParentEnvironment.UnRegister(this, identifier : this._w);
+      this.ParentEnvironment.UnRegister(configurable : this);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._x);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._y);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._z);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._w);
     }
 
     /// <summary>
@@ -112,10 +110,12 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// </summary>
     public override void UpdateCurrentConfiguration() {
       switch (this._coordinate_spaceEnum) {
-        case CoordinateSpaceEnum.Environment_ when this.ParentEnvironment != null: this._euler_rotation = this.ParentEnvironment.TransformRotation(quaternion : this.transform.rotation);
+        case CoordinateSpaceEnum.Environment_ when this.ParentEnvironment != null:
+          this._euler_rotation =
+              this.ParentEnvironment.TransformRotation(quaternion : this.transform.rotation);
           break;
         case CoordinateSpaceEnum.Global_:
-        this._euler_rotation = this.transform.rotation;
+          this._euler_rotation = this.transform.rotation;
           break;
         case CoordinateSpaceEnum.Local_:
           this._euler_rotation = this.transform.localRotation;
@@ -129,7 +129,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// <param name="simulator_configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration) {
       Quaternion rot;
-      if(this._coordinate_spaceEnum==CoordinateSpaceEnum.Local_) {
+      if (this._coordinate_spaceEnum == CoordinateSpaceEnum.Local_) {
         rot = this.transform.localRotation;
       } else {
         rot = this.transform.rotation;
@@ -146,7 +146,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log($"Applying {v} to {simulator_configuration.ConfigurableName} configurable");
+        Debug.Log(message : $"Applying {v} to {simulator_configuration.ConfigurableName} configurable");
       }
       #endif
       var rote = rot.eulerAngles;
@@ -156,17 +156,18 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
           if (this.TripleSpace.Min[0].CompareTo(this.TripleSpace.Max[0]) != 0) {
             #if NEODROID_DEBUG
             if (v < this.TripleSpace.Min[0] || v > this.TripleSpace.Max[0]) {
-              Debug.Log($"Configurable does not accept input {v}, outside allowed range {this.TripleSpace.Min[0]} to {this.TripleSpace.Max[0]}");
+              Debug.Log(message :
+                        $"Configurable does not accept input {v}, outside allowed range {this.TripleSpace.Min[0]} to {this.TripleSpace.Max[0]}");
               return; // Do nothing
             }
             #endif
           }
 
-          rot.eulerAngles = new Vector3(v + rote.x, y : rote.y, z : rote.z);
+          rot.eulerAngles = new Vector3(x : v + rote.x, y : rote.y, z : rote.z);
         } else if (simulator_configuration.ConfigurableName == this._y) {
-          rot.eulerAngles = new Vector3(x : rote.x, v + rote.y, z : rote.z);
+          rot.eulerAngles = new Vector3(x : rote.x, y : v + rote.y, z : rote.z);
         } else if (simulator_configuration.ConfigurableName == this._z) {
-          rot.eulerAngles = new Vector3(x : rote.x, y : rote.y, v + rote.z);
+          rot.eulerAngles = new Vector3(x : rote.x, y : rote.y, z : v + rote.z);
         }
       } else {
         if (simulator_configuration.ConfigurableName == this._x) {
@@ -182,12 +183,11 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
         rot = this.ParentEnvironment.InverseTransformRotation(quaternion : rot);
       }
 
-      if(this._coordinate_spaceEnum==CoordinateSpaceEnum.Local_) {
+      if (this._coordinate_spaceEnum == CoordinateSpaceEnum.Local_) {
         this.transform.localRotation = rot;
       } else {
         this.transform.rotation = rot;
       }
-
     }
 
     /// <inheritdoc />

@@ -41,9 +41,9 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Synthesis {
         uid = -uid + 1;
       }
 
-      var sid = (SparsifyBits((byte)(uid >> 16), 3) << 2)
-                | (SparsifyBits((byte)(uid >> 8), 3) << 1)
-                | SparsifyBits((byte)uid, 3);
+      var sid = (SparsifyBits(value : (byte)(uid >> 16), sparse : 3) << 2)
+                | (SparsifyBits(value : (byte)(uid >> 8), sparse : 3) << 1)
+                | SparsifyBits(value : (byte)uid, sparse : 3);
       //Debug.Log(uid + " >>> " + System.Convert.ToString(sid, 2).PadLeft(24, '0'));
 
       var r = (byte)(sid >> 8);
@@ -159,7 +159,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Synthesis {
       // Create as many colors as necessary by using base 16 color palette
       // To create more than 16 - will simply adjust brightness with 'divider'
       var color = unique_colors[layer % unique_colors.Length];
-      var divider = 1.0f + Mathf.Floor(layer / unique_colors.Length);
+      var divider = 1.0f + Mathf.Floor(f : layer / unique_colors.Length);
       color /= divider;
 
       return color;

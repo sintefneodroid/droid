@@ -6,8 +6,8 @@ namespace droid.Runtime.ScriptableObjects {
   /// <summary>
   /// </summary>
   [CreateAssetMenu(fileName = "Segmentation",
-      menuName = ScriptableObjectMenuPath._ScriptableObjectMenuPath + "Segmentation",
-      order = 1)]
+                   menuName = ScriptableObjectMenuPath._ScriptableObjectMenuPath + "Segmentation",
+                   order = 1)]
   public class Segmentation : ScriptableObject {
     /// <summary>
     /// </summary>

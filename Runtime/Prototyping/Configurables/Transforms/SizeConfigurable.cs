@@ -10,9 +10,9 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
   /// <summary>
   /// Configurable for scaling
   /// </summary>
-  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
-                    + "Size"
-                    + ConfigurableComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : ConfigurableComponentMenuPath._ComponentMenuPath
+                               + "Size"
+                               + ConfigurableComponentMenuPath._Postfix)]
   public class SizeConfigurable : Configurable {
     /// <summary>
     ///   Alpha
@@ -46,15 +46,15 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     protected override void RegisterComponent() {
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._x);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._y);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._z);
     }
 
@@ -66,14 +66,14 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
         return;
       }
 
-      this.ParentEnvironment.UnRegister(this, identifier : this._x);
-      this.ParentEnvironment.UnRegister(this, identifier : this._y);
-      this.ParentEnvironment.UnRegister(this, identifier : this._z);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._x);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._y);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._z);
     }
 
     public ISamplable ConfigurableValueSpace { get { return this._space; } }
 
-    public override void UpdateCurrentConfiguration() {  }
+    public override void UpdateCurrentConfiguration() { }
 
     /// <summary>
     /// </summary>
@@ -83,7 +83,9 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        DebugPrinting.ApplyPrint(debugging : this.Debugging, configuration : configuration, identifier : this.Identifier);
+        DebugPrinting.ApplyPrint(debugging : this.Debugging,
+                                 configuration : configuration,
+                                 identifier : this.Identifier);
       }
       #endif
       var local_scale = this.transform.localScale;

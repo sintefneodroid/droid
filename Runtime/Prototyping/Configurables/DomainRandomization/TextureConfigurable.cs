@@ -7,10 +7,10 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
-                    + "Texture"
-                    + ConfigurableComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(Renderer))]
+  [AddComponentMenu(menuName : ConfigurableComponentMenuPath._ComponentMenuPath
+                               + "Texture"
+                               + ConfigurableComponentMenuPath._Postfix)]
+  [RequireComponent(requiredComponent : typeof(Renderer))]
   public class TextureConfigurable : Configurable {
     [SerializeField] Texture[] _textures = null;
     [SerializeField] bool load_from_resources_if_empty = true;
@@ -44,7 +44,7 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
 
     public ISamplable ConfigurableValueSpace { get; }
 
-    public override void UpdateCurrentConfiguration() {  }
+    public override void UpdateCurrentConfiguration() { }
 
     /// <summary>
     /// </summary>
@@ -52,7 +52,9 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        DebugPrinting.ApplyPrint(debugging : this.Debugging, configuration : configuration, identifier : this.Identifier);
+        DebugPrinting.ApplyPrint(debugging : this.Debugging,
+                                 configuration : configuration,
+                                 identifier : this.Identifier);
       }
       #endif
 
@@ -77,7 +79,10 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
     public override Configuration[] SampleConfigurations() {
       this._last_sample = Random.Range(0, max : this._textures.Length);
 
-      return new[] {new Configuration(configurable_name : this.Identifier, configurable_value : this._last_sample)};
+      return new[] {
+                       new Configuration(configurable_name : this.Identifier,
+                                         configurable_value : this._last_sample)
+                   };
     }
   }
 }

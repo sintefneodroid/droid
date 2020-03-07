@@ -36,9 +36,9 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
 
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"{this.ParentEnvironment.Identifier} - {env_bounds}");
-          Debug.Log($"{this._rigidbody.name} - {rb_bounds}");
-          Debug.Log($"Is intersecting - {intersects}");
+          Debug.Log(message : $"{this.ParentEnvironment.Identifier} - {env_bounds}");
+          Debug.Log(message : $"{this._rigidbody.name} - {rb_bounds}");
+          Debug.Log(message : $"Is intersecting - {intersects}");
         }
         #endif
 

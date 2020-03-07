@@ -91,7 +91,7 @@ namespace droid.Runtime.Prototyping.Displayers {
     public void SetText(string text) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log("Applying " + text + " To " + this.name);
+        Debug.Log(message : "Applying " + text + " To " + this.name);
       }
       #endif
     }
@@ -122,7 +122,7 @@ namespace droid.Runtime.Prototyping.Displayers {
     public override void Display(String value) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log("Applying " + value + " To " + this.name);
+        Debug.Log(message : "Applying " + value + " To " + this.name);
       }
       #endif
       this.SetText(text : value);

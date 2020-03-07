@@ -7,14 +7,14 @@ namespace droid.Runtime.Messaging.Messages {
   [Serializable]
   public class EnvironmentSnapshot {
     public EnvironmentSnapshot(string environment_name,
-                            int frame_number,
-                            float time,
-                            float signal,
-                            bool terminated,
-                            ref float[] observables,
-                            string termination_reason = "",
-                            EnvironmentDescription description = null,
-                            string debug_message = "") {
+                               int frame_number,
+                               float time,
+                               float signal,
+                               bool terminated,
+                               ref float[] observables,
+                               string termination_reason = "",
+                               EnvironmentDescription description = null,
+                               string debug_message = "") {
       this.Observables = observables;
       this.DebugMessage = debug_message;
       this.TerminationReason = termination_reason;
@@ -73,6 +73,6 @@ namespace droid.Runtime.Messaging.Messages {
     ///
     /// </summary>
     /// <returns></returns>
-    public override String ToString() { return $"SnapShot: {this.Description},Term.{Terminated}"; }
+    public override String ToString() { return $"SnapShot: {this.Description},Term.{this.Terminated}"; }
   }
 }

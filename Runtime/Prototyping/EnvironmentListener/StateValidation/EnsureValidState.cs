@@ -17,8 +17,7 @@ namespace droid.Runtime.Prototyping.EnvironmentListener.StateValidation {
     [SerializeField] Obstruction[] _obstructions;
     [SerializeField] bool _only_initial_state = true;
 
-    [SerializeField] BoundingBox _playable_area;
-
+    [SerializeField] NeodroidBoundingBox _playable_area;
 
     /// <inheritdoc />
     /// <summary>
@@ -41,7 +40,7 @@ namespace droid.Runtime.Prototyping.EnvironmentListener.StateValidation {
       }
 
       if (!this._playable_area) {
-        this._playable_area = FindObjectOfType<BoundingBox>();
+        this._playable_area = FindObjectOfType<NeodroidBoundingBox>();
       }
     }
 
@@ -52,7 +51,8 @@ namespace droid.Runtime.Prototyping.EnvironmentListener.StateValidation {
         return;
       }
 
-      if (this._playable_area != null && !this._playable_area.Bounds.Intersects(bounds : this._actor.ActorBounds)) {
+      if (this._playable_area != null
+          && !this._playable_area.Bounds.Intersects(bounds : this._actor.ActorBounds)) {
         this._environment.Terminate("Actor outside playable area");
       }
 

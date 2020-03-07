@@ -16,7 +16,7 @@ namespace droid.Runtime.Utilities {
                                   IConfigurableConfiguration configuration,
                                   string identifier) {
       if (debugging) {
-        Debug.Log("Applying " + configuration + " To " + identifier);
+        Debug.Log(message : "Applying " + configuration + " To " + identifier);
       }
     }
 
@@ -28,7 +28,7 @@ namespace droid.Runtime.Utilities {
     /// <param name="debugging"></param>
     public static void DisplayPrint(dynamic value, string identifier, bool debugging) {
       if (debugging) {
-        Debug.Log("Applying " + value + " To " + identifier);
+        Debug.Log(message : "Applying " + value + " To " + identifier);
       }
     }
   }

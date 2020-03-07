@@ -18,14 +18,14 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// </summary>
     public IHasRegister<Actuator> Parent { get { return this._parent; } set { this._parent = value; } }
 
-
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <param name="motion"></param>
     public void ApplyMotion(IMotion motion) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log("Applying " + motion + " To " + this.name);
+        Debug.Log(message : "Applying " + motion + " To " + this.name);
       }
       #endif
 
@@ -39,10 +39,10 @@ namespace droid.Runtime.Prototyping.Actuators {
       set { this._motion_value_space.Space = value; }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <returns></returns>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <returns></returns>
     public virtual float Sample() { return this._motion_value_space.Sample(); }
 
     /// <inheritdoc />
@@ -51,7 +51,9 @@ namespace droid.Runtime.Prototyping.Actuators {
     protected override void RegisterComponent() {
       this._overriden = false;
       this.Parent =
-          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent, this, true);
+          NeodroidRegistrationUtilities.RegisterComponent(r : (IHasRegister<IActuator>)this.Parent,
+                                                          c : this,
+                                                          only_parents : true);
     }
 
     /// <inheritdoc />
@@ -63,7 +65,7 @@ namespace droid.Runtime.Prototyping.Actuators {
       }
 
       this._overriden = true;
-      this.Parent?.UnRegister(this);
+      this.Parent?.UnRegister(obj : this);
     }
 
     /// <summary>
@@ -88,7 +90,6 @@ namespace droid.Runtime.Prototyping.Actuators {
     [Header("General", order = 101)]
     [SerializeField]
     SampleSpace1 _motion_value_space = new SampleSpace1 {_space = Space1.DiscreteMinusOneOne};
-
 
     bool _overriden = false;
 

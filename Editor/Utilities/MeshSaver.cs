@@ -30,7 +30,7 @@ namespace droid.Editor.Utilities {
     ///
     /// </summary>
     /// <param name="menu_command"></param>
-    [MenuItem(_menu_path + "AsANewInstance")]
+    [MenuItem(itemName : _menu_path + "AsANewInstance")]
     public static void SaveMeshNewInstanceItem(MenuCommand menu_command) {
       var mf = menu_command.context as MeshFilter;
 
@@ -48,7 +48,7 @@ namespace droid.Editor.Utilities {
                                              "Neodroid/Runtime/Meshes",
                                              defaultName : name,
                                              "asset");
-      Debug.Log($"Trying to save mesh to {path}");
+      Debug.Log(message : $"Trying to save mesh to {path}");
       if (string.IsNullOrEmpty(value : path)) {
         return;
       }

@@ -6,23 +6,23 @@ using droid.Runtime.Structs.Space;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Lidar {
-  /// <summary>
-  ///
-  /// </summary>
+  /// <inheritdoc />
+  ///  <summary>
+  ///  </summary>
   public class PlanarLidarSensor : Sensor,
                                    IHasFloatArray {
     [SerializeField] [Range(1, 90)] int RaysToShoot = 30;
-    [SerializeField] Space1 _observation_space = new Space1 {Max = 30 };
+    [SerializeField] Space1 _observation_space = new Space1 {Max = 30};
     [SerializeField] AxisEnum _axisEnum = AxisEnum.Y_;
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override IEnumerable<Single> FloatEnumerable { get { return this.ObservationArray; } }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override void UpdateObservation() {
       var res = new float[this.RaysToShoot];
       float angle = 0;
@@ -33,18 +33,18 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Lidar {
 
         var position = this.transform.position;
 
-        var dir = new Vector3(position.x + x, position.y + y, 0);
+        var dir = new Vector3(x : position.x + x, y : position.y + y, z : 0);
         if (this._axisEnum == AxisEnum.Y_) {
-          dir = new Vector3(position.x + x, 0, position.z + y);
+          dir = new Vector3(x : position.x + x, y : 0, z : position.z + y);
         } else if (this._axisEnum == AxisEnum.X_) {
-          dir = new Vector3(0, position.y + y, position.z + x);
+          dir = new Vector3(0, y : position.y + y, z : position.z + x);
         }
 
         Debug.DrawLine(start : position, end : dir, color : Color.red);
         if (Physics.Raycast(origin : this.transform.position,
                             direction : dir,
-                            out var a,
-                            (float)this._observation_space.Max)) {
+                            hitInfo : out var a,
+                            maxDistance : (float)this._observation_space.Max)) {
           res[i] = this._observation_space.Project(v : a.distance);
         } else {
           res[i] = this._observation_space.Max;
@@ -54,15 +54,15 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Lidar {
       this.ObservationArray = res;
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     [field : SerializeField]
-    public Single[] ObservationArray { get; set; }
+    public Single[] ObservationArray { get; private set; }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public Space1[] ObservationSpace { get { return new[] {this._observation_space}; } }
 
     void OnDrawGizmosSelected() {
@@ -74,11 +74,11 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Lidar {
         angle += 2 * Mathf.PI / this.RaysToShoot;
 
         var position = this.transform.position;
-        var dir = new Vector3(position.x + x, position.y + y, 0);
+        var dir = new Vector3(x : position.x + x, y : position.y + y, z : 0);
         if (this._axisEnum == AxisEnum.Y_) {
-          dir = new Vector3(position.x + x, 0, position.z + y);
+          dir = new Vector3(x : position.x + x, y : 0, z : position.z + y);
         } else if (this._axisEnum == AxisEnum.X_) {
-          dir = new Vector3(0, position.y + y, position.z + x);
+          dir = new Vector3(0, y : position.y + y, z : position.z + x);
         }
 
         Debug.DrawLine(start : position, end : dir, color : Color.red);

@@ -10,10 +10,10 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
-                    + "ScreenSpaceOcclusion"
-                    + ConfigurableComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(Renderer))]
+  [AddComponentMenu(menuName : ConfigurableComponentMenuPath._ComponentMenuPath
+                               + "ScreenSpaceOcclusion"
+                               + ConfigurableComponentMenuPath._Postfix)]
+  [RequireComponent(requiredComponent : typeof(Renderer))]
   public class ScreenSpaceOcclusionConfigurable : Configurable {
     /// <summary>
     ///   Alpha
@@ -101,19 +101,19 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     protected override void RegisterComponent() {
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._r);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._g);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._b);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._a);
     }
 
@@ -125,15 +125,18 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
         return;
       }
 
-      this.ParentEnvironment.UnRegister(this, identifier : this._r);
-      this.ParentEnvironment.UnRegister(this, identifier : this._g);
-      this.ParentEnvironment.UnRegister(this, identifier : this._b);
-      this.ParentEnvironment.UnRegister(this, identifier : this._a);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._r);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._g);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._b);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._a);
     }
 
     public ISamplable ConfigurableValueSpace { get { return new SampleSpace1(); } }
 
-    public override void UpdateCurrentConfiguration() {  }
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public override void UpdateCurrentConfiguration() { }
 
     /// <inheritdoc />
     /// <summary>
@@ -164,7 +167,9 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
       }
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        DebugPrinting.ApplyPrint(debugging : this.Debugging, configuration : configuration, identifier : this.Identifier);
+        DebugPrinting.ApplyPrint(debugging : this.Debugging,
+                                 configuration : configuration,
+                                 identifier : this.Identifier);
       }
       #endif
     }

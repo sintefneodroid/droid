@@ -7,7 +7,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [RequireComponent(typeof(Camera))]
+  [RequireComponent(requiredComponent : typeof(Camera))]
   [ExecuteInEditMode]
   public class UberCamera : MonoBehaviour {
     #region fields
@@ -97,9 +97,10 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
                                               height : _texture_wh.Item2,
                                               0,
                                               format : RenderTextureFormat.ARGBHalf) {
-                                                                                filterMode = FilterMode.Point,
-                                                                                name = $"rt_fb{i}"
-                                                                            };
+                                                                                         filterMode =
+                                                                                             FilterMode.Point,
+                                                                                         name = $"rt_fb{i}"
+                                                                                     };
           this._fb_rts[i].Create();
         }
       }
@@ -132,9 +133,10 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
                                               height : _texture_wh.Item2,
                                               0,
                                               format : RenderTextureFormat.ARGBHalf) {
-                                                                                filterMode = FilterMode.Point,
-                                                                                name = $"{names[i]}"
-                                                                            };
+                                                                                         filterMode =
+                                                                                             FilterMode.Point,
+                                                                                         name = $"{names[i]}"
+                                                                                     };
           this._gb_rts[i].Create();
         }
       }
@@ -200,7 +202,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
                                       0,
                                       filter : FilterMode.Point);
       this._copy_fb_cb.Blit(source : BuiltinRenderTextureType.CurrentActive, dest : this._tmp_texture_id);
-      this._copy_fb_cb.SetRenderTarget(colors : this._m_rt_gb_ids, this._fb_rts[0]);
+      this._copy_fb_cb.SetRenderTarget(colors : this._m_rt_gb_ids, depth : this._fb_rts[0]);
       this._copy_fb_cb.DrawMesh(mesh : this._quad_mesh,
                                 matrix : Matrix4x4.identity,
                                 material : this._copy_material,
@@ -226,7 +228,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
       this._copy_material.SetColor(nameID : _clear_color, value : this._camera.backgroundColor);
 
       this._copy_gb_cb = new CommandBuffer {name = "Copy GBuffer"}; // copy gbuffer
-      this._copy_gb_cb.SetRenderTarget(colors : this._m_rt_fb_ids, this._gb_rts[0]);
+      this._copy_gb_cb.SetRenderTarget(colors : this._m_rt_fb_ids, depth : this._gb_rts[0]);
       this._copy_gb_cb.DrawMesh(mesh : this._quad_mesh,
                                 matrix : Matrix4x4.identity,
                                 material : this._copy_material,
@@ -236,13 +238,14 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
       this._camera.AddCommandBuffer(evt : CameraEvent.BeforeLighting, buffer : this._copy_gb_cb);
 
       this._copy_velocity_cb = new CommandBuffer {name = "Copy Velocity"};
-      this._copy_velocity_cb.SetRenderTarget(this._gb_rts[7]);
+      this._copy_velocity_cb.SetRenderTarget(rt : this._gb_rts[7]);
       this._copy_velocity_cb.DrawMesh(mesh : this._quad_mesh,
                                       matrix : Matrix4x4.identity,
                                       material : this._copy_material,
                                       0,
                                       4);
-      this._camera.AddCommandBuffer(evt : CameraEvent.BeforeImageEffectsOpaque, buffer : this._copy_velocity_cb);
+      this._camera.AddCommandBuffer(evt : CameraEvent.BeforeImageEffectsOpaque,
+                                    buffer : this._copy_velocity_cb);
       this._camera.depthTextureMode = DepthTextureMode.Depth | DepthTextureMode.MotionVectors;
 
       this._copy_cbs = new[] {
@@ -263,8 +266,8 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
             var xi = (_preview_size + _preview_margin) * index++;
             var x = xi % (Screen.width - _preview_size);
             var y = (_preview_size + _preview_margin) * (xi / (Screen.width - _preview_size));
-            var r = new Rect(_preview_margin + x,
-                             _preview_margin + y,
+            var r = new Rect(x : _preview_margin + x,
+                             y : _preview_margin + y,
                              width : _preview_size,
                              height : _preview_size);
             //this._asf?.Flip(pass._RenderTexture);
@@ -280,8 +283,8 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
             var xi = (_preview_size + _preview_margin) * index++;
             var x = xi % (Screen.width - _preview_size);
             var y = (_preview_size + _preview_margin) * (xi / (Screen.width - _preview_size));
-            var r = new Rect(_preview_margin + x,
-                             _preview_margin + y,
+            var r = new Rect(x : _preview_margin + x,
+                             y : _preview_margin + y,
                              width : _preview_size,
                              height : _preview_size);
             //this._asf?.Flip(pass._RenderTexture);
@@ -319,7 +322,8 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
       }
 
       if (this._copy_velocity_cb != null) {
-        this._camera.RemoveCommandBuffer(evt : CameraEvent.BeforeImageEffectsOpaque, buffer : this._copy_velocity_cb);
+        this._camera.RemoveCommandBuffer(evt : CameraEvent.BeforeImageEffectsOpaque,
+                                         buffer : this._copy_velocity_cb);
         this._copy_velocity_cb.Release();
         this._copy_velocity_cb = null;
       }

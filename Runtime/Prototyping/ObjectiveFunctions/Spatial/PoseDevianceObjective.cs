@@ -7,9 +7,9 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(EvaluationComponentMenuPath._ComponentMenuPath
-                    + "PoseDeviance"
-                    + EvaluationComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : EvaluationComponentMenuPath._ComponentMenuPath
+                               + "PoseDeviance"
+                               + EvaluationComponentMenuPath._Postfix)]
   public class PoseDevianceObjective : SpatialObjective {
     /// <inheritdoc />
     /// <summary>
@@ -27,21 +27,21 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
         this.ParentEnvironment.Terminate("Outside playable area");
       }*/
 
-      var distance =
-          Mathf.Abs(Vector3.Distance(a : this._goal.transform.position,
-                                     b : this._actor_transform.transform.position));
-      var angle = Quaternion.Angle(a : this._goal.transform.rotation, b : this._actor_transform.transform.rotation);
+      var distance = Mathf.Abs(f : Vector3.Distance(a : this._goal.transform.position,
+                                                    b : this._actor_transform.transform.position));
+      var angle = Quaternion.Angle(a : this._goal.transform.rotation,
+                                   b : this._actor_transform.transform.rotation);
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log($"Distance: {distance}");
-        Debug.Log($"Angle: {angle}");
+        Debug.Log(message : $"Distance: {distance}");
+        Debug.Log(message : $"Angle: {angle}");
       }
       #endif
 
       if (!this._sparse) {
         if (this._inverse) {
-          signal -=  distance;
-          signal -=  angle;
+          signal -= distance;
+          signal -= angle;
         } else {
           signal += 1 / (distance + 1);
           signal += 1 / (angle + 1);
@@ -75,11 +75,11 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log($"Frame Number: {this.ParentEnvironment?.StepI}, "
-                  + $"Terminated: {this.ParentEnvironment?.Terminated}, "
-                  + $"Last Reason: {this.ParentEnvironment?.LastTerminationReason}, "
-                  + $"Internal Feedback Signal: {signal}, "
-                  + $"Distance: {distance}");
+        Debug.Log(message : $"Frame Number: {this.ParentEnvironment?.StepI}, "
+                            + $"Terminated: {this.ParentEnvironment?.Terminated}, "
+                            + $"Last Reason: {this.ParentEnvironment?.LastTerminationReason}, "
+                            + $"Internal Feedback Signal: {signal}, "
+                            + $"Distance: {distance}");
       }
       #endif
 
@@ -126,7 +126,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
       }
 
       if (!this._playable_area) {
-        this._playable_area = FindObjectOfType<BoundingBox>();
+        this._playable_area = FindObjectOfType<NeodroidBoundingBox>();
       }
     }
 
@@ -164,7 +164,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
     [SerializeField] bool _inverse = false;
     [SerializeField] Transform _goal = null;
     [SerializeField] Transform _actor_transform = null;
-    [SerializeField] BoundingBox _playable_area = null;
+    [SerializeField] NeodroidBoundingBox _playable_area = null;
     [SerializeField] Obstruction[] _obstructions = null;
     [SerializeField] bool _state_full = false;
     [SerializeField] float _goal_reached_radius = 0.01f; // Equivalent to 1 cm.

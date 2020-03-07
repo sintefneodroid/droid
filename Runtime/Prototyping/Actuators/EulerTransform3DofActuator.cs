@@ -10,9 +10,9 @@ namespace droid.Runtime.Prototyping.Actuators {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ActuatorComponentMenuPath._ComponentMenuPath
-                    + "EulerTransform3Dof"
-                    + ActuatorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : ActuatorComponentMenuPath._ComponentMenuPath
+                               + "EulerTransform3Dof"
+                               + ActuatorComponentMenuPath._Postfix)]
   public class EulerTransform3DofActuator : Actuator {
     /// <summary>
     /// </summary>
@@ -54,10 +54,7 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// </summary>
     string _z;
 
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "EulerTransform"; } }
-
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void Setup() {
@@ -72,34 +69,39 @@ namespace droid.Runtime.Prototyping.Actuators {
       }
     }
 
+    /// <summary>
+    ///
+    /// </summary>
     public override string[] InnerMotionNames => new[] {this._x, this._y, this._z};
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
       this.Parent =
-          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
-                                                          this,
+          NeodroidRegistrationUtilities.RegisterComponent(r : (IHasRegister<IActuator>)this.Parent,
+                                                          c : this,
                                                           identifier : this._x);
       this.Parent =
-          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
-                                                          this,
+          NeodroidRegistrationUtilities.RegisterComponent(r : (IHasRegister<IActuator>)this.Parent,
+                                                          c : this,
                                                           identifier : this._y);
       this.Parent =
-          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
-                                                          this,
+          NeodroidRegistrationUtilities.RegisterComponent(r : (IHasRegister<IActuator>)this.Parent,
+                                                          c : this,
                                                           identifier : this._z);
     }
 
+    /// <inheritdoc />
     /// <summary>
-    ///
     /// </summary>
     protected override void UnRegisterComponent() {
-      this.Parent?.UnRegister(this, obj : this._x);
-      this.Parent?.UnRegister(this, obj : this._y);
-      this.Parent?.UnRegister(this, obj : this._z);
+      this.Parent?.UnRegister(t : this, obj : this._x);
+      this.Parent?.UnRegister(t : this, obj : this._y);
+      this.Parent?.UnRegister(t : this, obj : this._z);
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <param name="motion"></param>
@@ -111,7 +113,7 @@ namespace droid.Runtime.Prototyping.Actuators {
           if (this._No_Collisions) {
             if (!Physics.Raycast(origin : this.transform.position,
                                  direction : vec,
-                                 Mathf.Abs(f : motion.Strength),
+                                 maxDistance : Mathf.Abs(f : motion.Strength),
                                  layerMask : layer_mask)) {
               this.transform.Translate(translation : vec, relativeTo : this._Relative_To);
             }
@@ -123,7 +125,7 @@ namespace droid.Runtime.Prototyping.Actuators {
           if (this._No_Collisions) {
             if (!Physics.Raycast(origin : this.transform.position,
                                  direction : vec,
-                                 Mathf.Abs(f : motion.Strength),
+                                 maxDistance : Mathf.Abs(f : motion.Strength),
                                  layerMask : layer_mask)) {
               this.transform.Translate(translation : vec, relativeTo : this._Relative_To);
             }
@@ -135,7 +137,7 @@ namespace droid.Runtime.Prototyping.Actuators {
           if (this._No_Collisions) {
             if (!Physics.Raycast(origin : this.transform.position,
                                  direction : vec,
-                                 Mathf.Abs(f : motion.Strength),
+                                 maxDistance : Mathf.Abs(f : motion.Strength),
                                  layerMask : layer_mask)) {
               this.transform.Translate(translation : vec, relativeTo : this._Relative_To);
             }
@@ -145,11 +147,15 @@ namespace droid.Runtime.Prototyping.Actuators {
         }
       } else {
         if (motion.ActuatorName == this._x) {
-          this.transform.Rotate(axis : Vector3.right, angle : motion.Strength, relativeTo : this._Relative_To);
+          this.transform.Rotate(axis : Vector3.right,
+                                angle : motion.Strength,
+                                relativeTo : this._Relative_To);
         } else if (motion.ActuatorName == this._y) {
           this.transform.Rotate(axis : Vector3.up, angle : motion.Strength, relativeTo : this._Relative_To);
         } else if (motion.ActuatorName == this._z) {
-          this.transform.Rotate(axis : Vector3.forward, angle : motion.Strength, relativeTo : this._Relative_To);
+          this.transform.Rotate(axis : Vector3.forward,
+                                angle : motion.Strength,
+                                relativeTo : this._Relative_To);
         }
       }
     }
@@ -175,9 +181,9 @@ namespace droid.Runtime.Prototyping.Actuators {
                               180,
                               2);
         } else {
-          Debug.DrawLine(start : position, position + Vector3.up * 2, color : Color.green);
-          Debug.DrawLine(start : position, position + Vector3.forward * 2, color : Color.green);
-          Debug.DrawLine(start : position, position + Vector3.right * 2, color : Color.green);
+          Debug.DrawLine(start : position, end : position + Vector3.up * 2, color : Color.green);
+          Debug.DrawLine(start : position, end : position + Vector3.forward * 2, color : Color.green);
+          Debug.DrawLine(start : position, end : position + Vector3.right * 2, color : Color.green);
         }
       }
     }

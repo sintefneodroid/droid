@@ -9,10 +9,10 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
-                    + "Color"
-                    + ConfigurableComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(Renderer))]
+  [AddComponentMenu(menuName : ConfigurableComponentMenuPath._ComponentMenuPath
+                               + "Color"
+                               + ConfigurableComponentMenuPath._Postfix)]
+  [RequireComponent(requiredComponent : typeof(Renderer))]
   public class ColorConfigurable : Configurable {
     /// <summary>
     ///   Alpha
@@ -65,19 +65,19 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
     protected override void RegisterComponent() {
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          this,
+                                                          c : this,
                                                           identifier : this._r_id);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          this,
+                                                          c : this,
                                                           identifier : this._g_id);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          this,
+                                                          c : this,
                                                           identifier : this._b_id);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          this,
+                                                          c : this,
                                                           identifier : this._a_id);
     }
 
@@ -89,10 +89,10 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
         return;
       }
 
-      this.ParentEnvironment.UnRegister(this, identifier : this._r_id);
-      this.ParentEnvironment.UnRegister(this, identifier : this._b_id);
-      this.ParentEnvironment.UnRegister(this, identifier : this._g_id);
-      this.ParentEnvironment.UnRegister(this, identifier : this._a_id);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._r_id);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._b_id);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._g_id);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._a_id);
     }
 
     /// <summary>
@@ -100,7 +100,10 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
     /// </summary>
     public ISamplable ConfigurableValueSpace { get { return this._space; } }
 
-    public override void UpdateCurrentConfiguration() {  }
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public override void UpdateCurrentConfiguration() { }
 
     /// <inheritdoc />
     /// <summary>
@@ -109,7 +112,9 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        DebugPrinting.ApplyPrint(debugging : this.Debugging, configuration : configuration, identifier : this.Identifier);
+        DebugPrinting.ApplyPrint(debugging : this.Debugging,
+                                 configuration : configuration,
+                                 identifier : this.Identifier);
       }
       #endif
 
@@ -118,7 +123,7 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
           var mat = this._renderer.sharedMaterials[index];
           var c = mat.color;
 
-          switch (configuration.ConfigurableName[configuration.ConfigurableName.Length - 1]) {
+          switch (configuration.ConfigurableName[index : configuration.ConfigurableName.Length - 1]) {
             case _r:
               c.r = configuration.ConfigurableValue;
               break;
@@ -140,7 +145,7 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
           var mat = this._renderer.materials[index];
           var c = mat.color;
 
-          switch (configuration.ConfigurableName[configuration.ConfigurableName.Length - 1]) {
+          switch (configuration.ConfigurableName[index : configuration.ConfigurableName.Length - 1]) {
             case _r:
               c.r = configuration.ConfigurableValue;
               break;
@@ -160,9 +165,9 @@ namespace droid.Runtime.Prototyping.Configurables.DomainRandomization {
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     protected override void Randomise() {
       if (this.use_shared) {
         foreach (var mat in this._renderer.sharedMaterials) {

@@ -25,9 +25,9 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
 
   //[RequireComponent (typeof(BoundingBox))]
   //[RequireComponent (typeof(BoxCollider))]
-  [AddComponentMenu(EvaluationComponentMenuPath._ComponentMenuPath
-                    + "ReachArea"
-                    + EvaluationComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : EvaluationComponentMenuPath._ComponentMenuPath
+                               + "ReachArea"
+                               + EvaluationComponentMenuPath._Postfix)]
   public class ReachAreaObjective : SpatialObjective {
     [SerializeField] Collider _actor = null;
 
@@ -41,7 +41,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
     //Used for.. if outside playable area then reset
     [SerializeField] ActorOverlapping _overlapping = ActorOverlapping.Outside_area_;
 
-    [SerializeField] BoundingBox _playable_area;
+    [SerializeField] NeodroidBoundingBox _playable_area;
 
     public override void InternalReset() { }
 
@@ -91,50 +91,37 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
       }
 
       if (!this._playable_area) {
-        this._playable_area = FindObjectOfType<BoundingBox>();
+        this._playable_area = FindObjectOfType<NeodroidBoundingBox>();
       }
 
       NeodroidRegistrationUtilities
-          .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider, Collision>(this,
-                                                                                                   parent : this
-                                                                                                       ._area
-                                                                                                       .transform,
-                                                                                                   on_collision_enter_child : this
-                                                                                                       .OnCollisionEnterChild,
-                                                                                                   on_trigger_enter_child : this
-                                                                                                       .OnTriggerEnterChild,
-                                                                                                   on_collision_exit_child : this
-                                                                                                       .OnCollisionExitChild,
-                                                                                                   on_trigger_exit_child : this
-                                                                                                       .OnTriggerExitChild,
-                                                                                                   on_collision_stay_child : this
-                                                                                                       .OnCollisionStayChild,
-                                                                                                   on_trigger_stay_child : this
-                                                                                                       .OnTriggerStayChild);
+          .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider, Collision
+          >(caller : this,
+            parent : this._area.transform,
+            on_collision_enter_child : this.OnCollisionEnterChild,
+            on_trigger_enter_child : this.OnTriggerEnterChild,
+            on_collision_exit_child : this.OnCollisionExitChild,
+            on_trigger_exit_child : this.OnTriggerExitChild,
+            on_collision_stay_child : this.OnCollisionStayChild,
+            on_trigger_stay_child : this.OnTriggerStayChild);
 
       NeodroidRegistrationUtilities
-          .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider, Collision>(this,
-                                                                                                   parent : this
-                                                                                                       ._actor
-                                                                                                       .transform,
-                                                                                                   on_collision_enter_child : this
-                                                                                                       .OnCollisionEnterChild,
-                                                                                                   on_trigger_enter_child : this
-                                                                                                       .OnTriggerEnterChild,
-                                                                                                   on_collision_exit_child : this
-                                                                                                       .OnCollisionExitChild,
-                                                                                                   on_trigger_exit_child : this
-                                                                                                       .OnTriggerExitChild,
-                                                                                                   on_collision_stay_child : this
-                                                                                                       .OnCollisionStayChild,
-                                                                                                   on_trigger_stay_child : this
-                                                                                                       .OnTriggerStayChild);
+          .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider, Collision
+          >(caller : this,
+            parent : this._actor.transform,
+            on_collision_enter_child : this.OnCollisionEnterChild,
+            on_trigger_enter_child : this.OnTriggerEnterChild,
+            on_collision_exit_child : this.OnCollisionExitChild,
+            on_trigger_exit_child : this.OnTriggerExitChild,
+            on_collision_stay_child : this.OnCollisionStayChild,
+            on_trigger_stay_child : this.OnTriggerStayChild);
     }
 
     void OnTriggerEnterChild(GameObject child_game_object, Collider other_game_object) {
       if (this._actor) {
         if (this._based_on_tags) {
-          if (child_game_object.CompareTag(tag : this._area.tag) && other_game_object.CompareTag(tag : this._actor.tag)) {
+          if (child_game_object.CompareTag(tag : this._area.tag)
+              && other_game_object.CompareTag(tag : this._actor.tag)) {
             #if NEODROID_DEBUG
             if (this.Debugging) {
               Debug.Log("Actor is inside area");
@@ -144,7 +131,8 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
             this._overlapping = ActorOverlapping.Inside_area_;
           }
 
-          if (child_game_object.CompareTag(tag : this._actor.tag) && other_game_object.CompareTag("Obstruction")) {
+          if (child_game_object.CompareTag(tag : this._actor.tag)
+              && other_game_object.CompareTag("Obstruction")) {
             #if NEODROID_DEBUG
             if (this.Debugging) {
               Debug.Log("Actor is colliding");
@@ -181,7 +169,8 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
     void OnTriggerStayChild(GameObject child_game_object, Collider other_game_object) {
       if (this._actor) {
         if (this._based_on_tags) {
-          if (child_game_object.CompareTag(tag : this._area.tag) && other_game_object.CompareTag(tag : this._actor.tag)) {
+          if (child_game_object.CompareTag(tag : this._area.tag)
+              && other_game_object.CompareTag(tag : this._actor.tag)) {
             #if NEODROID_DEBUG
             if (this.Debugging) {
               Debug.Log("Actor is inside area");
@@ -191,7 +180,8 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
             this._overlapping = ActorOverlapping.Inside_area_;
           }
 
-          if (child_game_object.CompareTag(tag : this._actor.tag) && other_game_object.CompareTag("Obstruction")) {
+          if (child_game_object.CompareTag(tag : this._actor.tag)
+              && other_game_object.CompareTag("Obstruction")) {
             #if NEODROID_DEBUG
             if (this.Debugging) {
               Debug.Log("Actor is colliding");
@@ -228,7 +218,8 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
     void OnTriggerExitChild(GameObject child_game_object, Collider other_game_object) {
       if (this._actor) {
         if (this._based_on_tags) {
-          if (child_game_object.CompareTag(tag : this._area.tag) && other_game_object.CompareTag(tag : this._actor.tag)) {
+          if (child_game_object.CompareTag(tag : this._area.tag)
+              && other_game_object.CompareTag(tag : this._actor.tag)) {
             #if NEODROID_DEBUG
             if (this.Debugging) {
               Debug.Log("Actor is outside area");
@@ -238,7 +229,8 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
             this._overlapping = ActorOverlapping.Outside_area_;
           }
 
-          if (child_game_object.CompareTag(tag : this._actor.tag) && other_game_object.CompareTag("Obstruction")) {
+          if (child_game_object.CompareTag(tag : this._actor.tag)
+              && other_game_object.CompareTag("Obstruction")) {
             #if NEODROID_DEBUG
             if (this.Debugging) {
               Debug.Log("Actor is not colliding");

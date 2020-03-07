@@ -9,7 +9,7 @@ namespace droid.Editor.Utilities {
   ///   Editor for a scene reference that can display error prompts and offer
   ///   solutions when the scene is not valid.
   /// </summary>
-  [CustomPropertyDrawer(typeof(SceneReference))]
+  [CustomPropertyDrawer(type : typeof(SceneReference))]
   public class SceneReferenceEditor : PropertyDrawer {
     /// <inheritdoc />
     /// <summary>

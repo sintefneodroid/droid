@@ -7,11 +7,11 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
-                    + "StringAugmentedCamera"
-                    + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : SensorComponentMenuPath._ComponentMenuPath
+                               + "StringAugmentedCamera"
+                               + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
-  [RequireComponent(typeof(Camera))]
+  [RequireComponent(requiredComponent : typeof(Camera))]
   public class StringAugmentedEncodedCameraSensor : EncodedCameraSensor,
                                                     IHasString {
     const string _color_identifier = "Colors";
@@ -28,8 +28,8 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
     /// </summary>
     public String ObservationValue { get { return this.serialised_string; } }
 
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
     public override void PreSetup() {
       base.PreSetup();
@@ -41,18 +41,22 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment, this, identifier : this.Identifier);
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
+                                                          c : this,
+                                                          identifier : this.Identifier);
 
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment, this, identifier : this._colors);
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
+                                                          c : this,
+                                                          identifier : this._colors);
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     protected override void UnRegisterComponent() {
-      this.ParentEnvironment?.UnRegister(this, identifier : this.Identifier);
-      this.ParentEnvironment?.UnRegister(this, identifier : this._colors);
+      this.ParentEnvironment?.UnRegister(t : this, identifier : this.Identifier);
+      this.ParentEnvironment?.UnRegister(t : this, identifier : this._colors);
     }
 
     /// <inheritdoc />

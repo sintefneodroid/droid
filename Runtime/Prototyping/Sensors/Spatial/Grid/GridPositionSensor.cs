@@ -7,9 +7,9 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Grid {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
-                    + "GridPosition"
-                    + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : SensorComponentMenuPath._ComponentMenuPath
+                               + "GridPosition"
+                               + SensorComponentMenuPath._Postfix)]
   public class GridPositionSensor : Sensor,
                                     IHasSingle {
     /// <summary>
@@ -28,10 +28,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Grid {
     [SerializeField] Space1 _observation_value_space;
     [SerializeField] int _width = 0;
 
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "Value"; } }
-
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public float ObservationValue {

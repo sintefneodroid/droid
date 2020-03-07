@@ -8,7 +8,7 @@ namespace droid.Editor.Utilities.ObjectDropdown {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [CustomPropertyDrawer(typeof(ObjectDropdownAttribute))]
+  [CustomPropertyDrawer(type : typeof(ObjectDropdownAttribute))]
   public class ObjectSelectorDropdown : PropertyDrawer {
     List<Object> _m_list = new List<Object>();
 
@@ -50,7 +50,8 @@ namespace droid.Editor.Utilities.ObjectDropdown {
             if (field_info != null) {
               var type = field_info.FieldType;
               for (var i = this._m_list.Count - 1; i >= 0; i--) {
-                if (this._m_list[index : i] == null || !type.IsAssignableFrom(this._m_list[index : i].GetType())) {
+                if (this._m_list[index : i] == null
+                    || !type.IsAssignableFrom(this._m_list[index : i].GetType())) {
                   this._m_list.RemoveAt(index : i);
                 }
               }
@@ -59,7 +60,7 @@ namespace droid.Editor.Utilities.ObjectDropdown {
             if (this.attribute is ObjectDropdownFilterAttribute att) {
               var type = att._FilterType;
               for (var i = this._m_list.Count - 1; i >= 0; i--) {
-                if (!type.IsAssignableFrom(this._m_list[index : i].GetType())) {
+                if (!type.IsAssignableFrom(c : this._m_list[index : i].GetType())) {
                   this._m_list.RemoveAt(index : i);
                 }
               }
@@ -76,7 +77,7 @@ namespace droid.Editor.Utilities.ObjectDropdown {
                                                    property.serializedObject.ApplyModifiedProperties();
                                                  };
                 foreach (var item in this._m_list) {
-                  gm.AddItem(new GUIContent(item.name + "(" + item.GetType().Name + ")"),
+                  gm.AddItem(content : new GUIContent(text : item.name + "(" + item.GetType().Name + ")"),
                              false,
                              func : func,
                              userData : item);
@@ -114,7 +115,9 @@ namespace droid.Editor.Utilities.ObjectDropdown {
       for (var index = 0; index < parts.Length; index++) {
         var field_name = parts[index];
         fi = current_type.GetField(name : field_name,
-                                   BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                                   bindingAttr : BindingFlags.Instance
+                                                 | BindingFlags.Public
+                                                 | BindingFlags.NonPublic);
         if (fi == null) {
           return null;
         }

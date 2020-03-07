@@ -36,8 +36,8 @@ namespace droid.Runtime.Environments.Prototyping {
         this.RandomiseEnvironment();
       }
 
-      if (this.Configure) {
-        this.Configure = false;
+      if (this.ShouldConfigure) {
+        this.ShouldConfigure = false;
         this.Reconfigure();
       }
 

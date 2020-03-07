@@ -62,14 +62,14 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-    float ClipRound(float v) { return this.Clip(this.Round(v : v)); }
+    float ClipRound(float v) { return this.Clip(v : this.Round(v : v)); }
 
     /// <summary>
     ///
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-    dynamic ClipNormalise01Round(dynamic v) { return this.Round(this.Normalise01(this.Clip(v : v))); }
+    dynamic ClipNormalise01Round(dynamic v) { return this.Round(v : this.Normalise01(v : this.Clip(v : v))); }
 
     /// <summary>
     ///
@@ -77,7 +77,7 @@ namespace droid.Runtime.Structs.Space {
     /// <param name="v"></param>
     /// <returns></returns>
     dynamic ClipNormaliseMinusOneOneRound(dynamic v) {
-      return this.Round(this.NormaliseMinusOneOne(this.Clip(v : v)));
+      return this.Round(v : this.NormaliseMinusOneOne(v : this.Clip(v : v)));
     }
 
     /// <inheritdoc />
@@ -162,7 +162,9 @@ namespace droid.Runtime.Structs.Space {
     ///
     /// </summary>
     /// <returns></returns>
-    public Vector3 ToVector3() { return new Vector3(x : this._min_, y : this._max_, z : this._decimal_granularity); }
+    public Vector3 ToVector3() {
+      return new Vector3(x : this._min_, y : this._max_, z : this._decimal_granularity);
+    }
 
     /// <summary>
     ///
@@ -204,7 +206,7 @@ namespace droid.Runtime.Structs.Space {
     /// <param name="v"></param>
     /// <returns></returns>
     dynamic ClipRoundDenormalise01Clip(dynamic v) {
-      return this.Clip(this.Round(this.Denormalise01(Clip( v, 0, 1))));
+      return this.Clip(v : this.Round(v : this.Denormalise01(v : Clip(v : v, min : 0, max : 1))));
     }
 
     /// <summary>
@@ -213,7 +215,7 @@ namespace droid.Runtime.Structs.Space {
     /// <param name="v"></param>
     /// <returns></returns>
     dynamic ClipRoundDenormaliseMinusOneOneClip(dynamic v) {
-      return this.Clip(this.Round(this.DenormaliseMinusOneOne(Clip( v, 0, 1))));
+      return this.Clip(v : this.Round(v : this.DenormaliseMinusOneOne(v : Clip(v : v, min : 0, max : 1))));
     }
 
     /// <summary>

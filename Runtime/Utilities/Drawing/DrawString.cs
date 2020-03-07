@@ -37,7 +37,7 @@ namespace droid.Runtime.Utilities.Drawing {
         return;
       }
 
-      Handles.Label(TransformByPixel(position : world_pos, x : o_x, y : o_y), text : text);
+      Handles.Label(position : TransformByPixel(position : world_pos, x : o_x, y : o_y), text : text);
 
       GUI.color = restore_color;
       Handles.EndGUI();
@@ -50,7 +50,7 @@ namespace droid.Runtime.Utilities.Drawing {
     /// <param name="y"></param>
     /// <returns></returns>
     public static Vector3 TransformByPixel(Vector3 position, float x, float y) {
-      return TransformByPixel(position : position, new Vector3(x : x, y : y));
+      return TransformByPixel(position : position, translate_by : new Vector3(x : x, y : y));
     }
 
     /// <summary>
@@ -60,7 +60,10 @@ namespace droid.Runtime.Utilities.Drawing {
     /// <returns></returns>
     public static Vector3 TransformByPixel(Vector3 position, Vector3 translate_by) {
       var cam = SceneView.currentDrawingSceneView.camera;
-      return cam ? cam.ScreenToWorldPoint(cam.WorldToScreenPoint(position : position) + translate_by) : position;
+      return cam
+                 ? cam.ScreenToWorldPoint(position : cam.WorldToScreenPoint(position : position)
+                                                     + translate_by)
+                 : position;
     }
   }
 }

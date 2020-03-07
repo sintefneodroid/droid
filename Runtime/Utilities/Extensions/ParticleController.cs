@@ -3,7 +3,7 @@
 using UnityEngine;
 
 namespace droid.Runtime.Utilities.Extensions {
-  [RequireComponent(typeof(ParticleSystem))]
+  [RequireComponent(requiredComponent : typeof(ParticleSystem))]
   public class ParticleController : MonoBehaviour {
     ParticleSystem _particle_system;
 

@@ -5,9 +5,9 @@ using droid.Runtime.Structs.Space;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Configurables.Transforms {
-  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
-                    + "QuaternionTransform"
-                    + ConfigurableComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : ConfigurableComponentMenuPath._ComponentMenuPath
+                               + "QuaternionTransform"
+                               + ConfigurableComponentMenuPath._Postfix)]
   public class QuaternionTransformConfigurable : Configurable,
                                                  IHasQuaternionTransform {
     [Header("Specific", order = 102)]
@@ -16,7 +16,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
 
     [SerializeField] Quaternion _rotation;
 
-     string _pos_x = "pos_x";
+    string _pos_x = "pos_x";
     string _pos_y = "pos_y";
     string _pos_z = "pos_z";
 
@@ -55,13 +55,12 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void RegisterComponent() { throw new NotImplementedException();}
-
+    protected override void RegisterComponent() { throw new NotImplementedException(); }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void UnRegisterComponent() { throw new NotImplementedException();}
+    protected override void UnRegisterComponent() { throw new NotImplementedException(); }
 
     public override void PrototypingReset() {
       base.PrototypingReset();
@@ -70,13 +69,16 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       transform1.rotation = this._rotation;
     }
 
-    public override void UpdateCurrentConfiguration() {  }
+    public override void UpdateCurrentConfiguration() { }
 
     public ISamplable ConfigurableValueSpace { get; }
 
-    public override Configuration[] SampleConfigurations() { return new[]{new Configuration
-    (configurable_name : this.Identifier,configurable_value: this
-                                                                                        .ConfigurableValueSpace.Sample())};}
+    public override Configuration[] SampleConfigurations() {
+      return new[] {
+                       new Configuration(configurable_name : this.Identifier,
+                                         configurable_value : this.ConfigurableValueSpace.Sample())
+                   };
+    }
 
     /// <summary>
     ///

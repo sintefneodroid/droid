@@ -71,9 +71,11 @@ namespace droid.Editor.Utilities.SearchableEnum {
 
         for (var i = 0; i < this._all_items.Length; i++) {
           if (string.IsNullOrEmpty(value : this.Filter)
-              || this._all_items[i].ToLower().Contains(this.Filter.ToLower())) {
+              || this._all_items[i].ToLower().Contains(value : this.Filter.ToLower())) {
             var entry = new Entry {_Index = i, _Text = this._all_items[i]};
-            if (string.Equals(this._all_items[i], b : this.Filter, comparisonType : StringComparison.CurrentCultureIgnoreCase)) {
+            if (string.Equals(a : this._all_items[i],
+                              b : this.Filter,
+                              comparisonType : StringComparison.CurrentCultureIgnoreCase)) {
               this.Entries.Insert(0, item : entry);
             } else {
               this.Entries.Add(item : entry);
@@ -126,7 +128,9 @@ namespace droid.Editor.Utilities.SearchableEnum {
                             string[] options,
                             int current,
                             Action<int> on_selection_made) {
-      var win = new SearchablePopup(names : options, current_index : current, on_selection_made : on_selection_made);
+      var win = new SearchablePopup(names : options,
+                                    current_index : current,
+                                    on_selection_made : on_selection_made);
       PopupWindow.Show(activatorRect : activator_rect, windowContent : win);
     }
 
@@ -229,8 +233,9 @@ namespace droid.Editor.Utilities.SearchableEnum {
     /// <returns></returns>
     public override Vector2 GetWindowSize() {
       return new Vector2(x : base.GetWindowSize().x,
-                         Mathf.Min(600,
-                                   this._list.MaxLength * _row_height + EditorStyles.toolbar.fixedHeight));
+                         y : Mathf.Min(600,
+                                       b : this._list.MaxLength * _row_height
+                                           + EditorStyles.toolbar.fixedHeight));
     }
 
     /// <inheritdoc />
@@ -294,10 +299,12 @@ namespace droid.Editor.Utilities.SearchableEnum {
     void DrawSelectionArea(Rect scroll_rect) {
       var content_rect = new Rect(0,
                                   0,
-                                  scroll_rect.width - GUI.skin.verticalScrollbar.fixedWidth,
-                                  this._list.Entries.Count * _row_height);
+                                  width : scroll_rect.width - GUI.skin.verticalScrollbar.fixedWidth,
+                                  height : this._list.Entries.Count * _row_height);
 
-      this._scroll = GUI.BeginScrollView(position : scroll_rect, scrollPosition : this._scroll, viewRect : content_rect);
+      this._scroll = GUI.BeginScrollView(position : scroll_rect,
+                                         scrollPosition : this._scroll,
+                                         viewRect : content_rect);
 
       var row_rect = new Rect(0,
                               0,
@@ -352,14 +359,14 @@ namespace droid.Editor.Utilities.SearchableEnum {
     void HandleKeyboard() {
       if (Event.current.type == EventType.KeyDown) {
         if (Event.current.keyCode == KeyCode.DownArrow) {
-          this._hover_index = Mathf.Min(this._list.Entries.Count - 1, this._hover_index + 1);
+          this._hover_index = Mathf.Min(a : this._list.Entries.Count - 1, b : this._hover_index + 1);
           Event.current.Use();
           this._scroll_to_index = this._hover_index;
           this._scroll_offset = _row_height;
         }
 
         if (Event.current.keyCode == KeyCode.UpArrow) {
-          this._hover_index = Mathf.Max(0, this._hover_index - 1);
+          this._hover_index = Mathf.Max(0, b : this._hover_index - 1);
           Event.current.Use();
           this._scroll_to_index = this._hover_index;
           this._scroll_offset = -_row_height;

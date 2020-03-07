@@ -11,11 +11,6 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Rigidbody {
 
     [SerializeField] UnityEngine.Rigidbody _rigidbody;
 
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "AngularVelocity"; } }
-
     public Vector3 ObservationValue {
       get { return this._angular_velocity; }
       set { this._angular_velocity = value; }

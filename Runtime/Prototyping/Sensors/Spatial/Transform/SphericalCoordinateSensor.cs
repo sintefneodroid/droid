@@ -9,9 +9,10 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
                                            IHasDouble {
     [SerializeField]
     Space2 _spherical_space = new Space2 {
-                                                Min = Vector2.zero,
-                                                Max = new Vector2(Mathf.PI * 2f, Mathf.PI * 2f),DecimalGranularity = 4
-                                            };
+                                             Min = Vector2.zero,
+                                             Max = new Vector2(x : Mathf.PI * 2f, y : Mathf.PI * 2f),
+                                             DecimalGranularity = 4
+                                         };
 
     [SerializeField] SphericalSpace sc;
 
@@ -20,16 +21,19 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
                                              3f,
                                              10f,
                                              0f,
-                                             Mathf.PI * 2f,
+                                             max_polar : Mathf.PI * 2f,
                                              0f,
-                                             Mathf.PI * 2f);
+                                             max_elevation : Mathf.PI * 2f);
     }
 
     public override IEnumerable<Single> FloatEnumerable {
       get { return new[] {this.ObservationValue.x, this.ObservationValue.y}; }
     }
 
-    public override void UpdateObservation() { this.sc.UpdateFromCartesian(cartesian_coordinate : this.transform.position); } //TODO: IMPLEMENT LOCAL SPACE
+    public override void UpdateObservation() {
+      this.sc.UpdateFromCartesian(cartesian_coordinate : this.transform.position);
+    } //TODO: IMPLEMENT LOCAL SPACE
+
     public Vector2 ObservationValue { get { return this.sc.ToVector2; } }
     public Space2 DoubleSpace { get { return this._spherical_space; } }
   }

@@ -10,10 +10,10 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
   /// <summary>
   /// </summary>
   [ExecuteInEditMode]
-  [RequireComponent(typeof(Text))]
-  [AddComponentMenu(DisplayerComponentMenuPath._ComponentMenuPath
-                    + "Canvas/CanvasText"
-                    + DisplayerComponentMenuPath._Postfix)]
+  [RequireComponent(requiredComponent : typeof(Text))]
+  [AddComponentMenu(menuName : DisplayerComponentMenuPath._ComponentMenuPath
+                               + "Canvas/CanvasText"
+                               + DisplayerComponentMenuPath._Postfix)]
   public class CanvasTextDisplayer : Displayer {
     Text _text_component;
 
@@ -32,7 +32,7 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
       DebugPrinting.DisplayPrint(value : value, identifier : this.Identifier, debugging : this.Debugging);
       #endif
 
-      this.SetText(value.ToString(provider : CultureInfo.InvariantCulture));
+      this.SetText(text : value.ToString(provider : CultureInfo.InvariantCulture));
     }
 
     /// <inheritdoc />
@@ -43,7 +43,7 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
       DebugPrinting.DisplayPrint(value : value, identifier : this.Identifier, debugging : this.Debugging);
       #endif
 
-      this.SetText(value.ToString(provider : CultureInfo.InvariantCulture));
+      this.SetText(text : value.ToString(provider : CultureInfo.InvariantCulture));
     }
 
     /// <inheritdoc />
@@ -51,10 +51,10 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
     /// </summary>
     public override void Display(float[] values) {
       #if NEODROID_DEBUG
-      DebugPrinting.DisplayPrint(values[0], identifier : this.Identifier, debugging : this.Debugging);
+      DebugPrinting.DisplayPrint(value : values[0], identifier : this.Identifier, debugging : this.Debugging);
       #endif
 
-      this.SetText(values[0].ToString());
+      this.SetText(text : values[0].ToString(provider : CultureInfo.InvariantCulture));
     }
 
     /// <inheritdoc />
@@ -76,7 +76,7 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
       DebugPrinting.DisplayPrint(value : value, identifier : this.Identifier, debugging : this.Debugging);
       #endif
 
-      this.SetText(value.ToString());
+      this.SetText(text : value.ToString());
     }
 
     /// <inheritdoc />
@@ -87,7 +87,7 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
       DebugPrinting.DisplayPrint(value : value, identifier : this.Identifier, debugging : this.Debugging);
       #endif
 
-      this.SetText(value.ToString());
+      this.SetText(text : value.ToString());
     }
 
     /// <inheritdoc />
@@ -98,7 +98,7 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
       DebugPrinting.DisplayPrint(value : points, identifier : this.Identifier, debugging : this.Debugging);
       #endif
 
-      this.SetText(points.ToString());
+      this.SetText(text : points.ToString());
     }
 
     /// <inheritdoc />
@@ -109,7 +109,7 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
       DebugPrinting.DisplayPrint(value : points, identifier : this.Identifier, debugging : this.Debugging);
       #endif
 
-      this.SetText(points.ToString());
+      this.SetText(text : points.ToString());
     }
 
     /// <inheritdoc />
@@ -120,7 +120,7 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
       DebugPrinting.DisplayPrint(value : point, identifier : this.Identifier, debugging : this.Debugging);
       #endif
 
-      this.SetText(point.ToString());
+      this.SetText(text : point.ToString());
     }
 
     /// <inheritdoc />
@@ -131,7 +131,7 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
       DebugPrinting.DisplayPrint(value : points, identifier : this.Identifier, debugging : this.Debugging);
       #endif
 
-      this.SetText(points.ToString());
+      this.SetText(text : points.ToString());
     }
 
     public override void PlotSeries(Points.ValuePoint[] points) {
@@ -139,7 +139,7 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
       DebugPrinting.DisplayPrint(value : points, identifier : this.Identifier, debugging : this.Debugging);
       #endif
 
-      this.SetText(points.ToString());
+      this.SetText(text : points.ToString());
     }
 
     /// <summary>

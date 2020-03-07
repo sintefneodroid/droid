@@ -17,7 +17,11 @@ namespace droid.Runtime.GameObjects.Flipping {
     /// <param name="result"></param>
     public void FlipImage(Texture my_texture, Texture2D result) {
       var kernel_handle = this._shader.FindKernel("Flip");
-      var tex = new RenderTexture(width : my_texture.width, height : my_texture.height, 24) {enableRandomWrite = true};
+      var tex =
+          new RenderTexture(width : my_texture.width, height : my_texture.height, 24) {
+                                                                                          enableRandomWrite =
+                                                                                              true
+                                                                                      };
       tex.Create();
 
       this._shader.SetTexture(kernelIndex : kernel_handle, "Result", texture : tex);
@@ -25,17 +29,17 @@ namespace droid.Runtime.GameObjects.Flipping {
       this._shader.SetInt("width", val : my_texture.width);
       this._shader.SetInt("height", val : my_texture.height);
       this._shader.Dispatch(kernelIndex : kernel_handle,
-                            my_texture.width / 8,
-                            my_texture.height / 8,
+                            threadGroupsX : my_texture.width / 8,
+                            threadGroupsY : my_texture.height / 8,
                             1);
 
       RenderTexture.active = tex;
-      result.ReadPixels(new Rect(0,
-                                 0,
-                                 width : tex.width,
-                                 height : tex.height),
-                        0,
-                        0);
+      result.ReadPixels(source : new Rect(0,
+                                          0,
+                                          width : tex.width,
+                                          height : tex.height),
+                        destX : 0,
+                        destY : 0);
       result.Apply();
     }
 

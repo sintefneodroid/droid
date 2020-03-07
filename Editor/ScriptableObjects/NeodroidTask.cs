@@ -12,11 +12,12 @@ namespace droid.Editor.ScriptableObjects {
     /// <summary>
     /// 
     /// </summary>
-    [MenuItem(EditorScriptableObjectMenuPath._ScriptableObjectMenuPath + "NeodroidTask")]
+    [MenuItem(itemName : EditorScriptableObjectMenuPath._ScriptableObjectMenuPath + "NeodroidTask")]
     public static void CreateNeodroidTaskAsset() {
       var asset = ScriptableObject.CreateInstance<NeodroidTask>();
 
-      AssetDatabase.CreateAsset(asset : asset, EditorWindowMenuPath._NewAssetPath + "Assets/NewNeodroidTask.asset");
+      AssetDatabase.CreateAsset(asset : asset,
+                                path : EditorWindowMenuPath._NewAssetPath + "Assets/NewNeodroidTask.asset");
       AssetDatabase.SaveAssets();
 
       EditorUtility.FocusProjectWindow();

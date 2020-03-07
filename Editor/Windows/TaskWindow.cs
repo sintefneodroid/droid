@@ -10,17 +10,18 @@ namespace droid.Editor.Windows {
 
     TaskSequence _task_sequence;
 
-    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "TaskWindow")]
-    [MenuItem(EditorWindowMenuPath._ToolMenuPath + "TaskWindow")]
+    [MenuItem(itemName : EditorWindowMenuPath._WindowMenuPath + "TaskWindow")]
+    [MenuItem(itemName : EditorWindowMenuPath._ToolMenuPath + "TaskWindow")]
     public static void ShowWindow() {
-      GetWindow(typeof(TaskWindow)); //Show existing window instance. If one doesn't exist, make one.
+      GetWindow(t : typeof(TaskWindow)); //Show existing window instance. If one doesn't exist, make one.
     }
 
     void OnEnable() {
       this._icon =
-          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidSettings.Current.NeodroidImportLocationProp
+          (Texture2D)AssetDatabase.LoadAssetAtPath(assetPath :
+                                                   NeodroidSettings.Current.NeodroidImportLocationProp
                                                    + "Gizmos/Icons/script.png",
-                                                   typeof(Texture2D));
+                                                   type : typeof(Texture2D));
       this.titleContent = new GUIContent("Neo:Task", image : this._icon, "Window for task descriptions");
       if (!this._task_sequence) {
         this._task_sequence = FindObjectOfType<TaskSequence>();

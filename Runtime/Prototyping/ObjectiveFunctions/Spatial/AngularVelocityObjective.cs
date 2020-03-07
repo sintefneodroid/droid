@@ -4,9 +4,9 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
   /// <summary>
   ///
   /// </summary>
-  [AddComponentMenu(EvaluationComponentMenuPath._ComponentMenuPath
-                    + "AngularVelocity"
-                    + EvaluationComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : EvaluationComponentMenuPath._ComponentMenuPath
+                               + "AngularVelocity"
+                               + EvaluationComponentMenuPath._Postfix)]
   public class AngularVelocityObjective : SpatialObjective {
     [SerializeField] bool _penalty = false;
     [SerializeField] Rigidbody _rigidbody = null;

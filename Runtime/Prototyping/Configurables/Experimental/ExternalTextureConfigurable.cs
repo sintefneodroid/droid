@@ -8,9 +8,9 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
-                    + "ExternalTexture"
-                    + ConfigurableComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : ConfigurableComponentMenuPath._ComponentMenuPath
+                               + "ExternalTexture"
+                               + ConfigurableComponentMenuPath._Postfix)]
   public class ExternalTextureConfigurable : Configurable {
     /// <summary>
     ///   Red
@@ -30,7 +30,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     protected override void RegisterComponent() {
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._texture_str);
     }
 
@@ -38,20 +38,26 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// <summary>
     /// </summary>n
     protected override void UnRegisterComponent() {
-      this.ParentEnvironment?.UnRegister(this, identifier : this._texture_str);
+      this.ParentEnvironment?.UnRegister(t : this, identifier : this._texture_str);
     }
 
     public ISamplable ConfigurableValueSpace { get { return new SampleSpace1(); } }
 
-    public override void UpdateCurrentConfiguration() {  }
+    /// <inheritdoc />
+    /// <summary>
+    /// </summary>
+    public override void UpdateCurrentConfiguration() { }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <param name="configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        DebugPrinting.ApplyPrint(debugging : this.Debugging, configuration : configuration, identifier : this.Identifier);
+        DebugPrinting.ApplyPrint(debugging : this.Debugging,
+                                 configuration : configuration,
+                                 identifier : this.Identifier);
       }
       #endif
 
@@ -67,7 +73,10 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     /// </summary>
     /// <returns></returns>
     public override Configuration[] SampleConfigurations() {
-      return new[] {new Configuration(configurable_name : this._texture_str, configurable_value:this.ConfigurableValueSpace.Sample())};
+      return new[] {
+                       new Configuration(configurable_name : this._texture_str,
+                                         configurable_value : this.ConfigurableValueSpace.Sample())
+                   };
     }
   }
 }

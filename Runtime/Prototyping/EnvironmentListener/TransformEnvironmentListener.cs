@@ -4,9 +4,9 @@ namespace droid.Runtime.Prototyping.EnvironmentListener {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(EnvironmentListenerComponentMenuPath._ComponentMenuPath
-                    + "Transform"
-                    + EnvironmentListenerComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : EnvironmentListenerComponentMenuPath._ComponentMenuPath
+                               + "Transform"
+                               + EnvironmentListenerComponentMenuPath._Postfix)]
   public class TransformEnvironmentListener : EnvironmentListener {
     /// <summary>
     /// </summary>
@@ -15,8 +15,6 @@ namespace droid.Runtime.Prototyping.EnvironmentListener {
     /// <summary>
     /// </summary>
     Quaternion _original_rotation;
-
-
 
     /// <inheritdoc />
     /// <summary>

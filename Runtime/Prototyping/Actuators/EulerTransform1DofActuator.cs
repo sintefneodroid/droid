@@ -9,9 +9,9 @@ using UnityEditor;
 
 namespace droid.Runtime.Prototyping.Actuators {
   /// <inheritdoc />
-  [AddComponentMenu(ActuatorComponentMenuPath._ComponentMenuPath
-                    + "EulerTransformActuator1Dof"
-                    + ActuatorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : ActuatorComponentMenuPath._ComponentMenuPath
+                               + "EulerTransformActuator1Dof"
+                               + ActuatorComponentMenuPath._Postfix)]
   public class EulerTransform1DofActuator : Actuator {
     /// <summary>
     /// </summary>
@@ -36,10 +36,12 @@ namespace droid.Runtime.Prototyping.Actuators {
     [SerializeField]
     protected Space _Relative_To = Space.Self;
 
-    /// <summary>
-    ///
-    /// </summary>
-    public override string PrototypingTypeName { get { return "EulerTransform" + this._axisEnum_of_motion; } }
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    public override string PrototypingTypeName {
+      get { return base.PrototypingTypeName + this._axisEnum_of_motion; }
+    }
 
     /// <inheritdoc />
     /// <summary>
@@ -60,22 +62,30 @@ namespace droid.Runtime.Prototyping.Actuators {
           vec = -Vector3.forward * motion.Strength;
           break;
         case AxisEnum.Rot_x_: // Rotational
-          this.transform.Rotate(axis : Vector3.right, angle : motion.Strength, relativeTo : this._Relative_To);
+          this.transform.Rotate(axis : Vector3.right,
+                                angle : motion.Strength,
+                                relativeTo : this._Relative_To);
           return;
         case AxisEnum.Rot_y_: // Rotational
           this.transform.Rotate(axis : Vector3.up, angle : motion.Strength, relativeTo : this._Relative_To);
           return;
         case AxisEnum.Rot_z_: // Rotational
-          this.transform.Rotate(axis : Vector3.forward, angle : motion.Strength, relativeTo : this._Relative_To);
+          this.transform.Rotate(axis : Vector3.forward,
+                                angle : motion.Strength,
+                                relativeTo : this._Relative_To);
           return;
         case AxisEnum.Dir_x_:
-          this.transform.Rotate(axis : Vector3.forward, angle : motion.Strength, relativeTo : this._Relative_To);
+          this.transform.Rotate(axis : Vector3.forward,
+                                angle : motion.Strength,
+                                relativeTo : this._Relative_To);
           return;
         case AxisEnum.Dir_y_:
           this.transform.Rotate(axis : Vector3.up, angle : motion.Strength, relativeTo : this._Relative_To);
           return;
         case AxisEnum.Dir_z_:
-          this.transform.Rotate(axis : Vector3.right, angle : motion.Strength, relativeTo : this._Relative_To);
+          this.transform.Rotate(axis : Vector3.right,
+                                angle : motion.Strength,
+                                relativeTo : this._Relative_To);
           return;
         default: throw new ArgumentOutOfRangeException();
       }
@@ -83,7 +93,7 @@ namespace droid.Runtime.Prototyping.Actuators {
       if (this._No_Collisions) {
         if (!Physics.Raycast(origin : this.transform.position,
                              direction : vec,
-                             Mathf.Abs(f : motion.Strength),
+                             maxDistance : Mathf.Abs(f : motion.Strength),
                              layerMask : layer_mask)) {
           this.transform.Translate(translation : vec, relativeTo : this._Relative_To);
         }
@@ -97,13 +107,13 @@ namespace droid.Runtime.Prototyping.Actuators {
         var position = this.transform.position;
         switch (this._axisEnum_of_motion) {
           case AxisEnum.X_:
-            Debug.DrawLine(start : position, position + Vector3.right * 2, color : Color.green);
+            Debug.DrawLine(start : position, end : position + Vector3.right * 2, color : Color.green);
             break;
           case AxisEnum.Y_:
-            Debug.DrawLine(start : position, position + Vector3.up * 2, color : Color.green);
+            Debug.DrawLine(start : position, end : position + Vector3.up * 2, color : Color.green);
             break;
           case AxisEnum.Z_:
-            Debug.DrawLine(start : position, position + Vector3.forward * 2, color : Color.green);
+            Debug.DrawLine(start : position, end : position + Vector3.forward * 2, color : Color.green);
             break;
           case AxisEnum.Rot_x_:
             //Handles.DrawSolidArc

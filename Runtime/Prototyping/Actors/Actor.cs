@@ -11,7 +11,9 @@ namespace droid.Runtime.Prototyping.Actors {
   /// <inheritdoc cref="PrototypingGameObject" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ActorComponentMenuPath._ComponentMenuPath + "Base" + ActorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : ActorComponentMenuPath._ComponentMenuPath
+                               + "Base"
+                               + ActorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   public class Actor : PrototypingGameObject,
                        IActor {
@@ -50,7 +52,7 @@ namespace droid.Runtime.Prototyping.Actors {
 
     SortedDictionary<string, IActuator> IActor.Actuators { get { return this._Actuators; } }
 
-    public Transform Transform { get { return this.transform; } }
+    public Transform CachedTransform { get { return this.transform; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -59,7 +61,7 @@ namespace droid.Runtime.Prototyping.Actors {
     public virtual void ApplyMotion(IMotion motion) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log($"Applying {motion} To {this.name}'s Actuators");
+        Debug.Log(message : $"Applying {motion} To {this.name}'s Actuators");
       }
       #endif
 
@@ -70,7 +72,8 @@ namespace droid.Runtime.Prototyping.Actors {
       } else {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"Could find not Actuator with the specified name: {motion_actuator_name} on actor {this.name}");
+          Debug.Log(message :
+                    $"Could find not Actuator with the specified name: {motion_actuator_name} on actor {this.name}");
         }
         #endif
       }
@@ -97,7 +100,7 @@ namespace droid.Runtime.Prototyping.Actors {
         if (this._Actuators.ContainsKey(key : identifier)) {
           #if NEODROID_DEBUG
           if (this.Debugging) {
-            Debug.Log($"Actor {this.name} unregistered Actuator {identifier}");
+            Debug.Log(message : $"Actor {this.name} unregistered Actuator {identifier}");
           }
           #endif
 
@@ -106,13 +109,13 @@ namespace droid.Runtime.Prototyping.Actors {
       }
     }
 
-
-
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <param name="actuator"></param>
-    public void UnRegister(IActuator actuator) { this.UnRegister(actuator : actuator, identifier : actuator.Identifier); }
+    public void UnRegister(IActuator actuator) {
+      this.UnRegister(actuator : actuator, identifier : actuator.Identifier);
+    }
 
     /// <inheritdoc />
     /// <summary>
@@ -120,10 +123,11 @@ namespace droid.Runtime.Prototyping.Actors {
     public override void Setup() {
       #if UNITY_EDITOR
       if (!Application.isPlaying) {
-        var manager_script = MonoScript.FromMonoBehaviour(this);
+        var manager_script = MonoScript.FromMonoBehaviour(behaviour : this);
         if (MonoImporter.GetExecutionOrder(script : manager_script) != _script_execution_order) {
           MonoImporter.SetExecutionOrder(script : manager_script,
-                                         order : _script_execution_order); // Ensures that PreStep is called first, before all other scripts.
+                                         order :
+                                         _script_execution_order); // Ensures that PreStep is called first, before all other scripts.
           Debug.LogWarning("Execution Order changed, you will need to press play again to make everything function correctly!");
           EditorApplication.isPlaying = false;
           //TODO: UnityEngine.Experimental.LowLevel.PlayerLoop.SetPlayerLoop(new UnityEngine.Experimental.LowLevel.PlayerLoopSystem());
@@ -141,29 +145,31 @@ namespace droid.Runtime.Prototyping.Actors {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.ParentEnvironment = NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment, this);
+      this.ParentEnvironment =
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment, c : this);
     }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    protected override void UnRegisterComponent() { this._environment?.UnRegister(this); }
+    protected override void UnRegisterComponent() { this._environment?.UnRegister(actor : this); }
 
     /// <summary>
     /// </summary>
     void Update() {
       if (this._draw_bounds) {
-        var corners =
-            Corners.ExtractCorners(v3_center : this.ActorBounds.center, v3_extents : this.ActorBounds.extents, reference_transform : this.transform);
+        var corners = Corners.ExtractCorners(v3_center : this.ActorBounds.center,
+                                             v3_extents : this.ActorBounds.extents,
+                                             reference_transform : this.transform);
 
-        Corners.DrawBox(corners[0],
-                        corners[1],
-                        corners[2],
-                        corners[3],
-                        corners[4],
-                        corners[5],
-                        corners[6],
-                        corners[7],
+        Corners.DrawBox(v3_front_top_left : corners[0],
+                        v3_front_top_right : corners[1],
+                        v3_front_bottom_left : corners[2],
+                        v3_front_bottom_right : corners[3],
+                        v3_back_top_left : corners[4],
+                        v3_back_top_right : corners[5],
+                        v3_back_bottom_left : corners[6],
+                        v3_back_bottom_right : corners[7],
                         color : Color.gray);
       }
     }
@@ -175,7 +181,7 @@ namespace droid.Runtime.Prototyping.Actors {
     public void RegisterActuator(IActuator actuator, string identifier) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        Debug.Log("Actor " + this.name + " has Actuator " + identifier);
+        Debug.Log(message : "Actor " + this.name + " has Actuator " + identifier);
       }
       #endif
 
@@ -184,7 +190,7 @@ namespace droid.Runtime.Prototyping.Actors {
       } else {
         #if NEODROID_DEBUG
         if (this.Debugging) {
-          Debug.Log($"A Actuator with the identifier {identifier} is already registered");
+          Debug.Log(message : $"A Actuator with the identifier {identifier} is already registered");
         }
         #endif
       }
@@ -212,11 +218,12 @@ namespace droid.Runtime.Prototyping.Actors {
 
     #region Getters
 
-
     /// <summary>
     /// </summary>
     /// <param name="actuator"></param>
-    public void Register(IActuator actuator) { this.RegisterActuator(actuator : actuator, identifier : actuator.Identifier); }
+    public void Register(IActuator actuator) {
+      this.RegisterActuator(actuator : actuator, identifier : actuator.Identifier);
+    }
 
     /// <inheritdoc />
     /// <summary>

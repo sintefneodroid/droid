@@ -2,7 +2,6 @@
     "name": "Neodroid.Editor",
     "references": [
         "Neodroid.Runtime",
-        "Unity.PackageManagerUI.Editor",
         "Unity.Postprocessing.Editor",
         "Unity.Postprocessing.Runtime"
     ],

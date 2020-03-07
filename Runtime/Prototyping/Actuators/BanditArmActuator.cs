@@ -6,17 +6,13 @@ namespace droid.Runtime.Prototyping.Actuators {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ActuatorComponentMenuPath._ComponentMenuPath
-                    + "BanditArm"
-                    + ActuatorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : ActuatorComponentMenuPath._ComponentMenuPath
+                               + "BanditArm"
+                               + ActuatorComponentMenuPath._Postfix)]
   public class BanditArmActuator : Actuator {
     [SerializeField] Material _material;
 
     /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "BanditArm"; } }
-
     /// <summary>
     /// </summary>
     public override void Setup() {

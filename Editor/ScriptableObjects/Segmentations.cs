@@ -6,11 +6,12 @@ using UnityEditor;
 
 namespace droid.Editor.ScriptableObjects {
   public static class CreateSegmentations {
-    [MenuItem(EditorScriptableObjectMenuPath._ScriptableObjectMenuPath + "Segmentations")]
+    [MenuItem(itemName : EditorScriptableObjectMenuPath._ScriptableObjectMenuPath + "Segmentations")]
     public static void CreateSegmentationsAsset() {
       var asset = ScriptableObject.CreateInstance<Segmentation>();
 
-      AssetDatabase.CreateAsset(asset : asset, EditorWindowMenuPath._NewAssetPath + "Assets/NewSegmentations.asset");
+      AssetDatabase.CreateAsset(asset : asset,
+                                path : EditorWindowMenuPath._NewAssetPath + "Assets/NewSegmentations.asset");
       AssetDatabase.SaveAssets();
 
       EditorUtility.FocusProjectWindow();

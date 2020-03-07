@@ -58,8 +58,8 @@ namespace droid.Editor.Windows {
     /// <summary>
     ///
     /// </summary>
-    [MenuItem(EditorWindowMenuPath._WindowMenuPath + "DebugWindow")]
-    [MenuItem(EditorWindowMenuPath._ToolMenuPath + "DebugWindow")]
+    [MenuItem(itemName : EditorWindowMenuPath._WindowMenuPath + "DebugWindow")]
+    [MenuItem(itemName : EditorWindowMenuPath._ToolMenuPath + "DebugWindow")]
     public static void ShowWindow() {
       GetWindow<DebugWindow>(); //Show existing window instance. If one doesn't exist, make one.
     }
@@ -67,10 +67,12 @@ namespace droid.Editor.Windows {
     void OnEnable() {
       this.FindObjects();
       this._icon =
-          (Texture2D)AssetDatabase.LoadAssetAtPath(NeodroidSettings.Current.NeodroidImportLocationProp
+          (Texture2D)AssetDatabase.LoadAssetAtPath(assetPath :
+                                                   NeodroidSettings.Current.NeodroidImportLocationProp
                                                    + "Gizmos/Icons/information.png",
-                                                   typeof(Texture2D));
-      this.titleContent = new GUIContent("Neo:Debug", image : this._icon, "Window for controlling debug messages");
+                                                   type : typeof(Texture2D));
+      this.titleContent =
+          new GUIContent("Neo:Debug", image : this._icon, "Window for controlling debug messages");
     }
 
     void FindObjects() {
@@ -154,15 +156,19 @@ namespace droid.Editor.Windows {
       this._show_environments_debug =
           EditorGUILayout.Toggle("Debug all environments", value : this._show_environments_debug);
       this._show_actors_debug = EditorGUILayout.Toggle("Debug all actors", value : this._show_actors_debug);
-      this._show_actuators_debug = EditorGUILayout.Toggle("Debug all Actuators", value : this._show_actuators_debug);
-      this._show_sensors_debug = EditorGUILayout.Toggle("Debug all sensors", value : this._show_sensors_debug);
+      this._show_actuators_debug =
+          EditorGUILayout.Toggle("Debug all Actuators", value : this._show_actuators_debug);
+      this._show_sensors_debug =
+          EditorGUILayout.Toggle("Debug all sensors", value : this._show_sensors_debug);
       this._show_configurables_debug =
           EditorGUILayout.Toggle("Debug all configurables", value : this._show_configurables_debug);
       this._show_objective_functions_debug =
-          EditorGUILayout.Toggle("Debug all objective functions", value : this._show_objective_functions_debug);
+          EditorGUILayout.Toggle("Debug all objective functions",
+                                 value : this._show_objective_functions_debug);
       this._show_displayers_debug =
           EditorGUILayout.Toggle("Debug all displayers", value : this._show_displayers_debug);
-      this._show_listeners_debug = EditorGUILayout.Toggle("Debug all listeners", value : this._show_listeners_debug);
+      this._show_listeners_debug =
+          EditorGUILayout.Toggle("Debug all listeners", value : this._show_listeners_debug);
 
       EditorGUILayout.EndVertical();
 
@@ -213,7 +219,7 @@ namespace droid.Editor.Windows {
       }
 
       if (GUI.changed && !Application.isPlaying) {
-        EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+        EditorSceneManager.MarkSceneDirty(scene : SceneManager.GetActiveScene());
         // Unity not tracking changes to properties of a GameObject made through this window automatically and
         // are not saved unless other changes are made from a working inspector window
       }

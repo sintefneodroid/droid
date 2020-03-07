@@ -8,9 +8,9 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
   /// <summary>
   ///
   /// </summary>
-  [AddComponentMenu(EvaluationComponentMenuPath._ComponentMenuPath
-                    + "ReachGoal"
-                    + EvaluationComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : EvaluationComponentMenuPath._ComponentMenuPath
+                               + "ReachGoal"
+                               + EvaluationComponentMenuPath._Postfix)]
   public class ReachGoalObjective : SpatialObjective {
     [SerializeField] Actor _actor = null;
 
@@ -27,7 +27,8 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
     /// <returns></returns>
     public override float InternalEvaluate() {
       var distance =
-          Mathf.Abs(Vector3.Distance(a : this._goal.transform.position, b : this._actor.transform.position));
+          Mathf.Abs(f : Vector3.Distance(a : this._goal.transform.position,
+                                         b : this._actor.transform.position));
 
       if (this._overlapping == ActorOverlapping.Inside_area_ || distance < 0.5f) {
         this.ParentEnvironment.Terminate("Inside goal area");
@@ -68,24 +69,20 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
 
       if (this._goal) {
         NeodroidRegistrationUtilities
-            .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider, Collision>(this,
-                                                                                                     parent : this
-                                                                                                         ._goal
-                                                                                                         .transform,
-                                                                                                     null,
-                                                                                                     on_trigger_enter_child : this
-                                                                                                         .OnTriggerEnterChild);
+            .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider, Collision
+            >(caller : this,
+              parent : this._goal.transform,
+              null,
+              on_trigger_enter_child : this.OnTriggerEnterChild);
       }
 
       if (this._actor) {
         NeodroidRegistrationUtilities
-            .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider, Collision>(this,
-                                                                                                     parent : this
-                                                                                                         ._actor
-                                                                                                         .transform,
-                                                                                                     null,
-                                                                                                     on_trigger_enter_child : this
-                                                                                                         .OnTriggerEnterChild);
+            .RegisterCollisionTriggerCallbacksOnChildren<ChildCollider3DSensor, Collider, Collision
+            >(caller : this,
+              parent : this._actor.transform,
+              null,
+              on_trigger_enter_child : this.OnTriggerEnterChild);
       }
     }
 

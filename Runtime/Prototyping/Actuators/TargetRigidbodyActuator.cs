@@ -8,12 +8,11 @@ namespace droid.Runtime.Prototyping.Actuators {
   /// <inheritdoc cref="Actuator" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ActuatorComponentMenuPath._ComponentMenuPath
-                    + "TargetRigidbody"
-                    + ActuatorComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(Rigidbody))]
-  public class TargetRigidbodyActuator : Actuator
-                                          {
+  [AddComponentMenu(menuName : ActuatorComponentMenuPath._ComponentMenuPath
+                               + "TargetRigidbody"
+                               + ActuatorComponentMenuPath._Postfix)]
+  [RequireComponent(requiredComponent : typeof(Rigidbody))]
+  public class TargetRigidbodyActuator : Actuator {
     string _movement;
     AbstractPrototypingEnvironment _parent_environment;
 
@@ -23,11 +22,6 @@ namespace droid.Runtime.Prototyping.Actuators {
     protected Rigidbody _Rigidbody;
 
     string _turn;
-
-    /// <inheritdoc />
-    /// <summary>
-    /// </summary>
-    public override string PrototypingTypeName { get { return "TargetRigidbody"; } }
 
     /// <summary>
     ///
@@ -43,7 +37,6 @@ namespace droid.Runtime.Prototyping.Actuators {
     ///
     /// </summary>
     public override void Tick() { this.OnStep(); }
-
 
     /// <inheritdoc />
     /// <summary>
@@ -61,14 +54,12 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <summary>
     /// </summary>
     protected override void RegisterComponent() {
-      this.Parent =
-          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
-                                                          (Actuator)this,
-                                                          identifier : this._movement);
-      this.Parent =
-          NeodroidRegistrationUtilities.RegisterComponent((IHasRegister<IActuator>)this.Parent,
-                                                          (Actuator)this,
-                                                          identifier : this._turn);
+      this.Parent = NeodroidRegistrationUtilities.RegisterComponent(r : (IHasRegister<IActuator>)this.Parent,
+                                                                    c : (Actuator)this,
+                                                                    identifier : this._movement);
+      this.Parent = NeodroidRegistrationUtilities.RegisterComponent(r : (IHasRegister<IActuator>)this.Parent,
+                                                                    c : (Actuator)this,
+                                                                    identifier : this._turn);
     }
 
     /// <inheritdoc />
@@ -93,12 +84,12 @@ namespace droid.Runtime.Prototyping.Actuators {
 
       // Move
       var movement = this.MovementSpeed * Time.deltaTime * this.transform.forward;
-      this._Rigidbody.MovePosition(this._Rigidbody.position + movement);
+      this._Rigidbody.MovePosition(position : this._Rigidbody.position + movement);
 
       // Turn
       var turn = this.RotationSpeed * Time.deltaTime;
       var turn_rotation = Quaternion.Euler(0f, y : turn, 0f);
-      this._Rigidbody.MoveRotation(this._Rigidbody.rotation * turn_rotation);
+      this._Rigidbody.MoveRotation(rot : this._Rigidbody.rotation * turn_rotation);
     }
   }
 }

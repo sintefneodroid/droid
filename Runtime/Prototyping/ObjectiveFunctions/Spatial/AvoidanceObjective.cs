@@ -5,10 +5,10 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(EvaluationComponentMenuPath._ComponentMenuPath
-                    + "PunishmentFunction"
-                    + EvaluationComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(Rigidbody))]
+  [AddComponentMenu(menuName : EvaluationComponentMenuPath._ComponentMenuPath
+                               + "PunishmentFunction"
+                               + EvaluationComponentMenuPath._Postfix)]
+  [RequireComponent(requiredComponent : typeof(Rigidbody))]
   public class AvoidanceObjective : SpatialObjective {
     [SerializeField] string _avoid_tag = "balls";
     [SerializeField] int _hits = 0;

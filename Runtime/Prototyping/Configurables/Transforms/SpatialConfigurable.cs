@@ -6,9 +6,9 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
   /// <inheritdoc cref="PrototypingGameObject" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
-                    + "Spatial"
-                    + ConfigurableComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : ConfigurableComponentMenuPath._ComponentMenuPath
+                               + "Spatial"
+                               + ConfigurableComponentMenuPath._Postfix)]
   public abstract class SpatialConfigurable : Configurable {
     /// <summary>
     /// </summary>
@@ -23,6 +23,7 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     bool _relative_to_existing_value = false;
 
     [SerializeField] protected CoordinateSpaceEnum _coordinate_spaceEnum = CoordinateSpaceEnum.Environment_;
+
     #endregion
   }
 }

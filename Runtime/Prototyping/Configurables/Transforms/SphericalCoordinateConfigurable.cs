@@ -10,14 +10,12 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
   /// <inheritdoc cref="Configurable" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
-                    + "SphericalCoordinate"
-                    + ConfigurableComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : ConfigurableComponentMenuPath._ComponentMenuPath
+                               + "SphericalCoordinate"
+                               + ConfigurableComponentMenuPath._Postfix)]
   public class SphericalCoordinateConfigurable : SpatialConfigurable,
                                                  IHasTriple {
     [Header("Observation", order = 103)]
-
-
     /// <summary>
     /// </summary>
     string _x;
@@ -33,16 +31,18 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     [SerializeField]
     SampleSpace3 _spherical_space = new SampleSpace3 {
                                                          _space = new Space3 {
-                                                                                    Min = new Vector3(0,
-                                                                                                      Mathf.PI
-                                                                                                      * 0.01f,
-                                                                                                      4f),
-                                                                                    Max = new Vector3(Mathf.PI
-                                                                                                      * 2f,
-                                                                                                      Mathf.PI
-                                                                                                      * 0.5f,
-                                                                                                      10f)
-                                                                                }
+                                                                                 Min = new Vector3(0,
+                                                                                                   y : Mathf
+                                                                                                           .PI
+                                                                                                       * 0.01f,
+                                                                                                   z : 4f),
+                                                                                 Max =
+                                                                                     new Vector3(x : Mathf.PI
+                                                                                                     * 2f,
+                                                                                                 y : Mathf.PI
+                                                                                                     * 0.5f,
+                                                                                                 z : 10f)
+                                                                             }
                                                      };
 
     [SerializeField] SphericalSpace sc;
@@ -79,18 +79,18 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// </summary>
     protected override void RegisterComponent() {
       this.ParentEnvironment =
-          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment, (Configurable)this);
+          NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment, c : (Configurable)this);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._x);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._y);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._z);
     }
 
@@ -102,10 +102,10 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
         return;
       }
 
-      this.ParentEnvironment.UnRegister(this);
-      this.ParentEnvironment.UnRegister(this, identifier : this._x);
-      this.ParentEnvironment.UnRegister(this, identifier : this._y);
-      this.ParentEnvironment.UnRegister(this, identifier : this._z);
+      this.ParentEnvironment.UnRegister(configurable : this);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._x);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._y);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._z);
     }
 
     /// <summary>
@@ -113,13 +113,14 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     /// </summary>
     public ISamplable ConfigurableValueSpace { get { return this._spherical_space; } }
 
-    public override void UpdateCurrentConfiguration() {  }
+    public override void UpdateCurrentConfiguration() { }
 
     /// <summary>
     ///
     /// </summary>
     /// <param name="simulator_configuration"></param>
-    public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration) { //TODO: IMPLEMENT LOCAL SPACE
+    public override void ApplyConfiguration(IConfigurableConfiguration simulator_configuration) {
+      //TODO: IMPLEMENT LOCAL SPACE
       if (simulator_configuration.ConfigurableName == this._x) {
         this.sc.Polar = simulator_configuration.ConfigurableValue;
       } else if (simulator_configuration.ConfigurableName == this._y) {

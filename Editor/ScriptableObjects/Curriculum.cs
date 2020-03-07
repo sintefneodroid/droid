@@ -12,11 +12,12 @@ namespace droid.Editor.ScriptableObjects {
     /// <summary>
     /// 
     /// </summary>
-    [MenuItem(EditorScriptableObjectMenuPath._ScriptableObjectMenuPath + "Curriculum")]
+    [MenuItem(itemName : EditorScriptableObjectMenuPath._ScriptableObjectMenuPath + "Curriculum")]
     public static void CreateCurriculumAsset() {
       var asset = ScriptableObject.CreateInstance<Curriculum>();
 
-      AssetDatabase.CreateAsset(asset : asset, EditorWindowMenuPath._NewAssetPath + "Assets/NewCurriculum.asset");
+      AssetDatabase.CreateAsset(asset : asset,
+                                path : EditorWindowMenuPath._NewAssetPath + "Assets/NewCurriculum.asset");
       AssetDatabase.SaveAssets();
 
       EditorUtility.FocusProjectWindow();

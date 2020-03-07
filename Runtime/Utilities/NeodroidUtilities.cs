@@ -20,9 +20,12 @@ namespace droid.Runtime.Utilities {
                                       // The number of keys must be specified in this array initialiser
                                       colorKeys = new[] {
                                                             // Add your colour and specify the stop point
-                                                            new GradientColorKey(new Color(1, 1, 1), 0),
-                                                            new GradientColorKey(new Color(1, 1, 1), 1f),
-                                                            new GradientColorKey(new Color(1, 1, 1), 0)
+                                                            new GradientColorKey(col : new Color(1, 1, 1),
+                                                                                 time : 0),
+                                                            new GradientColorKey(col : new Color(1, 1, 1),
+                                                                                 time : 1f),
+                                                            new GradientColorKey(col : new Color(1, 1, 1),
+                                                                                 time : 0)
                                                         },
                                       // This sets the alpha to 1 at both ends of the gradient
                                       alphaKeys = new[] {

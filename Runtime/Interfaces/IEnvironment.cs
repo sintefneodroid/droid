@@ -41,7 +41,7 @@ namespace droid.Runtime.Interfaces {
     ///
     /// </summary>
     /// <param name="reaction"></param>
-    void React(Reaction reaction);
+    void Step(Reaction reaction);
 
     /// <summary>
     ///
@@ -53,5 +53,15 @@ namespace droid.Runtime.Interfaces {
     ///
     /// </summary>
     void PostStep();
+
+    /// <summary>
+    ///
+    /// </summary>
+    void Configure(Reaction reaction);
+
+    /// <summary>
+    ///
+    /// </summary>
+    void Reset();
   }
 }

@@ -12,7 +12,7 @@ namespace droid.Runtime.ScriptableObjects.SerialisableDictionary {
       var c = this._keys.Length;
       this._Dict = new Dictionary<TK, TV>(capacity : c);
       for (var i = 0; i < c; i++) {
-        this._Dict[this._keys[i]] = this._values[i];
+        this._Dict[key : this._keys[i]] = this._values[i];
       }
 
       this._keys = null;

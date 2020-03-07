@@ -15,13 +15,12 @@ namespace droid.Runtime.Interfaces {
     /// <summary>
     ///
     /// </summary>
-    Transform Transform { get; }
+    Transform CachedTransform { get; }
 
     /// <summary>
     ///
     /// </summary>
     /// <param name="motion"></param>
     void ApplyMotion(IMotion motion);
-
   }
 }

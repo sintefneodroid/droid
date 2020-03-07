@@ -8,10 +8,10 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
   /// <inheritdoc />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(ConfigurableComponentMenuPath._ComponentMenuPath
-                    + "ScreenSpacePosition"
-                    + ConfigurableComponentMenuPath._Postfix)]
-  [RequireComponent(typeof(Renderer))]
+  [AddComponentMenu(menuName : ConfigurableComponentMenuPath._ComponentMenuPath
+                               + "ScreenSpacePosition"
+                               + ConfigurableComponentMenuPath._Postfix)]
+  [RequireComponent(requiredComponent : typeof(Renderer))]
   public class ScreenSpacePositionConfigurable : Configurable {
     string _x;
     string _y;
@@ -51,31 +51,31 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     protected override void RegisterComponent() {
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._x);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._y);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._z);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._rx);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._ry);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._rz);
       this.ParentEnvironment =
           NeodroidRegistrationUtilities.RegisterComponent(r : this.ParentEnvironment,
-                                                          (Configurable)this,
+                                                          c : (Configurable)this,
                                                           identifier : this._rw);
     }
 
@@ -87,31 +87,32 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
         return;
       }
 
-      this.ParentEnvironment.UnRegister(this, identifier : this._x);
-      this.ParentEnvironment.UnRegister(this, identifier : this._y);
-      this.ParentEnvironment.UnRegister(this, identifier : this._z);
-      this.ParentEnvironment.UnRegister(this, identifier : this._rx);
-      this.ParentEnvironment.UnRegister(this, identifier : this._ry);
-      this.ParentEnvironment.UnRegister(this, identifier : this._rz);
-      this.ParentEnvironment.UnRegister(this, identifier : this._rw);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._x);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._y);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._z);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._rx);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._ry);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._rz);
+      this.ParentEnvironment.UnRegister(t : this, identifier : this._rw);
     }
 
-    public  ISamplable ConfigurableValueSpace { get { return this._configurable_value_space; } }
+    public ISamplable ConfigurableValueSpace { get { return this._configurable_value_space; } }
 
-    public override void UpdateCurrentConfiguration() {  }
+    public override void UpdateCurrentConfiguration() { }
 
     /// <summary>
     /// </summary>
     /// <param name="configuration"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration configuration) {
-
-       var  cv = this._configurable_value_space.Space.Reproject(configuration_configurable_value : configuration.ConfigurableValue);
-
-
+      var cv =
+          this._configurable_value_space.Space.Reproject(configuration_configurable_value : configuration
+                                                             .ConfigurableValue);
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        DebugPrinting.ApplyPrint(debugging : this.Debugging, configuration : configuration, identifier : this.Identifier);
+        DebugPrinting.ApplyPrint(debugging : this.Debugging,
+                                 configuration : configuration,
+                                 identifier : this.Identifier);
       }
       #endif
 
@@ -147,7 +148,8 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
       var y = this.ConfigurableValueSpace.Sample();
 
       var a = new Vector2(x : x, y : y);
-      var bounded = Vector2.Min(Vector2.Max(lhs : a, new Vector2(0.2f, 0.2f)), new Vector2(0.8f, 0.8f));
+      var bounded = Vector2.Min(lhs : Vector2.Max(lhs : a, rhs : new Vector2(0.2f, 0.2f)),
+                                rhs : new Vector2(0.8f, 0.8f));
 
       //var z = Space1.ZeroOne.Sample() * this._camera.farClipPlane;
       var z = this._camera.nearClipPlane + 2;
@@ -155,10 +157,10 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
 
       var c = this._camera.ViewportToWorldPoint(position : bounded3);
 
-      var b = new Quaternion(this.ConfigurableValueSpace.Sample(),
-                             this.ConfigurableValueSpace.Sample(),
-                             this.ConfigurableValueSpace.Sample(),
-                             this.ConfigurableValueSpace.Sample());
+      var b = new Quaternion(x : this.ConfigurableValueSpace.Sample(),
+                             y : this.ConfigurableValueSpace.Sample(),
+                             z : this.ConfigurableValueSpace.Sample(),
+                             w : this.ConfigurableValueSpace.Sample());
       var sample1 = this.ConfigurableValueSpace.Sample();
       var sample = this.ConfigurableValueSpace.Sample();
 

@@ -7,11 +7,11 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Rigidbody {
   /// <inheritdoc cref="Sensor" />
   /// <summary>
   /// </summary>
-  [AddComponentMenu(SensorComponentMenuPath._ComponentMenuPath
-                    + "Rigidbody"
-                    + SensorComponentMenuPath._Postfix)]
+  [AddComponentMenu(menuName : SensorComponentMenuPath._ComponentMenuPath
+                               + "Rigidbody"
+                               + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
-  [RequireComponent(typeof(UnityEngine.Rigidbody))]
+  [RequireComponent(requiredComponent : typeof(UnityEngine.Rigidbody))]
   public class RigidbodySensor : Sensor,
                                  IHasRigidbody {
     [SerializeField] Space3 _angular_space = Space3.ZeroOne;
@@ -49,9 +49,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Rigidbody {
     /// </summary>
     public Vector3 Velocity {
       get { return this._velocity; }
-      set {
-        this._velocity = this._velocity_space.Project(v : value);
-      }
+      set { this._velocity = this._velocity_space.Project(v : value); }
     }
 
     /// <inheritdoc />
@@ -59,9 +57,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Rigidbody {
     /// </summary>
     public Vector3 AngularVelocity {
       get { return this._angular_velocity; }
-      set {
-        this._angular_velocity = this._angular_space.Project(v : value);
-      }
+      set { this._angular_velocity = this._angular_space.Project(v : value); }
     }
 
     /// <inheritdoc />

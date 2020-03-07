@@ -9,10 +9,10 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
   /// <summary>
   /// </summary>
   [ExecuteInEditMode]
-  [RequireComponent(typeof(Image))]
-  [AddComponentMenu(DisplayerComponentMenuPath._ComponentMenuPath
-                    + "Canvas/CanvasBar"
-                    + DisplayerComponentMenuPath._Postfix)]
+  [RequireComponent(requiredComponent : typeof(Image))]
+  [AddComponentMenu(menuName : DisplayerComponentMenuPath._ComponentMenuPath
+                               + "Canvas/CanvasBar"
+                               + DisplayerComponentMenuPath._Postfix)]
   public class CanvasBarDisplayer : Displayer {
     Image _image;
     [SerializeField] [Range(0.0f, 1.0f)] float _value;
@@ -62,7 +62,7 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
       DebugPrinting.DisplayPrint(value : value, identifier : this.Identifier, debugging : this.Debugging);
       #endif
 
-      this.SetFillAmount((float)value);
+      this.SetFillAmount(amount : (float)value);
     }
 
     /// <inheritdoc />
@@ -70,10 +70,10 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
     /// </summary>
     public override void Display(float[] values) {
       #if NEODROID_DEBUG
-      DebugPrinting.DisplayPrint(values[0], identifier : this.Identifier, debugging : this.Debugging);
+      DebugPrinting.DisplayPrint(value : values[0], identifier : this.Identifier, debugging : this.Debugging);
       #endif
 
-      this.SetFillAmount(values[0]);
+      this.SetFillAmount(amount : values[0]);
     }
 
     /// <inheritdoc />
