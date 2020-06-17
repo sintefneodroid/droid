@@ -3,7 +3,7 @@ using droid.Runtime.Utilities.PostProcessesEffects;
 using UnityEditor.Rendering.PostProcessing;
 
 namespace droid.Editor.Utilities.PostProcessing {
-  [PostProcessEditor(typeof(Grayscale))]
+  [PostProcessEditor(settingsType : typeof(Grayscale))]
   public sealed class GrayscaleEditor : PostProcessEffectEditor<Grayscale> {
     SerializedParameterOverride _m_blend;
 

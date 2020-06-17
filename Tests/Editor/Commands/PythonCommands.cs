@@ -7,7 +7,7 @@ namespace droid.Tests.Editor.Commands {
     public void TestPythonAddition() {
       droid.Editor.Utilities.Commands.Commands.PythonCommand("print(1+1)");
 
-      Assert.That(true, Is.True);
+      Assert.That(true, expression : Is.True);
     }
   }
 }

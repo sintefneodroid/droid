@@ -55,7 +55,7 @@ namespace droid.Runtime.Prototyping.Sensors.Auditory {
     /// <summary>
     /// </summary>
     public override void UpdateObservation() {
-      AudioListener.GetSpectrumData(samples : this._observation_array, 0, window : _fft_window);
+      AudioListener.GetSpectrumData(samples : this._observation_array, 0, window : this._fft_window);
     }
 
     /// <inheritdoc />

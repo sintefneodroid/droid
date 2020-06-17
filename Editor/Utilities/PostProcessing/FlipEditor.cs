@@ -3,7 +3,7 @@ using droid.Runtime.Utilities.PostProcessesEffects;
 using UnityEditor.Rendering.PostProcessing;
 
 namespace droid.Editor.Utilities.PostProcessing {
-  [PostProcessEditor(typeof(Flipper))]
+  [PostProcessEditor(settingsType : typeof(Flipper))]
   public sealed class FlipEditor : PostProcessEffectEditor<Flipper> {
     SerializedParameterOverride _m_flip_x;
     SerializedParameterOverride _m_flip_y;

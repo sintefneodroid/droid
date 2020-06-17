@@ -1,4 +1,7 @@
-﻿using droid.Runtime.Prototyping.Sensors.Experimental;
+﻿using System;
+using droid.Runtime.Enums;
+using droid.Runtime.Prototyping.Sensors.Experimental;
+using droid.Runtime.Structs.Space;
 using UnityEngine;
 
 namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric {
@@ -10,8 +13,18 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric {
                                + SensorComponentMenuPath._Postfix)]
   [ExecuteInEditMode]
   public class AngleSensor : SingleValueSensor {
-    [SerializeField] Vector3 reference = Vector3.up;
-    [SerializeField] Vector3 axis = -Vector3.forward;
+    [SerializeField] Vector3 reference = -Vector3.forward;
+    [SerializeField] Vector3 axis = Vector3.up;
+
+    void Reset() {
+      _observation_value_space = new Space1 {
+                                                DecimalGranularity = 4,
+                                                Max = 180.0f,
+                                                Min = -180.0f,
+                                                Normalised = NormalisationEnum.None_,
+                                                NormalisedBool = false
+                                            };
+    }
 
     /// <inheritdoc />
     ///  <summary>

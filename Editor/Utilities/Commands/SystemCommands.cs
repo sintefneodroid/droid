@@ -62,7 +62,7 @@ namespace droid.Editor.Utilities.Commands {
           out_str = std_str + '\n' + error_str;
 
           #if UNITY_EDITOR
-          UnityEngine.Debug.Log(std_str);
+          UnityEngine.Debug.Log(message : std_str);
 
           if (error_str.Length > 0) {
             UnityEngine.Debug.LogError(message : error_str);

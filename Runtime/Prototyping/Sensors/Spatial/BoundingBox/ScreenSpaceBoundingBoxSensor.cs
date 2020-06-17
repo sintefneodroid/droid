@@ -24,7 +24,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.BoundingBox {
     /// <summary>
     /// </summary>
     public override void PreSetup() {
-      this._neodroid_bounding_box = this.GetComponent<GameObjects.BoundingBoxes.NeodroidBoundingBox>();
+      this._neodroid_bounding_box = this.GetComponent<NeodroidBoundingBox>();
     }
 
     [SerializeField] bool NormaliseObservation = true;

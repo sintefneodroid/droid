@@ -37,7 +37,7 @@ for (var i = 0; i < this._arms.WinAmounts.Length; i++) {
 }*/
 
       var values = this._arms.WinAmounts
-                       .Zip(second : this._arms.WinLikelihoods, resultSelector : (f, f1) => f * f1)
+                       .Zip(second : this._arms.WinLikelihoods, (f, f1) => f * f1)
                        .ToArray();
       var values_sum = values.Sum();
 

@@ -26,22 +26,22 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     [SerializeField]
     CoordinateSpaceEnum _spaceEnum = CoordinateSpaceEnum.Environment_;
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public Vector3 Position { get { return this._position; } }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public Quaternion Rotation { get { return this._rotation; } }
 
     public Space1 PositionSpace { get; } //TODO: Implement
     public Space1 RotationSpace { get; } //TODO: Implement
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override IEnumerable<float> FloatEnumerable {
       get {
         return new[] {
@@ -56,9 +56,9 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override void UpdateObservation() {
       var transform1 = this.transform;
       if (this.ParentEnvironment != null && this._spaceEnum == CoordinateSpaceEnum.Environment_) {

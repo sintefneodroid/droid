@@ -18,31 +18,33 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
 
     [SerializeField] bool normalised_overwrite_space_if_env_bounds = true;
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override string PrototypingTypeName { get { return base.PrototypingTypeName + this._dim; } }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void RemotePostSetup() {
       if (this.normalised_overwrite_space_if_env_bounds) {
         switch (this._dim) {
           case AxisEnum.X_:
-            if (this.ParentEnvironment) {
+            if (this.ParentEnvironment!=null && this.ParentEnvironment.PlayableArea!=null) {
               this._observation_value_space =
                   Space1.FromCenterExtent(extent : this.ParentEnvironment.PlayableArea.Bounds.extents.x);
             }
 
             break;
           case AxisEnum.Y_:
-            if (this.ParentEnvironment) {
+            if (this.ParentEnvironment!=null && this.ParentEnvironment.PlayableArea!=null) {
               this._observation_value_space =
                   Space1.FromCenterExtent(extent : this.ParentEnvironment.PlayableArea.Bounds.extents.y);
             }
 
             break;
           case AxisEnum.Z_:
-            if (this.ParentEnvironment) {
+            if (this.ParentEnvironment!=null && this.ParentEnvironment.PlayableArea!=null) {
               this._observation_value_space =
                   Space1.FromCenterExtent(extent : this.ParentEnvironment.PlayableArea.Bounds.extents.z);
             }

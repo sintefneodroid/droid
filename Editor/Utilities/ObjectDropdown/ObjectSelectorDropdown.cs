@@ -51,7 +51,7 @@ namespace droid.Editor.Utilities.ObjectDropdown {
               var type = field_info.FieldType;
               for (var i = this._m_list.Count - 1; i >= 0; i--) {
                 if (this._m_list[index : i] == null
-                    || !type.IsAssignableFrom(this._m_list[index : i].GetType())) {
+                    || !type.IsAssignableFrom(c : this._m_list[index : i].GetType())) {
                   this._m_list.RemoveAt(index : i);
                 }
               }
