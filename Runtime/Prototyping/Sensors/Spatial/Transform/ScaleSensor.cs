@@ -17,32 +17,36 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
                              IHasTriple {
     [Header("Observation", order = 103)]
     [SerializeField]
-    Vector3 _position;
+    Vector3 _scale;
 
     [SerializeField] Space3 _scale_space = Space3.ZeroOne;
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public Vector3 ObservationValue { //TODO: IMPLEMENT LOCAL SPACE
-      get { return this._position; }
-      set { this._position = this._scale_space.Project(v : value); }
+      get { return this._scale; }
+      set { this._scale = this._scale_space.Project(v : value); }
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public Space3 TripleSpace { get { return this._scale_space; } }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void PreSetup() { }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override IEnumerable<float> FloatEnumerable {
       get { return new[] {this.ObservationValue.x, this.ObservationValue.y, this.ObservationValue.z}; }
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void UpdateObservation() { this.ObservationValue = this.transform.localScale; }

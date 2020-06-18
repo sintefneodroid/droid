@@ -2,11 +2,16 @@ namespace droid.Runtime.Enums {
   /// <summary>
   /// How should spaces be normalised
   /// </summary>
-  public enum NormalisationEnum {
+  public enum ProjectionEnum {
     /// <summary>
-    /// No normalisation
+    /// No projection
     /// </summary>
     None_,
+
+    /// <summary>
+    /// Clipped to range
+    /// </summary>
+    Clipped_,
 
     /// <summary>
     /// Between 0 and 1

@@ -45,7 +45,7 @@ namespace droid.Runtime.Structs.Space.Sample {
       Single x;
       Single y;
       switch (this._space.Normalised) {
-        case NormalisationEnum.None_:
+        case ProjectionEnum.None_:
           x = this._space.Round(this.DistributionSampler.Range(min : this._space.Min.x,
                                                                max : this._space.Max.x,
                                                                granularity : this._space.DecimalGranularity));
@@ -53,11 +53,11 @@ namespace droid.Runtime.Structs.Space.Sample {
                                                                max : this._space.Max.y,
                                                                granularity : this._space.DecimalGranularity));
           break;
-        case NormalisationEnum.Zero_one_:
+        case ProjectionEnum.Zero_one_:
           x = this.DistributionSampler.Range(0, 1);
           y = this.DistributionSampler.Range(0, 1);
           break;
-        case NormalisationEnum.Minus_one_one_:
+        case ProjectionEnum.Minus_one_one_:
           x = this.DistributionSampler.Range(-1, 1);
           y = this.DistributionSampler.Range(-1, 1);
           break;

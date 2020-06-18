@@ -1,4 +1,6 @@
-﻿using System;
+﻿//#define PRE_CLIP_PROJECTIONS
+
+using System;
 using droid.Runtime.Enums;
 using droid.Runtime.Interfaces;
 using UnityEngine;
@@ -16,60 +18,87 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     [Header("Space", order = 103)]
     [SerializeField]
-    float _min_;
+    float _min;
 
     /// <summary>
     ///
     /// </summary>
     [SerializeField]
-    float _max_;
+    float _max;
 
     /// <summary>
     ///
     /// </summary>
     ///
-    [Range(0, 15)]
+    [Range(-1, 15)]
     [SerializeField]
     int _decimal_granularity;
 
-    [SerializeField] NormalisationEnum normalised;
+    [SerializeField] ProjectionEnum _projection;
 
     #endregion
 
     /// <summary>
     ///
     /// </summary>
-    public float Span { get { return this._max_ - this._min_; } }
+    public float Span { get { return this._max - this._min; } }
 
     /// <summary>
-    ///
+    /// If max is less than min, no clipping is performed.
     /// </summary>
     /// <param name="v"></param>
     /// <param name="min"></param>
     /// <param name="max"></param>
     /// <returns></returns>
-    static float Clip(float v, float min, float max) { return Mathf.Clamp(value : v, min : min, max : max); }
+    static float Clip(float v, float min, float max) {
+      return max < min ? v : Mathf.Clamp(value : v, min : min, max : max);
+    }
 
     /// <summary>
     ///
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-    float Clip(float v) { return Clip(v : v, min : this._min_, max : this._max_); }
+    float Clip(float v) { return Clip(v : v, min : this._min, max : this._max); }
 
     /// <summary>
     ///
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-    float ClipRound(float v) { return this.Clip(v : this.Round(v : v)); }
+    float RoundClip(float v) {
+      #if PRE_CLIP_PROJECTIONS
+      v = Clip(v : v);
+      #endif
+
+      return this.Round(v : v);
+    }
 
     /// <summary>
     ///
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-    dynamic ClipNormalise01Round(dynamic v) { return this.Round(v : this.Normalise01(v : this.Clip(v : v))); }
+    float ClipRound(float v) {
+      #if PRE_CLIP_PROJECTIONS
+      v = Clip(v : v);
+      #endif
+
+      return this.Round(v : v);
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    dynamic ClipNormaliseRound(dynamic v) {
+      #if PRE_CLIP_PROJECTIONS
+      v = this.Clip(v);
+      #endif
+
+      return this.Round(v : this.Normalise01(v : v));
+    }
 
     /// <summary>
     ///
@@ -77,7 +106,11 @@ namespace droid.Runtime.Structs.Space {
     /// <param name="v"></param>
     /// <returns></returns>
     dynamic ClipNormaliseMinusOneOneRound(dynamic v) {
-      return this.Round(v : this.NormaliseMinusOneOne(v : this.Clip(v : v)));
+      #if PRE_CLIP_PROJECTIONS
+      v = this.Clip( v);
+      #endif
+
+      return this.Round(v : this.NormaliseMinusOneOne(v : v));
     }
 
     /// <inheritdoc />
@@ -88,12 +121,14 @@ namespace droid.Runtime.Structs.Space {
     ///  <exception cref="T:System.ArgumentOutOfRangeException"></exception>
     public dynamic Project(dynamic v) {
       switch (this.Normalised) {
-        case NormalisationEnum.None_:
-          return ClipRound(v : v);
-        case NormalisationEnum.Zero_one_:
-          return ClipNormalise01Round(v : v);
-        case NormalisationEnum.Minus_one_one_:
+        case ProjectionEnum.None_:
+          return v;
+        case ProjectionEnum.Zero_one_:
+          return ClipNormaliseRound(v : v);
+        case ProjectionEnum.Minus_one_one_:
           return ClipNormaliseMinusOneOneRound(v : v);
+        case ProjectionEnum.Clipped_:
+          return ClipRound(v : v);
         default: throw new ArgumentOutOfRangeException();
       }
     }
@@ -108,12 +143,14 @@ namespace droid.Runtime.Structs.Space {
     ///  <exception cref="T:System.ArgumentOutOfRangeException"></exception>
     public dynamic Reproject(dynamic v) {
       switch (this.Normalised) {
-        case NormalisationEnum.None_:
-          return ClipRound(v : v);
-        case NormalisationEnum.Zero_one_:
+        case ProjectionEnum.None_:
+          return v;
+        case ProjectionEnum.Zero_one_:
           return ClipRoundDenormalise01Clip(v : v);
-        case NormalisationEnum.Minus_one_one_:
+        case ProjectionEnum.Minus_one_one_:
           return ClipRoundDenormaliseMinusOneOneClip(v : v);
+        case ProjectionEnum.Clipped_:
+          return RoundClip(v : v);
         default: throw new ArgumentOutOfRangeException();
       }
     }
@@ -124,7 +161,7 @@ namespace droid.Runtime.Structs.Space {
     /// <param name="v"></param>
     /// <returns></returns>
     float Normalise01(float v) {
-      if (v > this._max_ || v < this._min_) {
+      if (v > this._max || v < this._min) {
         throw new ArgumentException();
       }
 
@@ -132,7 +169,7 @@ namespace droid.Runtime.Structs.Space {
         return 0;
       }
 
-      return (v - this._min_) / this.Span;
+      return Normalisation.Normalise01_(v : v, min : this._min, span : this.Span);
     }
 
     /// <summary>
@@ -141,7 +178,7 @@ namespace droid.Runtime.Structs.Space {
     /// <param name="v"></param>
     /// <returns></returns>
     float NormaliseMinusOneOne(float v) {
-      if (v > this._max_ || v < this._min_) {
+      if (v > this._max || v < this._min) {
         throw new ArgumentException();
       }
 
@@ -149,21 +186,21 @@ namespace droid.Runtime.Structs.Space {
         return 0;
       }
 
-      return (v - this._min_) / this.Span;
+      return Normalisation.NormaliseMinusOneOne_(v : v, min : this._min, span : this.Span);
     }
 
     /// <summary>
     ///
     /// </summary>
     /// <returns></returns>
-    public Vector2 ToVector2() { return new Vector2(x : this._min_, y : this._max_); }
+    public Vector2 ToVector2() { return new Vector2(x : this._min, y : this._max); }
 
     /// <summary>
     ///
     /// </summary>
     /// <returns></returns>
     public Vector3 ToVector3() {
-      return new Vector3(x : this._min_, y : this._max_, z : this._decimal_granularity);
+      return new Vector3(x : this._min, y : this._max, z : this._decimal_granularity);
     }
 
     /// <summary>
@@ -180,7 +217,7 @@ namespace droid.Runtime.Structs.Space {
         return 0;
       }
 
-      return v * this.Span + this._min_;
+      return Normalisation.Denormalise01_(v : v, min : this._min, span : this.Span);
     }
 
     /// <summary>
@@ -189,7 +226,7 @@ namespace droid.Runtime.Structs.Space {
     /// <param name="v"></param>
     /// <returns></returns>
     float DenormaliseMinusOneOne(float v) {
-      if (v > 1 || v < 0) {
+      if (v > 1 || v < -1) {
         throw new ArgumentException();
       }
 
@@ -197,7 +234,7 @@ namespace droid.Runtime.Structs.Space {
         return 0;
       }
 
-      return v * this.Span + this._min_;
+      return Normalisation.DenormaliseMinusOneOne_(v : v, min : this._min, span : this.Span);
     }
 
     /// <summary>
@@ -206,7 +243,11 @@ namespace droid.Runtime.Structs.Space {
     /// <param name="v"></param>
     /// <returns></returns>
     dynamic ClipRoundDenormalise01Clip(dynamic v) {
-      return this.Clip(v : this.Round(v : this.Denormalise01(v : Clip(v : v, min : 0, max : 1))));
+      #if PRE_CLIP_PROJECTIONS
+      v = Clip(v : v, min : 0, max : 1);
+      #endif
+
+      return this.Clip(v : this.Round(v : this.Denormalise01(v : v)));
     }
 
     /// <summary>
@@ -215,7 +256,11 @@ namespace droid.Runtime.Structs.Space {
     /// <param name="v"></param>
     /// <returns></returns>
     dynamic ClipRoundDenormaliseMinusOneOneClip(dynamic v) {
-      return this.Clip(v : this.Round(v : this.DenormaliseMinusOneOne(v : Clip(v : v, min : 0, max : 1))));
+      #if PRE_CLIP_PROJECTIONS
+      v = Clip(v : v, min : -1, max : 1);
+      #endif
+
+      return this.Clip(v : this.Round(v : this.DenormaliseMinusOneOne(v : v)));
     }
 
     /// <summary>
@@ -229,7 +274,11 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
-    public float Round(float v) { return (float)Math.Round(value : v, digits : this._decimal_granularity); }
+    public float Round(float v) {
+      return this.DecimalGranularity >= 0
+                 ? (float)Math.Round(value : v, digits : this._decimal_granularity)
+                 : v;
+    }
 
     /// <summary>
     ///
@@ -237,10 +286,10 @@ namespace droid.Runtime.Structs.Space {
     public static Space1 TwentyEighty {
       get {
         return new Space1 {
-                              _min_ = 0.2f,
-                              _max_ = 0.8f,
+                              _min = 0.2f,
+                              _max = 0.8f,
                               DecimalGranularity = 4,
-                              Normalised = NormalisationEnum.Zero_one_
+                              Normalised = ProjectionEnum.Zero_one_
                           };
       }
     }
@@ -250,12 +299,7 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     public static Space1 ZeroOne {
       get {
-        return new Space1 {
-                              _min_ = 0,
-                              _max_ = 1,
-                              DecimalGranularity = 4,
-                              Normalised = NormalisationEnum.Zero_one_
-                          };
+        return new Space1 {_min = 0, _max = 1, DecimalGranularity = 4, Normalised = ProjectionEnum.Zero_one_};
       }
     }
 
@@ -265,10 +309,10 @@ namespace droid.Runtime.Structs.Space {
     public static Space1 MinusOneOne {
       get {
         return new Space1 {
-                              _min_ = -1,
-                              _max_ = 1,
+                              _min = -1,
+                              _max = 1,
                               DecimalGranularity = 4,
-                              Normalised = NormalisationEnum.Zero_one_
+                              Normalised = ProjectionEnum.Zero_one_
                           };
       }
     }
@@ -285,8 +329,8 @@ namespace droid.Runtime.Structs.Space {
     ///
     /// </summary>
     public Boolean NormalisedBool {
-      get { return this.normalised == NormalisationEnum.Zero_one_; }
-      set { this.normalised = value ? NormalisationEnum.Zero_one_ : NormalisationEnum.None_; }
+      get { return this._projection == ProjectionEnum.Zero_one_; }
+      set { this._projection = value ? ProjectionEnum.Zero_one_ : ProjectionEnum.None_; }
     }
 
     /// <summary>
@@ -294,12 +338,7 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     public static Space1 DiscreteMinusOneOne {
       get {
-        return new Space1 {
-                              _min_ = -1,
-                              _max_ = 1,
-                              DecimalGranularity = 0,
-                              Normalised = NormalisationEnum.None_
-                          };
+        return new Space1 {_min = -1, _max = 1, DecimalGranularity = 0, Normalised = ProjectionEnum.None_};
       }
     }
 
@@ -308,34 +347,37 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     public static Space1 DiscreteZeroOne {
       get {
-        return new Space1 {
-                              _min_ = 0,
-                              _max_ = 1,
-                              DecimalGranularity = 0,
-                              Normalised = NormalisationEnum.None_
-                          };
+        return new Space1 {_min = 0, _max = 1, DecimalGranularity = 0, Normalised = ProjectionEnum.None_};
       }
     }
 
     /// <summary>
     ///
     /// </summary>
-    public dynamic Precision { get { return 1.0f / (this._decimal_granularity + 1.0f); } }
+    public dynamic Precision {
+      get {
+        if (this._decimal_granularity < 0) {
+          return float.PositiveInfinity;
+        }
+
+        return 1.0f / (this._decimal_granularity + 1.0f);
+      }
+    }
 
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public dynamic Min { get { return this._min_; } set { this._min_ = value; } }
+    public dynamic Min { get { return this._min; } set { this._min = value; } }
 
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public dynamic Max { get { return this._max_; } set { this._max_ = value; } }
+    public dynamic Max { get { return this._max; } set { this._max = value; } }
 
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public NormalisationEnum Normalised { get { return this.normalised; } set { this.normalised = value; } }
+    public ProjectionEnum Normalised { get { return this._projection; } set { this._projection = value; } }
 
     /// <summary>
     ///
@@ -343,8 +385,8 @@ namespace droid.Runtime.Structs.Space {
     /// <param name="vector3_field"></param>
     public void FromVector3(Vector3 vector3_field) {
       this._decimal_granularity = (int)vector3_field.z;
-      this._max_ = vector3_field.y;
-      this._min_ = vector3_field.x;
+      this._max = vector3_field.y;
+      this._min = vector3_field.x;
     }
 
     /// <summary>
@@ -363,16 +405,16 @@ namespace droid.Runtime.Structs.Space {
     ///
     /// </summary>
     /// <param name="extent"></param>
-    /// <param name="normalisation_enum"></param>
+    /// <param name="projection_enum"></param>
     /// <param name="decimal_granularity"></param>
     /// <returns></returns>
     public static Space1 FromCenterExtent(float extent,
-                                          NormalisationEnum normalisation_enum = NormalisationEnum.Zero_one_,
+                                          ProjectionEnum projection_enum = ProjectionEnum.Zero_one_,
                                           int decimal_granularity = 4) {
       return new Space1 {
-                            _min_ = -extent,
+                            _min = -extent,
                             Max = extent,
-                            normalised = normalisation_enum,
+                            _projection = projection_enum,
                             DecimalGranularity = decimal_granularity
                         };
     }

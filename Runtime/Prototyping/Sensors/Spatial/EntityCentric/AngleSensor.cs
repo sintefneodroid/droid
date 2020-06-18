@@ -21,7 +21,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric {
                                                 DecimalGranularity = 4,
                                                 Max = 180.0f,
                                                 Min = -180.0f,
-                                                Normalised = NormalisationEnum.None_,
+                                                Normalised = ProjectionEnum.None_,
                                                 NormalisedBool = false
                                             };
     }

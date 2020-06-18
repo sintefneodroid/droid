@@ -43,15 +43,15 @@ namespace droid.Runtime.Structs.Space.Sample {
     ///  <returns></returns>
     public dynamic Sample() {
       switch (this._space.Normalised) {
-        case NormalisationEnum.None_:
+        case ProjectionEnum.None_:
           return this._space.Round(v : this.DistributionSampler.Range(min : this._space.Min,
                                                                       max : this._space.Max,
                                                                       granularity : this
                                                                                     ._space
                                                                                     .DecimalGranularity));
-        case NormalisationEnum.Zero_one_:
+        case ProjectionEnum.Zero_one_:
           return this.DistributionSampler.Range(0, 1);
-        case NormalisationEnum.Minus_one_one_:
+        case ProjectionEnum.Minus_one_one_:
           return this.DistributionSampler.Range(-1, 1);
         default: throw new ArgumentOutOfRangeException();
       }
