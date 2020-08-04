@@ -32,7 +32,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays {
 
     public Space1 SingleSpace { get { return this._observation_value_space; } }
 
-    public override IEnumerable<float> FloatEnumerable { get { return new[] {this.ObservationValue}; } }
+    public override IEnumerable<Single> FloatEnumerable { get { yield return this.ObservationValue; } }
 
     public override void UpdateObservation() {
       var distance = Vector3.Distance(a : this.transform.position, b : this._target.position);

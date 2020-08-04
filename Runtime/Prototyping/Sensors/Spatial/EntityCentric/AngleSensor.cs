@@ -17,13 +17,13 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric {
     [SerializeField] Vector3 axis = Vector3.up;
 
     void Reset() {
-      _observation_value_space = new Space1 {
-                                                DecimalGranularity = 4,
-                                                Max = 180.0f,
-                                                Min = -180.0f,
-                                                Normalised = ProjectionEnum.None_,
-                                                NormalisedBool = false
-                                            };
+      this._observation_value_space = new Space1 {
+                                                     DecimalGranularity = 4,
+                                                     Max = 180.0f,
+                                                     Min = -180.0f,
+                                                     Normalised = ProjectionEnum.None_,
+                                                     NormalisedBool = false
+                                                 };
     }
 
     /// <inheritdoc />

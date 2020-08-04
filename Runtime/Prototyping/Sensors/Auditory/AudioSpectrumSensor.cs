@@ -49,7 +49,7 @@ namespace droid.Runtime.Prototyping.Sensors.Auditory {
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public override IEnumerable<float> FloatEnumerable { get { return this.ObservationArray; } }
+    public override IEnumerable<Single> FloatEnumerable { get { return this.ObservationArray; } }
 
     /// <inheritdoc />
     /// <summary>

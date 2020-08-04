@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Structs.Space;
 using UnityEngine;
@@ -23,7 +24,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Lidar {
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public override IEnumerable<float> FloatEnumerable { get { return this.ObservationArray; } }
+    public override IEnumerable<Single> FloatEnumerable { get { return this.ObservationArray; } }
 
     /// <inheritdoc />
     /// <summary>

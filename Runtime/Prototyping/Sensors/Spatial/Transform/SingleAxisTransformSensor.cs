@@ -30,21 +30,21 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
       if (this.normalised_overwrite_space_if_env_bounds) {
         switch (this._dim) {
           case AxisEnum.X_:
-            if (this.ParentEnvironment!=null && this.ParentEnvironment.PlayableArea!=null) {
+            if (this.ParentEnvironment != null && this.ParentEnvironment.PlayableArea != null) {
               this._observation_value_space =
                   Space1.FromCenterExtent(extent : this.ParentEnvironment.PlayableArea.Bounds.extents.x);
             }
 
             break;
           case AxisEnum.Y_:
-            if (this.ParentEnvironment!=null && this.ParentEnvironment.PlayableArea!=null) {
+            if (this.ParentEnvironment != null && this.ParentEnvironment.PlayableArea != null) {
               this._observation_value_space =
                   Space1.FromCenterExtent(extent : this.ParentEnvironment.PlayableArea.Bounds.extents.y);
             }
 
             break;
           case AxisEnum.Z_:
-            if (this.ParentEnvironment!=null && this.ParentEnvironment.PlayableArea!=null) {
+            if (this.ParentEnvironment != null && this.ParentEnvironment.PlayableArea != null) {
               this._observation_value_space =
                   Space1.FromCenterExtent(extent : this.ParentEnvironment.PlayableArea.Bounds.extents.z);
             }

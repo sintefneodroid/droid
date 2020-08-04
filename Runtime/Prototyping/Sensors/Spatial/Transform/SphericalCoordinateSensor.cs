@@ -27,7 +27,10 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     }
 
     public override IEnumerable<Single> FloatEnumerable {
-      get { return new[] {this.ObservationValue.x, this.ObservationValue.y}; }
+      get {
+        yield return this.ObservationValue.x;
+        yield return this.ObservationValue.y;
+      }
     }
 
     public override void UpdateObservation() {

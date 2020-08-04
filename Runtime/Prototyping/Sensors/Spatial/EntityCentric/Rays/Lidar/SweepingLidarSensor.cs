@@ -36,7 +36,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Lidar {
     /// <summary>
     ///
     /// </summary>
-    public override IEnumerable<float> FloatEnumerable { get { return new[] {this.ObservationValue}; } }
+    public override IEnumerable<Single> FloatEnumerable { get { yield return this.ObservationValue; } }
 
     /// <summary>
     /// </summary>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Structs.Space;
 using UnityEngine;
@@ -55,19 +56,17 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays {
       set { this._direction = this._direction_space.Project(v : value); }
     }
 
-    public override IEnumerable<float> FloatEnumerable {
+    public override IEnumerable<Single> FloatEnumerable {
       get {
-        return new[] {
-                         this.Position.x,
-                         this.Position.y,
-                         this.Position.z,
-                         this.Direction.x,
-                         this.Direction.y,
-                         this.Direction.z,
-                         this.Rotation.x,
-                         this.Rotation.y,
-                         this.Rotation.z
-                     };
+        yield return this.Position.x;
+        yield return this.Position.y;
+        yield return this.Position.z;
+        yield return this.Direction.x;
+        yield return this.Direction.y;
+        yield return this.Direction.z;
+        yield return this.Rotation.x;
+        yield return this.Rotation.y;
+        yield return this.Rotation.z;
       }
     }
 

@@ -65,29 +65,6 @@ namespace droid.Runtime.Structs.Space {
       return this.Round(NormaliseMinusOneOne(v : v));
     }
 
-    dynamic NormaliseMinusOneOne(dynamic v) { // TODO: Finish cases
-      if (v.x > this._max.x || v.y > this._max.y ||v.z > this._max.z || v.x < this._min.x || v.y < this._min.y|| v.z <
-          this._min.z) {
-        throw new ArgumentException();
-      }
-
-      if (this.Span.x > 0 && this.Span.y > 0 && this.Span.z > 0) {
-        v = Normalisation.NormaliseMinusOneOne_(v : v, min : this._min, span : this.Span);
-      } else if (this.Span.x > 0 && this.Span.y <= 0) {
-        v.x = Normalisation.NormaliseMinusOneOne_(v : v.x, min : this._min.x, span : this.Span.x);
-        v.y = 0;
-      } else if (this.Span.x <= 0 && this.Span.y >= 0) {
-        v.x = 0;
-        v.y = Normalisation.NormaliseMinusOneOne_(v : v.y, min : this._min.y, span : this.Span.y);
-      } else {
-        v.x = 0;
-        v.y = 0;
-        v.z = 0;
-      }
-
-      return v;
-    }
-
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
@@ -116,36 +93,6 @@ configuration_configurable_value = Clip(v : configuration_configurable_value,
       #endif
 
       return this.Clip(v : this.Round(this.DenormaliseMinusOneOne(v : configuration_configurable_value)));
-    }
-
-    Vector3 DenormaliseMinusOneOne(Vector3 v) {
-      if (v.x > 1 || v.y > 1 || v.z > 1|| v.x < -1 || v.y < -1 || v.z < -1) {
-        throw new ArgumentException();
-      }
-
-      if (this.Span.x <= 0) {  //TODO: FINISH cases
-        if (this.Span.y <= 0) {
-          return new Vector3(0, 0);
-        }
-
-        return new Vector3(0,
-                           y : Normalisation.DenormaliseMinusOneOne_(v : v.y,
-                                                                     min : this._min.y,
-                                                                     span : this.Span.y));
-      }
-
-      if (this.Span.y <= 0) {
-        if (this.Span.x <= 0) {
-          return new Vector3(0, 0);
-        }
-
-        return new Vector3(x : Normalisation.DenormaliseMinusOneOne_(v : v.x,
-                                                                     min : this._min.x,
-                                                                     span : this.Span.x),
-                           0);
-      }
-
-      return Normalisation.DenormaliseMinusOneOne_(v : v, min : this._min, span : this.Span);
     }
 
     /// <summary>
@@ -262,6 +209,16 @@ v = Clip(v : v);
       }
     }
 
+    [SerializeField] ProjectionEnum _projection; //TODO use!
+
+    /// <summary>
+    ///
+    /// </summary>
+    public Boolean NormalisedBool {
+      get { return this._projection == ProjectionEnum.Zero_one_; }
+      set { this._projection = value ? ProjectionEnum.Zero_one_ : ProjectionEnum.None_; }
+    }
+
     /// <summary>
     ///
     /// </summary>
@@ -376,13 +333,98 @@ v = Clip(v : v);
     public dynamic Max { get { return this._max; } set { this._max = value; } }
 
     /// <summary>
+    /// Return Space3 with the negative and positive extents respectively as min and max for each dimension
+    /// </summary>
+    /// <param name="bounds_extents"></param>
+    /// <param name="normalised"></param>
+    /// <param name="decimal_granularity"></param>
+    /// <returns></returns>
+    public static Space3 FromCenterExtents(Vector3 bounds_extents,
+                                           ProjectionEnum normalised = ProjectionEnum.Zero_one_,
+                                           int decimal_granularity = 4) {
+      return new Space3 {
+                            _min = -bounds_extents,
+                            Max = bounds_extents,
+                            normalised = normalised,
+                            _decimal_granularity = decimal_granularity
+                        };
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    dynamic NormaliseMinusOneOne(dynamic v) { // TODO: Finish cases
+      if (v.x > this._max.x
+          || v.y > this._max.y
+          || v.z > this._max.z
+          || v.x < this._min.x
+          || v.y < this._min.y
+          || v.z < this._min.z) {
+        throw new ArgumentException(message : $"Value was {v}, min:{this._min}, max:{this._max}");
+      }
+
+      if (this.Span.x > 0 && this.Span.y > 0 && this.Span.z > 0) {
+        v = Normalisation.NormaliseMinusOneOne_(v : v, min : this._min, span : this.Span);
+      } else if (this.Span.x > 0 && this.Span.y <= 0) {
+        v.x = Normalisation.NormaliseMinusOneOne_(v : v.x, min : this._min.x, span : this.Span.x);
+        v.y = 0;
+      } else if (this.Span.x <= 0 && this.Span.y >= 0) {
+        v.x = 0;
+        v.y = Normalisation.NormaliseMinusOneOne_(v : v.y, min : this._min.y, span : this.Span.y);
+      } else {
+        v.x = 0;
+        v.y = 0;
+        v.z = 0;
+      }
+
+      return v;
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    Vector3 DenormaliseMinusOneOne(Vector3 v) {
+      if (v.x > 1 || v.y > 1 || v.z > 1 || v.x < -1 || v.y < -1 || v.z < -1) {
+        throw new ArgumentException(message : $"Value was {v}, min:-1, max:1");
+      }
+
+      if (this.Span.x <= 0) { //TODO: FINISH cases
+        if (this.Span.y <= 0) {
+          return new Vector3(0, 0);
+        }
+
+        return new Vector3(0,
+                           y : Normalisation.DenormaliseMinusOneOne_(v : v.y,
+                                                                     min : this._min.y,
+                                                                     span : this.Span.y));
+      }
+
+      if (this.Span.y <= 0) {
+        if (this.Span.x <= 0) {
+          return new Vector3(0, 0);
+        }
+
+        return new Vector3(x : Normalisation.DenormaliseMinusOneOne_(v : v.x,
+                                                                     min : this._min.x,
+                                                                     span : this.Span.x),
+                           0);
+      }
+
+      return Normalisation.DenormaliseMinusOneOne_(v : v, min : this._min, span : this.Span);
+    }
+
+    /// <summary>
     ///
     /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
     Vector3 Denormalise01(Vector3 v) {
       if (v.x > 1 || v.y > 1 || v.z > 1 || v.x < 0 || v.y < 0 || v.z < 0) {
-        throw new ArgumentException();
+        throw new ArgumentException(message : $"Value was {v}, min:0, max:1");
       }
 
       return Normalisation.Denormalise01_(v : v, min : this._min, span : this.Span);
@@ -400,10 +442,10 @@ v = Clip(v : v);
           || v.x < this._min.x
           || v.y < this._min.y
           || v.z < this._min.z) {
-        throw new ArgumentException();
+        throw new ArgumentException(message : $"Value was {v}, min:{this._min}, max:{this._max}");
       }
 
-      if (this.Span.x > 0 && this.Span.y > 0 && this.Span.z > 0) {
+      if (this.Span.x > 0 && this.Span.y > 0 && this.Span.z > 0) { //TODO: Complete variations
         v = this.Round(v : Normalisation.Normalise01_(v : v, min : this._min, span : this.Span));
       } else if (this.Span.x > 0 && this.Span.y > 0 && this.Span.z <= 0) {
         v.x = this.Round(v : Normalisation.Normalise01_(v : v.x, min : this._min.x, span : this.Span.x));
@@ -420,24 +462,6 @@ v = Clip(v : v);
       }
 
       return v;
-    }
-
-    /// <summary>
-    /// Return Space3 with the negative and positive extents respectively as min and max for each dimension
-    /// </summary>
-    /// <param name="bounds_extents"></param>
-    /// <param name="normalised"></param>
-    /// <param name="decimal_granularity"></param>
-    /// <returns></returns>
-    public static Space3 FromCenterExtents(Vector3 bounds_extents,
-                                           ProjectionEnum normalised = ProjectionEnum.Zero_one_,
-                                           int decimal_granularity = 4) {
-      return new Space3 {
-                            _min = -bounds_extents,
-                            Max = bounds_extents,
-                            normalised = normalised,
-                            _decimal_granularity = decimal_granularity
-                        };
     }
   }
 }

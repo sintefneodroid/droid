@@ -55,7 +55,7 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public override IEnumerable<Single> FloatEnumerable { get { return new List<Single>(); } }
+    public override IEnumerable<Single> FloatEnumerable { get { return null; } }
 
     /// <inheritdoc />
     ///  <summary>

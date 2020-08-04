@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace droid.Editor.Windows.Agent {
   public class AgentWindow : EditorWindow {
-    [MenuItem(itemName : EditorWindowMenuPath._WindowMenuPath+"/Agents")]
+    [MenuItem(itemName : EditorWindowMenuPath._WindowMenuPath + "/Agents")]
     static void ShowWindow() { GetWindow<AgentWindow>(); }
 
     //string _last_message = String.Empty;

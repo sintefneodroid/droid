@@ -13,19 +13,19 @@ namespace droid.Runtime.Prototyping.EnvironmentListener {
     /// </summary>
     public AbstractPrototypingEnvironment _Parent_Environment;
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public virtual void PreStep() { }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public virtual void Step() { }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public virtual void PostStep() { }
 
     public virtual void PreTick() { }

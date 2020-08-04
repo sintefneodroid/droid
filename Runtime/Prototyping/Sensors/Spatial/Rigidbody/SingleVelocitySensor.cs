@@ -45,7 +45,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Rigidbody {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override IEnumerable<float> FloatEnumerable { get { return new[] {this._observation_value}; } }
+    public override IEnumerable<Single> FloatEnumerable { get { yield return this._observation_value; } }
 
     /// <inheritdoc />
     ///  <summary>

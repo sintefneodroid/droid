@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Structs.Space;
 using UnityEngine;
@@ -70,25 +71,23 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Rigidbody {
     /// </summary>
     public Space3 AngularSpace { get { return this._angular_space; } }
 
-    /// <summary>
-    ///
-    /// </summary>
-    public override IEnumerable<float> FloatEnumerable {
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    public override IEnumerable<Single> FloatEnumerable {
       get {
-        return new[] {
-                         this.Velocity.x,
-                         this.Velocity.y,
-                         this.Velocity.z,
-                         this.AngularVelocity.x,
-                         this.AngularVelocity.y,
-                         this.AngularVelocity.z
-                     };
+        yield return this.Velocity.x;
+        yield return this.Velocity.y;
+        yield return this.Velocity.z;
+        yield return this.AngularVelocity.x;
+        yield return this.AngularVelocity.y;
+        yield return this.AngularVelocity.z;
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override void UpdateObservation() {
       var update_time_difference = Time.time - this._last_update_time;
       if (this._differential && update_time_difference > 0) {

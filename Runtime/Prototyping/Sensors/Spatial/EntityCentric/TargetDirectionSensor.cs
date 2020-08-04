@@ -67,8 +67,11 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric {
     /// </summary>
     public Vector2 ObservationValue { get { return this._2_d_position; } set { this._2_d_position = value; } }
 
-    public override IEnumerable<float> FloatEnumerable {
-      get { return new[] {this.Position.x, this.Position.z}; }
+    public override IEnumerable<Single> FloatEnumerable {
+      get {
+        yield return this.Position.x;
+        yield return this.Position.z;
+      }
     }
 
     /// <inheritdoc />

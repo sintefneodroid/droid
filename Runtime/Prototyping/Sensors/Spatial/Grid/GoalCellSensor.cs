@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Structs.Space;
 using droid.Runtime.Utilities.Drawing;
@@ -49,13 +50,11 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Grid {
     /// </summary>
     public Space3 TripleSpace { get; } = new Space3();
 
-    public override IEnumerable<float> FloatEnumerable {
+    public override IEnumerable<Single> FloatEnumerable {
       get {
-        return new[] {
-                         this._current_goal_position.x,
-                         this._current_goal_position.y,
-                         this._current_goal_position.z
-                     };
+        yield return this._current_goal_position.x;
+        yield return this._current_goal_position.y;
+        yield return this._current_goal_position.z;
       }
     }
 

@@ -158,40 +158,6 @@ namespace droid.Runtime.Structs.Space {
     /// <summary>
     ///
     /// </summary>
-    /// <param name="v"></param>
-    /// <returns></returns>
-    float Normalise01(float v) {
-      if (v > this._max || v < this._min) {
-        throw new ArgumentException();
-      }
-
-      if (this.Span <= 0) {
-        return 0;
-      }
-
-      return Normalisation.Normalise01_(v : v, min : this._min, span : this.Span);
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="v"></param>
-    /// <returns></returns>
-    float NormaliseMinusOneOne(float v) {
-      if (v > this._max || v < this._min) {
-        throw new ArgumentException();
-      }
-
-      if (this.Span <= 0) {
-        return 0;
-      }
-
-      return Normalisation.NormaliseMinusOneOne_(v : v, min : this._min, span : this.Span);
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
     /// <returns></returns>
     public Vector2 ToVector2() { return new Vector2(x : this._min, y : this._max); }
 
@@ -201,40 +167,6 @@ namespace droid.Runtime.Structs.Space {
     /// <returns></returns>
     public Vector3 ToVector3() {
       return new Vector3(x : this._min, y : this._max, z : this._decimal_granularity);
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="v"></param>
-    /// <returns></returns>
-    float Denormalise01(float v) {
-      if (v > 1 || v < 0) {
-        throw new ArgumentException();
-      }
-
-      if (this.Span <= 0) {
-        return 0;
-      }
-
-      return Normalisation.Denormalise01_(v : v, min : this._min, span : this.Span);
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="v"></param>
-    /// <returns></returns>
-    float DenormaliseMinusOneOne(float v) {
-      if (v > 1 || v < -1) {
-        throw new ArgumentException();
-      }
-
-      if (this.Span <= 0) {
-        return 0;
-      }
-
-      return Normalisation.DenormaliseMinusOneOne_(v : v, min : this._min, span : this.Span);
     }
 
     /// <summary>
@@ -417,6 +349,74 @@ namespace droid.Runtime.Structs.Space {
                             _projection = projection_enum,
                             DecimalGranularity = decimal_granularity
                         };
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    float Normalise01(float v) {
+      if (v > this._max || v < this._min) {
+        throw new ArgumentException(message : $"Value was {v}, min:{this._min}, max:{this._max}");
+      }
+
+      if (this.Span <= 0) {
+        return 0;
+      }
+
+      return Normalisation.Normalise01_(v : v, min : this._min, span : this.Span);
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    float NormaliseMinusOneOne(float v) {
+      if (v > this._max || v < this._min) {
+        throw new ArgumentException(message : $"Value was {v}, min:{this._min}, max:{this._max}");
+      }
+
+      if (this.Span <= 0) {
+        return 0;
+      }
+
+      return Normalisation.NormaliseMinusOneOne_(v : v, min : this._min, span : this.Span);
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    float Denormalise01(float v) {
+      if (v > 1 || v < 0) {
+        throw new ArgumentException(message : $"Value was {v}, min:0, max:1");
+      }
+
+      if (this.Span <= 0) {
+        return 0;
+      }
+
+      return Normalisation.Denormalise01_(v : v, min : this._min, span : this.Span);
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    float DenormaliseMinusOneOne(float v) {
+      if (v > 1 || v < -1) {
+        throw new ArgumentException(message : $"Value was {v}, min:-1, max:1");
+      }
+
+      if (this.Span <= 0) {
+        return 0;
+      }
+
+      return Normalisation.DenormaliseMinusOneOne_(v : v, min : this._min, span : this.Span);
     }
   }
 }

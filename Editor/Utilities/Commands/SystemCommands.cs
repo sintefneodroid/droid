@@ -15,7 +15,6 @@ namespace droid.Editor.Utilities.Commands {
                                               use_shell : use_shell);
                               });
       thread.Start();
-
     }
 
     public static string SystemCommand(string input,
@@ -38,7 +37,8 @@ namespace droid.Editor.Utilities.Commands {
                                                                                                = !use_shell,
                                                                                            UseShellExecute =
                                                                                                use_shell,
-                                                                                           WorkingDirectory = working_directory
+                                                                                           WorkingDirectory =
+                                                                                               working_directory
                                                                                        };
 
       var process = new Process {StartInfo = process_info};

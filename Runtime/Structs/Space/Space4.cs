@@ -144,6 +144,16 @@ namespace droid.Runtime.Structs.Space {
       }
     }
 
+    [SerializeField] ProjectionEnum _projection; //TODO use!
+
+    /// <summary>
+    ///
+    /// </summary>
+    public Boolean NormalisedBool {
+      get { return this._projection == ProjectionEnum.Zero_one_; }
+      set { this._projection = value ? ProjectionEnum.Zero_one_ : ProjectionEnum.None_; }
+    }
+
     /// <summary>
     /// If max is less than min, no clipping is performed.
     /// </summary>
@@ -271,69 +281,13 @@ namespace droid.Runtime.Structs.Space {
     /// <summary>
     ///
     /// </summary>
-    /// <param name="v"></param>
+    /// <param name="a"></param>
+    /// <param name="b"></param>
     /// <returns></returns>
-    Vector4 Denormalise01(Vector4 v) {
-      if (v.x > 1 || v.y > 1 || v.z > 1 || v.w > 1 || v.x < 0 || v.y < 0 || v.z < 0 || v.w < 0) {
-        throw new ArgumentException();
-      }
-
-      return Normalisation.Denormalise01_(v : v, min : this._min, span : this.Span);
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="v"></param>
-    /// <returns></returns>
-    Vector4 Normalise01(Vector4 v) {
-      if (v.x > this._max.x
-          || v.y > this._max.y
-          || v.z > this._max.z
-          || v.w > this._max.w
-          || v.x < this._min.x
-          || v.y < this._min.y
-          || v.z < this._min.z
-          || v.w < this._min.w) {
-        throw new ArgumentException();
-      }
-
-      return Normalisation.Normalise01_(v : v, min : this._min, span : this.Span);
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="v"></param>
-    /// <returns></returns>
-    Vector4 NormaliseMinusOneOne(Vector4 v) {
-      if (v.x > this._max.x
-          || v.y > this._max.y
-          || v.z > this._max.z
-          || v.w > this._max.w
-          || v.x < this._min.x
-          || v.y < this._min.y
-          || v.z < this._min.z
-          || v.w < this._min.w) {
-        throw new ArgumentException();
-      }
-
-      if (this.Span.x > 0 && this.Span.y > 0 && this.Span.z > 0 && this.Span.w > 0) { //TODO: FINISH cases
-        v = Normalisation.NormaliseMinusOneOne_(v : v, min : this._min, span : this.Span);
-      } else if (this.Span.x > 0 && this.Span.y <= 0) {
-        v.x = Normalisation.NormaliseMinusOneOne_(v : v.x, min : this._min.x, span : this.Span.x);
-        v.y = 0;
-      } else if (this.Span.x <= 0 && this.Span.y >= 0) {
-        v.x = 0;
-        v.y = Normalisation.NormaliseMinusOneOne_(v : v.y, min : this._min.y, span : this.Span.y);
-      } else {
-        v.x = 0;
-        v.y = 0;
-        v.z = 0;
-        v.w = 0;
-      }
-
-      return v;
+    public static Space4 operator*(Space4 a, float b) {
+      a.Max *= b;
+      a.Min *= b;
+      return a;
     }
 
     dynamic ClipNormaliseMinusOneOneRound(dynamic v) {
@@ -354,12 +308,85 @@ configuration_configurable_value = Clip(v : configuration_configurable_value,
       return this.Clip(v : this.Round(this.DenormaliseMinusOneOne(v : configuration_configurable_value)));
     }
 
-    Vector4 DenormaliseMinusOneOne(Vector4 v) {
-      if (v.x > 1 || v.y > 1 || v.z > 1 || v.w > 1 || v.x < -1 || v.y < -1 || v.z < -1 || v.w < -1) {
-        throw new ArgumentException();
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    Vector4 Denormalise01(Vector4 v) {
+      if (v.x > 1 || v.y > 1 || v.z > 1 || v.w > 1 || v.x < 0 || v.y < 0 || v.z < 0 || v.w < 0) {
+        throw new ArgumentException(message : $"Value was {v}, min:0, max:1");
       }
 
-      if (this.Span.x <= 0) {  //TODO: FINISH cases
+      return Normalisation.Denormalise01_(v : v, min : this._min, span : this.Span);
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    Vector4 Normalise01(Vector4 v) {
+      if (v.x > this._max.x
+          || v.y > this._max.y
+          || v.z > this._max.z
+          || v.w > this._max.w
+          || v.x < this._min.x
+          || v.y < this._min.y
+          || v.z < this._min.z
+          || v.w < this._min.w) {
+        throw new ArgumentException(message : $"Value was {v}, min:{this._min}, max:{this._max}");
+      }
+
+      return Normalisation.Normalise01_(v : v, min : this._min, span : this.Span);
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    Vector4 NormaliseMinusOneOne(Vector4 v) {
+      if (v.x > this._max.x
+          || v.y > this._max.y
+          || v.z > this._max.z
+          || v.w > this._max.w
+          || v.x < this._min.x
+          || v.y < this._min.y
+          || v.z < this._min.z
+          || v.w < this._min.w) {
+        throw new ArgumentException(message : $"Value was {v}, min:{this._min}, max:{this._max}");
+      }
+
+      if (this.Span.x > 0 && this.Span.y > 0 && this.Span.z > 0 && this.Span.w > 0) { //TODO: FINISH cases
+        v = Normalisation.NormaliseMinusOneOne_(v : v, min : this._min, span : this.Span);
+      } else if (this.Span.x > 0 && this.Span.y <= 0) {
+        v.x = Normalisation.NormaliseMinusOneOne_(v : v.x, min : this._min.x, span : this.Span.x);
+        v.y = 0;
+      } else if (this.Span.x <= 0 && this.Span.y >= 0) {
+        v.x = 0;
+        v.y = Normalisation.NormaliseMinusOneOne_(v : v.y, min : this._min.y, span : this.Span.y);
+      } else {
+        v.x = 0;
+        v.y = 0;
+        v.z = 0;
+        v.w = 0;
+      }
+
+      return v;
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="v"></param>
+    /// <returns></returns>
+    Vector4 DenormaliseMinusOneOne(Vector4 v) {
+      if (v.x > 1 || v.y > 1 || v.z > 1 || v.w > 1 || v.x < -1 || v.y < -1 || v.z < -1 || v.w < -1) {
+        throw new ArgumentException(message : $"Value was {v}, min:-1, max:1");
+      }
+
+      if (this.Span.x <= 0) { //TODO: FINISH cases
         if (this.Span.y <= 0) {
           return new Vector4(0, 0);
         }
@@ -382,18 +409,6 @@ configuration_configurable_value = Clip(v : configuration_configurable_value,
       }
 
       return Normalisation.DenormaliseMinusOneOne_(v : v, min : this._min, span : this.Span);
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="a"></param>
-    /// <param name="b"></param>
-    /// <returns></returns>
-    public static Space4 operator*(Space4 a, float b) {
-      a.Max *= b;
-      a.Min *= b;
-      return a;
     }
   }
 }

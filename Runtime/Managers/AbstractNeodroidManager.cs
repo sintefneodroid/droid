@@ -729,7 +729,7 @@ namespace droid.Runtime.Managers {
         var reaction = reactions[index];
         if (this._Environments.ContainsKey(key : reaction.RecipientEnvironment)) {
           this._Environments[key : reaction.RecipientEnvironment].Step(reaction : reaction);
-        } else if (reaction.RecipientEnvironment == "all") {
+        } else if (reaction.RecipientEnvironment == "all" || reaction.RecipientEnvironment == "None") {
           #if NEODROID_DEBUG
           if (this.Debugging) {
             Debug.Log("Applying to all environments");
@@ -739,7 +739,7 @@ namespace droid.Runtime.Managers {
           foreach (var environment in this._Environments.Values) {
             environment.Step(reaction : reaction);
           }
-        } else {
+        } else { //#TODO: Convert this branch to an option if no valid environment recipient is supplied
           #if NEODROID_DEBUG
           if (this.Debugging) {
             Debug.LogError(message :

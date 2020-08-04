@@ -10,8 +10,6 @@ namespace droid.Tests.Editor.Structs.Space {
   /// </summary>
   [TestFixture]
   public class Space2Tests {
-
-
     /// <summary>
     ///
     /// </summary>
@@ -61,7 +59,7 @@ namespace droid.Tests.Editor.Structs.Space {
               ExpectedResult = -5f)]
     public float TestDenormalise01(float v, float min_value, float max_value) {
       var space = new Space2 {
-                                 Min = Vector2.one*min_value,
+                                 Min = Vector2.one * min_value,
                                  Max = Vector2.one * max_value,
                                  Normalised = ProjectionEnum.Zero_one_,
                                  DecimalGranularity = 2
@@ -97,7 +95,7 @@ namespace droid.Tests.Editor.Structs.Space {
                                  Normalised = ProjectionEnum.Zero_one_
                              };
 
-      return space.Project(v : Vector2.one *v)[0];
+      return space.Project(v : Vector2.one * v)[0];
     }
 
     /// <summary>
@@ -127,9 +125,8 @@ namespace droid.Tests.Editor.Structs.Space {
                                  Normalised = ProjectionEnum.Minus_one_one_
                              };
 
-      return space.Project(v : Vector2.one *v)[0];
+      return space.Project(v : Vector2.one * v)[0];
     }
-
 
     /// <summary>
     ///
@@ -180,47 +177,61 @@ namespace droid.Tests.Editor.Structs.Space {
               ExpectedResult = -2.5f)]
     public float TestDenormaliseMinusOneOne(float v, float min_value, float max_value) {
       var space = new Space2 {
-                                 Min = Vector2.one *min_value,
-                                 Max = Vector2.one *max_value,
+                                 Min = Vector2.one * min_value,
+                                 Max = Vector2.one * max_value,
                                  Normalised = ProjectionEnum.Minus_one_one_,
                                  DecimalGranularity = 2
                              };
 
-      return space.Reproject(v : Vector2.one *v)[0];
+      return space.Reproject(v : Vector2.one * v)[0];
     }
-
 
     [TestCase(-1)]
     [TestCase(11)]
     public void TestDenormalise010Throws(float v) {
-      var space = new Space2 {Min = 0*Vector2.one, Max = 10*Vector2.one, Normalised = ProjectionEnum.Zero_one_};
+      var space = new Space2 {
+                                 Min = 0 * Vector2.one,
+                                 Max = 10 * Vector2.one,
+                                 Normalised = ProjectionEnum.Zero_one_
+                             };
 
-      Assert.That(() => space.Reproject(v : v*Vector2.one), expr : Throws.TypeOf<ArgumentException>());
+      Assert.That(() => space.Reproject(v : v * Vector2.one), expr : Throws.TypeOf<ArgumentException>());
     }
 
     [TestCase(-1)]
     [TestCase(10.1f)]
     public void TestNormalise010Throws(float v) {
-      var space = new Space2 {Min = 0*Vector2.one, Max = 10*Vector2.one, Normalised = ProjectionEnum.Zero_one_};
+      var space = new Space2 {
+                                 Min = 0 * Vector2.one,
+                                 Max = 10 * Vector2.one,
+                                 Normalised = ProjectionEnum.Zero_one_
+                             };
 
-      Assert.That(() => space.Project(v : v*Vector2.one), expr : Throws.TypeOf<ArgumentException>());
+      Assert.That(() => space.Project(v : v * Vector2.one), expr : Throws.TypeOf<ArgumentException>());
     }
 
     [TestCase(-2)]
     [TestCase(2)]
     public void TestDenormaliseMinusOneOne010Throws(float v) {
-      var space = new Space2 {Min = 0*Vector2.one, Max = 10*Vector2.one, Normalised = ProjectionEnum.Minus_one_one_};
+      var space = new Space2 {
+                                 Min = 0 * Vector2.one,
+                                 Max = 10 * Vector2.one,
+                                 Normalised = ProjectionEnum.Minus_one_one_
+                             };
 
-      Assert.That(() => space.Reproject(v : v*Vector2.one), expr : Throws.TypeOf<ArgumentException>());
+      Assert.That(() => space.Reproject(v : v * Vector2.one), expr : Throws.TypeOf<ArgumentException>());
     }
 
     [TestCase(-1)]
     [TestCase(10.1f)]
     public void TestNormaliseMinusOneOne010Throws(float v) {
-      var space = new Space2 {Min = 0*Vector2.one, Max = 10*Vector2.one, Normalised = ProjectionEnum.Minus_one_one_};
+      var space = new Space2 {
+                                 Min = 0 * Vector2.one,
+                                 Max = 10 * Vector2.one,
+                                 Normalised = ProjectionEnum.Minus_one_one_
+                             };
 
-      Assert.That(() => space.Project(v : v*Vector2.one), expr : Throws.TypeOf<ArgumentException>());
+      Assert.That(() => space.Project(v : v * Vector2.one), expr : Throws.TypeOf<ArgumentException>());
     }
-
   }
 }

@@ -3,8 +3,6 @@ using UnityEngine;
 
 namespace droid.Runtime.Inference {
   public class TorchInference : MonoBehaviour {
-
-
     [DllImport("networks")] static extern void InitNetwork();
 
     void Start() { InitNetwork(); }

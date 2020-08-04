@@ -25,7 +25,7 @@ namespace droid.Runtime.Prototyping.Sensors {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public abstract IEnumerable<float> FloatEnumerable { get; }
+    public abstract IEnumerable<Single> FloatEnumerable { get; }
 
     /// <inheritdoc />
     /// <summary>

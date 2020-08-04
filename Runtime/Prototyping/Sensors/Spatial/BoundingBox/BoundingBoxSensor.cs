@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using droid.Runtime.GameObjects.BoundingBoxes;
 using droid.Runtime.Interfaces;
 using UnityEngine;
@@ -27,7 +28,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.BoundingBox {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override IEnumerable<float> FloatEnumerable { get { return new List<float>(); } }
+    public override IEnumerable<Single> FloatEnumerable { get { return null; } }
 
     /// <inheritdoc />
     /// <summary>

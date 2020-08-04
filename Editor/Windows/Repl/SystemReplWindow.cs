@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace droid.Editor.Windows.Repl {
   public class SystemReplWindow : EditorWindow {
-    [MenuItem(itemName : EditorWindowMenuPath._WindowMenuPath+"/REPLs/" + "System Repl")]
+    [MenuItem(itemName : EditorWindowMenuPath._WindowMenuPath + "/REPLs/" + "System Repl")]
     static void ShowWindow() { GetWindow<SystemReplWindow>(); }
 
     string _last_message = string.Empty;

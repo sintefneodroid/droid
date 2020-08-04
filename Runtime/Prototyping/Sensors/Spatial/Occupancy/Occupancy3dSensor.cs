@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Structs.Space;
@@ -44,15 +45,15 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Occupancy {
       set { this._observation_value = this.SingleSpace.Project(v : value); }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override void PreSetup() {
       this._light = this.GetComponent<Light>();
       this._transforms = FindObjectsOfType<MeshFilter>().Select(o => o.transform);
     }
 
-    public override IEnumerable<float> FloatEnumerable {
+    public override IEnumerable<Single> FloatEnumerable {
       get {
         var a = new float[this.ObservationArray.Length * 3];
         for (var i = 0; i < this.ObservationArray.Length * 3; i += 3) {

@@ -6,7 +6,5 @@ namespace droid.Editor.Windows.Deprecated {
   [InitializeOnLoad]
   public static class RunAgent {
     static RunAgent() { }
-
-
   }
 }

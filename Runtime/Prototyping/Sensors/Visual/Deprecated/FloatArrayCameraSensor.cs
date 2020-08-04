@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using droid.Runtime.Enums;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Managers;
@@ -26,20 +27,20 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
 
     [SerializeField] Texture2D _texture = null;
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     [field : Header("Observation", order = 103)]
     public float[] ObservationArray { get; private set; } = null;
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public Space1[] ObservationSpace { get { return new[] {Space1.ZeroOne}; } }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override void PreSetup() {
       if (this._manager == null) {
         this._manager = FindObjectOfType<AbstractNeodroidManager>();
@@ -114,14 +115,14 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
       RenderTexture.active = current_render_texture;
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override IEnumerable<float> FloatEnumerable { get { return this.ObservationArray; } }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override void UpdateObservation() {
       #if NEODROID_DEBUG
       if (this.Debugging) {

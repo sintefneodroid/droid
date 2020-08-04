@@ -28,6 +28,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
 
     [SerializeField] bool normalised_overwrite_space_if_env_bounds = true;
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public Vector3 ObservationValue {
@@ -35,10 +36,12 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
       set { this._position = this._position_space.Project(v : value); }
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public Space3 TripleSpace { get { return this._position_space; } }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void RemotePostSetup() {
@@ -50,13 +53,18 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    public override IEnumerable<float> FloatEnumerable {
-      get { return new[] {this.ObservationValue.x, this.ObservationValue.y, this.ObservationValue.z}; }
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    public override IEnumerable<Single> FloatEnumerable {
+      get {
+        yield return this.ObservationValue.x;
+        yield return this.ObservationValue.y;
+        yield return this.ObservationValue.z;
+      }
     }
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void UpdateObservation() {

@@ -112,11 +112,8 @@ namespace droid.Runtime.Structs.Space {
       v = Clip(v : v)
       #endif
 
-
       return this.Round(this.NormaliseMinusOneOne(v : v));
     }
-
-
 
     dynamic ClipRoundDenormaliseMinusOneOneClip(dynamic configuration_configurable_value) {
       #if PRE_CLIP_PROJECTIONS
@@ -244,6 +241,16 @@ namespace droid.Runtime.Structs.Space {
       }
     }
 
+    [SerializeField] ProjectionEnum _projection; //TODO use!
+
+    /// <summary>
+    ///
+    /// </summary>
+    public Boolean NormalisedBool {
+      get { return this._projection == ProjectionEnum.Zero_one_; }
+      set { this._projection = value ? ProjectionEnum.Zero_one_ : ProjectionEnum.None_; }
+    }
+
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
@@ -262,11 +269,41 @@ namespace droid.Runtime.Structs.Space {
     /// <summary>
     ///
     /// </summary>
+    /// <param name="a"></param>
+    /// <param name="b"></param>
+    /// <returns></returns>
+    public static Space2 operator*(Space2 a, float b) {
+      a.Max *= b;
+      a.Min *= b;
+      return a;
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="bounds_extents"></param>
+    /// <param name="normalised"></param>
+    /// <param name="decimal_granularity"></param>
+    /// <returns></returns>
+    public static Space2 FromCenterExtents(Vector2 bounds_extents,
+                                           ProjectionEnum normalised = ProjectionEnum.Zero_one_,
+                                           int decimal_granularity = 4) {
+      return new Space2 {
+                            _min = -bounds_extents,
+                            Max = bounds_extents,
+                            normalised = normalised,
+                            _decimal_granularity = decimal_granularity
+                        };
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
     /// <param name="v"></param>
     /// <returns></returns>
     Vector2 Denormalise01(Vector2 v) {
       if (v.x > 1 || v.y > 1 || v.x < 0 || v.y < 0) {
-        throw new ArgumentException();
+        throw new ArgumentException(message : $"Value was {v}, min:0, max:1");
       }
 
       if (this.Span.x <= 0) {
@@ -292,7 +329,7 @@ namespace droid.Runtime.Structs.Space {
 
     Vector2 DenormaliseMinusOneOne(Vector2 v) {
       if (v.x > 1 || v.y > 1 || v.x < -1 || v.y < -1) {
-        throw new ArgumentException();
+        throw new ArgumentException(message : $"Value was {v}, min:-1, max:1");
       }
 
       if (this.Span.x <= 0) {
@@ -327,7 +364,7 @@ namespace droid.Runtime.Structs.Space {
     /// <returns></returns>
     Vector2 Normalise01(Vector2 v) {
       if (v.x > this._max.x || v.y > this._max.y || v.x < this._min.x || v.y < this._min.y) {
-        throw new ArgumentException();
+        throw new ArgumentException(message : $"Value was {v}, min:{this._min}, max:{this._max}");
       }
 
       if (this.Span.x <= 0) {
@@ -351,7 +388,7 @@ namespace droid.Runtime.Structs.Space {
 
     dynamic NormaliseMinusOneOne(dynamic v) {
       if (v.x > this._max.x || v.y > this._max.y || v.x < this._min.x || v.y < this._min.y) {
-        throw new ArgumentException();
+        throw new ArgumentException(message : $"Value was {v}, min:{this._min}, max:{this._max}");
       }
 
       if (this.Span.x > 0 && this.Span.y > 0) {
@@ -368,36 +405,6 @@ namespace droid.Runtime.Structs.Space {
       }
 
       return v;
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="a"></param>
-    /// <param name="b"></param>
-    /// <returns></returns>
-    public static Space2 operator*(Space2 a, float b) {
-      a.Max *= b;
-      a.Min *= b;
-      return a;
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="bounds_extents"></param>
-    /// <param name="normalised"></param>
-    /// <param name="decimal_granularity"></param>
-    /// <returns></returns>
-    public static Space2 FromCenterExtents(Vector2 bounds_extents,
-                                           ProjectionEnum normalised = ProjectionEnum.Zero_one_,
-                                           int decimal_granularity = 4) {
-      return new Space2 {
-                            _min = -bounds_extents,
-                            Max = bounds_extents,
-                            normalised = normalised,
-                            _decimal_granularity = decimal_granularity
-                        };
     }
   }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace droid.Runtime.Interfaces {
@@ -7,7 +8,7 @@ namespace droid.Runtime.Interfaces {
   public interface ISensor : IRegisterable {
     /// <summary>
     /// </summary>
-    IEnumerable<float> FloatEnumerable { get; }
+    IEnumerable<Single> FloatEnumerable { get; }
 
     /// <summary>
     /// </summary>

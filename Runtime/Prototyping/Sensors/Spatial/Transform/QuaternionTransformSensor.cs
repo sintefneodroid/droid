@@ -4,6 +4,7 @@ using droid.Runtime.Enums;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Structs.Space;
 using UnityEngine;
+using Object = System.Object;
 
 namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
   /// <summary>
@@ -26,6 +27,9 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     [SerializeField]
     CoordinateSpaceEnum _spaceEnum = CoordinateSpaceEnum.Environment_;
 
+    [SerializeField] Space3 _position_space = Space3.MinusOneOne;
+    [SerializeField] Space4 _rotation_space = Space4.MinusOneOne;
+
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
@@ -36,23 +40,21 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     ///  </summary>
     public Quaternion Rotation { get { return this._rotation; } }
 
-    public Space1 PositionSpace { get; } //TODO: Implement
-    public Space1 RotationSpace { get; } //TODO: Implement
+    public Space3 PositionSpace { get { return this._position_space; } } //TODO: Implement
+    public Space4 RotationSpace { get{ return this._rotation_space; } } //TODO: Implement
 
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public override IEnumerable<float> FloatEnumerable {
+    public override IEnumerable<Single> FloatEnumerable {
       get {
-        return new[] {
-                         this._position.x,
-                         this._position.y,
-                         this._position.z,
-                         this._rotation.x,
-                         this._rotation.y,
-                         this._rotation.z,
-                         this._rotation.w
-                     };
+        yield return this._position.x;
+        yield return this._position.y;
+        yield return this._position.z;
+        yield return this._rotation.x;
+        yield return this._rotation.y;
+        yield return this._rotation.z;
+        yield return this._rotation.w;
       }
     }
 

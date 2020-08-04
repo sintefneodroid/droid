@@ -17,11 +17,10 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
   [Serializable]
   public class EulerTransformSensor : Sensor,
                                       IHasEulerTransform {
-
-
     [Header("Observation", order = 103)]
     [SerializeField]
     Vector3 _position;
+
     [SerializeField] Space3 _position_space = Space3.ZeroOne;
 
     [SerializeField] Vector3 _rotation;
@@ -57,6 +56,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     ///  <summary>
     ///  </summary>
     public Space3 PositionSpace { get { return this._position_space; } }
+
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
@@ -78,19 +78,17 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public override IEnumerable<float> FloatEnumerable {
+    public override IEnumerable<Single> FloatEnumerable {
       get {
-        return new[] {
-                         this.Position.x,
-                         this.Position.y,
-                         this.Position.z,
-                         this.Direction.x,
-                         this.Direction.y,
-                         this.Direction.z,
-                         this.Rotation.x,
-                         this.Rotation.y,
-                         this.Rotation.z
-                     };
+        yield return this.Position.x;
+        yield return this.Position.y;
+        yield return this.Position.z;
+        yield return this.Direction.x;
+        yield return this.Direction.y;
+        yield return this.Direction.z;
+        yield return this.Rotation.x;
+        yield return this.Rotation.y;
+        yield return this.Rotation.z;
       }
     }
 
@@ -119,7 +117,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     ///  </summary>
     public override void RemotePostSetup() {
       if (this.normalised_overwrite_space_if_env_bounds) {
-        if (this.ParentEnvironment!=null && this.ParentEnvironment.PlayableArea!=null) {
+        if (this.ParentEnvironment != null && this.ParentEnvironment.PlayableArea != null) {
           this._position_space =
               Space3.FromCenterExtents(bounds_extents : this.ParentEnvironment.PlayableArea.Bounds.extents);
         }

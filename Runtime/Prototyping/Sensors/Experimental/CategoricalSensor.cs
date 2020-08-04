@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using droid.Runtime.GameObjects;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Structs.Space;
@@ -18,7 +19,7 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public override IEnumerable<float> FloatEnumerable { get { return new[] {this.ObservationValue}; } }
+    public override IEnumerable<float> FloatEnumerable { get { yield return this.ObservationValue; } }
 
     /// <inheritdoc />
     ///  <summary>

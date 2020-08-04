@@ -25,20 +25,22 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
     string _rot_y = "rot_y";
     string _rot_z = "rot_z";
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public Quaternion Rotation { get { return this._rotation; } }
 
-    public Space1 PositionSpace { get; } //TODO: Implement
-    public Space1 RotationSpace { get; } //TODO: Implement
+    public Space3 PositionSpace { get; } //TODO: Implement
+    public Space4 RotationSpace { get; } //TODO: Implement
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public Vector3 Position { get { return this._position; } }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override void PreSetup() {
       //TODO: use envs bound extent if available for space
 
@@ -80,10 +82,10 @@ namespace droid.Runtime.Prototyping.Configurables.Transforms {
                    };
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="obj"></param>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <param name="obj"></param>
     public override void ApplyConfiguration(IConfigurableConfiguration obj) {
       //TODO: Denormalize configuration if space is marked as normalised
 

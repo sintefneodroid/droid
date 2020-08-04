@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Structs.Space;
 using UnityEngine;
@@ -14,6 +15,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Rigidbody {
     [SerializeField] Vector3 _velocity;
     [SerializeField] Space3 _velocity_space = Space3.ZeroOne;
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public Vector3 ObservationValue {
@@ -21,16 +23,20 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Rigidbody {
       set { this._velocity = this._velocity_space.Project(v : value); }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public Space3 TripleSpace { get { return this._velocity_space; } }
 
-    /// <summary>
-    ///
-    /// </summary>
-    public override IEnumerable<float> FloatEnumerable {
-      get { return new[] {this.ObservationValue.x, this.ObservationValue.y, this.ObservationValue.z}; }
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    public override IEnumerable<Single> FloatEnumerable {
+      get {
+        yield return this.ObservationValue.x;
+        yield return this.ObservationValue.y;
+        yield return this.ObservationValue.z;
+      }
     }
 
     /// <summary>

@@ -94,9 +94,9 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public int[] Shape {
       get {
         var channels = 4;
@@ -108,10 +108,10 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
       }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <exception cref="ArgumentOutOfRangeException"></exception>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    ///  <exception cref="T:System.ArgumentOutOfRangeException"></exception>
     public string ArrayEncoding {
       get {
         switch (this.imageFormat) {
@@ -256,10 +256,10 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
       }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    public override IEnumerable<float> FloatEnumerable { get { return null; } }
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    public override IEnumerable<Single> FloatEnumerable { get { return null; } }
 
     /// <inheritdoc />
     /// <summary>

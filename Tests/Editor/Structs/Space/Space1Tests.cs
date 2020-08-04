@@ -130,7 +130,6 @@ namespace droid.Tests.Editor.Structs.Space {
       Assert.That(() => space.Project(v : v), expr : Throws.TypeOf<ArgumentException>());
     }
 
-
     /// <summary>
     ///
     /// </summary>

@@ -16,11 +16,11 @@ namespace droid.Runtime.Interfaces {
     /// <summary>
     ///
     /// </summary>
-    Space1 PositionSpace { get; }
+    Space3 PositionSpace { get; }
 
     /// <summary>
     ///
     /// </summary>
-    Space1 RotationSpace { get; }
+    Space4 RotationSpace { get; }
   }
 }

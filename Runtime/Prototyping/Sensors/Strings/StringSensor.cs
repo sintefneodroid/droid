@@ -18,21 +18,21 @@ namespace droid.Runtime.Prototyping.Sensors.Strings {
     string _observation_value;
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public String ObservationValue {
       get { return this._observation_value; }
       set { this._observation_value = value; }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    public override IEnumerable<Single> FloatEnumerable { get { return new float[] { }; } }
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
+    public override IEnumerable<Single> FloatEnumerable { get { return null; } }
 
-    /// <summary>
-    ///
-    /// </summary>
+    /// <inheritdoc />
+    ///  <summary>
+    ///  </summary>
     public override void UpdateObservation() {
       this._observation_value = this.ParentEnvironment.StepI.ToString();
     }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using droid.Runtime.Interfaces;
 using droid.Runtime.Prototyping.Actuators;
 using droid.Runtime.Structs.Space;
@@ -36,8 +37,11 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric {
       }
     }
 
-    public override IEnumerable<float> FloatEnumerable {
-      get { return new[] {this.ObservationValue.x, this.ObservationValue.y}; }
+    public override IEnumerable<Single> FloatEnumerable {
+      get {
+        yield return this.ObservationValue.x;
+        yield return this.ObservationValue.y;
+      }
     }
 
     /// <inheritdoc />

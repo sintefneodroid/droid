@@ -142,7 +142,7 @@ namespace droid.Runtime.Prototyping.Sensors.Visual {
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public override IEnumerable<float> FloatEnumerable { get { return new float[] { }; } }
+    public override IEnumerable<Single> FloatEnumerable { get { return null; } }
 
     /// <inheritdoc />
     ///  <summary>
