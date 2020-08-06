@@ -26,7 +26,7 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
 
     /// <summary>
     /// </summary>
-    public String ObservationValue { get { return this.serialised_string; } }
+    public string ObservationValue { get { return this.serialised_string; } }
 
     /// <inheritdoc />
     /// <summary>

@@ -28,7 +28,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.BoundingBox {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override IEnumerable<Single> FloatEnumerable { get { return null; } }
+    public override IEnumerable<float> FloatEnumerable { get { return null; } }
 
     /// <inheritdoc />
     /// <summary>

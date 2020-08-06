@@ -36,7 +36,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Lidar {
     /// <summary>
     ///
     /// </summary>
-    public override IEnumerable<Single> FloatEnumerable { get { yield return this.ObservationValue; } }
+    public override IEnumerable<float> FloatEnumerable { get { yield return this.ObservationValue; } }
 
     /// <summary>
     /// </summary>
@@ -102,7 +102,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Lidar {
     ///
     /// </summary>
     [field : SerializeField]
-    public Single ObservationValue { get; set; }
+    public float ObservationValue { get; set; }
 
     public Space1 SingleSpace { get { return this._ray_space; } }
   }

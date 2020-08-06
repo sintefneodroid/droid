@@ -9,7 +9,7 @@ Properties {
 
 SubShader {
     CGINCLUDE
-
+#include "UnityCG.cginc"
     fixed4 _TagColor;
 
     float4 Output(float depth01, float3 normal) {

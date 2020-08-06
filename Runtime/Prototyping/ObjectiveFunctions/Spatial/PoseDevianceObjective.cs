@@ -1,4 +1,5 @@
-﻿using droid.Runtime.GameObjects.BoundingBoxes;
+﻿using System;
+using droid.Runtime.GameObjects.BoundingBoxes;
 using droid.Runtime.GameObjects.ChildSensors;
 using droid.Runtime.Utilities.Extensions;
 using UnityEngine;
@@ -27,10 +28,10 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
         this.ParentEnvironment.Terminate("Outside playable area");
       }*/
 
-      var distance = Mathf.Abs(f : Vector3.Distance(a : this._goal.transform.position,
-                                                    b : this._actor_transform.transform.position));
-      var angle = Quaternion.Angle(a : this._goal.transform.rotation,
-                                   b : this._actor_transform.transform.rotation);
+      var distance = Mathf.Abs(f : Vector3.Distance(a : this._target_transform.position,
+                                                    b : this._actor_transform.position));
+      var angle = Quaternion.Angle(a : this._target_transform.rotation,
+                                   b : this._actor_transform.rotation);
       #if NEODROID_DEBUG
       if (this.Debugging) {
         Debug.Log(message : $"Distance: {distance}");
@@ -86,6 +87,32 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
       return signal;
     }
 
+    void OnDrawGizmosSelected() {
+      var goal_position = this._target_transform.position;
+      var actor_position = this._actor_transform.position;
+      Debug.DrawLine(start : actor_position, end : goal_position);
+      
+      
+      var off_up = goal_position + Vector3.up * Vector3.SignedAngle(@from : this._target_transform.forward,
+                                                                    to : this
+                                                                                                                 ._actor_transform.forward, axis : Vector3.up)/180;
+      Debug.DrawLine(start : goal_position, end : off_up);
+      Debug.DrawLine(start : actor_position, end : off_up);
+
+      var up = this
+               ._actor_transform.up;
+      var up1 = this._target_transform.up;
+      var off_forward = goal_position + Vector3.forward * Vector3.SignedAngle(@from : up1,
+                                                                              to : up, axis : Vector3.forward)/180;
+      Debug.DrawLine(start : goal_position, end : off_forward);
+      Debug.DrawLine(start : actor_position, end : off_forward);
+      
+      var off_left = goal_position + Vector3.left * Vector3.SignedAngle(@from : up1,
+                                                                        to : up, axis : Vector3.left)/180;
+      Debug.DrawLine(start : goal_position, end : off_left);
+      Debug.DrawLine(start : actor_position, end : off_left);
+    }
+
     /// <inheritdoc />
     /// <summary>
     /// </summary>
@@ -98,8 +125,8 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
     /// <summary>
     /// </summary>
     public override void RemotePostSetup() {
-      if (!this._goal) {
-        this._goal = FindObjectOfType<Transform>();
+      if (!this._target_transform) {
+        this._target_transform = FindObjectOfType<Transform>();
       }
 
       if (!this._actor_transform) {
@@ -162,7 +189,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
     [SerializeField] [Range(0.1f, 10f)] float _angle_nominator = 3f;
     [SerializeField] bool _sparse = true;
     [SerializeField] bool _inverse = false;
-    [SerializeField] Transform _goal = null;
+    [SerializeField] Transform _target_transform = null;
     [SerializeField] Transform _actor_transform = null;
     [SerializeField] NeodroidBoundingBox _playable_area = null;
     [SerializeField] Obstruction[] _obstructions = null;

@@ -47,7 +47,7 @@ namespace droid.Runtime.Sampling {
 
     /// <summary>
     /// </summary>
-    public Single DistributionParameter { get; set; }
+    public float DistributionParameter { get; set; }
 
     /// <summary>
     /// </summary>

@@ -9,11 +9,6 @@ namespace droid.Runtime.Enums {
     None_,
 
     /// <summary>
-    /// Clipped to range
-    /// </summary>
-    Clipped_,
-
-    /// <summary>
     /// Between 0 and 1
     /// </summary>
     Zero_one_,

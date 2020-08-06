@@ -8,7 +8,7 @@ namespace droid.Runtime.Interfaces {
   public interface ISensor : IRegisterable {
     /// <summary>
     /// </summary>
-    IEnumerable<Single> FloatEnumerable { get; }
+    IEnumerable<float> FloatEnumerable { get; }
 
     /// <summary>
     /// </summary>

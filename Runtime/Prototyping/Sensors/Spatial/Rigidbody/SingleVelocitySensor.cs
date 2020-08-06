@@ -12,7 +12,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Rigidbody {
                                       IHasSingle {
     [SerializeField] UnityEngine.Rigidbody _rigidbody;
     [SerializeField] Space1 _single_space = Space1.MinusOneOne * 10;
-    [SerializeField] Single _observation_value;
+    [SerializeField] float _observation_value;
 
     /// <summary>
     ///
@@ -42,16 +42,43 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Rigidbody {
     ///  </summary>
     public override void PreSetup() { this._rigidbody = this.GetComponent<UnityEngine.Rigidbody>(); }
 
+    void OnDrawGizmosSelected() {
+      var rb_pos = this._rigidbody.position;
+      switch (this._velocity_axis) {
+        case VelocityAxisEnum.X_vel_:
+          Debug.DrawLine(start : rb_pos, end : rb_pos + Vector3.right * this._rigidbody.velocity.x);
+          break;
+        case VelocityAxisEnum.Y_vel_:
+          Debug.DrawLine(start : rb_pos, end : rb_pos + Vector3.up * this._rigidbody.velocity.y);
+          break;
+        case VelocityAxisEnum.Z_vel_:
+          Debug.DrawLine(start : rb_pos, end : rb_pos + Vector3.forward * this._rigidbody.velocity.z);
+          break;
+        case VelocityAxisEnum.X_ang_vel_:
+          Debug.DrawLine(start : rb_pos, end : rb_pos + Vector3.up * this._rigidbody.angularVelocity.x);
+          break;
+        case VelocityAxisEnum.Y_ang_vel_:
+          Debug.DrawLine(start : rb_pos, end : rb_pos + Vector3.right * this._rigidbody.angularVelocity.y);
+          break;
+        case VelocityAxisEnum.Z_ang_vel_:
+          Debug.DrawLine(start : rb_pos, end : rb_pos + Vector3.forward * this._rigidbody.angularVelocity.z);
+          break;
+        default:
+          throw new ArgumentOutOfRangeException();
+      }
+
+    }
+    
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override IEnumerable<Single> FloatEnumerable { get { yield return this._observation_value; } }
+    public override IEnumerable<float> FloatEnumerable { get { yield return this._observation_value; } }
 
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
     public override void UpdateObservation() {
-      Single val;
+      float val;
       switch (this._velocity_axis) {
         case VelocityAxisEnum.X_vel_:
           val = this._rigidbody.velocity.x;
@@ -78,6 +105,6 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Rigidbody {
       this._observation_value = this._single_space.Project(v : val);
     }
 
-    Single IHasSingle.ObservationValue { get { return this._observation_value; } }
+    float IHasSingle.ObservationValue { get { return this._observation_value; } }
   }
 }

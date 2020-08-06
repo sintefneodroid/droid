@@ -18,7 +18,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric {
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public override IEnumerable<Single> FloatEnumerable { get { yield return this.ObservationValue; } }
+    public override IEnumerable<float> FloatEnumerable { get { yield return this.ObservationValue; } }
 
     /// <inheritdoc />
     ///  <summary>

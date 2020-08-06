@@ -53,6 +53,13 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Rigidbody {
       set { this._velocity = this._velocity_space.Project(v : value); }
     }
 
+    void OnDrawGizmosSelected() {
+      var rb_pos = this._rigidbody.position;
+      Debug.DrawLine(start : rb_pos, end : rb_pos + this._rigidbody.angularVelocity);
+      Debug.DrawLine(start : rb_pos, end : rb_pos + this._rigidbody.velocity,color : Color.red);
+    }
+
+    
     /// <inheritdoc />
     /// <summary>
     /// </summary>
@@ -74,7 +81,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Rigidbody {
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public override IEnumerable<Single> FloatEnumerable {
+    public override IEnumerable<float> FloatEnumerable {
       get {
         yield return this.Velocity.x;
         yield return this.Velocity.y;

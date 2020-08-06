@@ -26,7 +26,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
                                              max_elevation : Mathf.PI * 2f);
     }
 
-    public override IEnumerable<Single> FloatEnumerable {
+    public override IEnumerable<float> FloatEnumerable {
       get {
         yield return this.ObservationValue.x;
         yield return this.ObservationValue.y;

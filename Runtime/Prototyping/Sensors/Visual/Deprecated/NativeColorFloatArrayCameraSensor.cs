@@ -178,9 +178,9 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated {
     /// <summary>
     ///
     /// </summary>
-    public override String PrototypingTypeName { get { return ""; } }
+    public override string PrototypingTypeName { get { return ""; } }
 
-    public override IEnumerable<Single> FloatEnumerable {
+    public override IEnumerable<float> FloatEnumerable {
       get { return null; } //this.ObservationArray; }
     }
 

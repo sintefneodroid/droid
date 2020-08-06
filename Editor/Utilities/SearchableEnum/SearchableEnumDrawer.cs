@@ -50,7 +50,7 @@ namespace droid.Editor.Utilities.SearchableEnum {
 
       var button_text = new GUIContent(text : property.enumDisplayNames[property.enumValueIndex]);
       if (DropdownButton(id : id, position : position, content : button_text)) {
-        void OnSelect(Int32 i) {
+        void OnSelect(int i) {
           property.enumValueIndex = i;
           property.serializedObject.ApplyModifiedProperties();
         }

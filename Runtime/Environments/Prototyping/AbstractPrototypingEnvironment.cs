@@ -27,7 +27,7 @@ namespace droid.Runtime.Environments.Prototyping {
 
     /// <summary>
     /// </summary>
-    protected Object _Reaction_Lock = new Object();
+    protected object _Reaction_Lock = new object();
 
     /// <summary>
     ///
@@ -989,13 +989,13 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <summary>
     /// </summary>
     [field : SerializeField]
-    protected Boolean TrackOnlyChildren { get; set; } = true;
+    protected bool TrackOnlyChildren { get; set; } = true;
 
     /// <summary>
     ///
     /// </summary>
     [field : SerializeField]
-    protected Boolean UpdateObservationsWithEveryTick { get; set; } = true;
+    protected bool UpdateObservationsWithEveryTick { get; set; } = true;
 
     #endregion
 
@@ -1215,7 +1215,7 @@ namespace droid.Runtime.Environments.Prototyping {
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public override String ToString() {
+    public override string ToString() {
       var e = " - ";
 
       e += this.Identifier;

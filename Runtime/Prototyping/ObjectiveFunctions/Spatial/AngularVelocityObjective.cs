@@ -27,6 +27,12 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
 
       return 0;
     }
+    
+    void OnDrawGizmosSelected() {
+      var rb_pos = this._rigidbody.position;
+      Debug.DrawLine(start :rb_pos , end : rb_pos + this._rigidbody.angularVelocity);
+    }
+
 
     /// <summary>
     /// </summary>

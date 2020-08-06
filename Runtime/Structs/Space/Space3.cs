@@ -44,6 +44,10 @@ namespace droid.Runtime.Structs.Space {
     ///  <returns></returns>
     ///  <exception cref="T:System.ArgumentOutOfRangeException"></exception>
     public dynamic Project(dynamic v) {
+      if (this.Clipped) {
+        v = this.Clip(v : v);
+      }
+
       switch (this.Normalised) {
         case ProjectionEnum.None_:
           return v;
@@ -51,14 +55,14 @@ namespace droid.Runtime.Structs.Space {
           return ClipNormalise01Round(v : v);
         case ProjectionEnum.Minus_one_one_:
           return ClipNormaliseMinusOneOneRound(v : v);
-        case ProjectionEnum.Clipped_:
-          return ClipRound(v : v);
         default: throw new ArgumentOutOfRangeException();
       }
     }
 
+    public bool Clipped { get { return this._clipped; } set { this._clipped = value; } }
+
     dynamic ClipNormaliseMinusOneOneRound(dynamic v) {
-      #if PRE_CLIP_PROJECTIONS
+      #if ALWAYS_PRE_CLIP_PROJECTIONS
       v = Clip(v : v);
       #endif
 
@@ -73,20 +77,26 @@ namespace droid.Runtime.Structs.Space {
     ///  <exception cref="T:System.ArgumentOutOfRangeException"></exception>
     public dynamic Reproject(dynamic v) {
       switch (this.Normalised) {
-        case ProjectionEnum.None_:
-          return v;
         case ProjectionEnum.Zero_one_:
-          return ClipRoundDenormalise01Clip(configuration_configurable_value : v);
+          v = ClipRoundDenormalise01Clip(configuration_configurable_value : v);
+          break;
         case ProjectionEnum.Minus_one_one_:
-          return ClipRoundDenormaliseMinusOneOneClip(configuration_configurable_value : v);
-        case ProjectionEnum.Clipped_:
-          return ClipRound(v : v);
+          v = ClipRoundDenormaliseMinusOneOneClip(configuration_configurable_value : v);
+          break;
+
+        case ProjectionEnum.None_: break;
         default: throw new ArgumentOutOfRangeException();
       }
+
+      if (this.Clipped) {
+        v = this.Clip(v : v);
+      }
+
+      return v;
     }
 
     dynamic ClipRoundDenormaliseMinusOneOneClip(dynamic configuration_configurable_value) {
-      #if PRE_CLIP_PROJECTIONS
+      #if ALWAYS_PRE_CLIP_PROJECTIONS
 configuration_configurable_value = Clip(v : configuration_configurable_value,
                                                                   min : Vector3.zero,
                                                                   max : Vector3.one)
@@ -123,7 +133,7 @@ configuration_configurable_value = Clip(v : configuration_configurable_value,
     Vector3 ClipRound(Vector3 v) { return this.Clip(v : this.Round(v : v)); }
 
     dynamic ClipRoundDenormalise01Clip(dynamic configuration_configurable_value) {
-      #if PRE_CLIP_PROJECTIONS
+      #if ALWAYS_PRE_CLIP_PROJECTIONS
 configuration_configurable_value = Clip(v : configuration_configurable_value,
                                                                   min : Vector3.zero,
                                                                   max : Vector3.one)
@@ -140,7 +150,7 @@ configuration_configurable_value = Clip(v : configuration_configurable_value,
     /// <param name="v"></param>
     /// <returns></returns>
     dynamic ClipNormalise01Round(dynamic v) {
-      #if PRE_CLIP_PROJECTIONS
+      #if ALWAYS_PRE_CLIP_PROJECTIONS
 v = Clip(v : v);
       #endif
 
@@ -210,11 +220,12 @@ v = Clip(v : v);
     }
 
     [SerializeField] ProjectionEnum _projection; //TODO use!
+    [SerializeField] bool _clipped;
 
     /// <summary>
     ///
     /// </summary>
-    public Boolean NormalisedBool {
+    public bool NormalisedBool {
       get { return this._projection == ProjectionEnum.Zero_one_; }
       set { this._projection = value ? ProjectionEnum.Zero_one_ : ProjectionEnum.None_; }
     }
@@ -289,7 +300,8 @@ v = Clip(v : v);
                               _min = Vector3.zero,
                               Max = Vector3.one,
                               DecimalGranularity = 4,
-                              Normalised = ProjectionEnum.Zero_one_
+                              Normalised = ProjectionEnum.Zero_one_,
+                              Clipped = true
                           };
       }
     }
@@ -303,7 +315,8 @@ v = Clip(v : v);
                               Min = Vector3.one * 0.2f,
                               _max = Vector3.one * 0.8f,
                               DecimalGranularity = 4,
-                              Normalised = ProjectionEnum.Zero_one_
+                              Normalised = ProjectionEnum.Zero_one_,
+                              Clipped = true
                           };
       }
     }
@@ -317,7 +330,8 @@ v = Clip(v : v);
                               _min = -Vector3.one,
                               Max = Vector3.one,
                               DecimalGranularity = 4,
-                              Normalised = ProjectionEnum.Zero_one_
+                              Normalised = ProjectionEnum.Zero_one_,
+                              Clipped = true
                           };
       }
     }

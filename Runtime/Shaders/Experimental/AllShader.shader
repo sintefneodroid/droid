@@ -27,6 +27,7 @@ Shader "Excluded/AllShaders"{
 
          #pragma vertex vert
          #pragma fragment frag
+         #include "UnityCG.cginc"
 
          struct vertexInput {
             float4 vertex : POSITION;

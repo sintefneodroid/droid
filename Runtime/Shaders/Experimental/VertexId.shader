@@ -8,7 +8,8 @@
             #pragma vertex vert
             #pragma fragment frag
             #pragma target 3.5
-
+#include "UnityCG.cginc"
+            
             struct v2f {
                 fixed4 color : TEXCOORD0;
                 float4 pos : SV_POSITION;

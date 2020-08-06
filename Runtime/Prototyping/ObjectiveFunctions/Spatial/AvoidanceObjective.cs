@@ -1,5 +1,6 @@
 ﻿using droid.Runtime.GameObjects.ChildSensors;
 using UnityEngine;
+using Object = System.Object;
 
 namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
   /// <inheritdoc />
@@ -16,6 +17,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
     //[SerializeField] LayerMask _layer_mask;
 
     [SerializeField] GameObject _player = null;
+    [SerializeField] GameObject[] tagged_gos;
 
     // Use this for initialization
     /// <inheritdoc />
@@ -24,7 +26,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
     public override void RemotePostSetup() {
       this.ResetHits();
 
-      var tagged_gos = GameObject.FindGameObjectsWithTag(tag : this._avoid_tag);
+      tagged_gos = GameObject.FindGameObjectsWithTag(tag : this._avoid_tag);
 
       foreach (var ball in tagged_gos) {
         if (ball) {
@@ -39,6 +41,14 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
       }
     }
 
+    void OnDrawGizmosSelected() {
+      var player_pos = this._player.transform.position;
+      foreach (var o in this.tagged_gos) {
+        Debug.DrawLine(start : player_pos , end : o.transform.position);
+      }
+
+    }
+    
     void OnChildCollision(GameObject child_sensor_game_object, Collision collision) {
       if (collision.collider.name == this._player.name) {
         this._hits += 1;

@@ -97,7 +97,7 @@ namespace droid.Editor {
       }
     }
 
-    public String NeodroidImportLocationProp {
+    public string NeodroidImportLocationProp {
       get { return this.NeodroidImportLocation; }
       set {
         if (value != this.NeodroidImportLocation || _force) {
@@ -114,7 +114,7 @@ namespace droid.Editor {
       set { this.NeodroidGeneratePreviews = value; }
     }
 
-    public String NeodroidPreviewsLocationProp {
+    public string NeodroidPreviewsLocationProp {
       get { return this.NeodroidPreviewsLocation; }
       set {
         if (value != this.NeodroidPreviewsLocation || _force) {
@@ -131,7 +131,7 @@ namespace droid.Editor {
       set { this.NeodroidGenerateDescriptions = value; }
     }
 
-    public String NeodroidDescriptionLocationProp {
+    public string NeodroidDescriptionLocationProp {
       get { return this.NeodroidDescriptionLocation; }
       set {
         if (value != this.NeodroidDescriptionLocation || _force) {
@@ -185,7 +185,7 @@ namespace droid.Editor {
 
     static bool _force = false;
 
-    internal static void ReapplyProperties(Boolean force = false) {
+    internal static void ReapplyProperties(bool force = false) {
       _force = force;
       Current.NeodroidEnableDebugProp = Current.NeodroidEnableDebug;
       Current.NeodroidGithubExtensionProp = Current.NeodroidGithubExtension;

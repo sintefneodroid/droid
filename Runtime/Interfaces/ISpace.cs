@@ -27,6 +27,8 @@ namespace droid.Runtime.Interfaces {
     /// </summary>
     ProjectionEnum Normalised { get; }
 
+    bool Clipped { get; }
+    
     /// <summary>
     ///
     /// </summary>

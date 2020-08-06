@@ -50,7 +50,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Grid {
       }
     }
 
-    public override IEnumerable<Single> FloatEnumerable { get { yield return this.ObservationValue; } }
+    public override IEnumerable<float> FloatEnumerable { get { yield return this.ObservationValue; } }
 
     public override void UpdateObservation() {
       var position = this.transform.position;

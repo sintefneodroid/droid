@@ -55,7 +55,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
       }
     }
 
-    public override void Display(Double value) {
+    public override void Display(double value) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
         Debug.Log(message : "Applying the double " + value + " To " + this.name);
@@ -81,7 +81,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
       this.PlotSeries(points : values);
     }
 
-    public override void Display(String values) {
+    public override void Display(string values) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
         Debug.Log(message : "Applying the float array " + values + " To " + this.name);
@@ -157,7 +157,7 @@ namespace droid.Runtime.Prototyping.Displayers.ScatterPlots {
 
       #if NEODROID_DEBUG
       if (this.Debugging) {
-        var points_str = points.Aggregate("", (current, point) => current + point.ToString() + ", ");
+        var points_str = points.Aggregate("", (current, point) => current + point + ", ");
         Debug.Log(message : "Applying the points " + points_str + " To " + this.name);
       }
       #endif

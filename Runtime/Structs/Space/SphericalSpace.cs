@@ -72,7 +72,7 @@ namespace droid.Runtime.Structs.Space {
     /// <summary>
     ///
     /// </summary>
-    public Single Elevation {
+    public float Elevation {
       get { return this._elevation; }
       set {
         this._elevation = LoopOrClamp(v : value,
@@ -85,7 +85,7 @@ namespace droid.Runtime.Structs.Space {
     /// <summary>
     ///
     /// </summary>
-    public Single Polar {
+    public float Polar {
       get { return this._polar; }
       set {
         this._polar = LoopOrClamp(v : value,
@@ -99,7 +99,7 @@ namespace droid.Runtime.Structs.Space {
     /// <summary>
     ///
     /// </summary>
-    public Single Radius {
+    public float Radius {
       get { return this._radius; }
       set { this._radius = Mathf.Clamp(value : value, min : this._min_radius, max : this._max_radius); }
     }
@@ -230,7 +230,7 @@ namespace droid.Runtime.Structs.Space {
     /// </summary>
     /// <param name="scroll_speed"></param>
     /// <returns></returns>
-    public SphericalSpace TranslateRadius(Single scroll_speed) {
+    public SphericalSpace TranslateRadius(float scroll_speed) {
       this.Radius += scroll_speed;
       return this;
     }
@@ -241,7 +241,7 @@ namespace droid.Runtime.Structs.Space {
     /// <param name="polar_delta"></param>
     /// <param name="elevation_delta"></param>
     /// <returns></returns>
-    public SphericalSpace Rotate(Single polar_delta, Single elevation_delta) {
+    public SphericalSpace Rotate(float polar_delta, float elevation_delta) {
       this.Polar += polar_delta;
       this.Elevation += elevation_delta;
       return this;

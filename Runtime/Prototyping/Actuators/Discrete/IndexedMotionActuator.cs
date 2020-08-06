@@ -20,7 +20,7 @@ namespace droid.Runtime.Prototyping.Actuators.Discrete {
     ///  <param name="motion"></param>
     ///  <exception cref="T:System.ArgumentOutOfRangeException"></exception>
     protected override void InnerApplyMotion(IMotion motion) {
-      var ind = (Int32)motion.Strength;
+      var ind = (int)motion.Strength;
       if (ind >= this._events.Length) {
         return;
       }
@@ -35,6 +35,6 @@ namespace droid.Runtime.Prototyping.Actuators.Discrete {
       this.MotionSpace = new Space1 {Min = 0, Max = this._events.Length - 1, DecimalGranularity = 0};
     }
 
-    public override String[] InnerMotionNames { get; }
+    public override string[] InnerMotionNames { get; }
   }
 }

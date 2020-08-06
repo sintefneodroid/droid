@@ -38,10 +38,10 @@ namespace droid.Runtime.Structs.Space.Sample {
     ///  </summary>
     ///  <returns></returns>
     public dynamic Sample() {
-      Single x;
-      Single y;
-      Single z;
-      Single w;
+      float x;
+      float y;
+      float z;
+      float w;
       switch (this._space.Normalised) {
         case ProjectionEnum.None_:
           x = this._space.Round(this.DistributionSampler.Range(min : this._space.Min.x,

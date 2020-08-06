@@ -31,9 +31,9 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Segmentation.Obsolete {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override Dictionary<String, Color> ColorsDict {
+    public override Dictionary<string, Color> ColorsDict {
       get {
-        var colors = new Dictionary<String, Color>();
+        var colors = new Dictionary<string, Color>();
         foreach (var key_val in this.ColorsDictGameObject) {
           colors.Add(key : key_val.Key.GetInstanceID().ToString(), value : key_val.Value);
         }

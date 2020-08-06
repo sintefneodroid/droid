@@ -32,14 +32,14 @@ namespace droid.Samples.MultiArmedBandit.Actuators {
       }
 
       if (this._Win_Likelihoods == null || this._Win_Likelihoods.Length == 0) {
-        this._Win_Likelihoods = new Single[this._Indicators.Length];
+        this._Win_Likelihoods = new float[this._Indicators.Length];
         for (var index = 0; index < this._Indicators.Length; index++) {
           this._Win_Likelihoods[index] = 0.5f;
         }
       }
 
       if (this._Win_Amounts == null || this._Win_Amounts.Length == 0) {
-        this._Win_Amounts = new Single[this._Indicators.Length];
+        this._Win_Amounts = new float[this._Indicators.Length];
         for (var index = 0; index < this._Indicators.Length; index++) {
           this._Win_Amounts[index] = 10f;
         }

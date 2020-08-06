@@ -23,7 +23,7 @@ namespace droid.Runtime.Utilities.InternalReactions {
     [SerializeField]
     PlayerMotions _player_motions = null;
 
-    [SerializeField] Boolean terminated;
+    [SerializeField] bool terminated;
 
     /// <summary>
     /// </summary>

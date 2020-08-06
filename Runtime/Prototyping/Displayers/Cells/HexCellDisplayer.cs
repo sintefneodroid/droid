@@ -17,7 +17,7 @@ namespace droid.Runtime.Prototyping.Displayers.Cells {
     [SerializeField] bool _plot_random_series = false;
     [SerializeField] bool _retain_last_plot = true;
 
-    public Boolean PlotRandomSeries {
+    public bool PlotRandomSeries {
       get { return this._plot_random_series; }
       set { this._plot_random_series = value; }
     }
@@ -26,11 +26,11 @@ namespace droid.Runtime.Prototyping.Displayers.Cells {
     /// </summary>
     public override void Setup() { }
 
-    public override void Display(Double value) { }
+    public override void Display(double value) { }
 
     public override void Display(float[] values) { }
 
-    public override void Display(String values) { }
+    public override void Display(string values) { }
 
     public override void Display(Vector3 value) { throw new NotImplementedException(); }
     public override void Display(Vector3[] value) { this.ScatterPlot(points : value); }

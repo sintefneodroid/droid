@@ -163,7 +163,7 @@ namespace droid.Runtime.Managers.Experimental {
 
     /// <summary>
     /// </summary>
-    Object _send_lock = new Object();
+    object _send_lock = new object();
 
     /// <summary>
     /// </summary>
@@ -957,7 +957,7 @@ namespace droid.Runtime.Managers.Experimental {
     ///
     /// </summary>
     /// <returns></returns>
-    public override String ToString() {
+    public override string ToString() {
       var c = this.SimulatorConfiguration.ToString();
       var e = this._Environments.FirstOrDefault().Value.ToString();
 

@@ -58,6 +58,7 @@ Shader "Neodroid/Spaces/ObjectSpace" {
 
          #pragma vertex vert
          #pragma fragment frag
+         #include "UnityCG.cginc"
 
          void vert(float4 vertexPos : POSITION,
                      out float4 pos : SV_POSITION,

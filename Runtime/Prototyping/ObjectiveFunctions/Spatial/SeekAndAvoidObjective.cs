@@ -27,13 +27,13 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override String PrototypingTypeName { get { return "SeekAndAvoidListener"; } }
+    public override string PrototypingTypeName { get { return "SeekAndAvoidListener"; } }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public override Single InternalEvaluate() {
+    public override float InternalEvaluate() {
       // The game ends if the number of good balls is 0, or if the robot is too far from start
       var actor = this._actor;
       if (actor != null) {

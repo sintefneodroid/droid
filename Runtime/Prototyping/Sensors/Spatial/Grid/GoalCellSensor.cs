@@ -50,7 +50,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Grid {
     /// </summary>
     public Space3 TripleSpace { get; } = new Space3();
 
-    public override IEnumerable<Single> FloatEnumerable {
+    public override IEnumerable<float> FloatEnumerable {
       get {
         yield return this._current_goal_position.x;
         yield return this._current_goal_position.y;

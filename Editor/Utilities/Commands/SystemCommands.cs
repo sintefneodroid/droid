@@ -44,7 +44,7 @@ namespace droid.Editor.Utilities.Commands {
       var process = new Process {StartInfo = process_info};
       //var process = Process.Start(startInfo : process_info);
 
-      var out_str = String.Empty;
+      var out_str = string.Empty;
       try {
         {
           // This code assumes the process you are starting will terminate itself.

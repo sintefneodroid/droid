@@ -27,7 +27,7 @@ namespace droid.Runtime.Environments {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public abstract override String PrototypingTypeName { get; }
+    public abstract override string PrototypingTypeName { get; }
 
     /// <inheritdoc />
     /// <summary>
@@ -50,7 +50,6 @@ namespace droid.Runtime.Environments {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    /// <param name="reaction"></param>
     /// <returns></returns>
     public abstract void Reset();
 
@@ -159,12 +158,12 @@ namespace droid.Runtime.Environments {
     /// <summary>
     /// </summary>
     [field : SerializeField]
-    protected Single LastResetTime { get; set; }
+    protected float LastResetTime { get; set; }
 
     /// <summary>
     /// </summary>
     [field : SerializeField]
-    protected Boolean Terminable { get; set; } = true;
+    protected bool Terminable { get; set; } = true;
 
     /// <inheritdoc />
     /// <summary>
@@ -194,12 +193,12 @@ namespace droid.Runtime.Environments {
     /// <summary>
     /// </summary>
     [field : SerializeField]
-    public String LastTerminationReason { get; set; } = "None";
+    public string LastTerminationReason { get; set; } = "None";
 
     /// <summary>
     /// </summary>
     [field : SerializeField]
-    protected Boolean ShouldConfigure { get; set; }
+    protected bool ShouldConfigure { get; set; }
 
     /// <summary>
     /// </summary>

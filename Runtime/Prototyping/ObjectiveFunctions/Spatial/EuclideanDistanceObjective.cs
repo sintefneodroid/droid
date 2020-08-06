@@ -34,6 +34,10 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
 
       return signal;
     }
+    
+    void OnDrawGizmosSelected() {
+      Debug.DrawLine(start : this._g1.position, end : this._g2.position);
+    }
 
     public override void RemotePostSetup() {
       if (this._g1 == null) {

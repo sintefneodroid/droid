@@ -20,7 +20,7 @@ namespace droid.Runtime.Messaging.Messages {
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public Boolean SampleRandom { get; set; }
+    public bool SampleRandom { get; set; }
 
     /// <inheritdoc />
     /// <summary>

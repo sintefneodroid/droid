@@ -41,7 +41,7 @@ for (var i = 0; i < this._arms.WinAmounts.Length; i++) {
                        .ToArray();
       var values_sum = values.Sum();
 
-      this._normalised_values = new Single[values.Length];
+      this._normalised_values = new float[values.Length];
       for (var i = 0; i < values.Length; i++) {
         this._normalised_values[i] = values[i] / values_sum;
       }
@@ -61,7 +61,7 @@ for (var i = 0; i < this._arms.WinAmounts.Length; i++) {
     /// </summary>
     /// <returns></returns>
     /// <exception cref="T:System.NotImplementedException"></exception>
-    public override Single InternalEvaluate() {
+    public override float InternalEvaluate() {
       if (this._arms.Won) {
         return this._arms.WinAmounts[this._arms.LastIndex];
       }

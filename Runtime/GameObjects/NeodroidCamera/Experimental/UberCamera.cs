@@ -16,7 +16,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
     [SerializeField] Material _copy_material = null;
     [SerializeField] Material _off_screen_mat = null;
     [SerializeField] Camera _camera = null;
-    [SerializeField] Boolean _debugging = true;
+    [SerializeField] bool _debugging = true;
     [SerializeField] GUISkin gui_style = null;
 
     CommandBuffer[] _copy_cbs = null;
@@ -33,7 +33,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
     int _tmp_texture_id = Shader.PropertyToID("_TmpFrameBuffer");
     static readonly int _clear_color = Shader.PropertyToID("_ClearColor");
 
-    static readonly Tuple<Int32, Int32> _texture_wh = new Tuple<int, int>(256, 256);
+    static readonly Tuple<int, int> _texture_wh = new Tuple<int, int>(256, 256);
 
     const int _preview_size = 100;
     const int _preview_margin = 20;
@@ -43,7 +43,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
     /// <summary>
     ///
     /// </summary>
-    public Boolean Debugging { get { return this._debugging; } set { this._debugging = value; } }
+    public bool Debugging { get { return this._debugging; } set { this._debugging = value; } }
 
     protected Tuple<int, int> GetCaptureResolutionFromCamera() {
       var w = this._camera.pixelWidth;

@@ -26,12 +26,12 @@ namespace droid.Runtime.Prototyping.Actuators {
     /// <summary>
     ///
     /// </summary>
-    public Single MovementSpeed { get; set; }
+    public float MovementSpeed { get; set; }
 
     /// <summary>
     ///
     /// </summary>
-    public Single RotationSpeed { get; set; }
+    public float RotationSpeed { get; set; }
 
     /// <summary>
     ///

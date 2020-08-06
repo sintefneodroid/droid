@@ -18,7 +18,7 @@ namespace droid.Runtime.Prototyping.Sensors.Auditory {
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public override IEnumerable<Single> FloatEnumerable { get { return this.ObservationArray; } }
+    public override IEnumerable<float> FloatEnumerable { get { return this.ObservationArray; } }
 
     #if NEODROID_DEBUG
     void LateUpdate() {
@@ -50,7 +50,7 @@ namespace droid.Runtime.Prototyping.Sensors.Auditory {
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public Single[] ObservationArray { get; set; }
+    public float[] ObservationArray { get; set; }
 
     /// <inheritdoc />
     ///  <summary>

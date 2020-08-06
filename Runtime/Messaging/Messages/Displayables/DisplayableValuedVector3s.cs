@@ -6,7 +6,7 @@ namespace droid.Runtime.Messaging.Messages.Displayables {
   /// <summary>
   /// </summary>
   public class DisplayableValuedVector3S : Displayable {
-    public DisplayableValuedVector3S(String displayable_name, Points.ValuePoint[] displayable_value) {
+    public DisplayableValuedVector3S(string displayable_name, Points.ValuePoint[] displayable_value) {
       this.DisplayableName = displayable_name;
       this.DisplayableValue = displayable_value;
     }

@@ -24,7 +24,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Rigidbody {
     ///  </summary>
     public override void PreSetup() { this._rigidbody = this.GetComponent<UnityEngine.Rigidbody>(); }
 
-    public override IEnumerable<Single> FloatEnumerable {
+    public override IEnumerable<float> FloatEnumerable {
       get {
         yield return this.ObservationValue.x;
         yield return this.ObservationValue.y;
@@ -32,6 +32,12 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Rigidbody {
       }
     }
 
+    void OnDrawGizmosSelected() {
+      var rb_pos = this._rigidbody.position;
+      Debug.DrawLine(start : rb_pos, end : rb_pos + this._rigidbody.angularVelocity);
+    }
+
+    
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>

@@ -14,7 +14,7 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
     [SerializeField] RawImage raw_image;
     [SerializeField] Texture2D texture2D;
     [SerializeField] WebCamTexture webcam_texture;
-    Byte[] _bytes = { };
+    byte[] _bytes = { };
 
     /// <inheritdoc />
     ///  <summary>
@@ -55,7 +55,7 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public override IEnumerable<Single> FloatEnumerable { get { return null; } }
+    public override IEnumerable<float> FloatEnumerable { get { return null; } }
 
     /// <inheritdoc />
     ///  <summary>
@@ -74,7 +74,7 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public Byte[] Bytes {
+    public byte[] Bytes {
       get { return this._bytes; }
       private set {
         if (value != null) {
@@ -86,7 +86,7 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public Int32[] Shape {
+    public int[] Shape {
       get {
         int channels;
         switch (this.texture2D.graphicsFormat) {
@@ -110,7 +110,7 @@ namespace droid.Runtime.Prototyping.Sensors.Experimental {
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public String ArrayEncoding {
+    public string ArrayEncoding {
       get {
         var s = "Unknown";
 

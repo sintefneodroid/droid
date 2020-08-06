@@ -89,6 +89,30 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
         this._playable_area = FindObjectOfType<NeodroidBoundingBox>();
       }
     }
+    
+    void OnDrawGizmosSelected() {
+      var goal_position = this.target_direction.position;
+      var actor_position = this._actor_transform.position;
+
+      var off_up = goal_position + Vector3.up * Vector3.SignedAngle(@from : this.target_direction.forward,
+                                                                    to : this
+                                                                         ._actor_transform.forward, axis : Vector3.up)/180;
+      Debug.DrawLine(start : goal_position, end : off_up);
+      Debug.DrawLine(start : actor_position, end : off_up);
+
+      var up = this
+               ._actor_transform.up;
+      var up1 = this.target_direction.up;
+      var off_forward = goal_position + Vector3.forward * Vector3.SignedAngle(@from : up1,
+                                                                              to : up, axis : Vector3.forward)/180;
+      Debug.DrawLine(start : goal_position, end : off_forward);
+      Debug.DrawLine(start : actor_position, end : off_forward);
+      
+      var off_left = goal_position + Vector3.left * Vector3.SignedAngle(@from : up1,
+                                                                        to : up, axis : Vector3.left)/180;
+      Debug.DrawLine(start : goal_position, end : off_left);
+      Debug.DrawLine(start : actor_position, end : off_left);
+    }
 
     void OnChildTriggerEnter(GameObject child_sensor_game_object, Collision collision) {
       if (collision.collider.CompareTag("Obstruction")) {

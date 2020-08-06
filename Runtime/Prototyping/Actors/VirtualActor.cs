@@ -10,12 +10,12 @@ namespace droid.Runtime.Prototyping.Actors {
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public String Identifier { get; }
+    public string Identifier { get; }
 
     /// <summary>
     ///
     /// </summary>
-    public SortedDictionary<String, IActuator> Actuators { get; }
+    public SortedDictionary<string, IActuator> Actuators { get; }
 
     /// <inheritdoc />
     ///  <summary>
@@ -37,7 +37,7 @@ namespace droid.Runtime.Prototyping.Actors {
     ///  <param name="obj"></param>
     ///  <param name="identifier"></param>
     ///  <exception cref="T:System.NotImplementedException"></exception>
-    public void Register(IActuator obj, String identifier) { throw new NotImplementedException(); }
+    public void Register(IActuator obj, string identifier) { throw new NotImplementedException(); }
 
     /// <inheritdoc />
     ///  <summary>
@@ -52,7 +52,7 @@ namespace droid.Runtime.Prototyping.Actors {
     ///  <param name="t"></param>
     ///  <param name="obj"></param>
     ///  <exception cref="T:System.NotImplementedException"></exception>
-    public void UnRegister(IActuator t, String obj) { throw new NotImplementedException(); }
+    public void UnRegister(IActuator t, string obj) { throw new NotImplementedException(); }
 
     /// <inheritdoc />
     ///  <summary>

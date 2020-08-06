@@ -44,12 +44,12 @@ namespace droid.Runtime.Prototyping.Sensors.Auditory {
 
     FFTWindow _fft_window = FFTWindow.Rectangular;
 
-    [SerializeField] readonly Single[] _observation_array = new float[256];
+    [SerializeField] readonly float[] _observation_array = new float[256];
 
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public override IEnumerable<Single> FloatEnumerable { get { return this.ObservationArray; } }
+    public override IEnumerable<float> FloatEnumerable { get { return this.ObservationArray; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -61,7 +61,7 @@ namespace droid.Runtime.Prototyping.Sensors.Auditory {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public Single[] ObservationArray { get { return this._observation_array; } }
+    public float[] ObservationArray { get { return this._observation_array; } }
 
     /// <inheritdoc />
     /// <summary>

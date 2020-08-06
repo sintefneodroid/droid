@@ -12,7 +12,7 @@ namespace droid.Runtime.Managers.Experimental {
 
     public Curriculum Curriculum1 { get { return this._curriculum; } set { this._curriculum = value; } }
 
-    public Boolean DrawLevels { get { return this._draw_levels; } set { this._draw_levels = value; } }
+    public bool DrawLevels { get { return this._draw_levels; } set { this._draw_levels = value; } }
 
     #if UNITY_EDITOR
     void OnDrawGizmosSelected() {

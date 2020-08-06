@@ -7,8 +7,8 @@ namespace droid.Runtime.Utilities.Extensions {
   /// </summary>
   public static class RayDirectionHelper {
     const int _num_view_directions = 300;
-    static readonly Single _golden_ratio = (1 + Mathf.Sqrt(5)) / 2;
-    static readonly Single _angle_increment = Mathf.PI * 2 * _golden_ratio;
+    static readonly float _golden_ratio = (1 + Mathf.Sqrt(5)) / 2;
+    static readonly float _angle_increment = Mathf.PI * 2 * _golden_ratio;
 
     /// <summary>
     ///

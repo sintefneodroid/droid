@@ -12,6 +12,7 @@
             #pragma vertex vert
             #pragma fragment frag
             #pragma target 3.0
+            #include "UnityCG.cginc"
 
             // note: no SV_POSITION in this struct
             struct v2f {

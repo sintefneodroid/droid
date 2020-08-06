@@ -23,7 +23,7 @@ namespace droid.Runtime.Messaging.Messages {
     /// <summary>
     ///
     /// </summary>
-    public SortedDictionary<String, IDisplayer> Displayers { get; }
+    public SortedDictionary<string, IDisplayer> Displayers { get; }
 
     /// <summary>
     ///
@@ -46,6 +46,6 @@ namespace droid.Runtime.Messaging.Messages {
     ///
     /// </summary>
     /// <returns></returns>
-    public override String ToString() { return $"{this.Sensors.Count},{this.Actors.Count}"; }
+    public override string ToString() { return $"{this.Sensors.Count},{this.Actors.Count}"; }
   }
 }

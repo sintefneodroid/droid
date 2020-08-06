@@ -42,8 +42,8 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Experimental {
     [SerializeField] CapturePassMaterial[] _capture_passes;
 
     [SerializeField] Camera _camera;
-    [SerializeField] Boolean debug = true;
-    [SerializeField] Boolean always_re = true;
+    [SerializeField] bool debug = true;
+    [SerializeField] bool always_re = true;
     [SerializeField] Mesh m_quad;
     [SerializeField] GUISkin gui_style = null;
 

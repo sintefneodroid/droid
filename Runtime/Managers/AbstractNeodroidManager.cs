@@ -174,7 +174,7 @@ namespace droid.Runtime.Managers {
 
     /// <summary>
     /// </summary>
-    Object _send_lock = new Object();
+    object _send_lock = new object();
 
     #if UNITY_EDITOR
     /// <summary>
@@ -200,7 +200,7 @@ namespace droid.Runtime.Managers {
     [SerializeField] SimulationRenderCamera _simulation_render_camera;
     [SerializeField] bool _manual_render = false;
 
-    public Boolean ManualRender {
+    public bool ManualRender {
       get { return this._manual_render; }
       set {
         if (this._simulation_render_camera) {
@@ -362,7 +362,7 @@ namespace droid.Runtime.Managers {
     /// </summary>
     protected Reaction[] _Current_Reactions = { };
 
-    [SerializeField] Boolean _shouldResume;
+    [SerializeField] bool _shouldResume;
 
     #endregion
 
@@ -1006,7 +1006,7 @@ namespace droid.Runtime.Managers {
     ///  <summary>
     ///  </summary>
     ///  <returns></returns>
-    public override String ToString() {
+    public override string ToString() {
       var c = this.SimulatorConfiguration.ToString();
       var e = this._Environments.FirstOrDefault().Value.ToString();
 

@@ -18,7 +18,7 @@ namespace droid.Samples.MultiArmedBandit.Displayers {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override String PrototypingTypeName { get { return "TextBarPlot"; } }
+    public override string PrototypingTypeName { get { return "TextBarPlot"; } }
 
     /// <inheritdoc />
     /// <summary>

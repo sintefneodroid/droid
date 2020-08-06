@@ -96,7 +96,7 @@ namespace droid.Runtime.Environments.Prototyping {
     ///  </summary>
     ///  <param name="obj"></param>
     ///  <param name="identifier"></param>
-    public void Register(IActuator obj, String identifier) {
+    public void Register(IActuator obj, string identifier) {
       if (!this.Actuators.ContainsKey(key : identifier)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
@@ -122,7 +122,7 @@ namespace droid.Runtime.Environments.Prototyping {
     ///  </summary>
     ///  <param name="t"></param>
     ///  <param name="obj"></param>
-    public void UnRegister(IActuator t, String obj) {
+    public void UnRegister(IActuator t, string obj) {
       if (this.Actuators.ContainsKey(key : obj)) {
         #if NEODROID_DEBUG
         if (this.Debugging) {
@@ -158,7 +158,7 @@ namespace droid.Runtime.Environments.Prototyping {
       if (this.SimulationManager.SimulatorConfiguration.SerialiseIndividualObservables
           || this.ProvideFullDescription) {
         var virtual_actors =
-            new SortedDictionary<String, IActor> {{"All", new VirtualActor(actuators : this.Actuators)}};
+            new SortedDictionary<string, IActor> {{"All", new VirtualActor(actuators : this.Actuators)}};
 
         description = new EnvironmentDescription(objective_function_function : this.ObjectiveFunction,
                                                  actors : virtual_actors,
@@ -253,7 +253,7 @@ namespace droid.Runtime.Environments.Prototyping {
       recipient.PollData(data : string.Join("\n\n",
                                             values :
                                             this.Sensors.Values.Select(e =>
-                                                                           $"{e.Identifier}:\n{e.ToString()}")));
+                                                                           $"{e.Identifier}:\n{e}")));
     }
 
     /// <inheritdoc />
@@ -299,7 +299,7 @@ namespace droid.Runtime.Environments.Prototyping {
     ///  <summary>
     ///  </summary>
     ///  <returns></returns>
-    public override String ToString() {
+    public override string ToString() {
       var e = " - ";
 
       e += this.Identifier;

@@ -85,7 +85,7 @@ namespace droid.Editor.Utilities.UnityDebug {
     }
 
     static void ShowError(string context, GameObject go, string component_name, string property_name) {
-      const String error_template = "Missing Ref in: [{3}]{0}. Component: {1}, Property: {2}";
+      const string error_template = "Missing Ref in: [{3}]{0}. Component: {1}, Property: {2}";
 
       Debug.LogError(message : string.Format(format : error_template,
                                              GetFullPath(go : go),

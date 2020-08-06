@@ -8,6 +8,6 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial.Waypoint {
   public class Waypoint : MonoBehaviour {
     [SerializeField] float radius = 1.0f;
 
-    public Single Radius { get { return this.radius; } }
+    public float Radius { get { return this.radius; } }
   }
 }

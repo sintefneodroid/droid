@@ -113,7 +113,7 @@ namespace droid.Runtime.Structs {
     [SerializeField]
     bool _update_fixed_time_scale = false;
 
-    [SerializeField] Boolean _manual_render = false;
+    [SerializeField] bool _manual_render = false;
 
     /// <summary>
     /// </summary>
@@ -335,17 +335,17 @@ namespace droid.Runtime.Structs {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public Int32 Port { get { return this._port; } set { this._port = value; } }
+    public int Port { get { return this._port; } set { this._port = value; } }
 
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public String IpAddress { get { return this._ip_address; } set { this._ip_address = value; } }
+    public string IpAddress { get { return this._ip_address; } set { this._ip_address = value; } }
 
     /// <summary>
     ///
     /// </summary>
-    public Boolean OptimiseWindowForSpeed {
+    public bool OptimiseWindowForSpeed {
       get { return this._optimiseWindow_for_speed; }
       set { this._optimiseWindow_for_speed = value; }
     }
@@ -356,7 +356,7 @@ namespace droid.Runtime.Structs {
     ///  <summary>
     ///  </summary>
     ///  <returns></returns>
-    public override String ToString() {
+    public override string ToString() {
       var e = "";
 
       e += this.name;

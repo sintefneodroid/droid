@@ -57,7 +57,7 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override void Display(Double value) {
+    public override void Display(double value) {
       #if NEODROID_DEBUG
       DebugPrinting.DisplayPrint(value : value, identifier : this.Identifier, debugging : this.Debugging);
       #endif
@@ -79,7 +79,7 @@ namespace droid.Runtime.Prototyping.Displayers.Canvas {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public override void Display(String value) { throw new NotImplementedException(); }
+    public override void Display(string value) { throw new NotImplementedException(); }
 
     /// <inheritdoc />
     /// <summary>

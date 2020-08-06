@@ -20,7 +20,7 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated.Segmentation {
     [SerializeField]
     Segmenter _segmenter = null;
 
-    public override IEnumerable<Single> FloatEnumerable { get { return null; } }
+    public override IEnumerable<float> FloatEnumerable { get { return null; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -43,6 +43,6 @@ namespace droid.Runtime.Prototyping.Sensors.Visual.Deprecated.Segmentation {
     /// <summary>
     /// </summary>
     /// <returns></returns>
-    public override String ToString() { return this.ObservationValue; }
+    public override string ToString() { return this.ObservationValue; }
   }
 }

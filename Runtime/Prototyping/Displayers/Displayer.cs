@@ -130,25 +130,25 @@ namespace droid.Runtime.Prototyping.Displayers {
     ///
     /// </summary>
     /// <param name="value"></param>
-    public abstract void Display(Single value);
+    public abstract void Display(float value);
 
     /// <summary>
     ///
     /// </summary>
     /// <param name="value"></param>
-    public abstract void Display(Double value);
+    public abstract void Display(double value);
 
     /// <summary>
     ///
     /// </summary>
     /// <param name="values"></param>
-    public abstract void Display(Single[] values);
+    public abstract void Display(float[] values);
 
     /// <summary>
     ///
     /// </summary>
     /// <param name="value"></param>
-    public abstract void Display(String value);
+    public abstract void Display(string value);
 
     /// <summary>
     ///

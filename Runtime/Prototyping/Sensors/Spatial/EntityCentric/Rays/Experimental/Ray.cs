@@ -23,7 +23,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.EntityCentric.Rays.Experimen
     /// <param name="start_offset">Starting height offset of ray from center of agent.</param>
     /// <param name="end_offset">Ending height offset of ray from center of agent.</param>
     public List<float> Perceive(float ray_distance,
-                                IEnumerable<Single> ray_angles,
+                                IEnumerable<float> ray_angles,
                                 string[] detectable_objects,
                                 float start_offset,
                                 float end_offset) {

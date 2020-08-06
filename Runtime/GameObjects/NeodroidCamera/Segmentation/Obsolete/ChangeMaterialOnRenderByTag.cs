@@ -46,7 +46,7 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Segmentation.Obsolete {
 
     /// <summary>
     /// </summary>
-    public override Dictionary<String, Color> ColorsDict { get { return this._tag_colors_dict; } }
+    public override Dictionary<string, Color> ColorsDict { get { return this._tag_colors_dict; } }
 
     /// <summary>
     /// </summary>

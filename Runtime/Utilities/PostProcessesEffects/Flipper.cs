@@ -22,8 +22,8 @@ namespace droid.Runtime.Utilities.PostProcessesEffects {
   }
 
   public sealed class FlipperRenderer : PostProcessEffectRenderer<Flipper> {
-    static readonly Int32 _flip_x = Shader.PropertyToID("_Flip_x");
-    static readonly Int32 _flip_y = Shader.PropertyToID("_Flip_y");
+    static readonly int _flip_x = Shader.PropertyToID("_Flip_x");
+    static readonly int _flip_y = Shader.PropertyToID("_Flip_y");
     static readonly Shader _s = Shader.Find("Neodroid/PostProcessing/Flip");
 
     /// <summary>

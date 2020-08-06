@@ -13,7 +13,7 @@ namespace droid.Tests.Runtime {
     /// </summary>
     [Test]
     public void RegistrationNameCheck() {
-      const String go_name = "MyGameObject";
+      const string go_name = "MyGameObject";
       var go = new GameObject(name : go_name);
       Assert.AreEqual(expected : go_name, actual : go.name);
     }

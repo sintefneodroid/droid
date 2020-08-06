@@ -34,7 +34,7 @@ namespace droid.Runtime.Messaging.Messages {
     /// <summary>
     /// The reason for termination
     /// </summary>
-    public String TerminationReason { get; }
+    public string TerminationReason { get; }
 
     /// <summary>
     ///
@@ -73,6 +73,6 @@ namespace droid.Runtime.Messaging.Messages {
     ///
     /// </summary>
     /// <returns></returns>
-    public override String ToString() { return $"SnapShot: {this.Description},Term.{this.Terminated}"; }
+    public override string ToString() { return $"SnapShot: {this.Description},Term.{this.Terminated}"; }
   }
 }

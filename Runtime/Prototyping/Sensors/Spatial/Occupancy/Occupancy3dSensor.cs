@@ -53,7 +53,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Occupancy {
       this._transforms = FindObjectsOfType<MeshFilter>().Select(o => o.transform);
     }
 
-    public override IEnumerable<Single> FloatEnumerable {
+    public override IEnumerable<float> FloatEnumerable {
       get {
         var a = new float[this.ObservationArray.Length * 3];
         for (var i = 0; i < this.ObservationArray.Length * 3; i += 3) {

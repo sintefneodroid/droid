@@ -51,6 +51,10 @@ namespace droid.Runtime.Structs.Space {
     ///  <returns></returns>
     ///  <exception cref="T:System.ArgumentOutOfRangeException"></exception>
     public dynamic Project(dynamic v) {
+      if (this.Clipped) {
+        v = this.Clip(v : v);
+      }
+
       switch (this.Normalised) {
         case ProjectionEnum.None_:
           return v;
@@ -58,8 +62,6 @@ namespace droid.Runtime.Structs.Space {
           return ClipNormalise01Round(v : v);
         case ProjectionEnum.Minus_one_one_:
           return ClipNormaliseMinusOneOneRound(v : v);
-        case ProjectionEnum.Clipped_:
-          return ClipRound(v : v);
         default: throw new ArgumentOutOfRangeException();
       }
     }
@@ -72,17 +74,24 @@ namespace droid.Runtime.Structs.Space {
     ///  <exception cref="T:System.ArgumentOutOfRangeException"></exception>
     public dynamic Reproject(dynamic v) {
       switch (this.Normalised) {
-        case ProjectionEnum.None_:
-          return v;
         case ProjectionEnum.Zero_one_:
-          return ClipRoundDenormalise01Clip(v : v);
+          v = ClipRoundDenormalise01Clip(v : v);
+          break;
         case ProjectionEnum.Minus_one_one_:
-          return ClipRoundDenormaliseMinusOneOneClip(configuration_configurable_value : v);
-        case ProjectionEnum.Clipped_:
-          return ClipRound(v : v);
+          v = ClipRoundDenormaliseMinusOneOneClip(configuration_configurable_value : v);
+          break;
+        case ProjectionEnum.None_: break;
         default: throw new ArgumentOutOfRangeException();
       }
+
+      if (this.Clipped) {
+        v = this.Clip(v : v);
+      }
+
+      return v;
     }
+
+    public bool Clipped { get { return this._clipped; } set { this._clipped = value; } }
 
     /// <inheritdoc />
     /// <summary>
@@ -145,11 +154,12 @@ namespace droid.Runtime.Structs.Space {
     }
 
     [SerializeField] ProjectionEnum _projection; //TODO use!
+    [SerializeField] bool _clipped;
 
     /// <summary>
     ///
     /// </summary>
-    public Boolean NormalisedBool {
+    public bool NormalisedBool {
       get { return this._projection == ProjectionEnum.Zero_one_; }
       set { this._projection = value ? ProjectionEnum.Zero_one_ : ProjectionEnum.None_; }
     }
@@ -191,7 +201,7 @@ namespace droid.Runtime.Structs.Space {
     }
 
     dynamic ClipRoundDenormalise01Clip(dynamic v) {
-      #if PRE_CLIP_PROJECTIONS
+      #if ALWAYS_PRE_CLIP_PROJECTIONS
       v = Clip(v : configuration_configurable_value,
                                                                   min : Vector4.zero,
                                                                   max : Vector4.one);
@@ -206,7 +216,7 @@ namespace droid.Runtime.Structs.Space {
     /// <param name="v"></param>
     /// <returns></returns>
     dynamic ClipNormalise01Round(dynamic v) {
-      #if PRE_CLIP_PROJECTIONS
+      #if ALWAYS_PRE_CLIP_PROJECTIONS
       v = Clip(v : v);
       #endif
 
@@ -235,7 +245,8 @@ namespace droid.Runtime.Structs.Space {
                               _min = Vector4.zero,
                               Max = Vector4.one,
                               DecimalGranularity = 4,
-                              Normalised = ProjectionEnum.Zero_one_
+                              Normalised = ProjectionEnum.Zero_one_,
+                              Clipped = true
                           };
       }
     }
@@ -249,7 +260,8 @@ namespace droid.Runtime.Structs.Space {
                               _min = Vector4.one * 0.2f,
                               Max = Vector4.one * 0.8f,
                               DecimalGranularity = 4,
-                              Normalised = ProjectionEnum.Zero_one_
+                              Normalised = ProjectionEnum.Zero_one_,
+                              Clipped = true
                           };
       }
     }
@@ -263,7 +275,8 @@ namespace droid.Runtime.Structs.Space {
                               _min = -Vector4.one,
                               Max = Vector4.one,
                               DecimalGranularity = 4,
-                              Normalised = ProjectionEnum.Zero_one_
+                              Normalised = ProjectionEnum.Zero_one_,
+                              Clipped = true
                           };
       }
     }
@@ -291,7 +304,7 @@ namespace droid.Runtime.Structs.Space {
     }
 
     dynamic ClipNormaliseMinusOneOneRound(dynamic v) {
-      #if PRE_CLIP_PROJECTIONS
+      #if ALWAYS_PRE_CLIP_PROJECTIONS
       v = Clip(v : v);
       #endif
 
@@ -299,7 +312,7 @@ namespace droid.Runtime.Structs.Space {
     }
 
     dynamic ClipRoundDenormaliseMinusOneOneClip(dynamic configuration_configurable_value) {
-      #if PRE_CLIP_PROJECTIONS
+      #if ALWAYS_PRE_CLIP_PROJECTIONS
 configuration_configurable_value = Clip(v : configuration_configurable_value,
                                                                   min : Vector4.zero,
                                                                   max : Vector4.one)

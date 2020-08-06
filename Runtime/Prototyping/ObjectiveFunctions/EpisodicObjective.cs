@@ -79,21 +79,21 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions {
     /// <summary>
     /// </summary>
     [field : SerializeField]
-    public Single EpisodeReturn { get; protected set; } = 0;
+    public float EpisodeReturn { get; protected set; } = 0;
 
     /// <summary>
     /// </summary>
     [field : SerializeField]
-    protected Single SolvedSignal { get; set; } = 1.0f;
+    protected float SolvedSignal { get; set; } = 1.0f;
 
     /// <summary>
     /// </summary>
     [field : SerializeField]
-    protected Single FailedSignal { get; set; } = -1.0f;
+    protected float FailedSignal { get; set; } = -1.0f;
 
     /// <summary>
     /// </summary>
     [field : SerializeField]
-    protected Single DefaultSignal { get; set; } = -0.001f;
+    protected float DefaultSignal { get; set; } = -0.001f;
   }
 }

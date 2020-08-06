@@ -227,7 +227,7 @@ namespace droid.Runtime.Environments.Prototyping {
       recipient.PollData(data : string.Join("\n\n",
                                             values :
                                             this.Sensors.Values.Select(e =>
-                                                                           $"{e.Identifier}:\n{e.ToString()}")));
+                                                                           $"{e.Identifier}:\n{e}")));
     }
 
     /// <inheritdoc />

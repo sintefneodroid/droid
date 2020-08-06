@@ -20,11 +20,11 @@ namespace droid.Runtime.Prototyping.Displayers.Cells {
     /// 
     /// </summary>
     /// <param name="value"></param>
-    public override void Display(Double value) { }
+    public override void Display(double value) { }
 
     public override void Display(float[] values) { }
 
-    public override void Display(String values) { }
+    public override void Display(string values) { }
 
     public override void Display(Vector3 value) { throw new NotImplementedException(); }
     public override void Display(Vector3[] value) { this.ScatterPlot(points : value); }

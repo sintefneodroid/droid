@@ -37,14 +37,14 @@ namespace droid.Runtime.GameObjects {
     /// </summary>
     [field : Header("Development", order = 90)]
     [field : SerializeField]
-    public Boolean DisablesChildren { get; set; } = false;
+    public bool DisablesChildren { get; set; } = false;
 
-    [field : SerializeField] public Boolean UnregisterAtDisable { get; set; } = false;
+    [field : SerializeField] public bool UnregisterAtDisable { get; set; } = false;
 
     /// <summary>
     /// </summary>
     [field : SerializeField]
-    protected String CustomName { get; set; } = "";
+    protected string CustomName { get; set; } = "";
 
     /// <summary>
     /// </summary>

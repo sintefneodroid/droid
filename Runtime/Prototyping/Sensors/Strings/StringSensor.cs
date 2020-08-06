@@ -20,7 +20,7 @@ namespace droid.Runtime.Prototyping.Sensors.Strings {
     /// <summary>
     ///
     /// </summary>
-    public String ObservationValue {
+    public string ObservationValue {
       get { return this._observation_value; }
       set { this._observation_value = value; }
     }
@@ -28,7 +28,7 @@ namespace droid.Runtime.Prototyping.Sensors.Strings {
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public override IEnumerable<Single> FloatEnumerable { get { return null; } }
+    public override IEnumerable<float> FloatEnumerable { get { return null; } }
 
     /// <inheritdoc />
     ///  <summary>

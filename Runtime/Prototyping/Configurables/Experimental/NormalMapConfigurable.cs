@@ -22,7 +22,7 @@ namespace droid.Runtime.Prototyping.Configurables.Experimental {
     [SerializeField] bool use_shared = false;
     [SerializeField] Material _mat;
     [SerializeField] int _last_sample;
-    static readonly Int32 _main_tex = Shader.PropertyToID("_BumpMap");
+    static readonly int _main_tex = Shader.PropertyToID("_BumpMap");
 
     /// <inheritdoc />
     /// <summary>

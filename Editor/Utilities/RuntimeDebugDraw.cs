@@ -470,7 +470,7 @@ Important Notes:
         List<DrawTextEntry> _draw_text_entries;
         List<AttachTextEntry> _attach_text_entries;
         GUIStyle _text_style;
-        static readonly Int32 _z_test = Shader.PropertyToID("_ZTest");
+        static readonly int _z_test = Shader.PropertyToID("_ZTest");
 
         public void RegisterDrawText(Vector3 anchor,
                                      string text,

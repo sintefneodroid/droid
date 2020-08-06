@@ -275,7 +275,7 @@ namespace droid.Editor.Windows {
 
     #region GUIDRAWS
 
-    void DrawListeners(SortedDictionary<String, IUnobservable> listeners) {
+    void DrawListeners(SortedDictionary<string, IUnobservable> listeners) {
       EditorGUILayout.BeginVertical("Box");
 
       GUILayout.Label("Listeners");
@@ -352,10 +352,22 @@ namespace droid.Editor.Windows {
                                                                               .gameObject.activeSelf);
           EditorGUILayout.ObjectField(obj : sensor_value, objType : typeof(Sensor), true);
           if (this._show_detailed_descriptions) {
+            if (sensor_value is IHasSingle as_single) {
+              as_single.SingleSpace.FromVector3(vector3_field :
+                                                EditorGUILayout.Vector3Field(label : Space1
+                                                                                 .Vector3Description(),
+                                                                             value : as_single
+                                                                                     .SingleSpace
+                                                                                     .ToVector3())); //MIN;MAX;DECIMALS
+            
+                        EditorGUILayout.LabelField(label : "Projection: [" + as_single.SingleSpace.Normalised + "]");
+                        EditorGUILayout.LabelField(label : "Clipped: [" + as_single.SingleSpace.Clipped + "]");
+            }
+            
             //EditorGUILayout.BeginHorizontal("Box");
             #if NEODROID_DEBUG
             sensor_value.Debugging = EditorGUILayout.Toggle("Debugging", value : sensor_value.Debugging);
-            EditorGUILayout.LabelField(label : "Observables: [" + sensor_value.ToString() + "]");
+            EditorGUILayout.LabelField(label : "Observables: [" + sensor_value + "]");
             #endif
             //EditorGUILayout.EndHorizontal();
           }
@@ -445,7 +457,7 @@ namespace droid.Editor.Windows {
                                                                                     .Vector3Description(),
                                                                                 value : actuator_value
                                                                                         .MotionSpace
-                                                                                        .ToVector3()));
+                                                                                        .ToVector3())); //MIN;MAX;DECIMALS
             //EditorGUILayout.BeginHorizontal("Box");
             #if NEODROID_DEBUG
             actuator_value.Debugging = EditorGUILayout.Toggle("Debugging", value : actuator_value.Debugging);

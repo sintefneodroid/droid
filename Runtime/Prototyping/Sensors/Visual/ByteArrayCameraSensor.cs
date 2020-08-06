@@ -27,8 +27,8 @@ namespace droid.Runtime.Prototyping.Sensors.Visual {
     [SerializeField]
     Camera _camera = null;
 
-    Byte[] _bytes = { };
-    [SerializeField] Boolean linear_space;
+    byte[] _bytes = { };
+    [SerializeField] bool linear_space;
     [SerializeField] Camera disable_camera_when_unused;
 
     /// <inheritdoc />
@@ -142,7 +142,7 @@ namespace droid.Runtime.Prototyping.Sensors.Visual {
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public override IEnumerable<Single> FloatEnumerable { get { return null; } }
+    public override IEnumerable<float> FloatEnumerable { get { return null; } }
 
     /// <inheritdoc />
     ///  <summary>
@@ -178,7 +178,7 @@ namespace droid.Runtime.Prototyping.Sensors.Visual {
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public Byte[] Bytes {
+    public byte[] Bytes {
       get { return this._bytes; }
       private set {
         if (value != null) {
@@ -190,7 +190,7 @@ namespace droid.Runtime.Prototyping.Sensors.Visual {
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public Int32[] Shape {
+    public int[] Shape {
       get {
         int channels;
         switch (this._texture.graphicsFormat) {
@@ -214,7 +214,7 @@ namespace droid.Runtime.Prototyping.Sensors.Visual {
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public String ArrayEncoding {
+    public string ArrayEncoding {
       get {
         string s;
         switch (this._texture.graphicsFormat) {

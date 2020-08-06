@@ -7,6 +7,7 @@
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #include "UnityCG.cginc"
 
             struct v2f {
                 float2 uv : TEXCOORD0;

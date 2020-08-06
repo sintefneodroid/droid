@@ -83,7 +83,7 @@ namespace droid.Runtime.Messaging.Experimental {
 
     /// <summary>
     /// </summary>
-    Double _wait_time_seconds;
+    double _wait_time_seconds;
 
     #endregion
 
@@ -95,7 +95,7 @@ namespace droid.Runtime.Messaging.Experimental {
     /// </summary>
     /// <param name="callback"></param>
     /// <param name="debug_callback"></param>
-    void BindSocket(Action callback, Action<String> debug_callback) {
+    void BindSocket(Action callback, Action<string> debug_callback) {
       if (this._debugging) {
         debug_callback?.Invoke("Start listening for clients");
       }
@@ -330,7 +330,7 @@ namespace droid.Runtime.Messaging.Experimental {
                          int port = 6969,
                          bool use_inter_process_communication = false,
                          bool debug = false,
-                         Double wait_time_seconds = 2) {
+                         double wait_time_seconds = 2) {
       this._wait_time_seconds = wait_time_seconds;
       this.Debugging = debug;
       this._ip_address = ip_address;

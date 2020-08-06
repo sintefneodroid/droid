@@ -108,7 +108,7 @@ namespace droid.Runtime.Prototyping.Displayers {
     /// </summary>
     /// <param name="value"></param>
     /// <exception cref="NotImplementedException"></exception>
-    public override void Display(Double value) { throw new NotImplementedException(); }
+    public override void Display(double value) { throw new NotImplementedException(); }
 
     /// <summary>
     /// </summary>
@@ -119,7 +119,7 @@ namespace droid.Runtime.Prototyping.Displayers {
     /// <summary>
     /// </summary>
     /// <param name="value"></param>
-    public override void Display(String value) {
+    public override void Display(string value) {
       #if NEODROID_DEBUG
       if (this.Debugging) {
         Debug.Log(message : "Applying " + value + " To " + this.name);

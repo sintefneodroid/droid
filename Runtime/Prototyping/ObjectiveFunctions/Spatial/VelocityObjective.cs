@@ -10,6 +10,7 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
     [SerializeField]
     Rigidbody _rigidbody = null;
 
+    /// <inheritdoc />
     /// <summary>
     /// </summary>
     public override void InternalReset() { }
@@ -24,6 +25,11 @@ namespace droid.Runtime.Prototyping.ObjectiveFunctions.Spatial {
       this.IsOutsideBound();
 
       return vel_mag;
+    }
+    
+    void OnDrawGizmosSelected() {
+      var rb_pos = this._rigidbody.position;
+      Debug.DrawLine(start :rb_pos , end : rb_pos + this._rigidbody.velocity);
     }
 
     /// <summary>

@@ -23,7 +23,7 @@ namespace droid.Runtime.Utilities.PostProcessesEffects {
   ///
   /// </summary>
   public sealed class GrayscaleRenderer : PostProcessEffectRenderer<Grayscale> {
-    static readonly Int32 _blend = Shader.PropertyToID("_Blend");
+    static readonly int _blend = Shader.PropertyToID("_Blend");
     static readonly Shader _s = Shader.Find("Neodroid/PostProcessing/Grayscale");
 
     /// <summary>

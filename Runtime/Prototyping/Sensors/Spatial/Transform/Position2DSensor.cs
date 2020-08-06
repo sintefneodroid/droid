@@ -68,7 +68,7 @@ namespace droid.Runtime.Prototyping.Sensors.Spatial.Transform {
     /// <inheritdoc />
     ///  <summary>
     ///  </summary>
-    public override IEnumerable<Single> FloatEnumerable {
+    public override IEnumerable<float> FloatEnumerable {
       get {
         yield return this._2_d_position.x;
         yield return this._2_d_position.y;

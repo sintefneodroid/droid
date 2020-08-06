@@ -12,6 +12,7 @@ Shader "Neodroid/Spaces/WorldSpace" {
 
          #pragma vertex vert
          #pragma fragment frag
+         #include "UnityCG.cginc"
 
          float3 _from_center_span;
 

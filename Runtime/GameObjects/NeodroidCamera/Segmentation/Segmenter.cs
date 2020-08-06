@@ -12,6 +12,6 @@ namespace droid.Runtime.GameObjects.NeodroidCamera.Segmentation {
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public abstract Dictionary<String, Color> ColorsDict { get; }
+    public abstract Dictionary<string, Color> ColorsDict { get; }
   }
 }

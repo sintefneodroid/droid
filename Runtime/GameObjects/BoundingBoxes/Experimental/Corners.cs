@@ -211,7 +211,7 @@ namespace droid.Runtime.GameObjects.BoundingBoxes.Experimental {
     }
 
     static float GetArrowSizeForLine(Vector2 line) {
-      const Single default_arrow_percentage = 0.05f;
+      const float default_arrow_percentage = 0.05f;
       return (line * default_arrow_percentage).magnitude;
     }
 

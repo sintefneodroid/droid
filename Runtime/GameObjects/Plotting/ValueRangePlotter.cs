@@ -9,7 +9,7 @@ namespace droid.Runtime.GameObjects.Plotting {
     Material _material;
     [SerializeField] Shader _shader = null;
     [SerializeField] Bounds _value_range = new Bounds(center : Vector3.zero, size : Vector3.one * 2);
-    static readonly Int32 _range = Shader.PropertyToID("_Range");
+    static readonly int _range = Shader.PropertyToID("_Range");
 
     void OnDestroy() {
       if (this._material != null) {

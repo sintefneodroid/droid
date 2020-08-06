@@ -21,7 +21,7 @@ namespace droid.Runtime.Prototyping.Displayers.GridWorld {
     ///  <summary>
     ///  </summary>
     ///  <param name="value"></param>
-    public override void Display(Double value) { }
+    public override void Display(double value) { }
 
     /// <inheritdoc />
     ///  <summary>
@@ -33,7 +33,7 @@ namespace droid.Runtime.Prototyping.Displayers.GridWorld {
     /// <summary>
     /// </summary>
     /// <param name="values"></param>
-    public override void Display(String values) { }
+    public override void Display(string values) { }
 
     /// <inheritdoc />
     ///  <summary>

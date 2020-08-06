@@ -56,6 +56,7 @@
 
                 #pragma vertex vert
                 #pragma fragment frag
+            #include "UnityCG.cginc"
 
             float4 vert (float4 vertex : POSITION) : SV_POSITION
             {

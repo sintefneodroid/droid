@@ -1,4 +1,3 @@
-
 uniform float _WireThickness = 100;
 uniform float _WireSmoothness = 3;
 uniform float4 _WireColor = float4(0.0, 1.0, 0.0, 1.0);
@@ -27,7 +26,7 @@ struct g2f
     UNITY_VERTEX_OUTPUT_STEREO
 };
 
-v2g vert (appdata v)
+v2g vert(appdata v)
 {
     v2g o;
     UNITY_SETUP_INSTANCE_ID(v);
@@ -68,7 +67,7 @@ void geom(triangle v2g i[3], inout TriangleStream<g2f> triangleStream)
 
     o.worldSpacePosition = i[0].worldSpacePosition;
     o.projectionSpaceVertex = i[0].projectionSpaceVertex;
-    o.dist.xyz = float3( (area / length(edge0)), 0.0, 0.0) * o.projectionSpaceVertex.w * wireThickness;
+    o.dist.xyz = float3((area / length(edge0)), 0.0, 0.0) * o.projectionSpaceVertex.w * wireThickness;
     o.dist.w = 1.0 / o.projectionSpaceVertex.w;
     UNITY_TRANSFER_VERTEX_OUTPUT_STEREO(i[0], o);
     triangleStream.Append(o);
@@ -93,9 +92,9 @@ fixed4 frag(g2f i) : SV_Target
     float minDistanceToEdge = min(i.dist[0], min(i.dist[1], i.dist[2])) * i.dist[3];
 
     // Early out if we know we are not on a line segment.
-    if(minDistanceToEdge > 0.9 || i.area.x > _MaxTriSize)
+    if (minDistanceToEdge > 0.9 || i.area.x > _MaxTriSize)
     {
-        return fixed4(_BaseColor.rgb,0);
+        return fixed4(_BaseColor.rgb, 0);
     }
 
     // Smooth our line out

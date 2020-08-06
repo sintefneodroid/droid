@@ -36,19 +36,19 @@ namespace droid.Samples.MultiArmedBandit.Actuators {
 
     /// <summary>
     /// </summary>
-    public Single[] WinAmounts { get { return this._Win_Amounts; } set { this._Win_Amounts = value; } }
+    public float[] WinAmounts { get { return this._Win_Amounts; } set { this._Win_Amounts = value; } }
 
     /// <summary>
     /// </summary>
-    public Int32 LastIndex { get { return this._last_index; } set { this._last_index = value; } }
+    public int LastIndex { get { return this._last_index; } set { this._last_index = value; } }
 
     /// <summary>
     /// </summary>
-    public Boolean Won { get { return this._won; } set { this._won = value; } }
+    public bool Won { get { return this._won; } set { this._won = value; } }
 
     /// <summary>
     /// </summary>
-    public Single[] WinLikelihoods {
+    public float[] WinLikelihoods {
       get { return this._Win_Likelihoods; }
       set { this._Win_Likelihoods = value; }
     }
@@ -63,14 +63,14 @@ namespace droid.Samples.MultiArmedBandit.Actuators {
       mvs.DecimalGranularity = 0;
       this.MotionSpace = mvs;
       if (this._Win_Likelihoods == null || this._Win_Likelihoods.Length == 0) {
-        this._Win_Likelihoods = new Single[this._Indicators.Length];
+        this._Win_Likelihoods = new float[this._Indicators.Length];
         for (var index = 0; index < this._Indicators.Length; index++) {
           this._Win_Likelihoods[index] = 0.5f;
         }
       }
 
       if (this._Win_Amounts == null || this._Win_Amounts.Length == 0) {
-        this._Win_Amounts = new Single[this._Indicators.Length];
+        this._Win_Amounts = new float[this._Indicators.Length];
         for (var index = 0; index < this._Indicators.Length; index++) {
           this._Win_Amounts[index] = 10f;
         }

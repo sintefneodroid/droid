@@ -28,6 +28,6 @@ namespace droid.Runtime.Prototyping.Actuators.Auditory {
       }
     }
 
-    public override String[] InnerMotionNames { get; }
+    public override string[] InnerMotionNames { get; }
   }
 }

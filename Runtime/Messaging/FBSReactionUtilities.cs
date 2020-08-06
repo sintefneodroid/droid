@@ -56,7 +56,7 @@ namespace droid.Runtime.Messaging {
       }
 
       return new
-          Tuple<Reaction[], bool, String, SimulatorConfigurationMessage>(item1 : _out_reactions.ToArray(),
+          Tuple<Reaction[], bool, string, SimulatorConfigurationMessage>(item1 : _out_reactions.ToArray(),
                                                                          item2 : close,
                                                                          item3 : api_version,
                                                                          item4 : simulator_configuration);
@@ -93,11 +93,11 @@ namespace droid.Runtime.Messaging {
 
     #region PrivateMethods
 
-    static String deserialise_simulator_configuration(FReaction reaction_value) {
+    static string deserialise_simulator_configuration(FReaction reaction_value) {
       return reaction_value.SerialisedMessage;
     }
 
-    static String deserialise_serialised_message(FReaction reaction_value) {
+    static string deserialise_serialised_message(FReaction reaction_value) {
       return reaction_value.SerialisedMessage;
     }
 
