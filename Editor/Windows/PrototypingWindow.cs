@@ -30,7 +30,7 @@ namespace droid.Editor.Windows {
     const int _logo_image_size = 100;
 
     const string _neodroid_url_text = "Documentation";
-    const string _neodroid_url = "https://neodroid.ml/documentation";
+    const string _neodroid_url = "https://sintefneodroid.github.io/documentation";
 
     /// <summary>
     /// </summary>
