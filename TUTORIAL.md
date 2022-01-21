@@ -10,7 +10,7 @@
 
 -------------------------------- TUTORIAL -----------------------------------
 
-In this very simple tutorial you create a Neodroid environment from a new scene, please refer to online resources at documentation.neodroid.ml for more information.
+In this very simple tutorial you create a Neodroid environment from a new scene, please refer to online resources at sintefneodroid.github.io/documentation for more information.
 
 1. Create a new scene with a basic prebuilt simulation manager and prototyping environment setup
     - 1.1 [Right click] the scene view in the editor
@@ -70,7 +70,7 @@ In this very simple tutorial you create a Neodroid environment from a new scene,
     - 9.1 Ensure both the Unity scene and Python process is running
     - 9.2 Switch to the console and observe the values being printed, these a values return to the process from 
   the running Unity scene, we call these observations and signals and are necessaries for doing reinforcement learning, the Neodroid eco-system set up of this up for you in the scene you built
-    - 9.3 Again refer to the online resources for more information at documentation.neodroid.ml
+    - 9.3 Again refer to the online resources for more information at sintefneodroid.github.io/documentation
 
 10. Lastly feel free to report any issues at https://github.com/sintefneodroid/droid/issues.
 
